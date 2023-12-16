@@ -219,6 +219,8 @@ var config int FUSION_SWORD_FIRE_CHANCE;
 var config int KILLZONE_CONE_LENGTH;
 var config int KILLZONE_CONE_WIDTH;
 
+var config int WORKSHOP_ENG_BONUS;
+
 var config array<ItemTableEntry> ItemTable;
 var config array<TechTableEntry> TechTable;
 var config array<GTSTableEntry> GTSTable;
@@ -297,6 +299,8 @@ var config WeaponDamageValue WARLOCKPSIM2_BASEDAMAGE;
 var config WeaponDamageValue WARLOCKPSIM3_BASEDAMAGE;
 var config WeaponDamageValue WARLOCKPSIM4_BASEDAMAGE;
 var config WeaponDamageValue WARLOCKPSIM5_BASEDAMAGE;
+
+var config array<name> AbilitiesToFixStun;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -1080,6 +1084,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	
 			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_Panicked'))
 			{
+				X2Effect_Panicked(Template.AbilityTargetEffects[k]).bRemoveWhenSourceDies = false;
 				X2Effect_Panicked(Template.AbilityTargetEffects[k]).MinStatContestResult = 4;
 				X2Effect_Panicked(Template.AbilityTargetEffects[k]).MaxStatContestResult = 24;
 			}
@@ -1090,6 +1095,11 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 					{
 						Template.AbilityTargetEffects.Remove(k, 1);
 					}
+			}
+
+			if (X2Effect_PersistentStatChange(Template.AbilityTargetEffects[k]).EffectName == class'X2AbilityTemplateManager'.default.DisorientedName)
+			{
+				X2Effect_PersistentStatChange(Template.AbilityTargetEffects[k]).bRemoveWhenSourceDies = false;
 			}
 
 			// Compensate for the stat contest dilution. It's still less than it used to be.
@@ -1724,6 +1734,20 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		NotHaywiredCondition = new class 'X2Condition_UnitEffects';
 		NotHaywiredCondition.AddExcludeEffect ('Haywired', 'AA_NoTargets'); 
 		Template.AbilityTargetConditions.AddItem(NotHaywiredCondition);
+
+		
+	}
+
+	if (default.AbilitiesToFixStun.Find(Template.DataName) != INDEX_NONE)
+	{
+		for (k = Template.AbilityTargetEffects.length - 1; k >= 0; k--)
+		{
+			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_Stunned'))
+			{
+				X2Effect_Stunned(Template.AbilityTargetEffects[k]).bRemoveWhenSourceDies = false;
+				`LWTrace("Fixing Stun Effect on" @Template.DataName);
+			}
+		}
 	}
 
 	if (Template.DataName == 'Evac')
@@ -2286,6 +2310,9 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 			// make them move before chosen
 			Template.InitiativePriority = -101;
 			break;
+		case 'HostileVIPCivilian':
+			Template.Abilities.AddItem('Shadowstep');
+			break;
 		default:
 			break;
 	}
@@ -2586,6 +2613,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponTemplate.Abilities.AddItem('ShieldAllyM5');
 			WeaponTemplate.BaseDamage = default.WARLOCKPSIM5_BASEDAMAGE;
 			WeaponTemplate.Abilities.AddItem('CorressM4');
+			WeaponTemplate.Abilities.AddItem('SpectralArmyM4');
 			break;
 
 		case 'ChosenRifle_XCOM':
@@ -2713,12 +2741,14 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			GremlinTemplate.RevivalChargesBonus = 1;
 			GremlinTemplate.ScanningChargesBonus = 1;
 			GremlinTemplate.AidProtocolBonus = 5;
+			GremlinTemplate.BaseDamage.Damage = 5;
 		}
 		if (GremlinTemplate.DataName == 'Gremlin_BM')
 		{
 			GremlinTemplate.RevivalChargesBonus = 2;
 			GremlinTemplate.ScanningChargesBonus = 2;
 			GremlinTemplate.AidProtocolBonus = 10;
+			GremlinTemplate.BaseDamage.Damage = 8;
 		}
 		if (GremlinTemplate.DataName == 'SparkBit_MG')
 		{
@@ -3707,6 +3737,10 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 
 			// No longer mark it as being a priority/requiring attention
 			FacilityTemplate.bPriority = false;
+		}
+		if (FacilityTemplate.DataName == 'Workshop')
+		{
+			FacilityTemplate.EngineeringBonus = default.WORKSHOP_ENG_BONUS;
 		}
 		//if (FacilityTemplate.DataName == 'Storage') Didn't work
 		//{

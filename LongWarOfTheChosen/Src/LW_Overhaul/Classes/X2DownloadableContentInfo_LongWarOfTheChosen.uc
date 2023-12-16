@@ -45,6 +45,8 @@ var config int ENCRYPTION_SERVER_MONTH;
 
 var config bool bNerfFrostLegion;
 
+var config array<MissionDefinition> ReplacementMissionDefs;
+
 
 
 
@@ -123,6 +125,11 @@ var config array<Name> SitrepsToDisable;
 // disable patching Templars
 
 var config bool bDisableRespeccingTemplars;
+
+var config bool bSewersToSubway;
+var config bool bEnableCityHQs;
+
+var config array<string> MapsToDisable;
 
 // End data and data structures
 //-----------------------------
@@ -217,7 +224,41 @@ static event OnPostTemplatesCreated()
 	UpdateSitreps();
 	UpdateEncounterLists();
 	ModifyYellAbility();
+	ModifyMissionSchedules();
 	
+}
+
+// Uses OPTC to update mission schedules instead of minus config
+static function ModifyMissionSchedules()
+{
+	local XComTacticalMissionManager MissionManager;
+	local int MissionIdx;
+	local name MissionName;
+	local MissionDefinition CurrentMissionDef;
+
+	MissionManager = `TACTICALMISSIONMGR;
+
+	foreach default.ReplacementMissionDefs (CurrentMissionDef)
+	{
+		MissionName = CurrentMissionDef.MissionName;
+		MissionIdx = MissionManager.arrMissions.Find('MissionName', MissionName);
+		if(MissionIdx != -1)
+		{
+			if(MissionManager.arrMissions[MissionIdx].sType == CurrentMissionDef.sType &&  MissionManager.arrMissions[MissionIdx].MissionName == MissionName)
+			{
+				MissionManager.arrMissions[MissionIdx] = CurrentMissionDef;
+				`LWTrace("Replacing mission def for mission " @CurrentMissionDef.MissionName @"Mission sType" @ CurrentMissionDef.sType,, 'TedLog');
+			}
+			else
+			{
+				`LWTrace("replacement Mission sType didn't match for mission Name" @CurrentMissionDef.MissionName,, 'TedLog'); 
+			}
+		}
+		else
+		{
+			`LWTrace("Couldn't find base missiondef to replace for mission name" @CurrentMissionDef.MissionName,, 'TedLog');
+		}
+	}
 }
 
 static function UpdateEncounterLists()
@@ -997,6 +1038,8 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	local XComGameState_HeadquartersXCom XCOMHQ;
 	local array<SpawnDistributionListEntry>	LeaderSpawnList;
 	local array<SpawnDistributionListEntry>	FollowerSpawnList;
+	local array<name> GoodUnits;
+	local array<name> BadUnits;
 
 
 	`LWDiversityTrace("Parsing Encounter : " $ EncounterName);
@@ -1074,8 +1117,10 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	}
 
 	// Get the corresponding spawn distribution lists for this mission.
-	GetLeaderSpawnDistributionList(EncounterName, MissionState, ForceLevel, LeaderSpawnList);
-	GetFollowerSpawnDistributionList(EncounterName, MissionState, ForceLevel, FollowerSpawnList);
+	`LWDiversityTrace("Getting Leader Spawn Distribution List: ");
+	GetLeaderSpawnDistributionList(EncounterName, MissionState, ForceLevel, LeaderSpawnList, GoodUnits, BadUnits);
+	`LWDiversityTrace("Getting Follower Spawn Distribution List: ");
+	GetFollowerSpawnDistributionList(EncounterName, MissionState, ForceLevel, FollowerSpawnList, GoodUnits, Badunits);
 
 	//`LWTRACE("PE1");
 	RNFSpawnerState = XComGameState_AIReinforcementSpawner(SourceObject);
@@ -1101,6 +1146,9 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		`LWDiversityTrace("Character[" $ idx $ "] = " $ CharacterTemplateName);
 	}
 
+	XCOMHQ = XComGameState_HeadquartersXCom(`XCOMHistory.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom', true));
+
+
 	PodSize = SpawnInfo.SelectedCharacterTemplateNames.length;
 
 	TemplateManager = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
@@ -1116,9 +1164,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		SpawnInfo.SelectedCharacterTemplateNames[0] = SelectNewPodLeader(SpawnInfo, ForceLevel, LeaderSpawnList);
 		`LWDiversityTrace("Swapping Nonexistant leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0] @ "and rerolling followers");
 	}
-
 	// override native insisting every mission have a codex while certain tactical options are active
-	XCOMHQ = XComGameState_HeadquartersXCom(`XCOMHistory.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom', true));
 
 	// Swap out forced Codices on regular encounters
 	if (SpawnInfo.SelectedCharacterTemplateNames[0] == 'Cyberus' && InStr (EncounterName,"PROTECTED") == -1 && EncounterName != 'LoneCodex')
@@ -1216,6 +1262,12 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 				{
 					`LWDiversityTrace("Detected nonexistant follower" @ SpawnInfo.SelectedCharacterTemplateNames[k]);
 					swap = true;
+				}
+				// Tedster - add check for plot gating here:
+				if(XCOMHQ.MeetsObjectiveRequirements(FollowerCharacterTemplate.SpawnRequirements.RequiredObjectives) == false)
+				{
+					// reroll the unit instead of shuffling all pods to allow codex to to be added to pods as defined followers.
+					SpawnInfo.SelectedCharacterTemplateNames[k] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
 				}
 				if(default.bNerfFrostLegion && (InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[k]), "FROST")!= INDEX_NONE || InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[k]), "CRYO")!= INDEX_NONE) && MissionState.TacticalGameplayTags.Find('SITREP_FrostPurge') == INDEX_NONE)
 				{
@@ -1340,14 +1392,14 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	return;
 }
 
-static function GetLeaderSpawnDistributionList(name EncounterName, XComGameState_MissionSite MissionState, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList)
+static function GetLeaderSpawnDistributionList(name EncounterName, XComGameState_MissionSite MissionState, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList,out array<name> GoodUnits, out array<name> BadUnits )
 {
-	GetSpawnDistributionList(EncounterName, MissionState, ForceLevel, SpawnList, true);
+	GetSpawnDistributionList(EncounterName, MissionState, ForceLevel, SpawnList, true, GoodUnits, BadUnits);
 }
 
-static function GetFollowerSpawnDistributionList(name EncounterName, XComGameState_MissionSite MissionState, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList)
+static function GetFollowerSpawnDistributionList(name EncounterName, XComGameState_MissionSite MissionState, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList, out array<name> GoodUnits, out array<name> BadUnits)
 {
-	GetSpawnDistributionList(EncounterName, MissionState, ForceLevel, SpawnList, false);
+	GetSpawnDistributionList(EncounterName, MissionState, ForceLevel, SpawnList, false, GoodUnits, BadUnits);
 }
 
 static function GetSpawnDistributionList(
@@ -1355,13 +1407,23 @@ static function GetSpawnDistributionList(
 	XComGameState_MissionSite MissionState,
 	int ForceLevel,
 	out array<SpawnDistributionListEntry> SpawnList,
-	bool IsLeaderList)
+	bool IsLeaderList,
+	out array<name> GoodUnits,
+	out array<name> BadUnits)
 {
 	local SpawnDistributionList CurrentList;
 	local SpawnDistributionListEntry CurrentListEntry;
 	local XComTacticalMissionManager MissionManager;
 	local name SpawnListID;
 	local int idx;
+	local XComGameState_HeadquartersXCom XComHQ;
+	local X2CharacterTemplateManager TemplateManager;
+	local X2CharacterTemplate CharacterTemplate;
+
+	
+	TemplateManager = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
+
+	XComHQ = XComGameState_HeadquartersXCom(`XCOMHistory.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom', true));
 
 	MissionManager = `TACTICALMISSIONMGR;
 
@@ -1407,10 +1469,41 @@ static function GetSpawnDistributionList(
 		{
 			foreach CurrentList.SpawnDistribution(CurrentListEntry)
 			{
-				if (ForceLevel >= CurrentListEntry.MinForceLevel && ForceLevel <= CurrentListEntry.MaxForceLevel)
+			
+			if (ForceLevel >= CurrentListEntry.MinForceLevel && ForceLevel <= CurrentListEntry.MaxForceLevel)
 				{
-					`LWDiversityTrace("Adding " $ CurrentListEntry.Template $ " to the merged spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
-					SpawnList.AddItem(CurrentListEntry);
+					
+					if(GoodUnits.Find(CurrentListEntry.Template) == INDEX_NONE)
+					{
+						if(BadUnits.Find(CurrentListEntry.Template) == INDEX_NONE)
+						{
+							CharacterTemplate = TemplateManager.FindCharacterTemplate(CurrentListEntry.Template);
+
+							if(CharacterTemplate != none)
+							{
+
+								if(XComHQ.MeetsObjectiveRequirements(CharacterTemplate.SpawnRequirements.RequiredObjectives) == true)
+								{
+									`LWDiversityTrace("Adding " $ CurrentListEntry.Template $ " to the merged spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
+									SpawnList.AddItem(CurrentListEntry);
+									GoodUnits.AddItem(CurrentListEntry.Template);
+								}
+								else
+								{
+									BadUnits.AddItem(CurrentListEntry.Template);
+								}
+							}
+							else
+							{
+								BadUnits.AddItem(CurrentListEntry.Template);
+							}
+						}
+					}
+					else
+					{
+						`LWDiversityTrace("Adding " $ CurrentListEntry.Template $ " to the merged spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
+						SpawnList.AddItem(CurrentListEntry);
+					}
 				}
 			}
 		}
@@ -1516,6 +1609,11 @@ static function name SelectNewPodLeader(PodSpawnInfo SpawnInfo, int ForceLevel, 
 		if (CharacterTemplate.DataName == 'AdvPsiWitchM3' && XCOMHQ.GetObjectiveStatus ('T1_M5_SKULLJACKCodex') != eObjectiveState_Completed)
 			continue;
 
+		if(XCOMHQ.MeetsObjectiveRequirements(CharacterTemplate.SpawnRequirements.RequiredObjectives) == false)
+		{
+			continue;
+		}
+
 		TestWeight = GetCharacterSpawnWeight(SpawnList, CharacterTemplate, ForceLevel);
 		// this is a valid character type, so store off data for later random selection
 		if (TestWeight > 0.0)
@@ -1615,10 +1713,10 @@ static function name SelectRandomPodFollower(PodSpawnInfo SpawnInfo, array<name>
 }
 
 // improved version that doesn't have nested loops
-static function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnInfo, array<name> SupportedFollowers, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList)
+static final function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnInfo, array<name> SupportedFollowers, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList)
 {
-	local X2CharacterTemplateManager CharacterTemplateMgr;
-	local X2CharacterTemplate CharacterTemplate;
+//	local X2CharacterTemplateManager CharacterTemplateMgr;
+//	local X2CharacterTemplate CharacterTemplate;
 	local SpawnDistributionListEntry SpawnEntry;
 	local array<name> PossibleChars;
 	local array<float> PossibleWeights;
@@ -1628,13 +1726,17 @@ static function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnInfo, ar
 
 	local bool bCodexObjective, bAvatarObjective;
 
+	`LWDiversityTrace("SelectRandomPodFollower_Improved called with the following FL" @Forcelevel);
+	`LWDiversityTrace("SpawnList Length:" @SpawnList.Length);
+	`LWDiversityTrace("Supported Followers Length:" @SupportedFollowers.Length);
 	// setup
 	PossibleChars.Length = 0;
-	CharacterTemplateMgr = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
+//	CharacterTemplateMgr = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
 	XCOMHQ = XComGameState_HeadquartersXCom(`XCOMHistory.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom', true));
 
 	bCodexObjective = (XCOMHQ.GetObjectiveStatus('T1_M2_S3_SKULLJACKCaptain') != eObjectiveState_Completed);
 	bAvatarObjective = (XCOMHQ.GetObjectiveStatus ('T1_M5_SKULLJACKCodex') != eObjectiveState_Completed);
+	`LWDiversityTrace("Passed Codex/Avatar Objective");
 
 	foreach SpawnList(SpawnEntry)
 	{
@@ -1644,13 +1746,15 @@ static function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnInfo, ar
 			continue;
 		}
 
+		/*
+		This has been moved to the code that compiles the spawn distribution list instead.
 		// short circuit if unit template doesn't exist.
 		CharacterTemplate = CharacterTemplateMgr.FindCharacterTemplate(SpawnEntry.Template);
 		if(CharacterTemplate == none)
 		{
 			continue;
 		}
-
+		*/
 
 		// if entry out of force level range.
 		if (ForceLevel < SpawnEntry.MinForceLevel && ForceLevel > SpawnEntry.MaxForceLevel)
@@ -1665,11 +1769,11 @@ static function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnInfo, ar
 		}
 
 		// don't let cyberuses in yet
-		if (CharacterTemplate.DataName == 'Cyberus' && bCodexObjective)
+		if (SpawnEntry.Template == 'Cyberus' && bCodexObjective)
 			continue;
 
 		// don't let Avatars in yet
-		if (CharacterTemplate.DataName == 'AdvPsiWitchM3' && bAvatarObjective)
+		if (SpawnEntry.Template == 'AdvPsiWitchM3' && bAvatarObjective)
 			continue;
 
 		
@@ -1686,12 +1790,14 @@ static function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnInfo, ar
 			PossibleChars.AddItem (SpawnEntry.Template);
 			PossibleWeights.AddItem (TestWeight);
 			TotalWeight += TestWeight;
+			`LWDiversityTrace("Unit" @SpawnEntry.Template @"Added to follower selection list");
 		}
 	}
 
 	//failsafe
 	if (PossibleChars.length == 0)
 	{
+		`LWDiversityTrace("Select new Follower Failed, returning M1 Trooper");
 		return 'AdvTrooperM1';
 	}
 
@@ -2032,6 +2138,7 @@ static function AddObjectivesToParcels()
 {
 	local XComParcelManager ParcelMgr;
 	local PlotDefinition PlotDef;
+	local WeightedPlotType PlotTypeDef;
 	local int i, j, k;
 
 	// Go over the plot list and add new objectives to certain plots.
@@ -2074,6 +2181,14 @@ static function AddObjectivesToParcels()
 		for (i = 0; i < ParcelMgr.arrPlots.Length; ++i)
 		{
 			PlotDef = ParcelMgr.arrPlots[i];
+
+			if(default.MapsToDisable.Find(PlotDef.MapName) != INDEX_NONE)
+			{
+				`LWTrace("Disabling map" @PlotDef.MapName @"from strategy due to config disable list.");
+				ParcelMgr.arrPlots[i].ExcludeFromStrategy = true;
+				continue;
+			}
+
 			if ((InStr(PlotDef.MapName, "_LgObj_") != INDEX_NONE || InStr(PlotDef.MapName, "_vlgObj_") != INDEX_NONE)
 					&& PlotDef.ObjectiveTags.Find("LargePlot") == INDEX_NONE)
 			{
@@ -2096,11 +2211,54 @@ static function AddObjectivesToParcels()
 			// Exclude Sewer maps so that Tunnels don't dominate the map pool quite so hard.
 			if (PlotDef.strType == "Tunnels_Sewer")
 			{
-				ParcelMgr.arrPlots[i].ExcludeFromStrategy = true;
+				//Convert them to Subway instead to group them together in one category if the player wants.
+				if(default.bSewersToSubway)
+				{
+					ParcelMgr.arrPlots[i].strType = "Tunnels_Subway";
+					`LWTrace("Converting Map" @PlotDef.MapName @"from Sewer to Subway");
+				}
+				else
+				{
+					ParcelMgr.arrPlots[i].ExcludeFromStrategy = true;
+				}
+			}
+
+			if (!default.bEnableCityHQs)
+			{
+				if (PlotDef.strType == "CityCenter" && PlotDef.ObjectiveTags[0] == "AssaultAlienBase_LW")
+				{
+					ParcelMgr.arrPlots[i].ExcludeFromStrategy = true;
+					`LWTrace("Removing Map" @PlotDef.MapName @"from Mission Generation");
+				}
 			}
 		}
 
 		i = 0;
+
+		if(default.bSewersToSubway)
+		{
+			PlotTypeDef.strPlotType = "Tunnels_Subway";
+
+			for(i = 0; i < ParcelMgr.arrAllParcelDefinitions.Length; i++)
+			{
+				if(ParcelMgr.arrAllParcelDefinitions[i].arrPlotTypes.Find('strPlotType', "Tunnels_Sewer") != INDEX_NONE && ParcelMgr.arrAllParcelDefinitions[i].arrPlotTypes.Find('strPlotType', "Tunnels_Subway") == INDEX_NONE)
+				{
+					ParcelMgr.arrAllParcelDefinitions[i].arrPlotTypes.AddItem(PlotTypeDef);
+					`LWTrace("Converting Parcel" @ParcelMgr.arrAllParcelDefinitions[i].MapName @"from Sewer to Subway");
+				}
+			}
+
+			i = 0;
+
+			for(i = 0; i < class'XComPlotCoverParcelManager'.default.arrAllPCPDefs.Length; i++)
+			{
+				if(class'XComPlotCoverParcelManager'.default.arrAllPCPDefs[i].arrPlotTypes.Find("Tunnels_Sewer") != INDEX_NONE && class'XComPlotCoverParcelManager'.default.arrAllPCPDefs[i].arrPlotTypes.Find("Tunnels_Subway") == INDEX_NONE)
+				{
+					class'XComPlotCoverParcelManager'.default.arrAllPCPDefs[i].arrPlotTypes.AddItem("Tunnels_Subway");
+					`LWTrace("Converting PCP" @class'XComPlotCoverParcelManager'.default.arrAllPCPDefs[i].MapName @ "from Sewers to Subway");
+				}
+			}
+		}
 	}
 }
 
@@ -2224,6 +2382,7 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 	// Avenger Defense
 	if (default.SKIP_CHOSEN_OVERRIDE_MISSION_TYPES.Find(MissionState.GeneratedMission.Mission.sType) != INDEX_NONE)
 	{
+		`LWTrace("MaybeAddChosenToMission: Using Vanilla Chosen Behavior");
 		return;
 	}
 
@@ -3502,6 +3661,12 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'FLECHETTE_BONUS_DMG':
 			OutString = string(class'X2Item_LWUtilityItems'.default.FLECHETTE_BONUS_DMG);
 			return true;
+		case 'NEUROWHIP_PSI_BONUS':
+			OutString = string(class'X2Item_LWUtilityItems'.default.NEUROWHIP_PSI_BONUS);
+			return true;
+		case 'NEUROWHIP_WILL_MALUS':
+			OutString = string(class'X2Item_LWUtilityItems'.default.NEUROWHIP_WILL_MALUS);
+			return true;
 		case 'DRAGON_ROUNDS_APPLY_CHANCE':
 			OutString = string(class'LWTemplateMods'.default.DRAGON_ROUNDS_APPLY_CHANCE);
 			return true;
@@ -3583,6 +3748,18 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'FIRESTORM_DAMAGE_BONUS_LW':
 			Outstring = string(int(class'X2Ability_LW_TechnicalAbilitySet'.default.FIRESTORM_DAMAGE_BONUS));
 			return true;
+		case 'CERAMIC_PLATING_HP':
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.CERAMIC_PLATING_HP);
+			return true;
+		case 'ALLOY_PLATING_HP':
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.ALLOY_PLATING_HP);
+			return true;
+		case 'CHITIN_PLATING_HP':
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.CHITIN_PLATING_HP);
+			return true;
+		case 'CARAPACE_PLATING_HP':
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.CARAPACE_PLATING_HP);
+			return true;
 		case 'NANOFIBER_HEALTH_BONUS_LW':
 			Outstring = string(class'X2Ability_ItemGrantedAbilitySet'.default.NANOFIBER_VEST_HP_BONUS);
 			return true;
@@ -3591,6 +3768,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			return true;
 		case 'PLATED_CRITDEF_BONUS':
 			Outstring = string(class'X2LWAbilitiesModTemplate'.default.PLATED_CRITDEF_BONUS);
+			return true;
+		case 'HAZMAT_VEST_HP_BONUS':
+			Outstring = string(class'X2Ability_ItemGrantedAbilitySet'.default.HAZMAT_VEST_HP_BONUS);
 			return true;
 		case 'RESILIENCE_BONUS_LW':
 			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.RESILIENCE_CRITDEF_BONUS);
@@ -3665,6 +3845,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			return true;
 		case 'NEEDLE_BONUS_UNARMORED_DMG_LW': // Needle Grenades
 			Outstring = string(class'X2Ability_LW_GrenadierAbilitySet'.default.NEEDLE_BONUS_UNARMORED_DMG);
+			return true;
+		case 'BOMBARD_BONUS_RANGE_TILES': // Needle Grenades
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.BOMBARD_BONUS_RANGE_TILES);
 			return true;
 		case 'BLUESCREENBOMB_HACK_DEFENSE_CHANGE_LW':
 			Outstring = string(-class'X2Ability_LW_GrenadierAbilitySet'.default.BLUESCREENBOMB_HACK_DEFENSE_CHANGE);
@@ -3768,6 +3951,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'FLUSH_AIM_BONUS':
 			Outstring = string(class'X2Ability_LW_GunnerAbilitySet'.default.FLUSH_AIM_BONUS);
 			return true;
+		case 'FLUSH_DAMAGE_PENALTY':
+			Outstring = string(int(class'X2Ability_LW_GunnerAbilitySet'.default.FLUSH_DAMAGE_PENALTY * 100));
+			return true;
 		case 'MIND_SCORCH_BURN_CHANCE':
 			Outstring = string(class'X2LWAbilitiesModTemplate'.default.MIND_SCORCH_BURN_CHANCE);
 			return true;
@@ -3821,6 +4007,12 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			return true;
 		case 'UNSTOPPABLE_MIN_MOB':
 			Outstring = string(class'X2Ability_LW_ChosenAbilities'.default.UNSTOPPABLE_MIN_MOB);
+			return true;
+		case 'ROUST_DIRECT_APPLY_CHANCE':
+			Outstring = string(class'X2Ability_LW_TechnicalAbilitySet'.default.ROUST_DIRECT_APPLY_CHANCE);
+			return true;
+		case 'ROUST_DAMAGE_PENALTY':
+			Outstring = string(int(class'X2Ability_LW_TechnicalAbilitySet'.default.ROUST_DAMAGE_PENALTY * 100));
 			return true;
 		case 'NAPALM_X_BASEVALUE':
 			Outstring = string(class'X2AbilityToHitCalc_StatCheck_LWFlamethrower'.default.BaseValue);
@@ -5559,8 +5751,9 @@ exec function LWOTC_SpawnChosenStrongholdMission(name ChosenName)
 	{
 		return;
 	}
-
-	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("CHEAT: TriggerChosenAvengerAssault");
+	`LWTrace("Found Chosen" @ChosenState.GetMyTemplateName());
+	
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("CHEAT: New Chosen Stronghold stuff");
 	StratMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
 	RegionState = ChosenState.GetHomeRegion();
 
@@ -5572,9 +5765,13 @@ exec function LWOTC_SpawnChosenStrongholdMission(name ChosenName)
 	MissionSource = X2MissionSourceTemplate(StratMgr.FindStrategyElementTemplate('MissionSource_ChosenStronghold'));
 	MissionState = XComGameState_MissionSite(NewGameState.CreateNewStateObject(class'XComGameState_MissionSite'));
 	MissionState.BuildMission(MissionSource, RegionState.GetRandom2DLocationInRegion(), RegionState.GetReference(), MissionRewards);
+	`LWTrace("New Chosen Stronghold Mission Object ID:" @MissionState.GetReference().ObjectID);
 	MissionState.ResistanceFaction = ChosenState.RivalFaction;
 	ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
 	ChosenState.StrongholdMission = MissionState.GetReference();
+	
+	MissionState.SetMissionData(MissionRewards[0].GetMyTemplate(), false, 0);
+	
 
 	`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
 }
@@ -5867,4 +6064,33 @@ exec function LWOTC_TestGetForceLevelTuple()
 		class'Helpers'.Static.OutputMsg("Region" @ `SHOWVAR(Tuple.Data[0].ao[i]));
 		class'Helpers'.Static.OutputMsg("FL"@ `SHOWVAR(Tuple.Data[1].ai[i]));
 	}
+}
+
+exec function LWOTC_AdvanceRNG(optional int numRolls = 1)
+{
+	local int i;
+
+	for(i=0; i<numrolls; i++)
+	{
+		`SYNC_FRAND_STATIC();
+	}
+}
+
+exec function LWOTC_Test_PrintPCPDefs()
+{
+	local XComPlotCoverParcelManager PCPManager;
+	local PCPDefinition PCPDef;
+	local string PCPPlotType;
+
+	PCPManager = new class'XComPlotCoverParcelManager';
+
+	foreach PCPManager.arrAllPCPDefs (PCPDef)
+	{
+		`LWTrace("PCP Def:" @PCPDef.MapName);
+		foreach PCPDef.arrPlotTypes (PCPPlotType)
+		{
+			`LWTrace("PCP plot type:" @PCPPlotType);
+		}
+	}
+
 }

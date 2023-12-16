@@ -1948,6 +1948,7 @@ static function X2AbilityTemplate ShootingSharp()
 	
 	CoverCondition = new class'XMBCondition_CoverType';
 	CoverCondition.ExcludedCoverTypes.AddItem(CT_None);
+	CoverCondition.bRequireCanTakeCover = true;
 
 	ShootingEffect.AbilityTargetConditions.AddItem(CoverCondition);
 
@@ -3719,5 +3720,5 @@ defaultproperties
 	Dissassemblybonustext = "Hack Bonus"
 	QuickZapEffectName="QuickZapCostRefund"
 	VampUnitValue="VampAmount"
-	CombatReadinessBonusText="Aim and defense bonus"
+	CombatReadinessBonusText="Aim and Explosive Resistance bonus"
 }

@@ -11,6 +11,7 @@ var config int RECRUIT_FONT_SIZE_CTRL;
 var config int RECRUIT_Y_OFFSET_CTRL;
 var config int RECRUIT_FONT_SIZE_MK;
 var config int RECRUIT_Y_OFFSET_MK;
+var config string RECRUIT_SHOW_PSI_TECH;
 
 simulated function InitRecruitItem(XComGameState_Unit Recruit)
 {
@@ -81,8 +82,15 @@ function AddIcons(XComGameState_Unit Recruit)
 {
 	local bool PsiStatIsVisible;
 	local float XLoc, YLoc, XDelta;
-	
-	PsiStatIsVisible = `XCOMHQ.IsTechResearched('AutopsySectoid');
+
+	if (RECRUIT_SHOW_PSI_TECH == "")
+	{
+		PsiStatIsVisible = true;
+	}
+	else
+	{
+		PsiStatIsVisible = `XCOMHQ.IsTechResearched(name(RECRUIT_SHOW_PSI_TECH));
+	}
 
 	// KDM : Stat icons, and their associated stat values, have to be manually placed.
 	XLoc = 97;

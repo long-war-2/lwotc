@@ -180,7 +180,10 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		OutString = string(class'X2LWModTemplate_ReaperAbilities'.default.DEATH_DEALER_CRIT);
 		return true;
 	case 'BANISH_HIT_MOD':
-		OutString = string(class'X2Effect_BanishHitMod'.default.BANISH_HIT_MOD * -1);
+		OutString = string(abs(class'X2Effect_BanishHitMod'.default.BANISH_HIT_MOD));
+		return true;
+	case 'THEBANISHER_HIT_BUFF':
+		OutString = string(class'X2Effect_BanishHitMod'.default.THEBANISHER_HIT_BUFF);
 		return true;
 	 case 'GREATER_PADDING_CV':
 	 	OutString = string(class'X2Ability_ShieldAbilitySet'.default.GREATER_PADDING_CV);

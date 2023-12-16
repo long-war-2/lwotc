@@ -223,7 +223,10 @@ LocHelpText="Una vez por turno obtén una acción de movimiento después de disp
 LocPromotionPopupText="<Bullet/> Apresurarse se activa si el objetivo fue previamente dañado desde el último turno del jugador por cualquier tipo de impacto, por ejemplo, con una guardia o daño periódico.<br/><Bullet/> Adicionalmente al disparo estándar, también funciona con Dáles caña, Disparo en cadena y Desterrar.<br/><Bullet/> La acción de movimiento se puede utilizar para entrar en Sombra si está fuera de tiempo de reutilización.<br/>"
 ; End translated
 
+; LWOTC translated
 
 [TheBanisher_LW X2AbilityTemplate]
 LocFriendlyName="Superdepredador"
-LocLongDescription="Reduce la penalidad de acierto por tiro en 5 y el tiempo de enfriamiento en 1 de Desterrar. Incrementa en 1 el rango de Encuentros a cuchillo. Distribuidor de Muerte funciona en enemigos que no se pueden exponer."
+LocLongDescription="Reduce la penalidad de acierto por tiro en <Ability:THEBANISHER_HIT_BUFF> y el tiempo de enfriamiento en 1. Incrementa en <Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/> el rango de Encuentros a cuchillo. Distribuidor de Muerte ahora dobla el daño de golpes críticos contra enemigos flanqueados."
+LocHelpText="Reduce la penalidad de acierto por tiro en <Ability:THEBANISHER_HIT_BUFF> y el tiempo de enfriamiento en 1. Incrementa en <Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/> el rango de Encuentros a cuchillo. Distribuidor de Muerte ahora dobla el daño de golpes críticos contra enemigos flanqueados."
+; End translated

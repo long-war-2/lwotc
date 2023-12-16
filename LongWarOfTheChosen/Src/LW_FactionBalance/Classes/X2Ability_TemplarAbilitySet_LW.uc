@@ -756,6 +756,8 @@ static function X2AbilityTemplate Indomitable()
 
 
 	IndomitableEffect = new class'X2Effect_Indomitable';
+	IndomitableEffect.BuildPersistentEffect(1, true, true);
+	IndomitableEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,, Template.AbilitySourceName);
 	Template.AddShooterEffect(IndomitableEffect);
 
 	Template.bSkipFireAction = true;

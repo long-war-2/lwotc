@@ -6,6 +6,8 @@
 
 class X2Ability_PerkPackAbilitySet extends X2Ability config (LW_SoldierSkills);
 
+`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
+
 var config int CENTERMASS_DAMAGE;
 var config int LETHAL_DAMAGE;
 var config int DOUBLE_TAP_1ST_SHOT_AIM;
@@ -94,18 +96,21 @@ var config int MIND_MERGE_MIN_ACTION_POINTS;
 var config int MIND_MERGE_DURATION;
 var config int MIND_MERGE_COOLDOWN;
 var config int SOUL_MERGE_COOLDOWN_REDUCTION;
-var config float MIND_MERGE_WILL_DIVISOR;
+var config int MIND_MERGE_FLAT_SHIELDHP;
+var config int MIND_MERGE_FLAT_WILL;
+var config int MIND_MERGE_FLAT_CRIT;
+var config int MIND_MERGE_AMP_MG_SHIELDHP_BONUS;
+var config int MIND_MERGE_AMP_MG_WILL_BONUS;
+var config int MIND_MERGE_AMP_MG_CRIT_BONUS;
+var config int MIND_MERGE_AMP_BM_SHIELDHP_BONUS;
+var config int MIND_MERGE_AMP_BM_WILL_BONUS;
+var config int MIND_MERGE_AMP_BM_CRIT_BONUS;
 var config float MIND_MERGE_SHIELDHP_DIVISOR;
-var config float SOUL_MERGE_WILL_DIVISOR;
-var config float SOUL_MERGE_SHIELDHP_DIVISOR;
-var config float MIND_MERGE_AMP_MG_WILL_BONUS;
-var config float MIND_MERGE_AMP_MG_SHIELDHP_BONUS;
-var config float MIND_MERGE_AMP_BM_WILL_BONUS;
-var config float MIND_MERGE_AMP_BM_SHIELDHP_BONUS;
+var config float MIND_MERGE_WILL_DIVISOR;
 var config float MIND_MERGE_CRIT_DIVISOR;
+var config float SOUL_MERGE_SHIELDHP_DIVISOR;
+var config float SOUL_MERGE_WILL_DIVISOR;
 var config float SOUL_MERGE_CRIT_DIVISOR;
-var config float MIND_MERGE_AMP_MG_CRIT_BONUS;
-var config float SOUL_MERGE_AMP_BM_CRIT_BONUS;
 var config float FORMIDABLE_EXPLOSIVES_DR;
 var config int FORMIDABLE_ARMOR_MITIGATION;
 var config int FORMIDABLE_ABLATIVE_HP;
@@ -122,6 +127,7 @@ var config bool NO_STANDARD_ATTACKS_WHEN_ON_FIRE;
 var config bool NO_MELEE_ATTACKS_WHEN_ON_FIRE;
 var config int BOMBARD_BONUS_RANGE_TILES;
 var config int SHARPSHOOTERAIM_CRITBONUS;
+var config int MACROPHAGES_HEAL_AMT;
 
 var config int CE_USES_PER_TURN;
 var config int CE_MAX_TILES;
@@ -4195,6 +4201,7 @@ static function X2AbilityTemplate AddSmartMacrophagesAbility()
 
 	MacrophagesEffect = new class'X2Effect_SmartMacrophages';
 	MacrophagesEffect.BuildPersistentEffect(1, true, false);
+	MacrophagesEffect.EffectRemovedFn = OnSmartMacrophagesRemoved;
 	MacrophagesEffect.SetDisplayInfo (ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
 	Template.AddTargetEffect(MacrophagesEffect);
 
@@ -4202,6 +4209,7 @@ static function X2AbilityTemplate AddSmartMacrophagesAbility()
 	DamageImmunity.ImmuneTypes.AddItem('Acid');
 	DamageImmunity.ImmuneTypes.AddItem('Poison');
 	DamageImmunity.ImmuneTypes.AddItem(class'X2Item_DefaultDamageTypes'.default.ParthenogenicPoisonType); //this is chryssalid poison, special because it spawns cocoons
+	DamageImmunity.EffectName = 'SmartMacrophagesDamageImmunity';
 	DamageImmunity.BuildPersistentEffect(1, true, false, true);
 	Template.AddTargetEffect(DamageImmunity);
 	
@@ -4209,6 +4217,47 @@ static function X2AbilityTemplate AddSmartMacrophagesAbility()
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 
 	return Template;
+}
+
+static function OnSmartMacrophagesRemoved(X2Effect_Persistent PersistentEffect, const out EffectAppliedData ApplyEffectParameters, XComGameState NewGameState, bool bCleansed)
+{
+	local XComGameStateHistory		History;
+	local X2Effect_SmartMacrophages MacrophagesEffect;
+	local XComGameState_Unit UnitState, SourceUnitState;
+
+	`LWTrace("test Smart Macrophages listener OnSmartMacrophagesRemoved");
+
+	MacrophagesEffect = X2Effect_SmartMacrophages(PersistentEffect);
+	if( MacrophagesEffect == NONE)
+	{
+		return;
+	}
+
+	History = `XCOMHISTORY;
+	SourceUnitState = XComGameState_Unit(History.GetGameStateForObjectID(ApplyEffectParameters.SourceStateObjectRef.ObjectID));
+	UnitState = XComGameState_Unit(History.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+	`PPTRACE("Smart Macrophages: TargetUnit=" $ UnitState.GetFullName() $ ", SourceUnit=" $ SourceUnitState.GetFullName());
+
+	if(!MacrophagesEffect.SmartMacrophagesEffectIsValidForSource(SourceUnitState))
+	{
+		return;
+	}
+	`PPTRACE("Smart Macrophages: Source Unit Valid.");
+
+	if(UnitState == none) { return; }
+	if(UnitState.IsDead()) { return; }
+	if(UnitState.IsBleedingOut()) { return; }
+	if(!MacrophagesEffect.CanBeHealed(UnitState)) { return; }
+
+	`PPTRACE("Smart Macrophages: Target Unit Can Be Healed.");
+	// Actually set up GameState stuff now
+	UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+
+	`PPTRACE("Smart Macrophages : Pre update LowestHP=" $ UnitState.LowestHP);
+	UnitState.LowestHP = min(UnitState.HighestHP,  UnitState.LowestHP+ default.MACROPHAGES_HEAL_AMT);
+	`PPTRACE("Smart Macrophages : Post update LowestHP=" $ UnitState.LowestHP);
+	UnitState.ModifyCurrentStat(eStat_HP, default.MACROPHAGES_HEAL_AMT);
+
 }
 
 static function X2AbilityTemplate AddMindMergeAbility()
@@ -4266,22 +4315,28 @@ static function X2AbilityTemplate AddMindMergeAbility()
 
 	MindMergeEffect = new class 'X2Effect_MindMerge';
 	MindMergeEffect.EffectName = 'MindMergeEffect';
-	MindMergeEffect.BaseWillIncrease = 0;
-	MindMergeEffect.BaseShieldHPIncrease = 1;
-	MindMergeEffect.MindMergeWillDivisor = default.MIND_MERGE_WILL_DIVISOR;
-	MindMergeEffect.MindMergeShieldHPDivisor = default.MIND_MERGE_SHIELDHP_DIVISOR;
-	MindMergeEffect.SoulMergeWillDivisor = default.SOUL_MERGE_WILL_DIVISOR;
-	MindMergeEffect.SoulMergeShieldHPDivisor = default.SOUL_MERGE_SHIELDHP_DIVISOR;
-	MindMergeEffect.AmpMGWillBonus = default.MIND_MERGE_AMP_MG_WILL_BONUS;
-	MindMergeEffect.AmpMGShieldHPBonus = default.MIND_MERGE_AMP_MG_SHIELDHP_BONUS;
-	MindMergeEffect.AmpBMWillBonus = default.MIND_MERGE_AMP_BM_WILL_BONUS;
-	MindMergeEffect.AmpBMShieldHPBonus = default.MIND_MERGE_AMP_BM_SHIELDHP_BONUS;
-	MindMergeEffect.MindMergeCritDivisor= default.MIND_MERGE_CRIT_DIVISOR;
-	MindMergeEffect.SoulMergeCritDivisor= default.SOUL_MERGE_CRIT_DIVISOR;
-	MindMergeEffect.AmpMGCritBonus= default.MIND_MERGE_AMP_MG_CRIT_BONUS;
-	MindMergeEffect.AMpBMCritBonus= default.SOUL_MERGE_AMP_BM_CRIT_BONUS;
 
-	MindMergeEffect.bRemoveWhenTargetDies=true;
+	MindMergeEffect.BaseShieldHPIncrease = default.MIND_MERGE_FLAT_SHIELDHP;
+	MindMergeEffect.BaseWillIncrease = default.MIND_MERGE_FLAT_WILL;
+	MindMergeEffect.BaseCritIncrease = default.MIND_MERGE_FLAT_CRIT;
+
+	MindMergeEffect.AmpMGShieldHPBonus = default.MIND_MERGE_AMP_MG_SHIELDHP_BONUS;
+	MindMergeEffect.AmpMGWillBonus = default.MIND_MERGE_AMP_MG_WILL_BONUS;
+	MindMergeEffect.AmpMGCritBonus = default.MIND_MERGE_AMP_MG_CRIT_BONUS;
+
+	MindMergeEffect.AmpBMShieldHPBonus = default.MIND_MERGE_AMP_BM_SHIELDHP_BONUS;
+	MindMergeEffect.AmpBMWillBonus = default.MIND_MERGE_AMP_BM_WILL_BONUS;
+	MindMergeEffect.AmpBMCritBonus = default.MIND_MERGE_AMP_BM_CRIT_BONUS;
+
+	MindMergeEffect.MindMergeShieldHPDivisor = default.MIND_MERGE_SHIELDHP_DIVISOR;
+	MindMergeEffect.MindMergeWillDivisor = default.MIND_MERGE_WILL_DIVISOR;
+	MindMergeEffect.MindMergeCritDivisor = default.MIND_MERGE_CRIT_DIVISOR;
+
+	MindMergeEffect.SoulMergeShieldHPDivisor = default.SOUL_MERGE_SHIELDHP_DIVISOR;
+	MindMergeEffect.SoulMergeWillDivisor = default.SOUL_MERGE_WILL_DIVISOR;
+	MindMergeEffect.SoulMergeCritDivisor = default.SOUL_MERGE_CRIT_DIVISOR;
+
+	MindMergeEffect.bRemoveWhenTargetDies = true;
 	MindMergeEffect.BuildPersistentEffect (1, false, true, false, eGameRule_PlayerTurnBegin);
 	MindMergeEFfect.SetDisplayInfo (ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
 	Template.AddTargetEffect (MindMergeEffect);

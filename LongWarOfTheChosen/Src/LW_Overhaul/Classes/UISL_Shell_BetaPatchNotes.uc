@@ -121,6 +121,7 @@ event OnRemoved(UIScreen Screen)
 // SHOULD WE DISPLAY THE POPUP BASED ON CONFIG NUMBER
 static function bool ShouldShowWarningMsg()
 {
+	return false;
 	// Show it because the version number is set to negative (testing)... 
 	if (default.iVersion_Installed <= -1)
 	{	
@@ -157,5 +158,5 @@ static function bool ShouldShowWarningMsg()
 defaultproperties
 {
 	ScreenClass = UIFinalShell;
-	iVersion_Installed = 7; // 7
+	iVersion_Installed = 18; // beta is on 18
 }

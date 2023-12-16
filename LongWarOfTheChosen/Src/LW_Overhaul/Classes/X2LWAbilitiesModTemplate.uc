@@ -52,6 +52,8 @@ var config array<name> PISTOL_ABILITY_WEAPON_CATS;
 
 var config int PLATED_CRITDEF_BONUS;
 
+var config int COMBAT_PROTOCOL_COOLDOWN;
+
 // Data structure for multi-shot abilities that need patching
 struct MultiShotAbility
 {
@@ -236,6 +238,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'SpectralStunLance':
 			UpdateSpectralStunLance(Template);
+			break;
+		case 'CombatProtocol':
+			UpdateCombatProtocol(Template);
 			break;
 		default:
 			break;
@@ -1110,6 +1115,7 @@ static function ReworkPartingSilk(X2AbilityTemplate Template)
 		if (Condition.IsA('X2Condition_UnitProperty'))
 		{
 			X2Condition_UnitProperty(Condition).RequireUnitSelectedFromHQ = false;
+			X2Condition_UnitProperty(Condition).ExcludeRobotic = false;
 		}
 	}
 
@@ -1510,6 +1516,26 @@ static function UpdateSpectralStunLance(X2AbilityTemplate Template)
 	ImpairingAbilityEffect.bRemoveWhenTargetDies = true;
 	ImpairingAbilityEffect.VisualizationFn = class'X2Ability_StunLancer'.static.ImpairingAbilityEffectTriggeredVisualization;
 	Template.AddTargetEffect(ImpairingAbilityEffect);
+
+}
+
+static function UpdateCombatProtocol(X2AbilityTemplate Template)
+{
+	local X2AbilityCost_ActionPoints        ActionPointCost;
+	local X2AbilityCooldown					Cooldown;
+
+	Template.AbilityCosts.Length = 0;
+	Template.AbilityCharges = none;
+
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bFreeCost = false;
+	ActionPointCost.bConsumeAllPoints = true;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = default.COMBAT_PROTOCOL_COOLDOWN;
+	Template.AbilityCooldown = Cooldown;
 
 }
 

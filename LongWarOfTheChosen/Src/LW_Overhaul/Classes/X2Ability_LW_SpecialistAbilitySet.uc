@@ -327,6 +327,7 @@ static function X2AbilityTemplate HackRewardShutdownRobotOrTurret( bool bTurret,
 	Template.AbilityTargetStyle = default.SimpleSingleTarget;
 
 	StunEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(6, 100, false);
+	StunEffect.bRemoveWhenSourceDies = false;
 	StunEffect.SetDisplayInfo(ePerkBuff_Penalty, class'X2StatusEffects'.default.RoboticStunnedFriendlyName, class'X2StatusEffects'.default.RoboticStunnedFriendlyDesc, "img:///UILibrary_PerkIcons.UIPerk_stun");
 	if (bTurret)
 	{

@@ -216,6 +216,7 @@ static function ModifyStunStrikeToStun(X2AbilityTemplate Template)
 	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_KnockBack');
 
 	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(default.STUNSTRIKE_STUN_DURATION, default.STUNSTRIKE_STUN_CHANCE, false);
+	StunnedEffect.bRemoveWhenSourceDies = false;
 	Template.AddTargetEffect(StunnedEffect);
 }
 

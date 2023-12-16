@@ -23,14 +23,14 @@ CommandersQuartersEnteredBody="LWOTC agrega varias entradas a los Archivos XCOM 
 GeneralChosenTitle="Los Elegidos"
 GeneralChosenBody="Un Elegido aparecerá en esta misión. En LWOTC responden a la actividad de XCOM participando sólo en represalias (de datos, suministros, reclutar, de rescatar miembros de la Resistencia e invasión). No aparecerán en otras misiones.<br/><br/>"Su objetivo sigue siendo conocer la ubicación del Avenger y asaltarlo. ¡Cuidado, defenderse de él no será fácil!"
 
-TacticalChosenTitle="Los Elegidos en Combate"
+TacticalChosenTitle="Los Elegidos en combate"
 TacticalChosenBody="Los Elegidos son mucho más peligrosos en LWOTC:<br/><ul><li>Son casi inmunes a los golpes críticos.</li><li>Toman una acción de movimiento o se preparan para el combate cada vez que las tropas les dañan durante el turno de XCOM.</li><li>Poseen la cualidad de secuestrar soldados desangrados que estén a su alcance a costa de un turno completo.</li><li>Obtienen atributos significativos al subir de nivel (usa F1 cuando les apuntes para recabar información detallada).</li></ul>"
 
 AssassinSightedTitle="La Asesina"
 AssassinSightedBody="La Asesina reduce el daño recibido con cada golpe consecutivo que soporta en un turno. Si bien el daño de su Katana y Maremoto comienza bajo, aumentará su poder a medida que las use hasta que capture a un soldado. <br/><br/>Fíjate bien dónde ubicas las unidades, ya que puede usar su reacción principal para atacar a un soldado adyacente."
 
 WarlockSightedTitle="El Brujo"
-WarlockSightedBody="El Brujo tiene la habilidad \"El más grande Campeón del Brujo\" que otorga beneficios al usarse en un aliado. Mientras esa unidad permanezca con vida, el brujo sufrirá significativamente menos daño. También debes tener cuidado de su Arrasar mentes, ya que aplica una ola de energía psiónica aldededor de un objetivo. <br/><br/>Si un soldado es controlado mentalmente ten en cuenta que en LWOTC el resto puede usar Golpe incapacitante en él."
+WarlockSightedBody="El Brujo tiene la habilidad \"El más grande Campeón del Brujo\" que otorga beneficios en un aliado. Mientras esa unidad permanezca con vida, el brujo sufrirá significativamente menos daño. También debes tener cuidado de su Arrasar mentes, ya que aplica una ola de energía psiónica aldededor de un objetivo. <br/><br/>Si un soldado es controlado mentalmente, ten en cuenta que en LWOTC el resto del grupo puede usar Golpe incapacitante en él."
 
 HunterSightedTitle="El Cazador"
 HunterSightedBody="El Cazador mantendrá su distancia e intentará eliminar a los soldados desde una posición segura. Ten cuidado al acercarte: su disparo de pistola ahora desactivará las armas XCOM y también podrá lanzar sus granadas cegadoras como acción gratuita."

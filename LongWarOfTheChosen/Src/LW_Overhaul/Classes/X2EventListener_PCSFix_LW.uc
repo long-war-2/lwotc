@@ -48,12 +48,26 @@ static final function CHEventListenerTemplate CreateStrategyListener()
 static function EventListenerReturn OnOverrideCanEquipImplant(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackObject)
 {
     local XComLWTuple Tuple;
- 
+	local XComGameState_Unit Unit;
+
     Tuple = XComLWTuple(EventData);
+	Unit = XComGameState_Unit(EventSource);
+
+	if (Unit == none)
+	{
+		return ELR_NoInterrupt;
+	}
   
     if (Tuple != none)
     {
-      Tuple.Data[0].b = true;
+		if(Unit.HasHealingProject() && (Unit.HasItemOfTemplateType('CommonPCSConditioning') || Unit.HasItemOfTemplateType('RarePCSConditioning') || Unit.HasItemOfTemplateType('EpicPCSConditioning')))
+		{
+			Tuple.Data[0].b = false;
+		}
+		else
+		{
+			Tuple.Data[0].b = true;
+		}
     }
 
     return ELR_NoInterrupt;
