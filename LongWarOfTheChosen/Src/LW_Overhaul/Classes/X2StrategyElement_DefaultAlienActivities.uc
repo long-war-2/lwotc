@@ -1019,7 +1019,7 @@ static function X2DataTemplate CreateChosenReinforceTemplate()
 
 	Template.WasMissionSuccessfulFn = none;  // always one objective
 	Template.GetMissionForceLevelFn = GetTypicalMissionForceLevel; // use regional ForceLevel
-	Template.GetMissionAlertLevelFn = GetTypicalMissionAlertLevel; // Custom increased AlertLevel because of reinforcements
+	Template.GetMissionAlertLevelFn = GetTypicalMissionAlertLevel;
 
 	Template.GetTimeUpdateFn = none;
 	Template.OnMissionExpireFn = none; // just remove the mission, handle in failure

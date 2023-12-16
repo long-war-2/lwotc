@@ -7145,7 +7145,7 @@ SummaryText="Bring additional Advent forces onto the world."
 ; LWOTC Needs Translation
 [XComGameState_AdventChosen]
 KnowledgeGainFirstBullet[eChosenKnowledge_Start]=""
-KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]=" "
+KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]="Chosen can bring additional strength to a region!"
 KnowledgeGainFirstBullet[eChosenKnowledge_Sentinel]="Chosen can instigate an additional dark event!"
 KnowledgeGainFirstBullet[eChosenKnowledge_Collector]="Chosen can hinder rebel activities!"
 KnowledgeGainFirstBullet[eChosenKnowledge_Raider]="Chosen can launch an assault on the Avenger!"
