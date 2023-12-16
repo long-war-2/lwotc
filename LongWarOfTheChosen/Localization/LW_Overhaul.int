@@ -733,6 +733,6 @@ strDismiss_Button = "OK"
 
 [UISL_Shell_BetaPatchNotes]
 strMessage_Title = "Long War Of The Chosen"
-strMessage_Header = "RC35 Changes:"
-strMessage_Body = "<ul><li>Fixed issue where Chosen respawned at full HP after killing the Sarcophagus.</li><li>Redid custom wilderness crate race maps to prevent crates from spawning on the roofs of trucks.</li><li>Fixed issue where Mind Merge provided no crit bonus with beam tier psi amp.</li><li>Fixed issue where some mission elements used AlienHQ Force Level instead of LW's regional Force Level.</li><li>Covert op version of the crate race mission rewards adjusted: Reduced supply rewards a bit, added PCSs, Weapon Upgrades, Elerium Cores, and Datapads to the crates.</li><li>Fixed issue where Hunter omnivision was not removed from all difficulty variants.</li><li>Fixed corpse requirement inconsistency for instant Spectre, Priest, and Purifier Autopsies.</li><li>Added a configuration toggle to enable/disable the City Center HQ maps for testing. Flipping it off doesn't change existing HQ's if they spawned with City Center maps, but future HQs will not use them.</li><li>Another round of Localization updates from Copyrite.</li></ul>"
+strMessage_Header = "Latest Beta Changes:"
+strMessage_Body = "<ul><li>Added 'Chosen Reinforce' Chosen action: they'll spawn a supply raid in a region they control as a quick response mission, with the chosen on it.  It is full salvage, ignoring it results in the same effects as a UFO landing in the region.</li><li>Turned on Sewer maps, but disabled all except the psi transmitter one and a brand new one I created.  They will show up in the 'underground' map type.</li></ul>"
 strDismiss_Button = "OK"
