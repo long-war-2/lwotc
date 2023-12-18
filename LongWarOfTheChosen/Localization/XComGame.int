@@ -7623,3 +7623,10 @@ LocFriendlyName="Nova"
 LocLongDescription="Release a blast of energy, damaging all nearby units. This attack has no cost or cooldown, but consecutive Novas will damage the SPARK."
 LocHelpText="Blast all nearby units. Consecutive Novas will damage the SPARK."
 LocPromotionPopupText="<Bullet/> Nova has no action point cost and no cooldown.<br/><Bullet/> The first Nova attack each mission will deal 0 damage to the SPARK.<br/><Bullet/> All Nova attacks after the first will deal a stacking <Ability:Nova_Damage/> damage to the SPARK.<br/>"
+
+[CombatProtocol X2AbilityTemplate]
+LocFriendlyName="Combat Protocol"
+LocLongDescription="Send the GREMLIN to an enemy to jolt them, dealing guaranteed damage, which is increased against robotic enemies."
+LocHelpText="Send the GREMLIN to an enemy to jolt them, dealing guaranteed damage, which is increased against robotic enemies. Requires line of sight to the target."
+LocFlyOverText="Combat Protocol"
+LocPromotionPopupText="<Bullet/> Combat Protocol has a 3 turn cooldown.<br/><Bullet/> Upgrading your GREMLIN will lead to more damage per charge.<br/>"
