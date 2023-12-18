@@ -978,7 +978,7 @@ static function X2DataTemplate CreateTrackingShotMark()
 {
 	local X2AbilityTemplate Template;
 	local X2AbilityCost_ActionPoints ActionPointCost;
-	//local X2Condition_Visibility TargetVisibilityCondition;
+	local X2Condition_Visibility TargetVisibilityCondition;
 	local X2Condition_UnitProperty TargetCondition;
 	local X2Condition_UnitEffects UnitEffectsCondition;
 	local X2Effect_Persistent TrackingShotMarkSource;
@@ -1048,9 +1048,9 @@ static function X2DataTemplate CreateTrackingShotMark()
 	Template.AddShooterEffectExclusions(SkipExclusions);
 
 	// Target must be visible
-	//TargetVisibilityCondition = new class'X2Condition_Visibility';
-	//TargetVisibilityCondition.bRequireLOS = true;
-	//Template.AbilityTargetConditions.AddItem(TargetVisibilityCondition);
+	TargetVisibilityCondition = new class'X2Condition_Visibility';
+	TargetVisibilityCondition.bRequireLOS = true;
+	Template.AbilityTargetConditions.AddItem(TargetVisibilityCondition);
 
 	// And not concealed
 	TargetCondition = new class'X2Condition_UnitProperty';
