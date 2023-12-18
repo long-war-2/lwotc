@@ -134,6 +134,8 @@ static function X2DataTemplate CreateFindBigDepotTemplate()
 	Template.Narratives.AddItem('CovertActionNarrative_FindBigDepot_Reapers');
 	Template.Narratives.AddItem('CovertActionNarrative_FindBigDepot_Templars');
 
+	Template.RequiredFactionInfluence = eFactionInfluence_Respected;
+
 	Template.Risks.AddItem('CovertActionRisk_Ambush');
 	Template.Rewards.AddItem('Reward_Supply_Mission');
 	return Template;
