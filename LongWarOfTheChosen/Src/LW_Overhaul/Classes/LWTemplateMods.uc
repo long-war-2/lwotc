@@ -2361,6 +2361,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.RemoveItem('ChosenKidnapMove');
 		Template.Abilities.RemoveItem('ChosenExtractKnowledgeMove');
 		Template.Abilities.RemoveItem('ChosenExtractKnowledge');
+		Template.Abilities.RemoveItem('Farsight');
 
 		Template.Abilities.AddItem('HunterReaction');
 		Template.Abilities.AddItem('CombatReadiness');

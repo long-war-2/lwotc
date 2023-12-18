@@ -1050,6 +1050,8 @@ static function X2DataTemplate CreateTrackingShotMark()
 	// Target must be visible
 	TargetVisibilityCondition = new class'X2Condition_Visibility';
 	TargetVisibilityCondition.bRequireLOS = true;
+	TargetVisibilityCondition.bRequireGameplayVisible = true;
+	TargetVisibilityCondition.bRequireBasicVisibility = true;
 	Template.AbilityTargetConditions.AddItem(TargetVisibilityCondition);
 
 	// And not concealed
