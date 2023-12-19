@@ -247,16 +247,16 @@ static function ModifyMissionSchedules()
 			if(MissionManager.arrMissions[MissionIdx].sType == CurrentMissionDef.sType &&  MissionManager.arrMissions[MissionIdx].MissionName == MissionName)
 			{
 				MissionManager.arrMissions[MissionIdx] = CurrentMissionDef;
-				`LWTrace("Replacing mission def for mission " @CurrentMissionDef.MissionName @"Mission sType" @ CurrentMissionDef.sType,, 'TedLog');
+				`LWTrace("Replacing mission def for mission " @CurrentMissionDef.MissionName @"Mission sType" @ CurrentMissionDef.sType);
 			}
 			else
 			{
-				`LWTrace("replacement Mission sType didn't match for mission Name" @CurrentMissionDef.MissionName,, 'TedLog'); 
+				`LWTrace("replacement Mission sType didn't match for mission Name" @CurrentMissionDef.MissionName); 
 			}
 		}
 		else
 		{
-			`LWTrace("Couldn't find base missiondef to replace for mission name" @CurrentMissionDef.MissionName,, 'TedLog');
+			`LWTrace("Couldn't find base missiondef to replace for mission name" @CurrentMissionDef.MissionName);
 		}
 	}
 }
@@ -5477,7 +5477,7 @@ static function CacheInfiltration_Static()
 			{
 				SquadState = XComGameState_LWPersistentSquad(NewGameState.ModifyStateObject(class'XComGameState_LWPersistentSquad', SquadState.ObjectID));
 				SquadState.SquadCovertnessCached = SquadState.GetSquadCovertness(SquadState.SquadSoldiersOnMission);
-				`Log("caching Covertness value" @SquadState.SquadCovertnessCached @"for" @SquadState,,'TedLog');
+				`LWTrace("caching Covertness value" @SquadState.SquadCovertnessCached @"for" @SquadState);
 			}
 		}
 	}
@@ -6092,5 +6092,36 @@ exec function LWOTC_Test_PrintPCPDefs()
 			`LWTrace("PCP plot type:" @PCPPlotType);
 		}
 	}
+
+}
+
+exec function LWOTC_ViewMissionDef(name MissionDefName)
+{
+	local MissionDefinition MissionDefinition;
+	local XComTacticalMissionManager MissionManager;
+	local int MissionIdx;
+	local name MissionSchedule;
+
+	MissionManager = `TACTICALMISSIONMGR;
+
+		MissionIdx = MissionManager.arrMissions.Find('MissionName', MissionDefName);
+		if(MissionIdx != -1)
+		{
+			MissionDefinition = MissionManager.arrMissions[MissionIdx];
+
+			`LWTrace("Mission Def name:" @ MissionDefinition.MissionName);
+
+			`LWTrace("stype:" @MissionDefinition.sType);
+
+			foreach MissionDefinition.MissionSchedules (MissionSchedule)
+			{
+				`LWTrace("Schedule:" @MissionSchedule);
+			}
+		}
+		else
+		{
+			`LWTrace("Couldn't find  missiondef for" @MissionDefName,, 'TedLog');
+		}
+	
 
 }
