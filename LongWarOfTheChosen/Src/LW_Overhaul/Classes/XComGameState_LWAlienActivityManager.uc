@@ -212,7 +212,7 @@ function UpdatePreMission(XComGameState StartGameState, XComGameState_MissionSit
 	if(RegionalAIState != None)
 	{
 		// Tedster - Set Force Level to regional FL if one exists
-		BattleData.SetForceLevel(RegionalAIState.LocalForceLevel);
+		BattleData.SetForceLevel(CLAMP(RegionalAIState.LocalForceLevel,1,20));
 		`LWTrace("Updating BattleData with Regional Force Level.");
 	}
 
