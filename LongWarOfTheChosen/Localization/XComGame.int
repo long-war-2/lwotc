@@ -2728,8 +2728,8 @@ PreMissionNarratives[3]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_R
 PreMissionNarratives[4]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Convoy_05"
 
 [ChosenSupplyLineRaidATT_LW X2MissionTemplate]
-DisplayName="Raid the Chosen's Troop Transport"
-Briefing="Supply Line Raid - Chosen's Troop Transport"
+DisplayName="Raid the Chosen Troop Transport"
+Briefing="Supply Line Raid - Chosen Troop Transport"
 PostMissionType="Supply Raid"
 BriefingImage="img:///UILibrary_Common.Xcom_default"
 ObjectiveTextPools[0]="Neutralize all enemy targets"
@@ -2741,8 +2741,8 @@ PreMissionNarratives[3]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_R
 PreMissionNarratives[4]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Transport_05"
 
 [ChosenSupplyLineRaidTrain_LW X2MissionTemplate]
-DisplayName="Raid the Chosen's Train"
-Briefing="Supply Line Raid - Chosen's Train"
+DisplayName="Raid the Chosen Train"
+Briefing="Supply Line Raid - Chosen Train"
 PostMissionType="Supply Raid"
 BriefingImage="img:///UILibrary_Common.Xcom_default"
 ObjectiveTextPools[0]="Neutralize all enemy targets"
@@ -2754,8 +2754,8 @@ PreMissionNarratives[3]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_R
 PreMissionNarratives[4]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Train_05"
 
 [ChosenSupplyLineRaidConvoy_LW X2MissionTemplate]
-DisplayName="Raid the Chosen's Convoy"
-Briefing="Supply Line Raid - Chosen's Convoy"
+DisplayName="Raid the Chosen Convoy"
+Briefing="Supply Line Raid - Chosen Convoy"
 PostMissionType="Supply Raid"
 BriefingImage="img:///UILibrary_Common.Xcom_default"
 ObjectiveTextPools[0]="Neutralize all enemy targets"
