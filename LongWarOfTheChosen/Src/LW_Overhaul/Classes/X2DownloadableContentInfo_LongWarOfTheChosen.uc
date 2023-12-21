@@ -5870,6 +5870,28 @@ exec function PrintKismetVariables(optional bool bAllVars)
     }
 }
 
+exec function PrintCurrentMissionDef()
+{
+	local XComGameState_HeadquartersXCom XComHQ;
+	local XComGameState_MissionSite MissionState;
+	local GeneratedMissionData MissionData;
+	local string CurrentMap;
+
+	XComHQ = `XCOMHQ;
+
+	foreach XComHQ.arrGeneratedMissionData (MissionData)
+	{
+		class'Helpers'.static.OutputMsg("Found MissionDef" @ MissionData.Mission.MissionName);
+
+		foreach MissionData.Mission.MapNames (CurrentMap)
+		{
+			class'Helpers'.static.OutputMsg("Found map" @CurrentMap);
+		}
+		class'Helpers'.static.OutputMsg("\n");
+	}
+
+}
+
 // borrowed from Rusty and modified for all healing project, not card
 exec function LWOTC_CheckHealingProjects()
 {
