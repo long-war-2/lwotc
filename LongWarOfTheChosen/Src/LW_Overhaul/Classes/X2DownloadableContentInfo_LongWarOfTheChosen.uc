@@ -5873,7 +5873,7 @@ exec function PrintKismetVariables(optional bool bAllVars)
 exec function PrintCurrentMissionDef()
 {
 	local XComGameState_HeadquartersXCom XComHQ;
-	local XComGameState_MissionSite MissionState;
+//	local XComGameState_MissionSite MissionState;
 	local GeneratedMissionData MissionData;
 	local string CurrentMap;
 
