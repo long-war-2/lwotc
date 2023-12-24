@@ -225,6 +225,7 @@ static event OnPostTemplatesCreated()
 	UpdateEncounterLists();
 	ModifyYellAbility();
 	ModifyMissionSchedules();
+	ModifyEncountersForFL21();
 	
 }
 
@@ -235,6 +236,8 @@ static function ModifyMissionSchedules()
 	local int MissionIdx;
 	local name MissionName;
 	local MissionDefinition CurrentMissionDef;
+	local MissionSchedule MissionSchedule;
+	local int i;
 
 	MissionManager = `TACTICALMISSIONMGR;
 
@@ -259,6 +262,39 @@ static function ModifyMissionSchedules()
 			`LWTrace("Couldn't find base missiondef to replace for mission name" @CurrentMissionDef.MissionName);
 		}
 	}
+
+	// Patch for FL21-99
+
+	for (i = 0; i < MissionManager.MissionSchedules.Length; i++)
+	{
+		MissionSchedule = MissionManager.MissionSchedules[i];
+
+		if (MissionSchedule.MaxRequiredForceLevel >= 20)
+		{
+			MissionSchedule.MaxRequiredForceLevel = 99;
+
+			MissionManager.MissionSchedules[i] = MissionSchedule;
+		}
+	}
+
+
+}
+
+static function ModifyEncountersForFL21()
+{
+	local XComTacticalMissionManager MissionManager;
+	local int i;
+
+	MissionManager = `TACTICALMISSIONMGR;
+
+	for (i = 0; i < MissionManager.ConfigurableEncounters.Length; i++)
+	{
+		if (MissionManager.ConfigurableEncounters[i].MaxRequiredForceLevel >= 20)
+		{
+			MissionManager.ConfigurableEncounters[i].MaxRequiredForceLevel = 99;
+		}
+	}
+
 }
 
 static function UpdateEncounterLists()
@@ -287,6 +323,12 @@ static function UpdateEncounterLists()
 			{
 				`LWTrace("Removing nonexistant unit" @MissionManager.SpawnDistributionLists[i].SpawnDistribution[j].Template @ "From encounter list" @MissionManager.SpawnDistributionLists[i].ListID);
 				MissionManager.SpawnDistributionLists[i].SpawnDistribution.Remove(j, 1);
+			}
+
+			// new udpate for max FL extension
+			else if(MissionManager.SpawnDistributionLists[i].SpawnDistribution[j].MaxForceLevel == 20)
+			{
+				MissionManager.SpawnDistributionLists[i].SpawnDistribution[j].MaxForceLevel = 99;
 			}
 		}
 	}
