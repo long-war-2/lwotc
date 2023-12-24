@@ -1818,31 +1818,34 @@ static final function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnIn
 
 static function PostReinforcementCreation(out name EncounterName, out PodSpawnInfo Encounter, int ForceLevel, int AlertLevel, optional XComGameState_BaseObject SourceObject, optional XComGameState_BaseObject ReinforcementState)
 {
-    // M5 chosen handling:
-    `LWTrace("PostReinforcementCreation called. Current Force Level:" @ ForceLevel);
+	 `LWTrace("PostReinforcementCreation called. Current Force Level:" @ ForceLevel);
 
-	if (class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_LEVEL_FL_THRESHOLDS.length < 4)
-		return;
+	// M5 chosen handling:
+	if(Encounter.SelectedCharacterTemplateNames[0] == 'ChosenWarlockM4' || Encounter.SelectedCharacterTemplateNames[0] == 'ChosenSniperM4' || Encounter.SelectedCharacterTemplateNames[0] == 'ChosenAssassinM4')
+	{
+		if (class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_LEVEL_FL_THRESHOLDS.length < 4)
+			return;
 
-    if (ForceLevel >= class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_LEVEL_FL_THRESHOLDS[3])
-    {
-        `LWTrace("Swapping M4 Chosen" @Encounter.SelectedCharacterTemplateNames[0] @"...");  //PREVIOUS CHOSEN FOR LOGGING
+	    if (ForceLevel >= class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_LEVEL_FL_THRESHOLDS[3])
+	    {
+	        `LWTrace("Swapping M4 Chosen" @Encounter.SelectedCharacterTemplateNames[0] @"...");  //PREVIOUS CHOSEN FOR LOGGING
 
-        switch (Encounter.SelectedCharacterTemplateNames[0])
-        {
-            case 'ChosenWarlockM4'  : Encounter.SelectedCharacterTemplateNames[0] = 'ChosenWarlockM5';    break;
-            case 'ChosenSniperM4'   : Encounter.SelectedCharacterTemplateNames[0] = 'ChosenSniperM5';     break;
-            case 'ChosenAssassinM4' : Encounter.SelectedCharacterTemplateNames[0] = 'ChosenAssassinM5';   break;
-            default:
-                //selected template isn't one we care about
-                break;
-        }
+	        switch (Encounter.SelectedCharacterTemplateNames[0])
+	        {
+	            case 'ChosenWarlockM4'  : Encounter.SelectedCharacterTemplateNames[0] = 'ChosenWarlockM5';    break;
+	            case 'ChosenSniperM4'   : Encounter.SelectedCharacterTemplateNames[0] = 'ChosenSniperM5';     break;
+	            case 'ChosenAssassinM4' : Encounter.SelectedCharacterTemplateNames[0] = 'ChosenAssassinM5';   break;
+	            default:
+	                //selected template isn't one we care about
+	                break;
+	        }
 
-        `LWTrace("... for M5 Chosen" @Encounter.SelectedCharacterTemplateNames[0]); //POST SWAP FOR LOGGING
+	        `LWTrace("... for M5 Chosen" @Encounter.SelectedCharacterTemplateNames[0]); //POST SWAP FOR LOGGING
 
-	 	return; 
-    }
-
+		 	return; 
+	    }
+	}
+	// Send into normal PostEncounterCreation otherwise.
 	PostEncounterCreation(EncounterName, Encounter, ForceLevel, AlertLevel, SourceObject);
 }
 
