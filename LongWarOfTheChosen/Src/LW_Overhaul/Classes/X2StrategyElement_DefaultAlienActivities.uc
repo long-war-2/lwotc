@@ -1019,7 +1019,7 @@ static function X2DataTemplate CreateChosenReinforceTemplate()
 
 	Template.WasMissionSuccessfulFn = none;  // always one objective
 	Template.GetMissionForceLevelFn = GetTypicalMissionForceLevel; // use regional ForceLevel
-	Template.GetMissionAlertLevelFn = GetTypicalMissionAlertLevel;
+	Template.GetMissionAlertLevelFn = GetChosenReinforceAlertLevel; // custom alert level hardcoded
 
 	Template.GetTimeUpdateFn = none;
 	Template.OnMissionExpireFn = none; // just remove the mission, handle in failure
@@ -1031,6 +1031,13 @@ static function X2DataTemplate CreateChosenReinforceTemplate()
 
 	return Template;
 }
+
+static function int GetChosenReinforceAlertLevel(XComGameState_LWAlienActivity ActivityState, XComGameState_MissionSite MissionSite, XComGameState NewGameState)
+{
+	// hard code the Alert level for this.  Alert 7 with chosen means str 4 mission.
+	return 7;
+}
+
 
 
 //#############################################################################################
