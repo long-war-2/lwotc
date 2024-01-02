@@ -242,6 +242,12 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'CombatProtocol':
 			UpdateCombatProtocol(Template);
 			break;
+		case 'AbsorptionField':
+			ReworkAbsorptionField(Template);
+			break;
+		case 'Bombard':
+			ReworkBombard(Template);
+			break;
 		default:
 			break;
 
@@ -265,7 +271,46 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 	UpdateMeleeAbilityForBloodThirst(Template);
 }
 
+static function ReworkAbsorptionField(X2AbilityTemplate Template)
+{
+	local X2Effect_DLC_3AbsorptionField_LW         FieldEffect;
 
+	// Make this only work on hit.
+	Template.AbilityTargetEffects.length = 0;
+
+	FieldEffect = new class 'X2Effect_DLC_3AbsorptionField_LW';
+	FieldEffect.BuildPersistentEffect(1, true, false);
+	FieldEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true, , Template.AbilitySourceName);
+	Template.AddTargetEffect(FieldEffect);
+}
+
+static function ReworkBombard(X2AbilityTemplate Template)
+{
+	local X2AbilityCost AbilityCost;
+	local X2AbilityCost_ActionPoints    ActionPointCost;
+	local X2AbilityCharges              Charges;
+	local BonusCharge					BonusCharge;
+
+	foreach Template.AbilityCosts (AbilityCost)
+	{
+		ActionPointCost = X2AbilityCost_ActionPoints(AbilityCost);
+
+		if(ActionPointCost != none)
+		{
+			ActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('Salvo');
+		}
+	}
+
+	Charges = new class'X2AbilityCharges';
+	Charges.InitialCharges = class'x2Ability_SparkAbilitySet'.default.BOMBARD_CHARGES;
+	
+	BonusCharge.AbilityName = 'BonusBombard_LW';
+	BonusCharge.NumCharges = 1;
+	Charges.BonusCharges.AddItem(BonusCharge);
+	Template.AbilityCharges = Charges;
+
+	
+}
 
 static function UpdateMeleeAbilityForBloodThirst(X2AbilityTemplate Template)
 {
