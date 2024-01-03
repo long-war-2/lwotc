@@ -6882,6 +6882,12 @@ LocHelpText="You deal +<Ability:HERO_SLAYER_DMG/>% damage against hero classes."
 LocLongDescription="You deal +<Ability:HERO_SLAYER_DMG/>% damage against hero classes."
 LocFlyOverText="Big Game Hunter"
 
+[BonusBombard_LW X2AbilityTemplate]
+LocFriendlyName="Extended Reserves"
+LocLongDescription="Gain an additional use of equipped Heavy Weapons and Bombard."
+LocHelpText="Gain an additional use of equipped Heavy Weapons and Bombard. The extra use of Bombard is only granted if the Bombard ability is taken."
+LocPromotionPopupText="Gain an additional use of equipped Heavy Weapons and Bombard. The extra use of Bombard is only granted if the Bombard ability is taken."
+
 [BloodBath_LW X2AbilityTemplate]
 LocFriendlyName="Blood Bath"
 LocHelpText="Harbor wave cone is wider by 2 tiles, and each enemy hit by it grants a blood thirst stack."

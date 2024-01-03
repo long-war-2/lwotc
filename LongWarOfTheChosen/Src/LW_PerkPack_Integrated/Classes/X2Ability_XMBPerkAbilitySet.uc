@@ -230,6 +230,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(TriggerBotShot());
 	Templates.AddItem(TriggerBotDamage());
 
+	Templates.AddItem(CreateBonusChargesAbility());
 	
 	
 	return Templates;
@@ -3707,6 +3708,25 @@ static function X2AbilityTemplate HeroSlayer_LW()
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	//  NOTE: No visualization on purpose!
+
+	return Template;
+}
+
+static function X2AbilityTemplate CreateBonusChargesAbility()
+{
+	local X2AbilityTemplate Template;
+	local XMBEffect_AddItemCharges Effect;
+
+	Template = Passive('BonusBombard_LW', "img:///UILibrary_PerkIcons.UIPerk_command", true);
+
+	Effect = new class'XMBEffect_AddItemCharges';
+	Effect.ApplyToSlots.AddItem(eInvSlot_HeavyWeapon);
+	Effect.ApplyToSlots.AddItem(eInvSlot_ExtraBackpack);	
+	Effect.PerItemBonus = 1;
+
+	// Bonus Bombard charges is handled in OPTC of Bombard.
+
+	AddSecondaryEffect(Template, Effect);
 
 	return Template;
 }

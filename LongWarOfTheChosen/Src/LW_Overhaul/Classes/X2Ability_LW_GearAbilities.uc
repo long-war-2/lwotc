@@ -112,6 +112,7 @@ static function X2AbilityTemplate CreateScopeBonus(name TemplateName, int Bonus)
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.bDisplayInUITacticalText = false;
 	Template.bIsPassive = true;
 	Template.bCrossClassEligible = false;
 	ScopeEffect=new class'X2Effect_ModifyNonReactionFire';
@@ -139,6 +140,7 @@ static function X2AbilityTemplate CreateHairTriggerBonus(name TemplateName, int 
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.bDisplayInUITacticalText = false;
 	Template.bIsPassive = true;
 	Template.bCrossClassEligible = false;
 	TriggerEffect=new class'X2Effect_HairTrigger';

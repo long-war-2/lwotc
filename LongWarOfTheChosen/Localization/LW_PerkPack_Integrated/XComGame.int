@@ -605,10 +605,10 @@ LocPromotionPopupText="<Bullet/> Your smoke grenades confer an additional 10 def
 
 [Collateral_LW X2AbilityTemplate]
 LocFriendlyName="Collateral Damage"
-LocLongDescription="Fire a barrage of <Ability:WeaponName/> rounds to a location, destroying cover within the area. Deals a small amount of damage to enemies. 3-turn cooldown and uses 2 ammo."
+LocLongDescription="Fire a barrage of <Ability:WeaponName/> rounds to a location, destroying cover within the area. Deals a small amount of damage to enemies. 5-turn cooldown and uses 3 ammo."
 LocHelpText="Fire a barrage of <Ability:WeaponName/> rounds to a location, destroying cover within the area."
 LocFlyOverText="Collateral Damage"
-LocPromotionPopupText="<Bullet/> Fire a barrage of <Ability:WeaponName/> rounds to a location, destroying cover within the area.<br/><Bullet/> Deals high environmental damage to all objects in the area of effect.<br/><Bullet/> Collateral Damage does 1-2/2/2-3 damage to enemies within the area of effect depending on tier of equipped <Ability:WeaponName/>.<br/><Bullet/> Costs 2 ammo and has a 3-turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Fire a barrage of <Ability:WeaponName/> rounds to a location, destroying cover within the area.<br/><Bullet/> Deals high environmental damage to all objects in the area of effect.<br/><Bullet/> Collateral Damage does 1-2/2/2-3 damage to enemies within the area of effect depending on tier of equipped <Ability:WeaponName/>.<br/><Bullet/> Costs 3 ammo and has a 5-turn cooldown.<br/>"
 
 
 [DenseSmokeGrenade X2GrenadeTemplate]
@@ -1155,6 +1155,88 @@ LocPromotionPopupText="<Bullet/> Rapid Fire has a <Ability:SelfCooldown_LW/> tur
 [RapidFireSnapShot2 X2AbilityTemplate]
 LocFriendlyName="Rapid Fire"
 LocFlyOverText="Rapid Fire"
+
+
+[RepairMW_LW X2AbilityTemplate]
+LocFriendlyName="Repair"
+LocLongDescription="Send the BIT to a damaged robotic ally and heal it for 4HP, neutralize acid, and repair all shredded armor."
+LocHelpText="Send the BIT to repair a damaged robotic ally."
+LocFlyOverText="Repair"
+LocPromotionPopupText="<Bullet/> The <Ability:ClassName/> can use Repair to heal other robotic allies during battle (or itself, in the case of SPARKs).<br/><Bullet/> Repair will restore 4HP, remove any acid, and reset the target's armor to maximum.<br/><Bullet/> Upgrading your BIT will grant more charges of Repair per mission.<br/><Bullet/> Repair has 2/3/4 charges per mission, depending on the equipped BIT.<br/><Bullet/> Using Repair as your first action will end your turn without the Rapid Repair ability.<br/><Bullet/> Repair has a 1-turn cooldown (cannot be used multiple times per turn).<br/>"
+
+[KineticStrike_LW X2AbilityTemplate]
+LocFriendlyName="Kinetic Strike"
+LocLongDescription="Attack any enemy within movement range with a devastating punch. 2-turn cooldown. Damage is dependent on equipped chassis."
+LocHelpText="Attack any enemy within movement range with a devastating puch."
+LocPromotionPopupText="<Bullet/> You can trigger the Kinetic Strike ability by placing the movement cursor over an enemy.<br/><Bullet/> The <Ability:ClassName/> can perform a \"Dash\" move, using both actions to move, and still trigger a Strike against an adjacent enemy.<br/><Bullet/> Kinetic Strike will do 6/8/10 damage, depending on the equipped chassis.<br/><Bullet/> Kinetic Strike's chance to hit is based off the <Ability:ClassName/>'s aim with a +10 boost.<br/><Bullet/> Learning the Assault Servos ability will grant +2 damage and an extra +20 aim to all Kinetic Strike attacks.<br/>"
+
+[Obliterator_LW X2AbilityTemplate]
+LocFriendlyName="Assault Servos"
+LocLongDescription="Grants +2 damage and +20 aim to all Strike attacks. Also grants the Wrecking Ball ability."
+LocHelpText="Grants +2 damage and +20 aim to all Kinetic Strike attacks."
+LocPromotionPopupText="<Bullet/> Learning the Assault Servos ability will grant +2 damage and an extra +20 aim to all Kinetic Strike attacks.<br/><Bullet/> With the damage boost, Kinetic Strike's damage will be 8/10/12 depending on the equipped SPARK chassis.<br/><Bullet/> Half-damage Strike attacks gain only a +1 damage boost.<br/><Bullet/> Wrecking Ball is included with this ability. It allows the SPARK to destroy any environmental objects it passes by when using Overdrive.<br/><Bullet/> Combine a Wrecking Ball Overdrive with Kinetic Strike to not only strip a target's cover, but also deal large amounts of damage and have an action point afterwards.<br/>"
+
+[RapidRepair_LW X2AbilityTemplate]
+LocFriendlyName="Rapid Repair"
+LocLongDescription="Repair no longer ends the turn, allowing the SPARK to repair and take a different action such as moving or shooting."
+LocHelpText="Repair no longer ends the SPARK's turn."
+LocFlyOverText="Rapid Repair"
+LocPromotionPopupText="<Bullet/> The SPARK's Repair ability no longer ends the turn.<br/><Bullet/> Repair still has a 1-turn cooldown, preventing it from being used twice in one turn.<br/><Bullet/> This allows the SPARK to be much more flexible on the battlefield while also keeping its health and armor high.<br/>"
+
+[Reboot_LW X2AbilityTemplate]
+LocFriendlyName="Reboot"
+LocLongDescription="If the SPARK takes enough damage to be killed, its health will be reduced to just 1 HP and it will be shielded for the rest of the turn. Can only trigger once every mission, and afterwards the SPARK is crippled."
+LocHelpText="The SPARK will be shielded for one turn if it takes enough damage to be killed."
+LocFlyOverText="Reboot"
+LocPromotionPopupText="<Bullet/> The SPARK will be put into Stasis the first time each mission that its health hits zero.<br/><Bullet/> Without the Redundant Systems ability, the SPARK is crippled after rebooting from catastrophic damage, suffering massive penatlies to aim, mobility, and hacking.<br/><Bullet/> Because of these drawbacks, in combination with the SPARK's already low hull integrity at the time of a Reboot, it is recommended rebooted SPARKs be withdrawn from the battlefield via Skyranger when possible.<br/><Bullet/> Thanks to a complex network of redundant plating, reactivation circuits, and a single-charge shield projector, the SPARK can take one for the team secure in the knowledge that it will live to punch another day.<br/>"
+
+[RebootTriggered_LW X2AbilityTemplate]
+LocFriendlyName="Reboot"
+LocLongDescription="If the SPARK takes enough damage to be killed, its health will be reduced to just 1 HP and it will be shielded for the rest of the turn. Can only trigger once every mission, and afterwards the SPARK is crippled."
+LocHelpText="The SPARK will be shielded for one turn if it takes enough damage to be killed."
+LocFlyOverText="Reboot"
+LocPromotionPopupText="<Bullet/> The SPARK will be put into Stasis the first time each mission that its health hits zero.<br/><Bullet/> Without the Redundant Systems ability, the SPARK is crippled after rebooting from catastrophic damage, suffering massive penatlies to aim, mobility, and hacking.<br/><Bullet/> Because of these drawbacks, in combination with the SPARK's already low hull integrity at the time of a Reboot, it is recommended rebooted SPARKs be withdrawn from the battlefield via Skyranger when possible.<br/><Bullet/> Thanks to a complex network of redundant plating, reactivation circuits, and a single-charge shield projector, the SPARK can take one for the team secure in the knowledge that it will live to punch another day.<br/>"
+
+[RedundantSystems_LW X2AbilityTemplate]
+LocFriendlyName="Redundant Systems"
+LocLongDescription="The SPARK no longer suffers any stat penalties from Reboot."
+LocHelpText="The SPARK no longer suffers any stat penalties from Reboot."
+LocFlyOverText="Redundant Systems"
+LocPromotionPopupText="<Bullet/> The SPARK no longer suffers any stat penalties from Reboot.<br/><Bullet/> Without Redundant Systems, the SPARK is crippled after rebooting from catastrophic damage.<br/>"
+
+[RedunSysTriggered_LW X2AbilityTemplate]
+LocFriendlyName="Redundant Systems"
+LocLongDescription="If the SPARK takes enough damage to be killed, its health will be reduced to just 1 HP and it will be shielded for the rest of the turn. Can only trigger once every mission."
+LocHelpText="The SPARK will be shielded for one turn if it takes enough damage to be killed."
+LocFlyOverText="Redundant Systems"
+LocPromotionPopupText="<Bullet/> The SPARK will be put into Stasis the first time each mission that its health hits zero.<br/><Bullet/> Thanks to a complex network of redundant plating, reactivation circuits, and a single-charge shield projector, the SPARK can take one for the team secure in the knowledge that it will live to punch another day.<br/>"
+
+[HeavyRepair_LW X2AbilityTemplate]
+LocFriendlyName="Heavyduty Repair"
+LocFlyOverText="Heavyduty Repair"
+LocLongDescription="Repair heals four extra HP each use, doubling its recovery potential."
+LocHelpText="Repair heals four extra HP each use."
+LocPromotionPopupText="<Bullet/> The SPARK's repair ability will now heal 8 HP per use instead of 4 HP.<br/>"
+
+[ConcussiveStrike_LW X2AbilityTemplate]
+LocFriendlyName="Concussive Strike"
+LocLongDescription="A special Strike attack that does half damage but stuns the target for two action points. Cannot target robotic units. 4-turn cooldown."
+LocHelpText="A special Strike attack that does half damage but stuns the target for two action points."
+LocFlyOverText="Concussive Strike"
+LocPromotionPopupText="<Bullet/> Concussive Strike cannot target robotic units, as their processing centers aren't as squishy as brains.<br/><Bullet/> The damage of Concussive Strike without Assault Servos is 3/4/5 depending on equipped chassis.<br/><Bullet/> The damage of Concussive Strike with Assault Servos is 4/5/6 depending on equipped chassis.<br/>"
+
+[Neutralize_LW X2AbilityTemplate]
+LocFriendlyName="Neutralize Protocol"
+LocLongDescription="Launch the BIT to a location, disabling enemy weapons in a small radius and forcing them to reload. This ability does not cost an action and has a 5-turn cooldown."
+LocHelpText="Launch the BIT to a location, disabling enemy weapons in a small radius and forcing them to reload. This ability does not cost an action."
+LocFlyOverText="Neutralize Protocol"
+LocPromotionPopupText="<Bullet/> Send the BIT to release a short-range jamming pulse that overloads weapon systems. Forces targets to reload their primary weapon.<br/><Bullet/> Targeted enemies can use Reload to unjam their weapon. Enemies may choose to get by with just one action point of movement and shooting to work with, or they may forgo a reload and resort to secondary weapon systems.<br/><Bullet/> Neutralize Protocol does not cost an action to use and has a 5-turn cooldown.<br/>"
+
+[EnhancedSystems_LW X2AbilityTemplate]
+LocFriendlyName="Enhanced Repair Systems"
+LocLongDescription="Grants the Rapid Repair, Heavyduty Repair, and Redundant Systems abilities, increasing the amount of HP Repair heals, making it no longer end the turn, and removing the stat debuffs associated with Reboot."
+LocHelpText="Heavyduty Repair doubles the HP healed by Repair, and Rapid Repair makes Repair non turn ending. Redundant Systems means the SPARK will not suffer any stat penalties after Rebooting."
+LocPromotionPopupText="Heavyduty Repair doubles the HP healed by Repair, and Rapid Repair makes Repair non turn ending. Redundant Systems means the SPARK will not suffer any stat penalties after Rebooting."
 
 ; New Class loc
 

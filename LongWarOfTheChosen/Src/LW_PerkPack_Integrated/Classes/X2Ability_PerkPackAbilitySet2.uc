@@ -22,6 +22,23 @@ var config int COLLATERAL_AMMO;
 var config int COLLATERAL_RADIUS;
 var config int COLLATERAL_ENVDMG;
 
+var config int MWREPAIR_HEAL;
+var config int MWREPAIR_COOLDOWN;
+var config int HEAVYDUTY_EXTRAHEAL;
+
+var config int NEUTRALIZE_COOLDOWN;
+var config int NEUTRALIZE_RADIUS;
+
+var config int KS_COOLDOWN;
+
+var config int CS_COOLDOWN;
+
+var config int OBLITERATOR_DMG;
+
+var config int REBOOT_HACK;
+var config int REBOOT_AIM;
+var config int REBOOT_MOB;
+
 const DAMAGED_COUNT_NAME = 'DamagedCountThisTurn';
 
 static function array<X2DataTemplate> CreateTemplates()
@@ -50,6 +67,18 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddDamageInstanceTracker());
 	Templates.AddItem(CreateDedicatedSuppressionAbility());
 	Templates.AddItem(CreateCollateralAbility());
+	Templates.AddItem(KineticStrike());
+	Templates.AddItem(Reboot());
+	Templates.AddItem(RebootTriggered());
+	Templates.AddItem(RedunSysTriggered());
+	Templates.AddItem(PurePassive('RapidRepair', "img:///UILibrary_MW.UIPerk_rapid_repair"));
+	Templates.AddItem(PurePassive('HeavyRepair', "img:///UILibrary_MW.UIPerk_heavyduty"));
+	Templates.AddItem(RedundantSystems());
+	Templates.AddItem(ConcussiveStrike());
+	Templates.AddItem(Obliterator());
+	Templates.AddItem(Neutralize());
+	Templates.AddItem(RepairMW());
+	Templates.AddItem(CreateEnhancedSystemsAbility());
 
 	return Templates;
 }
@@ -1088,6 +1117,10 @@ static function X2AbilityTemplate CreateDedicatedSuppressionAbility()
 	return Template;
 }
 
+
+
+// Mechatronic Warfare perks below: Credit to NotSoLoneWolf for permission to include them
+
 static function X2AbilityTemplate CreateCollateralAbility()
 {
 	local X2AbilityTemplate						Template;
@@ -1157,3 +1190,590 @@ static function X2AbilityTemplate CreateCollateralAbility()
 
 	return Template;
 }
+
+
+static function X2AbilityTemplate Reboot()
+{
+	local X2AbilityTemplate             Template;
+	local X2Effect_Sustain              SustainEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Reboot_LW');
+
+	Template.IconImage = "img:///UILibrary_MW.UIPerk_reboot";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bIsPassive = true;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	SustainEffect = new class'X2Effect_Sustain';
+	SustainEffect.BuildPersistentEffect(1, true, true);
+	SustainEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
+	Template.AddTargetEffect(SustainEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	// Note: no visualization on purpose!
+
+	Template.AdditionalAbilities.AddItem('RebootTriggered_LW');
+
+	return Template;
+}
+
+static function X2DataTemplate RebootTriggered()
+{
+	local X2AbilityTemplate                 Template;
+	local X2Effect_Stasis                   StasisEffect;
+	local X2Effect_PersistentStatChange		HackEffect;
+	local X2AbilityTrigger_EventListener    EventTrigger;
+	local X2Condition_UnitEffects			UnitEffects;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'RebootTriggered_LW');
+
+	Template.Hostility = eHostility_Neutral;
+	Template.IconImage = "img:///UILibrary_MW.UIPerk_reboot";
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	StasisEffect = new class'X2Effect_Stasis';
+	StasisEffect.BuildPersistentEffect(1, false, false, false, eGameRule_PlayerTurnBegin);
+	StasisEffect.bUseSourcePlayerState = true;
+	StasisEffect.bRemoveWhenTargetDies = true;
+	StasisEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage);
+	StasisEffect.StunStartAnim = 'HL_StunnedStartA';
+	StasisEffect.bSkipFlyover = true;
+	Template.AddTargetEffect(StasisEffect);
+	
+	HackEffect = new class'X2Effect_PersistentStatChange';
+	HackEffect.BuildPersistentEffect(1, true, false);
+	HackEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, "This unit has been Rebooted from catastrophic damage and is suffering -30 aim, -3 mobility, and -100 hack.", Template.IconImage,,, Template.AbilitySourceName); 
+	HackEffect.AddPersistentStatChange(eStat_Hacking, default.REBOOT_HACK);
+	HackEffect.AddPersistentStatChange(eStat_Offense, default.REBOOT_AIM);
+	HackEffect.AddPersistentStatChange(eStat_Mobility, default.REBOOT_MOB);
+	Template.AddTargetEffect(HackEffect);
+
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.TechBonusLabel, eStat_Hacking, default.REBOOT_HACK);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.TechBonusLabel, eStat_Offense, default.REBOOT_AIM);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.TechBonusLabel, eStat_Mobility, default.REBOOT_MOB);
+
+	EventTrigger = new class'X2AbilityTrigger_EventListener';
+	EventTrigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventTrigger.ListenerData.EventID = class'X2Effect_Sustain'.default.SustainEvent;
+	EventTrigger.ListenerData.Filter = eFilter_Unit;
+	EventTrigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	Template.AbilityTriggers.AddItem(EventTrigger);
+
+	UnitEffects = new class'X2Condition_UnitEffects';
+	UnitEffects.AddExcludeEffect('RedunSysEffect_LW', 'AA_DuplicateEffectIgnored');
+	UnitEffects.AddExcludeEffect('RedunSysEffect', 'AA_DuplicateEffectIgnored');
+	Template.AbilityShooterConditions.AddItem(UnitEffects);
+
+	Template.PostActivationEvents.AddItem(class'X2Effect_Sustain'.default.SustainTriggeredEvent);
+	
+	Template.bSkipFireAction = true;
+	Template.FrameAbilityCameraType = eCameraFraming_Never;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+	return Template;
+}
+
+static function X2AbilityTemplate RedundantSystems()
+{
+	local X2AbilityTemplate             Template;
+	local X2Effect_Persistent           PersistentEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'RedundantSystems_LW');
+
+	Template.IconImage = "img:///UILibrary_MW.UIPerk_redundant_systems";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bIsPassive = true;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	//  This is a dummy effect so that an icon shows up in the UI.
+	PersistentEffect = new class'X2Effect_Persistent';
+	PersistentEffect.BuildPersistentEffect(1, true, false);
+	PersistentEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage,,, Template.AbilitySourceName);
+	PersistentEffect.EffectName = 'RedunSysEffect_LW';
+	Template.AddTargetEffect(PersistentEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	// Note: no visualization on purpose!
+
+	Template.bCrossClassEligible = false;
+	
+	Template.AdditionalAbilities.AddItem('RedunSysTriggered_LW');
+
+	return Template;
+}
+
+// Identical to the above ability but requires Redundant Systems and doesn't cast debuffs on the SPARK
+static function X2DataTemplate RedunSysTriggered()
+{
+	local X2AbilityTemplate                 Template;
+	local X2Effect_Stasis                   StasisEffect;
+	local X2AbilityTrigger_EventListener    EventTrigger;
+	local X2Condition_UnitEffects			UnitEffects;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'RedunSysTriggered_LW');
+
+	Template.Hostility = eHostility_Neutral;
+	Template.IconImage = "img:///UILibrary_MW.UIPerk_redundant_systems";
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	StasisEffect = new class'X2Effect_Stasis';
+	StasisEffect.BuildPersistentEffect(1, false, false, false, eGameRule_PlayerTurnBegin);
+	StasisEffect.bUseSourcePlayerState = true;
+	StasisEffect.bRemoveWhenTargetDies = true;
+	StasisEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage);
+	StasisEffect.StunStartAnim = 'HL_StunnedStartA';
+	StasisEffect.bSkipFlyover = true;
+	Template.AddTargetEffect(StasisEffect);
+
+	EventTrigger = new class'X2AbilityTrigger_EventListener';
+	EventTrigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventTrigger.ListenerData.EventID = class'X2Effect_Sustain'.default.SustainEvent;
+	EventTrigger.ListenerData.Filter = eFilter_Unit;
+	EventTrigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	Template.AbilityTriggers.AddItem(EventTrigger);
+
+	UnitEffects = new class'X2Condition_UnitEffects';
+	UnitEffects.AddRequireEffect('RedunSysEffect_LW', 'AA_DuplicateEffectIgnored');
+	Template.AbilityShooterConditions.AddItem(UnitEffects);
+
+	Template.PostActivationEvents.AddItem(class'X2Effect_Sustain'.default.SustainTriggeredEvent);
+	
+	Template.bSkipFireAction = true;
+	Template.FrameAbilityCameraType = eCameraFraming_Never;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+	return Template;
+}
+
+
+static function X2AbilityTemplate RepairMW()
+{
+	local X2AbilityTemplate						Template;
+	local X2AbilityCharges_Repair_LW               Charges;
+	local X2AbilityCost_Charges                 ChargeCost;
+	local X2AbilityCost_ActionPoints            ActionPointCost;
+	local X2AbilityCooldown						Cooldown;
+	local X2Effect_ApplyRepairHeal_LW				HealEffect;
+	local X2Effect_RepairArmor_LW					ArmorEffect;
+	local X2Condition_UnitProperty              UnitCondition;
+	local X2Effect_RemoveEffectsByDamageType	RemoveEffects;
+	local name HealType;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'RepairMW_LW');
+	Template.RemoveTemplateAvailablility(Template.BITFIELD_GAMEAREA_Multiplayer);
+
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.IconImage = "img:///UILibrary_MW.UIPerk_repair";
+
+	Charges = new class'X2AbilityCharges_Repair_LW';
+	Template.AbilityCharges = Charges;
+
+	ChargeCost = new class'X2AbilityCost_Charges';
+	ChargeCost.NumCharges = 1;
+	Template.AbilityCosts.AddItem(ChargeCost);
+
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bConsumeAllPoints = true;
+	ActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('RapidRepair_LW');
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = default.MWREPAIR_COOLDOWN;
+	Template.AbilityCooldown = Cooldown;
+
+	HealEffect = new class'X2Effect_ApplyRepairHeal_LW';
+	HealEffect.PerUseHP = default.MWREPAIR_HEAL;
+	HealEffect.IncreasedHealAbility = 'HeavyRepair_LW';
+	HealEffect.IncreasedPerUseHP = default.HEAVYDUTY_EXTRAHEAL;
+	Template.AddTargetEffect(HealEffect);
+
+	ArmorEffect = new class'X2Effect_RepairArmor_LW';
+	Template.AddTargetEffect(ArmorEffect);
+
+	RemoveEffects = new class'X2Effect_RemoveEffectsByDamageType';
+	foreach class'X2Ability_DefaultAbilitySet'.default.MedikitHealEffectTypes(HealType)
+	{
+		RemoveEffects.DamageTypesToRemove.AddItem(HealType);
+	}
+	Template.AddTargetEffect(RemoveEffects);
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AddShooterEffectExclusions();
+
+	UnitCondition = new class'X2Condition_UnitProperty';
+	UnitCondition.ExcludeDead = true;
+	UnitCondition.ExcludeHostileToSource = true;
+	UnitCondition.ExcludeFriendlyToSource = false;
+	UnitCondition.ExcludeFullHealth = true;
+	UnitCondition.ExcludeOrganic = true;
+	Template.AbilityTargetConditions.AddItem(UnitCondition);
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SingleTargetWithSelf;
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+
+	Template.bStationaryWeapon = true;
+	Template.PostActivationEvents.AddItem('ItemRecalled');
+	Template.CustomSelfFireAnim = 'NO_Repair';
+	Template.bSkipPerkActivationActions = true;
+
+	Template.BuildNewGameStateFn = class'X2Ability_SpecialistAbilitySet'.static.AttachGremlinToTarget_BuildGameState;
+	Template.BuildVisualizationFn = class'X2Ability_SpecialistAbilitySet'.static.GremlinSingleTarget_BuildVisualization;
+	
+	Template.CinescriptCameraType = "Spark_SendBit";
+
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.NonAggressiveChosenActivationIncreasePerUse;
+	
+	return Template;
+}
+
+
+static function X2AbilityTemplate KineticStrike()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityCost_ActionPoints        ActionPointCost;
+	local X2AbilityToHitCalc_StandardMelee  StandardMelee;
+	local X2Effect_DLC_3StrikeDamage		WeaponDamageEffect;
+	local array<name>                       SkipExclusions;
+	local X2AbilityCooldown                 Cooldown;
+	local X2Effect_Knockback				KnockbackEffect;
+	local X2AbilityMultiTarget_Radius		RadiusMultiTarget;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'KineticStrike_LW');
+	Template.RemoveTemplateAvailablility(Template.BITFIELD_GAMEAREA_Multiplayer);
+
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;		
+	Template.IconImage = "img:///UILibrary_DLC3Images.UIPerk_spark_strike";
+	Template.bHideOnClassUnlock = false;
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_CORPORAL_PRIORITY;
+	Template.AbilityConfirmSound = "TacticalUI_SwordConfirm";
+	Template.MeleePuckMeshPath = "Materials_DLC3.MovePuck_Strike";
+
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = default.KS_COOLDOWN;
+	Template.AbilityCooldown = Cooldown;
+
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.bMoveCost = true;
+	ActionPointCost.bConsumeAllPoints = true;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	StandardMelee = new class'X2AbilityToHitCalc_StandardMelee';
+	StandardMelee.BuiltInHitMod = 10;
+	Template.AbilityToHitCalc = StandardMelee;
+
+	Template.AbilityTargetStyle = new class'X2AbilityTarget_MovingMelee';
+	Template.TargetingMethod = class'X2TargetingMethod_MeleePath';
+
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+	Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_EndOfMove');
+
+	// Target Conditions
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+	Template.AbilityTargetConditions.AddItem(default.MeleeVisibilityCondition);
+
+	// Shooter Conditions
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
+	Template.AddShooterEffectExclusions(SkipExclusions);
+
+	// Damage Effect
+	WeaponDamageEffect = new class'X2Effect_DLC_3StrikeDamage';
+	WeaponDamageEffect.EnvironmentalDamageAmount = 0;
+	Template.AddTargetEffect(WeaponDamageEffect);
+
+	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
+	RadiusMultiTarget.fTargetRadius = 1;
+	RadiusMultiTarget.bExcludeSelfAsTargetIfWithinRadius = true;
+	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
+
+	Template.bAllowBonusWeaponEffects = true;
+	Template.bSkipMoveStop = true;
+	Template.CustomFireAnim = 'FF_Melee';
+	Template.CustomMovingFireAnim = 'MV_Melee';	
+
+	KnockbackEffect = new class'X2Effect_Knockback';
+	KnockbackEffect.KnockbackDistance = 8;
+	KnockbackEffect.bKnockbackDestroysNonFragile = true;
+	Template.AddTargetEffect(KnockbackEffect);
+	Template.bOverrideMeleeDeath = true;
+
+	// Voice events
+	Template.SourceMissSpeech = 'SwordMiss';
+
+	Template.BuildNewGameStateFn = TypicalMoveEndAbility_BuildGameState;
+	Template.BuildInterruptGameStateFn = TypicalMoveEndAbility_BuildInterruptGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.CinescriptCameraType = "Spark_Strike";
+
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.MeleeLostSpawnIncreasePerUse;
+//BEGIN AUTOGENERATED CODE: Template Overrides 'Strike'
+	Template.bFrameEvenWhenUnitIsHidden = true;
+//END AUTOGENERATED CODE: Template Overrides 'Strike'
+
+	return Template;
+}
+
+static function X2AbilityTemplate ConcussiveStrike()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityCost_ActionPoints        ActionPointCost;
+	local X2AbilityToHitCalc_StandardMelee  StandardMelee;
+	local X2Effect_HalfDamage_LW				WeaponDamageEffect;
+	local array<name>                       SkipExclusions;
+	local X2AbilityCooldown                 Cooldown;
+	local X2Effect_Knockback				KnockbackEffect;
+	local X2AbilityMultiTarget_Radius		RadiusMultiTarget;
+	local X2Effect_Stunned					StunnedEffect;
+	local X2Condition_UnitProperty			TargetProperty;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ConcussiveStrike_LW');
+	Template.RemoveTemplateAvailablility(Template.BITFIELD_GAMEAREA_Multiplayer);
+
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;		
+	Template.IconImage = "img:///UILibrary_MW.UIPerk_concussive";
+	Template.bHideOnClassUnlock = false;
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_SERGEANT_PRIORITY;
+	Template.AbilityConfirmSound = "TacticalUI_SwordConfirm";
+	Template.MeleePuckMeshPath = "Materials_DLC3.MovePuck_Strike";
+
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = default.CS_COOLDOWN;
+	Template.AbilityCooldown = Cooldown;
+
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.bMoveCost = true;
+	ActionPointCost.bConsumeAllPoints = true;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	StandardMelee = new class'X2AbilityToHitCalc_StandardMelee';
+	StandardMelee.BuiltInHitMod = 10;
+	Template.AbilityToHitCalc = StandardMelee;
+
+	Template.AbilityTargetStyle = new class'X2AbilityTarget_MovingMelee';
+	Template.TargetingMethod = class'X2TargetingMethod_MeleePath';
+
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+
+	// Target Conditions
+	TargetProperty = new class'X2Condition_UnitProperty';
+	TargetProperty.ExcludeRobotic = true;
+	Template.AbilityTargetConditions.AddItem(TargetProperty);
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+	Template.AbilityTargetConditions.AddItem(default.MeleeVisibilityCondition);
+
+	// Shooter Conditions
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
+	Template.AddShooterEffectExclusions(SkipExclusions);
+
+	// Damage Effect
+	WeaponDamageEffect = new class'X2Effect_HalfDamage_LW';
+	WeaponDamageEffect.EnvironmentalDamageAmount = 0;
+	Template.AddTargetEffect(WeaponDamageEffect);
+
+	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
+	RadiusMultiTarget.fTargetRadius = 1;
+	RadiusMultiTarget.bExcludeSelfAsTargetIfWithinRadius = true;
+	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
+
+	Template.bAllowBonusWeaponEffects = true;
+	Template.bSkipMoveStop = true;
+	Template.CustomFireAnim = 'FF_Melee';
+	Template.CustomMovingFireAnim = 'MV_Melee';	
+
+	KnockbackEffect = new class'X2Effect_Knockback';
+	KnockbackEffect.KnockbackDistance = 8;
+	KnockbackEffect.bKnockbackDestroysNonFragile = true;
+	Template.AddTargetEffect(KnockbackEffect);
+	Template.bOverrideMeleeDeath = true;
+
+	//Stunning Effect
+	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2, 100);
+	StunnedEffect.MinStatContestResult = 0;
+	StunnedEffect.MaxStatContestResult = 0;
+	StunnedEffect.bRemoveWhenSourceDies = false;
+	Template.AddTargetEffect(StunnedEffect);
+
+	// Voice events
+	Template.SourceMissSpeech = 'SwordMiss';
+
+	Template.BuildNewGameStateFn = TypicalMoveEndAbility_BuildGameState;
+	Template.BuildInterruptGameStateFn = TypicalMoveEndAbility_BuildInterruptGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.CinescriptCameraType = "Spark_Strike";
+
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.MeleeLostSpawnIncreasePerUse;
+//BEGIN AUTOGENERATED CODE: Template Overrides 'Strike'
+	Template.bFrameEvenWhenUnitIsHidden = true;
+//END AUTOGENERATED CODE: Template Overrides 'Strike'
+
+	return Template;
+}
+
+
+static function X2AbilityTemplate Obliterator()
+{
+	local X2AbilityTemplate						Template;
+	local X2Effect_BonusWeaponDamage            DamageEffect;
+	local X2Effect_ToHitModifier                HitModEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Obliterator_LW');
+	Template.IconImage = "img:///UILibrary_MW.UIPerk_obliterator";
+
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	DamageEffect = new class'X2Effect_BonusWeaponDamage';
+	DamageEffect.BonusDmg = default.OBLITERATOR_DMG;
+	DamageEffect.BuildPersistentEffect(1, true, false, false);
+	DamageEffect.EffectName = 'Obliterator_LW';
+	DamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Template.AddTargetEffect(DamageEffect);
+
+	HitModEffect = new class'X2Effect_ToHitModifier';
+	HitModEffect.AddEffectHitModifier(eHit_Success, 20, Template.LocFriendlyName, , true, false, true, true);
+	HitModEffect.BuildPersistentEffect(1, true, false, false);
+	HitModEffect.EffectName = 'ObliteratorAim_LW';
+	Template.AddTargetEffect(HitModEffect);
+
+	Template.AdditionalAbilities.AddItem('WreckingBall');
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}
+
+static function X2AbilityTemplate Neutralize()
+{
+	local X2AbilityTemplate             Template;
+	local X2AbilityTarget_Cursor        CursorTarget;
+	local X2AbilityMultiTarget_Radius   RadiusMultiTarget;
+	local X2AbilityCooldown             Cooldown;
+	local X2Effect_DisableWeapon		DisableEffect;
+	//local X2Effect_Persistent			DisorientedEffect;
+	local X2Effect_PerkAttachForFX      PerkEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Neutralize_LW');
+	Template.RemoveTemplateAvailablility(Template.BITFIELD_GAMEAREA_Multiplayer);
+
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
+	Template.IconImage = "img:///UILibrary_MW.UIPerk_neutralize";
+	
+	Template.AbilityCosts.AddItem(default.FreeActionCost);
+	
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = default.NEUTRALIZE_COOLDOWN;
+	Template.AbilityCooldown = Cooldown;
+
+	Template.TargetingMethod = class'X2TargetingMethod_VoidRift';
+
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+	Template.AbilityToHitCalc = default.DeadEye;
+
+	CursorTarget = new class'X2AbilityTarget_Cursor';
+	CursorTarget.bRestrictToSquadsightRange = true;
+	Template.AbilityTargetStyle = CursorTarget;
+
+	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
+	RadiusMultiTarget.fTargetRadius = default.NEUTRALIZE_RADIUS;
+	RadiusMultiTarget.bIgnoreBlockingCover = true;
+	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
+
+	// Shooter Conditions
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AddShooterEffectExclusions();
+
+	PerkEffect = new class'X2Effect_PerkAttachForFX';
+	PerkEffect.EffectAddedFn = class'X2Ability_SparkAbilitySet'.static.Bombard_EffectAdded;
+	Template.AddShooterEffect(PerkEffect);
+
+	Template.AbilityMultiTargetConditions.AddItem(default.LivingTargetOnlyProperty);
+	
+	// target effects
+	DisableEffect = new class'X2Effect_DisableWeapon';
+	DisableEffect.ApplyChance = 100;
+	Template.AddMultiTargetEffect(DisableEffect);
+
+	//DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect(true, , false);
+	//DisorientedEffect.bRemoveWhenSourceDies = true;
+	//Template.AddTargetEffect(DisorientedEffect);
+
+	Template.PostActivationEvents.AddItem('ItemRecalled');
+
+	Template.BuildNewGameStateFn = class'X2Ability_SpecialistAbilitySet'.static.SendGremlinToLocation_BuildGameState;
+	Template.BuildVisualizationFn = class'X2Ability_SparkAbilitySet'.static.Bombard_BuildVisualization;
+
+	Template.CinescriptCameraType = "Spark_Bombard";
+
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.GrenadeLostSpawnIncreasePerUse;
+	Template.bFrameEvenWhenUnitIsHidden = true;
+
+	return Template;
+}
+
+// Combo perk using some of the above:
+
+static function X2AbilityTemplate CreateEnhancedSystemsAbility()
+{
+	local X2AbilityTemplate Template;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'EnhancedSystems_LW');
+
+	Template.IconImage = "img:///UILibrary_MW.UIPerk_redundant_systems";
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	Template.AdditionalAbilities.AddItem('RapidRepair_LW');
+	Template.AdditionalAbilities.AddItem('RedundantSystems_LW');
+	Template.AdditionalAbilities.AddItem('HeavyRepair_LW');
+
+	return Template;
+}
+
