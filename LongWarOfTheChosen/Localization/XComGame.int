@@ -104,7 +104,7 @@ ShortNames[8]="Tpr."
 
 ; LWOTC Needs Translation
 +AbilityTreeTitles[0]="Future Combat"
-+AbilityTreeTitles[1]=""
++AbilityTreeTitles[1]="Mechanical Superiority"
 +AbilityTreeTitles[2]="War Machine"
 +AbilityTreeTitles[3]="XCOM"
 ; End Translation
