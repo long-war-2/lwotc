@@ -88,9 +88,10 @@ static function string AddFontInfoWithColor(string txt, bool is3DScreen, optiona
 static function String GetDifficultyString(XComGameState_MissionSite MissionState, optional int AlertModifier = 0)
 {
 	local string Text, nums;
-	local int Difficulty, LabelsLength, EnemyUnits;
+	local int Difficulty, LabelsLength, EnemyUnits, i;
 	local array<X2CharacterTemplate> Dummy;
 	local XComGameState_MissionSite DummyMissionSite;
+	local X2CharacterTemplate CharTemplate;
 
 	if(class'Helpers_LW'.default.bUseTrueDifficultyCalc)
 	{
@@ -99,6 +100,15 @@ static function String GetDifficultyString(XComGameState_MissionSite MissionStat
 			MissionState.GetShadowChamberMissionInfo (EnemyUnits, Dummy);
 			`LWTrace("Schedule Selected for Dummy Mission:" @MissionState.SelectedMissionData.SelectedMissionScheduleName);
 			`LWTrace("Modified Alert check. Alert Modifier:" @AlertModifier @ ". Enemy Count: " @EnemyUnits);
+			i=0;
+			foreach Dummy (CharTemplate)
+			{
+				if(CharTemplate != None)
+				{
+					i++;
+					`LWTrace("Unit" @i @"Found:" @CharTemplate.strCharacterName);
+				}
+			}
 		}
 		else
 		{
@@ -109,6 +119,15 @@ static function String GetDifficultyString(XComGameState_MissionSite MissionStat
 			DummyMissionSite.GetShadowChamberMissionInfo (EnemyUnits, Dummy);
 			`LWTrace("Schedule Selected for Dummy Mission:" @DummyMissionSite.SelectedMissionData.SelectedMissionScheduleName);
 			`LWTrace("Modified Alert check. Alert Modifier:" @AlertModifier @ ". Enemy Count: " @EnemyUnits);
+			i=0;
+			foreach Dummy (CharTemplate)
+			{
+				if(CharTemplate != None)
+				{
+					i++;
+					`LWTrace("Unit" @i @"Found:" @CharTemplate.strCharacterName);
+				}
+			}
 		}
 			Difficulty = Max (1, ((EnemyUnits-4) / 3));
 	}

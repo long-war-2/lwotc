@@ -1084,7 +1084,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	local array<name> BadUnits;
 
 
-	`LWDiversityTrace("Parsing Encounter : " $ EncounterName);
+	`LWTrace("Parsing Encounter : " $ EncounterName);
 
 	History = `XCOMHISTORY;
 	MissionState = XComGameState_MissionSite(SourceObject);
@@ -1105,7 +1105,12 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	// filter out dummy missions used by squad select infiltration calcs
 	if(MissionState.Source == 'LWInfilListDummyMission')
 	{
-		`LWDiversityTrace("Dummy mission for squad select detected, aborting");
+		`LWTrace("Encounter composition:");
+		foreach SpawnInfo.SelectedCharacterTemplateNames(CharacterTemplateName, idx)
+		{
+			`LWTrace("Character[" $ idx $ "] = " $ CharacterTemplateName);
+		}
+		`LWTrace("Dummy mission for squad select detected, aborting diversity algorithm");
 		return;
 	}
 
