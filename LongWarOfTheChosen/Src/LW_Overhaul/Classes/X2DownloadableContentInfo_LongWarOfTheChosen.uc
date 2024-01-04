@@ -1086,6 +1086,12 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 
 	`LWTrace("Parsing Encounter : " $ EncounterName);
 
+	`LWTrace("Encounter composition:");
+	foreach SpawnInfo.SelectedCharacterTemplateNames(CharacterTemplateName, idx)
+	{
+		`LWTrace("Character[" $ idx $ "] = " $ CharacterTemplateName);
+	}
+
 	History = `XCOMHISTORY;
 	MissionState = XComGameState_MissionSite(SourceObject);
 	if (MissionState == none)
@@ -1105,11 +1111,6 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	// filter out dummy missions used by squad select infiltration calcs
 	if(MissionState.Source == 'LWInfilListDummyMission')
 	{
-		`LWTrace("Encounter composition:");
-		foreach SpawnInfo.SelectedCharacterTemplateNames(CharacterTemplateName, idx)
-		{
-			`LWTrace("Character[" $ idx $ "] = " $ CharacterTemplateName);
-		}
 		`LWTrace("Dummy mission for squad select detected, aborting diversity algorithm");
 		return;
 	}
@@ -1162,6 +1163,8 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		`LWDiversityTrace("DABFL Detected, aborting.");
 		return;
 	}
+
+	`LWTrace("Pod Diversity System processing this pod.");
 
 	// Get the corresponding spawn distribution lists for this mission.
 	`LWDiversityTrace("Getting Leader Spawn Distribution List: ");

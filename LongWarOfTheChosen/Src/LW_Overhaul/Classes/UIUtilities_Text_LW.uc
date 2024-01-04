@@ -93,15 +93,26 @@ static function String GetDifficultyString(XComGameState_MissionSite MissionStat
 	local XComGameState_MissionSite DummyMissionSite;
 	local X2CharacterTemplate CharTemplate;
 
+	local array<X2CharacterTemplate> TemplatesThatWillSpawn_ADVT, TemplatesThatWillSpawn_LOST, TemplatesThatWillSpawn_FAC1, TemplatesThatWillSpawn_FAC2, TemplatesThatWillSpawn_CIVS;
+	local int NumUnits_ADVT, NumUnits_LOST, NumUnits_FAC1, NumUnits_FAC2, NumUnits_CIVS;
+
 	if(class'Helpers_LW'.default.bUseTrueDifficultyCalc)
 	{
 		if(AlertModifier == 0)
 		{
-			MissionState.GetShadowChamberMissionInfo (EnemyUnits, Dummy);
+			//MissionState.GetShadowChamberMissionInfo (EnemyUnits, Dummy);
+
+			GetShadowChamberMissionInfo(MissionState, true, 
+										TemplatesThatWillSpawn_ADVT, NumUnits_ADVT,
+										TemplatesThatWillSpawn_LOST, NumUnits_LOST,
+										TemplatesThatWillSpawn_FAC1, NumUnits_FAC1,
+										TemplatesThatWillSpawn_FAC2, NumUnits_FAC2,
+										TemplatesThatWillSpawn_CIVS, NumUnits_CIVS );
+
 			`LWTrace("Schedule Selected for Dummy Mission:" @MissionState.SelectedMissionData.SelectedMissionScheduleName);
-			`LWTrace("Modified Alert check. Alert Modifier:" @AlertModifier @ ". Enemy Count: " @EnemyUnits);
+			`LWTrace("Modified Alert check. Alert Modifier:" @AlertModifier @ ". Enemy Count: " @NumUnits_ADVT);
 			i=0;
-			foreach Dummy (CharTemplate)
+			foreach TemplatesThatWillSpawn_ADVT (CharTemplate)
 			{
 				if(CharTemplate != None)
 				{
@@ -116,11 +127,19 @@ static function String GetDifficultyString(XComGameState_MissionSite MissionStat
 			DummyMissionSite = new class'XComGameState_MissionSite'(MissionState);
 			DummyMissionSite.Source = 'LWInfilListDummyMission';
 			DummyMissionSite.CacheSelectedMissionData(MissionState.SelectedMissionData.ForceLevel, max(1, MissionState.SelectedMissionData.AlertLevel + AlertModifier));
-			DummyMissionSite.GetShadowChamberMissionInfo (EnemyUnits, Dummy);
+			//DummyMissionSite.GetShadowChamberMissionInfo (EnemyUnits, Dummy);
+
+			GetShadowChamberMissionInfo(DummyMissionSite, true, 
+										TemplatesThatWillSpawn_ADVT, NumUnits_ADVT,
+										TemplatesThatWillSpawn_LOST, NumUnits_LOST,
+										TemplatesThatWillSpawn_FAC1, NumUnits_FAC1,
+										TemplatesThatWillSpawn_FAC2, NumUnits_FAC2,
+										TemplatesThatWillSpawn_CIVS, NumUnits_CIVS );
+
 			`LWTrace("Schedule Selected for Dummy Mission:" @DummyMissionSite.SelectedMissionData.SelectedMissionScheduleName);
-			`LWTrace("Modified Alert check. Alert Modifier:" @AlertModifier @ ". Enemy Count: " @EnemyUnits);
+			`LWTrace("Modified Alert check. Alert Modifier:" @AlertModifier @ ". Enemy Count: " @NumUnits_ADVT);
 			i=0;
-			foreach Dummy (CharTemplate)
+			foreach TemplatesThatWillSpawn_ADVT (CharTemplate)
 			{
 				if(CharTemplate != None)
 				{
@@ -129,10 +148,11 @@ static function String GetDifficultyString(XComGameState_MissionSite MissionStat
 				}
 			}
 		}
-			Difficulty = Max (1, ((EnemyUnits-4) / 3));
+			Difficulty = Max (1, ((NumUnits_ADVT-4) / 3));
 	}
 	else
 	{
+		// Old behavior if true difficulty calc is disabled
 		MissionState.GetShadowChamberMissionInfo (EnemyUnits, Dummy);
 		Difficulty = Max (1, ((EnemyUnits + (AlertModifier * 1.5)-4) / 3));
 	}
@@ -149,7 +169,7 @@ static function String GetDifficultyString(XComGameState_MissionSite MissionStat
 
 		Text = class'X2StrategyGameRulesetDataStructures'.default.MissionDifficultyLabels[Difficulty] $ nums;
 	}
-	if (EnemyUnits <= 0)
+	if (NumUnits_ADVT <= 0)
 	{
 		Text = class'X2StrategyGameRulesetDataStructures'.default.MissionDifficultyLabels[0] $ " (???)";
 	}
@@ -181,4 +201,64 @@ static function string StripHTML (String InputString)
 	}
 
 	return WorkingString;
+}
+
+// Borrowed from RustyDios - Full Shadow Report - for debug logging:
+
+static function GetShadowChamberMissionInfo(XComGameState_MissionSite MissionSite, bool bIsFullCount, 
+										out array<X2CharacterTemplate> TemplatesThatWillSpawn_ADVT, out int NumUnits_ADVT,
+										out array<X2CharacterTemplate> TemplatesThatWillSpawn_LOST, out int NumUnits_LOST,
+										out array<X2CharacterTemplate> TemplatesThatWillSpawn_FAC1, out int NumUnits_FAC1,
+										out array<X2CharacterTemplate> TemplatesThatWillSpawn_FAC2, out int NumUnits_FAC2,
+										out array<X2CharacterTemplate> TemplatesThatWillSpawn_CIVS, out int NumUnits_CIVS )
+{
+	local X2CharacterTemplateManager CharTemplateManager;
+	local X2CharacterTemplate SelectedTemplate;
+
+	local int EncounterIndex, CharacterIndex;
+	local Name CharTemplateName;
+
+	//RESET COUNTS AND ARRAYS
+	NumUnits_ADVT = 0;	NumUnits_LOST = 0;	NumUnits_FAC1 = 0;	NumUnits_FAC2 = 0;	NumUnits_CIVS = 0;
+
+	TemplatesThatWillSpawn_ADVT.Length = 0;	TemplatesThatWillSpawn_LOST.Length = 0;	
+	TemplatesThatWillSpawn_FAC1.Length = 0;	TemplatesThatWillSpawn_FAC2.Length = 0;	TemplatesThatWillSpawn_CIVS.Length = 0;
+
+	//IF NOT USING THE NEW FULL COUNT DISPLAY AND NUMBERS JUST REVERT TO BASEGAME FUNCTION, FIRST UNIT OF EACH GROUP TYPE
+
+	//ELSE CONTINUE ON USING THIS MODS MODIFIED FUNCTION COPY
+	CharTemplateManager = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
+
+	//CREATE NEW SPAWNED INFO LISTS BY TEMPLATE AND POD
+	for( EncounterIndex = 0; EncounterIndex < MissionSite.SelectedMissionData.SelectedEncounters.Length; EncounterIndex++ )
+	{
+		//EncounterSpawnInfo = PodSpawnInfo struct from XComAISpawnManager ...
+
+		for( CharacterIndex = 0; CharacterIndex < MissionSite.SelectedMissionData.SelectedEncounters[EncounterIndex].EncounterSpawnInfo.SelectedCharacterTemplateNames.Length; CharacterIndex++ )
+		{
+			CharTemplateName = MissionSite.SelectedMissionData.SelectedEncounters[EncounterIndex].EncounterSpawnInfo.SelectedCharacterTemplateNames[CharacterIndex];
+			SelectedTemplate = CharTemplateManager.FindCharacterTemplate(CharTemplateName);
+
+			if (SelectedTemplate != none)
+			{
+				//ADD UNIT TO OUTPUT COUNTS
+				if(SelectedTemplate.bIsCivilian)
+				{
+					continue; //SKIP THESE UNIT TYPES
+				}
+				else
+				{
+					if( SelectedTemplate.CharacterGroupName != '' )
+					{
+						TemplatesThatWillSpawn_ADVT.AddItem(SelectedTemplate);
+						NumUnits_ADVT++;	
+
+					}//end group none check
+				}
+
+			}//end template none check
+
+		}//end character for loop
+
+	}//end encounter for loop
 }
