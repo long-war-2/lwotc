@@ -248,6 +248,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'Bombard':
 			ReworkBombard(Template);
 			break;
+		case 'Overdrive':
+			FixOverdrive(Template);
+			break;
 		default:
 			break;
 
@@ -310,6 +313,28 @@ static function ReworkBombard(X2AbilityTemplate Template)
 	Template.AbilityCharges = Charges;
 
 	
+}
+
+static function FixOverdrive(X2AbilityTemplate Template)
+{
+	local X2Effect_DLC_3Overdrive OverdriveEffect;
+	local X2Effect_DLC_3Overdrive_LW NewOverdriveEffect;
+	local int i;
+
+	for(i= Template.AbilityTargetEffects.Length - 1; i >= 0; i--)
+	{
+		OverdriveEffect = X2Effect_DLC_3Overdrive(Template.AbilityTargetEffects[i]);
+
+		if(OverdriveEffect != none)
+		{
+			Template.AbilityTargetEffects.Remove(i, 1);
+			break;
+		}
+	}
+
+	NewOverdriveEffect = new class'X2Effect_DLC_3Overdrive_LW'(OverdriveEffect);
+	Template.AddTargetEffect(NewOverdriveEffect);
+
 }
 
 static function UpdateMeleeAbilityForBloodThirst(X2AbilityTemplate Template)
