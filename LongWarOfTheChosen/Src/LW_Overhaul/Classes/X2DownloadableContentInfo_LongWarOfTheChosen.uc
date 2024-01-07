@@ -6200,3 +6200,20 @@ exec function LWOTC_ViewMissionDef(name MissionDefName)
 	
 
 }
+
+exec function LWOTC_ChosenMonthsSinceReinforce()
+{
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local XComGameState_AdventChosen ChosenState;
+
+	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	AllChosen = AlienHQ.GetAllChosen(, false);
+
+		foreach AllChosen(ChosenState)
+		{
+			class'Helpers'.static.OutputMsg("Chosen Name:" @ChosenState.GetMyTemplateName());
+			class'Helpers'.static.OutputMsg("Months since Chosen Reinforce:" @ChosenState.GetMonthsSinceAction('ChosenAction_ReinforceRegion'));
+		}
+}
+
