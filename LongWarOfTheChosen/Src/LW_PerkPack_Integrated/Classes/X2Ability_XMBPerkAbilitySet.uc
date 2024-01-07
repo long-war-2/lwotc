@@ -3130,12 +3130,6 @@ static function X2AbilityTemplate OverbearingSuperiority()
 	ToHitModifier.AddEffectHitModifier(eHit_Crit, default.OVERBEARING_SUPERIORITY_CRIT, Template.LocFriendlyName,,,,,,,,true);
 	Template.AddTargetEffect(ToHitModifier);
 
-	ToHitModifier = new class'X2Effect_ToHitModifier';
-	ToHitModifier.BuildPersistentEffect(1, true, true, true);
-	ToHitModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
-	ToHitModifier.AddEffectHitModifier(eHit_Crit, default.OVERBEARING_SUPERIORITY_CRIT, Template.LocFriendlyName,,,,,,,,true);
-	Template.AddTargetEffect(ToHitModifier);
-
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;
 	// Don't allow multiple ability-refunding abilities to be used in the same turn (e.g. Slam Fire and Serial)
