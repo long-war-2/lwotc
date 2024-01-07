@@ -26,6 +26,8 @@ var config int MWREPAIR_HEAL;
 var config int MWREPAIR_COOLDOWN;
 var config int HEAVYDUTY_EXTRAHEAL;
 
+var config int ENHANCED_SYSTEMS_BONUS_CHARGES;
+
 var config int NEUTRALIZE_COOLDOWN;
 var config int NEUTRALIZE_RADIUS;
 
@@ -1386,6 +1388,7 @@ static function X2AbilityTemplate RepairMW()
 	local X2Effect_RepairArmor_LW					ArmorEffect;
 	local X2Condition_UnitProperty              UnitCondition;
 	local X2Effect_RemoveEffectsByDamageType	RemoveEffects;
+	local BonusCharge							BonusCharge;
 	local name HealType;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'RepairMW_LW');
@@ -1398,7 +1401,9 @@ static function X2AbilityTemplate RepairMW()
 
 	Charges = new class'X2AbilityCharges_Repair_LW';
 	Template.AbilityCharges = Charges;
-
+	
+	BonusCharge.AbilityName = 'EnhancedSystems_LW'
+	BonusCharge.NumCharges = default.ENHANCED_SYSTEMS_BONUS_CHARGES;
 	ChargeCost = new class'X2AbilityCost_Charges';
 	ChargeCost.NumCharges = 1;
 	Template.AbilityCosts.AddItem(ChargeCost);

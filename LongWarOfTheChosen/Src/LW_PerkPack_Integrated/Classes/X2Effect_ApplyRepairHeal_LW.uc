@@ -33,7 +33,7 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 
 		if (IncreasedHealAbility != '')
 		{
-			if (SourceUnit != none && (SourceUnit.HasSoldierAbility(IncreasedHealAbility)))
+			if (SourceUnit != none && (SourceUnit.HasAbilityFromAnySource(IncreasedHealAbility)))
 			{
 				HealAmount = IncreasedPerUseHP;
 			}
