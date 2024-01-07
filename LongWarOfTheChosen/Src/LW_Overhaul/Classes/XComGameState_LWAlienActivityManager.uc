@@ -406,6 +406,12 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 	ModifyAlertForChosen(MissionSite, AlertLevel);
 	AlertLevel = Max(AlertLevel, 1); // clamp to be no less than 1
 
+	// Hard Code alert level for Chosen Reinforce mission.
+	if(MissionSite.GeneratedMission.Mission.MissionFamily == "ChosenSupplyLineRaid_LW")
+	{
+		AlertLevel = 4;
+	}
+
 	`LWTRACE("Updating Mission Difficulty: ForceLevel=" $ ForceLevel $ ", AlertLevel=" $ AlertLevel);
 
 	// add explicit hook so that DLCs can update (e.g. AlienHunters to add Rulers) -- these are assumed to submit their own gamestate updates
