@@ -33,7 +33,7 @@ simulated function String GetRewardString()
     // Did this covert action fail?
     if (class'Utilities_LW'.static.DidCovertActionFail(GetAction()))
     {
-        return super.GetRewardString() $ " (" $ strCovertActionFailed $ ")";
+        return" (" $ strCovertActionFailed $ ")";
     }
     else
     {
