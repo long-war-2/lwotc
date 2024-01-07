@@ -166,6 +166,7 @@ var config bool bKirukaFactionOverhaulActive;
 var config bool bNewTemplarModJamActive;
 
 var config bool bDABFLActive;
+var config bool bKirukaSparkActive;
 
 var config array<string> cachedInstalledModNames;
 
