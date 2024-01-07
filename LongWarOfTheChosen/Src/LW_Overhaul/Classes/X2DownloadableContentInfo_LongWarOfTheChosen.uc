@@ -226,7 +226,24 @@ static event OnPostTemplatesCreated()
 	ModifyYellAbility();
 	ModifyMissionSchedules();
 	ModifyEncountersForFL21();
-	
+	ModCompatibilityConfig();
+}
+
+static function ModCompatibilityConfig()
+{
+	local int idx;
+	if(class'Helpers_LW'.default.bKirukaSparkActive)
+	{
+		`LWTrace("Patching Kiruka Spark.");
+		idx = class'NPSBDP_UIArmory_PromotionHero'.default.ClassAbilitiesPerRank.Find('ClassName','Spark');
+
+		if(idx != INDEX_NONE)
+		{
+			`LWTrace("Entry in Communty Promotion Screen config found.");
+			class'NPSBDP_UIArmory_PromotionHero'.default.ClassAbilitiesPerRank[idx].AbilitiesPerRank = 4;
+		}
+		
+	}
 }
 
 // Uses OPTC to update mission schedules instead of minus config
@@ -5570,6 +5587,7 @@ static function CacheInstalledMods()
 	class'Helpers_LW'.default.bKirukaFactionOverhaulActive = class'Helpers_LW'.static.IsModInstalled("KirukasFactionSoldiersLWOTC");
 	class'Helpers_LW'.default.bNewTemplarModJamActive = class'Helpers_LW'.static.IsModInstalled("NewTemplarModJam");
 	class'Helpers_LW'.default.bDABFLActive = class'Helpers_LW'.static.IsModInstalled("DiverseAliensByForceLevelWOTC");
+	class'Helpers_LW'.default.bKirukaSparkActive = class'Helpers_LW'.static.IsModInstalled("KirukasSparkLWOTC_M2");
 
 	`LWTrace("cached bSmokeStopsFlanksActive: " @ class'Helpers_LW'.default.bSmokeStopsFlanksActive );
 	`LWTrace("cached bImprovedSmokeDefenseActive: " @class'Helpers_LW'.default.bImprovedSmokeDefenseActive);
@@ -5580,6 +5598,7 @@ static function CacheInstalledMods()
 	`LWTrace("cached bKirukaFactionOverhaulActive: " @class'Helpers_LW'.default.bKirukaFactionOverhaulActive);
 	`LWTrace("cached bNewTemplarModJamActive: " @class'Helpers_LW'.default.bNewTemplarModJamActive);
 	`LWTrace("cached bDABFLActive: " @class'Helpers_LW'.default.bDABFLActive);
+	`LWTrace("cached bKirukaSparkActive: " @class'Helpers_LW'.default.bKirukaSparkActive);
 
 }
 
