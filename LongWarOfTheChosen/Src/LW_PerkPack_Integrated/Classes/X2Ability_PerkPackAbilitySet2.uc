@@ -1400,10 +1400,13 @@ static function X2AbilityTemplate RepairMW()
 	Template.IconImage = "img:///UILibrary_MW.UIPerk_repair";
 
 	Charges = new class'X2AbilityCharges_Repair_LW';
+
+	BonusCharge.AbilityName = 'EnhancedSystems_LW';
+	BonusCharge.NumCharges = default.ENHANCED_SYSTEMS_BONUS_CHARGES;
+
+	Charges.BonusCharges.AddItem(BonusCharge);
 	Template.AbilityCharges = Charges;
 	
-	BonusCharge.AbilityName = 'EnhancedSystems_LW'
-	BonusCharge.NumCharges = default.ENHANCED_SYSTEMS_BONUS_CHARGES;
 	ChargeCost = new class'X2AbilityCost_Charges';
 	ChargeCost.NumCharges = 1;
 	Template.AbilityCosts.AddItem(ChargeCost);
