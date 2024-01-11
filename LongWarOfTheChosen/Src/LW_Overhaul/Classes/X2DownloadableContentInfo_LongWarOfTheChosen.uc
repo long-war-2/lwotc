@@ -1087,7 +1087,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 {
 	local XComGameStateHistory History;
 	local XComGameState_BattleData BattleData;
-	local name								CharacterTemplateName, FirstFollowerName;
+	local name								CharacterTemplateName, FirstFollowerName, NewMostCommonMember;
 	local int								idx, Tries, PodSize, k, numAttempts;
 	local X2CharacterTemplateManager		TemplateManager;
 	local X2CharacterTemplate				LeaderCharacterTemplate, FollowerCharacterTemplate, CurrentCharacterTemplate;
@@ -1432,19 +1432,27 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 				}
 				//`LWTRACE ("Try" @ string (tries) @ CountMembers (FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) @ string (PodSize));
 				// Let's look over our outcome and see if it's any better
-				if ((PodSize == 4 || PodSize == 5) && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= Podsize - 1)
+				NewMostCommonMember = FindMostCommonMember(SpawnInfo.SelectedCharacterTemplateNames);
+				if ((PodSize == 4 || PodSize == 5) && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= Podsize - 1)
 				{
 					Tries += 1;
 				}
 				else
 				{
-					if (PodSize >= 6 && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 2)
+					if ((PodSize == 6 || PodSize == 7) && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 3)
 					{
 						Tries += 1;
 					}
 					else
 					{
-						Satisfactory = true;
+						if( PodSize >= 8 && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 4)
+						{
+							Tries += 1;
+						}
+						else
+						{
+							Satisfactory = true;
+						}
 					}
 				}
 			}
