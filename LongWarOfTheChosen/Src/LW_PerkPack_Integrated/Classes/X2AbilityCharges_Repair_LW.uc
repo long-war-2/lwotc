@@ -56,5 +56,11 @@ simulated function int GetInitialCharges(XComGameState_Ability Ability, XComGame
 		`log("SPARK has Unyielding, granting extra Repair charges");
 	}
 	*/
+
+	if(UnitState.HasAbilityFromAnySource('EnhancedSystems_LW'))
+	{
+		RepairCharges += class'X2Ability_PerkPackAbilitySet2'.default.ENHANCED_SYSTEMS_BONUS_CHARGES;
+	}
+	
 	return RepairCharges;
 }

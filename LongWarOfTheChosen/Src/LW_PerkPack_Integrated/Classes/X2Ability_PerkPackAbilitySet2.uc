@@ -1388,7 +1388,6 @@ static function X2AbilityTemplate RepairMW()
 	local X2Effect_RepairArmor_LW					ArmorEffect;
 	local X2Condition_UnitProperty              UnitCondition;
 	local X2Effect_RemoveEffectsByDamageType	RemoveEffects;
-	local BonusCharge							BonusCharge;
 	local name HealType;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'RepairMW_LW');
@@ -1400,11 +1399,6 @@ static function X2AbilityTemplate RepairMW()
 	Template.IconImage = "img:///UILibrary_MW.UIPerk_repair";
 
 	Charges = new class'X2AbilityCharges_Repair_LW';
-
-	BonusCharge.AbilityName = 'EnhancedSystems_LW';
-	BonusCharge.NumCharges = default.ENHANCED_SYSTEMS_BONUS_CHARGES;
-
-	Charges.BonusCharges.AddItem(BonusCharge);
 	Template.AbilityCharges = Charges;
 	
 	ChargeCost = new class'X2AbilityCost_Charges';
