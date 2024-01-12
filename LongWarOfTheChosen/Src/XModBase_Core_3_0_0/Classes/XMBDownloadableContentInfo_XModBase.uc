@@ -425,7 +425,7 @@ static function HandleEffect(X2Effect Effect)
 
 defaultproperties
 {
-	MajorVersion = 2
+	MajorVersion = 3
 	MinorVersion = 0
-	PatchVersion = 2
+	PatchVersion = 0
 }

@@ -1439,13 +1439,13 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 				}
 				else
 				{
-					if ((PodSize == 6 || PodSize == 7) && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 3)
+					if ((PodSize == 6 || PodSize == 7) && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 2)
 					{
 						Tries += 1;
 					}
 					else
 					{
-						if( PodSize >= 8 && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 4)
+						if( PodSize >= 8 && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 3)
 						{
 							Tries += 1;
 						}
