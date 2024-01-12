@@ -3101,7 +3101,7 @@ strCharacterName="Странник-зверь"
 [TheLostBruteHP16_LW X2CharacterTemplate]
 strCharacterName="Странник-зверь"
 
-[LWTheLostBruteHP18 X2CharacterTemplate]
+[TheLostBruteHP18_LW X2CharacterTemplate]
 strCharacterName="Странник-зверь"
 
 [TheLostBruteHP21_LW X2CharacterTemplate]
