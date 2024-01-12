@@ -6128,7 +6128,7 @@ strCharacterName="Lost Brute"
 [TheLostBruteHP16_LW X2CharacterTemplate]
 strCharacterName="Lost Brute"
 
-[LWTheLostBruteHP18 X2CharacterTemplate]
+[TheLostBruteHP18_LW X2CharacterTemplate]
 strCharacterName="Lost Brute"
 
 [TheLostBruteHP21_LW X2CharacterTemplate]

@@ -5738,7 +5738,7 @@ strCharacterName="Zagubiony Brutal"
 [TheLostBruteHP16_LW X2CharacterTemplate]
 strCharacterName="Zagubiony Brutal"
 
-[LWTheLostBruteHP18 X2CharacterTemplate]
+[TheLostBruteHP18_LW X2CharacterTemplate]
 strCharacterName="Zagubiony Brutal"
 
 [TheLostBruteHP21_LW X2CharacterTemplate]
