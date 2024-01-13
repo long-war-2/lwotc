@@ -1253,12 +1253,33 @@ LocHelpText="When the <Ability:ClassName/> is attacked, the squad gains +10 aim 
 LocFlyOverText="Triangulate"
 LocPromotionPopupText="<Bullet/> The <Ability:ClassName/> can trace incoming ordnance back to their original owners, and upload that information to the rest of the team.<br/><Bullet/> Triangulate will not trigger if an enemy attacks one of the <Ability:ClassName/>'s squadmates.<br/>"
 
+[BrawlerProtocol_LW X2AbilityTemplate]
+LocFriendlyName="Counterstrike"
+LocLongDescription="The <Ability:ClassName/> can throw free half-damage Strike attacks at any enemies who enter or attack from melee range. Does not require the Kinetic Strike ability. Cannot activate on the unit's own turn."
+LocHelpText="Free melee attacks on any enemies that enter or attack from melee range."
+LocFlyOverText="Counterstrike"
+LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Counterstrike will trigger if that enemy moves to another adjacent tile or tries to attack the <Ability:ClassName/>.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Counterstrike will trigger when that enemy moves into melee range.<br/><Bullet/> If an enemy begins their turn in an adjacent tile, Counterstrike will NOT trigger if that enemy moves directly away from the <Ability:ClassName/>.<br/><Bullet/> Counterstrike deals half damage compared to the regular Kinetic Strike attack, and gains +1 damage from Assault Servos.<br/><Bullet/> Cannot activate on the <Ability:ClassName/>'s own turn."
+
+[BrawlerTrigger_LW X2AbilityTemplate]
+LocFriendlyName="Counterstrike"
+LocLongDescription="The <Ability:ClassName/> can throw free half-damage Strike attacks at any enemies who enter or attack from melee range. Does not require the Kinetic Strike ability. Cannot activate on the unit's own turn."
+LocHelpText="Free melee attacks on any enemies that enter or attack from melee range."
+LocFlyOverText="Counterstrike"
+LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Counterstrike will trigger if that enemy moves to another adjacent tile or tries to attack the <Ability:ClassName/>.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Counterstrike will trigger when that enemy moves into melee range.<br/><Bullet/> If an enemy begins their turn in an adjacent tile, Counterstrike will NOT trigger if that enemy moves directly away from the <Ability:ClassName/>.<br/><Bullet/> Counterstrike deals half damage compared to the regular Kinetic Strike attack, and gains +1 damage from Assault Servos.<br/><Bullet/> Cannot activate on the <Ability:ClassName/>'s own turn."
+
 
 [EnhancedSystems_LW X2AbilityTemplate]
 LocFriendlyName="Enhanced Repair Systems"
 LocLongDescription="Grants the Rapid Repair, Heavyduty Repair, and Redundant Systems abilities, increasing the amount of HP Repair heals, making it no longer end the turn, and removing the stat debuffs associated with Reboot."
 LocHelpText="Heavyduty Repair doubles the HP healed by Repair, and Rapid Repair makes Repair non turn ending. Redundant Systems means the SPARK will not suffer any stat penalties after Rebooting."
 LocPromotionPopupText="Heavyduty Repair doubles the HP healed by Repair, and Rapid Repair makes Repair non turn ending. Redundant Systems means the SPARK will not suffer any stat penalties after Rebooting."
+
+[ReactionSystems_LW X2AbilityTemplate]
+LocFriendlyName="Enhanced Defensive Systems"
+LocLongDescription="Grants the Sacrifice and Channeling Field abilities, allowing the SPARK to redirect attacks to nearby allies towards itself, and increasing the SPARK's damage after being targeted by any attack."
+LocHelpText="<Bullet/> The SPARK gains +<Ability:Sacrifice_Defense/> defense and +<Ability:Sacrifice_Armor/> armor while Sacrifice is active.<br/><Bullet/> Sacrifice has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Each point of energy channeled by Channeling Field increases the damage of the next <Ability:WeaponName> attack by 1.<br/>"
+LocPromotionPopupText="<Bullet/> The SPARK gains +<Ability:Sacrifice_Defense/> defense and +<Ability:Sacrifice_Armor/> armor while Sacrifice is active.<br/><Bullet/> Sacrifice has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Each point of energy channeled by Channeling Field increases the damage of the next <Ability:WeaponName> attack by 1.<br/>"
+
 
 ; New Class loc
 
