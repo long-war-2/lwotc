@@ -254,19 +254,20 @@ static function bool UpdateAbilityCost(out X2AbilityCost AbilityCost)
 		if (IsNewer(Override))
 			return false;
 	}
-
-	if (AbilityCost.class == class'X2AbilityCost_ActionPoints')
+	else
 	{
-		NewAbilityCost = new class'XMBAbilityCost_ActionPoints'(AbilityCost);
-		NewAbilityCost.MajorVersion = default.MajorVersion;
-		NewAbilityCost.MinorVersion = default.MinorVersion;
-		NewAbilityCost.PatchVersion = default.PatchVersion;
-
-		AbilityCost = NewAbilityCost;
-		return true;
+		if (AbilityCost.class != class'X2AbilityCost_ActionPoints')
+			return false;
 	}
 
-	return false;
+	NewAbilityCost = new class'XMBAbilityCost_ActionPoints'(AbilityCost);
+	NewAbilityCost.MajorVersion = default.MajorVersion;
+	NewAbilityCost.MinorVersion = default.MinorVersion;
+	NewAbilityCost.PatchVersion = default.PatchVersion;
+
+	AbilityCost = NewAbilityCost;
+
+	return true;
 }
 
 static function UpdateAbilities()
