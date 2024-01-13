@@ -32,3 +32,11 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 	}
 	return BonusDamage;
 }
+
+DefaultProperties
+{
+	EffectName = "DLC_3AbsorptionField"
+	DuplicateResponse = eDupe_Ignore
+	GameStateEffectClass = class'XComGameState_Effect_DLC_3AbsorptionField_LW';
+	bDisplayInSpecialDamageMessageUI = true
+}
