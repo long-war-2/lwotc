@@ -516,6 +516,9 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'PSYCHOTIC_RAGE_DMG_BONUS':
 			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.PSYCHOTIC_RAGE_DMG_BONUS);
 			return true;
+		case 'DVANCED_LOGIC_HACK_BONUS':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet2'.default.ADVANCED_LOGIC_HACK_BONUS);
+			return true;
         default:
             return false;
     }

@@ -1280,6 +1280,11 @@ LocLongDescription="Grants the Sacrifice and Channeling Field abilities, allowin
 LocHelpText="<Bullet/> The SPARK gains +<Ability:Sacrifice_Defense/> defense and +<Ability:Sacrifice_Armor/> armor while Sacrifice is active.<br/><Bullet/> Sacrifice has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Each point of energy channeled by Channeling Field increases the damage of the next <Ability:WeaponName> attack by 1.<br/>"
 LocPromotionPopupText="<Bullet/> The SPARK gains +<Ability:Sacrifice_Defense/> defense and +<Ability:Sacrifice_Armor/> armor while Sacrifice is active.<br/><Bullet/> Sacrifice has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Each point of energy channeled by Channeling Field increases the damage of the next <Ability:WeaponName> attack by 1.<br/>"
 
+[AdvancedLogic_LW X2AbilityTemplate]
+LocFriendlyName="Enhanced Defensive Systems"
+LocLongDescription="Increases the SPARK's hack stat by <Ability:ADVANCED_LOGIC_HACK_BONUS>."
+LocHelpText="Increases the SPARK's hack stat by <Ability:ADVANCED_LOGIC_HACK_BONUS>."
+LocPromotionPopupText="Increases the SPARK's hack stat by <Ability:ADVANCED_LOGIC_HACK_BONUS>."
 
 ; New Class loc
 

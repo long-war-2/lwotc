@@ -8,9 +8,14 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 {
 	local ShotModifierInfo ShotInfo;
 	local UnitValue OverdriveValue;
+	local X2AbilityToHitCalc_StandardAim StandardHit;
 
 	if (Attacker.HasSoldierAbility('AdaptiveAim'))
 		return;
+
+	StandardHit = X2AbilityToHitCalc_StandardAim(AbilityState.GetMyTemplate().AbilityToHitCalc);
+	if(StandardHit != none && StandardHit.bIndirectFire) 
+			return;
 
     if (AbilityState.SourceWeapon.ObjectID != Attacker.GetPrimaryWeapon().ObjectID)
 		return;

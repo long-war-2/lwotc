@@ -45,6 +45,8 @@ var config int REBOOT_MOB;
 
 var config float LAYERED_MULT;
 
+var config int ADVANCED_LOGIC_HACK_BONUS;
+
 const DAMAGED_COUNT_NAME = 'DamagedCountThisTurn';
 
 static function array<X2DataTemplate> CreateTemplates()
@@ -2169,6 +2171,34 @@ static function X2AbilityTemplate CreateReactionSystemsAbility()
 
 	Template.AdditionalAbilities.AddItem('Sacrifice');
 	Template.AdditionalAbilities.AddItem('AbsorptionField');
+
+	return Template;
+}
+
+static function X2AbilityTemplate CreateHackBonusAbility()
+{
+	local X2AbilityTemplate Template;
+	local X2Effect_PersistentStatChange HackBonusEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'AdvancedLogic_LW');
+
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_intrusionprotocol";
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	HackBonusEffect = new class'X2Effect_PersistentStatChange';
+	HackBonusEffect.BuildPersistentEffect(1, true, false);
+	HackBonusEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	HackBonusEffect.AddPersistentStatChange(eStat_Hacking, default.ADVANCED_LOGIC_HACK_BONUS);
+
+	Template.AddTargetEffect(HackBonusEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
 	return Template;
 }

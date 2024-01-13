@@ -3711,7 +3711,7 @@ static function X2AbilityTemplate CreateBonusChargesAbility()
 	local X2AbilityTemplate Template;
 	local XMBEffect_AddItemCharges Effect;
 
-	Template = Passive('BonusBombard_LW', "img:///UILibrary_PerkIcons.UIPerk_command", true);
+	Template = Passive('BonusBombard_LW', "img:///UILibrary_LW_PerkPack.LW_AbilityFullKit", true);
 
 	Effect = new class'XMBEffect_AddItemCharges';
 	Effect.ApplyToSlots.AddItem(eInvSlot_HeavyWeapon);
