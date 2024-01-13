@@ -22,7 +22,7 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 		{
 			//`LOG ("Cutthroat 3");
 			SourceWeapon = AbilityState.GetSourceWeapon();
-			if (SourceWeapon != none)
+			if (SourceWeapon != none || Attacker.IsRobotic())
 			{
 				//`LOG ("Cutthroat 4");
 				ShotInfo.ModType = eHit_Crit;
