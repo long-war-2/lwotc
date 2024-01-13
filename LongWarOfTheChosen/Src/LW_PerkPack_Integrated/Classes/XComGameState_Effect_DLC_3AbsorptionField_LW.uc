@@ -10,7 +10,7 @@ function EventListenerReturn AbilityActivatedListener(Object EventData, Object E
 	local XComGameState NewGameState;
 	local XComGameState_Effect_DLC_3AbsorptionField NewEffectState;
 	local XComGameStateHistory History;
-	local XComGameState_Item SourceWeapon;
+	//local XComGameState_Item SourceWeapon;
 	local bool bRedirected;
 	local int i;
 

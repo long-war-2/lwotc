@@ -2170,4 +2170,5 @@ static function X2AbilityTemplate CreateReactionSystemsAbility()
 	Template.AdditionalAbilities.AddItem('Sacrifice');
 	Template.AdditionalAbilities.AddItem('AbsorptionField');
 
+	return Template;
 }
