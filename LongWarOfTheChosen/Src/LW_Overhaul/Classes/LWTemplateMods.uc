@@ -2753,11 +2753,11 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		}
 		if (GremlinTemplate.DataName == 'SparkBit_MG')
 		{
-			GremlinTemplate.HealingBonus = 1;
+			GremlinTemplate.HealingBonus = 2;
 		}
 		if (GremlinTemplate.DataName == 'SparkBit_BM')
 		{
-			GremlinTemplate.HealingBonus = 2;
+			GremlinTemplate.HealingBonus = 4;
 		}
 	}
 	
@@ -2940,11 +2940,15 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 					break;
 
 				case 'SparkArmor':
-				case 'PlatedSparkArmor':
-				case 'PoweredSparkArmor':
-					ArmorTemplate.Abilities.AddItem('Carapace_Plating_Ability');
+					ArmorTemplate.Abilities.AddItem('SPARK_Kevlar_Plating_Ability');
 					break;
-				
+				case 'PlatedSparkArmor':
+					ArmorTemplate.Abilities.AddItem('SPARK_Plated_Plating_Ability');
+					break;
+				case 'PoweredSparkArmor':
+					ArmorTemplate.Abilities.AddItem('SPARK_Powered_Plating_Ability');
+					break;
+
 				default:
 					// Assume any other armors we don't know about should get the extra
 					// utility slot. (Issue #89)
@@ -3180,6 +3184,20 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 						Template.AlternateRequirements.AddItem(AltReq);
 						break;
 
+					default:
+						break;
+				}
+
+				// Bit abilities:
+
+				switch (EquipmentTemplate.DataName)
+				{
+					case 'SparkBit_MG':
+						EquipmentTemplate.Abilities.AddItem('Plated_BIT_Bonus_Dodge');
+						break;
+					case 'SparkBit_BM':
+						EquipmentTemplate.Abilities.AddItem('Powered_BIT_Bonus_Dodge');
+						break;
 					default:
 						break;
 				}

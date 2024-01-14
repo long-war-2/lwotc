@@ -30,6 +30,18 @@ var config int ALLOY_PLATING_HP;
 var config int CARAPACE_PLATING_HP;
 var config int CHITIN_PLATING_HP;
 
+var config int SPARK_KEVLAR_PLATING_HP;
+var config int SPARK_PLATED_PLATING_HP;
+var config int SPARK_POWERED_PLATING_HP;
+
+var config int PLATED_BIT_CRIT_REDUCE;
+var config int POWERED_BIT_CRIT_REDUCE;
+
+var config int PLATED_BIT_DODGE_BONUS;
+var config int POWERED_BIT_DODGE_BONUS;
+var config int PLATED_BIT_DEF_BONUS;
+var config int POWERED_BIT_DEF_BONUS;
+
 var config int NANOFIBER_CRITDEF_BONUS;
 
 var config int BONUS_COILGUN_SHRED;
@@ -64,6 +76,12 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateAblativeHPAbility('Alloy_Plating_Ability', default.ALLOY_PLATING_HP));
 	Templates.AddItem(CreateAblativeHPAbility('Chitin_Plating_Ability', default.CHITIN_PLATING_HP));
 	Templates.AddItem(CreateAblativeHPAbility('Carapace_Plating_Ability', default.CARAPACE_PLATING_HP));
+	Templates.AddItem(CreateAblativeHPAbility('SPARK_Kevlar_Plating_Ability', default.SPARK_KEVLAR_PLATING_HP));
+	Templates.AddItem(CreateAblativeHPAbility('SPARK_Plated_Plating_Ability', default.SPARK_PLATED_PLATING_HP));
+	Templates.AddItem(CreateAblativeHPAbility('SPARK_Powered_Plating_Ability', default.SPARK_POWERED_PLATING_HP));
+
+	Templates.AddItem(CreateBonusDodgeAbility('Plated_BIT_Bonus_Dodge',default.PLATED_BIT_DODGE_BONUS));
+	Templates.AddItem(CreateBonusDodgeAbility('Powered_BIT_Bonus_Dodge',default.POWERED_BIT_DODGE_BONUS));
 
 	Templates.AddItem(CreateHazmatVestBonusAbility_LW());
 	Templates.AddItem(CreateNanofiberBonusAbility_LW());
@@ -270,6 +288,83 @@ static function X2AbilityTemplate CreateAblativeHPAbility(name TemplateName, int
 	AblativeHP.AddPersistentStatChange(eStat_ShieldHP, AblativeHPAmt);
 	Template.AddTargetEffect(AblativeHP);
 	Template.SetUIStatMarkup(default.AblativeHPLabel, eStat_ShieldHP, AblativeHPAmt);
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	return Template;
+}
+
+static function X2AbilityTemplate CreateBonusDodgeAbility(name TemplateName, int DodgeAmount)
+{
+	local X2AbilityTemplate                 Template;
+	local X2Effect_PersistentStatChange		DodgeBonus;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, TemplateName);
+
+	Template.AbilitySourceName = 'eAbilitySource_Item';
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bShowActivation=false;
+	Template.bDisplayInUITacticalText = false;
+	Template.bIsPassive = true;
+	Template.bCrossClassEligible = false;
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	DodgeBonus = new class'X2Effect_PersistentStatChange';
+	DodgeBonus.BuildPersistentEffect(1, true, false, false);
+	DodgeBonus.AddPersistentStatChange(eStat_Dodge, DodgeAmount);
+	Template.AddTargetEffect(DodgeBonus);
+	Template.SetUIStatMarkup(default.AblativeHPLabel, eStat_Dodge, DodgeAmount);
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	return Template;
+}
+
+static function X2AbilityTemplate CreateBonusDefAbility(name TemplateName, int DefAmount)
+{
+	local X2AbilityTemplate                 Template;
+	local X2Effect_PersistentStatChange		DefBonus;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, TemplateName);
+
+	Template.AbilitySourceName = 'eAbilitySource_Item';
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bShowActivation=false;
+	Template.bDisplayInUITacticalText = false;
+	Template.bIsPassive = true;
+	Template.bCrossClassEligible = false;
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	DefBonus = new class'X2Effect_PersistentStatChange';
+	DefBonus.BuildPersistentEffect(1, true, false, false);
+	DefBonus.AddPersistentStatChange(eStat_Dodge, DefAmount);
+	Template.AddTargetEffect(DefBonus);
+	Template.SetUIStatMarkup(default.AblativeHPLabel, eStat_Dodge, DefAmount);
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	return Template;
+}
+
+static function X2AbilityTemplate CreateCritReductionAbility(name TemplateName, int CritReductionAmount)
+{
+	local X2AbilityTemplate                 Template;
+	local X2Effect_Resilience		CritDefEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, TemplateName);
+
+	Template.AbilitySourceName = 'eAbilitySource_Item';
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bShowActivation=false;
+	Template.bDisplayInUITacticalText = false;
+	Template.bIsPassive = true;
+	Template.bCrossClassEligible = false;
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	CritDefEffect = new class'X2Effect_Resilience';
+	CritDefEffect.CritDef_Bonus = CritReductionAmount;
+	CritDefEffect.BuildPersistentEffect (1, true, false, false);
+	Template.AddTargetEffect(CritDefEffect);
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	return Template;
 }
