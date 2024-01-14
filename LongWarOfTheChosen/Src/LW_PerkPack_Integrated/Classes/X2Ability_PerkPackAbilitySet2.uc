@@ -92,7 +92,9 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(BrawlerTrigger());
 	Templates.AddItem(LayeredArmour());
 	Templates.AddItem(CreateEnhancedSystemsAbility());
+	Templates.AddItem(CreatePostRebootRepair());
 	Templates.AddItem(CreateReactionSystemsAbility());
+	Templates.AddItem(CreateHackBonusAbility());
 
 	return Templates;
 }
@@ -1385,14 +1387,15 @@ static function X2DataTemplate RedunSysTriggered()
 static function X2AbilityTemplate RepairMW()
 {
 	local X2AbilityTemplate						Template;
-	local X2AbilityCharges_Repair_LW               Charges;
+	local X2AbilityCharges_Repair_LW              Charges;
 	local X2AbilityCost_Charges                 ChargeCost;
 	local X2AbilityCost_ActionPoints            ActionPointCost;
 	local X2AbilityCooldown						Cooldown;
-	local X2Effect_ApplyRepairHeal_LW				HealEffect;
-	local X2Effect_RepairArmor_LW					ArmorEffect;
+	local X2Effect_ApplyRepairHeal_LW			HealEffect;
+	local X2Effect_RepairArmor_LW				ArmorEffect;
 	local X2Condition_UnitProperty              UnitCondition;
 	local X2Effect_RemoveEffectsByDamageType	RemoveEffects;
+//	local X2AbilityTrigger_EventListener		EventTrigger;
 	local name HealType;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'RepairMW_LW');
@@ -1450,6 +1453,14 @@ static function X2AbilityTemplate RepairMW()
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SingleTargetWithSelf;
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+
+	/*// Added for Post Reboot Repair
+	EventTrigger = new class'X2AbilityTrigger_EventListener';
+	EventTrigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventTrigger.ListenerData.EventID = 'PostRebootRepair_LW';
+	EventTrigger.ListenerData.Filter = eFilter_Unit;
+	EventTrigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	Template.AbilityTriggers.AddItem(EventTrigger);*/
 
 	Template.bStationaryWeapon = true;
 	Template.PostActivationEvents.AddItem('ItemRecalled');
@@ -2150,7 +2161,69 @@ static function X2AbilityTemplate CreateEnhancedSystemsAbility()
 
 	Template.AdditionalAbilities.AddItem('RapidRepair_LW');
 	Template.AdditionalAbilities.AddItem('RedundantSystems_LW');
-	Template.AdditionalAbilities.AddItem('HeavyRepair_LW');
+	//Template.AdditionalAbilities.AddItem('HeavyRepair_LW');
+	Template.AdditionalAbilities.AddItem('PostRebootRepair_LW');
+
+	return Template;
+}
+
+static function X2AbilityTemplate CreatePostRebootRepair()
+{
+	local X2AbilityTemplate Template;
+	local X2AbilityTrigger_EventListener EventTrigger;
+	local X2Effect_ApplyRepairHeal_LW HealEffect;
+	local X2Effect_RepairArmor_LW ArmorEffect;
+	local X2Effect_RemoveEffectsByDamageType RemoveEffects;
+	local Name HealType;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'PostRebootRepair_LW');
+
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_intrusionprotocol";
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	
+
+	EventTrigger = new class'X2AbilityTrigger_EventListener';
+	EventTrigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventTrigger.ListenerData.EventID = class'X2Effect_Sustain'.default.SustainEvent;
+	EventTrigger.ListenerData.Filter = eFilter_Unit;
+	EventTrigger.ListenerData.Priority = 90;
+	EventTrigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	Template.AbilityTriggers.AddItem(EventTrigger);
+
+	
+	HealEffect = new class'X2Effect_ApplyRepairHeal_LW';
+	HealEffect.PerUseHP = default.MWREPAIR_HEAL;
+	HealEffect.IncreasedHealAbility = 'HeavyRepair_LW';
+	HealEffect.IncreasedPerUseHP = default.HEAVYDUTY_EXTRAHEAL;
+	Template.AddTargetEffect(HealEffect);
+
+	ArmorEffect = new class'X2Effect_RepairArmor_LW';
+	Template.AddTargetEffect(ArmorEffect);
+
+	RemoveEffects = new class'X2Effect_RemoveEffectsByDamageType';
+	foreach class'X2Ability_DefaultAbilitySet'.default.MedikitHealEffectTypes(HealType)
+	{
+		RemoveEffects.DamageTypesToRemove.AddItem(HealType);
+	}
+	Template.AddTargetEffect(RemoveEffects);
+
+	// This only works with LW's version of Repair because an event listener activation is added to it.
+	//Template.PostActivationEvents.AddItem('PostRebootRepair_LW');
+
+	Template.bStationaryWeapon = true;
+	Template.PostActivationEvents.AddItem('ItemRecalled');
+	Template.CustomSelfFireAnim = 'NO_Repair';
+	Template.bSkipPerkActivationActions = true;
+
+	Template.BuildNewGameStateFn = class'X2Ability_SpecialistAbilitySet'.static.AttachGremlinToTarget_BuildGameState;
+	Template.BuildVisualizationFn = class'X2Ability_SpecialistAbilitySet'.static.GremlinSingleTarget_BuildVisualization;
+	
+	Template.CinescriptCameraType = "Spark_SendBit";
 
 	return Template;
 }

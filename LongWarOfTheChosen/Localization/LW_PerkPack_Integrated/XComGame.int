@@ -1270,9 +1270,9 @@ LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent ti
 
 [EnhancedSystems_LW X2AbilityTemplate]
 LocFriendlyName="Enhanced Repair Systems"
-LocLongDescription="Grants the Rapid Repair, Heavyduty Repair, and Redundant Systems abilities, increasing the amount of HP Repair heals, making it no longer end the turn, and removing the stat debuffs associated with Reboot."
-LocHelpText="Heavyduty Repair doubles the HP healed by Repair, and Rapid Repair makes Repair non turn ending. Redundant Systems means the SPARK will not suffer any stat penalties after Rebooting."
-LocPromotionPopupText="Heavyduty Repair doubles the HP healed by Repair, and Rapid Repair makes Repair non turn ending. Redundant Systems means the SPARK will not suffer any stat penalties after Rebooting."
+LocLongDescription="Grants the Rapid Repair and Redundant Systems abilities, making it no longer end the turn and removing the stat debuffs associated with Reboot. The SPARK will automatically use Repair when rebooting."
+LocHelpText="Rapid Repair makes Repair non turn ending. Redundant Systems means the SPARK will not suffer any stat penalties after Rebooting. The SPARK will automatically use Repair when rebooting."
+LocPromotionPopupText="Rapid Repair makes Repair non turn ending. Redundant Systems means the SPARK will not suffer any stat penalties after Rebooting. The SPARK will automatically use Repair when rebooting."
 
 [ReactionSystems_LW X2AbilityTemplate]
 LocFriendlyName="Enhanced Defensive Systems"
@@ -1281,10 +1281,10 @@ LocHelpText="<Bullet/> The SPARK gains +<Ability:Sacrifice_Defense/> defense and
 LocPromotionPopupText="<Bullet/> The SPARK gains +<Ability:Sacrifice_Defense/> defense and +<Ability:Sacrifice_Armor/> armor while Sacrifice is active.<br/><Bullet/> Sacrifice has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Each point of energy channeled by Channeling Field increases the damage of the next <Ability:WeaponName> attack by 1.<br/>"
 
 [AdvancedLogic_LW X2AbilityTemplate]
-LocFriendlyName="Enhanced Defensive Systems"
-LocLongDescription="Increases the SPARK's hack stat by <Ability:ADVANCED_LOGIC_HACK_BONUS>."
-LocHelpText="Increases the SPARK's hack stat by <Ability:ADVANCED_LOGIC_HACK_BONUS>."
-LocPromotionPopupText="Increases the SPARK's hack stat by <Ability:ADVANCED_LOGIC_HACK_BONUS>."
+LocFriendlyName="Advanced Logic"
+LocLongDescription="Increases the <Ability:ClassName/>'s hack stat by <Ability:ADVANCED_LOGIC_HACK_BONUS>."
+LocHelpText="Increases the <Ability:ClassName/>'s hack stat by <Ability:ADVANCED_LOGIC_HACK_BONUS>."
+LocPromotionPopupText="Increases the <Ability:ClassName/>'s hack stat by <Ability:ADVANCED_LOGIC_HACK_BONUS>."
 
 ; New Class loc
 

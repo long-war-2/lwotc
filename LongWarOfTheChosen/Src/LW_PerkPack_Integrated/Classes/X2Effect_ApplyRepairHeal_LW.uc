@@ -14,7 +14,7 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 	local XComGameState_Unit TargetUnit, SourceUnit;
 	local XComGameState_Item ItemState;
 	local X2GremlinTemplate GremlinTemplate;
-	local int SourceObjectID, HealAmount;
+	local int SourceObjectID, HealAmount, AblativeHealAmount;
 	//local XComGameState_HeadquartersXCom XComHQ;  // unused?
 	local XComGameStateHistory History;
 
@@ -47,7 +47,10 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 				HealAmount += GremlinTemplate.HealingBonus;
 		}
 
+		AblativeHealAmount = TargetUnit.GetMaxStat(eStat_ShieldHP) - TargetUnit.GetCurrentStat(eStat_ShieldHP);
+
 		TargetUnit.ModifyCurrentStat(eStat_HP, HealAmount);
+		TargetUnit.ModifyCurrentStat(eStat_ShieldHP, AblativeHealAmount);
 		`TRIGGERXP('XpHealDamage', ApplyEffectParameters.SourceStateObjectRef, kNewTargetState.GetReference(), NewGameState);
 
 		if ((SourceObjectID != TargetUnit.ObjectID) && SourceUnit.CanEarnSoldierRelationshipPoints(TargetUnit)) // pmiller - so that you can't have a relationship with yourself
