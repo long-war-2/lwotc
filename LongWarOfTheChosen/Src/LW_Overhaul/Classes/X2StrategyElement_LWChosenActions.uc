@@ -20,6 +20,7 @@ static function X2DataTemplate CreateChosenReinforceTemplate()
 	Template.Category = "ChosenAction";
     Template.OnActivatedFn = ActivateChosenReinforce;
 	Template.OnChooseActionDelegate = OnChosenReinforceSelected;
+	Template.CanBePlayedFn = CanChosenReinforceActivate;
 	
 
 	return Template;
@@ -54,6 +55,64 @@ static function ActivateChosenReinforce(XComGameState NewGameState, StateObjectR
 static function OnChosenReinforceSelected(XComGameState NewGameState, XComGameState_ChosenAction ActionState)
 {
 	`LWTrace("Chosen RNF action selected by a chosen.");
+}
+
+// Reimplement global cooldown here.
+function bool CanChosenReinforceActivate(StateObjectReference CheckChosenRef, optional XComGameState NewGameState = none)
+{
+	local X2StrategyElementTemplateManager StratMgr;
+
+	local XComGameState_AdventChosen CheckChosenState;
+	local array<XComGameState_AdventChosen> AllChosen;
+
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local XComGameState_AdventChosen Chosen;
+
+	local X2ChosenActionTemplate ActionTemplate;
+
+	local int MonthUses, ICooldown, GCooldown;
+	local name ActionName;
+
+	StratMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+
+	if(NewGameState != none)
+	{
+		CheckChosenState = XComGameState_AdventChosen(NewGameState.GetGameStateForObjectID(CheckChosenRef.ObjectID));
+	}
+	else
+	{
+		CheckChosenState = XComGameState_AdventChosen(`XCOMHISTORY.GetGameStateForObjectID(CheckChosenRef.ObjectID));
+	}
+
+	if (CheckChosenState == NONE)
+		return false;
+
+	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+
+	ICooldown = CheckChosenState.GetMonthsSinceAction('ChosenAction_ReinforceRegion');
+
+	AllChosen = AlienHQ.GetAllChosen();
+
+	ActionTemplate = X2ChosenActionTemplate(StratMgr.FindStrategyElementTemplate('ChosenAction_ReinforceRegion'));
+
+	foreach AllChosen(Chosen)
+	{
+        // The fix is the below line, ChosenState changed to Chosen
+		ICooldown = Chosen.GetMonthsSinceAction('ChosenAction_ReinforceRegion');
+
+		if(ICooldown > 0 && (ICooldown < GCooldown || GCooldown <= 0))
+		{
+			GCooldown = ICooldown;
+		}
+	}
+
+	if(GCooldown > 0 && GCooldown <= ActionTemplate.GlobalCooldown)
+	{
+		return false;
+	}
+
+	return true;
+
 }
 
 static function X2DataTemplate CreateChosenDoNothingTemplate()
