@@ -1286,6 +1286,12 @@ LocLongDescription="Increases the <Ability:ClassName/>'s hack stat by <Ability:A
 LocHelpText="Increases the <Ability:ClassName/>'s hack stat by <Ability:ADVANCED_LOGIC_HACK_BONUS>."
 LocPromotionPopupText="Increases the <Ability:ClassName/>'s hack stat by <Ability:ADVANCED_LOGIC_HACK_BONUS>."
 
+[HoloAACombo_LW X2AbilityTemplate]
+LocFriendlyName="Enhanced Targeting Systems"
+LocLongDescription="Grants the Adaptive Aim and Holo Targeting abilities, improving the SPARK's ability to take multiple shots while Overdrive is active and improving the squad's ability to hit targets the SPARK shoots."
+LocHelpText="Grants the Adaptive Aim and Holo Targeting abilities, improving the SPARK's ability to take multiple shots while Overdrive is active and improving the squad's ability to hit targets the SPARK shoots."
+LocPromotionPopupText="Grants the Adaptive Aim and Holo Targeting abilities, improving the SPARK's ability to take multiple shots while Overdrive is active and improving the squad's ability to hit targets the SPARK shoots."
+
 ; New Class loc
 
 [PsiOperative X2SoldierClassTemplate]

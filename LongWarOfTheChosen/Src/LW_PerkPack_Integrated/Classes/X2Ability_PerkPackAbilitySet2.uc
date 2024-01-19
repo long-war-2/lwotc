@@ -95,6 +95,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreatePostRebootRepair());
 	Templates.AddItem(CreateReactionSystemsAbility());
 	Templates.AddItem(CreateHackBonusAbility());
+	Templates.AddItem(CreateComboHoloAAAbility());
 
 	return Templates;
 }
@@ -2281,3 +2282,25 @@ static function X2AbilityTemplate CreateHackBonusAbility()
 
 	return Template;
 }
+
+static function X2AbilityTemplate CreateComboHoloAAAbility()
+{
+	local X2AbilityTemplate Template;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'HoloAACombo_LW');
+
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_holotargeting";
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	Template.AdditionalAbilities.AddItem('HoloTargeting');
+	Template.AdditionalAbilities.AddItem('AdaptiveAim');
+
+	return Template;
+}
+
