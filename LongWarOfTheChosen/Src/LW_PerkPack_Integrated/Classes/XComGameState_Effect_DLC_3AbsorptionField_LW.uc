@@ -7,6 +7,7 @@ function EventListenerReturn AbilityActivatedListener(Object EventData, Object E
 	local XComGameStateContext_Ability AbilityContext;
 	local XComGameState_Ability AbilityState;
 	local XComGameState_Unit UnitState;
+	local XComGameState_Unit AttackerState;
 	local XComGameState NewGameState;
 	local XComGameState_Effect_DLC_3AbsorptionField NewEffectState;
 	local XComGameStateHistory History;
@@ -21,6 +22,7 @@ function EventListenerReturn AbilityActivatedListener(Object EventData, Object E
 		/*if (default.AbsorbedAbilities.Find(AbilityContext.InputContext.AbilityTemplateName) == INDEX_NONE)
 			return ELR_NoInterrupt;
 		*/
+
 
 		//  check for redirection 
 		for (i = 0; i < AbilityContext.ResultContext.EffectRedirects.Length; ++i)
@@ -44,7 +46,7 @@ function EventListenerReturn AbilityActivatedListener(Object EventData, Object E
 				UnitState = XComGameState_Unit(GameState.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
 				if (UnitState == none)
 					UnitState = XComGameState_Unit(History.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
-				if (UnitState != none && UnitState.IsAlive())
+				if (UnitState != none && UnitState.IsAlive() && XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(AbilityContext.InputContext.SourceObject.ObjectID)).IsEnemyUnit(UnitState))
 				{
 					NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Absorption Field - Energy Absorbed");
 					NewEffectState = XComGameState_Effect_DLC_3AbsorptionField(NewGameState.ModifyStateObject(Class, ObjectID));
