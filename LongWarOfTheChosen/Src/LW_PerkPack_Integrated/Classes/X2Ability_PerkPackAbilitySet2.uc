@@ -1800,6 +1800,7 @@ static function X2AbilityTemplate Neutralize()
 {
 	local X2AbilityTemplate             Template;
 	local X2AbilityTarget_Cursor        CursorTarget;
+	local X2AbilityCost_ActionPoints 	ActionPointCost;
 	local X2AbilityMultiTarget_Radius   RadiusMultiTarget;
 	local X2AbilityCooldown             Cooldown;
 	local X2Effect_DisableWeapon		DisableEffect;
@@ -1813,7 +1814,12 @@ static function X2AbilityTemplate Neutralize()
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
 	Template.IconImage = "img:///UILibrary_MW.UIPerk_neutralize";
 	
-	Template.AbilityCosts.AddItem(default.FreeActionCost);
+	//Template.AbilityCosts.AddItem(default.FreeActionCost);
+
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bConsumeAllPoints = false;
+	Template.AbilityCosts.AddItem(ActionPointCost);	
 	
 	Cooldown = new class'X2AbilityCooldown';
 	Cooldown.iNumTurns = default.NEUTRALIZE_COOLDOWN;
