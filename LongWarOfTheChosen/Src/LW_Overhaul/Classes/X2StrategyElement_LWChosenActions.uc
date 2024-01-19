@@ -70,8 +70,7 @@ function bool CanChosenReinforceActivate(StateObjectReference CheckChosenRef, op
 
 	local X2ChosenActionTemplate ActionTemplate;
 
-	local int MonthUses, ICooldown, GCooldown;
-	local name ActionName;
+	local int ICooldown, GCooldown;
 
 	StratMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
 
