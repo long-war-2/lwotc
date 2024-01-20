@@ -87,7 +87,7 @@ function int GetExtraArmorPiercing(XComGameState_Effect EffectState, XComGameSta
 
 defaultproperties
 {
-    DuplicateResponse=eDupe_Allow
+    DuplicateResponse=eDupe_Ignore
     EffectName="Cutthroat"
 }
 
