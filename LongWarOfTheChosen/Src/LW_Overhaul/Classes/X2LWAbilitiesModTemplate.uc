@@ -1076,7 +1076,7 @@ static function ReworkMindScorch(X2AbilityTemplate Template)
 	TargetCondition.FailOnNonUnits = true;
 	TargetCondition.ExcludeCivilian = true;
 	TargetCondition.ExcludeCosmetic = true;
-	TargetCondition.ExcludeRobotic = true;
+	TargetCondition.ExcludeRobotic = false;
 
 
 	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
