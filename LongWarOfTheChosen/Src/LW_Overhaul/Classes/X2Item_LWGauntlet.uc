@@ -133,6 +133,7 @@ static function X2DataTemplate CreateTemplate_Gauntlet_Conventional()
 	Template.iSoundRange = default.Gauntlet_Primary_CONVENTIONAL_ISOUNDRANGE;
 	Template.iEnvironmentDamage = default.Gauntlet_Primary_CONVENTIONAL_IENVIRONMENTDAMAGE;
 	Template.iClipSize = default.Gauntlet_Primary_CONVENTIONAL_ICLIPSIZE;
+	Template.InfiniteAmmo = true;
 	Template.iRange = default.Gauntlet_Primary_CONVENTIONAL_RANGE;
 	Template.iRadius = default.Gauntlet_Primary_CONVENTIONAL_RADIUS;
 	Template.PointsToComplete = 0;

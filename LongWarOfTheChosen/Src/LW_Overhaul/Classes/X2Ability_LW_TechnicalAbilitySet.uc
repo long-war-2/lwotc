@@ -44,7 +44,10 @@ var config int FIRESTORM_HIGH_PRESSURE_CHARGES;
 var config int FIRESTORM_RADIUS_METERS;
 var config float FIRESTORM_DAMAGE_BONUS;
 var config int FIRESTORM_ENV_DAMAGE;
-var config int SHOCK_AND_AWE_BONUS_CHARGES;
+
+var config int ROCKET_CHARGES;
+var config int ROCKET_SHOCKANDAWE_CHARGES;
+//var config int SHOCK_AND_AWE_BONUS_CHARGES;
 var config int JAVELIN_ROCKETS_BONUS_RANGE_TILES;
 var config WeaponDamageValue BUNKER_BUSTER_DAMAGE_VALUE;
 var config float BUNKER_BUSTER_RADIUS_METERS;
@@ -141,33 +144,31 @@ static function X2AbilityTemplate AddJavelinRockets()
 	return Template;
 }
 
-//this ability will add +1 charge to the rocket launcher portion of gauntlet
+// Custom passive to make sure it's created first
 static function X2AbilityTemplate AddShockAndAwe()
 {
-	local X2AbilityTemplate				Template;
-	local X2Effect_BonusRocketCharges	RocketChargesEffect;
+	local X2AbilityTemplate						Template;
+	local X2AbilityTrigger_UnitPostBeginPlay	PostBeginPlayTrigger;
+	local X2Effect_Persistent					PersistentEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ShockAndAwe');
-	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityShockAndAwe";
+	PostBeginPlayTrigger = new class'X2AbilityTrigger_UnitPostBeginPlay';
+	PostBeginPlayTrigger.Priority = 40;
+	Template.AbilityTriggers.AddItem(PostBeginPlayTrigger);
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
-	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityShockAndAwe";
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
+	Template.bIsPassive = true;
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
-	Template.bIsPassive = true;
-
-	RocketChargesEffect = new class 'X2Effect_BonusRocketCharges';
-	RocketChargesEffect.BonusUses=default.SHOCK_AND_AWE_BONUS_CHARGES;
-	RocketChargesEffect.SlotType=eInvSlot_SecondaryWeapon;
-
-	RocketChargesEffect.BuildPersistentEffect (1, true, false);
-	RocketChargesEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
-	Template.AddTargetEffect (RocketChargesEffect);
-
-	Template.bCrossClassEligible = false;
+	PersistentEffect = new class'X2Effect_Persistent';
+	PersistentEffect.BuildPersistentEffect(1, true, false);
+	PersistentEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,, Template.AbilitySourceName);
+	Template.AddTargetEffect(PersistentEffect);
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-
+	Template.bCrossClassEligible =false;
 	return Template;
 }
 
@@ -1381,7 +1382,9 @@ static function PanickingAbilityEffectTriggeredVisualization(XComGameState Visua
 static function X2AbilityTemplate LWRocketLauncherAbility()
 {
 	local X2AbilityTemplate                 Template;
-	local X2AbilityCost_Ammo                AmmoCost;
+	//local X2AbilityCost_Ammo                AmmoCost;
+	local X2AbilityCharges_BonusCharges		Charges;
+	local X2AbilityCost_Charges				ChargeCost;
 	local X2AbilityCost_ActionPoints        ActionPointCost;
 	local X2Effect_ApplyWeaponDamage        WeaponDamageEffect;
 	local X2AbilityTarget_Cursor            CursorTarget;
@@ -1395,13 +1398,24 @@ static function X2AbilityTemplate LWRocketLauncherAbility()
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
 	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_firerocket";
-	Template.bUseAmmoAsChargesForHUD = true;
+	//Template.bUseAmmoAsChargesForHUD = true;
 
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
 
-	AmmoCost = new class'X2AbilityCost_Ammo';
+	/*AmmoCost = new class'X2AbilityCost_Ammo';
 	AmmoCost.iAmmo = 1;
-	Template.AbilityCosts.AddItem(AmmoCost);
+	Template.AbilityCosts.AddItem(AmmoCost);*/
+
+	Charges = new class'X2AbilityCharges_BonusCharges';
+	Charges.InitialCharges = default.ROCKET_CHARGES;
+	Charges.BonusAbility = 'ShockAndAwe';
+	Charges.BonusItem = 'ExtraRocket';
+	Charges.BonusChargesCount =  default.ROCKET_SHOCKANDAWE_CHARGES;
+	Template.AbilityCharges = Charges;
+
+	ChargeCost = new class'X2AbilityCost_Charges';
+	ChargeCost.NumCharges = 1;
+	Template.AbilityCosts.AddItem(ChargeCost);
 
 	ActionPointCost = new class'X2AbilityCost_HeavyWeaponActionPoints';
 	Template.AbilityCosts.AddItem(ActionPointCost);
@@ -1454,7 +1468,9 @@ static function X2AbilityTemplate LWRocketLauncherAbility()
 static function X2AbilityTemplate LWBlasterLauncherAbility()
 {
 	local X2AbilityTemplate                 Template;
-	local X2AbilityCost_Ammo                AmmoCost;
+	//local X2AbilityCost_Ammo                AmmoCost;
+	local X2AbilityCharges_BonusCharges					Charges;
+	local X2AbilityCost_Charges				ChargeCost;
 	local X2AbilityCost_ActionPoints        ActionPointCost;
 	local X2Effect_ApplyWeaponDamage        WeaponDamageEffect;
 	local X2AbilityTarget_Cursor            CursorTarget;
@@ -1470,12 +1486,23 @@ static function X2AbilityTemplate LWBlasterLauncherAbility()
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
 	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_blasterlauncher";
-	Template.bUseAmmoAsChargesForHUD = true;
+	//Template.bUseAmmoAsChargesForHUD = true;
 	Template.TargetingMethod = class'X2TargetingMethod_LWBlasterLauncher';
 
-	AmmoCost = new class'X2AbilityCost_Ammo';
+	/*AmmoCost = new class'X2AbilityCost_Ammo';
 	AmmoCost.iAmmo = 1;
-	Template.AbilityCosts.AddItem(AmmoCost);
+	Template.AbilityCosts.AddItem(AmmoCost);*/
+
+	Charges = new class'X2AbilityCharges_BonusCharges';
+	Charges.InitialCharges = default.ROCKET_CHARGES;
+	Charges.BonusAbility = 'ShockAndAwe';
+	Charges.BonusItem = 'ExtraRocket';
+	Charges.BonusChargesCount =  default.ROCKET_SHOCKANDAWE_CHARGES;
+	Template.AbilityCharges = Charges;
+
+	ChargeCost = new class'X2AbilityCost_Charges';
+	ChargeCost.NumCharges = 1;
+	Template.AbilityCosts.AddItem(ChargeCost);
 
 	ActionPointCost = new class'X2AbilityCost_HeavyWeaponActionPoints';
 	Template.AbilityCosts.AddItem(ActionPointCost);
