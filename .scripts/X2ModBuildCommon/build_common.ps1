@@ -758,6 +758,7 @@ class BuildProject {
 		$process.StartInfo = $pinfo
 
 		# All systems go!
+		
 		$process.Start() | Out-Null
 		$process.BeginOutputReadLine()
 		$process.BeginErrorReadLine()
