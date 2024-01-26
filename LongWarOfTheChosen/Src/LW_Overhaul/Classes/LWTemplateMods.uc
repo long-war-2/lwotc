@@ -937,6 +937,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	local X2AbilityCooldown_Shared			CooldownShared;
 	local X2AbilityMultiTarget_Cone			ConeMultiTarget;
 	local X2AbilityCooldown_AllInstances 	AllInstancesCooldown;
+	local X2Effect_LWCoveringFireIgnoreCover CoveringFireEffect;
 
 	// WOTC TODO: Trying this out. Should be put somewhere more appropriate.
 	if (Template.DataName == 'ReflexShotModifier')
@@ -1323,7 +1324,24 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 
 		Template.AssociatedPassives.AddItem('NeutralizingAgents_LW');
 		Template.AddTargetEffect(RemoveEffects);
+
+		// new Covering Fire effect
+		CoveringFireEffect = new class'X2Effect_LWCoveringFireIgnoreCover';
+		CoveringFireEffect.BuildPersistentEffect(1, false, false, false, eGameRule_PlayerTurnBegin);
+		CoveringFireEffect.bForThreatAssessment = true;
+		AbilityCondition = new class'X2Condition_AbilityProperty';
+		AbilityCondition.OwnerHasSoldierAbilities.AddItem('ThreatAssessment');
+		CoveringFireEffect.TargetConditions.AddItem(AbilityCondition);
+		Template.AddTargetEffect(CoveringFireEffect);
 	
+	}
+
+	if(Template.DataName == 'CoveringFire')
+	{
+		CoveringFireEffect = new class'X2Effect_LWCoveringFireIgnoreCover';
+		CoveringFireEffect.BuildPersistentEffect(1, true, true);
+		CoveringFireEffect.bForThreatAssessment = false;
+		Template.AddTargetEffect(CoveringFireEffect);
 	}
 
 	if (Template.DataName == 'KillZone' || Template.DataName == 'Deadeye' || Template.DataName == 'BulletShred')
