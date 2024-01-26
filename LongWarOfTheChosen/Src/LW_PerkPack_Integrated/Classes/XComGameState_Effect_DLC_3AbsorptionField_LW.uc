@@ -7,7 +7,7 @@ function EventListenerReturn AbilityActivatedListener(Object EventData, Object E
 	local XComGameStateContext_Ability AbilityContext;
 	local XComGameState_Ability AbilityState;
 	local XComGameState_Unit UnitState;
-	local XComGameState_Unit AttackerState;
+	//local XComGameState_Unit AttackerState;
 	local XComGameState NewGameState;
 	local XComGameState_Effect_DLC_3AbsorptionField NewEffectState;
 	local XComGameStateHistory History;
