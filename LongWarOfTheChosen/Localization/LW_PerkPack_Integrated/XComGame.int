@@ -59,7 +59,7 @@ BriefSummary="Incoming melee damage is reduced by <Ability:IRON_SKIN_MELEE_DAMAG
 [SmartMacrophagesPCS X2EquipmentTemplate]
 FriendlyName="PCS: Smart Macrophages"
 FriendlyNamePlural="PCS: Smart Macrophages"
-BriefSummary="Reduces wound recovery time and grants immunity to acid and poison."
+BriefSummary="Reduces wound recovery time by 1 HP and grants immunity to acid and poison."
 
 [CenterMass X2AbilityTemplate]
 ; A special 'е' character is used for the second 'e' to prevent the
