@@ -193,6 +193,7 @@ static function X2DataTemplate CreateTemplate_Gauntlet_Mag()
 	Template.iSoundRange = default.Gauntlet_Primary_MAG_ISOUNDRANGE;
 	Template.iEnvironmentDamage = default.Gauntlet_Primary_MAG_IENVIRONMENTDAMAGE;
 	Template.iClipSize = default.Gauntlet_Primary_MAG_ICLIPSIZE;
+	Template.InfiniteAmmo = true;
 	Template.iRange = default.Gauntlet_Primary_MAG_RANGE;
 	Template.iRadius = default.Gauntlet_Primary_MAG_RADIUS;
 	Template.PointsToComplete = 0;
@@ -311,6 +312,7 @@ static function X2DataTemplate CreateTemplate_Gauntlet_Beam()
 	Template.iSoundRange = default.Gauntlet_Primary_BEAM_ISOUNDRANGE;
 	Template.iEnvironmentDamage = default.Gauntlet_Primary_BEAM_IENVIRONMENTDAMAGE;
 	Template.iClipSize = default.Gauntlet_Primary_BEAM_ICLIPSIZE;
+	Template.InfiniteAmmo = true;
 	Template.iRange = default.Gauntlet_Primary_BEAM_RANGE;
 	Template.iRadius = default.Gauntlet_Primary_BEAM_RADIUS;
 	Template.PointsToComplete = 0;
