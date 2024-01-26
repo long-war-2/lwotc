@@ -27,6 +27,7 @@ var config int SurvivalInstinctDefenseBonus;
 var config int STILETTO_ARMOR_PIERCING;
 
 var config int WATCHTHEMRUN_ACTIVATIONS_PER_TURN;
+var config array<name> WATCHTHEMRUN_TRIGGERS;
 
 var config int PREDATOR_AIM_BONUS;
 var config int PREDATOR_CRIT_BONUS;
@@ -1595,7 +1596,6 @@ static function X2AbilityTemplate Corpsman()
 
     return Template;
 }
-
 static function X2AbilityTemplate WatchThemRun()
 {
 	local X2AbilityTemplate                 Template;
@@ -1623,9 +1623,13 @@ static function X2AbilityTemplate WatchThemRun()
 	AddTriggerTargetCondition(Template, AmmoCondition);
     
 	// Limit activations
-	ValueCondition = new class'X2Condition_UnitValue';
-	ValueCondition.AddCheckValue('WatchThemRun_LW_Activations', default.WATCHTHEMRUN_ACTIVATIONS_PER_TURN, eCheck_LessThan);
-	Template.AbilityTargetConditions.AddItem(ValueCondition);
+	if (default.WATCHTHEMRUN_ACTIVATIONS_PER_TURN > 0)
+	{
+		// Limit activations
+    	ValueCondition = new class'X2Condition_UnitValue';
+    	ValueCondition.AddCheckValue('WatchThemRun_LW_Activations', default.WATCHTHEMRUN_ACTIVATIONS_PER_TURN, eCheck_LessThan);
+    	Template.AbilityTargetConditions.AddItem(ValueCondition);
+	}
 
     // Create an effect that will increment the unit value
 	IncrementEffect = new class'X2Effect_IncrementUnitValue';
