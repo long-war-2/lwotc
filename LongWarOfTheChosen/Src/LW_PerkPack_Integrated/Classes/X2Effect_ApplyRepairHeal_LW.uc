@@ -1,6 +1,8 @@
 //used with permission from NotSoLoneWolf
 
-class X2Effect_ApplyRepairHeal_LW extends X2Effect;
+class X2Effect_ApplyRepairHeal_LW extends X2Effect config(LW_SoldierSkills);
+
+var config int MaxAblativeHeal;
 
 var int PerUseHP;       //  amount of HP to heal for any application of the effect
 var localized string HealedMessage;
@@ -48,6 +50,9 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 		}
 
 		AblativeHealAmount = TargetUnit.GetMaxStat(eStat_ShieldHP) - TargetUnit.GetCurrentStat(eStat_ShieldHP);
+
+		// Cap to an arbitrary value
+		AblativeHealAmount = min(AblativeHealAmount, default.MaxAblativeHeal);
 
 		TargetUnit.ModifyCurrentStat(eStat_HP, HealAmount);
 		TargetUnit.ModifyCurrentStat(eStat_ShieldHP, AblativeHealAmount);
