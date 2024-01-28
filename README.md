@@ -6,7 +6,16 @@ expansion and update it for WOTC's new features.
 
 ## Installing and playing the mod
 
-If you just want to install and play the mod, check out our [wiki page](https://github.com/long-war-2/lwotc/wiki/Installing-Long-War-of-the-Chosen) that explains exactly how to do that.
+Long War of the Chosen is primarily distributed through Steam Workshop, in a few varieties:
+
+### Main release
+[The main release](https://steamcommunity.com/sharedfiles/filedetails/?id=2683996590) stays unchanging for longer periods of time, mostly receiving bugfixes and localization updates. More experimental changes enter this item only after they've been adequately tested. This version is recommended if you're just starting or are otherwise unsure about which to choose.
+
+### Beta release
+[The beta release](https://steamcommunity.com/sharedfiles/filedetails/?id=2663990965) receives more rapid and experimental updates, to be evaluated by the community. This version is recommended if you want to actively provide feedback or otherwise want the most cutting edge changes. However, note that this version can introduce more frequent and more serious bugs than the main.
+
+### 1.0 archive release
+[The 1.0 archive release](https://steamcommunity.com/sharedfiles/filedetails/?id=3114647033) is only recommended if you have a campaign started before the release of 1.1 and are worried that its changes cause instability or imbalance.
 
 ## Contributing translations
 
