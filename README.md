@@ -33,12 +33,31 @@ set some things up:
     [xcom2mods wiki](https://www.reddit.com/r/xcom2mods/wiki/index#wiki_setting_up_tools_for_modding)
     for details on how to do that (plus lots of other useful information)
 
- 2. [Fork this repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+ 1. Modify some files in your WOTC SDK's `SrcOrig`:
+    * In `X2SitRepEffect_ModifyKismetVariable.uc`, modify line 27
+    ```
+    private native function ModifyKismetVariablesInternal(XComGameState NewGameState);
+    ```
+    to
+    ```
+    native function ModifyKismetVariablesInternal(XComGameState NewGameState);
+    ```
+
+    * In `XComPlotCoverParcelManager.uc`, modify line 7
+    ```
+    var const config array<PCPDefinition> arrAllPCPDefs;
+    ```
+    to
+    ```
+    var config array<PCPDefinition> arrAllPCPDefs;
+    ```
+
+ 1. [Fork this repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
     and then clone your fork locally, which you can do via [Git for Windows](https://gitforwindows.org/)
     (a command-line tool), [GitHub Desktop](https://desktop.github.com/), or some other
     git client tool
 
- 3. Once you have cloned the repository, you may need to pull the code for the embedded
+ 1. Once you have cloned the repository, you may need to pull the code for the embedded
     highlander. If the *X2WOTCCommunityHighlander* directory is empty, then use the
     command line from the project's root directory (the one containing this README.md):
     ```
@@ -46,30 +65,23 @@ set some things up:
     ```
     or whatever is the equivalent with the git client tool you are using.
 
- 4. Download the LWOTC media assets (video, graphics and sound) from
+ 1. Download the LWOTC media assets (video, graphics and sound) from
     [this Google Drive link](https://drive.google.com/file/d/1wyjctso0NuHeHJp3DdQdPIlZ482st9ZY/view?usp=sharing)
     and unpack the resulting zip file into this project's *LongWarOfTheChosen* directory. It should merge the contents of the *Content* and *ContentForCook* directories.
 
- 5. Set up the following environment variables:
+ 1. Set up the following environment variables:
     * `XCOM2SDKPATH` — typically &lt;path to Steam&gt;\steamapps\common\XCOM 2 War Of The Chosen SDK
     * `XCOM2GAMEPATH` — typically &lt;path to Steam&gt;\steamapps\common\XCOM 2\XCom2-WarOfTheChosen
     Don't put these paths in quotes.
-	
- 6. Open a new command prompt after setting those environment variables and run
+
+ 1. Open a new command prompt after setting those environment variables and run
     the following from the LWOTC project directory:
     ```
     > build-lwotc.bat -config default
     ```
     (You can specify `-config debug` to compile with debug info)
- 
- 7. You should also build the Community Highlander, which you can do by opening
-    the solution file in X2WOTCCommunityHighlander in Mod Buddy and using that
-    to build the project, or you can open the LWOTC project directory in VS Code
-    and use the "Terminal > Run Task..." menu option and select "Build CHL
-    (final release)" and then "Build DLC2 CHL" once the previous task has finished.
 
-Once the highlander and LWOTC are built, you will be able to select them as local
-mods in Alternative Mod Launcher and run Long War of the Chosen.
+Once LWOTC is built, you will be able to select it as a local mod in Alternative Mod Launcher and run Long War of the Chosen.
 
 ## Contributing
 
