@@ -2702,6 +2702,7 @@ static function X2AbilityTemplate AddAreaSuppressionAbility()
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
 	Template.ActivationSpeech='Suppressing';
 	Template.bIsASuppressionEffect = true;
+	Template.bFriendlyFireWarning = false;
 
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);	
 	Template.AddShooterEffectExclusions();
