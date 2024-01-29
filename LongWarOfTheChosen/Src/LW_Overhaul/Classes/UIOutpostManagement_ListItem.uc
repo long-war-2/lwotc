@@ -318,7 +318,10 @@ simulated function AddAbilityIcons(XComGameState_Unit Unit, UIOutpostManagement_
 		// KDM : The total length of the icon strip.
 		TotalLength = (DisplayedIcons * IconSize) +  ((DisplayedIcons - 1) * IconPadding);
 		StartX = OutpostUI.PerksHeaderButton.X +
-			(OutpostUI.PerksHeaderButton.Width / 2.0) - (TotalLength / 2.0);
+			 IconPadding;
+
+			// Tedster - Left align the icons?
+			//(OutpostUI.PerksHeaderButton.Width / 2.0) - (TotalLength / 2.0);
 
 		for (i = 0; i < DisplayedIcons; i++)
 		{

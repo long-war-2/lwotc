@@ -551,6 +551,10 @@ ChangeJobStr="CHANGE JOB"
 ChangeAllJobsStr="CHANGE ALL JOBS"
 PerksStr="PERKS" 
 
+m_strIncomeIntel="Mission Finding Power:"
+m_strIncomeSupply="Supplies Per Day:"
+m_strIncomeRecruit="Days Per Recruit:"
+
 [UIScreenListener_TacticalHUD]
 strEvacRequestTitle="EVAC Requested"
 strEvacRequestSubtitle="Turns until Skyranger arrives"

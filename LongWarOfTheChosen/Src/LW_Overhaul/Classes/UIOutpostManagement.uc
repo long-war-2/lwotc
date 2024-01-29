@@ -28,6 +28,10 @@ var localized string m_strProhibited;
 var localized string m_strCannotChangeLiaisonTitle;
 var localized string m_strCannotChangeLiaison;
 
+var localized string m_strIncomeIntel;
+var localized string m_strIncomeSupply;
+var localized string m_strIncomeRecruit;
+
 var UIButton RadioTowerUpgradeButton;
 
 var UIList List;
@@ -48,6 +52,14 @@ var UIText LiaisonName;
 var UIScrollingText RegionalInfo;
 var UIScrollingText ResistanceMecs;
 var UIScrollingText JobDetail;
+
+var UIScrollingText IncomeIntelStr;
+var UIScrollingText IncomeSupplyStr;
+var UIScrollingText IncomeRecruitStr;
+
+var string IncomeIntel;
+var string IncomeSupply;
+var string IncomeRecruit;
 
 var UIPersonnel_Liaison LiaisonScreen;
 
@@ -78,10 +90,28 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 	local XComGameState_WorldRegion Region;
 	local XComGameStateHistory History;
 
+	local float currentRecruit;
+
 	History = `XCOMHISTORY;
 	Outpost = XComGameState_LWOutpost(History.GetGameStateForObjectID(OutpostRef.ObjectID));
 	Region = XComGameState_WorldRegion(History.GetGameStateForObjectID(Outpost.Region.ObjectID));
 
+	IncomeIntel = class'UIUtilities'.static.FormatFloat(Outpost.GetProjectedDailyIncomeForJob('Intel', true, true), 1);
+	IncomeSupply = class'UIUtilities'.static.FormatFloat(Outpost.GetProjectedDailyIncomeForJob('Resupply', true, true), 1);
+
+	CurrentRecruit = Outpost.GetProjectedDailyIncomeForJob('Recruit', true, true);
+
+	if(CurrentRecruit > 0)
+	{
+		CurrentRecruit = class'XComGameState_LWOutpost'.default.INCOME_POOL_THRESHOLD / CurrentRecruit;
+		CurrentRecruit = FMax(CurrentRecruit, 1.0);
+		IncomeRecruit = class'UIUtilities'.static.FormatFloat(CurrentRecruit, 1);
+	}
+	else
+	{
+		IncomeRecruit = "N/A";
+	}
+	
 	// KDM : The normal UI has 2 columns : rebel name, and rebel job; the fancy UI has a rebel perks column in the middle.
 	if (USE_FANCY_VERSION)
 	{
@@ -162,6 +192,28 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 	ListTitle.SetPosition(BorderPadding, BorderPadding);
 	ListTitle.SetHeaderWidth(panelW - BorderPadding * 2);
 
+	// Tedster: Outpost income
+
+	IncomeIntelStr = Spawn(class'UIScrollingText', MainPanel);
+	IncomeIntelStr.bAnimateOnInit = false;
+	IncomeIntelStr.InitScrollingText('Outpost_OutpostIncomeIntel_LW', "", panelW - BorderPadding * 2, BorderPadding -200, ListBG.Y + 46.75 + 18);
+	IncomeIntelStr.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ m_strIncomeIntel @ IncomeIntel $ "</font></p>");
+	IncomeIntelStr.SetAlpha(67.1875);
+
+	IncomeSupplyStr = Spawn(class'UIScrollingText', MainPanel);
+	IncomeSupplyStr.bAnimateOnInit = false;
+	IncomeSupplyStr.InitScrollingText('Outpost_OutpostIncomeSupply_LW', "", panelW - BorderPadding * 2, BorderPadding -200, ListBG.Y + 46.75 + 46);
+	IncomeSupplyStr.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ m_strIncomeSupply @ IncomeSupply $ "</font></p>");
+	IncomeSupplyStr.SetAlpha(67.1875);
+
+	IncomeRecruitStr = Spawn(class'UIScrollingText', MainPanel);
+	IncomeRecruitStr.bAnimateOnInit = false;
+	IncomeRecruitStr.InitScrollingText('Outpost_OutpostIncomeRecruit_LW', "", panelW - BorderPadding * 2, BorderPadding -200, ListBG.Y + 46.75 + 74);
+	IncomeRecruitStr.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ m_strIncomeRecruit @ IncomeRecruit $ "</font></p>");
+	IncomeRecruitStr.SetAlpha(67.1875);
+
+
+
 	NextY = ListTitle.Y + ListTitle.Height;
 
 	// KDM : Advent strength in the region
@@ -236,6 +288,8 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 	LiaisonName.bAnimateOnInit = false;
 	LiaisonName.InitText('',"");
 	LiaisonName.SetPosition(LiaisonTitle.X, NextY + LiaisonTitle.Height);
+
+
 
 	// Rai : Haven advisor loadout button.
 	LiaisonLoadoutButton = Spawn(class'UIButton', MainPanel);
@@ -503,6 +557,7 @@ function OnJobHeaderButtonClicked(UIButton Button)
 		ListItem = UIOutpostManagement_ListItem(List.GetSelectedItem());
 		ListItem.SetJobName(class'XComGameState_LWOutpost'.static.GetJobName(CachedRebels[j].Job));
 	}
+	UpdateJobUI();
 }
 
 simulated function InitJobNameCache()
@@ -836,6 +891,8 @@ function OnJobChanged(UIOutpostManagement_ListItem ListItem, int Direction)
 	local XComGameState_LWOutpost Outpost;
 	local bool GoodJobFound;
 
+	`LWTrace("OnJobChanged Called");
+
 	RebelIdx = List.GetItemIndex(ListItem);
 	Outpost = XComGameState_LWOutpost(`XCOMHISTORY.GetGameStateForObjectID(OutpostRef.ObjectID));
 	i = CachedJobNames.Find(CachedRebels[RebelIdx].Job);
@@ -878,6 +935,41 @@ function OnJobChanged(UIOutpostManagement_ListItem ListItem, int Direction)
 	IsDirty = true;
 	// Tell the list item to refresh itself.
 	ListItem.SetJobName(class'XComGameState_LWOutpost'.static.GetJobName(CachedRebels[RebelIdx].Job));
+
+	
+
+	UpdateJobUI();
+}
+
+// hack to get live update income working.
+function UpdateJobUI()
+{
+	local XComGameState_LWOutpost Outpost;
+	local float CurrentRecruit;
+
+	SaveOutpost();
+
+	Outpost = XComGameState_LWOutpost(`XCOMHISTORY.GetGameStateForObjectID(OutpostRef.ObjectID));
+	IncomeIntel = class'UIUtilities'.static.FormatFloat(Outpost.GetProjectedDailyIncomeForJob('Intel', true, true), 1);
+	IncomeSupply = class'UIUtilities'.static.FormatFloat(Outpost.GetProjectedDailyIncomeForJob('Resupply', true, true), 1);
+
+	CurrentRecruit = Outpost.GetProjectedDailyIncomeForJob('Recruit', true, true);
+
+	if(CurrentRecruit > 0)
+	{
+		CurrentRecruit = class'XComGameState_LWOutpost'.default.INCOME_POOL_THRESHOLD / CurrentRecruit;
+		CurrentRecruit = FMax(CurrentRecruit, 1.0);
+		IncomeRecruit = class'UIUtilities'.static.FormatFloat(CurrentRecruit, 1);
+	}
+	else
+	{
+		IncomeRecruit = "N/A";
+	}
+
+	IncomeIntelStr.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ m_strIncomeIntel @ IncomeIntel $ "</font></p>");
+	IncomeSupplyStr.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ m_strIncomeSupply @ IncomeSupply $ "</font></p>");
+	IncomeRecruitStr.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ m_strIncomeRecruit @ IncomeRecruit $ "</font></p>");
+
 }
 
 function SaveOutpost()
@@ -945,6 +1037,7 @@ simulated function OnLiaisonClicked(UIButton theButton)
 		SetDirty();
 		UpdateLiaison();
 		SaveLiaison();
+		UpdateJobUI();
 	}
 	else
 	{
@@ -987,6 +1080,8 @@ simulated function OnPersonnelSelected(StateObjectReference SelectedUnitRef)
 	UpdateLiaison();
 	SaveLiaison();
 	SetDirty();
+
+	UpdateJobUI();
 }
 
 // We need to update the outpost liaison state immediately in order to display the unit
