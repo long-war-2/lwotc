@@ -1022,13 +1022,22 @@ function float GetRebelLevelsOnJob(Name JobName, optional bool IgnoreJobChanges 
 	return RebelLevels;
 }
 
-// Reset the income pool for a particular job to zero.
+// Reset the income pool for a particular job to zero
+// Tedster - let Recruit job keep overflow
 function ResetIncomePool(Name JobName)
 {
 	local int idx;
 	
 	idx = GetIncomePoolIndexForJob(JobName);
-	IncomePools[idx].Value = 0;
+
+	if(JobName == class'LWRebelJob_DefaultJobSet'.const.RECRUIT_JOB)
+	{
+		IncomePools[idx].Value -= INCOME_POOL_THRESHOLD;
+	}
+	else
+	{
+		IncomePools[idx].Value = 0;
+	}	
 }
 
 function ResetJobBucket(Name JobName)
