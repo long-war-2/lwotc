@@ -663,14 +663,19 @@ simulated function UpdateLiaison()
 
 simulated function UpdateList()
 {
-	local int i;
+    local UIOutpostManagement_ListItem ListItem;
+    local int i;
 
-	List.ClearItems();
+    List.ClearItems();
 
-	for (i = 0; i < CachedRebels.Length; ++i)
-	{
-		UIOutpostManagement_ListItem(List.CreateItem(class'UIOutpostManagement_ListItem')).InitListItem();
-	}
+    for (i = 0; i < CachedRebels.Length; ++i)
+    {
+        ListItem = UIOutpostManagement_ListItem(List.CreateItem(class'UIOutpostManagement_ListItem'));
+        ListItem.InitListItem();
+
+        //Alternate background lines
+        if (i % 2 == 0 ) { ListItem.BG.Show(); }
+    }
 }
 
 simulated function RefreshNavHelp()
