@@ -1690,7 +1690,7 @@ static function X2AbilityTemplate ConcussiveStrike()
 	Template.bOverrideMeleeDeath = true;
 
 	//Stunning Effect
-	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2, 100);
+	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2, 100, false);
 	StunnedEffect.MinStatContestResult = 0;
 	StunnedEffect.MaxStatContestResult = 0;
 	StunnedEffect.bRemoveWhenSourceDies = false;
