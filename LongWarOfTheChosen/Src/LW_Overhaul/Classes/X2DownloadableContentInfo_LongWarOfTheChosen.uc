@@ -45,6 +45,8 @@ var config int ENCRYPTION_SERVER_MONTH;
 
 var config bool bNerfFrostLegion;
 
+var config bool bDisableDiversitySystem;
+
 var config array<MissionDefinition> ReplacementMissionDefs;
 
 
@@ -1099,6 +1101,11 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	local array<SpawnDistributionListEntry>	FollowerSpawnList;
 	local array<name> GoodUnits;
 	local array<name> BadUnits;
+
+	if(default.bDisableDiversitySystem)
+	{
+		return;
+	}
 
 
 	`LWTrace("Parsing Encounter : " $ EncounterName);
@@ -6244,3 +6251,25 @@ exec function LWOTC_ChosenMonthsSinceReinforce()
 		}
 }
 
+exec function LWOTC_SortRebels()
+{
+	local XComGameStateHistory History;
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_LWOutpost	OutPostState;
+	local XComGameState NewGameState;
+	
+	History = `XCOMHISTORY;
+
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Sort Outposts");
+
+	foreach History.IterateByClassType(class'XComGameState_WorldRegion', RegionState)
+	{
+		OutPostState = `LWOUTPOSTMGR.GetOutpostForRegion(RegionState);
+
+		OutPostState = XComGameState_LWOutpost(NewGameState.ModifyStateObject(class'XComGameState_LWOutpost', OutPostState.ObjectID));
+
+		OutpostState.SortRebels();
+	}
+
+	`GAMERULES.SubmitGameState(NewGameState);
+}

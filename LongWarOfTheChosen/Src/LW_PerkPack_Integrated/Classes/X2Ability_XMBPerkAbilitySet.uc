@@ -1612,10 +1612,12 @@ static function X2AbilityTemplate WatchThemRun()
     Template.bShowActivation = true;
 
 	// Only when Throw/Launch Grenade abilities are used
-	NameCondition = new class'XMBCondition_AbilityName';
-	NameCondition.IncludeAbilityNames.AddItem('ThrowGrenade');
-	NameCondition.IncludeAbilityNames.AddItem('LaunchGrenade');
-	AddTriggerTargetCondition(Template, NameCondition);
+    NameCondition = new class'XMBCondition_AbilityName';
+    NameCondition.IncludeAbilityNames = default.WATCHTHEMRUN_TRIGGERS; 
+    NameCondition.IncludeAbilityNames.AddItem('ThrowGrenade');
+    NameCondition.IncludeAbilityNames.AddItem('LaunchGrenade');
+    class'XMBAbility'.static.AddTriggerTargetCondition(Template, NameCondition);
+    AddTriggerTargetCondition(Template, NameCondition);
 
     // Require that the user has ammo left
 	AmmoCondition = new class'X2Condition_PrimaryWeapon';
