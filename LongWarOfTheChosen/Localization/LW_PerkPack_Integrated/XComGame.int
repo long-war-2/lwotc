@@ -1227,8 +1227,8 @@ LocPromotionPopupText="<Bullet/> Concussive Strike cannot target robotic units, 
 
 [Neutralize_LW X2AbilityTemplate]
 LocFriendlyName="Neutralize Protocol"
-LocLongDescription="Launch the BIT to a location, disabling enemy weapons in a small radius and forcing them to reload. This ability does not cost an action and has a 5-turn cooldown."
-LocHelpText="Launch the BIT to a location, disabling enemy weapons in a small radius and forcing them to reload. This ability does not cost an action."
+LocLongDescription="Launch the BIT to a location, disabling enemy weapons in a small radius and forcing them to reload. Costs 1 action and does not end the turn."
+LocHelpText="Launch the BIT to a location, disabling enemy weapons in a small radius and forcing them to reload. Costs 1 action and does not end the turn."
 LocFlyOverText="Neutralize Protocol"
 LocPromotionPopupText="<Bullet/> Send the BIT to release a short-range jamming pulse that overloads weapon systems. Forces targets to reload their primary weapon.<br/><Bullet/> Targeted enemies can use Reload to unjam their weapon. Enemies may choose to get by with just one action point of movement and shooting to work with, or they may forgo a reload and resort to secondary weapon systems.<br/><Bullet/> Neutralize Protocol does not cost an action to use and has a 5-turn cooldown.<br/>"
 
