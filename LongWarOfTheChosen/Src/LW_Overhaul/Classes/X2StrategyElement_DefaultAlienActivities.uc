@@ -188,6 +188,7 @@ var name ProtectRegionMidName;
 var name ProtectRegionName;
 var name CounterinsurgencyName;
 var name ReinforceName;
+var name ChosenReinforceName;
 var name COINResearchName;
 var name COINOpsName;
 var name BuildResearchFacilityName;
@@ -223,6 +224,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	AlienActivities.AddItem(CreateProtectRegionTemplate());
 	AlienActivities.AddItem(CreateCounterinsurgencyTemplate());
 	AlienActivities.AddItem(CreateReinforceTemplate());
+	AlienActivities.AddItem(CreateChosenReinforceTemplate());
 	AlienActivities.AddItem(CreateCOINResearchTemplate());
 	AlienActivities.AddItem(CreateCOINOpsTemplate());
 	AlienActivities.AddItem(CreateBuildResearchFacilityTemplate());
@@ -985,6 +987,58 @@ static function OnReinforceActivityComplete(bool bAlienSuccess, XComGameState_LW
 		AddVigilanceNearby (NewGameState, DestRegionState, default.REINFORCEMENTS_STOPPED_ADJACENT_VIGILANCE_BASE, default.REINFORCEMENTS_STOPPED_ADJACENT_VIGILANCE_RAND);
 	}
 }
+
+//#############################################################
+// --------------- Chosen Reinforcements activity -------------
+//#############################################################
+
+static function X2DataTemplate CreateChosenReinforceTemplate()
+{
+	local X2LWAlienActivityTemplate Template;
+	//local X2LWActivityCondition_Month MonthRestriction;
+	local X2LWActivityDetectionCalc DetectionCalc;
+	//local X2LWActivityCondition_AlertVigilance AlertVigilance;
+
+	`CREATE_X2TEMPLATE(class'X2LWAlienActivityTemplate', Template, default.ChosenReinforceName);
+	Template.iPriority = 100; // 50 is default, lower priority gets created earlier
+
+	//these define the requirements for creating each activity
+	Template.ActivityCreation = new class'X2LWActivityCreation_ChosenAction';
+	Template.ActivityCreation.Conditions.AddItem(default.ContactedAlienRegion);
+
+	DetectionCalc = new class'X2LWActivityDetectionCalc';
+	DetectionCalc.SetAlwaysDetected(true);
+	Template.DetectionCalc = DetectionCalc;
+
+	// required delegates
+	Template.OnMissionSuccessFn = TypicalEndActivityOnMissionSuccess;
+	Template.OnMissionFailureFn = TypicalAdvanceActivityOnMissionFailure;
+
+	//optional delegates
+	Template.OnActivityStartedFn = none;
+
+	Template.WasMissionSuccessfulFn = none;  // always one objective
+	Template.GetMissionForceLevelFn = GetTypicalMissionForceLevel; // use regional ForceLevel
+	Template.GetMissionAlertLevelFn = GetChosenReinforceAlertLevel; // custom alert level hardcoded
+
+	Template.GetTimeUpdateFn = none;
+	Template.OnMissionExpireFn = none; // just remove the mission, handle in failure
+	Template.GetMissionRewardsFn = GetReinforceRewards;
+	Template.OnActivityUpdateFn = none;
+
+	Template.CanBeCompletedFn = none;  // can always be completed
+	Template.OnActivityCompletedFn = OnEmergencyOffworldReinforcementsComplete; // Add str to the region
+
+	return Template;
+}
+
+static function int GetChosenReinforceAlertLevel(XComGameState_LWAlienActivity ActivityState, XComGameState_MissionSite MissionSite, XComGameState NewGameState)
+{
+	// hard code the Alert level for this.  Alert 7 with chosen means str 4 mission.
+	return 7;
+}
+
+
 
 //#############################################################################################
 //------------------------------   COIN RESEARCH   ------------------------------------------------
@@ -4850,6 +4904,7 @@ defaultProperties
     ProtectRegionName="ProtectRegion";
     CounterinsurgencyName="Counterinsurgency";
     ReinforceName="ReinforceActivity";
+	ChosenReinforceName="ChosenReinforceActivity";
     COINResearchName="COINResearch";
     COINOpsName="COINOps";
     BuildResearchFacilityName="BuildResearchFacility";

@@ -5839,7 +5839,7 @@ strCharacterName="残暴失魂者"
 [TheLostBruteHP16_LW X2CharacterTemplate]
 strCharacterName="残暴失魂者"
 
-[LWTheLostBruteHP18 X2CharacterTemplate]
+[TheLostBruteHP18_LW X2CharacterTemplate]
 strCharacterName="残暴失魂者"
 
 [TheLostBruteHP21_LW X2CharacterTemplate]

@@ -5996,7 +5996,7 @@ strCharacterName="Ombre brutale"
 [TheLostBruteHP16_LW X2CharacterTemplate]
 strCharacterName="Ombre brutale"
 
-[LWTheLostBruteHP18 X2CharacterTemplate]
+[TheLostBruteHP18_LW X2CharacterTemplate]
 strCharacterName="Ombre brutale"
 
 [TheLostBruteHP21_LW X2CharacterTemplate]

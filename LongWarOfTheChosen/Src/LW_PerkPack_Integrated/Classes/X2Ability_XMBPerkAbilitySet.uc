@@ -27,6 +27,7 @@ var config int SurvivalInstinctDefenseBonus;
 var config int STILETTO_ARMOR_PIERCING;
 
 var config int WATCHTHEMRUN_ACTIVATIONS_PER_TURN;
+var config array<name> WATCHTHEMRUN_TRIGGERS;
 
 var config int PREDATOR_AIM_BONUS;
 var config int PREDATOR_CRIT_BONUS;
@@ -230,6 +231,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(TriggerBotShot());
 	Templates.AddItem(TriggerBotDamage());
 
+	Templates.AddItem(CreateBonusChargesAbility());
 	
 	
 	return Templates;
@@ -1594,7 +1596,6 @@ static function X2AbilityTemplate Corpsman()
 
     return Template;
 }
-
 static function X2AbilityTemplate WatchThemRun()
 {
 	local X2AbilityTemplate                 Template;
@@ -1611,10 +1612,12 @@ static function X2AbilityTemplate WatchThemRun()
     Template.bShowActivation = true;
 
 	// Only when Throw/Launch Grenade abilities are used
-	NameCondition = new class'XMBCondition_AbilityName';
-	NameCondition.IncludeAbilityNames.AddItem('ThrowGrenade');
-	NameCondition.IncludeAbilityNames.AddItem('LaunchGrenade');
-	AddTriggerTargetCondition(Template, NameCondition);
+    NameCondition = new class'XMBCondition_AbilityName';
+    NameCondition.IncludeAbilityNames = default.WATCHTHEMRUN_TRIGGERS; 
+    NameCondition.IncludeAbilityNames.AddItem('ThrowGrenade');
+    NameCondition.IncludeAbilityNames.AddItem('LaunchGrenade');
+    class'XMBAbility'.static.AddTriggerTargetCondition(Template, NameCondition);
+    AddTriggerTargetCondition(Template, NameCondition);
 
     // Require that the user has ammo left
 	AmmoCondition = new class'X2Condition_PrimaryWeapon';
@@ -1622,9 +1625,13 @@ static function X2AbilityTemplate WatchThemRun()
 	AddTriggerTargetCondition(Template, AmmoCondition);
     
 	// Limit activations
-	ValueCondition = new class'X2Condition_UnitValue';
-	ValueCondition.AddCheckValue('WatchThemRun_LW_Activations', default.WATCHTHEMRUN_ACTIVATIONS_PER_TURN, eCheck_LessThan);
-	Template.AbilityTargetConditions.AddItem(ValueCondition);
+	if (default.WATCHTHEMRUN_ACTIVATIONS_PER_TURN > 0)
+	{
+		// Limit activations
+    	ValueCondition = new class'X2Condition_UnitValue';
+    	ValueCondition.AddCheckValue('WatchThemRun_LW_Activations', default.WATCHTHEMRUN_ACTIVATIONS_PER_TURN, eCheck_LessThan);
+    	Template.AbilityTargetConditions.AddItem(ValueCondition);
+	}
 
     // Create an effect that will increment the unit value
 	IncrementEffect = new class'X2Effect_IncrementUnitValue';
@@ -3130,12 +3137,6 @@ static function X2AbilityTemplate OverbearingSuperiority()
 	ToHitModifier.AddEffectHitModifier(eHit_Crit, default.OVERBEARING_SUPERIORITY_CRIT, Template.LocFriendlyName,,,,,,,,true);
 	Template.AddTargetEffect(ToHitModifier);
 
-	ToHitModifier = new class'X2Effect_ToHitModifier';
-	ToHitModifier.BuildPersistentEffect(1, true, true, true);
-	ToHitModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
-	ToHitModifier.AddEffectHitModifier(eHit_Crit, default.OVERBEARING_SUPERIORITY_CRIT, Template.LocFriendlyName,,,,,,,,true);
-	Template.AddTargetEffect(ToHitModifier);
-
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;
 	// Don't allow multiple ability-refunding abilities to be used in the same turn (e.g. Slam Fire and Serial)
@@ -3707,6 +3708,25 @@ static function X2AbilityTemplate HeroSlayer_LW()
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	//  NOTE: No visualization on purpose!
+
+	return Template;
+}
+
+static function X2AbilityTemplate CreateBonusChargesAbility()
+{
+	local X2AbilityTemplate Template;
+	local XMBEffect_AddItemCharges Effect;
+
+	Template = Passive('BonusBombard_LW', "img:///UILibrary_LW_PerkPack.LW_AbilityFullKit", true);
+
+	Effect = new class'XMBEffect_AddItemCharges';
+	Effect.ApplyToSlots.AddItem(eInvSlot_HeavyWeapon);
+	Effect.ApplyToSlots.AddItem(eInvSlot_ExtraBackpack);	
+	Effect.PerItemBonus = 1;
+
+	// Bonus Bombard charges is handled in OPTC of Bombard.
+
+	AddSecondaryEffect(Template, Effect);
 
 	return Template;
 }

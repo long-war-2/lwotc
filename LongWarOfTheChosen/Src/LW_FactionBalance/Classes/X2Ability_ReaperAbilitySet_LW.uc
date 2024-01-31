@@ -1114,8 +1114,9 @@ static function X2AbilityTemplate ParaMedikitHeal()
 	ActionPointCost.iNumPoints = 1;	
 	Template.AbilityCosts.AddItem(ActionPointCost);
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideSpecificErrors;
-	Template.HideErrors.AddItem('AA_AbilityUnavailable');
 	Template.HideErrors.AddItem('AA_CannotAfford_Charges');
+	Template.HideErrors.AddItem('AA_AbilityUnavailable');
+	
 
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.MEDIKIT_HEAL_PRIORITY;
 

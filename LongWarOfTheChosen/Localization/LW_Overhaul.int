@@ -551,6 +551,10 @@ ChangeJobStr="CHANGE JOB"
 ChangeAllJobsStr="CHANGE ALL JOBS"
 PerksStr="PERKS" 
 
+m_strIncomeIntel="Mission Finding Power:"
+m_strIncomeSupply="Supplies Per Day:"
+m_strIncomeRecruit="Days Per Recruit:"
+
 [UIScreenListener_TacticalHUD]
 strEvacRequestTitle="EVAC Requested"
 strEvacRequestSubtitle="Turns until Skyranger arrives"
@@ -733,6 +737,6 @@ strDismiss_Button = "OK"
 
 [UISL_Shell_BetaPatchNotes]
 strMessage_Title = "Long War Of The Chosen"
-strMessage_Header = "RC35 Changes:"
-strMessage_Body = "<ul><li>Fixed issue where Chosen respawned at full HP after killing the Sarcophagus.</li><li>Redid custom wilderness crate race maps to prevent crates from spawning on the roofs of trucks.</li><li>Fixed issue where Mind Merge provided no crit bonus with beam tier psi amp.</li><li>Fixed issue where some mission elements used AlienHQ Force Level instead of LW's regional Force Level.</li><li>Covert op version of the crate race mission rewards adjusted: Reduced supply rewards a bit, added PCSs, Weapon Upgrades, Elerium Cores, and Datapads to the crates.</li><li>Fixed issue where Hunter omnivision was not removed from all difficulty variants.</li><li>Fixed corpse requirement inconsistency for instant Spectre, Priest, and Purifier Autopsies.</li><li>Added a configuration toggle to enable/disable the City Center HQ maps for testing. Flipping it off doesn't change existing HQ's if they spawned with City Center maps, but future HQs will not use them.</li><li>Another round of Localization updates from Copyrite.</li></ul>"
+strMessage_Header = "Latest Beta Changes:"
+strMessage_Body = "<ul><li>Tweaked 'Chosen Reinforce' Chosen action: Now limited to 6 soldiers, revealed start, and strength is fixed at 4 (including chosen modifier), and rewards rebalance.</li><li>SPARK tree rework. Three new rows with new perks from Mechatronic Warfare plus full XCOM decks. Still experimental and subject to change, especially the xcom decks.</li><li>Infrastructure to properly support force levels above 20 in the base game systems.</li><li>Fixed issue with pod diversity system not applying to reinforcement pods when above FL20.</li><li>Rulers should now be able to spawn on the Detachment mission that comes from the new covert op.</li><li>Increased the frequency of Archons in the Corpses covert op reward pool for FL15 and higher.</li></ul>"
 strDismiss_Button = "OK"

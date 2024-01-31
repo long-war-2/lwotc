@@ -104,7 +104,7 @@ ShortNames[8]="Tpr."
 
 ; LWOTC Needs Translation
 +AbilityTreeTitles[0]="Future Combat"
-+AbilityTreeTitles[1]=""
++AbilityTreeTitles[1]="Mechanical Superiority"
 +AbilityTreeTitles[2]="War Machine"
 +AbilityTreeTitles[3]="XCOM"
 ; End Translation
@@ -2400,6 +2400,21 @@ ObjectiveTextPools[0]="Avoid destroying critical supplies"
 ObjectiveTextPools[1]="Neutralize all enemy targets"
 ObjectiveTextPools[2]="Extract all XCOM soldiers"
 
+[DefaultChosenSupplyRaidATT_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Avoid destroying critical supplies"
+ObjectiveTextPools[1]="Neutralize all enemy targets"
+ObjectiveTextPools[2]="Extract all XCOM soldiers"
+
+[DefaultChosenSupplyRaidTrain_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Avoid destroying critical supplies"
+ObjectiveTextPools[1]="Neutralize all enemy targets"
+ObjectiveTextPools[2]="Extract all XCOM soldiers"
+
+[DefaultChosenSupplyRaidConvoy_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Avoid destroying critical supplies"
+ObjectiveTextPools[1]="Neutralize all enemy targets"
+ObjectiveTextPools[2]="Extract all XCOM soldiers"
+
 [DefaultDestroyRelay_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Neutralize all enemy targets"
 ObjectiveTextPools[1]="Destroy the Relay before transmission completes"
@@ -2706,6 +2721,45 @@ PostMissionType="Supply Raid"
 BriefingImage="img:///UILibrary_Common.Xcom_default"
 ObjectiveTextPools[0]="Neutralize all enemy targets"
 ObjectiveTextPools[1]="Secure supplies from ADVENT convoy"
+PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Convoy_01"
+PreMissionNarratives[1]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Convoy_02"
+PreMissionNarratives[2]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Convoy_03"
+PreMissionNarratives[3]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Convoy_04"
+PreMissionNarratives[4]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Convoy_05"
+
+[ChosenSupplyLineRaidATT_LW X2MissionTemplate]
+DisplayName="Raid the Chosen Troop Transport"
+Briefing="Supply Line Raid - Chosen Troop Transport"
+PostMissionType="Supply Raid"
+BriefingImage="img:///UILibrary_Common.Xcom_default"
+ObjectiveTextPools[0]="Neutralize all enemy targets"
+ObjectiveTextPools[1]="Secure supplies at transport station"
+PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Transport_01"
+PreMissionNarratives[1]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Transport_02"
+PreMissionNarratives[2]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Transport_03"
+PreMissionNarratives[3]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Transport_04"
+PreMissionNarratives[4]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Transport_05"
+
+[ChosenSupplyLineRaidTrain_LW X2MissionTemplate]
+DisplayName="Raid the Chosen Train"
+Briefing="Supply Line Raid - Chosen Train"
+PostMissionType="Supply Raid"
+BriefingImage="img:///UILibrary_Common.Xcom_default"
+ObjectiveTextPools[0]="Neutralize all enemy targets"
+ObjectiveTextPools[1]="Secure supplies on Chosen train"
+PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Train_01"
+PreMissionNarratives[1]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Train_02"
+PreMissionNarratives[2]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Train_03"
+PreMissionNarratives[3]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Train_04"
+PreMissionNarratives[4]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Train_05"
+
+[ChosenSupplyLineRaidConvoy_LW X2MissionTemplate]
+DisplayName="Raid the Chosen Convoy"
+Briefing="Supply Line Raid - Chosen Convoy"
+PostMissionType="Supply Raid"
+BriefingImage="img:///UILibrary_Common.Xcom_default"
+ObjectiveTextPools[0]="Neutralize all enemy targets"
+ObjectiveTextPools[1]="Secure supplies from Chosen convoy"
 PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Convoy_01"
 PreMissionNarratives[1]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Convoy_02"
 PreMissionNarratives[2]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Convoy_03"
@@ -5217,8 +5271,10 @@ LocPromotionPopupText="<Bullet/> Generate an explosive field of Psionic energy t
 ; End Translation
 
 [CoveringFire X2AbilityTemplate]
-LocLongDescription="Reaction shots now trigger on any hostile action, not just movement. Additionally, they confer a penalty of -<Ability:COVERING_FIRE_OFFENSE_MALUS> aim on targets, even on a miss."
-LocPromotionPopupText="<Bullet/> If triggered by an enemy action, Covering Fire will trigger before the enemy action completes.<br/><Bullet/> In addition, having the Covering Fire ability confers a penalty of -<Ability:COVERING_FIRE_OFFENSE_MALUS> aim upon any units you take a reaction shot at, regardless of whether it was a covering fire shot or not."
+LocLongDescription="Reaction shots now trigger on any hostile action, not just movement. Overwatch shots now ignore 2/3 of cover bonuses."
+;
+;LocPromotionPopupText="<Bullet/> If triggered by an enemy action, Covering Fire will trigger before the enemy action completes.<br/><Bullet/> In addition, having the Covering Fire ability confers a penalty of -<Ability:COVERING_FIRE_OFFENSE_MALUS> aim upon any units you take a reaction shot at, regardless of whether it was a covering fire shot or not."
+LocPromotionPopupText="<Bullet/> If triggered by an enemy action, Covering Fire will trigger before the enemy action completes.<br/><Bullet/> In addition, having the Covering Fire ability allows the owner to ignore 2/3 of cover bonuses with reaction fire."
 
 [GrenadeLauncher_MG X2GrenadeLauncherTemplate]
 BriefSummary="Our Advanced Grenade Launcher uses magnetic technology to propel grenades further than our conventional launcher."
@@ -6128,7 +6184,7 @@ strCharacterName="Lost Brute"
 [TheLostBruteHP16_LW X2CharacterTemplate]
 strCharacterName="Lost Brute"
 
-[LWTheLostBruteHP18 X2CharacterTemplate]
+[TheLostBruteHP18_LW X2CharacterTemplate]
 strCharacterName="Lost Brute"
 
 [TheLostBruteHP21_LW X2CharacterTemplate]
@@ -6828,6 +6884,12 @@ LocHelpText="You deal +<Ability:HERO_SLAYER_DMG/>% damage against hero classes."
 LocLongDescription="You deal +<Ability:HERO_SLAYER_DMG/>% damage against hero classes."
 LocFlyOverText="Big Game Hunter"
 
+[BonusBombard_LW X2AbilityTemplate]
+LocFriendlyName="Extended Reserves"
+LocLongDescription="Gain an additional use of equipped Heavy Weapons and Bombard."
+LocHelpText="Gain an additional use of equipped Heavy Weapons and Bombard. The extra use of Bombard is only granted if the Bombard ability is taken."
+LocPromotionPopupText="Gain an additional use of equipped Heavy Weapons and Bombard. The extra use of Bombard is only granted if the Bombard ability is taken."
+
 [BloodBath_LW X2AbilityTemplate]
 LocFriendlyName="Blood Bath"
 LocHelpText="Harbor wave cone is wider by 2 tiles, and each enemy hit by it grants a blood thirst stack."
@@ -7084,10 +7146,18 @@ LocPromotionPopupText="You get an additional +<Ability:MOVING_TARGET_DEFENSE> De
 SummaryText="A brutal crackdown on the Resistance, lowering all rebel income (intel, recruit and supply) in the region for <Ability:CHOSEN_RETRIBUTION_DURATION/> days."
 ; End Translation
 
+[ChosenAction_ReinforceRegion X2ChosenActionTemplate]
+DisplayName="Reinforcement"
+SummaryText="Bring additional ADVENT forces onto the world."
+
+[ChosenAction_DoNothing X2ChosenActionTemplate]
+DisplayName="Combat Readiness"
+SummaryText="Not doing anything, just preparing."
+
 ; LWOTC Needs Translation
 [XComGameState_AdventChosen]
 KnowledgeGainFirstBullet[eChosenKnowledge_Start]=""
-KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]=" "
+KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]="Chosen can bring additional strength to a region!"
 KnowledgeGainFirstBullet[eChosenKnowledge_Sentinel]="Chosen can instigate an additional dark event!"
 KnowledgeGainFirstBullet[eChosenKnowledge_Collector]="Chosen can hinder rebel activities!"
 KnowledgeGainFirstBullet[eChosenKnowledge_Raider]="Chosen can launch an assault on the Avenger!"
@@ -7517,7 +7587,7 @@ LocFriendlyName="Channeling Field"
 LocLongDescription="Every time you are targeted, part of the energy is channeled to your <Ability:WeaponName>. This energy is unleashed with your next Standard Shot."
 LocHelpText="Channel energy to your <Ability:WeaponName> when targeted, and unleash it with your next Standard Shot."
 LocFlyOverText="Energy Channeled: +1"
-LocPromotionPopupText="<Bullet/> Each point of energy channeled by Channeling Field increases the damage of the next <Ability:WeaponName> attack by 1.<br/><Bullet/> The energy stored by channeling field is expended even if the next shot misses.<br/>"
+LocPromotionPopupText="<Bullet/> Each point of energy channeled by Channeling Field increases the damage of the next <Ability:WeaponName> attack by 1.<br/>"
 
 [Sacrifice X2AbilityTemplate]
 LocFriendlyName="Sacrifice"

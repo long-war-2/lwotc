@@ -26,6 +26,7 @@ struct CustomAbilityCost
 var config array<CustomAbilityCost> CUSTOM_ABILITY_COSTS;
 var config array<int> FACTION_ABILITY_COSTS;
 var config float BASE_ABILITY_COST_MODIFIER;
+var config array<name>CLASSES_IGNORE_CUSTOM_COSTS;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -581,11 +582,16 @@ static function EventListenerReturn OverrideAbilityPointCost(
 		AbilityCost = default.FACTION_ABILITY_COSTS[Rank];
 	}
 	else
-	{
-		idx = default.CUSTOM_ABILITY_COSTS.Find('AbilityName', AbilityName);
-		if (idx != INDEX_NONE)
+	{	
+		// if class isn't found in new exclude list, continue to adjust pistol row costs.
+		if(default.CLASSES_IGNORE_CUSTOM_COSTS.Find(UnitState.GetSoldierClassTemplateName()) == INDEX_NONE)
 		{
+			
+			idx = default.CUSTOM_ABILITY_COSTS.Find('AbilityName', AbilityName);
+			if (idx != INDEX_NONE)
+			{
 			AbilityCost = default.CUSTOM_ABILITY_COSTS[idx].AbilityCost;
+			}
 		}
 	}
 

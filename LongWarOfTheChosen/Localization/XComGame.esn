@@ -6110,7 +6110,7 @@ strCharacterName="Perdido bruto"
 [TheLostBruteHP16_LW X2CharacterTemplate]
 strCharacterName="Perdido bruto"
 
-[LWTheLostBruteHP18 X2CharacterTemplate]
+[TheLostBruteHP18_LW X2CharacterTemplate]
 strCharacterName="Perdido bruto"
 
 [TheLostBruteHP21_LW X2CharacterTemplate]

@@ -14,11 +14,15 @@
 //  you change this file, your mod will become incompatible with any other mod using
 //  XModBase.
 //---------------------------------------------------------------------------------------
-class XMBAbilityToHitCalc_StandardAim extends X2AbilityToHitCalc_StandardAim implements(XMBOverrideInterface);
+class XMBAbilityToHitCalc_StandardAim extends X2AbilityToHitCalc_StandardAim implements(XMBOverrideInterface) config(RedFog);
+
+// Red Fog config integration
+var config bool bBonusAimingAnglesForAll;
 
 // XModBase version
 var int MajorVersion, MinorVersion, PatchVersion;
 
+/*
 // Copied from X2AbilityToHitCalc and modified.
 function InternalRollForAbilityHit(XComGameState_Ability kAbility, AvailableTarget kTarget, bool bIsPrimaryTarget, const out AbilityResultContext ResultContext, out EAbilityHitResult Result, out ArmorMitigationResults ArmorMitigated, out int HitChance)
 {
@@ -95,6 +99,14 @@ function InternalRollForAbilityHit(XComGameState_Ability kAbility, AvailableTarg
 
 	UnitState = XComGameState_Unit(History.GetGameStateForObjectID(kAbility.OwnerStateObject.ObjectID));
 	TargetState = XComGameState_Unit(History.GetGameStateForObjectID(kTarget.PrimaryTarget.ObjectID));
+
+	// Issue #426: ChangeHitResultForX() code block moved to later in method.
+	/// HL-Docs: ref:Bugfixes; issue:426
+	/// Fix `X2AbilityToHitCalc_StandardAim` discarding unfavorable (for XCOM) changes to hit results from effects
+	// Due to how GetModifiedHitChanceForCurrentDifficulty() is implemented, it reverts attempts to change
+	// XCom Hits to Misses, or enemy misses to hits.
+	// The LW2 graze band issues are related to this phenomenon, since the graze band has the effect
+	// of changing some what "should" be enemy misses to hits (specifically graze result)
 	
 	// Aim Assist (miss streak prevention)
 	bRolledResultIsAMiss = class'XComGameStateContext_Ability'.static.IsHitResultMiss(Result);
@@ -134,7 +146,10 @@ function InternalRollForAbilityHit(XComGameState_Ability kAbility, AvailableTarg
 	}
 
 	// XModBase: move to after hit result calculation, allow non-unit targets
-	if (UnitState != none)
+
+	// Start Issue #426: Block moved from earlier. Only code change is for lightning reflexes,
+	// because bRolledResultIsAMiss was used for both aim assist and reflexes
+	if (UnitState != none && TargetState != none)
 	{
 		foreach UnitState.AffectedByEffects(EffectRef)
 		{
@@ -193,7 +208,9 @@ function InternalRollForAbilityHit(XComGameState_Ability kAbility, AvailableTarg
 		`COMBATLOG(LogMsg);
 	}
 }
+*/
 
+/*
 // Copied from X2AbilityToHitCalc and modified.
 protected function int GetHitChance(XComGameState_Ability kAbility, AvailableTarget kTarget, optional out ShotBreakdown m_ShotBreakdown, optional bool bDebugLog = false)
 {
@@ -220,6 +237,20 @@ protected function int GetHitChance(XComGameState_Ability kAbility, AvailableTar
 	local TTile UnitTileLocation, TargetTileLocation;
 	local ECoverType NextTileOverCoverType;
 	local int TileDistance;
+
+		/// HL-Docs: feature:GetHitChanceEvents; issue:1031; tags:tactical
+	/// WARNING! Triggering events in `X2AbilityToHitCalc::GetHitChance()` and other functions called by this function
+	/// may freeze (hard hang) the game under certain circumstances.
+	///
+	/// In our experiments, the game would hang when the player used a moving melee ability when an event was triggered
+	/// in `UITacticalHUD_AbilityContainer::ConfirmAbility()`  right above the 
+	/// `XComPresentationLayer(Owner.Owner).PopTargetingStates();` line or anywhere further down the script trace,
+	/// while another event was also triggered in `GetHitChance()` or anywhere further down the script trace.
+	///
+	/// The game hangs while executing UI code, but it is the event in the To Hit Calculation logic that induces it.
+	/// The speculation is that triggering events in `GetHitChance()` somehow corrupts the event manager, or it
+	/// could be a threading issue.
+
 
 	`log("=" $ GetFuncName() $ "=", bDebugLog, 'XCom_HitRolls');
 
@@ -252,8 +283,10 @@ protected function int GetHitChance(XComGameState_Ability kAbility, AvailableTar
 		AddModifier(100, AbilityTemplate.LocFriendlyName, m_ShotBreakdown, eHit_Success, bDebugLog);
 	}
 
-	AddModifier(BuiltInHitMod, AbilityTemplate.LocFriendlyName, m_ShotBreakdown, eHit_Success, bDebugLog);
-	AddModifier(BuiltInCritMod, AbilityTemplate.LocFriendlyName, m_ShotBreakdown, eHit_Crit, bDebugLog);
+		// Issue #346: AddModifier(BuiltIn...Mod) block moved later in method.
+	/// HL-Docs: ref:Bugfixes; issue:346
+	/// Prevent `X2AbilityToHitCalc_StandardAim` from applying BuiltInHitMod and BuiltInCritMod against non-units.
+
 
 	if (UnitState != none && TargetState == none)
 	{
@@ -264,6 +297,11 @@ protected function int GetHitChance(XComGameState_Ability kAbility, AvailableTar
 	}
 	else if (UnitState != none && TargetState != none)
 	{				
+		// Start Issue #346: Block moved from earlier.
+		AddModifier(BuiltInHitMod, AbilityTemplate.LocFriendlyName, m_ShotBreakdown, eHit_Success, bDebugLog);
+		AddModifier(BuiltInCritMod, AbilityTemplate.LocFriendlyName, m_ShotBreakdown, eHit_Crit, bDebugLog);
+		// End Issue #346
+
 		if (!bIndirectFire)
 		{
 			// StandardAim (with direct fire) will require visibility info between source and target (to check cover). 
@@ -648,6 +686,179 @@ protected function int GetHitChance(XComGameState_Ability kAbility, AvailableTar
 
 	FinalizeHitChance(m_ShotBreakdown, bDebugLog);
 	return m_ShotBreakdown.FinalHitChance;
+}
+*/
+
+function GetAdditionalHitModifiers_CH(XComGameState_Ability kAbility, AvailableTarget kTarget, optional out ShotBreakdown m_ShotBreakdown, optional bool bDebugLog = false)
+{
+	local XComGameState_Unit UnitState;
+	local XComGameState_Unit TargetState;
+	local XComGameState_Effect EffectState;
+	local StateObjectReference EffectRef;
+	local X2Effect_Persistent PersistentEffect;
+	local array<ShotModifierInfo> EffectModifiers, FinalEffectModifiers;
+	local array<X2Effect_Persistent> UniqueToHitEffects;
+	local XMBEffectInterface XModBaseEffect;
+	local XComGameStateHistory History;
+	local bool bFlanking, bSquadsight, bIgnoreCrit;
+	local GameRulesCache_VisibilityInfo VisInfo;
+	local string IgnoreCritReason;
+	local int i, idx, j;
+	local float CoverValue, AngleToCoverModifier, Alpha;
+
+	local int Major, Minor, Patch;
+
+	GetOverrideVersion(Major, Minor, Patch);
+
+	//`Log("XMB final hit modifiers called. version:" @Major$"."$Minor$"."$Patch, , 'TedLog');
+
+	History = `XCOMHISTORY;
+
+	UnitState = XComGameState_Unit(History.GetGameStateForObjectID( kAbility.OwnerStateObject.ObjectID ));
+	TargetState = XComGameState_Unit(History.GetGameStateForObjectID( kTarget.PrimaryTarget.ObjectID ));
+
+
+	if (!bIndirectFire)
+	{
+		if(UnitState != NONE && TargetState != NONE)
+		{
+		// StandardAim (with direct fire) will require visibility info between source and target (to check cover). 
+			if (`TACTICALRULES.VisibilityMgr.GetVisibilityInfo(UnitState.ObjectID, TargetState.ObjectID, VisInfo))
+			{	
+				if (UnitState.CanFlank() && TargetState.GetMyTemplate().bCanTakeCover && VisInfo.TargetCover == CT_None)
+					bFlanking = true;
+				if (VisInfo.bClearLOS && !VisInfo.bVisibleGameplay)
+					bSquadsight = true;
+				// XModBase: Check for abilities that negate squadsight penalty
+				if (bSquadsight)
+				{
+					foreach UnitState.AffectedByEffects(EffectRef)
+					{
+						EffectState = XComGameState_Effect(History.GetGameStateForObjectID(EffectRef.ObjectID));
+						PersistentEffect = EffectState.GetX2Effect();
+						XModBaseEffect = XMBEffectInterface(PersistentEffect);
+						if (XModBaseEffect != none)
+						{
+							if (XModBaseEffect.GetExtModifiers('IgnoreSquadsightPenalty', EffectState, UnitState, TargetState, kAbility, self.Class, bMeleeAttack, bFlanking, bIndirectFire))
+							{
+								bSquadsight = false;
+								break;
+							}
+						}
+					}
+					// There's actually multiple modifiers to remove, but we'll remove them all if at least one is found.
+					idx = m_ShotBreakdown.Modifiers.Find('Reason', class'XLocalizedData'.default.SquadsightMod);
+
+					if(!bSquadsight && idx != INDEX_NONE)
+					{
+						
+						for(j=m_ShotBreakdown.Modifiers.Length-1; j>=0; j--)
+						if(m_ShotBreakdown.Modifiers[j].Reason == class'XLocalizedData'.default.SquadsightMod)
+						{
+							m_ShotBreakdown.ResultTable[m_ShotBreakdown.Modifiers[j].ModType] -= m_ShotBreakdown.Modifiers[j].Value;
+							m_ShotBreakdown.Modifiers.Remove(j, 1);
+							m_ShotBreakdown.FinalHitChance = m_ShotBreakdown.ResultTable[eHit_Success];
+						}
+					}
+				}
+				// reverse engineer implementation of Bonus Aiming Angles for All from RedDobe
+
+				if(!bMeleeAttack && TargetState.CanTakeCover())
+				{
+					if(default.bBonusAimingAnglesForAll && m_ShotBreakdown.Modifiers.Find('Reason', class'XLocalizedData'.default.AngleToTargetCover) == INDEX_NONE)
+					{
+
+						if( VisInfo.TargetCover != CT_None && !bIgnoreCoverBonus )
+						{
+							switch( VisInfo.TargetCover )
+							{
+							case CT_MidLevel:           //  half cover
+								CoverValue = LOW_COVER_BONUS;
+								break;
+							case CT_Standing:           //  full cover
+								CoverValue = HIGH_COVER_BONUS;
+								break;
+							}
+						}
+						Alpha = FClamp((VisInfo.TargetCoverAngle - MIN_ANGLE_TO_COVER) / (MAX_ANGLE_TO_COVER - MIN_ANGLE_TO_COVER), 0.0, 1.0);
+						AngleToCoverModifier = Lerp(MAX_ANGLE_BONUS_MOD,
+													MIN_ANGLE_BONUS_MOD,
+													Alpha);
+						AddModifier(Round(CoverValue * AngleToCoverModifier), class'XLocalizedData'.default.AngleToTargetCover, m_ShotBreakdown, eHit_Success, bDebugLog);
+					}
+				}
+			}
+		}
+	}
+
+	foreach TargetState.AffectedByEffects(EffectRef)
+	{
+
+		EffectState = XComGameState_Effect(History.GetGameStateForObjectID(EffectRef.ObjectID));
+
+		if (EffectState == none)
+			continue;
+
+		PersistentEffect = EffectState.GetX2Effect();
+		if (PersistentEffect == none)
+			continue;
+		if (UniqueToHitEffects.Find(PersistentEffect) != INDEX_NONE)
+			continue;
+
+		PersistentEffect.GetToHitAsTargetModifiers(EffectState, UnitState, TargetState, kAbility, self.Class, bMeleeAttack, bFlanking, bIndirectFire, EffectModifiers);
+
+		// XModBase: Check for crit immunity.
+		XModBaseEffect = XMBEffectInterface(PersistentEffect);
+		if (XModBaseEffect != none)
+		{
+			if (XModBaseEffect.GetExtModifiers('CannotBeCrit', EffectState, UnitState, TargetState, kAbility, self.Class, bMeleeAttack, bFlanking, bIndirectFire))
+			{
+				bIgnoreCrit = true;
+				IgnoreCritReason = PersistentEffect.FriendlyName;
+			}
+		}
+	}
+
+	if (bIgnoreCrit)
+	{
+		AddModifier(-m_ShotBreakdown.ResultTable[eHit_Crit], IgnoreCritReason, m_ShotBreakdown, eHit_Crit, bDebugLog);
+	}
+
+	// XModBase: Apply final modifiers. These can read the whole shot breakdown. To avoid ordering 
+	// issues with them reading the breakdown, we collect all the modifiers first and then apply 
+	// them together.
+	FinalEffectModifiers.Length = 0;
+	UniqueToHitEffects.Length = 0;
+	foreach UnitState.AffectedByEffects(EffectRef)
+	{
+		EffectModifiers.Length = 0;
+		EffectState = XComGameState_Effect(History.GetGameStateForObjectID(EffectRef.ObjectID));
+		PersistentEffect = EffectState.GetX2Effect();
+		if (UniqueToHitEffects.Find(PersistentEffect) != INDEX_NONE)
+			continue;
+
+		XModBaseEffect = XMBEffectInterface(PersistentEffect);
+		if (XModBaseEffect != none)
+		{
+			XModBaseEffect.GetExtModifiers('FinalToHitModifiers', EffectState, UnitState, TargetState, kAbility, self.Class, bMeleeAttack, bFlanking, bIndirectFire, m_ShotBreakdown, EffectModifiers);
+			if (EffectModifiers.Length > 0)
+			{
+				if (PersistentEffect.UniqueToHitAsTargetModifiers())
+					UniqueToHitEffects.AddItem(PersistentEffect);
+
+				for (i = 0; i < EffectModifiers.Length; ++i)
+				{
+					FinalEffectModifiers.AddItem(EffectModifiers[i]);
+				}
+			}
+		}
+	}
+	for (i = 0; i < FinalEffectModifiers.Length; ++i)
+	{
+		AddModifier(FinalEffectModifiers[i].Value, FinalEffectModifiers[i].Reason, m_ShotBreakdown, FinalEffectModifiers[i].ModType, bDebugLog);
+	}
+
+
 }
 
 protected function AddModifier(const int ModValue, const string ModReason, out ShotBreakdown m_ShotBreakdown, EAbilityHitResult ModType = eHit_Success, bool bDebugLog = false)

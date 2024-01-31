@@ -556,10 +556,10 @@ LocPromotionPopupText="<Bullet/> Tus granadas de humo confieren 10 de defensa ad
 
 [Collateral_LW X2AbilityTemplate]
 LocFriendlyName="Daños colaterales"
-LocLongDescription="Dispara una ráfaga de balas <Ability:WeaponName/> a una ubicación, destruyendo la cobertura dentro del área. Produce una pequeña cantidad de daño a los enemigos. 3 turnos de cooldown y requiere de 2 de munición."
+LocLongDescription="Dispara una ráfaga de balas <Ability:WeaponName/> a una ubicación, destruyendo la cobertura dentro del área. Produce una pequeña cantidad de daño a los enemigos. 5 turnos de cooldown y requiere de 3 de munición."
 LocHelpText="Dispara una ráfaga de balas <Ability:WeaponName/> a una ubicación, destruyendo la cobertura dentro del área."
 LocFlyOverText="Daños colaterales"
-LocPromotionPopupText="<Bullet/> Dispara una ráfaga de balas <Ability:WeaponName/> a una ubicación, destruyendo la cobertura dentro del área.<br/><Bullet/> Causa un gran daño ambiental a todos los objetos en la zona de impacto.<br/><Bullet/> Daños colaterales afecta a los enemigos dentro del área de lanzamiento: dependiendo del tier equipado <Ability:WeaponName/>, 1-2/2/2-3 de daño.<br/><Bullet/> Cuesta 2 de munición y tiene 3 turnos de tiempo de enfriamiento.<br/>"
+LocPromotionPopupText="<Bullet/> Dispara una ráfaga de balas <Ability:WeaponName/> a una ubicación, destruyendo la cobertura dentro del área.<br/><Bullet/> Causa un gran daño ambiental a todos los objetos en la zona de impacto.<br/><Bullet/> Daños colaterales afecta a los enemigos dentro del área de lanzamiento: dependiendo del tier equipado <Ability:WeaponName/>, 1-2/2/2-3 de daño.<br/><Bullet/> Cuesta 3 de munición y tiene 5 turnos de tiempo de enfriamiento.<br/>"
 
 
 [DenseSmokeGrenade X2GrenadeTemplate]

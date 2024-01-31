@@ -50,6 +50,8 @@ var config array<string> GuaranteeChosenInMissionTypes;
 
 var config array<string> NO_SIT_REP_MISSION_TYPES;
 
+var StateObjectReference AssociatedChosen;
+
 var config array<string> LargeMaps;
 
 var config array<string> VeryLargeMaps;
@@ -930,6 +932,8 @@ static function MaybeAddChosenToMission(XComGameState_MissionSite MissionState)
 static function bool WillChosenAppearOnMission(XComGameState_AdventChosen ChosenState, XComGameState_MissionSite MissionState)
 {
 	local XComGameState_MissionSiteChosenAssault ChosenAssaultMission;
+
+	`LWTrace("Checking Chosen" @ChosenState.GetChosenTemplate().CharacterGroupName);
 
 	// If the Chosen doesn't control the region, they won't appear on the mission
 	if (!ChosenState.ChosenControlsRegion(MissionState.Region))
