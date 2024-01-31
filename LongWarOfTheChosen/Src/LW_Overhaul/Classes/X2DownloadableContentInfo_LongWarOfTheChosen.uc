@@ -311,7 +311,7 @@ static function ModifyEncountersForFL21()
 		if (MissionManager.ConfigurableEncounters[i].MaxRequiredForceLevel >= 20)
 		{
 			MissionManager.ConfigurableEncounters[i].MaxRequiredForceLevel = 99;
-		}
+    }
 	}
 
 }
