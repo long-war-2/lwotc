@@ -37,6 +37,9 @@ var config int SPARK_POWERED_PLATING_HP;
 var config int PLATED_BIT_CRIT_REDUCE;
 var config int POWERED_BIT_CRIT_REDUCE;
 
+var config int SPARK_PLATED_ARMOR_DEF;
+var config int SPARK_POWERED_ARMOR_DEF;
+
 var config int PLATED_BIT_DODGE_BONUS;
 var config int POWERED_BIT_DODGE_BONUS;
 var config int PLATED_BIT_DEF_BONUS;
@@ -82,6 +85,9 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(CreateBonusDodgeAbility('Plated_BIT_Bonus_Dodge',default.PLATED_BIT_DODGE_BONUS));
 	Templates.AddItem(CreateBonusDodgeAbility('Powered_BIT_Bonus_Dodge',default.POWERED_BIT_DODGE_BONUS));
+
+	Templates.AddItem(CreateBonusDefAbility('SPARK_Plated_Armor_Def', default.SPARK_PLATED_ARMOR_DEF));
+	Templates.AddItem(CreateBonusDefAbility('SPARK_Powered_Armor_Def', default.SPARK_POWERED_ARMOR_DEF));
 
 	Templates.AddItem(CreateHazmatVestBonusAbility_LW());
 	Templates.AddItem(CreateNanofiberBonusAbility_LW());
