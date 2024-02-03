@@ -2962,9 +2962,13 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 					break;
 				case 'PlatedSparkArmor':
 					ArmorTemplate.Abilities.AddItem('SPARK_Plated_Plating_Ability');
+					ArmorTemplate.Abilities.AddItem('SPARK_Plated_Armor_Def');
+					ArmorTemplate.SetUIStatMarkup(class'XLocalizedData'.default.DefenseLabel, eStat_Defense, class'X2Ability_LW_GearAbilities'.default.SPARK_PLATED_ARMOR_DEF);
 					break;
 				case 'PoweredSparkArmor':
 					ArmorTemplate.Abilities.AddItem('SPARK_Powered_Plating_Ability');
+					ArmorTemplate.Abilities.AddItem('SPARK_Powered_Armor_Def');
+					ArmorTemplate.SetUIStatMarkup(class'XLocalizedData'.default.DefenseLabel, eStat_Defense, class'X2Ability_LW_GearAbilities'.default.SPARK_POWERED_ARMOR_DEF);
 					break;
 
 				default:
