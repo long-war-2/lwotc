@@ -319,7 +319,7 @@ static function X2AbilityTemplate CreateBonusDodgeAbility(name TemplateName, int
 	DodgeBonus.BuildPersistentEffect(1, true, false, false);
 	DodgeBonus.AddPersistentStatChange(eStat_Dodge, DodgeAmount);
 	Template.AddTargetEffect(DodgeBonus);
-	Template.SetUIStatMarkup(default.AblativeHPLabel, eStat_Dodge, DodgeAmount);
+	Template.SetUIStatMarkup(class'X2TacticalGameRulesetDataStructures'.default.m_aCharStatLabels[eStat_Dodge], eStat_Dodge, DodgeAmount);
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	return Template;
 }
@@ -343,9 +343,9 @@ static function X2AbilityTemplate CreateBonusDefAbility(name TemplateName, int D
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	DefBonus = new class'X2Effect_PersistentStatChange';
 	DefBonus.BuildPersistentEffect(1, true, false, false);
-	DefBonus.AddPersistentStatChange(eStat_Dodge, DefAmount);
+	DefBonus.AddPersistentStatChange(eStat_Defense, DefAmount);
 	Template.AddTargetEffect(DefBonus);
-	Template.SetUIStatMarkup(default.AblativeHPLabel, eStat_Dodge, DefAmount);
+	Template.SetUIStatMarkup(class'X2TacticalGameRulesetDataStructures'.default.m_aCharStatLabels[eStat_Defense], eStat_Defense, DefAmount);
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	return Template;
 }
