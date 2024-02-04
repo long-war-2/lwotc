@@ -714,7 +714,7 @@ static function X2AbilityTemplate AddCommandAbility()
 	SuppressedCondition = new class'X2Condition_UnitEffects';
 	SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
 	SuppressedCondition.AddExcludeEffect('AreaSuppression', 'AA_UnitIsSuppressed');
-	SuppressedCondition.AddExcludeEffect('HunkerDown', 'AA_UnitIsHunkered');
+	//SuppressedCondition.AddExcludeEffect('HunkerDown', 'AA_UnitIsHunkered');
 	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
 
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
