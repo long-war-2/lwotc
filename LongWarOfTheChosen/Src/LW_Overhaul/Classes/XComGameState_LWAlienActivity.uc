@@ -484,6 +484,7 @@ function bool SpawnMission(XComGameState NewGameState)
 	local XComGameState_HeadquartersResistance ResHQ;
 
 	MissionFamily = GetNextMissionFamily(NewGameState);
+	`LWTrace("Mission Family selected:" @MissionFamily);
 	if(MissionFamily == '')
 		return false;
 
@@ -600,12 +601,19 @@ function name GetNextMissionFamily(XComGameState NewGameState)
 	local array<int> ExistingMissionFamilyCounts, SelectArray;
 	local XComGameState_MissionSite MissionSite;
 	local int idx, i, j, FamilyIdx;
+	local name MissionFamily;
 
 	ActivityTemplate = GetMyTemplate();
 	if (CurrentMissionLevel >= ActivityTemplate.MissionTree.Length)
 		return '';
 
 	PossibleMissionFamilies = ActivityTemplate.MissionTree[CurrentMissionLevel].MissionFamilies;
+
+	`LWTrace("Possible Mission Families:");
+	foreach PossibleMIssionFamilies (MissionFamily)
+	{
+		`LWTrace(MissionFamily);
+	}
 
 	if(PossibleMissionFamilies.Length > 0)
 	{

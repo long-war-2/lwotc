@@ -63,6 +63,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddSupplyExtractionMissionNarrativeTemplate());
     Templates.AddItem(AddBigSupplyExtractionMissionNarrativeTemplate());
     Templates.AddItem(AddCovertOpsTroopManeuversNarrativeTemplate());
+    Templates.AddItem(AddDefaultCompoundRescueOperativeNarrativeTemplate());
 
     return Templates;
 }
@@ -1392,4 +1393,27 @@ static function X2MissionNarrativeTemplate AddBigSupplyExtractionMissionNarrativ
 	Template.NarrativeMoments[17]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_ADVENT_Airlifted_First_Crate";
 
 	return Template;
+}
+
+static function X2MissionNarrativeTemplate AddDefaultCompoundRescueOperativeNarrativeTemplate()
+{
+    local X2MissionNarrativeTemplate Template;
+
+    `CREATE_X2MISSIONNARRATIVE_TEMPLATE(Template, 'DefaultCompoundRescueOperative_LW');
+
+    Template.MissionType = "CompoundRescueOperative_LW";
+    Template.NarrativeMoments[0]="XPACK_NarrativeMoments.X2_XP_CEN_T_Comp_Rescue_Transport_Inbound";
+    Template.NarrativeMoments[1]="XPACK_NarrativeMoments.X2_XP_CEN_T_Comp_Rescue_Squad_Wipe";
+    Template.NarrativeMoments[2]="XPACK_NarrativeMoments.X2_XP_CEN_T_Comp_Rescue_Operative_Recovered_Squad_Wipe";
+    Template.NarrativeMoments[3]="XPACK_NarrativeMoments.X2_XP_CEN_T_Comp_Rescue_Operative_Recovered_Heavy_Losses";
+    Template.NarrativeMoments[4]="XPACK_NarrativeMoments.X2_XP_CEN_T_Comp_Rescue_Operative_Not_Recovered";
+    Template.NarrativeMoments[5]="XPACK_NarrativeMoments.X2_XP_CEN_T_Comp_Rescue_Mission_Intro";
+    Template.NarrativeMoments[6]="XPACK_NarrativeMoments.X2_XP_CEN_T_Comp_Rescue_Mission_Accomplished";
+    Template.NarrativeMoments[7]="XPACK_NarrativeMoments.X2_XP_CEN_T_Comp_Rescue_Firebrand_In_Position";
+    Template.NarrativeMoments[8]="XPACK_NarrativeMoments.X2_XP_CEN_T_Comp_Rescue_Firebrand_On_Standby";
+    Template.NarrativeMoments[9]="XPACK_NarrativeMoments.X2_XP_CEN_T_Comp_Rescue_Comp_On_Alert";
+    Template.NarrativeMoments[10]="XPACK_NarrativeMoments.X2_XP_CEN_T_Comp_Rescue_Comp_Maximum_Alert";
+    Template.NarrativeMoments[11]="XPACK_NarrativeMoments.X2_XP_CEN_T_Comp_Rescue_Alert_Status_Increaing";
+
+    return Template;
 }

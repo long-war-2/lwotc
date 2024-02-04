@@ -3187,6 +3187,26 @@ ObjectiveTextPools[0]="(optional) Plant X4 on back of Turrets !WARNING! EXPLOSIV
 ObjectiveTextPools[1]="Plant Bomb to Destroy the Mobile Power Generator !WARNING! EXPLOSIVE WILL DETONATE ON TURN END"
 ObjectiveTextPools[2]="Eliminate all enemy forces"
 
+[DefaultCompoundRescueOperative_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Turns until Skyranger must retreat"
+ObjectiveTextPools[1]="Rescue XCOM VIP from ADVENT Compound"
+ObjectiveTextPools[2]="Extract the rescued VIP"
+ObjectiveTextPools[3]="Extract all XCOM soldiers"
+ObjectiveTextPools[4]="Compound Rescue"
+ObjectiveTextPools[5]="We've located a compound holding a VIP important to the resistance! Infiltrate the compound and rescue the VIP. Once alerted, ADVENT will begin increasing security, eventually summoning reinforcements. Firebrand will embark once XCOM signals that the VIP is in custody."
+
+[CompoundRescueOperative_LW X2MissionTemplate]
+DisplayName="Rescue VIP from ADVENT Compound"
+Briefing="Rescue VIP from ADVENT Compound"
+PostMissionType="Rescue VIP"
+BriefingImage="img:///UILibrary_Common.Xcom_default"
+ObjectiveTextPools[0]="Rescue VIP from ADVENT custody"
+
+
+PreMissionNarratives[0]="XPACK_NarrativeMoments.X2_XP_CEN_T_Compound_Rescue_Dropship_Intro_A"
+PreMissionNarratives[1]="XPACK_NarrativeMoments.X2_XP_CEN_T_Compound_Rescue_Dropship_Intro_B"
+PreMissionNarratives[2]="XPACK_NarrativeMoments.X2_XP_CEN_T_Compound_Rescue_Dropship_Intro_C"
+
 [XComGame.UIMission]
 [UIMission]
 m_strMissionDifficulty="CURRENT ENEMY ACTIVITY"

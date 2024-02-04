@@ -39,7 +39,8 @@
         "UMS_LWMissionTimer",
         "Obj_ChosenShowdown_LW",
         "UMS_MissionCore_LW",
-        "UMS_MissionCore_LW_LW"
+        "UMS_MissionCore_LW_LW",
+        "Obj_CompoundRescueOperative_LW"
     ],
     "sfStandalone": [
         "AdvGrenadeLauncher",

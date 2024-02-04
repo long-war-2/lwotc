@@ -61,5 +61,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddMissionTemplate('SupplyConvoy_LW'));
 	Templates.AddItem(AddMissionTemplate('RecruitRaid_LW'));
 
+    Templates.AddItem(AddMissionTemplate('CompoundRescueOperative_LW'));
+
 	return Templates;
 }
