@@ -3,8 +3,8 @@
 //  AUTHOR:  Amineri (Pavonis Interactive)
 //  PURPOSE: Sting Grenade that disorients and has a chance to stun
 //--------------------------------------------------------------------------------------- 
+//POTENTIALLY DEPRECATED!! CONSIDER DELETION OF CLASS
 class X2Item_StingGrenade extends X2Item config(LW_SoldierSkills);
-
 
 var config int STING_GRENADE_STUN_CHANCE;
 var config int STING_GRENADE_STUN_LEVEL;

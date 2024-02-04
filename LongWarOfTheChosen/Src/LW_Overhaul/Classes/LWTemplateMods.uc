@@ -750,6 +750,7 @@ function ModifyGrenadeEffects(X2ItemTemplate Template, int Difficulty)
 	if(GrenadeTemplate == none)
 		return;
 
+	//SOME AREAS DEPRECATED. ALSO WHY WASNT'T DENSE SMOKE HERE?
 	switch(GrenadeTemplate.DataName)
 	{
 		case 'FlashbangGrenade':

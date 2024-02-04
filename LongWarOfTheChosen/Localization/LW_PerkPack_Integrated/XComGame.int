@@ -610,7 +610,7 @@ LocHelpText="Fire a barrage of <Ability:WeaponName/> rounds to a location, destr
 LocFlyOverText="Collateral Damage"
 LocPromotionPopupText="<Bullet/> Fire a barrage of <Ability:WeaponName/> rounds to a location, destroying cover within the area.<br/><Bullet/> Deals high environmental damage to all objects in the area of effect.<br/><Bullet/> Collateral Damage does 1-2/2/2-3 damage to enemies within the area of effect depending on tier of equipped <Ability:WeaponName/>.<br/><Bullet/> Costs 2 ammo and has a 3-turn cooldown.<br/>"
 
-
+;POTENTIALLY DEPERECATED AS WELL AS ALL TRANSLATIONS
 [DenseSmokeGrenade X2GrenadeTemplate]
 FriendlyName="Dense Smoke Grenade"
 FriendlyNamePlural="Dense Smoke Grenades"
@@ -621,6 +621,7 @@ ThrownAbilityHelpText="Grants a defensive boost to units within its radius."
 LaunchedAbilityname="Launch Dense Smoke Grenade"
 LaunchedAbilityHelpText="Grants a defensive boost to units within its radius."
 
+;POTENTIALLY DEPERECATED AS WELL AS ALL TRANSLATIONS
 [DenseSmokeGrenadeMk2 X2GrenadeTemplate]
 FriendlyName="Dense Smoke Bomb"
 FriendlyNamePlural="Dense Smoke Bombs"
@@ -645,10 +646,12 @@ LocFriendlyName="Dedicated Suppression"
 LocLongDescription="Taking damage no longer cancels Suppression and Area Suppression."
 LocHelpText="Taking damage no longer canccels Suppression and Area Suppression."
 
+;POTENTIALLY DEPRECATED
 [X2Item_StingGrenade]
 DenseSmokeGrenadeEffectDisplayName="Sting Grenade"
 DenseSmokeGrenadeEffectDisplayDesc="Sting Grenades have a 50% chance to stun units within the grenades' area of effect."
 
+;POTENTIALLY DEPRECATED
 [StingGrenade X2GrenadeTemplate]
 FriendlyName="Sting Grenade"
 FriendlyNamePlural="Sting Grenades"

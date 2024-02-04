@@ -8,6 +8,8 @@ class X2Ability_PerkPackAbilitySet2 extends X2Ability config (LW_SoldierSkills) 
 
 var localized string TrojanVirus;
 var localized string TrojanVirusTriggered;
+var localized string DenseSmokeGrenadeEffectDisplayName;
+var localized string DenseSmokeGrenadeEffectDisplayDesc;
 
 var config int NUM_AIRDROP_CHARGES;
 var config int SAVIOR_BONUS_HEAL;
@@ -21,6 +23,13 @@ var config int COLLATERAL_COOLDOWN;
 var config int COLLATERAL_AMMO;
 var config int COLLATERAL_RADIUS;
 var config int COLLATERAL_ENVDMG;
+
+var config int DENSESMOKEGRENADE_HITMOD;
+var config array<name> SMOKE_GRENADES_FOR_DENSE_SMOKE;
+
+var config int STING_GRENADE_STUN_CHANCE;
+var config int STING_GRENADE_STUN_LEVEL;
+var config array<name> FLASHBANGS_FOR_STING_GRENADES;
 
 const DAMAGED_COUNT_NAME = 'DamagedCountThisTurn';
 
@@ -402,7 +411,10 @@ static function X2AbilityTemplate AddFlashbanger()
 	TemporaryItemEffect = new class'X2Effect_TemporaryItem';
 	TemporaryItemEffect.EffectName = 'FlashbangerEffect';
 	TemporaryItemEffect.ItemName = 'FlashbangGrenade';
+
+	//POTENTIALLY DEPRECATED
 	TemporaryItemEffect.AlternativeItemNames.AddItem('StingGrenade');
+
 	TemporaryItemEffect.ForceCheckAbilities.AddItem('LaunchGrenade');
 	TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
 	TemporaryItemEffect.BuildPersistentEffect(1, true, false);
@@ -446,8 +458,11 @@ static function X2AbilityTemplate AddSmokeGrenade()
 	TemporaryItemEffect.EffectName = 'SmokeGrenadeEffect';
 	TemporaryItemEffect.ItemName = 'SmokeGrenade';
 	TemporaryItemEffect.ResearchOptionalItems.AddItem(Conditional);
+
+	//POTENTIALLY DEPERECATED
 	TemporaryItemEffect.AlternativeItemNames.AddItem('DenseSmokeGrenade');
 	TemporaryItemEffect.AlternativeItemNames.AddItem('DenseSmokeGrenadeMk2');
+
 	TemporaryItemEffect.ForceCheckAbilities.AddItem('LaunchGrenade');
 	TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
 	TemporaryItemEffect.BuildPersistentEffect(1, true, false);
@@ -490,15 +505,19 @@ static function X2AbilityTemplate AddSavior()
 
 //this increases the defense bonus of smoke grenades and smoke bombs used by the unit
 // accomplished by swapping out existing smoke grenade/bomb for a dense smoke version
+//ALTERATION: Just going to make this a passive and just apply the effect to traditional smoke grenades
+//MANY DEPERECATIONS INBOUND LOL
 static function X2AbilityTemplate AddDenseSmoke()
 {
 	local X2AbilityTemplate						Template;
-	local X2Effect_TemporaryItem				TemporaryItemEffect;
-	local X2AbilityTrigger_UnitPostBeginPlay	Trigger;
+	//local X2Effect_TemporaryItem				TemporaryItemEffect;
+	//local X2AbilityTrigger_UnitPostBeginPlay	Trigger;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'DenseSmoke');
+	Template = PurePassive('DenseSmoke', "img:///UILibrary_LW_PerkPack.LW_AbilityDenseSmoke");
+	//`CREATE_X2ABILITY_TEMPLATE(Template, 'DenseSmoke');
 
-	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityDenseSmoke";
+	//MEGA DELETE. We don't need any of this. Also got rid of a duplicate return.
+	/*Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityDenseSmoke";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
@@ -537,9 +556,26 @@ static function X2AbilityTemplate AddDenseSmoke()
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
-	return Template;
+	return Template;*/
 
 	return Template;
+}
+
+static function X2Effect DenseSmokeEffect()
+{
+	local X2Effect_DenseSmokeEffect Effect;
+	local X2Condition_AbilityProperty	AbilityCondition;
+
+	Effect = new class'X2Effect_DenseSmokeEffect';
+	Effect.BuildPersistentEffect(class'X2Effect_ApplySmokeGrenadeToWorld'.default.Duration + 1, false, false, false, eGameRule_PlayerTurnBegin);
+	Effect.SetDisplayInfo(ePerkBuff_Bonus, default.DenseSmokeGrenadeEffectDisplayName, default.DenseSmokeGrenadeEffectDisplayDesc, "img:///UILibrary_LW_PerkPack.LW_AbilityDenseSmoke", true,,'eAbilitySource_Perk');
+	Effect.Defense = default.DENSESMOKEGRENADE_HITMOD;
+
+	AbilityCondition = new class'X2Condition_AbilityProperty';
+    AbilityCondition.OwnerHasSoldierAbilities.AddItem('DenseSmoke');
+    Effect.TargetConditions.AddItem(AbilityCondition);
+
+	return Effect;
 }
 
 //this ability allows the next use (this turn) of smoke grenade or flashbang to be free
@@ -921,13 +957,16 @@ static function X2AbilityTemplate AddFullKit()
 
 //this improves the effectiveness of flashbangs by giving them a chance to stun non-robotic units
 // accomplished by swapping out existing flashbang items for new sting grenade item
+//ALTERATION: Turning this into a pure passive. Effect application will be changed.
 static function X2AbilityTemplate AddStingGrenades()
 {
 	local X2AbilityTemplate						Template;
-	local X2Effect_TemporaryItem				TemporaryItemEffect;
-	local X2AbilityTrigger_UnitPostBeginPlay	Trigger;
+	//local X2Effect_TemporaryItem				TemporaryItemEffect;
+	//local X2AbilityTrigger_UnitPostBeginPlay	Trigger;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'StingGrenades');
+	Template = PurePassive('StingGrenades', "img:///UILibrary_LW_PerkPack.LW_AbilityStunGrenades");
+
+	/* `CREATE_X2ABILITY_TEMPLATE(Template, 'StingGrenades');
 
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityStunGrenades";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
@@ -980,9 +1019,39 @@ static function X2AbilityTemplate AddStingGrenades()
 
 
 	
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;*/
 
 	return Template;
+}
+
+//Should have all the basic logic from the sting grenade item.
+static function X2Effect StingGrenadeEffect()
+{
+	local X2Effect_Stunned StunEffect;
+	local X2Condition_AbilityProperty	AbilityCondition;
+	local X2Condition_UnitProperty UnitCondition;
+
+	StunEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(default.STING_GRENADE_STUN_LEVEL, default.STING_GRENADE_STUN_CHANCE);
+	StunEffect.bRemoveWhenSourceDies = false;
+
+	StunEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(default.STING_GRENADE_STUN_LEVEL, default.STING_GRENADE_STUN_CHANCE, false);
+	StunEffect.BuildPersistentEffect(1, true, false, false, eGameRule_UnitGroupTurnBegin);
+	StunEffect.SetDisplayInfo(ePerkBuff_Penalty, class'X2StatusEffects'.default.StunnedFriendlyName, class'X2StatusEffects'.default.StunnedFriendlyDesc, "img:///UILibrary_PerkIcons.UIPerk_stun");
+	StunEffect.bRemoveWhenSourceDies = false;
+	StunEffect.TargetConditions.AddItem(UnitCondition);
+
+	UnitCondition = new class'X2Condition_UnitProperty';
+	UnitCondition.ExcludeOrganic = false;
+	UnitCondition.IncludeWeakAgainstTechLikeRobot = false;
+	UnitCondition.ExcludeFriendlyToSource = false;
+
+	AbilityCondition = new class'X2Condition_AbilityProperty';
+    AbilityCondition.OwnerHasSoldierAbilities.AddItem('StingGrenades');
+
+    StunEffect.TargetConditions.AddItem(AbilityCondition);
+	StunEffect.TargetConditions.AddItem(UnitCondition);
+
+	return StunEffect;
 }
 
 //this ability allows some healing of wounds (reducing lowest HP) at end of mission, if the field surgeon is alive and well

@@ -3,6 +3,7 @@
 //  AUTHOR:  Amineri (Pavonis Interactive)
 //  PURPOSE: This applies a special dense smoke effect to the world, which stacks with the regular smoke effect
 //---------------------------------------------------------------------------------------
+//POTENTIALLY DEPERECATED. LOOKING AT THIS I GUESS IT MAKES SMOKE GRENADES VISUALIZE DIFFERENTLY? NEVER SAW A DIFFERENCE
 class X2Effect_ApplyDenseSmokeGrenadeToWorld extends X2Effect_World config(LW_SoldierSkills); // dependson(Helpers_LW);
 
 var config string SmokeParticleSystemFill_Name;
