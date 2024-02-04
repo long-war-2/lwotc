@@ -163,6 +163,6 @@ static function bool ShouldShowWarningMsg()
 defaultproperties
 {
 	ScreenClass = UIFinalShell;
-	iVersion_Installed = 20; // beta is on 20
+	iVersion_Installed = 21; // beta is on 21
 	bReleaseVersion = false;
 }
