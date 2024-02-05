@@ -2119,6 +2119,8 @@ static function X2AbilityTemplate InspireAgility()
 	// Create a targeted buff that affects allies
 	Template = TargetedBuff('InspireAgility_LW', "img:///UILibrary_XPerkIconPack.UIPerk_move_command", true, Effect, class'UIUtilities_Tactical'.const.CLASS_SERGEANT_PRIORITY, eCost_Free);
 
+	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
+
 	// The ability starts out with a single charge
 	AddCharges(Template, 1);
 
