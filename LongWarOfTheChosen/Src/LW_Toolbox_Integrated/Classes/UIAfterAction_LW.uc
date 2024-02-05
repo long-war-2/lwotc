@@ -516,9 +516,9 @@ DefaultProperties
 
 	//Refer to the points / camera setup in CIN_PostMission1 to understand this array
 	SlotListOrder[0] = 4
-	SlotListOrder[1] = 1
+	SlotListOrder[1] = 2
 	SlotListOrder[2] = 0
-	SlotListOrder[3] = 2
+	SlotListOrder[3] = 1
 	SlotListOrder[4] = 3
 	SlotListOrder[5] = 5
 
