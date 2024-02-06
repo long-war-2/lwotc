@@ -6273,3 +6273,39 @@ exec function LWOTC_SortRebels()
 
 	`GAMERULES.SubmitGameState(NewGameState);
 }
+
+exec function LWOTC_ShowPastChosenActions()
+{
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local XComGameState_AdventChosen ChosenState;
+	local XComGameState_ChosenAction ActionState;
+	local XComGameStateHistory History;
+	local int idx, ICooldown;
+
+	History = `XCOMHISTORY;
+
+	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	AllChosen = AlienHQ.GetAllChosen(, false);
+
+		foreach AllChosen(ChosenState)
+		{
+			`LWTrace("Chosen:" @ ChosenState.GetMyTemplateName());
+			for(idx = (ChosenState.PreviousMonthActions.Length - 1); idx >= 0; idx--)
+			{
+
+				ActionState = XComGameState_ChosenAction(History.GetGameStateForObjectID(ChosenState.PreviousMonthActions[idx].ObjectID));
+				
+				`LWTrace("Action" @idx $":" @ActionState.GetMyTemplateName());
+			}
+
+		}
+
+		foreach AllChosen(ChosenState)
+	{
+        // The fix is the below line, ChosenState changed to Chosen
+		ICooldown = ChosenState.GetMonthsSinceAction('ChosenAction_ReinforceRegion');
+
+		`LWTrace(ChosenState.GetMyTemplateName() @ "Months since Reinforce:" @ICooldown);
+	}
+}
