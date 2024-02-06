@@ -49,6 +49,7 @@ static function ActivateChosenReinforce(XComGameState NewGameState, StateObjectR
 	{
 		NewActivityState = ActivityTemplate.CreateInstanceFromTemplate(PrimaryRegionRef, NewGameState);
 		NewGameState.AddStateObject(NewActivityState);
+
 	}
 }
 
@@ -72,7 +73,11 @@ function bool CanChosenReinforceActivate(StateObjectReference CheckChosenRef, op
 
 	local int ICooldown, GCooldown;
 
+	`LWTrace("Can Activate Chosen Reinforce called.");
+
 	StratMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+
+	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
 
 	if(NewGameState != none)
 	{
@@ -86,7 +91,7 @@ function bool CanChosenReinforceActivate(StateObjectReference CheckChosenRef, op
 	if (CheckChosenState == NONE)
 		return false;
 
-	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	
 
 	ICooldown = CheckChosenState.GetMonthsSinceAction('ChosenAction_ReinforceRegion');
 
@@ -96,14 +101,21 @@ function bool CanChosenReinforceActivate(StateObjectReference CheckChosenRef, op
 
 	foreach AllChosen(Chosen)
 	{
+		if(NewGameState != none)
+		{
+			Chosen = XComGameState_AdventChosen(NewGameState.GetGameStateForObjectID(Chosen.ObjectID));
+		}
         // The fix is the below line, ChosenState changed to Chosen
 		ICooldown = Chosen.GetMonthsSinceAction('ChosenAction_ReinforceRegion');
+
+		//`LWTrace(Chosen.GetMyTemplateName() @ "Months since Reinforce:" @ICooldown);
 
 		if(ICooldown > 0 && (ICooldown < GCooldown || GCooldown <= 0))
 		{
 			GCooldown = ICooldown;
 		}
 	}
+	//`LWTrace("Global Cooldown:" @GCooldown);
 
 	if(GCooldown > 0 && GCooldown <= ActionTemplate.GlobalCooldown)
 	{
