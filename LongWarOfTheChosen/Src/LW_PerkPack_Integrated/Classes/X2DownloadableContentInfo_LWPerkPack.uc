@@ -41,9 +41,61 @@ static event InstallNewCampaign(XComGameState StartState)
 /// </summary>
 static event OnPostTemplatesCreated()
 {
+	local X2ItemTemplateManager			ItemManager;
+
+	ItemManager = class'X2ItemTemplateManager'.static.GetItemTemplateManager();
+
 	UpdateBaseGameOverwatchShot();
 	UpdateBaseGameThrowGrenade();
+	/*
+		Might not be the right place to be adding this. I recall that lwotc does something unique in place
+		of a lot of OPTC shenanigans.
+	*/
+	PatchItemsForDenseSmoke(ItemManager);
+	PatchItemsForStingGrenades(ItemManager);
 	//UpdateBaseGameAidProtocol();
+}
+
+static function PatchItemsForStingGrenades(X2ItemTemplateManager ItemManager)
+{
+	local X2GrenadeTemplate					Template;
+	local name								ItemName;
+
+	foreach class'LW_PerkPack_Integrated.X2Ability_PerkPackAbilitySet2'.default.FLASHBANGS_FOR_STING_GRENADES(ItemName)
+	{
+		Template = X2GrenadeTemplate(ItemManager.FindItemTemplate(ItemName));
+		if(Template != none)
+		{
+			UpdateForStingGrenades(Template);
+		}
+	}
+}
+
+static function UpdateForStingGrenades(X2GrenadeTemplate Template)
+{
+	Template.ThrownGrenadeEffects.AddItem(class'LW_PerkPack_Integrated.X2Ability_PerkPackAbilitySet2'.static.StingGrenadeEffect());
+	Template.LaunchedGrenadeEffects.AddItem(class'LW_PerkPack_Integrated.X2Ability_PerkPackAbilitySet2'.static.StingGrenadeEffect());
+}
+
+static function PatchItemsForDenseSmoke(X2ItemTemplateManager ItemManager)
+{
+	local X2GrenadeTemplate					Template;
+	local name								ItemName;
+
+	foreach class'LW_PerkPack_Integrated.X2Ability_PerkPackAbilitySet2'.default.SMOKE_GRENADES_FOR_DENSE_SMOKE(ItemName)
+	{
+		Template = X2GrenadeTemplate(ItemManager.FindItemTemplate(ItemName));
+		if(Template != none)
+		{
+			UpdateForDenseSmoke(Template);
+		}
+	}
+}
+
+static function UpdateForDenseSmoke(X2GrenadeTemplate Template)
+{
+	Template.ThrownGrenadeEffects.AddItem(class'LW_PerkPack_Integrated.X2Ability_PerkPackAbilitySet2'.static.DenseSmokeEffect());
+	Template.LaunchedGrenadeEffects.AddItem(class'LW_PerkPack_Integrated.X2Ability_PerkPackAbilitySet2'.static.DenseSmokeEffect());
 }
 
 //Restores VM's ability to modify radius

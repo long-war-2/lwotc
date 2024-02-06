@@ -3,7 +3,7 @@
 //  AUTHOR:  Amineri (Pavonis Interactive)
 //  PURPOSE: This is an effect to apply dense smoke, granting additional defense bonus
 //---------------------------------------------------------------------------------------
-
+//POTENTIALLY DEPERECATED
 class X2Effect_DenseSmokeGrenade extends X2Effect_Persistent;
 
 var int HitMod;
