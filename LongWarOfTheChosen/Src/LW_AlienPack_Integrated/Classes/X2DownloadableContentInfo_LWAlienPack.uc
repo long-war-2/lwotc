@@ -47,6 +47,7 @@ static event OnPostTemplatesCreated()
 {
 	`Log(">>>> LWAlienPack OnPostTemplates");
 	UpdateForChryssySlashBug();
+	UpdateAndromedonDisorientedAcidBlob();
 }
 
 static function UpdateForChryssySlashBug()
@@ -77,6 +78,20 @@ static function UpdateForChryssySlashBug()
 				}
 			}
 		}
+	}
+}
+
+static function UpdateAndromedonDisorientedAcidBlob()
+{
+	local X2AbilityTemplateManager			AbilityTemplateManager;
+	local X2AbilityTemplate					AbilityTemplate;
+
+	// Fix Andromedon being able to use Acid Blob while disoriented
+	AbilityTemplateManager =  class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
+	AbilityTemplate = AbilityTemplateManager.FindAbilityTemplate('AcidBlob');
+	if (AbilityTemplate != none)
+	{
+		AbilityTemplate.AddShooterEffectExclusions();
 	}
 }
 
