@@ -293,6 +293,8 @@ static function X2AbilityTemplate ThatsCloseEnough()
 	Template.AbilityTargetConditions.AddItem(TargetWithinTiles(default.THATS_CLOSE_ENOUGH_TILE_RANGE));
 	AddPerTargetCooldown(Template, default.THATS_CLOSE_ENOUGH_PER_TARGET_COOLDOWN);
 
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitDisallowMindControlProperty);
+
 	Cooldown = new class'X2AbilityCooldown_Shared';
 	Cooldown.iNumTurns = default.THATS_CLOSE_ENOUGH_COOLDOWN;
 	Cooldown.SharingCooldownsWith.AddItem('ArcThrowerStun'); //Now shares the cooldown with Arc thrower main ability
@@ -320,6 +322,8 @@ static function X2AbilityTemplate SawedOffOverwatch()
 	AddMovementTrigger(Template);
 	Template.AbilityTargetConditions.AddItem(TargetWithinTiles(default.NONE_SHALL_PASS_TILE_RANGE));
 	AddCooldown(Template, default.NONE_SHALL_PASS_COOLDOWN);
+
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitDisallowMindControlProperty);
 
 	return Template;
 }
