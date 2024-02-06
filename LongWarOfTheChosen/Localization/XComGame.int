@@ -3203,9 +3203,12 @@ BriefingImage="img:///UILibrary_Common.Xcom_default"
 ObjectiveTextPools[0]="Rescue VIP from ADVENT custody"
 
 
-PreMissionNarratives[0]="XPACK_NarrativeMoments.X2_XP_CEN_T_Compound_Rescue_Dropship_Intro_A"
-PreMissionNarratives[1]="XPACK_NarrativeMoments.X2_XP_CEN_T_Compound_Rescue_Dropship_Intro_B"
-PreMissionNarratives[2]="XPACK_NarrativeMoments.X2_XP_CEN_T_Compound_Rescue_Dropship_Intro_C"
+PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.RescueVIP.Central_Council_Missions_Rescue_VIP_01"
+PreMissionNarratives[1]="X2NarrativeMoments.TACTICAL.RescueVIP.Central_Council_Missions_Rescue_VIP_02"
+PreMissionNarratives[2]="X2NarrativeMoments.TACTICAL.RescueVIP.Central_Council_Missions_Rescue_VIP_03"
+PreMissionNarratives[3]="X2NarrativeMoments.TACTICAL.RescueVIP.Central_Council_Missions_Rescue_VIP_04"
+PreMissionNarratives[4]="X2NarrativeMoments.TACTICAL.RescueVIP.Central_Council_Missions_Rescue_VIP_05"
+
 
 [XComGame.UIMission]
 [UIMission]

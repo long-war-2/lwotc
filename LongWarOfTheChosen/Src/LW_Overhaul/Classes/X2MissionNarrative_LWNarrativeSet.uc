@@ -1407,13 +1407,15 @@ static function X2MissionNarrativeTemplate AddDefaultCompoundRescueOperativeNarr
     Template.NarrativeMoments[2]="XPACK_NarrativeMoments.X2_XP_CEN_T_Comp_Rescue_Operative_Recovered_Squad_Wipe";
     Template.NarrativeMoments[3]="XPACK_NarrativeMoments.X2_XP_CEN_T_Comp_Rescue_Operative_Recovered_Heavy_Losses";
     Template.NarrativeMoments[4]="XPACK_NarrativeMoments.X2_XP_CEN_T_Comp_Rescue_Operative_Not_Recovered";
-    Template.NarrativeMoments[5]="XPACK_NarrativeMoments.X2_XP_CEN_T_Comp_Rescue_Mission_Intro";
+    Template.NarrativeMoments[5]="X2NarrativeMoments.TACTICAL.RescueVIP.CEN_RescVEH_Intro";
     Template.NarrativeMoments[6]="XPACK_NarrativeMoments.X2_XP_CEN_T_Comp_Rescue_Mission_Accomplished";
     Template.NarrativeMoments[7]="XPACK_NarrativeMoments.X2_XP_CEN_T_Comp_Rescue_Firebrand_In_Position";
     Template.NarrativeMoments[8]="XPACK_NarrativeMoments.X2_XP_CEN_T_Comp_Rescue_Firebrand_On_Standby";
     Template.NarrativeMoments[9]="XPACK_NarrativeMoments.X2_XP_CEN_T_Comp_Rescue_Comp_On_Alert";
     Template.NarrativeMoments[10]="XPACK_NarrativeMoments.X2_XP_CEN_T_Comp_Rescue_Comp_Maximum_Alert";
     Template.NarrativeMoments[11]="XPACK_NarrativeMoments.X2_XP_CEN_T_Comp_Rescue_Alert_Status_Increaing";
+    Template.NarrativeMoments[12]="X2NarrativeMoments.TACTICAL.General.SKY_Gen_EvacRequested_02";
+    Template.NarrativeMoments[13]="X2NarrativeMoments.TACTICAL.Extract.Extract_CEN_VIPKilled_Continue";
 
     return Template;
 }
