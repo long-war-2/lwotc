@@ -1082,8 +1082,7 @@ static function X2Effect StingGrenadeEffect()
 	StunEffect.BuildPersistentEffect(1, true, false, false, eGameRule_UnitGroupTurnBegin);
 	StunEffect.SetDisplayInfo(ePerkBuff_Penalty, class'X2StatusEffects'.default.StunnedFriendlyName, class'X2StatusEffects'.default.StunnedFriendlyDesc, "img:///UILibrary_PerkIcons.UIPerk_stun");
 	StunEffect.bRemoveWhenSourceDies = false;
-	StunEffect.TargetConditions.AddItem(UnitCondition);
-
+	
 	UnitCondition = new class'X2Condition_UnitProperty';
 	UnitCondition.ExcludeOrganic = false;
 	UnitCondition.IncludeWeakAgainstTechLikeRobot = false;
