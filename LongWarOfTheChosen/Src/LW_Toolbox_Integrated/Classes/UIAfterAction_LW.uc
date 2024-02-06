@@ -8,8 +8,12 @@ class UIAfterAction_LW extends UIAfterAction config(LW_Toolbox);
 
 //
 
-var bool m_bBackRowActive;
+var bool m_RowTwoActive;
+var bool m_RowThreeActive;
+var bool m_RowFourActive;
 var UIList m_kSlotList2;
+var UIList m_kSlotList3;
+var UIList m_kSlotList4;
 var string UIDisplayCam_Back;			//Name of the point that the camera rests at to display back row soldiers
 var config float CameraTransitionTime;
 
@@ -69,7 +73,7 @@ simulated function CreatePanels()
 	{
 		listWidth = 0;
 		listItemPadding = 6;
-		for (i = 6; i < XComHQ.Squad.Length; ++i)
+		for (i = 6; i < Min(12, XComHQ.Squad.Length); ++i)
 		{
 			if (XComHQ.Squad[i].ObjectID > 0)
 				listWidth += (class'UISquadSelect_ListItem'.default.width + listItemPadding);
@@ -81,6 +85,42 @@ simulated function CreatePanels()
 		m_kSlotList2.itemPadding = listItemPadding;
 
 		m_kSlotList2.Hide(); // hidden initially
+	}
+
+	if(XComHQ.Squad.Length > 12)
+	{
+		listWidth = 0;
+		listItemPadding = 6;
+		for (i = 12; i < Min(18, XComHQ.Squad.Length); ++i)
+		{
+			if (XComHQ.Squad[i].ObjectID > 0)
+				listWidth += (class'UISquadSelect_ListItem'.default.width + listItemPadding);
+		}
+		listX = Clamp((Movie.UI_RES_X / 2) - (listWidth / 2), 100, Movie.UI_RES_X / 2);
+
+		m_kSlotList3 = Spawn(class'UIList', self);
+		m_kSlotList3.InitList('', listX, -390, Movie.UI_RES_X, 310, true).AnchorBottomLeft();
+		m_kSlotList3.itemPadding = listItemPadding;
+
+		m_kSlotList3.Hide(); // hidden initially
+	}
+
+	if(XComHQ.Squad.Length > 18)
+	{
+		listWidth = 0;
+		listItemPadding = 6;
+		for (i = 18; i < XComHQ.Squad.Length; ++i)
+		{
+			if (XComHQ.Squad[i].ObjectID > 0)
+				listWidth += (class'UISquadSelect_ListItem'.default.width + listItemPadding);
+		}
+		listX = Clamp((Movie.UI_RES_X / 2) - (listWidth / 2), 100, Movie.UI_RES_X / 2);
+
+		m_kSlotList4 = Spawn(class'UIList', self);
+		m_kSlotList4.InitList('', listX, -390, Movie.UI_RES_X, 310, true).AnchorBottomLeft();
+		m_kSlotList4.itemPadding = listItemPadding;
+
+		m_kSlotList4.Hide(); // hidden initially
 	}
 }
 
@@ -161,6 +201,74 @@ simulated function UpdateData()
 		}
 	}
 
+	ListItemIndex = 0;
+	for (SlotIndex = 0; SlotIndex < SlotListOrder.Length; ++SlotIndex)
+	{
+		SquadIndex = 12 + SlotListOrder[SlotIndex];
+		if (SquadIndex < XComHQ.Squad.Length)
+		{	
+			if (XComHQ.Squad[SquadIndex].ObjectID > 0)
+			{
+				if (bMakePawns)
+				{
+					if (ShowPawn(XComHQ.Squad[SquadIndex]))
+					{
+						UnitPawns[SquadIndex] = CreatePawn(XComHQ.Squad[SquadIndex], SquadIndex, false);
+						UnitPawns[SquadIndex].SetVisible(false);
+						UnitPawnsCinematic[SquadIndex] = CreatePawn(XComHQ.Squad[SquadIndex], SquadIndex, true);
+					}
+				}
+
+				if (m_kSlotList3.itemCount > ListItemIndex)
+				{
+					ListItem = UIAfterAction_ListItem(m_kSlotList3.GetItem(ListItemIndex));
+				}
+				else
+				{
+					ListItem = UIAfterAction_ListItem(m_kSlotList3.CreateItem(class'UIAfterAction_ListItem')).InitListItem();
+				}
+
+				ListItem.UpdateData(XComHQ.Squad[SquadIndex]);
+
+				++ListItemIndex;
+			}
+		}
+	}
+
+	ListItemIndex = 0;
+	for (SlotIndex = 0; SlotIndex < SlotListOrder.Length; ++SlotIndex)
+	{
+		SquadIndex = 18 + SlotListOrder[SlotIndex];
+		if (SquadIndex < XComHQ.Squad.Length)
+		{	
+			if (XComHQ.Squad[SquadIndex].ObjectID > 0)
+			{
+				if (bMakePawns)
+				{
+					if (ShowPawn(XComHQ.Squad[SquadIndex]))
+					{
+						UnitPawns[SquadIndex] = CreatePawn(XComHQ.Squad[SquadIndex], SquadIndex, false);
+						UnitPawns[SquadIndex].SetVisible(false);
+						UnitPawnsCinematic[SquadIndex] = CreatePawn(XComHQ.Squad[SquadIndex], SquadIndex, true);
+					}
+				}
+
+				if (m_kSlotList4.itemCount > ListItemIndex)
+				{
+					ListItem = UIAfterAction_ListItem(m_kSlotList4.GetItem(ListItemIndex));
+				}
+				else
+				{
+					ListItem = UIAfterAction_ListItem(m_kSlotList4.CreateItem(class'UIAfterAction_ListItem')).InitListItem();
+				}
+
+				ListItem.UpdateData(XComHQ.Squad[SquadIndex]);
+
+				++ListItemIndex;
+			}
+		}
+	}
+
 }
 
 simulated function UpdateNavHelp()
@@ -169,7 +277,7 @@ simulated function UpdateNavHelp()
 	NavHelp = `HQPRES.m_kAvengerHUD.NavHelp;
 	NavHelp.ClearButtonHelp();
 	NavHelp.AddContinueButton(OnContinue);
-	if(m_bBackRowActive)
+	if((m_RowFourActive) || (m_RowThreeActive) || (m_RowTwoActive))
 	{
 		NavHelp.AddBackButton(OnBack);
 	}
@@ -177,25 +285,56 @@ simulated function UpdateNavHelp()
 
 simulated function OnContinue()
 {		
-	local bool HasBackRowSoldiers;
+	local bool HasRowTwoSoldiers,HasRowThreeSoldiers,HasRowFourSoldiers;
 	local int idx;
 
 	class'XComGameStateContext_StrategyGameRule'.static.RemoveInvalidSoldiersFromSquad();
 
-	HasBackRowSoldiers = false;
+	HasRowTwoSoldiers = false;
+	HasRowThreeSoldiers = false;
+	HasRowFourSoldiers = false;
 	if (XComHQ.Squad.Length > 6)
 	{
 		for (idx = 6; idx < XComHQ.Squad.Length; idx++)
 		{
 			if (XComHQ.Squad[idx].ObjectID > 0)
 			{
-				HasBackRowSoldiers = true;
+				HasRowTwoSoldiers = true;
 				break;
 			}
 		}
 	}
 
-	if(m_bBackRowActive || !HasBackRowSoldiers)
+	if (XComHQ.Squad.Length > 12)
+	{
+		for (idx = 12; idx < XComHQ.Squad.Length; idx++)
+		{
+			if (XComHQ.Squad[idx].ObjectID > 0)
+			{
+				HasRowThreeSoldiers = true;
+				break;
+			}
+		}
+	}
+
+	if (XComHQ.Squad.Length > 18)
+	{
+		for (idx = 18; idx < XComHQ.Squad.Length; idx++)
+		{
+			if (XComHQ.Squad[idx].ObjectID > 0)
+			{
+				HasRowFourSoldiers = true;
+				break;
+			}
+		}
+	}
+
+	`LWTrace("Row two soldiers:" @HasRowTwoSoldiers);
+	`LWTrace("Row three soldiers:" @HasRowThreeSoldiers);
+	`LWTrace("Row four soldiers:" @HasRowFourSoldiers);
+
+
+	if((m_RowFourActive) || (m_RowThreeActive && !HasRowFourSoldiers) || (m_RowTwoActive && !HasRowThreeSoldiers) || !HasRowTwoSoldiers)
 	{
 		//terminate
 		UpdateState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("After Action");
@@ -210,11 +349,31 @@ simulated function OnContinue()
 	}
 	else
 	{
-		//`LOG("UIAfterAction_LW: Shifting camera to back row");
-		m_bBackRowActive = true;
+		if(!m_RowTwoActive && !m_RowThreeActive && !m_RowFourActive)
+		{
+			m_RowTwoActive = true;
+			m_kSlotList.Hide();
+			m_kSlotList2.Show();
+		}
+
+		else if(m_RowTwoActive && !m_RowThreeActive && !m_RowFourActive)
+		{
+			m_RowThreeActive = true;
+			m_RowTwoActive = false;
+			m_kSlotList2.Hide();
+			m_kSlotList3.Show();
+		}
+
+		else if(!m_RowTwoActive && m_RowThreeActive && !m_RowFourActive)
+		{
+			m_RowFourActive = true;
+			m_RowThreeActive = false;
+			m_kSlotList3.Hide();
+			m_kSlotList4.Show();
+		}
+		
 		UpdateNavHelp();
-		m_kSlotList.Hide();
-		m_kSlotList2.Show();
+
 		`HQPRES.CAMLookAtNamedLocation(UIDisplayCam_Back, CameraTransitionTime);
 	}
 
@@ -222,10 +381,32 @@ simulated function OnContinue()
 
 simulated function OnBack()
 {	
-	m_bBackRowActive = false;
+
 	UpdateNavHelp();
-	m_kSlotList2.Hide();
-	m_kSlotList.Show();
+
+	if(m_RowTwoActive && !m_RowThreeActive && !m_RowFourActive)
+	{
+		m_RowTwoActive = false;
+		m_kSlotList2.Hide();
+		m_kSlotList.Show();
+	}
+	
+	else if(!m_RowTwoActive && m_RowThreeActive && !m_RowFourActive)
+	{
+		m_RowThreeActive = false;
+		m_RowTwoActive = true;
+		m_kSlotList3.Hide();
+		m_kSlotList2.Show();
+	}
+
+	else if(!m_RowTwoActive && !m_RowThreeActive && m_RowFourActive)
+	{
+		m_RowFourActive = false;
+		m_RowThreeActive = true;
+		m_kSlotList4.Hide();
+		m_kSlotList3.Show();
+	}
+
 	`HQPRES.CAMLookAtNamedLocation(UIDisplayCam_Default, CameraTransitionTime);
 	
 }
@@ -235,7 +416,7 @@ simulated function OnReceiveFocus()
 	super(UIScreen).OnReceiveFocus();
 	UpdateNavHelp();
 	UpdateData();
-	if(m_bBackRowActive)
+	if(m_RowTwoActive)
 		`HQPRES.CAMLookAtNamedLocation(UIDisplayCam_Back, 0.0f);  
 	else
 		`HQPRES.CAMLookAtNamedLocation(UIDisplayCam_Default, 0.0f);

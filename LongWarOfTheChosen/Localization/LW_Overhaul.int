@@ -551,6 +551,10 @@ ChangeJobStr="CHANGE JOB"
 ChangeAllJobsStr="CHANGE ALL JOBS"
 PerksStr="PERKS" 
 
+m_strIncomeIntel="Mission Finding Power:"
+m_strIncomeSupply="Supplies Per Day:"
+m_strIncomeRecruit="Days Per Recruit:"
+
 [UIScreenListener_TacticalHUD]
 strEvacRequestTitle="EVAC Requested"
 strEvacRequestSubtitle="Turns until Skyranger arrives"
@@ -733,6 +737,6 @@ strDismiss_Button = "OK"
 
 [UISL_Shell_BetaPatchNotes]
 strMessage_Title = "Long War Of The Chosen"
-strMessage_Header = "RC35 Changes:"
-strMessage_Body = "<ul><li>Fixed issue where Chosen respawned at full HP after killing the Sarcophagus.</li><li>Redid custom wilderness crate race maps to prevent crates from spawning on the roofs of trucks.</li><li>Fixed issue where Mind Merge provided no crit bonus with beam tier psi amp.</li><li>Fixed issue where some mission elements used AlienHQ Force Level instead of LW's regional Force Level.</li><li>Covert op version of the crate race mission rewards adjusted: Reduced supply rewards a bit, added PCSs, Weapon Upgrades, Elerium Cores, and Datapads to the crates.</li><li>Fixed issue where Hunter omnivision was not removed from all difficulty variants.</li><li>Fixed corpse requirement inconsistency for instant Spectre, Priest, and Purifier Autopsies.</li><li>Added a configuration toggle to enable/disable the City Center HQ maps for testing. Flipping it off doesn't change existing HQ's if they spawned with City Center maps, but future HQs will not use them.</li><li>Another round of Localization updates from Copyrite.</li></ul>"
+strMessage_Header = "Latest Beta Changes:"
+strMessage_Body = "<ul><li>New Mission type! Compound Rescue.</li><li>This mission is a transformation of the rarely seen Covert Op rescue mission, repurposed for rescuing a VIP. The mission starts in stealth, and evac is triggered once the VIP is rescued.  Rescuing the VIP also spawns reinforcements to the compound.  Instead of alert level going up with each kill or unit seen, it goes up by one each turn after XCOM breaks concealment. The mission will show up in the \"rescue\" pool with the rescue from cell/vehicle missions.</li><li>SPARK defense now scales with their armor. 20 base defense, 30 with plated armor, 40 with powered armor.</li><li>Fixed issue with Phosphorus effect not applying to Firestorm.</li><li>Fixed issue with reinforcements on Secure UFO missions not working properly.</li><li>Added a flyover to Grazing Fire that appears when it turns a miss into a graze.</li><li>Added interrogation compound buildings to the pool for wilderness HQ assaults to use for a bit more variety in those maps.</li></ul>"
 strDismiss_Button = "OK"

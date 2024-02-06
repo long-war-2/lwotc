@@ -50,6 +50,8 @@ var config array<string> GuaranteeChosenInMissionTypes;
 
 var config array<string> NO_SIT_REP_MISSION_TYPES;
 
+var StateObjectReference AssociatedChosen;
+
 var config array<string> LargeMaps;
 
 var config array<string> VeryLargeMaps;
@@ -482,6 +484,7 @@ function bool SpawnMission(XComGameState NewGameState)
 	local XComGameState_HeadquartersResistance ResHQ;
 
 	MissionFamily = GetNextMissionFamily(NewGameState);
+	`LWTrace("Mission Family selected:" @MissionFamily);
 	if(MissionFamily == '')
 		return false;
 
@@ -598,12 +601,19 @@ function name GetNextMissionFamily(XComGameState NewGameState)
 	local array<int> ExistingMissionFamilyCounts, SelectArray;
 	local XComGameState_MissionSite MissionSite;
 	local int idx, i, j, FamilyIdx;
+	local name MissionFamily;
 
 	ActivityTemplate = GetMyTemplate();
 	if (CurrentMissionLevel >= ActivityTemplate.MissionTree.Length)
 		return '';
 
 	PossibleMissionFamilies = ActivityTemplate.MissionTree[CurrentMissionLevel].MissionFamilies;
+
+	`LWTrace("Possible Mission Families:");
+	foreach PossibleMIssionFamilies (MissionFamily)
+	{
+		`LWTrace(MissionFamily);
+	}
 
 	if(PossibleMissionFamilies.Length > 0)
 	{
@@ -930,6 +940,8 @@ static function MaybeAddChosenToMission(XComGameState_MissionSite MissionState)
 static function bool WillChosenAppearOnMission(XComGameState_AdventChosen ChosenState, XComGameState_MissionSite MissionState)
 {
 	local XComGameState_MissionSiteChosenAssault ChosenAssaultMission;
+
+	`LWTrace("Checking Chosen" @ChosenState.GetChosenTemplate().CharacterGroupName);
 
 	// If the Chosen doesn't control the region, they won't appear on the mission
 	if (!ChosenState.ChosenControlsRegion(MissionState.Region))

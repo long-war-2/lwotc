@@ -45,6 +45,8 @@ var config int ENCRYPTION_SERVER_MONTH;
 
 var config bool bNerfFrostLegion;
 
+var config bool bDisableDiversitySystem;
+
 var config array<MissionDefinition> ReplacementMissionDefs;
 
 
@@ -225,7 +227,25 @@ static event OnPostTemplatesCreated()
 	UpdateEncounterLists();
 	ModifyYellAbility();
 	ModifyMissionSchedules();
-	
+	ModifyEncountersForFL21();
+	ModCompatibilityConfig();
+}
+
+static function ModCompatibilityConfig()
+{
+	local int idx;
+	if(class'Helpers_LW'.default.bKirukaSparkActive)
+	{
+		`LWTrace("Patching Kiruka Spark.");
+		idx = class'NPSBDP_UIArmory_PromotionHero'.default.ClassAbilitiesPerRank.Find('ClassName','Spark');
+
+		if(idx != INDEX_NONE)
+		{
+			`LWTrace("Entry in Communty Promotion Screen config found.");
+			class'NPSBDP_UIArmory_PromotionHero'.default.ClassAbilitiesPerRank[idx].AbilitiesPerRank = 4;
+		}
+		
+	}
 }
 
 // Uses OPTC to update mission schedules instead of minus config
@@ -235,6 +255,8 @@ static function ModifyMissionSchedules()
 	local int MissionIdx;
 	local name MissionName;
 	local MissionDefinition CurrentMissionDef;
+	local MissionSchedule MissionSchedule;
+	local int i;
 
 	MissionManager = `TACTICALMISSIONMGR;
 
@@ -259,6 +281,39 @@ static function ModifyMissionSchedules()
 			`LWTrace("Couldn't find base missiondef to replace for mission name" @CurrentMissionDef.MissionName);
 		}
 	}
+
+	// Patch for FL21-99
+
+	for (i = 0; i < MissionManager.MissionSchedules.Length; i++)
+	{
+		MissionSchedule = MissionManager.MissionSchedules[i];
+
+		if (MissionSchedule.MaxRequiredForceLevel >= 20)
+		{
+			MissionSchedule.MaxRequiredForceLevel = 99;
+
+			MissionManager.MissionSchedules[i] = MissionSchedule;
+		}
+	}
+
+
+}
+
+static function ModifyEncountersForFL21()
+{
+	local XComTacticalMissionManager MissionManager;
+	local int i;
+
+	MissionManager = `TACTICALMISSIONMGR;
+
+	for (i = 0; i < MissionManager.ConfigurableEncounters.Length; i++)
+	{
+		if (MissionManager.ConfigurableEncounters[i].MaxRequiredForceLevel >= 20)
+		{
+			MissionManager.ConfigurableEncounters[i].MaxRequiredForceLevel = 99;
+    	}
+	}
+
 }
 
 static function UpdateEncounterLists()
@@ -287,6 +342,12 @@ static function UpdateEncounterLists()
 			{
 				`LWTrace("Removing nonexistant unit" @MissionManager.SpawnDistributionLists[i].SpawnDistribution[j].Template @ "From encounter list" @MissionManager.SpawnDistributionLists[i].ListID);
 				MissionManager.SpawnDistributionLists[i].SpawnDistribution.Remove(j, 1);
+			}
+
+			// new udpate for max FL extension
+			else if(MissionManager.SpawnDistributionLists[i].SpawnDistribution[j].MaxForceLevel == 20)
+			{
+				MissionManager.SpawnDistributionLists[i].SpawnDistribution[j].MaxForceLevel = 99;
 			}
 		}
 	}
@@ -1028,7 +1089,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 {
 	local XComGameStateHistory History;
 	local XComGameState_BattleData BattleData;
-	local name								CharacterTemplateName, FirstFollowerName;
+	local name								CharacterTemplateName, FirstFollowerName, NewMostCommonMember;
 	local int								idx, Tries, PodSize, k, numAttempts;
 	local X2CharacterTemplateManager		TemplateManager;
 	local X2CharacterTemplate				LeaderCharacterTemplate, FollowerCharacterTemplate, CurrentCharacterTemplate;
@@ -1041,8 +1102,19 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	local array<name> GoodUnits;
 	local array<name> BadUnits;
 
+	if(default.bDisableDiversitySystem)
+	{
+		return;
+	}
 
-	`LWDiversityTrace("Parsing Encounter : " $ EncounterName);
+
+	`LWTrace("Parsing Encounter : " $ EncounterName);
+
+	`LWTrace("Encounter composition:");
+	foreach SpawnInfo.SelectedCharacterTemplateNames(CharacterTemplateName, idx)
+	{
+		`LWTrace("Character[" $ idx $ "] = " $ CharacterTemplateName);
+	}
 
 	History = `XCOMHISTORY;
 	MissionState = XComGameState_MissionSite(SourceObject);
@@ -1063,7 +1135,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	// filter out dummy missions used by squad select infiltration calcs
 	if(MissionState.Source == 'LWInfilListDummyMission')
 	{
-		`LWDiversityTrace("Dummy mission for squad select detected, aborting");
+		`LWTrace("Dummy mission for squad select detected, aborting diversity algorithm");
 		return;
 	}
 
@@ -1115,6 +1187,8 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		`LWDiversityTrace("DABFL Detected, aborting.");
 		return;
 	}
+
+	`LWTrace("Pod Diversity System processing this pod.");
 
 	// Get the corresponding spawn distribution lists for this mission.
 	`LWDiversityTrace("Getting Leader Spawn Distribution List: ");
@@ -1365,19 +1439,27 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 				}
 				//`LWTRACE ("Try" @ string (tries) @ CountMembers (FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) @ string (PodSize));
 				// Let's look over our outcome and see if it's any better
-				if ((PodSize == 4 || PodSize == 5) && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= Podsize - 1)
+				NewMostCommonMember = FindMostCommonMember(SpawnInfo.SelectedCharacterTemplateNames);
+				if ((PodSize == 4 || PodSize == 5) && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= Podsize - 1)
 				{
 					Tries += 1;
 				}
 				else
 				{
-					if (PodSize >= 6 && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 2)
+					if ((PodSize == 6 || PodSize == 7) && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 2)
 					{
 						Tries += 1;
 					}
 					else
 					{
-						Satisfactory = true;
+						if( PodSize >= 8 && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 3)
+						{
+							Tries += 1;
+						}
+						else
+						{
+							Satisfactory = true;
+						}
 					}
 				}
 			}
@@ -1818,31 +1900,34 @@ static final function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnIn
 
 static function PostReinforcementCreation(out name EncounterName, out PodSpawnInfo Encounter, int ForceLevel, int AlertLevel, optional XComGameState_BaseObject SourceObject, optional XComGameState_BaseObject ReinforcementState)
 {
-    // M5 chosen handling:
-    `LWTrace("PostReinforcementCreation called. Current Force Level:" @ ForceLevel);
+	 `LWTrace("PostReinforcementCreation called. Current Force Level:" @ ForceLevel);
 
-	if (class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_LEVEL_FL_THRESHOLDS.length < 4)
-		return;
+	// M5 chosen handling:
+	if(Encounter.SelectedCharacterTemplateNames[0] == 'ChosenWarlockM4' || Encounter.SelectedCharacterTemplateNames[0] == 'ChosenSniperM4' || Encounter.SelectedCharacterTemplateNames[0] == 'ChosenAssassinM4')
+	{
+		if (class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_LEVEL_FL_THRESHOLDS.length < 4)
+			return;
 
-    if (ForceLevel >= class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_LEVEL_FL_THRESHOLDS[3])
-    {
-        `LWTrace("Swapping M4 Chosen" @Encounter.SelectedCharacterTemplateNames[0] @"...");  //PREVIOUS CHOSEN FOR LOGGING
+	    if (ForceLevel >= class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_LEVEL_FL_THRESHOLDS[3])
+	    {
+	        `LWTrace("Swapping M4 Chosen" @Encounter.SelectedCharacterTemplateNames[0] @"...");  //PREVIOUS CHOSEN FOR LOGGING
 
-        switch (Encounter.SelectedCharacterTemplateNames[0])
-        {
-            case 'ChosenWarlockM4'  : Encounter.SelectedCharacterTemplateNames[0] = 'ChosenWarlockM5';    break;
-            case 'ChosenSniperM4'   : Encounter.SelectedCharacterTemplateNames[0] = 'ChosenSniperM5';     break;
-            case 'ChosenAssassinM4' : Encounter.SelectedCharacterTemplateNames[0] = 'ChosenAssassinM5';   break;
-            default:
-                //selected template isn't one we care about
-                break;
-        }
+	        switch (Encounter.SelectedCharacterTemplateNames[0])
+	        {
+	            case 'ChosenWarlockM4'  : Encounter.SelectedCharacterTemplateNames[0] = 'ChosenWarlockM5';    break;
+	            case 'ChosenSniperM4'   : Encounter.SelectedCharacterTemplateNames[0] = 'ChosenSniperM5';     break;
+	            case 'ChosenAssassinM4' : Encounter.SelectedCharacterTemplateNames[0] = 'ChosenAssassinM5';   break;
+	            default:
+	                //selected template isn't one we care about
+	                break;
+	        }
 
-        `LWTrace("... for M5 Chosen" @Encounter.SelectedCharacterTemplateNames[0]); //POST SWAP FOR LOGGING
+	        `LWTrace("... for M5 Chosen" @Encounter.SelectedCharacterTemplateNames[0]); //POST SWAP FOR LOGGING
 
-	 	return; 
-    }
-
+		 	return; 
+	    }
+	}
+	// Send into normal PostEncounterCreation otherwise.
 	PostEncounterCreation(EncounterName, Encounter, ForceLevel, AlertLevel, SourceObject);
 }
 
@@ -5517,6 +5602,7 @@ static function CacheInstalledMods()
 	class'Helpers_LW'.default.bKirukaFactionOverhaulActive = class'Helpers_LW'.static.IsModInstalled("KirukasFactionSoldiersLWOTC");
 	class'Helpers_LW'.default.bNewTemplarModJamActive = class'Helpers_LW'.static.IsModInstalled("NewTemplarModJam");
 	class'Helpers_LW'.default.bDABFLActive = class'Helpers_LW'.static.IsModInstalled("DiverseAliensByForceLevelWOTC");
+	class'Helpers_LW'.default.bKirukaSparkActive = class'Helpers_LW'.static.IsModInstalled("KirukasSparkLWOTC_M2");
 
 	`LWTrace("cached bSmokeStopsFlanksActive: " @ class'Helpers_LW'.default.bSmokeStopsFlanksActive );
 	`LWTrace("cached bImprovedSmokeDefenseActive: " @class'Helpers_LW'.default.bImprovedSmokeDefenseActive);
@@ -5527,6 +5613,7 @@ static function CacheInstalledMods()
 	`LWTrace("cached bKirukaFactionOverhaulActive: " @class'Helpers_LW'.default.bKirukaFactionOverhaulActive);
 	`LWTrace("cached bNewTemplarModJamActive: " @class'Helpers_LW'.default.bNewTemplarModJamActive);
 	`LWTrace("cached bDABFLActive: " @class'Helpers_LW'.default.bDABFLActive);
+	`LWTrace("cached bKirukaSparkActive: " @class'Helpers_LW'.default.bKirukaSparkActive);
 
 }
 
@@ -5870,6 +5957,28 @@ exec function PrintKismetVariables(optional bool bAllVars)
     }
 }
 
+exec function PrintCurrentMissionDef()
+{
+	local XComGameState_HeadquartersXCom XComHQ;
+//	local XComGameState_MissionSite MissionState;
+	local GeneratedMissionData MissionData;
+	local string CurrentMap;
+
+	XComHQ = `XCOMHQ;
+
+	foreach XComHQ.arrGeneratedMissionData (MissionData)
+	{
+		class'Helpers'.static.OutputMsg("Found MissionDef" @ MissionData.Mission.MissionName);
+
+		foreach MissionData.Mission.MapNames (CurrentMap)
+		{
+			class'Helpers'.static.OutputMsg("Found map" @CurrentMap);
+		}
+		class'Helpers'.static.OutputMsg("\n");
+	}
+
+}
+
 // borrowed from Rusty and modified for all healing project, not card
 exec function LWOTC_CheckHealingProjects()
 {
@@ -6124,4 +6233,79 @@ exec function LWOTC_ViewMissionDef(name MissionDefName)
 		}
 	
 
+}
+
+exec function LWOTC_ChosenMonthsSinceReinforce()
+{
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local XComGameState_AdventChosen ChosenState;
+
+	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	AllChosen = AlienHQ.GetAllChosen(, false);
+
+		foreach AllChosen(ChosenState)
+		{
+			class'Helpers'.static.OutputMsg("Chosen Name:" @ChosenState.GetMyTemplateName());
+			class'Helpers'.static.OutputMsg("Months since Chosen Reinforce:" @ChosenState.GetMonthsSinceAction('ChosenAction_ReinforceRegion'));
+		}
+}
+
+exec function LWOTC_SortRebels()
+{
+	local XComGameStateHistory History;
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_LWOutpost	OutPostState;
+	local XComGameState NewGameState;
+	
+	History = `XCOMHISTORY;
+
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Sort Outposts");
+
+	foreach History.IterateByClassType(class'XComGameState_WorldRegion', RegionState)
+	{
+		OutPostState = `LWOUTPOSTMGR.GetOutpostForRegion(RegionState);
+
+		OutPostState = XComGameState_LWOutpost(NewGameState.ModifyStateObject(class'XComGameState_LWOutpost', OutPostState.ObjectID));
+
+		OutpostState.SortRebels();
+	}
+
+	`GAMERULES.SubmitGameState(NewGameState);
+}
+
+exec function LWOTC_ShowPastChosenActions()
+{
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local XComGameState_AdventChosen ChosenState;
+	local XComGameState_ChosenAction ActionState;
+	local XComGameStateHistory History;
+	local int idx, ICooldown;
+
+	History = `XCOMHISTORY;
+
+	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	AllChosen = AlienHQ.GetAllChosen(, false);
+
+		foreach AllChosen(ChosenState)
+		{
+			`LWTrace("Chosen:" @ ChosenState.GetMyTemplateName());
+			for(idx = (ChosenState.PreviousMonthActions.Length - 1); idx >= 0; idx--)
+			{
+
+				ActionState = XComGameState_ChosenAction(History.GetGameStateForObjectID(ChosenState.PreviousMonthActions[idx].ObjectID));
+				
+				`LWTrace("Action" @idx $":" @ActionState.GetMyTemplateName());
+			}
+
+		}
+
+		foreach AllChosen(ChosenState)
+	{
+        // The fix is the below line, ChosenState changed to Chosen
+		ICooldown = ChosenState.GetMonthsSinceAction('ChosenAction_ReinforceRegion');
+
+		`LWTrace(ChosenState.GetMyTemplateName() @ "Months since Reinforce:" @ICooldown);
+	}
 }

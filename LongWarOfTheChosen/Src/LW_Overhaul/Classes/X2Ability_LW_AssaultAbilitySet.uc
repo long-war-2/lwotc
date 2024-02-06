@@ -194,7 +194,7 @@ static function X2Effect_Persistent ElectroshockDisorientEffect()
 	local X2Condition_AbilityProperty   AbilityCondition;
 	local X2Condition_UnitProperty Condition_UnitProperty;
 
-	DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect();
+	DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect(,, false);
 	DisorientedEffect.bApplyOnHit = false;
 	DisorientedEffect.bApplyOnMiss = true;
 

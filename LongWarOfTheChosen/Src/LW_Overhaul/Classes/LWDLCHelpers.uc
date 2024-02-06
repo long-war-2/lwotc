@@ -353,8 +353,9 @@ static function SetOnMissionStatus(XComGameState_Unit UnitState, XComGameState N
 			StaffSlotState.EmptySlot(NewGameState);
 		}
 	}
-	if (UnitState.GetStatus() == eStatus_Healing)
-	{
+	// Tedster - see if commenting out this if check to always check for and pause heal projects fixes things.
+	//if (UnitState.GetStatus() == eStatus_Healing)
+//	{
 		//and pause any healing project
 		HealProject = GetHealProject(UnitState.GetReference());
 		if (HealProject != none)
@@ -362,7 +363,7 @@ static function SetOnMissionStatus(XComGameState_Unit UnitState, XComGameState N
 			HealProject = XComGameState_HeadquartersProjectHealSoldier(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersProjectHealSoldier', HealProject.ObjectID));
 			HealProject.PauseProject();
 		}
-	}
+//	}
 
 	UnitState.SetStatus(eStatus_CovertAction);
 	class'Helpers_LW'.static.UpdateUnitWillRecoveryProject(UnitState);

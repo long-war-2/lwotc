@@ -16,6 +16,8 @@ class UISL_Shell_BetaPatchNotes extends UIScreenListener config(LWoTC_Version);
 
 var config int			iVERSION;
 var int					iVersion_Installed;
+var bool 				bReleaseVersion;
+
 
 var localized string	strMessage_Title, strMessage_Header, strMessage_Body, strDismiss_Button;
 
@@ -121,7 +123,10 @@ event OnRemoved(UIScreen Screen)
 // SHOULD WE DISPLAY THE POPUP BASED ON CONFIG NUMBER
 static function bool ShouldShowWarningMsg()
 {
-	return false;
+	// toggle for disabling this on release versions
+	if(default.bReleaseVersion)
+		return false;
+
 	// Show it because the version number is set to negative (testing)... 
 	if (default.iVersion_Installed <= -1)
 	{	
@@ -158,5 +163,6 @@ static function bool ShouldShowWarningMsg()
 defaultproperties
 {
 	ScreenClass = UIFinalShell;
-	iVersion_Installed = 18; // beta is on 18
+	iVersion_Installed = 21; // beta is on 21
+	bReleaseVersion = false;
 }

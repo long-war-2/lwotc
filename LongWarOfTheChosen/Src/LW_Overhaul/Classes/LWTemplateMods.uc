@@ -938,6 +938,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	local X2AbilityCooldown_Shared			CooldownShared;
 	local X2AbilityMultiTarget_Cone			ConeMultiTarget;
 	local X2AbilityCooldown_AllInstances 	AllInstancesCooldown;
+	local X2Effect_LWCoveringFireIgnoreCover CoveringFireEffect;
 
 	// WOTC TODO: Trying this out. Should be put somewhere more appropriate.
 	if (Template.DataName == 'ReflexShotModifier')
@@ -1324,7 +1325,24 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 
 		Template.AssociatedPassives.AddItem('NeutralizingAgents_LW');
 		Template.AddTargetEffect(RemoveEffects);
+
+		// new Covering Fire effect
+		CoveringFireEffect = new class'X2Effect_LWCoveringFireIgnoreCover';
+		CoveringFireEffect.BuildPersistentEffect(1, false, false, false, eGameRule_PlayerTurnBegin);
+		CoveringFireEffect.bForThreatAssessment = true;
+		AbilityCondition = new class'X2Condition_AbilityProperty';
+		AbilityCondition.OwnerHasSoldierAbilities.AddItem('ThreatAssessment');
+		CoveringFireEffect.TargetConditions.AddItem(AbilityCondition);
+		Template.AddTargetEffect(CoveringFireEffect);
 	
+	}
+
+	if(Template.DataName == 'CoveringFire')
+	{
+		CoveringFireEffect = new class'X2Effect_LWCoveringFireIgnoreCover';
+		CoveringFireEffect.BuildPersistentEffect(1, true, true);
+		CoveringFireEffect.bForThreatAssessment = false;
+		Template.AddTargetEffect(CoveringFireEffect);
 	}
 
 	if (Template.DataName == 'KillZone' || Template.DataName == 'Deadeye' || Template.DataName == 'BulletShred')
@@ -2754,11 +2772,11 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		}
 		if (GremlinTemplate.DataName == 'SparkBit_MG')
 		{
-			GremlinTemplate.HealingBonus = 1;
+			GremlinTemplate.HealingBonus = 2;
 		}
 		if (GremlinTemplate.DataName == 'SparkBit_BM')
 		{
-			GremlinTemplate.HealingBonus = 2;
+			GremlinTemplate.HealingBonus = 4;
 		}
 	}
 	
@@ -2941,11 +2959,19 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 					break;
 
 				case 'SparkArmor':
-				case 'PlatedSparkArmor':
-				case 'PoweredSparkArmor':
-					ArmorTemplate.Abilities.AddItem('Carapace_Plating_Ability');
+					ArmorTemplate.Abilities.AddItem('SPARK_Kevlar_Plating_Ability');
 					break;
-				
+				case 'PlatedSparkArmor':
+					ArmorTemplate.Abilities.AddItem('SPARK_Plated_Plating_Ability');
+					ArmorTemplate.Abilities.AddItem('SPARK_Plated_Armor_Def');
+					ArmorTemplate.SetUIStatMarkup(class'XLocalizedData'.default.DefenseLabel, eStat_Defense, class'X2Ability_LW_GearAbilities'.default.SPARK_PLATED_ARMOR_DEF);
+					break;
+				case 'PoweredSparkArmor':
+					ArmorTemplate.Abilities.AddItem('SPARK_Powered_Plating_Ability');
+					ArmorTemplate.Abilities.AddItem('SPARK_Powered_Armor_Def');
+					ArmorTemplate.SetUIStatMarkup(class'XLocalizedData'.default.DefenseLabel, eStat_Defense, class'X2Ability_LW_GearAbilities'.default.SPARK_POWERED_ARMOR_DEF);
+					break;
+
 				default:
 					// Assume any other armors we don't know about should get the extra
 					// utility slot. (Issue #89)
@@ -3181,6 +3207,22 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 						Template.AlternateRequirements.AddItem(AltReq);
 						break;
 
+					default:
+						break;
+				}
+
+				// Bit abilities:
+
+				switch (EquipmentTemplate.DataName)
+				{
+					case 'SparkBit_MG':
+						EquipmentTemplate.Abilities.AddItem('Plated_BIT_Bonus_Dodge');
+						EquipmentTemplate.SetUIStatMarkup("Dodge", eStat_Dodge, class'X2Ability_LW_GearAbilities'.default.PLATED_BIT_DODGE_BONUS);
+						break;
+					case 'SparkBit_BM':
+						EquipmentTemplate.Abilities.AddItem('Powered_BIT_Bonus_Dodge');
+						EquipmentTemplate.SetUIStatMarkup("Dodge", eStat_Dodge, class'X2Ability_LW_GearAbilities'.default.POWERED_BIT_DODGE_BONUS);
+						break;
 					default:
 						break;
 				}

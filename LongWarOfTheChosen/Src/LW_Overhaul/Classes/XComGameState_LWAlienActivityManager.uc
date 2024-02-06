@@ -212,7 +212,9 @@ function UpdatePreMission(XComGameState StartGameState, XComGameState_MissionSit
 	if(RegionalAIState != None)
 	{
 		// Tedster - Set Force Level to regional FL if one exists
-		BattleData.SetForceLevel(CLAMP(RegionalAIState.LocalForceLevel,1,20));
+		BattleData.SetForceLevel(RegionalAIState.LocalForceLevel);
+		// old one clamping to 20
+		//BattleData.SetForceLevel(CLAMP(RegionalAIState.LocalForceLevel,1,20));
 		`LWTrace("Updating BattleData with Regional Force Level.");
 	}
 
@@ -403,6 +405,12 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 	// Potentially add a Chosen to the mission, and if we do so, reduce the alert level
 	ModifyAlertForChosen(MissionSite, AlertLevel);
 	AlertLevel = Max(AlertLevel, 1); // clamp to be no less than 1
+
+	// Hard Code alert level for Chosen Reinforce mission.
+	if(MissionSite.GeneratedMission.Mission.MissionFamily == "ChosenSupplyLineRaid_LW")
+	{
+		AlertLevel = 4;
+	}
 
 	`LWTRACE("Updating Mission Difficulty: ForceLevel=" $ ForceLevel $ ", AlertLevel=" $ AlertLevel);
 

@@ -4,7 +4,7 @@
 //  PURPOSE: A state representing a rebel outpost associated with a particular region
 //---------------------------------------------------------------------------------------
 
-class XComGameState_LWOutpost extends XComGameState_GeoscapeEntity config(LW_Outposts) dependson(X2StrategyElement_DefaultAlienActivities) // needed for mission settings
+class XComGameState_LWOutpost extends XComGameState_GeoscapeEntity config(LW_Outposts) dependson(X2StrategyElement_DefaultAlienActivities,LWRebelJob_DefaultJobSet) // needed for mission settings
 	;
 
 const STAFF_SLOT_TEMPLATE_NAME='LWOutpostStaffSlot';
@@ -354,12 +354,25 @@ function StateObjectReference AddRebel(StateObjectReference RebelRef, XComGameSt
 	Rebel.Level = 0;
 	Rebel.StartDate = GetCurrentTime();
 	Rebels.AddItem(Rebel);
+	SortRebels();
 
 	`XEVENTMGR.TriggerEvent('RebelAdded_LW', Unit, self, NewGameState);
 
 	return Rebel.Unit;
 }
 
+function SortRebels()
+{
+	Rebels.Sort(RebelRank);
+}
+
+delegate int RebelRank(RebelUnit UnitA, RebelUnit UnitB)
+{
+	if(UnitA.Level < UnitB.Level)
+		return -1;
+	else 
+		return 0;
+}
 
 function InitOutpost(XComGameState NewState, XComGameState_WorldRegion WorldRegion)
 {
@@ -1022,13 +1035,22 @@ function float GetRebelLevelsOnJob(Name JobName, optional bool IgnoreJobChanges 
 	return RebelLevels;
 }
 
-// Reset the income pool for a particular job to zero.
+// Reset the income pool for a particular job to zero
+// Tedster - let Recruit job keep overflow
 function ResetIncomePool(Name JobName)
 {
 	local int idx;
 	
 	idx = GetIncomePoolIndexForJob(JobName);
-	IncomePools[idx].Value = 0;
+
+	if(JobName == class'LWRebelJob_DefaultJobSet'.const.RECRUIT_JOB)
+	{
+		IncomePools[idx].Value -= INCOME_POOL_THRESHOLD;
+	}
+	else
+	{
+		IncomePools[idx].Value = 0;
+	}	
 }
 
 function ResetJobBucket(Name JobName)
@@ -1090,6 +1112,58 @@ function float GetDailyIncomeForJob(Name JobName, bool IgnoreJobChanges = false,
 	// Apply modifiers on the income
 	foreach JobTemplate.IncomeModifiers(Modifier)
 	{
+		Mod = Modifier.GetModifier(self);
+		DailyJobIncome *= Mod;
+		if (Mod != 1.0 && Verbose)
+		{
+			`LWTrace("[" $ JobName $ "] Income after modifier " $ Modifier.GetDebugName() $ ": " $ Mod $ " = " $ DailyJobIncome);
+		}
+	}
+
+	return DailyJobIncome;
+}
+
+// This version ignores faceless modifiers for UI preview
+
+function float GetProjectedDailyIncomeForJob(Name JobName, bool IgnoreJobChanges = false, optional bool Verbose = false)
+{
+	local X2StrategyElementTemplateManager StrategyTemplateMgr;
+	local LWRebelJobTemplate JobTemplate;
+	local float Mod;
+	local LWRebelJobIncomeModifier Modifier;
+	local float RebelLevels;
+	//local int NumFaceless;
+	local float DailyJobIncome;
+
+	StrategyTemplateMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+	JobTemplate = LWRebelJobTemplate(StrategyTemplateMgr.FindStrategyElementTemplate(JobName));
+
+	RebelLevels = GetRebelLevelsOnJob(JobName, IgnoreJobChanges);
+
+	if(JobTemplate != none)
+	{
+		if (JobTemplate.GetDailyIncomeFn != none)
+		{
+			DailyJobIncome = JobTemplate.GetDailyIncomeFn(self, RebelLevels, JobTemplate);
+		}
+		else
+		{
+			// No income function, use the "standard" formula
+			DailyJobIncome = ((RebelLevels * JobTemplate.IncomePerRebel));
+		}
+	}
+
+	if (Verbose)
+	{
+		`LWTrace("[" $ JobName $ "] Daily base income: " $ DailyJobIncome);
+	}
+
+	// Apply modifiers on the income
+	foreach JobTemplate.IncomeModifiers(Modifier)
+	{
+		//skip faceless modifiers
+		if(Modifier.isa('LWRebelJobIncomeModifier_LocalFaceless'))
+			continue;
 		Mod = Modifier.GetModifier(self);
 		DailyJobIncome *= Mod;
 		if (Mod != 1.0 && Verbose)
@@ -1420,6 +1494,8 @@ function OnMonthEnd(XComGameState NewGameState)
 			}
 		}
 	}
+
+	SortRebels();
 
 	// Record supplies taken for diminishingreturnsmechanic
 	SuppliesTaken += GetIncomePoolForJob('Resupply');

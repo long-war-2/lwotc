@@ -12,6 +12,12 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 
 	TargetUnit = XComGameState_Unit(TargetDamageable);
 
+	// Short Circuit if damage being dealt = 0.
+	if (CurrentDamage == 0)
+	{
+		return 0;
+	}
+
 	if (SourceWeapon != none)
 	{
 		GrenadeTemplate = X2GrenadeTemplate(SourceWeapon.GetMyTemplate());

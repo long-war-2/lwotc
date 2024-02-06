@@ -43,7 +43,11 @@ strSavior_WorldMessage="Savior: Healed extra <XGParam:IntValue0/> Health."
 [X2Effect_LWHolotarget]
 HoloTargetEffectName="Holotargeted"
 
+[X2Effect_ApplyRepairHeal_LW]
+HealedMessage="+<Heal/> HP Healed"
+
 ;POTENTIALLY DEPRECATED AS WELL AS ALL TRANSLATIONS!
+
 [X2Item_DenseSmokeGrenade]
 DenseSmokeGrenadeEffectDisplayName="Dense Smoke"
 DenseSmokeGrenadeEffectDisplayDesc="The dense smoke grants this unit a additional defensive bonus."
