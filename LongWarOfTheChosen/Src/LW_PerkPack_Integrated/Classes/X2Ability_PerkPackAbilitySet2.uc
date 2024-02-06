@@ -1031,9 +1031,6 @@ static function X2Effect StingGrenadeEffect()
 	local X2Condition_AbilityProperty	AbilityCondition;
 	local X2Condition_UnitProperty UnitCondition;
 
-	StunEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(default.STING_GRENADE_STUN_LEVEL, default.STING_GRENADE_STUN_CHANCE);
-	StunEffect.bRemoveWhenSourceDies = false;
-
 	StunEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(default.STING_GRENADE_STUN_LEVEL, default.STING_GRENADE_STUN_CHANCE, false);
 	StunEffect.BuildPersistentEffect(1, true, false, false, eGameRule_UnitGroupTurnBegin);
 	StunEffect.SetDisplayInfo(ePerkBuff_Penalty, class'X2StatusEffects'.default.StunnedFriendlyName, class'X2StatusEffects'.default.StunnedFriendlyDesc, "img:///UILibrary_PerkIcons.UIPerk_stun");
