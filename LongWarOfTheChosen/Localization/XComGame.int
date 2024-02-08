@@ -3193,7 +3193,7 @@ ObjectiveTextPools[1]="Rescue XCOM VIP from ADVENT Compound"
 ObjectiveTextPools[2]="Extract the rescued VIP"
 ObjectiveTextPools[3]="Extract all XCOM soldiers"
 ObjectiveTextPools[4]="Compound Rescue"
-ObjectiveTextPools[5]="We've located a compound holding a VIP important to the resistance! Infiltrate the compound and rescue the VIP. Once alerted, ADVENT will begin increasing security, eventually summoning reinforcements. Firebrand will embark once XCOM signals that the VIP is in custody."
+ObjectiveTextPools[5]="We've located a compound holding a VIP important to the resistance! Infiltrate the compound and rescue the VIP. Once alerted, ADVENT will begin increasing security each turn, eventually summoning reinforcements. Firebrand will embark once XCOM signals that the VIP is in custody."
 
 [CompoundRescueOperative_LW X2MissionTemplate]
 DisplayName="Rescue VIP from ADVENT Compound"
