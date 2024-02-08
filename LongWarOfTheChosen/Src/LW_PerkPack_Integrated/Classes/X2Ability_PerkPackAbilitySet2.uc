@@ -68,6 +68,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddSnapShotAimModifierAbility());
 	Templates.AddItem(AddTrojan());
 	Templates.AddItem(AddTrojanVirus());
+	Templates.AddItem(AddTrojanVirusAPDrain());
 	Templates.AddItem(AddFlashbanger());
 	Templates.AddItem(AddSmokeGrenade());
 	Templates.AddItem(AddSavior());
@@ -346,6 +347,7 @@ static function X2AbilityTemplate AddTrojan()
 	Template.bCrossClassEligible = false;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.AdditionalAbilities.AddItem('TrojanVirus');
+	Template.AdditionalAbilities.AddItem('TrojanVirusAPDrain');
 
 	return Template;
 }
@@ -407,6 +409,59 @@ static function X2AbilityTemplate AddTrojanVirus()
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	//Template.BuildVisualizationFn = none; // no visualization on application on purpose -- it would be fighting with the hacking stuff
+
+	return Template;	
+}
+
+static function X2AbilityTemplate AddTrojanVirusAPDrain()
+{
+	local X2AbilityTemplate                 Template;
+	local X2AbilityCost_ActionPoints        ActionPointCost;	
+	local X2Condition_UnitProperty          ShooterPropertyCondition;	
+	local X2Condition_UnitProperty          TargetUnitPropertyCondition;	
+	local X2AbilityTarget_Single            SingleTarget;
+	local X2AbilityTrigger_Placeholder		UseTrigger;
+	local X2Effect_RemoveTurnStartActionPoints RemoveAPEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'TrojanVirusAPDrain');
+	
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.bFreeCost = true;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+	
+	//Can't evaluate stimuli while dead
+	ShooterPropertyCondition = new class'X2Condition_UnitProperty';	
+	ShooterPropertyCondition.ExcludeDead = true;                    	
+	Template.AbilityShooterConditions.AddItem(ShooterPropertyCondition);
+
+	//No triggering on dead, or friendlies
+	TargetUnitPropertyCondition = new class'X2Condition_UnitProperty';	
+	TargetUnitPropertyCondition.ExcludeDead = true;                    	
+	TargetUnitPropertyCondition.ExcludeFriendlyToSource = false;	
+	Template.AbilityTargetConditions.AddItem(TargetUnitPropertyCondition);
+
+	//Always applied when triggered
+	Template.AbilityToHitCalc = default.DeadEye;
+
+	//Single target ability
+	SingleTarget = new class'X2AbilityTarget_Single';
+	Template.AbilityTargetStyle = SingleTarget;
+
+	//Triggered by persistent effect from TrojanVirus
+	UseTrigger = new class'X2AbilityTrigger_Placeholder';
+	Template.AbilityTriggers.AddItem(UseTrigger);
+
+	Template.AbilitySourceName = 'eAbilitySource_Standard';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_overwatch";
+	Template.Hostility = eHostility_Neutral;
+
+	RemoveAPEffect = new class'X2Effect_RemoveTurnStartActionPoints';
+	RemoveAPEffect.BuildPersistentEffect (1, false, false /*Remove on Source Death*/,, eGameRule_PlayerTurnBegin);
+	Template.AddTargetEffect (RemoveAPEffect);
+
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
 	return Template;	
 }

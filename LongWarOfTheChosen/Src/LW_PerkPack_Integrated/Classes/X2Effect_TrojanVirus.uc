@@ -155,7 +155,7 @@ static function EventListenerReturn OnMindControlLost(Object EventData, Object E
 	}
 	NewTargetState.TakeEffectDamage(EffectState.GetX2Effect(), Damage, 0, 0, EffectState.ApplyEffectParameters,  NewGameState, false, false, true);
 
-	//remove actions
+	//remove actions (isn't actually working here)
 	if(NewTargetState.IsAlive())
 	{
 		NewTargetState.ActionPoints.Length = 0;
@@ -172,6 +172,9 @@ static function EventListenerReturn OnMindControlLost(Object EventData, Object E
 		History.CleanupPendingGameState(NewGameState);
 
 
+	// Activate new ability to drain AP at next turn start.
+
+	class'X2Effect_Trojan'.static.ActivateAbility('TrojanVirusAPDrain', EffectState.ApplyEffectParameters.SourceStateObjectRef, EffectState.ApplyEffectParameters.TargetStateObjectRef);
 
 	return ELR_NoInterrupt;
 }
