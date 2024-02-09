@@ -28,18 +28,21 @@ static function EventListenerReturn OnUnitTakeEffectDamage(Object EventData, Obj
 		return ELR_NoInterrupt;
 
 	History = `XCOMHISTORY;
-	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Remove Rupture from unit");
+	
 	SourceUnit = XComGameState_Unit(History.GetGameStateForObjectID(EffectGameState.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
 
-	// Check that it's the unit with the Blood Trail effect that caused the damage
-	if (AbilityContext.InputContext.SourceObject.ObjectID != SourceUnit.ObjectID)
+	// short circuit if unit is not ruptured
+	if (SourceUnit.Ruptured == 0)
 		return ELR_NoInterrupt;
 
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Remove Rupture from unit");
 	SourceUnit = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit',EffectGameState.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
     //Clear Out the Unit's Rupture
     SourceUnit.Ruptured = 0;
+	
+	`LWTrace("Setting unit rupture to 0:" @SourceUnit.GetMyTemplateName());
 
-	`GAMERULES.SubmitGameState(NewGameState);
+	`TACTICALRULES.SubmitGameState(NewGameState);
 
     return ELR_NoInterrupt;
 }
