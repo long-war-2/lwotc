@@ -206,12 +206,14 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'TrackingShot':
 			class'Helpers_LW'.static.MakeFreeAction(Template);
+			MakeAbilityUseAmmo(Template);
 			break;
 		case 'HarborWave':
 			ReworkHarborWave(Template);
 			break;
 		case 'HunterRifleShot':
 			MakeAbilityWorkWhenBurning(Template);
+			MakeAbilityUseAmmo(Template);
 			break;
 		case 'Quickdraw':
 			AddQuickdrawMobilityBoost(Template);
@@ -791,6 +793,15 @@ static function MakeAbilityNonTurnEnding(X2AbilityTemplate Template)
 			X2AbilityCost_ActionPoints(Cost).bConsumeAllPoints = false;
 		}
 	}
+}
+
+static function MakeAbilityUseAmmo(X2AbilityTemplate Template)
+{
+	local X2AbilityCost_Ammo AmmoCost;
+
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = 1;
+	Template.AbilityCosts.AddItem(AmmoCost);
 }
 
 // Adds an extra unit condition to both Solace and Solace Cleanse that
