@@ -3,3 +3,6 @@ BuildCache/
 PublishedFileID.Id
 /LongWarOfTheChosen/Content/
 /LongWarOfTheChosen/ContentForCook/
+!/LongWarOfTheChosen/Content/Parcels
+!/LongWarOfTheChosen/Content/Plots
+!/LongWarOfTheChosen/ContentForCook/Missions
