@@ -16,7 +16,7 @@ var config int BLACK_MARKET_2ND_SOLDIER_FL;
 var config int BLACK_MARKET_3RD_SOLDIER_FL;
 var config float BLACK_MARKET_PERSONNEL_INFLATION_PER_FORCE_LEVEL;
 var config float BLACK_MARKET_SOLDIER_DISCOUNT;
-var config bool DOUBLE_SOLDIERS;
+var config bool BLACK_MARKET_DOUBLE_SOLDIERS;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -591,7 +591,7 @@ static function EventListenerReturn OnBlackMarketGoodsReset(Object EventData, Ob
 	PersonnelRewardNames.AddItem('Reward_Scientist');
 	PersonnelRewardNames.AddItem('Reward_Engineer');
 	PersonnelRewardNames.AddItem('Reward_Soldier');
-	if(default.DOUBLE_SOLDIERS)
+	if(default.BLACK_MARKET_DOUBLE_SOLDIERS)
 	{
 		PersonnelRewardNames.AddItem('Reward_Soldier');
 	}
@@ -600,7 +600,7 @@ static function EventListenerReturn OnBlackMarketGoodsReset(Object EventData, Ob
 	if (AlienHQ.GetForceLevel() >= default.BLACK_MARKET_2ND_SOLDIER_FL)
 	{
 		PersonnelRewardNames.AddItem('Reward_Soldier');
-		if(default.DOUBLE_SOLDIERS)
+		if(default.BLACK_MARKET_DOUBLE_SOLDIERS)
 		{
 			PersonnelRewardNames.AddItem('Reward_Soldier');
 		}
@@ -609,7 +609,7 @@ static function EventListenerReturn OnBlackMarketGoodsReset(Object EventData, Ob
 	if (AlienHQ.GetForceLevel() >= default.BLACK_MARKET_3RD_SOLDIER_FL)
 {
 		PersonnelRewardNames.AddItem('Reward_Soldier');
-		if(default.DOUBLE_SOLDIERS)
+		if(default.BLACK_MARKET_DOUBLE_SOLDIERS)
 		{
 			PersonnelRewardNames.AddItem('Reward_Soldier');
 		}
