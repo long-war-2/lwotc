@@ -943,7 +943,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	// WOTC TODO: Trying this out. Should be put somewhere more appropriate.
 	if (Template.DataName == 'ReflexShotModifier')
 	{
-		`Log("TRACE: Using AbilityTemplateManager to get 'StandardShot'");
+		`LWTrace("Using AbilityTemplateManager to get 'StandardShot'");
 		Template.LocFriendlyName = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager().FindAbilityTemplate('StandardShot').LocFriendlyName;
 	}
 
@@ -1510,7 +1510,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 
 	if (Template.DataName == 'StandardShot')
 	{
-		`LOG ("Adding ReflexShotModifier to StandardShot");
+		`LWTrace("Adding ReflexShotModifier to StandardShot");
 		Template.AdditionalAbilities.AddItem('ReflexShotModifier');
 	}
 
@@ -1733,7 +1733,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	// When completeing a control robot hack remove any previous disorient effects as is done for dominate.
 	if (Template.DataName == 'HackRewardControlRobot' || Template.DataName == 'HackRewardControlRobotWithStatBoost')
 	{
-		`Log("Adding disorient removal to " $ Template.DataName);
+		`LWTrace("Adding disorient removal to " $ Template.DataName);
 		Template.AddTargetEffect(class'X2StatusEffects'.static.CreateMindControlRemoveEffects());
 		Template.AddTargetEffect(class'X2StatusEffects'.static.CreateStunRecoverEffect());
 	}
@@ -1888,7 +1888,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 
 	if (DoubleTapAbilities.Find(Template.DataName) >= 0)
 	{
-		`LOG ("Adding Double Tap to" @ Template.DataName);
+		`LWTrace("Adding Double Tap to" @ Template.DataName);
 		AddDoubleTapActionPoint (Template, class'X2Ability_LW_SharpshooterAbilitySet'.default.DoubleTapActionPoint);
 	}
 
@@ -1961,7 +1961,7 @@ function AddReflexActionPoint(X2AbilityTemplate Template, Name ActionPointName)
 		}
 	}
 
-	`Log("Cannot add reflex ability " $ Template.DataName $ ": Has no action point cost");
+	`LWTrace("Cannot add reflex ability " $ Template.DataName $ ": Has no action point cost");
 }
 
 function AddDoubleTapActionPoint(X2AbilityTemplate Template, Name ActionPointName)
@@ -2180,7 +2180,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 
 	if (class'X2Effect_TransferMecToOutpost'.default.VALID_FULLOVERRIDE_TYPES_TO_TRANSFER_TO_OUTPOST.Find(Template.DataName) >= 0)
 	{
-		`Log("Adding evac to " $ Template.DataName);
+		`LWTrace("Adding evac to " $ Template.DataName);
 		Template.Abilities.AddItem('Evac');
 	}
 
@@ -3878,7 +3878,7 @@ function bool ExpectNarrativeCount(X2MissionNarrativeTemplate Template, int Cnt)
 	if(Template.NarrativeMoments.Length != Cnt)
 	{
 		`redscreen("LWTemplateMods: Found too many narrative moments for " $ Template.DataName);
-		`log("LWTemplateMods: Found too many narrative moments for " $ Template.DataName);
+		`LWTrace("LWTemplateMods: Found too many narrative moments for " $ Template.DataName);
 		return false;
 	}
 
