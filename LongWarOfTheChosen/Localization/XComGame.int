@@ -310,7 +310,7 @@ LocFriendlyName="Coup de Grâce"
 LocFlyOverText="Coup de Grâce"
 LocLongDescription="Bonus to hit, damage, and critical chance with your <Ability:BOUND_WEAPON_NAME/> against a disoriented, stunned or panicking enemy."
 LocHelpText="Bonus to hit, damage, and critical chance with your <Ability:BOUND_WEAPON_NAME/> against a disoriented, stunned, or panicking enemy."
-LocPromotionPopupText="<Bullet/> Coup de Grâce grants +50 aim, +50 critical chance and +2 damage against stunned and panicking enemies.<br/><Bullet/> The bonuses are reduced against disoriented enemies."
+LocPromotionPopupText="<Bullet/> Coup de Grâce grants +50 aim, +50 critical chance and +2 damage against stunned and panicking enemies.<br/><Bullet/> Coup de Grâce grants +25 aim, +25 critical chance and +1 damage against disoriented enemies."
 ; End Translation (2)
 
 [Tradecraft X2AbilityTemplate]
