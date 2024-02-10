@@ -646,14 +646,13 @@ function PostMissionRevertSoldierStatus(XComGameState NewGameState, XComGameStat
 		}
 
 		// Tedster fix - resume heal project during squad cleanup
-		if(UnitState.GetStatus() == eStatus_Healing)
-		{
-			HealProject = class'LWDLCHelpers'.static.GetHealProject(UnitState.GetReference());
+		
+		HealProject = class'LWDLCHelpers'.static.GetHealProject(UnitState.GetReference());
 
-			if(HealProject != NONE && (HealProject.BlockCompletionDateTime.m_iYear == 9999 ||HealProject.BlockCompletionDateTime.m_iYear == 9999 ))
-			{
-				HealProject.ResumeProject();
-			}
+		if(HealProject != NONE && (HealProject.BlockCompletionDateTime.m_iYear == 9999 ||HealProject.BlockCompletionDateTime.m_iYear == 9999 ))
+		{
+			UnitState.SetStatus(eStatus_Healing);
+			HealProject.ResumeProject();
 		}
 
 		//if soldier still has OnMission status, set status to active (unless it's a SPARK that's healing)
