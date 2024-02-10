@@ -612,7 +612,8 @@ static function X2AbilityTemplate AddSavior()
 static function X2AbilityTemplate AddDenseSmoke()
 {
 	local X2AbilityTemplate						Template;
-	//local X2Effect_TemporaryItem				TemporaryItemEffect;
+	local X2Effect_TemporaryItem				TemporaryItemEffect;
+	local ResearchConditional					Conditional;
 	//local X2AbilityTrigger_UnitPostBeginPlay	Trigger;
 
 	Template = PurePassive('DenseSmoke', "img:///UILibrary_LW_PerkPack.LW_AbilityDenseSmoke");
@@ -659,6 +660,27 @@ static function X2AbilityTemplate AddDenseSmoke()
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
 	return Template;*/
+
+	Conditional.ResearchProjectName = 'AdvancedGrenades';
+	Conditional.ItemName = 'SmokeGrenadeMk2';
+
+	TemporaryItemEffect = new class'X2Effect_TemporaryItem';
+	TemporaryItemEffect.EffectName = 'DenseSmokeGrenadeEffect';
+	TemporaryItemEffect.ItemName = 'SmokeGrenade';
+	TemporaryItemEffect.ResearchOptionalItems.AddItem(Conditional);
+
+	//POTENTIALLY DEPERECATED
+	TemporaryItemEffect.AlternativeItemNames.AddItem('DenseSmokeGrenade');
+	TemporaryItemEffect.AlternativeItemNames.AddItem('DenseSmokeGrenadeMk2');
+
+	TemporaryItemEffect.ForceCheckAbilities.AddItem('LaunchGrenade');
+	TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
+	TemporaryItemEffect.BuildPersistentEffect(1, true, false);
+	TemporaryItemEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	TemporaryItemEffect.DuplicateResponse = eDupe_Ignore;
+	Template.AddTargetEffect(TemporaryItemEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
 	return Template;
 }

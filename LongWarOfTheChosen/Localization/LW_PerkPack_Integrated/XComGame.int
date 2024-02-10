@@ -598,9 +598,9 @@ LocPromotionPopupText="<Bullet/> Effect applies to GREMLIN heal, Medikits and Re
 [DenseSmoke X2AbilityTemplate]
 LocFriendlyName="Dense Smoke"
 LocFlyOverText="Dense Smoke"
-LocLongDescription="Your smoke grenades confer an additional 10 defense."
-LocHelpText="Your smoke grenades confer an additional 10 defense."
-LocPromotionPopupText="<Bullet/> Your smoke grenades confer an additional 10 defense to those within the smoke, for a total of 30.<br/>"
+LocLongDescription="Your smoke grenades confer an additional 10 defense. Also grants one free Smoke Grenade."
+LocHelpText="Your smoke grenades confer an additional 10 defense. Also grants one free Smoke Grenade."
+LocPromotionPopupText="<Bullet/> Your smoke grenades confer an additional 10 defense to those within the smoke, for a total of 30. Also grants one free Smoke Grenade.<br/>"
 
 
 [Collateral_LW X2AbilityTemplate]
