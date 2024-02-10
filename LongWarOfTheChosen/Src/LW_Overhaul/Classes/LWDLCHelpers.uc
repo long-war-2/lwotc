@@ -312,7 +312,20 @@ static function PutRulerOnCurrentMission(XComGameState NewGameState, XComGameSta
 // helper for sparks to resolve if a wounded spark is on a mission, since that status can override the OnMission one
 static function bool IsUnitOnMission(XComGameState_Unit UnitState)
 {
-	switch (UnitState.GetMyTemplateName())
+	if (UnitState.GetStatus() == eStatus_CovertAction)
+	{
+		return true;
+	}
+	if (`LWSQUADMGR.UnitIsOnMission(UnitState.GetReference()))
+	{
+		return true;
+	}
+	if (`LWOUTPOSTMGR.IsUnitAHavenLiaison(UnitState.GetReference()))
+	{
+		return true;
+	}
+
+	/*switch (UnitState.GetMyTemplateName())
 	{
 		case 'SparkSoldier':
 		case 'LostTowersSpark':
@@ -333,7 +346,7 @@ static function bool IsUnitOnMission(XComGameState_Unit UnitState)
 		default:
 			return UnitState.GetStatus() == eStatus_CovertAction;
 			break;
-	}
+	}*/
 	return false;
 }
 
