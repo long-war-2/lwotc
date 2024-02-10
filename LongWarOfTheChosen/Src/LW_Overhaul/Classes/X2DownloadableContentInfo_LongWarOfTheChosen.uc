@@ -2596,7 +2596,7 @@ static function bool GetValidFloorSpawnLocations(out array<Vector> FloorPoints, 
 	}
 	World = `XWORLD;
 	RootTile = SpawnPoint.GetTile();
-	while(FloorPoints.Length < NumSoldiers && Iters++ < 8)
+	while(FloorPoints.Length < NumSoldiers && Iters++ < 25)
 	{
 		FloorPoints.Length = 0;
 		FloorTiles.Length = 0;
