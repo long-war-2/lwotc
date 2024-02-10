@@ -57,12 +57,16 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 	XComHQ = `XCOMHQ;
 	UseItemName = ItemName;
 	//check if we meet any of the optional research conditions to add a better item
-	foreach ResearchOptionalItems(Conditional)
+
+	if(XComHQ != NONE)
 	{
-		if(XComHQ.IsTechResearched(Conditional.ResearchProjectName))
+		foreach ResearchOptionalItems(Conditional)
 		{
-			UseItemName = Conditional.ItemName;
-			break;
+			if(XComHQ.IsTechResearched(Conditional.ResearchProjectName))
+			{
+				UseItemName = Conditional.ItemName;
+				break;
+			}
 		}
 	}
 	
