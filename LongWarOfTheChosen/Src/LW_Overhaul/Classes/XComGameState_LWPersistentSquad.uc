@@ -560,6 +560,7 @@ function PostMissionRevertSoldierStatus(XComGameState NewGameState, XComGameStat
 	local int SlotIndex, idx;
 	local StaffUnitInfo UnitInfo;
 	local XComGameState_LWPersistentSquad SquadState, UpdatedSquad;
+	local XComGameState_HeadquartersProjectHealSoldier HealProject;
 
 	//History = `XCOMHISTORY;
 	XComHQ = `XCOMHQ;
@@ -641,6 +642,17 @@ function PostMissionRevertSoldierStatus(XComGameState NewGameState, XComGameStat
 						}
 					}
 				}
+			}
+		}
+
+		// Tedster fix - resume heal project during squad cleanup
+		if(UnitState.GetStatus() == eStatus_Healing)
+		{
+			HealProject = class'LWDLCHelpers'.static.GetHealProject(UnitState.GetReference());
+
+			if(HealProject != NONE)
+			{
+				HealProject.ResumeProject();
 			}
 		}
 
