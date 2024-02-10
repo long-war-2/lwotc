@@ -650,7 +650,7 @@ function PostMissionRevertSoldierStatus(XComGameState NewGameState, XComGameStat
 		{
 			HealProject = class'LWDLCHelpers'.static.GetHealProject(UnitState.GetReference());
 
-			if(HealProject != NONE)
+			if(HealProject != NONE && (HealProject.BlockCompletionDateTime.m_iYear == 9999 ||HealProject.BlockCompletionDateTime.m_iYear == 9999 ))
 			{
 				HealProject.ResumeProject();
 			}
