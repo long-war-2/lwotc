@@ -133,6 +133,8 @@ var config bool bEnableCityHQs;
 
 var config array<string> MapsToDisable;
 
+var config array<Name> EncountersToExclude;
+
 // End data and data structures
 //-----------------------------
 
@@ -1177,7 +1179,8 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	}
 
 	// Ignore explicitly protected encounters
-	if (InStr (EncounterName,"PROTECTED") != -1)
+	if (InStr (EncounterName, "PROTECTED") != INDEX_NONE 
+  		|| default.EncountersToExclude.Find(EncounterName) != INDEX_NONE)
 	{
 		return;
 	}
