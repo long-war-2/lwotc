@@ -206,14 +206,14 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'TrackingShot':
 			class'Helpers_LW'.static.MakeFreeAction(Template);
-			MakeAbilityUseAmmo(Template);
+			//MakeAbilityUseAmmo(Template);
 			break;
 		case 'HarborWave':
 			ReworkHarborWave(Template);
 			break;
 		case 'HunterRifleShot':
 			MakeAbilityWorkWhenBurning(Template);
-			MakeAbilityUseAmmo(Template);
+			//MakeAbilityUseAmmo(Template);
 			break;
 		case 'Quickdraw':
 			AddQuickdrawMobilityBoost(Template);
