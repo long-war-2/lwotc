@@ -1628,7 +1628,7 @@ static function X2AbilityTemplate KineticStrike()
 	local X2AbilityToHitCalc_StandardMelee  StandardMelee;
 	local X2Effect_DLC_3StrikeDamage		WeaponDamageEffect;
 	local array<name>                       SkipExclusions;
-	local X2AbilityCooldown                 Cooldown;
+	local X2AbilityCooldown_SparkMelee                 Cooldown;
 	local X2Effect_Knockback				KnockbackEffect;
 	local X2AbilityMultiTarget_Radius		RadiusMultiTarget;
 
@@ -1643,7 +1643,7 @@ static function X2AbilityTemplate KineticStrike()
 	Template.AbilityConfirmSound = "TacticalUI_SwordConfirm";
 	Template.MeleePuckMeshPath = "Materials_DLC3.MovePuck_Strike";
 
-	Cooldown = new class'X2AbilityCooldown';
+	Cooldown = new class'X2AbilityCooldown_SparkMelee';
 	Cooldown.iNumTurns = default.KS_COOLDOWN;
 	Template.AbilityCooldown = Cooldown;
 

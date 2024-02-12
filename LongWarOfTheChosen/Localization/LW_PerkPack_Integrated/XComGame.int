@@ -1223,10 +1223,10 @@ LocPromotionPopupText="<Bullet/> The SPARK's repair ability will now heal 8 HP p
 
 [ConcussiveStrike_LW X2AbilityTemplate]
 LocFriendlyName="Concussive Strike"
-LocLongDescription="A special Strike attack that does half damage but stuns the target for two action points. Cannot target robotic units. 4-turn cooldown."
+LocLongDescription="A special Strike attack that does half damage but stuns the target for two action points. Cannot target robotic units. 4-turn cooldown. Also reduces the cooldown of Kinetic Strike by 1."
 LocHelpText="A special Strike attack that does half damage but stuns the target for two action points."
 LocFlyOverText="Concussive Strike"
-LocPromotionPopupText="<Bullet/> Concussive Strike cannot target robotic units, as their processing centers aren't as squishy as brains.<br/><Bullet/> The damage of Concussive Strike without Assault Servos is 3/4/5 depending on equipped chassis.<br/><Bullet/> The damage of Concussive Strike with Assault Servos is 4/5/6 depending on equipped chassis.<br/>"
+LocPromotionPopupText="<Bullet/> Concussive Strike cannot target robotic units, as their processing centers aren't as squishy as brains.<br/><Bullet/> The damage of Concussive Strike without Assault Servos is 3/4/5 depending on equipped chassis.<br/><Bullet/> The damage of Concussive Strike with Assault Servos is 4/5/6 depending on equipped chassis.<br/><Bullet/> The SPARK's improved melee abilities also reduce the cooldown of the main Kinetic Strike ability by 1."
 
 [Neutralize_LW X2AbilityTemplate]
 LocFriendlyName="Neutralize Protocol"
