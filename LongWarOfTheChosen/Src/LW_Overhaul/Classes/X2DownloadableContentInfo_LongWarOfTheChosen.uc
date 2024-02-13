@@ -6014,6 +6014,36 @@ exec function LWOTC_CheckHealingProjects()
 
 }
 
+exec function LWOTC_CheckWillProjects()
+{
+	local XComGameState_Unit	                        UnitState;
+    local XComGameStateHistory                          History;
+	local XComGameState_HeadquartersProjectRecoverWill	WillProject;
+
+	History = `XCOMHISTORY;
+
+	foreach History.IterateByClassType(class'XComGameState_HeadquartersProjectRecoverWill', WillProject)
+	{
+		UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(WillProject.ProjectFocus.ObjectID));
+
+		class'Helpers'.static.OutputMsg("==============================================");
+		class'Helpers'.static.OutputMsg("WillProject found for" @UnitState.GetFullName());
+		class'Helpers'.static.OutputMsg(`SHOWVAR(UnitState.GetCurrentStat(eStat_Will)));
+		class'Helpers'.static.OutputMsg(`SHOWVAR(UnitState.GetMaxStat(eStat_Will)));
+
+		class'Helpers'.static.OutputMsg(`SHOWVAR(WillProject.ProjectPointsRemaining));
+		class'Helpers'.static.OutputMsg(`SHOWVAR(WillProject.BlocksRemaining));
+		class'Helpers'.static.OutputMsg(`SHOWVAR(WillProject.PointsPerBlock));
+		class'Helpers'.static.OutputMsg(`SHOWVAR(WillProject.BlockPointsRemaining));
+		//class'Helpers'.static.OutputMsg(`SHOWVAR(HealSoldierProject.bForcePaused));
+		class'Helpers'.static.OutputMsg(`SHOWVAR(WillProject.GetProjectedNumHoursRemaining()));
+		class'Helpers'.static.OutputMsg(`SHOWVAR(WillProject.GetCurrentNumHoursRemaining()));
+
+		class'Helpers'.static.OutputMsg(`SHOWVAR(WillProject.GetCurrentWorkPerHour()));
+
+	}
+
+}
 
 exec function LWOTC_CheckCapturedSoldiers()
 {
