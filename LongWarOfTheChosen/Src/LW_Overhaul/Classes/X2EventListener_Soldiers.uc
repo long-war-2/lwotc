@@ -323,6 +323,12 @@ static function EventListenerReturn OnOverridePersonnelStatusTime(Object EventDa
 	local XComGameState_Unit	UnitState;
 	local int					Hours, Days;
 
+	if(class'Helpers_LW'.default.bDSLReduxActive)
+	{
+		// DSL Redux active, let it handle things.
+		return ELR_NoInterrupt;
+	}
+
 	OverrideTuple = XComLWTuple(EventData);
 	if (OverrideTuple == none)
 	{
@@ -342,7 +348,13 @@ static function EventListenerReturn OnOverridePersonnelStatusTime(Object EventDa
 		return ELR_NoInterrupt;
 	}
 
+	if (OverrideTuple.Data[0].b) 
+	{
+		return ELR_NoInterrupt; //mental states fire twice apparently
+	}
+
 	Hours = OverrideTuple.Data[2].i;
+
 	if (Hours < 0 || Hours > 24 * 30 * 12) // Ignore year long missions
 	{
 		OverrideTuple.Data[1].s = "";
@@ -361,6 +373,7 @@ static function EventListenerReturn OnOverridePersonnelStatusTime(Object EventDa
 		OverrideTuple.Data[1].s = class'UIUtilities_Text'.static.GetHoursString(Hours);
 		OverrideTuple.Data[2].i = Hours;
 	}
+	return ELR_NoInterrupt;
 }
 
 static function EventListenerReturn OnShouldShowPsi(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)

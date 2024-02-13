@@ -168,6 +168,8 @@ var config bool bNewTemplarModJamActive;
 var config bool bDABFLActive;
 var config bool bKirukaSparkActive;
 
+var config bool bDSLReduxActive;
+
 var config array<string> cachedInstalledModNames;
 
 static final function bool IsModInstalled(coerce string DLCIdentifer)

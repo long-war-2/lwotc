@@ -5606,6 +5606,7 @@ static function CacheInstalledMods()
 	class'Helpers_LW'.default.bNewTemplarModJamActive = class'Helpers_LW'.static.IsModInstalled("NewTemplarModJam");
 	class'Helpers_LW'.default.bDABFLActive = class'Helpers_LW'.static.IsModInstalled("DiverseAliensByForceLevelWOTC");
 	class'Helpers_LW'.default.bKirukaSparkActive = class'Helpers_LW'.static.IsModInstalled("KirukasSparkLWOTC_M2");
+	class'Helpers_LW'.default.bDSLReduxActive = class'Helpers_LW'.static.IsModInstalled("WOTC_DSL_Rusty");
 
 	`LWTrace("cached bSmokeStopsFlanksActive: " @ class'Helpers_LW'.default.bSmokeStopsFlanksActive );
 	`LWTrace("cached bImprovedSmokeDefenseActive: " @class'Helpers_LW'.default.bImprovedSmokeDefenseActive);
@@ -5617,6 +5618,7 @@ static function CacheInstalledMods()
 	`LWTrace("cached bNewTemplarModJamActive: " @class'Helpers_LW'.default.bNewTemplarModJamActive);
 	`LWTrace("cached bDABFLActive: " @class'Helpers_LW'.default.bDABFLActive);
 	`LWTrace("cached bKirukaSparkActive: " @class'Helpers_LW'.default.bKirukaSparkActive);
+	`LWTrace("cached bDSLReduxActive: " @class'Helpers_LW'.default.bDSLReduxActive);
 
 }
 
