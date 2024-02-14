@@ -398,6 +398,9 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 	//modifiers
 	if (InfiltratingSquad != none && !MissionSite.GetMissionSource().bGoldenPath)
 	{
+		
+		// Tedster: add call to update infiltration when the mission data is being refreshed.
+		InfiltratingSquad.UpdateInfiltrationState(false);
 		InfiltrationAlertModifier = InfiltratingSquad.GetAlertnessModifierForCurrentInfiltration(); // this submits its own gamestate update
 		AlertLevel += InfiltrationAlertModifier;
 	}
