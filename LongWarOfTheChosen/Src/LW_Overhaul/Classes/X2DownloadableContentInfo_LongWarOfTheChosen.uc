@@ -2621,6 +2621,7 @@ static function bool GetValidFloorSpawnLocations(out array<Vector> FloorPoints, 
 	}
 
 	`LWTRACE("GetValidFloorSpawnLocations called from : " $ GetScriptTrace());
+	`LWTRACE("Took" @ Iters @ "Iterations.");
 	`LWTRACE("Found " $ FloorPoints.Length $ " Valid Tiles to place units around location : " $ string(SpawnPoint.Location));
 	for (Iters = 0; Iters < FloorPoints.Length; Iters++)
 	{
