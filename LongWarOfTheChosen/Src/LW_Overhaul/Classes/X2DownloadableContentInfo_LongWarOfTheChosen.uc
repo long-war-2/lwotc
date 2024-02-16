@@ -6345,3 +6345,14 @@ exec function LWOTC_ShowPastChosenActions()
 		`LWTrace(ChosenState.GetMyTemplateName() @ "Months since Reinforce:" @ICooldown);
 	}
 }
+
+exec function LWOTC_ForceGenerateMap()
+{
+	local XComParcelManager ParcelMgr;
+
+	ParcelMgr = `PARCELMGR;
+
+	//ParcelMgr.GenerateMap(`SYNC_FRAND_STATIC()*100000);
+
+	`TACTICALRULES.StartNewGame();
+}
