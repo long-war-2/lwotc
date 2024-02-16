@@ -79,6 +79,8 @@ var int panelY;
 var int panelH;
 var int panelW;
 
+var bool bSquadSelect;
+
 var array<StateObjectReference> CachedOutposts;
 
 simulated function InitScreen(XComPlayerController InitController, UIMovie InitMovie, optional name InitName)
@@ -482,7 +484,7 @@ simulated function OnReceiveFocus()
 			class'UIUtilities'.static.DisplayUI3D(DisplayTag, CameraTag, 0, true);
 		}
 	}
-	else
+	else if(!bSquadSelect)
 	{
 		`HQPRES.GetCamera().ForceEarthViewImmediately(false);
 	}

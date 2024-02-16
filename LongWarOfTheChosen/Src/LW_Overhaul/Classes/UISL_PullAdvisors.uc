@@ -4,6 +4,8 @@ class UISL_PullAdvisors extends UIScreenListener;
 
 var localized string m_strPullHavenAdvisors;
 var localized string m_strPullHavenAdvisorsTooltip;
+var localized string m_StrHavenManagement;
+var localized string m_StrHavenManagementTooltip;
 
 event OnInit(UIScreen Screen)
 {
@@ -24,12 +26,22 @@ simulated function AddHelp()
 
 	if (Screen != none)
 	{
-		NavHelp = `HQPRES.m_kAvengerHUD.NavHelp;
-		if(NavHelp.m_arrButtonClickDelegates.Length > 0 && NavHelp.m_arrButtonClickDelegates.Find(OnPullHavenAdvisors) == INDEX_NONE)
+		if(!screen.bNoCancel)
 		{
-			NavHelp.AddCenterHelp(m_strPullHavenAdvisors,, OnPullHavenAdvisors, false, m_strPullHavenAdvisorsTooltip);
+			NavHelp = `HQPRES.m_kAvengerHUD.NavHelp;
+			/*
+			// Tedster - disable this button
+			if(NavHelp.m_arrButtonClickDelegates.Length > 0 && NavHelp.m_arrButtonClickDelegates.Find(OnPullHavenAdvisors) == INDEX_NONE)
+			{
+				NavHelp.AddCenterHelp(m_strPullHavenAdvisors,, OnPullHavenAdvisors, false, m_strPullHavenAdvisorsTooltip);
+			}
+			*/
+			if(NavHelp.m_arrButtonClickDelegates.Length > 0 && NavHelp.m_arrButtonClickDelegates.Find(OnResistanceManagementButton) == INDEX_NONE)
+			{
+				NavHelp.AddCenterHelp(m_StrHavenManagement,, OnResistanceManagementButton, false, m_StrHavenManagementTooltip);
+			}
+			Screen.SetTimer(0.6f, false, nameof(AddHelp), self);
 		}
-		Screen.SetTimer(0.6f, false, nameof(AddHelp), self);
 	}
 }
 
@@ -52,6 +64,7 @@ simulated function OnPullHavenAdvisors()
 	local StateObjectReference OutpostRef, EmptyRef;
     local XComGameStateHistory History;
 	local XComGameState NewGameState;
+	local XComGameState_HeadquartersXCom XComHQ;
 
 	History = `XCOMHISTORY;
     OutpostManager = class'XComGameState_LWOutpostManager'.static.GetOutpostManager();
@@ -76,5 +89,24 @@ simulated function OnPullHavenAdvisors()
 	else
 		History.CleanupPendingGameState(NewGameState);
 
+	XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+
+	XComHQ.HandlePowerOrStaffingChange();
+
 }
 
+simulated function OnResistanceManagementButton()
+{
+	local UIResistanceManagement_LW ResistanceOverviewScreen;
+	local XComHQPresentationLayer HQPres;
+
+	HQPres = `HQPRES;
+
+	if (!HQPres.ScreenStack.HasInstanceOf(class'UIResistanceManagement_LW'))
+	{
+		ResistanceOverviewScreen = HQPres.Spawn(class'UIResistanceManagement_LW', HQPres);
+		ResistanceOverviewScreen.EnableCameraPan = false;
+		ResistanceOverviewScreen.bSquadSelect = true;
+		HQPres.ScreenStack.Push(ResistanceOverviewScreen);
+	}
+}

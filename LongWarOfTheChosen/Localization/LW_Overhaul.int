@@ -744,3 +744,6 @@ strDismiss_Button = "OK"
 [UISL_PullAdvisors]
 m_strPullHavenAdvisors="PULL ADVISORS"
 m_strPullHavenAdvisorsTooltip="Removes available Haven advisors from havens. They will need to be manually returned."
+
+m_StrHavenManagement="MANAGE HAVENS"
+m_StrHavenManagementTooltip="Opens the Resistance Management screen."
