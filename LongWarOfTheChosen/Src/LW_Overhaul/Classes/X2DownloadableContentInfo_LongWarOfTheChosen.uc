@@ -6348,9 +6348,9 @@ exec function LWOTC_ShowPastChosenActions()
 
 exec function LWOTC_ForceGenerateMap()
 {
-	local XComParcelManager ParcelMgr;
+	//local XComParcelManager ParcelMgr;
 
-	ParcelMgr = `PARCELMGR;
+	//ParcelMgr = `PARCELMGR;
 
 	//ParcelMgr.GenerateMap(`SYNC_FRAND_STATIC()*100000);
 
