@@ -88,10 +88,9 @@ static function string AddFontInfoWithColor(string txt, bool is3DScreen, optiona
 static function String GetDifficultyString(XComGameState_MissionSite MissionState, optional int AlertModifier = 0)
 {
 	local string Text, nums;
-	local int Difficulty, LabelsLength, EnemyUnits, i;
+	local int Difficulty, LabelsLength, EnemyUnits;
 	local array<X2CharacterTemplate> Dummy;
 	local XComGameState_MissionSite DummyMissionSite;
-	local X2CharacterTemplate CharTemplate;
 
 	local array<X2CharacterTemplate> TemplatesThatWillSpawn_ADVT, TemplatesThatWillSpawn_LOST, TemplatesThatWillSpawn_FAC1, TemplatesThatWillSpawn_FAC2, TemplatesThatWillSpawn_CIVS;
 	local int NumUnits_ADVT, NumUnits_LOST, NumUnits_FAC1, NumUnits_FAC2, NumUnits_CIVS;
@@ -111,16 +110,6 @@ static function String GetDifficultyString(XComGameState_MissionSite MissionStat
 
 			`LWTrace("Schedule Selected for Dummy Mission:" @MissionState.SelectedMissionData.SelectedMissionScheduleName);
 			`LWTrace("Modified Alert check. Alert Modifier:" @AlertModifier @ ". Enemy Count: " @NumUnits_ADVT);
-			i=0;
-			/*foreach TemplatesThatWillSpawn_ADVT (CharTemplate)
-			{
-				if(CharTemplate != None)
-				{
-					i++;
-					`LWTrace("Unit" @i @"Found:" @CharTemplate.strCharacterName);
-				}
-			}
-			*/
 		}
 		else
 		{
