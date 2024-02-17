@@ -6533,7 +6533,7 @@ LocPromotionPopupText = "<Bullet/> Your ranged attacks gain +<Ability:TARGET_FOC
 LocFriendlyName = "Aim Assist"
 LocHelpText = "Gain additional +<Ability:AIM_ASSIST_AIM_BONUS/> aim and +<Ability:AIM_ASSIST_CRIT_BONUS/> crit against holotargeted units."
 LocLongDescription = "Gain additional +<Ability:AIM_ASSIST_AIM_BONUS/> aim and +<Ability:AIM_ASSIST_CRIT_BONUS/> crit against holotargeted units."
-LocPromotionPopupText = "<Bullet/> Gain additional +<Ability:AIM_ASSIST_AIM_BONUS/> aim and +<Ability:AIM_ASSIST_CRIT_BONUS/> crit against holotargeted units. <br/>"
+LocPromotionPopupText = "<Bullet/> Works with both the Holotargeter and Holo Targeting perk, but does not stack if both effects are applied to the same target. <br/>"
 
 [SuperCharge_LW X2AbilityTemplate]
 LocFriendlyName = "Arc Welder"
