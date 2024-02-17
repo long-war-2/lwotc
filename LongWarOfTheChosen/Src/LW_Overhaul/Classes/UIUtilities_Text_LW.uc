@@ -112,7 +112,7 @@ static function String GetDifficultyString(XComGameState_MissionSite MissionStat
 			`LWTrace("Schedule Selected for Dummy Mission:" @MissionState.SelectedMissionData.SelectedMissionScheduleName);
 			`LWTrace("Modified Alert check. Alert Modifier:" @AlertModifier @ ". Enemy Count: " @NumUnits_ADVT);
 			i=0;
-			foreach TemplatesThatWillSpawn_ADVT (CharTemplate)
+			/*foreach TemplatesThatWillSpawn_ADVT (CharTemplate)
 			{
 				if(CharTemplate != None)
 				{
@@ -120,6 +120,7 @@ static function String GetDifficultyString(XComGameState_MissionSite MissionStat
 					`LWTrace("Unit" @i @"Found:" @CharTemplate.strCharacterName);
 				}
 			}
+			*/
 		}
 		else
 		{
@@ -139,14 +140,14 @@ static function String GetDifficultyString(XComGameState_MissionSite MissionStat
 			`LWTrace("Schedule Selected for Dummy Mission:" @DummyMissionSite.SelectedMissionData.SelectedMissionScheduleName);
 			`LWTrace("Modified Alert check. Alert Modifier:" @AlertModifier @ ". Enemy Count: " @NumUnits_ADVT);
 			i=0;
-			foreach TemplatesThatWillSpawn_ADVT (CharTemplate)
+		/*	foreach TemplatesThatWillSpawn_ADVT (CharTemplate)
 			{
 				if(CharTemplate != None)
 				{
 					i++;
 					`LWTrace("Unit" @i @"Found:" @CharTemplate.strCharacterName);
 				}
-			}
+			} */
 		}
 			Difficulty = Max (1, ((NumUnits_ADVT-4) / 3));
 	}
@@ -233,6 +234,7 @@ static function GetShadowChamberMissionInfo(XComGameState_MissionSite MissionSit
 	for( EncounterIndex = 0; EncounterIndex < MissionSite.SelectedMissionData.SelectedEncounters.Length; EncounterIndex++ )
 	{
 		//EncounterSpawnInfo = PodSpawnInfo struct from XComAISpawnManager ...
+		`LWTrace("Encounter" @EncounterIndex@" Name:" @MissionSite.SelectedMissionData.SelectedEncounters[EncounterIndex].SelectedEncounterName);
 
 		for( CharacterIndex = 0; CharacterIndex < MissionSite.SelectedMissionData.SelectedEncounters[EncounterIndex].EncounterSpawnInfo.SelectedCharacterTemplateNames.Length; CharacterIndex++ )
 		{
@@ -248,8 +250,10 @@ static function GetShadowChamberMissionInfo(XComGameState_MissionSite MissionSit
 				}
 				else
 				{
+					`LWTrace("Unit" @CharacterIndex @":"@SelectedTemplate.dataname@"; group name:" @ SelectedTemplate.CharacterGroupName);
 					if( SelectedTemplate.CharacterGroupName != '' )
 					{
+						`LWTrace("Added to list");
 						TemplatesThatWillSpawn_ADVT.AddItem(SelectedTemplate);
 						NumUnits_ADVT++;	
 
