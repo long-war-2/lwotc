@@ -128,15 +128,6 @@ static function String GetDifficultyString(XComGameState_MissionSite MissionStat
 
 			`LWTrace("Schedule Selected for Dummy Mission:" @DummyMissionSite.SelectedMissionData.SelectedMissionScheduleName);
 			`LWTrace("Modified Alert check. Alert Modifier:" @AlertModifier @ ". Enemy Count: " @NumUnits_ADVT);
-			i=0;
-		/*	foreach TemplatesThatWillSpawn_ADVT (CharTemplate)
-			{
-				if(CharTemplate != None)
-				{
-					i++;
-					`LWTrace("Unit" @i @"Found:" @CharTemplate.strCharacterName);
-				}
-			} */
 		}
 			Difficulty = Max (1, ((NumUnits_ADVT-4) / 3));
 	}
