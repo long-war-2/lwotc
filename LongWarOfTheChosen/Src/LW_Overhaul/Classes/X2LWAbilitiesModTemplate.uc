@@ -120,6 +120,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			MakeAbilitiesUnusableOnLost(Template);
 			MakeAbilityHostile(Template);
 			break;
+		case 'Stasis':
+			MakeAbilityHostile(Template);
+			break;
 		case 'HunterGrapple':
 		case 'Grapple':
 		case 'PoweredGrapple':

@@ -395,10 +395,21 @@ static function X2AbilityTemplate CloseCombatSpecialistAttack()
 	Trigger.MethodName = 'PostBuildGameState';
 	Template.AbilityTriggers.AddItem(Trigger);
 	//  trigger on an attack
+	/*
 	Trigger = new class'X2AbilityTrigger_Event';
 	Trigger.EventObserverClass = class'X2TacticalGameRuleset_AttackObserver';
 	Trigger.MethodName = 'InterruptGameState';
 	Template.AbilityTriggers.AddItem(Trigger);
+
+	*/
+
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.EventID = 'AbilityActivated';
+	EventListener.ListenerData.Deferral = ELD_Immediate;
+	EventListener.ListenerData.Filter = eFilter_None;
+	EventListener.ListenerData.Priority = 85;
+	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalAttackListener;
+	Template.AbilityTriggers.AddItem(EventListener);
 
 	//  it may be the case that enemy movement caused a concealment break, which made Bladestorm applicable - attempt to trigger afterwards
 	EventListener = new class'X2AbilityTrigger_EventListener';
