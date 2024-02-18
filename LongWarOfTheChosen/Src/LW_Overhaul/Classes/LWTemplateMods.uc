@@ -2390,7 +2390,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('LongWatch');
 		Template.Abilities.AddItem('quickdraw');
 		Template.Abilities.AddItem('ChosenImmuneMelee');
-		Template.Abilities.AddItem('Squadsight');
+		//Template.Abilities.AddItem('Squadsight');
 		
 		Template.Abilities.AddItem('FreeGrenades');
 		Template.Abilities.AddItem('Infighter');
@@ -2730,7 +2730,8 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			case 'ChosenSniperRifle_MG':
 			case 'ChosenSniperRifle_BM':
 			case 'ChosenSniperRifle_T4':
-				WeaponTemplate.iIdealRange =25;
+			case 'ChosenSniperRifle_T5':
+				WeaponTemplate.iIdealRange = 12;
 				break;
 			default:
 				break;
