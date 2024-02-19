@@ -28,6 +28,10 @@ var config array<int> FACTION_ABILITY_COSTS;
 var config float BASE_ABILITY_COST_MODIFIER;
 var config array<name>CLASSES_IGNORE_CUSTOM_COSTS;
 
+var config array<name> SPARKUnitValues, SPARKCharacterTemplates, SPARKSoldierClasses, SPARKAbilities;
+
+var config float fSPARK_HP_MIN;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -68,7 +72,7 @@ static function CHEventListenerTemplate CreateStatusListeners()
 	Template.AddCHEvent('OverridePersonnelStatus', OnOverridePersonnelStatus, ELD_Immediate);
 	Template.AddCHEvent('OverridePersonnelStatusTime', OnOverridePersonnelStatusTime, ELD_Immediate);
 	Template.AddCHEvent('DSLShouldShowPsi', OnShouldShowPsi, ELD_Immediate);
-
+	Template.AddCHEvent('UIPersonnel_OnSortFinished', OnUIPSortDone, ELD_Immediate, 60);
 	// Armory Main Menu - disable buttons for On-Mission soldiers
 	Template.AddCHEvent('OnArmoryMainMenuUpdate', UpdateArmoryMainMenuItems, ELD_Immediate);
 
@@ -1232,4 +1236,131 @@ static function EventListenerReturn OnSerialKill(Object EventData, Object EventS
 	ShooterState.GetUnitValue ('SerialKills', UnitVal);
 	ShooterState.SetUnitFloatValue ('SerialKills', UnitVal.fValue + 1.0, eCleanup_BeginTurn);
 	return ELR_NoInterrupt;
+}
+
+// Helper functions below borrowed from RustyDios
+static final function bool IsUnitSpark(const out XComGameState_Unit UnitState)
+{
+	local UnitValue	UV;
+	local name ValueName;
+
+	//Attempts to find 'SPARK' units
+	if (UnitState.GetMyTemplateName() == 'SparkSoldier' || UnitState.GetMyTemplateName() == 'LostTowersSpark')	{ return true; }
+	else if (UnitState.HasAnyOfTheAbilitiesFromAnySource(default.SPARKAbilities)) 								{ return true; }
+	else if (default.SPARKCharacterTemplates.Find(UnitState.GetMyTemplateName()) != INDEX_NONE)					{ return true; }
+	else if (default.SPARKSoldierClasses.Find(UnitState.GetSoldierClassTemplateName()) != INDEX_NONE) 			{ return true; }
+
+	foreach default.SPARKUnitValues(ValueName)
+	{
+		if (UnitState.GetUnitValue(ValueName, UV))
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+static function int GetUnitStatsValue(XComGameState_Unit Unit, ECharStatType Stat, bool bAddPerk, bool bAddGear, optional bool bIsMax)
+{
+    local int StatValue;
+
+    //GET BASE VALUE, FIGURE OUT IF WE NEED MAX OR CURRENT
+    StatValue = bIsMax ? int(Unit.GetMaxStat(Stat)) : int(Unit.GetCurrentStat(Stat));
+
+    //ADD TO STAT VALUE FROM VARIOUS PLACES
+    if (bAddPerk) { StatValue += Unit.GetUIStatFromAbilities(Stat); }
+    if (bAddGear) { StatValue += Unit.GetUIStatFromInventory(Stat); }
+
+    //RETURN COMBINED TOTAL
+    return StatValue;
+}
+
+static function EventListenerReturn OnUIPSortDone(Object EventData, Object EventSource, XComGameState GameState, Name Event, Object CallbackData)
+{
+	local UIPersonnel SS_Screen;
+
+	SS_Screen = UIPersonnel(EventSource);
+
+	if (SS_Screen != none)
+	{
+		if (SS_Screen.IsA('UIPersonnel_SquadSelect') || SS_Screen.IsA('SSAAT_UIPersonnel_Select') )
+		{
+			 TryDisableForSpark(SS_Screen);
+		}
+
+		RefreshTitle(SS_Screen);
+	}
+
+	return ELR_NoInterrupt;
+}
+
+static function RefreshTitle(UIPersonnel SS_Screen)
+{
+	local string HeaderString;
+
+	if( SS_Screen.m_arrNeededTabs.Length == 1 )
+	{
+		switch( SS_Screen.m_arrNeededTabs[0] )
+		{
+			case eUIPersonnel_Soldiers:		HeaderString = SS_Screen.m_strSoldierTab;	break;
+			case eUIPersonnel_Scientists:	HeaderString = SS_Screen.m_strScientistTab;	break;
+			case eUIPersonnel_Engineers:	HeaderString = SS_Screen.m_strEngineerTab;	break;
+			case eUIPersonnel_Deceased:		HeaderString = SS_Screen.m_strDeceasedTab;	break;
+		}
+
+		SS_Screen.SetScreenHeader(HeaderString $ " [" $ SS_Screen.m_kList.GetItemCount() $ "]" );
+	}
+}
+
+
+static function TryDisableForSpark(UIScreen Screen)
+{
+	local UIPersonnel SS_Screen;
+	local UIPersonnel_SoldierListItem ListItem;
+
+    local XComGameState_Unit UnitState;
+	local int i;
+
+	//cast the screen
+	SS_Screen = UIPersonnel(Screen);
+
+	//if the screen is not UIP bail
+	if (SS_Screen == none)	{ return; }
+
+	//bail if the squad is empty or unit no Spark in Squad
+
+	if (SS_Screen.IsA('UIPersonnel_SquadSelect') || SS_Screen.IsA('SSAAT_UIPersonnel_Select') )
+	{
+		for (i = 0 ; i < SS_Screen.m_kList.GetItemCount() ; i++)
+		{
+			ListItem = UIPersonnel_SoldierListItem(SS_Screen.m_kList.GetItem(i));
+			UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ListItem.UnitRef.ObjectID));
+
+			if (IsUnitSpark(UnitState) && !ListItem.IsDisabled)
+			{
+				if(SparkTooWounded(UnitState))
+				{
+					ListItem.SetDisabled(true, "TOO INJURED");
+					ListItem.RefreshTooltipText();
+				}
+			}
+		}
+	}
+}
+
+static final function bool SparkTooWounded(XComGameState_Unit UnitState)
+{
+	local float SparkHPpercentage;
+
+	SparkHPpercentage = float(GetUnitStatsValue(UnitState, eStat_HP, true, true)) / float(GetUnitStatsValue(UnitState, eStat_HP, true, true, true));
+
+	if(SparkHPpercentage < default.fSPARK_HP_MIN)
+	{
+		return true;
+	}
+	else 
+	{
+		return false;
+	}
 }
