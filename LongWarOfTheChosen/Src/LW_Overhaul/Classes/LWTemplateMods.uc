@@ -1379,21 +1379,6 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 
 	if (Template.DataName == 'ChainShot')
 	{
-		for (k = 0; k < Template.AbilityCosts.length; k++)
-		{
-			ActionPointCost = X2AbilityCost_ActionPoints(Template.AbilityCosts[k]);
-			if (ActionPointCost != none)
-			{
-				Template.AbilityCosts.RemoveItem(ActionPointCost);
-				ActionPointCost = new class'X2AbilityCost_ActionPoints';
-			
-				ActionPointCost.iNumPoints = 0;
-				ActionPointCost.bAddWeaponTypicalCost = true;
-				ActionPointCost.bConsumeAllPoints = true;
-		
-				Template.AbilityCosts.AddItem(ActionPointCost);
-			}
-		}
 		Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideIfOtherAvailable;
 		Template.HideIfAvailable.AddItem('ChainShotSnapShot');
 		CooldownShared = new class'X2AbilityCooldown_Shared';
