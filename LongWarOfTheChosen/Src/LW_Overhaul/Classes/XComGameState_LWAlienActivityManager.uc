@@ -209,13 +209,18 @@ function UpdatePreMission(XComGameState StartGameState, XComGameState_MissionSit
 	if (RegionState == none) { return; }
 	RegionalAIState = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState);
 
+
 	if(RegionalAIState != None)
 	{
 		// Tedster - Set Force Level to regional FL if one exists
 		BattleData.SetForceLevel(RegionalAIState.LocalForceLevel);
+		
+		//OnPreMission doesn't appear to add the MissionState to the StartGameState, so add it ourselves.
+		MissionState = XComGameState_MissionSite(StartGameState.ModifyStateObject(class'XComGameState_MissionSite', MissionState.ObjectId));
+		MissionState.SelectedMissionData.ForceLevel = RegionalAIState.LocalForceLevel;
 		// old one clamping to 20
 		//BattleData.SetForceLevel(CLAMP(RegionalAIState.LocalForceLevel,1,20));
-		`LWTrace("Updating BattleData with Regional Force Level.");
+		`LWTrace("Updating BattleData and Mission Site with Regional Force Level.");
 	}
 
 	if (RegionalAIState != none && RegionalAIState.bLiberated)
