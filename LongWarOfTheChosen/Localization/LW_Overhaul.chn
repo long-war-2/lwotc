@@ -667,3 +667,10 @@ ScrollObjectiveDescriptionStr="滚动目标说明"
 
 [X2Effect_ChosenLoot]
 m_strChosenLoot="(<XGParam:IntValue0/>) <XGParam:StrValue0/!ItemName/> 击杀天选者获得奖励。"
+
+[UISL_PullAdvisors]
+m_strPullHavenAdvisors="拉取顾问"
+m_strPullHavenAdvisorsTooltip="从避难所移除可用顾问。移除后需要手动才能还原。"
+
+m_StrHavenManagement="管理避难所"
+m_StrHavenManagementTooltip="打开反抗军管理界面。"
