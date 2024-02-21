@@ -793,8 +793,8 @@ LocPromotionPopupText="<Bullet/> Activate a force field that reduces incoming da
 [BodyShield X2AbilityTemplate]
 LocFriendlyName="Body Shield"
 LocFlyOverText="Body Shield"
-LocLongDescription="Target an enemy as a free action to confer it -<Ability:BODY_SHIELD_DEF_BONUS> aim and -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> critical chance against you for <Ability:BODY_SHIELD_DURATION> turns. <BODY_SHIELD_COOLDOWN> turn cooldown."
-LocHelpText="Target an enemy as a free action to confer it -<Ability:BODY_SHIELD_DEF_BONUS> aim and -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> critical chance against you for <Ability:BODY_SHIELD_DURATION> turns. <BODY_SHIELD_COOLDOWN> turn cooldown."
+LocLongDescription="Target an enemy as a free action to confer it -<Ability:BODY_SHIELD_DEF_BONUS> aim and -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> critical chance against you for <Ability:BODY_SHIELD_DURATION> turns. <Ability:SelfCooldown_LW> turn cooldown."
+LocHelpText="Target an enemy as a free action to confer it -<Ability:BODY_SHIELD_DEF_BONUS> aim and -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> critical chance against you for <Ability:BODY_SHIELD_DURATION> turns. <Ability:SelfCooldown_LW> turn cooldown."
 ; LWOTC Needs Translation
 LocPromotionPopupText="<Bullet/> A targeted enemy receives -<Ability:BODY_SHIELD_DEF_BONUS> aim and -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> critical chance against this unit.<br/><Bullet/> This is a free action.<br/><Bullet/> Body Shield has a <Ability:SelfCooldown_LW/> turn cooldown."
 ; End Translation
