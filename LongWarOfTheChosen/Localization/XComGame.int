@@ -7078,7 +7078,7 @@ LocFlyOverText="Chosen Prime Reaction"
 
 [HunterPrimeReactionPassive X2AbilityTemplate]
 LocFriendlyName="Chosen Prime Reaction"
-LocLongDescription="Gain a reduced mobility movement action or Combat Readiness after taking damage on XCOM's turn."
+LocLongDescription="Gain a movement action or Combat Readiness after taking damage on XCOM's turn."
 LocHelpText="Gain a movement action or Combat Readiness after taking damage on XCOM's turn."
 LocFlyOverText="Chosen Prime Reaction"
 
