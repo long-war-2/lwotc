@@ -1596,9 +1596,9 @@ static function UpdateSpectralStunLance(X2AbilityTemplate Template)
 	ImpairingAbilityEffect = new class 'X2Effect_ImmediateAbilityActivation';
 	ImpairingAbilityEffect.BuildPersistentEffect(1, false, true, , eGameRule_PlayerTurnBegin);
 	ImpairingAbilityEffect.EffectName = 'ImmediateStunImpair';
-	ImpairingAbilityEffect.AbilityName = 'StunImpairingAbility';
+	ImpairingAbilityEffect.AbilityName = 'SpectralStunImpairingAbility';
 	ImpairingAbilityEffect.bRemoveWhenTargetDies = true;
-	ImpairingAbilityEffect.VisualizationFn = class'X2Ability_StunLancer'.static.ImpairingAbilityEffectTriggeredVisualization;
+	ImpairingAbilityEffect.VisualizationFn = class'X2Ability_PerkPackAbilitySet2'.static.ImpairingAbilityEffectTriggeredVisualization;
 	Template.AddTargetEffect(ImpairingAbilityEffect);
 
 }

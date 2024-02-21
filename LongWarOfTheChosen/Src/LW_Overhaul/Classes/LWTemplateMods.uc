@@ -2310,9 +2310,10 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'SpectralStunLancerM2':
 		case 'SpectralStunLancerM3':
 		case 'SpectralStunLancerM4':
-			Template.Abilities.AddItem('StunImpairingAbility');
+			Template.Abilities.AddItem('SpectralStunImpairingAbility');
 			// make them move before chosen
 			Template.InitiativePriority = -101;
+			Template.DefaultLoadout='SpectralStunLancerM1_Loadout';
 			break;
 		case 'HostileVIPCivilian':
 			Template.Abilities.AddItem('Shadowstep');
