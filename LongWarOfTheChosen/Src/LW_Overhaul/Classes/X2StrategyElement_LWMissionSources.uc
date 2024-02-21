@@ -231,7 +231,7 @@ static function array<name> GetValidSitReps(XComGameState_MissionSite MissionSta
 		ShouldApplySitreps = ShouldAddRandomSitRepToMission(MissionState);
 
 		AddMoreSitReps = (AddMoreSitReps && ShouldApplySitreps);
-	
+		`LWTrace("Normal Sitreps roll" @i@ ":" @AddMoreSitreps);
 		if (AddMoreSitReps)
 		{
 			// Grab the next valid SitRep from the deck
@@ -239,9 +239,10 @@ static function array<name> GetValidSitReps(XComGameState_MissionSite MissionSta
 			ValidationData.Data[0].an = ActiveSitReps;
 			ValidationData.Data[1].o = MissionState;
 			CardMgr.SelectNextCardFromDeck('SitReps', SitRepLabel, ValidateSitRepForMission, ValidationData);
-	
+			`LWTrace("Normal Sitrep selected:" @SitRepLabel);
 			if (SitRepLabel != "")
 			{
+				`LWTrace("Adding Normal sitrep" @SitRepLabel@ "to mission");
 				ActiveSitReps.AddItem(name(SitRepLabel));
 			}
 		}
@@ -259,6 +260,7 @@ static function bool ValidateSitRepForMission(string SitRepName, Object Validati
 {
 	local XComLWTuple Tuple;
 
+	`LWTrace("CardManager Validating Sitrep" @SitRepName);
 	Tuple = XComLWTuple(ValidationData);
 	return Tuple.Data[0].an.Find(name(SitRepName)) == INDEX_NONE &&
 			IsSitRepValidForMission(name(SitRepName), XComGameState_MissionSite(Tuple.Data[1].o));
@@ -359,6 +361,7 @@ static function name PickSpecialSitRep(XComGameState_MissionSite MissionState, o
 
 	foreach SpecialSitreps(SitRepWithChance)
 	{
+		`LWTrace(" Special Sitreps: evaluating Sitrep" @SitrepWithChance.SitRepName);
 		if (IsSitRepValidForMission(SitRepWithChance.SitRepName, MissionState) &&
 				`SYNC_FRAND_STATIC() < SitRepWithChance.Chance)
 		{

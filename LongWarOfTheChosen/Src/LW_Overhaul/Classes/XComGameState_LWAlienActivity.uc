@@ -750,6 +750,8 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 	}
 	// End LWOTC additions
 
+	`LWTrace("Mission Creation choosing quest item");
+
 	MissionState.GeneratedMission.MissionQuestItemTemplate = MissionMgr.ChooseQuestItemTemplate(MissionState.Source, MissionReward, MissionState.GeneratedMission.Mission, (MissionState.DarkEvent.ObjectID > 0));
 
 	if(MissionState.GeneratedMission.Mission.sType == "")
@@ -757,6 +759,7 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 		`Redscreen("GetMissionDefinitionForFamily() failed to generate a mission with: \n"
 						$ " Family: " $ MissionFamily);
 	}
+	`LWTrace("Mission Generation choosing plot and biome");
 
 	// find a plot that supports the biome and the mission
 	SelectBiomeAndPlotDefinition(MissionState, Biome, SelectedPlotDef, SitRepNames);
