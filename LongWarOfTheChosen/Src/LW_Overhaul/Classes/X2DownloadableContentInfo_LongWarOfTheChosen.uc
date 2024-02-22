@@ -1368,20 +1368,29 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		// if size 4 && at least 3 are the same
 		if (!swap && (PodSize == 4 || PodSize == 5))
 		{
-			if (CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 1)
+			if (CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 2)
 			{
 				`LWDiversityTrace("Mixing up undiverse 4/5-enemy pod");
 				swap = true;
 			}
 		}
 
-		// if larger && at least size - 2 are the same
-		if (!swap && PodSize >= 6)
+		// if larger && at least size - 3 are the same
+		if (!swap && (PodSize == 6 || PodSize == 7))
 		{
 			// if a max of one guy is different
-			if (!swap && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 2)
+			if (!swap && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 3)
 			{
-				`LWDiversityTrace("Mixing up undiverse 5+ enemy pod");
+				`LWDiversityTrace("Mixing up undiverse 6/7 enemy pod");
+				swap = true;
+			}
+		}
+
+		if( PodSize >= 8)
+		{
+			if (!swap && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 4)
+			{
+				`LWDiversityTrace("Mixing up undiverse 8+ enemy pod");
 				swap = true;
 			}
 		}
@@ -1443,19 +1452,19 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 				//`LWTRACE ("Try" @ string (tries) @ CountMembers (FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) @ string (PodSize));
 				// Let's look over our outcome and see if it's any better
 				NewMostCommonMember = FindMostCommonMember(SpawnInfo.SelectedCharacterTemplateNames);
-				if ((PodSize == 4 || PodSize == 5) && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= Podsize - 1)
+				if ((PodSize == 4 || PodSize == 5) && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= Podsize - 2)
 				{
 					Tries += 1;
 				}
 				else
 				{
-					if ((PodSize == 6 || PodSize == 7) && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 2)
+					if ((PodSize == 6 || PodSize == 7) && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 3)
 					{
 						Tries += 1;
 					}
 					else
 					{
-						if( PodSize >= 8 && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 3)
+						if( PodSize >= 8 && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 4)
 						{
 							Tries += 1;
 						}
