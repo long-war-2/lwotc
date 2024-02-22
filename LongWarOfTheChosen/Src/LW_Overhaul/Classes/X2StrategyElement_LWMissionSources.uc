@@ -177,7 +177,7 @@ static function array<name> GetValidSitReps(XComGameState_MissionSite MissionSta
 	local X2DataTemplate DataTemplate;
 	local X2SitRepTemplate SitRepTemplate;
 	local XComLWTuple ValidationData;
-	local array<name> ActiveSitReps, ActiveSitRepDarkEvents;
+	local array<name> ActiveSitReps, ActiveSitRepDarkEvents, SelectedDarkEventSitreps;
 	local string SitRepLabel;
 	local name SitRepName;
 	local bool AddMoreSitReps, ShouldApplySitreps;
@@ -200,13 +200,24 @@ static function array<name> GetValidSitReps(XComGameState_MissionSite MissionSta
 	// then roll for each of them. Pick *one* out of any successful rolls.
 	ActiveSitRepDarkEvents = GetActiveSitRepDarkEvents(MissionState);
 	
+	/*
 	for(j=0; j<default.NUM_DARK_EVENT_SITREPS_TO_ROLL; j++)
 	{
-		SitRepName = PickActiveDarkEventSitRep(ActiveSitRepDarkEvents, MissionState);
+		SitRepName = PickActiveDarkEventSitReps(ActiveSitRepDarkEvents, SelectedDarkEventSitreps, MissionState);
 		if (SitRepName != '')
 			ActiveSitReps.AddItem(SitRepName);
 			ActiveSitRepDarkEvents.RemoveItem(SitRepName); //remove it from the active array so we don't roll it twice in a row, and the array gets rebuilt anyways every time this is called.
 	}
+
+	*/
+	
+	SitRepName = PickActiveDarkEventSitReps(ActiveSitRepDarkEvents, SelectedDarkEventSitreps, MissionState);
+
+	for(j=0; j <SelectedDarkEventSitreps.Length; j++)
+	{
+		ActiveSitReps.AddItem(SelectedDarkEventSitreps[j]);
+	}
+
 
 	default.SPECIAL_SIT_REPS.Sort(CompareByPriority);
 
@@ -301,10 +312,11 @@ static function array<name> GetActiveSitRepDarkEvents(XComGameState_MissionSite 
 // Rolls for all the given dark events and picks one of the dark events that
 // successfully rolled and returns its name. Returns an empty name if no
 // successful roll was made.
-static function name PickActiveDarkEventSitRep(out array<name> ActiveSitRepDarkEvents, XComGameState_MissionSite MissionState)
+static function name PickActiveDarkEventSitReps(out array<name> ActiveSitRepDarkEvents, out array<name>SelectedDarkEventSitreps, XComGameState_MissionSite MissionState)
 {
 	local array<name> PossibleDarkEvents;
 	local name DarkEventName, SitRepName;
+	local int i, index;
 
 	SitRepName = '';
 
@@ -315,10 +327,17 @@ static function name PickActiveDarkEventSitRep(out array<name> ActiveSitRepDarkE
 			PossibleDarkEvents.AddItem(DarkEventName); //Tedster - remove from the list if you picked one so no duplicates
 	}
 
-	// Now pick one of the successful rolls
-	if (PossibleDarkEvents.Length > 0)
+	for (i=0; i < default.NUM_DARK_EVENT_SITREPS_TO_ROLL; i++)
 	{
-		SitRepName = GetSitRepNameForDarkEvent(PossibleDarkEvents[`SYNC_RAND_STATIC(PossibleDarkEvents.Length)]);
+	// Now pick one of the successful rolls
+		if (PossibleDarkEvents.Length > 0)
+		{
+			index = `SYNC_RAND_STATIC(PossibleDarkEvents.Length);
+			SitRepName = GetSitRepNameForDarkEvent(PossibleDarkEvents[index]);
+
+			SelectedDarkEventSitreps.AddItem(SitRepName);
+			PossibleDarkEvents.Remove(index,1);
+		}
 	}
 
 	return SitRepName;
