@@ -7194,10 +7194,10 @@ KnowledgeGainSecondBullet[eChosenKnowledge_Sentinel]=""
 
 [Magnum_LW X2AbilityTemplate]
 LocFriendlyName="Magnum"
-LocLongDescription="Standard pistol shots have no long range penalty."
-LocHelpText="Standard pistol shots have no long range penalty."
+LocLongDescription="All pistol shots have no long range penalty."
+LocHelpText="All pistol shots have no long range penalty."
 LocFlyOverText="Magnum"
-LocPromotionPopupText="<Bullet/> Only applies to standard pistol shot, and pistol overwatch.<br/><Bullet/> Does not apply to special abilities like Lightning Hands, Gunslinger or Faceoff.<br/>"
+LocPromotionPopupText="<Bullet/> Applies to any ability that makes use of pistols.<br/>"
 
 [HunterFlashbang X2GrenadeTemplate]
 FriendlyName="Flashbang Grenade"

@@ -135,6 +135,8 @@ var config array<name> BANZAI_EFFECTS_TO_REMOVE;
 
 var config int QUICKDRAW_MOBILITY_INCREASE;
 
+var config array<name> PISTOL_WEAPON_CATEGORIES;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -3582,22 +3584,21 @@ static function X2AbilityTemplate MovingTarget()
 
 static function X2AbilityTemplate Magnum()
 {
-	local X2Effect_ModifyRangePenalties Effect;
-	local XMBCondition_AbilityName	NameCondition;
-	// Remove Long range penalties from pistols
-	Effect = new class'X2Effect_ModifyRangePenalties';
-	Effect.RangePenaltyMultiplier = -1;
-	Effect.BaseRange = 11;
-	Effect.bLongRange = true;
-	Effect.EffectName = 'Magnum';
+	//local XMBCondition_AbilityName	NameCondition;
+	local X2Effect_CancelLongRangePenalties PistolEffect;
 
-	NameCondition = new class'XMBCondition_AbilityName';
-	NameCondition.IncludeAbilityNames.AddItem('PistolStandardShot');
-	NameCondition.IncludeAbilityNames.AddItem('PistolOverwatchShot');
+	PistolEffect = new class'X2Effect_CancelLongRangePenalties';
+	PistolEffect.NULLIFY_LONG_RANGE_PENALTY_MODIFIER = 1.0f;
+	PistolEffect.ValidWeaponCats = default.PISTOL_WEAPON_CATEGORIES;
 
-	Effect.AbilityTargetConditions.AddItem(NameCondition);
 
-	return Passive('Magnum_LW', "img:///UILibrary_XPerkIconPack.UIPerk_pistol_sniper", false, Effect);
+	//NameCondition = new class'XMBCondition_AbilityName';
+	//NameCondition.IncludeAbilityNames.AddItem('PistolStandardShot');
+	//NameCondition.IncludeAbilityNames.AddItem('PistolOverwatchShot');
+
+	//Effect.AbilityTargetConditions.AddItem(NameCondition);
+
+	return Passive('Magnum_LW', "img:///UILibrary_XPerkIconPack.UIPerk_pistol_sniper", false, PistolEffect);
 }
 
 static function X2AbilityTemplate QuickdrawMobility()
