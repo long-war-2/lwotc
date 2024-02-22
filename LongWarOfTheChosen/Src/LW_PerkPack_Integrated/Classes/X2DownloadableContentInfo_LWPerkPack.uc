@@ -453,6 +453,9 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'BRAWLER_DR_PCT':
 			OutString = string(int(class'X2Effect_Brawler'.default.BRAWLER_DR_PCT));
 			return true;
+		case 'BRAWLER_MAX_TILES':
+			OutString = string(class'X2Effect_Brawler'.default.BRAWLER_MAX_TILES);
+			return true;
 		case 'LONEWOLF_AIM_PER_TILE':
 			OutString = string(class'X2Effect_LoneWolf'.default.LONEWOLF_AIM_PER_TILE);
 			return true;

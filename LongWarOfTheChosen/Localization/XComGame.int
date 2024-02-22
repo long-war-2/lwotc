@@ -7109,9 +7109,9 @@ LocFlyOverText="Harbor Wave"
 [Brawler X2AbilityTemplate]
 LocFriendlyName="Brawler"
 LocFlyOverText="Brawler"
-LocLongDescription="Take <Ability:BRAWLER_DR_PCT>% less damage from any melee attack, or attacks from within four tiles."
-LocHelpText="Take <Ability:BRAWLER_DR_PCT>% less damage from any melee attack, or attacks from within four tiles."
-LocPromotionPopupText="<Bullet/>Take <Ability:BRAWLER_DR_PCT>% less damage from any melee attack, or attacks from within four tiles.<br/>"
+LocLongDescription="Take <Ability:BRAWLER_DR_PCT>% less damage from any melee attack, or attacks from within <Ability:BRAWLER_MAX_TILES> tiles."
+LocHelpText="Take <Ability:BRAWLER_DR_PCT>% less damage from any melee attack, or attacks from within <Ability:BRAWLER_MAX_TILES> tiles."
+LocPromotionPopupText="<Bullet/>Take <Ability:BRAWLER_DR_PCT>% less damage from any melee attack, or attacks from within <Ability:BRAWLER_MAX_TILES> tiles.<br/>"
 
 [InstantReactionTime X2AbilityTemplate]
 LocFriendlyName="Instant Reaction Time"
