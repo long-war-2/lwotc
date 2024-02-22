@@ -2455,7 +2455,6 @@ static function X2DataTemplate CreateSpectralStunLancerImpairingEffectAbility()
 	local X2AbilityTarget_Single            SingleTarget;
 	local X2Effect_Persistent               DisorientedEffect;
 	local X2Effect_Stunned				    StunnedEffect;
-	local X2Effect_Persistent               UnconsciousEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'SpectralStunImpairingAbility');
 
