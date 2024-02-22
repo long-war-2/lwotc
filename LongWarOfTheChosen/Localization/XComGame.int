@@ -5239,11 +5239,11 @@ LaunchedAbilityHelpText="Disorient hostile targets in the affected area."
 
 [Whirlwind2 X2AbilityTemplate]
 LocFriendlyName="Whirlwind"
-LocLongDescription="If you hit with a melee attack during your turn, gain a bonus move."
-LocHelpText="Gain one bonus move action after a successful melee attack."
+LocLongDescription="Once per your turn, gain a movement action when you hit an enemy with a melee attack."
+LocHelpText="Once per your turn, gain a movement action when you hit an enemy with a melee attack."
 LocFlyOverText="Whirlwind"
 ; LWOTC Needs Translation
-LocPromotionPopupText="<Bullet/> A soldier can only gain one move per turn with this ability.<br/>"
+LocPromotionPopupText=""
 ; End Translation
 
 [Solace_LW X2AbilityTemplate]
