@@ -80,6 +80,7 @@ static function CHEventListenerTemplate CreateCampaignStartListeners()
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'CampaignStartListeners');
 	Template.AddCHEvent('OverrideAllowStartingRegionLink', AllowOutOfContinentStartingRegionLinks, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('OverrideElligibleStartingRegion', OverrideElligibleStartingRegionMinLinks, ELD_Immediate, GetListenerPriority());
 	Template.RegisterInCampaignStart = true;
 
 	return Template;
@@ -1160,4 +1161,52 @@ static function EventListenerReturn AllowOutOfContinentStartingRegionLinks(
 	Tuple.Data[1].b = true;
 
 	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn OverrideElligibleStartingRegionMinLinks(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name EventID,
+	Object CallbackData)
+{
+	local XComGameState StartState;
+	local XComLWTuple Tuple;
+	local XComGameState_WorldRegion RegionState, LinkedRegionState;
+	local int idx, Count;
+
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none) return ELR_NoInterrupt;
+
+	if(Tuple.Id != 'OverrideElligibleStartingRegion') return ELR_NoInterrupt;
+
+	RegionState = XComGameState_WorldRegion(EventSource);
+
+	if(RegionState == none) return ELR_NoInterrupt;
+
+	`LWTrace("OverrideElligibleStartingRegion called with Region" @RegionState.GetMyTemplateName());
+
+	StartState = `XCOMHISTORY.GetStartState();
+
+	Count = 0;
+
+	for(idx = 0; idx < RegionState.LinkedRegions.Length; idx++)
+	{
+		LinkedRegionState = XComGameState_WorldRegion(StartState.GetGameStateForObjectID(RegionState.LinkedRegions[idx].ObjectID));
+
+		if(LinkedRegionState != none)
+		{
+			Count++;
+		}
+	}
+
+	`LWTrace("Region links:" @Count);
+
+	if(Count < class'XComGameState_RegionLink'.default.MinLinksPerRegion)
+	{
+		Tuple.Data[0].b = false;
+	}
+
+	return ELR_NoInterrupt;
+
 }
