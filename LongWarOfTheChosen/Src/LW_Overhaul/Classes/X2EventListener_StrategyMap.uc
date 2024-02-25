@@ -17,6 +17,7 @@ var config int BLACK_MARKET_3RD_SOLDIER_FL;
 var config float BLACK_MARKET_PERSONNEL_INFLATION_PER_FORCE_LEVEL;
 var config float BLACK_MARKET_SOLDIER_DISCOUNT;
 var config bool BLACK_MARKET_DOUBLE_SOLDIERS;
+var config bool DISABLE_STARTING_REGION_CHECKS;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -80,7 +81,7 @@ static function CHEventListenerTemplate CreateCampaignStartListeners()
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'CampaignStartListeners');
 	Template.AddCHEvent('OverrideAllowStartingRegionLink', AllowOutOfContinentStartingRegionLinks, ELD_Immediate, GetListenerPriority());
-	Template.AddCHEvent('OverrideElligibleStartingRegion', OverrideElligibleStartingRegionMinLinks, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('OverrideEligibleStartingRegion', OverrideEligibleStartingRegionMinLinks, ELD_Immediate, GetListenerPriority());
 	Template.RegisterInCampaignStart = true;
 
 	return Template;
@@ -1175,16 +1176,19 @@ static function EventListenerReturn OverrideElligibleStartingRegionMinLinks(
 	local XComGameState_WorldRegion RegionState, LinkedRegionState;
 	local int idx, Count;
 
+	if(default.DISABLE_STARTING_REGION_CHECKS) return ELR_NoInterrupt;
+	
+
 	Tuple = XComLWTuple(EventData);
 	if (Tuple == none) return ELR_NoInterrupt;
 
-	if(Tuple.Id != 'OverrideElligibleStartingRegion') return ELR_NoInterrupt;
+	if(Tuple.Id != 'OverrideEligibleStartingRegion') return ELR_NoInterrupt;
 
 	RegionState = XComGameState_WorldRegion(EventSource);
 
 	if(RegionState == none) return ELR_NoInterrupt;
 
-	`LWTrace("OverrideElligibleStartingRegion called with Region" @RegionState.GetMyTemplateName());
+	`LWTrace("OverrideEligibleStartingRegion called with Region" @RegionState.GetMyTemplateName());
 
 	StartState = `XCOMHISTORY.GetStartState();
 
