@@ -7109,9 +7109,9 @@ LocFlyOverText="Harbor Wave"
 [Brawler X2AbilityTemplate]
 LocFriendlyName="Brawler"
 LocFlyOverText="Brawler"
-LocLongDescription="Take <Ability:BRAWLER_DR_PCT>% less damage from any melee attack, or attacks from within four tiles."
-LocHelpText="Take <Ability:BRAWLER_DR_PCT>% less damage from any melee attack, or attacks from within four tiles."
-LocPromotionPopupText="<Bullet/>Take <Ability:BRAWLER_DR_PCT>% less damage from any melee attack, or attacks from within four tiles.<br/>"
+LocLongDescription="Take <Ability:BRAWLER_DR_PCT>% less damage from any melee attack, or attacks from within <Ability:BRAWLER_MAX_TILES> tiles."
+LocHelpText="Take <Ability:BRAWLER_DR_PCT>% less damage from any melee attack, or attacks from within <Ability:BRAWLER_MAX_TILES> tiles."
+LocPromotionPopupText="<Bullet/>Take <Ability:BRAWLER_DR_PCT>% less damage from any melee attack, or attacks from within <Ability:BRAWLER_MAX_TILES> tiles.<br/>"
 
 [InstantReactionTime X2AbilityTemplate]
 LocFriendlyName="Instant Reaction Time"
@@ -7194,10 +7194,10 @@ KnowledgeGainSecondBullet[eChosenKnowledge_Sentinel]=""
 
 [Magnum_LW X2AbilityTemplate]
 LocFriendlyName="Magnum"
-LocLongDescription="Standard pistol shots have no long range penalty."
-LocHelpText="Standard pistol shots have no long range penalty."
+LocLongDescription="All pistol shots have no long range penalty."
+LocHelpText="All pistol shots have no long range penalty."
 LocFlyOverText="Magnum"
-LocPromotionPopupText="<Bullet/> Only applies to standard pistol shot, and pistol overwatch.<br/><Bullet/> Does not apply to special abilities like Lightning Hands, Gunslinger or Faceoff.<br/>"
+LocPromotionPopupText="<Bullet/> Applies to any ability that makes use of pistols.<br/>"
 
 [HunterFlashbang X2GrenadeTemplate]
 FriendlyName="Flashbang Grenade"

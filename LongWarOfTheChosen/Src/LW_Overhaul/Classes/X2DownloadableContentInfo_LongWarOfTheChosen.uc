@@ -1094,7 +1094,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	local name								CharacterTemplateName, FirstFollowerName, NewMostCommonMember;
 	local int								idx, Tries, PodSize, k, numAttempts;
 	local X2CharacterTemplateManager		TemplateManager;
-	local X2CharacterTemplate				LeaderCharacterTemplate, FollowerCharacterTemplate, CurrentCharacterTemplate;
+	local X2CharacterTemplate				LeaderCharacterTemplate, FollowerCharacterTemplate, CurrentCharacterTemplate, NewCommonTemplate;
 	local bool								Swap, Satisfactory, bKeepTrying;
 	local XComGameState_MissionSite			MissionState;
 	local XComGameState_AIReinforcementSpawner	RNFSpawnerState;
@@ -1365,23 +1365,55 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 			}
 		}
 
+		FollowerCharacterTemplate = TemplateManager.FindCharacterTemplate(FirstFollowerName);
 		// if size 4 && at least 3 are the same
-		if (!swap && (PodSize == 4 || PodSize == 5))
+		if (!swap && (PodSize == 4))
 		{
 			if (CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 1)
 			{
-				`LWDiversityTrace("Mixing up undiverse 4/5-enemy pod");
+				`LWDiversityTrace("Mixing up undiverse 4-enemy pod");
 				swap = true;
 			}
 		}
 
-		// if larger && at least size - 2 are the same
-		if (!swap && PodSize >= 6)
+		// if size 5 and at least 3 are the same
+		if (!swap && (PodSize == 5))
 		{
-			// if a max of one guy is different
+			if (CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 2)
+			{
+				`LWDiversityTrace("Mixing up undiverse 5-enemy pod");
+				swap = true;
+			}
+		}
+
+		// 6/7 man pod with 3/4 same
+		if (!swap && (PodSize == 6 || PodSize == 7))
+		{
 			if (!swap && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 2)
 			{
-				`LWDiversityTrace("Mixing up undiverse 5+ enemy pod");
+				`LWDiversityTrace("Mixing up undiverse 6/7 enemy pod");
+				swap = true;
+			}
+			// more strignant for Aliens
+			if (!swap && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 3 && FollowerCharacterTemplate.bIsAlien)
+			{
+				`LWDiversityTrace("Mixing up undiverse 8+ enemy pod");
+				swap = true;
+			}
+		}
+		// if larger && at least size - 4 are the same
+		if( PodSize >= 8)
+		{
+			if (!swap && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 3)
+			{
+				`LWDiversityTrace("Mixing up undiverse 8+ enemy pod");
+				swap = true;
+			}
+			
+			// more strignant for Aliens
+			if (!swap && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 4 && FollowerCharacterTemplate.bIsAlien)
+			{
+				`LWDiversityTrace("Mixing up undiverse 8+ enemy pod");
 				swap = true;
 			}
 		}
@@ -1393,7 +1425,6 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 			Tries = 0;
 			While (!Satisfactory && Tries < 12)
 			{
-				// let's look at
 				foreach SpawnInfo.SelectedCharacterTemplateNames(CharacterTemplateName, idx)
 				{
 					CurrentCharacterTemplate = TemplateManager.FindCharacterTemplate(SpawnInfo.SelectedCharacterTemplateNames[idx]);
@@ -1443,25 +1474,47 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 				//`LWTRACE ("Try" @ string (tries) @ CountMembers (FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) @ string (PodSize));
 				// Let's look over our outcome and see if it's any better
 				NewMostCommonMember = FindMostCommonMember(SpawnInfo.SelectedCharacterTemplateNames);
-				if ((PodSize == 4 || PodSize == 5) && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= Podsize - 1)
+				NewCommonTemplate = TemplateManager.FindCharacterTemplate(NewMostCommonMember);
+				if ((PodSize == 4 ) && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= Podsize - 1)
 				{
 					Tries += 1;
 				}
 				else
 				{
-					if ((PodSize == 6 || PodSize == 7) && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 2)
+					if ((PodSize == 5 ) && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= Podsize - 2)
 					{
 						Tries += 1;
 					}
 					else
 					{
-						if( PodSize >= 8 && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 3)
+						if ((PodSize == 6 || PodSize == 7) && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 2)
 						{
 							Tries += 1;
 						}
-						else
+						else 
 						{
-							Satisfactory = true;
+							if ((PodSize == 6 || PodSize == 7) && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 3 && NewCommonTemplate.bIsAlien)
+							{
+								Tries += 1;
+							}
+							else
+							{
+								if(PodSize >= 8 && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 4)
+								{
+									Tries += 1;
+								}
+								else
+								{
+									if (PodSize >= 8 &&CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 3 && NewCommonTemplate.bIsAlien)
+									{
+										Tries += 1;
+									}
+									else
+									{
+										Satisfactory = true;
+									}
+								}
+							}
 						}
 					}
 				}

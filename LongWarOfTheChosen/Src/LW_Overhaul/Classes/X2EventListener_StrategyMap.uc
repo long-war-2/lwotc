@@ -17,6 +17,7 @@ var config int BLACK_MARKET_3RD_SOLDIER_FL;
 var config float BLACK_MARKET_PERSONNEL_INFLATION_PER_FORCE_LEVEL;
 var config float BLACK_MARKET_SOLDIER_DISCOUNT;
 var config bool BLACK_MARKET_DOUBLE_SOLDIERS;
+var config bool DISABLE_STARTING_REGION_CHECKS;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -80,6 +81,7 @@ static function CHEventListenerTemplate CreateCampaignStartListeners()
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'CampaignStartListeners');
 	Template.AddCHEvent('OverrideAllowStartingRegionLink', AllowOutOfContinentStartingRegionLinks, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('OverrideEligibleStartingRegion', OverrideEligibleStartingRegionMinLinks, ELD_Immediate, GetListenerPriority());
 	Template.RegisterInCampaignStart = true;
 
 	return Template;
@@ -1160,4 +1162,55 @@ static function EventListenerReturn AllowOutOfContinentStartingRegionLinks(
 	Tuple.Data[1].b = true;
 
 	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn OverrideEligibleStartingRegionMinLinks(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name EventID,
+	Object CallbackData)
+{
+	local XComGameState StartState;
+	local XComLWTuple Tuple;
+	local XComGameState_WorldRegion RegionState, LinkedRegionState;
+	local int idx, Count;
+
+	if(default.DISABLE_STARTING_REGION_CHECKS) return ELR_NoInterrupt;
+	
+
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none) return ELR_NoInterrupt;
+
+	if(Tuple.Id != 'OverrideEligibleStartingRegion') return ELR_NoInterrupt;
+
+	RegionState = XComGameState_WorldRegion(EventSource);
+
+	if(RegionState == none) return ELR_NoInterrupt;
+
+	`LWTrace("OverrideEligibleStartingRegion called with Region" @RegionState.GetMyTemplateName());
+
+	StartState = `XCOMHISTORY.GetStartState();
+
+	Count = 0;
+
+	for(idx = 0; idx < RegionState.LinkedRegions.Length; idx++)
+	{
+		LinkedRegionState = XComGameState_WorldRegion(StartState.GetGameStateForObjectID(RegionState.LinkedRegions[idx].ObjectID));
+
+		if(LinkedRegionState != none)
+		{
+			Count++;
+		}
+	}
+
+	`LWTrace("Region links:" @Count);
+
+	if(Count < class'XComGameState_RegionLink'.default.MinLinksPerRegion)
+	{
+		Tuple.Data[0].b = false;
+	}
+
+	return ELR_NoInterrupt;
+
 }
