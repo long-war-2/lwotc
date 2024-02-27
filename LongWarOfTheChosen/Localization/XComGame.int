@@ -7349,8 +7349,8 @@ LocHelpText="Run towards an Ally and heal stabilize with your medikit."
 
 [SoulReaper X2AbilityTemplate]
 LocFriendlyName="Banish"
-LocLongDescription="Fire at a target until you run out of ammo or it dies. Each shot has <Ability:BANISH_HIT_MOD/> aim less than the previous one. Reveals the Reaper."
-LocHelpText="Fire at a target until you run out of ammo or it dies. Each shot has <Ability:BANISH_HIT_MOD/> aim less than the previous one. Reveals the Reaper. Starts with Charges, once charges are expended, has a cooldown instead."
+LocLongDescription="Fire at a target until you run out of ammo or it dies. Each shot has <Ability:BANISH_HIT_MOD/> aim less and <Ability:BANISH_DMG_MOD> damage less than the previous one. Reveals the <Ability:ClassName>."
+LocHelpText="Fire at a target until you run out of ammo or it dies. Each shot has <Ability:BANISH_HIT_MOD/> aim less and <Ability:BANISH_DMG_MOD> damage less than the previous one. Reveals the <Ability:ClassName>."
 LocFlyoverText="Banish"
 LocPromotionPopupText="<Bullet/> Each shot in Banish rolls a separate chance to hit.<br/><Bullet/> Banish cannot be activated with only 1 ammo remaining.<br/><Bullet/> Banish shots can crit.<br/><Bullet/> Banish has a <Ability:SelfCooldown_LW/> turn cooldown."
 
