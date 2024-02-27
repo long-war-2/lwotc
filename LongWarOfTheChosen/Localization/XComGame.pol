@@ -5436,6 +5436,10 @@ LocLongDescription="Kiedy otrzymasz trafienie krytyczne, pobliscy humanoidalni s
 [LocationScout X2SitRepTemplate]
 Description="Ruch oporu umieścił czujniki ruchu niskiego zasięgu, które łączą się z komunikacją twojej drużyny. Twoi żołnierze będą w stanie wykryć jednostki wroga, które znajdują się poza zasięgiem wzroku."
 
+[SlightlyLargeMap X2SitRepTemplate]
+FriendlyName="Wielka mapa"
+Description="Obszar działań jest większy niż zwykle, więc dotarcie do celu zajmie Ci prawdopodobnie więcej czasu."
+
 [LargeMap X2SitRepTemplate]
 FriendlyName="Wielka mapa"
 Description="Obszar działań jest większy niż zwykle, więc dotarcie do celu zajmie Ci prawdopodobnie więcej czasu."

@@ -5739,6 +5739,10 @@ Description="La Resistencia ha colocado detectores de movimiento de rango bajo e
 FriendlyName="Alerta, presencia detectada"
 Description="Se ha descubierto el aura oscura de un Elegido. Ten seguro que aparecerán en esta misión."
 
+[SlightlyLargeMap X2SitRepTemplate]
+FriendlyName="Tamaño del mapa considerable"
+Description="El área de operaciones es más grande de lo normal: probablemente te llevará más tiempo de lo habitual en llegar al objetivo."
+
 [LargeMap X2SitRepTemplate]
 FriendlyName="Tamaño del mapa considerable"
 Description="El área de operaciones es más grande de lo normal: probablemente te llevará más tiempo de lo habitual en llegar al objetivo."

@@ -52,6 +52,8 @@ var config array<string> NO_SIT_REP_MISSION_TYPES;
 
 var StateObjectReference AssociatedChosen;
 
+var config array<string> SlightlyLargeMaps;
+
 var config array<string> LargeMaps;
 
 var config array<string> VeryLargeMaps;
@@ -802,12 +804,12 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 		}
 	}
 
+	MapName = MissionState.GeneratedMission.Plot.MapName;
 	// Add sit reps for large and very large maps for fixed evac missions that
 	// have an evac timer rather than an objective timer.
 	if (class'UIUtilities_LW'.default.FixedExitMissions.Find(MissionState.GeneratedMission.Mission.MissionName) != INDEX_NONE &&
 		class'UIUtilities_LW'.default.EvacTimerMissions.Find(MissionState.GeneratedMission.Mission.MissionName) != INDEX_NONE)
 	{
-		MapName = MissionState.GeneratedMission.Plot.MapName;
 		if (instr(MapName, "vlgObj") != INDEX_NONE)
 		{
 			MissionState.GeneratedMission.SitReps.AddItem('VeryLargeMap');
@@ -829,6 +831,11 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 		{
 			MissionState.GeneratedMission.SitReps.AddItem('VeryLargeMap');
 		}
+		
+	}
+	else if (default.SlightlyLargeMaps.Find(MapName) != INDEX_NONE) // added here specificaly for psi transmitter and the sewers map.
+	{
+		MissionState.GeneratedMission.SitReps.AddItem('SlightlyLargeMap');
 	}
 
 	// Start Issue #157

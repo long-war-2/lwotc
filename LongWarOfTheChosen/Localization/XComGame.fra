@@ -5669,6 +5669,10 @@ LocLongDescription="Lorsque vous réalisez un coup critique avec un tir ou une c
 [LocationScout X2SitRepTemplate]
 Description="La résistance a placé des détecteurs de mouvement à courte portée qui quadrillent toute la zone d'opération. Vos soldats seront capables de détecter les unités ennemies qui ne sont pas dans leur champ de vision."
 
+[SlightlyLargeMap X2SitRepTemplate]
+FriendlyName="Grande carte"
+Description="La zone d'opération est plus vaste que celles des autres missions, et il vous faudra sans doute plus de temps pour vous frayer un chemin jusqu'à votre objectif."
+
 ; LWOTC translated (2)
 [LargeMap X2SitRepTemplate]
 FriendlyName="Grande carte"
