@@ -1763,6 +1763,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		Template.AbilityShooterConditions.InsertItem(0, new class'X2Condition_MasteredEnemy');
 	}
 
+	/*
 	switch (Template.DataName)
 	{
 		case 'OverwatchShot':
@@ -1778,7 +1779,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			ShotEffect.TargetConditions.AddItem(class'X2Ability_DefaultAbilitySet'.static.OverwatchTargetEffectsCondition());
 			Template.AddTargetEffect(ShotEffect);
 			break;
-	}
+	} */
 
 	if (default.USE_ACTION_ICON_COLORS && !class'Helpers_LW'.default.bWOTCCostBasedAbilityColorsActive)
 	{
