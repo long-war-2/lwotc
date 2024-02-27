@@ -1015,6 +1015,8 @@ static function EventListenerReturn  OnOverrideBleedOutChance(Object EventData, 
 	BleedOutChance = default.BLEEDOUT_CHANCE_BASE - (OverrideTuple.Data[2].i * default.DEATH_CHANCE_PER_OVERKILL_DAMAGE);
 	OverrideTuple.Data[0].i = BleedOutChance;
 
+	`LWTrace("Bleedout chance base:" @BleedOutChance);
+
 	return ELR_NoInterrupt;
 
 }
