@@ -480,8 +480,6 @@ LocPromotionPopupText="<Bullet/> 连环射击消耗<Ability:SelfAmmoCost/>弹药
 
 
 
-
-
 [SaturationFire X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> 饱和火力消耗<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 饱和火力有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 饱和火力将对锥型范围内的每一个敌人进行标准射击，并将损坏或摧毁锥型范围内随机的掩体。<br/>"
 ;End Translation
@@ -2912,7 +2910,7 @@ ObjectiveTextPools[0]="尽可能多的获取变种人资源"
 ObjectiveTextPools[1]="撤离所有XCOM士兵"
 
 [BigSmashNGrab_LW X2MissionTemplate]
-DisplayName="大型任务搜寻补给箱"
+DisplayName="大型仓库搜寻补给箱"
 Briefing="补给突袭"
 PostMissionType="搜寻补给"
 BriefingImage="img:///UILibrary_StrategyImages。X2StrategyMap。Alert_Resistance_Ops_Appear"
@@ -3073,7 +3071,7 @@ ObjectiveTextPools[1]="安保总部营救VIP"
 ObjectiveTextPools[2]="撤离VIP"
 ObjectiveTextPools[3]="撤离所有的XCOM人员"
 ObjectiveTextPools[4]="营救VIP"
-ObjectiveTextPools[5]="We've located a compound holding a VIP important to the resistance! Infiltrate the compound and rescue the VIP. Once alerted, ADVENT will begin increasing security each turn, eventually summoning reinforcements. Firebrand will embark once XCOM signals that the VIP is in custody."
+ObjectiveTextPools[5]="我们发现了一个关押着反抗组织重要VIP的基地！潜入基地，解救该VIP。一旦暴露，变种人将会每回合增加安保措施，最终会召唤增援部队。一旦XCOM发出信号表明VIP已被释放，红恶魔将启程前往实施撤离。"
 
 [CompoundRescueOperative_LW X2MissionTemplate]
 DisplayName="安保总部营救VIP"
@@ -5456,8 +5454,8 @@ LocPromotionPopupText="<Bullet/> 幽魂开始时的专注度等于圣殿骑士�
 ; LWOTC Needs Translation (2)
 [VoidConduit X2AbilityTemplate]
 LocFriendlyName="虚空导管"
-LocLongDescription="用灵能监狱束缚一个人形敌人，使其无法行动，持续2个行动点并将他的生命值转移至圣殿骑士。消耗1专注。"
-LocHelpText="用灵能监狱束缚一个人形敌人，使其无法行动，持续数个行动并将他的生命值转移至圣殿骑士。消耗1专注。"
+LocLongDescription="用灵能监狱束缚一个人形敌人，使其无法行动，持续2个行动点并将其生命值转移至圣殿骑士。消耗1专注。"
+LocHelpText="用灵能监狱束缚一个人形敌人，使其无法行动，持续2个行动点并将其生命值转移至圣殿骑士。消耗1专注。"
 LocPromotionPopupText="<Bullet/> 虚空导管首先会造成<Ability:VOIDCONDUITDMG/>伤害，随后每个敌方行动点吸取敌人<Ability:VOIDCONDUITACTIONDMG/>点生命值。<br/><Bullet/> 虚空导管持续2个行动点。<br/><Bullet/> 虚空导管冷却时间为<Ability:SelfCooldown_LW/>回合。<br/><Bullet/> 被虚空导管困住的敌人无法行动或闪避。<br/>"
 ; End Translation (2)
 
@@ -5537,7 +5535,7 @@ LocFlyOverText="冠军术士"
 LocFriendlyName="精神控制"
 ; LWOTC Needs Translation (3)
 LocLongDescription="主动控制目标的思想，迫使他们攻击同伴。<Ability:SelfCooldown_LW/>回合冷却。"
-LocHelpText="Assume full mental control of the target for a short duration. <Ability:SelfCooldown_LW/> turn cooldown."
+LocHelpText="完全控制目标的思维，持续一段时间。<Ability:SelfCooldown_LW/>回合冷却。"
 ; End Translation (3)
 LocFlyOverText="精神控制"
 ; End Translation #2
@@ -6362,14 +6360,14 @@ LocPromotionPopupText="<Bullet/> 还击每回合只触发一次。<br/><Bullet/>
 [TriggerBot X2AbilityTemplate]
 LocFriendlyName="扳机机器人"
 LocHelpText="当被敌人的火力攻击时，每回合自动用你的<Ability:WeaponName/>还击一次，攻击具有<Ability:TRIGGER_BOT_DAMAGE_PENALTY/>%的伤害惩罚，但保证命中。"
-LocLongDescription="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn with an attack that has a <Ability:TRIGGER_BOT_DAMAGE_PENALTY/>% damage penalty, but is a guaranteed hit."
-LocPromotionPopupText="<Bullet/> Trigger Bot will only trigger once per turn.<br/><Bullet/> Trigger Bot can be triggered by melee attacks and area of effect attacks.<br/><Bullet/> Trigger Bot will not trigger when targeted by overwatch fire.<br/>"
+LocLongDescription="当被敌人的火力攻击时，每回合自动使用<Ability:WeaponName/>进行一次反击，该攻击有<Ability:TRIGGER_BOT_DAMAGE_PENALTY/>%的伤害惩罚，但保证命中。"
+LocPromotionPopupText="<Bullet/> 每回合只会触发一次。<br/><Bullet/> 可以被近战攻击和范围攻击触发。<br/><Bullet/> 被反应射击攻击时不会触发<br/>"
 
 [TriggerBotShot X2AbilityTemplate]
 LocFriendlyName="扳机机器人"
 LocHelpText="当被敌人的火力攻击时，每回合自动用你的<Ability:WeaponName/>还击一次，攻击具有<Ability:TRIGGER_BOT_DAMAGE_PENALTY/>%的伤害惩罚，但保证命中。"
-LocLongDescription="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn with an attack that has a <Ability:TRIGGER_BOT_DAMAGE_PENALTY/>% damage penalty, but is a guaranteed hit."
-LocPromotionPopupText="<Bullet/> Trigger Bot will only trigger once per turn.<br/><Bullet/> Trigger Bot can be triggered by melee attacks and area of effect attacks.<br/><Bullet/> Trigger Bot will not trigger when targeted by overwatch fire.<br/>"
+LocLongDescription="当被敌人的火力攻击时，每回合自动使用<Ability:WeaponName/>进行一次反击，该攻击有<Ability:TRIGGER_BOT_DAMAGE_PENALTY/>%的伤害惩罚，但保证命中。"
+LocPromotionPopupText="<Bullet/> 每回合只会触发一次。<br/><Bullet/> 可以被近战攻击和范围攻击触发。<br/><Bullet/> 被反应射击攻击时不会触发<br/>"
 
 [DeadeyeSnapShot X2AbilityTemplate]
 LocFriendlyName="死亡之眼 (急射)"
@@ -6575,35 +6573,35 @@ strAcquiredText="猎手是远程战斗的大师，不断地用他危险的侧翼
 FriendlyName="天选者终极霰弹枪"
 FriendlyNamePlural="天选者终极霰弹枪"
 BriefSummary="风暴枪发射浓缩的光束脉冲波，穿刺并且熔化大范围地面区域上的目标。"
-TacticalText="<Bullet/> This is the most advanced shotgun-style weapon available in the XCOM arsenal.\n<Bullet/> Shotgun-style weapons are very effective at close range, but their accuracy drops off quickly at longer range.\n<Bullet/> Use upgrades looted from enemies to improve the Storm Gun's tactical effectiveness."
+TacticalText="<Bullet/> 这是XCOM兵器库中最先进的霰弹枪式武器。\n<Bullet/> 霰弹枪式武器在近距离非常有效，但在较远距离的准确性会迅速下降。\n<Bullet/> 使用从敌人身上拾取的插件来提高风暴枪的战术效果。"
 AbilityDescName="霰弹枪"
 
 [ChosenSword_T5 X2WeaponTemplate]
 FriendlyName="天选者终极剑"
 FriendlyNamePlural="天选者终极剑"
 BriefSummary="融合之刃包含一个位于微型磁力场中电浆加热的金属核心，能够进行破坏性的近战攻击，并使敌人着火。"
-TacticalText="<Bullet/> This is the most advanced version of the Ranger's sword, dealing maximum damage with a chance to burn enemy targets."
+TacticalText="<Bullet/> 这是剑的最高级版本，能够造成最大伤害并有机会点燃敌人。"
 AbilityDescName="剑"
 
 [ChosenSniperRifle_T5 X2WeaponTemplate]
 FriendlyName="天选者终极狙击步枪"
 FriendlyNamePlural="天选者终极狙击步枪"
 BriefSummary="外星人的聚焦光束技术对提升狙击步枪很有帮助。电浆长矛便是一种无可匹敌的狙击步枪。"
-TacticalText="<Bullet/> This is the apex of sniper rifle technology.\n<Bullet/> Sniper rifles always require both actions to fire.\n<Bullet/> They are less accurate at close range, but deadly at a distance.\n<Bullet/> Use upgrades looted from enemies to improve the plasma sniper rifle's tactical effectiveness."
+TacticalText="<Bullet/> 这是狙击步枪技术的巅峰。\n<Bullet/> 狙击步枪始终需要消耗2个行动点才能开火。\n<Bullet/> 它们在近距离的精度较低，但在远距离致命。\n<Bullet/> 使用从敌人身上拾取的插件来提高等离子狙击步枪的战术效果。"
 AbilityDescName="狙击步枪"
 
 
 [ChosenSniperPistol_T5 X2WeaponTemplate]
 FriendlyName="天选者终极手枪"
 FriendlyNamePlural="天选者终极手枪"
-BriefSummary="作为一把终极副武器，这把手枪整合了外星人科技，并能发挥出强大的威力。"
-TacticalText="<Bullet/> Beam pistols are the most powerful handguns on Earth.\n<Bullet/> Unlike the sniper rifle, pistols can be fired with a single action."
+BriefSummary="作为一把终极副武器，这把手枪整合了外星人的光束武器科技，能发挥出强大的威力。"
+TacticalText="<Bullet/> 光束手枪是地球上最强大的手枪。\n<Bullet/> 与狙击步枪不同，手枪可以在单个行动点的情况下开火。"
 
 [ChosenRifle_T5 X2WeaponTemplate]
 FriendlyName="天选者终极步枪"
 FriendlyNamePlural="天选者终极步枪"
 BriefSummary="由于我们最终成功解析了外星人毁灭性武器技术，我们已经可以开发属于自己的光束武器了，我们现在可以建造能够匹敌战场上敌人的步枪了。"
-TacticalText="<Bullet/> The Plasma Rifle is a general purpose, supremely powerful primary infantry weapons system.\n<Bullet/> Firing the primary weapon always ends the soldier's turn.\n<Bullet/> Use upgrades looted from enemies to improve the Plasma Rifle's tactical effectiveness."
+TacticalText="<Bullet/> 光束步枪是一种多用途、极为强大的主要步兵武器系统。\n<Bullet/> 使用主武器开火总是结束士兵的回合。\n<Bullet/> 使用从敌人身上拾取的插件来提高光束步枪的战术效果。"
 AbilityDescName="突击步枪"
 ;end translation
 
