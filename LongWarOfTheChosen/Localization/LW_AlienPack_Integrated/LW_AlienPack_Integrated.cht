@@ -1,4 +1,4 @@
-﻿[X2Ability_LWAlienAbilities]
+[X2Ability_LWAlienAbilities]
 strBayonetChargePenalty="百夫長在<XGParam:IntValue0/>回合內<XGParam:IntValue1/>防禦。"
 
 [X2Effect_WarCry]

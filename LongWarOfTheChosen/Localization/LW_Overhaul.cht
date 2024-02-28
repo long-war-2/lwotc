@@ -15,23 +15,23 @@ m_strMissionDifficulty_start="底線敵人活動"
 
 [ProtectRegionEarly X2LWAlienActivityTemplate]
 ActivityName="ProtectRegion1Activity"
-ActivityObjectives[0]="開始解放地區"
+ActivityObjectives[0]="解放1：開始解放該地區"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="我們已經發現了一個變種人活動的潛在線索。應該前去調查。", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="我們已經發現了一個變種人活動的潛在線索。應該前去調查。", MissionIndex=0)
 
 [ProtectRegionMid X2LWAlienActivityTemplate]
 ActivityName="ProtectRegion2Activity"
-ActivityObjectives[0]="解放：營救一名叛逃者"
+ActivityObjectives[0]="解放2：營救一名叛逃者"
 
 +MissionDescriptions=(MissionFamily="Extract_LW", Description="我們可以在這片區域營救出一名變種人叛逃者，他掌握著外星人弱點的重要信息。", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Rescue_LW", Description="我們已經得知了這片地區一名反抗軍支持者擁有外星人弱點的重要信息。", MissionIndex=0)
 
 [ProtectRegion X2LWAlienActivityTemplate]
 ActivityName="ProtectRegion3Activity"
-ActivityObjectives[0]="解放：阻止變種人行動"
-ActivityObjectives[1]="解放：摧毀網絡塔"
-ActivityObjectives[2]="解放：突襲變種人基地"
+ActivityObjectives[0]="解放3：阻擊變種人行動"
+ActivityObjectives[1]="解放4：摧毀網絡塔"
+ActivityObjectives[2]="解放5：突襲變種人基地"
 
 +MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="我們得知有變種人的裝置在干擾反抗軍通訊網絡。我們必須摧毀它。", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Neutralize_LW", Description="我們的努力使我們找到了一位人類變種人官員，他正在為這一地區的敵人行動提供建議。我們需要清除這名官員。", MissionIndex=0)
@@ -124,7 +124,7 @@ ActivityObjectives[1]="保衛臨時政府"
 
 [Propaganda X2LWAlienActivityTemplate]
 ActivityName="PropagandaActivity"
-ActivityObjectives[0]="獲取變種人的注意"
+ActivityObjectives[0]="獲取變種人的註意，提升該地區警戒"
 +MissionDescriptions=(MissionFamily="SabotageCC_LW", Description="外星人已離開保護相對較弱的市中心。我們可以進攻他們其中一座紀念碑以傳遞信息，但是變種人肯定會有所回應。", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Neutralize_LW", Description="我們已經得知在變種人管理系統的一位高級人類官員，在接下來的一段時間內所受到的保護相對較弱。我們可以幹掉他，但變種人一定會有所注意。", MissionIndex=0)
 
@@ -148,7 +148,7 @@ ActivityObjectives[0]="找到一個線索"
 
 [TroopManeuvers X2LWAlienActivityTemplate]
 ActivityName="TroopManeuversActivity"
-ActivityObjectives[0]="減少變種人強度"
+ActivityObjectives[0]="減少變種人兵力"
 +MissionDescriptions=(MissionFamily="TroopManeuvers_LW", Description="變種人的一支戰鬥部隊暴露在我們部隊的攻勢之下。")
 
 [HighValuePrisoner X2LWAlienActivityTemplate]
@@ -234,8 +234,8 @@ TacticalText="<Bullet/> 高級臂套的爆裂炮發射器組件能發射一枚�
 AbilityDescName="臂套"
 
 [UISquadSelect_InfiltrationPanel]
-strInfiltrationTitle="潛入總計："
-strBaseInfiltrationTitle="基礎潛入："
+strInfiltrationTitle="總潛入時間："
+strBaseInfiltrationTitle="基礎潛入時間："
 strSquadSizeTitle="小隊規模調整："
 strCovertnessTitle="能力和裝備調整："
 strMissionTimeTitle="任務到期時間："
@@ -246,11 +246,11 @@ strMissionIndefinite="無限期"
 strLiberationTitle="解放進度修正:"
 
 ; LWOTC Needs Translation
-UpToText="取決於"
-ExpectedActivityTextStr="預期活動"
-BoostedActivityText="預期活動（增強）"
-BoostTextPre="以及"
-BoostTextPost="促進"
+UpToText="滲透率可達"
+ExpectedActivityTextStr="預期敵人數量"
+BoostedActivityText="預期敵人數量（情報增強）"
+BoostTextPre="情報增強"
+BoostTextPost="渗透率"
 ; End Translation
 
 [UIScreenListener_DropShipBriefing_MissionStart]
@@ -454,22 +454,22 @@ m_strMustLaunchMission="任務時限：必須發起或放棄"
 m_strInsuffientInfiltrationToLaunch="離發起任務還需潛入到至少<XGParam:IntValue0>%。"
 
 ; these need to be coordinated in length with the  in LW_InfiltrationSettings.ini : AlertModifierAtInfiltration
-+m_strAlertnessModifierDescriptions[0]="無法攻取"
-+m_strAlertnessModifierDescriptions[1]="無法攻取"
-+m_strAlertnessModifierDescriptions[2]="無法攻取"
-+m_strAlertnessModifierDescriptions[3]="加固"
-+m_strAlertnessModifierDescriptions[4]="加固"
-+m_strAlertnessModifierDescriptions[5]="加固"
++m_strAlertnessModifierDescriptions[0]="戒备森严"
++m_strAlertnessModifierDescriptions[1]="戒备森严"
++m_strAlertnessModifierDescriptions[2]="戒备森严"
++m_strAlertnessModifierDescriptions[3]="加強防備"
++m_strAlertnessModifierDescriptions[4]="加強防備"
++m_strAlertnessModifierDescriptions[5]="加強防備"
 +m_strAlertnessModifierDescriptions[6]="警戒"
 +m_strAlertnessModifierDescriptions[7]="警戒"
 +m_strAlertnessModifierDescriptions[8]="警戒"
-+m_strAlertnessModifierDescriptions[9]="守備"
-+m_strAlertnessModifierDescriptions[10]="守備"
-+m_strAlertnessModifierDescriptions[11]="守備"
++m_strAlertnessModifierDescriptions[9]="防備"
++m_strAlertnessModifierDescriptions[10]="防備"
++m_strAlertnessModifierDescriptions[11]="防備"
 +m_strAlertnessModifierDescriptions[12]="一般"
-+m_strAlertnessModifierDescriptions[13]="脆弱"
-+m_strAlertnessModifierDescriptions[14]="脆弱"
-+m_strAlertnessModifierDescriptions[15]="脆弱"
++m_strAlertnessModifierDescriptions[13]="疏於防備"
++m_strAlertnessModifierDescriptions[14]="疏於防備"
++m_strAlertnessModifierDescriptions[15]="疏於防備"
 
 [UIMission_LWCustomMission]
 +m_strUrgent="安全漏洞"
@@ -482,10 +482,10 @@ m_strInvasionDesc="變種人軍隊發起了對<XGParam:StrValue0/!WorldRegionNam
 
 [UIStrategyMapItem_Region_LW]
 m_strOutpostTitle="避難所：<XGParam:StrValue0>"
-m_strAlertLevel="S:<XGParam:IntValue0> V:<XGParam:IntValue2> F:<XGParam:IntValue1>"
-m_strLiberatedRegion="已解放地區："
-m_strStaffingPinText="S:<XGParam:IntValue0> I:<XGParam:IntValue1> R:<XGParam:IntValue2>"
-m_strStaffingPinTextMore="H:<XGParam:IntValue0>"
+m_strAlertLevel="兵力:<XGParam:IntValue0> 警戒:<XGParam:IntValue2> 科技:<XGParam:IntValue1>"
+m_strLiberatedRegion="已解放地區"
+m_strStaffingPinText="補給:<XGParam:IntValue0> 情報:<XGParam:IntValue1> 招募:<XGParam:IntValue2>"
+m_strStaffingPinTextMore="藏匿:<XGParam:IntValue0>"
 m_strMonthlyRegionalIncome="+§<XGParam:IntValue0> (+§<XGParam:IntValue1>)"
 
 [XComGameState_LWOutpostManager]
@@ -496,18 +496,18 @@ TooltipCQ_ResistanceManagement="管理地區內反抗軍避難所"
 m_strTitle="反抗軍總覽"
 m_strLabel="反抗軍避難所聯絡中..."
 m_strRegionLabel="地區"
-m_strStrength="變種人強度"
+m_strStrength="變種人兵力"
 m_strAdviserLabel="顧問"
 m_strIncomeLabel="收入"
 m_strRebelCountLabel="避難所"
-m_strADVENTUnitSingular="軍團"
-m_strADVENTUnitPlural="軍團"
+m_strADVENTUnitSingular="兵力"
+m_strADVENTUnitPlural="兵力"
 
-m_strGlobalAlert="總體變種人強度："
-m_strGlobalInsurgency="• 總體反抗軍威脅："
+m_strGlobalAlert="變種人總兵力："
+m_strGlobalInsurgency="• 反抗軍總威脅："
 m_strAvatarPenalty="• 化身進度減慢了<XGParam:IntValue0/>%"
 m_strThreatVeryLow="低"
-m_strThreatLow="守備"
+m_strThreatLow="戒備"
 m_strThreatMedium="較高"
 m_strThreatHigh="高"
 m_strThreatVeryHigh="嚴峻"
@@ -525,7 +525,7 @@ m_strBuildRadioRelay="建造無線電中繼站"
 m_strLiaisonTitle="避難所顧問"
 m_strEditLoadout="顧問裝備"
 ; 0=Alert, 1=Vigilance, 2=Force
-m_strRegionalInfo="變種人強度：<XGParam:IntValue0/>"
+m_strRegionalInfo="變種人兵力：<XGParam:IntValue0/>"
 m_strResistanceMecs="反抗軍MEC：<XGParam:IntValue0/>"
 m_strProhibited="被禁止"
 m_strCannotChangeLiaisonTitle="無法移動/裝備顧問"
@@ -609,6 +609,45 @@ m_strInvasionLabel="解放受突襲的地區"
 m_strInvasionBody="指揮官，變種人正在試圖重新征服已解放地區。他們正在對臨時政府的總部發動一次大規模的進攻。"
 m_strInvasionFlare="緊急通信"
 m_strInvasionConfirm="查看入侵地點"
+[UIScreenListener_ShellDifficulty]
+.Credits=""
+.Credits=Design Lead
+.Credits=John "JohnnyLump" Lumpkin
+.Credits=""
+.Credits=Technical Lead
+.Credits=Rachel "Amineri" Norman
+.Credits=""
+.Credits=Programmers
+.Credits=Jonathan "tracktwo" Emmett
+.Credits=Chris "chrisb" Boertien
+.Credits=""
+.Credits=Artists
+.Credits=James "JCLewis" Karlson
+.Credits=Chris "CapnBubs" Mansell
+.Credits=Dana "lfish" Henderson
+.Credits=Robert "BazserMazser" Bakos
+.Credits=Alexander "XMarksTheSpot" Behne
+.Credits=Percy Parache
+.Credits=""
+.Credits=Quality Assurance Lead
+.Credits=Tim "Bilfdoffle" Evans
+.Credits=""
+.Credits=Quality Assurance and Design Advisers
+.Credits=Matt "WyMANderly" Price
+.Credits=Xavier Wynns
+.Credits=Stephen "JoINrbs" Flavall 
+.Credits=Tim "deaconivory" Douglas
+.Credits=Caitlin McDonald, Paul "Kordolius" Massip, Benedict Jacka "Saph"
+.Credits=Colin "Thrair" Hendershot, Paul "Plockets" Giles, Gimrah, Ronar
+.Credits=""
+.Credits="Special Thanks"
+.Credits="Garrett Bittner, Casey Coleman, Garth DeAngelis"
+.Credits="Brian Hess, Sajjad Majid, Ryan McFall"
+.Credits="Kevin Schultz, Jake Solomon, Brittany Steiner, Iain Willows"
+.Credits="McDenny's 09, The Community Highlander Project"
+.Credits="RoboJumper, Bountygiver, xylthixlm, Beaglerush"
+.Credits="Our herd of spot translators on the PI forums"
+.Credits=""
 
 [UIUtilities_LW]
 m_strInfiltrationMission="潛入任務"
@@ -667,3 +706,15 @@ ScrollObjectiveDescriptionStr="滾動目標說明"
 
 [X2Effect_ChosenLoot]
 m_strChosenLoot="(<XGParam:IntValue0/>) <XGParam:StrValue0/!ItemName/> 擊殺天選者獲得獎勵。"
+
+[UISL_Shell_LWoTCVersion]
+strMessage_Title = "Long War Of The Chosen"
+strMessage_Header = "Long War Of The Chosen has been Updated!
+strMessage_Body = "Version 1.1.0 is now released, with lots of features and improvements, including:<ul><li>New 5 Tier Chosen system for Better Progression</li><li>New Covert Actions that Reward Infiltration Missions</li><li>New Maps for Network Tower and Crate Race Missions</li><li>Reworked Templar with Iridar's Psi Shield</li><li>QOL Improvements</li><li>Improved Mod Compatibility</li><li>Balance Tweaks for Classes, Heros, and More</li><li>Way more than I can fit here unless you want a giant scrollbar</li></ul>Check out the google doc linked on the Steam change notes, or visit the LWoTC discord!"
+strDismiss_Button = "OK"
+
+[UISL_Shell_BetaPatchNotes]
+strMessage_Title = "Long War Of The Chosen"
+strMessage_Header = "RC32 Changes:"
+strMessage_Body = "<ul><li>Fixed issue with map generation on Sewer maps coverted to Subway with new config option.</li><li>Fixed bug where Scientists and Engineers could be staffed as haven advisors while injured.</li><li>Fixed issue where Hive Queens didn't have valid followers for some boss pods.</li><li>On Lib5 missions, Advent will now converge on XCOM's location once the General dies, or less than 8 aliens are alive.</li><li>After using Command, the unit that received the AP will be selected automatically.</li><li>More localization fixes.</li></ul>"
+strDismiss_Button = "OK"
