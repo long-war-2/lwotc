@@ -5832,6 +5832,10 @@ Description="The resistance have placed low-range motion detectors throughout th
 FriendlyName="Chosen Presence"
 Description="A Chosen's energy signature has been detected. Expect them to appear on this mission."
 
+[SlightlyLargeMap X2SitRepTemplate]
+FriendlyName="Large Map"
+Description="The area of operations is larger than normal, so it will probably take you longer to get to the objective than usual."
+
 ; LWOTC Needs Translation (2)
 [LargeMap X2SitRepTemplate]
 FriendlyName="Large Map"

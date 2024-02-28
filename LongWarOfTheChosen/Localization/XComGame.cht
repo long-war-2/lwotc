@@ -5464,6 +5464,10 @@ LocLongDescription="當你造成暴擊時，附近的隊友會獲得命中、暴
 [LocationScout X2SitRepTemplate]
 Description="反抗軍在整個作戰區域都安置了可以連接到你的小隊通信系統的近程運動探測器。你的士兵將能夠探測到視線之外的敵軍單位。"
 
+[SlightlyLargeMap X2SitRepTemplate]
+FriendlyName="大地圖"
+Description="作戰區域比正常情況下要大，所以你可能需要比平常更長的時間才能達到目標。"
+
 ; LWOTC Needs Translation (2)
 [LargeMap X2SitRepTemplate]
 FriendlyName="大地圖"

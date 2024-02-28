@@ -6038,6 +6038,11 @@ Description="Увеличивает время задания на 4 хода."
 ; End Translated
 
 ; LWOTC Translated
+
+[SlightlyLargeMap X2SitRepTemplate]
+FriendlyName="Марш-бросок"
+Description="Местность операции больше чем обычно, может потребоваться больше времени на выполнение задания."
+
 [LargeMap X2SitRepTemplate]
 FriendlyName="Марш-бросок"
 Description="Местность операции больше чем обычно, может потребоваться больше времени на выполнение задания."

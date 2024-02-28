@@ -5374,6 +5374,10 @@ LocLongDescription="Wenn du mit einem Schuss oder irgendeiner Fähigkeit einen k
 [LocationScout X2SitRepTemplate]
 Description="Der Widerstand hat im gesamten Missionsgebiet Bewegungsmelder mit geringer Reichweite platziert, die sich mit der Kommunikation unseres Trupps verbinden. Deine Soldaten können feindliche Einheiten erkennen, die sich außerhalb der Sichtlinie befinden."
 
+[SlightlyLargeMap X2SitRepTemplate]
+FriendlyName="Große Karte"
+Description="Das Missionsgebiet ist größer als üblich, folglich kann es länger dauern, das Missionsziel zu erreichen."
+
 [LargeMap X2SitRepTemplate]
 FriendlyName="Große Karte"
 Description="Das Missionsgebiet ist größer als üblich, folglich kann es länger dauern, das Missionsziel zu erreichen."
