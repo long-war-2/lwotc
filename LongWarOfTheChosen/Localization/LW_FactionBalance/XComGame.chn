@@ -56,8 +56,8 @@ LocPromotionPopupText="<Bullet/> 圣殿骑士增加<Ability:MeditationFocusRecov
 
 [Overcharge_LW X2AbilityTemplate]
 LocFriendlyName="超载"
-LocLongDescription="圣殿骑士的每一个专注点获得额外的命中和暴击率。"
-LocHelpText="圣殿骑士的每一个专注点获得额外的命中和暴击率。"
+LocLongDescription="圣殿骑士的每一个专注点使得近战攻击获得额外的命中和暴击率。"
+LocHelpText="圣殿骑士的每一个专注点使得近战攻击获得额外的命中和暴击率。"
 LocPromotionPopupText="<Bullet/> 每个专注点+<Ability:OverchargeAimBonus/>命中以及+<Ability:OverchargeCritBonus/>暴击率。<br/><Bullet/> 基于当前专注，而不是最大专注。"
 
 [VoltDangerZone X2AbilityTemplate]

@@ -285,9 +285,9 @@ LocPromotionPopupText="<Bullet/> 发射1记必中的手枪射击，每次任务�
 [Gunslinger X2AbilityTemplate]
 LocFriendlyName="枪神"
 LocFlyOverText="枪神"
-LocLongDescription="使用手枪对<Ability:GUNSLINGER_TILES_RANGE/>格内以及一个锥形范围内任意移动或攻击的敌人进行必定命中，必定暴击的群体反应射击。"
-LocHelpText="加强手枪监视的锥形射程，必定命中，必定暴击。"
-LocPromotionPopupText="<Bullet/> 射程为<Ability:GUNSLINGER_TILES_RANGE/>格。<br/><Bullet/> 冷却时间<Ability:SelfCooldown_LW/>回合。<br/>"
+LocLongDescription="使用手枪对<Ability:GUNSLINGER_TILES_RANGE/>格内移动或攻击的每个敌人进行一次必定命中、必定暴击的反应射击。"
+LocHelpText="加强版手枪范围监视，必定命中，必定暴击。"
+LocPromotionPopupText="<Bullet/> 射程为<Ability:GUNSLINGER_TILES_RANGE/>格。<br/><Bullet/> 冷却时间<Ability:SelfCooldown_LW/>回合。<br/><Bullet/> 不能在隐匿状态下使用。"
 LocFriendlyNameWhenConcealed="手枪监视 (隐蔽式)"
 
 [HyperReactivePupils X2AbilityTemplate]
@@ -541,10 +541,10 @@ LocPromotionPopupText="<Bullet/> 你的烟雾榴弹对处于烟雾中的单位�
 
 [Collateral_LW X2AbilityTemplate]
 LocFriendlyName="附带损害"
-LocLongDescription="用 <Ability:WeaponName/> 向某个位置开火，摧毁该区域内的掩体。对敌人造成少量伤害。5回合冷却时间，使用3发弹药."
-LocHelpText="用 <Ability:WeaponName/> 向某个位置开火，摧毁该区域内的掩体."
+LocLongDescription="用<Ability:WeaponName/>向指定位置开火，摧毁该区域内的掩体。对敌人造成少量伤害。5回合冷却时间，使用3发弹药。"
+LocHelpText="用<Ability:WeaponName/>向指定位置开火，摧毁该区域内的掩体。"
 LocFlyOverText="附带损害"
-LocPromotionPopupText="<Bullet/>用 <Ability:WeaponName/> 向某个位置开火，摧毁该区域内的掩体.<br/><Bullet/> 对影响范围内的所有物体造成高度环境伤害.<br/><Bullet/> 附带损害对效果范围内的敌人造成 1-2/2/2-3 点伤害，具体取决于武器等级 <Ability:WeaponName/>.<br/><Bullet/> 消耗 3 发弹药，冷却时间为 5 回合.<br/>"
+LocPromotionPopupText="<Bullet/> 用<Ability:WeaponName/>向指定位置开火，摧毁该区域内的掩体。<br/><Bullet/> 对影响范围内的所有物体造成大量环境伤害。<br/><Bullet/> 对效果范围内的敌人造成1-2/2/2-3点伤害，具体取决于<Ability:WeaponName/>的等级 。<br/><Bullet/> 消耗3发弹药，冷却时间为5回合。<br/>"
 
 ;POTENTIALLY DEPERECATED AS WELL AS ALL TRANSLATIONS
 [DenseSmokeGrenade X2GrenadeTemplate]
@@ -576,8 +576,8 @@ LocPromotionPopupText="<Bullet/> 你的闪光榴弹有50%几率使敌人眩晕�
 
 [DedicatedSuppression_LW X2AbilityTemplate]
 LocFriendlyName="坚韧压制"
-LocLongDescription="受到伤害不再取消压制和区域压制."
-LocHelpText="受到伤害不再取消压制和区域压制."
+LocLongDescription="受到伤害不再取消压制和区域压制。"
+LocHelpText="受到伤害不再取消压制和区域压制。"
 
 [X2Item_StingGrenade]
 DenseSmokeGrenadeEffectDisplayName="毒刺榴弹"
@@ -1067,138 +1067,138 @@ LocFlyOverText="速射"
 
 [RepairMW_LW X2AbilityTemplate]
 LocFriendlyName="维修"
-LocLongDescription="释放 BIT 到受损的机器人盟友并治疗 4HP，中和酸，并修复所有被撕碎的护甲."
-LocHelpText="释放 BIT 到受损的机器人盟友."
+LocLongDescription="指挥BIT对受损的机器人盟友进行治疗，恢复4HP，中和酸，修复所有被撕碎的护甲。"
+LocHelpText="指挥BIT对受损的机器人盟友进行治疗。"
 LocFlyOverText="维修"
-LocPromotionPopupText="<Bullet/> <Ability:ClassName/> 可以使用修复在战斗中治疗其他机器人盟友（或自身，在 SPARK 的情况下）.<br/><Bullet/> 修复将恢复 4HP，中和酸液，并将目标的护甲重置为最大值.<br/><Bullet/> 升级你的BIT将为每个任务提供更多的维修次数.<br/><Bullet/> 维修有 2/3/4 次数，具体取决于装备的 BIT.<br/><Bullet/> 如果没有超速维修，维修将结束你的回合.<br/><Bullet/> 维修有 1 回合冷却时间（每回合不能多次使用）.<br/>"
+LocPromotionPopupText="<Bullet/> <Ability:ClassName/>可以使用修复在战斗中治疗其他机器人盟友（或自身，如果是SPARK）。<br/><Bullet/> 恢复4HP，中和酸液，并将目标的护甲重置为最大值。<br/><Bullet/> 升级你的BIT将为每个任务提供更多的维修次数。<br/><Bullet/> 每次任务可以使用2/3/4次，具体取决于装备的BIT。<br/><Bullet/> 如果没有学习快速维修，维修将结束你的回合。<br/><Bullet/> 维修有1回合冷却时间（每回合不能多次使用）。<br/>"
 
 [KineticStrike_LW X2AbilityTemplate]
-LocFriendlyName="突袭拳击"
-LocLongDescription="用毁灭性的一拳攻击移动范围内的任何敌人。2回合冷却时间。伤害取决于机架等级."
-LocHelpText="用毁灭性的一拳攻击移动范围内的任何敌人."
-LocPromotionPopupText="<Bullet/> You can trigger the Kinetic Strike ability by placing the movement cursor over an enemy.<br/><Bullet/> The <Ability:ClassName/> can perform a \"Dash\" move, using both actions to move, and still trigger a Strike against an adjacent enemy.<br/><Bullet/> Kinetic Strike will do 6/8/10 damage, depending on the equipped chassis.<br/><Bullet/> Kinetic Strike's chance to hit is based off the <Ability:ClassName/>'s aim with a +10 boost.<br/><Bullet/> Learning the Assault Servos ability will grant +2 damage and an extra +20 aim to all Kinetic Strike attacks.<br/>"
+LocFriendlyName="动能打击"
+LocLongDescription="用毁灭性的一拳攻击移动范围内的任何敌人。2回合冷却时间。伤害取决于装甲等级。"
+LocHelpText="用毁灭性的一拳攻击移动范围内的任何敌人。"
+LocPromotionPopupText="<Bullet/> 你可以通过将移动光标放在敌人身上来触发动能打击。<br/><Bullet/> <Ability:ClassName/>可以执行“冲刺”移动，使用2个行动点来移动并对敌人触发动能打击<br/><Bullet/> 动能打击将造成6/8/10点伤害，取决于所装备的底盘。<br/><Bullet/> 动能打击的命中几率基于<Ability:ClassName/>的命中，并额外获得+10命中。<br/><Bullet/> 学习“突袭模块”技能将为所有动能打击攻击提供+2点伤害和额外的+20命中。<br/>"
 
 [Obliterator_LW X2AbilityTemplate]
 LocFriendlyName="突袭模块"
-LocLongDescription="所有拳击获得 +2 伤害和 +20 命中，还赋予横冲直撞能力."
-LocHelpText="所有拳击获得 +2 伤害和 +20 命中."
-LocPromotionPopupText="<Bullet/> Learning the Assault Servos ability will grant +2 damage and an extra +20 aim to all Kinetic Strike attacks.<br/><Bullet/> With the damage boost, Kinetic Strike's damage will be 8/10/12 depending on the equipped SPARK chassis.<br/><Bullet/> Half-damage Strike attacks gain only a +1 damage boost.<br/><Bullet/> Wrecking Ball is included with this ability. It allows the SPARK to destroy any environmental objects it passes by when using Overdrive.<br/><Bullet/> Combine a Wrecking Ball Overdrive with Kinetic Strike to not only strip a target's cover, but also deal large amounts of damage and have an action point afterwards.<br/>"
+LocLongDescription="所有打击攻击获得+2伤害和+20命中，赋予“横冲直撞”能力。"
+LocHelpText="所有打击攻击获得+2伤害和+20命中."
+LocPromotionPopupText="<Bullet/> 学习突袭模块技能将为所有动能打击攻击提供+2点伤害和额外的+20命中。<br/><Bullet/> 在伤害加成下，动能打击的伤害将为8/10/12，取决于所装备的SPARK装甲。<br/><Bullet/> 半伤害打击只会获得+1点伤害加成。<br/><Bullet/> 此技能包含“横冲直撞”能力。当使用超载时，它允许SPARK摧毁其经过的任何环境物体。<br/><Bullet/> 将超载“横冲直撞”与“动能打击”结合起来，不仅可以破坏目标的掩体，还能造成大量伤害，并在之后剩余一个行动点。<br/>"
 
 [RapidRepair_LW X2AbilityTemplate]
-LocFriendlyName="超速维修"
-LocLongDescription="维修不再结束回合，允许 SPARK 维修后移动或射击."
-LocHelpText="维修不再结束回合."
-LocFlyOverText="超速维修"
-LocPromotionPopupText="<Bullet/> The SPARK's Repair ability no longer ends the turn.<br/><Bullet/> Repair still has a 1-turn cooldown, preventing it from being used twice in one turn.<br/><Bullet/> This allows the SPARK to be much more flexible on the battlefield while also keeping its health and armor high.<br/>"
+LocFriendlyName="快速维修"
+LocLongDescription="维修不再结束回合，允许SPARK维修后移动或射击。"
+LocHelpText="维修不再结束回合。"
+LocFlyOverText="快速维修"
+LocPromotionPopupText="<Bullet/> SPARK的修复能力不再结束回合。<br/><Bullet/> 修复仍然有1回合的冷却时间，防止在同一回合中使用两次。<br/><Bullet/> 这使得SPARK在战场上变得更加灵活，同时保持其健康和护甲水平。<br/>"
 
 [Reboot_LW X2AbilityTemplate]
 LocFriendlyName="重启"
-LocLongDescription="如果SPARK受到致命伤害，它的生命值将减少到只有 1 点生命值，并且它将在剩余的回合中被静滞。每次任务只能触发一次，之后SPARK就会陷入破损状态（降低移速，命中和侵入能力）."
-LocHelpText="如果SPARK受到致命伤害，它的生命值将减少到只有 1 点生命值，并且它将在剩余的回合中被静滞."
+LocLongDescription="如果SPARK受到致命伤害，它的生命值将减少到1点，并且将在回合的剩余时间中被静滞。每次任务只能触发一次，之后SPARK就会陷入破损状态（降低命中、移动和侵入能力）。"
+LocHelpText="如果SPARK受到致命伤害，它的生命值将减少到1点，并且将在回合的剩余时间中被静滞。"
 LocFlyOverText="重启"
-LocPromotionPopupText="<Bullet/> The SPARK will be put into Stasis the first time each mission that its health hits zero.<br/><Bullet/> Without the Redundant Systems ability, the SPARK is crippled after rebooting from catastrophic damage, suffering massive penatlies to aim, mobility, and hacking.<br/><Bullet/> Because of these drawbacks, in combination with the SPARK's already low hull integrity at the time of a Reboot, it is recommended rebooted SPARKs be withdrawn from the battlefield via Skyranger when possible.<br/><Bullet/> Thanks to a complex network of redundant plating, reactivation circuits, and a single-charge shield projector, the SPARK can take one for the team secure in the knowledge that it will live to punch another day.<br/>"
+LocPromotionPopupText="<Bullet/> 每次任务中，当SPARK的生命值首次降到零时，它将被置于静滞状态。<br/><Bullet/> 如果没有“冗余系统”能力，SPARK触发重启后，会遭受巨大的命中、移动和侵入能力的惩罚。<br/><Bullet/> 由于这些缺点，再加上SPARK在重启时已经很低的外壳完整性，建议在可能的情况下将重启的SPARK通过天际游侠号撤离战场。<br/><Bullet/> 由于复杂的冗余装甲、激活电路和单次充能的护盾投射器，SPARK可以为队伍承担一次打击，并安心地知道它将活下来，以便在另一天继续出击。<br/>"
 
 [RebootTriggered_LW X2AbilityTemplate]
 LocFriendlyName="重启"
-LocLongDescription="如果SPARK受到致命伤害，它的生命值将减少到只有 1 点生命值，并且它将在剩余的回合中被静滞。每次任务只能触发一次，之后SPARK就会陷入破损状态（降低移速，命中和侵入能力."
-LocHelpText="如果SPARK受到致命伤害，它的生命值将减少到只有 1 点生命值，并且它将在剩余的回合中被静滞."
+LocLongDescription="如果SPARK受到致命伤害，它的生命值将减少到1点，并且将在回合的剩余时间中被静滞。每次任务只能触发一次，之后SPARK就会陷入破损状态（降低命中、移动和侵入能力）。"
+LocHelpText="如果SPARK受到致命伤害，它的生命值将减少到1点，并且将在回合的剩余时间中被静滞。"
 LocFlyOverText="重启"
-LocPromotionPopupText="<Bullet/> The SPARK will be put into Stasis the first time each mission that its health hits zero.<br/><Bullet/> Without the Redundant Systems ability, the SPARK is crippled after rebooting from catastrophic damage, suffering massive penatlies to aim, mobility, and hacking.<br/><Bullet/> Because of these drawbacks, in combination with the SPARK's already low hull integrity at the time of a Reboot, it is recommended rebooted SPARKs be withdrawn from the battlefield via Skyranger when possible.<br/><Bullet/> Thanks to a complex network of redundant plating, reactivation circuits, and a single-charge shield projector, the SPARK can take one for the team secure in the knowledge that it will live to punch another day.<br/>"
+LocPromotionPopupText="<Bullet/> 每次任务中，当SPARK的生命值首次降到零时，它将被置于静滞状态。<br/><Bullet/> 如果没有“冗余系统”能力，SPARK触发重启后，会遭受巨大的命中、移动和侵入能力的惩罚。<br/><Bullet/> 由于这些缺点，再加上SPARK在重启时已经很低的外壳完整性，建议在可能的情况下将重启的SPARK通过天际游侠号撤离战场。<br/><Bullet/> 多亏了复杂的冗余装甲、激活电路和单次充能的护盾投射器，SPARK可以为队伍承担一次打击，并安心地知道它将活下来，以便在另一天继续出击。<br/>"
 
 [RedundantSystems_LW X2AbilityTemplate]
 LocFriendlyName="冗余系统"
-LocLongDescription="SPARK 不再因重启而受到任何属性惩罚."
-LocHelpText="SPARK 不再因重启而受到任何属性惩罚."
+LocLongDescription="SPARK不再因重启而受到任何属性惩罚。"
+LocHelpText="SPARK不再因重启而受到任何属性惩罚。"
 LocFlyOverText="冗余系统"
-LocPromotionPopupText="<Bullet/> The SPARK no longer suffers any stat penalties from Reboot.<br/><Bullet/> Without Redundant Systems, the SPARK is crippled after rebooting from catastrophic damage.<br/>"
+LocPromotionPopupText="<Bullet/> SPARK在重启后不再受到任何状态惩罚。<br/><Bullet/> 如果没有冗余系统，SPARK从灾难性的损伤重启后会被削弱。<br/>"
 
 [RedunSysTriggered_LW X2AbilityTemplate]
 LocFriendlyName="冗余系统"
-LocLongDescription="如果SPARK受到致命伤害，它的生命值将减少到只有 1 点生命值，并且它将在剩余的回合中被静滞。每次任务只能触发一次."
-LocHelpText="如果SPARK受到致命伤害，它的生命值将减少到只有 1 点生命值，并且它将在剩余的回合中被静滞。每次任务只能触发一次."
+LocLongDescription="如果SPARK受到致命伤害，它的生命值将减少到1点，并且将在回合的剩余时间中被静滞。每次任务只能触发一次。"
+LocHelpText="如果SPARK受到致命伤害，它的生命值将减少到1点，并且将在回合的剩余时间中被静滞。每次任务只能触发一次。"
 LocFlyOverText="冗余系统"
-LocPromotionPopupText="<Bullet/> The SPARK will be put into Stasis the first time each mission that its health hits zero.<br/><Bullet/> Thanks to a complex network of redundant plating, reactivation circuits, and a single-charge shield projector, the SPARK can take one for the team secure in the knowledge that it will live to punch another day.<br/>"
+LocPromotionPopupText="<Bullet/> 每次任务中，当SPARK的生命值首次降到零时，它将被置于静滞状态。<br/><Bullet/> 多亏了复杂的冗余装甲、激活电路和单次充能的护盾投射器，SPARK可以为队伍承担一次打击，并安心地知道它将活下来，以便在另一天继续出击。<br/>"
 
 [HeavyRepair_LW X2AbilityTemplate]
 LocFriendlyName="重型维修"
 LocFlyOverText="重型维修"
-LocLongDescription="维修现在将恢复 8 点生命值，而不是 4 点生命值."
-LocHelpText="维修现在将恢复 8 点生命值，而不是 4 点生命值."
-LocPromotionPopupText="<Bullet/> The SPARK's repair ability will now heal 8 HP per use instead of 4 HP.<br/>"
+LocLongDescription="维修现在将恢复8点生命值，而不是4点生命值。"
+LocHelpText="维修现在将恢复8点生命值，而不是4点生命值。"
+LocPromotionPopupText="<Bullet/> SPARK的维修现在将恢复8点生命值，而不是4点生命值。<br/>"
 
 [ConcussiveStrike_LW X2AbilityTemplate]
-LocFriendlyName="眩晕拳击"
-LocLongDescription="一种特殊的拳击，50%伤害，但眩晕目标两个行动点。无法对机械敌人发动。4回合冷却时间。同时将突袭拳击的冷却时间降低1."
-LocHelpText="A special Strike attack that does half damage but stuns the target for two action points."
-LocFlyOverText="眩晕拳击"
-LocPromotionPopupText="<Bullet/> Concussive Strike cannot target robotic units, as their processing centers aren't as squishy as brains.<br/><Bullet/> The damage of Concussive Strike without Assault Servos is 3/4/5 depending on equipped chassis.<br/><Bullet/> The damage of Concussive Strike with Assault Servos is 4/5/6 depending on equipped chassis.<br/><Bullet/> The SPARK's improved melee abilities also reduce the cooldown of the main Kinetic Strike ability by 1."
+LocFriendlyName="眩晕打击"
+LocLongDescription="一种特殊的打击，只造成50%伤害，但眩晕目标两个行动点。无法对机械敌人发动。4回合冷却时间。同时将动能打击的冷却时间降低1回合。"
+LocHelpText="一种只造成50%伤害的特殊打击，眩晕目标两个行动点。"
+LocFlyOverText="眩晕打击"
+LocPromotionPopupText="<Bullet/> 眩晕打击不能瞄准机械单位，因为它们的处理中心没有大脑那么容易受伤。<br/><Bullet/> 没有突袭模块时，眩晕打击的伤害为3/4/5，取决于所装备的装甲。<br/><Bullet/> 有突袭模块时，眩晕打击的伤害为4/5/6，取决于所装备的装甲<br/><Bullet/> SPARK改进的近战能力还会降低动能打击1回合冷却时间。"
 
 [Neutralize_LW X2AbilityTemplate]
 LocFriendlyName="失效协议"
-LocLongDescription="释放 BIT 到某个位置，在小半径内禁用敌方武器并迫使它们重新装填。消耗 1 次行动，并且不会结束回合."
-LocHelpText="释放 BIT 到某个位置，在小半径内禁用敌方武器并迫使它们重新装填。消耗 1 次行动，并且不会结束回合."
+LocLongDescription="释放BIT到指定位置，在较小半径内清空敌方武器的弹夹（期望它们在行动时重新装填）。消耗1行动点，并且不会结束回合。"
+LocHelpText="释放BIT到指定位置，在较小半径内清空敌方武器的弹夹。消耗1行动点，并且不会结束回合。"
 LocFlyOverText="失效协议"
-LocPromotionPopupText="<Bullet/> Send the BIT to release a short-range jamming pulse that overloads weapon systems. Forces targets to reload their primary weapon.<br/><Bullet/> Targeted enemies can use Reload to unjam their weapon. Enemies may choose to get by with just one action point of movement and shooting to work with, or they may forgo a reload and resort to secondary weapon systems.<br/><Bullet/> Neutralize Protocol costs one action to use and has a <Ability:NEUTRALIZE_COOLDOWN/>turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> 发送BIT释放短程干扰脉冲，过载武器系统。期望目标在行动时重新装填他们的武器。<br/><Bullet/> 被影响的敌人可以使用重新装填来解除空弹夹。敌人可能选择只用一个行动点来移动或射击，或者放弃重新装填并使用次要武器的能力。<br/><Bullet/> 失效协议消耗1行动点，并具有<Ability:NEUTRALIZE_COOLDOWN/>回合的冷却时间。<br/>"
 
 [LayeredArmour_LW X2AbilityTemplate]
 LocFriendlyName="复层装甲"
-LocLongDescription="任何单一伤害来源都不能破坏超过其最大生命值的 40%."
-LocHelpText="任何单一伤害来源都不能破坏超过其最大生命值的 40%."
+LocLongDescription="对该单位的任何单次伤害不会超过其最大生命值的40%。"
+LocHelpText="对该单位的任何单次伤害不会超过其最大生命值的40%。"
 LocFlyOverText="复层装甲"
-LocPromotionPopupText="<Bullet/> Thanks to a new design technique that Shen cooked up, this soldier's plating is now triple-hulled. Any damage to one hull can't spread to another.<br/><Bullet/> The <Ability:ClassName/>'s maximum damage taken is equal to its max HP multiplied by 0.4. The result is rounded to the nearest whole number.<br/>"
+LocPromotionPopupText="<Bullet/> 多亏了沈设计的一种新技术，这名士兵的装甲现在是三层的。对一层的任何伤害都不会传播到另一层。<br/><Bullet/> <Ability:ClassName/>的最大受伤值等于其最大生命值乘以0.4。结果四舍五入到最近的整数。<br/>"
 
 [Triangulation_LW X2AbilityTemplate]
-LocFriendlyName="全息折射"
-LocLongDescription="当 <Ability:ClassName/> 受到攻击时，小队在下一回合获得 +10 命中."
-LocHelpText="当 <Ability:ClassName/> 受到攻击时，小队在下一回合获得 +10 命中."
-LocFlyOverText="全息折射"
-LocPromotionPopupText="<Bullet/> The <Ability:ClassName/> can trace incoming ordnance back to their original owners, and upload that information to the rest of the team.<br/><Bullet/> Triangulate will not trigger if an enemy attacks one of the <Ability:ClassName/>'s squadmates.<br/>"
+LocFriendlyName="三角定位"
+LocLongDescription="当<Ability:ClassName/>受到攻击时，小队在下一回合对攻击者获得+10命中。"
+LocHelpText="当<Ability:ClassName/>受到攻击时，小队在下一回合对攻击者获得+10命中。"
+LocFlyOverText="三角定位"
+LocPromotionPopupText="<Bullet/> <Ability:ClassName/>可以追踪来袭的炮弹到它们的原始所有者，并将这些信息上传给队伍的其他成员。<br/><Bullet/> 如果敌人攻击<Ability:ClassName/>的队友，三角定位不会触发。<br/>"
 
 [TriangulationTrigger_LW X2AbilityTemplate]
-LocFriendlyName="全息折射"
-LocLongDescription="当 the <Ability:ClassName/> 受到攻击时，小队在下一回合获得 +10 命中."
-LocHelpText="当 <Ability:ClassName/> 受到攻击时，小队在下一回合获得 +10 命中."
-LocFlyOverText="全息折射"
-LocPromotionPopupText="<Bullet/> The <Ability:ClassName/> can trace incoming ordnance back to their original owners, and upload that information to the rest of the team.<br/><Bullet/> Triangulate will not trigger if an enemy attacks one of the <Ability:ClassName/>'s squadmates.<br/>"
+LocFriendlyName="三角定位"
+LocLongDescription="当<Ability:ClassName/>受到攻击时，小队在下一回合对攻击者获得+10命中。"
+LocHelpText="当<Ability:ClassName/>受到攻击时，小队在下一回合对攻击者获得+10命中。"
+LocFlyOverText="三角定位"
+LocPromotionPopupText="<Bullet/> <Ability:ClassName/>可以追踪来袭的炮弹到它们的原始所有者，并将这些信息上传给队伍的其他成员。<br/><Bullet/> 如果敌人攻击<Ability:ClassName/>的队友，三角定位不会触发。<br/>"
 
 [BrawlerProtocol_LW X2AbilityTemplate]
-LocFriendlyName="反击拳击"
-LocLongDescription=" <Ability:ClassName/> 可以向任何进入近战范围或从近战范围攻击的敌人拳击。不需要突袭拳击技能。无法在我方回合中激活."
-LocHelpText="向任何进入近战范围或从近战范围攻击的敌人拳击."
-LocFlyOverText="反击拳击"
-LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Counterstrike will trigger if that enemy moves to another adjacent tile or tries to attack the <Ability:ClassName/>.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Counterstrike will trigger when that enemy moves into melee range.<br/><Bullet/> If an enemy begins their turn in an adjacent tile, Counterstrike will NOT trigger if that enemy moves directly away from the <Ability:ClassName/>.<br/><Bullet/> Counterstrike deals half damage compared to the regular Kinetic Strike attack, and gains +1 damage from Assault Servos.<br/><Bullet/> Cannot activate on the <Ability:ClassName/>'s own turn."
+LocFriendlyName="反应打击"
+LocLongDescription="<Ability:ClassName/>会向任何进入其近战范围或从近战范围攻击的敌人进行反应打击。无需动能打击技能。无法在我方回合中触发。"
+LocHelpText="向任何进入近战范围或从近战范围攻击的敌人进行反应打击。"
+LocFlyOverText="反应打击"
+LocPromotionPopupText="<Bullet/> 如果一名敌人在相邻格中开始他们的回合并试图攻击<Ability:ClassName/>，将触发报应。<br/><Bullet/> 如果一名敌人没有在相邻格中开始他们的回合，那么当该敌人进入近战范围时，将触发反应打击。<br/><Bullet/> 如果敌人在相邻的格子直接远离<Ability:ClassName/>，反应打击不会触发。<br/><Bullet/> 反应打击的伤害为常规动能打击的一半，并从突袭模块获得+1伤害加成。<br/><Bullet/> 不能在<Ability:ClassName/>自己的回合触发。"
 
 [BrawlerTrigger_LW X2AbilityTemplate]
-LocFriendlyName="反击拳击"
-LocLongDescription=" <Ability:ClassName/> 可以向任何进入近战范围或从近战范围攻击的敌人拳击。不需要突袭拳击技能。无法在我方回合中激活."
-LocHelpText="向任何进入近战范围或从近战范围攻击的敌人拳击."
-LocFlyOverText="反击拳击"
-LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Counterstrike will trigger if that enemy moves to another adjacent tile or tries to attack the <Ability:ClassName/>.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Counterstrike will trigger when that enemy moves into melee range.<br/><Bullet/> If an enemy begins their turn in an adjacent tile, Counterstrike will NOT trigger if that enemy moves directly away from the <Ability:ClassName/>.<br/><Bullet/> Counterstrike deals half damage compared to the regular Kinetic Strike attack, and gains +1 damage from Assault Servos.<br/><Bullet/> Cannot activate on the <Ability:ClassName/>'s own turn."
+LocFriendlyName="反应打击"
+LocLongDescription="<Ability:ClassName/>会向任何进入其近战范围或从近战范围攻击的敌人进行反应打击。无需动能打击技能。无法在我方回合中触发。"
+LocHelpText="向任何进入近战范围或从近战范围攻击的敌人进行反应打击。"
+LocFlyOverText="反应打击"
+LocPromotionPopupText="<Bullet/> 如果一名敌人在相邻格中开始他们的回合并试图攻击<Ability:ClassName/>，将触发报应。<br/><Bullet/> 如果一名敌人没有在相邻格中开始他们的回合，那么当该敌人进入近战范围时，将触发反应打击。<br/><Bullet/> 如果敌人在相邻的格子直接远离<Ability:ClassName/>，反应打击不会触发。<br/><Bullet/> 反应打击的伤害为常规动能打击的一半，并从突袭模块获得+1伤害加成。<br/><Bullet/> 不能在<Ability:ClassName/>自己的回合触发。"
 
 
 [EnhancedSystems_LW X2AbilityTemplate]
-LocFriendlyName="终极维修"
-LocLongDescription="赋予超速维修和冗余系统技能，维修不再结束回合，移除与重启相关的属性减益。重启时，SPARK 将自动使用维修."
-LocHelpText="赋予超速维修和冗余系统技能，维修不再结束回合，移除与重启相关的属性减益。重启时，SPARK 将自动使用维修."
-LocPromotionPopupText="Rapid Repair makes Repair non turn ending. Redundant Systems means the SPARK will not suffer any stat penalties after Rebooting. The SPARK will automatically use Repair when rebooting."
+LocFriendlyName="强化维修系统"
+LocLongDescription="赋予快速维修和冗余系统技能，维修不再结束回合，移除与重启相关的属性减益。重启时，SPARK将自动使用维修。"
+LocHelpText="赋予快速维修和冗余系统技能，维修不再结束回合，移除与重启相关的属性减益。重启时，SPARK将自动使用维修。"
+LocPromotionPopupText="快速维修使得维修不再结束回合。冗余系统意味着SPARK在重启后不会受到任何属性惩罚。SPARK在重启时将自动使用维修"
 
 [ReactionSystems_LW X2AbilityTemplate]
-LocFriendlyName="终极防御"
-LocLongDescription="赋予牺牲和引导领域技能，获得防御和护甲，允许 SPARK 将4X4内队友受到的伤害引导自身，被任何攻击命中后 SPARK 获得暂时的增伤效果."
-LocHelpText="<Bullet/> SPARK 获得 +<Ability:Sacrifice_Defense/> 防御和 +<Ability:Sacrifice_Armor/> 护甲当牺牲开启时.<br/><Bullet/> 牺牲有 <Ability:SACRIFICE_COOLDOWN/> 回合冷却.<br/><Bullet/>每引导一点能量，下一次 <Ability:WeaponName> 伤害+1.<br/>"
-LocPromotionPopupText="<Bullet/> The SPARK gains +<Ability:Sacrifice_Defense/> defense and +<Ability:Sacrifice_Armor/> armor while Sacrifice is active.<br/><Bullet/> Sacrifice has a <Ability:SACRIFICE_COOLDOWN/> turn cooldown.<br/><Bullet/> Each point of energy channeled by Channeling Field increases the damage of the next <Ability:WeaponName> attack by 1.<br/>"
+LocFriendlyName="强化防御系统"
+LocLongDescription="赋予牺牲和引导力场技能，获得防御和护甲，允许SPARK将4X4格范围内队友受到的伤害引导至自身，被任何攻击命中后SPARK会获得暂时的增伤效果。"
+LocHelpText="<Bullet/> 当牺牲开启时，SPARK获得+<Ability:Sacrifice_Defense/>防御和+<Ability:Sacrifice_Armor/>护甲。<br/><Bullet/> 牺牲有<Ability:SACRIFICE_COOLDOWN/>回合冷却。<br/><Bullet/> 每引导一点能量，下一次攻击<Ability:WeaponName>伤害+1。<br/>"
+LocPromotionPopupText="<Bullet/> 当牺牲开启时，SPARK获得+<Ability:Sacrifice_Defense/>防御和+<Ability:Sacrifice_Armor/>护甲。<br/><Bullet/> 牺牲有<Ability:SACRIFICE_COOLDOWN/>回合冷却。<br/><Bullet/> 每引导一点能量，下一次攻击<Ability:WeaponName>伤害+1。<br/>"
 
 [AdvancedLogic_LW X2AbilityTemplate]
-LocFriendlyName="递归逻辑"
-LocLongDescription="增加 <Ability:ClassName/>的侵入 <Ability:ADVANCED_LOGIC_HACK_BONUS>."
-LocHelpText="增加 <Ability:ClassName/>的侵入 <Ability:ADVANCED_LOGIC_HACK_BONUS>."
-LocPromotionPopupText="Increases the <Ability:ClassName/>'s hack stat by <Ability:ADVANCED_LOGIC_HACK_BONUS>."
+LocFriendlyName="进阶逻辑"
+LocLongDescription="增加<Ability:ClassName/>的侵入属性<Ability:ADVANCED_LOGIC_HACK_BONUS>点。"
+LocHelpText="增加<Ability:ClassName/>的侵入属性<Ability:ADVANCED_LOGIC_HACK_BONUS>点。"
+LocPromotionPopupText="增加<Ability:ClassName/>的侵入属性<Ability:ADVANCED_LOGIC_HACK_BONUS>点。"
 
 [HoloAACombo_LW X2AbilityTemplate]
-LocFriendlyName="终极全息"
-LocLongDescription="赋予自适应瞄准和全息瞄准能力，超载不再有命中惩罚，攻击敌人后，赋予敌人全息标记+15命中."
-LocHelpText="赋予自适应瞄准和全息瞄准能力，超载不再有命中惩罚，攻击敌人后，赋予敌人全息标记+15命中."
-LocPromotionPopupText="Grants the Adaptive Aim and Holo Targeting abilities, improving the SPARK's ability to take multiple shots while Overdrive is active and improving the squad's ability to hit targets the SPARK shoots."
+LocFriendlyName="强化定位系统"
+LocLongDescription="赋予自适应瞄准和全息瞄准能力，超载不再有命中惩罚，攻击敌人后，对敌人施加全息标记。"
+LocHelpText="赋予自适应瞄准和全息瞄准能力，超载不再有命中惩罚，攻击敌人后，对敌人施加全息标记。"
+LocPromotionPopupText="赋予自适应瞄准和全息瞄准能力，提高SPARK在超载状态下连续射击的能力，并提高小队命中SPARK射击的目标的能力。"
 
 ; New Class loc
 

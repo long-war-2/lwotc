@@ -124,7 +124,7 @@ ActivityObjectives[1]="保卫临时政府"
 
 [Propaganda X2LWAlienActivityTemplate]
 ActivityName="PropagandaActivity"
-ActivityObjectives[0]="获取变种人的注意，提升该地区警戒"
+ActivityObjectives[0]="吸引变种人的注意，提升该地区警戒"
 +MissionDescriptions=(MissionFamily="SabotageCC_LW", Description="外星人已离开保护相对较弱的市中心。我们可以进攻他们其中一座纪念碑以传递信息，但是变种人肯定会有所回应。", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Neutralize_LW", Description="我们已经得知在变种人管理系统的一位高级人类官员，在接下来的一段时间内所受到的保护相对较弱。我们可以干掉他，但变种人一定会有所注意。", MissionIndex=0)
 
@@ -463,9 +463,9 @@ m_strMustLaunchMission="任务时限：必须发起或放弃"
 m_strInsuffientInfiltrationToLaunch="离发起任务还需潜入到至少<XGParam:IntValue0>%。"
 
 ; these need to be coordinated in length with the  in LW_InfiltrationSettings.ini : AlertModifierAtInfiltration
-+m_strAlertnessModifierDescriptions[0]="戒备森严."
-+m_strAlertnessModifierDescriptions[1]="戒备森严."
-+m_strAlertnessModifierDescriptions[2]="戒备森严."
++m_strAlertnessModifierDescriptions[0]="戒备森严"
++m_strAlertnessModifierDescriptions[1]="戒备森严"
++m_strAlertnessModifierDescriptions[2]="戒备森严"
 +m_strAlertnessModifierDescriptions[3]="加强防备"
 +m_strAlertnessModifierDescriptions[4]="加强防备"
 +m_strAlertnessModifierDescriptions[5]="加强防备"
@@ -494,7 +494,7 @@ m_strOutpostTitle="避难所：<XGParam:StrValue0>"
 m_strAlertLevel="兵力:<XGParam:IntValue0> 警戒:<XGParam:IntValue2> 科技:<XGParam:IntValue1>"
 m_strLiberatedRegion="已解放地区"
 m_strStaffingPinText="补给:<XGParam:IntValue0> 情报:<XGParam:IntValue1> 招募:<XGParam:IntValue2>"
-m_strStaffingPinTextMore="隐匿:<XGParam:IntValue0>"
+m_strStaffingPinTextMore="藏匿:<XGParam:IntValue0>"
 m_strMonthlyRegionalIncome="+§<XGParam:IntValue0> (+§<XGParam:IntValue1>)"
 
 [XComGameState_LWOutpostManager]
@@ -570,7 +570,7 @@ strJobName="招募新兵"
 strJobName="情报"
 
 [Hiding LWRebelJobTemplate]
-strJobName="隐匿"
+strJobName="藏匿"
 
 [RebelJobMissions LWRebelJobTemplate]
 strJobName="任务"
