@@ -216,7 +216,7 @@ function UpdatePreMission(XComGameState StartGameState, XComGameState_MissionSit
 		BattleData.SetForceLevel(RegionalAIState.LocalForceLevel);
 		
 		//OnPreMission doesn't appear to add the MissionState to the StartGameState, so add it ourselves.
-		MissionState = XComGameState_MissionSite(StartGameState.ModifyStateObject(class'XComGameState_MissionSite', MissionState.ObjectId));
+		//MissionState = XComGameState_MissionSite(StartGameState.ModifyStateObject(class'XComGameState_MissionSite', MissionState.ObjectId));
 		MissionState.SelectedMissionData.ForceLevel = RegionalAIState.LocalForceLevel;
 		// old one clamping to 20
 		//BattleData.SetForceLevel(CLAMP(RegionalAIState.LocalForceLevel,1,20));
