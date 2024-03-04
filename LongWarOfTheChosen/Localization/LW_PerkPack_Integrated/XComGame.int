@@ -99,19 +99,19 @@ LocPromotionPopupText="<Bullet/> Cannot be used on the same turn as Run and Gun.
 LocFriendlyName="Close Combat Specialist"
 LocFlyOverText="Close Combat Specialist"
 ; LWOTC Needs Translation (3)
-LocLongDescription="Fire a free reaction shot with your <Ability:BOUND_WEAPON_NAME/> at any visible enemy within four tiles who moves or fires."
-LocHelpText="Fire a free reaction shot at any visible enemy within four tiles who moves or fires."
+LocLongDescription="Fire a free reaction shot with your <Ability:BOUND_WEAPON_NAME/> at any visible enemy within <Ability:CCS_RANGE> tiles who moves or attacks."
+LocHelpText="Fire a free reaction shot at any visible enemy within <Ability:CCS_RANGE> tiles who moves or attacks."
 ; End Translation (3)
-LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><Bullet/> You may shoot at each enemy with this ability once per turn.<br/><Bullet/> Each shot requires 2 ammo.<br/>""
+LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><Bullet/> You may shoot at each enemy with this ability once per turn.<br/><Bullet/> Each shot requires <Ability:CCS_AMMO_PER_SHOT> ammo.<br/>"
 
 [CloseCombatSpecialistAttack X2AbilityTemplate]
 LocFriendlyName="Close Combat Specialist"
 LocFlyOverText="Close Combat Specialist"
 ; LWOTC Needs Translation (2)
-LocLongDescription="During enemy turns, fire a free reaction shot with your <Ability:BOUND_WEAPON_NAME/> at any visible enemy within four tiles who moves or fires."
+LocLongDescription="Fire a free reaction shot with your <Ability:BOUND_WEAPON_NAME/> at any visible enemy within <Ability:CCS_RANGE> tiles who moves or attacks."
 ; End Translation (2)
-LocHelpText="During enemy turns, Fire a free reaction shot at any visible enemy within four tiles who moves or fires."
-LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><Bullet/> You may shoot at each enemy with this ability once per turn.<br/><Bullet/> Each shot requires 2 ammo.<br/>""
+LocHelpText="Fire a free reaction shot at any visible enemy within <Ability:CCS_RANGE> tiles who moves or attacks."
+LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><Bullet/> You may shoot at each enemy with this ability once per turn.<br/><Bullet/> Each shot requires <Ability:CCS_AMMO_PER_SHOT> ammo.<br/>"
 
 [CloseandPersonal X2AbilityTemplate]
 LocFriendlyName="Close and Personal"
