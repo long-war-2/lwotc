@@ -191,15 +191,15 @@ LocHelpText="使用主武器对<Ability:CLOSE_ENCOUNTERS_RANGE/>格内的一名�
 LocPromotionPopupText="<Bullet/> 使用主武器对<Ability:CLOSE_ENCOUNTERS_RANGE/>格内的一名敌人进行一次标准射击后，可获得额外1个行动点，每回合1次。<br/><Bullet/> 在奔袭战术激活后短兵相接不可以使用。<br/><Bullet/> 一圈红色的环状图示会标记此能力的范围。<Bullet/> 不可以和奔袭战术在同一回合使用。<br/>"
 
 [LoneWolf X2AbilityTemplate]
-LocFriendlyName="孤高独狼"
-LocFlyOverText="孤高独狼"
+LocFriendlyName="独狼"
+LocFlyOverText="独狼"
 LocLongDescription="距离友军至少<Ability:LONEWOLF_MIN_BONUS_TILES/>格时获得命中和防御增益。最大值为距离友军<Ability:LONEWOLF_MIN_DIST_TILES/>格时获得+<Ability:LONEWOLF_AIM_BONUS/>命中+<Ability:LONEWOLF_DEF_BONUS/>防御。"
 LocHelpText="距离友军至少<Ability:LONEWOLF_MIN_BONUS_TILES/>格时获得命中和防御增益。最大值为距离友军<Ability:LONEWOLF_MIN_DIST_TILES/>格时获得+<Ability:LONEWOLF_AIM_BONUS/>命中+<Ability:LONEWOLF_DEF_BONUS/>防御。"
 LocPromotionPopupText="<Bullet/> 该士兵与最近的盟友之间的每格距离给予 +<Ability:LONEWOLF_AIM_PER_TILE/>命中和+<Ability:LONEWOLF_DEF_PER_TILE/>防御，起始于<Ability:LONEWOLF_MIN_BONUS_TILES/>格距离。<br/><Bullet/> 增益上限为+<Ability:LONEWOLF_AIM_BONUS/>命中， +<Ability:LONEWOLF_DEF_BONUS/>防御当该士兵与最近的盟友距离<Ability:LONEWOLF_MIN_DIST_TILES/>格或更远的距离。<br/><Bullet/> 此项能力在单位处于混乱、眩晕、恐慌、燃烧或其他受损状态中时将不提供防御加成。"
 
 [LowProfile X2AbilityTemplate]
-LocFriendlyName="华丽低调"
-LocFlyOverText="华丽低调"
+LocFriendlyName="低姿态"
+LocFlyOverText="低姿态"
 LocLongDescription="将半掩体视作全掩体。"
 LocHelpText="将半掩体视作全掩体。"
 LocPromotionPopupText="<Bullet/> 将半掩体视作全掩体。<br/>"
@@ -816,7 +816,7 @@ LocFriendlyName="快射拔枪"
 LocLongDescription="第一个行动点使用手枪将不再结束回合。"
 LocHelpText="第一个行动点使用手枪将不再结束回合。"
 LocFlyOverText="快射拔枪"
-LocPromotionPopupText="<Bullet/> 快射拔枪可以让士兵在同一个回合内朝不同的目标射击。<br/>"
+LocPromotionPopupText="<Bullet/> 快射拔枪可以让士兵在同一个回合内朝不同的目标射击。<br/><Bullet/> 只对手枪标准射击和制胜一击有效。<br/>"
 
 [XComGame.SharpshooterAim X2AbilityTemplate]
 [SharpshooterAim X2AbilityTemplate]
@@ -848,7 +848,7 @@ LocFriendlyName="时刻警惕"
 LocLongDescription="在回合中所有行动点用于移动时，则在回合结束时自动启用监视射击。"
 LocHelpText="会合内除了移动不进行其他任何行动时，将会自动启用监视。"
 LocFlyOverText="监视：时刻警惕"
-LocPromotionPopupText="<Bullet/> \"时刻警惕\"给士兵带来极致灵巧的移动战术体验。<br/><Bullet/> 发动除移之外的动作会解除\"时刻警惕\"效果。<br/>"
+LocPromotionPopupText="<Bullet/> \"时刻警惕\"给士兵带来极致灵巧的移动战术体验。<br/><Bullet/> 发动除移之外的动作（包含自由行动）会解除\"时刻警惕\"效果。<br/><Bullet/> 无法触发神枪手的狙击步枪自动监视，但可以触发其手枪监视。<br/>"
 
 [XComGame.Phantom X2AbilityTemplate]
 [Phantom X2AbilityTemplate]

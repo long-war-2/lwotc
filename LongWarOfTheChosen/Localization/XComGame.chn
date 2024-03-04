@@ -167,7 +167,7 @@ LocFlyOverText="汽油弹-X"
 ; LWOTC Needs Translation (2)
 LocLongDescription="你的火焰喷射器现在可以使敌人恐慌。"
 LocHelpText="汽油弹-X"
-LocPromotionPopupText="<Bullet/> 你的火焰喷射器现在可以使敌人恐慌。敌方单位必须通过意志鉴定以避免负面影响。<br/><Bullet/> 恐慌几率为 <Ability:NAPALM_X_BASEVALUE>% + <Ability:GAUNTLET_CONVENTIONAL_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_MAG_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_BEAM_OPPOSED_STAT_STRENTH>%，取决于士兵的臂套层级，并且受到目标意志力的负面影响。"
+LocPromotionPopupText="<Bullet/> 你的火焰喷射器现在可以使敌人恐慌。敌方单位必须通过意志鉴定以避免负面影响。<br/><Bullet/> 恐慌几率为 <Ability:NAPALM_X_BASEVALUE>% + <Ability:GAUNTLET_CONVENTIONAL_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_MAG_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_BEAM_OPPOSED_STAT_STRENTH>%，取决于士兵的臂套层级，并且受到目标意志力的负面影响。<br/><Bullet/> 可以使火焰免疫的单位恐慌，但不会对其造成伤害。<br/><Bullet/> 驱逐无法触发汽油弹-X。"
 
 [PhosphorusPassive X2AbilityTemplate]
 LocFriendlyName="磷"
@@ -224,7 +224,7 @@ LocFriendlyName="烈焰风暴"
 LocFlyOverText="烈焰风暴"
 LocLongDescription="每次战斗1次，可以攻击士兵周围圆圈的所有单位。同样也会获得对火焰伤害的免疫。"
 LocHelpText="在你的位置喷射圆形的火焰。"
-LocPromotionPopupText="<Bullet/> 该士兵对周围圆圈内的所有单位造成火焰伤害，比一般的火焰喷射器攻击+<ABILITY:FIRESTORM_DAMAGE_BONUS_LW>的额外伤害。<br/><Bullet/> 烈焰风暴同样也能让你对火焰伤害免疫。<br/><Bullet/> 需要1个行动点并且会在使用时结束士兵的回合。<br/><Bullet/> 每次战斗可使用1次。<br/><Bullet/> 不建议士兵在屋顶使用烈焰风暴。"
+LocPromotionPopupText="<Bullet/> 该士兵对周围圆圈内的所有单位造成火焰伤害，比一般的火焰喷射器攻击+<ABILITY:FIRESTORM_DAMAGE_BONUS_LW>的额外伤害。<br/><Bullet/> 烈焰风暴同样也能让你对火焰伤害免疫。<br/><Bullet/> 需要1个行动点并且会在使用时结束士兵的回合。<br/><Bullet/> 每次战斗可使用1次。<br/><Bullet/> 不建议士兵在屋顶使用烈焰风暴。<br/><Bullet/> 不适用于速燃。"
 
 [Firestorm2 X2AbilityTemplate]
 LocFriendlyName="Test Firestorm"
@@ -267,7 +267,7 @@ LocFriendlyName="掩体克星"
 LocFlyOverText="掩体克星"
 LocHelpText="发射一枚特殊的火箭能够摧毁环境中的建筑物和其他物体。"
 LocLongDescription="发射一枚特殊的火箭能够摧毁环境中的建筑物和其他物体。"
-LocPromotionPopupText="<Bullet/> 发射一枚特殊的火箭，有着大范围的效果，对敌人造成的伤害一般，但对建筑物、载具和环境中其他物体造成巨大伤害。<br/><Bullet/> 需要2个行动点，每次任务仅可使用1次。<br/>"
+LocPromotionPopupText="<Bullet/> 发射一枚特殊的火箭，有着大范围的效果，对敌人造成的伤害一般，但对建筑物、载具和环境中其他物体造成巨大伤害。<br/><Bullet/> 需要2个行动点，每次任务仅可使用1次。<br/><Bullet/> 无法触发齐射。<br/>"
 
 [FireandSteel X2AbilityTemplate]
 LocFriendlyName="火与钢"
@@ -468,7 +468,7 @@ str_FlushEffect="冲散"
 
 ;LWOTC needs translation
 [HailofBullets X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> 枪林弹雨消耗<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 枪林弹雨有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 枪林弹雨不适用于狙击步枪。<br/>""
+LocPromotionPopupText="<Bullet/> 枪林弹雨消耗<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 枪林弹雨有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 枪林弹雨不会擦伤也不会暴击。<br/><Bullet/> 枪林弹雨不适用于狙击步枪。<br/>""
 
 [ChainShot X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> 连环射击消耗<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 连环射击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 连环射击可以对无掩体敌人（如狂战士，机械敌人）造成毁灭性的打击，或者增加命中加成。<br/>"
@@ -2209,23 +2209,23 @@ Title="从变种人的控制中解放地区"
 LocLongDescription="将变种人逐出该地区，让反抗军和平民获得安全。解放一个地区可以让反抗军自由进出变种人基础设施，从而在还来得及的时候发现它们在地球上的真正目的。"
 
 [LW_T2_M0_S1_ReviewOutpost X2ObjectiveTemplate]
-Title="设置反抗军优先度"
+Title="管理避难所：更改避难所人员活动"
 LocLongDescription="在避难所指派反抗军寻找新的任务，收集所需的补给，或者寻找潜在的新兵。被派去收集情报的反抗军将报告有关活动的线索。军事中心长官布拉德福德建议把重点放在情报收集上，这样部队就有可执行的任务。"
 
 [LW_T2_M0_S2_FindLiberation1Activity X2ObjectiveTemplate]
-Title="查明一个线索"
+Title="解放：查明一个地图上可扫描的线索"
 LocLongDescription="派遣部队调查反抗军发现的任何线索。其中一个任务可能会为我们提供有关击败变种人在该地区管理层的重要信息。"
 
 [LW_T2_M0_S3_DefeatLiberation2Activity X2ObjectiveTemplate]
-Title="构建反抗军"
-LocLongDescription="在同一地区发现并赢得第二次解放任务的胜利。第一次任务之后的所有解放任务都在任务细节中标注。"
+Title="解放2：立锥之地/解放3：星火燎原"
+LocLongDescription="在同一地区发现并完成所有的解放任务。"
 
 [LW_T2_M0_S4_AssaultNetworkTower X2ObjectiveTemplate]
-Title="找到并摧毁地区神经中枢"
+Title="解放4：找到并摧毁地区神经中枢"
 LocLongDescription="发现并完成一系列最终解放任务，让我们能够突袭该地区的变种人控制网络中心。"
 
 [LW_T2_M0_S5_CompleteActivity X2ObjectiveTemplate]
-Title="突袭地区总部"
+Title="解放5：突袭地区总部"
 LocLongDescription="攻击他们军事力量的中心以解放地区"
 
 [LW_T2_M1_ContactBlacksiteRegion X2ObjectiveTemplate]
@@ -3271,7 +3271,7 @@ UnlockedDescription="许多工程部计划需要工程师人数已经减少1位�
 DisplayName="激光武器"
 Summary="利用我们对于磁力学和外星超铀的全新理解，我们应当能够开发一种强力的激光武器。"
 CodeName="中后卫"
-LongDescription="通过研究外星人在武器上管理能量消耗和散热的技术，我们成功完成了一种工程原型机，我们将其称之为脉冲激光武器，虽然一些士兵更喜欢叫它们「爆破手」，原因我不太清楚。这些武器能够输出的能量令人叹为观止，但其系统无法维持如此大量的光束输出，因此它的架构依靠一系列的皮秒级的，高能量密度的脉冲去打破光束击中目标的化学键。平均计算，这些武器应当能够比我们之前开发的磁力武器造成更大的伤害，虽然它们还比不上那些外星人使用的电浆光束设备。理查德·泰根。"
+LongDescription="通过研究外星人在武器上管理能量消耗和散热的技术，我们成功完成了一种工程原型机，我们将其称之为脉冲激光武器，虽然一些士兵更喜欢叫它们「爆破手」，原因我不太清楚。这些武器能够输出的能量令人叹为观止，但其系统无法维持如此大量的光束输出，因此它的架构依靠一系列的皮秒级的，高能量密度的脉冲去打破光束击中目标的化学键。平均计算，这些武器应当能够比我们之前开发的基础武器造成更大的伤害，虽然它们还比不上那些外星人使用的电浆光束设备。理查德·泰根。"
 UnlockedDescription="原型已加入物品栏"
 
 [AdvancedLasers X2TechTemplate]
@@ -5317,8 +5317,8 @@ LocPromotionPopupText="<Bullet/> 当被圣殿骑士召唤时，支柱将持续�
 ; End Translation (2)
 
 [StunStrike X2AbilityTemplate]
-LocLongDescription="用强大的灵能力量打击敌人，将其击退到攻击方向，使其眩晕。消耗1专注。"
-LocHelpText="用强大的灵能力量打击敌人，将其击退到攻击方向，使其眩晕。消耗1专注。"
+LocLongDescription="用强大的灵能力量眩晕敌人，消耗1专注。"
+LocHelpText="用强大的灵能力量眩晕敌人，消耗1专注。"
 LocPromotionPopupText="<Bullet/> 眩晕冲击有<Ability:STUNSTRIKEHITCHANCE/>%几率命中, 每点专注增加<Ability:STUNSTRIKEFOCUSHITCHANCE/>%命中率。<br/><Bullet/> 眩晕冲击有<Ability:STUNSTRIKE_STUN_CHANCE/>%几率击晕目标。<br/><Bullet/> 眩晕冲击不会结束圣殿骑士的回合。<br/><Bullet/> 眩晕冲击有<Ability:SelfCooldown_LW/>回合冷却时间<br/>"
 
 [BondmateTeamwork X2AbilityTemplate]
@@ -5381,7 +5381,10 @@ LocPromotionPopupText="<Bullet/> 确保队友远离爆炸区！<br/><Bullet/> �
 
 ; LWOTC Needs Translation
 [HomingMine X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> 针对身上附着了地雷的敌人的射击必定会命中。<br/><Bullet/> 追踪地雷每次任务有4充能。<br/><Bullet/> 追踪地雷需要一个行动点，不会结束你的回合。<br/>"
+LocFriendlyName="追踪地雷"
+LocLongDescription="消耗1行动点使目标敌人身上附着一枚地雷，不会结束你的回合。对身上附着了地雷的敌人的射击必定会命中。每次任务有4充能"
+LocHelpText="消耗1行动点使目标敌人身上附着一枚地雷，对身上附着了地雷的敌人的射击必定会命中。"
+LocPromotionPopupText="<Bullet/> 对身上附着了地雷的敌人的射击必定会命中。<br/><Bullet/> 追踪地雷每次任务有4充能。<br/><Bullet/> 追踪地雷需要一个行动点，不会结束你的回合。<br/>"
 ; End Translation
 
 [Hero_Tracking X2AbilityTemplate]
@@ -6140,11 +6143,11 @@ LocPromotionPopupText="<Bullet/> 使用<Ability:WeaponName/>开火射击穿透<A
 ; End Translation (2)
 
 [Reposition_LW X2AbilityTemplate]
-LocFriendlyName="重新定位"
-LocFlyOverText="重新定位"
-LocLongDescription="每回合一次，用主武器对侧翼或暴露的目标进行一次标准射击后，获得一个额外的移动点。适用于游击战术。"
-LocHelpText="每回合一次，用主武器对侧翼或暴露的目标进行一次标准射击后，获得一个额外的移动点。适用于游击战术。"
-LocPromotionPopupText="<Bullet/> 每回合一次，用主武器对侧翼或暴露的目标进行一次标准射击后，获得一个额外的移动点。<br/><Bullet/> 适用于游击战术。<br/>
+LocFriendlyName="转移阵地"
+LocFlyOverText="转移阵地"
+LocLongDescription="每回合一次，用主武器对侧翼或暴露的目标进行一次标准射击后，获得一个额外的移动点。适用于游击战术。不能同时触发短兵相接。"
+LocHelpText="每回合一次，用主武器对侧翼或暴露的目标进行一次标准射击后，获得一个额外的移动点。适用于游击战术。不能同时触发短兵相接"
+LocPromotionPopupText="<Bullet/> 每回合一次，用主武器对侧翼或暴露的目标进行一次标准射击后，获得一个额外的移动点。<br/><Bullet/> 适用于游击战术。<br/><Bullet/> 不能同时触发短兵相接。<br/>"
 
 [NeutralizingAgents_LW X2AbilityTemplate]
 LocFriendlyName="中和剂"
@@ -6303,7 +6306,7 @@ LocLongDescription = "你可以使用你的电弧发射器来治疗机械单位�
 LocPromotionPopupText = "<Bullet/> 每次战斗有<Ability:SUPERCHARGE_CHARGES/>充能回复<Ability:SUPERCHARGE_HEAL/>HP。<br/><Bullet/> 适用于任何机器人单位友军，包括SPARK, 反抗军MEC和被控制的机械单位。<br/>"
 
 [ShootingSharp_LW X2AbilityTemplate]
-LocFriendlyName = "贯穿射击"
+LocFriendlyName = "百步穿杨"
 LocHelpText = "你的远程攻击对掩体中的敌人+<Ability:SS_PIERCE/>护甲穿透和+<Ability:SS_AIM_BONUS/>命中。"
 LocLongDescription = "你的远程攻击对掩体中的敌人+<Ability:SS_PIERCE/>护甲穿透和+<Ability:SS_AIM_BONUS/>命中。"
 LocPromotionPopupText = "<Bullet/> 你的远程攻击对掩体中的敌人+<Ability:SS_PIERCE/>护甲穿透和+<Ability:SS_AIM_BONUS/>命中。<br/>"
@@ -6440,7 +6443,7 @@ LocLongDescription="你的主武器攻击会让敌人流血。"
 LocHelpText="你的主武器攻击会让敌人流血。"
 
 [MindScorchDangerZone X2AbilityTemplate]
-LocFriendlyName="心灵燃烧"
+LocFriendlyName="心灵焚烧"
 LocLongDescription="增加<Ability:VoltDangerZoneBonus/>格心灵灼烧半径。减少心灵灼烧1回合冷却时间。"
 LocHelpText="增加<Ability:VoltDangerZoneBonus/>格心灵灼烧半径。减少心灵灼烧1回合冷却时间。"
 LocPromotionPopupText=""
@@ -6452,7 +6455,7 @@ LocHelpText="增加心灵灼烧恐慌几率。"
 LocPromotionPopupText="<Bullet/> 心灵灼烧现在可以使敌人恐慌。<br/><Bullet/> 恐慌的几率取决于灵能威力属性和目标的意志。"
 
 [MindScorch X2AbilityTemplate]
-LocFriendlyName=" 心灵灼烧"
+LocFriendlyName="心灵灼烧"
 LocHelpText="术士向目标敞开心扉，对目标造成伤害，<Ability:MIND_SCORCH_BURN_CHANCE/>%几率灼烧目标。"
 LocLongDescription="术士向目标敞开心扉，对目标造成伤害，<Ability:MIND_SCORCH_BURN_CHANCE/>%几率灼烧目标。"
 
@@ -7275,8 +7278,8 @@ LocHelpText="该单位逃过一次致死攻击，并进入静滞状态1回合。
 ; End Translation
 
 [X2MPData_Shell]
-arrMPMapFriendlyNames[9]="Underground"
-arrMPMapFriendlyNames[10]="Underground"
+arrMPMapFriendlyNames[9]="下水道"
+arrMPMapFriendlyNames[10]="下水道"
 
 [Overdrive X2AbilityTemplate]
 LocFriendlyName="极限超载"
