@@ -1469,6 +1469,10 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 				// Let's look over our outcome and see if it's any better
 				NewMostCommonMember = FindMostCommonMember(SpawnInfo.SelectedCharacterTemplateNames);
 				NewCommonTemplate = TemplateManager.FindCharacterTemplate(NewMostCommonMember);
+				if(SpawnInfo.SelectedCharacterTemplateNames[0] == 'Chryssalid' || SpawnInfo.SelectedCharacterTemplateNames[0] == 'ChryssalidSoldier' || SpawnInfo.SelectedCharacterTemplateNames[0] == 'HiveQueen')
+				{
+					Satisfactory = true;
+				}
 				if ((PodSize == 4 ) && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= Podsize - 1)
 				{
 					Tries += 1;

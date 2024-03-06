@@ -19,6 +19,9 @@ event OnInit(UIScreen Screen)
 {
 	local UIMission_ChosenAvengerAssault ChosenAvengerAssaultScreen;
 	local UIButton Button1;
+	local XComGameState_MissionSiteChosenAssault AssaultMissionState;
+	local XComGameState NewGameState;
+	local XComGameState_WorldRegion_LWStrategyAI RegionalAI;
 
 	ChosenAvengerAssaultScreen = UIMission_ChosenAvengerAssault(Screen);
 	Button1 = ChosenAvengerAssaultScreen.Button1;
@@ -26,6 +29,17 @@ event OnInit(UIScreen Screen)
 	PathToChosenAvengerAssaultScreen = PathName(ChosenAvengerAssaultScreen);
 	PathToButton1 = PathName(Button1);
 
+	AssaultMissionState = XComGameState_MissionSiteChosenAssault(`XCOMHISTORY.GetGameStateForObjectID(ChosenAvengerAssaultScreen.MissionRef.ObjectID));
+
+	RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(XComGameState_WorldRegion(`XCOMHISTORY.GetGameStateForObjectID(AssaultMissionState.Region.ObjectID)));
+
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Update Chosen Avenger Assault with LW Force Level");
+
+	AssaultMissionState = XComGameState_MissionSiteChosenAssault(NewGameState.ModifyStateObject(class'XComGameState_MissionSiteChosenAssault', AssaultMissionState.ObjectID));
+
+	AssaultMissionState.CacheSelectedMissionData(RegionalAI.LocalForceLevel, AssaultMissionState.SelectedMissionData.AlertLevel);
+
+	`GAMERULES.SubmitGameState(NewGameState);
 	
 	// KDM : Display parent-panel centered hotlinks for controller users, and parent-panel centered buttons
 	// for mouse and keyboard users.
