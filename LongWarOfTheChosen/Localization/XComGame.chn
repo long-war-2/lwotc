@@ -2209,23 +2209,23 @@ Title="从变种人的控制中解放地区"
 LocLongDescription="将变种人逐出该地区，让反抗军和平民获得安全。解放一个地区可以让反抗军自由进出变种人基础设施，从而在还来得及的时候发现它们在地球上的真正目的。"
 
 [LW_T2_M0_S1_ReviewOutpost X2ObjectiveTemplate]
-Title="管理避难所：更改避难所人员活动"
+Title="管理避难所（更改避难所人员活动）"
 LocLongDescription="在避难所指派反抗军寻找新的任务，收集所需的补给，或者寻找潜在的新兵。被派去收集情报的反抗军将报告有关活动的线索。军事中心长官布拉德福德建议把重点放在情报收集上，这样部队就有可执行的任务。"
 
 [LW_T2_M0_S2_FindLiberation1Activity X2ObjectiveTemplate]
-Title="解放：查明一个地图上可扫描的线索"
+Title="查明一个线索（完成解放1任务）"
 LocLongDescription="派遣部队调查反抗军发现的任何线索。其中一个任务可能会为我们提供有关击败变种人在该地区管理层的重要信息。"
 
 [LW_T2_M0_S3_DefeatLiberation2Activity X2ObjectiveTemplate]
-Title="解放2：立锥之地/解放3：星火燎原"
+Title="构建反抗军（完成解放2、3任务）"
 LocLongDescription="在同一地区发现并完成所有的解放任务。"
 
 [LW_T2_M0_S4_AssaultNetworkTower X2ObjectiveTemplate]
-Title="解放4：找到并摧毁地区神经中枢"
+Title="找到并摧毁地区神经中枢（完成解放4任务）"
 LocLongDescription="发现并完成一系列最终解放任务，让我们能够突袭该地区的变种人控制网络中心。"
 
 [LW_T2_M0_S5_CompleteActivity X2ObjectiveTemplate]
-Title="解放5：突袭地区总部"
+Title="突袭地区总部（完成解放5任务）"
 LocLongDescription="攻击他们军事力量的中心以解放地区"
 
 [LW_T2_M1_ContactBlacksiteRegion X2ObjectiveTemplate]
@@ -6853,9 +6853,9 @@ LocFlyOverText="波浪绕射"
 [Brawler X2AbilityTemplate]
 LocFriendlyName="好斗者"
 LocFlyOverText="好斗者"
-LocLongDescription="减少<Ability:BRAWLER_DR_PCT>%所受4格内的攻击伤害。"
-LocHelpText="减少<Ability:BRAWLER_DR_PCT>%所受4格内的攻击伤害。"
-LocPromotionPopupText="<Bullet/> 减少<Ability:BRAWLER_DR_PCT>%所受4格内的攻击伤害。<br/>"
+LocLongDescription="减少<Ability:BRAWLER_DR_PCT>%在<Ability:BRAWLER_MAX_TILES>格内所受的攻击伤害。"
+LocHelpText="减少<Ability:BRAWLER_DR_PCT>%在<Ability:BRAWLER_MAX_TILES>格内所受的攻击伤害。"
+LocPromotionPopupText="<Bullet/> 减少<Ability:BRAWLER_DR_PCT>%在<Ability:BRAWLER_MAX_TILES>格内所受的攻击伤害。<br/>"
 
 [InstantReactionTime X2AbilityTemplate]
 LocFriendlyName="即时反应"
