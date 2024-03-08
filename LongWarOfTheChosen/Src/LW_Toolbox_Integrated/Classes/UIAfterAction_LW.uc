@@ -52,36 +52,31 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 
 simulated function CreatePanels()
 {
-	local int i, listX, listWidth, listItemPadding;
+	local int listX, listY, listWidth, listHeight, listItemPadding, adjustmentWidth;
+
+	//base static values
+	listHeight = 310;
+	listY = -404;
 
 	//create front row panels
 	listWidth = 0;
 	listItemPadding = 6;
-	for (i = 0; i < Min(6, XComHQ.Squad.Length); ++i)
-	{
-		if (XComHQ.Squad[i].ObjectID > 0)
-			listWidth += (class'UISquadSelect_ListItem'.default.width + listItemPadding);
-	}
-	listX = Clamp((Movie.UI_RES_X / 2) - (listWidth / 2), 100, Movie.UI_RES_X / 2);
+
+	CalculateWidthsForSlots(0, Min(6, XComHQ.Squad.Length), listWidth, adjustmentWidth );
+	listX = -adjustmentWidth;
 
 	m_kSlotList = Spawn(class'UIList', self);
-	m_kSlotList.InitList('', listX, -390, Movie.UI_RES_X, 310, true).AnchorBottomLeft();
+	m_kSlotList.InitList('', listX, listY, listWidth, listHeight, true).AnchorBottomCenter();
 	m_kSlotList.itemPadding = listItemPadding;
 
 	//create back row panels
 	if(XComHQ.Squad.Length > 6)
 	{
-		listWidth = 0;
-		listItemPadding = 6;
-		for (i = 6; i < Min(12, XComHQ.Squad.Length); ++i)
-		{
-			if (XComHQ.Squad[i].ObjectID > 0)
-				listWidth += (class'UISquadSelect_ListItem'.default.width + listItemPadding);
-		}
-		listX = Clamp((Movie.UI_RES_X / 2) - (listWidth / 2), 100, Movie.UI_RES_X / 2);
+		CalculateWidthsForSlots(6, Min(12, XComHQ.Squad.Length), listWidth, adjustmentWidth );
+		listX = -adjustmentWidth;
 
 		m_kSlotList2 = Spawn(class'UIList', self);
-		m_kSlotList2.InitList('', listX, -390, Movie.UI_RES_X, 310, true).AnchorBottomLeft();
+		m_kSlotList2.InitList('', listX, listY, listWidth, listHeight, true).AnchorBottomCenter();
 		m_kSlotList2.itemPadding = listItemPadding;
 
 		m_kSlotList2.Hide(); // hidden initially
@@ -91,15 +86,11 @@ simulated function CreatePanels()
 	{
 		listWidth = 0;
 		listItemPadding = 6;
-		for (i = 12; i < Min(18, XComHQ.Squad.Length); ++i)
-		{
-			if (XComHQ.Squad[i].ObjectID > 0)
-				listWidth += (class'UISquadSelect_ListItem'.default.width + listItemPadding);
-		}
-		listX = Clamp((Movie.UI_RES_X / 2) - (listWidth / 2), 100, Movie.UI_RES_X / 2);
+		CalculateWidthsForSlots(12, Min(18, XComHQ.Squad.Length), listWidth, adjustmentWidth );
+		listX = -adjustmentWidth;
 
 		m_kSlotList3 = Spawn(class'UIList', self);
-		m_kSlotList3.InitList('', listX, -390, Movie.UI_RES_X, 310, true).AnchorBottomLeft();
+		m_kSlotList3.InitList('', listX, listY, listWidth, listHeight, true).AnchorBottomCenter();
 		m_kSlotList3.itemPadding = listItemPadding;
 
 		m_kSlotList3.Hide(); // hidden initially
@@ -109,15 +100,12 @@ simulated function CreatePanels()
 	{
 		listWidth = 0;
 		listItemPadding = 6;
-		for (i = 18; i < XComHQ.Squad.Length; ++i)
-		{
-			if (XComHQ.Squad[i].ObjectID > 0)
-				listWidth += (class'UISquadSelect_ListItem'.default.width + listItemPadding);
-		}
-		listX = Clamp((Movie.UI_RES_X / 2) - (listWidth / 2), 100, Movie.UI_RES_X / 2);
+
+		CalculateWidthsForSlots(18, Min(24, XComHQ.Squad.Length), listWidth, adjustmentWidth );
+		listX = -adjustmentWidth;
 
 		m_kSlotList4 = Spawn(class'UIList', self);
-		m_kSlotList4.InitList('', listX, -390, Movie.UI_RES_X, 310, true).AnchorBottomLeft();
+		m_kSlotList4.InitList('', listX, listY, listWidth, listHeight, true).AnchorBottomCenter();
 		m_kSlotList4.itemPadding = listItemPadding;
 
 		m_kSlotList4.Hide(); // hidden initially
@@ -130,7 +118,7 @@ simulated function UpdateData()
 	local int SlotIndex;	//Index into the list of places where a soldier can stand in the after action scene, from left to right
 	local int SquadIndex;	//Index into the HQ's squad array, containing references to unit state objects
 	local int ListItemIndex;//Index into the array of list items the player can interact with to view soldier status and promote
-	local UIAfterAction_ListItem ListItem;	
+	local UIAfterAction_ListItem_LW ListItem;	
 
 	bMakePawns = UnitPawns.Length == 0;//We only need to create pawns if we have never had them before	
 
@@ -153,11 +141,12 @@ simulated function UpdateData()
 
 			if (m_kSlotList.itemCount > ListItemIndex)
 			{
-				ListItem = UIAfterAction_ListItem(m_kSlotList.GetItem(ListItemIndex));
+				ListItem = UIAfterAction_ListItem_LW(m_kSlotList.GetItem(ListItemIndex));
 			}
 			else
 			{
-				ListItem = UIAfterAction_ListItem(m_kSlotList.CreateItem(class'UIAfterAction_ListItem')).InitListItem();
+				ListItem = UIAfterAction_ListItem_LW(m_kSlotList.CreateItem(class'UIAfterAction_ListItem_LW'));
+				ListItem.InitListItem();
 			}
 
 			ListItem.UpdateData(XComHQ.Squad[SquadIndex]);
@@ -187,11 +176,12 @@ simulated function UpdateData()
 
 				if (m_kSlotList2.itemCount > ListItemIndex)
 				{
-					ListItem = UIAfterAction_ListItem(m_kSlotList2.GetItem(ListItemIndex));
+					ListItem = UIAfterAction_ListItem_LW(m_kSlotList2.GetItem(ListItemIndex));
 				}
 				else
 				{
-					ListItem = UIAfterAction_ListItem(m_kSlotList2.CreateItem(class'UIAfterAction_ListItem')).InitListItem();
+					ListItem = UIAfterAction_ListItem_LW(m_kSlotList2.CreateItem(class'UIAfterAction_ListItem_LW'));
+					ListItem.InitListItem();
 				}
 
 				ListItem.UpdateData(XComHQ.Squad[SquadIndex]);
@@ -221,11 +211,12 @@ simulated function UpdateData()
 
 				if (m_kSlotList3.itemCount > ListItemIndex)
 				{
-					ListItem = UIAfterAction_ListItem(m_kSlotList3.GetItem(ListItemIndex));
+					ListItem = UIAfterAction_ListItem_LW(m_kSlotList3.GetItem(ListItemIndex));
 				}
 				else
 				{
-					ListItem = UIAfterAction_ListItem(m_kSlotList3.CreateItem(class'UIAfterAction_ListItem')).InitListItem();
+					ListItem = UIAfterAction_ListItem_LW(m_kSlotList3.CreateItem(class'UIAfterAction_ListItem_LW'));
+					ListItem.InitListItem();
 				}
 
 				ListItem.UpdateData(XComHQ.Squad[SquadIndex]);
@@ -255,11 +246,12 @@ simulated function UpdateData()
 
 				if (m_kSlotList4.itemCount > ListItemIndex)
 				{
-					ListItem = UIAfterAction_ListItem(m_kSlotList4.GetItem(ListItemIndex));
+					ListItem = UIAfterAction_ListItem_LW(m_kSlotList4.GetItem(ListItemIndex));
 				}
 				else
 				{
-					ListItem = UIAfterAction_ListItem(m_kSlotList4.CreateItem(class'UIAfterAction_ListItem')).InitListItem();
+					ListItem = UIAfterAction_ListItem_LW(m_kSlotList4.CreateItem(class'UIAfterAction_ListItem_LW'));
+					ListItem.InitListItem();
 				}
 
 				ListItem.UpdateData(XComHQ.Squad[SquadIndex]);
@@ -494,6 +486,32 @@ simulated function PointInSpace GetPlacementActor(name PawnLocationTag)
 	}
 
 	return PlacementActor;
+}
+
+//this function fixes the widths on all screens to be centralised, including for ultrawide
+simulated function CalculateWidthsForSlots(int StartValue, int EndValue, out int listwidth, out int adjustmentWidth)
+{
+	local int i, listSlots, listSlotPadding, adjustmentSlots;
+
+	listSlotPadding = class'UISquadSelect_ListItem'.default.width + 8;
+
+	for (i = StartValue ; i < EndValue ; i++)
+	{
+		if (XComHQ.Squad[i].ObjectID > 0)
+		{
+			listSlots++;
+		}
+	}
+
+	adjustmentSlots = listSlots /2;
+
+	if (listSlots % 2 != 0)
+	{
+		adjustmentSlots++;
+	}
+
+	listWidth = listSlots * (listSlotPadding);
+	adjustmentWidth = adjustmentSlots * (listSlotPadding);
 }
 
 DefaultProperties
