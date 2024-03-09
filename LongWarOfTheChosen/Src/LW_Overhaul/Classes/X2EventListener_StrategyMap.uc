@@ -1217,12 +1217,13 @@ static function EventListenerReturn OverrideEligibleStartingRegionMinLinks(
 }
 
 // Override how the UFO interception works, since we don't use the calendar
-function EventListenerReturn OnUFOSetInfiltrationTime(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
+function EventListenerReturn OnUFOSetInfiltrationTime(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
     local XComGameState_UFO UFO;
 	local int HoursUntilIntercept;
 
     UFO = XComGameState_UFO(EventData);
+	UFO = XComGameState_UFO(NewGameState.GetGameStateForObjectID(UFO.ObjectID));
     if (UFO == none)
     {
         return ELR_NoInterrupt;
