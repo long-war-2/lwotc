@@ -85,6 +85,9 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddFieldSurgeon());
 	Templates.AddItem(AddDamageInstanceTracker());
 	Templates.AddItem(CreateDedicatedSuppressionAbility());
+
+	if(class'Helpers_LW'.default.bDLC3Active)
+	{
 	Templates.AddItem(CreateCollateralAbility());
 	Templates.AddItem(KineticStrike());
 	Templates.AddItem(Reboot());
@@ -107,6 +110,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateReactionSystemsAbility());
 	Templates.AddItem(CreateHackBonusAbility());
 	Templates.AddItem(CreateComboHoloAAAbility());
+	}
 	Templates.AddItem(CreateSpectralStunLancerImpairingEffectAbility());
 
 	return Templates;
