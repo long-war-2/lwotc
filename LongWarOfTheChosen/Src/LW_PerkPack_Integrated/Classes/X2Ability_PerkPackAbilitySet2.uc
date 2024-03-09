@@ -85,9 +85,6 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddFieldSurgeon());
 	Templates.AddItem(AddDamageInstanceTracker());
 	Templates.AddItem(CreateDedicatedSuppressionAbility());
-
-	if(class'Helpers_LW'.default.bDLC3Active)
-	{
 	Templates.AddItem(CreateCollateralAbility());
 	Templates.AddItem(KineticStrike());
 	Templates.AddItem(Reboot());
@@ -110,7 +107,6 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateReactionSystemsAbility());
 	Templates.AddItem(CreateHackBonusAbility());
 	Templates.AddItem(CreateComboHoloAAAbility());
-	}
 	Templates.AddItem(CreateSpectralStunLancerImpairingEffectAbility());
 
 	return Templates;
@@ -1331,7 +1327,7 @@ static function X2AbilityTemplate CreateCollateralAbility()
 	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
 
 	DamageEffect = new class'X2Effect_CollateralDamage';
-	DamageEffect.BONUS_MULT = 0.25;
+	DamageEffect.BONUS_MULT = 0.35;
 	DamageEffect.MIN_BONUS = 1;
 	DamageEffect.EnvironmentalDamageAmount = default.COLLATERAL_ENVDMG;
 	DamageEffect.AllowArmor = true;

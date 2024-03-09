@@ -169,7 +169,6 @@ var config bool bDABFLActive;
 var config bool bKirukaSparkActive;
 
 var config bool bDSLReduxActive;
-var config bool bDLC3Active;
 
 var config array<string> cachedInstalledModNames;
 
