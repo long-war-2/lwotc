@@ -1327,7 +1327,7 @@ static function X2AbilityTemplate CreateCollateralAbility()
 	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
 
 	DamageEffect = new class'X2Effect_CollateralDamage';
-	DamageEffect.BONUS_MULT = 0.35;
+	DamageEffect.BONUS_MULT = 0.4;
 	DamageEffect.MIN_BONUS = 1;
 	DamageEffect.EnvironmentalDamageAmount = default.COLLATERAL_ENVDMG;
 	DamageEffect.AllowArmor = true;
