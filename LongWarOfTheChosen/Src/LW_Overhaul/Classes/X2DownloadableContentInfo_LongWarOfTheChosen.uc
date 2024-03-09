@@ -135,6 +135,8 @@ var config array<string> MapsToDisable;
 
 var config array<Name> EncountersToExclude;
 
+var config array<Name> ROCKET_ABILITIES_TO_UPDATE;
+
 // End data and data structures
 //-----------------------------
 
@@ -231,6 +233,7 @@ static event OnPostTemplatesCreated()
 	ModifyMissionSchedules();
 	ModifyEncountersForFL21();
 	ModCompatibilityConfig();
+	EditModdedRocketAbilities();
 }
 
 static function ModCompatibilityConfig()
@@ -248,6 +251,28 @@ static function ModCompatibilityConfig()
 		}
 		
 	}
+
+}
+
+static function EditModdedRocketAbilities()
+ {
+	local X2AbilityTemplateManager							AbilityManager;
+	local X2AbilityTemplate									AbilityTemplate;
+	local name AbilityName;
+
+	AbilityManager = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
+
+	foreach default.ROCKET_ABILITIES_TO_UPDATE(AbilityName)
+	{
+		AbilityTemplate = AbilityManager.FindAbilityTemplate(AbilityName);
+
+		if(AbilityTemplate != none)
+		{
+			`LWTrace("Patching Rocket launcher ability" @AbilityTemplate.DataName);
+			AbilityTemplate.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher';
+		}
+	}
+
 }
 
 // Uses OPTC to update mission schedules instead of minus config
