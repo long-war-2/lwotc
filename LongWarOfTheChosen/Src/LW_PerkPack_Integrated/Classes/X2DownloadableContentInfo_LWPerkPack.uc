@@ -468,6 +468,18 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'COMBAT_RUSH_RADIUS':
 			Outstring = string(int(class'X2Ability_PerkPackAbilitySet'.default.COMBAT_RUSH_RADIUS));
 			return true;
+		case 'COMBAT_RUSH_AIM_BONUS':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.COMBAT_RUSH_AIM_BONUS);
+			return true;
+		case 'COMBAT_RUSH_CRIT_BONUS':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.COMBAT_RUSH_CRIT_BONUS);
+			return true;
+		case 'COMBAT_RUSH_MOBILITY_BONUS':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.COMBAT_RUSH_MOBILITY_BONUS);
+			return true;
+		case 'COMBAT_RUSH_DURATION':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.COMBAT_RUSH_DURATION);
+			return true;
 		case 'COMBAT_RUSH_COOLDOWN':
 			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.COMBAT_RUSH_COOLDOWN);
 			return true;
