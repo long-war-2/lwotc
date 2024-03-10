@@ -96,18 +96,21 @@ var config int MIND_MERGE_MIN_ACTION_POINTS;
 var config int MIND_MERGE_DURATION;
 var config int MIND_MERGE_COOLDOWN;
 var config int SOUL_MERGE_COOLDOWN_REDUCTION;
-var config float MIND_MERGE_WILL_DIVISOR;
+var config int MIND_MERGE_FLAT_SHIELDHP;
+var config int MIND_MERGE_FLAT_WILL;
+var config int MIND_MERGE_FLAT_CRIT;
+var config int MIND_MERGE_AMP_MG_SHIELDHP_BONUS;
+var config int MIND_MERGE_AMP_MG_WILL_BONUS;
+var config int MIND_MERGE_AMP_MG_CRIT_BONUS;
+var config int MIND_MERGE_AMP_BM_SHIELDHP_BONUS;
+var config int MIND_MERGE_AMP_BM_WILL_BONUS;
+var config int MIND_MERGE_AMP_BM_CRIT_BONUS;
 var config float MIND_MERGE_SHIELDHP_DIVISOR;
-var config float SOUL_MERGE_WILL_DIVISOR;
-var config float SOUL_MERGE_SHIELDHP_DIVISOR;
-var config float MIND_MERGE_AMP_MG_WILL_BONUS;
-var config float MIND_MERGE_AMP_MG_SHIELDHP_BONUS;
-var config float MIND_MERGE_AMP_BM_WILL_BONUS;
-var config float MIND_MERGE_AMP_BM_SHIELDHP_BONUS;
+var config float MIND_MERGE_WILL_DIVISOR;
 var config float MIND_MERGE_CRIT_DIVISOR;
+var config float SOUL_MERGE_SHIELDHP_DIVISOR;
+var config float SOUL_MERGE_WILL_DIVISOR;
 var config float SOUL_MERGE_CRIT_DIVISOR;
-var config float MIND_MERGE_AMP_MG_CRIT_BONUS;
-var config float SOUL_MERGE_AMP_BM_CRIT_BONUS;
 var config float FORMIDABLE_EXPLOSIVES_DR;
 var config int FORMIDABLE_ARMOR_MITIGATION;
 var config int FORMIDABLE_ABLATIVE_HP;
@@ -4312,22 +4315,28 @@ static function X2AbilityTemplate AddMindMergeAbility()
 
 	MindMergeEffect = new class 'X2Effect_MindMerge';
 	MindMergeEffect.EffectName = 'MindMergeEffect';
-	MindMergeEffect.BaseWillIncrease = 0;
-	MindMergeEffect.BaseShieldHPIncrease = 1;
-	MindMergeEffect.MindMergeWillDivisor = default.MIND_MERGE_WILL_DIVISOR;
-	MindMergeEffect.MindMergeShieldHPDivisor = default.MIND_MERGE_SHIELDHP_DIVISOR;
-	MindMergeEffect.SoulMergeWillDivisor = default.SOUL_MERGE_WILL_DIVISOR;
-	MindMergeEffect.SoulMergeShieldHPDivisor = default.SOUL_MERGE_SHIELDHP_DIVISOR;
-	MindMergeEffect.AmpMGWillBonus = default.MIND_MERGE_AMP_MG_WILL_BONUS;
-	MindMergeEffect.AmpMGShieldHPBonus = default.MIND_MERGE_AMP_MG_SHIELDHP_BONUS;
-	MindMergeEffect.AmpBMWillBonus = default.MIND_MERGE_AMP_BM_WILL_BONUS;
-	MindMergeEffect.AmpBMShieldHPBonus = default.MIND_MERGE_AMP_BM_SHIELDHP_BONUS;
-	MindMergeEffect.MindMergeCritDivisor= default.MIND_MERGE_CRIT_DIVISOR;
-	MindMergeEffect.SoulMergeCritDivisor= default.SOUL_MERGE_CRIT_DIVISOR;
-	MindMergeEffect.AmpMGCritBonus= default.MIND_MERGE_AMP_MG_CRIT_BONUS;
-	MindMergeEffect.AMpBMCritBonus= default.SOUL_MERGE_AMP_BM_CRIT_BONUS;
 
-	MindMergeEffect.bRemoveWhenTargetDies=true;
+	MindMergeEffect.BaseShieldHPIncrease = default.MIND_MERGE_FLAT_SHIELDHP;
+	MindMergeEffect.BaseWillIncrease = default.MIND_MERGE_FLAT_WILL;
+	MindMergeEffect.BaseCritIncrease = default.MIND_MERGE_FLAT_CRIT;
+
+	MindMergeEffect.AmpMGShieldHPBonus = default.MIND_MERGE_AMP_MG_SHIELDHP_BONUS;
+	MindMergeEffect.AmpMGWillBonus = default.MIND_MERGE_AMP_MG_WILL_BONUS;
+	MindMergeEffect.AmpMGCritBonus = default.MIND_MERGE_AMP_MG_CRIT_BONUS;
+
+	MindMergeEffect.AmpBMShieldHPBonus = default.MIND_MERGE_AMP_BM_SHIELDHP_BONUS;
+	MindMergeEffect.AmpBMWillBonus = default.MIND_MERGE_AMP_BM_WILL_BONUS;
+	MindMergeEffect.AmpBMCritBonus = default.MIND_MERGE_AMP_BM_CRIT_BONUS;
+
+	MindMergeEffect.MindMergeShieldHPDivisor = default.MIND_MERGE_SHIELDHP_DIVISOR;
+	MindMergeEffect.MindMergeWillDivisor = default.MIND_MERGE_WILL_DIVISOR;
+	MindMergeEffect.MindMergeCritDivisor = default.MIND_MERGE_CRIT_DIVISOR;
+
+	MindMergeEffect.SoulMergeShieldHPDivisor = default.SOUL_MERGE_SHIELDHP_DIVISOR;
+	MindMergeEffect.SoulMergeWillDivisor = default.SOUL_MERGE_WILL_DIVISOR;
+	MindMergeEffect.SoulMergeCritDivisor = default.SOUL_MERGE_CRIT_DIVISOR;
+
+	MindMergeEffect.bRemoveWhenTargetDies = true;
 	MindMergeEffect.BuildPersistentEffect (1, false, true, false, eGameRule_PlayerTurnBegin);
 	MindMergeEFfect.SetDisplayInfo (ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
 	Template.AddTargetEffect (MindMergeEffect);

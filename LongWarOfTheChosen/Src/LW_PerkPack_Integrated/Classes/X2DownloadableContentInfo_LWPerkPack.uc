@@ -341,6 +341,9 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'CYCLIC_FIRE_AIM_MALUS':
 			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.CYCLIC_FIRE_AIM_MALUS);
 			return true;
+		case 'BASTION_RADIUS_TILES':
+			OutString = string(int(sqrt(class'X2Effect_Bastion'.default.BASTION_DISTANCE_SQ)));
+			return true;
 		case 'IRON_CURTAIN_DAMAGE_MODIFIER':
 			OutString = string(int(class'X2Effect_IronCurtain'.default.IRON_CURTAIN_DAMAGE_MODIFIER * 100));
 			return true;
@@ -497,6 +500,33 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 			return true;
 		case 'IRON_SKIN_MELEE_DAMAGE_REDUCTION':
 			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.IRON_SKIN_MELEE_DAMAGE_REDUCTION);
+			return true;
+		case 'MIND_MERGE_WILL_DIVISOR':
+			Outstring = string(int(class'X2Ability_PerkPackAbilitySet'.default.MIND_MERGE_WILL_DIVISOR));
+			return true;
+		case 'MIND_MERGE_CRIT_DIVISOR':
+			Outstring = string(int(class'X2Ability_PerkPackAbilitySet'.default.MIND_MERGE_CRIT_DIVISOR));
+			return true;
+		case 'MIND_MERGE_SHIELDHP_DIVISOR':
+			Outstring = string(int(class'X2Ability_PerkPackAbilitySet'.default.MIND_MERGE_SHIELDHP_DIVISOR));
+			return true;
+		case 'MIND_MERGE_AMP_MG_TOTAL_WILL':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.MIND_MERGE_AMP_MG_WILL_BONUS);
+			return true;
+		case 'MIND_MERGE_AMP_MG_TOTAL_CRIT':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.MIND_MERGE_AMP_MG_CRIT_BONUS);
+			return true;
+		case 'MIND_MERGE_AMP_MG_TOTAL_SHIELDHP':
+			Outstring = string(1 + class'X2Ability_PerkPackAbilitySet'.default.MIND_MERGE_AMP_MG_SHIELDHP_BONUS); // bonus is on top of conventional
+			return true;
+		case 'MIND_MERGE_AMP_BM_TOTAL_WILL':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.MIND_MERGE_AMP_BM_WILL_BONUS);
+			return true;
+		case 'MIND_MERGE_AMP_BM_TOTAL_CRIT':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.MIND_MERGE_AMP_BM_CRIT_BONUS);
+			return true;
+		case 'MIND_MERGE_AMP_BM_TOTAL_SHIELDHP':
+			Outstring = string(1 + class'X2Ability_PerkPackAbilitySet'.default.MIND_MERGE_AMP_BM_SHIELDHP_BONUS); // bonus is on top of conventional
 			return true;
 		case 'MOVING_TARGET_DEFENSE':
 			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.MOVING_TARGET_DEFENSE);
