@@ -5114,7 +5114,7 @@ DisplayName="Successful ADVENT Raids:"
 ; just fix typo
 [Insanity X2AbilityTemplate]
 ; LWOTC Needs Translation
-LocPromotionPopupText="<Bullet/> Insanity has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Insanity requires a contest between the Psi Operative's Psi Strength stat, and the target's will.<br/><Bullet/> Insanity can disorient, stun, or mind control the target if it succeeds.<br/><Bullet/> Mechanical enemies are completely immune to Insanity.<br/><Bullet/> Insanity requires one action and does not end your turn.<br/>"
+LocPromotionPopupText="<Bullet/> Insanity has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Insanity requires a contest between the Psi Operative's Psi Strength stat, and the target's will.<br/><Bullet/> Insanity can disorient, panic, or mind control the target if it succeeds.<br/><Bullet/> Mechanical enemies are completely immune to Insanity.<br/><Bullet/> Insanity requires one action and does not end your turn."
 ; End Translation
 
 [XComGame.UIEndGameStats]
@@ -5173,7 +5173,7 @@ LocPromotionPopupText="<Bullet/> Serial is meant to chain enemy kills in a singl
 [Fuse X2AbilityTemplate]
 LocLongDescription="If an enemy is carrying explosives, they can be remotely detonated by the Psi Operative."
 LocHelpText="If an enemy is carrying explosives, they can be remotely detonated by the Psi Operative."
-LocPromotionPopupText="<Bullet/> Fuse has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Fuse has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Fuse costs 1 action and does not end your turn.<br/>"
 ;End translation (2)
 
 [BulletShred X2AbilityTemplate]
@@ -5191,11 +5191,18 @@ LocPromotionPopupText="<Bullet/> Faceoff is best augmented by aggressive field p
 LocPromotionPopupText="<Bullet/> Each shot in Fan Fire rolls a separate chance to hit.<br/><Bullet/> Fan Fire can deal a devastating amount of damage if every shot hits.<br/><Bullet/> Fan Fire has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 ; End translation
 
+[Soulfire X2AbilityTemplate]
+LocFriendlyName="Soulfire"
+LocLongDescription="Deal guaranteed Psionic damage to an organic enemy. Ignores cover and armor."
+LocHelpText="Deal guaranteed Psionic damage to an organic enemy. Ignores cover and armor."
+LocFlyOverText="Soulfire"
+LocPromotionPopupText="<Bullet/> Soulfire has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> The damage done by the Soulfire ability can be increased by upgrading the Psi Operative's Psi Amp.<br/><Bullet/> Robotic enemies cannot be targetd by Soulfire."
+
 ; LWOTC Needs Translation (2)
 [SoulSteal X2AbilityTemplate]
 LocLongDescription="Soulfire transfers the damage done back to the Psi Operative as health and grants an ablative HP for 3 turns."
 LocHelpText="Soulfire heals a wounded operative and grants ablative HP."
-LocPromotionPopupText="<Bullet/> Soul Steal will replenish lost health for a wounded operative and provide 3/4/6 ablative hit point for 3 turns.<br/><Bullet/> An operative may increase to no more than 15 ablative HP when using Soul Steal."
+LocPromotionPopupText="<Bullet/> Soul Steal will replenish lost health for a wounded operative and provide 3/4/6 ablative hit points for 3 turns.<br/><Bullet/> An operative may increase to no more than 15 ablative HP when using Soul Steal."
 ; End Translation (2)
 
 ; LWOTC Needs Translation
@@ -5205,7 +5212,7 @@ LocPromotionPopupText="<Bullet/> Domination requires a contest of the Psi Operat
 
 ; LWOTC Needs Translation
 [VoidRift X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Generate an explosive field of Psionic energy that immediately damages everything within. Organic enemies have a chance to suffer Insanity.<br/><Bullet/> VoidRift ruptures targets for 1. Rupture amount increases with better Psi Amp technology. <br/><Bullet/> Void Rift has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Generate an explosive field of Psionic energy that immediately damages everything within. Organic enemies have a chance to suffer Insanity.<br/><Bullet/> Void Rift ruptures targets for 1. Rupture amount increases with better Psi Amp technology. <br/><Bullet/> Void Rift has a <Ability:SelfCooldown_LW/> turn cooldown."
 ; End Translation
 
 [CoveringFire X2AbilityTemplate]
@@ -5241,10 +5248,10 @@ LocPromotionPopupText=""
 [Solace_LW X2AbilityTemplate]
 LocFriendlyName="Solace"
 LocFlyOverText="Solace"
-LocLongDescription="The Psi Operative may immediately extinguish mental impairments for a squadmate."
-LocHelpText="The Psi Operative may immediately extinguish mental impairments for a squadmate."
+LocLongDescription="Extinguish a disorientation, stun, panic or mind control from an organic ally."
+LocHelpText="Extinguish a disorientation, stun, panic or mind control from an organic ally."
 ; LWOTC Needs Translation
-LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, mind control, panic and stun effects.<br/><Bullet/> Solace requires one action and does not end your turn.<br/><Bullet/> Solace has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, stun, panic, and mind control effects.<br/><Bullet/> Solace requires one action and does not end your turn.<br/><Bullet/> Solace has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 ; End Translation
 
 [QuickStudy X2AbilityTemplate]
@@ -6035,31 +6042,31 @@ LocLongDescription="Temporarily phase out of existence to teleport to a nearby l
 LocHelpText="Temporarily phase out of existence to teleport to a nearby location."
 LocFlyOverText="Phase Walk"
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet> Temporarily phase out of existence to teleport to a nearby location.<br/><Bullet/> The targeted tile must be visible (works with squadsight).<br/><Bullet/> Phase Walk requires one action and does not end your turn.<br/><Bullet/> Phase Walk has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Phase Walk has a radius of <Ability:PHASEWALK_CAST_RANGE_TILES> tiles.<br/><Bullet/> Moving with Phase Walk can trigger certain reaction fire abilities.<br>"
+LocPromotionPopupText="<Bullet/> The targeted tile must be visible to you or an ally.<br/><Bullet/> Phase Walk requires one action and does not end your turn.<br/><Bullet/> Phase Walk has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Phase Walk has a range of <Ability:PHASEWALK_CAST_RANGE_TILES> tiles.<br/><Bullet/> Moving with Phase Walk can trigger certain reaction fire abilities.<br>"
 ; End Translation (2)
 
 [LW_NullWard X2AbilityTemplate]
 LocFriendlyName="Null Ward"
 LocLongDescription="Project psionic shields around the soldier and nearby allies. The shields will collapse if this soldier is killed."
-LocHelpText="Project psionic shields around nearby allies and yourself."
+LocHelpText="Project psionic shields around nearby allies and yourself. The shields will collapse if this soldier is killed."
 LocFlyOverText="Null Ward"
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet> Project psionic shields around the soldier and nearby allies. The shields will collapse if this soldier is killed.<br/><Bullet/> Null Ward grants <Ability:NULL_WARD_BASE_SHIELD> ablative hit points.<br/><Bullet/> Improved Psi Amps grant additional bonuses to ablative hit points.<br/><Bullet/> Null Ward requires one action and does not end your turn.<br/><Bullet/> Null Ward has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Null Ward has a radius of 8 tiles.<br/>"
+LocPromotionPopupText="<Bullet/> Null Ward grants <Ability:NULL_WARD_BASE_SHIELD> ablative hit points.<br/><Bullet/> Improved Psi Amps grant additional bonuses to ablative hit points.<br/><Bullet/> Null Ward requires one action and does not end your turn.<br/><Bullet/> Null Ward has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Null Ward has a radius of <Ability:NULL_WARD_RADIUS_TILES> tiles.<br/><Bullet/> Null Ward reveals you.<br/>"
 ; End Translation (2)
 
 [LW_SoulStorm X2AbilityTemplate]
 LocFriendlyName="Soul Storm"
-LocLongDescription="Summon meteors of psionic energy to deal damage to enemies inside a target area, and destroy their cover."
-LocHelpText="Summon meteors of psionic energy to deal damage to enemies inside a target area, and destroy their cover."
+LocLongDescription="Summon meteors of psionic energy to deal damage to enemies around you in a <Ability:SOULSTORM_CAST_RADIUS_TILES> tile radius, and destroy their cover."
+LocHelpText="Summon meteors of psionic energy to deal damage to enemies around you in a <Ability:SOULSTORM_CAST_RADIUS_TILES> tile radius, and destroy their cover."
 LocFlyOverText="Soul Storm"
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet>Summon meteors of psionic energy to deal damage to enemies inside a target area, and destroy their cover.<br/><Bullet> Soul Storm area of effect is centered on the user.<br/><Bullet> Cannot destroy floors or ceilings.<br/><Bullet/> Soul Storm requires one action and end your turn.<br/><Bullet/> Soul Storm has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Soul Storm has a radius of 4 tiles.<br/>"
+LocPromotionPopupText="<Bullet> Soul Storm area of effect is centered on the user.<br/><Bullet> Cannot destroy floors or ceilings.<br/><Bullet/> Soul Storm requires one action and ends your turn.<br/><Bullet/> Soul Storm has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 ; End Translation (2)
 
 [Stasis X2AbilityTemplate]
 LocFriendlyName="Stasis"
-LocLongDescription="Completely stuns the target for 1 turn, but renders them immune to any damage or attack."
-LocHelpText="Completely stuns the target for 1 turn, but renders them immune to any damage or attack."
+LocLongDescription="Place a target in stasis, making it immune to damage and unable to act until your next turn."
+LocHelpText="Place a target in stasis, making it immune to damage and unable to act until your next turn."
 LocFlyOverText="Stasis"
 LocPromotionPopupText="<Bullet/> Stasis costs one action point and does not end your turn.<br/><Bullet/> Stasis has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Stasis can be cast on both enemies and allies.<br/><Bullet/> Stasis cannot be used against targets that take more space than 1 tile.<br/><Bullet/> As Stasis completely removes an enemy unit from combat for a turn, it can be used defensively to protect vulnerable soldiers, or it can be used offensively to set up a coordinated attack.<br/>"
 

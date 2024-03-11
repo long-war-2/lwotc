@@ -3963,6 +3963,12 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'NULL_WARD_BASE_SHIELD':
 			Outstring = string(class'X2Ability_LW_PsiOperativeAbilitySet'.default.NULL_WARD_BASE_SHIELD);
 			return true;
+		case 'NULL_WARD_RADIUS_TILES':
+			Outstring = string(int(`METERSTOTILES(class'X2Ability_LW_PsiOperativeAbilitySet'.default.NULLWARD_CAST_RADIUS_METERS)));
+			return true;
+		case 'SOULSTORM_CAST_RADIUS_TILES':
+			Outstring = string(int(`METERSTOTILES(class'X2Ability_LW_PsiOperativeAbilitySet'.default.SOULSTORM_CAST_RADIUS_METERS)));
+			return true;
 		case 'PHASEWALK_CAST_RANGE_TILES':
 			Outstring = string(class'X2Ability_LW_PsiOperativeAbilitySet'.default.PHASEWALK_CAST_RANGE_TILES);
 			return true;
