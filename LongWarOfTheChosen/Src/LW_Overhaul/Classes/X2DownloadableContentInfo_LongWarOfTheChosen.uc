@@ -2037,6 +2037,8 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 
 	if (`XENGINE.IsMultiplayerGame()) { return; }
 
+	`LWTrace("FinalizeUnitAbilitiesForInit:" @UnitState.Name);
+
 	CharTemplate = UnitState.GetMyTemplate();
 	if (CharTemplate == none)
 		return;
@@ -2183,6 +2185,7 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 		}
 	}
 
+	`LWTrace("FinalizeUnitAbilitiesForInit: complete");
 }
 
 static function bool ShouldApplyInfiltrationModifierToCharacter(X2CharacterTemplate CharTemplate)
