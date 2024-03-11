@@ -7560,3 +7560,6 @@ LocLongDescription="Send the GREMLIN to an enemy to jolt them, dealing guarantee
 LocHelpText="Send the GREMLIN to an enemy to jolt them, dealing guaranteed damage, which is increased against robotic enemies. Requires line of sight to the target."
 LocFlyOverText="Combat Protocol"
 LocPromotionPopupText="<Bullet/> Combat Protocol has a 3 turn cooldown.<br/><Bullet/> Upgrading your GREMLIN will lead to more damage per charge.<br/>"
+
+[ResCard_LiveFireTraining X2StrategyCardTemplate]
+SummaryText="Any recruits training in the GTS will achieve the rank of Corporal."
