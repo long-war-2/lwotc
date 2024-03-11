@@ -1143,14 +1143,14 @@ LocFriendlyName="Rapid Fire"
 LocLongDescription="Fire twice in a row at an enemy. Each shot suffers an Aim penalty of <Ability:RAPIDFIREPENALTY/>. Can be used once per turn."
 LocHelpText="Fire twice in a row at an enemy. Each shot suffers an Aim penalty of <Ability:RAPIDFIREPENALTY/>."
 LocFlyOverText="Rapid Fire"
-LocPromotionPopupText="<Bullet/> Rapid Fire has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Rapid Fire has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Rapid Fire cannot be used from squadsight.<br/>"
 
 [RapidFireSnapShot X2AbilityTemplate]
 LocFriendlyName="Rapid Fire (Snap Shot)"
 LocLongDescription="Fire twice in a row at an enemy. Each shot suffers an Aim penalty of <Ability:RAPIDFIREPENALTY/>. Can be used once per turn."
 LocHelpText="Fire twice in a row at an enemy. Each shot suffers an Aim penalty of <Ability:RAPIDFIREPENALTY/>."
 LocFlyOverText="Rapid Fire"
-LocPromotionPopupText="<Bullet/> Rapid Fire has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Rapid Fire has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Rapid Fire cannot be used from squadsight.<br/>"
 
 [RapidFireSnapShot2 X2AbilityTemplate]
 LocFriendlyName="Rapid Fire"
