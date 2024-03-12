@@ -660,21 +660,21 @@ LocFriendlyName="堡垒"
 LocLongDescription="要塞现在为附近的队友提供免疫。"
 LocHelpText="要塞现在为附近的队友提供免疫。"
 LocFlyOverText="堡垒"
-LocPromotionPopupText="<Bullet/> 堡垒有4格半径范围。<br/><Bullet/> 移动到受折磨的友军附近会立刻清除他们的负面物理状态效果。<br/>"
+LocPromotionPopupText="<Bullet/> 堡垒有<Ability:BASTION_RADIUS_TILES>格半径范围。<br/><Bullet/> 移动到受折磨的友军附近会立刻清除他们的负面物理状态效果。<br/>"
 
 [BastionPassive X2AbilityTemplate]
 LocFriendlyName="堡垒"
 LocLongDescription="要塞现在为附近的队友提供免疫。"
 LocHelpText="要塞现在为附近的队友提供免疫。"
 LocFlyOverText="堡垒"
-LocPromotionPopupText="<Bullet/> 堡垒有4格半径范围。<br/><Bullet/> 移动到受折磨的友军附近会立刻清除他们的负面物理状态效果。<br/>"
+LocPromotionPopupText="<Bullet/> 堡垒有<Ability:BASTION_RADIUS_TILES>格半径范围。<br/><Bullet/> 移动到受折磨的友军附近会立刻清除他们的负面物理状态效果。<br/>"
 
 [BastionCleanse X2AbilityTemplate]
 LocFriendlyName="堡垒"
 LocLongDescription="要塞现在为附近的队友提供免疫。"
 LocHelpText="要塞现在为附近的队友提供免疫。"
 LocFlyOverText="堡垒"
-LocPromotionPopupText="<Bullet/> 堡垒有4格半径范围。<br/><Bullet/> 移动到受折磨的友军附近会立刻清除他们的负面物理状态效果。<br/>"
+LocPromotionPopupText="<Bullet/> 堡垒有<Ability:BASTION_RADIUS_TILES>格半径范围。<br/><Bullet/> 移动到受折磨的友军附近会立刻清除他们的负面物理状态效果。<br/>"
 
 [IronCurtain X2AbilityTemplate]
 LocFriendlyName="铁幕"
@@ -736,9 +736,9 @@ LocPromotionPopupText="<Bullet/> 你的受伤恢复时间是根据你在战斗�
 [MindMerge X2AbilityTemplate]
 LocFriendlyName="心灵融合"
 LocFlyOverText="心灵融合"
-LocLongDescription="给同伴提供额外的意志，暴击率和护盾值，直到玩家的下一回合开始。"
-LocHelptext="给同伴提供额外的意志，暴击率和护盾值。"
-LocPromotionPopupText="<Bullet/> 可为目标提供1点额外生命值（护盾），使用心灵融合的灵能士兵的每20点灵能威力还可提供额外1点生命值。<br/><Bullet/> 灵能士兵的每5点灵能威力都能给目标友军提供1点意志力。<br/><Bullet/> 灵能士兵的每7点灵能威力都能给目标友军提供1点暴击率。<br/><Bullet/> 效果持续到灵能士兵的下回合。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 只有可见的友军才能成为目标。<br/><Bullet/> 加强的灵能增幅器能提供额外奖励意志力和生命值。<br/<Bullet/> 使用1个行动点，不会结束回合。<br/><Bullet/> 如果灵能兵被雇佣为避难所顾问，心灵融合将减少40%的几率招募到无面怪（与其他类似能力叠加）。<br/>"
+LocLongDescription="给非机械盟友提供额外的意志、暴击率和护盾值，直到玩家的下一回合开始。"
+LocHelptext="给非机械盟友提供额外的意志、暴击率和护盾值。"
+LocPromotionPopupText="<Bullet/> 可为目标提供1点护盾，每20点灵能威力还可提供额外1点护盾。<br/><Bullet/> 灵能士兵的每5点灵能威力都能给目标友军提供1点意志力。<br/><Bullet/> 灵能士兵的每7点灵能威力都能给目标友军提供1点暴击率。<br/><Bullet/> 效果持续到灵能士兵的下回合开始。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 只有可见的友军才能成为目标。<br/><Bullet/> 加强的灵能增幅器能提供额外意志力和护盾。<br/<Bullet/> 使用1个行动点，不会结束回合。<br/><Bullet/> 如果灵能兵被设置为避难所顾问，心灵融合将减少40%的几率招募到无面怪（与其他类似能力叠加）。<br/>"
 
 [SoulMerge X2AbilityTemplate]
 LocFriendlyName="灵魂融合"
@@ -746,6 +746,13 @@ LocFlyOverText="灵魂融合"
 LocLongDescription="增加心灵融合的效率，更多的暴击率，更高意志力和护盾值。并且减少心灵融合的冷却时间。"
 LocHelpText="提升心灵融合的效率。"
 LocPromotionPopupText="<Bullet/> 减少1回合心灵融合的冷却时间。<br/><Bullet/> 每20点灵能威力能使附加的生命值增加1点。<br/><Bullet/> 每5点灵能威力提升1点意志力。<br/><Bullet/> 每5点灵能值提供1%的暴击率。"
+
+[NullLance X2AbilityTemplate]
+LocFriendlyName="虚无之矛"
+LocLongDescription="释放一道可怕力量的灵能光束，对路径上的每个目标造成伤害。此攻击可以穿透多个敌人和障碍物。"
+LocHelpText="释放一道灵能光束，对路径上的每个目标造成伤害。"
+LocFlyOverText="虚无之矛"
+LocPromotionPopupText="<Bullet/> 虚无之矛有<Ability:SelfCooldown_LW/>回合冷却。<br/><Bullet/> 通过升级灵能兵的灵能增幅器，可以增加虚无之矛的伤害<br/>"
 
 [Shadowstrike_LW X2AbilityTemplate]
 LocFriendlyName="暗影打击"
@@ -1051,14 +1058,14 @@ LocFriendlyName="速射"
 LocLongDescription="连续向敌人开火两次。 每次射击<Ability:RAPIDFIREPENALTY/>命中惩罚。消耗一个行动点。"
 LocHelpText="连续向敌人开火两次。每次射击<Ability:RAPIDFIREPENALTY/>命中惩罚。"
 LocFlyOverText="速射"
-LocPromotionPopupText="<Bullet/> 速射有<Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
+LocPromotionPopupText="<Bullet/> 速射有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 速射不适用于小队视野。<br/>"
 
 [RapidFireSnapShot X2AbilityTemplate]
 LocFriendlyName="速射 (急射)"
 LocLongDescription="连续向敌人开火两次。 每次射击<Ability:RAPIDFIREPENALTY/>命中惩罚。消耗一个行动点。"
 LocHelpText="连续向敌人开火两次。每次射击<Ability:RAPIDFIREPENALTY/>命中惩罚。"
 LocFlyOverText="速射"
-LocPromotionPopupText="<Bullet/> 速射有<Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
+LocPromotionPopupText="<Bullet/> 速射有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 速射不适用于小队视野。<br/>"
 
 [RapidFireSnapShot2 X2AbilityTemplate]
 LocFriendlyName="速射"

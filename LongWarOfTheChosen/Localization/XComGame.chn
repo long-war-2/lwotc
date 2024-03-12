@@ -56,24 +56,24 @@ FriendlyName="反抗军导弹"
 
 [X2ExperienceConfig]
 RankNames[0]="新兵"
-RankNames[1]="上等兵"
-RankNames[2]="下士"
-RankNames[3]="中士"
-RankNames[4]="上士"
-RankNames[5]="军士长"
-RankNames[6]="少尉"
-RankNames[7]="中尉"
-RankNames[8]="上尉"
+RankNames[1]="列兵"
+RankNames[2]="上等兵"
+RankNames[3]="下士"
+RankNames[4]="中士"
+RankNames[5]="上士"
+RankNames[6]="技术军士"
+RankNames[7]="枪炮军士"
+RankNames[8]="军士长"
 
 ShortNames[0]="新兵"
-ShortNames[1]="上等兵"
-ShortNames[2]="下士"
-ShortNames[3]="中士"
-ShortNames[4]="上士"
-ShortNames[5]="军士"
-ShortNames[6]="少尉"
-ShortNames[7]="中尉"
-ShortNames[8]="上尉"
+ShortNames[1]="列兵"
+ShortNames[2]="上等兵"
+ShortNames[3]="下士"
+ShortNames[4]="中士"
+ShortNames[5]="上士"
+ShortNames[6]="技术军士"
+ShortNames[7]="枪炮军士"
+ShortNames[8]="军士长"
 
 PsiRankNames[0]="新兵"
 PsiRankNames[1]="新手"
@@ -471,14 +471,12 @@ str_FlushEffect="冲散"
 LocPromotionPopupText="<Bullet/> 枪林弹雨消耗<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 枪林弹雨有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 枪林弹雨不会擦伤也不会暴击。<br/><Bullet/> 枪林弹雨不适用于狙击步枪。<br/>""
 
 [ChainShot X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> 连环射击消耗<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 连环射击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 连环射击可以对无掩体敌人（如狂战士，机械敌人）造成毁灭性的打击，或者增加命中加成。<br/>"
+LocPromotionPopupText="<Bullet/> 连环射击消耗<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 连环射击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 连环射击不适用于小队视野。<br/>"
 
 [ChainShotSnapShot X2AbilityTemplate]
 LocFriendlyName="连环射击（急射）"
 LocFlyOverText="连环射击"
-LocPromotionPopupText="<Bullet/> 连环射击消耗<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 连环射击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 连环射击可以对无掩体敌人（如狂战士，机械敌人）造成毁灭性的打击，或者增加命中加成。<br/>"
-
-
+LocPromotionPopupText="<Bullet/> 连环射击消耗<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 连环射击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 连环射击不适用于小队视野。<br/>"
 
 [SaturationFire X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> 饱和火力消耗<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 饱和火力有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 饱和火力将对锥型范围内的每一个敌人进行标准射击，并将损坏或摧毁锥型范围内随机的掩体。<br/>"
@@ -2335,19 +2333,19 @@ ObjectiveTextPools[2]="撤离所有XCOM士兵"
 
 [DefaultExtract_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="坚守到天际游侠号抵达"
-ObjectiveTextPools[1]="将VIP撤离至指定地点"
+ObjectiveTextPools[1]="将VIP从指定地点撤离"
 ObjectiveTextPools[2]="撤离所有XCOM士兵"
 
 [DefaultRescue_AdventCell_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="坚守到天际游侠号抵达"
 ObjectiveTextPools[1]="从变种人牢房中营救VIP"
-ObjectiveTextPools[2]="将VIP撤离至指定地点"
+ObjectiveTextPools[2]="将VIP从指定地点撤离"
 ObjectiveTextPools[3]="撤离所有XCOM士兵"
 
 [DefaultRescue_Vehicle_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="坚守到天际游侠号抵达"
 ObjectiveTextPools[1]="从变种人载具上营救VIP"
-ObjectiveTextPools[2]="将VIP撤离至指定地点"
+ObjectiveTextPools[2]="将VIP从指定地点撤离"
 ObjectiveTextPools[3]="撤离所有XCOM士兵"
 
 [DefaultHack_LW X2MissionNarrativeTemplate]
@@ -2373,7 +2371,7 @@ ObjectiveTextPools[2]="撤离所有XCOM士兵"
 [DefaultNeutralizeTarget_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="坚守到天际游侠号抵达"
 ObjectiveTextPools[1]="捕获或击杀敌人VIP"
-ObjectiveTextPools[2]="将VIP撤离至指定地点"
+ObjectiveTextPools[2]="将VIP从指定地点撤离"
 ObjectiveTextPools[3]="撤离所有XCOM士兵"
 ObjectiveTextPools[4]="敌对VIP"
 ObjectiveTextPools[5]="要捕捉VIP，控制一名士兵到近距离然后使用\"制服\"技能。然后再将失去意识的VIP带到撤离区。"
@@ -2381,7 +2379,7 @@ ObjectiveTextPools[5]="要捕捉VIP，控制一名士兵到近距离然后使用
 [DefaultNeutralize_Vehicle_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="坚守到天际游侠号抵达"
 ObjectiveTextPools[1]="捕获或击杀敌人VIP"
-ObjectiveTextPools[2]="将VIP撤离至指定地点"
+ObjectiveTextPools[2]="将VIP从指定地点撤离"
 ObjectiveTextPools[3]="撤离所有XCOM士兵"
 ObjectiveTextPools[4]="敌对VIP"
 ObjectiveTextPools[5]="要捕捉VIP，控制一名士兵到近距离然后使用\"制服\"技能。然后再将失去意识的VIP带到撤离区。"
@@ -2898,7 +2896,7 @@ ObjectiveTextPools[1]="营救至少1名反抗军联络人"
 ObjectiveTextPools[2]="营救额外反抗军联络人（可选）"
 ObjectiveTextPools[3]="撤离所有XCOM士兵"
 ObjectiveTextPools[4]="越狱"
-ObjectiveTextPools[5]="在一次变种人肃清行动中有一组反抗军联络人被包围了，并且被关押在了该区域的牢房之中。变种人的载具准备将这些囚犯转移到一个未知的地点，因此我们突入并营救这些人的时间将很有限。如果我们能安全地营救他们，这将对反抗军在这片地区的行动有很大的帮助。"
+ObjectiveTextPools[5]="在一次变种人肃清行动中有一组反抗军联络人被包围了，并且被关押在了该区域的牢房之中。变种人准备用载具将这些囚犯转移到一个未知的地点，因此我们突入并营救这些人的时间将很有限。如果我们能安全地营救他们，这将对反抗军在这片地区的行动有很大的帮助。"
 
 [SupplyExtraction_LW X2MissionTemplate]
 DisplayName="拦截空运补给"
@@ -3160,7 +3158,7 @@ TemplarTutorialTitle="圣殿骑士专注"
 TemplarTutorialText="圣殿骑士在执行任务时通过使用撕裂获得专注，无论它是否命中。专注可以花在强大的能力上，其中一些能力在更高的专注等级上使用会提高效率。"
 
 TemplarMomentumTutorialTitle="圣殿骑士气势&格挡"
-TemplarMomentumTutorialText="使用撕裂后，圣殿骑士总是会触发气势，这是一种自由移动的动作，可以让他们回到安全的掩护处，或者使用舍我其谁吸引一些攻击。舍我其谁给予圣殿骑士护盾增益，同时显著降低他们的防御。"
+TemplarMomentumTutorialText="使用撕裂后，圣殿骑士总是会触发气势，这是一种自由移动的动作，可以让他们回到安全的掩体处，或者使用圣殿之盾吸引一些攻击。圣殿之盾给予圣殿骑士护盾增益，持续到下一回合开始。"
 
 SkirmisherTutorialTitle="散兵"
 SkirmisherTutorialText="散兵是一种机动单位，他可以向侧翼单位发射他们的无托式，让他们可以再次射击、移动、投掷榴弹或做其他事情。钩爪增加了他们的多功能性，允许散兵快速穿越战场，进入有利位置。"
@@ -4978,11 +4976,11 @@ AbilityDescName="战斧"
 
 [Infiltration1Unlock X2SoldierUnlockTemplate]
 DisplayName="战术潜入"
-Summary="6或7人士兵的小队潜入将花费更少时间。<br/><br/>特殊需求：该升级需要至少大校军阶的军官才能解锁。"
+Summary="6或7人士兵的小队潜入将花费更少时间。<br/><br/>特殊需求：该升级需要至少少校军阶的军官才能解锁。"
 
 [Infiltration2Unlock X2SoldierUnlockTemplate]
 DisplayName="大型单位潜入"
-Summary="8或10人士兵的小队潜入将花费更少时间。<br/><br/>特殊需求：该升级需要至少中将军阶的军官才能解锁。"
+Summary="8或10人士兵的小队潜入将花费更少时间。<br/><br/>特殊需求：该升级需要至少上校军阶的军官才能解锁。"
 
 [UITodoWidget]
 DescLowScienceScoreText="没有足够的科学家来进行主要的可用研究项目。建造，升级或是分配员工到实验室来加强科学家的贡献度，或是从黑市雇佣一位科学家。"
@@ -5018,7 +5016,7 @@ DisplayName="成功的变种人突袭："
 ; just fix typo
 [Insanity X2AbilityTemplate]
 ; LWOTC Needs Translation
-LocPromotionPopupText="<Bullet/> 精神错乱有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 精神错乱需要灵能士兵的灵能威力数据与目标的意志进行较量。<br/><Bullet/> 如果成功，精神错乱会使目标混乱，眩晕或被操控。<br/><Bullet/> 机械敌人完全不受精神错乱的影响。<br/><Bullet/> 精神错乱只需要一个行动点，不会结束回合。<br/>"
+LocPromotionPopupText="<Bullet/> 精神错乱有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 精神错乱需要灵能士兵的灵能威力数据与目标的意志进行较量。<br/><Bullet/> 如果成功，精神错乱会使目标混乱、恐慌或被操控。<br/><Bullet/> 机械敌人完全不受精神错乱的影响。<br/><Bullet/> 精神错乱只需要一个行动点，不会结束回合。<br/>"
 ; End Translation
 
 [XComGame.UIEndGameStats]
@@ -5073,9 +5071,9 @@ LocPromotionPopupText="<Bullet/> 连环杀戮是指在一次行动中连环击�
 
 ;LWOTC needs translation
 [Fuse X2AbilityTemplate]
-LocLongDescription="如果敌人携带爆炸物，灵能士兵可以远程引爆。自由行动。"
-LocHelpText="如果敌人携带爆炸物，灵能士兵可以远程引爆。自由行动。"
-LocPromotionPopupText="<Bullet/> 导火线有<Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
+LocLongDescription="如果敌人携带爆炸物，灵能士兵可以远程引爆。"
+LocHelpText="如果敌人携带爆炸物，灵能士兵可以远程引爆。"
+LocPromotionPopupText="<Bullet/> 导火线有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 导火线消耗1行动点且不会结束你的回合。<br/>"
 ;End translation
 
 [BulletShred X2AbilityTemplate]
@@ -5093,6 +5091,13 @@ LocPromotionPopupText="<Bullet/> 合适的位置可以将对峙的威力发挥�
 LocPromotionPopupText="<Bullet/> 多重火力的每次攻击都有单独的命中率。<br/><Bullet/> 如果每一枪都命中，多重火力会造成毁灭性的伤害。<br/><Bullet/> 多重火力有<Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
 ; End translation
 
+[Soulfire X2AbilityTemplate]
+LocFriendlyName="灵魂火"
+LocLongDescription="对有机敌人造成灵能伤害。无视掩体和护甲，必定命中。"
+LocHelpText="对有机敌人造成灵能伤害。无视掩体和护甲，必定命中。"
+LocFlyOverText="灵魂火"
+LocPromotionPopupText="<Bullet/> 灵魂火有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 通过升级灵能兵的灵能增幅器，可以增加灵魂火的伤害。<br/><Bullet/> 灵魂火无法对机械类敌人使用。"
+
 ; LWOTC Translated (2)
 [SoulSteal X2AbilityTemplate]
 LocLongDescription="灵魂火伤害的一半恢复灵能士兵的生命值，如果灵能士兵未受伤害，则将其转化为持续3回合的护盾。"
@@ -5102,7 +5107,7 @@ LocPromotionPopupText="<Bullet/> 灵魂汲取将会恢复受伤士兵的生命�
 
 ; LWOTC Needs Translation
 [Domination X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> 心灵控制需要灵能士兵的灵能威力与目标意志进行比较。<br/><Bullet/> 如果尝试心灵控制失败，则在下次尝试之前会冷却4回合。<br/><Bullet/> 如果灵能士兵在战场死亡或离开战场，那么控制将被打断。<br/>"
+LocPromotionPopupText="<Bullet/> 心灵控制需要灵能士兵的灵能威力与目标意志进行比较。<br/><Bullet/> 如果尝试心灵控制失败，则在下次尝试之前会冷却<Ability:SelfCooldown_LW>回合。<br/><Bullet/> 如果灵能士兵在战场死亡或离开战场，那么控制将被打断。<br/>"
 ; End Translation
 
 ; LWOTC Needs Translation
@@ -5133,18 +5138,18 @@ LaunchedAbilityHelpText="让爆炸区域内敌人产生混乱效果。"
 
 [Whirlwind2 X2AbilityTemplate]
 LocFriendlyName="旋风斩"
-LocLongDescription="在你的回合用近战攻击成功命中后获得一个额外的移动点。"
-LocHelpText="近战攻击成功命中后获得一个额外的移动点。"
+LocLongDescription="在你的回合用近战攻击成功命中后获得一个额外的移动点。每回合只触发一次。"
+LocHelpText="近战攻击成功命中后获得一个额外的移动点。每回合只触发一次。"
 LocFlyOverText="旋风斩"
-LocPromotionPopupText="<Bullet/> 每回合最多获得1点移动力。<br/>"
+LocPromotionPopupText=""
 ; End Translation
 
 [Solace_LW X2AbilityTemplate]
 LocFriendlyName="慰藉"
 LocFlyOverText="慰藉"
-LocLongDescription="灵能士兵可以立即消除一名队友的精神异常。"
-LocHelpText="灵能士兵可以立即消除一名队友的精神异常。"
-LocPromotionPopupText="<Bullet/> 慰藉驱散混乱，心灵控制, 恐慌和眩晕状态。<br/><Bullet/> 慰藉需要一个行动点，不会结束回合。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷却。<br/>"
+LocLongDescription="立即消除一名有机盟友的混乱、眩晕、恐慌、心灵控制状态。"
+LocHelpText="立即消除一名有机盟友的混乱、眩晕、恐慌、心灵控制状态。"
+LocPromotionPopupText="<Bullet/> 慰藉可以驱散混乱、眩晕、恐慌、心灵控制状态。<br/><Bullet/> 慰藉需要一个行动点，不会结束回合。<br/><Bullet/> 慰藉有<Ability:SelfCooldown_LW/>回合冷却。<br/>"
 
 [QuickStudy X2AbilityTemplate]
 LocFriendlyName="快速学习"
@@ -5397,7 +5402,7 @@ LocPromotionPopupText="<Bullet/> 确保队友远离爆炸区！<br/><Bullet/> �
 ; LWOTC Needs Translation
 [HomingMine X2AbilityTemplate]
 LocFriendlyName="追踪地雷"
-LocLongDescription="消耗1行动点使目标敌人身上附着一枚地雷，不会结束你的回合。对身上附着了地雷的敌人的射击必定会命中。每次任务有4充能"
+LocLongDescription="消耗1行动点使目标敌人身上附着一枚地雷，不会结束你的回合。对身上附着了地雷的敌人的射击必定会命中。每次任务有4充能。"
 LocHelpText="消耗1行动点使目标敌人身上附着一枚地雷，对身上附着了地雷的敌人的射击必定会命中。"
 LocPromotionPopupText="<Bullet/> 对身上附着了地雷的敌人的射击必定会命中。<br/><Bullet/> 追踪地雷每次任务有4充能。<br/><Bullet/> 追踪地雷需要一个行动点，不会结束你的回合。<br/>"
 ; End Translation
@@ -5906,31 +5911,31 @@ LocLongDescription="短暂消失，传送到附近的地方。"
 LocHelpText="短暂消失，传送到附近的地方。"
 LocFlyOverText="相位穿越"
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet> 短暂消失，传送到附近的地方。<br/><Bullet/> 目标点必须在队伍视线内可见。<br/><Bullet/> 相位穿越需要一个行动点，不会结束你的回合。<br/><Bullet/> 相位穿越有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 相位穿越半径为<Ability:PHASEWALK_CAST_RANGE_TILES>格。<br/><Bullet/> 相位穿越可以触发一定的反应射击能力。<br>"
+LocPromotionPopupText="<Bullet/> 目标位置必须在队伍视线内可见。<br/><Bullet/> 相位穿越需要一个行动点，不会结束你的回合。<br/><Bullet/> 相位穿越有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 相位穿越半径为<Ability:PHASEWALK_CAST_RANGE_TILES>格。<br/><Bullet/> 相位穿越可能会触发某些反应射击能力。<br>"
 ; End Translation (2)
 
 [LW_NullWard X2AbilityTemplate]
 LocFriendlyName="守护力场"
-LocLongDescription="在士兵和附近的队友周围制造灵能护盾。如果该士兵被击杀，护盾就会消失。"
-LocHelpText="在附近的队友和你自己周围制造灵能护盾。"
+LocLongDescription="为士兵和附近的队友制造灵能护盾。如果该士兵被击杀，护盾就会消失。"
+LocHelpText="为士兵和附近的队友制造灵能护盾。如果该士兵被击杀，护盾就会消失。"
 LocFlyOverText="守护力场"
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet> 在士兵和附近的队友周围制造灵能护盾。如果该士兵被击杀，护盾就会消失。<br/><Bullet/> 守护立场有<Ability:NULL_WARD_BASE_SHIELD>生命点。<br/><Bullet/> 增强的灵能增幅器拥有额外的生命值加成。<br/><Bullet/> 守护立场需要一个行动点，不会结束你的回合。<br/><Bullet/> 守护立场有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 守护立场半径为8格。<br/>"
+LocPromotionPopupText="<Bullet/> 守护立场提供<Ability:NULL_WARD_BASE_SHIELD>点基础护盾。<br/><Bullet/> 增强的灵能增幅器提供额外的护盾。<br/><Bullet/> 守护立场需要一个行动点，不会结束你的回合。<br/><Bullet/> 守护立场有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 守护立场半径为<Ability:NULL_WARD_RADIUS_TILES>格。<br/><Bullet/> 守护立场会使你暴露。<br/>"
 ; End Translation (2)
 
 [LW_SoulStorm X2AbilityTemplate]
 LocFriendlyName="灵魂风暴"
-LocLongDescription="召唤灵魂风暴对目标区域内的敌人造成伤害，并摧毁他们的掩体。"
-LocHelpText="召唤灵魂风暴对目标区域内的敌人造成伤害，并摧毁他们的掩体。"
+LocLongDescription="召唤灵魂风暴，在以你为中心<Ability:SOULSTORM_CAST_RADIUS_TILES>格半径范围内对所有目标造成伤害，并摧毁他们的掩体。"
+LocHelpText="召唤灵魂风暴，在以你为中心<Ability:SOULSTORM_CAST_RADIUS_TILES>格半径范围内对所有目标造成伤害，并摧毁他们的掩体。"
 LocFlyOverText="灵魂风暴"
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet> 召唤灵魂风暴对目标区域内的敌人造成伤害，并摧毁他们的掩体。<br/><Bullet> 灵魂风暴的影响范围以释放者为中心。<br/><Bullet> 不能破坏地板或天花板。<br/><Bullet/> 灵魂风暴需要一个行动点并结束你的回合。<br/><Bullet/> 灵魂风暴有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 灵魂风暴半径为4格。<br/>"
+LocPromotionPopupText="<Bullet> 灵魂风暴的影响范围以释放者为中心。<br/><Bullet> 不能破坏地板或天花板。<br/><Bullet/> 灵魂风暴需要一个行动点并结束你的回合。<br/><Bullet/> 灵魂风暴有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 灵魂风暴也会对范围内的友军造成伤害。<br/>"
 ; End Translation (2)
 
 [Stasis X2AbilityTemplate]
 LocFriendlyName="静滞"
-LocLongDescription="彻底使目标眩晕1回合，但对方会免疫任何伤害或攻击。"
-LocHelpText="彻底使目标眩晕1回合，但对方会免疫任何伤害或攻击。"
+LocLongDescription="使目标进入静滞状态，使其免疫伤害并且在你的下一个回合之前无法行动。"
+LocHelpText="使目标进入静滞状态，使其免疫伤害并且在你的下一个回合之前无法行动。"
 LocFlyOverText="静滞"
 LocPromotionPopupText="<Bullet/> 静滞会消耗1行动点，并且不会结束你的回合。<br/><Bullet/> 静滞有<Ability:SelfCooldown_LW/>回合冷却。<br/><Bullet/> 静滞可以对敌人和盟友使用。既可以用于牵制敌军，也可以用于保护友军。<br/><Bullet/> 静滞无法用于占据超过一个格子的目标。<br/><Bullet/> 由于静滞完全将敌人从战斗中移除一个回合，因此它可以用作防御，保护脆弱的士兵，或者可以用作进攻，策划一场协调的攻击。<br/>"
 
@@ -7191,10 +7196,10 @@ LocHelpText="奔向盟友，用你的急救包稳定他们。"
 
 [SoulReaper X2AbilityTemplate]
 LocFriendlyName="放逐"
-LocLongDescription="向一名目标持续开火直至将其击毙或耗尽弹药。 每次射击减少<Ability:BANISH_HIT_MOD/>命中。暴露死神的位置。 "
-LocHelpText="向一名目标持续开火直至将其击毙或耗尽弹药。 每次射击减少<Ability:BANISH_HIT_MOD/>命中。暴露死神的位置。"
+LocLongDescription="对目标持续开火，直到弹药用尽或目标死亡。 每次射击的命中比上一击减少<Ability:BANISH_HIT_MOD/>，伤害比上一击减少<Ability:BANISH_DMG_MOD>。暴露<Ability:ClassName>的位置。"
+LocHelpText="对目标持续开火，直到弹药用尽或目标死亡。 每次射击的命中比上一击减少<Ability:BANISH_HIT_MOD/>，伤害比上一击减少<Ability:BANISH_DMG_MOD>。暴露<Ability:ClassName>的位置。"
 LocFlyoverText="放逐"
-LocPromotionPopupText="<Bullet/> 放逐中的每一次射击都有单独的命中几率。<br/><Bullet/> 只有1弹药时不能激活放逐。<br/><Bullet/> 放逐射击可以暴击。<br/><Bullet/> 在后续射击上会堆叠-1的伤害惩罚。<br/><Bullet/> 放逐有<Ability:SelfCooldown_LW/>回合冷却时间。"
+LocPromotionPopupText="<Bullet/> 放逐中的每一次射击都有单独的命中几率。<br/><Bullet/> 只有1弹药时不能激活放逐。<br/><Bullet/> 放逐射击可以暴击。<br/><Bullet/> 放逐有<Ability:SelfCooldown_LW/>回合冷却时间。"
 
 [TotalCombat X2AbilityTemplate]
 LocFriendlyName="全面战斗"
@@ -7398,3 +7403,6 @@ LocLongDescription="用小精灵去攻击敌人，可以造成可观的伤害，
 LocHelpText="用小精灵去攻击敌人，可以造成可观的伤害，对机器人有伤害加成。需要有目标视野。"
 LocFlyOverText="战争协议"
 LocPromotionPopupText="<Bullet/> 战争协议有3回合冷却。<br/><Bullet/> 升级小精灵增加伤害。<br/>"
+
+[ResCard_LiveFireTraining X2StrategyCardTemplate]
+SummaryText="在游击战术学校中完成训练的新兵将达到下士军衔。"

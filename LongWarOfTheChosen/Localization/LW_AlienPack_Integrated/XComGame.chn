@@ -218,6 +218,8 @@ FriendlyName="光束步枪"
 AbilityDescName="等离子步枪"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; ArchonM2_LW ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[Archon_WPN X2WeaponTemplate]
+AbilityDescName="执政官之杖"
 
 [ArchonM2_LW X2CharacterTemplate]
 strCharacterName="大执政官"

@@ -145,7 +145,7 @@ LocFriendlyName="指挥"
 LocLongDescription="结束你的回合来为小队中任一可见的成员提供一个额外的行动点数。可用次数由军官的级别决定。"
 LocHelpText="赋予友军额外行动点数。"
 LocFlyOverText="指挥"
-LocPromotionPopupText="<Bullet/> 消耗一个行动点数并结束你的回合。<br/><Bullet/> 少校和中校可以使用1次此技能；上校和大校可以使用2次；少将和中将可以使用3次，上将可以使用4次。<br/><Bullet/> 无法在正在监视或压制其他目标的单位上使用。<br/><Bullet/> 不能在机器人盟友和平民身上使用。"
+LocPromotionPopupText="<Bullet/> 消耗一个行动点数并结束你的回合。<br/><Bullet/> 少尉和中尉可以使用1次此技能；上尉和少校可以使用2次；中校和上校可以使用3次，司令可以使用4次。<br/><Bullet/> 无法在正在监视或压制其他目标的单位上使用。<br/><Bullet/> 不能在机器人盟友和平民身上使用。"
 
 [Infiltrator X2AbilityTemplate]
 LocFriendlyName="渗透者"
