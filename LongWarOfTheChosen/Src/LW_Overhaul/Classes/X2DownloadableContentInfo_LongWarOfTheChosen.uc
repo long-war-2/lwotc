@@ -135,6 +135,8 @@ var config array<string> MapsToDisable;
 
 var config array<Name> EncountersToExclude;
 
+var config array<Name> ROCKET_ABILITIES_TO_UPDATE;
+
 // End data and data structures
 //-----------------------------
 
@@ -231,6 +233,7 @@ static event OnPostTemplatesCreated()
 	ModifyMissionSchedules();
 	ModifyEncountersForFL21();
 	ModCompatibilityConfig();
+	EditModdedRocketAbilities();
 }
 
 static function ModCompatibilityConfig()
@@ -248,6 +251,28 @@ static function ModCompatibilityConfig()
 		}
 		
 	}
+
+}
+
+static function EditModdedRocketAbilities()
+ {
+	local X2AbilityTemplateManager							AbilityManager;
+	local X2AbilityTemplate									AbilityTemplate;
+	local name AbilityName;
+
+	AbilityManager = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
+
+	foreach default.ROCKET_ABILITIES_TO_UPDATE(AbilityName)
+	{
+		AbilityTemplate = AbilityManager.FindAbilityTemplate(AbilityName);
+
+		if(AbilityTemplate != none)
+		{
+			`LWTrace("Patching Rocket launcher ability" @AbilityTemplate.DataName);
+			AbilityTemplate.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher';
+		}
+	}
+
 }
 
 // Uses OPTC to update mission schedules instead of minus config
@@ -363,15 +388,10 @@ static function ModifyYellAbility()
     local array<X2AbilityTemplate>        arrTemplate;
     local int                            i;
 	local X2Effect_YellowAlert              YellowAlertStatus;
-	local X2Effect_PersistentStatChangeRestoreDefault		SightIncrease;
 
 	YellowAlertStatus = new class 'X2Effect_YellowAlert';
 	YellowAlertStatus.BuildPersistentEffect(1,true,true /*Remove on Source Death*/,,eGameRule_PlayerTurnBegin);
 
-	SightIncrease = new class'X2Effect_PersistentStatChangeRestoreDefault';
-	SightIncrease.BuildPersistentEffect(1,true,true,,eGameRule_PlayerTurnBegin);
-	SightIncrease.AddPersistentStatChange(eStat_SightRadius); 
-	SightIncrease.AddPersistentStatChange(eStat_DetectionRadius);
 
     // Access Ability Template Manager
     AbilityMgr = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
@@ -388,7 +408,6 @@ static function ModifyYellAbility()
 			X2AbilityMultiTarget_Radius(arrTemplate[i].AbilityMultiTargetStyle).fTargetRadius = 18;
 			`LWTrace("Adding Yellow Alert effects to Yell");
 			arrTemplate[i].AbilityMultiTargetEffects.AddItem(YellowAlertStatus);
-			arrTemplate[i].AbilityMultiTargetEffects.AddItem(SightIncrease);
 		}
     }
 }
@@ -1475,6 +1494,10 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 				// Let's look over our outcome and see if it's any better
 				NewMostCommonMember = FindMostCommonMember(SpawnInfo.SelectedCharacterTemplateNames);
 				NewCommonTemplate = TemplateManager.FindCharacterTemplate(NewMostCommonMember);
+				if(SpawnInfo.SelectedCharacterTemplateNames[0] == 'Chryssalid' || SpawnInfo.SelectedCharacterTemplateNames[0] == 'ChryssalidSoldier' || SpawnInfo.SelectedCharacterTemplateNames[0] == 'HiveQueen')
+				{
+					Satisfactory = true;
+				}
 				if ((PodSize == 4 ) && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= Podsize - 1)
 				{
 					Tries += 1;
@@ -2014,6 +2037,8 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 
 	if (`XENGINE.IsMultiplayerGame()) { return; }
 
+	`LWTrace("FinalizeUnitAbilitiesForInit:" @UnitState.Name);
+
 	CharTemplate = UnitState.GetMyTemplate();
 	if (CharTemplate == none)
 		return;
@@ -2160,6 +2185,7 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 		}
 	}
 
+	`LWTrace("FinalizeUnitAbilitiesForInit: complete");
 }
 
 static function bool ShouldApplyInfiltrationModifierToCharacter(X2CharacterTemplate CharTemplate)
@@ -4105,6 +4131,12 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'NULL_WARD_BASE_SHIELD':
 			Outstring = string(class'X2Ability_LW_PsiOperativeAbilitySet'.default.NULL_WARD_BASE_SHIELD);
 			return true;
+		case 'NULL_WARD_RADIUS_TILES':
+			Outstring = string(int(`METERSTOTILES(class'X2Ability_LW_PsiOperativeAbilitySet'.default.NULLWARD_CAST_RADIUS_METERS)));
+			return true;
+		case 'SOULSTORM_CAST_RADIUS_TILES':
+			Outstring = string(int(`METERSTOTILES(class'X2Ability_LW_PsiOperativeAbilitySet'.default.SOULSTORM_CAST_RADIUS_METERS)));
+			return true;
 		case 'PHASEWALK_CAST_RANGE_TILES':
 			Outstring = string(class'X2Ability_LW_PsiOperativeAbilitySet'.default.PHASEWALK_CAST_RANGE_TILES);
 			return true;
@@ -5673,7 +5705,6 @@ static function CacheInstalledMods()
 	`LWTrace("cached bDABFLActive: " @class'Helpers_LW'.default.bDABFLActive);
 	`LWTrace("cached bKirukaSparkActive: " @class'Helpers_LW'.default.bKirukaSparkActive);
 	`LWTrace("cached bDSLReduxActive: " @class'Helpers_LW'.default.bDSLReduxActive);
-
 }
 
 exec function LWOTC_SetSelectedUnitActive()

@@ -743,21 +743,21 @@ LocFriendlyName="Bastion"
 LocLongDescription="Fortress now provides immunity to nearby teammates."
 LocHelpText="Fortress now provides immunity to nearby teammates."
 LocFlyOverText="Bastion"
-LocPromotionPopupText="<Bullet/> Bastion has a 4 tile radius.<br/><Bullet/> Moving next to afflicted allies will immediately cleanse their negative physical status effects.<br/>"
+LocPromotionPopupText="<Bullet/> Bastion has a <Ability:BASTION_RADIUS_TILES> tile radius.<br/><Bullet/> Moving next to afflicted allies will immediately cleanse their negative physical status effects."
 
 [BastionPassive X2AbilityTemplate]
 LocFriendlyName="Bastion"
 LocLongDescription="Fortress now provides immunity to nearby teammates."
 LocHelpText="Fortress now provides immunity to nearby teammates."
 LocFlyOverText="Bastion"
-LocPromotionPopupText="<Bullet/> Bastion has a 4 tile radius.<br/><Bullet/> Moving next to afflicted allies will immediately cleanse their negative physical status effects.<br/>"
+LocPromotionPopupText="<Bullet/> Bastion has a <Ability:BASTION_RADIUS_TILES> tile radius.<br/><Bullet/> Moving next to afflicted allies will immediately cleanse their negative physical status effects."
 
 [BastionCleanse X2AbilityTemplate]
 LocFriendlyName="Bastion"
 LocLongDescription="Fortress now provides immunity to nearby teammates."
 LocHelpText="Fortress now provides immunity to nearby teammates."
 LocFlyOverText="Bastion"
-LocPromotionPopupText="<Bullet/> Bastion has a 4 tile radius.<br/><Bullet/> Moving next to afflicted allies will immediately cleanse their negative physical status effects.<br/>"
+LocPromotionPopupText="<Bullet/> Bastion has a <Ability:BASTION_RADIUS_TILES> tile radius.<br/><Bullet/> Moving next to afflicted allies will immediately cleanse their negative physical status effects."
 
 [IronCurtain X2AbilityTemplate]
 LocFriendlyName="Iron Curtain"
@@ -822,10 +822,10 @@ LocPromotionPopupText="<Bullet/> The number of hit points you lost during a batt
 [MindMerge X2AbilityTemplate]
 LocFriendlyName="Mind Merge"
 LocFlyOverText="Mind Merge"
-LocLongDescription="Grants bonus will, critical chance and ablative hit points to an ally until the beginning of the player's next turn."
-LocHelptext="Temporarily grants bonus will, critical chance and ablative hit points to an ally."
+LocLongDescription="Grants bonus will, critical chance and ablative hit points to an organic ally until the beginning of the player's next turn."
+LocHelptext="Temporarily grants bonus will, critical chance and ablative hit points to an organic ally."
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> Grants the targeted ally 1 ablative (shield) hit point, plus another one per 20 psi offense score of the Psi Operative using Mind Merge.<br/><Bullet/> Grants the targeted ally 1 will per 5 psi offense score of the Psi Operative.<br/><Bullet/> Also grants the ally +1 critical chance per 7 psi offense score of the Psi Operative.<br/><Bullet/> Effect lasts until the Psi Operative's next turn.<br/><Bullet/> Mind Merge has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Mind Merge requires one action and does not end your turn.<br/><Bullet/> Only visible allies may be targeted.<br/><Bullet/> Improved Psi Amps grant additional bonuses to these effects.<br/><Bullet/> If the Psi Operative is employed as Haven Adviser Mind Merge will reduce the chance of recruiting Faceless rebels by 40% (stacking cumulatively with other similar abilities).<br/>"
+LocPromotionPopupText="<Bullet/> Grants the targeted ally +1/+<Ability:MIND_MERGE_AMP_MG_TOTAL_SHIELDHP>/+<Ability:MIND_MERGE_AMP_BM_TOTAL_SHIELDHP> ablative hit points depending on Psi Amp tier, and +1 ablative hit points per <Ability:MIND_MERGE_SHIELDHP_DIVISOR> Psi offense score of the Psi Operative using Mind Merge.<br/><Bullet/> Grants the targeted ally +0/+<Ability:MIND_MERGE_AMP_MG_TOTAL_WILL>/+<Ability:MIND_MERGE_AMP_BM_TOTAL_WILL> will depending on Psi Amp tier, and +1 will per <Ability:MIND_MERGE_WILL_DIVISOR> per Psi Offense score of the Psi Operative.<br/><Bullet/> Grants the targeted ally +0/+<Ability:MIND_MERGE_AMP_MG_TOTAL_CRIT>/+<Ability:MIND_MERGE_AMP_BM_TOTAL_CRIT> crit depending on Psi Amp tier, and +1 crit per <Ability:MIND_MERGE_CRIT_DIVISOR> per Psi Offense score of the Psi Operative.<br/><Bullet/> Effect lasts until the Psi Operative's next turn.<br/><Bullet/> Mind Merge has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Mind Merge requires one action and does not end your turn.<br/><Bullet/> Only visible allies may be targeted.<br/><Bullet/> Improved Psi Amps grant additional bonuses to these effects.<br/><Bullet/> If the Psi Operative is employed as Haven Adviser, Mind Merge will reduce the chance of recruiting Faceless rebels by 40% (stacking cumulatively with other similar abilities).<br/>"
 ; End Translation (2)
 
 [SoulMerge X2AbilityTemplate]
@@ -834,6 +834,13 @@ LocFlyOverText="Soul Merge"
 LocLongDescription="Increases effectiveness of Mind Merge by conferring larger bonuses to critical chance, will and ablative hit points, and reducing its cooldown period."
 LocHelpText="Increases effectiveness of Mind Merge."
 LocPromotionPopupText="<Bullet/> Reduces Mind Merge cooldown by 1 turn.<br/><Bullet/> Bonus ablative Hit Points improves to 1 per 20 psi offense score.<br/><Bullet/> Bonus will improves to 1 per 5 psi offense score.<br/><Bullet/> Grants a crit bonus of 1% per 5 psi offense."
+
+[NullLance X2AbilityTemplate]
+LocFriendlyName="Null Lance"
+LocLongDescription="Project a beam of terrible power that damages every target it passes through. This attack can penetrate multiple enemies and obstacles."
+LocHelpText="Project a beam of Psionic energy that damages every target it passes through."
+LocFlyOverText="Null Lance"
+LocPromotionPopupText="<Bullet/> Null Lance has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Null Lance damage can be increased by improving the Psi Operative's Psi Amp.<br/>"
 
 [Shadowstrike_LW X2AbilityTemplate]
 LocFriendlyName="Shadowstrike"
@@ -1146,14 +1153,14 @@ LocFriendlyName="Rapid Fire"
 LocLongDescription="Fire twice in a row at an enemy. Each shot suffers an Aim penalty of <Ability:RAPIDFIREPENALTY/>. Can be used once per turn."
 LocHelpText="Fire twice in a row at an enemy. Each shot suffers an Aim penalty of <Ability:RAPIDFIREPENALTY/>."
 LocFlyOverText="Rapid Fire"
-LocPromotionPopupText="<Bullet/> Rapid Fire has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Rapid Fire has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Rapid Fire cannot be used from squadsight.<br/>"
 
 [RapidFireSnapShot X2AbilityTemplate]
 LocFriendlyName="Rapid Fire (Snap Shot)"
 LocLongDescription="Fire twice in a row at an enemy. Each shot suffers an Aim penalty of <Ability:RAPIDFIREPENALTY/>. Can be used once per turn."
 LocHelpText="Fire twice in a row at an enemy. Each shot suffers an Aim penalty of <Ability:RAPIDFIREPENALTY/>."
 LocFlyOverText="Rapid Fire"
-LocPromotionPopupText="<Bullet/> Rapid Fire has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Rapid Fire has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Rapid Fire cannot be used from squadsight.<br/>"
 
 [RapidFireSnapShot2 X2AbilityTemplate]
 LocFriendlyName="Rapid Fire"

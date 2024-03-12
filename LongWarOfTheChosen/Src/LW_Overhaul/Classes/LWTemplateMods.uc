@@ -22,6 +22,10 @@ struct ItemTableEntry
 	var int CoreCost;
 	var name SpecialItemTemplateName;
 	var int SpecialItemCost;
+	var name SpecialItem2TemplateName;
+	var int SpecialItem2Cost;
+	var name SpecialItem3TemplateName;
+	var int SpecialItem3Cost;
 	var int TradingPostValue;
 	var int RequiredEngineeringScore;
 	var int PointsToComplete;
@@ -44,6 +48,10 @@ struct ItemTableEntry
 		CoreCost=0
 		SpecialItemTemplateName=None
 		SpecialItemCost=0
+		SpecialItem2TemplateName=None
+		SpecialItem2Cost=0
+		SpecialItem3TemplateName=None
+		SpecialItem3Cost=0
 		TradingPostValue=0
 		RequiredEngineeringScore=0
 		PointsToComplete=0
@@ -70,6 +78,10 @@ struct TechTableEntry
 	var int ReqItemCost1;
 	var name ReqItemTemplateName2;
 	var int ReqItemCost2;
+	var name ReqItemTemplateName3;
+	var int ReqItemCost3;
+	var name ReqItemTemplateName4;
+	var int ReqItemCost4;
 	var name ItemGranted;
 	var int RequiredScienceScore;
 	var int RequiredEngineeringScore;
@@ -91,6 +103,10 @@ struct TechTableEntry
 		ReqItemCost1=0
 		ReqItemTemplateName2=None
 		ReqItemCost2=0
+		ReqItemTemplateName3=None
+		ReqItemCost3=0
+		ReqItemTemplateName4=None
+		ReqItemCost4=0
 		ItemGranted=none
 		RequiredScienceScore=0
 		RequiredEngineeringScore=0
@@ -3164,6 +3180,18 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 						Resources.Quantity = ItemTable[i].SpecialItemCost;
 						EquipmentTemplate.Cost.ArtifactCosts.AddItem(Resources);
 					}
+					if (ItemTable[i].SpecialItem2TemplateName != '' && ItemTable[i].SpecialItem2Cost > 0)
+					{
+						Resources.ItemTemplateName = ItemTable[i].SpecialItem2TemplateName;
+						Resources.Quantity = ItemTable[i].SpecialItem2Cost;
+						EquipmentTemplate.Cost.ArtifactCosts.AddItem(Resources);
+					}
+					if (ItemTable[i].SpecialItem3TemplateName != '' && ItemTable[i].SpecialItem3Cost > 0)
+					{
+						Resources.ItemTemplateName = ItemTable[i].SpecialItem3TemplateName;
+						Resources.Quantity = ItemTable[i].SpecialItem3Cost;
+						EquipmentTemplate.Cost.ArtifactCosts.AddItem(Resources);
+					}
 					if (EquipmentTemplate.InventorySlot == eInvSlot_CombatSim)
 					{
 						EquipmentTemplate.Requirements.RequiredFacilities.AddItem('OfficerTrainingSchool');
@@ -3601,6 +3629,46 @@ function RewireTechTree(X2StrategyElementTemplate Template, int Difficulty)
 							if (!TechTemplate.bProvingGround)
 							{
 								TechTemplate.Requirements.RequiredItems.AddItem(TechTable[i].ReqItemTemplateName2);
+							}
+						}
+					}
+					if (TechTable[i].ReqItemTemplateName3 != '' && TechTable[i].ReqItemCost3 > 0)
+					{
+						if (TechTable[i].ReqItemTemplateName3 == 'Instant')
+						{
+							Resources.ItemTemplateName = TechTable[i].ReqItemTemplateName1;
+							Resources.Quantity = TechTable[i].ReqItemCost1 * TechTable[i].ReqItemCost3;
+							TechTemplate.InstantRequirements.RequiredItemQuantities.AddItem(Resources);
+							TechTemplate.bCheckForceInstant = true;
+						}
+						else
+						{
+							Resources.ItemTemplateName = TechTable[i].ReqItemTemplateName3;
+							Resources.Quantity = TechTable[i].ReqItemCost3;
+							TechTemplate.Cost.ArtifactCosts.AddItem(Resources);
+							if (!TechTemplate.bProvingGround)
+							{
+								TechTemplate.Requirements.RequiredItems.AddItem(TechTable[i].ReqItemTemplateName3);
+							}
+						}
+					}
+					if (TechTable[i].ReqItemTemplateName4 != '' && TechTable[i].ReqItemCost4 > 0)
+					{
+						if (TechTable[i].ReqItemTemplateName4 == 'Instant')
+						{
+							Resources.ItemTemplateName = TechTable[i].ReqItemTemplateName1;
+							Resources.Quantity = TechTable[i].ReqItemCost1 * TechTable[i].ReqItemCost4;
+							TechTemplate.InstantRequirements.RequiredItemQuantities.AddItem(Resources);
+							TechTemplate.bCheckForceInstant = true;
+						}
+						else
+						{
+							Resources.ItemTemplateName = TechTable[i].ReqItemTemplateName4;
+							Resources.Quantity = TechTable[i].ReqItemCost4;
+							TechTemplate.Cost.ArtifactCosts.AddItem(Resources);
+							if (!TechTemplate.bProvingGround)
+							{
+								TechTemplate.Requirements.RequiredItems.AddItem(TechTable[i].ReqItemTemplateName4);
 							}
 						}
 					}

@@ -323,7 +323,7 @@ function EventListenerReturn OnUFOSetInfiltrationTime(Object EventData, Object E
 
 	if (UFO.bDoesInterceptionSucceed)
 	{
-		UFO.InterceptionTime == UFO.GetCurrentTime();
+		UFO.InterceptionTime = UFO.GetCurrentTime();
 
 		HoursUntilIntercept = (UFO.MinNonInterceptDays * 24) + `SYNC_RAND((UFO.MaxNonInterceptDays * 24) - (UFO.MinNonInterceptDays * 24) + 1);
 		class'X2StrategyGameRulesetDataStructures'.static.AddHours(UFO.InterceptionTime, HoursUntilIntercept);

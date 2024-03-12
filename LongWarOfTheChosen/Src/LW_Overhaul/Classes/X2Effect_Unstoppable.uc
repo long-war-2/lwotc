@@ -42,7 +42,7 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
 	// Register to tick after EVERY action.
 	EventMgr.RegisterForEvent(ListenerObj, 'OnUnitBeginPlay', EventHandler, ELD_OnStateSubmitted, 25, UnitState,, EffectGameState);	
 	EventMgr.RegisterForEvent(ListenerObj, 'UnitAttacked', EventHandler, ELD_OnStateSubmitted, 25,,, EffectGameState);
-	//EventMgr.RegisterForEvent(ListenerObj, 'AbilityActivated', EventHandler, ELD_OnStateSubmitted, 150,,, EffectGameState);	
+	EventMgr.RegisterForEvent(ListenerObj, 'AbilityActivated', EventHandler, ELD_OnStateSubmitted, 150,,, EffectGameState);	
 
 }
 

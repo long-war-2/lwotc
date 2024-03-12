@@ -23,7 +23,7 @@ static function CHEventListenerTemplate CreateListeners()
 	`LWTrace("Registering evac event listeners");
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'PodManagementListeners');
-	Template.AddCHEvent('AlienTurnBegun', OnAlienTurnBegin, ELD_OnStateSubmitted, GetListenerPriority());
+	Template.AddCHEvent('AlienTurnBegun', OnAlienTurnBegin, ELD_OnStateSubmitted, 110);
 	Template.AddCHEvent('UnitGroupTurnBegun', OnUnitGroupTurnBegun, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('AbilityActivated', SetPodManagerAlert, ELD_OnStateSubmitted, GetListenerPriority());
 

@@ -118,6 +118,7 @@ function Vector GuardLocationCallback(XComGameState_LWPodJob Job, XComGameState 
 			break;
 	}
 
+    `LWPMTrace("Guard Job: New Location set:" @NewLocation.X $","$NewLocation.Y);
 	return NewLocation;
 }
 
@@ -148,6 +149,7 @@ function Vector InterceptLocationCallback(XComGameState_LWPodJob Job, XComGameSt
         PodMgr = NewPodMgr;
 
     // Intercept goes to xcom's last known position
+    `LWPMTrace("Intercept Job: Location set:" @PodMgr.GetLastKnownXComPosition());
     return PodMgr.GetLastKnownXComPosition();
 }
 

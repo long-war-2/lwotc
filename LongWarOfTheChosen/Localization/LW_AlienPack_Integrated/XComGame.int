@@ -241,6 +241,11 @@ AbilityDescName="plasma rifle"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; ArchonM2_LW ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+[Archon_WPN X2WeaponTemplate]
+; LWOTC Needs Translation
+AbilityDescName="staff"
+; End translation
+
 [ArchonM2_LW X2CharacterTemplate]
 strCharacterName="Great Archon"
 
