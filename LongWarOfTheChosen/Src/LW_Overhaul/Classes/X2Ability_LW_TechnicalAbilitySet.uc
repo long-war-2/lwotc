@@ -9,6 +9,7 @@ class X2Ability_LW_TechnicalAbilitySet extends X2Ability
 
 var config int FLAMETHROWER_BURNING_BASE_DAMAGE;
 var config int FLAMETHROWER_BURNING_DAMAGE_SPREAD;
+var config int NAPALMX_BURN_DMG_BONUS;
 var config int FLAMETHROWER_DIRECT_APPLY_CHANCE;
 var config int FLAMETHROWER_CHARGES;
 var config int FLAMETHROWER_HIGH_PRESSURE_CHARGES;
@@ -187,6 +188,8 @@ static function X2AbilityTemplate CreateLWFlamethrowerAbility()
 	local X2AbilityCharges_BonusCharges			Charges;
 	local X2AbilityCost_Charges					ChargeCost;
 	local X2Condition_UnitEffects				SuppressedCondition;
+	local X2Condition_OwnerDoesNotHaveAbility	NotAbilityCondition;
+	local X2Condition_AbilityProperty			HasAbilityCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'LWFlamethrower');
 
@@ -269,8 +272,23 @@ static function X2AbilityTemplate CreateLWFlamethrowerAbility()
 	FireToWorldEffect.FireChance_Level3 = 0.10f;
 	FireToWorldEffect.bCheckForLOSFromTargetLocation = false; //The flamethrower does its own LOS filtering
 
+	// non Napalm X version
+
+	NotAbilityCondition = new class'X2Condition_OwnerDoesNotHaveAbility';
+	NotAbilityCondition.AbilityName = 'NapalmX';
+
 	BurningEffect = class'X2StatusEffects'.static.CreateBurningStatusEffect(default.FLAMETHROWER_BURNING_BASE_DAMAGE, default.FLAMETHROWER_BURNING_DAMAGE_SPREAD);
 	BurningEffect.ApplyChance = default.FLAMETHROWER_DIRECT_APPLY_CHANCE;
+	BurningEffect.TargetConditions.AddItem(NotAbilityCondition);
+	Template.AddMultiTargetEffect(BurningEffect);
+
+	// Naplam X version
+	HasAbilityCondition = new class'X2Condition_AbilityProperty';
+	HasAbilityCondition.OwnerHasSoldierAbilities.AddItem('NapalmX');
+
+	BurningEffect = class'X2StatusEffects'.static.CreateBurningStatusEffect(default.FLAMETHROWER_BURNING_BASE_DAMAGE+default.NAPALMX_BURN_DMG_BONUS, default.FLAMETHROWER_BURNING_DAMAGE_SPREAD);
+	BurningEffect.ApplyChance = default.FLAMETHROWER_DIRECT_APPLY_CHANCE;
+	BurningEffect.TargetConditions.AddItem(HasAbilityCondition);
 	Template.AddMultiTargetEffect(BurningEffect);
 
 	Template.AddMultiTargetEffect(CreateFlamethrowerDamageAbility());
