@@ -154,7 +154,7 @@ ActivityObjectives[0]="减少变种人兵力"
 [CovertOpsTroopManeuvers X2LWAlienActivityTemplate]
 ActivityName="CovertOpsTroopManeuversActivity"
 ActivityObjectives[0]="摧毁变种人侦察队"
-+MissionDescriptions=(MissionFamily="CovertOpsTroopManeuvers_LW", Description="变种人的一个侦察部队落单了，很容易受到我们部队的突袭.")
++MissionDescriptions=(MissionFamily="CovertOpsTroopManeuvers_LW", Description="变种人的一个侦察部队落单了，很容易受到我们部队的突袭。")
 
 [HighValuePrisoner X2LWAlienActivityTemplate]
 ActivityName="HighValuePrisonerActivity"
@@ -174,7 +174,7 @@ ActivityObjectives[0]="夺取变种人补给箱"
 
 [BigSupplyExtraction_LW X2LWAlienActivityTemplate]
 ActivityObjectives[0]="夺取变种人大型资源储备"
-+MissionDescriptions=(MissionFamily="BigSupplyExtraction_LW", Description="反抗军发现了敌人重要资源的位置.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="BigSupplyExtraction_LW", Description="反抗军发现了敌人重要资源的位置。", MissionIndex=0)
 
 [IntelRaid X2LWAlienActivityTemplate]
 ActivityName="IntelRaidActivity"
@@ -476,9 +476,9 @@ m_strInsuffientInfiltrationToLaunch="离发起任务还需潜入到至少<XGPara
 +m_strAlertnessModifierDescriptions[10]="防备"
 +m_strAlertnessModifierDescriptions[11]="防备"
 +m_strAlertnessModifierDescriptions[12]="一般"
-+m_strAlertnessModifierDescriptions[13]="疏于防备"
-+m_strAlertnessModifierDescriptions[14]="疏于防备"
-+m_strAlertnessModifierDescriptions[15]="疏于防备"
++m_strAlertnessModifierDescriptions[13]="疏于防范"
++m_strAlertnessModifierDescriptions[14]="疏于防范"
++m_strAlertnessModifierDescriptions[15]="疏于防范"
 
 [UIMission_LWCustomMission]
 +m_strUrgent="安全漏洞"
@@ -545,7 +545,7 @@ PerksStr="技能"
 
 m_strIncomeIntel="任务寻觅效率:"
 m_strIncomeSupply="每日补给量:"
-m_strIncomeRecruit="每日招募效率:"
+m_strIncomeRecruit="招募所需天数:"
 
 [UIScreenListener_TacticalHUD]
 strEvacRequestTitle="撤离已请求"
@@ -612,6 +612,7 @@ m_strProhibitedJobEnded="<XGParam:StrValue0/>中安排在<XGParam:StrValue1/>的
 ;LWOTC needs translation
 m_strRetributionEnded=" <XGParam:StrValue0/> 中的反抗军成员已从天选者报复中恢复。"
 ;End translation
+
 [X2StrategyElement_DefaultAlienActivities]
 m_strInsufficientRebels="避难所需要至少<XGParam:IntValue0/>反抗军才能与邻近地区联络"
 

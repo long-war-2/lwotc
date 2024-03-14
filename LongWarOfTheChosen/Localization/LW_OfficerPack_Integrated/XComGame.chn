@@ -102,27 +102,27 @@ LocPromotionPopupText="<Bullet/> 花费一个行动点，在回合剩余时间�
 ;displayed on other soldier that receive the effect
 [LeadByExample X2AbilityTemplate]
 LocFriendlyName="以身作则"
-LocLongDescription="军官提升指挥范围内士兵的命中，意志力，侵入能力，具体数值为士兵和军官数值差额的一半。"
-LocHelpText="在军官身边的友军能获得命中，意志力和侵入能力提升。"
+LocLongDescription="军官提升指挥范围内士兵的命中、意志力、侵入能力，具体数值为士兵和军官数值差额的一半。"
+LocHelpText="在军官身边的友军能获得命中、意志力和侵入能力提升。"
 LocFlyOverText="以身作则"
 ;displayed for officer in Officer Ability UI
-LocPromotionPopupText="<Bullet/> 如果军官的命中，意志以及（或）侵入能力比指挥范围内的某一士兵要高，那么该士兵获得这些数值与军官之间差额一半的加成。<br/><Bullet/> 指挥范围会随着军官等级提升而提升。<br/><Bullet/> 此技能不会为眩晕或恐慌的盟友提供增益。<br/><Bullet/> 此技能不会为机器人盟友提供增益。"
+LocPromotionPopupText="<Bullet/> 如果军官的命中、意志以及（或）侵入能力比指挥范围内的某一士兵要高，那么该士兵获得这些数值与军官之间差额一半的加成。<br/><Bullet/> 指挥范围会随着军官等级提升而提升。<br/><Bullet/> 此技能不会为眩晕或恐慌的盟友提供增益。<br/><Bullet/> 此技能不会为机器人盟友提供增益。"
 
 ;Displayed on officer in tactical container
 [LeadByExamplePassive X2AbilityTemplate]
 LocFriendlyName="以身作则"
-LocLongDescription="军官提升指挥范围内士兵的命中，意志力，侵入能力，具体数值为士兵和军官数值差额的一半。"
-LocHelpText="在军官身边的友军能获得命中，意志力和侵入能力提升。"
+LocLongDescription="军官提升指挥范围内士兵的命中、意志力、侵入能力，具体数值为士兵和军官数值差额的一半。"
+LocHelpText="在军官身边的友军能获得命中、意志力和侵入能力提升。"
 LocFlyOverText="以身作则"
-LocPromotionPopupText="<Bullet/> 如果军官的命中，意志以及（或）侵入能力比指挥范围内的某一士兵要高，那么该士兵获得这些数值与军官之间差额一半的加成。<br/><Bullet/> 指挥范围会随着军官等级提升而提升。<br/><Bullet/> 此技能不会为眩晕或恐慌的盟友提供增益。<br/><Bullet/> 此技能不会为机器人盟友提供增益。"
+LocPromotionPopupText="<Bullet/> 如果军官的命中、意志以及（或）侵入能力比指挥范围内的某一士兵要高，那么该士兵获得这些数值与军官之间差额一半的加成。<br/><Bullet/> 指挥范围会随着军官等级提升而提升。<br/><Bullet/> 此技能不会为眩晕或恐慌的盟友提供增益。<br/><Bullet/> 此技能不会为机器人盟友提供增益。"
 
 ;this may not be displayed -- needs testing
 [LeadByExampleLeader X2AbilityTemplate]
 LocFriendlyName="以身作则"
-LocLongDescription="军官提升指挥范围内士兵的命中，意志力，侵入能力，具体数值为士兵和军官数值差额的一半。"
-LocHelpText="在军官身边的友军能获得命中，意志力和侵入能力提升。"
+LocLongDescription="军官提升指挥范围内士兵的命中、意志力、侵入能力，具体数值为士兵和军官数值差额的一半。"
+LocHelpText="在军官身边的友军能获得命中、意志力和侵入能力提升。"
 LocFlyOverText="以身作则"
-LocPromotionPopupText="<Bullet/> 如果军官的命中，意志以及（或）侵入能力比指挥范围内的某一士兵要高，那么该士兵获得这些数值与军官之间差额一半的加成。<br/><Bullet/> 指挥范围会随着军官等级提升而提升。"
+LocPromotionPopupText="<Bullet/> 如果军官的命中、意志以及（或）侵入能力比指挥范围内的某一士兵要高，那么该士兵获得这些数值与军官之间差额一半的加成。<br/><Bullet/> 指挥范围会随着军官等级提升而提升。"
 
 ;displayed on other soldier that receive the effect
 [CombinedArms X2AbilityTemplate]
@@ -130,7 +130,7 @@ LocFriendlyName="联合作战"
 LocLongDescription="在军官指挥范围内的所有友军的成功攻击都将+<ABILITY:COMBINEDARMS_DAMAGE_BONUS/>伤害。"
 LocHelpText="在军官身边的友军获得伤害加成。"
 LocFlyOverText="联合作战"
-LocPromotionPopupText="<Bullet/> 在军官指挥范围的所有友军的成功攻击都将+<ABILITY:COMBINEDARMS_DAMAGE_BONUS/>伤害。<br/><Bullet/> 指挥范围会随着军官等级提升而提升。<br/><Bullet/> 此技能不会为军官自身提供增益。<br/><Bullet/> 如果军官或士兵混乱、眩晕、恐慌、中毒、着火或受到其他伤害，则该技能不提供增益。<br/><Bullet/> 此技能不会为机器人盟友提供增益。"
+LocPromotionPopupText="<Bullet/> 指挥范围会随着军官等级提升而提升。<br/><Bullet/> 此技能不会为军官自身提供增益。<br/><Bullet/> 如果军官或士兵混乱、眩晕、恐慌、中毒、着火或受到其他伤害，则该技能不提供增益。<br/><Bullet/> 此技能不会为机器人盟友提供增益。"
 
 ;Displayed on officer in tactical container
 [CombinedArmsPassive X2AbilityTemplate]
@@ -138,7 +138,7 @@ LocFriendlyName="联合作战"
 LocLongDescription="在军官指挥范围内的所有友军的成功攻击都将+<ABILITY:COMBINEDARMS_DAMAGE_BONUS/>伤害。"
 LocHelpText="在军官身边的友军获得伤害加成。"
 LocFlyOverText="联合作战"
-LocPromotionPopupText="<Bullet/> 在军官指挥范围的所有友军的成功攻击都将+<ABILITY:COMBINEDARMS_DAMAGE_BONUS/>伤害。<br/><Bullet/> 指挥范围会随着军官等级提升而提升。<br/><Bullet/> 此技能不会为军官自身提供增益。<br/><Bullet/> 如果军官或士兵混乱、眩晕、恐慌、中毒、着火或受到其他伤害，则该技能不提供增益。<br/><Bullet/> 此技能不会为机器人盟友提供增益。"
+LocPromotionPopupText="<Bullet/> 指挥范围会随着军官等级提升而提升。<br/><Bullet/> 此技能不会为军官自身提供增益。<br/><Bullet/> 如果军官或士兵混乱、眩晕、恐慌、中毒、着火或受到其他伤害，则该技能不提供增益。<br/><Bullet/> 此技能不会为机器人盟友提供增益。"
 
 [Command X2AbilityTemplate]
 LocFriendlyName="指挥"
@@ -156,37 +156,37 @@ LocPromotionPopupText="<Bullet/> 拥有此技能的军官的小队会获得显�
 
 [AirController X2AbilityTemplate]
 LocFriendlyName="掌空者"
-LocLongDescription="天际游侠号会在被呼叫时提前<Ability:AIR_CONTROLLER_EVAC_TURN_REDUCTION/>回合到达。"
-LocHelpText="天际游侠号会在被呼叫时提前两回合到达。"
+LocLongDescription="天际游侠号会在被呼叫后提前<Ability:AIR_CONTROLLER_EVAC_TURN_REDUCTION/>回合到达。"
+LocHelpText="天际游侠号会在被呼叫后提前两回合到达。"
 LocFlyOverText="掌空者"
 LocPromotionPopupText="<Bullet/> 这名军官熟练于指挥友方空军，可以让天际游侠号在撤离信号发出后提前2回合到达。<br/><Bullet/> 注意天际游侠号到达的时间有一个最小的限制，该限制不会因加成而减少。"
 
 [Jammer X2AbilityTemplate]
 LocFriendlyName="干扰机"
-LocLongDescription="每次战斗可用一次，减缓敌人1回合的增援到达时间。"
+LocLongDescription="每次任务可用一次，减缓敌人1回合的增援到达时间。"
 LocHelpText="减缓敌人1回合的增援到达时间。"
 LocFlyOverText="干扰机"
 LocPromotionPopupText="<Bullet/> 使用此能力可使敌方增援到达时间推迟1回合。"
 
 [Incoming X2AbilityTemplate]
 LocFriendlyName="过来了！"
-LocLongDescription="使用此能力可以使指挥范围内的友军在下个外星人回合结束时受到的爆炸物伤害减少<Ability:INCOMING_EXPLOSIVES_DR/>点。"
+LocLongDescription="使指挥范围内的友军在下个外星人回合结束前受到的爆炸物伤害减少<Ability:INCOMING_EXPLOSIVES_DR/>点。"
 LocHelpText="军官和周围的友军受到的爆炸物伤害减少<Ability:INCOMING_EXPLOSIVES_DR/>点。"
 LocFlyOverText="过来了！"
-LocPromotionPopupText="<Bullet/> 使用此能力可以使指挥范围内的所有友军在下个外星人回合结束时受到的爆炸物伤害减少<Ability:INCOMING_EXPLOSIVES_DR/>点。<br/><Bullet/> 不需要行动点数。<br/><Bullet/> <Ability:INCOMING_COOLDOWN/>回合冷却时间。<br/><Bullet/> 指挥范围会随着军官等级提升而提升。<br/><Bullet/> 对恐慌或眩晕中的或正在压制其他目标的士兵或平民无效。<br/>"
+LocPromotionPopupText="<Bullet/> 自由行动。<br/><Bullet/> <Ability:INCOMING_COOLDOWN/>回合冷却时间。<br/><Bullet/> 指挥范围会随着军官等级提升而提升。<br/><Bullet/> 对恐慌或眩晕中的或正在压制其他目标的士兵或平民无效。<br/>"
 
 [Intervention X2AbilityTemplate]
 LocFriendlyName="干预"
-LocLongDescription="使用此能力可以花费<Ability:INTERVENTION_INTEL_COST/>情报在任务计时器中获得额外<Ability:INTERVENTION_EXTRA_TURNS/>回合行动时间。可用次数由军官的级别决定。"
+LocLongDescription="花费<Ability:INTERVENTION_INTEL_COST/>情报在任务计时器中获得额外<Ability:INTERVENTION_EXTRA_TURNS/>回合行动时间。可用次数由军官的级别决定。"
 LocHelpText="激活以花费情报在任务计时器中获得额外<Ability:INTERVENTION_EXTRA_TURNS/>回合时间。"
 LocFlyOverText="干预"
-LocPromotionPopUpText="<Bullet/> 使用此能力可以花费<Ability:INTERVENTION_INTEL_COST/>情报来获得额外<Ability:INTERVENTION_EXTRA_TURNS/>回合行动时间。<br/><Bullet/> 消耗1个行动点数，不结束回合。<br/><Bullet/> 可用次数由军官的级别决定。<br/><Bullet/> 如果没有任务计时器的话则无效。<br/><Bullet/> 情报花费将会受事件影响；如果XCOM的情报不足<Ability:INTERVENTION_INTEL_COST/>则不能使用。<br/>"
+LocPromotionPopUpText="<Bullet/> 消耗1个行动点数，不结束回合。<br/><Bullet/> 可用次数由军官的级别决定。<br/><Bullet/> 如果没有任务计时器的话则无效。<br/><Bullet/> 情报花费将会受事件影响；如果XCOM的情报不足<Ability:INTERVENTION_INTEL_COST/>则不能使用。<br/>"
 
 [TrialByFire X2AbilityTemplate]
 LocFriendlyName="战火洗礼"
-LocLongDescription="上士级别以下的任何士兵一同与拥有该技能的军官成功完成一次任务后将会获得自动晋升。"
-LocHelpText="上士级别以下的任何士兵一同与拥有该技能的军官成功完成一次任务后将会获得自动晋升。"
-LocPromotionPopUpText="<Bullet/> 只有在当前有效的军官身上拥有此技能时生效，对于在同一任务的其他军官身上无效。"
+LocLongDescription="中士(包含)级别以下的任何士兵一同与拥有该技能的军官成功完成一次任务后将会获得自动晋升。"
+LocHelpText="中士(包含)级别以下的任何士兵一同与拥有该技能的军官成功完成一次任务后将会获得自动晋升。"
+LocPromotionPopUpText="<Bullet/> 只有当前有效的军官身上拥有此技能时才会生效，如果在同一任务的其他军官身上则无效。"
 
 ; LWOTC Needs Translation
 [CommandRange1 X2AbilityTemplate]

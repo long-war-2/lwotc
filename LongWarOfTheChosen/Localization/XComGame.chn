@@ -2923,7 +2923,7 @@ ObjectiveTextPools[0]="尽可能多的获取变种人资源"
 ObjectiveTextPools[1]="撤离所有XCOM士兵"
 
 [BigSmashNGrab_LW X2MissionTemplate]
-DisplayName="大型仓库搜寻补给箱"
+DisplayName="大型搜寻补给箱"
 Briefing="补给突袭"
 PostMissionType="搜寻补给"
 BriefingImage="img:///UILibrary_StrategyImages。X2StrategyMap。Alert_Resistance_Ops_Appear"
@@ -2943,7 +2943,7 @@ ObjectiveTextPools[0]="标记并回收变种人物资箱"
 ObjectiveTextPools[1]="回收至少 6 个变种人物资箱"
 ; End Translation
 ObjectiveTextPools[2]="撤离所有XCOM士兵"
-ObjectiveTextPools[3]="可选: 消灭所有剩余的敌对目标"
+ObjectiveTextPools[3]="消灭所有剩余的敌对目标(可选)"
 
 [DefaultSmashNGrab_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="找到变种人资源"
@@ -5147,8 +5147,8 @@ LocPromotionPopupText=""
 [Solace_LW X2AbilityTemplate]
 LocFriendlyName="慰藉"
 LocFlyOverText="慰藉"
-LocLongDescription="立即消除一名有机盟友的混乱、眩晕、恐慌、心灵控制状态。"
-LocHelpText="立即消除一名有机盟友的混乱、眩晕、恐慌、心灵控制状态。"
+LocLongDescription="立即消除一名有机队友的混乱、眩晕、恐慌、心灵控制状态。"
+LocHelpText="立即消除一名有机队友的混乱、眩晕、恐慌、心灵控制状态。"
 LocPromotionPopupText="<Bullet/> 慰藉可以驱散混乱、眩晕、恐慌、心灵控制状态。<br/><Bullet/> 慰藉需要一个行动点，不会结束回合。<br/><Bullet/> 慰藉有<Ability:SelfCooldown_LW/>回合冷却。<br/>"
 
 [QuickStudy X2AbilityTemplate]
@@ -6941,7 +6941,7 @@ SummaryText="什么都做了，又什么都没做。"
 ; LWOTC Needs Translation
 [XComGameState_AdventChosen]
 KnowledgeGainFirstBullet[eChosenKnowledge_Start]=""
-KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]="天选者对该地区增加额外的军力！"
+KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]="天选者对该地区增加额外的兵力！"
 KnowledgeGainFirstBullet[eChosenKnowledge_Sentinel]="天选者增加隐秘行动的风险！"
 KnowledgeGainFirstBullet[eChosenKnowledge_Collector]="天选者可以阻碍反抗军活动！"
 KnowledgeGainFirstBullet[eChosenKnowledge_Raider]="天选者可以向复仇者号发起攻击！"
@@ -7371,7 +7371,7 @@ LocPromotionPopupText="<Bullet/>当过载激活时，自适应瞄准将会为连
 LocFriendlyName="突袭拳击"
 LocLongDescription="用强大的近战能力攻击移动范围内的任何敌人。"
 LocHelpText="用强大的近战能力攻击移动范围内的任何敌人。"
-LocPromotionPopupText="<Bullet/>将移动光标指向敌人以触发突袭拳击。<br/><Bullet/>SPARK\"冲刺\"后，或所有行动点都用以移动后，仍然可以对邻近敌人发动突袭拳击。<br/>"
+LocPromotionPopupText="<Bullet/>将移动光标指向敌人以发动突袭拳击。<br/><Bullet/>SPARK\"冲刺\"后，或所有行动点都用以移动后，仍然可以对邻近敌人发动突袭拳击。<br/>"
 
 [WreckingBall X2AbilityTemplate]
 LocFriendlyName="横冲直撞"

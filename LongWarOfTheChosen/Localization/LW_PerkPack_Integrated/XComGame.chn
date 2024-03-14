@@ -20,7 +20,7 @@ BriefSummary="当你未命中目标时，该芯片能让你下一次的主武器
 [CombatAwarenessPCS X2EquipmentTemplate]
 FriendlyName="个人战斗芯片：战斗警觉"
 FriendlyNamePlural="个人战斗芯片：战斗警觉"
-BriefSummary="在监视时获得15点防御和1点护甲值。受到伤害不再取消压制和区域压制"
+BriefSummary="在监视时获得15点防御和1点护甲值。受到伤害不再取消压制和区域压制。"
 
 [CombatRushPCS X2EquipmentTemplate]
 FriendlyName="个人战斗芯片：战斗冲锋"
@@ -287,7 +287,7 @@ LocFriendlyName="枪神"
 LocFlyOverText="枪神"
 LocLongDescription="使用手枪对<Ability:GUNSLINGER_TILES_RANGE/>格内移动或攻击的每个敌人进行一次必定命中、必定暴击的反应射击。"
 LocHelpText="加强版手枪范围监视，必定命中，必定暴击。"
-LocPromotionPopupText="<Bullet/> 射程为<Ability:GUNSLINGER_TILES_RANGE/>格。<br/><Bullet/> 冷却时间<Ability:SelfCooldown_LW/>回合。<br/><Bullet/> 不能在隐匿状态下使用。"
+LocPromotionPopupText="<Bullet/> 射程为<Ability:GUNSLINGER_TILES_RANGE/>格。<br/><Bullet/> 冷却时间<Ability:SelfCooldown_LW/>回合。<br/><Bullet/> 不能在隐匿状态下使用。<br/>"
 LocFriendlyNameWhenConcealed="手枪监视 (隐蔽式)"
 
 [HyperReactivePupils X2AbilityTemplate]
@@ -544,7 +544,7 @@ LocFriendlyName="附带损害"
 LocLongDescription="用<Ability:WeaponName/>向指定位置开火，摧毁该区域内的掩体。对敌人造成少量伤害。5回合冷却时间，使用3发弹药。"
 LocHelpText="用<Ability:WeaponName/>向指定位置开火，摧毁该区域内的掩体。"
 LocFlyOverText="附带损害"
-LocPromotionPopupText="<Bullet/> 用<Ability:WeaponName/>向指定位置开火，摧毁该区域内的掩体。<br/><Bullet/> 对影响范围内的所有物体造成大量环境伤害。<br/><Bullet/> 对效果范围内的敌人造成1-2/2/2-3点伤害，具体取决于<Ability:WeaponName/>的等级 。<br/><Bullet/> 消耗3发弹药，冷却时间为5回合。<br/>"
+LocPromotionPopupText="<Bullet/> 对影响范围内的所有物体造成大量环境伤害。<br/><Bullet/> 对效果范围内的敌人造成1-2/2/2-3点伤害，具体取决于<Ability:WeaponName/>的等级。<br/><Bullet/> 消耗3发弹药，冷却时间为5回合。<br/>"
 
 ;POTENTIALLY DEPERECATED AS WELL AS ALL TRANSLATIONS
 [DenseSmokeGrenade X2GrenadeTemplate]
@@ -736,8 +736,8 @@ LocPromotionPopupText="<Bullet/> 你的受伤恢复时间是根据你在战斗�
 [MindMerge X2AbilityTemplate]
 LocFriendlyName="心灵融合"
 LocFlyOverText="心灵融合"
-LocLongDescription="给非机械盟友提供额外的意志、暴击率和护盾值，直到玩家的下一回合开始。"
-LocHelptext="给非机械盟友提供额外的意志、暴击率和护盾值。"
+LocLongDescription="给有机队友提供额外的意志、暴击率和护盾值，直到玩家的下一回合开始。"
+LocHelptext="给有机队友提供额外的意志、暴击率和护盾值。"
 LocPromotionPopupText="<Bullet/> 可为目标提供1点护盾，每20点灵能威力还可提供额外1点护盾。<br/><Bullet/> 灵能士兵的每5点灵能威力都能给目标友军提供1点意志力。<br/><Bullet/> 灵能士兵的每7点灵能威力都能给目标友军提供1点暴击率。<br/><Bullet/> 效果持续到灵能士兵的下回合开始。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 只有可见的友军才能成为目标。<br/><Bullet/> 加强的灵能增幅器能提供额外意志力和护盾。<br/<Bullet/> 使用1个行动点，不会结束回合。<br/><Bullet/> 如果灵能兵被设置为避难所顾问，心灵融合将减少40%的几率招募到无面怪（与其他类似能力叠加）。<br/>"
 
 [SoulMerge X2AbilityTemplate]
@@ -749,10 +749,10 @@ LocPromotionPopupText="<Bullet/> 减少1回合心灵融合的冷却时间。<br/
 
 [NullLance X2AbilityTemplate]
 LocFriendlyName="虚无之矛"
-LocLongDescription="释放一道可怕力量的灵能光束，对路径上的每个目标造成伤害。此攻击可以穿透多个敌人和障碍物。"
+LocLongDescription="释放一道蕴含可怕力量的灵能光束，对路径上的每个目标造成伤害。此攻击可以穿透多个敌人和障碍物。"
 LocHelpText="释放一道灵能光束，对路径上的每个目标造成伤害。"
 LocFlyOverText="虚无之矛"
-LocPromotionPopupText="<Bullet/> 虚无之矛有<Ability:SelfCooldown_LW/>回合冷却。<br/><Bullet/> 通过升级灵能兵的灵能增幅器，可以增加虚无之矛的伤害<br/>"
+LocPromotionPopupText="<Bullet/> 虚无之矛有<Ability:SelfCooldown_LW/>回合冷却。<br/><Bullet/> 通过升级灵能兵的灵能增幅器，可以增加虚无之矛的伤害。<br/>"
 
 [Shadowstrike_LW X2AbilityTemplate]
 LocFriendlyName="暗影打击"
@@ -1088,22 +1088,22 @@ LocPromotionPopupText="<Bullet/> 你可以通过将移动光标放在敌人身�
 [Obliterator_LW X2AbilityTemplate]
 LocFriendlyName="突袭模块"
 LocLongDescription="所有打击攻击获得+2伤害和+20命中，赋予“横冲直撞”能力。"
-LocHelpText="所有打击攻击获得+2伤害和+20命中."
-LocPromotionPopupText="<Bullet/> 学习突袭模块技能将为所有动能打击攻击提供+2点伤害和额外的+20命中。<br/><Bullet/> 在伤害加成下，动能打击的伤害将为8/10/12，取决于所装备的SPARK装甲。<br/><Bullet/> 半伤害打击只会获得+1点伤害加成。<br/><Bullet/> 此技能包含“横冲直撞”能力。当使用超载时，它允许SPARK摧毁其经过的任何环境物体。<br/><Bullet/> 将超载“横冲直撞”与“动能打击”结合起来，不仅可以破坏目标的掩体，还能造成大量伤害，并在之后剩余一个行动点。<br/>"
+LocHelpText="所有打击攻击获得+2伤害和+20命中。"
+LocPromotionPopupText="<Bullet/> 学习突袭模块技能将为所有动能打击攻击提供+2点伤害和额外的+20命中。<br/><Bullet/> 在伤害加成下，动能打击的伤害将为8/10/12，取决于所装备的SPARK底盘。<br/><Bullet/> 半伤害打击只会获得+1点伤害加成。<br/><Bullet/> 此技能包含“横冲直撞”能力。当使用超载时，它允许SPARK摧毁其经过的任何环境物体。<br/><Bullet/> 将超载“横冲直撞”与“动能打击”结合起来，不仅可以破坏目标的掩体，还能造成大量伤害，并在之后剩余一个行动点。<br/>"
 
 [RapidRepair_LW X2AbilityTemplate]
 LocFriendlyName="快速维修"
 LocLongDescription="维修不再结束回合，允许SPARK维修后移动或射击。"
 LocHelpText="维修不再结束回合。"
 LocFlyOverText="快速维修"
-LocPromotionPopupText="<Bullet/> SPARK的修复能力不再结束回合。<br/><Bullet/> 修复仍然有1回合的冷却时间，防止在同一回合中使用两次。<br/><Bullet/> 这使得SPARK在战场上变得更加灵活，同时保持其健康和护甲水平。<br/>"
+LocPromotionPopupText="<Bullet/> SPARK的维修能力不再结束回合。<br/><Bullet/> 维修仍然有1回合的冷却时间，无法在同一回合中使用多次。<br/><Bullet/> 这使得SPARK在战场上变得更加灵活，同时保持其健康和护甲水平。<br/>"
 
 [Reboot_LW X2AbilityTemplate]
 LocFriendlyName="重启"
 LocLongDescription="如果SPARK受到致命伤害，它的生命值将减少到1点，并且将在回合的剩余时间中被静滞。每次任务只能触发一次，之后SPARK就会陷入破损状态（降低命中、移动和侵入能力）。"
 LocHelpText="如果SPARK受到致命伤害，它的生命值将减少到1点，并且将在回合的剩余时间中被静滞。"
 LocFlyOverText="重启"
-LocPromotionPopupText="<Bullet/> 每次任务中，当SPARK的生命值首次降到零时，它将被置于静滞状态。<br/><Bullet/> 如果没有“冗余系统”能力，SPARK触发重启后，会遭受巨大的命中、移动和侵入能力的惩罚。<br/><Bullet/> 由于这些缺点，再加上SPARK在重启时已经很低的外壳完整性，建议在可能的情况下将重启的SPARK通过天际游侠号撤离战场。<br/><Bullet/> 由于复杂的冗余装甲、激活电路和单次充能的护盾投射器，SPARK可以为队伍承担一次打击，并安心地知道它将活下来，以便在另一天继续出击。<br/>"
+LocPromotionPopupText="<Bullet/> 每次任务中，当SPARK的生命值首次降到零时，它将被置于静滞状态。<br/><Bullet/> 如果没有“冗余系统”能力，SPARK触发重启后，会遭受巨大的命中、移动和侵入能力的惩罚。<br/><Bullet/> 由于这些缺点，再加上SPARK在重启时已经很低的外壳完整性，建议在可能的情况下将重启的SPARK通过天际游侠号撤离战场。<br/><Bullet/> 多亏了复杂的冗余装甲、激活电路和单次充能的护盾投射器，SPARK可以为队伍承担一次打击，并安心地知道它将活下来，以便在另一天继续出击。<br/>"
 
 [RebootTriggered_LW X2AbilityTemplate]
 LocFriendlyName="重启"
@@ -1138,7 +1138,7 @@ LocFriendlyName="眩晕打击"
 LocLongDescription="一种特殊的打击，只造成50%伤害，但眩晕目标两个行动点。无法对机械敌人发动。4回合冷却时间。同时将动能打击的冷却时间降低1回合。"
 LocHelpText="一种只造成50%伤害的特殊打击，眩晕目标两个行动点。"
 LocFlyOverText="眩晕打击"
-LocPromotionPopupText="<Bullet/> 眩晕打击不能瞄准机械单位，因为它们的处理中心没有大脑那么容易受伤。<br/><Bullet/> 没有突袭模块时，眩晕打击的伤害为3/4/5，取决于所装备的装甲。<br/><Bullet/> 有突袭模块时，眩晕打击的伤害为4/5/6，取决于所装备的装甲<br/><Bullet/> SPARK改进的近战能力还会降低动能打击1回合冷却时间。"
+LocPromotionPopupText="<Bullet/> 眩晕打击不能瞄准机械单位，因为它们的处理中心没有大脑那么容易受伤。<br/><Bullet/> 没有突袭模块时，眩晕打击的伤害为3/4/5，取决于所装备的装甲。<br/><Bullet/> 有突袭模块时，眩晕打击的伤害为4/5/6，取决于所装备的装甲。<br/><Bullet/> SPARK改进的近战能力还会降低动能打击1回合冷却时间。"
 
 [Neutralize_LW X2AbilityTemplate]
 LocFriendlyName="失效协议"
@@ -1173,7 +1173,7 @@ LocFriendlyName="反应打击"
 LocLongDescription="<Ability:ClassName/>会向任何进入其近战范围或从近战范围攻击的敌人进行反应打击。无需动能打击技能。无法在我方回合中触发。"
 LocHelpText="向任何进入近战范围或从近战范围攻击的敌人进行反应打击。"
 LocFlyOverText="反应打击"
-LocPromotionPopupText="<Bullet/> 如果一名敌人在相邻格中开始他们的回合并试图攻击<Ability:ClassName/>，将触发报应。<br/><Bullet/> 如果一名敌人没有在相邻格中开始他们的回合，那么当该敌人进入近战范围时，将触发反应打击。<br/><Bullet/> 如果敌人在相邻的格子直接远离<Ability:ClassName/>，反应打击不会触发。<br/><Bullet/> 反应打击的伤害为常规动能打击的一半，并从突袭模块获得+1伤害加成。<br/><Bullet/> 不能在<Ability:ClassName/>自己的回合触发。"
+LocPromotionPopupText="<Bullet/> 如果一名敌人在相邻格中开始他们的回合并试图攻击<Ability:ClassName/>，将触发反应打击。<br/><Bullet/> 如果一名敌人没有在相邻格中开始他们的回合，那么当该敌人进入近战范围时，将触发反应打击。<br/><Bullet/> 如果敌人在相邻的格子直接远离<Ability:ClassName/>，反应打击不会触发。<br/><Bullet/> 反应打击的伤害为常规动能打击的一半，并从突袭模块获得+1伤害加成。<br/><Bullet/> 不能在<Ability:ClassName/>自己的回合触发。"
 
 [BrawlerTrigger_LW X2AbilityTemplate]
 LocFriendlyName="反应打击"
@@ -1187,7 +1187,7 @@ LocPromotionPopupText="<Bullet/> 如果一名敌人在相邻格中开始他们�
 LocFriendlyName="强化维修系统"
 LocLongDescription="赋予快速维修和冗余系统技能，维修不再结束回合，移除与重启相关的属性减益。重启时，SPARK将自动使用维修。"
 LocHelpText="赋予快速维修和冗余系统技能，维修不再结束回合，移除与重启相关的属性减益。重启时，SPARK将自动使用维修。"
-LocPromotionPopupText="快速维修使得维修不再结束回合。冗余系统意味着SPARK在重启后不会受到任何属性惩罚。SPARK在重启时将自动使用维修"
+LocPromotionPopupText="快速维修使得维修不再结束回合。冗余系统意味着SPARK在重启后不会受到任何属性惩罚。SPARK在重启时将自动使用维修。"
 
 [ReactionSystems_LW X2AbilityTemplate]
 LocFriendlyName="强化防御系统"
