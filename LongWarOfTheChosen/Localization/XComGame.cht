@@ -101,7 +101,7 @@ ShortNames[8]="騎士"
 
 ; LWOTC Needs Translation
 +AbilityTreeTitles[0]="未來戰鬥"
-+AbilityTreeTitles[1]=""
++AbilityTreeTitles[1]="機械優勢"
 +AbilityTreeTitles[2]="戰爭機器"
 +AbilityTreeTitles[3]="XCOM"
 ; End Translation
@@ -288,9 +288,9 @@ LocPromotionPopupText="<Bullet/> 致命一擊的目標僅限非機器人、混�
 [CoupDeGrace2 X2AbilityTemplate]
 LocFriendlyName="致命一擊"
 LocFlyOverText="致命一擊"
-LocLongDescription="用你的<Ability:BOUND_WEAPON_NAME/>攻擊混亂，眩暈，恐慌的敵人，提供命中，暴擊率和傷害加成。"
-LocHelpText="用你的<Ability:BOUND_WEAPON_NAME/>攻擊混亂，眩暈，恐慌的敵人，提供命中，暴擊率和傷害加成。"
-LocPromotionPopupText="<Bullet/> 致命一擊對眩暈，恐慌的敵人提供+50命中，+50暴擊率，+2傷害。<br/><Bullet/> 該加成對混亂的敵人有所降低。"
+LocLongDescription="用你的<Ability:BOUND_WEAPON_NAME/>攻擊混亂、眩暈、恐慌的敵人時，提供命中、暴擊率和傷害加成。"
+LocHelpText="用你的<Ability:BOUND_WEAPON_NAME/>攻擊混亂、眩暈、恐慌的敵人時，提供命中、暴擊率和傷害加成。"
+LocPromotionPopupText="<Bullet/> 致命一擊對眩暈、恐慌的敵人提供+50命中，+50暴擊率，+2傷害。<br/><Bullet/> 致命一擊對混亂的敵人提供+25命中，+25暴擊率，+1傷害。"
 
 [Tradecraft X2AbilityTemplate]
 LocFriendlyName="諜報技術"
@@ -5100,8 +5100,8 @@ LocPromotionPopupText="<Bullet/> 產生一個心靈能量的爆炸場，立即�
 ; End Translation
 
 [CoveringFire X2AbilityTemplate]
-LocLongDescription="被敵方行動觸發的掩護射擊會在敵方行動尚未完成前發動。"
-LocPromotionPopupText="<Bullet/> 如果由敵人動作觸發，掩護射擊將在敵人動作完成前觸發。<br/><Bullet/> 掩護射擊技能將會對你射擊目標提供一個暫時性命中懲罰，不論是觸發掩護射擊，還是普通的監視射擊。<br/>"
+LocLongDescription="反應射擊現在會在任何敵對行動完成前觸發，而不僅僅是在移動時才觸發。監視射擊現在會忽略目標3分之2的掩體加成。"
+LocPromotionPopupText="<Bullet/> 如果由敵人動作觸發，掩護射擊將在敵人動作完成前觸發。<br/><Bullet/> 掩護火力會讓你反應射擊任何單位時造成-<Ability:COVERING_FIRE_OFFENSE_MALUS>的命中懲罰，不論是觸發掩護火力，還是普通的監視射擊。<br/>"
 
 [GrenadeLauncher_MG X2GrenadeLauncherTemplate]
 BriefSummary="高級榴彈發射器使用電磁技術，比傳統的發射器射程更遠。"
@@ -6113,7 +6113,7 @@ LocFriendlyName="轉移陣地"
 LocFlyOverText="轉移陣地"
 LocLongDescription="每回合一次，用主武器對側翼或暴露的目標進行一次標準射擊後，獲得一個額外的移動點。適用於游擊戰術。不能同時觸發短兵相接"
 LocHelpText="每回合一次，用主武器對側翼或暴露的目標進行一次標準射擊後，獲得一個額外的移動點。適用於游擊戰術。不能同時觸發短兵相接"
-LocPromotionPopupText="<Bullet/> 每回合一次，用主武器對側翼或暴露的目標進行一次標準射擊後，獲得一個額外的移動點。<br/><Bullet/> 適用於游擊戰術。<br/>
+LocPromotionPopupText="<Bullet/> 每回合一次，用主武器對側翼或暴露的目標進行一次標準射擊後，獲得一個額外的移動點。<br/><Bullet/> 適用於游擊戰術。<br/>"
 
 [NeutralizingAgents_LW X2AbilityTemplate]
 LocFriendlyName="中和劑"
@@ -6673,7 +6673,7 @@ FriendlyName="黑矛"
 FriendlyNamePlural="黑矛"
 BriefSummary="天選者獵手的這把步槍殺害過的生靈數量恐怕遠超我們的想像。"
 ; LWOTC Needs Translation (2)
-TacticalText="<Bullet/> 該步槍能夠對標有死亡標記的單位造成瘋狂的爆發性傷害。<br/><Bullet/> 但是由於它的尺寸，我們的士兵很難重新裝填。<br/>"
+TacticalText="<Bullet/> 該步槍能夠對標有死亡標記的單位造成瘋狂的爆發性傷害。<br/>"
 ; End Translation (2)
 AbilityDescName="狙擊步槍"
 
@@ -6871,11 +6871,10 @@ KnowledgeGainSecondBullet[eChosenKnowledge_Sentinel]="天選者可以引發額�
 
 [Magnum_LW X2AbilityTemplate]
 LocFriendlyName="馬格南"
-LocLongDescription="標準手槍射擊沒有遠距離懲罰。"
-LocHelpText="標準手槍射擊沒有遠距離懲罰。"
+LocLongDescription="手槍射擊不再有遠距離懲罰。"
+LocHelpText="手槍射擊不再有遠距離懲罰。"
 LocFlyOverText="馬格南"
-LocPromotionPopupText="<Bullet/>僅適用於標準手槍射擊和手槍監視。<br/><Bullet/>不適用於特殊能力，如雷霆之手，槍神或對峙。<br/>"
-
+LocPromotionPopupText="<Bullet/>適用於所有使用手槍的能力。<br/>"
 
 [HunterFlashbang X2GrenadeTemplate]
 FriendlyName="獵手閃光榴彈"

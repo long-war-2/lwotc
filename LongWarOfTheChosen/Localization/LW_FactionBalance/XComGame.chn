@@ -134,8 +134,8 @@ LocPromotionPopupText="<Bullet/> 提高散兵在地图上的机动性。<br/>"
 ; LWOTC Needs Translation
 [Executioner X2AbilityTemplate]
 LocFriendlyName="死亡贩子"
-LocLongDescription="给予+<Ability:DEATH_DEALER_CRIT/>暴击率。暗影状态中对侧翼目标的暴击会造成双倍的暴击伤害。"
-LocHelpText="给予+<Ability:DEATH_DEALER_CRIT/>暴击率。暗影状态中对侧翼目标的暴击会造成双倍的暴击伤害。"
+LocLongDescription="给予+<Ability:DEATH_DEALER_CRIT/>暴击率。暗影状态中对侧翼目标的远程攻击暴击时，武器的暴击伤害翻倍。"
+LocHelpText="给予+<Ability:DEATH_DEALER_CRIT/>暴击率。暗影状态中对侧翼目标的远程攻击暴击时，武器的暴击伤害翻倍。"
 LocPromotionPopupText="<Bullet/> 使用暗影增加的机动性和较小的敌人探测半径来攻击敌人并造成巨大的伤害。<br/>"
 
 ; End Translation
@@ -226,5 +226,5 @@ RendTheMarkedEffectDesc="在本回合剩余时间内从所有来源对目标的�
 
 [TheBanisher_LW X2AbilityTemplate]
 LocFriendlyName="万物天敌"
-LocLongDescription="放逐在每次射击时的命中惩罚减少5点，并将其冷却时间降低1回合。刀锋相接的范围增加1格。死亡贩子现在对无侧翼的目标也能生效。"
-LocHelpText="放逐在每次射击时的命中惩罚减少5点，并将其冷却时间降低1回合。刀锋相接的范围增加1格。死亡贩子现在对无侧翼的目标也能生效。 注意: 刀锋相接的圆环视觉效果没有正确更新该技能。你在刀锋相接的圆环外还有2个格子的射程范围。"
+LocLongDescription="放逐在每次射击时的命中惩罚减少<Ability:THEBANISHER_HIT_BUFF>点，并将其冷却时间降低1回合。刀锋相接的范围增加<Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/>格。死亡贩子现在对无侧翼的目标也能生效。"
+LocHelpText="放逐在每次射击时的命中惩罚减少<Ability:THEBANISHER_HIT_BUFF>点，并将其冷却时间降低1回合。刀锋相接的范围增加<Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/>格。死亡贩子现在对无侧翼的目标也能生效。 注意: 刀锋相接的圆环视觉效果没有正确更新该技能。你在刀锋相接的圆环外还有2个格子的射程范围。"

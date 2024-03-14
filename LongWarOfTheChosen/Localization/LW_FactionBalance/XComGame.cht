@@ -223,5 +223,5 @@ RendTheMarkedEffectDesc="在本回合剩餘時間內從所有來源對目標的�
 
 [TheBanisher_LW X2AbilityTemplate]
 LocFriendlyName="萬物天敵"
-LocLongDescription="放逐在每次射擊時的命中懲罰減少5點，並將其冷卻時間降低1回合。刀鋒相接的範圍增加1格。死亡販子現在對無側翼的目標也能生效。"
-LocHelpText="放逐在每次射擊時的命中懲罰減少5點，並將其冷卻時間降低1回合。刀鋒相接的範圍增加1格。死亡販子現在對無側翼的目標也能生效。 注意: 刀鋒相接的圓環視覺效果沒有正確更新該技能。你在刀鋒相接的圓環外還有2個格子的射程範圍。"
+LocLongDescription="放逐在每次射擊時的命中懲罰減少<Ability:THEBANISHER_HIT_BUFF>點，並將其冷卻時間降低1回合。刀鋒相接的範圍增加<Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/>格。死亡販子現在對無側翼的目標也能生效。"
+LocHelpText="放逐在每次射擊時的命中懲罰減少<Ability:THEBANISHER_HIT_BUFF>點，並將其冷卻時間降低1回合。刀鋒相接的範圍增加<Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/>格。死亡販子現在對無側翼的目標也能生效。 注意: 刀鋒相接的圓環視覺效果沒有正確更新該技能。你在刀鋒相接的圓環外還有2個格子的射程範圍。"

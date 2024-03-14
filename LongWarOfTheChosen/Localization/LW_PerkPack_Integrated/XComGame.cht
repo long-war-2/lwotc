@@ -55,7 +55,7 @@ BriefSummary="受到的近戰傷害減少3點。"
 [SmartMacrophagesPCS X2EquipmentTemplate]
 FriendlyName="個人戰鬥晶片：智能巨噬細胞"
 FriendlyNamePlural="個人戰鬥晶片：智能巨噬細胞"
-BriefSummary="減少受傷恢復時間，並免疫毒和酸。"
+BriefSummary="減少1HP受傷恢復時間，並免疫毒和酸。"
 
 [CenterMass X2AbilityTemplate]
 LocFriendlyName="中心質量"
@@ -451,9 +451,9 @@ LocPromotionPopupText="<Bullet/>該能力會讓首次對士兵變為擦傷，但
 [SnapShot X2AbilityTemplate]
 LocFriendlyName="急射"
 LocFlyOverText="急射"
-LocLongDescription="你可以用狙擊步槍在一次不結束回合的行動後進行標準射擊，但是超過小隊視野5格以外的所有射擊都會受到嚴重的射程懲罰。"
+LocLongDescription="你可以在一次不結束回合的行動後用狙擊步槍進行標準射擊，但是超過小隊視野5格以外的所有射擊都會受到嚴重的射程懲罰。"
 LocHelpText="射擊目標。"
-LocPromotionPopupText="<Bullet/> 這個士兵將可以在一次不結束回合的行動後使用狙擊步槍開火，但是將會受到嚴重的命中懲罰超過22格之外的敵人。<br/><Bullet/> 在一次不結束回合的行動後無法使用狙擊步槍進行監視。<br/>
+LocPromotionPopupText="<Bullet/> 這個能力顯著改變了狙擊手的作戰方式：士兵現在可以在移動後使用狙擊步槍進行標準射擊，但是在超過22個格子範圍的目標上，無論士兵是否移動，所有射擊都會受到嚴重的命中懲罰。<br/><Bullet/> 僅適用於狙擊步槍。<br/><Bullet/> 相對於普通狙擊步槍，減少<Ability:WPN_HANDLING_MODIFIER/>近距離懲罰。<br/><Bullet/> 在超過小隊視野5格後，每個格子額外受到-20的命中懲罰。<br/><Bullet/> 某些特殊射擊和守望仍需要兩個行動點才能使用。守望允許小隊視野監視射擊，但仍會受到射程懲罰。<br/><Bullet/> 至少有1%命中的情況下士兵才會進行守望射擊或者殺戮地帶射擊。<br/><Bullet/> 在一次不結束回合的行動後無法使用狙擊步槍進行監視。<br/>"
 
 [SnapShotOverwatch X2AbilityTemplate]
 LocFriendlyName="監視"
@@ -534,9 +534,9 @@ LocPromotionPopupText="<Bullet/>效果適用於小精靈治療，急救包和恢
 [DenseSmoke X2AbilityTemplate]
 LocFriendlyName="濃密煙霧"
 LocFlyOverText="濃密煙霧"
-LocLongDescription="你的煙霧榴彈提供額外10的防禦。"
-LocHelpText="你的煙霧榴彈提供額外10的防禦。"
-LocPromotionPopupText="<Bullet/>你的煙霧榴彈對處於煙霧中的單位提供額外10的防禦，最高30。<br/>"
+LocLongDescription="你的煙霧榴彈提供額外10的防禦。同時額外獲得一個免費的煙霧榴彈。"
+LocHelpText="你的煙霧榴彈提供額外10的防禦。同時額外獲得一個免費的煙霧榴彈。"
+LocPromotionPopupText="<Bullet/>你的煙霧榴彈對處於煙霧中的單位提供額外10的防禦，最高30。同時額外獲得一個免費的煙霧榴彈。<br/>"
 
 
 [Collateral_LW X2AbilityTemplate]
@@ -764,7 +764,7 @@ LocFriendlyName="堅不可摧"
 LocLongDescription="你的裝備包含多一層的防護, 提供<Ability:FORMIDABLE_ABLATIVE_HP/>點護盾和減少<Ability:FORMIDABLE_EXPLOSIVES_DR/>%爆炸傷害。"
 LocHelpText="提供<Ability:FORMIDABLE_ABLATIVE_HP/>點護盾和減少<Ability:FORMIDABLE_EXPLOSIVES_DR/>%爆炸傷害。"
 LocFlyOverText="堅不可摧"
-LocPromotionPopupText="<Bullet/> 減少<Ability:FORMIDABLE_EXPLOSIVES_DR/>%爆炸傷害。
+LocPromotionPopupText="<Bullet/> 減少<Ability:FORMIDABLE_EXPLOSIVES_DR/>%爆炸傷害。"
 
 ; Updated perk loc
 

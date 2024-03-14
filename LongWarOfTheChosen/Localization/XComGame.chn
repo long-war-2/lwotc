@@ -101,7 +101,7 @@ ShortNames[8]="骑士"
 
 ; LWOTC Needs Translation
 +AbilityTreeTitles[0]="未来战斗"
-+AbilityTreeTitles[1]=""
++AbilityTreeTitles[1]="机械优势"
 +AbilityTreeTitles[2]="战争机器"
 +AbilityTreeTitles[3]="XCOM"
 ; End Translation
@@ -297,9 +297,9 @@ LocPromotionPopupText="<Bullet/> 致命一击的目标仅限非机器人、混�
 [CoupDeGrace2 X2AbilityTemplate]
 LocFriendlyName="致命一击"
 LocFlyOverText="致命一击"
-LocLongDescription="用你的<Ability:BOUND_WEAPON_NAME/>攻击混乱，眩晕，恐慌的敌人，提供命中，暴击率和伤害加成。"
-LocHelpText="用你的<Ability:BOUND_WEAPON_NAME/>攻击混乱，眩晕，恐慌的敌人，提供命中，暴击率和伤害加成。"
-LocPromotionPopupText="<Bullet/> 致命一击对眩晕，恐慌的敌人提供+50命中，+50暴击率，+2伤害。<br/><Bullet/> 该加成对混乱的敌人有所降低。"
+LocLongDescription="用你的<Ability:BOUND_WEAPON_NAME/>攻击混乱、眩晕、恐慌的敌人时，提供命中、暴击率和伤害加成。"
+LocHelpText="用你的<Ability:BOUND_WEAPON_NAME/>攻击混乱、眩晕、恐慌的敌人时，提供命中、暴击率和伤害加成。"
+LocPromotionPopupText="<Bullet/> 致命一击对眩晕、恐慌的敌人提供+50命中，+50暴击率，+2伤害。<br/><Bullet/> 致命一击对混乱的敌人提供+25命中，+25暴击率，+1伤害。"
 
 [Tradecraft X2AbilityTemplate]
 LocFriendlyName="谍报技术"
@@ -5116,8 +5116,8 @@ LocPromotionPopupText="<Bullet/> 产生一个心灵能量的爆炸场，立即�
 ; End Translation
 
 [CoveringFire X2AbilityTemplate]
-LocLongDescription="被敌方行动触发的掩护火力会在敌方行动尚未完成前发动。"
-LocPromotionPopupText="<Bullet/> 如果由敌人动作触发，掩护火力将在敌人动作完成前触发。<br/><Bullet/> 掩护火力技能将会对你射击目标提供一个暂时性命中惩罚，不论是触发掩护火力，还是普通的监视射击。<br/>"
+LocLongDescription="反应射击现在会在任何敌对行动完成前触发，而不仅仅是在移动时才触发。监视射击现在会忽略目标3分之2的掩体加成。"
+LocPromotionPopupText="<Bullet/> 如果由敌人的动作触发，掩护火力将在敌人动作完成前触发。<br/><Bullet/> 掩护火力会让你反应射击任何单位时造成-<Ability:COVERING_FIRE_OFFENSE_MALUS>的命中惩罚，不论是触发掩护火力，还是普通的监视射击。<br/>"
 
 [GrenadeLauncher_MG X2GrenadeLauncherTemplate]
 BriefSummary="高级榴弹发射器使用电磁技术，比传统的发射器射程更远。"
@@ -6751,7 +6751,7 @@ FriendlyName="黑矛"
 FriendlyNamePlural="黑矛"
 BriefSummary="天选者猎手的这把步枪杀害过的生灵数量恐怕远超我们的想象。"
 ; LWOTC Needs Translation (2)
-TacticalText="<Bullet/> 该步枪能够对标有死亡标记的单位造成疯狂的爆发性伤害。<br/><Bullet/> 但是由于它的尺寸，我们的士兵很难重新装填。<br/>"
+TacticalText="<Bullet/> 该步枪能够对标有死亡标记的单位造成疯狂的爆发性伤害。<br/>"
 ; End Translation (2)
 AbilityDescName="狙击步枪"
 
@@ -6953,10 +6953,10 @@ KnowledgeGainSecondBullet[eChosenKnowledge_Sentinel]="天选者可以引发额�
 
 [Magnum_LW X2AbilityTemplate]
 LocFriendlyName="马格南"
-LocLongDescription="标准手枪射击没有远距离惩罚。"
-LocHelpText="标准手枪射击没有远距离惩罚。"
+LocLongDescription="手枪射击不再有远距离惩罚。"
+LocHelpText="手枪射击不再有远距离惩罚。"
 LocFlyOverText="马格南"
-LocPromotionPopupText="<Bullet/> 仅适用于标准手枪射击和手枪监视。<br/><Bullet/> 不适用于特殊能力，如雷霆之手，枪神或对峙。<br/>"
+LocPromotionPopupText="<Bullet/> 适用于所有使用手枪的能力。<br/>"
 
 [HunterFlashbang X2GrenadeTemplate]
 FriendlyName="猎手闪光榴弹"

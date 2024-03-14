@@ -55,7 +55,7 @@ BriefSummary="受到的近战伤害减少3点。"
 [SmartMacrophagesPCS X2EquipmentTemplate]
 FriendlyName="个人战斗芯片：智能巨噬细胞"
 FriendlyNamePlural="个人战斗芯片：智能巨噬细胞"
-BriefSummary="减少受伤恢复时间，并免疫毒和酸。"
+BriefSummary="减少1HP受伤恢复时间，并免疫毒和酸。"
 
 [CenterMass X2AbilityTemplate]
 LocFriendlyName="中心质量"
@@ -451,9 +451,9 @@ LocPromotionPopupText="<Bullet/> 该能力会让首次对士兵变为擦伤，�
 [SnapShot X2AbilityTemplate]
 LocFriendlyName="急射"
 LocFlyOverText="急射"
-LocLongDescription="你可以用狙击步枪在一次不结束回合的行动后进行标准射击，但是超过小队视野5格以外的所有射击都会受到严重的射程惩罚。"
+LocLongDescription="你可以在一次不结束回合的行动后用狙击步枪进行标准射击，但是超过小队视野5格以外的所有射击都会受到严重的射程惩罚。"
 LocHelpText="射击目标。"
-LocPromotionPopupText="<Bullet/> 这个士兵将可以在一次不结束回合的行动后使用狙击步枪开火，但是将会受到严重的命中惩罚超过22格之外的敌人。<br/><Bullet/> 在一次不结束回合的行动后无法使用狙击步枪进行监视。<br/>
+LocPromotionPopupText="<Bullet/> 这个能力显著改变了狙击手的作战方式：士兵现在可以在移动后使用狙击步枪进行标准射击，但是在超过22个格子范围的目标上，无论士兵是否移动，所有射击都会受到严重的命中惩罚。<br/><Bullet/> 仅适用于狙击步枪。<br/><Bullet/> 相对于普通狙击步枪，减少<Ability:WPN_HANDLING_MODIFIER/>近距离惩罚。<br/><Bullet/> 在超过小队视野5格后，每个格子额外受到-20的命中惩罚。<br/><Bullet/> 某些特殊射击和守望仍需要两个行动点才能使用。守望允许小队视野监视射击，但仍会受到射程惩罚。<br/><Bullet/> 至少有1%命中的情况下士兵才会进行守望射击或者杀戮地带射击。<br/><Bullet/> 在一次不结束回合的行动后无法使用狙击步枪进行监视。<br/>"
 
 [SnapShotOverwatch X2AbilityTemplate]
 LocFriendlyName="监视"
@@ -534,9 +534,9 @@ LocPromotionPopupText="<Bullet/> 效果适用于小精灵治疗，急救包和�
 [DenseSmoke X2AbilityTemplate]
 LocFriendlyName="浓密烟雾"
 LocFlyOverText="浓密烟雾"
-LocLongDescription="你的烟雾榴弹提供额外10的防御。"
-LocHelpText="你的烟雾榴弹提供额外10的防御。"
-LocPromotionPopupText="<Bullet/> 你的烟雾榴弹对处于烟雾中的单位提供额外10的防御，最高30。<br/>"
+LocLongDescription="你的烟雾榴弹提供额外10的防御。同时额外获得一个免费的烟雾榴弹。"
+LocHelpText="你的烟雾榴弹提供额外10的防御。同时额外获得一个免费的烟雾榴弹。"
+LocPromotionPopupText="<Bullet/> 你的烟雾榴弹对处于烟雾中的单位提供额外10的防御，最高30。同时额外获得一个免费的烟雾榴弹。<br/>"
 
 
 [Collateral_LW X2AbilityTemplate]
@@ -708,9 +708,9 @@ LocPromotionPopupText="<Bullet/> 激活一个力场，能够在2回合内减少3
 [BodyShield X2AbilityTemplate]
 LocFriendlyName="全身防护"
 LocFlyOverText="全身防护"
-LocLongDescription="目标敌人攻击该士兵时受到-20命中和-50暴击率的惩罚。自由行动。<Ability:SelfCooldown_LW/>回合冷却。"
-LocHelpText="目标敌人攻击该士兵时受到-20命中和-50暴击率的惩罚。自由行动。<Ability:SelfCooldown_LW/>回合冷却。"
-LocPromotionPopupText="<Bullet/> 目标敌人攻击该士兵时受到-20命中和-50暴击率的惩罚。自由行动。<Ability:SelfCooldown_LW/>回合冷却。<br/>"
+LocLongDescription="目标敌人攻击该士兵时受到-<Ability:BODY_SHIELD_DEF_BONUS>命中和-<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS>暴击率的惩罚。自由行动。<Ability:SelfCooldown_LW/>回合冷却。"
+LocHelpText="目标敌人攻击该士兵时受到-<Ability:BODY_SHIELD_DEF_BONUS>命中和-<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS>暴击率的惩罚。自由行动。<Ability:SelfCooldown_LW/>回合冷却。"
+LocPromotionPopupText="<Bullet/> 目标敌人攻击该士兵时受到-<Ability:BODY_SHIELD_DEF_BONUS>命中和-<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS>暴击率的惩罚。自由行动。<Ability:SelfCooldown_LW/>回合冷却。<br/>"
 
 [EmergencyLifeSupport X2AbilityTemplate]
 LocFriendlyName="应急生命保障"
@@ -765,7 +765,7 @@ LocFriendlyName="坚不可摧"
 LocLongDescription="你的装备包含多一层的防护, 提供<Ability:FORMIDABLE_ABLATIVE_HP/>点护盾和减少<Ability:FORMIDABLE_EXPLOSIVES_DR/>%爆炸伤害。"
 LocHelpText="提供<Ability:FORMIDABLE_ABLATIVE_HP/>点护盾和减少<Ability:FORMIDABLE_EXPLOSIVES_DR/>%爆炸伤害。"
 LocFlyOverText="坚不可摧"
-LocPromotionPopupText="<Bullet/> 减少<Ability:FORMIDABLE_EXPLOSIVES_DR/>%爆炸伤害。
+LocPromotionPopupText="<Bullet/> 减少<Ability:FORMIDABLE_EXPLOSIVES_DR/>%爆炸伤害。"
 
 ; Updated perk loc
 
