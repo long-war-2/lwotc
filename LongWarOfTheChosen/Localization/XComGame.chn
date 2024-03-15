@@ -490,10 +490,10 @@ LocPromotionPopupText="<Bullet/> 你将格挡任何擦伤的近战攻击并用�
 
 [Flush X2AbilityTemplate]
 LocFriendlyName="冲散"
-LocLongDescription="命中加成的特殊射击，造成少量或者无伤害，但是命中后降低目标防御和闪避，并且强迫目标移动。"
-LocHelpText="命中加成的特殊射击，造成少量或者无伤害，但是命中后降低目标防御和闪避，并且强迫目标移动。"
+LocLongDescription="一种特殊射击，增加<Ability:FLUSH_AIM_BONUS>命中，但减少<Ability:FLUSH_DAMAGE_PENALTY>%的伤害。如果命中，目标将失去-<Ability:FLUSH_DEFENSE_REDUCTION>防御和-<Ability:FLUSH_DODGE_REDUCTION>闪避，并且强迫目标移动。"
+LocHelpText="一种特殊射击，增加<Ability:FLUSH_AIM_BONUS>命中，但减少<Ability:FLUSH_DAMAGE_PENALTY>%的伤害。如果命中，目标将失去-<Ability:FLUSH_DEFENSE_REDUCTION>防御和-<Ability:FLUSH_DODGE_REDUCTION>闪避，并且强迫目标移动。"
 LocFlyOverText="冲散"
-LocPromotionPopupText="<Bullet/> 消耗<Ability:SelfAmmoCost/>的弹药。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷却。<br/><Bullet/> +<Ability:FLUSH_AIM_BONUS/>命中加成。<br/><Bullet/> 隐蔽状态时无法使用。<br/><Bullet/> 无法暴击或施加额外弹药效果。<br/><Bullet/> 降低目标<Ability:FLUSH_DEFENSE_REDUCTION>防御，<Ability:FLUSH_DODGE_REDUCTION>闪避持续<Ability:FLUSH_STATEFFECT_DURATION>回合。"
+LocPromotionPopupText="<Bullet/> 消耗<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷却。<br/><Bullet/> 隐蔽状态时无法使用。<br/><Bullet/> 无法暴击或施加额外弹药效果。<br/><Bullet/> 降低防御和闪避的效果持续<Ability:FLUSH_STATEFFECT_DURATION>回合。"
 str_FlushEffect="冲散"
 
 ;LWOTC needs translation
