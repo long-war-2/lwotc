@@ -163,11 +163,11 @@ LocPromotionPopupText="<Bullet/> The flamethrower is a short-range weapon that c
 
 [LWRocketLauncher X2AbilityTemplate]
 LocFriendlyName="Rocket Launcher"
-LocHelpText="Fire a rocket at target area. <Ability:ROCKETSCATTER/>"
+LocHelpText="Fire a rocket at target area."
 
 [LWBlasterLauncher X2AbilityTemplate]
 LocFriendlyName="Blaster Bomb"
-LocHelpText="Fire a guided Blaster Bomb at a target area. <Ability:ROCKETSCATTER/>"
+LocHelpText="Fire a guided Blaster Bomb at a target area."
 
 [NapalmX X2AbilityTemplate]
 LocFriendlyName="Napalm-X"
@@ -265,6 +265,36 @@ LocLongDescription="Your rockets are more accurate."
 LocHelpText="Your rockets are more accurate."
 LocPromotionPopupText="<Bullet/> Your rockets are more likely to hit their intended point of impact, or at least close to it.<br/><Bullet/> The maximum it can miss by is reduced by two tiles."
 
+[ImprovedMunitions_LW X2AbilityTemplate]
+LocFriendlyName="Improved Warheads"
+LocFlyOverText="Improved Warheads"
+LocLongDescription="Your standard rockets deal +2 damage and can set the environment on fire."
+LocHelpText="Your standard rockets deal +2 damage and can set the environment on fire."
+LocPromotionPopupText="<Bullet/> Your standard rockets deal +2 damage and can set the environment on fire.<br/><Bullet/> The damage boost does not apply to special rocket abilities."
+
+[ConcussionWarheads_LW X2AbilityTemplate]
+LocFriendlyName="Concussion Warheads"
+LocFlyOverText="Concussion Warheads"
+LocLongDescription="Your rockets have 20% chance to stun targets and deal additional environmental damage."
+LocHelpText="Your rockets have 20% chance to stun targets and deal additional environmental damage."
+LocPromotionPopupText="<Bullet/> Your rockets have 20% chance to stun targets.<br/><Bullet/> The environmental damage increase doubles that of the base rocket attack."
+
+[ShredderRocket_LW X2AbilityTemplate]
+LocFriendlyName="Shredder Rocket"
+LocFlyOverText="Shredder Rocket"
+LocLongDescription="Fire a special rocket which shreds and ruptures targets in a small area."
+LocHelpText="Fire a special rocket which shreds and ruptures targets in a small area."
+LocPromotionPopupText="<Bullet/> This rocket shreds 3 points of armor and applies 1 point of Rupture.<br/><Bullet/> The rocket has the same area of effect as a Frag Grenade."
+
+[EMPRocket_LW X2AbilityTemplate]
+LocFriendlyName="EMP Rocket"
+LocFlyOverText="EMP Rocket"
+LocLongDescription="Fire a special rocket which deals a small amount of damage but shuts down all robotic units for a turn."
+LocHelpText="Fire a special rocket which deals a small amount of damage but shuts down all robotic units for a turn."
+LocPromotionPopupText="<Bullet/> This rocket deals 1-2 damage and stuns robots for 2 AP.<br/><Bullet/> The rocket has a 5 tile AOE diameter."
+
+
+
 [JavelinRockets X2AbilityTemplate]
 LocFriendlyName="Javelin Rockets"
 LocFlyOverText="Javelin Rockets"
@@ -275,7 +305,7 @@ LocPromotionPopupText="<Bullet/> The range of your rockets is increased by 6 til
 [BunkerBuster X2AbilityTemplate]
 LocFriendlyName="Bunker Buster"
 LocFlyOverText="Bunker Buster"
-LocHelpText="Fire a Bunker Buster. <Ability:ROCKETSCATTER/>"
+LocHelpText="Fire a Bunker Buster."
 LocLongDescription="Fire a special rocket that destroys buildings and other objects in the environment."
 LocPromotionPopupText="<Bullet/> Fire a special rocket with a large area of effect that does moderate damage to enemies but huge damage to buildings, vehicles and other objects in the environment.<br/><Bullet/> Requires both actions and usable only once per mission.<br/>"
 

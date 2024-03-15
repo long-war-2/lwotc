@@ -151,11 +151,11 @@ LocPromotionPopupText="<Bullet/> Der Flammenwerfer ist eine Kurzstreckenwaffe, d
 
 [LWRocketLauncher X2AbilityTemplate]
 LocFriendlyName="Raketenwerfer"
-LocHelpText="Feuere eine Rakete auf den Zielbereich. <Ability:ROCKETSCATTER/>"
+LocHelpText="Feuere eine Rakete auf den Zielbereich."
 
 [LWBlasterLauncher X2AbilityTemplate]
 LocFriendlyName="Blasterbombe"
-LocHelpText="Feuert eine Lenk-Blasterbombe auf ein Zielgebiet. <Ability:ROCKETSCATTER/>"
+LocHelpText="Feuert eine Lenk-Blasterbombe auf ein Zielgebiet."
 
 [NapalmX X2AbilityTemplate]
 LocFriendlyName="Napalm-X"
@@ -251,7 +251,7 @@ LocPromotionPopupText="<Bullet/> Die Reichweite deiner Raketen wird um 6 Felder 
 [BunkerBuster X2AbilityTemplate]
 LocFriendlyName="Bunkerknacker"
 LocFlyOverText="Bunkerknacker"
-LocHelpText="Feuert eine Spezialrakete ab, die Gebäude und andere Objekte in der Umgebung zerstört. <Ability:ROCKETSCATTER/>"
+LocHelpText="Feuert eine Spezialrakete ab, die Gebäude und andere Objekte in der Umgebung zerstört."
 LocLongDescription="Feuert eine Spezialrakete ab, die Gebäude und andere Objekte in der Umgebung zerstört."
 LocPromotionPopupText="<Bullet/> Feuert eine Spezialrakete mit großem Wirkungsbereich ab, die bei Feinden mittleren Schaden verursacht, an Gebäuden, Fahrzeugen und anderen Objekten in der Umgebung jedoch gewaltigen Schaden anrichtet.<br/><Bullet/> Erfordert beide Aktionen und kann nur einmal pro Einsatz eingesetzt werden.<br/>"
 
