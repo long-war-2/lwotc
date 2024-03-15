@@ -2037,7 +2037,7 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 
 	if (`XENGINE.IsMultiplayerGame()) { return; }
 
-	`LWTrace("FinalizeUnitAbilitiesForInit:" @UnitState.Name);
+	`LWTrace("FinalizeUnitAbilitiesForInit:" @UnitState.Name @"-" @ UnitState.GetSoldierClassTemplateName());
 
 	CharTemplate = UnitState.GetMyTemplate();
 	if (CharTemplate == none)
