@@ -1320,14 +1320,14 @@ FriendlyNamePlural="精英自动装填器"
 [NanofiberVest X2EquipmentTemplate]
 FriendlyName="纳米背心"
 FriendlyNamePlural="纳米背心"
-BriefSummary="这件背心是从变种人的护甲研究而来的轻护甲，它可以跟其他的XCOM护甲同时装备来增加士兵<ABILITY:NANOFIBER_HEALTH_BONUS_LW/>的生命值并减少<ABILITY:NANOFIBER_CRITDEF_BONUS_LW/>敌人对你的暴击率。"
-TacticalText="<Bullet/>为士兵增加<ABILITY:NANOFIBER_HEALTH_BONUS_LW/>点生命值。\n<Bullet/>减少敌人<ABILITY:NANOFIBER_CRITDEF_BONUS_LW/>的暴击率。\n<Bullet/>一次只能装备一件护甲装备和一件背心。"
+BriefSummary="这件背心是从变种人的护甲研究而来的轻护甲，它可以跟其他的XCOM护甲同时装备来增加士兵<ABILITY:NANOFIBER_HEALTH_BONUS_LW/>的生命值并减少<ABILITY:NANOFIBER_CRITDEF_BONUS_LW/>点敌人对你的暴击率。"
+TacticalText="<Bullet/>为士兵增加<ABILITY:NANOFIBER_HEALTH_BONUS_LW/>点生命值。\n<Bullet/>减少敌人<ABILITY:NANOFIBER_CRITDEF_BONUS_LW/>点的暴击率。\n<Bullet/>一次只能装备一件护甲装备和一件背心。"
 
 [PlatedVest X2EquipmentTemplate]
 FriendlyName="战术背心"
 FriendlyNamePlural="战术背心"
 BriefSummary="沈博士用装甲镀层技术改良了纳米纤维背心，减少了战斗中收到的伤害。"
-TacticalText="<Bullet/>为士兵增加3点生命值。\n<Bullet/>提供1点护甲。\n<Bullet/>一次只能装备一件镀层物品和一件背心。"
+TacticalText="<Bullet/>为士兵增加3点生命值。\n<Bullet/>提供1点护甲。\n<Bullet/>减少<Ability:PLATED_CRITDEF_BONUS>点敌人对你的暴击率。\n<Bullet/>一次只能装备一件镀层物品和一件背心。"
 
 [HazmatVest X2EquipmentTemplate]
 FriendlyName="生化防护背心"
@@ -4908,7 +4908,7 @@ ListTitle="榴弹兵"
 DescriptionTitle="榴弹兵"
 DescriptionEntry="榴弹兵是重武器专家，他们使用高爆榴弹和闪光榴弹在战斗中制造毁灭性的灾难，或是用防御性的烟雾榴弹和其他保护性设备支援其他士兵。"
 
-[AvatarProject_LW X2EncylopediaTemplate]
+[AvatarProject_LW X2EncyclopediaTemplate]
 ListTitle="阻止化身计划"
 DescriptionTitle="阻止化身计划"
 DescriptionEntry="虽然我们对外星人的理解有限，但是我们知道每次与他们的成功作战，都会拖延他们化身计划和征服地球的进度。这也让我们能够有更多的时间了解计划的本质，找到阻止它的方法。"

@@ -890,10 +890,10 @@ LocPromotionPopupText="<Bullet/>敵人在相鄰位置開始回合且打算攻擊
 [XComGame.Untouchable X2AbilityTemplate]
 [Untouchable X2AbilityTemplate]
 LocFriendlyName="不可觸碰"
-LocLongDescription="如果你在回合內完成一次擊殺，下一次對你的攻擊將會無效。"
-LocHelpText="如果你在回合內完成一次擊殺，下一次對你的攻擊將會無效。"
+LocLongDescription="如果你在回合內完成一次擊殺，敵方回合下一次對你的攻擊將會無效。"
+LocHelpText="如果你在回合內完成一次擊殺，敵方回合下一次對你的攻擊將會無效。"
 LocFlyOverText="不可觸碰"
-LocPromotionPopupText="<Bullet/>不可觸碰激活時，士兵免疫下一次攻擊傷害，範圍攻擊也不例外。<br/>"
+LocPromotionPopupText="<Bullet/>不可觸碰激活時，士兵在敵方回合免疫下一次攻擊傷害，範圍攻擊也不例外。<br/>"
 
 [XComGame.Stealth X2AbilityTemplate]
 [Stealth X2AbilityTemplate]
