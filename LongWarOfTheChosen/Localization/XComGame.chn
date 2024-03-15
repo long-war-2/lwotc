@@ -262,6 +262,36 @@ LocLongDescription="你的火箭射程提升6格并且可以击中在视野外�
 LocHelpText="你的火箭射程提升6格并且可以击中在视野外的目标。"
 LocPromotionPopupText="<Bullet/> 你的火箭射程提升6格并且可以击中在视野外的目标。<br/>"
 
+[ImprovedMunitions_LW X2AbilityTemplate]
+LocFriendlyName="强化军火"
+LocFlyOverText="强化军火"
+LocLongDescription="你的标准火箭造成额外+2伤害，并且有概率使环境着火。"
+LocHelpText="你的标准火箭造成额外+2伤害，并且有概率使环境着火。"
+LocPromotionPopupText="<Bullet/> 你的标准火箭造成额外+2伤害，并且有概率使环境着火。<br/><Bullet/> 这个伤害加成不适用于特殊火箭能力。"
+
+[ConcussionWarheads_LW X2AbilityTemplate]
+LocFriendlyName="震荡弹头"
+LocFlyOverText="震荡弹头"
+LocLongDescription="你的火箭有20%的概率让目标晕眩，并造成额外的环境伤害。"
+LocHelpText="你的火箭有20%的概率让目标晕眩，并造成额外的环境伤害。"
+LocPromotionPopupText="<Bullet/> 你的火箭有20%的概率让目标晕眩。<br/><Bullet/> 环境伤害增加后是基础火箭的两倍。"
+
+[ShredderRocket_LW X2AbilityTemplate]
+LocFriendlyName="撕裂火箭"
+LocFlyOverText="撕裂火箭"
+LocLongDescription="发射一枚特殊火箭，可以在小范围内破甲并使目标撕裂。"
+LocHelpText="发射一枚特殊火箭，可以在小范围内破甲并使目标撕裂。"
+LocPromotionPopupText="<Bullet/> 可以削减3点护甲，并施加1点撕裂效果。<br/><Bullet/> 作用范围与一枚破片手榴弹相同。"
+
+[EMPRocket_LW X2AbilityTemplate]
+LocFriendlyName="EMP火箭"
+LocFlyOverText="EMP火箭"
+LocLongDescription="发射一枚特殊火箭，造成少量伤害，但能使范围内的所有机械单位在一回合内停止运作。"
+LocHelpText="发射一枚特殊火箭，造成少量伤害，但能使范围内的所有机械单位在一回合内停止运作。"
+LocPromotionPopupText="<Bullet/> 造成1-2点伤害，并使机器人晕眩2个行动点。<br/><Bullet/> 作用范围为5格。"
+
+
+
 [BunkerBuster X2AbilityTemplate]
 LocFriendlyName="掩体克星"
 LocFlyOverText="掩体克星"
