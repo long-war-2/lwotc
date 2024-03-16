@@ -14,7 +14,7 @@ function GetToHitAsTargetModifiers(XComGameState_Effect EffectState, XComGameSta
     local ShotModifierInfo				ShotInfo;
 	local int							Tiles;
 
-	if (Target.IsImpaired(false) || Target.IsPanicked())
+	if (Target.IsImpaired(false) || Target.IsPanicked() || Target.IsBurning())
 		return;
 
 	Tiles = Attacker.TileDistanceBetween(Target);       
