@@ -2341,7 +2341,7 @@ static function X2AbilityTemplate CreatePostRebootRepair()
 	EventTrigger.ListenerData.Deferral = ELD_OnStateSubmitted;
 	EventTrigger.ListenerData.EventID = class'X2Effect_Sustain'.default.SustainEvent;
 	EventTrigger.ListenerData.Filter = eFilter_Unit;
-	EventTrigger.ListenerData.Priority = 90;
+	EventTrigger.ListenerData.Priority = 125;
 	EventTrigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
 	Template.AbilityTriggers.AddItem(EventTrigger);
 
