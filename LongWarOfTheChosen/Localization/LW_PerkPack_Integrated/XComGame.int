@@ -605,10 +605,10 @@ LocPromotionPopupText="<Bullet/> Your smoke grenades confer an additional 10 def
 
 [Collateral_LW X2AbilityTemplate]
 LocFriendlyName="Collateral Damage"
-LocLongDescription="Fire a barrage of <Ability:WeaponName/> rounds to a location, destroying cover within the area. Deals a small amount of damage to enemies. 5-turn cooldown and uses 3 ammo."
+LocLongDescription="Fire a barrage of <Ability:WeaponName/> rounds to a location, destroying cover within the area. Deals a small amount of damage to enemies. 4-turn cooldown and uses 3 ammo."
 LocHelpText="Fire a barrage of <Ability:WeaponName/> rounds to a location, destroying cover within the area."
 LocFlyOverText="Collateral Damage"
-LocPromotionPopupText="<Bullet/> Fire a barrage of <Ability:WeaponName/> rounds to a location, destroying cover within the area.<br/><Bullet/> Deals high environmental damage to all objects in the area of effect.<br/><Bullet/> Collateral Damage does 1-2/2/2-3 damage to enemies within the area of effect depending on tier of equipped <Ability:WeaponName/>.<br/><Bullet/> Costs 3 ammo and has a 5-turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Fire a barrage of <Ability:WeaponName/> rounds to a location, destroying cover within the area.<br/><Bullet/> Deals high environmental damage to all objects in the area of effect.<br/><Bullet/> Collateral Damage does 40% of base weapon damage to enemies within the area of effect.<Ability:WeaponName/>.<br/><Bullet/> Costs 3 ammo and has a 4-turn cooldown.<br/>"
 
 ;POTENTIALLY DEPERECATED AS WELL AS ALL TRANSLATIONS
 [DenseSmokeGrenade X2GrenadeTemplate]
@@ -1240,7 +1240,7 @@ LocFriendlyName="Neutralize Protocol"
 LocLongDescription="Launch the BIT to a location, disabling enemy weapons in a small radius and forcing them to reload. Costs 1 action and does not end the turn."
 LocHelpText="Launch the BIT to a location, disabling enemy weapons in a small radius and forcing them to reload. Costs 1 action and does not end the turn."
 LocFlyOverText="Neutralize Protocol"
-LocPromotionPopupText="<Bullet/> Send the BIT to release a short-range jamming pulse that overloads weapon systems. Forces targets to reload their primary weapon.<br/><Bullet/> Targeted enemies can use Reload to unjam their weapon. Enemies may choose to get by with just one action point of movement and shooting to work with, or they may forgo a reload and resort to secondary weapon systems.<br/><Bullet/> Neutralize Protocol costs one action to use and has a <Ability:NEUTRALIZE_COOLDOWN/>turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Send the BIT to release a short-range jamming pulse that overloads weapon systems. Forces targets to reload their primary weapon.<br/><Bullet/> Targeted enemies can use Reload to unjam their weapon. Enemies may choose to get by with just one action point of movement and shooting to work with, or they may forgo a reload and resort to secondary weapon systems.<br/><Bullet/> Neutralize Protocol costs one action to use and has a <Ability:NEUTRALIZE_COOLDOWN/> turn cooldown.<br/>"
 
 [LayeredArmour_LW X2AbilityTemplate]
 LocFriendlyName="Layered Armor"
@@ -1286,7 +1286,7 @@ LocPromotionPopupText="Rapid Repair makes Repair non turn ending. Redundant Syst
 
 [ReactionSystems_LW X2AbilityTemplate]
 LocFriendlyName="Enhanced Defensive Systems"
-LocLongDescription="Grants the Sacrifice and Channeling Field abilities, allowing the SPARK to redirect attacks to nearby allies towards itself, and increasing the SPARK's damage after being targeted by any attack."
+LocLongDescription="Grants the Sacrifice and Channeling Field abilities, allowing the SPARK to redirect attacks from nearby allies towards itself, and increasing the SPARK's damage after being targeted by any attack."
 LocHelpText="<Bullet/> The SPARK gains +<Ability:Sacrifice_Defense/> defense and +<Ability:Sacrifice_Armor/> armor while Sacrifice is active.<br/><Bullet/> Sacrifice has a <Ability:SACRIFICE_COOLDOWN/> turn cooldown.<br/><Bullet/> Each point of energy channeled by Channeling Field increases the damage of the next <Ability:WeaponName> attack by 1.<br/>"
 LocPromotionPopupText="<Bullet/> The SPARK gains +<Ability:Sacrifice_Defense/> defense and +<Ability:Sacrifice_Armor/> armor while Sacrifice is active.<br/><Bullet/> Sacrifice has a <Ability:SACRIFICE_COOLDOWN/> turn cooldown.<br/><Bullet/> Each point of energy channeled by Channeling Field increases the damage of the next <Ability:WeaponName> attack by 1.<br/>"
 

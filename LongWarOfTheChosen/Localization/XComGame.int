@@ -7684,7 +7684,7 @@ LocPromotionPopupText="<Bullet/> Hunter Protocol makes the SPARK an ideal unit f
 
 [Nova X2AbilityTemplate]
 LocFriendlyName="Nova"
-LocLongDescription="Release a blast of energy, damaging all nearby units. This attack has no cost or cooldown, but consecutive Novas will damage the SPARK."
+LocLongDescription="Release a blast of energy, dealing 6 damage to nearby units. This attack has no cost or cooldown, but consecutive Novas will damage the SPARK."
 LocHelpText="Blast all nearby units. Consecutive Novas will damage the SPARK."
 LocPromotionPopupText="<Bullet/> Nova has no action point cost and no cooldown.<br/><Bullet/> The first Nova attack each mission will deal 0 damage to the SPARK.<br/><Bullet/> All Nova attacks after the first will deal a stacking <Ability:Nova_Damage/> damage to the SPARK.<br/>"
 
