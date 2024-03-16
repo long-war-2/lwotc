@@ -1425,7 +1425,7 @@ static function X2AbilityTemplate LWRocketLauncherAbility()
 	local X2Effect_ApplyFireToWorld_Limited_Rocket		FireToWorldEffect;
 	local X2Condition_AbilityProperty			HasAbilityCondition;
 	local X2Effect_Stunned					StunnedEffect;
-	local X2Effect_PersistentStatChange		DisorientedEffect;
+	//local X2Effect_PersistentStatChange		DisorientedEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'LWRocketLauncher');
 	Template.Hostility = eHostility_Offensive;
@@ -1463,9 +1463,11 @@ static function X2AbilityTemplate LWRocketLauncherAbility()
 	WeaponDamageEffect.bExplosiveDamage = true;
 	Template.AddMultiTargetEffect(WeaponDamageEffect);
 
+/* 
 	DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect(true, 0.1 , false);
 	DisorientedEffect.ApplyChance = 25;
 	Template.AddMultiTargetEffect(DisorientedEffect);
+*/
 
 	HasAbilityCondition = new class'X2Condition_AbilityProperty';
 	HasAbilityCondition.OwnerHasSoldierAbilities.AddItem('ImprovedMunitions_LW');
@@ -1483,16 +1485,6 @@ static function X2AbilityTemplate LWRocketLauncherAbility()
 	// Concussion Warheads stuff
 	HasAbilityCondition = new class'X2Condition_AbilityProperty';
 	HasAbilityCondition.OwnerHasSoldierAbilities.AddItem('ConcussionWarheads_LW');
-
-	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
-	WeaponDamageEffect.bIgnoreBaseDamage = true;
-	WeaponDamageEffect.EnvironmentalDamageAmount=default.CONCUSSION_WARHEAD_ENVIRONMENT_DMG;
-	WeaponDamageEffect.bApplyOnHit = false;
-    WeaponDamageEffect.bApplyOnMiss = false;
-    WeaponDamageEffect.bApplyToWorldOnHit = true;
-    WeaponDamageEffect.bApplyToWorldOnMiss = true;
-	WeaponDamageEffect.TargetConditions.AddItem(HasAbilityCondition);
-	Template.AddMultiTargetEffect(WeaponDamageEffect);
 
 	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2,default.CONCUSSION_WARHEADS_STUN_CHANCE,false);
 	StunnedEffect.bRemoveWhenSourceDies = false;
@@ -1552,7 +1544,7 @@ static function X2AbilityTemplate LWBlasterLauncherAbility()
 	local X2Effect_ApplyFireToWorld_Limited_Rocket		FireToWorldEffect;
 	local X2Condition_AbilityProperty			HasAbilityCondition;
 	local X2Effect_Stunned					StunnedEffect;
-	local X2Effect_PersistentStatChange		DisorientedEffect;
+	//local X2Effect_PersistentStatChange		DisorientedEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'LWBlasterLauncher');
 	Template.Hostility = eHostility_Offensive;
@@ -1590,9 +1582,11 @@ static function X2AbilityTemplate LWBlasterLauncherAbility()
 	WeaponDamageEffect.bExplosiveDamage = true;
 	Template.AddMultiTargetEffect(WeaponDamageEffect);
 
+/* 
 	DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect(, , false);
 	DisorientedEffect.ApplyChance = 25;
 	Template.AddMultiTargetEffect(DisorientedEffect);
+	*/
 
 	HasAbilityCondition = new class'X2Condition_AbilityProperty';
 	HasAbilityCondition.OwnerHasSoldierAbilities.AddItem('ImprovedMunitions_LW');
@@ -1610,16 +1604,6 @@ static function X2AbilityTemplate LWBlasterLauncherAbility()
 	// Concussion Warheads stuff
 	HasAbilityCondition = new class'X2Condition_AbilityProperty';
 	HasAbilityCondition.OwnerHasSoldierAbilities.AddItem('ConcussionWarheads_LW');
-
-	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
-	WeaponDamageEffect.bIgnoreBaseDamage = true;
-	WeaponDamageEffect.EnvironmentalDamageAmount=default.CONCUSSION_WARHEAD_ENVIRONMENT_DMG;
-	WeaponDamageEffect.bApplyOnHit = false;
-    WeaponDamageEffect.bApplyOnMiss = false;
-    WeaponDamageEffect.bApplyToWorldOnHit = true;
-    WeaponDamageEffect.bApplyToWorldOnMiss = true;
-	WeaponDamageEffect.TargetConditions.AddItem(HasAbilityCondition);
-	Template.AddMultiTargetEffect(WeaponDamageEffect);
 
 	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2,default.CONCUSSION_WARHEADS_STUN_CHANCE,false);
 	StunnedEffect.bRemoveWhenSourceDies = false;
@@ -1931,16 +1915,6 @@ static function X2AbilityTemplate CreateBunkerBusterAbility()
 	HasAbilityCondition = new class'X2Condition_AbilityProperty';
 	HasAbilityCondition.OwnerHasSoldierAbilities.AddItem('ConcussionWarheads_LW');
 
-	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
-	WeaponDamageEffect.bIgnoreBaseDamage = true;
-	WeaponDamageEffect.EnvironmentalDamageAmount=default.CONCUSSION_WARHEAD_ENVIRONMENT_DMG;
-	WeaponDamageEffect.bApplyOnHit = false;
-    WeaponDamageEffect.bApplyOnMiss = false;
-    WeaponDamageEffect.bApplyToWorldOnHit = true;
-    WeaponDamageEffect.bApplyToWorldOnMiss = true;
-	WeaponDamageEffect.TargetConditions.AddItem(HasAbilityCondition);
-	Template.AddMultiTargetEffect(WeaponDamageEffect);
-
 	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2,default.CONCUSSION_WARHEADS_STUN_CHANCE,false);
 	StunnedEffect.bRemoveWhenSourceDies = false;
 	StunnedEffect.TargetConditions.AddItem(HasAbilityCondition);
@@ -2029,16 +2003,6 @@ static function X2AbilityTemplate CreateShredderRocketAbility()
 		// Concussion Warheads stuff
 	HasAbilityCondition = new class'X2Condition_AbilityProperty';
 	HasAbilityCondition.OwnerHasSoldierAbilities.AddItem('ConcussionWarheads_LW');
-
-	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
-	WeaponDamageEffect.bIgnoreBaseDamage = true;
-	WeaponDamageEffect.EnvironmentalDamageAmount=default.CONCUSSION_WARHEAD_ENVIRONMENT_DMG;
-	WeaponDamageEffect.bApplyOnHit = false;
-    WeaponDamageEffect.bApplyOnMiss = false;
-    WeaponDamageEffect.bApplyToWorldOnHit = true;
-    WeaponDamageEffect.bApplyToWorldOnMiss = true;
-	WeaponDamageEffect.TargetConditions.AddItem(HasAbilityCondition);
-	Template.AddMultiTargetEffect(WeaponDamageEffect);
 
 	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2,default.CONCUSSION_WARHEADS_STUN_CHANCE,false);
 	StunnedEffect.bRemoveWhenSourceDies = false;
@@ -2130,16 +2094,6 @@ static function X2AbilityTemplate CreateEMPRocketAbility()
 		// Concussion Warheads stuff
 	HasAbilityCondition = new class'X2Condition_AbilityProperty';
 	HasAbilityCondition.OwnerHasSoldierAbilities.AddItem('ConcussionWarheads_LW');
-
-	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
-	WeaponDamageEffect.bIgnoreBaseDamage = true;
-	WeaponDamageEffect.EnvironmentalDamageAmount=default.CONCUSSION_WARHEAD_ENVIRONMENT_DMG;
-	WeaponDamageEffect.bApplyOnHit = false;
-    WeaponDamageEffect.bApplyOnMiss = false;
-    WeaponDamageEffect.bApplyToWorldOnHit = true;
-    WeaponDamageEffect.bApplyToWorldOnMiss = true;
-	WeaponDamageEffect.TargetConditions.AddItem(HasAbilityCondition);
-	Template.AddMultiTargetEffect(WeaponDamageEffect);
 
 	UnitCondition = new class'X2Condition_UnitProperty';
 	UnitCondition.ExcludeOrganic = false;

@@ -270,14 +270,14 @@ LocFriendlyName="Improved Warheads"
 LocFlyOverText="Improved Warheads"
 LocLongDescription="Your standard rockets deal +2 damage and can set the environment on fire."
 LocHelpText="Your standard rockets deal +2 damage and can set the environment on fire."
-LocPromotionPopupText="<Bullet/> Your standard rockets deal +2 damage and can set the environment on fire.<br/><Bullet/> The damage boost does not apply to special rocket abilities."
+LocPromotionPopupText="<Bullet/> Your standard rockets deal +2 damage and can set the environment on fire.<br/><Bullet/> The damage boost does not apply to special rocket abilities.<br/><Bullet/> Adds 3 environment damage."
 
 [ConcussionWarheads_LW X2AbilityTemplate]
 LocFriendlyName="Concussion Warheads"
 LocFlyOverText="Concussion Warheads"
 LocLongDescription="Your rockets have 20% chance to stun targets and deal additional environmental damage."
 LocHelpText="Your rockets have 20% chance to stun targets and deal additional environmental damage."
-LocPromotionPopupText="<Bullet/> Your rockets have 20% chance to stun targets.<br/><Bullet/> The environmental damage increase doubles that of the base rocket attack."
+LocPromotionPopupText="<Bullet/> Your rockets have 20% chance to stun targets.<br/><Bullet/> Increases environmental damage by +7."
 
 [ShredderRocket_LW X2AbilityTemplate]
 LocFriendlyName="Shredder Rocket"
