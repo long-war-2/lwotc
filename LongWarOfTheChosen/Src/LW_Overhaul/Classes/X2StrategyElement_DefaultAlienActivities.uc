@@ -1027,7 +1027,7 @@ static function X2DataTemplate CreateChosenReinforceTemplate()
 	Template.OnActivityUpdateFn = none;
 
 	Template.CanBeCompletedFn = none;  // can always be completed
-	Template.OnActivityCompletedFn = OnEmergencyOffworldReinforcementsComplete; // Add str to the region
+	Template.OnActivityCompletedFn = OnChosenReinforcementsComplete; // Add str to the region
 
 	return Template;
 }
@@ -1039,6 +1039,52 @@ static function int GetChosenReinforceAlertLevel(XComGameState_LWAlienActivity A
 }
 
 
+static function OnChosenReinforcementsComplete(bool bAlienSuccess, XComGameState_LWAlienActivity ActivityState, XComGameState NewGameState)
+{
+	local XComGameStateHistory History;
+	local XComGameState_WorldRegion RegionState, AdjacentRegion;
+	local XComGameState_WorldRegion_LWStrategyAI RegionalAI;
+	local XComGameState_WorldRegion_LWStrategyAI AdjacentRegionalAI;
+	local StateObjectReference                   LinkedRegionRef;
+	local int k, RandIndex;
+	local array<XComGameState_WorldRegion> RegionLinks;
+
+	History = `XCOMHISTORY;
+
+	RegionState = XComGameState_WorldRegion(NewGameState.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
+	if(RegionState == none)
+		RegionState = XComGameState_WorldRegion(History.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
+	RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState, NewGameState, true);
+	if(bAlienSuccess)
+	{
+		`LWTRACE("EmergencyOffworldReinforcementsComplete : Alien Success, adding AlertLevel to primary and some surrounding regions");
+		// reinforcements have arrived
+		RegionalAI.LocalAlertLevel += default.EMERGENCY_REINFORCEMENT_PRIMARY_REGION_ALERT_BONUS;
+
+		foreach RegionState.LinkedRegions(LinkedRegionRef)
+		{
+			AdjacentRegion = XComGameState_WorldRegion(NewGameState.GetGameStateForObjectID(LinkedRegionRef.ObjectID));
+			if (AdjacentRegion == none)
+				AdjacentRegion = XComGameState_WorldRegion(`XCOMHISTORY.GetGameStateForObjectID(LinkedRegionRef.ObjectID));
+			if (AdjacentRegion != none && !RegionIsLiberated(AdjacentRegion, NewGameState))
+			{
+				RegionLinks.AddItem(AdjacentRegion);
+			}
+		}
+
+		for (k = 0; k < default.ADJACENT_REGIONS_REINFORCED_BY_REGULAR_ALERT_UFO; k++)
+		{
+			RandIndex = `SYNC_RAND_STATIC(RegionLinks.Length);
+			AdjacentRegion = RegionLinks[RandIndex];
+			if (AdjacentRegion != none)
+			{
+				RegionLinks.Remove(RandIndex, 1);
+				AdjacentRegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(AdjacentRegion, NewGameState, true);
+				AdjacentRegionalAI.LocalAlertLevel += default.EMERGENCY_REINFORCEMENT_ADJACENT_REGION_ALERT_BONUS;
+			}
+		}
+	}
+}
 
 //#############################################################################################
 //------------------------------   COIN RESEARCH   ------------------------------------------------
