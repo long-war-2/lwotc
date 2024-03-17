@@ -7590,3 +7590,9 @@ LocFriendlyName="钩爪专家"
 LocLongDescription="正义、怒火、鞭笞获得额外+15命中。"
 LocHelpText="正义、怒火、鞭笞获得额外+15命中。"
 LocFlyOverText="钩爪专家"
+
+;Marauder
+[SkirmisherStrike X2AbilityTemplate]
+LocLongDescription="第一个行动点使用主武器进行标准射击将不再结束回合。"
+LocHelpText="第一个行动点使用主武器进行标准射击将不再结束回合。"
+LocPromotionPopupText=""

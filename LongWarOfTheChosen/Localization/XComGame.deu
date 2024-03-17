@@ -6874,3 +6874,8 @@ LocLongDescription="Setze eine Energieexplosion frei, die allen Einheiten in der
 LocHelpText="Trifft alle Einheiten in der Nähe mit einer Explosion. Aufeinanderfolgende Novas fügen auch dem SPARK Schaden zu."
 LocPromotionPopupText="<Bullet/> Nova kostet keine Aktionspunkte und hat keine Abklingzeit.<br/><Bullet/> Der erste Nova-Angriff in jedem Einsatz fügt dem SPARK noch keinen Schaden zu.<br/><Bullet/> Alle weiteren Nova-Angriffe fügen dem SPARK steigenden Schaden zu (steigt um <Ability:Nova_Damage/> pro Nova-Angriff).<br/>"
 
+;Marauder
+[SkirmisherStrike X2AbilityTemplate]
+LocLongDescription="Standardschüsse Schüsse mit deiner Primärwaffe beenden nicht automatisch die Runde."
+LocHelpText="Standardschüsse Schüsse mit deiner Primärwaffe beenden nicht automatisch die Runde."
+LocPromotionPopupText=""
