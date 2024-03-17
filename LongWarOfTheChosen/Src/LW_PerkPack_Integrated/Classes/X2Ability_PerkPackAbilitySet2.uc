@@ -1928,7 +1928,7 @@ static function X2AbilityTemplate Obliterator()
 	Template.AddTargetEffect(DamageEffect);
 
 	HitModEffect = new class'X2Effect_ToHitModifier';
-	HitModEffect.AddEffectHitModifier(eHit_Success, 20, Template.LocFriendlyName, , true, false, true, true);
+	HitModEffect.AddEffectHitModifier(eHit_Success, 10, Template.LocFriendlyName, , true, false, true, true);
 	HitModEffect.BuildPersistentEffect(1, true, false, false);
 	HitModEffect.EffectName = 'ObliteratorAim_LW';
 	Template.AddTargetEffect(HitModEffect);

@@ -1182,9 +1182,9 @@ LocPromotionPopupText="<Bullet/> You can trigger the Kinetic Strike ability by p
 
 [Obliterator_LW X2AbilityTemplate]
 LocFriendlyName="Assault Servos"
-LocLongDescription="Grants +2 damage and +20 aim to all Strike attacks. Also grants the Wrecking Ball ability."
-LocHelpText="Grants +2 damage and +20 aim to all Kinetic Strike attacks."
-LocPromotionPopupText="<Bullet/> Learning the Assault Servos ability will grant +2 damage and an extra +20 aim to all Kinetic Strike attacks.<br/><Bullet/> With the damage boost, Kinetic Strike's damage will be 8/10/12 depending on the equipped SPARK chassis.<br/><Bullet/> Half-damage Strike attacks gain only a +1 damage boost.<br/><Bullet/> Wrecking Ball is included with this ability. It allows the SPARK to destroy any environmental objects it passes by when using Overdrive.<br/><Bullet/> Combine a Wrecking Ball Overdrive with Kinetic Strike to not only strip a target's cover, but also deal large amounts of damage and have an action point afterwards.<br/>"
+LocLongDescription="Grants +2 damage and +10 aim to all Strike attacks. Also grants the Wrecking Ball ability."
+LocHelpText="Grants +2 damage and +10 aim to all Kinetic Strike attacks."
+LocPromotionPopupText="<Bullet/> Learning the Assault Servos ability will grant +2 damage and an extra +10 aim to all Kinetic Strike attacks."
 
 [RapidRepair_LW X2AbilityTemplate]
 LocFriendlyName="Rapid Repair"
