@@ -7697,3 +7697,9 @@ LocPromotionPopupText="<Bullet/> Combat Protocol has a 3 turn cooldown.<br/><Bul
 
 [ResCard_LiveFireTraining X2StrategyCardTemplate]
 SummaryText="Any recruits training in the GTS will achieve the rank of Corporal."
+
+;Marauder
+[SkirmisherStrike X2AbilityTemplate]
+LocLongDescription="Standard shots with your primary weapon are not turn-ending."
+LocHelpText="Standard shots with your primary weapon are not turn-ending."
+LocPromotionPopupText=""

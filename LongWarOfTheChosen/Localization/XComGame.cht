@@ -7044,3 +7044,9 @@ LocFriendlyName="新星"
 LocLongDescription="釋放一波能量，傷害附近的所有單位。此攻擊不消耗行動點數且不需要冷卻時間，但持續的新星會對SPARK造成傷害。"
 LocHelpText="衝擊附近所有單位。持續的新星將會對SPARK造成傷害。"
 LocPromotionPopupText="<Bullet/>新星無需行動點和冷卻時間。<br/><Bullet/>每個任務首次新星攻擊會對SPARK造成0點傷害。<br/><Bullet/>SPARK首次新星攻擊後的每次新星攻擊都會對SPARK造成一個疊加的<Ability:Nova_Damage/>點傷害。<br/>"
+
+;Marauder
+[SkirmisherStrike X2AbilityTemplate]
+LocLongDescription="第一個行動點使用主武器進行標準射擊將不再結束回合。"
+LocHelpText="第一個行動點使用主武器進行標準射擊將不再結束回合。"
+LocPromotionPopupText=""
