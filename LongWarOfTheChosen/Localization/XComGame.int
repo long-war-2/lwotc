@@ -1308,10 +1308,10 @@ TacticalText="<Bullet/> Incendiary grenades will damage all units in the blast r
 TacticalText="<Bullet/> Incendiary bombs will damage all units in the blast radius, and may apply the \"burning\" effect to any units vulnerable to flame.\n<Bullet/> Incendiary bombs do more blast damage than all other bombs.\n<Bullet/> Some enemies, particularly metallic ones, are immune to fire and will not suffer the \"burning\" effect.<br><Bullet/> Damage falls off from center of area of effect."
 
 [SparkBit_MG X2GremlinTemplate]
-BriefSummary="The upgraded plated model improves the damage and healing capabilities of the BIT."
+BriefSummary="The plated model improves the damage and healing capabilities of the BIT and grants bonuses to dodge and hack."
 
 [SparkBit_BM X2GremlinTemplate]
-BriefSummary="The upgraded powered model greatly improves the damage and healing capabilities of the BIT."
+BriefSummary="The powered model improves the damage and healing capabilities of the BIT and grants bonuses to dodge and hack."
 
 [XComGame.UIArmory_WeaponUpgradeItem]
 [UIArmory_WeaponUpgradeItem]
