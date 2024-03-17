@@ -202,7 +202,7 @@ LocFlyOverText="Light 'Em Up"
 ; LWOTC Needs Translation
 LocLongDescription="Standard shots with your primary weapon are not turn-ending."
 LocHelpText="Standard shots with your primary weapon are not turn-ending."
-LocPromotionPopupText="<Bullet/> Standard shots with your primary weapon are not turn-ending.<br/>"
+LocPromotionPopupText=""
 ; End Translation
 
 [CloseEncounters X2AbilityTemplate]
