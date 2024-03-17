@@ -263,7 +263,7 @@ LocFriendlyName="Fire In The Hole"
 LocFlyOverText="Fire In The Hole"
 LocLongDescription="Your rockets are more accurate, and the standard gauntlet rocket deals +2 damage."
 LocHelpText="Your rockets are more accurate. and the standard gauntlet rocket deals +2 damage."
-LocPromotionPopupText="<Bullet/> Your rockets are more likely to hit their intended point of impact, or at least close to it.<br/><Bullet/> The maximum it can miss by is reduced by one tile."
+LocPromotionPopupText="<Bullet/> Your rockets are more likely to hit their intended point of impact, or at least close to it.<br/><Bullet/> The maximum it can miss by is reduced by two tiles."
 
 [ImprovedMunitions_LW X2AbilityTemplate]
 LocFriendlyName="Improved Warheads"

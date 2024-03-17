@@ -1955,7 +1955,7 @@ static function X2AbilityTemplate CreateShredderRocketAbility()
 
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
-	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityJavelinRockets";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityShredderRockets";
 	Template.bCrossClassEligible = false;
 	Template.Hostility = eHostility_Offensive;
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_MAJOR_PRIORITY;
