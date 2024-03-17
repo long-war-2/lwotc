@@ -82,17 +82,17 @@ LocPromotionPopupText="<Bullet/> You do <Ability:LETHAL_DAMAGE_LW/> additional p
 [HitandSlither X2AbilityTemplate]
 LocFriendlyName="Hit and Slither"
 LocFlyOverText="Hit and Slither"
-LocLongDescription="Once per turn, gain an additional move action after taking a standard shot at a flanked or exposed target with your primary weapon. "
-LocHelpText="Once per turn, gain an additional move action after taking a standard shot at a flanked or exposed target with your primary weapon."
-LocPromotionPopupText="<Bullet/> Once per turn, gain an additional move action after taking a standard shot at a flanked or exposed target with your primary weapon.<br/>
+LocLongDescription="Once per turn, gain an additional move action after taking a standard shot at a flanked enemy with your primary weapon. "
+LocHelpText="Once per turn, gain an additional move action after taking a standard shot at a flanked enemy with your primary weapon."
+LocPromotionPopupText="<Bullet/> Once per turn, gain an additional move action after taking a standard shot at a flanked enemy with your primary weapon.<br/>
 
 [HitandRun X2AbilityTemplate]
 LocFriendlyName="Hit and Run"
 LocFlyOverText="Hit and Run"
-; LWOTC Needs Translation 
-LocLongDescription="Once per turn, gain an additional action after taking a standard shot at a flanked or exposed target with your primary weapon. Cannot trigger on the same turn as Close Encounters. "
-; End Translation 
-LocHelpText="Once per turn, gain an additional action after taking a standard shot at a flanked or exposed target with your primary weapon."
+; LWOTC Needs Translation
+LocLongDescription="Once per turn, gain an additional action after taking a standard shot at a flanked enemy with your primary weapon. Cannot trigger on the same turn as Close Encounters. "
+; End Translation
+LocHelpText="Once per turn, gain an additional action after taking a standard shot at a flanked enemy with your primary weapon."
 LocPromotionPopupText="<Bullet/> Cannot be used on the same turn as Run and Gun.<br/><Bullet/> Bonus full actions from Serial and Death from Above will be awarded first."
 
 [CloseCombatSpecialist X2AbilityTemplate]
