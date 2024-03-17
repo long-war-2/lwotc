@@ -481,11 +481,11 @@ LocPromotionPopupText="<Bullet/> Knife attacks use one action and do not end you
 
 [Combatives X2AbilityTemplate]
 LocFriendlyName="Combatives"
-LocLongDescription="You may parry melee attacks and counterattack with your melee weapon. Also gain +<ABILITY:COMBATIVES_DODGE_LW/> dodge."
-LocHelpText="You may parry melee attacks and counterattack with your melee weapon."
+LocLongDescription="You may parry melee attacks and counterattack with your <Ability:BOUND_WEAPON_NAME>. Also gain +<ABILITY:COMBATIVES_DODGE_LW/> dodge."
+LocHelpText="Automatically parry and counter grazing and missing melee attacks on enemy turns."
 LocFlyOverText="Combatives"
 ; LWOTC needs translation
-LocPromotionPopupText="<Bullet/> You will parry any grazed melee attack against you and counterattack with your melee weapon.<br/><Bullet/> Combatives grant +<Ability:COUNTERATTACK_DODGE_AMOUNT_LW/> dodge against first melee attack against you in a turn.<br/><Bullet/> Soldier also gains <ABILITY:COMBATIVES_DODGE_LW/> dodge."
+LocPromotionPopupText="<Bullet/> You will automatically parry any grazed or missed melee attack against you and counterattack with your <Ability:BOUND_WEAPON_NAME>.<br/><Bullet/> Combatives grants you +<Ability:COUNTERATTACK_DODGE_AMOUNT_LW/> dodge against the first melee attack against you each enemy turn.<br/><Bullet/> Combatives passively grants you +<ABILITY:COMBATIVES_DODGE_LW/> dodge.<br/><Bullet/> You can only counterattack on enemy turns.<br/><Bullet/> You can only counterattack single target melee attacks."
 ; End Translation
 
 [Flush X2AbilityTemplate]
