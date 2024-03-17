@@ -615,6 +615,7 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 			return true;
 		case 'ADVANCED_LOGIC_HACK_BONUS':
 			Outstring = string(class'X2Ability_PerkPackAbilitySet2'.default.ADVANCED_LOGIC_HACK_BONUS);
+			return true;
 		case 'SACRIFICE_COOLDOWN':
 			OutString = string(class'X2Ability_SparkAbilitySet'.default.SACRIFICE_COOLDOWN);
 			return true;
