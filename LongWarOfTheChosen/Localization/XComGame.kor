@@ -119,11 +119,11 @@ LocPromotionPopupText="<Bullet/> 화염방사기는 근거리 무기로, 원뿔�
 
 [LWRocketLauncher X2AbilityTemplate]
 LocFriendlyName="로켓 발사기"
-LocHelpText="목표 지점에 로켓을 발사합니다."
+LocHelpText="목표 지점에 로켓을 발사합니다.<Ability:ROCKETSCATTER/>"
 
 [LWBlasterLauncher X2AbilityTemplate]
 LocFriendlyName="블래스터 폭탄"
-LocHelpText="목표 지점에 유도 블래스터 폭탄을 발사합니다."
+LocHelpText="목표 지점에 유도 블래스터 폭탄을 발사합니다.<Ability:ROCKETSCATTER/>"
 
 [NapalmX X2AbilityTemplate]
 LocFriendlyName="네이팜 X"

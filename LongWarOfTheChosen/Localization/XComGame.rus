@@ -134,11 +134,11 @@ LocPromotionPopupText="<Bullet/> Огнемет - оружие малой дал
 
 [LWRocketLauncher X2AbilityTemplate]
 LocFriendlyName="Ракетомет"
-LocHelpText="Выстрел ракетой в указанную зону."
+LocHelpText="Выстрел ракетой в указанную зону.<Ability:ROCKETSCATTER/>"
 
 [LWBlasterLauncher X2AbilityTemplate]
 LocFriendlyName="Бластерная бомба"
-LocHelpText="Выстрел бластерной бомбой по указанной зоне."
+LocHelpText="Выстрел бластерной бомбой по указанной зоне.<Ability:ROCKETSCATTER/>"
 
 [NapalmX X2AbilityTemplate]
 LocFriendlyName="Напалм-Х"

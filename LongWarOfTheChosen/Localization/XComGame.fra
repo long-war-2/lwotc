@@ -161,11 +161,11 @@ LocPromotionPopupText="<Bullet/> Le lance-flammes est une arme à courte portée
 
 [LWRocketLauncher X2AbilityTemplate]
 LocFriendlyName="Lance-roquettes"
-LocHelpText="Tir de roquette sur la zone ciblée."
+LocHelpText="Tir de roquette sur la zone ciblée.<Ability:ROCKETSCATTER/>"
 
 [LWBlasterLauncher X2AbilityTemplate]
 LocFriendlyName="Missile nucléaire"
-LocHelpText="Tir de missile nucléaire sur la zone ciblée."
+LocHelpText="Tir de missile nucléaire sur la zone ciblée.<Ability:ROCKETSCATTER/>"
 
 [NapalmX X2AbilityTemplate]
 LocFriendlyName="Napalm-X"

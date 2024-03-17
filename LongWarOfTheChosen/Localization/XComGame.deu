@@ -151,11 +151,11 @@ LocPromotionPopupText="<Bullet/> Der Flammenwerfer ist eine Kurzstreckenwaffe, d
 
 [LWRocketLauncher X2AbilityTemplate]
 LocFriendlyName="Raketenwerfer"
-LocHelpText="Feuere eine Rakete auf den Zielbereich."
+LocHelpText="Feuere eine Rakete auf den Zielbereich.<Ability:ROCKETSCATTER/>"
 
 [LWBlasterLauncher X2AbilityTemplate]
 LocFriendlyName="Blasterbombe"
-LocHelpText="Feuert eine Lenk-Blasterbombe auf ein Zielgebiet."
+LocHelpText="Feuert eine Lenk-Blasterbombe auf ein Zielgebiet.<Ability:ROCKETSCATTER/>"
 
 [NapalmX X2AbilityTemplate]
 LocFriendlyName="Napalm-X"

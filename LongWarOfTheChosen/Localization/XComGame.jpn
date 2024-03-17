@@ -119,11 +119,11 @@ LocPromotionPopupText="<Bullet/>火炎放射器は短射程の武器であり、
 
 [LWRocketLauncher X2AbilityTemplate]
 LocFriendlyName="ロケットランチャー"
-LocHelpText="ターゲットエリアにロケット弾を発射する。"
+LocHelpText="ターゲットエリアにロケット弾を発射する。<Ability:ROCKETSCATTER/>"
 
 [LWBlasterLauncher X2AbilityTemplate]
 LocFriendlyName="ブラスターボム"
-LocHelpText="ターゲットエリアに誘導式のブラスターボムを発射する。"
+LocHelpText="ターゲットエリアに誘導式のブラスターボムを発射する。<Ability:ROCKETSCATTER/>"
 
 [NapalmX X2AbilityTemplate]
 LocFriendlyName="ナパームX"

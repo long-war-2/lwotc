@@ -163,11 +163,11 @@ LocPromotionPopupText="<Bullet/> The flamethrower is a short-range weapon that c
 
 [LWRocketLauncher X2AbilityTemplate]
 LocFriendlyName="Rocket Launcher"
-LocHelpText="Fire a rocket at target area."
+LocHelpText="Fire a rocket at target area.<Ability:ROCKETSCATTER/>"
 
 [LWBlasterLauncher X2AbilityTemplate]
 LocFriendlyName="Blaster Bomb"
-LocHelpText="Fire a guided Blaster Bomb at a target area."
+LocHelpText="Fire a guided Blaster Bomb at a target area.<Ability:ROCKETSCATTER/>"
 
 [NapalmX X2AbilityTemplate]
 LocFriendlyName="Napalm-X"
@@ -261,9 +261,9 @@ LocPromotionPopupText="<Bullet/> You equip one additional rocket.<br/>"
 [FireInTheHole X2AbilityTemplate]
 LocFriendlyName="Fire In The Hole"
 LocFlyOverText="Fire In The Hole"
-LocLongDescription="Your rockets are more accurate."
-LocHelpText="Your rockets are more accurate."
-LocPromotionPopupText="<Bullet/> Your rockets are more likely to hit their intended point of impact, or at least close to it.<br/><Bullet/> The maximum it can miss by is reduced by two tiles."
+LocLongDescription="Your rockets are more accurate, and the standard gauntlet rocket deals +2 damage."
+LocHelpText="Your rockets are more accurate. and the standard gauntlet rocket deals +2 damage."
+LocPromotionPopupText="<Bullet/> Your rockets are more likely to hit their intended point of impact, or at least close to it.<br/><Bullet/> The maximum it can miss by is reduced by one tile."
 
 [ImprovedMunitions_LW X2AbilityTemplate]
 LocFriendlyName="Improved Warheads"
@@ -283,14 +283,14 @@ LocPromotionPopupText="<Bullet/> Your rockets have 20% chance to stun targets.<b
 LocFriendlyName="Shredder Rocket"
 LocFlyOverText="Shredder Rocket"
 LocLongDescription="Fire a special rocket which shreds and ruptures targets in a small area."
-LocHelpText="Fire a special rocket which shreds and ruptures targets in a small area."
+LocHelpText="Fire a special rocket which shreds and ruptures targets in a small area.<Ability:ROCKETSCATTER/>"
 LocPromotionPopupText="<Bullet/> This rocket shreds 3 points of armor and applies 1 point of Rupture.<br/><Bullet/> The rocket has the same area of effect as a Frag Grenade."
 
 [EMPRocket_LW X2AbilityTemplate]
 LocFriendlyName="EMP Rocket"
 LocFlyOverText="EMP Rocket"
 LocLongDescription="Fire a special rocket which deals a small amount of damage but shuts down all robotic units for a turn."
-LocHelpText="Fire a special rocket which deals a small amount of damage but shuts down all robotic units for a turn."
+LocHelpText="Fire a special rocket which deals a small amount of damage but shuts down all robotic units for a turn.<Ability:ROCKETSCATTER/>"
 LocPromotionPopupText="<Bullet/> This rocket deals 1-2 damage and stuns robots for 2 AP.<br/><Bullet/> The rocket has a 5 tile AOE diameter."
 
 

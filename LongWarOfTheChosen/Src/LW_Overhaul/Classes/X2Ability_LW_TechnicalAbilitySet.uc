@@ -112,7 +112,7 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(LWRocketLauncherAbility());
 	Templates.AddItem(LWBlasterLauncherAbility());
-	Templates.AddItem(PurePassive('FireInTheHole', "img:///UILibrary_LWOTC.LW_AbilityFireInTheHole"));
+	Templates.AddItem(FireInTheHole());
 	Templates.AddItem(PurePassive('TandemWarheads', "img:///UILibrary_LWOTC.LW_AbilityTandemWarheads"));
 	Templates.AddItem(PurePassive('ConcussionWarheads_LW', "img:///UILibrary_LWOTC.LW_AbilityTandemWarheads"));
 	Templates.AddItem(AddShockAndAwe());
@@ -468,6 +468,8 @@ static function X2AbilityTemplate CreateRoustAbility()
 	FallBackEffect = new class'X2Effect_FallBack';
 	FallBackEffect.BehaviorTree = 'FlushRoot';
 	Template.AddMultiTargetEffect(FallBackEffect);
+
+	Template.AddMultiTargetEffect(CreateNapalmXPanicEffect());
 
 	Template.bCheckCollision = true;
 	Template.bAffectNeighboringTiles = true;
@@ -1510,7 +1512,7 @@ static function X2AbilityTemplate LWRocketLauncherAbility()
 	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
 	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
 
-	Template.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher_NoScatter';  // this version doesn't includes scatter
+	Template.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher';  
 
 	Template.ActivationSpeech = 'RocketLauncher';
 	Template.CinescriptCameraType = "Soldier_HeavyWeapons";
@@ -1868,7 +1870,7 @@ static function X2AbilityTemplate CreateBunkerBusterAbility()
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_MAJOR_PRIORITY;
 
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
-	Template.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher_NoScatter';
+	Template.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher';
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	Template.AddShooterEffectExclusions();
 
@@ -1959,7 +1961,7 @@ static function X2AbilityTemplate CreateShredderRocketAbility()
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_MAJOR_PRIORITY;
 
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
-	Template.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher_NoScatter';
+	Template.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher';
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	Template.AddShooterEffectExclusions();
 
@@ -2050,7 +2052,7 @@ static function X2AbilityTemplate CreateEMPRocketAbility()
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_MAJOR_PRIORITY;
 
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
-	Template.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher_NoScatter';
+	Template.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher';
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	Template.AddShooterEffectExclusions();
 
@@ -2158,6 +2160,41 @@ static function X2AbilityTemplate ImprovedMunitions()
 }
 
 
+static function X2AbilityTemplate FireInTheHole()
+{
+	Local X2AbilityTemplate Template;
+	local X2Effect_BonusRocketDamage_LW DmgEffect;
+
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'FireInTheHole');
+
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityFireInTheHole";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bIsPassive = true;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	//  This is a dummy effect so that an icon shows up in the UI.
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	// Note: no visualization on purpose!
+
+	Template.bCrossClassEligible = true;
+
+	DmgEffect = new class'X2Effect_BonusRocketDamage_LW';
+	DmgEffect.BuildPersistentEffect(1, true, false, true);
+	DmgEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	DmgEffect.BonusDmg = 2;
+	Template.AddTargetEffect(DmgEffect);
+
+	return Template;
+
+}
+
+
 //this ability allows the next use (this turn) of smoke grenade or flashbang to be free
 static function X2AbilityTemplate AddQuickburn()
 {
@@ -2230,8 +2267,8 @@ static function vector GetScatterAmount(XComGameState_Unit Unit, vector Scattere
 {
 	local vector ScatterVector, ReturnPosition;
 	local float EffectiveOffense;
-	local int Idx, NumAimRolls, TileDistance, TileScatter;
-	local float AngleRadians;
+	local int Idx, NumAimRolls, TileDistance;
+	local float AngleRadians, TileScatter;
 	local XComWorldData WorldData;
 
 	`LWTRACE("GetScatterAmount: Starting Calculation");
@@ -2246,10 +2283,10 @@ static function vector GetScatterAmount(XComGameState_Unit Unit, vector Scattere
 
 	`LWTRACE("GetScatterAmount: (Distance) Offense=" $ EffectiveOffense $ ", Rolls=" $ NumAimRolls $ ", Tiles=" $ TileDistance);
 
-	for(Idx=0 ; Idx < NumAimRolls  ; Idx++)
+	for(Idx=0 ; Idx < NumAimRolls*10  ; Idx++)
 	{
 		if(`SYNC_RAND_STATIC(100) >= EffectiveOffense)
-			TileScatter += 1;
+			TileScatter += 0.1;
 	}
 
 	`LWTRACE("GetScatterAmount: (Select) TileScatter=" $ TileScatter);

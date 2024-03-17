@@ -119,7 +119,7 @@ LocPromotionPopupText="<Bullet/> Il lanciafiamme è un'arma a breve gittata che 
 
 [LWRocketLauncher X2AbilityTemplate]
 LocFriendlyName="Lanciarazzi"
-LocHelpText="Spara un razzo nell'area bersaglio."
+LocHelpText="Spara un razzo nell'area bersaglio.<Ability:ROCKETSCATTER/>"
 
 [LWBlasterLauncher X2AbilityTemplate]
 LocFriendlyName="Bomba esplosiva"

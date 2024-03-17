@@ -149,11 +149,11 @@ LocPromotionPopupText="<Bullet/> Miotacz ognia to broń o krótkim zasięgu, kt�
 
 [LWRocketLauncher X2AbilityTemplate]
 LocFriendlyName="Wyrzutnia rakiet"
-LocHelpText="Wystrzelenie rakiety na wskazany obszar."
+LocHelpText="Wystrzelenie rakiety na wskazany obszar.<Ability:ROCKETSCATTER/>"
 
 [LWBlasterLauncher X2AbilityTemplate]
 LocFriendlyName="Bomba blasterowa"
-LocHelpText="Wystrzelenie kierowanej bomby blasterowej we wskazane miejsce."
+LocHelpText="Wystrzelenie kierowanej bomby blasterowej we wskazane miejsce.<Ability:ROCKETSCATTER/>"
 
 [NapalmX X2AbilityTemplate]
 LocFriendlyName="Napalm-X"

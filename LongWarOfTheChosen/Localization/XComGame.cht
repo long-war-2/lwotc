@@ -155,11 +155,11 @@ LocPromotionPopupText="<Bullet/>火焰噴射器是一種可以對一個錐形區
 
 [LWRocketLauncher X2AbilityTemplate]
 LocFriendlyName="火箭發射器"
-LocHelpText="向目標區域發射一枚火箭。"
+LocHelpText="向目標區域發射一枚火箭。<Ability:ROCKETSCATTER/>"
 
 [LWBlasterLauncher X2AbilityTemplate]
 LocFriendlyName="爆裂飛彈"
-LocHelpText="朝目標區域發射一枚制導的爆裂飛彈。"
+LocHelpText="朝目標區域發射一枚制導的爆裂飛彈。<Ability:ROCKETSCATTER/>"
 
 [NapalmX X2AbilityTemplate]
 LocFriendlyName="汽油彈-X"
