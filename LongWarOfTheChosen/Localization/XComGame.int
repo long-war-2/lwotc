@@ -5799,7 +5799,7 @@ Description="ADVENT have stepped up their quick response training, so now reinfo
 
 [DarkEventReturnFireSitRep X2SitRepTemplate]
 FriendlyName="Return Fire"
-Description="Missed shots on ADVENT Officers and Priests will trigger return fire."
+Description="Missed attacks on ADVENT Officers and Priests will trigger return fire."
 
 [DarkEventSealedArmorSitRep X2SitRepTemplate]
 FriendlyName="Sealed Armor"
