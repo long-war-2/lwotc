@@ -2046,7 +2046,7 @@ static function X2AbilityTemplate CreateEMPRocketAbility()
 
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
-	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityBluescreenBombs";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityEMPRockets";
 	Template.bCrossClassEligible = false;
 	Template.Hostility = eHostility_Offensive;
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_MAJOR_PRIORITY;
