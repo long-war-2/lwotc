@@ -1011,7 +1011,7 @@ static function X2DataTemplate CreateChosenReinforceTemplate()
 	Template.DetectionCalc = DetectionCalc;
 
 	// required delegates
-	Template.OnMissionSuccessFn = TypicalEndActivityOnMissionSuccess;
+	Template.OnMissionSuccessFn = NoVigEndActivityOnMissionSuccess;
 	Template.OnMissionFailureFn = TypicalAdvanceActivityOnMissionFailure;
 
 	//optional delegates
@@ -3311,7 +3311,7 @@ static function X2DataTemplate CreateCovertOpsTroopManeuversTemplate()
 	AlertVigilance.MinAlert = 9999; // never created normally, only via Covert Op
 	Template.ActivityCreation.Conditions.AddItem(AlertVigilance);
 
-	Template.OnMissionSuccessFn = TypicalEndActivityOnMissionSuccess;
+	Template.OnMissionSuccessFn = NoVigEndActivityOnMissionSuccess;
 	Template.OnMissionFailureFn = TypicalAdvanceActivityOnMissionFailure;
 
 	Template.OnActivityStartedFn = none;
@@ -4333,6 +4333,44 @@ static function TypicalEndActivityOnMissionSuccess(XComGameState_LWAlienActivity
 
 }
 
+static function NoVigEndActivityOnMissionSuccess(XComGameState_LWAlienActivity ActivityState, XComGameState_MissionSite MissionState, XComGameState NewGameState)
+{
+	local X2LWAlienActivityTemplate ActivityTemplate;
+	local XComGameState_WorldRegion RegionState;
+	local array<int> ExcludeIndices;
+
+	if(ActivityState == none)
+		`REDSCREEN("AlienActivities : TypicalEndActivityOnMissionSuccess -- no ActivityState");
+
+	ActivityTemplate = ActivityState.GetMyTemplate();
+	NewGameState.AddStateObject(ActivityState);
+
+	RegionState = XComGameState_WorldRegion(NewGameState.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
+	if(RegionState == none)
+		RegionState = XComGameState_WorldRegion(`XCOMHISTORY.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
+
+	if (MissionState != none)
+	{
+		ExcludeIndices = GetRewardExcludeIndices(ActivityState, MissionState, NewGameState);
+
+		GiveRewards(NewGameState, MissionState, ExcludeIndices);
+		RecordResistanceActivityNoVig(true, ActivityState, MissionState, NewGameState);
+
+		IncreaseChosenKnowledge(RegionState, NewGameState);
+
+		MissionState.RemoveEntity(NewGameState);
+	}
+
+	if(ActivityTemplate.OnActivityCompletedFn != none)
+		ActivityTemplate.OnActivityCompletedFn(false /* not alien success*/, ActivityState, NewGameState);
+
+	NewGameState.RemoveStateObject(ActivityState.ObjectID);
+
+	//record success
+
+}
+
+
 static function TypicalEndActivityOnMissionFailure(XComGameState_LWAlienActivity ActivityState, XComGameState_MissionSite MissionState, XComGameState NewGameState)
 {
 	local X2LWAlienActivityTemplate ActivityTemplate;
@@ -4547,6 +4585,7 @@ static function RecordResistanceActivity(bool Success, XComGameState_LWAlienActi
 		case "Invasion_LW":
 			ActivityTemplateName='ResAct_RegionsLiberated';
 			break;
+		case "ChosenSupplyLineRaid_LW":
 		case "SupplyLineRaid_LW":
 			ActivityTemplateName='ResAct_SupplyRaidsCompleted';
 			break;
@@ -4614,11 +4653,167 @@ static function RecordResistanceActivity(bool Success, XComGameState_LWAlienActi
 		case "Invasion_LW":
 			ActivityTemplateName='ResAct_RegionsLost';
 			break;
+		case "ChosenSupplyLineRaid_LW":
 		case "SupplyLineRaid_LW":
 			if (!ActivityState.bFailedFromMissionExpiration)
 			{
 				ActivityTemplateName='ResAct_SupplyRaidsFailed';
 			}
+			break;
+		case "Rendezvous_LW":
+			if (!ActivityState.bFailedFromMissionExpiration)
+			{
+				ActivityTemplateName='ResAct_FacelessUncovered';
+			}
+			break;
+		case "RecruitRaid_LW":
+		case "IntelRaid_LW":
+		case "SupplyConvoy_LW":
+			ActivityTemplateName='ResAct_RaidsLost';
+			break;
+		default:
+			break;
+		}
+	}
+
+	/// DID NOT USE: ResAct_CouncilMissionsCompleted
+
+	//only record for missions that were ever visible
+	if (MissionState.Available)
+	{
+		class'XComGameState_HeadquartersResistance'.static.RecordResistanceActivity(NewGameState, ActivityTemplateName);
+		if (DoomToRemove > 0)
+		{
+			class'XComGameState_HeadquartersResistance'.static.RecordResistanceActivity(NewGameState, 'ResAct_AvatarProgressReduced', DoomToRemove);
+		}
+	}
+}
+
+static function RecordResistanceActivityNoVig(bool Success, XComGameState_LWAlienActivity ActivityState, XComGameState_MissionSite MissionState, XComGameState NewGameState)
+{
+	local XComGameStateHistory History;
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_WorldRegion_LWStrategyAI RegionalAI;
+	local name ActivityTemplateName;
+	local int DoomToRemove;
+	local string MissionFamily;
+
+	History = `XCOMHISTORY;
+
+	RegionState = XComGameState_WorldRegion(NewGameState.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
+	if(RegionState == none)
+		RegionState = XComGameState_WorldRegion(History.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
+	RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState, NewGameState, true);
+
+
+	// Golden Path missions are handled by their MissionSource templates, which are still in-use
+
+	MissionFamily = MissionState.GeneratedMission.Mission.MissionFamily;
+	if (Success)
+	{
+		switch (MissionFamily) {
+		case "Hack_LW":
+		case "Recover_LW":
+		case "Rescue_LW":
+		case "Extract_LW":
+		case "DestroyObject_LW":
+		case "Jailbreak_LW":
+		case "TroopManeuvers_LW":
+		case "CovertOpsTroopManeuvers_LW":
+		case "ProtectDevice_LW":
+		case "SabotageCC":
+		case "SabotageCC_LW":
+		case "AssaultNetworkTower_LW":
+		case "SmashnGrab_LW":
+		case "SupplyExtraction_LW":
+		case "BigSupplyExtraction_LW":
+			ActivityTemplateName='ResAct_GuerrillaOpsCompleted';
+			break;
+		case "SecureUFO_LW":
+			ActivityTemplateName='ResAct_LandedUFOsCompleted';
+			break;
+		case "Terror_LW":
+        case "Defend_LW":
+			ActivityTemplateName='ResAct_RetaliationsStopped';
+			break;
+		case "Invasion_LW":
+			ActivityTemplateName='ResAct_RegionsLiberated';
+			break;
+		case "ChosenSupplyLineRaid_LW":
+		case "SupplyLineRaid_LW":
+			ActivityTemplateName='ResAct_SupplyRaidsCompleted';
+			break;
+		case "Sabotage_LW":
+			ActivityTemplateName='ResAct_AlienFacilitiesDestroyed';
+			DoomToRemove = MissionState.Doom;
+			break;
+        case "Rendezvous_LW":
+			ActivityTemplateName='ResAct_FacelessUncovered';
+            break;
+		case "AssaultAlienBase_LW":
+			ActivityTemplateName='ResAct_RegionsLiberated';
+			if (RegionalAI.NumTimesLiberated <= 0)
+			{
+				`LWTRACE ("Removing one doom for capturing a region!");
+				DoomToRemove = default.ALIEN_BASE_DOOM_REMOVAL;
+			}
+			break;
+		case "RecruitRaid_LW":
+		case "IntelRaid_LW":
+		case "SupplyConvoy_LW":
+			ActivityTemplateName='ResAct_RaidsDefeated';
+			break;
+		default:
+			ActivityTemplateName='ResAct_GuerrillaOpsCompleted';
+			break;
+		}
+	}
+	else
+	{
+		switch (MissionFamily) {
+		case "Hack_LW":
+		case "Recover_LW":
+		case "Rescue_LW":
+		case "Extract_LW":
+		case "DestroyObject_LW":
+		case "Jailbreak_LW":
+		case "TroopManeuvers_LW":
+		case "CovertOpsTroopManeuvers_LW":
+		case "ProtectDevice_LW":
+		case "SabotageCC":
+		case "SabotageCC_LW":
+		case "Rendezvous_LW":
+		case "AssaultNetworkTower_LW":
+		case "Sabotage_LW":
+		case "SmashnGrab_LW":
+		case "SupplyExtraction_LW":
+		case "BigSupplyExtraction_LW":
+		case "AssaultAlienBase_LW":
+			if (!ActivityState.bFailedFromMissionExpiration)
+			{
+				ActivityTemplateName='ResAct_GuerrillaOpsFailed';
+			}
+			break;
+		case "SecureUFO_LW":
+			if (!ActivityState.bFailedFromMissionExpiration)
+			{
+				ActivityTemplateName='ResAct_LandedUFOsFailed';
+			}
+			break;
+		case "Terror_LW":
+        case "Defend_LW":
+			ActivityTemplateName='ResAct_RetaliationsFailed';
+			break;
+		case "Invasion_LW":
+			ActivityTemplateName='ResAct_RegionsLost';
+			break;
+		case "ChosenSupplyLineRaid_LW":
+		case "SupplyLineRaid_LW":
+			if (!ActivityState.bFailedFromMissionExpiration)
+			{
+				ActivityTemplateName='ResAct_SupplyRaidsFailed';
+			}
+			break;
 		case "Rendezvous_LW":
 			if (!ActivityState.bFailedFromMissionExpiration)
 			{
