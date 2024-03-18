@@ -68,6 +68,6 @@ SquadSelectInfiltrationBody="除了选择足够强大的小队成员执行任务
 
 [UIScreenListener_InfiltratingMissionTutorial]
 InfiltratingMissionTitle="潜入任务"
-InfiltratingMissionBody="你可以随时发起潜入任务，但潜入不足会使任务更加困难。你可以用情报来提高潜入速度，让它更快完成。<br/><br/>如果任务还没有到期，你可以随时终止潜入，然后重新开始。重新启动将潜入设置回0%。"
+InfiltratingMissionBody="你可以随时发起潜入任务，但潜入不足会使任务更加困难。你可以用情报来提高潜入速度，让它更快完成。<br/><br/>如果任务还没有到期，你可以随时终止潜入，然后重新开始。重新开始会将潜入进度重置为0%。"
 
 ; End Translation

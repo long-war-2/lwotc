@@ -1,4 +1,4 @@
-﻿
+
 ;---- BEGIN ABILITIES
 
 ;displayed both for officer and soldiers receiving effect
@@ -145,7 +145,7 @@ LocFriendlyName="指揮"
 LocLongDescription="結束你的回合來為小隊中任一可見的成員提供一個額外的行動點數。可用次數由軍官的級別決定。"
 LocHelpText="賦予友軍額外行動點數。"
 LocFlyOverText="指揮"
-LocPromotionPopupText="<Bullet/>消耗一個行動點數並結束你的回合。<br/><Bullet/>少校和中校可以使用1次此技能；上校和大校可以使用2次；少將和中將可以使用3次，上將可以使用4次。<br/><Bullet/>無法在正在監視或壓制其他目標的單位上使用。<br/><Bullet/>不能在機器人盟友和平民身上使用。"
+LocPromotionPopupText="<Bullet/>消耗一個行動點數並結束你的回合。<br/><Bullet/>少尉和中尉可以使用1次此技能；上尉和少校可以使用2次；中校和上校可以使用3次，司令可以使用4次。<br/><Bullet/>無法在正在監視或壓制其他目標的單位上使用。<br/><Bullet/>不能在機器人盟友和平民身上使用。"
 
 [Infiltrator X2AbilityTemplate]
 LocFriendlyName="滲透者"
@@ -170,23 +170,23 @@ LocPromotionPopupText="<Bullet/>使用此能力可使敵方增援到達時間推
 
 [Incoming X2AbilityTemplate]
 LocFriendlyName="過來了！"
-LocLongDescription="使用此能力可以使指揮範圍內的友軍在下個外星人回合結束時受到的爆炸物傷害減少<Ability:INCOMING_EXPLOSIVES_DR/>點。"
+LocLongDescription="使指揮範圍內的友軍在下個外星人回合結束時受到的爆炸物傷害減少<Ability:INCOMING_EXPLOSIVES_DR/>點。"
 LocHelpText="軍官和周圍的友軍受到的爆炸物傷害減少<Ability:INCOMING_EXPLOSIVES_DR/>點。"
 LocFlyOverText="過來了！"
-LocPromotionPopupText="<Bullet/>使用此能力可以使指揮範圍內的所有友軍在下個外星人回合結束時受到的爆炸物傷害減少<Ability:INCOMING_EXPLOSIVES_DR/>點。<br/><Bullet/>不需要行動點數。<br/><Bullet/><Ability:INCOMING_COOLDOWN/>回合冷卻時間。<br/><Bullet/>指揮範圍會隨著軍官等級提升而提升。<br/><Bullet/>對恐慌或眩暈中的或正在壓制其他目標的士兵或平民無效。<br/>"
+LocPromotionPopupText="<Bullet/>自由行動。<br/><Bullet/><Ability:INCOMING_COOLDOWN/>回合冷卻時間。<br/><Bullet/>指揮範圍會隨著軍官等級提升而提升。<br/><Bullet/>對恐慌或眩暈中的或正在壓制其他目標的士兵或平民無效。<br/>"
 
 [Intervention X2AbilityTemplate]
 LocFriendlyName="干預"
-LocLongDescription="使用此能力可以花費<Ability:INTERVENTION_INTEL_COST/>情報在任務計時器中獲得額外<Ability:INTERVENTION_EXTRA_TURNS/>回合行動時間。可用次數由軍官的級別決定。"
+LocLongDescription="花費<Ability:INTERVENTION_INTEL_COST/>情報在任務計時器中獲得額外<Ability:INTERVENTION_EXTRA_TURNS/>回合行動時間。可用次數由軍官的級別決定。"
 LocHelpText="激活以花費情報在任務計時器中獲得額外<Ability:INTERVENTION_EXTRA_TURNS/>回合時間。"
 LocFlyOverText="干預"
-LocPromotionPopUpText="<Bullet/>使用此能力可以花費<Ability:INTERVENTION_INTEL_COST/>情報來獲得<Ability:INTERVENTION_EXTRA_TURNS/>回合行動時間。<br/><Bullet/>消耗1個行動點數，不結束回合。<br/><Bullet/>可用次數由軍官的級別決定。<br/><Bullet/>如果沒有任務計時器的話則無效。<br/><Bullet/>情報花費將會受事件影響；如果XCOM的情報不足<Ability:INTERVENTION_INTEL_COST/>則不能使用。<br/>"
+LocPromotionPopUpText="<Bullet/>消耗1個行動點數，不結束回合。<br/><Bullet/>可用次數由軍官的級別決定。<br/><Bullet/>如果沒有任務計時器的話則無效。<br/><Bullet/>情報花費將會受事件影響；如果XCOM的情報不足<Ability:INTERVENTION_INTEL_COST/>則不能使用。<br/>"
 
 [TrialByFire X2AbilityTemplate]
 LocFriendlyName="戰火洗禮"
-LocLongDescription="上士級別以下的任何士兵一同與擁有該技能的軍官成功完成一次任務後將會獲得自動晉升。"
-LocHelpText="上士級別以下的任何士兵一同與擁有該技能的軍官成功完成一次任務後將會獲得自動晉升。"
-LocPromotionPopUpText="<Bullet/> 只有在當前有效的軍官身上擁有此技能時生效，對於在同一任務的其他軍官身上無效。"
+LocLongDescription="中士(包含)級別以下的任何士兵一同與擁有該技能的軍官成功完成一次任務後將會獲得自動晉升。"
+LocHelpText="中士(包含)級別以下的任何士兵一同與擁有該技能的軍官成功完成一次任務後將會獲得自動晉升。"
+LocPromotionPopUpText="<Bullet/> 只有當前有效的軍官身上擁有此技能時才會生效，如果在同一任務的其他軍官身上則無效。"
 
 ; LWOTC Needs Translation
 [CommandRange1 X2AbilityTemplate]

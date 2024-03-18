@@ -15,23 +15,23 @@ m_strMissionDifficulty_start="底线敌人活动"
 
 [ProtectRegionEarly X2LWAlienActivityTemplate]
 ActivityName="ProtectRegion1Activity"
-ActivityObjectives[0]="开始解放地区"
+ActivityObjectives[0]="解放1：开始解放该地区"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="我们已经发现了一个变种人活动的潜在线索。应该前去调查。", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="我们已经发现了一个变种人活动的潜在线索。应该前去调查。", MissionIndex=0)
 
 [ProtectRegionMid X2LWAlienActivityTemplate]
 ActivityName="ProtectRegion2Activity"
-ActivityObjectives[0]="解放：营救一名叛逃者"
+ActivityObjectives[0]="解放2：营救一名叛逃者"
 
 +MissionDescriptions=(MissionFamily="Extract_LW", Description="我们可以在这片区域营救出一名变种人叛逃者，他掌握着外星人弱点的重要信息。", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Rescue_LW", Description="我们已经得知了这片地区一名反抗军支持者拥有外星人弱点的重要信息。", MissionIndex=0)
 
 [ProtectRegion X2LWAlienActivityTemplate]
 ActivityName="ProtectRegion3Activity"
-ActivityObjectives[0]="解放：阻止变种人行动"
-ActivityObjectives[1]="解放：摧毁网络塔"
-ActivityObjectives[2]="解放：突袭变种人基地"
+ActivityObjectives[0]="解放3：阻击变种人行动"
+ActivityObjectives[1]="解放4：摧毁网络塔"
+ActivityObjectives[2]="解放5：突袭变种人基地"
 
 +MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="我们得知有变种人的装置在干扰反抗军通讯网络。我们必须摧毁它。", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Neutralize_LW", Description="我们的努力使我们找到了一位人类变种人官员，他正在为这一地区的敌人行动提供建议。我们需要清除这名官员。", MissionIndex=0)
@@ -124,7 +124,7 @@ ActivityObjectives[1]="保卫临时政府"
 
 [Propaganda X2LWAlienActivityTemplate]
 ActivityName="PropagandaActivity"
-ActivityObjectives[0]="获取变种人的注意"
+ActivityObjectives[0]="吸引变种人的注意，提升该地区警戒"
 +MissionDescriptions=(MissionFamily="SabotageCC_LW", Description="外星人已离开保护相对较弱的市中心。我们可以进攻他们其中一座纪念碑以传递信息，但是变种人肯定会有所回应。", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Neutralize_LW", Description="我们已经得知在变种人管理系统的一位高级人类官员，在接下来的一段时间内所受到的保护相对较弱。我们可以干掉他，但变种人一定会有所注意。", MissionIndex=0)
 
@@ -148,8 +148,13 @@ ActivityObjectives[0]="找到一个线索"
 
 [TroopManeuvers X2LWAlienActivityTemplate]
 ActivityName="TroopManeuversActivity"
-ActivityObjectives[0]="减少变种人强度"
+ActivityObjectives[0]="减少变种人兵力"
 +MissionDescriptions=(MissionFamily="TroopManeuvers_LW", Description="变种人的一支战斗部队暴露在我们部队的攻势之下。")
+
+[CovertOpsTroopManeuvers X2LWAlienActivityTemplate]
+ActivityName="CovertOpsTroopManeuversActivity"
+ActivityObjectives[0]="摧毁变种人侦察队"
++MissionDescriptions=(MissionFamily="CovertOpsTroopManeuvers_LW", Description="变种人的一个侦察部队落单了，很容易受到我们部队的突袭。")
 
 [HighValuePrisoner X2LWAlienActivityTemplate]
 ActivityName="HighValuePrisonerActivity"
@@ -166,6 +171,10 @@ ActivityObjectives[0]="营救被俘反抗军"
 ActivityObjectives[0]="夺取变种人补给箱"
 +MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="反抗军找到一个含有重要资源的变种人补给站，我们可以将这些资源作为己用", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="SupplyExtraction_LW", Description="反抗军找到一个含有重要资源的变种人补给站，我们可以将这些资源作为己用", MissionIndex=0)
+
+[BigSupplyExtraction_LW X2LWAlienActivityTemplate]
+ActivityObjectives[0]="夺取变种人大型资源储备"
++MissionDescriptions=(MissionFamily="BigSupplyExtraction_LW", Description="反抗军发现了敌人重要资源的位置。", MissionIndex=0)
 
 [IntelRaid X2LWAlienActivityTemplate]
 ActivityName="IntelRaidActivity"
@@ -234,8 +243,8 @@ TacticalText="<Bullet/> 高级臂套的爆裂炮发射器组件能发射一枚�
 AbilityDescName="臂套"
 
 [UISquadSelect_InfiltrationPanel]
-strInfiltrationTitle="潜入总计："
-strBaseInfiltrationTitle="基础潜入："
+strInfiltrationTitle="总潜入时间："
+strBaseInfiltrationTitle="基础潜入时间："
 strSquadSizeTitle="小队规模调整："
 strCovertnessTitle="能力和装备调整："
 strMissionTimeTitle="任务到期时间："
@@ -246,11 +255,11 @@ strMissionIndefinite="无限期"
 strLiberationTitle="解放进度修正:"
 
 ; LWOTC Needs Translation
-UpToText="取决于"
-ExpectedActivityTextStr="预期活动"
-BoostedActivityText="预期活动（增强）"
-BoostTextPre="以及"
-BoostTextPost="促进"
+UpToText="渗透率可达"
+ExpectedActivityTextStr="预期敌人数量"
+BoostedActivityText="预期敌人数量（情报增强）"
+BoostTextPre="情报增强"
+BoostTextPost="渗透率"
 ; End Translation
 
 [UIScreenListener_DropShipBriefing_MissionStart]
@@ -454,22 +463,22 @@ m_strMustLaunchMission="任务时限：必须发起或放弃"
 m_strInsuffientInfiltrationToLaunch="离发起任务还需潜入到至少<XGParam:IntValue0>%。"
 
 ; these need to be coordinated in length with the  in LW_InfiltrationSettings.ini : AlertModifierAtInfiltration
-+m_strAlertnessModifierDescriptions[0]="无法攻取"
-+m_strAlertnessModifierDescriptions[1]="无法攻取"
-+m_strAlertnessModifierDescriptions[2]="无法攻取"
-+m_strAlertnessModifierDescriptions[3]="加固"
-+m_strAlertnessModifierDescriptions[4]="加固"
-+m_strAlertnessModifierDescriptions[5]="加固"
++m_strAlertnessModifierDescriptions[0]="戒备森严"
++m_strAlertnessModifierDescriptions[1]="戒备森严"
++m_strAlertnessModifierDescriptions[2]="戒备森严"
++m_strAlertnessModifierDescriptions[3]="加强防备"
++m_strAlertnessModifierDescriptions[4]="加强防备"
++m_strAlertnessModifierDescriptions[5]="加强防备"
 +m_strAlertnessModifierDescriptions[6]="警戒"
 +m_strAlertnessModifierDescriptions[7]="警戒"
 +m_strAlertnessModifierDescriptions[8]="警戒"
-+m_strAlertnessModifierDescriptions[9]="守备"
-+m_strAlertnessModifierDescriptions[10]="守备"
-+m_strAlertnessModifierDescriptions[11]="守备"
++m_strAlertnessModifierDescriptions[9]="防备"
++m_strAlertnessModifierDescriptions[10]="防备"
++m_strAlertnessModifierDescriptions[11]="防备"
 +m_strAlertnessModifierDescriptions[12]="一般"
-+m_strAlertnessModifierDescriptions[13]="脆弱"
-+m_strAlertnessModifierDescriptions[14]="脆弱"
-+m_strAlertnessModifierDescriptions[15]="脆弱"
++m_strAlertnessModifierDescriptions[13]="疏于防范"
++m_strAlertnessModifierDescriptions[14]="疏于防范"
++m_strAlertnessModifierDescriptions[15]="疏于防范"
 
 [UIMission_LWCustomMission]
 +m_strUrgent="安全漏洞"
@@ -482,10 +491,10 @@ m_strInvasionDesc="变种人军队发起了对<XGParam:StrValue0/!WorldRegionNam
 
 [UIStrategyMapItem_Region_LW]
 m_strOutpostTitle="避难所：<XGParam:StrValue0>"
-m_strAlertLevel="S:<XGParam:IntValue0> V:<XGParam:IntValue2> F:<XGParam:IntValue1>"
-m_strLiberatedRegion="已解放地区："
-m_strStaffingPinText="S:<XGParam:IntValue0> I:<XGParam:IntValue1> R:<XGParam:IntValue2>"
-m_strStaffingPinTextMore="H:<XGParam:IntValue0>"
+m_strAlertLevel="兵力:<XGParam:IntValue0> 警戒:<XGParam:IntValue2> 科技:<XGParam:IntValue1>"
+m_strLiberatedRegion="已解放地区"
+m_strStaffingPinText="补给:<XGParam:IntValue0> 情报:<XGParam:IntValue1> 招募:<XGParam:IntValue2>"
+m_strStaffingPinTextMore="藏匿:<XGParam:IntValue0>"
 m_strMonthlyRegionalIncome="+§<XGParam:IntValue0> (+§<XGParam:IntValue1>)"
 
 [XComGameState_LWOutpostManager]
@@ -496,23 +505,23 @@ TooltipCQ_ResistanceManagement="管理地区内反抗军避难所"
 m_strTitle="反抗军总览"
 m_strLabel="反抗军避难所联络中..."
 m_strRegionLabel="地区"
-m_strStrength="变种人强度"
+m_strStrength="变种人兵力"
 m_strAdviserLabel="顾问"
 m_strIncomeLabel="收入"
 m_strRebelCountLabel="避难所"
-m_strADVENTUnitSingular="军团"
-m_strADVENTUnitPlural="军团"
+m_strADVENTUnitSingular="兵力"
+m_strADVENTUnitPlural="兵力"
 
-m_strGlobalAlert="总体变种人强度："
-m_strGlobalInsurgency="• 总体反抗军威胁："
+m_strGlobalAlert="变种人总兵力："
+m_strGlobalInsurgency="• 反抗军总威胁："
 m_strAvatarPenalty="• 化身进度减慢了<XGParam:IntValue0/>%"
 m_strThreatVeryLow="低"
-m_strThreatLow="守备"
+m_strThreatLow="戒备"
 m_strThreatMedium="较高"
 m_strThreatHigh="高"
 m_strThreatVeryHigh="严峻"
 m_strLiberated="已解放"
-m_strResistanceManagementLevels="<XGParam:IntValue0> (V:<XGParam:IntValue1>)"
+m_strResistanceManagementLevels="<XGParam:IntValue0> (警戒:<XGParam:IntValue1>)"
 ViewHavenStr="查看避难所"
 FlyToHavenStr="飞往避难所"
 
@@ -525,7 +534,7 @@ m_strBuildRadioRelay="建造无线电中继站"
 m_strLiaisonTitle="避难所顾问"
 m_strEditLoadout="顾问装备"
 ; 0=Alert, 1=Vigilance, 2=Force
-m_strRegionalInfo="变种人强度：<XGParam:IntValue0/>"
+m_strRegionalInfo="变种人兵力：<XGParam:IntValue0/>"
 m_strResistanceMecs="反抗军MEC：<XGParam:IntValue0/>"
 m_strProhibited="被禁止"
 m_strCannotChangeLiaisonTitle="无法移动/装备顾问"
@@ -533,6 +542,10 @@ m_strCannotChangeLiaison="由于该地区有活跃的任务，顾问和他们的
 ChangeJobStr="变更工作"
 ChangeAllJobsStr="变更所有工作"
 PerksStr="技能" 
+
+m_strIncomeIntel="任务寻觅效率:"
+m_strIncomeSupply="每日补给量:"
+m_strIncomeRecruit="招募所需天数:"
 
 [UIScreenListener_TacticalHUD]
 strEvacRequestTitle="撤离已请求"
@@ -610,6 +623,46 @@ m_strInvasionBody="指挥官，变种人正在试图重新征服已解放地区�
 m_strInvasionFlare="紧急通信"
 m_strInvasionConfirm="查看入侵地点"
 
+[UIScreenListener_ShellDifficulty]
+.Credits=""
+.Credits=Design Lead
+.Credits=John "JohnnyLump" Lumpkin
+.Credits=""
+.Credits=Technical Lead
+.Credits=Rachel "Amineri" Norman
+.Credits=""
+.Credits=Programmers
+.Credits=Jonathan "tracktwo" Emmett
+.Credits=Chris "chrisb" Boertien
+.Credits=""
+.Credits=Artists
+.Credits=James "JCLewis" Karlson
+.Credits=Chris "CapnBubs" Mansell
+.Credits=Dana "lfish" Henderson
+.Credits=Robert "BazserMazser" Bakos
+.Credits=Alexander "XMarksTheSpot" Behne
+.Credits=Percy Parache
+.Credits=""
+.Credits=Quality Assurance Lead
+.Credits=Tim "Bilfdoffle" Evans
+.Credits=""
+.Credits=Quality Assurance and Design Advisers
+.Credits=Matt "WyMANderly" Price
+.Credits=Xavier Wynns
+.Credits=Stephen "JoINrbs" Flavall 
+.Credits=Tim "deaconivory" Douglas
+.Credits=Caitlin McDonald, Paul "Kordolius" Massip, Benedict Jacka "Saph"
+.Credits=Colin "Thrair" Hendershot, Paul "Plockets" Giles, Gimrah, Ronar
+.Credits=""
+.Credits="Special Thanks"
+.Credits="Garrett Bittner, Casey Coleman, Garth DeAngelis"
+.Credits="Brian Hess, Sajjad Majid, Ryan McFall"
+.Credits="Kevin Schultz, Jake Solomon, Brittany Steiner, Iain Willows"
+.Credits="McDenny's 09, The Community Highlander Project"
+.Credits="RoboJumper, Bountygiver, xylthixlm, Beaglerush"
+.Credits="Our herd of spot translators on the PI forums"
+.Credits=""
+
 [UIUtilities_LW]
 m_strInfiltrationMission="潜入任务"
 m_strQuickResponseMission="快速反应任务"
@@ -656,7 +709,6 @@ strDisabledNarrativeContentTooltip="运行天选者之战时失魂者与废弃�
 strDisabledPrecisionExplosivesTooltip="运行天选者之战时精确炸药关闭"
 ; End Translation
 
-
 [UICovertActionReport_LW]
 strCovertActionFailed="失败"
 
@@ -667,3 +719,22 @@ ScrollObjectiveDescriptionStr="滚动目标说明"
 
 [X2Effect_ChosenLoot]
 m_strChosenLoot="(<XGParam:IntValue0/>) <XGParam:StrValue0/!ItemName/> 击杀天选者获得奖励。"
+
+[UISL_Shell_LWoTCVersion]
+strMessage_Title = "Long War Of The Chosen"
+strMessage_Header = "Long War Of The Chosen has been Updated!
+strMessage_Body = "Version 1.1.0 is now released, with lots of features and improvements, including:<ul><li>New 5 Tier Chosen system for Better Progression</li><li>New Covert Actions that Reward Infiltration Missions</li><li>New Maps for Network Tower and Crate Race Missions</li><li>Reworked Templar with Iridar's Psi Shield</li><li>QOL Improvements</li><li>Improved Mod Compatibility</li><li>Balance Tweaks for Classes, Heros, and More</li><li>Way more than I can fit here unless you want a giant scrollbar</li></ul>Check out the google doc linked on the Steam change notes, or visit the LWoTC discord!"
+strDismiss_Button = "OK"
+
+[UISL_Shell_BetaPatchNotes]
+strMessage_Title = "Long War Of The Chosen"
+strMessage_Header = "RC32 Changes:"
+strMessage_Body = "<ul><li>Fixed issue with map generation on Sewer maps coverted to Subway with new config option.</li><li>Fixed bug where Scientists and Engineers could be staffed as haven advisors while injured.</li><li>Fixed issue where Hive Queens didn't have valid followers for some boss pods.</li><li>On Lib5 missions, Advent will now converge on XCOM's location once the General dies, or less than 8 aliens are alive.</li><li>After using Command, the unit that received the AP will be selected automatically.</li><li>More localization fixes.</li></ul>"
+strDismiss_Button = "OK"
+
+[UISL_PullAdvisors]
+m_strPullHavenAdvisors="拉取顾问"
+m_strPullHavenAdvisorsTooltip="从避难所移除可用顾问。移除后需要手动才能还原。"
+
+m_StrHavenManagement="管理避难所"
+m_StrHavenManagementTooltip="打开反抗军管理界面。"
