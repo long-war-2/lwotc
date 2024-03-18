@@ -10,47 +10,47 @@ m_strUnavailableToClass="不可用"
 [DepthPerceptionPCS X2EquipmentTemplate]
 FriendlyName="個人戰鬥晶片：深度感知"
 FriendlyNamePlural="個人戰鬥晶片：深度感知"
-BriefSummary="當你處於比目標敵人更高的地形時，該晶片為你增加5命中，並減少敵人25閃避。"
+BriefSummary="當你處於比目標敵人更高的地形時，該晶片為你增加<Ability:DP_AIM_BONUS>命中，並減少敵人<Ability:DP_ANTIDODGE_BONUS>閃避。"
 
 [HyperReactivePupilsPCS X2EquipmentTemplate]
 FriendlyName="個人戰鬥晶片：超高反應瞳孔"
 FriendlyNamePlural="個人戰鬥晶片：超高反應瞳孔"
-BriefSummary="當你未命中目標時，該晶片能讓你下一次的主武器射擊+10命中。"
+BriefSummary="當你未命中目標時，該晶片能讓你下一次的主武器射擊+<Ability:HYPERREACTIVE_PUPILS_AIM_BONUS>命中。"
 
 [CombatAwarenessPCS X2EquipmentTemplate]
 FriendlyName="個人戰鬥晶片：戰鬥警覺"
 FriendlyNamePlural="個人戰鬥晶片：戰鬥警覺"
-BriefSummary="在監視時獲得15點防禦和1點護甲值。受到傷害不再取消壓制和區域壓制。"
+BriefSummary="在監視時獲得<Ability:COMBAT_AWARENESS_BONUS_DEFENSE>點防禦和<Ability:COMBAT_AWARENESS_BONUS_ARMOR>點護甲。受到傷害不再取消壓制和區域壓制。"
 
 [CombatRushPCS X2EquipmentTemplate]
 FriendlyName="個人戰鬥晶片：戰鬥衝鋒"
 FriendlyNamePlural="個人戰鬥晶片：戰鬥衝鋒"
-BriefSummary="你擊殺一名敵人後，7格內的友軍能暫時獲得命中，暴擊率和移動力加成。5回合冷卻時間。"
+BriefSummary="你擊殺一名敵人後，<Ability:COMBAT_RUSH_RADIUS>格內的友軍能暫時獲得+<Ability:COMBAT_RUSH_AIM_BONUS>命中，+<Ability:COMBAT_RUSH_CRIT_BONUS>暴擊率和+<Ability:COMBAT_RUSH_MOBILITY_BONUS>移動力，持續<Ability:COMBAT_RUSH_DURATION>回合。<Ability:COMBAT_RUSH_COOLDOWN>回合冷卻時間。"
 
 [DamageControlPCS X2EquipmentTemplate]
 FriendlyName="個人戰鬥晶片：傷害控制"
 FriendlyNamePlural="個人戰鬥晶片：傷害控制"
-BriefSummary="該晶片會在敵人命中你之後加強你的護甲，受到傷害後的2回合內獲得2點護甲。"
+BriefSummary="該晶片會在敵人命中你之後加強你的護甲，受到傷害後的<Ability:DAMAGE_CONTROL_DURATION>回合內獲得<Ability:DAMAGE_CONTROL_BONUS_ARMOR>點護甲。"
 
 [AbsorptionFieldsPCS X2EquipmentTemplate]
 FriendlyName="個人戰鬥晶片：衝擊力場"
 FriendlyNamePlural="個人戰鬥晶片：衝擊力場"
-BriefSummary="該護盾生成晶片激活後能在2回合內減少33%所受到的傷害。"
+BriefSummary="該護盾生成晶片激活後能在<Ability:ABSORPTION_FIELDS_DURATION>回合內減少33%所受到的傷害。<Ability:ABSORPTION_FIELDS_COOLDOWN>回合冷卻時間。"
 
 [BodyShieldPCS X2EquipmentTemplate]
 FriendlyName="個人戰鬥晶片：全身防護"
 FriendlyNamePlural="個人戰鬥晶片：全身防護"
-BriefSummary="目標敵人在對付你時受到-20命中和-50暴擊率的懲罰。"
+BriefSummary="目標敵人在對付你時受到-<Ability:BODY_SHIELD_DEF_BONUS>命中和-<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS>暴擊率的懲罰。"
 
 [EmergencyLifeSupportPCS X2EquipmentTemplate]
 FriendlyName="個人戰鬥晶片：應急生命保障"
 FriendlyNamePlural="個人戰鬥晶片：應急生命保障"
-BriefSummary="該晶片保證士兵在任務中受到的首次致命攻擊不會導致直接死亡，並且延長流血時間2回合。"
+BriefSummary="該晶片保證士兵在任務中受到的首次致命攻擊不會導致直接死亡，並且延長流血時間<Ability:EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS>回合。"
 
 [IronSkinPCS X2EquipmentTemplate]
 FriendlyName="個人戰鬥晶片：銅皮鐵甲"
 FriendlyNamePlural="個人戰鬥晶片：銅皮鐵甲"
-BriefSummary="受到的近戰傷害減少3點。"
+BriefSummary="受到的近戰傷害減少<Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>點。"
 
 [SmartMacrophagesPCS X2EquipmentTemplate]
 FriendlyName="個人戰鬥晶片：智能巨噬細胞"
@@ -188,7 +188,7 @@ LocFriendlyName="短兵相接"
 LocFlyOverText="短兵相接"
 LocLongDescription="使用主武器對<Ability:CLOSE_ENCOUNTERS_RANGE/>格內的一名敵人進行一次標準射擊後，可額外獲得1個行動點，每回合1次。"
 LocHelpText="使用主武器對<Ability:CLOSE_ENCOUNTERS_RANGE/>格內的一名敵人進行一次標準射擊後，可額外獲得1個行動點，每回合1次。"
-LocPromotionPopupText="<Bullet/>使用主武器對<Ability:CLOSE_ENCOUNTERS_RANGE/>格內的一名敵人進行一次標準射擊後，可獲得額外1個行動點，每回合1次。<br/><Bullet/>在奔襲戰術激活後短兵相接不可以使用。<br/><Bullet/>一圈紅色的環狀圖示會標記此能力的範圍。<Bullet/>不可以和奔襲戰術在同一回合使用。<br/>"
+LocPromotionPopupText="<Bullet/>使用主武器對<Ability:CLOSE_ENCOUNTERS_RANGE/>格內的一名敵人進行一次標準射擊後，可獲得額外1個行動點，每回合1次。<br/><Bullet/>一圈紅色的環狀圖示會標記此能力的範圍。<br/><Bullet/>不可以和奔襲戰術在同一回合使用。<br/>"
 
 [LoneWolf X2AbilityTemplate]
 LocFriendlyName="獨狼"
@@ -541,10 +541,10 @@ LocPromotionPopupText="<Bullet/>你的煙霧榴彈對處於煙霧中的單位提
 
 [Collateral_LW X2AbilityTemplate]
 LocFriendlyName="附帶損害"
-LocLongDescription="用<Ability:WeaponName/>向指定位置開火，摧毀該區域內的掩體。對敵人造成少量傷害。5回合冷卻時間，使用3發彈藥。"
+LocLongDescription="用<Ability:WeaponName/>向指定位置開火，摧毀該區域內的掩體。對敵人造成少量傷害。4回合冷卻時間，使用3發彈藥。"
 LocHelpText="用<Ability:WeaponName/>向指定位置開火，摧毀該區域內的掩體。"
 LocFlyOverText="附帶損害"
-LocPromotionPopupText="<Bullet/> 對影響範圍內的所有物體造成大量環境傷害。<br/><Bullet/> 對效果範圍內的敵人造成1-2/2/2-3點傷害，具體取決於<Ability:WeaponName/>的等級。<br/><Bullet/> 消耗3發彈藥，冷卻時間為5回合。<br/>"
+LocPromotionPopupText="<Bullet/> 對影響範圍內的所有物體造成大量環境傷害。<br/><Bullet/> 對效果範圍內的敵人造成40%武器傷害，具體取決於<Ability:WeaponName/>的等級。<br/><Bullet/> 消耗3發彈藥，冷卻時間為4回合。<br/>"
 
 [DenseSmokeGrenade X2GrenadeTemplate]
 FriendlyName="濃煙榴彈"
@@ -624,7 +624,7 @@ LocFriendlyName="強力核心"
 LocFlyOverText="強力核心"
 LocLongDescription="破壞性榴彈造成額外1點傷害。"
 LocHelpText="破壞性榴彈造成額外1點傷害。"
-LocPromotionPopupText="<Bullet/>你的榴彈包含額外的爆炸物，能造成額外1點傷害，但需要特殊訓練來掌握。<br/>"
+LocPromotionPopupText="<Bullet/>你的榴彈包含額外的爆炸物，能造成額外1點傷害，但需要特殊訓練來掌握。<br/><Bullet/> 由榴彈造成的諸如中毒之類的持續傷害效果也將額外造成1點傷害。<br/>"
 
 [Airdrop X2AbilityTemplate]
 LocFriendlyName="空投"
@@ -1086,9 +1086,9 @@ LocPromotionPopupText="<Bullet/> 你可以通過將移動光標放在敵人身�
 
 [Obliterator_LW X2AbilityTemplate]
 LocFriendlyName="突襲模塊"
-LocLongDescription="所有打擊攻擊獲得+2傷害和+20命中，賦予“橫衝直撞”能力。"
-LocHelpText="所有打擊攻擊獲得+2傷害和+20命中。"
-LocPromotionPopupText="<Bullet/> 學習突襲模塊技能將為所有動能打擊攻擊提供+2點傷害和額外的+20命中。<br/><Bullet/> 在傷害加成下，動能打擊的傷害將為8/10/12，取決於所裝備的SPARK底盘。<br/><Bullet/> 半傷害打擊只會獲得+1點傷害加成。<br/><Bullet/> 此技能包含“橫衝直撞”能力。當使用超載時，它允許SPARK摧毀其經過的任何環境物體。<br/><Bullet/> 將超載“橫衝直撞”與“動能打擊”結合起來，不僅可以破壞目標的掩體，還能造成大量傷害，並在之後剩餘一個行動點。<br/>"
+LocLongDescription="所有打擊攻擊獲得+2傷害和+10命中，賦予“橫衝直撞”能力。"
+LocHelpText="所有打擊攻擊獲得+2傷害和+10命中。"
+LocPromotionPopupText="<Bullet/> 學習突襲模塊技能將為所有動能打擊攻擊提供+2點傷害和額外的+10命中。"
 
 [RapidRepair_LW X2AbilityTemplate]
 LocFriendlyName="快速維修"

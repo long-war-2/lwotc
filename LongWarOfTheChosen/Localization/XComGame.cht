@@ -165,8 +165,8 @@ LocHelpText="朝目標區域發射一枚制導的爆裂飛彈。<Ability:ROCKETS
 LocFriendlyName="汽油彈-X"
 LocFlyOverText="汽油彈-X"
 ; LWOTC Needs Translation (2)
-LocLongDescription="你的火焰噴射器現在可以使敵人恐慌。"
-LocHelpText="汽油彈-X"
+LocLongDescription="你的火焰噴射器現在可以使敵人恐慌，並且燃燒的持續傷增加1點。"
+LocHelpText="你的火焰噴射器現在可以使敵人恐慌，並且燃燒的持續傷增加1點。"
 LocPromotionPopupText="<Bullet/> 你的火焰噴射器現在可以使敵人恐慌。敵方單位必須通過意志鑑定以避免負面影響。<br/><Bullet/> 恐慌幾率為 <Ability:NAPALM_X_BASEVALUE>% + <Ability:GAUNTLET_CONVENTIONAL_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_MAG_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_BEAM_OPPOSED_STAT_STRENTH>%，取決於士兵的臂套層級，並且受到目標意志力的負面影響。<br/><Bullet/> 可以使火焰免疫的單位恐慌，但不會對其造成傷害。<br/><Bullet/> 驅逐無法觸發汽油彈-X。"
 
 [PhosphorusPassive X2AbilityTemplate]
@@ -186,9 +186,9 @@ LocPromotionPopupText="<Bullet/> 你的火焰噴射器射程更長，影響範�
 [Roust X2AbilityTemplate]
 LocFriendlyName="驅逐"
 LocFlyOverText="驅逐"
-LocLongDescription="特殊的火焰噴射器射擊，只能造成有限的傷害，但是能迫使敵人移動位置。"
-LocHelpText="特殊的火焰噴射器射擊，迫使敵人移動位置。"
-LocPromotionPopupText="<Bullet/>造成有限的傷害，有20%的幾率使區域內的敵人著火。<br/><Bullet/>狹窄的火焰噴射對環境影響較小。<br/><Bullet/>被擊中的單位將被迫移動，會觸發反應射擊。<br/><Bullet/>每個任務可用一次，但是能夠通過更高級的裝備來獲得額外的使用次數。<br/><Bullet/> 隱蔽狀態時不能使用。"
+LocLongDescription="特殊的火焰噴射器攻擊，造成有限的傷害，但是能降敵人的低防禦和移動力並迫使其移動位置。"
+LocHelpText="特殊的火焰噴射器攻擊，造成有限的傷害，但是能降敵人的低防禦和移動力並迫使其移動位置。"
+LocPromotionPopupText="<Bullet/>造成<Ability:ROUST_DAMAGE_PENALTY>%的傷害，有<Ability:ROUST_DIRECT_APPLY_CHANCE>%的幾率使區域內的敵人著火。<br/><Bullet/>狹窄的火焰噴射對環境影響較小。<br/><Bullet/>被擊中的單位將被迫移動，會觸發反應射擊。<br/><Bullet/>每個任務可用一次，但是能夠通過更高級的裝備來獲得額外的使用次數。<br/><Bullet/> 隱蔽狀態時不能使用。"
 
 ; LWOTC Needs Translation (2)
 [Burnout X2AbilityTemplate]
@@ -243,8 +243,8 @@ LocPromotionPopupText="<Bullet/>你裝備一支額外的火箭。<br/>"
 [FireInTheHole X2AbilityTemplate]
 LocFriendlyName="精準火箭"
 LocFlyOverText="精準火箭"
-LocLongDescription="你的火箭更為精準。"
-LocHelpText="你的火箭更為精準。"
+LocLongDescription="你的火箭更為精準，標準火箭額外+2傷害"
+LocHelpText="你的火箭更為精準，標準火箭額外+2傷害"
 LocPromotionPopupText="<Bullet/>你的火箭更容易飛向瞄準點，或至少更為接近。<br/><Bullet/>它最多偏離的距離減少2格。"
 
 [JavelinRockets X2AbilityTemplate]
@@ -259,14 +259,14 @@ LocFriendlyName="強化軍火"
 LocFlyOverText="強化軍火"
 LocLongDescription="你的標準火箭造成額外+2傷害，並且有概率使環境着火。"
 LocHelpText="你的標準火箭造成額外+2傷害，並且有概率使環境着火。"
-LocPromotionPopupText="<Bullet/> 你的標準火箭造成額外+2傷害，並且有概率使環境着火。<br/><Bullet/> 這個傷害加成不適用於特殊火箭能力。"
+LocPromotionPopupText="<Bullet/> 你的標準火箭造成額外+2傷害，並且有概率使環境着火。<br/><Bullet/> 這個傷害加成不適用於特殊火箭能力，增加3點環境傷害。"
 
 [ConcussionWarheads_LW X2AbilityTemplate]
 LocFriendlyName="震盪彈頭"
 LocFlyOverText="震盪彈頭"
 LocLongDescription="你的火箭有20%的概率讓目標暈眩，並造成額外的環境傷害。"
 LocHelpText="你的火箭有20%的概率讓目標暈眩，並造成額外的環境傷害。"
-LocPromotionPopupText="<Bullet/> 你的火箭有20%的概率讓目標暈眩。<br/><Bullet/> 環境傷害增加後是基礎火箭的兩倍。"
+LocPromotionPopupText="<Bullet/> 你的火箭有20%的概率讓目標暈眩。<br/><Bullet/> 增加7點環境傷害。"
 
 [ShredderRocket_LW X2AbilityTemplate]
 LocFriendlyName="撕裂火箭"
@@ -1220,10 +1220,10 @@ TacticalText="<Bullet/>火焰榴彈會傷害爆炸範圍內的所有單位，並
 TacticalText="<Bullet/>火焰炸彈會傷害爆炸範圍內的所有單位，並對任何容易受到火焰攻擊的單位施加\"燃燒\"效果。\n<Bullet/>火焰炸彈的爆炸傷害高於其他任何炸彈。\n<Bullet/>有些敵人對火焰免疫，不受\"燃燒\"效果影響，尤其是金屬系敵人。<br><Bullet/>傷害會隨著離中心的距離遞增而遞減。"
 
 [SparkBit_MG X2GremlinTemplate]
-BriefSummary="升級後的裝甲版提高了BIT的傷害和治療能力。"
+BriefSummary="升級後的裝甲版提高了BIT的傷害和治療能力，並提供了額外的閃避和入侵屬性。"
 
 [SparkBit_BM X2GremlinTemplate]
-BriefSummary="升級後的動力版極大地提高了BIT的傷害和治療能力。"
+BriefSummary="升級後的動力版極大地提高了BIT的傷害和治療能力，並提供了額外的閃避和入侵屬性。"
 
 [XComGame.UIArmory_WeaponUpgradeItem]
 [UIArmory_WeaponUpgradeItem]
