@@ -1844,6 +1844,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 				Template.AbilityIconColor = "Variable"; break; // This calls a function that changes the color on the fly
 			case 'EVAC': 
 				Template.AbilityIconColor = default.ICON_COLOR_FREE; break;
+			case 'Whiplash':
 			case 'IntrusionProtocol':
 			case 'IntrusionProtocol_Chest':
 			case 'Hack_Chest':

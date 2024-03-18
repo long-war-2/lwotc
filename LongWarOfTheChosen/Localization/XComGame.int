@@ -163,18 +163,18 @@ LocPromotionPopupText="<Bullet/> The flamethrower is a short-range weapon that c
 
 [LWRocketLauncher X2AbilityTemplate]
 LocFriendlyName="Rocket Launcher"
-LocHelpText="Fire a rocket at target area. <Ability:ROCKETSCATTER/>"
+LocHelpText="Fire a rocket at target area.<Ability:ROCKETSCATTER/>"
 
 [LWBlasterLauncher X2AbilityTemplate]
 LocFriendlyName="Blaster Bomb"
-LocHelpText="Fire a guided Blaster Bomb at a target area. <Ability:ROCKETSCATTER/>"
+LocHelpText="Fire a guided Blaster Bomb at a target area.<Ability:ROCKETSCATTER/>"
 
 [NapalmX X2AbilityTemplate]
 LocFriendlyName="Napalm-X"
 LocFlyOverText="Napalm-X"
 ; LWOTC Needs Translation (3)
-LocLongDescription="Your Flamethrower can now panic enemies."
-LocHelpText="Your Flamethrower can now panic enemies."
+LocLongDescription="Your Flamethrower can now panic enemies, and enemies set on fire take 1 additional damage per tick."
+LocHelpText="Your Flamethrower can now panic enemies, and enemies set on fire take 1 additional damage per tick."
 LocPromotionPopupText="<Bullet/> Your Flamethrower can now panic enemies. Enemy units must pass a will check to avoid negative effects.<br/><Bullet/> The chance to panic is <Ability:NAPALM_X_BASEVALUE>% + <Ability:GAUNTLET_CONVENTIONAL_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_MAG_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_BEAM_OPPOSED_STAT_STRENTH>%, depending on soldier's gauntlet tier, and is negatively affected by target's Will score.<br/><Bullet/> Enemies hit by Roust are not affected by Napalm-X."
 ; End Translation (3)
 
@@ -261,9 +261,39 @@ LocPromotionPopupText="<Bullet/> You equip one additional rocket.<br/>"
 [FireInTheHole X2AbilityTemplate]
 LocFriendlyName="Fire In The Hole"
 LocFlyOverText="Fire In The Hole"
-LocLongDescription="Your rockets are more accurate."
-LocHelpText="Your rockets are more accurate."
+LocLongDescription="Your rockets are more accurate, and the standard gauntlet rocket deals +2 damage."
+LocHelpText="Your rockets are more accurate. and the standard gauntlet rocket deals +2 damage."
 LocPromotionPopupText="<Bullet/> Your rockets are more likely to hit their intended point of impact, or at least close to it.<br/><Bullet/> The maximum it can miss by is reduced by two tiles."
+
+[ImprovedMunitions_LW X2AbilityTemplate]
+LocFriendlyName="Improved Warheads"
+LocFlyOverText="Improved Warheads"
+LocLongDescription="Your standard rockets deal +2 damage and can set the environment on fire."
+LocHelpText="Your standard rockets deal +2 damage and can set the environment on fire."
+LocPromotionPopupText="<Bullet/> Your standard rockets deal +2 damage and can set the environment on fire.<br/><Bullet/> The damage boost does not apply to special rocket abilities.<br/><Bullet/> Adds 3 environment damage."
+
+[ConcussionWarheads_LW X2AbilityTemplate]
+LocFriendlyName="Concussion Warheads"
+LocFlyOverText="Concussion Warheads"
+LocLongDescription="Your rockets have 20% chance to stun targets and deal additional environmental damage."
+LocHelpText="Your rockets have 20% chance to stun targets and deal additional environmental damage."
+LocPromotionPopupText="<Bullet/> Your rockets have 20% chance to stun targets.<br/><Bullet/> Increases environmental damage by +7."
+
+[ShredderRocket_LW X2AbilityTemplate]
+LocFriendlyName="Shredder Rocket"
+LocFlyOverText="Shredder Rocket"
+LocLongDescription="Fire a special rocket which shreds and ruptures targets in a small area."
+LocHelpText="Fire a special rocket which shreds and ruptures targets in a small area.<Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> This rocket shreds 3 points of armor and applies 1 point of Rupture.<br/><Bullet/> The rocket has the same area of effect as a Frag Grenade."
+
+[EMPRocket_LW X2AbilityTemplate]
+LocFriendlyName="EMP Rocket"
+LocFlyOverText="EMP Rocket"
+LocLongDescription="Fire a special rocket which deals a small amount of damage but shuts down all robotic units for a turn."
+LocHelpText="Fire a special rocket which deals a small amount of damage but shuts down all robotic units for a turn.<Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> This rocket deals 1-2 damage and stuns robots for 2 AP.<br/><Bullet/> The rocket has a 5 tile AOE diameter."
+
+
 
 [JavelinRockets X2AbilityTemplate]
 LocFriendlyName="Javelin Rockets"
@@ -275,7 +305,7 @@ LocPromotionPopupText="<Bullet/> The range of your rockets is increased by 6 til
 [BunkerBuster X2AbilityTemplate]
 LocFriendlyName="Bunker Buster"
 LocFlyOverText="Bunker Buster"
-LocHelpText="Fire a Bunker Buster. <Ability:ROCKETSCATTER/>"
+LocHelpText="Fire a Bunker Buster."
 LocLongDescription="Fire a special rocket that destroys buildings and other objects in the environment."
 LocPromotionPopupText="<Bullet/> Fire a special rocket with a large area of effect that does moderate damage to enemies but huge damage to buildings, vehicles and other objects in the environment.<br/><Bullet/> Requires both actions and usable only once per mission.<br/>"
 
@@ -1278,10 +1308,10 @@ TacticalText="<Bullet/> Incendiary grenades will damage all units in the blast r
 TacticalText="<Bullet/> Incendiary bombs will damage all units in the blast radius, and may apply the \"burning\" effect to any units vulnerable to flame.\n<Bullet/> Incendiary bombs do more blast damage than all other bombs.\n<Bullet/> Some enemies, particularly metallic ones, are immune to fire and will not suffer the \"burning\" effect.<br><Bullet/> Damage falls off from center of area of effect."
 
 [SparkBit_MG X2GremlinTemplate]
-BriefSummary="The upgraded plated model improves the damage and healing capabilities of the BIT."
+BriefSummary="The plated model improves the damage and healing capabilities of the BIT and grants bonuses to dodge and hack."
 
 [SparkBit_BM X2GremlinTemplate]
-BriefSummary="The upgraded powered model greatly improves the damage and healing capabilities of the BIT."
+BriefSummary="The powered model improves the damage and healing capabilities of the BIT and grants bonuses to dodge and hack."
 
 [XComGame.UIArmory_WeaponUpgradeItem]
 [UIArmory_WeaponUpgradeItem]
@@ -7654,7 +7684,7 @@ LocPromotionPopupText="<Bullet/> Hunter Protocol makes the SPARK an ideal unit f
 
 [Nova X2AbilityTemplate]
 LocFriendlyName="Nova"
-LocLongDescription="Release a blast of energy, damaging all nearby units. This attack has no cost or cooldown, but consecutive Novas will damage the SPARK."
+LocLongDescription="Release a blast of energy, dealing 6 damage to nearby units. This attack has no cost or cooldown, but consecutive Novas will damage the SPARK."
 LocHelpText="Blast all nearby units. Consecutive Novas will damage the SPARK."
 LocPromotionPopupText="<Bullet/> Nova has no action point cost and no cooldown.<br/><Bullet/> The first Nova attack each mission will deal 0 damage to the SPARK.<br/><Bullet/> All Nova attacks after the first will deal a stacking <Ability:Nova_Damage/> damage to the SPARK.<br/>"
 

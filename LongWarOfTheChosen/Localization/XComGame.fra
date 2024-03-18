@@ -161,11 +161,11 @@ LocPromotionPopupText="<Bullet/> Le lance-flammes est une arme à courte portée
 
 [LWRocketLauncher X2AbilityTemplate]
 LocFriendlyName="Lance-roquettes"
-LocHelpText="Tir de roquette sur la zone ciblée. <Ability:ROCKETSCATTER/>"
+LocHelpText="Tir de roquette sur la zone ciblée.<Ability:ROCKETSCATTER/>"
 
 [LWBlasterLauncher X2AbilityTemplate]
 LocFriendlyName="Missile nucléaire"
-LocHelpText="Tir de missile nucléaire sur la zone ciblée. <Ability:ROCKETSCATTER/>"
+LocHelpText="Tir de missile nucléaire sur la zone ciblée.<Ability:ROCKETSCATTER/>"
 
 [NapalmX X2AbilityTemplate]
 LocFriendlyName="Napalm-X"
@@ -265,7 +265,7 @@ LocPromotionPopupText="<Bullet/> La portée de vos roquettes augmente de 6 cases
 [BunkerBuster X2AbilityTemplate]
 LocFriendlyName="Destruction"
 LocFlyOverText="Destruction"
-LocHelpText="Tire une roquette spéciale qui détruit les bâtiments et d'autres éléments de l'environnement. <Ability:ROCKETSCATTER/>"
+LocHelpText="Tire une roquette spéciale qui détruit les bâtiments et d'autres éléments de l'environnement."
 LocLongDescription="Tire une roquette spéciale qui détruit les bâtiments et d'autres éléments de l'environnement."
 LocPromotionPopupText="<Bullet/> Tire une roquette spéciale avec une large zone d'effet qui inflige des dégâts moyens aux ennemis, mais cause de gros dégâts aux bâtiments, aux véhicules et à d'autres éléments de l'environnement.<br/><Bullet/> Coûte 2 actions et ne peut être utilisée qu'une seule fois par mission.<br/>"
 

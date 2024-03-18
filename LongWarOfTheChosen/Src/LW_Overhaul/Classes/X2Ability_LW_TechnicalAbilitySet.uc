@@ -9,6 +9,7 @@ class X2Ability_LW_TechnicalAbilitySet extends X2Ability
 
 var config int FLAMETHROWER_BURNING_BASE_DAMAGE;
 var config int FLAMETHROWER_BURNING_DAMAGE_SPREAD;
+var config int NAPALMX_BURN_DMG_BONUS;
 var config int FLAMETHROWER_DIRECT_APPLY_CHANCE;
 var config int FLAMETHROWER_CHARGES;
 var config int FLAMETHROWER_HIGH_PRESSURE_CHARGES;
@@ -52,11 +53,19 @@ var config int JAVELIN_ROCKETS_BONUS_RANGE_TILES;
 var config WeaponDamageValue BUNKER_BUSTER_DAMAGE_VALUE;
 var config float BUNKER_BUSTER_RADIUS_METERS;
 var config int BUNKER_BUSTER_ENV_DAMAGE;
+var config float SHREDDER_ROCKET_RADIUS_METERS;
+var config int SHREDDER_ROCKET_ENV_DAMAGE;
+var config WeaponDamageValue SHREDDER_ROCKET_DAMAGE_VALUE;
+var config float EMP_ROCKET_RADIUS_METERS;
+var config int EMP_ROCKET_ENV_DAMAGE;
+var config WeaponDamageValue EMP_ROCKET_DAMAGE_VALUE;
 var config int FIRE_AND_STEEL_DAMAGE_BONUS;
 var config int CONCUSSION_ROCKET_RADIUS_TILES;
 var config int CONCUSSION_ROCKET_TARGET_WILL_MALUS_DISORIENT;
 var config int CONCUSSION_ROCKET_TARGET_WILL_MALUS_STUN;
 var config int CONCUSSION_ROCKET_STUN_CHANCE;
+var config int CONCUSSION_WARHEADS_STUN_CHANCE;
+var config int CONCUSSION_WARHEAD_ENVIRONMENT_DMG;
 var config bool USE_CONCUSSION_ROCKET_WILL_CALCS;
 var config bool ENABLE_CONCUSSION_ROCKET_SMOKE;
 var config WeaponDamageValue CONCUSSION_ROCKET_DAMAGE_VALUE;
@@ -103,12 +112,16 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(LWRocketLauncherAbility());
 	Templates.AddItem(LWBlasterLauncherAbility());
-	Templates.AddItem(PurePassive('FireInTheHole', "img:///UILibrary_LWOTC.LW_AbilityFireInTheHole"));
+	Templates.AddItem(FireInTheHole());
 	Templates.AddItem(PurePassive('TandemWarheads', "img:///UILibrary_LWOTC.LW_AbilityTandemWarheads"));
+	Templates.AddItem(PurePassive('ConcussionWarheads_LW', "img:///UILibrary_LWOTC.LW_AbilityTandemWarheads"));
 	Templates.AddItem(AddShockAndAwe());
 	Templates.AddItem(AddJavelinRockets());
 	Templates.AddItem(CreateConcussionRocketAbility());
 	Templates.AddItem(CreateBunkerBusterAbility());
+	Templates.AddItem(ImprovedMunitions());
+	Templates.AddItem(CreateShredderRocketAbility());
+	Templates.AddItem(CreateEMPRocketAbility());
 
 	Templates.AddItem(CreateNapalmXPanicEffectAbility());
 
@@ -187,6 +200,8 @@ static function X2AbilityTemplate CreateLWFlamethrowerAbility()
 	local X2AbilityCharges_BonusCharges			Charges;
 	local X2AbilityCost_Charges					ChargeCost;
 	local X2Condition_UnitEffects				SuppressedCondition;
+	local X2Condition_OwnerDoesNotHaveAbility	NotAbilityCondition;
+	local X2Condition_AbilityProperty			HasAbilityCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'LWFlamethrower');
 
@@ -269,8 +284,23 @@ static function X2AbilityTemplate CreateLWFlamethrowerAbility()
 	FireToWorldEffect.FireChance_Level3 = 0.10f;
 	FireToWorldEffect.bCheckForLOSFromTargetLocation = false; //The flamethrower does its own LOS filtering
 
+	// non Napalm X version
+
+	NotAbilityCondition = new class'X2Condition_OwnerDoesNotHaveAbility';
+	NotAbilityCondition.AbilityName = 'NapalmX';
+
 	BurningEffect = class'X2StatusEffects'.static.CreateBurningStatusEffect(default.FLAMETHROWER_BURNING_BASE_DAMAGE, default.FLAMETHROWER_BURNING_DAMAGE_SPREAD);
 	BurningEffect.ApplyChance = default.FLAMETHROWER_DIRECT_APPLY_CHANCE;
+	BurningEffect.TargetConditions.AddItem(NotAbilityCondition);
+	Template.AddMultiTargetEffect(BurningEffect);
+
+	// Naplam X version
+	HasAbilityCondition = new class'X2Condition_AbilityProperty';
+	HasAbilityCondition.OwnerHasSoldierAbilities.AddItem('NapalmX');
+
+	BurningEffect = class'X2StatusEffects'.static.CreateBurningStatusEffect(default.FLAMETHROWER_BURNING_BASE_DAMAGE+default.NAPALMX_BURN_DMG_BONUS, default.FLAMETHROWER_BURNING_DAMAGE_SPREAD);
+	BurningEffect.ApplyChance = default.FLAMETHROWER_DIRECT_APPLY_CHANCE;
+	BurningEffect.TargetConditions.AddItem(HasAbilityCondition);
 	Template.AddMultiTargetEffect(BurningEffect);
 
 	Template.AddMultiTargetEffect(CreateFlamethrowerDamageAbility());
@@ -438,6 +468,8 @@ static function X2AbilityTemplate CreateRoustAbility()
 	FallBackEffect = new class'X2Effect_FallBack';
 	FallBackEffect.BehaviorTree = 'FlushRoot';
 	Template.AddMultiTargetEffect(FallBackEffect);
+
+	Template.AddMultiTargetEffect(CreateNapalmXPanicEffect());
 
 	Template.bCheckCollision = true;
 	Template.bAffectNeighboringTiles = true;
@@ -1392,6 +1424,10 @@ static function X2AbilityTemplate LWRocketLauncherAbility()
 	local X2Condition_UnitProperty          UnitPropertyCondition;
 	local X2AbilityToHitCalc_StandardAim    StandardAim;
 	local X2Condition_UnitEffects			SuppressedCondition;
+	local X2Effect_ApplyFireToWorld_Limited_Rocket		FireToWorldEffect;
+	local X2Condition_AbilityProperty			HasAbilityCondition;
+	local X2Effect_Stunned					StunnedEffect;
+	//local X2Effect_PersistentStatChange		DisorientedEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'LWRocketLauncher');
 	Template.Hostility = eHostility_Offensive;
@@ -1429,6 +1465,34 @@ static function X2AbilityTemplate LWRocketLauncherAbility()
 	WeaponDamageEffect.bExplosiveDamage = true;
 	Template.AddMultiTargetEffect(WeaponDamageEffect);
 
+/* 
+	DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect(true, 0.1 , false);
+	DisorientedEffect.ApplyChance = 25;
+	Template.AddMultiTargetEffect(DisorientedEffect);
+*/
+
+	HasAbilityCondition = new class'X2Condition_AbilityProperty';
+	HasAbilityCondition.OwnerHasSoldierAbilities.AddItem('ImprovedMunitions_LW');
+
+	FireToWorldEffect = new class'X2Effect_ApplyFireToWorld_Limited_Rocket';
+	FireToWorldEffect.bUseFireChanceLevel = true;
+	FireToWorldEffect.bDamageFragileOnly = true;
+	FireToWorldEffect.FireChance_Level1 = 0.15f;
+	FireToWorldEffect.FireChance_Level2 = 0.00f;
+	FireToWorldEffect.FireChance_Level3 = 0.00f;
+	FireToWorldEffect.bCheckForLOSFromTargetLocation = false;
+	FireToWorldEffect.TargetConditions.AddItem(HasAbilityCondition);
+	Template.AddMultiTargetEffect(FireToWorldEffect);
+	
+	// Concussion Warheads stuff
+	HasAbilityCondition = new class'X2Condition_AbilityProperty';
+	HasAbilityCondition.OwnerHasSoldierAbilities.AddItem('ConcussionWarheads_LW');
+
+	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2,default.CONCUSSION_WARHEADS_STUN_CHANCE,false);
+	StunnedEffect.bRemoveWhenSourceDies = false;
+	StunnedEffect.TargetConditions.AddItem(HasAbilityCondition);
+	Template.AddMultiTargetEffect(StunnedEffect);
+
 	CursorTarget = new class'X2AbilityTarget_Cursor';
 	CursorTarget.bRestrictToWeaponRange = true;
 	Template.AbilityTargetStyle = CursorTarget;
@@ -1448,7 +1512,7 @@ static function X2AbilityTemplate LWRocketLauncherAbility()
 	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
 	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
 
-	Template.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher';  // this version includes scatter
+	Template.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher';  
 
 	Template.ActivationSpeech = 'RocketLauncher';
 	Template.CinescriptCameraType = "Soldier_HeavyWeapons";
@@ -1479,6 +1543,10 @@ static function X2AbilityTemplate LWBlasterLauncherAbility()
 	local X2AbilityTrigger_PlayerInput      InputTrigger;
 	local X2AbilityToHitCalc_StandardAim    StandardAim;
 	local X2Condition_UnitEffects			SuppressedCondition;
+	local X2Effect_ApplyFireToWorld_Limited_Rocket		FireToWorldEffect;
+	local X2Condition_AbilityProperty			HasAbilityCondition;
+	local X2Effect_Stunned					StunnedEffect;
+	//local X2Effect_PersistentStatChange		DisorientedEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'LWBlasterLauncher');
 	Template.Hostility = eHostility_Offensive;
@@ -1515,6 +1583,34 @@ static function X2AbilityTemplate LWBlasterLauncherAbility()
 	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
 	WeaponDamageEffect.bExplosiveDamage = true;
 	Template.AddMultiTargetEffect(WeaponDamageEffect);
+
+/* 
+	DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect(, , false);
+	DisorientedEffect.ApplyChance = 25;
+	Template.AddMultiTargetEffect(DisorientedEffect);
+	*/
+
+	HasAbilityCondition = new class'X2Condition_AbilityProperty';
+	HasAbilityCondition.OwnerHasSoldierAbilities.AddItem('ImprovedMunitions_LW');
+
+	FireToWorldEffect = new class'X2Effect_ApplyFireToWorld_Limited_Rocket';
+	FireToWorldEffect.bUseFireChanceLevel = true;
+	FireToWorldEffect.bDamageFragileOnly = true;
+	FireToWorldEffect.FireChance_Level1 = 0.15f;
+	FireToWorldEffect.FireChance_Level2 = 0.00f;
+	FireToWorldEffect.FireChance_Level3 = 0.00f;
+	FireToWorldEffect.bCheckForLOSFromTargetLocation = false;
+	FireToWorldEffect.TargetConditions.AddItem(HasAbilityCondition);
+	Template.AddMultiTargetEffect(FireToWorldEffect);
+
+	// Concussion Warheads stuff
+	HasAbilityCondition = new class'X2Condition_AbilityProperty';
+	HasAbilityCondition.OwnerHasSoldierAbilities.AddItem('ConcussionWarheads_LW');
+
+	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2,default.CONCUSSION_WARHEADS_STUN_CHANCE,false);
+	StunnedEffect.bRemoveWhenSourceDies = false;
+	StunnedEffect.TargetConditions.AddItem(HasAbilityCondition);
+	Template.AddMultiTargetEffect(StunnedEffect);
 
 	CursorTarget = new class'X2AbilityTarget_Cursor';
 	CursorTarget.bRestrictToWeaponRange = true;
@@ -1761,6 +1857,8 @@ static function X2AbilityTemplate CreateBunkerBusterAbility()
 	local X2AbilityMultiTarget_Radius       RadiusMultiTarget;
 	local X2AbilityToHitCalc_StandardAim    StandardAim;
 	local X2Condition_UnitEffects			SuppressedCondition;
+	local X2Condition_AbilityProperty			HasAbilityCondition;
+	local X2Effect_Stunned					StunnedEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'BunkerBuster');
 
@@ -1815,6 +1913,15 @@ static function X2AbilityTemplate CreateBunkerBusterAbility()
 	WeaponDamageEffect.EnvironmentalDamageAmount=default.BUNKER_BUSTER_ENV_DAMAGE;
 	Template.AddMultiTargetEffect(WeaponDamageEffect);
 
+		// Concussion Warheads stuff
+	HasAbilityCondition = new class'X2Condition_AbilityProperty';
+	HasAbilityCondition.OwnerHasSoldierAbilities.AddItem('ConcussionWarheads_LW');
+
+	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2,default.CONCUSSION_WARHEADS_STUN_CHANCE,false);
+	StunnedEffect.bRemoveWhenSourceDies = false;
+	StunnedEffect.TargetConditions.AddItem(HasAbilityCondition);
+	Template.AddMultiTargetEffect(StunnedEffect);
+
 	Template.ActivationSpeech = 'Explosion';
 	Template.CinescriptCameraType = "Soldier_HeavyWeapons";
 
@@ -1828,6 +1935,263 @@ static function X2AbilityTemplate CreateBunkerBusterAbility()
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.HeavyWeaponLostSpawnIncreasePerUse;
 
 	return Template;
+}
+
+static function X2AbilityTemplate CreateShredderRocketAbility()
+{
+	local X2AbilityTemplate                 Template;
+	local X2AbilityCharges					Charges;
+	local X2AbilityCost_Charges				ChargeCost;
+	local X2AbilityCost_HeavyWeaponActionPoints        ActionPointCost;
+	local X2Effect_ApplyWeaponDamage        WeaponDamageEffect;
+	local X2AbilityTarget_Cursor            CursorTarget;
+	local X2AbilityMultiTarget_Radius       RadiusMultiTarget;
+	local X2AbilityToHitCalc_StandardAim    StandardAim;
+	local X2Condition_UnitEffects			SuppressedCondition;
+	local X2Condition_AbilityProperty			HasAbilityCondition;
+	local X2Effect_Stunned					StunnedEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ShredderRocket_LW');
+
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityShredderRockets";
+	Template.bCrossClassEligible = false;
+	Template.Hostility = eHostility_Offensive;
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_MAJOR_PRIORITY;
+
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+	Template.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher';
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AddShooterEffectExclusions();
+
+	CursorTarget = new class'X2AbilityTarget_Cursor';
+	CursorTarget.bRestrictToWeaponRange = true;
+	Template.AbilityTargetStyle = CursorTarget;
+
+	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
+	StandardAim.bAllowCrit = false;
+	StandardAim.bGuaranteedHit = true;
+	Template.AbilityToHitCalc = StandardAim;
+
+	ActionPointCost = new class'X2AbilityCost_HeavyWeaponActionPoints';
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	Charges = new class'X2AbilityCharges';
+	Charges.InitialCharges = 1;
+	Template.AbilityCharges = Charges;
+
+	ChargeCost = new class'X2AbilityCost_Charges';
+	ChargeCost.NumCharges = 1;
+	Template.AbilityCosts.AddItem(ChargeCost);
+
+	SuppressedCondition = new class'X2Condition_UnitEffects';
+	SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
+	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
+	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
+
+	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
+	RadiusMultiTarget.bUseWeaponRadius = false;
+	RadiusMultiTarget.fTargetRadius = default.SHREDDER_ROCKET_RADIUS_METERS; // meters
+	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
+
+	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
+	WeaponDamageEffect.bIgnoreBaseDamage = true;
+	WeaponDamageEffect.EffectDamageValue=default.SHREDDER_ROCKET_DAMAGE_VALUE;
+	WeaponDamageEffect.bExplosiveDamage = true;
+	WeaponDamageEffect.EnvironmentalDamageAmount=default.SHREDDER_ROCKET_ENV_DAMAGE;
+	Template.AddMultiTargetEffect(WeaponDamageEffect);
+
+		// Concussion Warheads stuff
+	HasAbilityCondition = new class'X2Condition_AbilityProperty';
+	HasAbilityCondition.OwnerHasSoldierAbilities.AddItem('ConcussionWarheads_LW');
+
+	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2,default.CONCUSSION_WARHEADS_STUN_CHANCE,false);
+	StunnedEffect.bRemoveWhenSourceDies = false;
+	StunnedEffect.TargetConditions.AddItem(HasAbilityCondition);
+	Template.AddMultiTargetEffect(StunnedEffect);
+
+	Template.ActivationSpeech = 'Explosion';
+	Template.CinescriptCameraType = "Soldier_HeavyWeapons";
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+
+	// Spawns more lost and always breaks Shadow
+	Template.SuperConcealmentLoss = 100;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.HeavyWeaponLostSpawnIncreasePerUse;
+
+	return Template;
+}
+
+
+static function X2AbilityTemplate CreateEMPRocketAbility()
+{
+	local X2AbilityTemplate                 Template;
+	local X2AbilityCharges					Charges;
+	local X2AbilityCost_Charges				ChargeCost;
+	local X2AbilityCost_HeavyWeaponActionPoints        ActionPointCost;
+	local X2Effect_ApplyWeaponDamage        WeaponDamageEffect;
+	local X2AbilityTarget_Cursor            CursorTarget;
+	local X2AbilityMultiTarget_Radius       RadiusMultiTarget;
+	local X2AbilityToHitCalc_StandardAim    StandardAim;
+	local X2Condition_UnitEffects			SuppressedCondition;
+	local X2Condition_AbilityProperty			HasAbilityCondition;
+	local X2Effect_Stunned					StunnedEffect;
+	local X2Condition_UnitProperty 			UnitCondition;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'EMPRocket_LW');
+
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityEMPRockets";
+	Template.bCrossClassEligible = false;
+	Template.Hostility = eHostility_Offensive;
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_MAJOR_PRIORITY;
+
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+	Template.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher';
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AddShooterEffectExclusions();
+
+	CursorTarget = new class'X2AbilityTarget_Cursor';
+	CursorTarget.bRestrictToWeaponRange = true;
+	Template.AbilityTargetStyle = CursorTarget;
+
+	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
+	StandardAim.bAllowCrit = false;
+	StandardAim.bGuaranteedHit = true;
+	Template.AbilityToHitCalc = StandardAim;
+
+	ActionPointCost = new class'X2AbilityCost_HeavyWeaponActionPoints';
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	Charges = new class'X2AbilityCharges';
+	Charges.InitialCharges = 1;
+	Template.AbilityCharges = Charges;
+
+	ChargeCost = new class'X2AbilityCost_Charges';
+	ChargeCost.NumCharges = 1;
+	Template.AbilityCosts.AddItem(ChargeCost);
+
+	SuppressedCondition = new class'X2Condition_UnitEffects';
+	SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
+	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
+	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
+
+	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
+	RadiusMultiTarget.bUseWeaponRadius = false;
+	RadiusMultiTarget.fTargetRadius = default.EMP_ROCKET_RADIUS_METERS; // meters
+	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
+
+	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
+	WeaponDamageEffect.bIgnoreBaseDamage = true;
+	WeaponDamageEffect.EffectDamageValue=default.EMP_ROCKET_DAMAGE_VALUE;
+	WeaponDamageEffect.bExplosiveDamage = true;
+	WeaponDamageEffect.EnvironmentalDamageAmount=default.EMP_ROCKET_ENV_DAMAGE;
+	Template.AddMultiTargetEffect(WeaponDamageEffect);
+
+		// Concussion Warheads stuff
+	HasAbilityCondition = new class'X2Condition_AbilityProperty';
+	HasAbilityCondition.OwnerHasSoldierAbilities.AddItem('ConcussionWarheads_LW');
+
+	UnitCondition = new class'X2Condition_UnitProperty';
+	UnitCondition.ExcludeOrganic = false;
+	UnitCondition.ExcludeRobotic = true;
+
+	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2,default.CONCUSSION_WARHEADS_STUN_CHANCE,false);
+	StunnedEffect.bRemoveWhenSourceDies = false;
+	StunnedEffect.TargetConditions.AddItem(HasAbilityCondition);
+	StunnedEffect.TargetConditions.AddItem(UnitCondition);
+	Template.AddMultiTargetEffect(StunnedEffect);
+
+	UnitCondition = new class'X2Condition_UnitProperty';
+	UnitCondition.ExcludeOrganic = true;
+
+	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2, 100, false);
+	StunnedEffect.SetDisplayInfo(ePerkBuff_Penalty, class'X2StatusEffects'.default.RoboticStunnedFriendlyName, class'X2StatusEffects'.default.RoboticStunnedFriendlyDesc, "img:///UILibrary_PerkIcons.UIPerk_stun");
+	StunnedEffect.TargetConditions.AddItem(UnitCondition);
+	Template.AddMultiTargetEffect(StunnedEffect);
+
+	Template.ActivationSpeech = 'Explosion';
+	Template.CinescriptCameraType = "Soldier_HeavyWeapons";
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+
+	// Spawns more lost and always breaks Shadow
+	Template.SuperConcealmentLoss = 100;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.HeavyWeaponLostSpawnIncreasePerUse;
+
+	return Template;
+}
+
+static function X2AbilityTemplate ImprovedMunitions()
+{
+	local X2AbilityTemplate					Template;
+	local X2Effect_BonusRocketDamage_LW		DamageEffect;
+
+//	Template = PurePassive('ImprovedMunitions_LW', "img:///UILibrary_LWOTC.LW_AbilityFireInTheHole");
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ImprovedMunitions_LW');
+
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityFireInTheHole";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bIsPassive = true;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	DamageEffect = new class'X2Effect_BonusRocketDamage_LW';
+	DamageEffect.BonusDmg = 2;
+	DamageEffect.BuildPersistentEffect(1, true, false, false);
+	DamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Template.AddTargetEffect(DamageEffect);
+
+	return Template;
+}
+
+
+static function X2AbilityTemplate FireInTheHole()
+{
+	Local X2AbilityTemplate Template;
+	local X2Effect_BonusRocketDamage_LW DmgEffect;
+
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'FireInTheHole');
+
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityFireInTheHole";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bIsPassive = true;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	//  This is a dummy effect so that an icon shows up in the UI.
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	// Note: no visualization on purpose!
+
+	Template.bCrossClassEligible = true;
+
+	DmgEffect = new class'X2Effect_BonusRocketDamage_LW';
+	DmgEffect.BuildPersistentEffect(1, true, false, true);
+	DmgEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	DmgEffect.BonusDmg = 2;
+	Template.AddTargetEffect(DmgEffect);
+
+	return Template;
+
 }
 
 
@@ -1903,8 +2267,8 @@ static function vector GetScatterAmount(XComGameState_Unit Unit, vector Scattere
 {
 	local vector ScatterVector, ReturnPosition;
 	local float EffectiveOffense;
-	local int Idx, NumAimRolls, TileDistance, TileScatter;
-	local float AngleRadians;
+	local int Idx, NumAimRolls, TileDistance;
+	local float AngleRadians, TileScatter;
 	local XComWorldData WorldData;
 
 	`LWTRACE("GetScatterAmount: Starting Calculation");
@@ -1919,10 +2283,10 @@ static function vector GetScatterAmount(XComGameState_Unit Unit, vector Scattere
 
 	`LWTRACE("GetScatterAmount: (Distance) Offense=" $ EffectiveOffense $ ", Rolls=" $ NumAimRolls $ ", Tiles=" $ TileDistance);
 
-	for(Idx=0 ; Idx < NumAimRolls  ; Idx++)
+	for(Idx=0 ; Idx < NumAimRolls*10  ; Idx++)
 	{
 		if(`SYNC_RAND_STATIC(100) >= EffectiveOffense)
-			TileScatter += 1;
+			TileScatter += 0.1;
 	}
 
 	`LWTRACE("GetScatterAmount: (Select) TileScatter=" $ TileScatter);

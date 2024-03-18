@@ -154,11 +154,11 @@ LocPromotionPopupText="<Bullet/> El lanzallamas es un arma de corto alcance que 
 
 [LWRocketLauncher X2AbilityTemplate]
 LocFriendlyName="Lanzacohetes"
-LocHelpText="Dispara un cohete a una zona objetivo. <Ability:ROCKETSCATTER/>"
+LocHelpText="Dispara un cohete a una zona objetivo.<Ability:ROCKETSCATTER/>"
 
 [LWBlasterLauncher X2AbilityTemplate]
 LocFriendlyName="Bomba bláster"
-LocHelpText="Dispara una bomba bláster guiada a una zona objetivo. <Ability:ROCKETSCATTER/>"
+LocHelpText="Dispara una bomba bláster guiada a una zona objetivo.<Ability:ROCKETSCATTER/>"
 
 [NapalmX X2AbilityTemplate]
 LocFriendlyName="Napalm-X"

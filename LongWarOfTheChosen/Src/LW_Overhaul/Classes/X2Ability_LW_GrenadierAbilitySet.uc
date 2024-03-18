@@ -38,7 +38,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddBiggestBooms_LW());
 
 	//temporary common abilities so the UI will load
-	Templates.AddItem(PurePassive('FireInTheHole', "img:///UILibrary_LWOTC.LW_AbilityFireInTheHole", true));
+	Templates.AddItem(PurePassive('FireInTheHole', "img:///UILibrary_LWOTC.LW_AbilityFireInTheHole"));
+	
 
 	return Templates;
 }
@@ -431,6 +432,40 @@ static function X2AbilityTemplate NeedleGrenades()
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	return Template;
+}
+
+static function X2AbilityTemplate FireInTheHole()
+{
+	Local X2AbilityTemplate Template;
+	local X2Effect_BonusRocketDamage_LW DmgEffect;
+
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'FireInTheHole');
+
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityFireInTheHole";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bIsPassive = true;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	//  This is a dummy effect so that an icon shows up in the UI.
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	// Note: no visualization on purpose!
+
+	Template.bCrossClassEligible = true;
+
+	DmgEffect = new class'X2Effect_BonusRocketDamage_LW';
+	DmgEffect.BuildPersistentEffect(1, true, false, true);
+	DmgEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	DmgEffect.BonusDmg = 2;
+	Template.AddTargetEffect(DmgEffect);
+
+	return Template;
+
 }
 
 defaultProperties
