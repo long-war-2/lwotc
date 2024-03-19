@@ -234,6 +234,7 @@ static event OnPostTemplatesCreated()
 	ModifyEncountersForFL21();
 	ModCompatibilityConfig();
 	EditModdedRocketAbilities();
+	UpdateSkulljackAllShooterEffectExclusions();
 }
 
 static function ModCompatibilityConfig()
@@ -249,13 +250,13 @@ static function ModCompatibilityConfig()
 			`LWTrace("Entry in Communty Promotion Screen config found.");
 			class'NPSBDP_UIArmory_PromotionHero'.default.ClassAbilitiesPerRank[idx].AbilitiesPerRank = 4;
 		}
-		
+
 	}
 
 }
 
 static function EditModdedRocketAbilities()
- {
+{
 	local X2AbilityTemplateManager							AbilityManager;
 	local X2AbilityTemplate									AbilityTemplate;
 	local name AbilityName;
@@ -272,7 +273,16 @@ static function EditModdedRocketAbilities()
 			AbilityTemplate.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher';
 		}
 	}
+}
 
+// Vanilla Skulljack and Skullmine can be used while burning
+// In LW, burning disables a lot more abilities, so might as well disable these too
+static function UpdateSkulljackAllShooterEffectExclusions()
+{
+	local X2AbilityTemplateManager AbilityManager;
+	AbilityManager = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
+	AbilityManager.FindAbilityTemplate('SKULLJACKAbility').AddShooterEffectExclusions();
+	AbilityManager.FindAbilityTemplate('SKULLMINEAbility').AddShooterEffectExclusions();
 }
 
 // Uses OPTC to update mission schedules instead of minus config
