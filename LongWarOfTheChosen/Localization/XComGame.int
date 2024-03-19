@@ -2337,7 +2337,7 @@ Title="Set Resistance Priorities"
 LocLongDescription="Assign the rebels in the Haven to search for new missions, gather needed supplies, or find potential recruits. Rebels assigned to intelligence gathering will report leads on ADVENT activities. Central Officer Bradford recommends a heavy focus on intelligence gathering so the troops have some missions to go on."
 
 [LW_T2_M0_S2_FindLiberation1Activity X2ObjectiveTemplate]
-Title="Discover a lead"
+Title="Start Liberating a Region"
 LocLongDescription="Send troops to investigate any leads discovered by the Resistance. One of the missions may provide us crucial information about defeating the ADVENT administration in this region."
 
 [LW_T2_M0_S3_DefeatLiberation2Activity X2ObjectiveTemplate]
