@@ -104,7 +104,6 @@ static protected function EventListenerReturn OnOverrideReinforcementsAlert(Obje
 	{
 		if (SpawnerState.Countdown > 0)
 		{
-			`LWTRace("OverrideReinforcementsAlert: Existing RNF spawner detected, setting to red RNF.");
 			// Reinforcements are pending. Show the normal indicator.
 			OverrideTuple.Data[0].b = true;
 			OverrideTuple.Data[1].s = class'UITacticalHUD_Countdown'.default.m_strReinforcementsTitle;
@@ -129,7 +128,6 @@ static protected function EventListenerReturn OnOverrideReinforcementsAlert(Obje
 			ReinfColor = eUIState_Warning;
 			ReinfState = class 'UIAdventOperations'.default.m_strImminent;
 		}
-		`LWTrace("OverrideReinforcementsAlert: LW RNF object detected, setting RNF tuple override to green/yellow.");
 		OverrideTuple.Data[0].b = true;
 		OverrideTuple.Data[1].s = class'UIUtilities_Text'.static.GetColoredText(class'UITacticalHUD_Countdown'.default.m_strReinforcementsTitle, ReinfColor);
 		OverrideTuple.Data[2].s = class'UIUtilities_Text'.static.GetColoredText(ReinfState, ReinfColor);
