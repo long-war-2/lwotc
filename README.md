@@ -25,13 +25,37 @@ that explains how it works.
 
 ## Building and running the mod
 
-If you want to contribute changes to code or assets, then you will need to
-build the mod so that you can test them. Before you can do that, you need to
-set some things up:
+You will only need to read this section if you'd like to contribute code or assets to the project. It is also useful for localization work, but not required.
+
+The primary development branch is [beta branch](https://github.com/long-war-2/lwotc/tree/beta). Due to differences in build steps between that and [master](https://github.com/long-war-2/lwotc/tree/master) (the stable branch), these instructions are only maintained for **beta**.
+
+Note that you need to own the Shen's Last Gift DLC to build (and play) this version of the mod.
 
  1. Make sure you have the WOTC SDK `full_content` branch installed - see the
-    [xcom2mods wiki](https://www.reddit.com/r/xcom2mods/wiki/index#wiki_setting_up_tools_for_modding)
+    [r/xcom2mods wiki](https://www.reddit.com/r/xcom2mods/wiki/index#wiki_setting_up_tools_for_modding)
     for details on how to do that (plus lots of other useful information)
+
+ 1. Set up the following environment variables:
+    * `XCOM2SDKPATH` — typically &lt;path to Steam&gt;\steamapps\common\XCOM 2 War Of The Chosen SDK
+    * `XCOM2GAMEPATH` — typically &lt;path to Steam&gt;\steamapps\common\XCOM 2\XCom2-WarOfTheChosen
+    Don't put these paths in quotes.
+
+ 1. [Fork this repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+    and then clone your fork locally, which you can do via [Git for Windows](https://gitforwindows.org/)
+    (a command-line tool), [GitHub Desktop](https://desktop.github.com/), or some other
+    Git client tool. This is also a good time to switch to the `beta` branch (e.g. `git switch beta`).
+
+ 1. Once you have cloned the repository, you may need to pull the code for the embedded
+    highlander. If the *X2WOTCCommunityHighlander* directory is empty, then use the
+    command line from the project's root directory (the one containing this README.md):
+    ```
+        > git submodule update --init
+    ```
+    or whatever is the equivalent with the Git client tool you are using.
+
+ 1. Download the LWOTC media assets (video, graphics and sound) from
+    [this Google Drive link](https://drive.google.com/file/d/1il2J310ziHtoVx05DXqNo1zA-G2YPfU3/view?usp=sharing)
+    and unpack the resulting zip file into this project's *LongWarOfTheChosen* directory. It should merge the contents of the *Content* and *ContentForCook* directories.
 
  1. Modify some files in your WOTC SDK's `SrcOrig`:
     * In `X2SitRepEffect_ModifyKismetVariable.uc`, modify line 27
@@ -43,7 +67,7 @@ set some things up:
     native function ModifyKismetVariablesInternal(XComGameState NewGameState);
     ```
 
-    * In `XComPlotCoverParcelManager.uc`, modify line 7
+    * In `XComPlotCoverParcelManager.uc`, modify line 6
     ```
     var const config array<PCPDefinition> arrAllPCPDefs;
     ```
@@ -52,30 +76,9 @@ set some things up:
     var config array<PCPDefinition> arrAllPCPDefs;
     ```
 
- 1. [Fork this repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
-    and then clone your fork locally, which you can do via [Git for Windows](https://gitforwindows.org/)
-    (a command-line tool), [GitHub Desktop](https://desktop.github.com/), or some other
-    git client tool
+ 1. Copy `NewPromotionScreenByDefault` to your `SrcOrig`. You should already be subscribed to the mod [[WOTC] Community Promotion Screen](https://steamcommunity.com/sharedfiles/filedetails/?id=2550561145) (it's a required mod for LWOTC). Locate it in your Workshop mods folder, typically &lt;path to Steam&gt;\steamapps\workshop\content\268500\2550561145. Under `Src`, there is a folder `NewPromotionScreenbyDefault`. Copy it under your SDK's `SrcOrig` (so that you have `Src\NewPromotionScreenbyDefault`).
 
- 1. Once you have cloned the repository, you may need to pull the code for the embedded
-    highlander. If the *X2WOTCCommunityHighlander* directory is empty, then use the
-    command line from the project's root directory (the one containing this README.md):
-    ```
-        > git submodule update --init
-    ```
-    or whatever is the equivalent with the git client tool you are using.
-
- 1. Download the LWOTC media assets (video, graphics and sound) from
-    [this Google Drive link](https://drive.google.com/file/d/1il2J310ziHtoVx05DXqNo1zA-G2YPfU3/view?usp=sharing)
-    and unpack the resulting zip file into this project's *LongWarOfTheChosen* directory. It should merge the contents of the *Content* and *ContentForCook* directories.
-
- 1. Set up the following environment variables:
-    * `XCOM2SDKPATH` — typically &lt;path to Steam&gt;\steamapps\common\XCOM 2 War Of The Chosen SDK
-    * `XCOM2GAMEPATH` — typically &lt;path to Steam&gt;\steamapps\common\XCOM 2\XCom2-WarOfTheChosen
-    Don't put these paths in quotes.
-
- 1. Open a new command prompt after setting those environment variables and run
-    the following from the LWOTC project directory:
+ 1. Run the following from the LWOTC project directory:
     ```
     > build-lwotc.bat -config default
     ```
