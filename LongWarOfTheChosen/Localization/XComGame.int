@@ -7570,3 +7570,9 @@ LocPromotionPopupText="<Bullet/> Combat Protocol has a 3 turn cooldown.<br/><Bul
 
 [ResCard_LiveFireTraining X2StrategyCardTemplate]
 SummaryText="Any recruits training in the GTS will achieve the rank of Corporal."
+
+[UIStrategyMapItem_Region]
+m_strLockedTT=We cannot make contact with the Resistance in this region. We must first make contact with a connected region.
+m_strUnlockedTT=The Resistance in <XGParam:StrValue0/!WorldRegionName/> would join our cause if we made contact with them!
+m_strContactTT=The Resistance in <XGParam:StrValue0/!WorldRegionName/> is generating an income of <XGParam:StrValue1/!Quantity/> supplies for us.
+m_strOutpostTT=We have installed a radio relay in this region! The relay increases the efficiency of rebel jobs and it reduces the cost of contact with any connected regions.
