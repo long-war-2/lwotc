@@ -26,7 +26,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 				WeaponDamageEffect = X2Effect_ApplyWeaponDamage(class'X2Effect'.static.GetX2Effect(AppliedData.EffectRef));
 				if (WeaponDamageEffect != none)
 				{			
-					if (WeaponDamageEffect.bIgnoreBaseDamage)
+					if (WeaponDamageEffect.bIgnoreBaseDamage || (AbilityState.GetMyTemplateName() == 'ConcussionRocket' || AbilityState.GetMyTemplateName() == 'ShredderRocket_LW'))
 					{	
 						return 0;
 					}
@@ -43,7 +43,7 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 {
     local ShotModifierInfo BoomInfo;
 
-	if(bIndirectFire || AbilityState.GetMyTemplateName() == 'LWRocketLauncher' || AbilityState.GetMyTemplateName() == 'LWBlasterLauncher' || AbilityState.GetMyTemplateName() == 'MicroMissiles')
+	if(bIndirectFire || AbilityState.GetMyTemplateName() == 'LWRocketLauncher' || AbilityState.GetMyTemplateName() == 'LWBlasterLauncher' || AbilityState.GetMyTemplateName() == 'MicroMissiles' || AbilityState.GetMyTemplateName() == 'ConcussionRocket' || AbilityState.GetMyTemplateName() == 'ShredderRocket_LW')
 	{
 		BoomInfo.ModType = eHit_Crit;
 		BoomInfo.Value = default.CRIT_CHANCE_BONUS;
