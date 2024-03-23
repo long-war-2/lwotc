@@ -142,8 +142,10 @@ function XComGameState_LWPersistentSquad InitSquad(optional string sName = "", o
 
 	SquadBioTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
 	SquadBioTag.StrValue0 = DateString;
-	sSquadBiography = `XEXPAND.ExpandString(class'UIPersonnel_SquadBarracks'.default.strDefaultSquadBiography);		
-		
+	sSquadBiography = `XEXPAND.ExpandString(class'UIPersonnel_SquadBarracks'.default.strDefaultSquadBiography);
+
+	SquadImagePath = class'UIPersonnel_SquadBarracks'.default.SquadImagePaths[Rand(class'UIPersonnel_SquadBarracks'.default.SquadImagePaths.Length)];
+
 	return self;
 }
 
