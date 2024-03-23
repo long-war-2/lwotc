@@ -10,6 +10,7 @@ class UIOutpostManagement extends UIScreen
 var config bool FONT_SIZE_2D_3D_SAME_MK, USE_FANCY_VERSION;
 var config int ADVISOR_FONT_SIZE_MK, HEADER_BUTTON_HEIGHT_MK, HEADER_FONT_SIZE_MK;
 var config int ADVISOR_FONT_SIZE_CTRL, HEADER_BUTTON_HEIGHT_CTRL, HEADER_FONT_SIZE_CTRL;
+var config bool bShowJobInfo;
 
 var name DisplayTag;
 var name CameraTag;
@@ -194,23 +195,26 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 
 	// Tedster: Outpost income
 
-	IncomeIntelStr = Spawn(class'UIScrollingText', MainPanel);
-	IncomeIntelStr.bAnimateOnInit = false;
-	IncomeIntelStr.InitScrollingText('Outpost_OutpostIncomeIntel_LW', "", panelW - BorderPadding * 2, BorderPadding -200, ListBG.Y + 46.75 + 18);
-	IncomeIntelStr.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ m_strIncomeIntel @ IncomeIntel $ "</font></p>");
-	IncomeIntelStr.SetAlpha(67.1875);
+	if(default.bShowJobInfo)
+	{
+		IncomeIntelStr = Spawn(class'UIScrollingText', MainPanel);
+		IncomeIntelStr.bAnimateOnInit = false;
+		IncomeIntelStr.InitScrollingText('Outpost_OutpostIncomeIntel_LW', "", panelW - BorderPadding * 2, BorderPadding -200, ListBG.Y + 46.75 + 18);
+		IncomeIntelStr.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ m_strIncomeIntel @ IncomeIntel $ "</font></p>");
+		IncomeIntelStr.SetAlpha(67.1875);
 
-	IncomeSupplyStr = Spawn(class'UIScrollingText', MainPanel);
-	IncomeSupplyStr.bAnimateOnInit = false;
-	IncomeSupplyStr.InitScrollingText('Outpost_OutpostIncomeSupply_LW', "", panelW - BorderPadding * 2, BorderPadding -200, ListBG.Y + 46.75 + 46);
-	IncomeSupplyStr.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ m_strIncomeSupply @ IncomeSupply $ "</font></p>");
-	IncomeSupplyStr.SetAlpha(67.1875);
+		IncomeSupplyStr = Spawn(class'UIScrollingText', MainPanel);
+		IncomeSupplyStr.bAnimateOnInit = false;
+		IncomeSupplyStr.InitScrollingText('Outpost_OutpostIncomeSupply_LW', "", panelW - BorderPadding * 2, BorderPadding -200, ListBG.Y + 46.75 + 46);
+		IncomeSupplyStr.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ m_strIncomeSupply @ IncomeSupply $ "</font></p>");
+		IncomeSupplyStr.SetAlpha(67.1875);
 
-	IncomeRecruitStr = Spawn(class'UIScrollingText', MainPanel);
-	IncomeRecruitStr.bAnimateOnInit = false;
-	IncomeRecruitStr.InitScrollingText('Outpost_OutpostIncomeRecruit_LW', "", panelW - BorderPadding * 2, BorderPadding -200, ListBG.Y + 46.75 + 74);
-	IncomeRecruitStr.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ m_strIncomeRecruit @ IncomeRecruit $ "</font></p>");
-	IncomeRecruitStr.SetAlpha(67.1875);
+		IncomeRecruitStr = Spawn(class'UIScrollingText', MainPanel);
+		IncomeRecruitStr.bAnimateOnInit = false;
+		IncomeRecruitStr.InitScrollingText('Outpost_OutpostIncomeRecruit_LW', "", panelW - BorderPadding * 2, BorderPadding -200, ListBG.Y + 46.75 + 74);
+		IncomeRecruitStr.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ m_strIncomeRecruit @ IncomeRecruit $ "</font></p>");
+		IncomeRecruitStr.SetAlpha(67.1875);
+	}
 
 
 
@@ -971,10 +975,12 @@ function UpdateJobUI()
 		IncomeRecruit = "N/A";
 	}
 
-	IncomeIntelStr.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ m_strIncomeIntel @ IncomeIntel $ "</font></p>");
-	IncomeSupplyStr.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ m_strIncomeSupply @ IncomeSupply $ "</font></p>");
-	IncomeRecruitStr.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ m_strIncomeRecruit @ IncomeRecruit $ "</font></p>");
-
+	if(default.bShowJobInfo)
+	{
+		IncomeIntelStr.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ m_strIncomeIntel @ IncomeIntel $ "</font></p>");
+		IncomeSupplyStr.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ m_strIncomeSupply @ IncomeSupply $ "</font></p>");
+		IncomeRecruitStr.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ m_strIncomeRecruit @ IncomeRecruit $ "</font></p>");
+	}
 }
 
 function SaveOutpost()
