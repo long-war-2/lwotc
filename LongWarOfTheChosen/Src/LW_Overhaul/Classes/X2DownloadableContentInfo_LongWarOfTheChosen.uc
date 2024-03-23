@@ -2693,7 +2693,7 @@ static function bool GetValidFloorSpawnLocations(out array<Vector> FloorPoints, 
 		RootTile.Y -= Width/2;
 
 		World.GetSpawnTilePossibilities(RootTile, Length, Width, Height, FloorTiles);
-
+		`LWTrace("Potential valid # of tiles:" @FloorTiles.Length);
 		foreach FloorTiles(Tile)
 		{
 			// Skip any tile that is going to be destroyed on tactical start.
@@ -2715,6 +2715,13 @@ static function bool GetValidFloorSpawnLocations(out array<Vector> FloorPoints, 
 	for (Iters = 0; Iters < FloorPoints.Length; Iters++)
 	{
 		`LWTRACE("Point[" $ Iters $ "] = " $ string(FloorPoints[Iters]));
+	}
+
+	if(FloorPoints.Length == 0)
+	{
+		return false;
+		// Adjust height and try again.
+		//SpawnPoint.GetValidFloorLocations(FloorPoints, max(Width, Length))
 	}
 
 	return true;
