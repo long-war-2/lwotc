@@ -82,36 +82,36 @@ LocPromotionPopupText="<Bullet/> You do <Ability:LETHAL_DAMAGE_LW/> additional p
 [HitandSlither X2AbilityTemplate]
 LocFriendlyName="Hit and Slither"
 LocFlyOverText="Hit and Slither"
-LocLongDescription="Once per turn, gain an additional move action after taking a standard shot at a flanked or exposed target with your primary weapon. "
-LocHelpText="Once per turn, gain an additional move action after taking a standard shot at a flanked or exposed target with your primary weapon."
-LocPromotionPopupText="<Bullet/> Once per turn, gain an additional move action after taking a standard shot at a flanked or exposed target with your primary weapon.<br/>
+LocLongDescription="Once per turn, gain an additional move action after taking a standard shot at a flanked enemy with your primary weapon. "
+LocHelpText="Once per turn, gain an additional move action after taking a standard shot at a flanked enemy with your primary weapon."
+LocPromotionPopupText="<Bullet/> Once per turn, gain an additional move action after taking a standard shot at a flanked enemy with your primary weapon.<br/>
 
 [HitandRun X2AbilityTemplate]
 LocFriendlyName="Hit and Run"
 LocFlyOverText="Hit and Run"
-; LWOTC Needs Translation 
-LocLongDescription="Once per turn, gain an additional action after taking a standard shot at a flanked or exposed target with your primary weapon. Cannot trigger on the same turn as Close Encounters. "
-; End Translation 
-LocHelpText="Once per turn, gain an additional action after taking a standard shot at a flanked or exposed target with your primary weapon."
+; LWOTC Needs Translation
+LocLongDescription="Once per turn, gain an additional action after taking a standard shot at a flanked enemy with your primary weapon. Cannot trigger on the same turn as Close Encounters. "
+; End Translation
+LocHelpText="Once per turn, gain an additional action after taking a standard shot at a flanked enemy with your primary weapon."
 LocPromotionPopupText="<Bullet/> Cannot be used on the same turn as Run and Gun.<br/><Bullet/> Bonus full actions from Serial and Death from Above will be awarded first."
 
 [CloseCombatSpecialist X2AbilityTemplate]
 LocFriendlyName="Close Combat Specialist"
 LocFlyOverText="Close Combat Specialist"
 ; LWOTC Needs Translation (3)
-LocLongDescription="Fire a free reaction shot with your <Ability:BOUND_WEAPON_NAME/> at any visible enemy within four tiles who moves or fires."
-LocHelpText="Fire a free reaction shot at any visible enemy within four tiles who moves or fires."
+LocLongDescription="Fire a free reaction shot with your <Ability:BOUND_WEAPON_NAME/> at any visible enemy within <Ability:CCS_RANGE> tiles who moves or attacks."
+LocHelpText="Fire a free reaction shot at any visible enemy within <Ability:CCS_RANGE> tiles who moves or attacks."
 ; End Translation (3)
-LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><Bullet/> You may shoot at each enemy with this ability once per turn.<br/><Bullet/> Each shot requires 2 ammo.<br/>""
+LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><Bullet/> You may shoot at each enemy with this ability once per turn.<br/><Bullet/> Each shot requires <Ability:CCS_AMMO_PER_SHOT> ammo.<br/>"
 
 [CloseCombatSpecialistAttack X2AbilityTemplate]
 LocFriendlyName="Close Combat Specialist"
 LocFlyOverText="Close Combat Specialist"
 ; LWOTC Needs Translation (2)
-LocLongDescription="During enemy turns, fire a free reaction shot with your <Ability:BOUND_WEAPON_NAME/> at any visible enemy within four tiles who moves or fires."
+LocLongDescription="Fire a free reaction shot with your <Ability:BOUND_WEAPON_NAME/> at any visible enemy within <Ability:CCS_RANGE> tiles who moves or attacks."
 ; End Translation (2)
-LocHelpText="During enemy turns, Fire a free reaction shot at any visible enemy within four tiles who moves or fires."
-LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><Bullet/> You may shoot at each enemy with this ability once per turn.<br/><Bullet/> Each shot requires 2 ammo.<br/>""
+LocHelpText="Fire a free reaction shot at any visible enemy within <Ability:CCS_RANGE> tiles who moves or attacks."
+LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><Bullet/> You may shoot at each enemy with this ability once per turn.<br/><Bullet/> Each shot requires <Ability:CCS_AMMO_PER_SHOT> ammo.<br/>"
 
 [CloseandPersonal X2AbilityTemplate]
 LocFriendlyName="Close and Personal"
