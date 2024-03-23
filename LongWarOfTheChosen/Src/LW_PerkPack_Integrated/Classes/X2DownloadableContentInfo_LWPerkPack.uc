@@ -170,6 +170,12 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'CUTTHROAT_BONUS_CRIT_DAMAGE':
 			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.CUTTHROAT_BONUS_CRIT_DAMAGE);
 			return true;
+		case 'CCS_AMMO_PER_SHOT':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.CCS_AMMO_PER_SHOT);
+			return true;
+		case 'CCS_RANGE':
+			Outstring = string(class'X2AbilityTarget_Single_CCS'.default.CCS_RANGE);
+			return true;
 		case 'COVERING_FIRE_OFFENSE_MALUS':
 			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.COVERING_FIRE_OFFENSE_MALUS);
 			return true;
