@@ -54,7 +54,7 @@ Note that you need to own the Shen's Last Gift DLC to build (and play) this vers
     or whatever is the equivalent with the Git client tool you are using.
 
  1. Download the LWOTC media assets (video, graphics and sound) from
-    [this Google Drive link](https://drive.google.com/file/d/1il2J310ziHtoVx05DXqNo1zA-G2YPfU3/view?usp=sharing)
+    [this Google Drive link](https://drive.google.com/file/d/1_tTqzOxQI-g-LGn4FjFOiVULtHsDhsqp/view?usp=sharing)
     and unpack the resulting zip file into this project's *LongWarOfTheChosen* directory. It should merge the contents of the *Content* and *ContentForCook* directories.
 
  1. Modify some files in your WOTC SDK's `SrcOrig`:
