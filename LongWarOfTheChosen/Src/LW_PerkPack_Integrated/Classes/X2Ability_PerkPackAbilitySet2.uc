@@ -1419,8 +1419,8 @@ static function X2DataTemplate RebootTriggered()
 	Template.AddTargetEffect(HackEffect);
 
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.TechBonusLabel, eStat_Hacking, default.REBOOT_HACK);
-	Template.SetUIStatMarkup(class'XLocalizedData'.default.TechBonusLabel, eStat_Offense, default.REBOOT_AIM);
-	Template.SetUIStatMarkup(class'XLocalizedData'.default.TechBonusLabel, eStat_Mobility, default.REBOOT_MOB);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.AimLabel, eStat_Offense, default.REBOOT_AIM);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, default.REBOOT_MOB);
 
 	EventTrigger = new class'X2AbilityTrigger_EventListener';
 	EventTrigger.ListenerData.Deferral = ELD_OnStateSubmitted;
