@@ -131,7 +131,7 @@ static function X2DataTemplate CreateTemplate_Bullpup_Laser()
 	Template.Abilities.AddItem('PistolReturnFire');
 	Template.Abilities.AddItem('HotLoadAmmo');
 	Template.Abilities.AddItem('Bullpup_CV_StatBonus');
-	Template.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_FactionWeaponAbilities'.default.BULLPUP_CONVENTIONAL_MOBILITY_BONUS);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, class'X2Ability_FactionWeaponAbilities'.default.BULLPUP_CONVENTIONAL_MOBILITY_BONUS);
 
 	// This all the resources; sounds, animations, models, physics, the works.
 	Template.GameArchetype = "LWSMG_LS.Archetype.WP_SMG_LS";
@@ -205,7 +205,7 @@ static function X2DataTemplate CreateBullpup_Coil_Template()
 	Template.Requirements.RequiredTechs.AddItem('Coilguns');
 
 	Template.Abilities.AddItem('Bullpup_CV_StatBonus');
-	Template.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_FactionWeaponAbilities'.default.BULLPUP_CONVENTIONAL_MOBILITY_BONUS);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, class'X2Ability_FactionWeaponAbilities'.default.BULLPUP_CONVENTIONAL_MOBILITY_BONUS);
 
 	Template.iPhysicsImpulse = 5;
 	Template.StartingItem = false;
