@@ -3234,11 +3234,11 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 				{
 					case 'SparkBit_MG':
 						EquipmentTemplate.Abilities.AddItem('Plated_BIT_Bonus_Dodge');
-						EquipmentTemplate.SetUIStatMarkup("Dodge", eStat_Dodge, class'X2Ability_LW_GearAbilities'.default.PLATED_BIT_DODGE_BONUS);
+						EquipmentTemplate.SetUIStatMarkup(class'XLocalizedData'.default.DodgeLabel, eStat_Dodge, class'X2Ability_LW_GearAbilities'.default.PLATED_BIT_DODGE_BONUS);
 						break;
 					case 'SparkBit_BM':
 						EquipmentTemplate.Abilities.AddItem('Powered_BIT_Bonus_Dodge');
-						EquipmentTemplate.SetUIStatMarkup("Dodge", eStat_Dodge, class'X2Ability_LW_GearAbilities'.default.POWERED_BIT_DODGE_BONUS);
+						EquipmentTemplate.SetUIStatMarkup(class'XLocalizedData'.default.DodgeLabel, eStat_Dodge, class'X2Ability_LW_GearAbilities'.default.POWERED_BIT_DODGE_BONUS);
 						break;
 					default:
 						break;
