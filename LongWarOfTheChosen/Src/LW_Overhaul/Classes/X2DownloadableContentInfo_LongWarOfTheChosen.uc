@@ -4020,6 +4020,15 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'ROUST_DAMAGE_PENALTY':
 			Outstring = string(int(class'X2Ability_LW_TechnicalAbilitySet'.default.ROUST_DAMAGE_PENALTY * 100));
 			return true;
+		case 'ROUST_MOB_REDUCTION':
+			Outstring = string(class'X2Ability_LW_TechnicalAbilitySet'.default.ROUST_MOB_REDUCTION);
+			return true;
+		case 'ROUST_DEF_REDUCTION':
+			Outstring = string(class'X2Ability_LW_TechnicalAbilitySet'.default.ROUST_DEF_REDUCTION);
+			return true;
+		case 'ROUST_STATEFFECT_DURATION':
+			Outstring = string(class'X2Ability_LW_TechnicalAbilitySet'.default.ROUST_STATEFFECT_DURATION);
+			return true;
 		case 'NAPALM_X_BASEVALUE':
 			Outstring = string(class'X2AbilityToHitCalc_StatCheck_LWFlamethrower'.default.BaseValue);
 			return true;
