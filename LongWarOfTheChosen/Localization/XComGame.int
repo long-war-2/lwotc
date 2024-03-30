@@ -195,9 +195,9 @@ LocPromotionPopupText="<Bullet/> Your flamethrower has an increased range and co
 [Roust X2AbilityTemplate]
 LocFriendlyName="Roust"
 LocFlyOverText="Roust"
-LocLongDescription="Special Flamethrower shot that deals limited damage but forces enemies to change their position and decreases their mobility and defense."
-LocHelpText="Special Flamethrower shot that deals limited damage but forces enemies to change their position and decreases their mobility and defense."
-LocPromotionPopupText="<Bullet/> Has a <Ability:ROUST_DIRECT_APPLY_CHANCE>% chance to set enemies in the area of effect on fire and deals <Ability:ROUST_DAMAGE_PENALTY>% reduced damage.<br/><Bullet/> The narrow jet of flame has less impact on the environment.<br/><Bullet/> Units hit by the shot will be forced to move, often triggering overwatch fire.<br/><Bullet/> One use per mission, but can gain an additional use with additional gear.<br/><Bullet/> Cannot be used from concealment."
+LocLongDescription="Special Flamethrower shot that deals limited damage, but forces targets to move and decreases their mobility and defense."
+LocHelpText="<Ability:ROUST_DIRECT_APPLY_CHANCE>% chance to burn targets and forces them to move. Decreases targets' mobility by <Ability:ROUST_MOB_REDUCTION> and defense by <Ability:ROUST_DEF_REDUCTION> for a <Ability:ROUST_STATEFFECT_DURATION> turn duration. Forces targets to move."
+LocPromotionPopupText="<Bullet/> Has a <Ability:ROUST_DIRECT_APPLY_CHANCE>% chance to set targets in the area of effect on fire and deals <Ability:ROUST_DAMAGE_PENALTY>% reduced damage.<br/><Bullet/> Targets in the area of effect have their mobility reduced by <Ability:ROUST_MOB_REDUCTION> and defense by <Ability:ROUST_DEF_REDUCTION> for a <Ability:ROUST_STATEFFECT_DURATION> turn duration.<br/><Bullet/> The narrow jet of flame has less impact on the environment.<br/><Bullet/> Units hit by the shot will be forced to move, often triggering overwatch fire.<br/><Bullet/> One use per mission, but can gain an additional use with additional gear.<br/><Bullet/> Cannot be used from concealment."
 
 ; LWOTC Needs Translation (2)
 [Burnout X2AbilityTemplate]
