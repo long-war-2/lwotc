@@ -3174,6 +3174,10 @@ BonusText="+%AVENGERBONUS% VELOCIDAD DE CURACIÓN"
 FilledText="El equipo médico avanzado de %UNITNAME está aumentando la velocidad a la que se recuperan los soldados de sus heridas."
 LockedText="BLOQUEADO: COMPRAR MEJORA"
 
+[CovertActionIntenseTrainingStaffSlot X2StaffSlotTemplate]
+EmptyText="SOLDADO"
+BonusText="EN OPERACIÓN ENCUBIERTA"
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Techs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [Tech_AlienFacilityLead X2TechTemplate]

@@ -2818,6 +2818,10 @@ BonusText="치료 속도 +%AVENGERBONUS%"
 FilledText="%UNITNAME의 고급 의료 설비는 병사들이 부상에서 회복하는 속도를 증가시킵니다."
 LockedText="잠김: 업그레이드 구매"
 
+[CovertActionIntenseTrainingStaffSlot X2StaffSlotTemplate]
+EmptyText="병사"
+BonusText="기밀 작전 중"
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Techs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [Tech_AlienFacilityLead X2TechTemplate]

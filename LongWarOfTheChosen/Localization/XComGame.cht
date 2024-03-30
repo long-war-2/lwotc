@@ -3275,6 +3275,10 @@ BonusText="治癒速率+%AVENGERBONUS%"
 FilledText="%UNITNAME的先進醫療設備提高了士兵的受傷恢復的速率！"
 LockedText="未解鎖：購入升級"
 
+[CovertActionIntenseTrainingStaffSlot X2StaffSlotTemplate]
+EmptyText="士兵"
+BonusText="隱秘行動訓練中"
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Techs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [Tech_AlienFacilityLead X2TechTemplate]

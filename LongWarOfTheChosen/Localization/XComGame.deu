@@ -3110,6 +3110,10 @@ BonusText="HEILUNGSRATE +%AVENGERBONUS %"
 FilledText="Zusätzliche medizinische Unterstützung durch %UNITNAME erhöht die Rate, mit der sich Soldaten von Verletzungen erholen."
 LockedText="GESPERRT: VERBESSERUNG KAUFEN"
 
+[CovertActionIntenseTrainingStaffSlot X2StaffSlotTemplate]
+EmptyText="OLDAT"
+BonusText="IN VERDECKTER AKTION"
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Techs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [Tech_AlienFacilityLead X2TechTemplate]

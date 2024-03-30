@@ -3394,6 +3394,10 @@ BonusText="HEALING RATE +%AVENGERBONUS%"
 FilledText="%UNITNAME's advanced medical equipment is increasing the rate soldiers recover from injuries."
 LockedText="LOCKED: PURCHASE UPGRADE"
 
+[CovertActionIntenseTrainingStaffSlot X2StaffSlotTemplate]
+EmptyText="SOLDIER"
+BonusText="ON COVERT ACTION"
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Techs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [Tech_AlienFacilityLead X2TechTemplate]

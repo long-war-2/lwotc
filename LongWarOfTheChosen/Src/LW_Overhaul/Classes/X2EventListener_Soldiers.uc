@@ -215,6 +215,12 @@ static protected function EventListenerReturn OnOverridePersonnelStatus(Object E
 	local XComGameState_LWPersistentSquad Squad;
 	local XComGameState_LWSquadManager SquadMgr;
 	local int						HoursToInfiltrate;
+	local XComGameStateHistory		History;
+	local XComGameState_CovertAction ActionState;
+	local XComGameState_CovertAction UnitActionState;
+	local XComGameState_StaffSlot	SlotState;
+	local XComGameState_Unit		SlotUnitState;
+	local int						idx, HoursToCovertAction;
 
 	OverrideTuple = XComLWTuple(EventData);
 	if (OverrideTuple == none)
@@ -277,6 +283,42 @@ static protected function EventListenerReturn OnOverridePersonnelStatus(Object E
 					HoursToInfiltrate,				// TimeValue
 					eUIState_Warning,
 					false);
+			}
+		}
+		else if (UnitState.GetStatus() == eStatus_CovertAction)
+		{
+			History = `XCOMHISTORY;
+			foreach History.IterateByClassType(class'XComGameState_CovertAction', ActionState)
+			{
+				if (ActionState.bStarted)
+				{
+					// Trying to find the Covert Action the soldier is currently on.
+					for (idx = ActionState.StaffSlots.Length - 1; idx >= 0; idx--)
+					{
+						SlotState = ActionState.GetStaffSlot(idx);
+						if (SlotState != none && SlotState.IsSoldierSlot() && SlotState.IsSlotFilled())
+						{
+							SlotUnitState = SlotState.GetAssignedStaff();
+							if (UnitState.ObjectID == SlotUnitState.ObjectID) {
+								UnitActionState = ActionState;
+								break;
+							}
+						}
+					}
+
+					if (UnitActionState != none) {
+						HoursToCovertAction = UnitActionState.GetNumHoursRemaining();
+						SetStatusTupleData(
+							OverrideTuple,
+							SlotState.GetMyTemplate().BonusText,	// Status
+							"",								// TimeLabel
+							"",								// TimeLabelOverride
+							HoursToCovertAction,				// TimeValue
+							eUIState_Warning,
+							false);
+						break;
+					}
+				}
 			}
 		}
 	}

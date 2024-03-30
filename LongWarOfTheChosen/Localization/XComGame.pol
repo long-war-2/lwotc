@@ -3174,6 +3174,10 @@ BonusText="SZYBKOŚĆ LECZENIA +%AVENGERBONUS%"
 FilledText="Specjalistyczna opieka medyczna, której udziela %UNITNAME, przyspiesza czas gojenia się ran żołnierzy."
 LockedText="ZABLOKOWANE: KUP ULEPSZENIE"
 
+[CovertActionIntenseTrainingStaffSlot X2StaffSlotTemplate]
+EmptyText="ŻOŁNIERZ"
+BonusText="NA TAJNEJ OPERACJI"
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Techs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [Tech_AlienFacilityLead X2TechTemplate]
