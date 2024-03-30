@@ -69,7 +69,7 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 
 	//Added for fix to issue #100
 	Template.AddCHEvent('OverrideCurrentDoom', OverrideCurrentDoom, ELD_Immediate, GetListenerPriority());
-	Template.AddCHEvent('PostUFOSetInterceptionTime', OnUFOSetInfiltrationTime, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('PostUFOSetInterceptionTime', OnUFOSetInterceptionTime, ELD_Immediate, GetListenerPriority());
 
 	Template.RegisterInStrategy = true;
 
@@ -1217,7 +1217,7 @@ static function EventListenerReturn OverrideEligibleStartingRegionMinLinks(
 }
 
 // Override how the UFO interception works, since we don't use the calendar
-function EventListenerReturn OnUFOSetInfiltrationTime(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+static function EventListenerReturn OnUFOSetInterceptionTime(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
     local XComGameState_UFO UFO;
 	local int HoursUntilIntercept;
@@ -1233,7 +1233,7 @@ function EventListenerReturn OnUFOSetInfiltrationTime(Object EventData, Object E
 	{
 		UFO.InterceptionTime = UFO.GetCurrentTime();
 
-		HoursUntilIntercept = (UFO.MinNonInterceptDays * 24) + `SYNC_RAND((UFO.MaxNonInterceptDays * 24) - (UFO.MinNonInterceptDays * 24) + 1);
+		HoursUntilIntercept = (UFO.MinNonInterceptDays * 24) + `SYNC_RAND_STATIC((UFO.MaxNonInterceptDays * 24) - (UFO.MinNonInterceptDays * 24) + 1);
 		class'X2StrategyGameRulesetDataStructures'.static.AddHours(UFO.InterceptionTime, HoursUntilIntercept);
 	}
 
