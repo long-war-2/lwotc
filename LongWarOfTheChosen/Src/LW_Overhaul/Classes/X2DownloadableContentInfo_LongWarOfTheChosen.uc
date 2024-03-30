@@ -1508,7 +1508,11 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 				{
 					Satisfactory = true;
 				}
-				if ((PodSize == 4 ) && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= Podsize - 1)
+				if((PodSize == 3) && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) == 3)
+				{
+					Tries += 1;
+				}
+				else if ((PodSize == 4 ) && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= Podsize - 1)
 				{
 					Tries += 1;
 				}
