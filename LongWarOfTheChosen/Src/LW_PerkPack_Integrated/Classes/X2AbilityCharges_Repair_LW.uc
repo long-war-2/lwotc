@@ -25,19 +25,19 @@ simulated function int GetInitialCharges(XComGameState_Ability Ability, XComGame
 
 	if (SparkBITTemplate != none)
 	{
-		if (SparkBITTemplate.GetItemFriendlyNameNoStats() == "SPARK BIT")
+		if (SparkBITTemplate.DataName == 'SparkBit_CV')
 		{
 			RepairCharges = default.T1_CHARGES;
 			`log("T1 SparkBIT detected, applying T1_CHARGES to Repair ability");
 			`log(`SHOWVAR(default.T1_CHARGES));
 		}
-		else if (SparkBITTemplate.GetItemFriendlyNameNoStats() == "Plated BIT")
+		else if (SparkBITTemplate.DataName == 'SparkBit_MG')
 		{
 			RepairCharges = default.T2_CHARGES;
 			`log("T2 SparkBIT detected, applying T2_CHARGES to Repair ability");
 			`log(`SHOWVAR(default.T2_CHARGES));
 		}
-		else if (SparkBITTemplate.GetItemFriendlyNameNoStats() == "Powered BIT")
+		else if (SparkBITTemplate.DataName == 'SparkBit_BM')
 		{
 			RepairCharges = default.T3_CHARGES;
 			`log("T3 SparkBIT detected, applying T3_CHARGES to Repair ability");

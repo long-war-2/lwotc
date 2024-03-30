@@ -3654,9 +3654,9 @@ static function X2AbilityTemplate CrusaderRage()
 	Effect = new class'XMBEffect_ConditionalBonus';
 
 	//Need to add for all of them because apparently if you crit you don't hit lol
-	Effect.AddPercentDamageModifier(20, eHit_Success);
-	Effect.AddPercentDamageModifier(20, eHit_Graze);
-	Effect.AddPercentDamageModifier(20, eHit_Crit);
+	Effect.AddPercentDamageModifier(50, eHit_Success);
+	Effect.AddPercentDamageModifier(50, eHit_Graze);
+	Effect.AddPercentDamageModifier(50, eHit_Crit);
 	Effect.EffectName = 'CrusaderRage_Bonus2';
 
 	// The effect only applies while wounded
@@ -3673,6 +3673,7 @@ static function X2AbilityTemplate CrusaderRage()
 
 	Condition = new class'X2Condition_UnitStatCheck';
 	Condition.AddCheckStat(eStat_HP, 76, eCheck_LessThan,,, true);
+	Condition.AddCheckStat(eStat_HP, 51, eCheck_GreaterThanOrEqual,,, true);
 
 	// Create a conditional bonus effect
 	Effect = new class'XMBEffect_ConditionalBonus';
