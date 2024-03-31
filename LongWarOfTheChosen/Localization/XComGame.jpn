@@ -2814,6 +2814,10 @@ BonusText="回復速度+%AVENGERBONUS%"
 FilledText="%UNITNAMEの先進医療装備により、兵士の回復速度が向上する。"
 LockedText="ロック中：アップグレードを購入する"
 
+[CovertActionIntenseTrainingStaffSlot X2StaffSlotTemplate]
+EmptyText="兵士"
+BonusText="秘密工作中"
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Techs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [Tech_AlienFacilityLead X2TechTemplate]

@@ -3231,6 +3231,10 @@ BonusText="VITESSE DE GUÉRISON +%AVENGERBONUS%"
 FilledText="L'équipement médical avancé de %UNITNAME augmente la vitesse de récupération des soldats blessés."
 LockedText="VERROUILLÉ: ACHETER AMÉLIORATION"
 
+[CovertActionIntenseTrainingStaffSlot X2StaffSlotTemplate]
+EmptyText="SOLDAT"
+BonusText="EN MISSION SECRÈTE"
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Techs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [Tech_AlienFacilityLead X2TechTemplate]

@@ -3519,6 +3519,10 @@ BonusText="ТЕМП ВОССТАНОВЛЕНИЯ +%AVENGERBONUS%"
 FilledText="%UNITNAME ускоряет восстановление солдат после ранений с помощью продвинутого медицинского оборудования."
 LockedText="НЕДОСТУПНО: ПРИОБРЕТИТЕ УЛУЧШЕНИЕ"
 
+[CovertActionIntenseTrainingStaffSlot X2StaffSlotTemplate]
+EmptyText="СОЛДАТ"
+BonusText="НА СЕКРЕТНОМ ЗАДАНИИ"
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Techs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [Tech_AlienFacilityLead X2TechTemplate]
