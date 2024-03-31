@@ -28,6 +28,24 @@ struct ChosenStrengthWeighted
 	var float Weight;
 };
 
+struct PodSizeConversion
+{
+	var int Podsize;
+	var int SameUnitMaxLimit;
+	var int SameUnitMaxLimitAliens;
+};
+
+var config array<PodSizeConversion> PodSizeConversions;
+/*
+	+PodSizeConversions(Podsize = 4, SameUnitMaxLimit = 3, SameUnitMaxLimitAliens = 3) ;a pod of size 4, cannot have 3 same normal units or 3 same alien units
+	+PodSizeConversions(Podsize = 5, SameUnitMaxLimit = 3, SameUnitMaxLimitAliens = 3) ;a pod of size 5, cannot have 3 same normal units or 3 same alien units
+	+PodSizeConversions(Podsize = 6, SameUnitMaxLimit = 4, SameUnitMaxLimitAliens = 3) ;a pod of size 6, cannot have 4 same normal units or 3 same alien units
+	+PodSizeConversions(Podsize = 7, SameUnitMaxLimit = 4, SameUnitMaxLimitAliens = 3) ;a pod of size 7, cannot have 4 same normal units or 3 same alien units
+	+PodSizeConversions(Podsize = 8, SameUnitMaxLimit = 5, SameUnitMaxLimitAliens = 4) ;a pod of size 8, cannot have 5 same normal units or 4 same alien units
+
+	+PodSizeConversions(Podsize = -1, SameUnitMaxLimit = 5, SameUnitMaxLimitAliens = 4) ;a pod of size not specified (8+), cannot have 5 normal units or 4 alien units
+*/
+
 var config array<ChosenStrengthWeighted> ASSASSIN_STRENGTHS_T1;
 var config array<ChosenStrengthWeighted> ASSASSIN_STRENGTHS_T2;
 var config array<ChosenStrengthWeighted> ASSASSIN_STRENGTHS_T3;
@@ -49,7 +67,7 @@ var config bool bDisableDiversitySystem;
 
 var config array<MissionDefinition> ReplacementMissionDefs;
 
-
+var config array<string> MissionsToNotDiversify;
 
 
 // An array of mission types where we should just let vanilla do its
@@ -1121,7 +1139,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	local XComGameStateHistory History;
 	local XComGameState_BattleData BattleData;
 	local name								CharacterTemplateName, FirstFollowerName, NewMostCommonMember;
-	local int								idx, Tries, PodSize, k, numAttempts;
+	local int								idx, Tries, PodSize, k, numAttempts, iNumCommonUnits;
 	local X2CharacterTemplateManager		TemplateManager;
 	local X2CharacterTemplate				LeaderCharacterTemplate, FollowerCharacterTemplate, CurrentCharacterTemplate, NewCommonTemplate;
 	local bool								Swap, Satisfactory, bKeepTrying;
@@ -1130,23 +1148,29 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	local XComGameState_HeadquartersXCom XCOMHQ;
 	local array<SpawnDistributionListEntry>	LeaderSpawnList;
 	local array<SpawnDistributionListEntry>	FollowerSpawnList;
+	local PodSizeConversion PodConversion;
 	local array<name> GoodUnits;
 	local array<name> BadUnits;
 
+	`LWDiversityTrace("LWotC Diversity System Started during PostEncounterCreation");
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	//INSTANT BAILOUTS THAT NEED NO FURTHER INVESTIGATIONS
 	if(default.bDisableDiversitySystem)
 	{
+		`LWTrace("LWotC Diversity System Disabled by Config");
 		return;
 	}
 
-
-	`LWTrace("Parsing Encounter : " $ EncounterName);
-
-	`LWTrace("Encounter composition:");
-	foreach SpawnInfo.SelectedCharacterTemplateNames(CharacterTemplateName, idx)
+	if(class'Helpers_LW'.default.bDABFLActive)
 	{
-		`LWTrace("Character[" $ idx $ "] = " $ CharacterTemplateName);
+		`LWDiversityTrace("DABFL Detected, aborting.");
+		return;
 	}
 
+	//BAILOUTS THAT REQUIRE SOME INVESTIGATION
 	History = `XCOMHISTORY;
 	MissionState = XComGameState_MissionSite(SourceObject);
 	if (MissionState == none)
@@ -1154,11 +1178,13 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		BattleData = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData', true));
 		if (BattleData == none)
 		{
+			//NO BATTLE DATA
 			`LWDiversityTrace("Could not detect mission type. Aborting with no mission variations applied.");
 			return;
 		}
 		else
 		{
+			//UPDATE MISSION STATE TO THE ONE FROM BATTLE DATA - WHY ?
 			MissionState = XComGameState_MissionSite(History.GetGameStateForObjectID(BattleData.m_iMissionID));
 		}
 	}
@@ -1170,7 +1196,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		return;
 	}
 
-	// Ignore the final and any DLC missions
+	// Ignore the final and any DLC missions, AND ANY EXCLUDED BY CONFIG
 	`LWDiversityTrace("Mission type = " $ MissionState.GeneratedMission.Mission.sType $ " detected.");
 	switch(MissionState.GeneratedMission.Mission.sType)
 	{
@@ -1185,8 +1211,15 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 			`LWDiversityTrace("DLC mission detected. Aborting with no mission variations applied.");
 			return;
 		default:
+			if (default.MissionsToNotDiversify.Find(MissionState.GeneratedMission.Mission.sType) != INDEX_NONE)
+			{
+				`LWDiversityTrace("CONFIG Excluded mission detected. Aborting with no mission variations applied.");
+				return;
+			}
 			break;
 	}
+
+	`LWDiversityTrace("ENCOUNTER NAME:" @EncounterName);
 
 	// Double check for the final mission. [PAL Not sure this is necessary as the original
 	// code had no comment explaining why both the mission type and the encounter name are
@@ -1197,11 +1230,12 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		return;
 	}
 
-	// Ignore story encounters
+	// Ignore STORY STUFF BY ENCOUNTER NAME
 	switch (EncounterName)
 	{
 		case 'LoneAvatar':
 		case 'LoneCodex':
+			`LWDiversityTrace("Story Encounter detected. Aborting.");
 			return;
 		default:
 			break;
@@ -1211,20 +1245,41 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	if (InStr (EncounterName, "PROTECTED") != INDEX_NONE 
   		|| default.EncountersToExclude.Find(EncounterName) != INDEX_NONE)
 	{
+		`LWDiversityTrace("PROTECTED Encounter detected. Aborting.");
 		return;
 	}
 
-	if(class'Helpers_LW'.default.bDABFLActive)
+	// Ignore vanilla boss pods
+	if (InStr(EncounterName, "LIST_BOSSx") != INDEX_NONE && InStr(EncounterName, "_LW") == INDEX_NONE)
 	{
-		`LWDiversityTrace("DABFL Detected, aborting.");
+		`LWDiversityTrace("Don't Edit certain vanilla Boss pods");
 		return;
 	}
 
+	// Ignore chryssy pods
+	if (Instr(EncounterName, "Chryssalids") != INDEX_NONE)
+	{
+		`LWDiversityTrace("Don't edit Chryssypods");
+		return;
+	}
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	//CONTINUE TO PROCESS ENCOUNTER
 	`LWTrace("Pod Diversity System processing this pod.");
+	`LWTrace("Parsing Encounter : " $ EncounterName);
+
+	`LWTrace("Encounter composition:");
+	foreach SpawnInfo.SelectedCharacterTemplateNames(CharacterTemplateName, idx)
+	{
+		`LWTrace("Character[" $ idx $ "] = " $ CharacterTemplateName);
+	}
 
 	// Get the corresponding spawn distribution lists for this mission.
 	`LWDiversityTrace("Getting Leader Spawn Distribution List: ");
 	GetLeaderSpawnDistributionList(EncounterName, MissionState, ForceLevel, LeaderSpawnList, GoodUnits, BadUnits);
+
 	`LWDiversityTrace("Getting Follower Spawn Distribution List: ");
 	GetFollowerSpawnDistributionList(EncounterName, MissionState, ForceLevel, FollowerSpawnList, GoodUnits, Badunits);
 
@@ -1246,14 +1301,8 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 
 	//`LWTRACE ("PE3");
 
-	`LWDiversityTrace("Encounter composition:");
-	foreach SpawnInfo.SelectedCharacterTemplateNames(CharacterTemplateName, idx)
-	{
-		`LWDiversityTrace("Character[" $ idx $ "] = " $ CharacterTemplateName);
-	}
-
+	//UPDATE XCOMHQ
 	XCOMHQ = XComGameState_HeadquartersXCom(`XCOMHistory.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom', true));
-
 
 	PodSize = SpawnInfo.SelectedCharacterTemplateNames.length;
 
@@ -1273,7 +1322,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	// override native insisting every mission have a codex while certain tactical options are active
 
 	// Swap out forced Codices on regular encounters
-	if (SpawnInfo.SelectedCharacterTemplateNames[0] == 'Cyberus' && InStr (EncounterName,"PROTECTED") == -1 && EncounterName != 'LoneCodex')
+	if (SpawnInfo.SelectedCharacterTemplateNames[0] == 'Cyberus' && InStr (EncounterName,"PROTECTED") == INDEX_NONE && EncounterName != 'LoneCodex')
 	{
 		swap = true;
 		SpawnInfo.SelectedCharacterTemplateNames[0] = SelectNewPodLeader(SpawnInfo, ForceLevel, LeaderSpawnList);
@@ -1301,88 +1350,101 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	}
 
 	// reroll advent captains when the game is forcing captains
-	if (RNFSpawnerState != none && InStr(SpawnInfo.SelectedCharacterTemplateNames[0],"Captain") != -1)
+	if (RNFSpawnerState != none && InStr(SpawnInfo.SelectedCharacterTemplateNames[0],"Captain") != INDEX_NONE)
 	{
-		if (XCOMHQ.GetObjectiveStatus('T1_M3_KillCodex') == eObjectiveState_InProgress ||
-			XCOMHQ.GetObjectiveStatus('T1_M5_SKULLJACKCodex') == eObjectiveState_InProgress ||
-			XCOMHQ.GetObjectiveStatus('T1_M6_KillAvatar') == eObjectiveState_InProgress ||
-			XCOMHQ.GetObjectiveStatus('T1_M2_S3_SKULLJACKCaptain') == eObjectiveState_InProgress)
+		if (   XCOMHQ.GetObjectiveStatus('T1_M3_KillCodex') == eObjectiveState_InProgress
+			|| XCOMHQ.GetObjectiveStatus('T1_M5_SKULLJACKCodex') == eObjectiveState_InProgress
+			|| XCOMHQ.GetObjectiveStatus('T1_M6_KillAvatar') == eObjectiveState_InProgress
+			|| XCOMHQ.GetObjectiveStatus('T1_M2_S3_SKULLJACKCaptain') == eObjectiveState_InProgress)
 		swap = true;
 		SpawnInfo.SelectedCharacterTemplateNames[0] = SelectNewPodLeader(SpawnInfo, ForceLevel, LeaderSpawnList);
 		`LWDiversityTrace("Swapping Reinf Captain leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
 	}
 
-	// Now deal with followers
+	//UPDATE THE NEWLY SELECTED LEADER TEMPLATE
+	LeaderCharacterTemplate = TemplateManager.FindCharacterTemplate(SpawnInfo.SelectedCharacterTemplateNames[0]);
+	`LWDiversityTrace("Pod Leader:" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
+
+	//MORE BAILOUTS
+	if (LeaderCharacterTemplate.bIsTurret)
+	{
+		`LWDiversityTrace("Pod Leader was TURRET. Aborting.");
+		return;
+	}
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	// Now deal with followers, podsize greater than 1 ensures we have a leader and at least one follower
+	// THIS excludes single-unit pods such as Turrets, Chosen, Story-pods, cocoons etc
 	if (PodSize > 1)
 	{
-		TemplateManager = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
-		LeaderCharacterTemplate = TemplateManager.FindCharacterTemplate(SpawnInfo.SelectedCharacterTemplateNames[0]);
 		// Find whatever the pod has the most of
 		FirstFollowerName = FindMostCommonMember(SpawnInfo.SelectedCharacterTemplateNames);
 		FollowerCharacterTemplate = TemplateManager.FindCharacterTemplate(FirstFollowerName);
-
-		`LWDiversityTrace("Pod Leader:" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
-		`LWDiversityTrace("Pod Follower:" @ FirstFollowerName);
-
-		if (LeaderCharacterTemplate.bIsTurret)
-			return;
-
-		if (InStr(EncounterName, "LIST_BOSSx") != -1 && InStr(EncounterName, "_LW") == -1)
-		{
-			`LWDiversityTrace("Don't Edit certain vanilla Boss pods");
-			return;
-		}
-		if (Instr(EncounterName, "Chryssalids") != -1)
-		{
-			`LWDiversityTrace("Don't edit Chryssypods");
-			return;
-		}
+		`LWDiversityTrace("Main Pod Follower:" @ FirstFollowerName);
 
 		// Handle vanilla pod construction of one type of alien follower;
-		if (!swap && LeaderCharacterTemplate.bIsAlien && FollowerCharacterTemplate.bIsAlien && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) > 1)
+		if (LeaderCharacterTemplate.bIsAlien && FollowerCharacterTemplate.bIsAlien && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) > 1)
 		{
 			`LWDiversityTrace("Mixing up alien-dominant pod");
 			swap = true;
 		}
 
 		// Check for pod members that shouldn't appear yet for plot reaons
-		if (CountMembers('Cyberus', SpawnInfo.SelectedCharacterTemplateNames) >= 1 && XCOMHQ.GetObjectiveStatus('T1_M2_S3_SKULLJACKCaptain') != eObjectiveState_Completed)
+		// DO OBJECTIVE CHECK FIRST BECAUSE IF IT DOESNT PASS THERE, IT'LL SHORT CIRCUIT AND ONLY DO THE COUNT IF ITS NEEDED TOO
+		if (XCOMHQ.GetObjectiveStatus('T1_M2_S3_SKULLJACKCaptain') != eObjectiveState_Completed && CountMembers('Cyberus', SpawnInfo.SelectedCharacterTemplateNames) >= 1 )
 		{
 			`LWDiversityTrace("Removing Codex for objective reasons");
 			swap = true;
 		}
 
-		if (CountMembers ('AdvPsiWitch', SpawnInfo.SelectedCharacterTemplateNames) >= 1 && XCOMHQ.GetObjectiveStatus('T1_M5_SKULLJACKCodex') != eObjectiveState_Completed)
+		if (XCOMHQ.GetObjectiveStatus('T1_M5_SKULLJACKCodex') != eObjectiveState_Completed && CountMembers ('AdvPsiWitch', SpawnInfo.SelectedCharacterTemplateNames) >= 1 )
 		{
 			`LWDiversityTrace("Exicising Avatar for objective reasons");
 			swap = true;
 		}
 
+		//STILL NOT FOUND SOMETHING TO SWAP FROM LEADERS AND COMMON, CHECK EVERYTHING ELSE
 		if (!swap)
 		{
 			for (k = 1; k < SpawnInfo.SelectedCharacterTemplateNames.Length; k++)
 			{
+				//GET THIS FOLLOWER AT THIS POSITION
 				FollowerCharacterTemplate = TemplateManager.FindCharacterTemplate(SpawnInfo.SelectedCharacterTemplateNames[k]);
-				// Tedster - add none check for follower templates
 				if(FollowerCharacterTemplate == none)
 				{
 					`LWDiversityTrace("Detected nonexistant follower" @ SpawnInfo.SelectedCharacterTemplateNames[k]);
 					swap = true;
 				}
+
 				// Tedster - add check for plot gating here:
-				if(XCOMHQ.MeetsObjectiveRequirements(FollowerCharacterTemplate.SpawnRequirements.RequiredObjectives) == false)
+				if(!XCOMHQ.MeetsObjectiveRequirements(FollowerCharacterTemplate.SpawnRequirements.RequiredObjectives) )
 				{
 					// reroll the unit instead of shuffling all pods to allow codex to to be added to pods as defined followers.
 					SpawnInfo.SelectedCharacterTemplateNames[k] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
+
+					//GET THIS 'NEW' FOLLOWER AT THIS POSITION
+					FollowerCharacterTemplate = TemplateManager.FindCharacterTemplate(SpawnInfo.SelectedCharacterTemplateNames[k]);
+					if(FollowerCharacterTemplate == none)
+					{
+						`LWDiversityTrace("Detected nonexistant follower" @ SpawnInfo.SelectedCharacterTemplateNames[k]);
+						swap = true;
+					}
 				}
-				if(default.bNerfFrostLegion && (InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[k]), "FROST")!= INDEX_NONE || InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[k]), "CRYO")!= INDEX_NONE) && MissionState.TacticalGameplayTags.Find('SITREP_FrostPurge') == INDEX_NONE)
+
+				// Tedster - nerf frost legion
+				if(default.bNerfFrostLegion 
+					&& (InStr(CAPS(SpawnInfo.SelectedCharacterTemplateNames[k]), "FROST") != INDEX_NONE || InStr(CAPS(SpawnInfo.SelectedCharacterTemplateNames[k]), "CRYO")!= INDEX_NONE) 
+					&& MissionState.TacticalGameplayTags.Find('SITREP_FrostPurge') == INDEX_NONE)
 				{
 					`LWDiversityTrace("Found Frost Legion in Encounter");
 					swap = true;
 				}
 
 				// Tedster - fix below check to check spawn entry and not character template MCPG setting.
-				if (CountMembers(SpawnInfo.SelectedCharacterTemplateNames[k], SpawnInfo.SelectedCharacterTemplateNames) > GetCharacterSpawnEntry(FollowerSpawnList, FollowerCharacterTemplate, ForceLevel).MaxCharactersPerGroup)
+				if (CountMembers(SpawnInfo.SelectedCharacterTemplateNames[k], SpawnInfo.SelectedCharacterTemplateNames) 
+					> GetCharacterSpawnEntry(FollowerSpawnList, FollowerCharacterTemplate, ForceLevel).MaxCharactersPerGroup)
 				{
 					`LWDiversityTrace("Too many" @SpawnInfo.SelectedCharacterTemplateNames[k]);
 					swap = true;
@@ -1393,174 +1455,144 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 				`LWDiversityTrace("Mixing up pod that violates MCPG setting or contains nonexistant units.");
 			}
 		}
+	}
 
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	//STILL NOT FOUND SOMETHING TO SWAP FROM ABOVE, CHECK AGINST POD SIZES
+	if (!swap)
+	{
+		//THIS IS NOT THE FIRST FOLLOWER, BUT THE MOST COMMON FOLLOWER, THE VALUE NAME IS A BIT AMBIGUOUS!
 		FollowerCharacterTemplate = TemplateManager.FindCharacterTemplate(FirstFollowerName);
-		// if size 4 && at least 3 are the same
-		if (!swap && (PodSize == 4))
-		{
-			if (CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 1)
-			{
-				`LWDiversityTrace("Mixing up undiverse 4-enemy pod");
-				swap = true;
-			}
-		}
+		iNumCommonUnits = CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames);
 
-		// if size 5 and at least 3 are the same
-		if (!swap && (PodSize == 5))
+		if (PodSize > 3)
 		{
-			if (CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 2)
+			foreach default.PodSizeConversions(PodConversion)
 			{
-				`LWDiversityTrace("Mixing up undiverse 5-enemy pod");
-				swap = true;
-			}
-		}
-
-		// 6/7 man pod with 3/4 same
-		if (!swap && (PodSize == 6 || PodSize == 7))
-		{
-			if (!swap && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 2)
-			{
-				`LWDiversityTrace("Mixing up undiverse 6/7 enemy pod");
-				swap = true;
-			}
-			// more strignant for Aliens
-			if (!swap && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 3 && FollowerCharacterTemplate.bIsAlien)
-			{
-				`LWDiversityTrace("Mixing up undiverse 8+ enemy pod");
-				swap = true;
-			}
-		}
-		// if larger && at least size - 4 are the same
-		if( PodSize >= 8)
-		{
-			if (!swap && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 3)
-			{
-				`LWDiversityTrace("Mixing up undiverse 8+ enemy pod");
-				swap = true;
-			}
-			
-			// more strignant for Aliens
-			if (!swap && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 4 && FollowerCharacterTemplate.bIsAlien)
-			{
-				`LWDiversityTrace("Mixing up undiverse 8+ enemy pod");
-				swap = true;
-			}
-		}
-
-		if (swap)
-		{
-			// Re-roll the follower character templates
-			Satisfactory = false;
-			Tries = 0;
-			While (!Satisfactory && Tries < 12)
-			{
-				foreach SpawnInfo.SelectedCharacterTemplateNames(CharacterTemplateName, idx)
+				if (!swap && (Podsize == PodConversion.PodSize || PodConversion.PodSize == -1)) 
 				{
-					CurrentCharacterTemplate = TemplateManager.FindCharacterTemplate(SpawnInfo.SelectedCharacterTemplateNames[idx]);
-					//`LWTrace("Looking at" @CurrentCharacterTemplate.DataName);
-					//Tedster - add none check here as well:
-					if(CurrentCharacterTemplate == none)
+					if ( iNumCommonUnits >= PodConversion.SameUnitMaxLimit)
 					{
-						`LWDiversityTrace("Rerolling nonexistant Character Template.");
-						SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
+						`LWDiversityTrace("Mixing up undiverse enemy pod of size" @Podsize);
+						swap = true;
 					}
 
-					if (idx <= 1) // Tedster - fix off by one error 2 -> 1
-						continue;
+					// more strignant for Aliens
+					if ( iNumCommonUnits >= PodConversion.SameUnitMaxLimitAliens && FollowerCharacterTemplate.bIsAlien)
+					{
+						`LWDiversityTrace("Mixing up undiverse alien enemy pod of size" @Podsize);
+						swap = true;
+					}
+				}
+			}
+		}
+	}
 
-					if (SpawnInfo.SelectedCharacterTemplateNames[idx] != FirstFollowerName)
-						continue;
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-					if (CurrentCharacterTemplate.bIsTurret)
-						continue;
-
+	//FOUND SOMETHING TO SWAP! WOO HOO
+	if (swap)
+	{
+		// Re-roll the follower character templates
+		Satisfactory = false;
+		Tries = 0;
+		
+		While (!Satisfactory && Tries < 12)
+		{
+			foreach SpawnInfo.SelectedCharacterTemplateNames(CharacterTemplateName, idx)
+			{
+				CurrentCharacterTemplate = TemplateManager.FindCharacterTemplate(SpawnInfo.SelectedCharacterTemplateNames[idx]);
+				//`LWTrace("Looking at" @CurrentCharacterTemplate.DataName);
+				//Tedster - add none check here as well:
+				if(CurrentCharacterTemplate == none)
+				{
+					`LWDiversityTrace("Rerolling nonexistant Character Template.");
 					SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
+				}
 
-					if(default.bNerfFrostLegion && (InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[k]), "FROST")!= INDEX_NONE || InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[k]), "CRYO")!= INDEX_NONE))
-					{
-						// 75% chance to reroll frost legion
-						if(`SYNC_FRAND_STATIC < 0.8)
-						{
-							numAttempts = 0;
-							while (numAttempts < 12 && bKeepTrying)
-							{
-								SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
+				//BAIL CONDITIONS, Tedster - fix off by one error 2 -> 1
+				if (idx <= 1
+					|| (SpawnInfo.SelectedCharacterTemplateNames[idx] != FirstFollowerName)
+					|| CurrentCharacterTemplate.bIsTurret)
+				{
+					continue;
+				}
 
-								if((InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[k]), "FROST")!= INDEX_NONE || InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[k]), "CRYO")!= INDEX_NONE))
-								{
-								numAttempts+= 1;
-								}
-								else
-								{
-									bKeeptrying = false;
-								}
-							}
-						}
-					
-					}
-					//`LWTrace("Changed to" @SpawnInfo.SelectedCharacterTemplateNames[idx] );
-				}
-				//`LWTRACE ("Try" @ string (tries) @ CountMembers (FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) @ string (PodSize));
-				// Let's look over our outcome and see if it's any better
-				NewMostCommonMember = FindMostCommonMember(SpawnInfo.SelectedCharacterTemplateNames);
-				NewCommonTemplate = TemplateManager.FindCharacterTemplate(NewMostCommonMember);
-				if(SpawnInfo.SelectedCharacterTemplateNames[0] == 'Chryssalid' || SpawnInfo.SelectedCharacterTemplateNames[0] == 'ChryssalidSoldier' || SpawnInfo.SelectedCharacterTemplateNames[0] == 'HiveQueen')
+				SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
+				if(CurrentCharacterTemplate == none)
 				{
-					Satisfactory = true;
+					`LWDiversityTrace("Rerolling nonexistant Character Template.");
+					continue;
 				}
-				if((PodSize == 3) && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) == 3)
+
+				if(default.bNerfFrostLegion 
+					&& (InStr(CAPS(SpawnInfo.SelectedCharacterTemplateNames[k]), "FROST") != INDEX_NONE || InStr(CAPS(SpawnInfo.SelectedCharacterTemplateNames[k]), "CRYO") != INDEX_NONE))
 				{
-					Tries += 1;
-				}
-				else if ((PodSize == 4 ) && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= Podsize - 1)
-				{
-					Tries += 1;
-				}
-				else
-				{
-					if ((PodSize == 5 ) && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= Podsize - 2)
+					// 80% chance to reroll frost legion, FRAND IS A VALUE BETWEEN 1.00 AND 0.00
+					if(`SYNC_FRAND_STATIC() < 0.8)
 					{
-						Tries += 1;
-					}
-					else
-					{
-						if ((PodSize == 6 || PodSize == 7) && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 2)
+						numAttempts = 0;
+						while (numAttempts < 12 && bKeepTrying)
 						{
-							Tries += 1;
-						}
-						else 
-						{
-							if ((PodSize == 6 || PodSize == 7) && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 3 && NewCommonTemplate.bIsAlien)
+							SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
+
+							if((InStr(CAPS(SpawnInfo.SelectedCharacterTemplateNames[k]), "FROST") != INDEX_NONE || InStr(CAPS(SpawnInfo.SelectedCharacterTemplateNames[k]), "CRYO") != INDEX_NONE))
 							{
-								Tries += 1;
+								numAttempts++;
 							}
 							else
 							{
-								if(PodSize >= 8 && CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 4)
-								{
-									Tries += 1;
-								}
-								else
-								{
-									if (PodSize >= 8 &&CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 3 && NewCommonTemplate.bIsAlien)
-									{
-										Tries += 1;
-									}
-									else
-									{
-										Satisfactory = true;
-									}
-								}
+								bKeeptrying = false;
 							}
 						}
 					}
+				
+				}
+				//`LWTrace("Changed to" @SpawnInfo.SelectedCharacterTemplateNames[idx] );
+			}
+
+			//`LWTRACE ("Try" @ string (tries) @ CountMembers (FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) @ string (PodSize));
+			// Let's look over our outcome and see if it's any better
+			NewMostCommonMember = FindMostCommonMember(SpawnInfo.SelectedCharacterTemplateNames);
+			NewCommonTemplate = TemplateManager.FindCharacterTemplate(NewMostCommonMember);
+			iNumCommonUnits = CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames);
+
+			//skip? chryssie pods and pods less than size 3
+			if(  SpawnInfo.SelectedCharacterTemplateNames[0] == 'Chryssalid' 
+			  || SpawnInfo.SelectedCharacterTemplateNames[0] == 'ChryssalidSoldier' 
+			  || SpawnInfo.SelectedCharacterTemplateNames[0] == 'HiveQueen'
+			  || Podsize <= 3 )
+			{
+				Satisfactory = true;
+			}
+
+			foreach default.PodSizeConversions(PodConversion)
+			{
+				if ((PodSize == PodConversion.PodSize || PodConversion.PodSize == -1)
+					&& (   (iNumCommonUnits >= PodConversion.SameUnitMaxLimit) 
+						|| ((iNumCommonUnits >= PodConversion.SameUnitMaxLimitAliens) && NewCommonTemplate.bIsAlien)
+					))
+				{
+					Tries++;
+					break;
+				}
+				else
+				{
+					Satisfactory = true;
 				}
 			}
-			`LWDiversityTrace("Attempted to edit Encounter to add more enemy diversity! Satisfactory:" @ string(satisfactory) @ "New encounter composition:");
-			foreach SpawnInfo.SelectedCharacterTemplateNames (CharacterTemplateName, idx)
-			{
-				`LWDiversityTrace("Character[" $ idx $ "] = " $ CharacterTemplateName);
-			}
+
+		} //END WHILE LOOP
+
+		//FINALLY LOG THE RESULTS
+		`LWDiversityTrace("Attempted to edit Encounter to add more enemy diversity! Satisfactory:" @ string(satisfactory) @ "New encounter composition:");
+
+		foreach SpawnInfo.SelectedCharacterTemplateNames (CharacterTemplateName, idx)
+		{
+			`LWDiversityTrace("Character[" $ idx $ "] = " $ CharacterTemplateName);
 		}
 	}
 
