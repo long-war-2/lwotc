@@ -1458,7 +1458,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		FollowerCharacterTemplate = TemplateManager.FindCharacterTemplate(FirstFollowerName);
 		iNumCommonUnits = CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames);
 
-		if (PodSize > 3)
+		if (PodSize >= 3)
 		{
 			foreach default.PodSizeConversions(PodConversion)
 			{
@@ -1573,24 +1573,31 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 
 			foreach default.PodSizeConversions(PodConversion)
 			{
-				if ((PodSize == PodConversion.PodSize || PodConversion.PodSize == -1)
-					&& (   (iNumCommonUnits > PodConversion.SameUnitMaxLimit) 
+				
+				if (PodSize == PodConversion.PodSize || PodConversion.PodSize == -1)
+				{
+					`LWDiversityTrace("Checking PodSize" @Podsize);
+					if (   (iNumCommonUnits > PodConversion.SameUnitMaxLimit) 
 						|| ((iNumCommonUnits > PodConversion.SameUnitMaxLimitAliens) && NewCommonTemplate.bIsAlien)
-					))
-				{
-					Tries++;
-					break;
+						)
+					{
+						`LWDiversityTrace("Condition failed for PodSize" @Podsize);
+						Tries++;
+						break;
+					}
+					else
+					{
+						`LWDiversityTrace("Setting Satisfactory to True; Tries:" @Tries);
+						Satisfactory = true;
+					}
 				}
-				else
-				{
-					Satisfactory = true;
-				}
+				
 			}
 
 		} //END WHILE LOOP
 
 		//FINALLY LOG THE RESULTS
-		`LWTrace("Attempted to edit Encounter to add more enemy diversity! Satisfactory:" @ string(satisfactory));
+		`LWTrace("Attempted to edit Encounter to add more enemy diversity! Satisfactory:" @ satisfactory);
 		foreach SpawnInfo.SelectedCharacterTemplateNames (CharacterTemplateName, idx)
 		{
 			`LWTrace("Character[" $ idx $ "] = " $ CharacterTemplateName);
@@ -2014,7 +2021,7 @@ static final function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnIn
 	//failsafe
 	if (PossibleChars.length == 0)
 	{
-		`LWDiversityTrace("Select new Follower Failed, returning M1 Trooper");
+		`LWTrace("Select new Follower Failed, returning M1 Trooper");
 		return 'AdvTrooperM1';
 	}
 
