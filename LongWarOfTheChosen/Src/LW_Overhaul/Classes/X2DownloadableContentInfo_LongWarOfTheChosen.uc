@@ -36,15 +36,6 @@ struct PodSizeConversion
 };
 
 var config array<PodSizeConversion> PodSizeConversions;
-/*
-	+PodSizeConversions(Podsize = 4, SameUnitMaxLimit = 3, SameUnitMaxLimitAliens = 3) ;a pod of size 4, cannot have 3 same normal units or 3 same alien units
-	+PodSizeConversions(Podsize = 5, SameUnitMaxLimit = 3, SameUnitMaxLimitAliens = 3) ;a pod of size 5, cannot have 3 same normal units or 3 same alien units
-	+PodSizeConversions(Podsize = 6, SameUnitMaxLimit = 4, SameUnitMaxLimitAliens = 3) ;a pod of size 6, cannot have 4 same normal units or 3 same alien units
-	+PodSizeConversions(Podsize = 7, SameUnitMaxLimit = 4, SameUnitMaxLimitAliens = 3) ;a pod of size 7, cannot have 4 same normal units or 3 same alien units
-	+PodSizeConversions(Podsize = 8, SameUnitMaxLimit = 5, SameUnitMaxLimitAliens = 4) ;a pod of size 8, cannot have 5 same normal units or 4 same alien units
-
-	+PodSizeConversions(Podsize = -1, SameUnitMaxLimit = 5, SameUnitMaxLimitAliens = 4) ;a pod of size not specified (8+), cannot have 5 normal units or 4 alien units
-*/
 
 var config array<ChosenStrengthWeighted> ASSASSIN_STRENGTHS_T1;
 var config array<ChosenStrengthWeighted> ASSASSIN_STRENGTHS_T2;
@@ -1583,8 +1574,8 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 			foreach default.PodSizeConversions(PodConversion)
 			{
 				if ((PodSize == PodConversion.PodSize || PodConversion.PodSize == -1)
-					&& (   (iNumCommonUnits >= PodConversion.SameUnitMaxLimit) 
-						|| ((iNumCommonUnits >= PodConversion.SameUnitMaxLimitAliens) && NewCommonTemplate.bIsAlien)
+					&& (   (iNumCommonUnits > PodConversion.SameUnitMaxLimit) 
+						|| ((iNumCommonUnits > PodConversion.SameUnitMaxLimitAliens) && NewCommonTemplate.bIsAlien)
 					))
 				{
 					Tries++;
@@ -1599,23 +1590,17 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		} //END WHILE LOOP
 
 		//FINALLY LOG THE RESULTS
-		`LWDiversityTrace("Attempted to edit Encounter to add more enemy diversity! Satisfactory:" @ string(satisfactory));
-
+		`LWTrace("Attempted to edit Encounter to add more enemy diversity! Satisfactory:" @ string(satisfactory));
 		foreach SpawnInfo.SelectedCharacterTemplateNames (CharacterTemplateName, idx)
 		{
-			`LWDiversityTrace("Character[" $ idx $ "] = " $ CharacterTemplateName);
+			`LWTrace("Character[" $ idx $ "] = " $ CharacterTemplateName);
 		}
+
 	}
 	else
 	{
-		`LWDiversityTrace("No changes needed to pod");
+		`LWTrace("No changes needed to pod.");
 	}
-	`LWDiversityTrace("Final Encounter Composition:");
-	foreach SpawnInfo.SelectedCharacterTemplateNames (CharacterTemplateName, idx)
-	{
-		`LWDiversityTrace("Character[" $ idx $ "] = " $ CharacterTemplateName);
-	}
-
 	return;
 }
 
