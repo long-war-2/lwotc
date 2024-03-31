@@ -1504,6 +1504,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		{
 			foreach SpawnInfo.SelectedCharacterTemplateNames(CharacterTemplateName, idx)
 			{
+				`LWDiversityTrace("Rerolling Position" @idx);
 				CurrentCharacterTemplate = TemplateManager.FindCharacterTemplate(SpawnInfo.SelectedCharacterTemplateNames[idx]);
 				//`LWTrace("Looking at" @CurrentCharacterTemplate.DataName);
 				//Tedster - add none check here as well:
@@ -1522,6 +1523,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 				}
 
 				SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
+				`LWDiversityTrace("Selected new follower for position" @idx @":" @ SpawnInfo.SelectedCharacterTemplateNames[idx]);
 				if(CurrentCharacterTemplate == none)
 				{
 					`LWDiversityTrace("Rerolling nonexistant Character Template.");
@@ -1534,6 +1536,8 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 					// 80% chance to reroll frost legion, FRAND IS A VALUE BETWEEN 1.00 AND 0.00
 					if(`SYNC_FRAND_STATIC() < 0.8)
 					{
+						`LWDiversityTrace("Nerfing Frost Legion roll succeeded");
+						bKeeptrying = true;
 						numAttempts = 0;
 						while (numAttempts < 12 && bKeepTrying)
 						{
@@ -1560,12 +1564,19 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 			NewCommonTemplate = TemplateManager.FindCharacterTemplate(NewMostCommonMember);
 			iNumCommonUnits = CountMembers(NewMostCommonMember, SpawnInfo.SelectedCharacterTemplateNames);
 
-			//skip? chryssie pods and pods less than size 3
+			//skip? chryssie pods
 			if(  SpawnInfo.SelectedCharacterTemplateNames[0] == 'Chryssalid' 
 			  || SpawnInfo.SelectedCharacterTemplateNames[0] == 'ChryssalidSoldier' 
-			  || SpawnInfo.SelectedCharacterTemplateNames[0] == 'HiveQueen'
-			  || Podsize <= 3 )
+			  || SpawnInfo.SelectedCharacterTemplateNames[0] == 'HiveQueen')
 			{
+				Satisfactory = true;
+			}
+
+			// Failsafe to avoid crashing if it's empty
+			`LWDiversityTrace("PodSizeConversions length:" @default.PodSizeConversions.Length);
+			if(default.PodSizeConversions.Length == 0)
+			{
+				`LWTrace("WARNING: Somebody screwed up the PodSizeConversions array and it's empty, Pod Diversity system DEFINITELY won't work correctly.");
 				Satisfactory = true;
 			}
 
@@ -1588,12 +1599,21 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		} //END WHILE LOOP
 
 		//FINALLY LOG THE RESULTS
-		`LWDiversityTrace("Attempted to edit Encounter to add more enemy diversity! Satisfactory:" @ string(satisfactory) @ "New encounter composition:");
+		`LWDiversityTrace("Attempted to edit Encounter to add more enemy diversity! Satisfactory:" @ string(satisfactory));
 
 		foreach SpawnInfo.SelectedCharacterTemplateNames (CharacterTemplateName, idx)
 		{
 			`LWDiversityTrace("Character[" $ idx $ "] = " $ CharacterTemplateName);
 		}
+	}
+	else
+	{
+		`LWDiversityTrace("No changes needed to pod");
+	}
+	`LWDiversityTrace("Final Encounter Composition:");
+	foreach SpawnInfo.SelectedCharacterTemplateNames (CharacterTemplateName, idx)
+	{
+		`LWDiversityTrace("Character[" $ idx $ "] = " $ CharacterTemplateName);
 	}
 
 	return;
@@ -1691,7 +1711,7 @@ static function GetSpawnDistributionList(
 
 								if(XComHQ.MeetsObjectiveRequirements(CharacterTemplate.SpawnRequirements.RequiredObjectives) == true)
 								{
-									`LWDiversityTrace("Adding " $ CurrentListEntry.Template $ " to the merged spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
+									//`LWDiversityTrace("Adding " $ CurrentListEntry.Template $ " to the merged spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
 									SpawnList.AddItem(CurrentListEntry);
 									GoodUnits.AddItem(CurrentListEntry.Template);
 								}
@@ -1708,7 +1728,7 @@ static function GetSpawnDistributionList(
 					}
 					else
 					{
-						`LWDiversityTrace("Adding " $ CurrentListEntry.Template $ " to the merged spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
+						//`LWDiversityTrace("Adding " $ CurrentListEntry.Template $ " to the merged spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
 						SpawnList.AddItem(CurrentListEntry);
 					}
 				}
@@ -1721,6 +1741,7 @@ static function int CountMembers(name CountItem, array<name> ArrayToScan)
 {
 	local int idx, k;
 
+	//`LWDiversityTrace("CountMembers called" @CountItem);
 	k = 0;
 	for (idx = 0; idx < ArrayToScan.Length; idx++)
 	{
@@ -1736,6 +1757,8 @@ static function name FindMostCommonMember(array<name> ArrayToScan)
 {
 	local int idx, highest, highestidx;
 	local array<int> kount;
+
+	//`LWDiversityTrace("FindMostCommonMember called");
 
 	highestidx = 1; // Start with first follower rather than the leader
 	kount.length = 0;
@@ -1830,6 +1853,8 @@ static function name SelectNewPodLeader(PodSpawnInfo SpawnInfo, int ForceLevel, 
 			TotalWeight += TestWeight;
 		}
 	}
+
+	`LWDiversityTrace("PossibleChars.Length:" @ PossibleChars.length);
 
 	if (PossibleChars.length == 0)
 	{
@@ -1997,7 +2022,7 @@ static final function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnIn
 			PossibleChars.AddItem (SpawnEntry.Template);
 			PossibleWeights.AddItem (TestWeight);
 			TotalWeight += TestWeight;
-			`LWDiversityTrace("Unit" @SpawnEntry.Template @"Added to follower selection list");
+			//`LWDiversityTrace("Unit" @SpawnEntry.Template @"Added to follower selection list");
 		}
 	}
 

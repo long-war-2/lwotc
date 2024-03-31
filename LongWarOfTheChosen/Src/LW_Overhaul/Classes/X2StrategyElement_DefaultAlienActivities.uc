@@ -4066,7 +4066,7 @@ static function X2DataTemplate CreateBigSupplyExtractionTemplate()
 	AlertVigilance.MinAlert = 9999; // never created normally, only via Covert Op
 	Template.ActivityCreation.Conditions.AddItem(AlertVigilance);
 
-	Template.OnMissionSuccessFn = TypicalEndActivityOnMissionSuccess;
+	Template.OnMissionSuccessFn = NoVigEndActivityOnMissionSuccess;
 	Template.OnMissionFailureFn = TypicalAdvanceActivityOnMissionFailure;
 
 	Template.OnActivityStartedFn = none;
