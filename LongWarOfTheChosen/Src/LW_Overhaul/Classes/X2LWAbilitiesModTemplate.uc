@@ -141,6 +141,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			UpdateSustainEffect(Template);
 			break;
 		case 'RevivalProtocol':
+			RemoveRevivalProtocolNonMentalCleanse(Template);
 			AllowRevivalProtocolToRemoveStunned(Template);
 			break;
 		case 'DeadeyeDamage':
@@ -915,6 +916,32 @@ static function UseNewDeadeyeEffect(X2AbilityTemplate Template)
 	DeadeyeEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
 	DeadeyeEffect.DamageMultiplier = class'X2Effect_DeadeyeDamage'.default.DamageMultiplier;
 	Template.AddTargetEffect(DeadeyeEffect);
+}
+
+static function RemoveRevivalProtocolNonMentalCleanse(X2AbilityTemplate Template)
+{
+	local int i;
+	local int j;
+	local name HealType;
+	local X2Effect_RemoveEffectsByDamageType RemoveEffects;
+
+	for (i = 0; i < Template.AbilityTargetEffects.Length; i++)
+	{
+		if (Template.AbilityTargetEffects[i].isA('X2Effect_RemoveEffectsByDamageType'))
+		{
+			RemoveEffects = X2Effect_RemoveEffectsByDamageType(Template.AbilityTargetEffects[i]);
+			foreach class'X2Ability_DefaultAbilitySet'.default.MedikitHealEffectTypes(HealType)
+			{
+				for (j = 0; j < RemoveEffects.DamageTypesToRemove.Length; j++)
+				{
+					if (RemoveEffects.DamageTypesToRemove[j] == HealType)
+					{
+						RemoveEffects.DamageTypesToRemove.Remove(j, 1);
+					}
+				}
+			}
+		}
+	}
 }
 
 static function AllowRevivalProtocolToRemoveStunned(X2AbilityTemplate Template)
