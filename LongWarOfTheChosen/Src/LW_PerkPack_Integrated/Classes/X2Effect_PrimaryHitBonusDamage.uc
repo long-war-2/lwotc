@@ -52,6 +52,10 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 			{
 				return BonusDmg;
 			}
+			if (WeaponTemplate.weaponcat == 'sawedoffshotgun' && includesos && AbilityState.GetMyTemplateName() == 'BothBarrels')
+			{
+				return BonusDmg*2;
+			}
 			if (WeaponTemplate.weaponcat == 'sawedoffshotgun' && includesos)
 			{
 				return BonusDmg;
