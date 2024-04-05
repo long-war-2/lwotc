@@ -2688,6 +2688,7 @@ static function X2DataTemplate CreateInvasionTemplate()
 	local X2LWActivityCooldown Cooldown;
 	local X2LWActivityCondition_LiberatedDays FreedomDuration;
 	local X2LWActivityCondition_RNG_Region AlienSearchCondition;
+	local X2LWActivityCondition_MinRebels RebelCondition1;
 
 	`CREATE_X2TEMPLATE(class'X2LWAlienActivityTemplate', Template, default.InvasionName);
 
@@ -2698,6 +2699,11 @@ static function X2DataTemplate CreateInvasionTemplate()
 	//these define the requirements for creating each activity
 	Template.ActivityCreation = new class'X2LWActivityCreation_Invasion';
 	Template.ActivityCreation.Conditions.AddItem(default.SingleActivityInRegion);
+
+	// This makes sure there are enough warm bodies for the mission to be meaningful
+	RebelCondition1 = new class 'X2LWActivityCondition_MinRebels';
+	RebelCondition1.MinRebels = default.ATTEMPT_COUNTERINSURGENCY_MIN_REBELS;
+	Template.ActivityCreation.Conditions.AddItem(RebelCondition1);
 
 	RegionStatus = new class'X2LWActivityCondition_RegionStatus';
 	RegionStatus.bAllowInLiberated = true;
