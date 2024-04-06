@@ -7271,10 +7271,17 @@ AbilityDescName="Purifier Flamethrower"
 
 [Solace X2AbilityTemplate]
 LocFriendlyName="Solace Aura"
-LocLongDescription="The Priest is surrounded by an aura that immediately extinguishes or blocks any mental impairments for themselves and any nearby squadmates."
-LocHelpText="The Priest is surrounded by an aura that immediately extinguishes or blocks any mental impairments for for themselves and any nearby squadmates."
+LocLongDescription="This unit is affected by an aura that protects it from any mental impairments."
+LocHelpText="This unit is affected by an aura that protects it from any mental impairments."
 LocFlyOverText="Solace"
-LocPromotionPopupText="<Bullet/> Solace has a 4 tile radius.<br/><Bullet/> Moving next to afflicted allies will immediately cleanse their mental impairments.<br/>"
+LocPromotionPopupText="<Bullet/> Solace has a 4 tile radius.<br/><Bullet/> Moving next to afflicted organic allies will immediately cleanse their mental impairments.<br/>"
+
+[SolacePassive X2AbilityTemplate]
+LocFriendlyName="Solace"
+LocLongDescription="This unit is surrounded by an aura that immediately extinguishes or blocks any mental impairments for themselves and any nearby organic allies."
+LocHelpText="This unit is surrounded by an aura that immediately extinguishes or blocks any mental impairments for themselves and any nearby organic allies."
+LocFlyOverText="Solace"
+LocPromotionPopupText="<Bullet/> Solace has a 4 tile radius.<br/><Bullet/> Moving next to afflicted organic allies will immediately cleanse their mental impairments.<br/>"
 
 ; End Translation
 
