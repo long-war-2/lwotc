@@ -903,7 +903,7 @@ static function X2DataTemplate AddCripplingStrike()
 
 	VisibilityCondition = new class'X2Condition_Visibility';
 	VisibilityCondition.bRequireGameplayVisible = true;
-	VisibilityCondition.bAllowSquadsight = true;
+	VisibilityCondition.bAllowSquadsight = false;
 	Template.AbilityTargetConditions.AddItem(VisibilityCondition);
 
 	Template.AddTargetEffect(new class'X2Effect_ApplyWeaponDamage');
