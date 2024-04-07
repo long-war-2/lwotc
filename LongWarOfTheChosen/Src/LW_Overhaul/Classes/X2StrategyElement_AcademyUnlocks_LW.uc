@@ -2,6 +2,7 @@ class X2StrategyElement_AcademyUnlocks_LW extends X2StrategyElement config(LW_Ov
 
 var config int OFFICER_RANK_FOR_INFILTRATION_1;
 var config int OFFICER_RANK_FOR_INFILTRATION_2;
+var config int OFFICER_RANK_FOR_TBF_UNLOCK;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -11,6 +12,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	
 	Templates.AddItem(CreateInfiltration1Unlock());
 	Templates.AddItem(CreateInfiltration2Unlock());
+	//Templates.AddItem(CreateTrialByFireUpgradeUnlock());
 	return Templates;
 }
 
@@ -54,6 +56,26 @@ static function X2SoldierUnlockTemplate CreateInfiltration2Unlock()
 	return Template;
 }
 
+static function X2SoldierUnlockTemplate CreateTrialByFireUpgradeUnlock()
+{
+	local X2SoldierUnlockTemplate Template;
+	local ArtifactCost Resources;
+
+	`CREATE_X2TEMPLATE(class'X2SoldierUnlockTemplate', Template, 'TrialByFireUpgradeUnlock');
+	
+	Template.bAllClasses = true;
+	Template.strImage = "img:///UILibrary_StrategyImages.GTS.GTS_SquadSize2";
+	Template.Requirements.bVisibleIfSoldierRankGatesNotMet = true;
+		
+	Template.Requirements.SpecialRequirementsFn=TrialByFireUpgradeUnlockFn;
+
+	Resources.ItemTemplateName = 'Supplies';
+    Resources.Quantity = 75;
+    Template.Cost.ResourceCosts.AddItem(Resources);
+
+	return Template;
+}
+
 function bool Infiltration1UnlockFn()
 {
 	if (class'LWOfficerUtilities'.static.GetHighestOfficerRank() >= default.OFFICER_RANK_FOR_INFILTRATION_1)
@@ -68,3 +90,9 @@ function bool Infiltration2UnlockFn()
 	return false;
 }
 
+function bool TrialByFireUpgradeUnlockFn()
+{
+	if (class'LWOfficerUtilities'.static.GetHighestOfficerRank() >= default.OFFICER_RANK_FOR_TBF_UNLOCK)
+		return true;
+	return false;
+}

@@ -3803,6 +3803,7 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('StayWithMeUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('Infiltration1Unlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('Infiltration2Unlock');
+			FacilityTemplate.SoldierUnlockTemplates.AddItem('TrialByFireUpgradeUnlock');
 		}
 		if (FacilityTemplate.DataName == 'Laboratory')
 		{

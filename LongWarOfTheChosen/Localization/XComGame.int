@@ -5191,6 +5191,11 @@ Summary="Infiltrations for squads of 6 or 7 soldiers will take less time.<br/><b
 DisplayName="Large Unit Infiltrations"
 Summary="Infiltrations for squads of 8 to 10 soldiers will take less time.<br/><br/>Special Requirement: This upgrade requires an officer of at least Colonel rank to unlock."
 
+[TrialByFireUpgradeUnlock X2SoldierUnlockTemplate]
+DisplayName="The Crucible"
+Summary="Trial By Fire maximum rank increased by 1.<br/><br/>Special Requirement: This upgrade requires an officer of at least Field Commander rank to unlock."
+
+
 [UITodoWidget]
 DescLowScienceScoreText="There are not enough scientists to begin the majority of available research projects. Build, upgrade, or staff a Laboratory to boost a scientists' contribution, or buy a scientist from the Black Market."
 DescLowEngineeringScoreText="There are not enough engineers to build available weapons or armor. Recruit an engineer from the Black Market!"
