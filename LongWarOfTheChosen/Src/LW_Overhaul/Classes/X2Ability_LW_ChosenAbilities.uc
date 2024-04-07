@@ -509,7 +509,7 @@ static function X2AbilityTemplate CreateShieldAlly(name Templatename, int Shield
 	Template.AddTargetEffect(ShieldedEffect);
 
 	StatBuffsEffect = new class'X2Effect_GreatestChampion';
-	StatBuffsEffect.BuildPersistentEffect(1, true, true);
+	StatBuffsEffect.BuildPersistentEffect(default.COOLDOWN_SHIELD_ALLY, false, true, , eGameRule_PlayerTurnBegin);
 	StatBuffsEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, default.ShieldedStatBuffsLocDescription, "img:///UILibrary_PerkIcons.UIPerk_adventshieldbearer_energyshield", true);
 	StatBuffsEffect.bRemoveWhenTargetDies = true;
 	//StatBuffsEffect.bRemoveWhenTargetUnconscious = true;
@@ -539,7 +539,7 @@ static function X2AbilityTemplate CreateShieldAlly(name Templatename, int Shield
 
 	MyCritModifier = new class 'X2Effect_Resilience';
 	MyCritModifier.CritDef_Bonus = 200;
-	MyCritModifier.BuildPersistentEffect (1, true, false, true);
+	MyCritModifier.BuildPersistentEffect(default.COOLDOWN_SHIELD_ALLY, false, true, , eGameRule_PlayerTurnBegin);
 	MyCritModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
 	MyCritModifier.TargetConditions.AddItem(AbilityCondition);
 	Template.AddTargetEffect (MyCritModifier);
@@ -548,7 +548,7 @@ static function X2AbilityTemplate CreateShieldAlly(name Templatename, int Shield
 	ImpactEffect = new class'X2Effect_PCTDamageReduction';
 	ImpactEffect.PCTDamage_Reduction = default.SHIELD_ALLY_PCT_DR;
 	ImpactEffect.bDisplayInSpecialDamageMessageUI = true;
-	ImpactEffect.BuildPersistentEffect(1,true,true,,eGameRule_PlayerTurnEnd);
+	ImpactEffect.BuildPersistentEffect(default.COOLDOWN_SHIELD_ALLY, false, true, , eGameRule_PlayerTurnBegin);
 	ImpactEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
 	ImpactEffect.DuplicateResponse = eDupe_Allow;
 	ImpactEffect.EffectName = 'WarlockDamageReduction_LW';
@@ -573,7 +573,7 @@ static function X2Effect_PersistentStatChange CreateShieldedEffect(string Friend
 	local X2Effect_EnergyShield ShieldedEffect;
 
 	ShieldedEffect = new class'X2Effect_EnergyShield';
-	ShieldedEffect.BuildPersistentEffect(1, true, true, , eGameRule_PlayerTurnEnd);
+	ShieldedEffect.BuildPersistentEffect(default.COOLDOWN_SHIELD_ALLY, false, true, , eGameRule_PlayerTurnBegin);
 	ShieldedEffect.SetDisplayInfo(ePerkBuff_Bonus, FriendlyName, LongDescription, "img:///UILibrary_PerkIcons.UIPerk_adventshieldbearer_energyshield", true);
 	ShieldedEffect.AddPersistentStatChange(eStat_ShieldHP, ShieldHPAmount);
 	//ShieldedEffect.bRemoveWhenTargetUnconscious = true;
