@@ -3974,6 +3974,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'MULTI_TARGETING_COOLDOWN_LW':
 			OutString = string(class'X2Ability_LW_SharpshooterAbilitySet'.default.MULTI_TARGETING_COOLDOWN);
 			return true;
+		case 'CONCUSSION_ROCKET_STUN_CHANCE':
+			OutString = string(class'X2Ability_LW_TechnicalAbilitySet'.default.CONCUSSION_ROCKET_STUN_CHANCE);
+			return true;
 		case 'BURNOUT_RADIUS_LW':
 			OutString = Repl(string(class'X2Ability_LW_TechnicalAbilitySet'.default.BURNOUT_RADIUS), "0", "");
 			return true;
