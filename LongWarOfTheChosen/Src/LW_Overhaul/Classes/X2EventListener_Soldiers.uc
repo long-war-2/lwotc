@@ -1014,8 +1014,10 @@ static function EventListenerReturn  OnOverrideBleedOutChance(Object EventData, 
 	//      to take the solider to 0 health.
 	BleedOutChance = default.BLEEDOUT_CHANCE_BASE - (OverrideTuple.Data[2].i * default.DEATH_CHANCE_PER_OVERKILL_DAMAGE);
 	OverrideTuple.Data[0].i = BleedOutChance;
-
-	`LWTrace("Bleedout chance base:" @BleedOutChance);
+	`LWTrace("Bleedout Calc data");
+	`LWTrace("RollOutOf:" @ OverrideTuple.Data[1].i);
+	`LWTrace("Overkill Damage:" @OverrideTuple.Data[2].i);
+	`LWTrace("LW bleedout chance after calc:" @BleedOutChance);
 
 	return ELR_NoInterrupt;
 
