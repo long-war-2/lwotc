@@ -4051,8 +4051,9 @@ static function X2DataTemplate CreateBigSupplyExtractionTemplate()
     // Add an arbitrary mission to the mission list. This won't really be used, it'll be overridden
     // by the cheat command to force a particular mission kind.
     MissionLayer.MissionFamilies.AddItem('BigSupplyExtraction_LW');
-	MissionLayer.Duration_Hours = 24*6;
+	MissionLayer.Duration_Hours = 24*6+1;
 	MissionLayer.DurationRand_Hours = 24;
+	MissionLayer.BaseInfiltrationModifier_Hours=-12;
     Template.MissionTree.AddItem(MissionLayer);
 
  	DetectionCalc = new class'X2LWActivityDetectionCalc';
