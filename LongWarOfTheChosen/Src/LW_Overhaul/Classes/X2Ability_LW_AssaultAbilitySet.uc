@@ -48,25 +48,23 @@ static function array<X2DataTemplate> CreateTemplates()
 static function X2AbilityTemplate AddArcthrowerStun()
 {
 
-	local X2AbilityCooldown                 Cooldown;
-	local X2AbilityTemplate                 Template;	
+	local X2AbilityCooldown					Cooldown;
+	local X2AbilityTemplate					Template;
 	local X2Condition_UnitProperty			UnitPropertyCondition;
-	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
-	local X2AbilityCost_ActionPoints        ActionPointCost;
-	local X2Effect_ArcthrowerStunned	    StunnedEffect;
-	local array<name>                       SkipExclusions;
-	local X2Condition_UnitType				ImmuneUnitCondition;
-	//local X2Effect_RemoveEffects			CleanUpEffect;
+	local X2AbilityToHitCalc_StandardAim	ToHitCalc;
+	local X2AbilityCost_ActionPoints		ActionPointCost;
+	local X2Effect_ArcthrowerStunned		StunnedEffect;
+	local array<name>						SkipExclusions;
 
 	// Macro to do localisation and stuffs
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ArcthrowerStun');
 
 	// Icon Properties
-	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityArcthrowerStun";  
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityArcthrowerStun";
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.STANDARD_PISTOL_SHOT_PRIORITY;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
 	Template.DisplayTargetHitChance = true;
-	Template.AbilitySourceName = 'eAbilitySource_Perk';                                       // color of the icon
+	Template.AbilitySourceName = 'eAbilitySource_Perk'; // color of the icon
 
 	// Activated by a button press; additionally, tells the AI this is an activatable
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
@@ -86,16 +84,11 @@ static function X2AbilityTemplate AddArcthrowerStun()
 	UnitPropertyCondition = new class'X2Condition_UnitProperty';
 	UnitPropertyCondition.ExcludeRobotic = true;
 	UnitPropertyCondition.ExcludeOrganic = false;
+	UnitPropertyCondition.FailOnNonUnits = true;
 	UnitPropertyCondition.ExcludeDead = true;
 	UnitPropertyCondition.ExcludeFriendlyToSource = true;
 	UnitPropertyCondition.RequireWithinRange = true;
 	Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
-	
-	ImmuneUnitCondition = new class'X2Condition_UnitType';
-	ImmuneUnitCondition.ExcludeTypes.AddItem('PsiZombie');
-	ImmuneUnitCondition.ExcludeTypes.AddItem('AdvPsiWitchM2');
-	ImmuneUnitCondition.ExcludeTypes.AddItem('AdvPsiWitchM3');
-	Template.AbilityTargetConditions.AddItem(ImmuneUnitCondition);
 
 	// Can't shoot while dead
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
@@ -107,14 +100,11 @@ static function X2AbilityTemplate AddArcthrowerStun()
 	ActionPointCost.iNumPoints = 1;
 	ActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('Unlimitedpower_LW');
 	ActionPointCost.bConsumeAllPoints = true;
-	Template.AbilityCosts.AddItem(ActionPointCost);	
+	Template.AbilityCosts.AddItem(ActionPointCost);
 
 	//Stun Effect
 	StunnedEffect = CreateArcthrowerStunnedStatusEffect(100);
 	Template.AddTargetEffect(StunnedEffect);
-
-	//CleanUpEffect = CreateStunnedEffectsCleanUpEffect();
-	//Template.AddTargetEffect(CleanUpEffect);
 
 	Template.AssociatedPassives.AddItem('Electroshock');
 	Template.AddTargetEffect(ElectroshockDisorientEffect());
@@ -125,7 +115,7 @@ static function X2AbilityTemplate AddArcthrowerStun()
 	ToHitCalc.bAllowCrit = false;
 	Template.AbilityToHitCalc = ToHitCalc;
 	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
-			
+
 	// Targeting Method
 	Template.TargetingMethod = class'X2TargetingMethod_OverTheShoulder';
 	Template.bUsesFiringCamera = true;
@@ -134,16 +124,16 @@ static function X2AbilityTemplate AddArcthrowerStun()
 
 	// MAKE IT LIVE!
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;	
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
-	
+
 	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 
 	Template.AdditionalAbilities.AddItem('ArcthrowerPassive');
 
-	return Template;	
+	return Template;
 }
 
 
