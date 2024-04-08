@@ -525,9 +525,7 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	local X2Effect_ArcthrowerStunned		StunnedEffect;
 	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
 	local X2AbilityCooldown					Cooldown;	
-	local X2Condition_UnitType				ImmuneUnitCondition;
 	local X2Condition_UnitEffects			SuppressedCondition;
-	//local X2Effect_RemoveEffects			CleanUpEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChainLightning');
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_COLONEL_PRIORITY;
@@ -542,7 +540,7 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	Template.AbilityTargetConditions.AddItem(default.LivingTargetUnitOnlyProperty);
 	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
-	
+
 	Template.AbilityTargetStyle = default.SimpleSingleTarget;
 	Template.AbilityMultiTargetStyle = new class'X2AbilityMultiTarget_Volt';
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
@@ -554,8 +552,6 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
 	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitDisallowMindControlProperty);
 
-
-	//Template.bAllowAmmoEffects = true;
 	Template.bAllowBonusWeaponEffects = true;
 
 	// Can't target dead; Can't target friendlies -- must be enemy organic
@@ -565,7 +561,7 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	UnitPropertyCondition.ExcludeDead = true;
 	UnitPropertyCondition.ExcludeFriendlyToSource = true;
 	Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
-	
+
 	Template.AbilityMultiTargetConditions.AddItem(UnitPropertyCondition);
 	UnitPropertyCondition2 = new class'X2Condition_UnitProperty';
 	UnitPropertyCondition2.ExcludeConcealed = true;
@@ -576,15 +572,6 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
 	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
 
-	ImmuneUnitCondition = new class'X2Condition_UnitType';
-	ImmuneUnitCondition.ExcludeTypes.AddItem('PsiZombie');
-	ImmuneUnitCondition.ExcludeTypes.AddItem('AdvPsiWitchM2');
-	ImmuneUnitCondition.ExcludeTypes.AddItem('AdvPsiWitchM3');
-	Template.AbilityTargetConditions.AddItem(ImmuneUnitCondition);
-	Template.AbilityMultiTargetConditions.AddItem(ImmuneUnitCondition);
-
-
-
 	Cooldown = new class'X2AbilityCooldown';
 	Cooldown.iNumTurns = default.CHAIN_LIGHTNING_COOLDOWN;
 	Template.AbilityCooldown = Cooldown;
@@ -594,31 +581,27 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	ActionPointCost.iNumPoints = default.CHAIN_LIGHTNING_MIN_ACTION_REQ;
 	ActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('Unlimitedpower_LW');
 	ActionPointCost.bConsumeAllPoints = true;
-	Template.AbilityCosts.AddItem(ActionPointCost);	
+	Template.AbilityCosts.AddItem(ActionPointCost);
 
-	//Stun Effect
+	// Stun Effect
 	StunnedEffect = CreateArcthrowerStunnedStatusEffect(100);
 	Template.AddTargetEffect(StunnedEffect);
 	Template.AddMultiTargetEffect(StunnedEffect);
 
-	//CleanUpEffect = CreateStunnedEffectsCleanUpEffect();
-	//Template.AddTargetEffect(CleanUpEffect);
-
-
 	Template.AssociatedPassives.AddItem('Electroshock');
 	Template.AddMultiTargetEffect(ElectroshockDisorientEffect());
-	
+
 	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
 	ToHitCalc.bOnlyMultiHitWithSuccess = false;
 	ToHitCalc.BuiltInHitMod = default.CHAIN_LIGHTNING_AIM_MOD;
 	Template.AbilityToHitCalc = ToHitCalc;
 	Template.AdditionalAbilities.AddItem('CLFocus');
-	
+
 	Template.ActionFireClass = class'X2Action_Fire_ChainLightning';
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
-	
+
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 
