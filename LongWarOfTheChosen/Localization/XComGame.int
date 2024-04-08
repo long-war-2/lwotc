@@ -7128,8 +7128,8 @@ LocFlyOverText="Chosen Prime Reaction"
 ; LWOTC Needs Translation (3)
 [ChosenImmunities X2AbilityTemplate]
 LocFriendlyName="Chosen Immunities"
-LocLongDescription="Chosen are immune to stun, disorient, and frost."
-LocHelpText="Chosen are immune to stun, disorient, and frost."
+LocLongDescription="Chosen are immune to all mental impairments and frost."
+LocHelpText="Chosen are immune to all mental impairments and frost."
 LocFlyOverText="Chosen Immunities"
 ; End Translation (3)
 
