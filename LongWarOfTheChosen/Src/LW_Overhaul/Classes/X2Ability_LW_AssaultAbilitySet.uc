@@ -266,24 +266,21 @@ static function X2AbilityTemplate StunGunner()
 //EM Pulser alternative attack, which allows targeting and damaging robots
 static function X2AbilityTemplate AddEMPulser()
 {
-	local X2AbilityCooldown                 Cooldown;
-	local X2AbilityTemplate                 Template;	
-	local X2Condition_UnitProperty			UnitPropertyCondition;
-	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
-	local X2AbilityCost_ActionPoints        ActionPointCost;
-	local X2Effect_ArcthrowerStunned	    StunnedEffect;
-	local array<name>                       SkipExclusions;
-	local X2Condition_UnitType				ImmuneUnitCondition;
-	//local X2Effect_RemoveEffects			CleanUpEffect;
-	// Macro to do localisation and stuffs
+	local X2AbilityCooldown								Cooldown;
+	local X2AbilityTemplate								Template;
+	local X2Condition_UnitProperty						UnitPropertyCondition;
+	local X2AbilityToHitCalc_StandardAim				ToHitCalc;
+	local X2AbilityCost_ActionPoints					ActionPointCost;
+	local X2Effect_ArcthrowerStunned					StunnedEffect;
+	local array<name>									SkipExclusions;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'EMPulser');
 
 	// Icon Properties
-	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityEMPulser"; 
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityEMPulser";
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.STANDARD_PISTOL_SHOT_PRIORITY;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
 	Template.DisplayTargetHitChance = true;
-	Template.AbilitySourceName = 'eAbilitySource_Perk';                                       // color of the icon
+	Template.AbilitySourceName = 'eAbilitySource_Perk'; // color of the icon
 
 	// Activated by a button press; additionally, tells the AI this is an activatable
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
@@ -299,20 +296,15 @@ static function X2AbilityTemplate AddEMPulser()
 	// Targeting Details
 	// Can only shoot visible enemies
 	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
-	// Can't target dead; Can't target friendlies -- must be enemy organic
+	// Can't target dead; Can't target friendlies
 	UnitPropertyCondition = new class'X2Condition_UnitProperty';
 	UnitPropertyCondition.ExcludeRobotic = false;  // change from basic stun to allow targeting robotic units
 	UnitPropertyCondition.ExcludeOrganic = false;
 	UnitPropertyCondition.ExcludeDead = true;
 	UnitPropertyCondition.ExcludeFriendlyToSource = true;
 	UnitPropertyCondition.RequireWithinRange = true;
+	UnitPropertyCondition.FailOnNonUnits = true;
 	Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
-	
-	ImmuneUnitCondition = new class'X2Condition_UnitType';
-	ImmuneUnitCondition.ExcludeTypes.AddItem('PsiZombie');
-	ImmuneUnitCondition.ExcludeTypes.AddItem('AdvPsiWitchM2');
-	ImmuneUnitCondition.ExcludeTypes.AddItem('AdvPsiWitchM3');
-	Template.AbilityTargetConditions.AddItem(ImmuneUnitCondition);
 
 	// Can't shoot while dead
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
@@ -324,7 +316,7 @@ static function X2AbilityTemplate AddEMPulser()
 	ActionPointCost.iNumPoints = 1;
 	ActionPointCost.bConsumeAllPoints = true;
 	ActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('Unlimitedpower_LW');
-	Template.AbilityCosts.AddItem(ActionPointCost);	
+	Template.AbilityCosts.AddItem(ActionPointCost);
 
 	// Hit Calculation (Different weapons now have different calculations for range)
 	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
@@ -336,14 +328,11 @@ static function X2AbilityTemplate AddEMPulser()
 	//Stun Effect
 	StunnedEffect = CreateArcthrowerStunnedStatusEffect(100);
 	Template.AddTargetEffect(StunnedEffect);
-	
-	//CleanUpEffect = CreateStunnedEffectsCleanUpEffect();
-	//Template.AddTargetEffect(CleanUpEffect);
 
-	Template.AssociatedPassives.AddItem( 'Electroshock' );
+	Template.AssociatedPassives.AddItem('Electroshock');
 	Template.AddTargetEffect(ElectroshockDisorientEffect());
 
-	Template.AssociatedPassives.AddItem( 'EMPulser' );
+	Template.AssociatedPassives.AddItem('EMPulser');
 	Template.AddTargetEffect(EMPulserHackDefenseReductionEffect());
 	Template.AddTargetEffect(EMPulserWeaponDamageEffect());
 
@@ -355,9 +344,9 @@ static function X2AbilityTemplate AddEMPulser()
 
 	// MAKE IT LIVE!
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;	
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
-	
+
 	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
@@ -366,7 +355,7 @@ static function X2AbilityTemplate AddEMPulser()
 	Template.AdditionalAbilities.AddItem('EMPulserPassive');
 	Template.OverrideAbilities.AddItem('ArcthrowerStun');
 
-	return Template;	
+	return Template;
 }
 
 static function X2Effect_PersistentStatChange EMPulserHackDefenseReductionEffect()
