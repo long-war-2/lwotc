@@ -54,6 +54,7 @@ static function X2AbilityTemplate AddHolotarget()
 	//Template.AbilityConfirmSound = "TacticalUI_SwordConfirm";
 	Template.Hostility = eHostility_Neutral;
 
+	Template.bSilentAbility = true;
 	Template.bDisplayInUITooltip = true;
     Template.bDisplayInUITacticalText = true;
     Template.DisplayTargetHitChance = true;
@@ -144,6 +145,7 @@ static function X2AbilityTemplate AddRapidTargeting()
 	Template.Hostility = eHostility_Neutral;
 	//Template.AbilityConfirmSound = "TacticalUI_SwordConfirm";
 
+	Template.bSilentAbility = true;
 	Template.bDisplayInUITooltip = true;
     Template.bDisplayInUITacticalText = true;
     Template.DisplayTargetHitChance = true;
@@ -244,6 +246,7 @@ static function X2AbilityTemplate AddMultiTargeting()
 	Cooldown.iNumTurns = default.MULTI_TARGETING_COOLDOWN;
 	Template.AbilityCooldown = Cooldown;
 
+	Template.bSilentAbility = true;
 	Template.bDisplayInUITooltip = true;
     Template.bDisplayInUITacticalText = true;
     Template.DisplayTargetHitChance = true;
