@@ -7263,7 +7263,7 @@ LocPromotionPopupText="<bullet/> Ends turn when used.<br/><bullet/> Shield stren
 LocFriendlyName="Indomitable"
 LocHelpText="Once per turn, gain 1 focus when you're directly attacked."
 LocLongDescription="Once per turn, gain 1 focus when you're directly attacked."
-LocPromotionPopupText"<Bullet/> Once per turn, gain 1 focus when you're attacked.<br/><Bullet/>Applies to both melee and ranged attacks, but not to AOE attacks.<br/>"
+LocPromotionPopupText="<Bullet/> Once per turn, gain 1 focus when you're attacked.<br/><Bullet/>Applies to both melee and ranged attacks, but not to AOE attacks.<br/>"
 LocFlyOverText="Indomitable"
 
 [VoltFocusOnKills X2AbilityTemplate]
@@ -7277,7 +7277,7 @@ LocFriendlyName="Superior Aptitude"
 LocHelpText="Rend grants an additional focus point."
 LocLongDescription="Rend grants an additional focus point."
 LocFlyOverText="Superior Aptitude"
-LocPromotionPopupText"<Bullet/>Rend grants an additional focus point."
+LocPromotionPopupText="<Bullet/>Rend grants an additional focus point."
 
 ; LWOTC Needs Translation (2)
 [DoubleRendFocusPassive X2AbilityTemplate]
