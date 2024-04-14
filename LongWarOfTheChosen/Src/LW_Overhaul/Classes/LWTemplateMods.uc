@@ -2392,8 +2392,10 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('ChosenSummonFollowers');
 
 		Template.ImmuneTypes.AddItem('Frost');
-
-
+	}
+	if (Template.CharacterGroupName == 'SpectralZombie')
+	{
+		Template.Abilities.AddItem('SpectralZombieImmunitiesPassive');
 	}
 	if (Template.CharacterGroupName == 'ChosenSniper')
 	{

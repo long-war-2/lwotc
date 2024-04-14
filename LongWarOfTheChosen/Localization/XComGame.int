@@ -7728,3 +7728,10 @@ LocFlyOverText="Psi Zombie Immunities"
 LocLongDescription="Psi Zombies are immune to mental impairments and poison."
 LocHelpText="Psi Zombies are immune to mental impairments and poison.
 LocPromotionPopupText=""
+
+[SpectralZombieImmunitiesPassive X2AbilityTemplate]
+LocFriendlyName="Spectral Zombie Immunities"
+LocFlyOverText="Spectral Zombie Immunities"
+LocLongDescription="Spectral Zombies are immune to mental impairments, fire, poison, and acid."
+LocHelpText="Spectral Zombies are immune to mental impairments, fire, poison, and acid.
+LocPromotionPopupText=""
