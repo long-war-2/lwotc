@@ -60,9 +60,9 @@ BriefSummary="减少1HP受伤恢复时间，并免疫毒和酸。"
 [CenterMass X2AbilityTemplate]
 LocFriendlyName="中心质量"
 LocFlyOverText="中心质量"
-LocLongDescription="你使用主武器，手枪或短管散弹枪时会造成1点额外基础伤害。"
-LocHelpText="你使用主武器，手枪或短管散弹枪时会造成1点额外基础伤害。"
-LocPromotionPopupText="<Bullet/> 你的主武器，手枪或短管散弹枪会造成1点额外基础伤害。"
+LocLongDescription="你使用主武器、手枪或短管散弹枪时会造成1点额外基础伤害。"
+LocHelpText="你使用主武器、手枪或短管散弹枪时会造成1点额外基础伤害。"
+LocPromotionPopupText="<Bullet/> 你的主武器、手枪或短管散弹枪会造成1点额外基础伤害。"
 
 [Lethal X2AbilityTemplate]
 LocFriendlyName="致命武器"
@@ -74,23 +74,23 @@ LocPromotionPopupText="<Bullet/> 你的主武器造成额外<Ability:LETHAL_DAMA
 [HitandSlither X2AbilityTemplate]
 LocFriendlyName="打完就溜"
 LocFlyoverText="打完就溜"
-LocLongDescription="每回合一次，用主武器对一个侧翼或暴露的目标进行一次标准射击后，获得一个额外的移动点。"
-LocHelpText="每回合一次，用主武器对一个侧翼或暴露的目标进行一次标准射击后，获得一个额外的移动点。"
-LocPromotionPopupText="<Bullet/> 每回合一次，用主武器对一个侧翼或暴露的目标进行一次标准射击后，获得一个额外的移动点。<br/>"
+LocLongDescription="每回合一次，用主武器对一名侧翼敌人进行一次标准射击后，获得一个额外的移动点。"
+LocHelpText="每回合一次，用主武器对一名侧翼敌人进行一次标准射击后，获得一个额外的移动点。"
+LocPromotionPopupText="<Bullet/> 每回合一次，用主武器对一名侧翼敌人进行一次标准射击后，获得一个额外的移动点。<br/>"
 
 [HitandRun X2AbilityTemplate]
 LocFriendlyName="游击战术"
 LocFlyOverText="游击战术"
-LocLongDescription="每回合一次，用主武器对一个侧翼或暴露的目标进行一次标准射击后，获得一个额外的行动点。不能在同一回合触发短兵相接。 "
-LocHelpText="每回合一次，用主武器对一个侧翼或暴露的目标进行一次标准射击后，获得一个额外的行动点。不能在同一回合触发短兵相接。"
+LocLongDescription="每回合一次，用主武器对一名侧翼敌人进行一次标准射击后，获得一个额外的行动点。不能在同一回合触发短兵相接。 "
+LocHelpText="每回合一次，用主武器对一名侧翼敌人进行一次标准射击后，获得一个额外的行动点。不能在同一回合触发短兵相接。"
 LocPromotionPopupText="<Bullet/> 不能在同一回合使用奔袭战术。<br/><Bullet/> 连环杀戮和死神天降的奖励将会优先获得。"
 
 [CloseCombatSpecialist X2AbilityTemplate]
 LocFriendlyName="近战专家"
 LocFlyOverText="近战专家"
-LocLongDescription="对4格内任何移动或开火的可见敌人进行1次<Ability:BOUND_WEAPON_NAME/>自由反应射击。"
-LocHelpText="对4格内任何移动或开火的可见敌人进行1次<Ability:BOUND_WEAPON_NAME/>自由反应射击。"
-LocPromotionPopupText="<Bullet/> 士兵在隐蔽状态时不会触发。<br/><Bullet/> 使用该能力可以每回合对每个敌人射击1次。<br/><Bullet/> 每次射击消耗2弹药。<br/>""
+LocLongDescription="对<Ability:CCS_RANGE>格内任何移动或开火的可见敌人进行1次<Ability:BOUND_WEAPON_NAME/>自由反应射击。"
+LocHelpText="对<Ability:CCS_RANGE>格内任何移动或开火的可见敌人进行1次<Ability:BOUND_WEAPON_NAME/>自由反应射击。"
+LocPromotionPopupText="<Bullet/> 士兵在隐蔽状态时不会触发。<br/><Bullet/> 使用该能力可以每回合对每个敌人射击1次。<br/><Bullet/> 每次射击消耗<Ability:CCS_AMMO_PER_SHOT>弹药。<br/>""
 
 [CloseCombatSpecialistAttack X2AbilityTemplate]
 LocFriendlyName="近战专家"
@@ -174,7 +174,7 @@ LocFriendlyName="求生意志"
 LocFlyOverText="求生意志"
 LocLongDescription="在掩体中并受到穿透掩体的攻击时，受到的伤害减1。同时赋予5意志力。"
 LocHelpText="在掩体中并受到穿透掩体的攻击时，受到的伤害减1。"
-LocPromotionPopupText="<Bullet/> 在掩体中并受到穿透掩体的攻击时，受到的伤害减1。<br/><Bullet/> 对爆炸或其他间接攻击的掩体从爆炸地点计算。<br/><Bullet/> 护甲穿透效果不影响此加成。<br/><Bullet/> 该单位也会永久增加5意志力。<Bullet/> 此项能力在单位处于混乱、眩晕、恐慌、着火或其他受损状态中时将不提供防御加成。"
+LocPromotionPopupText="<Bullet/> 在掩体中并受到穿透掩体的攻击时，受到的伤害减1。<br/><Bullet/> 对爆炸或其他间接攻击的掩体从爆炸地点计算。<br/><Bullet/> 护甲穿透效果不影响此加成。<br/><Bullet/> 该单位也会永久增加5意志力。<br/><Bullet/> 此项能力在单位处于混乱、眩晕、恐慌、着火或其他受损状态中时将不提供防御加成。"
 
 [LightEmUp X2AbilityTemplate]
 LocFriendlyName="赶尽杀绝"
@@ -568,11 +568,11 @@ LaunchedAbilityname="发射浓烟炸弹"
 LaunchedAbilityHelpText="对其有效范围内的单位提供防御加成。"
 
 [StingGrenades X2AbilityTemplate]
-LocFriendlyName="尖刺榴弹"
-LocFlyOverText="尖刺榴弹"
+LocFriendlyName="眩晕闪光"
+LocFlyOverText="眩晕闪光"
 LocLongDescription="你的闪光榴弹有50%几率使范围内敌人眩晕一回合。"
 LocHelpText="你的闪光榴弹有50%几率使敌人眩晕。"
-LocPromotionPopupText="<Bullet/> 你的闪光榴弹有50%几率使敌人眩晕。<br/><Bullet/> 敌人天生的闪光抗性不影响眩晕几率。<br/>"
+LocPromotionPopupText="<Bullet/> 你的闪光榴弹有50%几率使敌人眩晕。<br/><Bullet/> 敌人天生的闪光抗性不影响眩晕几率。<br/><Bullet/> 机械单位也能被眩晕。<br/>"
 
 [DedicatedSuppression_LW X2AbilityTemplate]
 LocFriendlyName="坚韧压制"
@@ -580,25 +580,25 @@ LocLongDescription="受到伤害不再取消压制和区域压制。"
 LocHelpText="受到伤害不再取消压制和区域压制。"
 
 [X2Item_StingGrenade]
-DenseSmokeGrenadeEffectDisplayName="毒刺榴弹"
-DenseSmokeGrenadeEffectDisplayDesc="毒刺榴弹有50%几率使范围内的单位眩晕。"
+DenseSmokeGrenadeEffectDisplayName="眩晕闪光弹"
+DenseSmokeGrenadeEffectDisplayDesc="眩晕闪光弹有50%几率使范围内的单位眩晕。"
 
 [StingGrenade X2GrenadeTemplate]
-FriendlyName="毒刺榴弹"
-FriendlyNamePlural="毒刺榴弹"
-BriefSummary="除了迷惑敌人以外，还有50%几率使范围内的敌人眩晕。"
-TacticalText="<Bullet/> 除了迷惑敌人以外，还有50%几率使范围内的敌人眩晕。<br/>"
-ThrownAbilityName="投掷毒刺榴弹"
-ThrownAbilityHelpText="除了迷惑敌人以外，还有50%几率使范围内的敌人眩晕。"
-LaunchedAbilityname="发射毒刺榴弹"
-LaunchedAbilityHelpText="除了迷惑敌人以外，还有50%几率使范围内的敌人眩晕。"
+FriendlyName="眩晕闪光弹"
+FriendlyNamePlural="眩晕闪光弹"
+BriefSummary="除了混乱敌人以外，还有50%几率使范围内的敌人眩晕一回合。"
+TacticalText="<Bullet/> 除了混乱敌人以外，还有50%几率使范围内的敌人眩晕一回合。<br/>"
+ThrownAbilityName="投掷眩晕闪光弹"
+ThrownAbilityHelpText="除了混乱敌人以外，还有50%几率使范围内的敌人眩晕一回合。"
+LaunchedAbilityname="发射眩晕闪光弹"
+LaunchedAbilityHelpText="除了混乱敌人以外，还有50%几率使范围内的敌人眩晕一回合。"
 
 [RapidDeployment X2AbilityTemplate]
 LocFriendlyName="快速部署"
 LocFlyOverText="快速部署"
 LocLongDescription="在投掷或发射一颗辅助型榴弹前使用此技能，投掷或发射将不耗费行动点。"
 LocHelpText="在投掷或发射一颗辅助型榴弹前使用此技能，投掷或发射将不耗费行动点。"
-LocPromotionPopupText="<Bullet/> 在投掷或发射一颗辅助型榴弹前使用此技能，投掷或发射将不耗费行动点。<br/><Bullet/> 适用于烟雾榴弹，闪光榴弹，成型炸药和战场扫描仪。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
+LocPromotionPopupText="<Bullet/> 在投掷或发射一颗辅助型榴弹前使用此技能，投掷或发射将不耗费行动点。<br/><Bullet/> 适用于烟雾榴弹，闪光榴弹，成型炸药和战场扫描器。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
 
 [CombatRush X2AbilityTemplate]
 LocFriendlyName="战斗冲锋"
@@ -653,7 +653,7 @@ LocFriendlyName="全副武装"
 LocFlyOverText="全副武装"
 LocLongDescription="在装备栏中为每颗榴弹+1使用次数。"
 LocHelpText="在装备栏中为每颗榴弹+1使用次数。"
-LocPromotionPopupText="<Bullet/> 通用槽的每颗榴弹+1使用次数。<br/><Bullet/> 适用于爆破型和辅助型榴弹，以及战场扫描仪。<br/><Bullet/> 烟雾榴弹和闪光榴弹技能提供的额外榴弹不会额外充能。<br/>"
+LocPromotionPopupText="<Bullet/> 通用槽的每颗榴弹+1使用次数。<br/><Bullet/> 适用于爆破型和辅助型榴弹，以及战场扫描器。<br/><Bullet/> 烟雾榴弹和闪光榴弹技能提供的额外榴弹不会额外充能。<br/>"
 
 [Bastion X2AbilityTemplate]
 LocFriendlyName="堡垒"
@@ -762,8 +762,8 @@ LocPromotionPopupText="<Bullet/> 在任务中士兵重新进入隐蔽状态时�
 
 [Formidable X2AbilityTemplate]
 LocFriendlyName="坚不可摧"
-LocLongDescription="你的装备包含多一层的防护, 提供<Ability:FORMIDABLE_ABLATIVE_HP/>点护盾和减少<Ability:FORMIDABLE_EXPLOSIVES_DR/>%爆炸伤害。"
-LocHelpText="提供<Ability:FORMIDABLE_ABLATIVE_HP/>点护盾和减少<Ability:FORMIDABLE_EXPLOSIVES_DR/>%爆炸伤害。"
+LocLongDescription="你的装备包含多一层的防护, 提供<Ability:FORMIDABLE_ABLATIVE_HP/>点护盾并减少<Ability:FORMIDABLE_EXPLOSIVES_DR/>%爆炸伤害。"
+LocHelpText="提供<Ability:FORMIDABLE_ABLATIVE_HP/>点护盾并减少<Ability:FORMIDABLE_EXPLOSIVES_DR/>%爆炸伤害。"
 LocFlyOverText="坚不可摧"
 LocPromotionPopupText="<Bullet/> 减少<Ability:FORMIDABLE_EXPLOSIVES_DR/>%爆炸伤害。"
 
@@ -788,10 +788,10 @@ LocFriendlyNameWhenConcealed="杀戮地带（隐蔽）"
 [XComGame.DeathFromAbove X2AbilityTemplate]
 [DeathFromAbove X2AbilityTemplate]
 LocFriendlyName="死神天降"
-LocLongDescription="用<Ability:WeaponName/>击杀一名位于低处的敌人将返还一个行动点，并且不会结束你的回合。同时在任何高度为狙击步枪提供远距离命中加成。"
-LocHelpText="用<Ability:WeaponName/>击杀一名位于低处的敌人将返还一个行动点，并且不会结束你的回合。同时在任何高度为狙击步枪提供远距离命中加成。"
+LocLongDescription="用<Ability:WeaponName/>击杀一名位于低处的敌人将返还一个行动点，并且不会结束你的回合。同时在任何高度为<Ability:WeaponName/>提供远距离命中加成。一回合只能触发一次。"
+LocHelpText="用<Ability:WeaponName/>击杀一名位于低处的敌人将返还一个行动点，并且不会结束你的回合。同时在任何高度为<Ability:WeaponName/>提供远距离命中加成。一回合只能触发一次。"
 LocFlyOverText="死神天降"
-LocPromotionPopupText="<Bullet/> 死神天降能够和手枪能力进行连击，或是简单地让士兵更具移动力。<br/><Bullet/> 同时在任何高度为狙击步枪提供远距离命中加成。"
+LocPromotionPopupText="<Bullet/> 死神天降能够和手枪能力进行连击，或是简单地让士兵更具移动力。<br/><Bullet/> 同时在任何高度为<Ability:WeaponName/>提供远距离命中加成。<br/><Bullet/> 一回合只能触发一次。"
 
 [XComGame.Implacable X2AbilityTemplate]
 [Implacable X2AbilityTemplate]
@@ -853,7 +853,7 @@ LocPromotionPopupText="<Bullet/> 使用小精灵可以在一定距离内侵入�
 [EverVigilant X2AbilityTemplate]
 LocFriendlyName="时刻警惕"
 LocLongDescription="在回合中所有行动点用于移动时，则在回合结束时自动启用监视射击。"
-LocHelpText="会合内除了移动不进行其他任何行动时，将会自动启用监视。"
+LocHelpText="回合内除了移动不进行其他任何行动时，回合结束将会自动启用监视。"
 LocFlyOverText="监视：时刻警惕"
 LocPromotionPopupText="<Bullet/> \"时刻警惕\"给士兵带来极致灵巧的移动战术体验。<br/><Bullet/> 发动除移之外的动作（包含自由行动）会解除\"时刻警惕\"效果。<br/><Bullet/> 无法触发神枪手的狙击步枪自动监视，但可以触发其手枪监视。<br/>"
 
@@ -891,8 +891,8 @@ LocPromotionPopupText="<Bullet/> 敌人在相邻位置开始回合且打算攻�
 [XComGame.Untouchable X2AbilityTemplate]
 [Untouchable X2AbilityTemplate]
 LocFriendlyName="不可触碰"
-LocLongDescription="如果你在回合内完成一次击杀，敌方回合对你的下一次攻击将会无效。"
-LocHelpText="如果你在回合内完成一次击杀，敌方回合对你的下一次攻击将会无效。"
+LocLongDescription="如果你完成一次击杀，敌方回合对你的下一次攻击将会无效。"
+LocHelpText="如果你完成一次击杀，敌方回合对你的下一次攻击将会无效。"
 LocFlyOverText="不可触碰"
 LocPromotionPopupText="<Bullet/> 不可触碰激活时，士兵在敌方回合免疫下一次攻击伤害，范围攻击也不例外。<br/>"
 
@@ -981,7 +981,7 @@ TacticalText="<Bullet/> 磁力手枪比之前任何一代手枪都高效有力�
 [Pistol_BM X2WeaponTemplate]
 FriendlyName="光束手枪"
 FriendlyNamePlural="光束手枪"
-BriefSummary="作为一把终极副武器，这把手枪整合了外星人科技，并能发挥出强大的威力。"
+BriefSummary="作为一把终极副武器，这把手枪整合了外星光束武器科技，并能发挥出强大的威力。"
 TacticalText="<Bullet/> 光束手枪是地球上威力最强的手枪。\n<Bullet/> 手枪射击只需要一个行动点。"
 
 [XComGame.AutopsyArchon X2TechTemplate]
@@ -1203,8 +1203,8 @@ LocPromotionPopupText="增加<Ability:ClassName/>的侵入属性<Ability:ADVANCE
 
 [HoloAACombo_LW X2AbilityTemplate]
 LocFriendlyName="强化定位系统"
-LocLongDescription="赋予自适应瞄准和全息瞄准能力，超载不再有命中惩罚，攻击敌人后，对敌人施加全息标记。"
-LocHelpText="赋予自适应瞄准和全息瞄准能力，超载不再有命中惩罚，攻击敌人后，对敌人施加全息标记。"
+LocLongDescription="赋予自适应瞄准和全息瞄准能力，超载不再有命中惩罚，射击敌人后，对敌人施加全息标记。"
+LocHelpText="赋予自适应瞄准和全息瞄准能力，超载不再有命中惩罚，射击敌人后，对敌人施加全息标记。"
 LocPromotionPopupText="赋予自适应瞄准和全息瞄准能力，提高SPARK在超载状态下连续射击的能力，并提高小队命中SPARK射击的目标的能力。"
 
 ; New Class loc

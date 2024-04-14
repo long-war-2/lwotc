@@ -7,7 +7,7 @@ DroneM1="<Bullet/>守護者無人機是一種低廉的偵查單位，最初是�
 [CorpseDrone X2ItemTemplate]
 FriendlyName="無人機殘骸"
 FriendlyNamePlural="無人機殘骸"
-BriefSummary="這個輕型，自動的安保氣墊船殘骸顯示了其監視公民以及人群控制的設計理念。"
+BriefSummary="這個輕型，自主安保飛行器殘骸顯示了其監視公民以及人群控制的設計理念。"
 
 [CorpseMutonElite X2ItemTemplate]
 FriendlyName="異變者精英屍體"
@@ -18,10 +18,10 @@ BriefSummary="這些外星人處於異變者內部等級的頂端。不同於百
 
 [WarCry X2AbilityTemplate]
 LocFriendlyName="戰爭咆哮"
-LocLongDescription="為其他異變者提供大量命中，意志力，移動力加成；其他智慧外星人和變種人獲得少量加成。6回合冷卻。"
+LocLongDescription="為其他異變者提供大量命中、意志力、移動力加成；其他智慧外星人和變種人獲得少量加成。6回合冷卻。"
 LocHelpText="給其他異變者和外星人加成。"
 LocFlyOverText="戰爭咆哮"
-LocPromotionPopupText="<Bullet/>為其他異變者提供大量命中，意志力，移動力加成；其他智慧外星人和變種人獲得少量加成。<br/><Bullet/>6回合冷卻。<br/>"
+LocPromotionPopupText="<Bullet/>為其他異變者提供大量命中、意志力、移動力加成；其他智慧外星人和變種人獲得少量加成。<br/><Bullet/>6回合冷卻。<br/>"
 
 [BayonetCharge X2AbilityTemplate]
 LocFriendlyName="刺刀衝鋒"
@@ -48,16 +48,16 @@ LocMissMessage="心靈扭曲已抵抗！"
 [LWDroneShock X2AbilityTemplate]
 LocFriendlyName="無人機震擊"
 LocLongDescription="為鎮壓平民而設計，此武器只會造成最小的傷害並使目標混亂。"
-LocHelpText="武器造成最小傷害並使目標受損。"
+LocHelpText="武器造成最小傷害並削弱目標。"
 LocFlyOverText="無人機電擊"
 LocPromotionPopupText="<Bullet/>為鎮壓平民而設計，此武器只會造成最小的傷害並使目標混亂。<br/>"
 
 [LWDroneRepair X2AbilityTemplate]
 LocFriendlyName="修理"
 LocFlyOverText="修理"
-LocHelpText="修理任何附近的機械單位。"
-LocLongDescription="修理任何附近的機械單位。"
-LocPromotionPopupText="<Bullet/>修理任何附近的機械單位。"
+LocHelpText="修理附近的任何機械單位。"
+LocLongDescription="修理附近的任何機械單位。"
+LocPromotionPopupText="<Bullet/>修理附近的任何機械單位。"
 
 [LWDroneMeleeStun X2AbilityTemplate]
 LocFriendlyName="眩暈"
@@ -219,7 +219,7 @@ AbilityDescName="等離子步槍"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; ArchonM2_LW ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 [Archon_WPN X2WeaponTemplate]
-AbilityDescName="執政官之杖"
+AbilityDescName="執政官法杖"
 
 [ArchonM2_LW X2CharacterTemplate]
 strCharacterName="大執政官"
@@ -318,7 +318,7 @@ LaunchedAbilityHelpText="點燃目標區域及其中的單位。"
 [AdvGrenadierAcidGrenade X2GrenadeTemplate]
 FriendlyName="酸性榴彈"
 FriendlyNamePlural="酸性榴彈"
-BriefSummary="我們為標準破片榴彈添加了腐蝕性化學添加劑，把它做成了一種十分有效的破甲武器。受影響的目標在其護甲被腐蝕完畢後自身也將承受長時間的腐蝕傷害。"
+BriefSummary="我們為標準破片榴彈添加了腐蝕性化學添加劑，把它做成了一種十分有效的破甲武器。受影響的目標在其護甲被腐蝕完畢後自身也將承受腐蝕傷害。"
 TacticalText="<Bullet/>酸性榴彈對護甲造成的損害比標準破片榴彈更高。<br><Bullet/>受酸性腐蝕的敵人將在數回合中承受額外傷害。"
 ThrownAbilityName="投擲酸性榴彈"
 ThrownAbilityHelpText="產生酸性物質，對單位造成傷害。"
