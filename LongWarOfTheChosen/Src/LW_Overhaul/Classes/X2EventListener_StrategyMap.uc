@@ -18,6 +18,8 @@ var config float BLACK_MARKET_PERSONNEL_INFLATION_PER_FORCE_LEVEL;
 var config float BLACK_MARKET_SOLDIER_DISCOUNT;
 var config bool BLACK_MARKET_DOUBLE_SOLDIERS;
 var config bool DISABLE_STARTING_REGION_CHECKS;
+var config int MIN_STARTING_REGION_LINKS;
+var config int MAX_STARTING_REGION_LINKS;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -1207,7 +1209,7 @@ static function EventListenerReturn OverrideEligibleStartingRegionMinLinks(
 
 	`LWTrace("Region links:" @Count);
 
-	if(Count < class'XComGameState_RegionLink'.default.MinLinksPerRegion)
+	if(Count < default.MIN_STARTING_REGION_LINKS || Count > default.MAX_STARTING_REGION_LINKS)
 	{
 		Tuple.Data[0].b = false;
 	}
