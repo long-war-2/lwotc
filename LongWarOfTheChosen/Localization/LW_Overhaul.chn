@@ -81,7 +81,7 @@ ActivityObjectives[0]="突袭外星人研究实验室"
 
 [ScheduledOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="ScheduledOffworldReinforcementsActivity"
-ActivityObjectives[0]="找到幽浮的飞行路线"
+ActivityObjectives[0]="找到敌方飞行路线: 科技UFO"
 ActivityObjectives[1]="回收幽浮物资"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="我们已经发现了一个变种人活动的潜在线索。应该前去调查。", MissionIndex=0)
@@ -90,7 +90,7 @@ ActivityObjectives[1]="回收幽浮物资"
 
 [EmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="EmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="找到幽浮的飞行路线"
+ActivityObjectives[0]="找到敌方飞行路线: 标准UFO"
 ActivityObjectives[1]="回收幽浮物资"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="我们发现了一个变种人活动的潜在线索。应该前去调查。", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="我们发现了一个变种人活动的潜在线索。应该前去调查。", MissionIndex=0)
@@ -98,7 +98,7 @@ ActivityObjectives[1]="回收幽浮物资"
 
 [SuperEmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="SuperEmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="找到幽浮的飞行路线"
+ActivityObjectives[0]="找到敌方飞行路线: 超级UFO"
 ActivityObjectives[1]="回收幽浮物资"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="我们发现了一个变种人活动的潜在线索。应该前去调查。", MissionIndex=0)
@@ -276,7 +276,7 @@ AblativeHPLabel="额外HP"
 strMaxScatter="\n最大散布（格）："
 
 [X2Ability_LW_ChosenAbilities]
-ShieldedStatBuffsLocDescription="命中，暴击率，意志力和灵能威力增益。"
+ShieldedStatBuffsLocDescription="命中、暴击率、意志力和灵能威力增益。"
 ImpactCompensationBuffDescription="减少<Ability:IMPACT_COMPENSATION_CURRENT_DR/>%所有来袭伤害。 "
 
 [XComGameState_LWListenerManager]

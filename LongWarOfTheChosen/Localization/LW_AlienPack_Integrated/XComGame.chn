@@ -7,7 +7,7 @@ DroneM1="<Bullet/>守护者无人机是一种低廉的侦查单位，最初是�
 [CorpseDrone X2ItemTemplate]
 FriendlyName="无人机残骸"
 FriendlyNamePlural="无人机残骸"
-BriefSummary="这个轻型，自动的安保气垫船残骸显示了其监视公民以及人群控制的设计理念。"
+BriefSummary="这个轻型，自主安保飞行器残骸显示了其监视公民以及人群控制的设计理念。"
 
 [CorpseMutonElite X2ItemTemplate]
 FriendlyName="异变者精英尸体"
@@ -18,10 +18,10 @@ BriefSummary="这些外星人处于异变者内部等级的顶端。不同于百
 
 [WarCry X2AbilityTemplate]
 LocFriendlyName="战争咆哮"
-LocLongDescription="为其他异变者提供大量命中，意志力，移动力加成；其他智慧外星人和变种人获得少量加成。6回合冷却。"
+LocLongDescription="为其他异变者提供大量命中、意志力、移动力加成；其他智慧外星人和变种人获得少量加成。6回合冷却。"
 LocHelpText="给其他异变者和外星人加成。"
 LocFlyOverText="战争咆哮"
-LocPromotionPopupText="<Bullet/> 为其他异变者提供大量命中，意志力，移动力加成；其他智慧外星人和变种人获得少量加成。<br/><Bullet/> 6回合冷却。<br/>"
+LocPromotionPopupText="<Bullet/> 为其他异变者提供大量命中、意志力、移动力加成；其他智慧外星人和变种人获得少量加成。<br/><Bullet/> 6回合冷却。<br/>"
 
 [BayonetCharge X2AbilityTemplate]
 LocFriendlyName="刺刀冲锋"
@@ -48,16 +48,16 @@ LocMissMessage="心灵扭曲已抵抗！"
 [LWDroneShock X2AbilityTemplate]
 LocFriendlyName="无人机震击"
 LocLongDescription="为镇压平民而设计，此武器只会造成最小的伤害并使目标混乱。"
-LocHelpText="武器造成最小伤害并使目标受损。"
+LocHelpText="武器造成最小伤害并削弱目标。"
 LocFlyOverText="无人机电击"
 LocPromotionPopupText="<Bullet/> 为镇压平民而设计，此武器只会造成最小的伤害并使目标混乱。<br/>"
 
 [LWDroneRepair X2AbilityTemplate]
 LocFriendlyName="修理"
 LocFlyOverText="修理"
-LocHelpText="修理任何附近的机械单位。"
-LocLongDescription="修理任何附近的机械单位。"
-LocPromotionPopupText="<Bullet/> 修理任何附近的机械单位。"
+LocHelpText="修理附近的任何机械单位。"
+LocLongDescription="修理附近的任何机械单位。"
+LocPromotionPopupText="<Bullet/> 修理附近的任何机械单位。"
 
 [LWDroneMeleeStun X2AbilityTemplate]
 LocFriendlyName="眩晕"
@@ -129,7 +129,7 @@ FriendlyNamePlural="外星榴弹"
 BriefSummary="每个异变者百夫长都携带有一枚高伤害的电浆榴弹。"
 TacticalText="<Bullet/> 单发高伤害性榴弹。"
 ThrownAbilityName="投掷外星榴弹"
-ThrownAbilityHelpText="对目标区域投掷一枚外星榴弹。"
+ThrownAbilityHelpText="向目标区域投掷一枚外星榴弹。"
 LaunchedAbilityName="发射外星榴弹"
 LaunchedAbilityHelpText="朝目标区域发射外星榴弹，可撕裂护甲。"
 
@@ -151,7 +151,7 @@ FriendlyNamePlural="外星榴弹"
 BriefSummary="每一个异变者精英都带着一枚破坏力强大的电浆榴弹。"
 TacticalText="<Bullet/> 单发高伤害性榴弹。"
 ThrownAbilityName="投掷外星榴弹"
-ThrownAbilityHelpText="对目标区域投掷一枚外星榴弹。"
+ThrownAbilityHelpText="向目标区域投掷一枚外星榴弹。"
 LaunchedAbilityName="发射外星榴弹"
 LaunchedAbilityHelpText="朝目标区域发射外星榴弹，可撕裂护甲。"
 
@@ -219,7 +219,7 @@ AbilityDescName="等离子步枪"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; ArchonM2_LW ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 [Archon_WPN X2WeaponTemplate]
-AbilityDescName="执政官之杖"
+AbilityDescName="执政官法杖"
 
 [ArchonM2_LW X2CharacterTemplate]
 strCharacterName="大执政官"
@@ -318,7 +318,7 @@ LaunchedAbilityHelpText="点燃目标区域及其中的单位。"
 [AdvGrenadierAcidGrenade X2GrenadeTemplate]
 FriendlyName="酸性榴弹"
 FriendlyNamePlural="酸性榴弹"
-BriefSummary="我们为标准破片榴弹添加了腐蚀性化学添加剂，把它做成了一种十分有效的破甲武器。受影响的目标在其护甲被腐蚀完毕后自身也将承受长时间的腐蚀伤害。"
+BriefSummary="我们为标准破片榴弹添加了腐蚀性化学添加剂，把它做成了一种十分有效的破甲武器。受影响的目标在其护甲被腐蚀完毕后自身也将承受腐蚀伤害。"
 TacticalText="<Bullet/> 酸性榴弹对护甲造成的损害比标准破片榴弹更高。<br><Bullet/> 受酸性腐蚀的敌人将在数回合中承受额外伤害。"
 ThrownAbilityName="投掷酸性榴弹"
 ThrownAbilityHelpText="产生酸性物质，对单位造成伤害。"

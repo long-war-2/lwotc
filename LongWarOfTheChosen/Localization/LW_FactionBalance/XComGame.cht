@@ -185,16 +185,16 @@ LocPromotionPopupText="<Bullet/> 投擲飛刀獲得+<Ability:BLUESCREEN_KNIVES_P
 ; LWOTC Needs Translation
 [BattlefieldAwareness X2AbilityTemplate]
 LocFriendlyName="戰地感知"
-LocLongDescription="如果在你的回合中擊殺一名敵人，那麼在敵人回合中對你的下一次攻擊將會未命中。一經觸發，戰地感知將冷卻 <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/>回合。"
-LocHelpText="如果在你的回合中擊殺一名敵人，那麼在敵人回合中對你的下一次攻擊將會未命中。一經觸發，戰地感知將冷卻 <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/>回合。"
+LocLongDescription="如果你擊殺一名敵人，那麼在敵方回合中對你的下一次攻擊將會無效。一經觸發，戰地感知將冷卻 <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/>回合。"
+LocHelpText="如果你擊殺一名敵人，那麼在敵方回合中對你的下一次攻擊將會無效。一經觸發，戰地感知將冷卻 <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/>回合。"
 LocFlyOverText="戰地感知"
-LocPromotionPopupText="<Bullet/> 當戰地感知被觸發時，士兵在敵人回合中免疫下一次造成傷害的攻擊，包括效果區域攻擊。<br/>"
+LocPromotionPopupText="<Bullet/> 當戰地感知被觸發時，士兵在敵方回合中免疫下一次造成傷害的攻擊，包括效果區域攻擊。<br/>"
 
 
 [BattlefieldAwarenessPassive X2AbilityTemplate]
 LocFriendlyName="戰地感知"
-LocLongDescription="如果在你的回合中擊殺一名敵人，那麼在敵人回合中對你的下一次攻擊將會未命中。一經觸發，戰地感知將冷卻 <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/>回合。"
-LocHelpText="如果在你的回合中擊殺一名敵人，那麼在敵人回合中對你的下一次攻擊將會未命中。一經觸發，戰地感知將冷卻 <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/>回合。"
+LocLongDescription="如果你擊殺一名敵人，那麼在敵方回合中對你的下一次攻擊將會無效。一經觸發，戰地感知將冷卻 <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/>回合。"
+LocHelpText="如果你擊殺一名敵人，那麼在敵方回合中對你的下一次攻擊將會無效。一經觸發，戰地感知將冷卻 <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/>回合。"
 LocFlyOverText="戰地感知"
 
 [BattlefieldAwarenessCooldown X2AbilityTemplate]
@@ -223,5 +223,5 @@ RendTheMarkedEffectDesc="在本回合剩餘時間內從所有來源對目標的�
 
 [TheBanisher_LW X2AbilityTemplate]
 LocFriendlyName="萬物天敵"
-LocLongDescription="放逐在每次射擊時的命中懲罰減少<Ability:THEBANISHER_HIT_BUFF>點，並將其冷卻時間降低1回合。刀鋒相接的範圍增加<Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/>格。死亡販子現在對無側翼的目標也能生效。"
-LocHelpText="放逐在每次射擊時的命中懲罰減少<Ability:THEBANISHER_HIT_BUFF>點，並將其冷卻時間降低1回合。刀鋒相接的範圍增加<Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/>格。死亡販子現在對無側翼的目標也能生效。 注意: 刀鋒相接的圓環視覺效果沒有正確更新該技能。你在刀鋒相接的圓環外還有2個格子的射程範圍。"
+LocLongDescription="放逐在每次射擊時的命中懲罰減少<Ability:THEBANISHER_HIT_BUFF>點，並將其冷卻時間降低1回合。刀鋒相接的範圍增加到<Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/>格。死亡販子現在對無側翼的目標也能生效。"
+LocHelpText="放逐在每次射擊時的命中懲罰減少<Ability:THEBANISHER_HIT_BUFF>點，並將其冷卻時間降低1回合。刀鋒相接的範圍增加到<Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/>格。死亡販子現在對無側翼的目標也能生效。 注意: 刀鋒相接的圓環視覺效果沒有正確更新該技能。你在刀鋒相接的圓環外還有2個格子的射程範圍。"

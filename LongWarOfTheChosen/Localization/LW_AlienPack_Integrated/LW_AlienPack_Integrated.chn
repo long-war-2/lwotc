@@ -3,5 +3,5 @@
 strBayonetChargePenalty="百夫长在<XGParam:IntValue0/>回合内<XGParam:IntValue1/>防御。"
 
 [X2Effect_WarCry]
-strWarCryFriendlyDesc="获得命中，移动力，意志力的加成。"
+strWarCryFriendlyDesc="获得命中、移动力、意志力的加成。"
 
