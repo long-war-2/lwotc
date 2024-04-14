@@ -2126,6 +2126,11 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 
 	switch(CharTemplate.DataName)
 	{
+		case 'Engineer':
+		case 'Scientist':
+		case 'Soldier_VIP':
+		case 'Scientist_VIP':
+		case 'Engineer_VIP':
 		case 'Rebel':
 		case 'RebelSoldierProxy':
 		case 'RebelSoldierProxyM2':
