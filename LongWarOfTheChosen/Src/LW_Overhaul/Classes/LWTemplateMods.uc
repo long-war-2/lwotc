@@ -2283,6 +2283,9 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 			Template.Abilities.AddItem('MC_Stock_Strike');
 			Template.Abilities.AddItem('GetUp');
 			break;
+		case 'PsiZombie':
+			Template.Abilities.AddItem('PsiZombieImmunitiesPassive');
+			break;
 		//Need to rescale the loadouts of these templates, and can't think of a better way since it needs to be by hp basis
 		case 'TheLost':
 			Template.Abilities.AddItem('LostImmunitiesPassive');

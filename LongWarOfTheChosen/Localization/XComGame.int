@@ -7721,3 +7721,10 @@ LocFlyOverText="The Lost Immunities"
 LocLongDescription="The Lost are immune to mental impairments, poison, and acid."
 LocHelpText="The Lost are immune to mental impairments, poison, and acid.
 LocPromotionPopupText=""
+
+[PsiZombieImmunitiesPassive X2AbilityTemplate]
+LocFriendlyName="Psi Zombie Immunities"
+LocFlyOverText="Psi Zombie Immunities"
+LocLongDescription="Psi Zombies are immune to mental impairments and poison."
+LocHelpText="Psi Zombies are immune to mental impairments and poison.
+LocPromotionPopupText=""
