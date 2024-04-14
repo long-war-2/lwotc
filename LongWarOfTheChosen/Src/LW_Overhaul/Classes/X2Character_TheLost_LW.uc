@@ -35,7 +35,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateTemplate_TheLostGrappler('TheLostGrapplerHP11_LW', 'TheLostGrapplerTier4_Loadout'));
 	Templates.AddItem(CreateTemplate_TheLostGrappler('TheLostGrapplerHP12_LW', 'TheLostGrapplerTier4_Loadout'));
 
-    return Templates;
+	return Templates;
 }
 
 static function X2CharacterTemplate CreateTemplate_TheLostGrappler(name LostName, name LoadoutName)
@@ -47,6 +47,8 @@ static function X2CharacterTemplate CreateTemplate_TheLostGrappler(name LostName
 	CharTemplate.strPawnArchetypes.Length = 0;
 	CharTemplate.strPawnArchetypes.AddItem("GameUnit_TheLost.ARC_GameUnit_TheLost_Howler");
 	CharTemplate.AIOrderPriority = 100;
+
+	CharTemplate.Abilities.AddItem('LostImmunitiesPassive');
 
 	return CharTemplate;
 }
@@ -68,6 +70,8 @@ static function X2CharacterTemplate CreateTemplate_TheLostBrute(name LostName, n
 	{
 		CharTemplate.strPawnArchetypes.AddItem("GameUnit_TheLost.ARC_GameUnit_TheLost_Howler");
 	}
+
+	CharTemplate.Abilities.AddItem('LostImmunitiesPassive');
 
 	return CharTemplate;
 }

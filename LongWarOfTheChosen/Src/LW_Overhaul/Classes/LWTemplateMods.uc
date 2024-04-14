@@ -2283,44 +2283,58 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 			Template.Abilities.AddItem('MC_Stock_Strike');
 			Template.Abilities.AddItem('GetUp');
 			break;
-		//Need to rescale the loadouts of these templates, and can't think of a better way since it needs to be by hp basis 
+		//Need to rescale the loadouts of these templates, and can't think of a better way since it needs to be by hp basis
+		case 'TheLost':
+			Template.Abilities.AddItem('LostImmunitiesPassive');
+			break;
 		case 'TheLostHP2':
 		case 'TheLostHP3':
+			Template.Abilities.AddItem('LostImmunitiesPassive');
 			Template.DefaultLoadout='TheLostTier1_Loadout';
 			break;
 		case 'TheLostHP4':
 		case 'TheLostHP5':
 		case 'TheLostHP6':
+			Template.Abilities.AddItem('LostImmunitiesPassive');
 			Template.DefaultLoadout='TheLostTier2_Loadout';
 			break;
 		case 'TheLostHP7':
 		case 'TheLostHP8':
 		case 'TheLostHP9':
+			Template.Abilities.AddItem('LostImmunitiesPassive');
 			Template.DefaultLoadout='TheLostTier3_Loadout';
 			break;
 		case 'TheLostHP10':
 		case 'TheLostHP11':
 		case 'TheLostHP12':
+			Template.Abilities.AddItem('LostImmunitiesPassive');
 			Template.DefaultLoadout='TheLostTier4_Loadout';
 			break;
 
+		case 'TheLostDasher':
+			Template.Abilities.AddItem('LostImmunitiesPassive');
+			break;
 		case 'TheLostDasherHP2':
 		case 'TheLostDasherHP3':
+			Template.Abilities.AddItem('LostImmunitiesPassive');
 			Template.DefaultLoadout='TheLostDasherTier1_Loadout';
 			break;
 		case 'TheLostDasherHP4':
 		case 'TheLostDasherHP5':
 		case 'TheLostDasherHP6':
+			Template.Abilities.AddItem('LostImmunitiesPassive');
 			Template.DefaultLoadout='TheLostDasherTier2_Loadout';
 			break;
 		case 'TheLostDasherHP7':
 		case 'TheLostDasherHP8':
 		case 'TheLostDasherHP9':
+			Template.Abilities.AddItem('LostImmunitiesPassive');
 			Template.DefaultLoadout='TheLostDasherTier3_Loadout';
 			break;
 		case 'TheLostDasherHP10':
 		case 'TheLostDasherHP11':
 		case 'TheLostDasherHP12':
+			Template.Abilities.AddItem('LostImmunitiesPassive');
 			Template.DefaultLoadout='TheLostDasherTier4_Loadout';
 			break;
 		case 'SpectralStunLancerM1':
