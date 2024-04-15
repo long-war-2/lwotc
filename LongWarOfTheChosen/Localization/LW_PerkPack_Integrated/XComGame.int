@@ -82,36 +82,36 @@ LocPromotionPopupText="<Bullet/> You do <Ability:LETHAL_DAMAGE_LW/> additional p
 [HitandSlither X2AbilityTemplate]
 LocFriendlyName="Hit and Slither"
 LocFlyOverText="Hit and Slither"
-LocLongDescription="Once per turn, gain an additional move action after taking a standard shot at a flanked or exposed target with your primary weapon. "
-LocHelpText="Once per turn, gain an additional move action after taking a standard shot at a flanked or exposed target with your primary weapon."
-LocPromotionPopupText="<Bullet/> Once per turn, gain an additional move action after taking a standard shot at a flanked or exposed target with your primary weapon.<br/>
+LocLongDescription="Once per turn, gain an additional move action after taking a standard shot at a flanked enemy with your primary weapon. "
+LocHelpText="Once per turn, gain an additional move action after taking a standard shot at a flanked enemy with your primary weapon."
+LocPromotionPopupText="<Bullet/> Once per turn, gain an additional move action after taking a standard shot at a flanked enemy with your primary weapon.<br/>
 
 [HitandRun X2AbilityTemplate]
 LocFriendlyName="Hit and Run"
 LocFlyOverText="Hit and Run"
-; LWOTC Needs Translation 
-LocLongDescription="Once per turn, gain an additional action after taking a standard shot at a flanked or exposed target with your primary weapon. Cannot trigger on the same turn as Close Encounters. "
-; End Translation 
-LocHelpText="Once per turn, gain an additional action after taking a standard shot at a flanked or exposed target with your primary weapon."
+; LWOTC Needs Translation
+LocLongDescription="Once per turn, gain an additional action after taking a standard shot at a flanked enemy with your primary weapon. Cannot trigger on the same turn as Close Encounters. "
+; End Translation
+LocHelpText="Once per turn, gain an additional action after taking a standard shot at a flanked enemy with your primary weapon."
 LocPromotionPopupText="<Bullet/> Cannot be used on the same turn as Run and Gun.<br/><Bullet/> Bonus full actions from Serial and Death from Above will be awarded first."
 
 [CloseCombatSpecialist X2AbilityTemplate]
 LocFriendlyName="Close Combat Specialist"
 LocFlyOverText="Close Combat Specialist"
 ; LWOTC Needs Translation (3)
-LocLongDescription="Fire a free reaction shot with your <Ability:BOUND_WEAPON_NAME/> at any visible enemy within four tiles who moves or fires."
-LocHelpText="Fire a free reaction shot at any visible enemy within four tiles who moves or fires."
+LocLongDescription="Fire a free reaction shot with your <Ability:BOUND_WEAPON_NAME/> at any visible enemy within <Ability:CCS_RANGE> tiles who moves or attacks."
+LocHelpText="Fire a free reaction shot at any visible enemy within <Ability:CCS_RANGE> tiles who moves or attacks."
 ; End Translation (3)
-LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><Bullet/> You may shoot at each enemy with this ability once per turn.<br/><Bullet/> Each shot requires 2 ammo.<br/>""
+LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><Bullet/> You may shoot at each enemy with this ability once per turn.<br/><Bullet/> Each shot requires <Ability:CCS_AMMO_PER_SHOT> ammo.<br/>"
 
 [CloseCombatSpecialistAttack X2AbilityTemplate]
 LocFriendlyName="Close Combat Specialist"
 LocFlyOverText="Close Combat Specialist"
 ; LWOTC Needs Translation (2)
-LocLongDescription="During enemy turns, fire a free reaction shot with your <Ability:BOUND_WEAPON_NAME/> at any visible enemy within four tiles who moves or fires."
+LocLongDescription="Fire a free reaction shot with your <Ability:BOUND_WEAPON_NAME/> at any visible enemy within <Ability:CCS_RANGE> tiles who moves or attacks."
 ; End Translation (2)
-LocHelpText="During enemy turns, Fire a free reaction shot at any visible enemy within four tiles who moves or fires."
-LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><Bullet/> You may shoot at each enemy with this ability once per turn.<br/><Bullet/> Each shot requires 2 ammo.<br/>""
+LocHelpText="Fire a free reaction shot at any visible enemy within <Ability:CCS_RANGE> tiles who moves or attacks."
+LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><Bullet/> You may shoot at each enemy with this ability once per turn.<br/><Bullet/> Each shot requires <Ability:CCS_AMMO_PER_SHOT> ammo.<br/>"
 
 [CloseandPersonal X2AbilityTemplate]
 LocFriendlyName="Close and Personal"
@@ -740,21 +740,21 @@ LocFriendlyName="Bastion"
 LocLongDescription="Fortress now provides immunity to nearby teammates."
 LocHelpText="Fortress now provides immunity to nearby teammates."
 LocFlyOverText="Bastion"
-LocPromotionPopupText="<Bullet/> Bastion has a 4 tile radius.<br/><Bullet/> Moving next to afflicted allies will immediately cleanse their negative physical status effects.<br/>"
+LocPromotionPopupText="<Bullet/> Bastion has a <Ability:BASTION_RADIUS_TILES> tile radius.<br/><Bullet/> Moving next to afflicted allies will immediately cleanse their negative physical status effects."
 
 [BastionPassive X2AbilityTemplate]
 LocFriendlyName="Bastion"
 LocLongDescription="Fortress now provides immunity to nearby teammates."
 LocHelpText="Fortress now provides immunity to nearby teammates."
 LocFlyOverText="Bastion"
-LocPromotionPopupText="<Bullet/> Bastion has a 4 tile radius.<br/><Bullet/> Moving next to afflicted allies will immediately cleanse their negative physical status effects.<br/>"
+LocPromotionPopupText="<Bullet/> Bastion has a <Ability:BASTION_RADIUS_TILES> tile radius.<br/><Bullet/> Moving next to afflicted allies will immediately cleanse their negative physical status effects."
 
 [BastionCleanse X2AbilityTemplate]
 LocFriendlyName="Bastion"
 LocLongDescription="Fortress now provides immunity to nearby teammates."
 LocHelpText="Fortress now provides immunity to nearby teammates."
 LocFlyOverText="Bastion"
-LocPromotionPopupText="<Bullet/> Bastion has a 4 tile radius.<br/><Bullet/> Moving next to afflicted allies will immediately cleanse their negative physical status effects.<br/>"
+LocPromotionPopupText="<Bullet/> Bastion has a <Ability:BASTION_RADIUS_TILES> tile radius.<br/><Bullet/> Moving next to afflicted allies will immediately cleanse their negative physical status effects."
 
 [IronCurtain X2AbilityTemplate]
 LocFriendlyName="Iron Curtain"
@@ -790,8 +790,8 @@ LocPromotionPopupText="<Bullet/> Activate a force field that reduces incoming da
 [BodyShield X2AbilityTemplate]
 LocFriendlyName="Body Shield"
 LocFlyOverText="Body Shield"
-LocLongDescription="Target an enemy as a free action to confer it -<Ability:BODY_SHIELD_DEF_BONUS> aim and -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> critical chance against you for <Ability:BODY_SHIELD_DURATION> turns. <BODY_SHIELD_COOLDOWN> turn cooldown."
-LocHelpText="Target an enemy as a free action to confer it -<Ability:BODY_SHIELD_DEF_BONUS> aim and -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> critical chance against you for <Ability:BODY_SHIELD_DURATION> turns. <BODY_SHIELD_COOLDOWN> turn cooldown."
+LocLongDescription="Target an enemy as a free action to confer it -<Ability:BODY_SHIELD_DEF_BONUS> aim and -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> critical chance against you for <Ability:BODY_SHIELD_DURATION> turns. <Ability:SelfCooldown_LW> turn cooldown."
+LocHelpText="Target an enemy as a free action to confer it -<Ability:BODY_SHIELD_DEF_BONUS> aim and -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> critical chance against you for <Ability:BODY_SHIELD_DURATION> turns. <Ability:SelfCooldown_LW> turn cooldown."
 ; LWOTC Needs Translation
 LocPromotionPopupText="<Bullet/> A targeted enemy receives -<Ability:BODY_SHIELD_DEF_BONUS> aim and -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> critical chance against this unit.<br/><Bullet/> This is a free action.<br/><Bullet/> Body Shield has a <Ability:SelfCooldown_LW/> turn cooldown."
 ; End Translation
@@ -819,10 +819,10 @@ LocPromotionPopupText="<Bullet/> The number of hit points you lost during a batt
 [MindMerge X2AbilityTemplate]
 LocFriendlyName="Mind Merge"
 LocFlyOverText="Mind Merge"
-LocLongDescription="Grants bonus will, critical chance and ablative hit points to an ally until the beginning of the player's next turn."
-LocHelptext="Temporarily grants bonus will, critical chance and ablative hit points to an ally."
+LocLongDescription="Grants bonus will, critical chance and ablative hit points to an organic ally until the beginning of the player's next turn."
+LocHelptext="Temporarily grants bonus will, critical chance and ablative hit points to an organic ally."
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> Grants the targeted ally 1 ablative (shield) hit point, plus another one per 20 psi offense score of the Psi Operative using Mind Merge.<br/><Bullet/> Grants the targeted ally 1 will per 5 psi offense score of the Psi Operative.<br/><Bullet/> Also grants the ally +1 critical chance per 7 psi offense score of the Psi Operative.<br/><Bullet/> Effect lasts until the Psi Operative's next turn.<br/><Bullet/> Mind Merge has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Mind Merge requires one action and does not end your turn.<br/><Bullet/> Only visible allies may be targeted.<br/><Bullet/> Improved Psi Amps grant additional bonuses to these effects.<br/><Bullet/> If the Psi Operative is employed as Haven Adviser Mind Merge will reduce the chance of recruiting Faceless rebels by 40% (stacking cumulatively with other similar abilities).<br/>"
+LocPromotionPopupText="<Bullet/> Grants the targeted ally +1/+<Ability:MIND_MERGE_AMP_MG_TOTAL_SHIELDHP>/+<Ability:MIND_MERGE_AMP_BM_TOTAL_SHIELDHP> ablative hit points depending on Psi Amp tier, and +1 ablative hit points per <Ability:MIND_MERGE_SHIELDHP_DIVISOR> Psi offense score of the Psi Operative using Mind Merge.<br/><Bullet/> Grants the targeted ally +0/+<Ability:MIND_MERGE_AMP_MG_TOTAL_WILL>/+<Ability:MIND_MERGE_AMP_BM_TOTAL_WILL> will depending on Psi Amp tier, and +1 will per <Ability:MIND_MERGE_WILL_DIVISOR> per Psi Offense score of the Psi Operative.<br/><Bullet/> Grants the targeted ally +0/+<Ability:MIND_MERGE_AMP_MG_TOTAL_CRIT>/+<Ability:MIND_MERGE_AMP_BM_TOTAL_CRIT> crit depending on Psi Amp tier, and +1 crit per <Ability:MIND_MERGE_CRIT_DIVISOR> per Psi Offense score of the Psi Operative.<br/><Bullet/> Effect lasts until the Psi Operative's next turn.<br/><Bullet/> Mind Merge has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Mind Merge requires one action and does not end your turn.<br/><Bullet/> Only visible allies may be targeted.<br/><Bullet/> Improved Psi Amps grant additional bonuses to these effects.<br/><Bullet/> If the Psi Operative is employed as Haven Adviser, Mind Merge will reduce the chance of recruiting Faceless rebels by 40% (stacking cumulatively with other similar abilities).<br/>"
 ; End Translation (2)
 
 [SoulMerge X2AbilityTemplate]
@@ -831,6 +831,13 @@ LocFlyOverText="Soul Merge"
 LocLongDescription="Increases effectiveness of Mind Merge by conferring larger bonuses to critical chance, will and ablative hit points, and reducing its cooldown period."
 LocHelpText="Increases effectiveness of Mind Merge."
 LocPromotionPopupText="<Bullet/> Reduces Mind Merge cooldown by 1 turn.<br/><Bullet/> Bonus ablative Hit Points improves to 1 per 20 psi offense score.<br/><Bullet/> Bonus will improves to 1 per 5 psi offense score.<br/><Bullet/> Grants a crit bonus of 1% per 5 psi offense."
+
+[NullLance X2AbilityTemplate]
+LocFriendlyName="Null Lance"
+LocLongDescription="Project a beam of terrible power that damages every target it passes through. This attack can penetrate multiple enemies and obstacles."
+LocHelpText="Project a beam of Psionic energy that damages every target it passes through."
+LocFlyOverText="Null Lance"
+LocPromotionPopupText="<Bullet/> Null Lance has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Null Lance damage can be increased by improving the Psi Operative's Psi Amp.<br/>"
 
 [Shadowstrike_LW X2AbilityTemplate]
 LocFriendlyName="Shadowstrike"
@@ -1143,14 +1150,14 @@ LocFriendlyName="Rapid Fire"
 LocLongDescription="Fire twice in a row at an enemy. Each shot suffers an Aim penalty of <Ability:RAPIDFIREPENALTY/>. Can be used once per turn."
 LocHelpText="Fire twice in a row at an enemy. Each shot suffers an Aim penalty of <Ability:RAPIDFIREPENALTY/>."
 LocFlyOverText="Rapid Fire"
-LocPromotionPopupText="<Bullet/> Rapid Fire has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Rapid Fire has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Rapid Fire cannot be used from squadsight.<br/>"
 
 [RapidFireSnapShot X2AbilityTemplate]
 LocFriendlyName="Rapid Fire (Snap Shot)"
 LocLongDescription="Fire twice in a row at an enemy. Each shot suffers an Aim penalty of <Ability:RAPIDFIREPENALTY/>. Can be used once per turn."
 LocHelpText="Fire twice in a row at an enemy. Each shot suffers an Aim penalty of <Ability:RAPIDFIREPENALTY/>."
 LocFlyOverText="Rapid Fire"
-LocPromotionPopupText="<Bullet/> Rapid Fire has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Rapid Fire has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Rapid Fire cannot be used from squadsight.<br/>"
 
 [RapidFireSnapShot2 X2AbilityTemplate]
 LocFriendlyName="Rapid Fire"

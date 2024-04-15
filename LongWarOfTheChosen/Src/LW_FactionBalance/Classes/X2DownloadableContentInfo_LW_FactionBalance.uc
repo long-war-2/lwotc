@@ -182,6 +182,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 	case 'BANISH_HIT_MOD':
 		OutString = string(int(abs(class'X2Effect_BanishHitMod'.default.BANISH_HIT_MOD)));
 		return true;
+	case 'BANISH_DMG_MOD':
+		OutString = string(int(abs(class'X2Effect_BanishHitMod'.default.BANISH_DMG_MOD)));
+		return true;
 	case 'THEBANISHER_HIT_BUFF':
 		OutString = string(class'X2Effect_BanishHitMod'.default.THEBANISHER_HIT_BUFF);
 		return true;
