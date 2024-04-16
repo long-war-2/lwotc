@@ -2335,6 +2335,16 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'HostileVIPCivilian':
 			Template.Abilities.AddItem('Shadowstep');
 			break;
+		case 'LostTowersTurretM1':
+		case 'AdvShortTurretM3':
+		case 'AdvShortTurretM2':
+		case 'AdvShortTurretM1':
+		case 'AdvShortTurret':
+		case 'AdvTurretM3':
+		case 'AdvTurretM2':
+		case 'AdvTurretM1':
+			Template.Abilities.AddItem('RobotImmunities');
+			break;
 		default:
 			break;
 	}
