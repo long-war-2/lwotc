@@ -721,10 +721,10 @@ LocPromotionPopupText="<Bullet/> Medium-range, cone-based shotgun attack.<br/><B
 [ChainLightning X2AbilityTemplate]
 LocFriendlyName="Chain Lightning"
 ; LWOTC Needs Translation (3)
-LocLongDescription="An Arc Thrower attack that jumps from target to target up to 4 times, while each target is within 6 tiles of each other."
-LocHelpText="An Arc Thrower attack that jumps from target to target up to 4 times, while each target is within 6 tiles of each other."
+LocLongDescription="A chaining arc thrower attack that stuns up to <Ability:CHAIN_LIGHTNING_TARGETS> targets.
+LocHelpText="A chaining arc thrower attack that stuns up to <Ability:CHAIN_LIGHTNING_TARGETS> targets.
 LocFlyOverText="Chain Lightning"
-LocPromotionPopupText="<Bullet/> Fires the Arc Thrower at a target in vision, with the arc chaining up to 4 times to other targets within 6 tiles of each other.<br/><Bullet/> Requires one action and ends your turn.<br/><Bullet/> Chain Lightning has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Cannot be used from concealment."
+LocPromotionPopupText="<Bullet/> Chain Lightning chains from target to target in a sequence. Successive targets can be up to <Ability:CHAIN_LIGHTNING_CHAIN_RANGE_TILES> tiles away from each other. The attack will not chain to previous targets in the sequence.<br/><Bullet/> The sequence of targets will be shown when you preview a target. A hit roll will be made against all targets in the sequence, even if you miss against a previous target. Cover bonuses are calculated from your position, not from the previous target.<br/><Bullet/> Chain Lightning cannot be fired at robotic enemies, and it will not chain to them.<br/><Bullet/> Requires one action and ends your turn.<br/><Bullet/> Chain Lightning has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Cannot be used from concealment."
 ; End Translation (3)
 
 [Leadership X2AbilityTemplate]
