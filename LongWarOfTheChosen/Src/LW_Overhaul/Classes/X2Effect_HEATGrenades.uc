@@ -20,7 +20,7 @@ function int GetExtraArmorPiercing(XComGameState_Effect EffectState, XComGameSta
 		return 0;
 
 	// make sure the weapon is either a grenade or a grenade launcher
-	if(X2GrenadeTemplate(WeaponTemplate) != none || X2GrenadeLauncherTemplate(WeaponTemplate) != none)
+	if(X2GrenadeTemplate(WeaponTemplate) != none || X2GrenadeLauncherTemplate(WeaponTemplate) != none || AbilityState.GetMyTemplateName() == 'LWRocketLauncher' || AbilityState.GetMyTemplateName() == 'LWBlasterLauncher' || AbilityState.GetMyTemplateName() == 'ConcussionRocket' || AbilityState.GetMyTemplateName() == 'ShredderRocket_LW')
 	{
 		return Pierce;
 	}
@@ -39,7 +39,7 @@ function int GetExtraShredValue(XComGameState_Effect EffectState, XComGameState_
 		return 0;
 
 	// make sure the weapon is either a grenade or a grenade launcher
-	if(X2GrenadeTemplate(WeaponTemplate) != none || X2GrenadeLauncherTemplate(WeaponTemplate) != none)
+	if(X2GrenadeTemplate(WeaponTemplate) != none || X2GrenadeLauncherTemplate(WeaponTemplate) != none || AbilityState.GetMyTemplateName() == 'LWRocketLauncher' || AbilityState.GetMyTemplateName() == 'LWBlasterLauncher' || AbilityState.GetMyTemplateName() == 'ConcussionRocket' || AbilityState.GetMyTemplateName() == 'ShredderRocket_LW')
 	{
 		// make sure it already shreds
 		if (WeaponTemplate.BaseDamage.Shred > 0)
