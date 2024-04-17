@@ -15,10 +15,10 @@ event name CallMeetsCondition(XComGameState_BaseObject kTarget)
 
 	//`LOG (TargetUnit.GetLastName() @ "checking Solace_LW condition");
 
-	if (TargetUnit.IsAdvent() || TargetUnit.IsAlien() || TargetUnit.IsRobotic())
+	if (TargetUnit.IsRobotic())
 		return 'AA_UnitIsWrongType';
 
-	if (TargetUnit.GetTeam() == 1)
+	if (TargetUnit.GetTeam() == eTeam_Alien || TargetUnit.GetTeam() == eTeam_TheLost || TargetUnit.GetTeam() == eTeam_Neutral)
 		return 'AA_UnitIsWrongType';
 
 	if (TargetUnit.IsStunned() || TargetUnit.IsDisoriented() || TargetUnit.bPanicked || TargetUnit.IsMindControlled() || TargetUnit.IsPanicked())
