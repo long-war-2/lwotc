@@ -2116,6 +2116,8 @@ static function X2AbilityTemplate CreateUnstoppable()
 	//Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
 
 	//Template.AdditionalAbilities.AddItem('UnstoppablePassive_LW');
+	//Template.AdditionalAbilities.AddItem('ImmobilizeClear_LW');
+	//Template.AdditionalAbilities.AddItem('ReaddImmobilize_LW');
 
 	return Template;
 }

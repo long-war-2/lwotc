@@ -40,9 +40,10 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
 	ListenerObj = EffectGameState;
 
 	// Register to tick after EVERY action.
-	EventMgr.RegisterForEvent(ListenerObj, 'OnUnitBeginPlay', EventHandler, ELD_OnStateSubmitted, 25, UnitState,, EffectGameState);	
+	EventMgr.RegisterForEvent(ListenerObj, 'OnUnitBeginPlay', EventHandler, ELD_OnStateSubmitted, 25, UnitState,, EffectGameState);
+	EventMgr.RegisterForEvent(ListenerObj, 'UnitGroupTurnBegun', EventHandler, ELD_OnStateSubmitted, 25, UnitState,, EffectGameState);	
 	EventMgr.RegisterForEvent(ListenerObj, 'UnitAttacked', EventHandler, ELD_OnStateSubmitted, 25,,, EffectGameState);
-	EventMgr.RegisterForEvent(ListenerObj, 'AbilityActivated', EventHandler, ELD_OnStateSubmitted, 150,,, EffectGameState);	
+	//EventMgr.RegisterForEvent(ListenerObj, 'AbilityActivated', EventHandler, ELD_OnStateSubmitted, 150,,, EffectGameState);	
 
 }
 
@@ -62,6 +63,8 @@ static function EventListenerReturn EventHandler(Object EventData, Object EventS
 	local float AppliedStatChange, CappedStat, NewStatAmount;
 	local UnitValue ImmobilizeValue;
 
+	`LWTrace("Unstoppable: listener started.");
+
 	EffectState = XComGameState_Effect_CapStats(CallbackData);
 	if (EffectState == none)
 		return ELR_NoInterrupt;
@@ -73,17 +76,27 @@ static function EventListenerReturn EventHandler(Object EventData, Object EventS
 	EffectTemplate = X2Effect_Unstoppable(EffectState.GetX2Effect());
 
 	bOldApplicable = EffectState.StatChanges.Length > 0;
-	bNewApplicable = class'XMBEffectUtilities'.static.CheckTargetConditions(EffectTemplate.Conditions, EffectState, SourceUnitState, UnitState, AbilityState) == 'AA_Success';
+	//bNewApplicable = class'XMBEffectUtilities'.static.CheckTargetConditions(EffectTemplate.Conditions, EffectState, SourceUnitState, UnitState, AbilityState) == 'AA_Success';
 
-	if (bOldApplicable != bNewApplicable)
+	foreach EffectState.m_aStatCaps(LocalStatCap)
 	{
-		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Conditional Stat Change");
+		`LWTrace("Unstoppable: Current stat value:" @UnitState.GetCurrentStat(LocalStatCap.StatType) @"; Base stat:" @UnitState.GetBaseStat(LocalStatCap.StatType));
+		if(UnitState.GetCurrentStat(LocalStatCap.StatType) < LocalStatCap.StatCapValue || UnitState.GetCurrentStat(LocalStatCap.StatType) > UnitState.GetBaseStat(LocalStatCap.StatType))
+		{
+			bNewApplicable = true;
+		}
+	}
+
+	if(bNewApplicable)
+	{
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Unstoppable Stat Change");
 
 		NewUnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
 		NewEffectState = XComGameState_Effect_CapStats(NewGameState.ModifyStateObject(class'XComGameState_Effect', EffectState.ObjectID));
 
 		foreach EffectState.m_aStatCaps(LocalStatCap)
 		{
+			`LWTrace("Unstoppable: statcap loop:" @LocalStatCap.StatType);
 			AppliedStatChangeIndex = NewEffectState.StatChanges.Find('StatType', LocalStatCap.StatType);
 			AppliedStatChange = (AppliedStatChangeIndex != INDEX_NONE) ?
 				NewEffectState.StatChanges[AppliedStatChangeIndex].StatAmount :
@@ -105,16 +118,16 @@ static function EventListenerReturn EventHandler(Object EventData, Object EventS
 
 				if(ImmobilizeValue.fValue == 0)
 				{
+					`LWTrace("Unstoppable: adding stat mod for stattype:" @LocalStatCap.StatType @"value:" @NewStatAmount);
 					LocalStatChange.StatType = LocalStatCap.StatType;
 					LocalStatChange.StatAmount = NewStatAmount;
 					LocalStatChange.ModOp = MODOP_Addition;
 					LocalStatChanges.AddItem(LocalStatChange);
-
 				}
 			}
 		}
 
-		if (bNewApplicable)
+		if (LocalStatChanges.Length > 0)
 		{
 			NewEffectState.StatChanges = LocalStatChanges;
 

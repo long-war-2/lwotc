@@ -131,6 +131,7 @@ var config int PSYCHOTIC_RAGE_BELOW_THRESHOLD;
 var config int PSYCHOTIC_RAGE_DMG_BONUS;
 
 var config array<name> COMBAT_READINESS_EFFECTS_TO_REMOVE;
+var config array<name> IMMOBILIZECLEAR_EFFECTS_TO_REMOVE;
 var config array<name> BANZAI_EFFECTS_TO_REMOVE;
 
 var config int QUICKDRAW_MOBILITY_INCREASE;
@@ -221,6 +222,8 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(AddCombatReadiness());
 	Templates.AddItem(CombatReadinessPassive());
+	Templates.AddItem(AddImmobilizeClear());
+	Templates.AddItem(AddNewImmobilize());
 
 	Templates.AddItem(AddBanzai());
 	Templates.AddItem(BanzaiPassive());
@@ -3486,6 +3489,90 @@ static function X2AbilityTemplate AddCombatReadiness()
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 
 	Template.AdditionalAbilities.AddItem('CombatReadinessPassive');
+
+	return Template;
+}
+
+// This thing currently causes hard crashes and I don't know why.
+static function X2AbilityTemplate AddImmobilizeClear()
+{
+	local X2AbilityTemplate						Template;
+	local X2Effect_RemoveImmobilize				RemoveEffects;
+	local name									EffectName;
+	local X2AbilityTrigger_EventListener 		Trigger;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ImmobilizeClear_LW');
+
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_command_defense";
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	
+	Trigger = new class'X2AbilityTrigger_EventListener';
+    Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+    Trigger.ListenerData.EventID = 'UnitGroupTurnBegun';
+	Trigger.ListenerData.Filter = eFilter_Unit;
+    Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+    Template.AbilityTriggers.AddItem(Trigger);
+
+	Trigger = new class'X2AbilityTrigger_EventListener';
+    Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+    Trigger.ListenerData.EventID = 'UnitAttacked';
+	Trigger.ListenerData.Filter = eFilter_Unit;
+    Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+    Template.AbilityTriggers.AddItem(Trigger);
+
+	RemoveEffects = new class'X2Effect_RemoveImmobilize';
+	foreach default.IMMOBILIZECLEAR_EFFECTS_TO_REMOVE(EffectName)
+	{
+		RemoveEffects.EffectNamesToRemove.AddItem(EffectName);
+	}
+	Template.AddTargetEffect(RemoveEffects);
+
+	Template.bSkipFireAction = true;
+	Template.bShowActivation = false;
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}
+
+static function X2AbilityTemplate AddNewImmobilize()
+{
+	local X2AbilityTemplate						Template;
+	local X2AbilityTrigger_EventListener 		Trigger;
+	local X2Effect_Immobilize ImmobilizeEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ReaddImmobilize_LW');
+
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_command_defense";
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	
+	Trigger = new class'X2AbilityTrigger_EventListener';
+    Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+    Trigger.ListenerData.EventID = 'ReaddImmobilize';
+	Trigger.ListenerData.Filter = eFilter_Unit;
+    Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+    Template.AbilityTriggers.AddItem(Trigger);
+
+	ImmobilizeEffect = new class'X2Effect_Immobilize';
+	ImmobilizeEffect.EffectName = 'Maim_NormalMult_Immobilize';
+	ImmobilizeEffect.DuplicateResponse = eDupe_Refresh;
+	ImmobilizeEffect.BuildPersistentEffect(1, false, false, , eGameRule_PlayerTurnBegin);
+	ImmobilizeEffect.SetDisplayInfo(ePerkBuff_Penalty, class'X2StatusEffects_LW'.default.MaimedFriendlyName, class'X2StatusEffects_LW'.default.MaimedFriendlyDesc,
+			"img:///UILibrary_XPerkIconPack.UIPerk_move_blossom", true, , 'eAbilitySource_Perk');
+	ImmobilizeEffect.AddPersistentStatChange(eStat_Mobility, 0.0f, MODOP_Multiplication);
+	Template.AddTargetEffect(ImmobilizeEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
 	return Template;
 }
