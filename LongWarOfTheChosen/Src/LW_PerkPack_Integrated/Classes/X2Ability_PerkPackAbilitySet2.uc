@@ -1654,7 +1654,7 @@ static function X2AbilityTemplate KineticStrike()
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
 	StandardMelee = new class'X2AbilityToHitCalc_StandardMelee';
-	StandardMelee.BuiltInHitMod = 10;
+	StandardMelee.BuiltInHitMod = 15;
 	Template.AbilityToHitCalc = StandardMelee;
 
 	Template.AbilityTargetStyle = new class'X2AbilityTarget_MovingMelee';
@@ -1791,7 +1791,7 @@ static function X2AbilityTemplate ConcussiveStrike()
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
 	StandardMelee = new class'X2AbilityToHitCalc_StandardMelee';
-	StandardMelee.BuiltInHitMod = 10;
+	StandardMelee.BuiltInHitMod = 15;
 	Template.AbilityToHitCalc = StandardMelee;
 
 	Template.AbilityTargetStyle = new class'X2AbilityTarget_MovingMelee';
