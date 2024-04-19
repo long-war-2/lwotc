@@ -16,6 +16,7 @@ var config int NUM_HOURS_TO_DAYS;
 
 var config int BLEEDOUT_CHANCE_BASE;
 var config int DEATH_CHANCE_PER_OVERKILL_DAMAGE;
+var config int DEATH_CHANCE_PER_OVERKILL_DAMAGE_STAYWITHME;
 
 struct CustomAbilityCost
 {
@@ -999,6 +1000,7 @@ static function EventListenerReturn  OnOverrideBleedOutChance(Object EventData, 
 {
 	local XComLWTuple				OverrideTuple;
 	local int						BleedOutChance;
+	local XComGameState_HeadquartersXCom XComHQ;
 
 	OverrideTuple = XComLWTuple(EventData);
 	if(OverrideTuple == none)
@@ -1012,7 +1014,18 @@ static function EventListenerReturn  OnOverrideBleedOutChance(Object EventData, 
 	//   1: Size of die to roll
 	//   2: Overkill damage, i.e. how much damage was dealt over and above what was needed
 	//      to take the solider to 0 health.
-	BleedOutChance = default.BLEEDOUT_CHANCE_BASE - (OverrideTuple.Data[2].i * default.DEATH_CHANCE_PER_OVERKILL_DAMAGE);
+	
+
+	XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom', true));
+	if (XComHQ != none && XComHQ.SoldierUnlockTemplates.Find('StayWithMeUnlock') != INDEX_NONE)
+	{
+		BleedOutChance = default.BLEEDOUT_CHANCE_BASE - (OverrideTuple.Data[2].i * default.DEATH_CHANCE_PER_OVERKILL_DAMAGE_STAYWITHME);
+	}
+	else
+	{
+		BleedOutChance = default.BLEEDOUT_CHANCE_BASE - (OverrideTuple.Data[2].i * default.DEATH_CHANCE_PER_OVERKILL_DAMAGE);
+	}
+
 	OverrideTuple.Data[0].i = BleedOutChance;
 	`LWTrace("Bleedout Calc data");
 	`LWTrace("RollOutOf:" @ OverrideTuple.Data[1].i);
