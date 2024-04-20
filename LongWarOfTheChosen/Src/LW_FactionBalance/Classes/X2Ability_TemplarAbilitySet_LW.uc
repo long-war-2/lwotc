@@ -556,7 +556,7 @@ static function X2AbilityTemplate TemplarShield()
 	local X2Effect_TemplarShieldAnimations		AnimSetEffect;
 	local X2Effect_TemplarShield				ShieldedEffect;
 	local X2Effect_TemplarShieldCritDefense		AntiFlankEffect;
-	local array<name> 							SkipExclusions;
+	//local array<name> 							SkipExclusions;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'IRI_TemplarShield');
 
@@ -568,8 +568,8 @@ static function X2AbilityTemplate TemplarShield()
 
 	// Shooter Conditions
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
-	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName); //okay when disoriented
-	Template.AddShooterEffectExclusions(SkipExclusions);
+	//SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName); //okay when disoriented
+	Template.AddShooterEffectExclusions();
 
 	// Triggering and Targeting
 	Template.AbilityToHitCalc = default.DeadEye;
