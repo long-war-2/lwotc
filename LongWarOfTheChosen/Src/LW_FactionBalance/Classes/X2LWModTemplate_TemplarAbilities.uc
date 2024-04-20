@@ -34,9 +34,13 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		X2AbilityToHitCalc_StandardMelee(Template.AbilityToHitCalc).bGuaranteedHit = false;
 		break;
 	case 'Rend':
-	case 'Rend_LW':
-
 		MakeRendNotWorkWhenBurning(Template);
+		// Allow Rend to miss and graze.
+		X2AbilityToHitCalc_StandardMelee(Template.AbilityToHitCalc).bGuaranteedHit = false;
+		Template.AdditionalAbilities.AddItem('SingleRendFocus'); //move this thing to Rend so Rend has the thing that gives focus after using Rend instead of Volt because why was it there originally???
+		break;
+	case 'Rend_LW':
+		MakeRendNotWorkWhenBurningButLetDisoriented(Template);
 		// Allow Rend to miss and graze.
 		X2AbilityToHitCalc_StandardMelee(Template.AbilityToHitCalc).bGuaranteedHit = false;
 		Template.AdditionalAbilities.AddItem('SingleRendFocus'); //move this thing to Rend so Rend has the thing that gives focus after using Rend instead of Volt because why was it there originally???
@@ -414,6 +418,25 @@ static function MakeGhostCooldownInsteadOfCharges(X2AbilityTemplate Template)
 
 }
 
+static function MakeRendNotWorkWhenBurningButLetDisoriented(X2AbilityTemplate Template)
+{
+	local X2Condition_UnitProperty 			UnitProperty;
+	local array<name> 						SkipExclusions;
+
+	Template.AbilityShooterConditions.Length = 0;
+
+	// Recreate default.LivingShooterProperty here
+	UnitProperty = new class'X2Condition_UnitProperty';
+	UnitProperty.ExcludeAlive=false;
+	UnitProperty.ExcludeDead=true;
+	UnitProperty.ExcludeFriendlyToSource=false;
+	UnitProperty.ExcludeHostileToSource=true;
+
+	Template.AbilityShooterConditions.AddItem(UnitProperty);
+	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName); //okay when disoriented
+	Template.AddShooterEffectExclusions(SkipExclusions);
+}
+
 static function MakeRendNotWorkWhenBurning(X2AbilityTemplate Template)
 {
 	local X2Condition_UnitEffects BurningCondition;
@@ -422,6 +445,7 @@ static function MakeRendNotWorkWhenBurning(X2AbilityTemplate Template)
 	BurningCondition.AddExcludeEffect(class'X2StatusEffects'.default.BurningName, 'AA_UnitIsBurning');
 	Template.AbilityShooterConditions.AddItem(BurningCondition);
 }
+
 defaultproperties
 {
 	AbilityTemplateModFn=UpdateAbilities
