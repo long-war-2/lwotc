@@ -2230,6 +2230,13 @@ static function X2AbilityTemplate CreateWarlockMobilityAbility()
     Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
     Template.AbilityTriggers.AddItem(Trigger);
 
+	Trigger= new class'X2AbilityTrigger_EventListener';
+	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	Trigger.ListenerData.EventID = 'SpawnSpectralArmyRemovedTrigger';
+	Trigger.ListenerData.Filter = eFilter_Unit;
+	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	Template.AbilityTriggers.AddItem(Trigger);
+
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 
 	StatChangeEffect = new class'X2Effect_PersistentStatChange';
