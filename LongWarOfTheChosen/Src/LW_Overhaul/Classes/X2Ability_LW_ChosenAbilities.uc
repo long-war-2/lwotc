@@ -107,6 +107,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateTriggerDamagedTeleportAbility_LW());
 
 	Templates.AddItem(CreateWarlockMobilityAbility());
+	Templates.AddItem(CreateWarlockMobilityAbility2());
 	Templates.AddItem(CreateHunterMobilityAbility());
 	Templates.AddItem(CreateHunterMobilityBoostAbility());
 	
@@ -2230,18 +2231,61 @@ static function X2AbilityTemplate CreateWarlockMobilityAbility()
     Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
     Template.AbilityTriggers.AddItem(Trigger);
 
-	Trigger= new class'X2AbilityTrigger_EventListener';
-	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
-	Trigger.ListenerData.EventID = 'SpawnSpectralArmyRemovedTrigger';
-	Trigger.ListenerData.Filter = eFilter_Unit;
-	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
-	Template.AbilityTriggers.AddItem(Trigger);
-
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 
 	StatChangeEffect = new class'X2Effect_PersistentStatChange';
 	StatChangeEffect.BuildPersistentEffect(1,false, false, false, eGameRule_PlayerTurnBegin);
 	StatChangeEffect.AddPersistentStatChange(eStat_Mobility,default.WARLOCK_MOBILITY_DEBUFF, MODOP_Multiplication);
+	StatChangeEffect.DuplicateResponse = eDupe_Refresh;
+	StatChangeEffect.bDisplayInUI = false;
+	Template.AddTargetEffect(StatChangeEffect);
+
+	Template.bSkipFireAction = true;
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	//Template.BuildVisualizationFn = TypicalAbility_BuildVisualization; // Intentionally commented out
+
+	return Template;
+}
+
+static function X2AbilityTemplate CreateWarlockMobilityAbility2()
+{
+	local X2AbilityTemplate Template;
+	local X2AbilityTrigger_EventListener Trigger;
+	local X2Effect_PersistentStatChange StatChangeEffect;
+	local X2Condition_NotItsOwnTurn NotItsOwnTurnCondition;
+
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'WarlockReactionMobility2_LW');
+
+	Template.AbilitySourceName = 'eAbilitySource_Standard';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.bShowActivation = false;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+
+	Trigger= new class'X2AbilityTrigger_EventListener';
+	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	Trigger.ListenerData.EventID = class'X2Ability_ChosenWarlock'.default.SpawnSpectralArmyRemovedTriggerName;
+	Trigger.ListenerData.Priority = 10;
+	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	Template.AbilityTriggers.AddItem(Trigger);
+
+	Trigger= new class'X2AbilityTrigger_EventListener';
+	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	Trigger.ListenerData.EventID = class'X2Ability_ChosenWarlock'.default.SpectralArmyLinkRemovedTriggerName;
+	Trigger.ListenerData.Priority = 10;
+	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	Template.AbilityTriggers.AddItem(Trigger);
+
+	NotItsOwnTurnCondition = new class'X2Condition_NotItsOwnTurn';
+	Template.AbilityShooterConditions.AddItem(NotItsOwnTurnCondition);
+
+	StatChangeEffect = new class'X2Effect_PersistentStatChange';
+	StatChangeEffect.BuildPersistentEffect(1,false, false, false, eGameRule_PlayerTurnBegin);
+	StatChangeEffect.AddPersistentStatChange(eStat_Mobility,default.WARLOCK_MOBILITY_DEBUFF, MODOP_Multiplication);
+	StatChangeEffect.DuplicateResponse = eDupe_Refresh;
 	StatChangeEffect.bDisplayInUI = false;
 	Template.AddTargetEffect(StatChangeEffect);
 
