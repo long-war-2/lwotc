@@ -2380,6 +2380,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.InitiativePriority = -100;
 
 		Template.Abilities.AddItem('WarlockReactionMobility_LW');
+		Template.Abilities.AddItem('WarlockReactionMobility2_LW');
 
 		//Since they no longer have the ability by default
 		Template.Abilities.AddItem('ChosenSummonFollowers');

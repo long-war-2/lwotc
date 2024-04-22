@@ -68,6 +68,7 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	Template.AddCHEvent('CleanupTacticalMission', OnCleanupTacticalMission, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('OverrideBodyRecovery', OnOverrideBodyAndLootRecovery, ELD_Immediate);
 	Template.AddCHEvent('OverrideLootRecovery', OnOverrideBodyAndLootRecovery, ELD_Immediate);
+	Template.AddCHEvent(class'X2Ability_ChosenWarlock'.default.SpawnSpectralArmyRemovedTriggerName, OnTestEventActivated, ELD_Immediate);
 	Template.AddCHEvent('AbilityActivated', OnAbilityActivated, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('UnitChangedTeam', ClearUnitStateValues, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('PlayerTurnEnded', RollForPerTurnWillLoss, ELD_OnStateSubmitted, GetListenerPriority());
@@ -1007,6 +1008,18 @@ static protected function EventListenerReturn ClearUnitStateValues(
 
 	UnitState = XComGameState_Unit(NewGameState.GetGameStateForObjectID(UnitState.ObjectID));
 	UnitState.CleanupUnitValues(eCleanup_BeginTurn);
+
+	return ELR_NoInterrupt;
+}
+
+static protected function EventListenerReturn OnTestEventActivated(
+	Object EventData,
+	Object EventSource,
+	XComGameState NewGameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	`LWTrace("SpawnSpectralArmyRemovedTrigger activated");
 
 	return ELR_NoInterrupt;
 }
