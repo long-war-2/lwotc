@@ -140,15 +140,15 @@ var config array<name> PISTOL_WEAPON_CATEGORIES;
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
-    Templates.AddItem(RapidStun());
+	Templates.AddItem(RapidStun());
 	Templates.AddItem(ThatsCloseEnough());
-	Templates.AddItem(Hipfire());	
+	Templates.AddItem(Hipfire());
 	Templates.Additem(SawedOffOverwatch());
 	Templates.Additem(ScrapMetal());
 	Templates.Additem(ScrapMetalTrigger());
 	Templates.Additem(Brutality());
-    Templates.Additem(Ruthless());
-    
+	Templates.Additem(Ruthless());
+
 	Templates.AddItem(LeadTheTarget_LW());
 	Templates.AddItem(LeadTheTargetShot_LW());
 	Templates.AddItem(BlindingProtocol_LW());
@@ -159,7 +159,6 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddZoCPassive());
 	Templates.AddItem(AddZoCCleanse());
 
-	
 	Templates.AddItem(Concentration());
 	Templates.AddItem(LikeLightning());
 	Templates.AddItem(Preservation());
@@ -186,9 +185,9 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(WeaponHandling());
 	Templates.AddItem(AimingAssist());
 	Templates.AddItem(TargetFocus());
-	
 
 	Templates.AddItem(LightningSlash());
+	Templates.AddItem(LightningSlashLastAction());
 	Templates.AddItem(InspireAgility());
 	Templates.AddItem(InspireAgilityTrigger());
 	Templates.AddItem(PrimaryReturnFire());
@@ -2043,8 +2042,7 @@ static function X2AbilityTemplate LightningSlash()
 	local X2AbilityToHitCalc_StandardMelee					StandardMelee;
 	local X2AbilityTarget_MovingMelee						MeleeTarget;
 	local X2Effect_ApplyWeaponDamage						WeaponDamageEffect;
-	//local array<name>										SkipExclusions;
-	local X2AbilityCooldown									Cooldown;
+	local X2AbilityCooldown_Shared							Cooldown;
 	local X2AbilityCost_ActionPoints						ActionPointCost;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'LightningSlash_LW');
@@ -2052,16 +2050,88 @@ static function X2AbilityTemplate LightningSlash()
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
-	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideSpecificErrors;
-	Template.HideErrors.AddItem('AA_WeaponIncompatible');
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideIfOtherAvailable;
+	Template.HideIfAvailable.AddItem('LightningSlashLastAction_LW');
 	Template.CinescriptCameraType = "Ranger_Reaper";
 	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_lightning_knife";
 	Template.bHideOnClassUnlock = false;
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_SERGEANT_PRIORITY;
 	Template.AbilityConfirmSound = "TacticalUI_SwordConfirm";
-	
-	Cooldown = new class'X2AbilityCooldown';
+
+	Cooldown = new class'X2AbilityCooldown_Shared';
 	Cooldown.iNumTurns = default.LIGHTNINGSLASH_COOLDOWN;
+	Cooldown.SharingCooldownsWith.AddItem('LightningSlashLastAction_LW');
+	Template.AbilityCooldown = Cooldown;
+
+	Template.AdditionalAbilities.AddItem('LightningSlashLastAction_LW');
+
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bfreeCost = false;
+	ActionPointCost.bConsumeAllPoints = false;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	StandardMelee = new class'X2AbilityToHitCalc_StandardMelee';
+	Template.AbilityToHitCalc = StandardMelee;
+
+	MeleeTarget = new class'X2AbilityTarget_MovingMelee';
+	MeleeTarget.MovementRangeAdjustment = 1;
+	Template.AbilityTargetStyle = MeleeTarget;
+	Template.TargetingMethod = class'X2TargetingMethod_MeleePath';
+
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+	Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_EndOfMove');
+
+	// Target Conditions
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+	Template.AbilityTargetConditions.AddItem(default.MeleeVisibilityCondition);
+
+	// Shooter Conditions
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	//SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
+	Template.AddShooterEffectExclusions();
+
+	// Damage Effect
+	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
+	Template.AddTargetEffect(WeaponDamageEffect);
+
+	Template.bAllowBonusWeaponEffects = true;
+	Template.bSkipMoveStop = true;
+
+	// Voice events
+	Template.SourceMissSpeech = 'SwordMiss';
+
+	Template.BuildNewGameStateFn = TypicalMoveEndAbility_BuildGameState;
+	Template.BuildInterruptGameStateFn = TypicalMoveEndAbility_BuildInterruptGameState;
+
+	return Template;
+}
+
+static function X2AbilityTemplate LightningSlashLastAction()
+{
+	local X2AbilityTemplate									Template;
+	local X2AbilityToHitCalc_StandardMelee					StandardMelee;
+	local X2AbilityTarget_MovingMelee						MeleeTarget;
+	local X2Effect_ApplyWeaponDamage						WeaponDamageEffect;
+	local X2AbilityCooldown_Shared							Cooldown;
+	local X2AbilityCost_ActionPoints						ActionPointCost;
+	local X2Condition_UnitActionPoints						ActionPointCondition;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'LightningSlashLastAction_LW');
+
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_ShowIfAvailable;
+	Template.CinescriptCameraType = "Ranger_Reaper";
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_lightning_knife";
+	Template.bHideOnClassUnlock = true;
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_SERGEANT_PRIORITY;
+	Template.AbilityConfirmSound = "TacticalUI_SwordConfirm";
+
+	Cooldown = new class'X2AbilityCooldown_Shared';
+	Cooldown.iNumTurns = default.LIGHTNINGSLASH_COOLDOWN;
+	Cooldown.SharingCooldownsWith.AddItem('LightningSlash_LW');
 	Template.AbilityCooldown = Cooldown;
 
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
@@ -2072,9 +2142,8 @@ static function X2AbilityTemplate LightningSlash()
 
 	StandardMelee = new class'X2AbilityToHitCalc_StandardMelee';
 	Template.AbilityToHitCalc = StandardMelee;
-	
+
 	MeleeTarget = new class'X2AbilityTarget_MovingMelee';
-	MeleeTarget.MovementRangeAdjustment = 1;
 	Template.AbilityTargetStyle = MeleeTarget;
 	Template.TargetingMethod = class'X2TargetingMethod_MeleePath';
 
@@ -2082,30 +2151,30 @@ static function X2AbilityTemplate LightningSlash()
 	Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_EndOfMove');
 
 	// Target Conditions
-	//
 	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
 	Template.AbilityTargetConditions.AddItem(default.MeleeVisibilityCondition);
 
 	// Shooter Conditions
-	//
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	//SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
 	Template.AddShooterEffectExclusions();
 
 	// Damage Effect
-	//
 	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
 	Template.AddTargetEffect(WeaponDamageEffect);
-	
+
 	Template.bAllowBonusWeaponEffects = true;
 	Template.bSkipMoveStop = true;
-	
+
 	// Voice events
-	//
 	Template.SourceMissSpeech = 'SwordMiss';
 
 	Template.BuildNewGameStateFn = TypicalMoveEndAbility_BuildGameState;
 	Template.BuildInterruptGameStateFn = TypicalMoveEndAbility_BuildInterruptGameState;
+
+	ActionPointCondition = new class'X2Condition_UnitActionPoints';
+	ActionPointCondition.AddActionPointCheck(1, class'X2CharacterTemplateManager'.default.StandardActionPoint, false, eCheck_LessThanOrEqual);
+	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
 
 	return Template;
 }
