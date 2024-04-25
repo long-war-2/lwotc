@@ -1596,6 +1596,11 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			break;
 	}
 
+	if(Template.DataName == 'LongWatch')
+	{
+		Template.OverrideAbilities.Length = 0;
+	}
+
 	if (Template.DataName == 'Shadowfall')
 	{
 		StandardAim = X2AbilityToHitCalc_StandardAim(Template.AbilityToHitCalc);
