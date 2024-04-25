@@ -1655,6 +1655,7 @@ static function X2AbilityTemplate KineticStrike()
 
 	StandardMelee = new class'X2AbilityToHitCalc_StandardMelee';
 	StandardMelee.BuiltInHitMod = 15;
+	StandardMelee.BuiltInCritMod = 15;
 	Template.AbilityToHitCalc = StandardMelee;
 
 	Template.AbilityTargetStyle = new class'X2AbilityTarget_MovingMelee';
@@ -1693,7 +1694,7 @@ static function X2AbilityTemplate KineticStrike()
 	Template.AddTargetEffect(KnockbackEffect);
 	Template.bOverrideMeleeDeath = true;
 
-	Template.DamagePreviewFn = GetStrikeDamagePreview;
+	//Template.DamagePreviewFn = GetStrikeDamagePreview;
 
 	// Voice events
 	Template.SourceMissSpeech = 'SwordMiss';
@@ -1742,14 +1743,14 @@ function bool GetStrikeDamagePreview(XComGameState_Ability AbilityState, StateOb
 	`LWTrace("MinDamagePreview after Blademaster check:" @MinDamagePreview.Damage);
 	`LWTrace("MaxDamagePreview after Blademaster check:" @MaxDamagePreview.Damage);
 
-	AssaultServosRef = AbilityOwner.FindAbility('Obliterator_LW');
-	AssaultServosAbility = XComGameState_Ability(History.GetGameStateForObjectID(AssaultServosRef.ObjectID));
+	//AssaultServosRef = AbilityOwner.FindAbility('Obliterator_LW');
+	//AssaultServosAbility = XComGameState_Ability(History.GetGameStateForObjectID(AssaultServosRef.ObjectID));
 
-	if(AssaultServosAbility != none)
-	{
-		MinDamagePreview.Damage += default.OBLITERATOR_DMG;
-		MaxDamagePreview.Damage += default.OBLITERATOR_DMG;
-	}
+	//if(AssaultServosAbility != none)
+	//{
+	//	MinDamagePreview.Damage += default.OBLITERATOR_DMG;
+	//	MaxDamagePreview.Damage += default.OBLITERATOR_DMG;
+	//}
 
 	`LWTrace("MinDamagePreview after Assault Servos check:" @MinDamagePreview.Damage);
 	`LWTrace("MaxDamagePreview after Assault Servos check:" @MaxDamagePreview.Damage);
@@ -1839,7 +1840,7 @@ static function X2AbilityTemplate ConcussiveStrike()
 	StunnedEffect.bRemoveWhenSourceDies = false;
 	Template.AddTargetEffect(StunnedEffect);
 
-	Template.DamagePreviewFn=GetConcussiveStrikeDamagePreview;
+	//Template.DamagePreviewFn=GetConcussiveStrikeDamagePreview;
 
 	// Voice events
 	Template.SourceMissSpeech = 'SwordMiss';
