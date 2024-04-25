@@ -2633,27 +2633,28 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 		break;
 	}
 
-	if (AlienHQ.bChosenActive)
-	{
-		XComHQ = `XCOMHQ;
-		AllChosen = ALienHQ.GetAllChosen();
+	// Move the chosen removal checks outside of the check to see if they're active.
+	XComHQ = `XCOMHQ;
+	AllChosen = ALienHQ.GetAllChosen();
 
 		//remove all chosen tags regardless of if chosen are defeated.
-		forEach AllChosen(ChosenState)
+	forEach AllChosen(ChosenState)
+	{
+		ChosenSpawningTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+
+		// Remove All vanilla chosen tags if they are attached to this mission. This is the only
+		// place that should add Chosen tactical mission tags to the XCOM HQ. This
+		// basically prevents the base game and other mods from adding Chosen to missions.
+		SpawningTags = ChosenState.GetMyTemplate().ChosenProgressionData.SpawningTags;
+		foreach SpawningTags(ChosenSpawningTagRemove)
 		{
-			ChosenSpawningTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
-
-			// Remove All vanilla chosen tags if they are attached to this mission. This is the only
-			// place that should add Chosen tactical mission tags to the XCOM HQ. This
-			// basically prevents the base game and other mods from adding Chosen to missions.
-			SpawningTags = ChosenState.GetMyTemplate().ChosenProgressionData.SpawningTags;
-			foreach SpawningTags(ChosenSpawningTagRemove)
-			{
-				`LWTrace("removing Chosen Spawning tag"@ChosenSpawningTagRemove);
-				XComHQ.TacticalGameplayTags.RemoveItem(ChosenSpawningTagRemove);
-			}
+			`LWTrace("removing Chosen Spawning tag"@ChosenSpawningTagRemove);
+			XComHQ.TacticalGameplayTags.RemoveItem(ChosenSpawningTagRemove);
 		}
+	}
 
+	if (AlienHQ.bChosenActive)
+	{
 		// now grab the undefeated chosen
 		AllChosen = AlienHQ.GetAllChosen(, true);
 
