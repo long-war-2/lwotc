@@ -1178,7 +1178,7 @@ LocPromotionPopupText="<Bullet/> The <Ability:ClassName/> can use Repair to heal
 LocFriendlyName="Kinetic Strike"
 LocLongDescription="Attack any enemy within movement range with a devastating punch. 2-turn cooldown. Damage is dependent on equipped chassis."
 LocHelpText="Attack any enemy within movement range with a devastating puch."
-LocPromotionPopupText="<Bullet/> You can trigger the Kinetic Strike ability by placing the movement cursor over an enemy.<br/><Bullet/> The <Ability:ClassName/> can perform a \"Dash\" move, using both actions to move, and still trigger a Strike against an adjacent enemy.<br/><Bullet/> Kinetic Strike will do 6/8/10 damage, depending on the equipped chassis.<br/><Bullet/> Kinetic Strike's chance to hit is based off the <Ability:ClassName/>'s aim with a +10 boost.<br/><Bullet/> Learning the Assault Servos ability will grant +2 damage and an extra +20 aim to all Kinetic Strike attacks.<br/>"
+LocPromotionPopupText="<Bullet/> You can trigger the Kinetic Strike ability by placing the movement cursor over an enemy.<br/><Bullet/> The <Ability:ClassName/> can perform a \"Dash\" move, using both actions to move, and still trigger a Strike against an adjacent enemy.<br/><Bullet/> Kinetic Strike will do 7/9.5/12 damage, depending on the equipped chassis.<br/><Bullet/> Kinetic Strike's chance to hit is based off the <Ability:ClassName/>'s aim with a +10 boost.<br/><Bullet/> Learning the Assault Servos ability will grant +2 damage and an extra +20 aim to all Kinetic Strike attacks.<br/>"
 
 [Obliterator_LW X2AbilityTemplate]
 LocFriendlyName="Assault Servos"
