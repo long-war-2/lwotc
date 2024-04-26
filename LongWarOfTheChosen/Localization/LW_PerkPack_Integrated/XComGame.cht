@@ -544,7 +544,7 @@ LocFriendlyName="附帶損害"
 LocLongDescription="用<Ability:WeaponName/>向指定位置開火，摧毀該區域內的掩體。對敵人造成少量傷害。4回合冷卻時間，使用3發彈藥。"
 LocHelpText="用<Ability:WeaponName/>向指定位置開火，摧毀該區域內的掩體。"
 LocFlyOverText="附帶損害"
-LocPromotionPopupText="<Bullet/> 對影響範圍內的所有物體造成大量環境傷害。<br/><Bullet/> 對效果範圍內的敵人造成40%武器傷害，具體取決於<Ability:WeaponName/>的等級。<br/><Bullet/> 消耗3發彈藥，冷卻時間為4回合。<br/>"
+LocPromotionPopupText="<Bullet/> 對影響範圍內的所有物體造成大量環境傷害。<br/><Bullet/> 對效果範圍內的敵人造成40%武器傷害，具體取決於<Ability:WeaponName/>的等級。<br/><Bullet/> 消耗2發彈藥，冷卻時間為4回合。<br/>"
 
 [DenseSmokeGrenade X2GrenadeTemplate]
 FriendlyName="濃煙榴彈"
