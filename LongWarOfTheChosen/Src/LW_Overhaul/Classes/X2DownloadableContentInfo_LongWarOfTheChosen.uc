@@ -1437,7 +1437,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 				if (CountMembers(SpawnInfo.SelectedCharacterTemplateNames[k], SpawnInfo.SelectedCharacterTemplateNames) 
 					> GetCharacterSpawnEntry(FollowerSpawnList, FollowerCharacterTemplate, ForceLevel).MaxCharactersPerGroup)
 				{
-					`LWDiversityTrace("Too many" @SpawnInfo.SelectedCharacterTemplateNames[k]);
+					`LWDiversityTrace("Too many" @SpawnInfo.SelectedCharacterTemplateNames[k] @"; Max specified:" @ GetCharacterSpawnEntry(FollowerSpawnList, FollowerCharacterTemplate, ForceLevel).MaxCharactersPerGroup);
 					swap = true;
 				}
 			}
@@ -1464,14 +1464,14 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 			{
 				if (!swap && (Podsize == PodConversion.PodSize || PodConversion.PodSize == -1)) 
 				{
-					if ( iNumCommonUnits >= PodConversion.SameUnitMaxLimit)
+					if ( iNumCommonUnits > PodConversion.SameUnitMaxLimit)
 					{
 						`LWDiversityTrace("Mixing up undiverse enemy pod of size" @Podsize);
 						swap = true;
 					}
 
 					// more strignant for Aliens
-					if ( iNumCommonUnits >= PodConversion.SameUnitMaxLimitAliens && FollowerCharacterTemplate.bIsAlien)
+					if ( iNumCommonUnits > PodConversion.SameUnitMaxLimitAliens && FollowerCharacterTemplate.bIsAlien)
 					{
 						`LWDiversityTrace("Mixing up undiverse alien enemy pod of size" @Podsize);
 						swap = true;
