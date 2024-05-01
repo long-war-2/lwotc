@@ -55,16 +55,16 @@ LocPromotionPopupText="<Bullet/> 为镇压平民而设计，此武器只会造�
 [LWDroneRepair X2AbilityTemplate]
 LocFriendlyName="修理"
 LocFlyOverText="修理"
-LocHelpText="修理附近的任何机械单位。"
-LocLongDescription="修理附近的任何机械单位。"
-LocPromotionPopupText="<Bullet/> 修理附近的任何机械单位。"
+LocHelpText="修理附近的任一机械单位。"
+LocLongDescription="修理附近的任一机械单位。"
+LocPromotionPopupText="<Bullet/> 修理附近的任一机械单位。"
 
 [LWDroneMeleeStun X2AbilityTemplate]
 LocFriendlyName="眩晕"
 LocFlyOverText="眩晕"
-LocHelpText="尝试眩晕近战范围内的任何敌人。"
-LocLongDescription="尝试眩晕近战范围内的任何敌人。"
-LocPromotionPopupText="<Bullet/> 尝试眩晕近战范围内的任何敌人。"
+LocHelpText="尝试眩晕近战范围内的任一敌人。"
+LocLongDescription="尝试眩晕近战范围内的任一敌人。"
+LocPromotionPopupText="<Bullet/> 尝试眩晕近战范围内的任一敌人。"
 LocMissMessage="未命中！"
 
 [PersonalShield X2AbilityTemplate]
@@ -77,9 +77,9 @@ LocPromotionPopupText="<Bullet/> 提供5点额外护盾。<br/><Bullet/> 5回合
 [MassReanimation_LW X2AbilityTemplate]
 LocFriendlyName="群体复生"
 LocFlyOverText="群体复生"
-LocHelpText="复活所有周围死去的有机体，将它们转化为僵尸。"
-LocLongDescription="复活所有周围死去的有机体，将它们转化为僵尸。"
-LocPromotionPopupText="<Bullet/> 复活所有周围死去的有机体，将它们转化为僵尸。"
+LocHelpText="复活周围所有死去的有机体，将它们转化为僵尸。"
+LocLongDescription="复活周围所有死去的有机体，将它们转化为僵尸。"
+LocPromotionPopupText="<Bullet/> 复活周围所有死去的有机体，将它们转化为僵尸。"
 
 [ReadyForAnything X2AbilityTemplate]
 LocFriendlyName="一切就绪"

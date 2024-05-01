@@ -6,7 +6,7 @@
 FriendlyName="冲锋枪"
 FriendlyNamePlural="冲锋枪"
 BriefSummary="冲锋枪相对于突击步枪提供了更轻，更隐蔽的选择，虽然他们威力一般并且在远距离精度也较差。"
-TacticalText="<Bullet/>在未进行特殊训练前，用主武器射击会结束该士兵的回合。\n<Bullet/>使用从变种人敌人那收集的升级部件来提升冲锋枪的武器效能。\n<Bullet/>冲锋枪风格的武器相比突击步枪能提供额外的移动力，近战精度和隐蔽性，但他们伤害更低，并在远距离受到精度减益。"
+TacticalText="<Bullet/>在未进行特殊训练前，用主武器射击会结束士兵的回合。\n<Bullet/>使用从变种人敌人那收集的升级部件来提升冲锋枪的武器效能。\n<Bullet/>冲锋枪风格的武器相比突击步枪能提供额外的移动力，近战精度和隐蔽性，但他们伤害更低，并在远距离受到精度减益。"
 AbilityDescName="冲锋枪"
 
 [SMG_MG X2WeaponTemplate]
