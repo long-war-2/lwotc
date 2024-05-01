@@ -221,9 +221,9 @@ LocPromotionPopupText="<Bullet/> 如果首次行动是用主武器进行标准�
 [WalkFire X2AbilityTemplate]
 LocFriendlyName="游走射击"
 LocFlyOverText="游走射击"
-LocLongDescription="进行一次高精度射击，+<Ability:WALK_FIRE_AIM_BONUS>命中但是只造成<Ability:WALK_FIRE_DMG>%伤害并且-<Ability:WALK_FIRE_CRIT_MALUS>暴击率。消耗<Ability:SelfAmmoCost/>弹药。"
-LocHelpText="进行一次高精度射击，+<Ability:WALK_FIRE_AIM_BONUS>命中但是只造成<Ability:WALK_FIRE_DMG>%伤害并且-<Ability:WALK_FIRE_CRIT_MALUS>暴击率。消耗<Ability:SelfAmmoCost/>弹药。"
-LocPromotionPopupText="<Bullet/> 这是士兵在使用自动武器时调整准星而进行的特殊射击，+<Ability:WALK_FIRE_AIM_BONUS>命中但是只造成<Ability:WALK_FIRE_DMG>%伤害并且-<Ability:WALK_FIRE_CRIT_MALUS>暴击率。<br/><Bullet/> 消耗<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 需要连发武器；主武器为散弹枪或狙击步枪时不适用。"
+LocLongDescription="进行一次高精度射击，+<Ability:WALK_FIRE_AIM_BONUS>命中但是<Ability:WALK_FIRE_DMG>%伤害并且-<Ability:WALK_FIRE_CRIT_MALUS>暴击率。消耗<Ability:SelfAmmoCost/>弹药。"
+LocHelpText="进行一次高精度射击，+<Ability:WALK_FIRE_AIM_BONUS>命中但是<Ability:WALK_FIRE_DMG>%伤害并且-<Ability:WALK_FIRE_CRIT_MALUS>暴击率。消耗<Ability:SelfAmmoCost/>弹药。"
+LocPromotionPopupText="<Bullet/> 这是士兵在使用自动武器时调整准星而进行的特殊射击，+<Ability:WALK_FIRE_AIM_BONUS>命中但是<Ability:WALK_FIRE_DMG>%伤害并且-<Ability:WALK_FIRE_CRIT_MALUS>暴击率。<br/><Bullet/> 消耗<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 需要连发武器；主武器为散弹枪或狙击步枪时不适用。"
 
 [PrecisionShot X2AbilityTemplate]
 LocFriendlyName="精准射击"
