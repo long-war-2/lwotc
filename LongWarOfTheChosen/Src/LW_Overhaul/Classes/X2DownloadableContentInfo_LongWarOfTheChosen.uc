@@ -3980,6 +3980,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'MULTI_TARGETING_COOLDOWN_LW':
 			OutString = string(class'X2Ability_LW_SharpshooterAbilitySet'.default.MULTI_TARGETING_COOLDOWN);
 			return true;
+		case 'CONCUSSION_ROCKET_STUN_CHANCE':
+			OutString = string(class'X2Ability_LW_TechnicalAbilitySet'.default.CONCUSSION_ROCKET_STUN_CHANCE);
+			return true;
 		case 'BURNOUT_RADIUS_LW':
 			OutString = Repl(string(class'X2Ability_LW_TechnicalAbilitySet'.default.BURNOUT_RADIUS), "0", "");
 			return true;
@@ -4224,6 +4227,12 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			return true;
 		case 'CHAIN_LIGHTNING_AIM_MOD_LW':
 			Outstring = string(class'X2Ability_LW_AssaultAbilitySet'.default.CHAIN_LIGHTNING_AIM_MOD);
+			return true;
+		case 'CHAIN_LIGHTNING_TARGETS':
+			Outstring = string(class'X2Ability_LW_AssaultAbilitySet'.default.CHAIN_LIGHTNING_TARGETS);
+			return true;
+		case 'CHAIN_LIGHTNING_CHAIN_RANGE_TILES':
+			Outstring = string(int(`UNITSTOTILES(sqrt(class'X2AbilityMultiTarget_Volt'.default.DistanceBetweenTargets))));
 			return true;
 		case 'STUNGUNNER_BONUS_CV_LW':
 			Outstring = string(class'X2Effect_StunGunner'.default.STUNGUNNER_BONUS_CV);

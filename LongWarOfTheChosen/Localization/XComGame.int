@@ -320,9 +320,9 @@ LocPromotionPopupText="<Bullet/> Attacks with your gauntlet, and fires set by ga
 [ConcussionRocket X2AbilityTemplate]
 LocFriendlyName="Concussion Rocket"
 LocFlyOverText="Concussion Rocket"
-LocLongDescription="Fire a special rocket that does limited damage but has a chance to stun or disorient organic enemies within its area of effect."
-LocHelpText="Rocket that stuns or disorients targets. <Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> One use per mission.<br/><Bullet/> Stun chance is 20% .<br/><Bullet/> Disorientation chance is 100% and bypasses disorient resist (but not immunity).<br/><Bullet/> Requires one action and ends the soldier's turn.<br/><Bullet/> Elite Codexes and Psi Zombies are immune to all effects including damage.<br/><Bullet/> Allies cannot be injured by this attack.<br/>"
+LocLongDescription="Fire a special rocket that deals low damage but impairs organic enemies within its area of effect."
+LocHelpText="Fire a rocket that always disorients organic enemies. It also has a <Ability:CONCUSSION_ROCKET_STUN_CHANCE>% chance to stun them. <Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> Deals 2 damage.<br/><Bullet/> Always disorients organic targets. Additionally, each organic target has a <Ability:CONCUSSION_ROCKET_STUN_CHANCE>% chance to be stunned instead.<br/><Bullet/> Requires one action and ends the soldier's turn.<br/><Bullet/> One use per mission.<br/>"
 ; End Translation (4)
 
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
@@ -721,10 +721,10 @@ LocPromotionPopupText="<Bullet/> Medium-range, cone-based shotgun attack.<br/><B
 [ChainLightning X2AbilityTemplate]
 LocFriendlyName="Chain Lightning"
 ; LWOTC Needs Translation (3)
-LocLongDescription="An Arc Thrower attack that jumps from target to target up to 4 times, while each target is within 6 tiles of each other."
-LocHelpText="An Arc Thrower attack that jumps from target to target up to 4 times, while each target is within 6 tiles of each other."
+LocLongDescription="A chaining arc thrower attack that stuns up to <Ability:CHAIN_LIGHTNING_TARGETS> targets.
+LocHelpText="A chaining arc thrower attack that stuns up to <Ability:CHAIN_LIGHTNING_TARGETS> targets.
 LocFlyOverText="Chain Lightning"
-LocPromotionPopupText="<Bullet/> Fires the Arc Thrower at a target in vision, with the arc chaining up to 4 times to other targets within 6 tiles of each other.<br/><Bullet/> Requires one action and ends your turn.<br/><Bullet/> Chain Lightning has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Cannot be used from concealment."
+LocPromotionPopupText="<Bullet/> Chain Lightning chains from target to target in a sequence. Successive targets can be up to <Ability:CHAIN_LIGHTNING_CHAIN_RANGE_TILES> tiles away from each other. The attack will not chain to previous targets in the sequence.<br/><Bullet/> The sequence of targets will be shown when you preview a target. A hit roll will be made against all targets in the sequence, even if you miss against a previous target. Cover bonuses are calculated from your position, not from the previous target.<br/><Bullet/> Chain Lightning cannot be fired at robotic enemies, and it will not chain to them.<br/><Bullet/> Requires one action and ends your turn.<br/><Bullet/> Chain Lightning has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Cannot be used from concealment."
 ; End Translation (3)
 
 [Leadership X2AbilityTemplate]
@@ -6623,6 +6623,14 @@ LocHelpText="Attack any enemy within blue movement range with your <Ability:BOUN
 LocPromotionPopupText="<Bullet/> Attack any enemy within blue movement range with your <Ability:BOUND_WEAPON_NAME/>.<br/><Bullet/> This attack does not end the turn.<br/><Bullet/> Lightning Slash has a <Ability:LIGHTNINGSLASH_COOLDOWN/> turn cooldown.<br/>"
 ; End Translation (3)
 
+[LightningSlashLastAction_LW X2AbilityTemplate]
+LocFriendlyName="Lightning Slash"
+; LWOTC Needs Translation (3)
+LocLongDescription="Attack any enemy within blue movement range with your <Ability:BOUND_WEAPON_NAME/>. This attack does not end the turn."
+LocHelpText="Attack any enemy within blue movement range with your <Ability:BOUND_WEAPON_NAME/>. This attack does not end the turn."
+LocPromotionPopupText="<Bullet/> Attack any enemy within blue movement range with your <Ability:BOUND_WEAPON_NAME/>.<br/><Bullet/> This attack does not end the turn.<br/><Bullet/> Lightning Slash has a <Ability:LIGHTNINGSLASH_COOLDOWN/> turn cooldown.<br/>"
+; End Translation (3)
+
 [InspireAgility_LW X2AbilityTemplate]
 LocFriendlyName="Inspire Agility"
 LocFlyOverText="Inspire Agility"
@@ -7137,8 +7145,8 @@ LocFlyOverText="Chosen Prime Reaction"
 ; LWOTC Needs Translation (3)
 [ChosenImmunities X2AbilityTemplate]
 LocFriendlyName="Chosen Immunities"
-LocLongDescription="Chosen are immune to stun, disorient, and frost."
-LocHelpText="Chosen are immune to stun, disorient, and frost."
+LocLongDescription="Chosen are immune to all mental impairments and frost."
+LocHelpText="Chosen are immune to all mental impairments and frost."
 LocFlyOverText="Chosen Immunities"
 ; End Translation (3)
 
@@ -7280,10 +7288,17 @@ AbilityDescName="Purifier Flamethrower"
 
 [Solace X2AbilityTemplate]
 LocFriendlyName="Solace Aura"
-LocLongDescription="The Priest is surrounded by an aura that immediately extinguishes or blocks any mental impairments for themselves and any nearby squadmates."
-LocHelpText="The Priest is surrounded by an aura that immediately extinguishes or blocks any mental impairments for for themselves and any nearby squadmates."
+LocLongDescription="This unit is affected by an aura that protects it from any mental impairments."
+LocHelpText="This unit is affected by an aura that protects it from any mental impairments."
 LocFlyOverText="Solace"
-LocPromotionPopupText="<Bullet/> Solace has a 4 tile radius.<br/><Bullet/> Moving next to afflicted allies will immediately cleanse their mental impairments.<br/>"
+LocPromotionPopupText="<Bullet/> Solace has a 4 tile radius.<br/><Bullet/> Moving next to afflicted organic allies will immediately cleanse their mental impairments.<br/>"
+
+[SolacePassive X2AbilityTemplate]
+LocFriendlyName="Solace"
+LocLongDescription="This unit is surrounded by an aura that immediately extinguishes or blocks any mental impairments for themselves and any nearby organic allies."
+LocHelpText="This unit is surrounded by an aura that immediately extinguishes or blocks any mental impairments for themselves and any nearby organic allies."
+LocFlyOverText="Solace"
+LocPromotionPopupText="<Bullet/> Solace has a 4 tile radius.<br/><Bullet/> Moving next to afflicted organic allies will immediately cleanse their mental impairments.<br/>"
 
 ; End Translation
 
@@ -7716,3 +7731,24 @@ m_strLockedTT=We cannot make contact with the Resistance in this region. We must
 m_strUnlockedTT=The Resistance in <XGParam:StrValue0/!WorldRegionName/> would join our cause if we made contact with them!
 m_strContactTT=The Resistance in <XGParam:StrValue0/!WorldRegionName/> is generating an income of <XGParam:StrValue1/!Quantity/> supplies for us.
 m_strOutpostTT=We have installed a radio relay in this region! The relay increases the efficiency of rebel jobs and it reduces the cost of contact with any connected regions.
+
+[LostImmunitiesPassive X2AbilityTemplate]
+LocFriendlyName="The Lost Immunities"
+LocFlyOverText="The Lost Immunities"
+LocLongDescription="The Lost are immune to mental impairments, poison, and acid."
+LocHelpText="The Lost are immune to mental impairments, poison, and acid.
+LocPromotionPopupText=""
+
+[PsiZombieImmunitiesPassive X2AbilityTemplate]
+LocFriendlyName="Psi Zombie Immunities"
+LocFlyOverText="Psi Zombie Immunities"
+LocLongDescription="Psi Zombies are immune to mental impairments and poison."
+LocHelpText="Psi Zombies are immune to mental impairments and poison.
+LocPromotionPopupText=""
+
+[SpectralZombieImmunitiesPassive X2AbilityTemplate]
+LocFriendlyName="Spectral Zombie Immunities"
+LocFlyOverText="Spectral Zombie Immunities"
+LocLongDescription="Spectral Zombies are immune to mental impairments, fire, poison, and acid."
+LocHelpText="Spectral Zombies are immune to mental impairments, fire, poison, and acid.
+LocPromotionPopupText=""

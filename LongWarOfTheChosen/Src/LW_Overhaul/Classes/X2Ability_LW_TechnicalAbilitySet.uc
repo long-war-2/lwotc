@@ -1679,21 +1679,19 @@ static function X2AbilityTemplate CreateHighPressureAbility()
 
 static function X2AbilityTemplate CreateConcussionRocketAbility()
 {
-	local X2AbilityTemplate						Template;
+	local X2AbilityTemplate					Template;
 	local X2AbilityCharges					Charges;
 	local X2AbilityCost_Charges				ChargeCost;
-	local X2AbilityCost_ActionPoints        ActionPointCost;
-	local X2AbilityTarget_Cursor            CursorTarget;
-	local X2AbilityMultiTarget_Radius       RadiusMultiTarget;
-	local X2AbilityToHitCalc_StandardAim    StandardAim;
+	local X2AbilityCost_ActionPoints		ActionPointCost;
+	local X2AbilityTarget_Cursor			CursorTarget;
+	local X2AbilityMultiTarget_Radius		RadiusMultiTarget;
+	local X2AbilityToHitCalc_StandardAim	StandardAim;
 	local X2Effect_PersistentStatChange		DisorientedEffect;
-	local X2Effect_ApplyWeaponDamage        WeaponDamageEffect;
-//	local X2Effect_SmokeGrenade				SmokeEffect;
-	local X2Effect_ApplySmokeGrenadeToWorld WeaponEffect;
+	local X2Effect_ApplyWeaponDamage		WeaponDamageEffect;
+	local X2Effect_ApplySmokeGrenadeToWorld	WeaponEffect;
 	local X2Effect_Stunned					StunnedEffect;
 	local X2Condition_UnitEffects			SuppressedCondition;
 	local X2Condition_UnitProperty			UnitPropertyCondition;
-	local X2Condition_UnitType				ImmuneUnitCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ConcussionRocket');
 
@@ -1702,8 +1700,7 @@ static function X2AbilityTemplate CreateConcussionRocketAbility()
 	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityConcussionRocket";
 	Template.bCrossClassEligible = false;
 	Template.Hostility = eHostility_Offensive;
-	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_COLONEL_PRIORITY;
-	Template.bFriendlyFireWarning = false;
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_SERGEANT_PRIORITY;
 
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
 	Template.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher';
@@ -1736,20 +1733,10 @@ static function X2AbilityTemplate CreateConcussionRocketAbility()
 	Template.AbilityCosts.AddItem(ChargeCost);
 
 	UnitPropertyCondition = new class'X2Condition_UnitProperty';
-	UnitPropertyCondition.ExcludeRobotic = true;
-	UnitPropertyCondition.ExcludeOrganic = false;
 	UnitPropertyCondition.ExcludeDead = true;
-	UnitPropertyCondition.ExcludeFriendlyToSource = true;
+	UnitPropertyCondition.ExcludeFriendlyToSource = false;
 	UnitPropertyCondition.RequireWithinRange = true;
-	Template.AbilityTargetConditions.AddItem (UnitPropertyCondition);
 	Template.AbilityMultiTargetConditions.AddItem(UnitPropertyCondition);
-
-	ImmuneUnitCondition = new class'X2Condition_UnitType';
-	ImmuneUnitCondition.ExcludeTypes.AddItem('PsiZombie');
-	ImmuneUnitCondition.ExcludeTypes.AddItem('AdvPsiWitchM2');
-	ImmuneUnitCondition.ExcludeTypes.AddItem('AdvPsiWitchM3');
-	Template.AbilityTargetConditions.AddItem(ImmuneUnitCondition);
-	Template.AbilityMultiTargetConditions.AddItem(ImmuneUnitCondition);
 
 	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
 	RadiusMultiTarget.bUseWeaponRadius = false;
@@ -1758,34 +1745,34 @@ static function X2AbilityTemplate CreateConcussionRocketAbility()
 
 	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
 	WeaponDamageEffect.bIgnoreBaseDamage = true;
-	WeaponDamageEffect.EffectDamageValue=default.CONCUSSION_ROCKET_DAMAGE_VALUE;
+	WeaponDamageEffect.EffectDamageValue = default.CONCUSSION_ROCKET_DAMAGE_VALUE;
 	WeaponDamageEffect.bExplosiveDamage = true;
 	WeaponDamageEffect.EnvironmentalDamageAmount=default.CONCUSSION_ROCKET_ENV_DAMAGE;
-	//Template.AddTargetEffect(WeaponDamageEffect);
 	Template.AddMultiTargetEffect(WeaponDamageEffect);
 
-	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2,default.CONCUSSION_ROCKET_STUN_CHANCE,false);
+	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2, default.CONCUSSION_ROCKET_STUN_CHANCE, false);
 	StunnedEffect.bRemoveWhenSourceDies = false;
-	if(default.USE_CONCUSSION_ROCKET_WILL_CALCS)
+	if (default.USE_CONCUSSION_ROCKET_WILL_CALCS)
+	{
 		StunnedEffect.ApplyChanceFn = ApplyChance_Concussion_Stunned;
-	//Template.AddTargetEffect(StunnedEffect);
+	}
 	Template.AddMultiTargetEffect(StunnedEffect);
 
-	DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect(, , false);
-	if(default.USE_CONCUSSION_ROCKET_WILL_CALCS)
+	DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect(, , true);
+	if (default.USE_CONCUSSION_ROCKET_WILL_CALCS)
+	{
 		DisorientedEffect.ApplyChanceFn = ApplyChance_Concussion_Disoriented;
-	//Template.AddTargetEffect(DisorientedEffect);
+	}
 	Template.AddMultiTargetEffect(DisorientedEffect);
 
-	if(default.ENABLE_CONCUSSION_ROCKET_SMOKE)
+	if (default.ENABLE_CONCUSSION_ROCKET_SMOKE)
 	{
 		WeaponEffect = new class'X2Effect_ApplySmokeGrenadeToWorld';
-		Template.AddMultiTargetEffect (WeaponEffect);
-
-		Template.AddMultiTargetEffect (class'X2Item_DefaultGrenades'.static.SmokeGrenadeEffect());
+		Template.AddMultiTargetEffect(WeaponEffect);
+		Template.AddMultiTargetEffect(class'X2Item_DefaultGrenades'.static.SmokeGrenadeEffect());
 	}
-	
-	Template.ActivationSpeech = 'Explosion';
+
+	Template.ActivationSpeech = 'RocketLauncher';
 	Template.CinescriptCameraType = "Soldier_HeavyWeapons";
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;

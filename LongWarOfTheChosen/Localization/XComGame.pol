@@ -6055,6 +6055,12 @@ LocLongDescription="Zaatakuj dowolnego wroga w niebieskim zasięgu ruchu za pomo
 LocHelpText="Zaatakuj dowolnego wroga w niebieskim zasięgu ruchu za pomocą <Ability:BOUND_WEAPON_NAME/>. Atak nie kończy tury."
 LocPromotionPopupText="<Bullet/> Zaatakuj dowolnego wroga w niebieskim zasięgu ruchu za pomocą <Ability:BOUND_WEAPON_NAME/>.<br/><Bullet/> Atak nie kończy tury.<br/><Bullet/> Wymaga <Ability:LIGHTNINGSLASH_COOLDOWN/> tur(y) odnowienia.<br/>"
 
+[LightningSlashLastAction_LW X2AbilityTemplate]
+LocFriendlyName="Błyskawiczny cios"
+LocLongDescription="Zaatakuj dowolnego wroga w niebieskim zasięgu ruchu za pomocą <Ability:BOUND_WEAPON_NAME/>. Atak nie kończy tury."
+LocHelpText="Zaatakuj dowolnego wroga w niebieskim zasięgu ruchu za pomocą <Ability:BOUND_WEAPON_NAME/>. Atak nie kończy tury."
+LocPromotionPopupText="<Bullet/> Zaatakuj dowolnego wroga w niebieskim zasięgu ruchu za pomocą <Ability:BOUND_WEAPON_NAME/>.<br/><Bullet/> Atak nie kończy tury.<br/><Bullet/> Wymaga <Ability:LIGHTNINGSLASH_COOLDOWN/> tur(y) odnowienia.<br/>"
+
 [InspireAgility_LW X2AbilityTemplate]
 LocFriendlyName="Inspiruj zwinnością"
 LocFlyOverText="Inspiruj zwinnością"

@@ -6488,6 +6488,14 @@ LocHelpText="Ataca a cualquier enemigo con tu <Ability:BOUND_WEAPON_NAME/> dentr
 LocPromotionPopupText="<Bullet/> Abalánzate sobre cualquier enemigo con tu <Ability:BOUND_WEAPON_NAME/> dentro del rango de movimiento visualizado en azul.<br/><Bullet/> Este ataque no termina el turno.<br/><Bullet/> Tiempo de enfriamiento de <Ability:LIGHTNINGSLASH_COOLDOWN/> turnos.<br/>"
 ; End translated
 
+[LightningSlashLastAction_LW X2AbilityTemplate]
+LocFriendlyName="Ataque relámpago"
+; LWOTC translated
+LocLongDescription="Ataca a cualquier enemigo con tu <Ability:BOUND_WEAPON_NAME/> dentro del rango de movimiento visualizado en azul. Este ataque no termina el turno."
+LocHelpText="Ataca a cualquier enemigo con tu <Ability:BOUND_WEAPON_NAME/> dentro del rango de movimiento visualizado en azul>. Este ataque no termina el turno."
+LocPromotionPopupText="<Bullet/> Abalánzate sobre cualquier enemigo con tu <Ability:BOUND_WEAPON_NAME/> dentro del rango de movimiento visualizado en azul.<br/><Bullet/> Este ataque no termina el turno.<br/><Bullet/> Tiempo de enfriamiento de <Ability:LIGHTNINGSLASH_COOLDOWN/> turnos.<br/>"
+; End translated
+
 [InspireAgility_LW X2AbilityTemplate]
 LocFriendlyName="Inspirar agilidad"
 LocFlyOverText="Inspirar agilidad"

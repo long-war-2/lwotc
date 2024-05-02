@@ -3420,6 +3420,12 @@ LocLongDescription="Атака по врагу в пределах одного 
 LocHelpText="Атака по врагу в пределах одного действия перемещения (оружие: <Ability:SecondaryWeaponName/>). Не заканчивает ход"
 LocPromotionPopupText="<Bullet/>Атака по врагу в пределах одного действия перемещения (оружие: <Ability:SecondaryWeaponName/>). Не заканчивает ход.<br/> <Bullet/>  <Ability:LIGHTNINGSLASH_COOLDOWN/> ходов перезарядки.<br/>"
 
+[LightningSlashLastAction_LW X2AbilityTemplate]
+LocFriendlyName="Молниеносный удар"
+LocLongDescription="Атака по врагу в пределах одного действия перемещения (оружие: <Ability:SecondaryWeaponName/>). Не заканчивает ход"
+LocHelpText="Атака по врагу в пределах одного действия перемещения (оружие: <Ability:SecondaryWeaponName/>). Не заканчивает ход"
+LocPromotionPopupText="<Bullet/>Атака по врагу в пределах одного действия перемещения (оружие: <Ability:SecondaryWeaponName/>). Не заканчивает ход.<br/> <Bullet/>  <Ability:LIGHTNINGSLASH_COOLDOWN/> ходов перезарядки.<br/>"
+
 [InspireAgility_LW X2AbilityTemplate]
 LocFriendlyName="Не зевай!"
 LocFlyOverText="Не зевай!"

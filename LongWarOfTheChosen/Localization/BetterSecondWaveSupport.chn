@@ -22,7 +22,7 @@ Description="同阶技能：用能力点购买同军阶的多个职业技能。"
 
 ; LWOTC Needs Translation
 [BabyChosen SecondWaveOptionObject]
-Tooltip="禁用天选者的主反应，使其更容易战斗。"
+Tooltip="禁用天选者的主反应，使其更容易对付。"
 Description="天选宝宝：天选者的主反应被禁用。"
 ; End Translation
 

@@ -6374,6 +6374,14 @@ LocHelpText="Attaquez un ennemi à portée de déplacement bleu avec votre <Abil
 LocPromotionPopupText="<Bullet/> Attaquez un ennemi à portée de déplacement bleu avec votre <Ability:BOUND_WEAPON_NAME/>. Cette attaque ne met pas fin à votre tour.<br/> <Bullet/> Temps de rechargement de <Ability:LIGHTNINGSLASH_COOLDOWN/> tour(s).<br/>"
 ; End translated (3)
 
+[LightningSlashLastAction_LW X2AbilityTemplate]
+LocFriendlyName="Iaijutsu"
+; LWOTC translated (3)
+LocLongDescription="Attaquez un ennemi à portée de déplacement bleu avec votre <Ability:BOUND_WEAPON_NAME/>. Cette attaque ne met pas fin à votre tour."
+LocHelpText="Attaquez un ennemi à portée de déplacement bleu avec votre <Ability:BOUND_WEAPON_NAME/>. Cette attaque ne met pas fin à votre tour."
+LocPromotionPopupText="<Bullet/> Attaquez un ennemi à portée de déplacement bleu avec votre <Ability:BOUND_WEAPON_NAME/>. Cette attaque ne met pas fin à votre tour.<br/> <Bullet/> Temps de rechargement de <Ability:LIGHTNINGSLASH_COOLDOWN/> tour(s).<br/>"
+; End translated (3)
+
 [InspireAgility_LW X2AbilityTemplate]
 LocFriendlyName="Ange gardien"
 LocFlyOverText="Ange gardien"

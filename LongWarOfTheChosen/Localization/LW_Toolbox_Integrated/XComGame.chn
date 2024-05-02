@@ -1,7 +1,7 @@
 [RedFog_LW X2AbilityTemplate]
 LocFriendlyName="血雾"
-LocLongDescription="受伤单位的数值会降低。"
-LocHelpText="受伤单位的数值会降低。"
+LocLongDescription="受伤单位的属性会降低。"
+LocHelpText="受伤单位的属性会降低。"
 LocFlyOverText="血雾"
 LocPromotionPopupText="REDFOGLOCPROMOTIONPOPUPTEXT"
 

@@ -48,25 +48,23 @@ static function array<X2DataTemplate> CreateTemplates()
 static function X2AbilityTemplate AddArcthrowerStun()
 {
 
-	local X2AbilityCooldown                 Cooldown;
-	local X2AbilityTemplate                 Template;	
+	local X2AbilityCooldown					Cooldown;
+	local X2AbilityTemplate					Template;
 	local X2Condition_UnitProperty			UnitPropertyCondition;
-	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
-	local X2AbilityCost_ActionPoints        ActionPointCost;
-	local X2Effect_ArcthrowerStunned	    StunnedEffect;
-	local array<name>                       SkipExclusions;
-	local X2Condition_UnitType				ImmuneUnitCondition;
-	//local X2Effect_RemoveEffects			CleanUpEffect;
+	local X2AbilityToHitCalc_StandardAim	ToHitCalc;
+	local X2AbilityCost_ActionPoints		ActionPointCost;
+	local X2Effect_ArcthrowerStunned		StunnedEffect;
+	local array<name>						SkipExclusions;
 
 	// Macro to do localisation and stuffs
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ArcthrowerStun');
 
 	// Icon Properties
-	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityArcthrowerStun";  
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityArcthrowerStun";
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.STANDARD_PISTOL_SHOT_PRIORITY;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
 	Template.DisplayTargetHitChance = true;
-	Template.AbilitySourceName = 'eAbilitySource_Perk';                                       // color of the icon
+	Template.AbilitySourceName = 'eAbilitySource_Perk'; // color of the icon
 
 	// Activated by a button press; additionally, tells the AI this is an activatable
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
@@ -86,16 +84,11 @@ static function X2AbilityTemplate AddArcthrowerStun()
 	UnitPropertyCondition = new class'X2Condition_UnitProperty';
 	UnitPropertyCondition.ExcludeRobotic = true;
 	UnitPropertyCondition.ExcludeOrganic = false;
+	UnitPropertyCondition.FailOnNonUnits = true;
 	UnitPropertyCondition.ExcludeDead = true;
 	UnitPropertyCondition.ExcludeFriendlyToSource = true;
 	UnitPropertyCondition.RequireWithinRange = true;
 	Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
-	
-	ImmuneUnitCondition = new class'X2Condition_UnitType';
-	ImmuneUnitCondition.ExcludeTypes.AddItem('PsiZombie');
-	ImmuneUnitCondition.ExcludeTypes.AddItem('AdvPsiWitchM2');
-	ImmuneUnitCondition.ExcludeTypes.AddItem('AdvPsiWitchM3');
-	Template.AbilityTargetConditions.AddItem(ImmuneUnitCondition);
 
 	// Can't shoot while dead
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
@@ -107,14 +100,11 @@ static function X2AbilityTemplate AddArcthrowerStun()
 	ActionPointCost.iNumPoints = 1;
 	ActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('Unlimitedpower_LW');
 	ActionPointCost.bConsumeAllPoints = true;
-	Template.AbilityCosts.AddItem(ActionPointCost);	
+	Template.AbilityCosts.AddItem(ActionPointCost);
 
 	//Stun Effect
 	StunnedEffect = CreateArcthrowerStunnedStatusEffect(100);
 	Template.AddTargetEffect(StunnedEffect);
-
-	//CleanUpEffect = CreateStunnedEffectsCleanUpEffect();
-	//Template.AddTargetEffect(CleanUpEffect);
 
 	Template.AssociatedPassives.AddItem('Electroshock');
 	Template.AddTargetEffect(ElectroshockDisorientEffect());
@@ -125,7 +115,7 @@ static function X2AbilityTemplate AddArcthrowerStun()
 	ToHitCalc.bAllowCrit = false;
 	Template.AbilityToHitCalc = ToHitCalc;
 	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
-			
+
 	// Targeting Method
 	Template.TargetingMethod = class'X2TargetingMethod_OverTheShoulder';
 	Template.bUsesFiringCamera = true;
@@ -134,16 +124,16 @@ static function X2AbilityTemplate AddArcthrowerStun()
 
 	// MAKE IT LIVE!
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;	
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
-	
+
 	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 
 	Template.AdditionalAbilities.AddItem('ArcthrowerPassive');
 
-	return Template;	
+	return Template;
 }
 
 
@@ -276,24 +266,21 @@ static function X2AbilityTemplate StunGunner()
 //EM Pulser alternative attack, which allows targeting and damaging robots
 static function X2AbilityTemplate AddEMPulser()
 {
-	local X2AbilityCooldown                 Cooldown;
-	local X2AbilityTemplate                 Template;	
-	local X2Condition_UnitProperty			UnitPropertyCondition;
-	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
-	local X2AbilityCost_ActionPoints        ActionPointCost;
-	local X2Effect_ArcthrowerStunned	    StunnedEffect;
-	local array<name>                       SkipExclusions;
-	local X2Condition_UnitType				ImmuneUnitCondition;
-	//local X2Effect_RemoveEffects			CleanUpEffect;
-	// Macro to do localisation and stuffs
+	local X2AbilityCooldown								Cooldown;
+	local X2AbilityTemplate								Template;
+	local X2Condition_UnitProperty						UnitPropertyCondition;
+	local X2AbilityToHitCalc_StandardAim				ToHitCalc;
+	local X2AbilityCost_ActionPoints					ActionPointCost;
+	local X2Effect_ArcthrowerStunned					StunnedEffect;
+	local array<name>									SkipExclusions;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'EMPulser');
 
 	// Icon Properties
-	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityEMPulser"; 
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityEMPulser";
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.STANDARD_PISTOL_SHOT_PRIORITY;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
 	Template.DisplayTargetHitChance = true;
-	Template.AbilitySourceName = 'eAbilitySource_Perk';                                       // color of the icon
+	Template.AbilitySourceName = 'eAbilitySource_Perk'; // color of the icon
 
 	// Activated by a button press; additionally, tells the AI this is an activatable
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
@@ -309,20 +296,15 @@ static function X2AbilityTemplate AddEMPulser()
 	// Targeting Details
 	// Can only shoot visible enemies
 	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
-	// Can't target dead; Can't target friendlies -- must be enemy organic
+	// Can't target dead; Can't target friendlies
 	UnitPropertyCondition = new class'X2Condition_UnitProperty';
 	UnitPropertyCondition.ExcludeRobotic = false;  // change from basic stun to allow targeting robotic units
 	UnitPropertyCondition.ExcludeOrganic = false;
 	UnitPropertyCondition.ExcludeDead = true;
 	UnitPropertyCondition.ExcludeFriendlyToSource = true;
 	UnitPropertyCondition.RequireWithinRange = true;
+	UnitPropertyCondition.FailOnNonUnits = true;
 	Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
-	
-	ImmuneUnitCondition = new class'X2Condition_UnitType';
-	ImmuneUnitCondition.ExcludeTypes.AddItem('PsiZombie');
-	ImmuneUnitCondition.ExcludeTypes.AddItem('AdvPsiWitchM2');
-	ImmuneUnitCondition.ExcludeTypes.AddItem('AdvPsiWitchM3');
-	Template.AbilityTargetConditions.AddItem(ImmuneUnitCondition);
 
 	// Can't shoot while dead
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
@@ -334,7 +316,7 @@ static function X2AbilityTemplate AddEMPulser()
 	ActionPointCost.iNumPoints = 1;
 	ActionPointCost.bConsumeAllPoints = true;
 	ActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('Unlimitedpower_LW');
-	Template.AbilityCosts.AddItem(ActionPointCost);	
+	Template.AbilityCosts.AddItem(ActionPointCost);
 
 	// Hit Calculation (Different weapons now have different calculations for range)
 	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
@@ -346,14 +328,11 @@ static function X2AbilityTemplate AddEMPulser()
 	//Stun Effect
 	StunnedEffect = CreateArcthrowerStunnedStatusEffect(100);
 	Template.AddTargetEffect(StunnedEffect);
-	
-	//CleanUpEffect = CreateStunnedEffectsCleanUpEffect();
-	//Template.AddTargetEffect(CleanUpEffect);
 
-	Template.AssociatedPassives.AddItem( 'Electroshock' );
+	Template.AssociatedPassives.AddItem('Electroshock');
 	Template.AddTargetEffect(ElectroshockDisorientEffect());
 
-	Template.AssociatedPassives.AddItem( 'EMPulser' );
+	Template.AssociatedPassives.AddItem('EMPulser');
 	Template.AddTargetEffect(EMPulserHackDefenseReductionEffect());
 	Template.AddTargetEffect(EMPulserWeaponDamageEffect());
 
@@ -365,9 +344,9 @@ static function X2AbilityTemplate AddEMPulser()
 
 	// MAKE IT LIVE!
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;	
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
-	
+
 	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
@@ -376,7 +355,7 @@ static function X2AbilityTemplate AddEMPulser()
 	Template.AdditionalAbilities.AddItem('EMPulserPassive');
 	Template.OverrideAbilities.AddItem('ArcthrowerStun');
 
-	return Template;	
+	return Template;
 }
 
 static function X2Effect_PersistentStatChange EMPulserHackDefenseReductionEffect()
@@ -546,9 +525,7 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	local X2Effect_ArcthrowerStunned		StunnedEffect;
 	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
 	local X2AbilityCooldown					Cooldown;	
-	local X2Condition_UnitType				ImmuneUnitCondition;
 	local X2Condition_UnitEffects			SuppressedCondition;
-	//local X2Effect_RemoveEffects			CleanUpEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChainLightning');
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_COLONEL_PRIORITY;
@@ -563,7 +540,7 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	Template.AbilityTargetConditions.AddItem(default.LivingTargetUnitOnlyProperty);
 	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
-	
+
 	Template.AbilityTargetStyle = default.SimpleSingleTarget;
 	Template.AbilityMultiTargetStyle = new class'X2AbilityMultiTarget_Volt';
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
@@ -575,8 +552,6 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
 	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitDisallowMindControlProperty);
 
-
-	//Template.bAllowAmmoEffects = true;
 	Template.bAllowBonusWeaponEffects = true;
 
 	// Can't target dead; Can't target friendlies -- must be enemy organic
@@ -586,7 +561,7 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	UnitPropertyCondition.ExcludeDead = true;
 	UnitPropertyCondition.ExcludeFriendlyToSource = true;
 	Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
-	
+
 	Template.AbilityMultiTargetConditions.AddItem(UnitPropertyCondition);
 	UnitPropertyCondition2 = new class'X2Condition_UnitProperty';
 	UnitPropertyCondition2.ExcludeConcealed = true;
@@ -597,15 +572,6 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
 	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
 
-	ImmuneUnitCondition = new class'X2Condition_UnitType';
-	ImmuneUnitCondition.ExcludeTypes.AddItem('PsiZombie');
-	ImmuneUnitCondition.ExcludeTypes.AddItem('AdvPsiWitchM2');
-	ImmuneUnitCondition.ExcludeTypes.AddItem('AdvPsiWitchM3');
-	Template.AbilityTargetConditions.AddItem(ImmuneUnitCondition);
-	Template.AbilityMultiTargetConditions.AddItem(ImmuneUnitCondition);
-
-
-
 	Cooldown = new class'X2AbilityCooldown';
 	Cooldown.iNumTurns = default.CHAIN_LIGHTNING_COOLDOWN;
 	Template.AbilityCooldown = Cooldown;
@@ -615,31 +581,27 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	ActionPointCost.iNumPoints = default.CHAIN_LIGHTNING_MIN_ACTION_REQ;
 	ActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('Unlimitedpower_LW');
 	ActionPointCost.bConsumeAllPoints = true;
-	Template.AbilityCosts.AddItem(ActionPointCost);	
+	Template.AbilityCosts.AddItem(ActionPointCost);
 
-	//Stun Effect
+	// Stun Effect
 	StunnedEffect = CreateArcthrowerStunnedStatusEffect(100);
 	Template.AddTargetEffect(StunnedEffect);
 	Template.AddMultiTargetEffect(StunnedEffect);
 
-	//CleanUpEffect = CreateStunnedEffectsCleanUpEffect();
-	//Template.AddTargetEffect(CleanUpEffect);
-
-
 	Template.AssociatedPassives.AddItem('Electroshock');
 	Template.AddMultiTargetEffect(ElectroshockDisorientEffect());
-	
+
 	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
 	ToHitCalc.bOnlyMultiHitWithSuccess = false;
 	ToHitCalc.BuiltInHitMod = default.CHAIN_LIGHTNING_AIM_MOD;
 	Template.AbilityToHitCalc = ToHitCalc;
 	Template.AdditionalAbilities.AddItem('CLFocus');
-	
+
 	Template.ActionFireClass = class'X2Action_Fire_ChainLightning';
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
-	
+
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 

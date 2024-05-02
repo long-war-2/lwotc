@@ -5993,6 +5993,12 @@ LocLongDescription="Greife einen Feind innerhalb deiner blauen Bewegungsreichwei
 LocHelpText="Greife einen Feind innerhalb deiner blauen Bewegungsreichweite mit der Waffe \"<Ability:BOUND_WEAPON_NAME/>\" an. Beendet deine Runde nicht."
 LocPromotionPopupText="<Bullet/> Greife einen Feind innerhalb deiner blauen Bewegungsreichweite mit der Waffe \"<Ability:BOUND_WEAPON_NAME/>\" an.<br/><Bullet/> Der Angriff beendet deine Runde nicht.<br/><Bullet/> Blitzschneller Schlitzer hat eine Abklingzeit von <Ability:LIGHTNINGSLASH_COOLDOWN/> Runden.<br/>"
 
+[LightningSlashLastAction_LW X2AbilityTemplate]
+LocFriendlyName="Blitzschneller Schlitzer"
+LocLongDescription="Greife einen Feind innerhalb deiner blauen Bewegungsreichweite mit der Waffe \"<Ability:BOUND_WEAPON_NAME/>\" an. Der Angriff beendet deine Runde nicht."
+LocHelpText="Greife einen Feind innerhalb deiner blauen Bewegungsreichweite mit der Waffe \"<Ability:BOUND_WEAPON_NAME/>\" an. Beendet deine Runde nicht."
+LocPromotionPopupText="<Bullet/> Greife einen Feind innerhalb deiner blauen Bewegungsreichweite mit der Waffe \"<Ability:BOUND_WEAPON_NAME/>\" an.<br/><Bullet/> Der Angriff beendet deine Runde nicht.<br/><Bullet/> Blitzschneller Schlitzer hat eine Abklingzeit von <Ability:LIGHTNINGSLASH_COOLDOWN/> Runden.<br/>"
+
 [InspireAgility_LW X2AbilityTemplate]
 LocFriendlyName="Anspornen"
 LocFlyOverText="Anspornen"

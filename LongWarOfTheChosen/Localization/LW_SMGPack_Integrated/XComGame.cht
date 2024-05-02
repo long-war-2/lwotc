@@ -6,7 +6,7 @@
 FriendlyName="衝鋒槍"
 FriendlyNamePlural="衝鋒槍"
 BriefSummary="衝鋒槍相對於突擊步槍提供了更輕，更隱蔽的選擇，雖然他們威力一般並且在遠距離精度也較差。"
-TacticalText="<Bullet/>在未進行特殊訓練前，用主武器射擊會結束該士兵的回合。\n<Bullet/>使用從變種人敵人那收集的升級部件來提升衝鋒槍的武器效能。\n<Bullet/>衝鋒槍風格的武器相比突擊步槍能提供額外的移動力，近戰精度和隱蔽性，但他們傷害更低，並在遠距離受到精度減益。"
+TacticalText="<Bullet/>在未進行特殊訓練前，用主武器射擊會結束士兵的回合。\n<Bullet/>使用從變種人敵人那收集的升級部件來提升衝鋒槍的武器效能。\n<Bullet/>衝鋒槍風格的武器相比突擊步槍能提供額外的移動力，近戰精度和隱蔽性，但他們傷害更低，並在遠距離受到精度減益。"
 AbilityDescName="衝鋒槍"
 
 [SMG_MG X2WeaponTemplate]
