@@ -340,7 +340,7 @@ static function X2DataTemplate Create_NullWard()
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 
 	Template.AdditionalAbilities.AddItem('LW_NullWard_Anim');
-	Template.PrerequisiteAbilities.AddItem('SoulSteal');
+	Template.PrerequisiteAbilities.AddItem('Fortress');
 	
 	return Template;
 }

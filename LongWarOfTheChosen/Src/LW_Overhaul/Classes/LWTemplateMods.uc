@@ -1152,7 +1152,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		UnitPropertyCondition.ExcludeFriendlyToSource = false;
 		Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
 		Template.AdditionalAbilities.AddItem('StasisShield');
-		Template.PrerequisiteAbilities.AddItem('Fuse');
+		Template.PrerequisiteAbilities.AddItem('Solace_LW');
 	}
 
 	if (Template.DataName == 'StasisShield')
