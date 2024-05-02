@@ -24,7 +24,8 @@ enum EMissionUIType
 	eMissionUI_Council,
 	eMissionUI_Retaliation,
     eMissionUI_Rendezvous,
-	eMissionUI_Invasion
+	eMissionUI_Invasion,
+	eMissionUI_ChosenSupplyRaid
 };
 
 var UIButton IgnoreButton;
@@ -298,6 +299,9 @@ simulated function BuildMissionPanel()
 	case eMissionUI_Invasion:
 		BuildInvasionMissionPanel();
 		break;
+	case eMissionUI_ChosenSupplyRaid:
+		BuildChosenSupplyRaidMissionPanel();
+		break;
 	default:
 		BuildGuerrillaOpsMissionPanel();
 		break;
@@ -341,6 +345,9 @@ simulated function BuildOptionsPanel()
 		break;
 	case eMissionUI_Invasion:
 		BuildInvasionOptionsPanel();
+		break;
+	case eMissionUI_ChosenSupplyRaid:
+		BuildSupplyRaidOptionsPanel();
 		break;
 	default:
 		BuildGuerrillaOpsOptionsPanel();
@@ -460,6 +467,22 @@ simulated function BuildSupplyRaidMissionPanel()
 	LibraryPanel.MC.BeginFunctionOp("UpdateSupplyRaidInfoBlade");
 	LibraryPanel.MC.QueueString(GetMissionImage());				// defined in UIMission
 	LibraryPanel.MC.QueueString(class'UIMission_SupplyRaid'.default.m_strSupplyMission);
+	LibraryPanel.MC.QueueString(GetRegion().GetMyTemplate().DisplayName);
+	LibraryPanel.MC.QueueString(GetOpName());					// defined in UIMission
+	LibraryPanel.MC.QueueString(m_strMissionObjective);			// defined in UIMission
+	LibraryPanel.MC.QueueString(GetObjectiveString());			// defined in UIMission
+	LibraryPanel.MC.QueueString(class'UIMission_SupplyRaid'.default.m_strSupplyRaidGreeble);
+	LibraryPanel.MC.EndOp();
+}
+
+// KDM : The code within BuildSupplyRaidMissionPanel and BuildSupplyRaidOptionsPanel has been swapped
+// since mission panels should deal with 'info blades' and option panels should deal with 'button blades'.
+simulated function BuildChosenSupplyRaidMissionPanel()
+{
+	// KDM : UpdateSupplyRaidInfoBlade takes 7 parameters, not 11 !
+	LibraryPanel.MC.BeginFunctionOp("UpdateSupplyRaidInfoBlade");
+	LibraryPanel.MC.QueueString(GetMissionImage());				// defined in UIMission
+	LibraryPanel.MC.QueueString("Chosen Supply Raid");
 	LibraryPanel.MC.QueueString(GetRegion().GetMyTemplate().DisplayName);
 	LibraryPanel.MC.QueueString(GetOpName());					// defined in UIMission
 	LibraryPanel.MC.QueueString(m_strMissionObjective);			// defined in UIMission
@@ -889,6 +912,7 @@ simulated function Name GetLibraryID()
 	case eMissionUI_GuerrillaOps:
 		return 'Alert_GuerrillaOpsBlades';
 	case eMissionUI_SupplyRaid:
+	case eMissionUI_ChosenSupplyRaid:
 	case eMissionUI_LandedUFO:
 		return 'Alert_SupplyRaidBlades';			// Used for 'Supply Raid' and 'Landed UFO' missions.
 	case eMissionUI_GoldenPath:
@@ -919,6 +943,7 @@ simulated function string GetSFX()
 	case eMissionUI_GuerrillaOps:
 		return "GeoscapeFanfares_GuerillaOps";
 	case eMissionUI_SupplyRaid:
+	case eMissionUI_ChosenSupplyRaid:
 		return "Geoscape_Supply_Raid_Popup";
 	case eMissionUI_LandedUFO:
 		return "Geoscape_UFO_Landed";
@@ -983,7 +1008,7 @@ simulated function bool IsGuerrillaOpMission()
 
 simulated function bool IsSupplyRaidMission()
 {
-	return MissionUIType == eMissionUI_SupplyRaid;
+	return MissionUIType == eMissionUI_SupplyRaid || MissionUIType == eMissionUI_ChosenSupplyRaid;
 }
 
 simulated function bool IsLandedUFOMission()
