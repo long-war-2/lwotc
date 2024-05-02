@@ -18,7 +18,7 @@ event name CallMeetsCondition(XComGameState_BaseObject kTarget)
 	if (TargetUnit.IsRobotic())
 		return 'AA_UnitIsWrongType';
 
-	if (TargetUnit.GetTeam() == eTeam_Alien || TargetUnit.GetTeam() == eTeam_TheLost || TargetUnit.GetTeam() == eTeam_Neutral)
+	if (TargetUnit.GetPreviousTeam() !=  eTeam_XCom)
 		return 'AA_UnitIsWrongType';
 
 	if (TargetUnit.IsStunned() || TargetUnit.IsDisoriented() || TargetUnit.bPanicked || TargetUnit.IsMindControlled() || TargetUnit.IsPanicked())
