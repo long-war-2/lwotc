@@ -6623,6 +6623,14 @@ LocHelpText="Attack any enemy within blue movement range with your <Ability:BOUN
 LocPromotionPopupText="<Bullet/> Attack any enemy within blue movement range with your <Ability:BOUND_WEAPON_NAME/>.<br/><Bullet/> This attack does not end the turn.<br/><Bullet/> Lightning Slash has a <Ability:LIGHTNINGSLASH_COOLDOWN/> turn cooldown.<br/>"
 ; End Translation (3)
 
+[LightningSlashLastAction_LW X2AbilityTemplate]
+LocFriendlyName="Lightning Slash"
+; LWOTC Needs Translation (3)
+LocLongDescription="Attack any enemy within blue movement range with your <Ability:BOUND_WEAPON_NAME/>. This attack does not end the turn."
+LocHelpText="Attack any enemy within blue movement range with your <Ability:BOUND_WEAPON_NAME/>. This attack does not end the turn."
+LocPromotionPopupText="<Bullet/> Attack any enemy within blue movement range with your <Ability:BOUND_WEAPON_NAME/>.<br/><Bullet/> This attack does not end the turn.<br/><Bullet/> Lightning Slash has a <Ability:LIGHTNINGSLASH_COOLDOWN/> turn cooldown.<br/>"
+; End Translation (3)
+
 [InspireAgility_LW X2AbilityTemplate]
 LocFriendlyName="Inspire Agility"
 LocFlyOverText="Inspire Agility"
