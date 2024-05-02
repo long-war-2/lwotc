@@ -537,6 +537,16 @@ static function int ProcessReflexActionsForUnit(
 	float Chance,
 	int NumSuccessfulReflexActions)
 {
+	local UnitValue SpawnedUnitValue;
+
+	// If the unit spawned this turn, no reflex moves;
+	Unit.GetUnitValue('SpawnedThisTurnUnitValue', SpawnedUnitValue);
+	if(SpawnedUnitValue.fValue > 0)
+	{
+		return 0;
+	}
+	
+
 	if (class'Utilities_LW'.default.REFLEX_ACTION_CHANCE_REDUCTION > 0 && NumSuccessfulReflexActions > 0)
 	{
 		`LWTrace(GetFuncName() $ ": Reducing reflex chance due to " $ NumSuccessfulReflexActions $ " successes");
