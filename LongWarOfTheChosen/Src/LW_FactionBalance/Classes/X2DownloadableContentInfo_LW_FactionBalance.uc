@@ -118,6 +118,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 	case 'DisablingShotStunActions':
 		OutString = string(class'X2Ability_ReaperAbilitySet_LW'.default.DisablingShotBaseStunActions);
 		return true;
+	case 'DisablingShotDamagePenalty':
+		OutString = string(int(100*class'X2Ability_ReaperAbilitySet_LW'.default.DisablingShotDamagePenalty));
+		return true;
 	case 'PARAMEDIC_BONUS_CHARGES':
 		OutString = string(class'X2Ability_ReaperAbilitySet_LW'.default.PARAMEDIC_BONUS_CHARGES);
 		return true;

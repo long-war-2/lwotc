@@ -34,19 +34,18 @@ LocPromotionPopupText="<Bullet/> Adds a disorient effect that applies to all org
 
 [DisablingShot X2AbilityTemplate]
 LocFriendlyName="Disabling Shot"
-LocLongDescription="Stun enemies with a precise shot, with a bonus stun duration if the shot crits. The shot can not do critical damage."
-LocHelpText="Stun enemies with a precise shot, with a bonus stun duration if the shot crits. The shot can not do critical damage."
+LocLongDescription="Fire a shot that deals <Ability:DisablingShotDamagePenalty>% less damage, but stuns if it hits. Critical hits with this attack do not deal extra damage, but apply a longer stun."
+LocHelpText="Stun the target for <Ability:DisablingShotStunActions> actions. Critical hits do not deal extra damage, but extend the stun by <Ability:DisablingShotCritStunActions> actions."
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> Stuns enemies for <Ability:DisablingShotStunActions/> actions if the shot hits (including if it grazes).<br/><Bullet/> Stuns for an extra <Ability:DisablingShotCritStunActions/> actions if the shot crits, but the shot won't inflict the critical damage.<br/><Bullet/> Disabling Shot requires <Ability:SelfAmmoCost/> ammo to use.<br/><Bullet/> Disabling Shot has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Only Avatars and Psi Zombies can not be stunned."
+LocPromotionPopupText="<Bullet/> Stuns the target for <Ability:DisablingShotStunActions/> actions if it hits, even on a graze.<br/><Bullet/> Stuns for an extra <Ability:DisablingShotCritStunActions/> actions if the shot crits, but the shot won't inflict the critical damage.<br/><Bullet/> Disabling Shot requires <Ability:SelfAmmoCost/> ammo to use.<br/><Bullet/> Disabling Shot has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Disabling Shot cannot be used against stun immune enemies.<br/>"
 ; End Translation (2)
-
 
 [DisablingShotSnapShot X2AbilityTemplate]
 LocFriendlyName="Disabling Shot (Snap Shot)"
-LocLongDescription="Stun enemies with a precise shot, with a bonus stun duration if the shot crits. The shot can not do critical damage."
-LocHelpText="Stun enemies with a precise shot, with a bonus stun duration if the shot crits. The shot can not do critical damage."
+LocLongDescription="Fire a shot that deals <Ability:DisablingShotDamagePenalty>% less damage, but stuns if it hits. Critical hits with this attack do not deal extra damage, but apply a longer stun."
+LocHelpText="Stun the target for <Ability:DisablingShotStunActions> actions. Critical hits do not deal extra damage, but apply a <Ability:DisablingShotCritStunActions> action stun."
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> Stuns enemies for <Ability:DisablingShotStunActions/> actions if the shot hits (including if it grazes).<br/><Bullet/> Stuns for an extra <Ability:DisablingShotCritStunActions/> actions if the shot crits, but the shot won't inflict the critical damage.<br/><Bullet/> Disabling Shot requires <Ability:SelfAmmoCost/> ammo to use.<br/><Bullet/> Disabling Shot has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Only Avatars and Psi Zombies can not be stunned."
+LocPromotionPopupText="<Bullet/> Stuns the target for <Ability:DisablingShotStunActions/> actions if it hits, even on a graze.<br/><Bullet/> Stuns for an extra <Ability:DisablingShotCritStunActions/> actions if the shot crits, but the shot won't inflict the critical damage.<br/><Bullet/> Disabling Shot requires <Ability:SelfAmmoCost/> ammo to use.<br/><Bullet/> Disabling Shot has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Disabling Shot cannot be used against stun immune enemies.<br/>"
 ; End Translation (2)
 
 [Meditation X2AbilityTemplate]

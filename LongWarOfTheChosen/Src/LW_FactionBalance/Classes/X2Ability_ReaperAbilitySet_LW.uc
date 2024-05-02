@@ -459,15 +459,14 @@ static function X2DataTemplate AddBloodTrailBleedingAbility()
 static function X2AbilityTemplate AddDisablingShot()
 {
 	local X2AbilityTemplate					Template;
-	local X2AbilityCost_Ammo                AmmoCost;
-	local X2AbilityCost_ActionPoints        ActionPointCost;
-	local X2AbilityCooldown_Shared          Cooldown;
-	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
+	local X2AbilityCost_Ammo				AmmoCost;
+	local X2AbilityCost_ActionPoints		ActionPointCost;
+	local X2AbilityCooldown_Shared			Cooldown;
+	local X2AbilityToHitCalc_StandardAim	ToHitCalc;
 	local X2Condition_Visibility			VisibilityCondition;
 	local X2Effect_DisablingShotStunned		StunEffect;
 	local X2Condition_UnitEffects			SuppressedCondition;
 	local X2Condition_UnitProperty			UnitPropertyCondition;
-	local X2Condition_UnitType				ImmuneUnitCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'DisablingShot');
 	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityElectroshock";
@@ -489,7 +488,7 @@ static function X2AbilityTemplate AddDisablingShot()
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
 	Template.AddShooterEffectExclusions();
-	Template.ActivationSpeech = 'Reaper';
+	Template.ActivationSpeech = 'StunTarget';
 	Template.AdditionalAbilities.AddItem('DisablingShotCritRemoval');
 
 	VisibilityCondition = new class'X2Condition_Visibility';
@@ -512,7 +511,6 @@ static function X2AbilityTemplate AddDisablingShot()
 	ActionPointCost.bConsumeAllPoints = true;
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
-	// Can't target dead; Can't target friendlies
 	UnitPropertyCondition = new class'X2Condition_UnitProperty';
 	UnitPropertyCondition.ExcludeRobotic = false;
 	UnitPropertyCondition.ExcludeOrganic = false;
@@ -520,12 +518,6 @@ static function X2AbilityTemplate AddDisablingShot()
 	UnitPropertyCondition.ExcludeFriendlyToSource = true;
 	UnitPropertyCondition.RequireWithinRange = true;
 	Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
-	
-	ImmuneUnitCondition = new class'X2Condition_UnitType';
-	ImmuneUnitCondition.ExcludeTypes.AddItem('PsiZombie');
-	ImmuneUnitCondition.ExcludeTypes.AddItem('AdvPsiWitchM2');
-	ImmuneUnitCondition.ExcludeTypes.AddItem('AdvPsiWitchM3');
-	Template.AbilityTargetConditions.AddItem(ImmuneUnitCondition);
 
 	SuppressedCondition = new class'X2Condition_UnitEffects';
 	SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
@@ -537,9 +529,9 @@ static function X2AbilityTemplate AddDisablingShot()
 	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
 
 	Cooldown = new class'X2AbilityCooldown_Shared';
-    Cooldown.iNumTurns = default.DisablingShotCooldown;
+	Cooldown.iNumTurns = default.DisablingShotCooldown;
 	Cooldown.SharingCooldownsWith.AddItem('DisablingShotSnapShot');
-    Template.AbilityCooldown = Cooldown;
+	Template.AbilityCooldown = Cooldown;
 
 	AmmoCost = new class'X2AbilityCost_Ammo';
 	AmmoCost.iAmmo = default.DisablingShotAmmoCost;
@@ -550,7 +542,7 @@ static function X2AbilityTemplate AddDisablingShot()
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
-	
+
 	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
@@ -561,16 +553,15 @@ static function X2AbilityTemplate AddDisablingShot()
 static function X2AbilityTemplate AddDisablingShotSnapShot()
 {
 	local X2AbilityTemplate					Template;
-	local X2AbilityCost_Ammo                AmmoCost;
-	local X2AbilityCost_ActionPoints        ActionPointCost;
-	local X2AbilityCooldown_Shared                 Cooldown;
-	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
+	local X2AbilityCost_Ammo				AmmoCost;
+	local X2AbilityCost_ActionPoints		ActionPointCost;
+	local X2AbilityCooldown_Shared			Cooldown;
+	local X2AbilityToHitCalc_StandardAim	ToHitCalc;
 	local X2Condition_Visibility			VisibilityCondition;
 	local X2Effect_DisablingShotStunned		StunEffect;
 	local X2Condition_UnitEffects			SuppressedCondition;
 	local X2Condition_UnitProperty			UnitPropertyCondition;
-	local X2Condition_UnitType				ImmuneUnitCondition;
-	local X2Condition_AbilityProperty   	AbilityCondition;
+	local X2Condition_AbilityProperty		AbilityCondition;
 	local X2Condition_UnitActionPoints		ActionPointCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'DisablingShotSnapShot');
@@ -592,7 +583,7 @@ static function X2AbilityTemplate AddDisablingShotSnapShot()
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
 	Template.AddShooterEffectExclusions();
-	Template.ActivationSpeech = 'Reaper';
+	Template.ActivationSpeech = 'StunTarget';
 	Template.AdditionalAbilities.AddItem('DisablingShotSnapShotCritRemoval');
 
 	VisibilityCondition = new class'X2Condition_Visibility';
@@ -622,12 +613,6 @@ static function X2AbilityTemplate AddDisablingShotSnapShot()
 	UnitPropertyCondition.ExcludeFriendlyToSource = true;
 	UnitPropertyCondition.RequireWithinRange = true;
 	Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
-	
-	ImmuneUnitCondition = new class'X2Condition_UnitType';
-	ImmuneUnitCondition.ExcludeTypes.AddItem('PsiZombie');
-	ImmuneUnitCondition.ExcludeTypes.AddItem('AdvPsiWitchM2');
-	ImmuneUnitCondition.ExcludeTypes.AddItem('AdvPsiWitchM3');
-	Template.AbilityTargetConditions.AddItem(ImmuneUnitCondition);
 
 	SuppressedCondition = new class'X2Condition_UnitEffects';
 	SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
@@ -639,9 +624,9 @@ static function X2AbilityTemplate AddDisablingShotSnapShot()
 	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
 
 	Cooldown = new class'X2AbilityCooldown_Shared';
-    Cooldown.iNumTurns = default.DisablingShotCooldown;
+	Cooldown.iNumTurns = default.DisablingShotCooldown;
 	Cooldown.SharingCooldownsWith.AddItem('DisablingShot');
-    Template.AbilityCooldown = Cooldown;
+	Template.AbilityCooldown = Cooldown;
 
 	AmmoCost = new class'X2AbilityCost_Ammo';
 	AmmoCost.iAmmo = default.DisablingShotAmmoCost;
@@ -656,13 +641,12 @@ static function X2AbilityTemplate AddDisablingShotSnapShot()
 	Template.AbilityShooterConditions.Additem(AbilityCondition);
 
 	ActionPointCondition = new class'X2Condition_UnitActionPoints';
-	ActionPointCondition.AddActionPointCheck(1,class'X2CharacterTemplateManager'.default.StandardActionPoint,false,eCheck_LessThanOrEqual);
+	ActionPointCondition.AddActionPointCheck(1, class'X2CharacterTemplateManager'.default.StandardActionPoint, false, eCheck_LessThanOrEqual);
 	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
 	ActionPointCondition = new class'X2Condition_UnitActionPoints';
-	ActionPointCondition.AddActionPointCheck(1,class'X2CharacterTemplateManager'.default.RunAndGunActionPoint,false,eCheck_LessThanOrEqual);
+	ActionPointCondition.AddActionPointCheck(1, class'X2CharacterTemplateManager'.default.RunAndGunActionPoint, false, eCheck_LessThanOrEqual);
 	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
 
-	
 	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
