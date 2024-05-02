@@ -31,8 +31,8 @@ strChangePageDesc="查看其他你可以激活的能力。你也可以使用「x
 m_strNoWeaponUpgradesTooltip="沒有可用的武器升級"
 
 [X2Ability_PerkPackAbilitySet2]
-TrojanVirus="木馬病毒"
-TrojanVirusTriggered="<XGParam:StrValue0/!UnitName/>已觸發木馬病毒。"
+TrojanVirus="特洛伊病毒"
+TrojanVirusTriggered="<XGParam:StrValue0/!UnitName/>已觸發特洛伊病毒。"
 
 [X2Effect_Savior]
 strSavior_WorldMessage="妙手回春：已回復額外<XGParam:IntValue0/>生命值。"
@@ -46,10 +46,10 @@ DenseSmokeGrenadeEffectDisplayDesc="濃密煙霧賦予該單位額外的防禦�
 
 [X2Ability_PerkPackAbilitySet]
 LocCoveringFire="掩護射擊"
-LocCoveringFireMalus="該單位已經被一名具有掩護射擊技能的監視單位瞄準，在本回合剩餘時間-10命中。"
+LocCoveringFireMalus="該單位已經被一名具有掩護射擊技能的單位監視瞄準，在本回合剩餘時間-10命中。"
 ; LWOTC Needs Translation
-LocSoulStealBuff="靈魂灼燒"
-LocSoulStealBuffHelpText="靈魂偷取在治療過度時給予護盾。"
+LocSoulStealBuff="靈魂汲取護盾"
+LocSoulStealBuffHelpText="靈魂汲取在治療過度時給予護盾。"
 ; End Translation
 
 ; LWOTC Needs Translation
@@ -58,5 +58,5 @@ HealedMessage="+<Heal/> 生命回復"
 
 [X2StatusEffects_LW]
 MaimedFriendlyName="殘廢"
-MaimedFriendlyDesc="單位的機動性降低至零，所以他們不能移動。他們仍然可以射擊和執行其他非移動能力。"
+MaimedFriendlyDesc="單位的機動性降低至零，所以不能移動，但仍然可以射擊或執行其他非移動的能力。"
 ; End Translation

@@ -55,16 +55,16 @@ LocPromotionPopupText="<Bullet/>為鎮壓平民而設計，此武器只會造成
 [LWDroneRepair X2AbilityTemplate]
 LocFriendlyName="修理"
 LocFlyOverText="修理"
-LocHelpText="修理附近的任何機械單位。"
-LocLongDescription="修理附近的任何機械單位。"
-LocPromotionPopupText="<Bullet/>修理附近的任何機械單位。"
+LocHelpText="修理附近的任一機械單位。"
+LocLongDescription="修理附近的任一機械單位。"
+LocPromotionPopupText="<Bullet/>修理附近的任一機械單位。"
 
 [LWDroneMeleeStun X2AbilityTemplate]
 LocFriendlyName="眩暈"
 LocFlyOverText="眩暈"
-LocHelpText="嘗試眩暈近戰範圍內的任何敵人。"
-LocLongDescription="嘗試眩暈近戰範圍內的任何敵人。"
-LocPromotionPopupText="<Bullet/>嘗試眩暈近戰範圍內的任何敵人。"
+LocHelpText="嘗試眩暈近戰範圍內的任一敵人。"
+LocLongDescription="嘗試眩暈近戰範圍內的任一敵人。"
+LocPromotionPopupText="<Bullet/>嘗試眩暈近戰範圍內的任一敵人。"
 LocMissMessage="未命中！"
 
 [PersonalShield X2AbilityTemplate]
@@ -77,9 +77,9 @@ LocPromotionPopupText="<Bullet/>提供5點額外護盾。<br/><Bullet/>5回合�
 [MassReanimation_LW X2AbilityTemplate]
 LocFriendlyName="群體復生"
 LocFlyOverText="群體復生"
-LocHelpText="復活所有周圍死去的有機體，將它們轉化為殭屍。"
-LocLongDescription="復活所有周圍死去的有機體，將它們轉化為殭屍。"
-LocPromotionPopupText="<Bullet/>復活所有周圍死去的有機體，將它們轉化為殭屍。"
+LocHelpText="復活周圍所有死去的有機體，將它們轉化為殭屍。"
+LocLongDescription="復活周圍所有死去的有機體，將它們轉化為殭屍。"
+LocPromotionPopupText="<Bullet/>復活周圍所有死去的有機體，將它們轉化為殭屍。"
 
 [ReadyForAnything X2AbilityTemplate]
 LocFriendlyName="一切就緒"
