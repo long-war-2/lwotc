@@ -511,11 +511,11 @@ LocPromotionPopupText="<Bullet/> Knife attacks use one action and do not end you
 
 [Combatives X2AbilityTemplate]
 LocFriendlyName="Combatives"
-LocLongDescription="You may parry melee attacks and counterattack with your <Ability:BOUND_WEAPON_NAME>. Also gain +<ABILITY:COMBATIVES_DODGE_LW/> dodge."
-LocHelpText="Automatically parry and counter grazing and missing melee attacks on enemy turns."
+LocLongDescription="Once per enemy turn, automatically parry a melee attack that grazes or misses against you, and counterattack with your <Ability:BOUND_WEAPON_NAME>. Also gain +<ABILITY:COMBATIVES_DODGE_LW/> dodge."
+LocHelpText="Once per enemy turn, automatically parry and counter a melee attack that grazes or misses."
 LocFlyOverText="Combatives"
 ; LWOTC needs translation
-LocPromotionPopupText="<Bullet/> You will automatically parry any grazed or missed melee attack against you and counterattack with your <Ability:BOUND_WEAPON_NAME>.<br/><Bullet/> Combatives grants you +<Ability:COUNTERATTACK_DODGE_AMOUNT_LW/> dodge against the first melee attack against you each enemy turn.<br/><Bullet/> Combatives passively grants you +<ABILITY:COMBATIVES_DODGE_LW/> dodge.<br/><Bullet/> You can only counterattack on enemy turns.<br/><Bullet/> You can only counterattack single target melee attacks."
+LocPromotionPopupText="<Bullet/> Combatives grants you +<Ability:COUNTERATTACK_DODGE_AMOUNT_LW/> dodge against melee attacks each enemy turn. The bonus dodge is lost when you parry a melee attack.<br/><Bullet/> Combatives passively grants you +<ABILITY:COMBATIVES_DODGE_LW/> dodge.<br/><Bullet/> You can only counterattack single target melee attacks."
 ; End Translation
 
 [Flush X2AbilityTemplate]
@@ -5586,9 +5586,9 @@ LocPromotionPopupText="<Bullet/> Shadow reduces detection ranges to just a few t
 
 ; LWOTC Needs Translation (2)
 [SilentKiller X2AbilityTemplate]
-LocLongDescription="Guarantees that the Reaper stays in Shadow with killing shots."
-LocHelpText="Guarantees that the Reaper stays in Shadow with killing shots."
-LocPromotionPopupText="<Bullet/> Allows a Reaper to stay safely in Shadow if they kill a unit with their primary weapon."
+LocLongDescription="You are not revealed from Shadow when you kill with your primary weapon."
+LocHelpText="You are not revealed from Shadow when you kill with your primary weapon."
+LocPromotionPopupText=""
 ; End Translation (2)
 
 [ShadowRising X2AbilityTemplate]
