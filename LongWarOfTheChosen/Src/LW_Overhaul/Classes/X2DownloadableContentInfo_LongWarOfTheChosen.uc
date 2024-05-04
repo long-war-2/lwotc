@@ -6534,3 +6534,31 @@ exec function LWOTC_ForceGenerateMap()
 
 	`TACTICALRULES.StartNewGame();
 }
+
+// This will murder/abandon all soldiers that are captured, intended for bugfixing/clearing dead bugged units.
+exec function LWOTC_NukeCapturedSoldiers()
+{
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local XComGameState_AdventChosen ChosenState;
+	local XComGameStateHistory History;
+	local XComGameState NewGameState;
+
+	History = `XCOMHISTORY;
+
+	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	AllChosen = AlienHQ.GetAllChosen(, false);
+
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Nuking captured soldiers");
+
+	AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
+	AlienHQ.CapturedSoldiers.Length = 0;
+
+	foreach AllChosen(ChosenState)
+	{
+		ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
+		ChosenState.CapturedSoldiers.Length = 0;
+	}
+
+	`GAMERULES.SubmitGameState(NewGameState);
+}
