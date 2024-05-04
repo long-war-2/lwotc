@@ -37,6 +37,10 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 
 	Attacker.GetUnitValue ('SerialKills', UnitVal);
 
+    // Only apply to primary weapon
+    if (AbilityState.SourceWeapon.ObjectID != Attacker.GetPrimaryWeapon().ObjectID)
+		return 0;
+
 	if (Damage_Falloff)
 	{
 		return -int(UnitVal.fValue);
