@@ -628,7 +628,7 @@ static function X2DataTemplate CreateTemplate_AdvSentry_WPN(name TemplateName)
 	{
 		Template.Abilities.AddItem('CoolUnderPressure');
 		Template.Abilities.AddItem('Sentinel');
-		Template.Abilities.AddItem('CoveringFire');
+		//Template.Abilities.AddItem('CoveringFire');
 	}
 
 	if (TemplateName == 'AdvSentryM3_WPN')
