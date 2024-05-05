@@ -13,6 +13,12 @@ struct MissionEnemyCount
 	var int NumEnemies;
 };
 
+struct MissionEnemyCountOffset
+{
+	var name MissionName;
+	var int OffsetAmount;
+};
+
 var config array<float> REFLEX_ACTION_CHANCE_YELLOW;
 var config array<float> REFLEX_ACTION_CHANCE_GREEN;
 var config float REFLEX_ACTION_CHANCE_REDUCTION;
@@ -23,6 +29,7 @@ var config array<float> HIGH_INFILTRATION_MODIFIER_ON_REFLEX_ACTIONS;
 var config array<string> RETALIATION_MISSION_TYPES;
 
 var config array<MissionEnemyCount> OverrideMissionEnemyCounts;
+var config array<MissionEnemyCountOffset> OverrideMissionEnemyCountOffsets;
 
 const CA_FAILURE_RISK_MARKER = "CovertActionRisk_Failure";
 
@@ -701,6 +708,12 @@ function static XComGameState_Unit AddRebelToMission(StateObjectReference RebelR
 	}
 
 	MissionState.GetShadowChamberMissionInfo(OrigMissionAliens, UnitTemplatesThatWillSpawn);
+
+	index = default.OverrideMissionEnemyCountOffsets.Find('MissionName', MissionState.GeneratedMission.Mission.MissionName);
+	if(index != INDEX_NONE)
+	{
+		OrigMissionAliens += default.OverrideMissionEnemyCountOffsets[index].OffsetAmount;
+	}
 
 	// Handle missions built primarily around RNFs by granting a minimum alien count
 	if (OrigMissionAliens <= 6)
