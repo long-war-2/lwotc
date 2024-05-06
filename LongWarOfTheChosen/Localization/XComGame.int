@@ -142,6 +142,12 @@ LocLongDescription="Fire your pistol at a target. This attack does not cost an a
 LocHelpText="Fire your pistol at a target. This attack does not cost an action."
 LocPromotionPopupText="<Bullet/> Lightning Hands can combo well with other <Ability:ClassName/> abilities, as it does not prevent the use of other abilities in the same turn.<br/><Bullet/> Lightning Hands has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
+[MedicalProtocol X2AbilityTemplate]
+LocFriendlyName="Medical Protocol"
+LocLongDescription="The GREMLIN can perform healing actions remotely: GREMLIN Heal and GREMLIN Stabilize. The GREMLIN has a single charge. If a medikit is equipped, the GREMLIN will gain 3 additional charges."
+LocHelpText="The GREMLIN now performs healing actions: GREMLIN Heal and GREMLIN Stabilize."
+LocFlyOverText="Medical Protocol"
+LocPromotionPopupText="<Bullet/> Upgrading your GREMLIN will lead to more HP healed per charge.<br/><Bullet/> GREMLIN Heal or GREMLIN Stabilize, when used as your first action, will not end your turn.<br/>"
 
 
 
@@ -354,8 +360,8 @@ LocPromotionPopupText="<Bullet/> This soldier has significantly reduced infiltra
 
 [Failsafe X2AbilityTemplate]
 LocFriendlyName="Failsafe"
-LocLongDescription="If you fail a hack, you prevent any negative effects from occurring."
-LocHelpText="If you fail a hack, you prevent any negative effects from occurring."
+LocLongDescription="If you fail a hack, you prevent any negative effects from occurring and gain 1 AP back."
+LocHelpText="If you fail a hack, you prevent any negative effects from occurring and gain 1 AP back."
 LocFlyOverText="Failsafe"
 LocPromotionPopupText="<Bullet/> Negative effects prevented by Failsafe include losing squad concealment."
 

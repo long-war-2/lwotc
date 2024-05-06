@@ -257,6 +257,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'Overdrive':
 			FixOverdrive(Template);
 			break;
+		case 'MedicalProtocol':
+			Template.GetBonusWeaponAmmoFn =FieldMedic_BonusWeaponAmmo;
+			break;
 		default:
 			break;
 
@@ -278,6 +281,14 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 	// Handle multi-shot abilities
 	UpdateMultiShotAbility(Template);
 	UpdateMeleeAbilityForBloodThirst(Template);
+}
+
+function int FieldMedic_BonusWeaponAmmo(XComGameState_Unit UnitState, XComGameState_Item ItemState)
+{
+	if (ItemState.GetWeaponCategory() == class'X2Item_DefaultUtilityItems'.default.MedikitCat)
+		return class'X2Ability_SpecialistAbilitySet'.default.FIELD_MEDIC_BONUS;
+
+	return 0;
 }
 
 static function ReworkAbsorptionField(X2AbilityTemplate Template)
