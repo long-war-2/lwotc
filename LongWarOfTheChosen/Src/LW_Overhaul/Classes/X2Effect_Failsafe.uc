@@ -19,6 +19,7 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
 	// allows activation/deactivation of effect
 	EventMgr.RegisterForEvent(EffectObj, 'PreAcquiredHackReward', PreAcquiredHackReward,,,, true, EffectObj);
 	EventMgr.RegisterForEvent(EffectObj, 'FailsafeTriggered', EffectGameState.TriggerAbilityFlyover, ELD_OnStateSubmitted,, UnitState);
+	EventMgr.RegisterForEvent(EffectObj, 'FailsafeTriggered', FailsafeGiveAP, ELD_OnStateSubmitted,, UnitState);
 }
 
 // this is triggered just before acquiring a hack reward, giving a chance to skip adding the negative one
@@ -65,6 +66,46 @@ static function EventListenerReturn PreAcquiredHackReward(Object EventData, Obje
 			`XEVENTMGR.TriggerEvent('FailsafeTriggered', AbilityState, Hacker, NewGameState);
 		}
 	}
+
+	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn FailsafeGiveAP(Object EventData, Object EventSource, XComGameState GameState, Name Event, Object CallbackData)
+{
+	local XComGameState UpdatedGameState;
+	local XComGameState_Unit UnitState;
+
+	UnitState = XComGameState_Unit(EventSource);
+
+	`LWTrace("FailsafeGiveAP firing");
+
+	if (UnitState == none)
+	{
+		`LWTrace("No Unit");
+		return ELR_NoInterrupt;
+	}
+	if(GameState != none)
+	{
+		`LWTrace("NewGameState passed");
+		UnitState = XComGameState_Unit(GameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
+
+		UnitState.ActionPoints.AddItem(class'X2CharacterTemplateManager'.default.StandardActionPoint);
+	}
+	else
+	{
+		`LWTrace("No Gamestate passed");
+		UpdatedGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Adding FailSafe AP");
+
+		UnitState = XComGameState_Unit(UpdatedGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
+
+		UnitState.ActionPoints.AddItem(class'X2CharacterTemplateManager'.default.StandardActionPoint);
+
+		`TACTICALRULES.SubmitGameState(UpdatedGameState);
+	}
+
+	
+
+	
 
 	return ELR_NoInterrupt;
 }
