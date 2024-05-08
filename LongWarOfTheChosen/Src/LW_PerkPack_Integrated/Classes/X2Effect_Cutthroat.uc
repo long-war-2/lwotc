@@ -68,15 +68,16 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 function int GetExtraArmorPiercing(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData)
 {
 	local XComGameState_Item		SourceWeapon;
-	local XComGameState_Unit		Target;
+	local XComGameState_Unit		Target, Source;
 
 	if(AbilityState.GetMyTemplate().IsMelee())
 	{
 		Target = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(AppliedData.TargetStateObjectRef.ObjectID));
+		Source = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(AppliedData.SourceStateObjectRef.ObjectID));
 		if (Target != none && !Target.IsRobotic())
 		{		
 			SourceWeapon = AbilityState.GetSourceWeapon();
-			if (SourceWeapon != none)
+			if (SourceWeapon != none || Source.IsRobotic())
 			{				
 				return 9999;
 			}
