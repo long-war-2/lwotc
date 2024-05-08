@@ -1907,7 +1907,7 @@ function bool GetConcussiveStrikeDamagePreview(XComGameState_Ability AbilityStat
 static function X2AbilityTemplate Obliterator()
 {
 	local X2AbilityTemplate						Template;
-	local X2Effect_BonusWeaponDamage            DamageEffect;
+	local X2Effect_MeleeBonusDamage            DamageEffect;
 	local X2Effect_ToHitModifier                HitModEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Obliterator_LW');
@@ -1921,8 +1921,8 @@ static function X2AbilityTemplate Obliterator()
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 
-	DamageEffect = new class'X2Effect_BonusWeaponDamage';
-	DamageEffect.BonusDmg = default.OBLITERATOR_DMG;
+	DamageEffect = new class'X2Effect_MeleeBonusDamage';
+	DamageEffect.BonusDamageFlat = default.OBLITERATOR_DMG;
 	DamageEffect.BuildPersistentEffect(1, true, false, false);
 	DamageEffect.EffectName = 'Obliterator_LW';
 	DamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
