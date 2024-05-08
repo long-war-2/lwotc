@@ -6116,9 +6116,9 @@ LocPromotionPopupText="<Bullet/> Si vous éliminez au moins un ennemi pendant vo
 [Dedication_LW X2AbilityTemplate]
 LocFriendlyName="Célérité"
 LocFlyOverText="Célérité"
-LocLongDescription="Action gratuite. Jusqu'à la fin du tour, vous gagnez un bonus de +<Ability:DEDICATION_MOBILITY/> en mobilité et vous ne déclenchez pas les tirs en mode Vigilance ou les tirs réflexes. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
-LocHelpText="Action gratuite. Jusqu'à la fin du tour, vous gagnez un bonus de +<Ability:DEDICATION_MOBILITY/> en mobilité et vous ne déclenchez pas les tirs en mode Vigilance ou les tirs réflexes. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
-LocPromotionPopupText="<Bullet/> Action gratuite. Jusqu'à la fin du tour, vous gagnez un bonus de +<Ability:DEDICATION_MOBILITY/> en mobilité et vous ne déclenchez pas les tirs en mode Vigilance ou les tirs réflexes. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/>"
+LocLongDescription="Action gratuite. Jusqu'à la fin du tour, vous gagnez un bonus de +<Ability:DEDICATIONLW_MOBILITY/> en mobilité et vous ne déclenchez pas les tirs en mode Vigilance ou les tirs réflexes. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+LocHelpText="Action gratuite. Jusqu'à la fin du tour, vous gagnez un bonus de +<Ability:DEDICATIONLW_MOBILITY/> en mobilité et vous ne déclenchez pas les tirs en mode Vigilance ou les tirs réflexes. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+LocPromotionPopupText="<Bullet/> Action gratuite. Jusqu'à la fin du tour, vous gagnez un bonus de +<Ability:DEDICATIONLW_MOBILITY/> en mobilité et vous ne déclenchez pas les tirs en mode Vigilance ou les tirs réflexes. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/>"
 
 [Corpsman_LW X2AbilityTemplate]
 LocFriendlyName="Doc Morbide"

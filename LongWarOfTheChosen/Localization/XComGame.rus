@@ -3195,9 +3195,9 @@ LocPromotionPopupText="<Bullet/> Если вы убиваете противни
 [Dedication_LW X2AbilityTemplate]
 LocFriendlyName="Окрыляющая отвага"
 LocFlyOverText="Окрыляющая отвага"
-LocLongDescription="Свободное действие. Прибавляет <Ability:DEDICATION_MOBILITY/> к мобильности и игнорирует ответный огонь до конца хода. Ходов до перезарядки: <Ability:DEDICATION_COOLDOWN/>."
-LocHelpText="Свободное действие. Прибавляет <Ability:DEDICATION_MOBILITY/> к мобильности и игнорирует ответный огонь до конца хода. Ходов до перезарядки: <Ability:DEDICATION_COOLDOWN/>."
-LocPromotionPopupText="<Bullet/> Прибавляет <Ability:DEDICATION_MOBILITY/> к мобильности и игнорирует ответный огонь до конца хода.<br/><Bullet/> Свободное действие.<br/><Bullet/> Ходов до перезарядки: <Ability:DEDICATION_COOLDOWN/>.<br/>"
+LocLongDescription="Свободное действие. Прибавляет <Ability:DEDICATIONLW_MOBILITY/> к мобильности и игнорирует ответный огонь до конца хода. Ходов до перезарядки: <Ability:DEDICATION_COOLDOWN/>."
+LocHelpText="Свободное действие. Прибавляет <Ability:DEDICATIONLW_MOBILITY/> к мобильности и игнорирует ответный огонь до конца хода. Ходов до перезарядки: <Ability:DEDICATION_COOLDOWN/>."
+LocPromotionPopupText="<Bullet/> Прибавляет <Ability:DEDICATIONLW_MOBILITY/> к мобильности и игнорирует ответный огонь до конца хода.<br/><Bullet/> Свободное действие.<br/><Bullet/> Ходов до перезарядки: <Ability:DEDICATION_COOLDOWN/>.<br/>"
 
 [Corpsman_LW X2AbilityTemplate]
 LocFriendlyName="Санитар"

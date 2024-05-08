@@ -6142,9 +6142,9 @@ LocPromotionPopupText="<Bullet/> 如果你在回合内至少造成一次击杀�
 [Dedication_LW X2AbilityTemplate]
 LocFriendlyName="奉献精神"
 LocFlyOverText="奉献精神"
-LocLongDescription="自由行动点， 在本回合内增加<Ability:DEDICATION_MOBILITY/>移动力并忽略反应射击。<Ability:SelfCooldown_LW/>回合冷却时间。"
-LocHelpText="自由行动点， 在本回合内增加<Ability:DEDICATION_MOBILITY/>移动力并忽略反应射击。<Ability:SelfCooldown_LW/>回合冷却时间。"
-LocPromotionPopupText="<Bullet/> 在本回合内增加<Ability:DEDICATION_MOBILITY/>移动力并忽略反应射击。<br/><Bullet/> 自由行动点。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
+LocLongDescription="自由行动点， 在本回合内增加<Ability:DEDICATIONLW_MOBILITY/>移动力并忽略反应射击。<Ability:SelfCooldown_LW/>回合冷却时间。"
+LocHelpText="自由行动点， 在本回合内增加<Ability:DEDICATIONLW_MOBILITY/>移动力并忽略反应射击。<Ability:SelfCooldown_LW/>回合冷却时间。"
+LocPromotionPopupText="<Bullet/> 在本回合内增加<Ability:DEDICATIONLW_MOBILITY/>移动力并忽略反应射击。<br/><Bullet/> 自由行动点。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
 
 [Corpsman_LW X2AbilityTemplate]
 LocFriendlyName="医护兵"

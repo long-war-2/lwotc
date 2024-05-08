@@ -279,7 +279,7 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'LOCKNLOAD_AMMO_TO_RELOAD':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.LOCKNLOAD_AMMO_TO_RELOAD);
 			return true;
-		case 'DEDICATION_MOBILITY':
+		case 'DEDICATIONLW_MOBILITY':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.DEDICATION_MOBILITY);
 			return true;
 		case 'DEDICATION_COOLDOWN':

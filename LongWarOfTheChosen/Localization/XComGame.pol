@@ -5838,9 +5838,9 @@ LocPromotionPopupText="<Bullet/> Jeśli podczas swojej tury zabijesz przynajmnie
 [Dedication_LW X2AbilityTemplate]
 LocFriendlyName="Dedykacja"
 LocFlyOverText="Dedykacja"
-LocLongDescription="Darmowa akcja. Zyskaj <Ability:DEDICATION_MOBILITY/> mobilność i ignoruj ogień reakcyjny do końca tury. Wymaga <Ability:SelfCooldown_LW/> tur(y) odnowienia."
-LocHelpText="Darmowa akcja. Zyskaj <Ability:DEDICATION_MOBILITY/> mobilność i ignoruj ogień reakcyjny do końca tury. Wymaga <Ability:SelfCooldown_LW/> tur(y) odnowienia."
-LocPromotionPopupText="<Bullet/> Zyskaj <Ability:DEDICATION_MOBILITY/> mobilność i ignoruj ogień reakcyjny do końca tury.<br/><Bullet/> Darmowa akcja.<br/><Bullet/> Wymaga <Ability:SelfCooldown_LW/> tur(y) odnowienia."
+LocLongDescription="Darmowa akcja. Zyskaj <Ability:DEDICATIONLW_MOBILITY/> mobilność i ignoruj ogień reakcyjny do końca tury. Wymaga <Ability:SelfCooldown_LW/> tur(y) odnowienia."
+LocHelpText="Darmowa akcja. Zyskaj <Ability:DEDICATIONLW_MOBILITY/> mobilność i ignoruj ogień reakcyjny do końca tury. Wymaga <Ability:SelfCooldown_LW/> tur(y) odnowienia."
+LocPromotionPopupText="<Bullet/> Zyskaj <Ability:DEDICATIONLW_MOBILITY/> mobilność i ignoruj ogień reakcyjny do końca tury.<br/><Bullet/> Darmowa akcja.<br/><Bullet/> Wymaga <Ability:SelfCooldown_LW/> tur(y) odnowienia."
 
 [Corpsman_LW X2AbilityTemplate]
 LocFriendlyName="Sanitariusz"

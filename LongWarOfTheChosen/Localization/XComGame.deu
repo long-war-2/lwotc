@@ -5775,9 +5775,9 @@ LocPromotionPopupText="<Bullet/> Wenn du diese Runde einen Kill erzielt hast, ge
 [Dedication_LW X2AbilityTemplate]
 LocFriendlyName="Voller Einsatz"
 LocFlyOverText="Voller Einsatz"
-LocLongDescription="Erhalte <Ability:DEDICATION_MOBILITY/> Mobilität und ignoriere Reflexschüsse für den Rest der Runde. Kostenlose Aktion mit einer Abklingzeit von <Ability:SelfCooldown_LW/> Runden."
-LocHelpText="Erhalte <Ability:DEDICATION_MOBILITY/> Mobilität und ignoriere Reflexschüsse für den Rest der Runde. Kostet keine Aktion und hat eine Abklingzeit von <Ability:SelfCooldown_LW/> Runden."
-LocPromotionPopupText="<Bullet/> Erhalte <Ability:DEDICATION_MOBILITY/> Mobilität und ignoriere Reflexschüsse für den Rest der Runde.<br/><Bullet/> Voller Einsatz kostet keine Aktion und hat eine Abklingzeit von <Ability:SelfCooldown_LW/> Runden.<br/>"
+LocLongDescription="Erhalte <Ability:DEDICATIONLW_MOBILITY/> Mobilität und ignoriere Reflexschüsse für den Rest der Runde. Kostenlose Aktion mit einer Abklingzeit von <Ability:SelfCooldown_LW/> Runden."
+LocHelpText="Erhalte <Ability:DEDICATIONLW_MOBILITY/> Mobilität und ignoriere Reflexschüsse für den Rest der Runde. Kostet keine Aktion und hat eine Abklingzeit von <Ability:SelfCooldown_LW/> Runden."
+LocPromotionPopupText="<Bullet/> Erhalte <Ability:DEDICATIONLW_MOBILITY/> Mobilität und ignoriere Reflexschüsse für den Rest der Runde.<br/><Bullet/> Voller Einsatz kostet keine Aktion und hat eine Abklingzeit von <Ability:SelfCooldown_LW/> Runden.<br/>"
 
 [Corpsman_LW X2AbilityTemplate]
 LocFriendlyName="Sanitäter"

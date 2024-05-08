@@ -6230,9 +6230,9 @@ LocPromotionPopupText="<Bullet/> Si consigues al menos una muerte durante tu tur
 [Dedication_LW X2AbilityTemplate]
 LocFriendlyName="Dedicación"
 LocFlyOverText="Dedicación"
-LocLongDescription="Acción gratuita. Ganas <Ability:DEDICATION_MOBILITY/> de movilidad e ignoras el disparo de reacción durante el resto del turno. Tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos."
-LocHelpText="Acción gratuita. Ganas <Ability:DEDICATION_MOBILITY/> de movilidad e ignoras el disparo de reacción durante el resto del turno. Tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos."
-LocPromotionPopupText="<Bullet/> Ganas <Ability:DEDICATION_MOBILITY/> de movilidad e ignoras el disparo de reacción durante el resto del turno.<br/><Bullet/> Acción sin coste.<br/><Bullet/> Dedicación tiene un tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos.<br/>"
+LocLongDescription="Acción gratuita. Ganas <Ability:DEDICATIONLW_MOBILITY/> de movilidad e ignoras el disparo de reacción durante el resto del turno. Tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos."
+LocHelpText="Acción gratuita. Ganas <Ability:DEDICATIONLW_MOBILITY/> de movilidad e ignoras el disparo de reacción durante el resto del turno. Tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos."
+LocPromotionPopupText="<Bullet/> Ganas <Ability:DEDICATIONLW_MOBILITY/> de movilidad e ignoras el disparo de reacción durante el resto del turno.<br/><Bullet/> Acción sin coste.<br/><Bullet/> Dedicación tiene un tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos.<br/>"
 
 [Corpsman_LW X2AbilityTemplate]
 LocFriendlyName="Asistencia médica"
