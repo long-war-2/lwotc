@@ -266,7 +266,7 @@ AbilityDescName="cannon"
 ; End translation
 
 [AdvGunnerM2 X2CharacterTemplate]
-strCharacterName="ADVENT Heavy Gunner"
+strCharacterName="Heavy Gunner"
 
 [AdvGunnerM2_WPN X2WeaponTemplate]
 FriendlyName="AutoMag"
@@ -275,7 +275,7 @@ AbilityDescName="cannon"
 ; End translation
 
 [AdvGunnerM3 X2CharacterTemplate]
-strCharacterName="ADVENT Elite Gunner"
+strCharacterName="Elite Gunner"
 
 [AdvGunnerM3_WPN X2WeaponTemplate]
 FriendlyName="AutoMag"
@@ -296,7 +296,7 @@ AbilityDescName="mag rifle"
 ; End translation
 
 [AdvSentryM2 X2CharacterTemplate]
-strCharacterName="ADVENT Guardian"
+strCharacterName="Advanced Sentry"
 
 [AdvSentryM2_WPN X2WeaponTemplate]
 FriendlyName="ADVENT Mag Rifle"
@@ -305,7 +305,7 @@ AbilityDescName="mag rifle"
 ; End translation
 
 [AdvSentryM3 X2CharacterTemplate]
-strCharacterName="ADVENT Sentinel"
+strCharacterName="Elite Sentry"
 
 [AdvSentryM3_WPN X2WeaponTemplate]
 FriendlyName="ADVENT Mag Rifle"
@@ -328,7 +328,7 @@ strCharacterName="ADVENT Grenadier"
 FriendlyName="ADVENT Grenade Launcher"
 
 [AdvGrenadierM3 X2CharacterTemplate]
-strCharacterName="ADVENT Heavy Grenadier"
+strCharacterName="Elite Grenadier"
 
 [AdvGrenadierM3_GrenadeLauncher X2WeaponTemplate]
 FriendlyName="ADVENT Grenade Launcher"
@@ -369,10 +369,10 @@ LaunchedAbilityHelpText="Creates pools of acid that will damage units."
 strCharacterName="ADVENT Rocketeer"
 
 [AdvRocketeerM2 X2CharacterTemplate]
-strCharacterName="ADVENT Heavy Rocketeer"
+strCharacterName="Heavy Rocketeer"
 
 [AdvRocketeerM3 X2CharacterTemplate]
-strCharacterName="ADVENT Elite Rocketeer"
+strCharacterName="Elite Rocketeer"
 
 [AdvRocketeerM1_RocketLauncher X2WeaponTemplate]
 FriendlyName="ADVENT Rocket Launcher"
@@ -388,7 +388,7 @@ strCharacterName="Superheavy MEC"
 strCharacterName="ADVENT Surveillance Drone"
 
 [LWDroneM2 X2CharacterTemplate]
-strCharacterName="ADVENT Hunter Drone"
+strCharacterName="Hunter Drone"
 
 [LWDroneM1_WPN X2WeaponTemplate]
 FriendlyName="Drone Shock"
@@ -456,7 +456,7 @@ AbilityDescName="mag rifle"
 ; End translation
 
 [AdvSergeantM2 X2CharacterTemplate]
-strCharacterName="ADVENT First Sergeant"
+strCharacterName="First Sergeant"
 
 [AdvSergeantM2_WPN X2WeaponTemplate]
 FriendlyName="ADVENT Mag Rifle"
@@ -510,7 +510,7 @@ AbilityDescName="mag rifle"
 ; End translation
 
 [AdvGeneralM2_LW X2CharacterTemplate]
-strCharacterName="ADVENT General"
+strCharacterName="Elite General"
 
 [AdvGeneralM2_LW_WPN X2WeaponTemplate]
 FriendlyName="ADVENT Mag Rifle"
