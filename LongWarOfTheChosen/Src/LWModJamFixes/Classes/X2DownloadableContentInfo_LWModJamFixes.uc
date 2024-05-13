@@ -10,6 +10,9 @@ static event OnPostTemplatesCreated()
 
     PatchSolaceBack(AbilityTemplateManager.FindAbilityTemplate('Solace_LW'));
     FixObliterator(AbilityTemplateManager.FindAbilityTemplate('Obliterator'));
+    // 2 different collateral damage abilities
+    PatchCollateral(AbilityTemplateManager.FindAbilityTemplate('RM_CollateralDamage'));
+    PatchCollateral(AbilityTemplateManager.FindAbilityTemplate('Collateral'));
 }
 
 static function PatchSolaceBack(X2AbilityTemplate Template)
@@ -38,18 +41,31 @@ static function FixObliterator(X2AbilityTemplate Template)
     local X2Effect_MeleeBonusDamage DamageEffect;
     local X2Effect_ToHitModifier HitModEffect;
 
-    Template.AbilityTargetEffects.Length = 0;
+    if(Template != none)
+    {
 
-    DamageEffect = new class'X2Effect_MeleeBonusDamage';
-	DamageEffect.BonusDamageFlat = 2;
-	DamageEffect.BuildPersistentEffect(1, true, false, false);
-	DamageEffect.EffectName = 'Obliterator';
-	DamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
-	Template.AddTargetEffect(DamageEffect);
+        Template.AbilityTargetEffects.Length = 0;
 
-	HitModEffect = new class'X2Effect_ToHitModifier';
-	HitModEffect.AddEffectHitModifier(eHit_Success, 20, Template.LocFriendlyName, , true, false, true, true);
-	HitModEffect.BuildPersistentEffect(1, true, false, false);
-	HitModEffect.EffectName = 'ObliteratorAim';
-	Template.AddTargetEffect(HitModEffect);
+        DamageEffect = new class'X2Effect_MeleeBonusDamage';
+	    DamageEffect.BonusDamageFlat = 2;
+	    DamageEffect.BuildPersistentEffect(1, true, false, false);
+	    DamageEffect.EffectName = 'Obliterator';
+    	DamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+    	Template.AddTargetEffect(DamageEffect);
+
+    	HitModEffect = new class'X2Effect_ToHitModifier';
+    	HitModEffect.AddEffectHitModifier(eHit_Success, 20, Template.LocFriendlyName, , true, false, true, true);
+    	HitModEffect.BuildPersistentEffect(1, true, false, false);
+    	HitModEffect.EffectName = 'ObliteratorAim';
+    	Template.AddTargetEffect(HitModEffect);
+    }
+}
+
+// Swap their targeting to LW's more forgiving targeting
+static function PatchCollateral(X2AbilityTemplate Template)
+{
+    if(Template != none)
+    {
+        Template.TargetingMethod = class'LW_PerkPack_Integrated.X2TargetingMethod_Collateral';
+    }
 }
