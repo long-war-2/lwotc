@@ -386,9 +386,19 @@ static function bool OverrideFinalHitChance(X2AbilityToHitCalc AbilityToHitCalc,
 	// as a hit.
 	// ShotBreakdown.FinalHitChance = ShotBreakdown.ResultTable[eHit_Success] + Adjustments.DodgeHitAdjust;
 	ShotBreakdown.FinalHitChance = Adjustments.FinalSuccessChance + Adjustments.FinalGrazeChance + Adjustments.FinalCritChance;
-	ShotBreakdown.ResultTable[eHit_Crit] = Adjustments.FinalCritChance;
-	ShotBreakdown.ResultTable[eHit_Success] = Adjustments.FinalSuccessChance;
-	ShotBreakdown.ResultTable[eHit_Graze] = Adjustments.FinalGrazeChance;
+
+	if(StandardAim.bHitsAreCrits)
+	{
+		ShotBreakdown.ResultTable[eHit_Crit] = Adjustments.FinalCritChance + Adjustments.FinalGrazeChance + Adjustments.FinalSuccessChance;
+		ShotBreakdown.ResultTable[eHit_Success] = 0;
+		ShotBreakdown.ResultTable[eHit_Graze] = 0;
+	}
+	else
+	{
+		ShotBreakdown.ResultTable[eHit_Crit] = Adjustments.FinalCritChance;
+		ShotBreakdown.ResultTable[eHit_Success] = Adjustments.FinalSuccessChance;
+		ShotBreakdown.ResultTable[eHit_Graze] = Adjustments.FinalGrazeChance;
+	}
 	ShotBreakdown.ResultTable[eHit_Miss] = Adjustments.FinalMissChance;
 
 	if(Adjustments.DodgeHitAdjust != 0)
