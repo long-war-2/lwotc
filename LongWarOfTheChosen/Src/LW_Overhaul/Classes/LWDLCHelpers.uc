@@ -356,6 +356,8 @@ static function SetOnMissionStatus(XComGameState_Unit UnitState, XComGameState N
 {
 	local XComGameState_StaffSlot StaffSlotState;
 	local XComGameState_HeadquartersProjectHealSoldier HealProject;
+	local XComGameState_HeadquartersProjectPsiTraining PsiProjectState;
+	local XComGameState_HeadquartersXCom XComHQ;
 
 	if(bClearSlot)
 	{//If we're here, I'm going to assume you're allowed to be on the mission already, meaning that if you're in a slot you should be removed from it.
@@ -363,8 +365,21 @@ static function SetOnMissionStatus(XComGameState_Unit UnitState, XComGameState N
 		if(StaffSlotState != none)
 		{
 			StaffSlotState = XComGameState_StaffSlot(NewGameState.ModifyStateObject(class'XComGameState_StaffSlot', StaffSlotState.ObjectID));
+			
+			XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+
+			PsiProjectState = XComHQ.GetPsiTrainingProject(UnitState.GetReference());
+			if (PsiProjectState != none) // A Psi Training project was found for the unit
+			{
+				// Pause the training project.
+				// Don't need to empty the psi slot, since the soldier is already staffed on the Action
+				PsiProjectState = XComGameState_HeadquartersProjectPsiTraining(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersProjectPsiTraining', PsiProjectState.ObjectID));
+				PsiProjectState.bForcePaused = true;
+			}
+			
 			StaffSlotState.EmptySlot(NewGameState);
 		}
+
 	}
 	// Tedster - see if commenting out this if check to always check for and pause heal projects fixes things.
 	//if (UnitState.GetStatus() == eStatus_Healing)
