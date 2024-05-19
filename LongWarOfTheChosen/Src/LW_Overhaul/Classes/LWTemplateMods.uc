@@ -1288,11 +1288,8 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 
 	if (Template.DataName == 'BulletShred')
 	{
-		StandardAim = new class'X2AbilityToHitCalc_StandardAim';
-		StandardAim.bHitsAreCrits = false;
-		StandardAim.BuiltInCritMod = default.RUPTURE_CRIT_BONUS;
-		Template.AbilityToHitCalc = StandardAim;
-		Template.AbilityToHitOwnerOnMissCalc = StandardAim;
+		X2AbilityToHitCalc_StandardAim(Template.AbilityToHitCalc).bHitsAreCrits = false;
+		X2AbilityToHitCalc_StandardAim(Template.AbilityToHitCalc).BuiltInCritMod = default.RUPTURE_CRIT_BONUS;
 
 		for (k = 0; k < Template.AbilityTargetConditions.Length; k++)
 		{
