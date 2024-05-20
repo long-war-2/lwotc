@@ -51,7 +51,8 @@ function bool UnitAvailableForLiaisonDuty(StateObjectReference UnitRef)
             // Need minimum rank to qualify for liaison duty
 		    && HasEligibleRegularRank
             //On mission handles existing liaisons and people currently infiltrating.
-		    && !class'LWDLCHelpers'.static.IsUnitOnMission(Unit))
+		    && !class'LWDLCHelpers'.static.IsUnitOnMission(Unit)
+            && !`XCOMHQ.IsUnitInSquad(Unit.GetReference()))
 	    {
 		    return true;
 	    }
