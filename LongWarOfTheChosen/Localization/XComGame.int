@@ -7416,8 +7416,8 @@ LocPromotionPopupText="<Bullet/> Soul Shot has +20 bonus to Aim.<br/><Bullet/> S
 
 [IRI_TemplarShield X2AbilityTemplate]
 LocFriendlyName="Templar Shield"
-LocLongDescription="Use your shard gauntlets to generate a psionic shield and gain <Ability:TEMPLAR_SHIELD_TAG/> Shield HP that will last until the start of your next turn. Can be used with Momentum actions."
-LocHelpText="Use your shard gauntlets to generate a psionic shield and gain <Ability:TEMPLAR_SHIELD_TAG/> Shield HP that will last until the start of your next turn. Can be used with Momentum actions."
+LocLongDescription="Use your shard gauntlets to generate a psionic shield and gain <Ability:TEMPLAR_SHIELD_TAG/> Shield HP that will last until the start of your next turn. Can be used with Momentum actions. While active, enemy crit chance is reduced by 20 against the unit."
+LocHelpText="Use your shard gauntlets to generate a psionic shield and gain <Ability:TEMPLAR_SHIELD_TAG/> Shield HP that will last until the start of your next turn. Can be used with Momentum actions. While active, enemy crit chance is reduced by 20 against the unit."
 LocPromotionPopupText="<bullet/> Ends turn when used.<br/><bullet/> Shield strength will increase with shard gauntlets' tech level."
 
 [Indomitable X2AbilityTemplate]
