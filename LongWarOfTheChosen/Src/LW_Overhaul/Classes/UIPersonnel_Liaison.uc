@@ -52,7 +52,7 @@ function bool UnitAvailableForLiaisonDuty(StateObjectReference UnitRef)
 		    && HasEligibleRegularRank
             //On mission handles existing liaisons and people currently infiltrating.
 		    && !class'LWDLCHelpers'.static.IsUnitOnMission(Unit)
-            && !`XCOMHQ.IsUnitInSquad(Unit.GetReference()))
+            && !(`XCOMHQ.IsUnitInSquad(Unit.GetReference()) && `SCREENSTACK.IsInStack(class'UISquadSelect')))
 	    {
 		    return true;
 	    }
