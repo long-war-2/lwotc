@@ -2766,7 +2766,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			case 'ChosenSniperRifle_BM':
 			case 'ChosenSniperRifle_T4':
 			case 'ChosenSniperRifle_T5':
-				WeaponTemplate.iIdealRange = 12;
+				WeaponTemplate.iIdealRange = 15;
 				break;
 			default:
 				break;
