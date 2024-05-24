@@ -462,7 +462,8 @@ static event OnLoadedSavedGameToStrategy()
 	`XEVENTMGR.UnRegisterFromEvent(ToolboxOptions, 'OnMonthlyReportAlert');
 
 	// Make sure pistol abilities apply to the new pistol slot
-	LWMigratePistolAbilities();
+	// Tedster: Yeeted
+	//LWMigratePistolAbilities();
 
 	// If there are rebels that have already ranked up, make sure they have some abilities
 	OutpostManager = `LWOUTPOSTMGR;
@@ -739,6 +740,10 @@ static function XComGameState_WorldRegion SetStartingLocationToStartingRegion(XC
 // TODO: This function is only needed for players that want to upgrade
 // from a version of LW prior to beta 2 and want access to the pistol
 // abilities.
+
+// Tedster: beta is old, yeeting this.
+
+/*
 static function LWMigratePistolAbilities()
 {
 	local XComGameState NewGameState;
@@ -804,6 +809,8 @@ static function LWMigratePistolAbilities()
 		History.CleanupPendingGameState(NewGameState);
 	}
 }
+
+*/
 
 static function UpdateLockAndLoadBonus(optional XComGameState StartState)
 {
