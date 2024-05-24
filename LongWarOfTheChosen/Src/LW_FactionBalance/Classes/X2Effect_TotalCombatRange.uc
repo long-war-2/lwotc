@@ -16,7 +16,7 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
 }
 
 //this is triggered when checking range on an item
-static function EventListenerReturn OnGetItemRange(
+static final function EventListenerReturn OnGetItemRange(
 	Object EventData,
 	Object EventSource,
 	XComGameState NewGameState,
