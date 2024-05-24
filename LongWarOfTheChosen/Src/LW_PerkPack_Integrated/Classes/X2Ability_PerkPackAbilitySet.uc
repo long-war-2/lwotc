@@ -357,11 +357,12 @@ static function X2AbilityTemplate CloseCombatSpecialistAttack()
 	local X2Effect_Persistent							CloseCombatSpecialistTargetEffect;
 	local X2Condition_UnitEffectsWithAbilitySource		CloseCombatSpecialistTargetCondition;
 	local X2AbilityTrigger_EventListener				EventListener;
-	local X2Condition_UnitProperty						SourceNotConcealedCondition;
+	local X2Condition_UnitProperty						SourceNotConcealedCondition, RangeCondition;
 	local X2Condition_UnitEffects						SuppressedCondition;
 	local X2Condition_Visibility						TargetVisibilityCondition;
 	local X2AbilityCost_Ammo							AmmoCost;
-	local X2AbilityTarget_Single_CCS					SingleTarget;
+	local X2Condition_NotItsOwnTurn						OwnTurnCondition;
+	//local X2AbilityTarget_Single_CCS					SingleTarget;
 	//local X2AbilityCooldown								Cooldown;	
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'CloseCombatSpecialistAttack');
@@ -370,7 +371,7 @@ static function X2AbilityTemplate CloseCombatSpecialistAttack()
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityCloseCombatSpecialist";
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_CAPTAIN_PRIORITY;
-	Template.Hostility = eHostility_Defensive;
+	Template.Hostility = eHostility_Offensive;
 	Template.bCrossClassEligible = false;
 
 	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
@@ -420,12 +421,14 @@ static function X2AbilityTemplate CloseCombatSpecialistAttack()
 	EventListener.ListenerData.Priority = 55;
 	Template.AbilityTriggers.AddItem(EventListener);
 	
-	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitDisallowMindControlProperty);
 	TargetVisibilityCondition = new class'X2Condition_Visibility';
 	TargetVisibilityCondition.bRequireGameplayVisible = true;
 	TargetVisibilityCondition.bRequireBasicVisibility = true;
 	TargetVisibilityCondition.bDisablePeeksOnMovement = true; //Don't use peek tiles for over watch shots	
 	Template.AbilityTargetConditions.AddItem(TargetVisibilityCondition);
+
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitDisallowMindControlProperty);
+
 	Template.AbilityTargetConditions.AddItem(class'X2Ability_DefaultAbilitySet'.static.OverwatchTargetEffectsCondition());
 
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);	
@@ -441,9 +444,20 @@ static function X2AbilityTemplate CloseCombatSpecialistAttack()
 	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
 	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
 
-	SingleTarget = new class 'X2AbilityTarget_Single_CCS';
+	RangeCondition = new class'X2Condition_UnitProperty';
+	RangeCondition.RequireWithinRange = true;
+	RangeCondition.WithinRange = class'X2AbilityTarget_Single_CCS'.default.CCS_RANGE * 96.0; // multiplier for tiles to unreal units.
+	Template.AbilityTargetConditions.AddItem(RangeCondition);
+
+	if(!class'X2AbilityTarget_Single_CCS'.default.CCS_PROC_ON_OWN_TURN)
+	{
+		OwnTurnCondition = new class'X2Condition_NotItsOwnTurn';
+		Template.AbilityShooterConditions.AddItem(OwnTurnCondition);
+	}
+
+	//SingleTarget = new class 'X2AbilityTarget_Single_CCS';
 	//SingleTarget.OnlyIncludeTargetsInsideWeaponRange = true;
-	Template.AbilityTargetStyle = SingleTarget;
+	Template.AbilityTargetStyle = default.simpleSingleTarget;
 
 	Template.bAllowBonusWeaponEffects = true;
 	Template.AddTargetEffect(class 'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
@@ -473,7 +487,7 @@ static function X2AbilityTemplate CloseCombatSpecialistAttack()
 
 //Must be static, because it will be called with a different object (an XComGameState_Ability)
 //Used to trigger Bladestorm when the source's concealment is broken by a unit in melee range (the regular movement triggers get called too soon)
-static function EventListenerReturn CloseCombatSpecialistConcealmentListener(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+static final function EventListenerReturn CloseCombatSpecialistConcealmentListener(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
 	local XComGameStateContext_Ability AbilityContext;
 	local XComGameState_Unit ConcealmentBrokenUnit;
