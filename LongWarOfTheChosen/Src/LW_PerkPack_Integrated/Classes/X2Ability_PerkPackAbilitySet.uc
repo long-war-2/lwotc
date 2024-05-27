@@ -427,7 +427,8 @@ static function X2AbilityTemplate CloseCombatSpecialistAttack()
 	TargetVisibilityCondition.bDisablePeeksOnMovement = true; //Don't use peek tiles for over watch shots	
 	Template.AbilityTargetConditions.AddItem(TargetVisibilityCondition);
 
-	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitDisallowMindControlProperty);
+	// Moved to custom Unit property
+	//Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitDisallowMindControlProperty);
 
 	Template.AbilityTargetConditions.AddItem(class'X2Ability_DefaultAbilitySet'.static.OverwatchTargetEffectsCondition());
 
@@ -447,6 +448,12 @@ static function X2AbilityTemplate CloseCombatSpecialistAttack()
 	RangeCondition = new class'X2Condition_UnitProperty';
 	RangeCondition.RequireWithinRange = true;
 	RangeCondition.WithinRange = class'X2AbilityTarget_Single_CCS'.default.CCS_RANGE * 96.0; // multiplier for tiles to unreal units.
+	RangeCondition.ExcludeAlive=false;
+	RangeCondition.ExcludeDead=true;
+	RangeCondition.ExcludeFriendlyToSource=true;
+	RangeCondition.ExcludeHostileToSource=false;
+	RangeCondition.TreatMindControlledSquadmateAsHostile=true;
+	RangeCondition.FailOnNonUnits=true;
 	Template.AbilityTargetConditions.AddItem(RangeCondition);
 
 	if(!class'X2AbilityTarget_Single_CCS'.default.CCS_PROC_ON_OWN_TURN)
