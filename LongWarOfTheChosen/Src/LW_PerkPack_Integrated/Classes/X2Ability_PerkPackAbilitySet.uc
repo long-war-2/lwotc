@@ -3207,9 +3207,6 @@ static function X2AbilityTemplate AddDamageControlAbility()
 	DamageControlEffect.Flyover = Template.LocFriendlyName;
 	Template.AddTargetEffect(DamageControlEffect);
 
-
-	Template.AddTargetEffect(DamageControlEffect);
-
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 	//Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
