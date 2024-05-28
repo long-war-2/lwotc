@@ -11,7 +11,7 @@ var localized string strCovertActionFailed;
 
 simulated function RefreshMainPanel()
 {
-    local string ResultsHeader;
+    local string ResultsHeader, RewardDetailsString, SummaryString;
 
     ResultsHeader = CovertActions_SlotsHeader;
 
@@ -20,12 +20,19 @@ simulated function RefreshMainPanel()
     {
         // Show the failure in the screen header.
         ResultsHeader $= ("&nbsp;" $ strCovertActionFailed);
+        RewardDetailsString = "";
+        SummaryString = "";
+    }
+    else
+    {
+        RewardDetailsString = GetRewardDetailsString();
+        SummaryString = GetActionDescription();
     }
 
 	if (DoesActionHaveRewards())
-		AS_SetInfoData(GetActionImage(), CovertActions_ScreenHeader, ResultsHeader, Caps(GetActionName()), GetActionDescription(), class'UICovertActions'.default.CovertActions_RewardHeader, GetRewardString(), GetRewardDetailsString());
+		AS_SetInfoData(GetActionImage(), CovertActions_ScreenHeader, ResultsHeader, Caps(GetActionName()), SummaryString, class'UICovertActions'.default.CovertActions_RewardHeader, GetRewardString(), RewardDetailsString);
 	else
-		AS_SetInfoData(GetActionImage(), CovertActions_ScreenHeader, ResultsHeader, Caps(GetActionName()), GetActionDescription(), "", "", "");
+		AS_SetInfoData(GetActionImage(), CovertActions_ScreenHeader, ResultsHeader, Caps(GetActionName()), SummaryString, "", "", "");
 }
 
 simulated function String GetRewardString()
