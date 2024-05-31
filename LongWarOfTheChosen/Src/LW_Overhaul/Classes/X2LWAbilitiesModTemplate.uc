@@ -1615,6 +1615,7 @@ static function name GetMultiShotContinueUnitValueName(name AbilityName)
 static function MakeAbilityHostile(X2AbilityTemplate Template)
 {
 	Template.Hostility = eHostility_Offensive;
+	Template.BuildInterruptGameStateFn = class'X2Ability'.static.TypicalAbility_BuildInterruptGameState;
 }
 
 static function AddCritResistanceToPlatedVests(X2AbilityTemplate Template)

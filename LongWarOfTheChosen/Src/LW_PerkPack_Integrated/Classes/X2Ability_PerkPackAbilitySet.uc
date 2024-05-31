@@ -353,10 +353,10 @@ static function X2AbilityTemplate CloseCombatSpecialistAttack()
 {
 	local X2AbilityTemplate								Template;
 	local X2AbilityToHitCalc_StandardAim				ToHitCalc;
-	local X2AbilityTrigger_Event						Trigger;
+	//local X2AbilityTrigger_Event						Trigger;
 	local X2Effect_Persistent							CloseCombatSpecialistTargetEffect;
 	local X2Condition_UnitEffectsWithAbilitySource		CloseCombatSpecialistTargetCondition;
-	local X2AbilityTrigger_EventListener				EventListener;
+	local X2AbilityTrigger_EventListener				EventListener, Trigger;
 	local X2Condition_UnitProperty						SourceNotConcealedCondition, RangeCondition;
 	local X2Condition_UnitEffects						SuppressedCondition;
 	local X2Condition_Visibility						TargetVisibilityCondition;
@@ -386,6 +386,7 @@ static function X2AbilityTemplate CloseCombatSpecialistAttack()
 	AmmoCost.iAmmo = default.CCS_AMMO_PER_SHOT;
 	Template.AbilityCosts.AddItem(AmmoCost);
 	
+	/* // Tedster - Kill the old eventobservers
 	//  trigger on movement
 	Trigger = new class'X2AbilityTrigger_Event';
 	Trigger.EventObserverClass = class'X2TacticalGameRuleset_MovementObserver';
@@ -396,7 +397,7 @@ static function X2AbilityTemplate CloseCombatSpecialistAttack()
 	Trigger.MethodName = 'PostBuildGameState';
 	Template.AbilityTriggers.AddItem(Trigger);
 	//  trigger on an attack
-	/*
+	
 	Trigger = new class'X2AbilityTrigger_Event';
 	Trigger.EventObserverClass = class'X2TacticalGameRuleset_AttackObserver';
 	Trigger.MethodName = 'InterruptGameState';
@@ -404,9 +405,17 @@ static function X2AbilityTemplate CloseCombatSpecialistAttack()
 
 	*/
 
+	//  trigger on movement
+	Trigger = new class'X2AbilityTrigger_EventListener';
+	Trigger.ListenerData.EventID = 'ObjectMoved';
+	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	Trigger.ListenerData.Filter = eFilter_None;
+	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalOverwatchListener;
+	Template.AbilityTriggers.AddItem(Trigger);
+	//  trigger on an attack
 	EventListener = new class'X2AbilityTrigger_EventListener';
 	EventListener.ListenerData.EventID = 'AbilityActivated';
-	EventListener.ListenerData.Deferral = ELD_Immediate;
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
 	EventListener.ListenerData.Filter = eFilter_None;
 	EventListener.ListenerData.Priority = 85;
 	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalAttackListener;
@@ -548,6 +557,8 @@ static function X2AbilityTemplate AddCloseandPersonalAbility()
 
 	return Template;
 }
+
+
 
 static function X2AbilityTemplate AddDamnGoodGroundAbility()
 {
