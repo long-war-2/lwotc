@@ -49,13 +49,11 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
 
 static function EventListenerReturn EventHandler(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
-	local XComGameState_Unit UnitState, SourceUnitState, NewUnitState;
+	local XComGameState_Unit UnitState, NewUnitState;
 	local XComGameState_Effect_CapStats NewEffectState;
-	local XComGameState_Ability AbilityState;
 	local XComGameState NewGameState;
-	local X2Effect_Unstoppable EffectTemplate;
 	local XComGameState_Effect_CapStats EffectState;
-	local bool bOldApplicable, bNewApplicable;
+	local bool bNewApplicable;
 	local array<StatChange> LocalStatChanges;
 	local StatChange LocalStatChange;
 	local StatCap LocalStatCap;
@@ -70,12 +68,10 @@ static function EventListenerReturn EventHandler(Object EventData, Object EventS
 		return ELR_NoInterrupt;
 
 	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
-	SourceUnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
-	AbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.AbilityStateObjectRef.ObjectID));
+	//SourceUnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
+	//AbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.AbilityStateObjectRef.ObjectID));
 
-	EffectTemplate = X2Effect_Unstoppable(EffectState.GetX2Effect());
-
-	bOldApplicable = EffectState.StatChanges.Length > 0;
+	//bOldApplicable = EffectState.StatChanges.Length > 0;
 	//bNewApplicable = class'XMBEffectUtilities'.static.CheckTargetConditions(EffectTemplate.Conditions, EffectState, SourceUnitState, UnitState, AbilityState) == 'AA_Success';
 
 	foreach EffectState.m_aStatCaps(LocalStatCap)

@@ -943,7 +943,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	local X2AbilityCost_Charges             ChargeCost;
 	//local X2Effect_SoulSteal_LW           StealEffect;
 	local X2Effect_Guardian_LW              GuardianEffect;
-	local X2Effect                          ShotEffect;
+	//local X2Effect                          ShotEffect;
 	local X2Effect_MaybeApplyDirectionalWorldDamage WorldDamage;
 	local X2Effect_DeathFromAbove_LW        DeathEffect;
 	local X2Effect_ApplyWeaponDamage        WeaponDamageEffect;

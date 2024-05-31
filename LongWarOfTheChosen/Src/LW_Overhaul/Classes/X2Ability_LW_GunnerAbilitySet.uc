@@ -89,7 +89,7 @@ static function X2AbilityTemplate AddCombativesAttack()
 	local X2AbilityCost_ActionPoints ActionPointCost;
 	local X2AbilityToHitCalc_StandardMelee MeleeHitCalc;
 	local X2Effect_ApplyWeaponDamage PhysicalDamageEffect;
-	local X2Effect_SetUnitValue SetUnitValEffect;
+	//local X2Effect_SetUnitValue SetUnitValEffect;
 	//local X2Effect_ImmediateAbilityActivation ImpairingAbilityEffect;
 	local X2Effect_RemoveEffects RemoveEffects;
 

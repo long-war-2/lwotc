@@ -1719,8 +1719,8 @@ function bool GetStrikeDamagePreview(XComGameState_Ability AbilityState, StateOb
 	local XComGameState_Unit AbilityOwner;
 	local StateObjectReference BladeMasterRef;
 	local XComGameState_Ability BladeMasterAbility;
-	local StateObjectReference AssaultServosRef;
-	local XComGameState_Ability AssaultServosAbility;
+	//local StateObjectReference AssaultServosRef;
+	//local XComGameState_Ability AssaultServosAbility;
 	local XComGameStateHistory History;
 
 	AbilityState.NormalDamagePreview(TargetRef, MinDamagePreview, MaxDamagePreview, AllowsShield);
