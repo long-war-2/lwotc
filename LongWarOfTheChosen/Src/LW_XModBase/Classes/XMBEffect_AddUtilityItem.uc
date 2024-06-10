@@ -24,6 +24,10 @@
 //---------------------------------------------------------------------------------------
 class XMBEffect_AddUtilityItem extends X2Effect_Persistent;
 
+struct AbilityBonusAmmo {
+	var name AbilityName;
+	var int AmmoBonus;
+};
 
 ///////////////////////
 // Effect properties //
@@ -34,11 +38,24 @@ var int BaseCharges;						// Number of charges of the item to add.
 var int BonusCharges;						// Number of extra charges of the item to add for each item of that type already in the inventory.
 var bool bUseHighestAvailableUpgrade;		// If true, grant the highest available upgraded version of the item.
 var array<name> SkipAbilities;				// List of abilities to not add
+var EInventorySlot InvSlotEnum;				//which slot to put it in.
 
+var array<AbilityBonusAmmo> AbilityForBonusAmmo;
+var int MaxCharges;
 
 ////////////////////
 // Implementation //
 ////////////////////
+
+function AddBonusAmmoAbility(name AbilityName, int Ammo)
+{
+	local AbilityBonusAmmo	BonusAmmo;
+
+	BonusAmmo.AbilityName = AbilityName;
+	BonusAmmo.AmmoBonus = Ammo;
+
+	AbilityForBonusAmmo.AddItem(BonusAmmo);
+}
 
 simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffectParameters, XComGameState_BaseObject kNewTargetState, XComGameState NewGameState, XComGameState_Effect NewEffectState)
 {
@@ -63,19 +80,21 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 
 	AddUtilityItem(NewUnit, ItemTemplate, NewGameState, NewEffectState);
 }
-
 simulated function AddUtilityItem(XComGameState_Unit NewUnit, X2ItemTemplate ItemTemplate, XComGameState NewGameState, XComGameState_Effect NewEffectState)
 {
-	local X2EquipmentTemplate EquipmentTemplate;
-	local X2WeaponTemplate WeaponTemplate;
-	local XComGameState_Item ItemState;
-	local X2AbilityTemplateManager AbilityTemplateMan;
-	local X2AbilityTemplate AbilityTemplate;
-	local XComGameStateHistory History;
-	local name AbilityName;
+	local X2EquipmentTemplate		EquipmentTemplate;
+	local X2WeaponTemplate			WeaponTemplate;
+	local XComGameState_Item		ItemState, GrenadeLauncherItem;
+	local X2AbilityTemplateManager	AbilityTemplateMan;
+	local X2AbilityTemplate			AbilityTemplate;
+	local X2GrenadeTemplate			GrenadeTemplate;
+	local XComGameStateHistory		History;
+	local name						AbilityName;
 	local array<SoldierClassAbilityType> EarnedSoldierAbilities;
-	local XGUnit UnitVisualizer;
-	local int idx;
+	local XGUnit					UnitVisualizer;
+	local int						idx;
+	local int						AmmoCount;
+	local AbilityBonusAmmo			BonusAmmo;
 
 	History = `XCOMHISTORY;
 
@@ -88,6 +107,18 @@ simulated function AddUtilityItem(XComGameState_Unit NewUnit, X2ItemTemplate Ite
 		return;
 	}
 
+	AmmoCount = BaseCharges;
+	foreach AbilityForBonusAmmo(BonusAmmo)
+	{
+		if ( NewUnit.HasSoldierAbility(BonusAmmo.AbilityName, true) )
+		{
+			AmmoCount += BonusAmmo.AmmoBonus;
+		}
+	}
+
+	if (AmmoCount <= 0) { return; }
+	if ( MaxCharges > 0 && AmmoCount > MaxCharges ) { AmmoCount = MaxCharges; }
+
 	// Check for items that can be merged
 	WeaponTemplate = X2WeaponTemplate(EquipmentTemplate);
 	if (WeaponTemplate != none && WeaponTemplate.bMergeAmmo)
@@ -96,27 +127,33 @@ simulated function AddUtilityItem(XComGameState_Unit NewUnit, X2ItemTemplate Ite
 		{
 			ItemState = XComGameState_Item(NewGameState.GetGameStateForObjectID(NewUnit.InventoryItems[idx].ObjectID));
 			if (ItemState == none)
+			{
 				ItemState = XComGameState_Item(History.GetGameStateForObjectID(NewUnit.InventoryItems[idx].ObjectID));
+			}
+
 			if (ItemState != none && !ItemState.bMergedOut && ItemState.GetMyTemplate() == WeaponTemplate)
 			{
 				ItemState = XComGameState_Item(NewGameState.ModifyStateObject(ItemState.class, ItemState.ObjectID));
-				ItemState.Ammo += BaseCharges + ItemState.MergedItemCount * BonusCharges;
+				ItemState.Ammo += AmmoCount + ItemState.MergedItemCount * BonusCharges;
 				return;
+			}
+
+			// Flag whether the unit has a Grenade Launcher to apply any Grenade items to it
+			if (ItemState != none && X2WeaponTemplate(ItemState.GetMyTemplate()).WeaponCat ==  'grenade_launcher')
+			{
+				GrenadeLauncherItem = ItemState;
 			}
 		}
 	}
-
-	if (BaseCharges <= 0)
-		return;
-
+	
 	// No items to merge with, so create the item
 	ItemState = EquipmentTemplate.CreateInstanceFromTemplate(NewGameState);
-	ItemState.Ammo = BaseCharges;
+	ItemState.Ammo = AmmoCount;
 	ItemState.Quantity = 0;  // Flag as not a real item
 
 	// Temporarily turn off equipment restrictions so we can add the item to the unit's inventory
 	NewUnit.bIgnoreItemEquipRestrictions = true;
-	NewUnit.AddItemToInventory(ItemState, eInvSlot_Utility, NewGameState);
+	NewUnit.AddItemToInventory(ItemState, InvSlotEnum, NewGameState);
 	NewUnit.bIgnoreItemEquipRestrictions = false;
 
 	// Update the unit's visualizer to include the new item
@@ -138,17 +175,26 @@ simulated function AddUtilityItem(XComGameState_Unit NewUnit, X2ItemTemplate Ite
 			continue;
 
 		// Add utility-item abilities
-		if (EarnedSoldierAbilities[idx].ApplyToWeaponSlot == eInvSlot_Utility &&
+		if (EarnedSoldierAbilities[idx].ApplyToWeaponSlot == InvSlotEnum &&
 			EarnedSoldierAbilities[idx].UtilityCat == ItemState.GetWeaponCategory())
 		{
 			InitAbility(AbilityTemplate, NewUnit, NewGameState, ItemState.GetReference());
 		}
 
-		// Add grenade abilities
-		if (AbilityTemplate.bUseLaunchedGrenadeEffects && X2GrenadeTemplate(EquipmentTemplate) != none)
+		// Add grenade abilities. but not launch grenade - we handle it after this to handle a different case at the same time.
+		if (AbilityTemplate.bUseLaunchedGrenadeEffects && AbilityName != 'LaunchGrenade' && X2GrenadeTemplate(EquipmentTemplate) != none)
 		{
 			InitAbility(AbilityTemplate, NewUnit, NewGameState, NewUnit.GetItemInSlot(EarnedSoldierAbilities[idx].ApplyToWeaponSlot, NewGameState).GetReference(), ItemState.GetReference());
 		}
+	}
+
+	// Add launch grenade for grenades if the soldier has a launcher. we do it here to also catch when the ability is coming form the launcher instead of class abilities.
+	GrenadeTemplate = X2GrenadeTemplate(EquipmentTemplate);
+	if (GrenadeTemplate != none && GrenadeTemplate.LaunchedGrenadeEffects.Length > 0 && GrenadeLauncherItem != none)
+	{
+		AbilityTemplate = AbilityTemplateMan.FindAbilityTemplate('LaunchGrenade');
+		//AbilityRef = `TACTICALRULES.InitAbilityForUnit(LaunchGrenadeTemplate, TargetUnit, NewGameState, GrenadeLauncherItem.GetReference(), InventoryItem.GetReference());
+		InitAbility(AbilityTemplate, NewUnit, NewGameState, GrenadeLauncherItem.GetReference(), ItemState.GetReference());
 	}
 
 	// Add abilities from the equipment item itself. Add these last in case they're overridden by soldier abilities.
@@ -222,4 +268,5 @@ defaultproperties
 {
 	BaseCharges = 1
 	bUseHighestAvailableUpgrade = true
+	InvSlotEnum = eInvSlot_Utility
 }
