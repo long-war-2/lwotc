@@ -22,6 +22,7 @@ event OnInit(UIScreen Screen)
 	local XComGameState_MissionSiteChosenAssault AssaultMissionState;
 	local XComGameState NewGameState;
 	local XComGameState_WorldRegion_LWStrategyAI RegionalAI;
+	local int Alert;
 
 	ChosenAvengerAssaultScreen = UIMission_ChosenAvengerAssault(Screen);
 	Button1 = ChosenAvengerAssaultScreen.Button1;
@@ -39,7 +40,9 @@ event OnInit(UIScreen Screen)
 
 		AssaultMissionState = XComGameState_MissionSiteChosenAssault(NewGameState.ModifyStateObject(class'XComGameState_MissionSiteChosenAssault', AssaultMissionState.ObjectID));
 
-		AssaultMissionState.CacheSelectedMissionData(RegionalAI.LocalForceLevel, AssaultMissionState.SelectedMissionData.AlertLevel);
+		Alert = AssaultMissionState.GetMissionDifficulty();
+		`LWTrace("CAD Alert:" @Alert);
+		AssaultMissionState.CacheSelectedMissionData(RegionalAI.LocalForceLevel, Alert);
 
 		`GAMERULES.SubmitGameState(NewGameState);
 	}
