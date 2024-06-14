@@ -494,7 +494,7 @@ static function X2AbilityTemplate LeadTheTarget_LW()
 	
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'LeadTheTarget_LW');
-	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack.perk_LeadTheTarget";
+	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_LeadTheTarget";
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_LIEUTENANT_PRIORITY;
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
@@ -632,7 +632,7 @@ static function X2AbilityTemplate LeadTheTargetShot_LW()
 	Template.bDisplayInUITacticalText = false;
 
 	Template.TargetingMethod = class'X2TargetingMethod_OverTheShoulder';
-	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack.perk_LeadTheTarget";
+	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_LeadTheTarget";
 	Template.bUsesFiringCamera = true;
 	Template.bShowActivation = true;
 	Template.CinescriptCameraType = "StandardGunFiring";
@@ -661,7 +661,7 @@ static function X2AbilityTemplate BlindingProtocol_LW()
 	local X2Condition_UnitInventory								InventoryCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'BlindingProtocol_LW');
-	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack.perk_BlindingProtocol"; 
+	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_BlindingProtocol"; 
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_SQUADDIE_PRIORITY + 2;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
@@ -952,7 +952,7 @@ static function X2AbilityTemplate NeutralizingAgents()
 {
 	local X2AbilityTemplate		Template;
 	
-	Template = PurePassive('NeutralizingAgents_LW', "img:///UILibrary_WOTC_APA_Class_Pack.perk_NeutralizingAgents", false, 'eAbilitySource_Perk', true);
+	Template = PurePassive('NeutralizingAgents_LW', "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_NeutralizingAgents", false, 'eAbilitySource_Perk', true);
 
 	return Template;
 }
@@ -1041,7 +1041,7 @@ static function X2AbilityTemplate ZoneOfControl_LW()
 	local X2AbilityMultiTarget_AllUnits	TargetStyle;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ZoneOfControl_LW');
 
-	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack.perk_ZoneOfControl";
+	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_ZoneOfControl";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
@@ -1073,7 +1073,7 @@ static function X2AbilityTemplate ZoneOfControl_LW()
 
 static function X2AbilityTemplate AddZoCPassive()
 {
-	return PurePassive('ZoCPassive', "img:///UILibrary_WOTC_APA_Class_Pack.perk_ZoneOfControl", , 'eAbilitySource_Perk');
+	return PurePassive('ZoCPassive', "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_ZoneOfControl", , 'eAbilitySource_Perk');
 }
 
 static function X2AbilityTemplate AddZoCCleanse()
@@ -1085,7 +1085,7 @@ static function X2AbilityTemplate AddZoCCleanse()
 	local X2Effect_RemoveEffects RemoveEffect;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ZoCCleanse');
 
-	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack.perk_ZoneOfControl";
+	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_ZoneOfControl";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
@@ -1149,7 +1149,7 @@ static function X2AbilityTemplate ApexPredator_LW()
 	PanicTrigger = new class'X2Effect_ApexPredator_LW';
 	PanicTrigger.BuildPersistentEffect(1, true, false, false);
 
-	Template = Passive('ApexPredator_LW', "img:///UILibrary_WOTC_APA_Class_Pack.perk_ApexPredator", true, PanicTrigger);
+	Template = Passive('ApexPredator_LW', "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_ApexPredator", true, PanicTrigger);
 
 	Template.AdditionalAbilities.AddItem('ApexPredatorPanic_LW');
 
@@ -1168,7 +1168,7 @@ static function X2AbilityTemplate ApexPredatorPanic_LW()
 
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ApexPredatorPanic_LW');
-	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack.perk_ApexPredator";
+	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_ApexPredator";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
