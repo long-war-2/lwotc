@@ -7588,7 +7588,7 @@ LocLongDescription="Soldier Dodge increased by <Ability:TargetingDodge_DodgeBonu
 LocLongDescription="Soldier critical chance increased by <Ability:TargetingCrit_CritBonus/> for <Ability:TURNSREMAINING/> turns."
 
 [Hypnography X2AbilityTemplate]
-LocLongDescription="All enemy Will reduced by <Ability:Hypnography_WillBonus/>%."
+LocLongDescription="All enemy Will reduced by <Ability:Hypnography_WillBonus/>."
 ; End Translation
 
 ; LWOTC Needs Translation
