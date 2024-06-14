@@ -269,6 +269,7 @@ static function X2AbilityTemplate AddGhostGrenadeAbility()
 {
 	local X2AbilityTemplate			Template;
 	local X2Effect_TemporaryItem	TemporaryItemEffect;
+	local XMBEffect_AddUtilityItem  GhostGrenadeEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'GhostGrenade');
 
@@ -282,6 +283,7 @@ static function X2AbilityTemplate AddGhostGrenadeAbility()
 	Template.bIsPassive = true;
 	Template.bCrossClassEligible = true;
 
+	/*
 	TemporaryItemEffect = new class'X2Effect_TemporaryItem';
 	TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
 	TemporaryItemEffect.EffectName = 'GhostGrenadeEffect';
@@ -292,6 +294,18 @@ static function X2AbilityTemplate AddGhostGrenadeAbility()
 	TemporaryItemEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
 	TemporaryItemEffect.DuplicateResponse = eDupe_Ignore;
 	Template.AddTargetEffect(TemporaryItemEffect);
+
+	*/
+
+	GhostGrenadeEffect = new class'XMBEffect_AddUtilityItem';
+	GhostGrenadeEffect.DataName = 'GhostGrenade';
+	GhostGrenadeEffect.EffectName = 'GhostGrenadeEffect';
+	GhostGrenadeEffect.BuildPersistentEffect(1, true, false);
+	GhostGrenadeEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	GhostGrenadeEffect.DuplicateResponse = eDupe_Ignore;
+	Template.AddTargetEffect(GhostGrenadeEffect);
+
+
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
