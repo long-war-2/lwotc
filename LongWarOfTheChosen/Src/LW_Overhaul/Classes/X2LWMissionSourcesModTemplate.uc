@@ -23,9 +23,18 @@ static function UpdateMissionSources(X2StrategyElementTemplate Template, int Dif
 			SourceTemplate.OnFailureFn = ChosenAmbushOnFailure;
 			SourceTemplate.OnExpireFn = ChosenAmbushOnExpire;
 			break;
+			case 'MissionSource_ChosenAvengerAssault':
+			SourceTemplate.GetMissionDifficultyFn = GetCADDifficulty;
+			break;
 		default:
 			break;
 	}
+}
+
+// Make CAD difficulty scale with strategy difficulty
+static function int GetCADDifficulty(XComGameState_MissionSite MissionState)
+{
+	return `STRATEGYDIFFICULTYSETTING + 1;
 }
 
 // Captures the covert operatives on the mission before going through the
