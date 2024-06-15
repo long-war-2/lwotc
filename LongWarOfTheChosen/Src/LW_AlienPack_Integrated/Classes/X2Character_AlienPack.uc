@@ -1457,7 +1457,7 @@ static function X2CharacterTemplate CreateTemplate_ChryssalidSoldier()
 	CharTemplate.BehaviorClass=class'XGAIBehavior';
 	CharTemplate.strPawnArchetypes.AddItem("LWHiveQueen.Archetypes.ARC_GameUnit_ChryssalidM2");
 	Loot.ForceLevel=0;
-	Loot.LootTableName='Chryssalid_BaseLoot';  
+	Loot.LootTableName='ChryssalidSoldier_BaseLoot';  
 	CharTemplate.Loot.LootReferences.AddItem(Loot);
 
 	// Timed Loot
@@ -1533,7 +1533,7 @@ static function X2CharacterTemplate CreateTemplate_HiveQueen()
 	CharTemplate.BehaviorClass=class'XGAIBehavior';
 	CharTemplate.strPawnArchetypes.AddItem("LWHiveQueen.Archetypes.ARC_GameUnit_ChryssalidM3");
 	Loot.ForceLevel=0;
-	Loot.LootTableName='Chryssalid_BaseLoot';  
+	Loot.LootTableName='HiveQueen_BaseLoot';  
 	CharTemplate.Loot.LootReferences.AddItem(Loot);
 
 	// Timed Loot
