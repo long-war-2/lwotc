@@ -6487,9 +6487,9 @@ LocPromotionPopupText="<Bullet/> With this ability, Point Blank and Both Barrels
 [NoneShallPass_LW X2AbilityTemplate]
 LocFriendlyName="None Shall Pass"
 LocFlyOverText="None Shall Pass"
-LocLongDescription="During enemy turns, fire a free reaction shot that can critically hit with your sawed-off shotgun at any visible enemy within <Ability:NONE_SHALL_PASS_TILE_RANGE/> tiles who moves or fires. Can only trigger once per turn."
-LocHelpText="During enemy turns, fire a free reaction shot that can critically hit with your sawed-off shotgun at any visible enemy within <Ability:NONE_SHALL_PASS_TILE_RANGE/> tiles who moves or fires."
-LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><Bullet/> Only triggers once per turn.<br/><Bullet/> Uses 1 ammo and will only trigger if the sawed-off shotgun is loaded.<br/><Bullet/> Can critically hit.<br/><Bullet/> Works during any enemy turn: alien, Lost, Chosen and Ruler.<br/>"
+LocLongDescription="During enemy turns, fire a free shot that can critically hit with your sawed-off shotgun at any visible enemy within <Ability:NONE_SHALL_PASS_TILE_RANGE/> tiles who moves or fires."
+LocHelpText="During enemy turns, fire a free shot that can critically hit with your sawed-off shotgun at any visible enemy within <Ability:NONE_SHALL_PASS_TILE_RANGE/> tiles who moves or fires."
+LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><Bullet/> Uses 1 ammo and will only trigger if the sawed-off shotgun is loaded.<br/><Bullet/> Can critically hit.<br/><Bullet/> Works during any enemy turn: alien, Lost, Chosen and Ruler.<br/><Bullet/>This cannot trigger more than once per enemy and will not fire against allies when panicked"
 
 [ScrapMetal_LW X2AbilityTemplate]
 LocFriendlyName="Scrap Metal"
