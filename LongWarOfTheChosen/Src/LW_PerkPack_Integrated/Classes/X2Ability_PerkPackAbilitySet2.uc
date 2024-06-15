@@ -519,6 +519,8 @@ static function X2AbilityTemplate AddFlashbanger()
 	TemporaryItemEffect.AlternativeItemNames.AddItem('StingGrenade');
 
 	TemporaryItemEffect.ForceCheckAbilities.AddItem('LaunchGrenade');
+	TemporaryItemEffect.ForceCheckAbilities.AddItem('IRI_LaunchOrdnance');
+	TemporaryItemEffect.ForceCheckAbilities.AddItem('IRI_BlastOrdnance');
 	TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
 	TemporaryItemEffect.BuildPersistentEffect(1, true, false);
 	TemporaryItemEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
@@ -567,6 +569,8 @@ static function X2AbilityTemplate AddSmokeGrenade()
 	TemporaryItemEffect.AlternativeItemNames.AddItem('DenseSmokeGrenadeMk2');
 
 	TemporaryItemEffect.ForceCheckAbilities.AddItem('LaunchGrenade');
+	TemporaryItemEffect.ForceCheckAbilities.AddItem('IRI_LaunchOrdnance');
+	TemporaryItemEffect.ForceCheckAbilities.AddItem('IRI_BlastOrdnance');
 	TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
 	TemporaryItemEffect.BuildPersistentEffect(1, true, false);
 	TemporaryItemEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
@@ -675,6 +679,8 @@ static function X2AbilityTemplate AddDenseSmoke()
 	TemporaryItemEffect.AlternativeItemNames.AddItem('DenseSmokeGrenadeMk2');
 
 	TemporaryItemEffect.ForceCheckAbilities.AddItem('LaunchGrenade');
+	TemporaryItemEffect.ForceCheckAbilities.AddItem('IRI_LaunchOrdnance');
+	TemporaryItemEffect.ForceCheckAbilities.AddItem('IRI_BlastOrdnance');
 	TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
 	TemporaryItemEffect.BuildPersistentEffect(1, true, false);
 	TemporaryItemEffect.DuplicateResponse = eDupe_Ignore;
@@ -824,6 +830,8 @@ static function X2AbilityTemplate AddAirdrop()
 	TemporaryItemEffect.ItemName = 'FragGrenade';
 	TemporaryItemEffect.ResearchOptionalItems.AddItem(Conditional);
 	TemporaryItemEffect.ForceCheckAbilities.AddItem('LaunchGrenade');
+	TemporaryItemEffect.ForceCheckAbilities.AddItem('IRI_LaunchOrdnance');
+	TemporaryItemEffect.ForceCheckAbilities.AddItem('IRI_BlastOrdnance');
 	TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
 	TemporaryItemEffect.BuildPersistentEffect(1, true, false);
 	TemporaryItemEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
