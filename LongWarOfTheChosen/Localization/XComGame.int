@@ -5338,7 +5338,7 @@ LocPromotionPopupText="<Bullet/> Generate an explosive field of Psionic energy t
 ; End Translation
 
 [CoveringFire X2AbilityTemplate]
-LocLongDescription="Reaction shots now trigger on any hostile action, not just movement. Overwatch shots now ignore 2/3 of cover bonuses."
+LocLongDescription="Overwatch now trigger on any hostile action, not just movement. Overwatch shots now ignore 2/3 of cover bonuses."
 ;
 ;LocPromotionPopupText="<Bullet/> If triggered by an enemy action, Covering Fire will trigger before the enemy action completes.<br/><Bullet/> In addition, having the Covering Fire ability confers a penalty of -<Ability:COVERING_FIRE_OFFENSE_MALUS> aim upon any units you take a reaction shot at, regardless of whether it was a covering fire shot or not."
 LocPromotionPopupText="<Bullet/> If triggered by an enemy action, Covering Fire will trigger before the enemy action completes.<br/><Bullet/> In addition, having the Covering Fire ability allows the owner to ignore 2/3 of cover bonuses with reaction fire."
@@ -7416,8 +7416,8 @@ LocPromotionPopupText="<Bullet/> Soul Shot has +20 bonus to Aim.<br/><Bullet/> S
 
 [IRI_TemplarShield X2AbilityTemplate]
 LocFriendlyName="Templar Shield"
-LocLongDescription="Use your shard gauntlets to generate a psionic shield and gain <Ability:TEMPLAR_SHIELD_TAG/> Shield HP that will last until the start of your next turn. Can be used with Momentum actions. While active, enemy crit chance is reduced by 20 against the unit."
-LocHelpText="Use your shard gauntlets to generate a psionic shield and gain <Ability:TEMPLAR_SHIELD_TAG/> Shield HP that will last until the start of your next turn. Can be used with Momentum actions. While active, enemy crit chance is reduced by 20 against the unit."
+LocLongDescription="Use your shard gauntlets to generate a psionic shield and gain <Ability:TEMPLAR_SHIELD_TAG/> Shield HP that will last until the start of your next turn. Can be used with Momentum actions. While active, enemy crit chance is reduced by <Ability:TEMPLAR_SHIELD_CRIT_RESIST> against the unit."
+LocHelpText="Use your shard gauntlets to generate a psionic shield and gain <Ability:TEMPLAR_SHIELD_TAG/> Shield HP that will last until the start of your next turn. Can be used with Momentum actions. While active, enemy crit chance is reduced by <Ability:TEMPLAR_SHIELD_CRIT_RESIST> against the unit."
 LocPromotionPopupText="<bullet/> Ends turn when used.<br/><bullet/> Shield strength will increase with shard gauntlets' tech level."
 
 [Indomitable X2AbilityTemplate]
@@ -7588,7 +7588,7 @@ LocLongDescription="Soldier Dodge increased by <Ability:TargetingDodge_DodgeBonu
 LocLongDescription="Soldier critical chance increased by <Ability:TargetingCrit_CritBonus/> for <Ability:TURNSREMAINING/> turns."
 
 [Hypnography X2AbilityTemplate]
-LocLongDescription="All enemy Will reduced by <Ability:Hypnography_WillBonus/>%."
+LocLongDescription="All enemy Will reduced by <Ability:Hypnography_WillBonus/>."
 ; End Translation
 
 ; LWOTC Needs Translation
