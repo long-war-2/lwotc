@@ -4335,6 +4335,8 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			return true;
 		case 'TEMPLAR_SHIELD_CRIT_RESIST':
 			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.TEMPLAR_SHIELD_CRIT_RESIST);
+		case 'CRUSADER_RAGE_HEAL':
+			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.CRUSADER_WOUND_HP_REDUCTTION);
 			return true;
 		default:
 			return false;
