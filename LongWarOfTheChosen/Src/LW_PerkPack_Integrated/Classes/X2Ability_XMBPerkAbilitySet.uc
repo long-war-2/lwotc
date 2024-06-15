@@ -311,6 +311,10 @@ static function X2AbilityTemplate SawedOffOverwatch()
 {
 	local X2AbilityTemplate 				Template;
 	local X2AbilityToHitCalc_StandardAim 	ToHit;
+	local X2Effect_Persistent               NoneShallPassTargetEffect;
+	local X2Condition_UnitEffectsWithAbilitySource NoneShallPassTargetCondition;
+	local X2AbilityTrigger_EventListener	Trigger;
+	local X2Condition_UnitProperty			ExcludeSquadmatesCondition;
 
 	Template = Attack('NoneShallPass_LW', "img:///'BstarsPerkPack_Icons.UIPerk_SawedOffOverwatch'", false, none, class'UIUtilities_Tactical'.const.CLASS_SERGEANT_PRIORITY, eCost_None);
 	
@@ -319,15 +323,38 @@ static function X2AbilityTemplate SawedOffOverwatch()
 
 	ToHit = new class'X2AbilityToHitCalc_StandardAim';
 	Template.bAllowAmmoEffects = true; 
-	ToHit.bReactionFire = true;
+	ToHit.bReactionFire = false;
 	ToHit.bAllowCrit = true;
 	Template.AbilityToHitCalc = ToHit;
 	Template.AbilityTriggers.Length = 0;
-	AddMovementTrigger(Template);
+	// Swap to standard Overwatch listener
+	//AddMovementTrigger(Template);
+
+	Trigger = new class'X2AbilityTrigger_EventListener';
+	Trigger.ListenerData.EventID = 'ObjectMoved';
+	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	Trigger.ListenerData.Filter = eFilter_None;
+	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalOverwatchListener;
+	Template.AbilityTriggers.AddItem(Trigger);
+
 	Template.AbilityTargetConditions.AddItem(TargetWithinTiles(default.NONE_SHALL_PASS_TILE_RANGE));
 	AddCooldown(Template, default.NONE_SHALL_PASS_COOLDOWN);
 
 	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitDisallowMindControlProperty);
+
+	NoneShallPassTargetCondition = new class'X2Condition_UnitEffectsWithAbilitySource';
+	NoneShallPassTargetCondition.AddExcludeEffect('NoneShallPassTarget', 'AA_DuplicateEffectIgnored');
+	Template.AbilityTargetConditions.AddItem(NoneShallPassTargetCondition);
+
+	ExcludeSquadmatesCondition = new class'X2Condition_UnitProperty';
+	ExcludeSquadmatesCondition.ExcludeSquadmates = true;
+	Template.AbilityTargetConditions.AddItem(ExcludeSquadmatesCondition);
+
+	NoneShallPassTargetEffect = new class'X2Effect_Persistent';
+	NoneShallPassTargetEffect.BuildPersistentEffect(1, false, true, true, eGameRule_PlayerTurnEnd);
+	NoneShallPassTargetEffect.EffectName = 'NoneShallPassTarget';
+	NoneShallPassTargetEffect.bApplyOnMiss = true; //Only one chance, even if you miss (prevents crazy flailing counter-attack chains with a Muton, for example)
+	Template.AddTargetEffect(NoneShallPassTargetEffect);
 
 	return Template;
 }
