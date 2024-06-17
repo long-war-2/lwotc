@@ -2674,6 +2674,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		case 'ChosenRifle_XCOM':
 			WeaponTemplate.Abilities.AddItem('OverbearingSuperiority_LW');
 			WeaponTemplate.OnAcquiredFn = none;
+			WeaponTemplate.NumUpgradeSlots = 2;
 			//WeaponTemplate.SetUIStatMarkup(class'XLocalizedData'.default.AimLabel, eStat_Offense, class'X2Item_XpackWeapons'.default.CHOSENRIFLE_XCOM_AIM);
 			break;
 		case 'ChosenSniperRifle_XCOM':
@@ -2682,6 +2683,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			//WeaponTemplate.Abilities.RemoveItem('Reload');
 			//WeaponTemplate.Abilities.AddItem('ComplexReload_LW'); 
 			WeaponTemplate.OnAcquiredFn = none;
+			WeaponTemplate.NumUpgradeSlots = 2;
 			break;
 		case 'ChosenSword_XCOM':
 			WeaponTemplate.Abilities.AddItem('XCOMBloodThirst_LW');
@@ -2700,6 +2702,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponTemplate.Abilities.AddItem('Vampirism_LW');
 			WeaponTemplate.Abilities.AddItem('ImpactCompensation_LW');
 			WeaponTemplate.OnAcquiredFn = none;
+			WeaponTemplate.NumUpgradeSlots = 2;
 			break;
 		case 'ChosenSniperPistol_XCOM':
 			WeaponTemplate.Abilities.AddItem('Fatality_LW');
