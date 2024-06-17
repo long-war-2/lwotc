@@ -641,22 +641,46 @@ static function AddCharges(X2AbilityTemplate Template, int InitialCharges)
 // This is usually used for overwatch-type abilities.
 static function AddMovementTrigger(X2AbilityTemplate Template)
 {
+	/* 
 	local X2AbilityTrigger_Event Trigger;
 	Trigger = new class'X2AbilityTrigger_Event';
 	Trigger.EventObserverClass = class'X2TacticalGameRuleset_MovementObserver';
 	Trigger.MethodName = 'InterruptGameState';
 	Template.AbilityTriggers.AddItem(Trigger);
+
+	*/
+	local X2AbilityTrigger_EventListener Trigger;
+
+	Trigger = new class'X2AbilityTrigger_EventListener';
+	Trigger.ListenerData.EventID = 'ObjectMoved';
+	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	Trigger.ListenerData.Filter = eFilter_None;
+	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalOverwatchListener;
+	Template.AbilityTriggers.AddItem(Trigger);
 }
+	
 
 // Helper function for making an ability trigger whenever another unit acts in the unit's vision. 
 // This is usually used for overwatch-type abilities.
 static function AddAttackTrigger(X2AbilityTemplate Template)
 {
+	/* 
 	local X2AbilityTrigger_Event Trigger;
 	Trigger = new class'X2AbilityTrigger_Event';
 	Trigger.EventObserverClass = class'X2TacticalGameRuleset_AttackObserver';
 	Trigger.MethodName = 'InterruptGameState';
 	Template.AbilityTriggers.AddItem(Trigger);
+	*/
+
+	local X2AbilityTrigger_EventListener EventListener;
+
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.EventID = 'AbilityActivated';
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.Filter = eFilter_None;
+	EventListener.ListenerData.Priority = 85;
+	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalAttackListener;
+	Template.AbilityTriggers.AddItem(EventListener);
 }
 
 // Helper function for preventing an ability from applying to the same target too often. This works
