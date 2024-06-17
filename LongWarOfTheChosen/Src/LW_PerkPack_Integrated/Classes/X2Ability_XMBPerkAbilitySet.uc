@@ -211,6 +211,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(XCOMBloodThirstPassive());
 	Templates.AddItem(Fatality());
 	Templates.AddItem(Vampirism());
+	Templates.AddItem(AddVampirismTriggered2());
 	Templates.AddItem(VampirismPassive());
 	
 	Templates.AddItem(ComplexReload());
@@ -3386,8 +3387,81 @@ static function X2AbilityTemplate Vampirism()
 	Template.bSkipFireAction = true;
 
 	Template.AdditionalAbilities.AddItem('VampirismPassive_LW');
+	Template.AdditionalAbilities.AddItem('VampirismTriggered2');
 
 	return Template;
+}
+
+static function X2AbilityTemplate AddVampirismTriggered2()
+{
+	local X2AbilityTemplate                 Template;
+	local X2AbilityTrigger_EventListener    EventListener;
+	local X2Condition_UnitProperty          ShooterProperty;
+	local X2Condition_UnitStatCheck			ShooterProperty3;
+	local X2Effect_SoulSteal_LW             StealEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'VampirismTriggered2');
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_soulsteal";
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.AbilitySourceName = 'eAbilitySource_Psionic';
+
+	ShooterProperty = new class'X2Condition_UnitProperty';
+	ShooterProperty.ExcludeAlive = false;
+	ShooterProperty.ExcludeDead = true;
+	ShooterProperty.ExcludeFriendlyToSource = false;
+	ShooterProperty.ExcludeHostileToSource = true;
+	ShooterProperty.ExcludeFullHealth = false;
+	Template.AbilityShooterConditions.AddItem(ShooterProperty);
+
+	//ShooterProperty2 = new class'X2Condition_UnitStatCheck';
+	//ShooterProperty2.AddCheckStat(eStat_HP, 100, eCheck_Exact,,, true);
+	//Template.AbilityShooterConditions.AddItem(ShooterProperty2);
+
+	ShooterProperty3 = new class'X2Condition_UnitStatCheck';
+	ShooterProperty3.AddCheckStat(eStat_ShieldHP, 8, eCheck_LessThan);
+	Template.AbilityShooterConditions.AddItem(ShooterProperty3);
+
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.EventFn = VampirismListener;
+	EventListener.ListenerData.EventID = 'UnitTakeEffectDamage';
+	EventListener.ListenerData.Filter = eFilter_None;
+	Template.AbilityTriggers.AddItem(EventListener);
+
+	StealEffect = new class'X2Effect_SoulSteal_LW';
+	StealEffect.BuildPersistentEffect(3, false, true, false, eGameRule_PlayerTurnBegin);
+	StealEffect.SetDisplayInfo (ePerkBuff_Bonus, class'X2Ability_PerkPackAbilitySet'.default.LocSoulStealBuff, class'X2Ability_PerkPackAbilitySet'.default.LocSoulStealBuffHelpText, Template.IconImage,,, Template.AbilitySourceName);
+	StealEffect.SoulStealM1Shield = 2;
+	StealEffect.SoulStealM2Shield = 2;
+	StealEffect.SoulStealM3Shield = 2;
+	StealEffect.EffectRemovedVisualizationFn = OnShieldRemoved_BuildVisualization;
+	Template.AddShooterEffect(StealEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = none;
+	Template.FrameAbilityCameraType = eCameraFraming_Never;
+	Template.bShowActivation = false;
+	Template.bSkipExitCoverWhenFiring = true;
+	Template.CustomFireAnim = '';
+	//Template.ActionFireClass = class'X2Action_Fire_AdditiveAnim';
+
+	return Template;
+}
+
+simulated function OnShieldRemoved_BuildVisualization(XComGameState VisualizeGameState, out VisualizationActionMetadata ActionMetadata, const name EffectApplyResult)
+{
+	local X2Action_PlaySoundAndFlyOver SoundAndFlyOver;
+
+	if (XGUnit(ActionMetadata.VisualizeActor).IsAlive())
+	{
+		SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, VisualizeGameState.GetContext(), false, ActionMetadata.LastActionAdded));
+		SoundAndFlyOver.SetSoundAndFlyOverParameters(None, class'XLocalizedData'.default.ShieldRemovedMsg, '', eColor_Bad, , 0.75, true);
+	}
 }
 
 static function EventListenerReturn VampirismListener(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)

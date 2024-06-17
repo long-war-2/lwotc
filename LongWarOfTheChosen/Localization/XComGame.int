@@ -7094,8 +7094,8 @@ LocFlyOverText="Fatality"
 
 [Vampirism_LW X2AbilityTemplate]
 LocFriendlyName="Vampirism"
-LocLongDescription="Dealing damage with this weapon heals you for the same amount."
-LocHelpText="Dealing damage with this weapon heals you for the same amount."
+LocLongDescription="Dealing damage with this weapon heals you for the same amount. Overhealing is converted to 2 Ablative HP per instance of dealing damage that expires after 3 turns."
+LocHelpText="Dealing damage with this weapon heals you for the same amount. There is no maximum amout of Ablative HP per mission, but the effect will not provide additional shielding if the unit currently has 8 or more Ablative HP at the time of dealing damage."
 LocFlyOverText="Vampirism"
 
 [VampirismPassive_LW X2AbilityTemplate]
