@@ -460,12 +460,18 @@ static function GetUpdatedHitChances(X2AbilityToHitCalc_StandardAim ToHitCalc, o
 	GrazeBand = `LWOVERHAULOPTIONS.GetGrazeBand();
 
 	// options to zero out the band for certain abilities -- either GuaranteedHit or an ability-by-ability
-	if (default.GUARANTEED_HIT_ABILITIES_IGNORE_GRAZE_BAND && ToHitCalc.bGuaranteedHit)
+	if (default.GUARANTEED_HIT_ABILITIES_IGNORE_GRAZE_BAND && ToHitCalc.bGuaranteedHit || ToHitCalc.bIndirectFire)
 	{
 		GrazeBand = 0;
 	}
 
 	HitChance = ShotBreakdown.ResultTable[eHit_Success];
+
+	if(ToHitCalc.bIndirectFire || ToHitCalc.bGuaranteedHit)
+	{
+		HitChance += 1000;
+	}
+	
 	// LWOTC: If hit chance is within grazeband of either 0 or 100%, then adjust
 	// the band so that 100% is a hit and 0% is a miss.
 	if (HitChance < GrazeBand)
