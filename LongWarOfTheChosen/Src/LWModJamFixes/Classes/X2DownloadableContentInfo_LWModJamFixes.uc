@@ -1,3 +1,7 @@
+// Author: Tedster
+// LW Strikes Back!
+// Fixing issues with Mod Jam stuff with CHL Run Order on this package set to run after Mod Jam.
+
 class X2DownloadableContentInfo_LWModJamFixes extends X2DownloadableContentInfo;
 
 static event OnPostTemplatesCreated()
@@ -13,6 +17,7 @@ static event OnPostTemplatesCreated()
     // 2 different collateral damage abilities
     PatchCollateral(AbilityTemplateManager.FindAbilityTemplate('RM_CollateralDamage'));
     PatchCollateral(AbilityTemplateManager.FindAbilityTemplate('Collateral'));
+    FixAssaultMecCCS(AbilityTemplateManager.FindAbilityTemplate('AssaultMecCCS'));
 }
 
 static function PatchSolaceBack(X2AbilityTemplate Template)
@@ -58,6 +63,23 @@ static function FixObliterator(X2AbilityTemplate Template)
     	HitModEffect.BuildPersistentEffect(1, true, false, false);
     	HitModEffect.EffectName = 'ObliteratorAim';
     	Template.AddTargetEffect(HitModEffect);
+    }
+}
+
+static function FixAssaultMecCCS(X2AbilityTemplate Template)
+{
+    local X2AbilityTrigger_EventListener Trigger;
+
+    if(Template != none)
+    {
+       Template.AbilityTriggers.Length = 0;
+
+      Trigger = new class'X2AbilityTrigger_EventListener';
+    	Trigger.ListenerData.EventID = 'ObjectMoved';
+    	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+    	Trigger.ListenerData.Filter = eFilter_None;
+    	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalOverwatchListener;
+	    Template.AbilityTriggers.AddItem(Trigger);
     }
 }
 
