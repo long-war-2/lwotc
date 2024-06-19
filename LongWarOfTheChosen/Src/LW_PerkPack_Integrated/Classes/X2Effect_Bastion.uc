@@ -129,5 +129,5 @@ function OnUnitChangedTile(const out TTile NewTileLocation, XComGameState_Effect
 DefaultProperties
 {
 	EffectName="Bastion"
-	DuplicateResponse=eDupe_Ignore
+	DuplicateResponse=eDupe_Allow
 }

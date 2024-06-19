@@ -23,3 +23,8 @@ function bool IsEffectCurrentlyRelevant(XComGameState_Effect EffectGameState, XC
 
 	return super.IsEffectCurrentlyRelevant(EffectGameState, TargetUnit);
 }
+
+DefaultProperties
+{
+	DuplicateResponse=eDupe_Allow
+}
