@@ -137,6 +137,8 @@ var localized string LocCoveringFire;
 var localized string LocCoveringFireMalus;
 var localized string LocSoulStealBuff;
 var localized string LocSoulStealBuffHelpText;
+var localized string LocVampirismBuff;
+var localized string LocVampirismBuffHelpText;
 
 static function array<X2DataTemplate> CreateTemplates()
 {

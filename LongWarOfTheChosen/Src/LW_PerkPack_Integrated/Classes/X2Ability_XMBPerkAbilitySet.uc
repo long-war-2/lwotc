@@ -3435,7 +3435,7 @@ static function X2AbilityTemplate AddVampirismTriggered2()
 
 	StealEffect = new class'X2Effect_SoulSteal_LW';
 	StealEffect.BuildPersistentEffect(3, false, true, false, eGameRule_PlayerTurnBegin);
-	StealEffect.SetDisplayInfo (ePerkBuff_Bonus, class'X2Ability_PerkPackAbilitySet'.default.LocSoulStealBuff, class'X2Ability_PerkPackAbilitySet'.default.LocSoulStealBuffHelpText, Template.IconImage,,, Template.AbilitySourceName);
+	StealEffect.SetDisplayInfo (ePerkBuff_Bonus, class'X2Ability_PerkPackAbilitySet'.default.LocVampirismBuff, class'X2Ability_PerkPackAbilitySet'.default.LocVampirismBuffHelpText, Template.IconImage,,, Template.AbilitySourceName);
 	StealEffect.SoulStealM1Shield = 2;
 	StealEffect.SoulStealM2Shield = 2;
 	StealEffect.SoulStealM3Shield = 2;
