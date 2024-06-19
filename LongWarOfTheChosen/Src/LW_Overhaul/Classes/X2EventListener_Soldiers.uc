@@ -73,7 +73,7 @@ static function CHEventListenerTemplate CreateStatusListeners()
 	Template.AddCHEvent('OverridePersonnelStatus', OnOverridePersonnelStatus, ELD_Immediate);
 	Template.AddCHEvent('OverridePersonnelStatusTime', OnOverridePersonnelStatusTime, ELD_Immediate);
 	Template.AddCHEvent('DSLShouldShowPsi', OnShouldShowPsi, ELD_Immediate);
-	Template.AddCHEvent('UIPersonnel_OnSortFinished', OnUIPSortDone, ELD_Immediate, 60);
+	//Template.AddCHEvent('UIPersonnel_OnSortFinished', OnUIPSortDone, ELD_Immediate, 60);
 	// Armory Main Menu - disable buttons for On-Mission soldiers
 	Template.AddCHEvent('OnArmoryMainMenuUpdate', UpdateArmoryMainMenuItems, ELD_Immediate);
 
@@ -1293,6 +1293,7 @@ static function int GetUnitStatsValue(XComGameState_Unit Unit, ECharStatType Sta
     return StatValue;
 }
 
+// Disabled now:
 static function EventListenerReturn OnUIPSortDone(Object EventData, Object EventSource, XComGameState GameState, Name Event, Object CallbackData)
 {
 	local UIPersonnel SS_Screen;
