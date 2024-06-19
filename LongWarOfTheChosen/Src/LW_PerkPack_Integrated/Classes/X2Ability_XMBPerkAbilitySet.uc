@@ -3405,7 +3405,7 @@ static function X2AbilityTemplate AddVampirismTriggered2()
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SelfTarget;
 
-	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_soulsteal";
+	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.str_soulstealer";
 	Template.Hostility = eHostility_Neutral;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 	Template.AbilitySourceName = 'eAbilitySource_Psionic';
@@ -3523,7 +3523,7 @@ static function X2AbilityTemplate VampirismPassive()
 {
 	local X2AbilityTemplate         Template;
 
-	Template = PurePassive('VampirismPassive_LW', "img:///UILibrary_PerkIcons.UIPerk_soulsteal", false, 'eAbilitySource_Perk');
+	Template = PurePassive('VampirismPassive_LW', "img:///UILibrary_XPACK_Common.PerkIcons.str_soulstealer", false, 'eAbilitySource_Perk');
 
 	return Template;
 }
