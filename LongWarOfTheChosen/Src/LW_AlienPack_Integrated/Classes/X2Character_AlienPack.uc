@@ -580,6 +580,7 @@ static function X2CharacterTemplate CreateTemplate_ArchonM2_LW()
 	CharTemplate.bCanUse_eTraversal_Land = true;
 	CharTemplate.bAppearanceDefinesPawn = false;
 	CharTemplate.bCanTakeCover = false;
+	CharTemplate.bImmueToFalling = true;
 
 	CharTemplate.bIsAlien = true;
 	CharTemplate.bIsAdvent = false;
@@ -1411,6 +1412,7 @@ static function X2CharacterTemplate CreateTemplate_Drone(name TemplateName)
 	CharTemplate.bCanUse_eTraversal_Land = true;
 	CharTemplate.bAppearanceDefinesPawn = false;    
 	CharTemplate.bCanTakeCover = false;
+	CharTemplate.bImmueToFalling = true;
 
 	CharTemplate.bIsAlien = false;
 	CharTemplate.bIsAdvent = true;
