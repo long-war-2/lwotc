@@ -467,6 +467,7 @@ static function GetUpdatedHitChances(X2AbilityToHitCalc_StandardAim ToHitCalc, o
 
 	HitChance = ShotBreakdown.ResultTable[eHit_Success];
 
+	// Brute force for indirect fire and guaranteed hit abilities.
 	if(ToHitCalc.bIndirectFire || ToHitCalc.bGuaranteedHit)
 	{
 		HitChance += 1000;
