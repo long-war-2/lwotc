@@ -851,6 +851,330 @@ static final function bool AlwaysFail()
 	return false;
 }
 
+/// Chosen region stuff.  Not currently implemented because it needs fixing.
+/* 
+static function SetLWChosenHomeAndTerritoryRegions(XComGameState NewGameState)
+{
+	local XComGameStateHistory History;
+	local XComGameState_HeadquartersXCom XComHQ;
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local array<StateObjectReference> RemainingRegions, RemainingContinents;
+	local XComGameState_MissionSite MissionState;
+	local XComGameState_AdventChosen ChosenState;
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_Continent ContinentState;
+	local StateObjectReference StartRef, BlacksiteRef, ForgeRef, PsiGateRef, StartingContinentRef;
+	local int idx;
+
+	// @mnauta - this function isn't really equipped to deal with more Chosen (from mods etc.)
+	// If you want your to set your own territory regions, it's probably best to blast these and re-pick them
+
+	History = `XCOMHISTORY;
+	XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+
+	AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
+
+	
+	// Grab and add all Chosen in order
+	for(idx = 0; idx < AlienHQ.AdventChosen.Length; idx++)
+	{
+		ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', AlienHQ.AdventChosen[idx].ObjectID));
+		ChosenState.ControlledContinents.length = 0;
+		ChosenState.TerritoryRegions.Length = 0;
+		AllChosen.AddItem(ChosenState);
+	}
+
+	// Grab regions, list will shrink as they are assigned to chosen
+	foreach History.IterateByClassType(class'XComGameState_WorldRegion', RegionState)
+	{
+		RemainingRegions.AddItem(RegionState.GetReference());
+	}
+
+	// Grab Continents
+	foreach History.IterateByClassType(class'XComGameState_Continent', ContinentState)
+	{
+		RemainingContinents.AddItem(ContinentState.GetReference());
+	}
+
+	// Grab Start Region and Continent
+	StartRef = XComHQ.StartingRegion;
+	RegionState = XComGameState_WorldRegion(History.GetGameStateForObjectID(StartRef.ObjectID));
+	StartingContinentRef = RegionState.GetContinent().GetReference();
+	RemainingContinents.RemoveItem(StartingContinentRef);
+
+	// Grab Golden Path Mission Regions
+	foreach History.IterateByClassType(class'XComGameState_MissionSite', MissionState)
+	{
+		if(MissionState.Source == 'MissionSource_Blacksite')
+		{
+			BlacksiteRef = MissionState.Region;
+		}
+		else if(MissionState.Source == 'MissionSource_Forge')
+		{
+			ForgeRef = MissionState.Region;
+		}
+		else if(MissionState.Source == 'MissionSource_PsiGate')
+		{
+			PsiGateRef = MissionState.Region;
+		}
+	}
+
+	// Set first Chosen continent and regions
+	AllChosen[0].ControlledContinents.AddItem(StartingContinentRef);
+	AllChosen[0].TerritoryRegions.AddItem(StartRef);
+	RemainingRegions.RemoveItem(StartRef);
+	AllChosen[0].TerritoryRegions.AddItem(BlacksiteRef);
+	RemainingRegions.RemoveItem(BlacksiteRef);
+	AllChosen[0].bOccupiesStartingContinent = true;
+	SetChosenHomeRegion(AllChosen[0]);
+	AllChosen[0].CreateStrongholdMission(NewGameState);
+
+	// Second Chosen gets Forge continent and regions
+	RegionState = XComGameState_WorldRegion(History.GetGameStateForObjectID(ForgeRef.ObjectID));
+	ContinentState = RegionState.GetContinent();
+	AllChosen[1].ControlledContinents.AddItem(ContinentState.GetReference());
+	RemainingContinents.RemoveItem(ContinentState.GetReference());
+	ChosenGrabAllRemainingContinentRegions(ContinentState, AllChosen[1], RemainingRegions);
+
+	// Third Chosen gets Psi Gate continent and regions
+	RegionState = XComGameState_WorldRegion(History.GetGameStateForObjectID(PsiGateRef.ObjectID));
+	ContinentState = RegionState.GetContinent();
+	AllChosen[2].ControlledContinents.AddItem(ContinentState.GetReference());
+	RemainingContinents.RemoveItem(ContinentState.GetReference());
+	ChosenGrabAllRemainingContinentRegions(ContinentState, AllChosen[2], RemainingRegions);
+
+	// Pick the rest of the regions and continents
+	while(RemainingRegions.Length > 0)
+	{
+		NextChosenPickRegions(AllChosen[1], AllChosen[2], StartingContinentRef, RemainingRegions, RemainingContinents);
+	}
+
+	ContinentState = XComGameState_Continent(History.GetGameStateForObjectID(StartingContinentRef.ObjectID));
+	SetChosenHomeRegion(AllChosen[1], ContinentState);
+	AllChosen[1].CreateStrongholdMission(NewGameState);
+	SetChosenHomeRegion(AllChosen[2], ContinentState);
+	AllChosen[2].CreateStrongholdMission(NewGameState);
+}
+
+//---------------------------------------------------------------------------------------
+private static function NextChosenPickRegions(out XComGameState_AdventChosen ChosenStateA, out XComGameState_AdventChosen ChosenStateB,
+									   StateObjectReference StartingContinentRef, out array<StateObjectReference> RemainingRegions, out array<StateObjectReference> RemainingContinents)
+{
+	local XComGameStateHistory History;
+	local XComGameState_AdventChosen ChosenState;
+	local XComGameState_Continent ContinentState;
+	local array<StateObjectReference> ChosenLinkedContinents, OtherChosenLinkedContinents, PreferredContinents, TempLinkedContinents;
+	local StateObjectReference ContinentRef;
+	local bool bPickedA, bForceStartingRegion;
+	local int NumControlledA, NumControlledB;
+
+	History = `XCOMHISTORY;
+	bForceStartingRegion = false;
+	NumControlledA = ChosenStateA.ControlledContinents.Length;
+	NumControlledB = ChosenStateB.ControlledContinents.Length;
+
+	if(ChosenStateA.bOccupiesStartingContinent)
+	{
+		NumControlledA++;
+	}
+	else if(ChosenStateB.bOccupiesStartingContinent)
+	{
+		NumControlledB++;
+	}
+
+	if(NumControlledA < NumControlledB)
+	{
+		ChosenState = ChosenStateA;
+		ChosenLinkedContinents = GetChosenLinkedContinentsWithAvailableRegions(ChosenStateA, StartingContinentRef, RemainingRegions, RemainingContinents);
+		OtherChosenLinkedContinents = GetChosenLinkedContinentsWithAvailableRegions(ChosenStateB, StartingContinentRef, RemainingRegions, RemainingContinents);
+		bPickedA = true;
+	}
+	else if(NumControlledA > NumControlledB)
+	{
+		ChosenState = ChosenStateB;
+		ChosenLinkedContinents = GetChosenLinkedContinentsWithAvailableRegions(ChosenStateB, StartingContinentRef, RemainingRegions, RemainingContinents);
+		OtherChosenLinkedContinents = GetChosenLinkedContinentsWithAvailableRegions(ChosenStateA, StartingContinentRef, RemainingRegions, RemainingContinents);
+		bPickedA = false;
+	}
+	else
+	{
+		ChosenState = ChosenStateA;
+		ChosenLinkedContinents = GetChosenLinkedContinentsWithAvailableRegions(ChosenStateA, StartingContinentRef, RemainingRegions, RemainingContinents);
+		OtherChosenLinkedContinents = GetChosenLinkedContinentsWithAvailableRegions(ChosenStateB, StartingContinentRef, RemainingRegions, RemainingContinents);
+		bPickedA = true;
+
+		if(ChosenLinkedContinents.Length == 0)
+		{
+			if(OtherChosenLinkedContinents.Length == 0)
+			{
+				if(RemainingContinents.Length > 0)
+				{
+					ChosenLinkedContinents = RemainingContinents;
+				}
+				else
+				{
+					bForceStartingRegion = true;
+				}
+			}
+			else
+			{
+				TempLinkedContinents = ChosenLinkedContinents;
+				ChosenLinkedContinents = OtherChosenLinkedContinents;
+				OtherChosenLinkedContinents = TempLinkedContinents;
+
+				ChosenState = ChosenStateB;
+				bPickedA = false;
+
+			}
+		}
+	}
+
+	if(ChosenLinkedContinents.Length == 0)
+	{
+		if(RemainingContinents.Length > 0)
+		{
+			ChosenLinkedContinents = RemainingContinents;
+		}
+		else
+		{
+			bForceStartingRegion = true;
+		}
+	}
+
+	if(ChosenLinkedContinents.Find('ObjectID', StartingContinentRef.ObjectID) != INDEX_NONE || bForceStartingRegion)
+	{
+		// Always pick starting continent if it's linked
+		ContinentState = XComGameState_Continent(History.GetGameStateForObjectID(StartingContinentRef.ObjectID));
+		ChosenGrabAllRemainingContinentRegions(ContinentState, ChosenState, RemainingRegions);
+		ChosenState.bOccupiesStartingContinent = true;
+	}
+	else
+	{
+		PreferredContinents = ChosenLinkedContinents;
+
+		foreach OtherChosenLinkedContinents(ContinentRef)
+		{
+			PreferredContinents.RemoveItem(ContinentRef);
+		}
+
+		if(PreferredContinents.Length > 0)
+		{
+			ContinentRef = PreferredContinents[`SYNC_RAND(PreferredContinents.Length)];
+		}
+		else
+		{
+			ContinentRef = ChosenLinkedContinents[`SYNC_RAND(ChosenLinkedContinents.Length)];
+		}
+
+		ChosenState.ControlledContinents.AddItem(ContinentRef);
+		RemainingContinents.RemoveItem(ContinentRef);
+		ContinentState = XComGameState_Continent(History.GetGameStateForObjectID(ContinentRef.ObjectID));
+		ChosenGrabAllRemainingContinentRegions(ContinentState, ChosenState, RemainingRegions);
+	}
+
+	if(bPickedA)
+	{
+		ChosenStateA = ChosenState;
+	}
+	else
+	{
+		ChosenStateB = ChosenState;
+	}
+}
+
+//---------------------------------------------------------------------------------------
+private static function array<StateObjectReference> GetChosenLinkedContinentsWithAvailableRegions(XComGameState_AdventChosen ChosenState, StateObjectReference StartingContinentRef, 
+																						   array<StateObjectReference> RemainingRegions, array<StateObjectReference> RemainingContinents)
+{
+	local XComGameStateHistory History;
+	local XComGameState_WorldRegion RegionState, LinkedRegionState;
+	local array<StateObjectReference> LinkedContinents;
+	local StateObjectReference RegionRef, LinkedRegionRef;
+
+	History = `XCOMHISTORY;
+	LinkedContinents.Length = 0;
+
+	foreach ChosenState.TerritoryRegions(RegionRef)
+	{
+		RegionState = XComGameState_WorldRegion(History.GetGameStateForObjectID(RegionRef.ObjectID));
+
+		foreach RegionState.LinkedRegions(LinkedRegionRef)
+		{
+			if(RemainingRegions.Find('ObjectID', LinkedRegionRef.ObjectID) != INDEX_NONE)
+			{
+				LinkedRegionState = XComGameState_WorldRegion(History.GetGameStateForObjectID(LinkedRegionRef.ObjectID));
+
+				if(LinkedContinents.Find('ObjectID', LinkedRegionState.Continent.ObjectID) == INDEX_NONE && 
+				   (RemainingContinents.Find('ObjectID', LinkedRegionState.Continent.ObjectID) != INDEX_NONE ||
+				   LinkedRegionState.Continent == StartingContinentRef))
+				{
+					LinkedContinents.AddItem(LinkedRegionState.Continent);
+				}
+			}
+		}
+	}
+
+	return LinkedContinents;
+}
+
+//---------------------------------------------------------------------------------------
+private static function ChosenGrabAllRemainingContinentRegions(XComGameState_Continent ContinentState, out XComGameState_AdventChosen ChosenState, out array<StateObjectReference> RemainingRegions)
+{
+	local StateObjectReference RegionRef;
+
+	foreach ContinentState.Regions(RegionRef)
+	{
+		if(RemainingRegions.Find('ObjectID', RegionRef.ObjectID) != INDEX_NONE)
+		{
+			ChosenState.TerritoryRegions.AddItem(RegionRef);
+			RemainingRegions.RemoveItem(RegionRef);
+		}
+	}
+}
+
+//---------------------------------------------------------------------------------------
+private static function SetChosenHomeRegion(out XComGameState_AdventChosen ChosenState, optional XComGameState_Continent AvoidContinent)
+{
+	local array<StateObjectReference> ValidRegions;
+	local StateObjectReference RegionRef;
+
+	ValidRegions = ChosenState.TerritoryRegions;
+
+	if(AvoidContinent != none)
+	{
+		foreach AvoidContinent.Regions(RegionRef)
+		{
+			ValidRegions.RemoveItem(RegionRef);
+		}
+	}
+
+	ChosenState.HomeRegion = ValidRegions[`SYNC_RAND(ValidRegions.Length)];
+	ChosenState.ChooseLocation(); // Choose a location for their Geoscape icon now that they have a Home Region
+}
+
+//---------------------------------------------------------------------------------------
+private static function array<XComGameState_WorldRegion> GetRemainingRegionStates(array<StateObjectReference> RemainingRegions)
+{
+	local XComGameStateHistory History;
+	local array<XComGameState_WorldRegion> RemainingRegionStates;
+	local XComGameState_WorldRegion RegionState;
+	local StateObjectReference RegionRef;
+
+	History = `XCOMHISTORY;
+	RemainingRegionStates.Length = 0;
+
+	foreach RemainingRegions(RegionRef)
+	{
+		RegionState = XComGameState_WorldRegion(History.GetGameStateForObjectID(RegionRef.ObjectID));
+		RemainingRegionStates.AddItem(RegionState);
+	}
+
+	return RemainingRegionStates;
+}
+*/
+
 defaultproperties
 {
 	CHOSEN_SPAWN_TAG_SUFFIX="_LWOTC_ChosenTag"

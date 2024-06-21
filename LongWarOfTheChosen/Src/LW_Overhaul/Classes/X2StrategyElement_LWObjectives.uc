@@ -198,7 +198,7 @@ static function X2DataTemplate CreateLW_T2_M1_ContactBlacksiteRegionTemplate()
 	Template.Steps.AddItem('T2_M1_S1_ResearchResistanceComms');  // this is a base-game subobjective
 	Template.Steps.AddItem('T2_M1_S2_MakeContactWithBlacksiteRegion'); // this is a base-game subobjective
 
-	Template.AssignObjectiveFn = CreateBlacksiteMission_LW;
+	Template.AssignObjectiveFn = MakeBlacksiteMissionAvailable;
 	Template.CompletionEvent = '';
 
 	Template.NagDelayHours = 2160; // 90 days = 3 months
@@ -250,27 +250,6 @@ static function X2DataTemplate CreateLW_T2_M1_N1_RevealBlacksiteObjectiveTemplat
 	return Template;
 }
 
-//override the original function to place blacksite very far away
-static function CreateBlacksiteMission_LW(XComGameState NewGameState, XComGameState_Objective ObjectiveState)
-{
-	local array<XComGameState_Reward> Rewards;
-	local X2StrategyElementTemplateManager StratMgr;
-	local X2RewardTemplate RewardTemplate;
-	local XComGameState_Reward RewardState;
-	local XComGameState_MissionSite MissionState;
-	local XComGameState_WorldRegion RegionState;
-
-	StratMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
-	RewardTemplate = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_None')); // no rewards for completing story objectives
-	RewardState = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
-	Rewards.AddItem(RewardState);
-	MissionState = CreateMission(NewGameState, Rewards, 'MissionSource_BlackSite', default.REGIONS_TO_BLACKSITE);
-
-	RegionState = MissionState.GetWorldRegion();
-	RegionState = XComGameState_WorldRegion(NewGameState.CreateStateObject(class'XComGameState_WorldRegion', RegionState.ObjectID));
-	NewGameState.AddStateObject(RegionState);
-	RegionState.SetShortestPathToContactRegion(NewGameState); // Flag the region to update its shortest path to a player-contacted region, used for region link display states
-}
 
 static function X2DataTemplate CreateLW_T2_M1_N2_RevealAvatarProjectTemplate()
 {
@@ -314,4 +293,279 @@ function RevealAvatarProject()
 
 	`HQPRES.UIFortressReveal();
 	}
+}
+
+
+// tweaked functions for base game Golden Path:
+
+static function CreatePreplacedGoldenPathMissionsLW(XComGameState NewGameState, XComGameState_Objective ObjectiveState)
+{
+	CreateGoldenPathMissionsLW(NewGameState);
+	//CreateForgeAndPsiGateMissionsLW(NewGameState);
+	CreateFortressMissionLW(NewGameState);
+
+	// With missions now placed home regions for Chosen and Factions can be assigned
+	AssignFactionAndChosenHomeRegionsLW(NewGameState);
+}
+
+static function AssignFactionAndChosenHomeRegionsLW(XComGameState NewGameState)
+{
+	local XComGameStateHistory History;
+	local XComGameState_HeadquartersResistance ResHQ;
+	local XComGameState_HeadquartersAlien AlienHQ;
+
+	History = `XCOMHISTORY;
+
+	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
+	AlienHQ.SetChosenHomeAndTerritoryRegions(NewGameState);
+
+	ResHQ = XComGameState_HeadquartersResistance(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersResistance'));
+	ResHQ = XComGameState_HeadquartersResistance(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersResistance', ResHQ.ObjectID));
+	ResHQ.SetFactionHomeRegions(NewGameState);
+}
+
+static function CreateGoldenPathMissionsLW(XComGameState NewGameState)
+{
+	local XComGameState_MissionSite MissionState;
+	local XComGameState_WorldRegion RegionState;
+	local array<XComGameState_Reward> Rewards;
+	local X2StrategyElementTemplateManager StratMgr;
+	local X2RewardTemplate RewardTemplate;
+	local XComGameState_Reward RewardState;
+	local XComGameState_Continent ContinentState;
+	local array<XComGameState_Continent> Continents;
+	local array<XComGameState_WorldRegion> Regions;
+
+	StratMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+
+	RewardTemplate = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_Supplies'));
+	RewardState = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
+	RewardState.SetReward(, GetBlacksiteSupplyAmount());
+	Rewards.AddItem(RewardState);
+	MissionState = CreateMissionLW(NewGameState, Rewards, 'MissionSource_BlackSite', default.REGIONS_TO_BLACKSITE, false, false, false);
+	
+	RegionState = MissionState.GetWorldRegion();
+	RegionState = XComGameState_WorldRegion(NewGameState.ModifyStateObject(class'XComGameState_WorldRegion', RegionState.ObjectID));
+	RegionState.SetShortestPathToContactRegion(NewGameState); // Flag the region to update its shortest path to a player-contacted region, used for region link display states
+
+	Regions.AddItem(RegionState);
+
+	ContinentState = XComGameState_Continent(NewGameState.GetGameStateForObjectID(RegionState.Continent.ObjectID));
+
+	if(ContinentState == none)
+	{
+		ContinentState = RegionState.GetContinent();
+	}
+
+	Continents.AddItem(ContinentState);
+
+	RewardTemplate = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_Supplies'));
+	RewardState = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
+	RewardState.SetReward(, GetPsiGateForgeSupplyAmount());
+	Rewards.AddItem(RewardState);
+
+	MissionState = CreateMissionLW(NewGameState, Rewards, 'MissionSource_Forge', 3, false, false, false, Regions, , , , , Continents);
+	RegionState = XComGameState_WorldRegion(NewGameState.GetGameStateForObjectID(MissionState.Region.ObjectID));
+
+	if(RegionState == none)
+	{
+		RegionState = MissionState.GetWorldRegion();
+	}
+
+	Regions.AddItem(RegionState);
+
+	ContinentState = XComGameState_Continent(NewGameState.GetGameStateForObjectID(RegionState.Continent.ObjectID));
+
+	if(ContinentState == none)
+	{
+		ContinentState = RegionState.GetContinent();
+	}
+
+	Continents.AddItem(ContinentState);
+
+	Rewards.Length = 0;
+	RewardState = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
+	RewardState.SetReward(, GetPsiGateForgeSupplyAmount());
+	Rewards.AddItem(RewardState);
+
+	CreateMissionLW(NewGameState, Rewards, 'MissionSource_PsiGate', 4, false, false, false, Regions, , , , , Continents);
+}
+
+static function CreateFortressMissionLW(XComGameState NewGameState)
+{
+	local array<XComGameState_Reward> Rewards;
+
+	CreateMission(NewGameState, Rewards, 'MissionSource_Final', 0, false, true, false, , , true, default.FortressLocation);
+}
+
+
+static function XComGameState_MissionSite CreateMissionLW(XComGameState NewGameState, out array<XComGameState_Reward> MissionRewards, Name MissionSourceTemplateName,
+												 int IdealDistanceFromResistanceNetwork, optional bool bForceAtThreshold = false, 
+												 optional bool bSetMissionData = false, optional bool bAvailable = true, 
+												 optional array<XComGameState_WorldRegion> AvoidRegions, optional int IdealDistanceFromRegion = -1, 
+												 optional bool bNoRegion, optional Vector2D ForceLocation, optional name ForceRegionName = '', optional array<XComGameState_Continent> ExcludeContinents)
+{
+	local XComGameState_MissionSite MissionState;
+	local X2RewardTemplate RewardTemplate;
+	local XComGameState_Reward RewardState;
+	local XComGameState_WorldRegion RegionState;
+	local X2StrategyElementTemplateManager StratMgr;
+	local X2MissionSourceTemplate MissionSource;
+	local StateObjectReference RegionRef;
+	local Vector2D v2Loc;
+
+	StratMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+
+	// Create the mission site
+	MissionState = XComGameState_MissionSite(NewGameState.CreateNewStateObject(class'XComGameState_MissionSite'));
+
+	if(MissionRewards.Length == 0)
+	{
+		RewardTemplate = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_None'));
+		RewardState = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
+		MissionRewards.AddItem(RewardState);
+	}
+
+	// select the mission source
+	MissionSource = X2MissionSourceTemplate(StratMgr.FindStrategyElementTemplate(MissionSourceTemplateName));
+
+	// select the region for the mission
+	if(!bNoRegion)
+	{
+		RegionState = SelectRegionForMissionLW(NewGameState, IdealDistanceFromResistanceNetwork, AvoidRegions, IdealDistanceFromRegion, ForceRegionName, ExcludeContinents);
+		RegionRef = RegionState.GetReference();
+
+		// have to set the initial "threshold" for mission visibility
+		MissionState.bNotAtThreshold = (!RegionState.HaveMadeContact());
+	}
+	else
+	{
+		MissionState.bNotAtThreshold = true;
+	}
+
+	// build the mission, location needs to be updated when map generates if not forced
+	if(ForceLocation != v2Loc)
+	{
+		v2Loc = ForceLocation;
+	}
+	else
+	{
+		MissionState.bNeedsLocationUpdate = true;
+	}
+
+	MissionState.BuildMission(MissionSource, v2Loc, RegionRef, MissionRewards, bAvailable, false, , , , , bSetMissionData);
+	
+	if(bForceAtThreshold)
+	{
+		MissionState.bNotAtThreshold = false;
+	}
+
+	return MissionState;
+}
+
+static function XComGameState_WorldRegion SelectRegionForMissionLW(XComGameState NewGameState, int IdealDistanceFromResistanceNetwork, optional array<XComGameState_WorldRegion> AvoidRegions,
+														  optional int IdealDistanceFromRegion = -1, optional name ForceRegionName = '', optional array <XComGameState_Continent> ExcludeContinents)
+{
+	local XComGameStateHistory History;
+	local XComGameState_WorldRegion RegionState, TempRegion;
+	local array<XComGameState_WorldRegion> AllRegions, PreferredRegions, BestRegions;
+	local XComGameState_Continent ExcludeContinent;
+	local int BestLinkDiff, CurrentLinkDiff;
+	local bool bExcluded;
+
+	History = `XCOMHISTORY;
+
+	//Gather a list of all regions
+	if( NewGameState.GetContext().IsStartState() )
+	{
+		foreach NewGameState.IterateByClassType(class'XComGameState_WorldRegion', RegionState)
+		{
+			if(RegionState.GetMyTemplateName() == ForceRegionName)
+			{
+				return RegionState;
+			}
+			AllRegions.AddItem(RegionState);
+		}
+	}
+	else
+	{
+		foreach History.IterateByClassType(class'XComGameState_WorldRegion', RegionState)
+		{
+			if(RegionState.GetMyTemplateName() == ForceRegionName)
+			{
+				return RegionState;
+			}
+			AllRegions.AddItem(RegionState);
+		}
+	}
+
+	BestLinkDiff = -1;
+
+	//Make a list of valid regions based on ideal link distance
+	foreach AllRegions(RegionState)
+	{
+		// TODO: track which regions have been selected for GP missions and exclude those from this list (maybe?)
+		bExcluded = false;
+		if(ExcludeContinents.Length > 0)
+		{
+			foreach ExcludeContinents (ExcludeContinent)
+			{
+				if(ExcludeContinent.Regions.Find('ObjectID', RegionState.ObjectID) != INDEX_NONE)
+				{
+					bExcluded = true;
+					break;
+				}
+
+			}
+			if(!bExcluded)
+			{
+				CurrentLinkDiff = Abs(IdealDistanceFromResistanceNetwork - RegionState.GetLinkCountToMinResistanceLevel(eResLevel_Contact));
+
+				if(BestLinkDiff == -1 || CurrentLinkDiff < BestLinkDiff)
+				{
+					BestLinkDiff = CurrentLinkDiff;
+					PreferredRegions.Length = 0;
+					PreferredRegions.AddItem(RegionState);
+				}
+				else if(CurrentLinkDiff == BestLinkDiff)
+				{
+					PreferredRegions.AddItem(RegionState);
+				}
+			}	
+		}	
+	}
+
+	if(PreferredRegions.Length == 0)
+	{
+		PreferredRegions = AllRegions;
+	}
+
+	if(AvoidRegions.Length > 0 && IdealDistanceFromRegion > 0)
+	{
+		BestLinkDiff = -1;
+		
+		foreach PreferredRegions(RegionState)
+		{
+			CurrentLinkDiff = Abs(IdealDistanceFromRegion - RegionState.FindClosestRegion(AvoidRegions, TempRegion));
+
+			if(BestLinkDiff == -1 || CurrentLinkDiff < BestLinkDiff)
+			{
+				BestLinkDiff = CurrentLinkDiff;
+				BestRegions.Length = 0;
+				BestRegions.AddItem(RegionState);
+			}
+			else if(CurrentLinkDiff == BestLinkDiff)
+			{
+				BestRegions.AddItem(RegionState);
+			}
+		}
+	}
+	
+	if(BestRegions.Length > 0)
+	{
+		return BestRegions[`SYNC_RAND_STATIC(BestRegions.Length)];
+	}
+
+	return PreferredRegions[`SYNC_RAND_STATIC(PreferredRegions.Length)];
 }

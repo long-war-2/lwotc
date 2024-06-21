@@ -29,6 +29,9 @@ static function UpdateObjectives(X2StrategyElementTemplate Template, int Difficu
 		case 'CEN_ToDoWarnings':
 			ShutBradfordUp(ObjectiveTemplate);
 			break;
+		case 'T1_M0_FirstMission':
+		 	ObjectiveTemplate.AssignObjectiveFn = class'X2StrategyElement_LWObjectives'.static.CreatePreplacedGoldenPathMissionsLW;
+			break;
 		default:
 			break;
 	}	
@@ -82,6 +85,8 @@ static function ShutBradfordUp(X2ObjectiveTemplate Template)
 		}
 	}
 }
+
+
 
 defaultproperties
 {

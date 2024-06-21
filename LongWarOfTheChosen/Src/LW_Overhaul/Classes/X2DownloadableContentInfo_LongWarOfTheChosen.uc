@@ -6576,3 +6576,16 @@ exec function LWOTC_NukeCapturedSoldiers()
 
 	`GAMERULES.SubmitGameState(NewGameState);
 }
+
+exec function LWOTC_ShowChosenRegions()
+{
+	local XComGameStateHistory History;
+	local XComGameState_WorldRegion RegionState;
+
+	History = `XCOMHISTORY;
+
+	foreach History.IterateByClassType(class'XComGameState_WorldRegion', RegionState)
+	{
+		class'Helpers'.static.OutputMsg(RegionState.GetMyTemplateName() @ RegionState.GetControllingChosen().GetMyTemplateName());
+	}
+}
