@@ -343,7 +343,9 @@ static function CreateGoldenPathMissionsLW(XComGameState NewGameState)
 	RewardState = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
 	RewardState.SetReward(, GetBlacksiteSupplyAmount());
 	Rewards.AddItem(RewardState);
-	MissionState = CreateMissionLW(NewGameState, Rewards, 'MissionSource_BlackSite', default.REGIONS_TO_BLACKSITE, false, false, false);
+
+
+	MissionState = CreateGPMissionLW(NewGameState, Rewards, 'MissionSource_BlackSite', default.REGIONS_TO_BLACKSITE, false, false, false);
 	
 	RegionState = MissionState.GetWorldRegion();
 	RegionState = XComGameState_WorldRegion(NewGameState.ModifyStateObject(class'XComGameState_WorldRegion', RegionState.ObjectID));
@@ -365,7 +367,7 @@ static function CreateGoldenPathMissionsLW(XComGameState NewGameState)
 	RewardState.SetReward(, GetPsiGateForgeSupplyAmount());
 	Rewards.AddItem(RewardState);
 
-	MissionState = CreateMissionLW(NewGameState, Rewards, 'MissionSource_Forge', 3, false, false, false, Regions, , , , , Continents);
+	MissionState = CreateGPMissionLW(NewGameState, Rewards, 'MissionSource_Forge', 3, false, false, false, Regions, , , , , Continents);
 	RegionState = XComGameState_WorldRegion(NewGameState.GetGameStateForObjectID(MissionState.Region.ObjectID));
 
 	if(RegionState == none)
@@ -389,7 +391,7 @@ static function CreateGoldenPathMissionsLW(XComGameState NewGameState)
 	RewardState.SetReward(, GetPsiGateForgeSupplyAmount());
 	Rewards.AddItem(RewardState);
 
-	CreateMissionLW(NewGameState, Rewards, 'MissionSource_PsiGate', 4, false, false, false, Regions, , , , , Continents);
+	CreateGPMissionLW(NewGameState, Rewards, 'MissionSource_PsiGate', 4, false, false, false, Regions, , , , , Continents);
 }
 
 static function CreateFortressMissionLW(XComGameState NewGameState)
@@ -400,7 +402,7 @@ static function CreateFortressMissionLW(XComGameState NewGameState)
 }
 
 
-static function XComGameState_MissionSite CreateMissionLW(XComGameState NewGameState, out array<XComGameState_Reward> MissionRewards, Name MissionSourceTemplateName,
+static function XComGameState_MissionSite CreateGPMissionLW(XComGameState NewGameState, out array<XComGameState_Reward> MissionRewards, Name MissionSourceTemplateName,
 												 int IdealDistanceFromResistanceNetwork, optional bool bForceAtThreshold = false, 
 												 optional bool bSetMissionData = false, optional bool bAvailable = true, 
 												 optional array<XComGameState_WorldRegion> AvoidRegions, optional int IdealDistanceFromRegion = -1, 
@@ -452,6 +454,16 @@ static function XComGameState_MissionSite CreateMissionLW(XComGameState NewGameS
 	else
 	{
 		MissionState.bNeedsLocationUpdate = true;
+	}
+
+	// Add the chosen stronghold unlock here.
+
+	if (!`SecondWaveEnabled('DisableChosen'))
+	{
+		RewardTemplate = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_LWRevealStronghold'));
+		RewardState = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
+		RewardState.GenerateReward(NewGameState, ,RegionState.GetReference());
+		MissionRewards.AddItem(RewardState);
 	}
 
 	MissionState.BuildMission(MissionSource, v2Loc, RegionRef, MissionRewards, bAvailable, false, , , , , bSetMissionData);

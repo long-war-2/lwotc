@@ -90,19 +90,21 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 		case 'CovertAction_RevealChosenMovements':
 			`LWTrace("X2LWCovertActionsModTemplate - increasing rank requirement for " $ CATemplate.DataName);
 			ConfigureEasyCovertAction(CATemplate, false);
-			CATemplate.Slots[0].iMinRank = default.FIRST_CHOSEN_CA_REQ_RANK;
+			FactionInfluenceReward(CATemplate);
+			CATemplate.Slots[0].iMinRank = default.SECOND_CHOSEN_CA_REQ_RANK;  // Require a TSGT
 			break;
 		case 'CovertAction_RevealChosenStrengths':
 			`LWTrace("X2LWCovertActionsModTemplate - increasing rank requirement for " $ CATemplate.DataName);
 			ConfigureModerateCovertAction(CATemplate, false);
-			CATemplate.Slots[0].iMinRank = default.SECOND_CHOSEN_CA_REQ_RANK;  // Require a TSGT
+			FactionInfluenceReward(CATemplate);
+			CATemplate.Slots[0].iMinRank = default.THIRD_CHOSEN_CA_REQ_RANK;  // Require 1 MSGT
 			break;
 		case 'CovertAction_RevealChosenStronghold':
 			`LWTrace("X2LWCovertActionsModTemplate - increasing rank requirement for " $ CATemplate.DataName);
 			ConfigureHardCovertAction(CATemplate, false);
-			CATemplate.Slots[0].iMinRank = default.THIRD_CHOSEN_CA_REQ_RANK;  // Require 3 MSGTs
-			CATemplate.Slots[1].iMinRank = default.THIRD_CHOSEN_CA_REQ_RANK;  // Require 3 MSGTs
-			CATemplate.Slots[2].iMinRank = default.THIRD_CHOSEN_CA_REQ_RANK;  // Require 3 MSGTs
+			CATemplate.bGoldenPath = false;
+			CATemplate.RequiredFactionInfluence = eFactionInfluence_MAX; // hard disable this one.
+			CATemplate.Slots[0].iMinRank = default.THIRD_CHOSEN_CA_REQ_RANK;  // Require 1 MSGT
 			break;
 		case 'CovertAction_RescueSoldier':
 			// There are currently no risks to mitigate
@@ -182,6 +184,12 @@ static function ConfigureHardCovertAction(X2CovertActionTemplate Template, optio
 
 	// Add an optional cost slot to counter capture if it's a risk.
 	AddCaptureMitigationSlot(Template);
+}
+
+static function FactionInfluenceReward(X2CovertActionTemplate Template)
+{
+	Template.Rewards.Length = 0;
+	Template.Rewards.AddItem('Reward_FactionInfluence');
 }
 
 static function AddStaffSlots(X2CovertActionTemplate Template, int SlotCount)
