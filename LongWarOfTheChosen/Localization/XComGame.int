@@ -2272,6 +2272,9 @@ DisplayName="Location of ADVENT Regional HQ"
 [Reward_FactionInfluence_LW X2RewardTemplate]
 DisplayName="Increase Faction Influence"
 
+[Reward_FactionInfluence2 X2RewardTemplate]
+DisplayName="Increase Faction Influence"
+
 [Reward_LWRevealStronghold X2RewardTemplate]
 DisplayName="Unlock Chosen Stronghold Mission"
 

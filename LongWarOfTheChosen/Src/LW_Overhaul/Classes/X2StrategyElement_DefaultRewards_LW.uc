@@ -33,6 +33,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Rewards.AddItem(CreateSupplyMissionRewardTemplate());
 	Rewards.AddItem(CreateDetachmentMissionRewardTemplate());
 	Rewards.AddItem(CreateRevealChosenStrongholdRewardTemplate());
+	Rewards.AddItem(CreateFactionInfluence2RewardTemplate());
 	return Rewards;
 }
 
@@ -377,6 +378,57 @@ static function X2DataTemplate CreateFactionInfluenceRewardTemplate()
 	Template.CleanUpRewardFn = class'X2StrategyElement_DefaultRewards'.static.CleanUpRewardWithoutRemoval;
 
 	return Template;
+}
+
+static function X2DataTemplate CreateFactionInfluence2RewardTemplate()
+{
+	local X2RewardTemplate Template;
+
+	`CREATE_X2Reward_TEMPLATE(Template, 'Reward_FactionInfluence2_LW');
+
+	Template.IsRewardAvailableFn = IsFactionInfluence2RewardAvailable;
+	Template.GenerateRewardFn = GenerateFactionInfluence2Reward;
+	Template.GiveRewardFn = GiveFactionInfluence2Reward;
+	Template.GetRewardImageFn = GetFactionInfluenceRewardImage;
+	Template.GetRewardStringFn = GetFactionInfluenceRewardString;
+	Template.CleanUpRewardFn = CleanUpRewardWithoutRemoval;
+	Template.RewardPopupFn = FactionInfluenceRewardPopup;
+
+	return Template;
+}
+
+static function bool IsFactionInfluence2RewardAvailable(optional XComGameState NewGameState, optional StateObjectReference AuxRef)
+{
+	local XComGameState_ResistanceFaction FactionState;
+
+	FactionState = GetFactionState(NewGameState, AuxRef);
+	if (FactionState != none)
+	{
+		if (FactionState.bMetXCom && FactionState.GetInfluence() == eFactionInfluence_Respected)
+		{
+			return true;
+		}
+	}
+	else
+	{
+		`Redscreen("@jweinhoffer FactionInfluenceReward not available because FactionState was not found");
+	}
+
+	return false;
+}
+
+static function GiveFactionInfluence2Reward(XComGameState NewGameState, XComGameState_Reward RewardState, optional StateObjectReference AuxRef, optional bool bOrder = false, optional int OrderHours = -1)
+{
+	local XComGameState_CovertAction ActionState;
+	local XComGameState_ResistanceFaction FactionState;
+
+	ActionState = XComGameState_CovertAction(`XCOMHISTORY.GetGameStateForObjectID(RewardState.RewardObjectReference.ObjectID));
+	FactionState = XComGameState_ResistanceFaction(NewGameState.ModifyStateObject(class'XComGameState_ResistanceFaction', ActionState.Faction.ObjectID));
+	FactionState.IncreaseInfluenceLevel(NewGameState);
+}
+static function GenerateFactionInfluence2Reward(XComGameState_Reward RewardState, XComGameState NewGameState, optional float RewardScalar = 1.0, optional StateObjectReference ActionRef)
+{
+	RewardState.RewardObjectReference = ActionRef;
 }
 
 static function GenerateFactionInfluenceReward(XComGameState_Reward RewardState, XComGameState NewGameState, optional float RewardScalar = 1.0, optional StateObjectReference RegionRef)

@@ -96,7 +96,7 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 		case 'CovertAction_RevealChosenStrengths':
 			`LWTrace("X2LWCovertActionsModTemplate - increasing rank requirement for " $ CATemplate.DataName);
 			ConfigureModerateCovertAction(CATemplate, false);
-			FactionInfluenceReward(CATemplate);
+			FactionInfluence2Reward(CATemplate);
 			CATemplate.Slots[0].iMinRank = default.THIRD_CHOSEN_CA_REQ_RANK;  // Require 1 MSGT
 			break;
 		case 'CovertAction_RevealChosenStronghold':
@@ -190,6 +190,11 @@ static function FactionInfluenceReward(X2CovertActionTemplate Template)
 {
 	Template.Rewards.Length = 0;
 	Template.Rewards.AddItem('Reward_FactionInfluence');
+}
+static function FactionInfluence2Reward(X2CovertActionTemplate Template)
+{
+	Template.Rewards.Length = 0;
+	Template.Rewards.AddItem('Reward_FactionInfluence2_LW');
 }
 
 static function AddStaffSlots(X2CovertActionTemplate Template, int SlotCount)
