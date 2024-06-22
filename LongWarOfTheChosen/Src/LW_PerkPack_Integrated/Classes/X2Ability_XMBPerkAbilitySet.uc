@@ -3405,7 +3405,7 @@ static function X2AbilityTemplate AddVampirismTriggered2()
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SelfTarget;
 
-	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_soulsteal";
+	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.str_soulstealer";
 	Template.Hostility = eHostility_Neutral;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 	Template.AbilitySourceName = 'eAbilitySource_Psionic';
@@ -3435,7 +3435,7 @@ static function X2AbilityTemplate AddVampirismTriggered2()
 
 	StealEffect = new class'X2Effect_SoulSteal_LW';
 	StealEffect.BuildPersistentEffect(3, false, true, false, eGameRule_PlayerTurnBegin);
-	StealEffect.SetDisplayInfo (ePerkBuff_Bonus, class'X2Ability_PerkPackAbilitySet'.default.LocSoulStealBuff, class'X2Ability_PerkPackAbilitySet'.default.LocSoulStealBuffHelpText, Template.IconImage,,, Template.AbilitySourceName);
+	StealEffect.SetDisplayInfo (ePerkBuff_Bonus, class'X2Ability_PerkPackAbilitySet'.default.LocVampirismBuff, class'X2Ability_PerkPackAbilitySet'.default.LocVampirismBuffHelpText, Template.IconImage,,, Template.AbilitySourceName);
 	StealEffect.SoulStealM1Shield = 2;
 	StealEffect.SoulStealM2Shield = 2;
 	StealEffect.SoulStealM3Shield = 2;
@@ -3523,7 +3523,7 @@ static function X2AbilityTemplate VampirismPassive()
 {
 	local X2AbilityTemplate         Template;
 
-	Template = PurePassive('VampirismPassive_LW', "img:///UILibrary_PerkIcons.UIPerk_soulsteal", false, 'eAbilitySource_Perk');
+	Template = PurePassive('VampirismPassive_LW', "img:///UILibrary_XPACK_Common.PerkIcons.str_soulstealer", false, 'eAbilitySource_Perk');
 
 	return Template;
 }
