@@ -37,7 +37,6 @@ static function CHEventListenerTemplate CreateListenerTemplate_LW_ChosenEOMListe
 static function EventListenerReturn LW_ChosenEOM_Listener(Object EventData, Object EventSource, XComGameState NewGameState, Name Event, Object CallbackData)
 {
     local XComGameState_AdventChosen ChosenState;
-    local array<int> RandomChosenKnowledgeGains;
     local array<XComGameState_ResistanceFaction> AllFactions;
     local XComGameState_ResistanceFaction FactionState;
     local XComGameState_HeadquartersResistance ResistanceHQ;
