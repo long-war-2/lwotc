@@ -29,21 +29,26 @@ var config const array<string> RadiusManagerMissionTypes;        // The list of 
 // If true, enable the yellow alert movement system.
 var config const bool EnableYellowAlert;
 
+// ORPHANED
 // If true, hide havens on the geoscape
 var config const bool HideHavens;
 
+// ORPHANED/deprecated
 // If true, encounter zones will not be updated based XCOM's current position.
 var config bool DisableDynamicEncounterZones;
 
+// ORPHANED
 var config bool EnableAvengerCameraSpeedControl;
 var config float AvengerCameraSpeedControlModifier;
 
+// ORPHANED/deprecated
 // The radius (in meters) for which a civilian noise alert can be heard.
 var config int NoiseAlertSoundRange;
 
 // Enable/disable the use of the 'Yell' ability before every civilian BT evaluation. Enabled by default.
 var config bool EnableCivilianYellOnPreMove;
 
+// ORPHANED
 // If this flag is set, units in yellow alert will not peek around cover to determine LoS - similar to green units.
 // This is useful when yellow alert is enabled because you can be in a situation where a soldier is only a single tile
 // out of LoS from a green unit, and that neighboring tile that they would have LoS from is the tile they will use to
@@ -53,21 +58,24 @@ var config bool EnableCivilianYellOnPreMove;
 // break concealment by hacking an objective (which alerts all pods).
 var config bool NoPeekInYellowAlert;
 
-
+// ORPHANED
 // this int controls how low the deployable soldier count has to get in order to trigger the low manpower warning
 // if it is not set (at 0), then the game will default to GetMaxSoldiersAllowedOnMission
 var config int LowStrengthTriggerCount;
 
+//ORPHANED
 // these variables control various world effects, to prevent additional voxel check that can cause mismatch between preview and effect
 var config bool bWorldPoisonShouldDisableExtraLOSCheck;
 var config bool bWorldSmokeShouldDisableExtraLOSCheck;
 var config bool bWorldSmokeGrenadeShouldDisableExtraLOSCheck;
 
+//ORPHANED
 // Control whether or not to class-limit heavy weapons. If false, any class can equip any heavy weapon (provided they have the
 // correct inventory items to allow it). If true heavy weapons can be class-limited. Used to restrict which weapons the technical
 // can equip.
 var config bool ClassLimitHeavyWeapons;
 
+//ORPHANED
 // This is to double check in grenade targeting that the affected unit is actually in a tile that will get the world effect, not just that it is occupying such a tile.
 // This can occur because tiles are only 1 meter high, so many unit occupy multiple vertical tiles, but only really count as occupying the one at their feet in other places.
 var config array<name> GrenadeRequiresWorldEffectToAffectUnit;
@@ -76,6 +84,7 @@ var config array<name> GrenadeRequiresWorldEffectToAffectUnit;
 // that controls rescue rings on civvies). This is done through a config var that lists the
 // desired mission types for extensibility.
 
+//ORPHANED
 var config bool EnableRestartMissionButtonInNonIronman;
 var config bool EnableRestartMissionButtonInIronman;
 
@@ -112,26 +121,32 @@ var config array<ModClassOverrideEntry> UIDynamicClassOverrides;
 // but can be longer if the environment actor was configured with Toughness.AvailableFireFuelTurns
 var config array<int> FireEnvironmentDamageAfterNumTurns;
 
+//ORPHANED
 //This is referenced in XCGS_Unit and must be true to run some code that ensures a powerful psi ability can be trained
 var config bool EnablePsiTreeOrganization;
 
+//ORPHANED
 //These variables are generic patrol zone settings for reinforcements who land before concealment is broken
 var config int REINF_EZ_WIDTH;
 var config int REINF_EZ_DEPTH;
 var config int REINF_EZ_OFFSET;
 
+//ORPHANED
 var config bool USE_FLOAT_PRICE_MULTIPLIER;
 var config array<float> InterestPriceMultiplierFloat;
 
+//ORPHANED
 // These variables control AI AoE targeting behavior.
 var config bool RequireVisibilityForAoETarget;
 var config bool AllowSquadVisibilityForAoETarget;
 
+//ORPHANED
 // If true a graze cannot reduce weapon damage that was > 0 to 0. Mostly detectable on items that apply
 // 1 damage, such as pistols or poison. If they hit with a graze, the damage would be reduced to < 1 and
 // truncated to 0 by the graze modifier. With this set damage will not be reduced below 1 by graze.
 var config bool ClampGrazeMinDamage;
 
+//ORPHANED
 // If cumulative rupture is enabled, each rupture value from each successful attack on a unit stacks. However,
 // unlike the default behavior, the new rupture value applied on a particular attack does not affect that attack,
 // only subsequent attacks. For example, hitting a unit 3 times for 5 damage each with a weapon that does
@@ -142,11 +157,13 @@ var config bool ClampGrazeMinDamage;
 // amount and so won't affect subsequent shots, but will still give a bonus to that particular attack.
 var config bool CumulativeRupture;
 
+//ORPHANED
 // Configure ever vigilant trigger behavior: If these flags are set EV will not proc when a unit is impaired or
 // burning, respectively.
 var config bool EverVigilantExcludeImpaired;
 var config bool EverVigilantExcludeBurning;
 
+//ORPHANED
 // If this flag is set then set the HP for soldier VIP proxies to have the same HP as the original soldier.
 // This addresses an issue where the soldier has more HP than the proxy and becomes wounded even if the proxy
 // was not wounded, simply because the soldier HP was greater than the proxy.
