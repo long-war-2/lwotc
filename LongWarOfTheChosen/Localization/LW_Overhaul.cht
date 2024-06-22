@@ -726,12 +726,6 @@ strMessage_Header = "Long War Of The Chosen has been Updated!
 strMessage_Body = "Version 1.1.0 is now released, with lots of features and improvements, including:<ul><li>New 5 Tier Chosen system for Better Progression</li><li>New Covert Actions that Reward Infiltration Missions</li><li>New Maps for Network Tower and Crate Race Missions</li><li>Reworked Templar with Iridar's Psi Shield</li><li>QOL Improvements</li><li>Improved Mod Compatibility</li><li>Balance Tweaks for Classes, Heros, and More</li><li>Way more than I can fit here unless you want a giant scrollbar</li></ul>Check out the google doc linked on the Steam change notes, or visit the LWoTC discord!"
 strDismiss_Button = "OK"
 
-[UISL_Shell_BetaPatchNotes]
-strMessage_Title = "Long War Of The Chosen"
-strMessage_Header = "RC32 Changes:"
-strMessage_Body = "<ul><li>Fixed issue with map generation on Sewer maps coverted to Subway with new config option.</li><li>Fixed bug where Scientists and Engineers could be staffed as haven advisors while injured.</li><li>Fixed issue where Hive Queens didn't have valid followers for some boss pods.</li><li>On Lib5 missions, Advent will now converge on XCOM's location once the General dies, or less than 8 aliens are alive.</li><li>After using Command, the unit that received the AP will be selected automatically.</li><li>More localization fixes.</li></ul>"
-strDismiss_Button = "OK"
-
 [UISL_PullAdvisors]
 m_strPullHavenAdvisors="拉取顧問"
 m_strPullHavenAdvisorsTooltip="從避難所移除可用顧問。移除後需要手動才能還原。"

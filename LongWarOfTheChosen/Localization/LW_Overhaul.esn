@@ -717,17 +717,10 @@ ScrollObjectiveDescriptionStr="EXAMINA EN LA DESCRIPCIÓN DEL OBJETIVO"
 m_strChosenLoot=" Recompensa por matar al Elegido: ¡(<XGParam:IntValue0/>) <XGParam:StrValue0/!ItemName/>!"
 
 
-
 [UISL_Shell_LWoTCVersion]
 strMessage_Title = "Long War Of The Chosen"
 strMessage_Header = "Long War Of The Chosen ha sido actualizado!
 strMessage_Body = "La versión 1.1.0 ha sido lanzada, con muchas características y mejoras, que incluyen: <ul><li>Nuevo sistema de Los Elegidos con 5 tiers para una mejor progresión</li><li>Nuevas operaciones encubiertas que recompensan las misiones de infiltración</li><li>Nuevos mapas para las misiones de la Torre de Red y de recolección de cajas</li><li>Templario rediseñado con escudo psi de Iridar (un modder muy popular), entre otros detalles</li><li>Mejoras en la "calidad de vida (QOL)"</li><li>Mejorada la compatibilidad con mods</li><li>Ajustes de equilibrio para clases, héroes y más</li><li>Y muchos más cambios de los que podemos incluir aquí a menos que quieras una barra de desplazamiento gigante (se la han sacado los desarrolladores xD)</li></ul>¡Consulta el documento de google vinculado a las novedades en Steam, o visita el discord de LWoTC!"
-strDismiss_Button = "OK"
-
-[UISL_Shell_BetaPatchNotes]
-strMessage_Title = "Long War Of The Chosen"
-strMessage_Header = "Cambios Build RC35:"
-strMessage_Body = "<ul><li>Se solucionó el problema por el cual el Elegido reaparecía con la barra de vida al completo después de destruir el sarcófago.</li><li>Se rehicieron los mapas personalizados de obtención de cajas para evitar que aparecieran en los techos de los camiones.</li><li>Se reparó el error por el cual Fusión de mentes no proporcionaba bonificación de crítico con amplificador psi avanzado.</li><li>Se arregló por el cual algunos elementos de misiones usaban el nivel tecnológico del cuartel general ADVENT en lugar del nivel de fuerza regional de LW..</li><li>Las operaciones encubiertas recibieron ajustes: se redujeron un poco las recompensas de suministro, y se agregaron a las cajas simuladores de combate personal (SCP), mejoras de armas, núcleos de elerio y datapads.</li><li>Solucionado el bug por el cual la omnivisión del Elegido Cazador no se eliminaba de todas las variantes de dificultad.</li><li>Se corrigió la inconsistencia en los requisitos de cadáveres para las autopsias instantáneas de espectro, sacerdote y purificador.</li><li>Con el fin de realizar pruebas si se desea, se agregó un interruptor de configuración para habilitar/deshabilitar los mapas del cuartel general.</li><li>Otra ronda de actualizaciones de localización de Copyrite (un miembro de discord).</li></ul>"
 strDismiss_Button = "OK"
 
 ; End translated
