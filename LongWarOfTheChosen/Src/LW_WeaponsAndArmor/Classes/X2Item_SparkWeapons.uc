@@ -126,7 +126,11 @@ static function X2DataTemplate Create_SparkRifle_Laser()
 	Template.NumUpgradeSlots = default.SPARKRIFLE_LASER_UPGRADESLOTS;
 	
 
-	Template.GameArchetype = "EW_MEC_Weapons.Archetypes.WP_MEC_Railgun";
+	Template.GameArchetype = "IRI_Sparkgun_LS_LW.Archetype.WP_SparkRifle_LS";
+	Template.AddDefaultAttachment('Light', "LWAttachments_LS.Meshes.SK_Laser_Flashlight", ,);
+	Template.AddDefaultAttachment('Mag', "IRI_Sparkgun_LS_LW.Meshes.SM_SparkRifle_LS_MagA", , "img:///IRI_Sparkgun_LS_LW.UI.SPARK_Laser_magazine_base");
+	Template.AddDefaultAttachment('Reargip', "IRI_Sparkgun_LS_LW.Meshes.SM_SparkRifle_LS_ReargripA", ,);
+
 	
 	Template.CreatorTemplateName = 'SparkRifle_LS_Schematic'; // The schematic which creates this item
 	
@@ -190,7 +194,15 @@ static function X2DataTemplate Create_SparkRifle_Coil()
 	Template.NumUpgradeSlots = default.SPARKRIFLE_COIL_UPGRADESLOTS;
 	
 
-	Template.GameArchetype = "EW_MEC_Weapons.Archetypes.WP_MEC_PPC";
+	Template.GameArchetype = "IRI_Sparkgun_CG_LW.Archetypes.WP_SparkGunl_CG_Fixed";
+
+	Template.AddDefaultAttachment('Light', "BeamAttachments.Meshes.BeamFlashLight", ,);
+	Template.AddDefaultAttachment('Mag', "IRI_Sparkgun_CG_LW.Meshes.SM_SparkRifle_CG_MagA", , "img:///IRI_Sparkgun_CG_LW.UI.SparkGun_MagA");
+	Template.AddDefaultAttachment('Trigger', "IRI_Sparkgun_CG_LW.Meshes.SM_SparkRifle_CG_TriggerA", , "img:///IRI_Sparkgun_CG_LW.UI.SparkGun_TriggerA");
+	Template.AddDefaultAttachment('Stock', "IRI_Sparkgun_CG_LW.Meshes.SM_SparkRifle_CG_StockA", , "img:///IRI_Sparkgun_CG_LW.UI.SparkGun_StockA");
+
+
+
 	
 	Template.CreatorTemplateName = 'SparkRifle_CG_Schematic'; // The schematic which creates this item
 

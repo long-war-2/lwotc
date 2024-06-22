@@ -3182,6 +3182,9 @@ static function AddCritUpgrade(X2ItemTemplateManager ItemTemplateManager, Name T
 	// Cannon
 	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_Cannon_Optic', "LWCannon_CG.Meshes.LW_CoilCannon_OpticB", "", 'Cannon_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilCannon_OpticB", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilCannon_OpticB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
 
+	//SparkRifle
+	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_Cannon_Optic', "IRI_Sparkgun_CG_LW.Meshes.SM_SparkRifle_CG_LaserSight", "", 'SparkRifle_CG', , "img:///IRI_Sparkgun_CG_LW.UI.SparkGun_LaserSight", "img:///IRI_Sparkgun_CG_LW.UI.laserLight", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
+
 }
 
 static function AddAimBonusUpgrade(X2ItemTemplateManager ItemTemplateManager, Name TemplateName)
@@ -3210,6 +3213,8 @@ static function AddAimBonusUpgrade(X2ItemTemplateManager ItemTemplateManager, Na
 	// Cannon
 	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_Cannon_Optic', "LWCannon_CG.Meshes.LW_CoilCannon_OpticC", "", 'Cannon_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilCannon_OpticC", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilCannon_OpticC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
 
+	//SparkRifle
+	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_Cannon_Optic', "IRI_Sparkgun_CG_LW.Meshes.SM_SparkRifle_CG_Scope", "", 'SparkRifle_CG', , "img:///IRI_Sparkgun_CG_LW.UI.SparkGun_scope", "img:///IRI_Sparkgun_CG_LW.UI.Scope", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
 }
 
 static function AddClipSizeBonusUpgrade(X2ItemTemplateManager ItemTemplateManager, Name TemplateName)
@@ -3240,6 +3245,9 @@ static function AddClipSizeBonusUpgrade(X2ItemTemplateManager ItemTemplateManage
 	//Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Cannon_Mag', "LWCannon_CG.Meshes.LW_CoilCannon_MagB", "", 'Cannon_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilCannon_MagB", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilCannon_MagB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip");
 	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Cannon_Mag', "LWCannon_CG.Meshes.LW_CoilCannon_MagB", "", 'Cannon_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilCannon_MagB", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilCannon_MagB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.NoReloadUpgradePresent);
 
+	//SparkRifle
+	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Cannon_Mag', "IRI_Sparkgun_CG_LW.Meshes.SM_SparkRifle_CG_ExtendedMag", "", 'SparkRifle_CG', , "img:///IRI_Sparkgun_CG_LW.UI.SparkGun_MagB", "img:///IRI_Sparkgun_CG_LW.UI.magB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.NoReloadUpgradePresent);
+
 }
 
 static function AddFreeFireBonusUpgrade(X2ItemTemplateManager ItemTemplateManager, Name TemplateName)
@@ -3267,6 +3275,9 @@ static function AddFreeFireBonusUpgrade(X2ItemTemplateManager ItemTemplateManage
 
 	// Cannon
 	Template.AddUpgradeAttachment('Reargrip', 'UIPawnLocation_WeaponUpgrade_Cannon_Mag', "LWCannon_CG.Meshes.LW_CoilCannon_ReargripB", "", 'Cannon_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilCannon_ReargripB", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilCannon_ReargripB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_trigger");
+
+	//SparkRifle
+	Template.AddUpgradeAttachment('Trigger', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Mag', "IRI_Sparkgun_CG_LW.Meshes.SM_SparkRifle_CG_TriggerB", "", 'SparkRifle_CG', , "img:///IRI_Sparkgun_CG_LW.UI.SparkGun_TriggerB", "img:///IRI_Sparkgun_CG_LW.UI.Trigger", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_trigger");
 
 }
 
@@ -3303,6 +3314,8 @@ static function AddReloadUpgrade(X2ItemTemplateManager ItemTemplateManager, Name
 	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Cannon_Mag', "LWCannon_CG.Meshes.LW_CoilCannon_MagC", "", 'Cannon_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilCannon_MagC", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilCannon_MagC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.NoClipSizeUpgradePresent);
 	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Cannon_Mag', "LWCannon_CG.Meshes.LW_CoilCannon_MagD", "", 'Cannon_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilCannon_MagD", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilCannon_MagC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.ClipSizeUpgradePresent);
 
+	//SparkRifle
+	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Cannon_Mag', "IRI_Sparkgun_CG_LW.Meshes.SM_SparkRifle_CG_MagA_AL", "", 'SparkRifle_CG', , "img:///IRI_Sparkgun_CG_LW.UI.SparkGun_autoloader", "img:///IRI_Sparkgun_CG_LW.UI.autoloaderA", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.NoClipSizeUpgradePresent);
 }
 
 static function AddMissDamageUpgrade(X2ItemTemplateManager ItemTemplateManager, Name TemplateName)
@@ -3332,6 +3345,9 @@ static function AddMissDamageUpgrade(X2ItemTemplateManager ItemTemplateManager, 
 	Template.AddUpgradeAttachment('Stock', 'UIPawnLocation_WeaponUpgrade_Cannon_Stock', "LWCannon_CG.Meshes.LW_CoilCannon_StockB", "", 'Cannon_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilCannon_StockB", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilCannon_StockB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_stock");
 	Template.AddUpgradeAttachment('StockSupport', '', "LWCannon_CG.Meshes.LW_CoilCannon_StockSupportB", "", 'Cannon_CG');
 
+	//SparkRifle
+	Template.AddUpgradeAttachment('Stock', 'UIPawnLocation_WeaponUpgrade_Cannon_Stock', "IRI_Sparkgun_CG_LW.Meshes.SM_SparkRifle_CG_StockB", "", 'SparkRifle_CG', , "img:///IRI_Sparkgun_CG_LW.UI.SparkGun_StockB", "img:///IRI_Sparkgun_CG_LW.UI.Stock", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_stock");
+
 }
 
 static function AddFreeKillUpgrade(X2ItemTemplateManager ItemTemplateManager, Name TemplateName)
@@ -3359,6 +3375,9 @@ static function AddFreeKillUpgrade(X2ItemTemplateManager ItemTemplateManager, Na
 
 	// Cannon
 	Template.AddUpgradeAttachment('Suppressor', 'UIPawnLocation_WeaponUpgrade_Cannon_Suppressor', "LWCannon_CG.Meshes.LW_CoilCannon_Suppressor", "", 'Cannon_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilCannon_Suppressor", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilCannon_Suppressor", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_barrel");
+
+	//SparkRifle
+	Template.AddUpgradeAttachment('Suppressor', 'UIPawnLocation_WeaponUpgrade_Cannon_Suppressor', "IRI_Sparkgun_CG_LW.Meshes.SM_SparkRifle_CG_Suppressor", "", 'SparkRifle_CG', , "img:///IRI_Sparkgun_CG_LW.UI.SparkGun_suppressor", "img:///IRI_Sparkgun_CG_LW.UI.Suppressor", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_barrel");
 
 }
 
@@ -6589,3 +6608,29 @@ exec function LWOTC_ShowChosenRegions()
 		class'Helpers'.static.OutputMsg(RegionState.GetMyTemplateName() @ RegionState.GetControllingChosen().GetMyTemplateName());
 	}
 }
+
+// only use this once
+exec function LWOTC_FixChosenKnowledgeForNewScaling()
+{
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local XComGameState_AdventChosen ChosenState;
+	local XComGameStateHistory History;
+	local XComGameState NewGameState;
+
+	History = `XCOMHISTORY;
+
+	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	AllChosen = AlienHQ.GetAllChosen(, false);
+
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Fix chosen knowledge levels");
+
+	foreach AllChosen(ChosenState)
+	{
+		ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
+		ChosenState.ModifyKnowledgeScore(NewGameState, ChosenState.GetKnowledgeScore(true) * 9, true, true);
+	}
+
+	`GAMERULES.SubmitGameState(NewGameState);
+}
+

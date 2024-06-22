@@ -1233,8 +1233,22 @@ AbilityDescName="Heavy Railgun"
 FriendlyName="Particle Projection Cannon"
 FriendlyNamePlural="Particle Projection Cannons"
 BriefSummary="PPC uses several acceleration contours to create a focused beam of supercharged particles that remain effective at any range." 
-TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> Particle Projection Cannon is the Coil equivalent of the Autocannon."
+TacticalText="<Bullet/> Particle Projection Cannon is the Coil equivalent of the Autocannon."
 AbilityDescName="Particle Projection Cannon"
+
+[SparkRifle_LS X2WeaponTemplate]
+FriendlyName="Spitfire Pulsecannon"
+FriendlyNamePlural="Spitfire Pulsecannons"
+BriefSummary="The Spitfire Pulsecannon is the largest portable automatic laser weapon in our arsenal. Using the rotating barrel assembly solves the overheating problem, and the fragile barrel parts are protected by individual retractable cowls."
+TacticalText="The Spitfire Pulsecannon is the largest portable automatic laser weapon in our arsenal. Using the rotating barrel assembly solves the overheating problem, and the fragile barrel parts are protected by individual retractable cowls.\n<Bullet/> Firing the primary weapon always ends the soldier's turn, in the absence of special training.\n<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Spitfire Pulsecannon is the laser equivalent of the Autocannon."
+AbilityDescName="autocannon"
+
+[SparkRifle_CG X2WeaponTemplate]
+FriendlyName="Rush-Nano Gausscannon"
+FriendlyNamePlural="Rush-Nano Gausscannons"
+BriefSummary="Introduction of new Elerium-based rush capacitors with separation distance of mere nanometers has allowed us to develop a new kind of autocannon, where capacitors are overloaded and discharged one by one during firing, which keeps the damage output consistently high during a volley."
+TacticalText="Introduction of new Elerium-based rush capacitors with separation distance of mere nanometers has allowed us to develop a new kind of autocannon, where capacitors are overloaded and discharged one by one during firing, which keeps the damage output consistently high during a volley.\n<Bullet/> Firing the primary weapon always ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades looted from enemies to improve the Rush-Nano Gausscannon's tactical effectiveness.\n<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> Rush-Nano Gausscannon is the Coil equivalent of the Autocannon."
+AbilityDescName="autocannon"
 
 ; LWOTC Needs Translation (2)
 [BattleScanner X2WeaponTemplate]
