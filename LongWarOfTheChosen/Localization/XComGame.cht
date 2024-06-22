@@ -5906,6 +5906,42 @@ ActionName="尋找落單的變種人巡邏隊"
 ActionPreNarrative="我們得知了一個變種人偵察小隊可能的位置。我們應該調查一下。"
 ActionPostNarrative="幹得好。現在我們可以派遣一個小隊進一步跟進。"
 
+[CovertAction_RevealChosenMovements X2CovertActionTemplate]
+ActionObjective="Increase Faction Influence"
+
+[CovertActionNarrative_RevealChosenMovements_Skirmishers X2CovertActionNarrativeTemplate]
+ActionName="Increase Faction Influence"
+ActionPreNarrative="Send some XCOM units to work with the faction and increase our influence with this faction."
+ActionPostNarrative="Our shared pursuit of ADVENT improved our relationship. We are honored to have worked alongside your forces, and hope that you will continue to in the future."
+
+[CovertActionNarrative_RevealChosenMovements_Reapers X2CovertActionNarrativeTemplate]
+ActionName="Increase Faction Influence"
+ActionPreNarrative="Send some XCOM units to work with the faction and increase our influence with this faction."
+ActionPostNarrative="Our shared pursuit of ADVENT improved our relationship. We are honored to have worked alongside your forces, and hope that you will continue to in the future."
+
+[CovertActionNarrative_RevealChosenMovements_Templars X2CovertActionNarrativeTemplate]
+ActionName="Increase Faction Influence"
+ActionPreNarrative="Send some XCOM units to work with the faction and increase our influence with this faction."
+ActionPostNarrative="Our shared pursuit of ADVENT improved our relationship. We are honored to have worked alongside your forces, and hope that you will continue to in the future."
+
+[CovertAction_RevealChosenStrengths X2CovertActionTemplate]
+ActionObjective="Increase Faction Influence"
+
+[CovertActionNarrative_RevealChosenStrengths_Skirmishers X2CovertActionNarrativeTemplate]
+ActionName="Increase Faction Influence"
+ActionPreNarrative="Send some XCOM units to work with the faction and increase our influence with this faction."
+ActionPostNarrative="Our shared pursuit of ADVENT improved our relationship. We are honored to have worked alongside your forces, and hope that you will continue to in the future."
+
+[CovertActionNarrative_RevealChosenStrengths_Reapers X2CovertActionNarrativeTemplate]
+ActionName="Increase Faction Influence"
+ActionPreNarrative="Send some XCOM units to work with the faction and increase our influence with this faction."
+ActionPostNarrative="Our shared pursuit of ADVENT improved our relationship. We are honored to have worked alongside your forces, and hope that you will continue to in the future."
+
+[CovertActionNarrative_RevealChosenStrengths_Templars X2CovertActionNarrativeTemplate]
+ActionName="Increase Faction Influence"
+ActionPreNarrative="Send some XCOM units to work with the faction and increase our influence with this faction."
+ActionPostNarrative="Our shared pursuit of ADVENT improved our relationship. We are honored to have worked alongside your forces, and hope that you will continue to in the future."
+
 [AbilityPoints X2ItemTemplate]
 FriendlyName="能力點"
 FriendlyNamePlural="能力點"
