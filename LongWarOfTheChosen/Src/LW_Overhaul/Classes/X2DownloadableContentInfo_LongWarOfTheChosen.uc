@@ -6589,3 +6589,29 @@ exec function LWOTC_ShowChosenRegions()
 		class'Helpers'.static.OutputMsg(RegionState.GetMyTemplateName() @ RegionState.GetControllingChosen().GetMyTemplateName());
 	}
 }
+
+// only use this once
+exec function LWOTC_FixChosenKnowledgeForNewScaling()
+{
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local XComGameState_AdventChosen ChosenState;
+	local XComGameStateHistory History;
+	local XComGameState NewGameState;
+
+	History = `XCOMHISTORY;
+
+	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	AllChosen = AlienHQ.GetAllChosen(, false);
+
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Fix chosen knowledge levels");
+
+	foreach AllChosen(ChosenState)
+	{
+		ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
+		ChosenState.ModifyKnowledgeScore(NewGameState, ChosenState.GetKnowledgeScore(true) * 9, true, true);
+	}
+
+	`GAMERULES.SubmitGameState(NewGameState);
+}
+

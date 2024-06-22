@@ -36,19 +36,49 @@ static function CHEventListenerTemplate CreateListenerTemplate_LW_ChosenEOMListe
 
 static function EventListenerReturn LW_ChosenEOM_Listener(Object EventData, Object EventSource, XComGameState NewGameState, Name Event, Object CallbackData)
 {
-    local XComGameState_HeadquartersAlien AlienHQ;
-    local array<XComGameState_AdventChosen> AllChosen;
     local XComGameState_AdventChosen ChosenState;
     local array<int> RandomChosenKnowledgeGains;
+    local array<XComGameState_ResistanceFaction> AllFactions;
+    local XComGameState_ResistanceFaction FactionState;
+    local XComGameState_HeadquartersResistance ResistanceHQ;
 
 
-	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
 
-    AllChosen = AlienHQ.GetAllChosen(NewGameState);
+    ResistanceHQ = XComGameState_HeadquartersResistance(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersResistance'));
+
+
+    AllFactions = ResistanceHQ.GetAllFactions();
+
+    foreach AllFactions(FactionState)
+    {
+        ChosenState = FactionState.GetRivalChosen();
+
+        // short circuits
+        if(ChosenState.bMetXCom != true || ChosenState.bDefeated == true)
+            continue;
+
+        if(FactionState.bFirstFaction)
+        {
+            ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
+            `LWTrace("Adding" @ default.STARTING_CHOSEN_KNOWLEDGE_GAIN @ "To Chosen" @ `SHOWVAR(ChosenState.GetMyTemplateName()));
+            ChosenState.ModifyKnowledgeScore(NewGameState, default.STARTING_CHOSEN_KNOWLEDGE_GAIN);
+        }
+        else if (FactionState.bFarthestFaction)
+        {
+            `LWTrace("Adding" @ default.CHOSEN_KNOWLEDGE_GAINS[1] @ "To Chosen" @ `SHOWVAR(ChosenState.GetMyTemplateName()));
+            ChosenState.ModifyKnowledgeScore(NewGameState, default.CHOSEN_KNOWLEDGE_GAINS[1]);
+        }
+        else // Middle Faction
+        {
+            `LWTrace("Adding" @ default.CHOSEN_KNOWLEDGE_GAINS[0] @ "To Chosen" @ `SHOWVAR(ChosenState.GetMyTemplateName()));
+            ChosenState.ModifyKnowledgeScore(NewGameState, default.CHOSEN_KNOWLEDGE_GAINS[0]);
+        }
+
+    }
 
     
     //grab the randomized values from the array set up in the LWOverhaulOptions
-    RandomChosenKnowledgeGains = `LWOVERHAULOPTIONS.GetChosenKnowledgeGains_Randomized();
+    /*RandomChosenKnowledgeGains = `LWOVERHAULOPTIONS.GetChosenKnowledgeGains_Randomized();
     
     foreach AllChosen(ChosenState)
 	{
@@ -70,17 +100,18 @@ static function EventListenerReturn LW_ChosenEOM_Listener(Object EventData, Obje
                 ChosenState.ModifyKnowledgeScore(NewGameState, default.STARTING_CHOSEN_KNOWLEDGE_GAIN);
                 break;
             case `LWOVERHAULOPTIONS.ChosenNames[0]:
-                `LWTrace("Adding" @ RandomChosenKnowledgeGains[0] @ "To Chosen" @ `SHOWVAR(ChosenState.GetMyTemplateName()));
-                ChosenState.ModifyKnowledgeScore(NewGameState, RandomChosenKnowledgeGains[0]);
+                `LWTrace("Adding" @ CHOSEN_KNOWLEDGE_GAINS[0] @ "To Chosen" @ `SHOWVAR(ChosenState.GetMyTemplateName()));
+                ChosenState.ModifyKnowledgeScore(NewGameState, CHOSEN_KNOWLEDGE_GAINS[0]);
                 break;
             case `LWOVERHAULOPTIONS.ChosenNames[1]:
-                `LWTrace("Adding" @ RandomChosenKnowledgeGains[1] @ "To Chosen" @ `SHOWVAR(ChosenState.GetMyTemplateName()));
-                ChosenState.ModifyKnowledgeScore(NewGameState, RandomChosenKnowledgeGains[1]);
+                `LWTrace("Adding" @ CHOSEN_KNOWLEDGE_GAINS[1] @ "To Chosen" @ `SHOWVAR(ChosenState.GetMyTemplateName()));
+                ChosenState.ModifyKnowledgeScore(NewGameState, CHOSEN_KNOWLEDGE_GAINS[1]);
                 break;
         }
        
 	    
     }
+     */
     
     return ELR_NoInterrupt;
 }
