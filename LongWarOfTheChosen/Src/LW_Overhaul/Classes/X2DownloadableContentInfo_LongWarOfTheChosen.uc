@@ -6629,6 +6629,7 @@ exec function LWOTC_FixChosenKnowledgeForNewScaling()
 	{
 		ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
 		ChosenState.ModifyKnowledgeScore(NewGameState, ChosenState.GetKnowledgeScore(true) * 9, true, true);
+		ChosenState.HandleKnowledgeLevelChange(NewGameState, ChosenState.GetKnowledgeLevel(), ChosenState.CalculateKnowledgeLevel());
 	}
 
 	`GAMERULES.SubmitGameState(NewGameState);
