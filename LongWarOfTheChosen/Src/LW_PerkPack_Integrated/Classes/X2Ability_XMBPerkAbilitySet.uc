@@ -1573,6 +1573,7 @@ static function X2AbilityTemplate TrenchWarfareActivator()
 {
 	local X2AbilityTemplate             Template;
 	local X2Effect_PersistentStatChange Effect;
+	local X2Effect_Persistent ShadowstepEffect;
 	
 	// Activated ability that targets user
 	Template = SelfTargetActivated('Dedication_LW', "img:///UILibrary_FavidsPerkPack.Perk_Ph_Dedication", true, none, class'UIUtilities_Tactical'.const.CLASS_CORPORAL_PRIORITY, eCost_Free);
@@ -1580,11 +1581,18 @@ static function X2AbilityTemplate TrenchWarfareActivator()
 
 	// Create a persistent stat change effect that grants a mobility bonus - naming the effect Shadowstep lets you ignore reaction fire
 	Effect = new class'X2Effect_PersistentStatChange';
-	Effect.EffectName = 'Shadowstep';
+	Effect.EffectName = 'DedicationMobility';
 	Effect.AddPersistentStatChange(eStat_Mobility, default.DEDICATION_MOBILITY);
 	Effect.DuplicateResponse = eDupe_Refresh;
 	Effect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
     Template.AddTargetEffect(Effect);
+
+
+	ShadowstepEffect = new class'X2Effect_Persistent';
+	ShadowstepEffect.EffectName = 'Shadowstep';
+	ShadowstepEffect.DuplicateResponse = eDupe_Ignore;
+	ShadowstepEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
+	Template.AddTargetEffect(ShadowstepEffect);
 
 	// Cannot be used while burning, etc.
 	Template.AddShooterEffectExclusions();
