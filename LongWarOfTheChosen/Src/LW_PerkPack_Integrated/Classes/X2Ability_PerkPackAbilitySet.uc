@@ -3122,7 +3122,7 @@ static function X2AbilityTemplate AddInterferenceAbility()
 	Template.DisplayTargetHitChance = false;
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_CORPORAL_PRIORITY;
 	Template.bStationaryWeapon = true;
-	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_ShowIfAvailable;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
 	Template.bSkipPerkActivationActions = true;
 	Template.bCrossClassEligible = false;
 
