@@ -79,6 +79,7 @@ function static Texture2D FinishUnitPicture(StateObjectReference UnitRef)
 	return GetUnitPictureIfExists(UnitRef);
 }
 
+// Borrowed from CI
 static function string ColourText(string strValue, string strColour)
 {
     return "<font color='#" $ strColour $ "'>" $ strValue $ "</font>";
@@ -374,12 +375,14 @@ function static string GetBoostedInfiltrationString(XComGameState_MissionSite Mi
 	local string InfiltrationString;
 	local XGParamTag ParamTag;
 	local float TotalSeconds_Mission, TotalSeconds_Infiltration;
-	local float TotalSeconds, TotalHours, TotalDays;
+	local float TotalSeconds, TotalHours, TotalDays, BoostFactor;
 	local bool bExpiringMission, bCanFullyInfiltrate, bMustLaunch;
 
 	local XComGameState_LWPersistentSquad Squad;
 	local StrategyCost BoostInfiltrationCost;
 	local array<StrategyCostScalar> CostScalars;
+
+	BoostFactor = class'XComGameState_LWPersistentSquad'.default.DefaultBoostInfiltrationFactor[`STRATEGYDIFFICULTYSETTING];
 
 	Squad =  `LWSQUADMGR.GetSquadOnMission(MissionState.GetReference());
 	BoostInfiltrationCost = Squad.GetBoostInfiltrationCost();
@@ -389,7 +392,7 @@ function static string GetBoostedInfiltrationString(XComGameState_MissionSite Mi
 	InfiltrationString $= "\n";
 
 	ParamTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
-	ParamTag.IntValue0 = int(InfiltratingSquad.CurrentInfiltration * 100.0 * class'XComGameState_LWPersistentSquad'.default.DefaultBoostInfiltrationFactor[`STRATEGYDIFFICULTYSETTING]);
+	ParamTag.IntValue0 = int(InfiltratingSquad.CurrentInfiltration * 100.0 * BoostFactor);
 
 	bExpiringMission = MissionState.ExpirationDateTime.m_iYear < 2050;
 	bMustLaunch = ActivityState != none && ActivityState.bMustLaunch;
@@ -404,9 +407,9 @@ function static string GetBoostedInfiltrationString(XComGameState_MissionSite Mi
 	{
 		//determine if can fully infiltrate before mission expires / boosted state
 		TotalSeconds_Mission = ActivityState.SecondsRemainingCurrentMission();
-		TotalSeconds_Infiltration = InfiltratingSquad.GetSecondsRemainingToFullInfiltration() / class'XComGameState_LWPersistentSquad'.default.DefaultBoostInfiltrationFactor[`STRATEGYDIFFICULTYSETTING];;
+		TotalSeconds_Infiltration = InfiltratingSquad.GetSecondsRemainingToFullInfiltration(true);
 
-		bCanFullyInfiltrate = (TotalSeconds_Infiltration < TotalSeconds_Mission) && (InfiltratingSquad.CurrentInfiltration < 1.0);
+		bCanFullyInfiltrate = (TotalSeconds_Infiltration < TotalSeconds_Mission) && (InfiltratingSquad.CurrentInfiltration * BoostFactor < 1.0);
 		if(bCanFullyInfiltrate)
 		{
 			TotalSeconds = TotalSeconds_Infiltration ;
@@ -420,10 +423,10 @@ function static string GetBoostedInfiltrationString(XComGameState_MissionSite Mi
 		ParamTag.IntValue1 = int(TotalDays);
 		ParamTag.IntValue2 = int(TotalHours);
 
-		if(bCanFullyInfiltrate && InfiltratingSquad.CurrentInfiltration < 1.0)
-			InfiltrationString = `XEXPAND.ExpandString(class'UIMission_LWLaunchDelayedMission'.default.m_strInfiltrationStatusExpiring);
+		if(bCanFullyInfiltrate && InfiltratingSquad.CurrentInfiltration * BoostFactor < 1.0)
+			InfiltrationString $= `XEXPAND.ExpandString(class'UIMission_LWLaunchDelayedMission'.default.m_strInfiltrationStatusNonExpiring);
 		else
-			InfiltrationString = `XEXPAND.ExpandString(class'UIMission_LWLaunchDelayedMission'.default.m_strInfiltrationStatusMissionEnding);
+			InfiltrationString $= `XEXPAND.ExpandString(class'UIMission_LWLaunchDelayedMission'.default.m_strInfiltrationStatusMissionEnding);
 	}
 	else // mission does not expire
 	{

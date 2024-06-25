@@ -291,7 +291,7 @@ simulated function BuildOptionsPanel()
 	if (CanBoostInfiltration(Reason))
 	{
 		Button1.SetDisabled(false);
-		Button1.SetTooltipText(class'UIUtilities_LW'.static.GetBoostedInfiltrationString(GetMission(), GetActivity(), GetInfiltratingSquad()));
+		SetJointToolTips(Button1, class'UIUtilities_LW'.static.GetBoostedInfiltrationString(GetMission(), GetActivity(), GetInfiltratingSquad()), , 450, , , class'UIUtilities'.const.ANCHOR_TOP_RIGHT);
 	}
 	else
 	{
@@ -815,6 +815,54 @@ simulated function bool OnUnrealCommand(int cmd, int arg)
 	}
 
 	return bHandled || super(UIX2SimpleScreen).OnUnrealCommand(cmd, arg);
+}
+
+// Borrowed from RustyDios
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//	CREATE CORRECTLY SIZED TOOLTIPS
+// 	Tooltip code is kinda nasty - TODO @sbatista - cleanup unused params before ship
+//	PULLED FROM UIPANEL "SetTooltipText" WITH FULL ADJUSTABLE INPUTS
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+simulated function SetJointTooltips(UIPanel Panel, string strText, 
+                                    optional string Title			= "",
+                                    optional float MaxW				= class'UITextTooltip'.default.maxW,				/* 300 */
+                                    optional float MaxH				= class'UITextTooltip'.default.maxH, 				/* 300 */
+                                    optional bool bRelativeLocation	= class'UITextTooltip'.default.bRelativeLocation,	/* false */
+                                    optional int TooltipAnchor      = class'UITextTooltip'.default.Anchor, 				/* 1 top left */
+                                    optional float OffsetX			= 0.0,
+                                    optional float OffsetY			= 0.0,
+                                    optional bool bFollowMouse      = class'UITextTooltip'.default.bFollowMouse,		/* true */
+                                    optional float Delay            = class'UITextTooltip'.default.tDelay,				/* 0.75 */
+                                    optional int Hover 				= class'UITextTooltip'.default.eTTBehavior,			/* 0 eUITT_Behavior_Hover */
+                                    optional int Colour				= class'UITextTooltip'.default.eTTColor,			/* 0 eUITT_Style_Cyan */
+                                    optional float DisplayTime		= class'UITextTooltip'.default.tDisplayTime,		/* -1.0  */
+                                    optional float AnimateIn		= class'UITextTooltip'.default.tAnimateIn,			/* 0.2 */
+                                    optional float AnimateOut		= class'UITextTooltip'.default.tAnimateOut			/* 0.2 */
+                                )
+{
+	//local UITextTooltip iTT;
+
+	if (Panel != none)
+    {
+        //REMOVE ANY PREVIOUS TOOLTIPS FROM THE CHILD
+        if (Panel.bHasTooltip) { Panel.RemoveTooltip(); }
+
+        //SET NEW TEXT
+        if (strText != "")
+        {
+            //THIS CREATES AND ASSIGNS THE NEW TOOLTIP TO THE CHILD
+            Panel.CachedTooltipId = Movie.Pres.m_kTooltipMgr.AddNewTooltipTextBox(strText, OffsetX, OffsetY, string(Panel.MCPath), 
+                Title, bRelativeLocation, TooltipAnchor, bFollowMouse, MaxW, MaxH, Hover, Colour, DisplayTime, Delay, AnimateIn, AnimateOut);
+
+	    	//iTT = UITextTooltip(Panel.Movie.Pres.m_kTooltipMgr.GetTooltipByID(Panel.CachedTooltipID));
+    		//iTT.SetUsePartialPath(Panel.CachedTooltipID, true);
+    		//iTT.TargetPath = iTT.CurrentPath;
+	    	//class'Helpers'.static.OutputMsg(iTT.TargetPath @"\n" $ iTT.CurrentPath);
+        	Panel.SetTooltip(Panel.Movie.Pres.m_kTooltipMgr.GetTooltipByID(Panel.CachedTooltipID));
+            Panel.bHasTooltip = true;
+        }
+    }
 }
 
 defaultproperties
