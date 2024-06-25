@@ -199,18 +199,21 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 	{
 		IncomeIntelStr = Spawn(class'UIScrollingText', MainPanel);
 		IncomeIntelStr.bAnimateOnInit = false;
+		IncomeIntelStr.bIsNavigable = false;
 		IncomeIntelStr.InitScrollingText('Outpost_OutpostIncomeIntel_LW', "", panelW - BorderPadding * 2, BorderPadding -200, ListBG.Y + 46.75 + 18);
 		IncomeIntelStr.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ m_strIncomeIntel @ IncomeIntel $ "</font></p>");
 		IncomeIntelStr.SetAlpha(67.1875);
 
 		IncomeSupplyStr = Spawn(class'UIScrollingText', MainPanel);
 		IncomeSupplyStr.bAnimateOnInit = false;
+		IncomeSupplyStr.bIsNavigable = false;
 		IncomeSupplyStr.InitScrollingText('Outpost_OutpostIncomeSupply_LW', "", panelW - BorderPadding * 2, BorderPadding -200, ListBG.Y + 46.75 + 46);
 		IncomeSupplyStr.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ m_strIncomeSupply @ IncomeSupply $ "</font></p>");
 		IncomeSupplyStr.SetAlpha(67.1875);
 
 		IncomeRecruitStr = Spawn(class'UIScrollingText', MainPanel);
 		IncomeRecruitStr.bAnimateOnInit = false;
+		IncomeRecruitStr.bIsNavigable = false;
 		IncomeRecruitStr.InitScrollingText('Outpost_OutpostIncomeRecruit_LW', "", panelW - BorderPadding * 2, BorderPadding -200, ListBG.Y + 46.75 + 74);
 		IncomeRecruitStr.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ m_strIncomeRecruit @ IncomeRecruit $ "</font></p>");
 		IncomeRecruitStr.SetAlpha(67.1875);
@@ -222,6 +225,7 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 
 	// KDM : Advent strength in the region
 	RegionalInfo = Spawn(class'UIScrollingText', MainPanel);
+	RegionalInfo.bIsNavigable = false;
 	RegionalInfo.bAnimateOnInit = false;
 	RegionalInfo.InitScrollingText('Outpost_RegionalInfo_LW', "", panelW - BorderPadding * 2, BorderPadding, ListBG.Y + 46.75 + 6);
 	RegionalInfo.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ GetAdventStrengthString(Region) $ "</font></p>");
@@ -231,6 +235,7 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 	if (Outpost.GetResistanceMecCount() > 0)
 	{
 		ResistanceMecs = Spawn(class'UIScrollingText', MainPanel);
+		ResistanceMecs.bIsNavigable = false;
 		ResistanceMecs.bAnimateOnInit = false;
 		ResistanceMecs.InitScrollingText('Outpost_ResistanceMecs_LW', "", panelW - BorderPadding * 2, BorderPadding, RegionalInfo.Y + RegionalInfo.Height);
 		ResistanceMecs.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ GetResistanceMecString(Outpost) $ "</font></p>");
@@ -276,6 +281,7 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 	// KDM : Haven adviser photo
 	LiaisonImage = Spawn(class'UIImage', LiaisonButton);
 	LiaisonImage.bAnimateOnInit = false;
+	LiaisonImage.bIsNavigable = false;
 	LiaisonImage.InitImage();
 	LiaisonImage.SetPosition(AdviserBorderPadding, AdviserBorderPadding);
 	LiaisonImage.SetSize(AdviserIconSize, AdviserIconSize);
@@ -283,12 +289,14 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 	// KDM : Haven adviser label
 	LiaisonTitle = Spawn(class'UIText', MainPanel);
 	LiaisonTitle.bAnimateOnInit = false;
+	LiaisonTitle.bIsNavigable = false;
 	LiaisonTitle.InitText('', "");
 	LiaisonTitle.SetPosition(BorderPadding + LiaisonButton.Width + 5, NextY);
 	LiaisonTitle.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(m_strLiaisonTitle, eUIState_Normal, TheAdviserFontSize));
 
 	// KDM : Haven adviser name
 	LiaisonName = Spawn(class'UIText', MainPanel);
+	LiaisonName.bIsNavigable = false;
 	LiaisonName.bAnimateOnInit = false;
 	LiaisonName.InitText('',"");
 	LiaisonName.SetPosition(LiaisonTitle.X, NextY + LiaisonTitle.Height);
@@ -863,7 +871,7 @@ simulated function bool OnUnrealCommand(int cmd, int arg)
 		default:
 			bHandled = super.OnUnrealCommand(cmd, arg);
 			// KDM : Handle D-Pad inputs via the list.
-			if (`ISCONTROLLERACTIVE && !bHandled)
+			if (`ISCONTROLLERACTIVE) // && !bHandled
 			{
 				bHandled = List.Navigator.OnUnrealCommand(cmd, arg);
 			}

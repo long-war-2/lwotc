@@ -71,6 +71,7 @@ simulated function BuildItem(bool ControllerActive)
     //ADD A BACKGROUND SHADING PANEL FOR THE OUTER LIST/UI TO MANIPULATE ON CREATION
     BG = Spawn(class'UIPanel', self);
     BG.bAnimateOnInit = false;
+	BG.bIsNavigable = false;
     BG.InitPanel('BGShading', class'UIutilities_Controls'.const.MC_X2BackgroundShading);
     BG.SetPosition(0,0);
     BG.SetSize(Width, Height);
