@@ -291,6 +291,7 @@ simulated function BuildOptionsPanel()
 	if (CanBoostInfiltration(Reason))
 	{
 		Button1.SetDisabled(false);
+		Button1.SetTooltipText(class'UIUtilities_LW'.static.GetBoostedInfiltrationString(GetMission(), GetActivity(), GetInfiltratingSquad()));
 	}
 	else
 	{
