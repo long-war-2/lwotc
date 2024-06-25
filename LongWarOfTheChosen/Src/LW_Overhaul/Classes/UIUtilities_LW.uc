@@ -78,6 +78,11 @@ function static Texture2D FinishUnitPicture(StateObjectReference UnitRef)
 	return GetUnitPictureIfExists(UnitRef);
 }
 
+static function string ColourText(string strValue, string strColour)
+{
+    return "<font color='#" $ strColour $ "'>" $ strValue $ "</font>";
+}
+
 function static Texture2D GetUnitPictureIfExists(StateObjectReference UnitRef)
 {
 	local XComGameState_CampaignSettings SettingsState;
@@ -127,6 +132,7 @@ static function int GetCurrentEvacDelay (XComGameState_LWPersistentSquad Squad, 
 	return EvacDelay;
 
 }
+
 
 static function string GetTurnsLabel(int kounter)
 {
@@ -366,10 +372,10 @@ static function GetMissionInfoPanelText(StateObjectReference MissionRef, bool Is
 	out string TitleString, out string InfiltrationString, out string ExpirationString, out string MissionInfo1String,
 	out string MissionInfo2String)
 {
-	local int EvacFlareTimer;
+	local int EvacFlareTimer, EvacDelayDiff;
 	local float HoursRemaining;
 	local string Header, TimeRemaining, ExpirationTime, MissionType, EvacTurns, SquadSize, MissionTurns, SweepInfo,
-		FullSalvageInfo, RendezvousInfo, ConcealmentInfo, InfiltrationInfo, MissionInfo1, MissionInfo2;
+		FullSalvageInfo, RendezvousInfo, ConcealmentInfo, InfiltrationInfo, MissionInfo1, MissionInfo2, EvacTimerColor;
 	local X2CharacterTemplate FacelessTemplate;
 	local XComGameState_LWAlienActivity ActivityState;
 	local XComGameState_LWPersistentSquad InfiltratingSquad;
@@ -437,7 +443,31 @@ static function GetMissionInfoPanelText(StateObjectReference MissionRef, bool Is
 			(default.EvacFlareMissions.Find(MissionState.GeneratedMission.Mission.MissionName) != -1 ||
 			default.EvacFlareEscapeMissions.Find(MissionState.GeneratedMission.Mission.MissionName) != -1))
 		{
-			EvacTurns @= "(" $ string(EvacFlareTimer) @ GetTurnsLabel(EvacFlareTimer) $ ")";
+			EvacDelayDiff = EvacFlareTimer - class'X2Ability_PlaceDelayedEvacZone'.default.DEFAULT_EVAC_PLACEMENT_DELAY[`TACTICALDIFFICULTYSETTING];
+			
+			switch (EvacDelayDiff)
+			{
+				case 0:
+					EvacTimerColor = class'UIUtilities_Colors'.const.NORMAL_HTML_COLOR;
+					break;
+				case 1:
+					EvacTimerColor = class'UIUtilities_Colors'.const.WARNING_HTML_COLOR;
+					break;
+				default:
+					if(EvacDelayDiff < 0)
+					{
+						EvacTimerColor = class'UIUtilities_Colors'.const.GOOD_HTML_COLOR;
+					}
+					else
+					{
+						EvacTimerColor = class'UIUtilities_Colors'.const.BAD_HTML_COLOR;
+					}
+					break;
+
+			}
+
+
+			EvacTurns @= ColourText("(" $ string(EvacFlareTimer) @ GetTurnsLabel(EvacFlareTimer) $ ")", EvacTimerColor);
 		}
 	}
 
@@ -524,7 +554,7 @@ static function BuildMissionInfoPanel(UIScreen ParentScreen, StateObjectReferenc
 	{
 		MissionExpiryPanel.SetPosition(725, 180);
 	}
-
+	
 	// ---------------- Create background ---------------------
 	MissionExpiryBG = ParentScreen.Spawn(class'UIBGBox', MissionExpiryPanel);
 	MissionExpiryBG.LibID = class'UIUtilities_Controls'.const.MC_X2Background;
@@ -538,6 +568,10 @@ static function BuildMissionInfoPanel(UIScreen ParentScreen, StateObjectReferenc
 	{
 		MissionExpiryBG.InitBG('ExpiryBG', 0, 0, 470, IsInfiltrating ? 200 : 130);
 	}
+
+	MissionExpiryBG.SetTooltipText("This is a test tooltip");
+
+	//MissionExpiryPanel.ProcessMouseEvents(MissionExpiryBG.OnChildMouseEvent);
 
 	// ---------------- Create text container -----------------
 	GetMissionInfoPanelText(MissionRef, IsInfiltrating, TitleString, InfiltrationString,
