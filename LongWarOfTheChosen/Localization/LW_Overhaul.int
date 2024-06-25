@@ -692,6 +692,7 @@ m_strMinimumInfiltration="Requires <XGParam:IntValue0>% Infiltration"
 m_strYellowAlert="Enemies on High Alert"
 m_sAverageScatterText="± <XGParam:StrValue0/> Tiles"
 m_strBullet="•"
+m_strExpectedInfiltration="After Boost"
 
 m_strStripWeaponUpgrades=STRIP ALL WEAPON UPGRADES
 m_strStripWeaponUpgradesLower=Strip All Weapon Upgrades

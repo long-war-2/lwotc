@@ -1007,13 +1007,21 @@ function int GetAlertnessModifierForCurrentInfiltration(optional XComGameState U
 	return iAlertnessModifier;
 }
 
-function float GetSecondsRemainingToFullInfiltration()
+function float GetSecondsRemainingToFullInfiltration(optional bool bBoost = false)
 {
 	local float TotalSecondsToInfiltrate;
 	local float SecondsOfInfiltration;
 	local float SecondsToInfiltrate;
 
-	TotalSecondsToInfiltrate = 3600.0 * GetHoursToFullInfiltrationCached(); // test caching here roo
+	if(bBoost)
+	{
+		TotalSecondsToInfiltrate = 3600.0 * GetHoursToFullInfiltrationCached() / class'XComGameState_LWPersistentSquad'.default.DefaultBoostInfiltrationFactor[`STRATEGYDIFFICULTYSETTING];
+	}
+	else
+	{
+		TotalSecondsToInfiltrate = 3600.0 * GetHoursToFullInfiltrationCached(); // test caching here roo
+	}
+	
 	SecondsOfInfiltration = class'X2StrategyGameRulesetDataStructures'.static.DifferenceInSeconds(GetCurrentTime(), StartInfiltrationDateTime);
 	SecondsToInfiltrate = TotalSecondsToInfiltrate - SecondsOfInfiltration;
 

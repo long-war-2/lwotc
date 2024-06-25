@@ -1223,20 +1223,6 @@ TacticalText="<Bullet/> This weapon's design is based on R. Shen's blueprints fr
 AbilityDescName="Heavy Chaingun"
 
 [SparkRifle_LS X2WeaponTemplate]
-FriendlyName="Heavy Railgun"
-FriendlyNamePlural="Heavy Railguns"
-BriefSummary="Heavy Railgun fires high-caliber projectiles at extreme velocities that deal massive damage."
-TacticalText="<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Heavy Railgun is the laser equivalent of the Autocannon."
-AbilityDescName="Heavy Railgun"
-
-[SparkRifle_CG X2WeaponTemplate]
-FriendlyName="Particle Projection Cannon"
-FriendlyNamePlural="Particle Projection Cannons"
-BriefSummary="PPC uses several acceleration contours to create a focused beam of supercharged particles that remain effective at any range." 
-TacticalText="<Bullet/> Particle Projection Cannon is the Coil equivalent of the Autocannon."
-AbilityDescName="Particle Projection Cannon"
-
-[SparkRifle_LS X2WeaponTemplate]
 FriendlyName="Spitfire Pulsecannon"
 FriendlyNamePlural="Spitfire Pulsecannons"
 BriefSummary="The Spitfire Pulsecannon is the largest portable automatic laser weapon in our arsenal. Using the rotating barrel assembly solves the overheating problem, and the fragile barrel parts are protected by individual retractable cowls."
