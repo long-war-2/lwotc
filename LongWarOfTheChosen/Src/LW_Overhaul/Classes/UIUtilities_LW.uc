@@ -40,6 +40,7 @@ var localized string m_strYellowAlert;
 var localized string m_sAverageScatterText;
 var localized string m_strBullet;
 var localized string m_strExpectedInfiltration;
+var localized string m_strInfiltrationBoostCost;
 
 var localized string m_strStripWeaponUpgrades;
 var localized string m_strStripWeaponUpgradesLower;
@@ -388,7 +389,7 @@ function static string GetBoostedInfiltrationString(XComGameState_MissionSite Mi
 	BoostInfiltrationCost = Squad.GetBoostInfiltrationCost();
 	CostScalars.Length = 0;
 
-	InfiltrationString = "Cost:" @ class'UIUtilities_Strategy'.static.GetStrategyCostString(BoostInfiltrationCost, CostScalars);
+	InfiltrationString = default.m_strInfiltrationBoostCost $":" @ class'UIUtilities_Strategy'.static.GetStrategyCostString(BoostInfiltrationCost, CostScalars);
 	InfiltrationString $= "\n";
 
 	ParamTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
