@@ -258,6 +258,8 @@ strMinusDaysAndHours="- <XGParam:IntValue0> Days, <XGParam:IntValue1> Hours"
 strPlusDaysAndHours="+ <XGParam:IntValue0> Days, <XGParam:IntValue1> Hours"
 strMissionIndefinite="Indefinite Duration"
 strLiberationTitle="Liberation Progress Modifier:"
+strOverallInfilShort="Current"
+strMissionInfoTitle="Reconnaissance:"
 
 ; LWOTC Needs Translation
 UpToText="Up to"
@@ -266,6 +268,18 @@ BoostedActivityText="Expected Activity (Boosted)"
 BoostTextPre="With"
 BoostTextPost="Boost"
 ; End Translation
+
+strInfilPanelTitle="Mission Brief"
+strActivityHeader="Enemy Activity"
+strModifierHeader="Infiltration Modifiers"
+
+strBaseInfilShort="Base"
+strSquadSizeShort="Squad Size"
+strAbilitiesShort="Abilities/Gear"
+strExpirationShort="Expiration"
+strExpectedShort="Expected"
+strBoostedShort="Boosted"
+strLiberationShort="Liberation"
 
 [UIScreenListener_DropShipBriefing_MissionStart]
 strLaunchingInfiltration="CONTACT IMMINENT"
