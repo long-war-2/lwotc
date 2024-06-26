@@ -362,6 +362,7 @@ static function CreateGoldenPathMissionsLW(XComGameState NewGameState)
 
 	Continents.AddItem(ContinentState);
 
+	Rewards.Length = 0;
 	RewardTemplate = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_Supplies'));
 	RewardState = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
 	RewardState.SetReward(, GetPsiGateForgeSupplyAmount());
