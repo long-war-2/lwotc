@@ -280,6 +280,7 @@ strExpirationShort="Expiration"
 strExpectedShort="Expected"
 strBoostedShort="Boosted"
 strLiberationShort="Liberation"
+strMaxInfilText="Max Infiltration"
 
 [UIScreenListener_DropShipBriefing_MissionStart]
 strLaunchingInfiltration="CONTACT IMMINENT"
