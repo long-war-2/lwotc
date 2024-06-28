@@ -88,6 +88,7 @@ var localized string strBoostedShort;
 var localized string strLiberationShort;
 
 var localized string strMaxInfilText;
+var localized string strMapTypeText;
 
 var UISquadSelect_InfiltrationItem MissionBriefHeader;
 var UISquadSelect_InfiltrationItem MissionTypeText;
@@ -260,7 +261,7 @@ simulated function UISquadSelect_InfiltrationPanel InitInfiltrationPanel(optiona
 		rollingY += yOffset;
 
 		PlotTypeText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
-		PlotTypeText.SetNewInfoValue("Map Type", class'UIUtilities_LW'.static.GetPlotTypeFriendlyName(MissionState.GeneratedMission.Plot.strType), class'UIUtilities_Colors'.const.NORMAL_HTML_COLOR);
+		PlotTypeText.SetNewInfoValue(default.strMapTypeText, class'UIUtilities_LW'.static.GetPlotTypeFriendlyName(MissionState.GeneratedMission.Plot.strType), class'UIUtilities_Colors'.const.NORMAL_HTML_COLOR);
 
 	}
 	else
