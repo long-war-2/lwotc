@@ -62,12 +62,16 @@ var localized string strLiberationTitle;
 
 // New version stuff
 var config bool USE_NEW_VERSION;
+var config bool MULTI_LINE_INFIL;
 
 var UISquadSelect_InfiltrationItem NewTitle;
 var UISquadSelect_InfiltrationItem ActivityHeader;
 var UISquadSelect_InfiltrationItem ModifierHeader;
 
 var UISquadSelect_InfiltrationItem BaselineActivity;
+
+var UISquadSelect_InfiltrationItem ExpectedInfiltrationPercent;
+var UISquadSelect_InfiltrationItem BoostedInfiltrationPercent;
 
 var localized string strInfilPanelTitle;
 var localized string strActivityHeader;
@@ -82,6 +86,8 @@ var localized string strExpirationShort;
 var localized string strExpectedShort;
 var localized string strBoostedShort;
 var localized string strLiberationShort;
+
+var localized string strMaxInfilText;
 
 var UISquadSelect_InfiltrationItem MissionBriefHeader;
 var UISquadSelect_InfiltrationItem MissionTypeText;
@@ -101,7 +107,15 @@ function DelayedInit(float Delay)
 
 function StartDelayedInit()
 {
-	InitInfiltrationPanel();
+	if(default.USE_NEW_VERSION)
+	{
+		InitInfiltrationPanel('LWInfilPanel', ,-375, ,375);
+	}
+	else
+	{
+		InitInfiltrationPanel('LWInfilPanel');
+	}
+	
 	MCName = 'SquadSelect_InfiltrationInfo_LW';
 	Update(SquadSoldiers);
 }
@@ -116,13 +130,14 @@ simulated function UISquadSelect_InfiltrationPanel InitInfiltrationPanel(optiona
 	//local XComGameStateHistory History;
 	//local XComGameState_ObjectivesList ObjectiveList;
 	//local XComGameState_MissionSite MissionState;
-	local int PanelX, PanelY, rollingY, yOffset;
+	local int PanelX, PanelY, rollingY, yOffset, bigYOffset;
 	local XComGameState_HeadquartersXCom XComHQ;
 	local XComGameState_MissionSite MissionState;
 
 	InitPanel(InitName, InitLibID);
 
 	yOffset = 25;
+	bigYOffset = 30;
 	
 	Hide();
 
@@ -144,38 +159,73 @@ simulated function UISquadSelect_InfiltrationPanel InitInfiltrationPanel(optiona
 
 	if(default.USE_NEW_VERSION)
 	{
-		NewTitle = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(0, 5);
+		rollingY = 5;
+		NewTitle = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(0, rollingY);
 		NewTitle.SetTitleTest(default.strInfilPanelTitle);
+		rollingY += 40;
 
-		MissionTimeText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, 45);
-		OverallTime = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, 70);
-		BoostedInfiltrationTime = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, 95);
+		MissionTimeText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
+		rollingY += YOffset;
+		OverallTime = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
+		rollingY += YOffset;
 
-		ActivityHeader = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(0, 125);
+		if(default.MULTI_LINE_INFIL)
+		{
+			ExpectedInfiltrationPercent = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(35, rollingY);
+			rollingY += YOffset;
+		}
+
+		BoostedInfiltrationTime = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
+
+		if(default.MULTI_LINE_INFIL)
+		{
+			rollingY += YOffset;
+			BoostedInfiltrationPercent = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(35, rollingY);
+			rollingY += bigYOffset;
+		}
+		else
+		{
+			rollingY += bigYOffset;
+		}
+		
+		
+		ActivityHeader = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(0, rollingY);
 		ActivityHeader.SetSubTitle(default.strActivityHeader);
+		rollingY += YOffset;
 
-		BaselineActivity = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, 150);
-		ExpectedActivity = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, 175);
-		BoostedExpectedActivity = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, 200);
+		BaselineActivity = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
+		rollingY += YOffset;
+		ExpectedActivity = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
+		rollingY += YOffset;
+		BoostedExpectedActivity = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
+		rollingY += bigYOffset;
 
-		ModifierHeader = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(0, 230);
+		ModifierHeader = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(0, rollingY);
 		ModifierHeader.SetSubtitle(default.strModifierHeader);
+		rollingY += YOffset;
 
-		BaseInfiltrationTime = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, 255);
-		SquadSizeValue = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, 280);
-		SquadCovertnessValue = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, 305);
+		BaseInfiltrationTime = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
+		rollingY += YOffset;
 
-		LiberationValue = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, 330);
+		SquadSizeValue = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
+		rollingY += YOffset;
+
+		SquadCovertnessValue = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
+		rollingY += YOffset;
+
+		LiberationValue = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
+		rollingY += bigYOffset;
 
 		InfiltrationMask = Spawn(class'UIMask', self).InitMask('TacticalMask', self);
 		InfiltrationMask.SetPosition(6, 0);
 		InfiltrationMask.SetSize(InitWidth, InitHeight);
 
 
-		MissionBriefHeader = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(0, 360);
+		MissionBriefHeader = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(0, rollingY);
 		MissionBriefHeader.SetSubtitle(default.strMissionInfoTitle);
+		rollingY += YOffset;
 
-		MissionTypeText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, 385 + rollingY);
+		MissionTypeText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
 		MissionTypeText.SetNewText(class'UIUtilities_LW'.static.GetMissionTypeString (XComHQ.MissionRef));
 		rollingY += yOffset;
 
@@ -183,33 +233,33 @@ simulated function UISquadSelect_InfiltrationPanel InitInfiltrationPanel(optiona
 
 		if (class'UIUtilities_LW'.static.GetTimerInfoString (MissionState) != "")
 		{
-			MissionTimerText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, 385 + rollingY);
+			MissionTimerText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
 			MissionTimerText.SetNewText(class'UIUtilities_LW'.static.GetTimerInfoString (MissionState));
 			rollingY += yOffset;
 		}
 
-		EvacTypeText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, 385 + rollingY);
+		EvacTypeText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
 		EvacTypeText.SetNewText(class'UIUtilities_LW'.static.GetEvacTypeString (MissionState));
 		rollingY += yOffset;
 
 		if (class'UIUtilities_LW'.static.HasSweepObjective(MissionState))
 		{
-			SweepObjectiveText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, 385 + rollingY);
+			SweepObjectiveText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
 			SweepObjectiveText.SetNewText(class'UIUtilities_LW'.default.m_strSweepObjective);
 			rollingY += yOffset;
 		}
 		if (class'UIUtilities_LW'.static.FullSalvage(MissionState))
 		{
-			FullSalvageText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, 385 + rollingY);
+			FullSalvageText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
 			FullSalvageText.SetInfoValue(class'UIUtilities_LW'.default.m_strGetCorpses, class'UIUtilities_Colors'.const.GOOD_HTML_COLOR);
 			rollingY += yOffset;
 		}
 
-		ConcealStatusText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, 385 + rollingY);
+		ConcealStatusText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
 		ConcealStatusText.SetNewText(class'UIUtilities_LW'.static.GetMissionConcealStatusString (XComHQ.MissionRef));
 		rollingY += yOffset;
 
-		PlotTypeText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, 385 + rollingY);
+		PlotTypeText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
 		PlotTypeText.SetNewInfoValue("Map Type", class'UIUtilities_LW'.static.GetPlotTypeFriendlyName(MissionState.GeneratedMission.Plot.strType), class'UIUtilities_Colors'.const.NORMAL_HTML_COLOR);
 
 	}
@@ -414,8 +464,18 @@ simulated function Update(array<StateObjectReference> Soldiers)
 
 		if(default.USE_NEW_VERSION)
 		{
-			OverallTime.SetNewInfoValue(default.strOverallInfilShort, GetDaysAndHoursString(TotalInfiltrationHours) @ TotalMissionHours < 4320 ? "(" $ default.UpToText @ int(InfiltratePct) $ "%)" : "", OverallTimeColor);
-			BoostedInfiltrationTime.SetNewInfoValue(default.strBoostedShort, GetDaysAndHoursString(BoostedInfiltrationHours) @ TotalMissionHours < 4320 ? "(" $ default.UpToText @ int(BoostedInfiltratePct) $ "%)" : "", BoostedTimeColor);
+			if(default.MULTI_LINE_INFIL)
+			{
+				OverallTime.SetNewInfoValue(default.strOverallInfilShort, GetDaysAndHoursString(TotalInfiltrationHours), OverallTimeColor);
+				BoostedInfiltrationTime.SetNewInfoValue(default.strBoostedShort, GetDaysAndHoursString(BoostedInfiltrationHours), BoostedTimeColor);
+				ExpectedInfiltrationPercent.SetNewInfoValue(TotalMissionHours < 4320 ? default.strMaxInfilText : "", TotalMissionHours < 4320 ? int(InfiltratePct) $ "%" : "", OverallTimeColor);
+				BoostedInfiltrationPercent.SetNewInfoValue(TotalMissionHours < 4320 ? default.strMaxInfilText : "", TotalMissionHours < 4320 ? int(BoostedInfiltratePct) $ "%" : "", BoostedTimeColor);
+			}
+			else
+			{
+				OverallTime.SetNewInfoValue(default.strOverallInfilShort, GetDaysAndHoursString(TotalInfiltrationHours) @ TotalMissionHours < 4320 ? "(" $ default.UpToText @ int(InfiltratePct) $ "%)" : "", OverallTimeColor);
+				BoostedInfiltrationTime.SetNewInfoValue(default.strBoostedShort, GetDaysAndHoursString(BoostedInfiltrationHours) @ TotalMissionHours < 4320 ? "(" $ default.UpToText @ int(BoostedInfiltratePct) $ "%)" : "", BoostedTimeColor);
+			}
 		}
 		else
 		{
