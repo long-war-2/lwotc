@@ -755,7 +755,7 @@ strDismiss_Button = "OK"
 [UISL_Shell_BetaPatchNotes]
 strMessage_Title = "Long War Of The Chosen"
 strMessage_Header = "Latest Beta Changes:"
-strMessage_Body = "<ul><li>Chosen Knowledge rescaled from 100 to 1000. This allows more granular control of their knowledge gain.  First chosen gains 100 per month, second chosen gains 80, and 3rd chosen gains 65. Capture is 25 knowledge.</li><li>Chosen Avenger Defense enemy count reduced further, as part of the fact that CAD is being moved slightly earlier again. It's not expected that Master Sergeants are being rushed fast enough to avoid the mission completely.</li><li>Fixed M2 archons and drones taking fall damage given they fly.</li><li>Redid how golden path missions are spawned behind the scenes so you shouldn't get blacksite and forge/psi gate in the same region anymore.</li><li>Reduced potential for extremely high wound timers for soldiers that are wounded to 1-10% of their HP.</li><li>Sparks lost their ablative last update, this is intentional to balance out their new stronger kit.  Their healing rate is now at 140 (base soldier heal rate with both infirmary and scanning at Templar HQ)</li><li>Supply Retaliations had their reinforcement timers increased by 1 turn both for the initial RNFs after the first two as well as one more turn between subsequent RNFs.</ul>"
+strMessage_Body = "<ul><li>New UI for Infiltration information in Squad Select + new UI on mission information on geoscape. Squad select screen is currently localized only for English, accepting translation help. UI can be turned off by flipping a switch at the bottom of XComLW_Overhaul.ini</li></ul>"
 strDismiss_Button = "OK"
 
 [UISL_PullAdvisors]
