@@ -81,8 +81,8 @@ LocPromotionPopupText="<Bullet/> 每回合一次，用主武器对一名侧翼�
 [HitandRun X2AbilityTemplate]
 LocFriendlyName="游击战术"
 LocFlyOverText="游击战术"
-LocLongDescription="每回合一次，用主武器对一名侧翼敌人进行一次标准射击后，获得一个额外的行动点。不能在同一回合触发短兵相接。 "
-LocHelpText="每回合一次，用主武器对一名侧翼敌人进行一次标准射击后，获得一个额外的行动点。不能在同一回合触发短兵相接。"
+LocLongDescription="用主武器对一名侧翼敌人进行标准射击后，获得一个额外的行动点。每回合一次。不能在同一回合触发短兵相接。 "
+LocHelpText="用主武器对一名侧翼敌人进行标准射击后，获得一个额外的行动点。每回合一次。不能在同一回合触发短兵相接。"
 LocPromotionPopupText="<Bullet/> 不能在同一回合使用奔袭战术。<br/><Bullet/> 连环杀戮和死神天降的奖励将会优先获得。"
 
 [CloseCombatSpecialist X2AbilityTemplate]
@@ -195,7 +195,7 @@ LocFriendlyName="独狼"
 LocFlyOverText="独狼"
 LocLongDescription="距离友军至少<Ability:LONEWOLF_MIN_BONUS_TILES/>格时获得命中和防御增益。最大值为距离友军<Ability:LONEWOLF_MIN_DIST_TILES/>格时获得+<Ability:LONEWOLF_AIM_BONUS/>命中+<Ability:LONEWOLF_DEF_BONUS/>防御。"
 LocHelpText="距离友军至少<Ability:LONEWOLF_MIN_BONUS_TILES/>格时获得命中和防御增益。最大值为距离友军<Ability:LONEWOLF_MIN_DIST_TILES/>格时获得+<Ability:LONEWOLF_AIM_BONUS/>命中+<Ability:LONEWOLF_DEF_BONUS/>防御。"
-LocPromotionPopupText="<Bullet/> 该士兵与最近的盟友之间的每格距离给予 +<Ability:LONEWOLF_AIM_PER_TILE/>命中和+<Ability:LONEWOLF_DEF_PER_TILE/>防御，起始于<Ability:LONEWOLF_MIN_BONUS_TILES/>格距离。<br/><Bullet/> 增益上限为+<Ability:LONEWOLF_AIM_BONUS/>命中， +<Ability:LONEWOLF_DEF_BONUS/>防御当该士兵与最近的盟友距离<Ability:LONEWOLF_MIN_DIST_TILES/>格或更远的距离。<br/><Bullet/> 此项能力在单位处于混乱、眩晕、恐慌、燃烧或其他受损状态中时将不提供防御加成。"
+LocPromotionPopupText="<Bullet/> 从<Ability:LONEWOLF_MIN_BONUS_TILES/>格距离开始计算，该士兵与最近的盟友之间每多一格距离给予+<Ability:LONEWOLF_AIM_PER_TILE/>命中和+<Ability:LONEWOLF_DEF_PER_TILE/>防御。<br/><Bullet/> 增益上限为+<Ability:LONEWOLF_AIM_BONUS/>命中、+<Ability:LONEWOLF_DEF_BONUS/>防御（当该士兵与最近的盟友距离<Ability:LONEWOLF_MIN_DIST_TILES/>格或更远的距离）。<br/><Bullet/> 此项能力在单位处于混乱、眩晕、恐慌、燃烧或其他受损状态中时将不提供防御加成。"
 
 [LowProfile X2AbilityTemplate]
 LocFriendlyName="低姿态"
@@ -328,9 +328,9 @@ LocPromotionPopupText="<Bullet/> 在监视时，每次射击命中会使你自�
 [LightningReflexes_LW X2AbilityTemplate]
 LocFriendlyName="闪电反射"
 LocFlyOverText="闪电反射"
-LocLongDescription="大幅减少敌人对你的反应射击的命中率。此加成会随着敌人对你反应射击次数的增加而减弱。"
-LocHelpText="减少敌人对你的反应射击的命中率。"
-LocPromotionPopupText="<Bullet/> 大幅减少敌人对你的反应射击的命中率。<br/><Bullet/> 回合内首次对你的反应射击-100命中；第二次-80；第3次-60；第4次-40；第五次-20。再往后的命中率会恢复正常。<br/><Bullet/> 此项能力在单位处于混乱、眩晕、恐慌、燃烧或其他受损状态中时将不提供防御加成。"
+LocLongDescription="大幅减少敌人对你的反应攻击的命中率。此加成会随着敌人对你反应攻击次数的增加而减弱。"
+LocHelpText="减少敌人对你的反应攻击的命中率。"
+LocPromotionPopupText="<Bullet/> 大幅减少敌人对你的反应攻击的命中率。<br/><Bullet/> 回合内首次对你的反应攻击-100命中；第二次-80；第3次-60；第4次-40；第五次-20。再往后的命中率会恢复正常。<br/><Bullet/> 此项能力在单位处于混乱、眩晕、恐慌、燃烧或其他受损状态中时将不提供防御加成。"
 
 [Cutthroat X2AbilityTemplate]
 LocFriendlyName="割喉"
@@ -480,7 +480,7 @@ LocFriendlyName="隐秘"
 LocFlyOverText="隐秘"
 LocLongDescription="敌人对你的侦查范围减少<Ability:COVERT_DETECTION_RANGE_REDUCTION/>%。"
 LocHelpText="敌人对你的侦查范围减少。"
-LocPromotionPopupText="<Bullet/> 敌人对你的侦查范围减少<Ability:COVERT_DETECTION_RANGE_REDUCTION/>%，由敌人周围的红色区块标识出。<br/><Bullet/> 该能力也会略微减少该士兵的潜入时间。<br/><Bullet/> 对变种人安保塔没有效果。"
+LocPromotionPopupText="<Bullet/> 敌人对你的侦查范围减少<Ability:COVERT_DETECTION_RANGE_REDUCTION/>%，侦查范围由敌人周围的红色格子标识。<br/><Bullet/> 该能力也会略微减少士兵的潜入时间。<br/><Bullet/> 对变种人安保塔没有效果。"
 
 [Ghostwalker X2AbilityTemplate]
 LocFriendlyName="鬼行者"
@@ -534,9 +534,9 @@ LocPromotionPopupText="<Bullet/> 效果适用于小精灵治疗，急救包和�
 [DenseSmoke X2AbilityTemplate]
 LocFriendlyName="浓密烟雾"
 LocFlyOverText="浓密烟雾"
-LocLongDescription="你的烟雾榴弹提供额外10的防御。同时额外获得一个免费的烟雾榴弹。"
-LocHelpText="你的烟雾榴弹提供额外10的防御。同时额外获得一个免费的烟雾榴弹。"
-LocPromotionPopupText="<Bullet/> 你的烟雾榴弹对处于烟雾中的单位提供额外10的防御，最高30。同时额外获得一个免费的烟雾榴弹。<br/>"
+LocLongDescription="你的烟雾榴弹提供额外10点防御。同时额外获得一颗免费的烟雾榴弹。"
+LocHelpText="你的烟雾榴弹提供额外10点防御。同时额外获得一颗免费的烟雾榴弹。"
+LocPromotionPopupText="<Bullet/> 你的烟雾榴弹对处于烟雾中的单位提供额外10点防御，最高30。同时额外获得一颗免费的烟雾榴弹。<br/>"
 
 
 [Collateral_LW X2AbilityTemplate]
@@ -598,7 +598,7 @@ LocFriendlyName="快速部署"
 LocFlyOverText="快速部署"
 LocLongDescription="在投掷或发射一颗辅助型榴弹前使用此技能，投掷或发射将不耗费行动点。"
 LocHelpText="在投掷或发射一颗辅助型榴弹前使用此技能，投掷或发射将不耗费行动点。"
-LocPromotionPopupText="<Bullet/> 在投掷或发射一颗辅助型榴弹前使用此技能，投掷或发射将不耗费行动点。<br/><Bullet/> 适用于烟雾榴弹、闪光榴弹、成型炸药和战场扫描器。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
+LocPromotionPopupText="<Bullet/> 在投掷或发射一颗辅助型榴弹前使用此技能，投掷或发射将不耗费行动点。<br/><Bullet/> 适用于烟雾榴弹、闪光榴弹、寒霜炸弹、成型炸药和战场扫描器。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
 
 [CombatRush X2AbilityTemplate]
 LocFriendlyName="战斗冲锋"
@@ -625,7 +625,7 @@ LocFriendlyName="强力核心"
 LocFlyOverText="强力核心"
 LocLongDescription="破坏性榴弹造成额外1点伤害。"
 LocHelpText="破坏性榴弹造成额外1点伤害。"
-LocPromotionPopupText="<Bullet/> 你的榴弹包含额外的爆炸物，能造成额外1点伤害，但需要特殊训练来掌握。<br/><Bullet/> 由榴弹造成的诸如中毒之类的持续伤害效果也将额外造成1点伤害。<br/>"
+LocPromotionPopupText="<Bullet/> 你的榴弹包含额外的爆炸物，能造成额外1点伤害。<br/><Bullet/> 由榴弹造成的诸如中毒之类的持续伤害效果也将额外造成1点伤害。<br/>"
 
 [Airdrop X2AbilityTemplate]
 LocFriendlyName="空投"
@@ -875,16 +875,16 @@ LocPromotionPopupText="<Bullet/> 拥有暗影步能力的士兵不会触发敌�
 [XComGame.Bladestorm X2AbilityTemplate]
 [Bladestorm X2AbilityTemplate]
 LocFriendlyName="剑刃风暴"
-LocLongDescription="对所有进入、离开或从近战攻击范围内发起攻击的敌人使用<Ability:SecondaryWeaponName/>进行反应攻击。"
-LocHelpText="对所有进入、离开或从近战攻击范围内发起攻击的敌人使用<Ability:SecondaryWeaponName/>进行反应攻击。"
+LocLongDescription="对所有进入、离开或从近战范围内发起攻击的敌人使用<Ability:SecondaryWeaponName/>进行反应攻击。"
+LocHelpText="对所有进入、离开或从近战范围内发起攻击的敌人使用<Ability:SecondaryWeaponName/>进行反应攻击。"
 LocFlyOverText="剑刃风暴"
 LocPromotionPopupText="<Bullet/> 敌人在相邻位置开始回合且打算离开或攻击士兵时会触发剑刃风暴。<br/><Bullet/> 如果敌人不在相邻位置，则剑刃风暴在敌人进入近战范围后触发。<br/>"
 
 [XComeGame.BladestormAttack X2AbilityTemplate]
 [BladestormAttack X2AbilityTemplate]
 LocFriendlyName="剑刃风暴"
-LocLongDescription="对所有进入、离开或从近战攻击范围内发起攻击的敌人使用<Ability:SecondaryWeaponName/>进行反应攻击。"
-LocHelpText="对所有进入、离开或从近战攻击范围内发起攻击的敌人使用<Ability:SecondaryWeaponName/>进行反应攻击。"
+LocLongDescription="对所有进入、离开或从近战范围内发起攻击的敌人使用<Ability:SecondaryWeaponName/>进行反应攻击。"
+LocHelpText="对所有进入、离开或从近战范围内发起攻击的敌人使用<Ability:SecondaryWeaponName/>进行反应攻击。"
 LocFlyOverText="剑刃风暴"
 LocPromotionPopupText="<Bullet/> 敌人在相邻位置开始回合且打算离开或攻击士兵时会触发剑刃风暴。<br/><Bullet/> 如果敌人不在相邻位置，则剑刃风暴在敌人进入近战范围后触发。<br/>"
 
@@ -1054,15 +1054,15 @@ LocPromotionPopupText="<Bullet/> 你的爆炸攻击能够造成暴击伤害（<A
 
 [RapidFire X2AbilityTemplate]
 LocFriendlyName="速射"
-LocLongDescription="连续向敌人开火两次。 每次射击<Ability:RAPIDFIREPENALTY/>命中惩罚。消耗一个行动点。"
-LocHelpText="连续向敌人开火两次。每次射击<Ability:RAPIDFIREPENALTY/>命中惩罚。"
+LocLongDescription="连续向敌人开火两次。每次射击有<Ability:RAPIDFIREPENALTY/>的命中惩罚。消耗一个行动点。"
+LocHelpText="连续向敌人开火两次。每次射击有<Ability:RAPIDFIREPENALTY/>的命中惩罚。"
 LocFlyOverText="速射"
 LocPromotionPopupText="<Bullet/> 速射有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 速射不适用于小队视野。<br/>"
 
 [RapidFireSnapShot X2AbilityTemplate]
 LocFriendlyName="速射 (急射)"
-LocLongDescription="连续向敌人开火两次。 每次射击<Ability:RAPIDFIREPENALTY/>命中惩罚。消耗一个行动点。"
-LocHelpText="连续向敌人开火两次。每次射击<Ability:RAPIDFIREPENALTY/>命中惩罚。"
+LocLongDescription="连续向敌人开火两次。每次射击有<Ability:RAPIDFIREPENALTY/>的命中惩罚。消耗一个行动点。"
+LocHelpText="连续向敌人开火两次。每次射击有<Ability:RAPIDFIREPENALTY/>的命中惩罚。"
 LocFlyOverText="速射"
 LocPromotionPopupText="<Bullet/> 速射有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 速射不适用于小队视野。<br/>"
 
@@ -1080,7 +1080,7 @@ LocPromotionPopupText="<Bullet/> <Ability:ClassName/>可以使用维修在战斗
 
 [KineticStrike_LW X2AbilityTemplate]
 LocFriendlyName="动能打击"
-LocLongDescription="用毁灭性的一拳攻击移动范围内的任何敌人。2回合冷却时间。伤害取决于装甲等级。"
+LocLongDescription="用毁灭性的一拳攻击移动范围内的任何敌人。3回合冷却时间。伤害取决于装甲等级。"
 LocHelpText="用毁灭性的一拳攻击移动范围内的任何敌人。"
 LocPromotionPopupText="<Bullet/> 你可以通过将移动光标放在敌人身上来触发动能打击。<br/><Bullet/> <Ability:ClassName/>可以执行“冲刺”移动，使用2个行动点来移动并对敌人触发动能打击<br/><Bullet/> 动能打击将造成7/9.5/12点伤害，取决于所装备的底盘。<br/><Bullet/> 动能打击的命中几率基于<Ability:ClassName/>的命中，并额外获得+15命中。<br/><Bullet/> 学习“突袭模块”技能将为所有打击攻击提供+2点伤害和额外的+10命中。<br/>"
 
@@ -1169,14 +1169,14 @@ LocPromotionPopupText="<Bullet/> <Ability:ClassName/>可以追踪来袭的炮弹
 
 [BrawlerProtocol_LW X2AbilityTemplate]
 LocFriendlyName="反应打击"
-LocLongDescription="<Ability:ClassName/>会向任何进入其近战范围或从近战范围攻击的敌人进行反应打击。无需动能打击技能。无法在我方回合中触发。"
-LocHelpText="向任何进入近战范围或从近战范围攻击的敌人进行反应打击。"
+LocLongDescription="<Ability:ClassName/>会向任何进入其近战范围或从近战范围发起攻击的敌人进行反应打击。只造成一半伤害，无需动能打击技能。无法在我方回合中触发。"
+LocHelpText="向任何进入近战范围或从近战范围发起攻击的敌人进行反应打击。"
 LocFlyOverText="反应打击"
 LocPromotionPopupText="<Bullet/> 如果一名敌人在相邻格中开始他们的回合并试图攻击<Ability:ClassName/>，将触发反应打击。<br/><Bullet/> 如果敌人不在相邻位置，那么当敌人进入近战范围时，将触发反应打击。<br/><Bullet/> 如果敌人在相邻的格子直接远离<Ability:ClassName/>，反应打击不会触发。<br/><Bullet/> 反应打击的伤害为常规动能打击的一半，并从突袭模块获得+1伤害加成。<br/><Bullet/> 不能在<Ability:ClassName/>自己的回合触发。"
 
 [BrawlerTrigger_LW X2AbilityTemplate]
 LocFriendlyName="反应打击"
-LocLongDescription="<Ability:ClassName/>会向任何进入其近战范围或从近战范围发起攻击的敌人进行反应打击。无需动能打击技能。无法在我方回合中触发。"
+LocLongDescription="<Ability:ClassName/>会向任何进入其近战范围或从近战范围发起攻击的敌人进行反应打击。只造成一半伤害，无需动能打击技能。无法在我方回合中触发。"
 LocHelpText="向任何进入近战范围或从近战范围发起攻击的敌人进行反应打击。"
 LocFlyOverText="反应打击"
 LocPromotionPopupText="<Bullet/> 如果一名敌人在相邻格中开始他们的回合并试图攻击<Ability:ClassName/>，将触发反应打击。<br/><Bullet/> 如果敌人不在相邻位置，那么当敌人进入近战范围时，将触发反应打击。<br/><Bullet/> 如果敌人在相邻的格子直接远离<Ability:ClassName/>，反应打击不会触发。<br/><Bullet/> 反应打击的伤害为常规动能打击的一半，并从突袭模块获得+1伤害加成。<br/><Bullet/> 不能在<Ability:ClassName/>自己的回合触发。"

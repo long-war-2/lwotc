@@ -40,7 +40,7 @@ HavenManagementTitle="避难所管理"
 HavenManagementBody="避难所是反抗军的聚集地，他们可以从事几项工作：<br/><ul><li>情报 - 探测任务</li><li>招募 - 招募反抗军和新兵</li><li>补给 - 获得补给</li></ul><br/>在工作中的反抗军越多，他们的效率就越高。让你的反抗军暂时掌握情报。"
 ; LWOTC Needs Translation (2)
 HavenAdvisersTitle="避难所顾问"
-HavenAdvisersBody="单击左侧标有（1）的框，为避难所指派一名顾问。您可以指定以下选项之一：<br/><ul><li>士兵-发现无面怪并帮助招募。装备战场扫描器或有扫描协议的专家或有心灵融合的灵能兵可以提高发现率</li><li>科学家-提高情报的工作产出，但不再有助于研究</li><li>工程师-提高补给工作产出</li></ul><br/>发现无面怪可以让你驱逐他们。"
+HavenAdvisersBody="单击左侧标有（1）的框，为避难所指派一名顾问。您可以指定以下选项之一：<br/><ul><li>士兵-筛查无面怪并帮助招募。装备战场扫描器或有扫描协议的专家或有心灵融合的灵能兵可以降低招募到无面怪的几率</li><li>科学家-提高情报工作的产出，但不再有助于研究</li><li>工程师-提高补给工作的产出</li></ul><br/>花费时间筛查出无面怪后会生成专门的锄奸任务(全面回收)。"
 
 ; LWOTC Needs Translation
 [UIScreenListener_PromotionScreenTutorial]

@@ -243,24 +243,40 @@ TacticalText="<Bullet/> 高級臂套的爆裂炮發射器組件能發射一枚�
 AbilityDescName="臂套"
 
 [UISquadSelect_InfiltrationPanel]
-strInfiltrationTitle="總潛入時間："
+strInfiltrationTitle="全面滲透(100%)所需時間："
 strBaseInfiltrationTitle="基礎潛入時間："
 strSquadSizeTitle="小隊規模調整："
 strCovertnessTitle="能力和裝備調整："
 strMissionTimeTitle="任務到期時間："
-strDaysAndHours="<XGParam:IntValue0>天， <XGParam:IntValue1>小時"
-strMinusDaysAndHours="- <XGParam:IntValue0>天， <XGParam:IntValue1>小時"
-strPlusDaysAndHours="+ <XGParam:IntValue0>天， <XGParam:IntValue1>小時"
+strDaysAndHours="<XGParam:IntValue0>天，<XGParam:IntValue1>小時"
+strMinusDaysAndHours="- <XGParam:IntValue0>天，<XGParam:IntValue1>小時"
+strPlusDaysAndHours="+ <XGParam:IntValue0>天，<XGParam:IntValue1>小時"
 strMissionIndefinite="無限期"
 strLiberationTitle="解放進度修正:"
+strOverallInfilShort="全面滲透"
+strMissionInfoTitle="任務概要:"
 
 ; LWOTC Needs Translation
-UpToText="滲透率可達"
+UpToText="到期時滲透率"
 ExpectedActivityTextStr="預期敵人數量"
 BoostedActivityText="預期敵人數量（情報增強）"
 BoostTextPre="情報增強"
-BoostTextPost="渗透率"
+BoostTextPost="後全面滲透所需時間"
 ; End Translation
+
+strInfilPanelTitle="滲透潛入"
+strActivityHeader="敵方活動"
+strModifierHeader="潛入修正"
+
+strBaseInfilShort="基礎"
+strSquadSizeShort="小隊規模修正"
+strAbilitiesShort="能力裝備修正"
+strExpirationShort="到期時間"
+strExpectedShort="預期"
+strBoostedShort="情報增強"
+strLiberationShort="解放進度修正"
+strMaxInfilText="到期時滲透率"
+strMapTypeText="地圖類型"
 
 [UIScreenListener_DropShipBriefing_MissionStart]
 strLaunchingInfiltration="聯繫迫近"
@@ -685,6 +701,8 @@ m_strMinimumInfiltration="需要 <XGParam:IntValue0>% 潛入"
 m_strYellowAlert="敵人高度警戒"
 m_sAverageScatterText="± <XGParam:StrValue0/> 格"
 m_strBullet="•"
+m_strExpectedInfiltration="加強後"
+m_strInfiltrationBoostCost="花費"
 
 m_strStripWeaponUpgrades=去除所有武器升級
 m_strStripWeaponUpgradesLower=去除所有武器升級
@@ -724,6 +742,12 @@ m_strChosenLoot="(<XGParam:IntValue0/>) <XGParam:StrValue0/!ItemName/> 擊殺天
 strMessage_Title = "Long War Of The Chosen"
 strMessage_Header = "Long War Of The Chosen has been Updated!
 strMessage_Body = "Version 1.1.0 is now released, with lots of features and improvements, including:<ul><li>New 5 Tier Chosen system for Better Progression</li><li>New Covert Actions that Reward Infiltration Missions</li><li>New Maps for Network Tower and Crate Race Missions</li><li>Reworked Templar with Iridar's Psi Shield</li><li>QOL Improvements</li><li>Improved Mod Compatibility</li><li>Balance Tweaks for Classes, Heros, and More</li><li>Way more than I can fit here unless you want a giant scrollbar</li></ul>Check out the google doc linked on the Steam change notes, or visit the LWoTC discord!"
+strDismiss_Button = "OK"
+
+[UISL_Shell_BetaPatchNotes]
+strMessage_Title = "Long War Of The Chosen"
+strMessage_Header = "RC32 Changes:"
+strMessage_Body = "<ul><li>Fixed issue with map generation on Sewer maps coverted to Subway with new config option.</li><li>Fixed bug where Scientists and Engineers could be staffed as haven advisors while injured.</li><li>Fixed issue where Hive Queens didn't have valid followers for some boss pods.</li><li>On Lib5 missions, Advent will now converge on XCOM's location once the General dies, or less than 8 aliens are alive.</li><li>After using Command, the unit that received the AP will be selected automatically.</li><li>More localization fixes.</li></ul>"
 strDismiss_Button = "OK"
 
 [UISL_PullAdvisors]
