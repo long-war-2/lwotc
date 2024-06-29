@@ -281,6 +281,7 @@ strExpectedShort="Expected"
 strBoostedShort="Boosted"
 strLiberationShort="Liberation"
 strMaxInfilText="Max Infiltration"
+strMapTypeText="Map Type"
 
 [UIScreenListener_DropShipBriefing_MissionStart]
 strLaunchingInfiltration="CONTACT IMMINENT"
