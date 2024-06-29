@@ -428,8 +428,8 @@ simulated function Update(array<StateObjectReference> Soldiers)
 				BoostedInfiltrationTime.SetNewInfoValue(default.strBoostedShort, GetDaysAndHoursString(BoostedInfiltrationHours), BoostedTimeColor);
 				if(TotalMissionHours < 4320)
 				{
-					ExpectedInfiltrationPercent.SetNewInfoValue(TotalMissionHours < 4320 ? default.strMaxInfilText : "", TotalMissionHours < 4320 ? int(InfiltratePct) $ "%" : "", OverallTimeColor);
-					BoostedInfiltrationPercent.SetNewInfoValue(TotalMissionHours < 4320 ? default.strMaxInfilText : "", TotalMissionHours < 4320 ? int(BoostedInfiltratePct) $ "%" : "", BoostedTimeColor);
+					ExpectedInfiltrationPercent.SetNewInfoValue(default.strMaxInfilText, int(InfiltratePct) $ "%", OverallTimeColor);
+					BoostedInfiltrationPercent.SetNewInfoValue(default.strMaxInfilText,int(BoostedInfiltratePct) $ "%", BoostedTimeColor);
 				}
 			}
 			else
