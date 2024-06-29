@@ -22,6 +22,7 @@ var bool bInSquadEdit;
 var GeneratedMissionData MissionData;
 
 var config float SquadInfo_DelayedInit;
+var config bool bLeftMissionInfoPanel;
 
 // This event is triggered after a screen is initialized
 event OnInit(UIScreen Screen)
@@ -33,10 +34,19 @@ event OnInit(UIScreen Screen)
 	local UISquadContainer SquadContainer;
 	local XComGameState_MissionSite MissionState;
 	local UITextContainer InfilRequirementText, MissionBriefText;
+	local UISquadSelect_InfiltrationItem MissionBriefHeader;
+	local UISquadSelect_InfiltrationItem MissionTypeText;
+	local UISquadSelect_InfiltrationItem MissionTimerText;
+	local UISquadSelect_InfiltrationItem EvacTypeText;
+	local UISquadSelect_InfiltrationItem SweepObjectiveText;
+	local UISquadSelect_InfiltrationItem FullSalvageText;
+	local UISquadSelect_InfiltrationItem ConcealStatusText;
+	local UISquadSelect_InfiltrationItem PlotTypeText;
+	local UIPanel MissionInfoPanel;
 	local UIText MissionTypeStr, TimerInfoStr, EvacTypeStr, SweepObjStr, FullSalvageStr, ConcealStr, AoAString;
 	local float RequiredInfiltrationPct;
 	local string BriefingString;
-	local int x, y, rollingY;
+	local int x, y, rollingY, yOffset, bigYOffset;
 
 	if(!Screen.IsA('UISquadSelect')) return;
 
@@ -135,6 +145,59 @@ event OnInit(UIScreen Screen)
 
 		if(class'UISquadSelect_InfiltrationPanel'.default.USE_NEW_VERSION)
 		{
+			MissionInfoPanel = SquadSelect.Spawn(class'UIPanel', SquadSelect);
+			MissionInfoPanel.InitPanel('LWMissionInfoPanel');
+
+			if(default.bLeftMissionInfoPanel)
+				MissionInfoPanel.SetPosition(505, 60);
+			else
+				MissionInfoPanel.SetPosition(1155, 60);
+
+			rollingY = 0;
+			yOffset = 25;
+			bigYOffset = 30;
+
+			MissionBriefHeader = MissionInfoPanel.Spawn(class'UISquadSelect_InfiltrationItem', MissionInfoPanel).InitObjectiveListItem(0, rollingY);
+			MissionBriefHeader.SetSubtitle(class'UISquadSelect_InfiltrationPanel'.default.strMissionInfoTitle);
+			rollingY += YOffset;
+
+			MissionTypeText = MissionInfoPanel.Spawn(class'UISquadSelect_InfiltrationItem', MissionInfoPanel).InitObjectiveListItem(10, rollingY);
+			MissionTypeText.SetNewText(class'UIUtilities_LW'.static.GetMissionTypeString (XComHQ.MissionRef));
+			rollingY += yOffset;
+
+			MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(XComHQ.MissionRef.ObjectID));
+
+			if (class'UIUtilities_LW'.static.GetTimerInfoString (MissionState) != "")
+			{
+				MissionTimerText = MissionInfoPanel.Spawn(class'UISquadSelect_InfiltrationItem', MissionInfoPanel).InitObjectiveListItem(10, rollingY);
+				MissionTimerText.SetNewText(class'UIUtilities_LW'.static.GetTimerInfoString (MissionState));
+				rollingY += yOffset;
+			}
+
+			EvacTypeText = MissionInfoPanel.Spawn(class'UISquadSelect_InfiltrationItem', MissionInfoPanel).InitObjectiveListItem(10, rollingY);
+			EvacTypeText.SetNewText(class'UIUtilities_LW'.static.GetEvacTypeString (MissionState));
+			rollingY += yOffset;
+
+			if (class'UIUtilities_LW'.static.HasSweepObjective(MissionState))
+			{
+				SweepObjectiveText = MissionInfoPanel.Spawn(class'UISquadSelect_InfiltrationItem', MissionInfoPanel).InitObjectiveListItem(10, rollingY);
+				SweepObjectiveText.SetNewText(class'UIUtilities_LW'.default.m_strSweepObjective);
+				rollingY += yOffset;
+			}
+			if (class'UIUtilities_LW'.static.FullSalvage(MissionState))
+			{
+				FullSalvageText = MissionInfoPanel.Spawn(class'UISquadSelect_InfiltrationItem', MissionInfoPanel).InitObjectiveListItem(10, rollingY);
+				FullSalvageText.SetInfoValue(class'UIUtilities_LW'.default.m_strGetCorpses, class'UIUtilities_Colors'.const.GOOD_HTML_COLOR);
+				rollingY += yOffset;
+			}
+
+			ConcealStatusText = MissionInfoPanel.Spawn(class'UISquadSelect_InfiltrationItem', MissionInfoPanel).InitObjectiveListItem(10, rollingY);
+			ConcealStatusText.SetNewText(class'UIUtilities_LW'.static.GetMissionConcealStatusString (XComHQ.MissionRef));
+			rollingY += yOffset;
+
+			PlotTypeText = MissionInfoPanel.Spawn(class'UISquadSelect_InfiltrationItem', MissionInfoPanel).InitObjectiveListItem(10, rollingY);
+			PlotTypeText.SetNewInfoValue(class'UISquadSelect_InfiltrationPanel'.default.strMapTypeText, class'UIUtilities_LW'.static.GetPlotTypeFriendlyName(MissionState.GeneratedMission.Plot.strType), class'UIUtilities_Colors'.const.NORMAL_HTML_COLOR);
+
 			/* 
 			`LWTrace("Initing new mission info panel");
 			MissionBriefText = SquadSelect.Spawn (class'UITextContainer', SquadSelect);

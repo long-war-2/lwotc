@@ -220,49 +220,6 @@ simulated function UISquadSelect_InfiltrationPanel InitInfiltrationPanel(optiona
 		InfiltrationMask = Spawn(class'UIMask', self).InitMask('TacticalMask', self);
 		InfiltrationMask.SetPosition(6, 0);
 		InfiltrationMask.SetSize(InitWidth, InitHeight);
-
-
-		MissionBriefHeader = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(0, rollingY);
-		MissionBriefHeader.SetSubtitle(default.strMissionInfoTitle);
-		rollingY += YOffset;
-
-		MissionTypeText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
-		MissionTypeText.SetNewText(class'UIUtilities_LW'.static.GetMissionTypeString (XComHQ.MissionRef));
-		rollingY += yOffset;
-
-		MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(XComHQ.MissionRef.ObjectID));
-
-		if (class'UIUtilities_LW'.static.GetTimerInfoString (MissionState) != "")
-		{
-			MissionTimerText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
-			MissionTimerText.SetNewText(class'UIUtilities_LW'.static.GetTimerInfoString (MissionState));
-			rollingY += yOffset;
-		}
-
-		EvacTypeText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
-		EvacTypeText.SetNewText(class'UIUtilities_LW'.static.GetEvacTypeString (MissionState));
-		rollingY += yOffset;
-
-		if (class'UIUtilities_LW'.static.HasSweepObjective(MissionState))
-		{
-			SweepObjectiveText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
-			SweepObjectiveText.SetNewText(class'UIUtilities_LW'.default.m_strSweepObjective);
-			rollingY += yOffset;
-		}
-		if (class'UIUtilities_LW'.static.FullSalvage(MissionState))
-		{
-			FullSalvageText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
-			FullSalvageText.SetInfoValue(class'UIUtilities_LW'.default.m_strGetCorpses, class'UIUtilities_Colors'.const.GOOD_HTML_COLOR);
-			rollingY += yOffset;
-		}
-
-		ConcealStatusText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
-		ConcealStatusText.SetNewText(class'UIUtilities_LW'.static.GetMissionConcealStatusString (XComHQ.MissionRef));
-		rollingY += yOffset;
-
-		PlotTypeText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
-		PlotTypeText.SetNewInfoValue(default.strMapTypeText, class'UIUtilities_LW'.static.GetPlotTypeFriendlyName(MissionState.GeneratedMission.Plot.strType), class'UIUtilities_Colors'.const.NORMAL_HTML_COLOR);
-
 	}
 	else
 	{
