@@ -40,7 +40,7 @@ HavenManagementTitle="避難所管理"
 HavenManagementBody="避難所是反抗軍的聚集地，他們可以從事幾項工作：<br/><ul><li>情報 - 探測任務</li><li>招募 - 招募反抗軍和新兵</li><li>補給 - 獲得補給</li></ul><br/>在工作中的反抗軍越多，他們的效率就越高。讓你的反抗軍暫時掌握情報。"
 ; LWOTC Needs Translation (2)
 HavenAdvisersTitle="避難所顧問"
-HavenAdvisersBody="單擊左側標有（1）的框，為避難所指派一名顧問。您可以指定以下選項之一：<br/><ul><li>士兵-發現無面怪並幫助招募。裝備戰場掃描器或有掃描協議的專家或有心靈融合的靈能兵可以提高發現率</li><li>科學家-提高情報的工作產出，但不再有助於研究</li><li>工程師-提高補給工作產出</li></ul><br/>發現無面怪可以讓你驅逐他們。"
+HavenAdvisersBody="單擊左側標有（1）的框，為避難所指派一名顧問。您可以指定以下選項之一：<br/><ul><li>士兵-篩查無面怪並幫助招募。裝備戰場掃描器或有掃描協議的專家或有心靈融合的靈能兵可以降低招募到無面怪的幾率</li><li>科學家-提高情報工作的產出，但不再有助於研究</li><li>工程師-提高補給工作產出</li></ul><br/>花費時間篩查出無面怪後會生成專門的鋤奸任務(全面回收)。"
 
 ; LWOTC Needs Translation
 [UIScreenListener_PromotionScreenTutorial]

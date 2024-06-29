@@ -47,9 +47,13 @@ DenseSmokeGrenadeEffectDisplayDesc="濃密煙霧賦予該單位額外的防禦�
 [X2Ability_PerkPackAbilitySet]
 LocCoveringFire="掩護射擊"
 LocCoveringFireMalus="該單位已經被一名具有掩護射擊技能的單位監視瞄準，在本回合剩餘時間-10命中。"
+
 ; LWOTC Needs Translation
 LocSoulStealBuff="靈魂汲取護盾"
-LocSoulStealBuffHelpText="靈魂汲取在治療過度時給予護盾。"
+LocSoulStealBuffHelpText="靈魂汲取在使用靈魂火時獲得護盾。"
+
+LocVampirismBuff="吸血主義"
+LocVampirismBuffHelpText="吸血主義在治療溢出時獲得護盾"
 ; End Translation
 
 ; LWOTC Needs Translation
