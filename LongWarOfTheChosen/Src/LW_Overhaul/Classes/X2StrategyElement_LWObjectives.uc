@@ -437,6 +437,7 @@ static function XComGameState_MissionSite CreateGPMissionLW(XComGameState NewGam
 	if(!bNoRegion)
 	{
 		RegionState = SelectRegionForMissionLW(NewGameState, IdealDistanceFromResistanceNetwork, AvoidRegions, IdealDistanceFromRegion, ForceRegionName, ExcludeContinents);
+		//`LWTrace("Region Selected for mission:" @RegionState.GetMyTemplateName());
 		RegionRef = RegionState.GetReference();
 
 		// have to set the initial "threshold" for mission visibility
@@ -489,6 +490,8 @@ static function XComGameState_WorldRegion SelectRegionForMissionLW(XComGameState
 
 	History = `XCOMHISTORY;
 
+	`LWTrace("SelectRegionForMissionLW Called; Ideal length:"@ IdealDistanceFromResistanceNetwork);
+
 	//Gather a list of all regions
 	if( NewGameState.GetContext().IsStartState() )
 	{
@@ -518,6 +521,7 @@ static function XComGameState_WorldRegion SelectRegionForMissionLW(XComGameState
 	//Make a list of valid regions based on ideal link distance
 	foreach AllRegions(RegionState)
 	{
+	//	`LWTrace("Checking Region" @RegionState.GetMyTemplateName());
 		// TODO: track which regions have been selected for GP missions and exclude those from this list (maybe?)
 		bExcluded = false;
 		if(ExcludeContinents.Length > 0)
@@ -527,28 +531,32 @@ static function XComGameState_WorldRegion SelectRegionForMissionLW(XComGameState
 				if(ExcludeContinent.Regions.Find('ObjectID', RegionState.ObjectID) != INDEX_NONE)
 				{
 					bExcluded = true;
+					`LWTrace("Region Excluded.");
 					break;
 				}
-
 			}
-			if(!bExcluded)
+
+		}
+		if(!bExcluded)
+		{
+		//	`LWTrace("Region not excluded");
+
+			CurrentLinkDiff = Abs(IdealDistanceFromResistanceNetwork - RegionState.GetLinkCountToMinResistanceLevel(eResLevel_Contact));
+				
+			if(BestLinkDiff == -1 || CurrentLinkDiff < BestLinkDiff)
 			{
-				CurrentLinkDiff = Abs(IdealDistanceFromResistanceNetwork - RegionState.GetLinkCountToMinResistanceLevel(eResLevel_Contact));
-
-				if(BestLinkDiff == -1 || CurrentLinkDiff < BestLinkDiff)
-				{
-					BestLinkDiff = CurrentLinkDiff;
-					PreferredRegions.Length = 0;
-					PreferredRegions.AddItem(RegionState);
-				}
-				else if(CurrentLinkDiff == BestLinkDiff)
-				{
-					PreferredRegions.AddItem(RegionState);
-				}
-			}	
+				BestLinkDiff = CurrentLinkDiff;
+				PreferredRegions.Length = 0;
+				PreferredRegions.AddItem(RegionState);
+			}
+			else if(CurrentLinkDiff == BestLinkDiff)
+			{
+				PreferredRegions.AddItem(RegionState);
+			}
 		}	
+			
 	}
-
+	//`LWTrace("Preferred Regions length:" @PreferredRegions.Length);
 	if(PreferredRegions.Length == 0)
 	{
 		PreferredRegions = AllRegions;

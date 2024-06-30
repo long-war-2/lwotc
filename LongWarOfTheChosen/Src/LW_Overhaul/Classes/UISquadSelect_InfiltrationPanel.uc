@@ -131,9 +131,8 @@ simulated function UISquadSelect_InfiltrationPanel InitInfiltrationPanel(optiona
 	//local XComGameStateHistory History;
 	//local XComGameState_ObjectivesList ObjectiveList;
 	//local XComGameState_MissionSite MissionState;
-	local int PanelX, PanelY, rollingY, yOffset, bigYOffset;
+	local int rollingY, yOffset, bigYOffset;
 	local XComGameState_HeadquartersXCom XComHQ;
-	local XComGameState_MissionSite MissionState;
 
 	InitPanel(InitName, InitLibID);
 

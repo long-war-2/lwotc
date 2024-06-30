@@ -47,9 +47,13 @@ DenseSmokeGrenadeEffectDisplayDesc="浓密烟雾赋予该单位额外的防御�
 [X2Ability_PerkPackAbilitySet]
 LocCoveringFire="掩护火力"
 LocCoveringFireMalus="该单位已经被一名具有掩护火力技能的单位监视瞄准，在本回合剩余时间-10命中。"
+
 ; LWOTC Needs Translation
 LocSoulStealBuff="灵魂汲取护盾"
-LocSoulStealBuffHelpText="灵魂汲取在治疗过度时给予护盾。"
+LocSoulStealBuffHelpText="灵魂汲取在使用灵魂火时获得护盾。"
+
+LocVampirismBuff="吸血主义"
+LocVampirismBuffHelpText="吸血主义在治疗溢出时获得护盾"
 ; End Translation
 
 ; LWOTC Needs Translation
