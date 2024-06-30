@@ -43,10 +43,9 @@ event OnInit(UIScreen Screen)
 	local UISquadSelect_InfiltrationItem ConcealStatusText;
 	local UISquadSelect_InfiltrationItem PlotTypeText;
 	local UIPanel MissionInfoPanel;
-	local UIText MissionTypeStr, TimerInfoStr, EvacTypeStr, SweepObjStr, FullSalvageStr, ConcealStr, AoAString;
 	local float RequiredInfiltrationPct;
 	local string BriefingString;
-	local int x, y, rollingY, yOffset, bigYOffset;
+	local int rollingY, yOffset, bigYOffset;
 
 	if(!Screen.IsA('UISquadSelect')) return;
 
