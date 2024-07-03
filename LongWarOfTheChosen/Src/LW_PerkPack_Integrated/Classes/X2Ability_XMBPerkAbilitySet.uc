@@ -47,6 +47,7 @@ var config int LICKYOURWOUNDS_MAXHEALAMOUNT;
 
 var config int PRESERVATION_DEFENSE_BONUS;
 var config int PRESERVATION_DURATION;
+var config int PRESERVATION_PASSIVE_DEFENSE_BONUS;
 
 var config int INSPIRE_DODGE;
 
@@ -163,6 +164,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(Concentration());
 	Templates.AddItem(LikeLightning());
 	Templates.AddItem(Preservation());
+	Templates.AddItem(PreservationPassive());
 	Templates.AddItem(LockNLoad());
 	Templates.AddItem(TrenchWarfare());
 	Templates.AddItem(Dedication());
@@ -1409,6 +1411,28 @@ static function X2AbilityTemplate Preservation()
 	
 	// Trigger abilities don't appear as passives. Add a passive ability icon.
 	AddIconPassive(Template);
+
+	Template.AdditionalAbilities.AddItem('PreservationPassive');
+
+	return Template;
+}
+
+static function X2AbilityTemplate PreservationPassive()
+{
+	local X2AbilityTemplate Template;
+	local X2Effect_PersistentStatChange DefenseEffect;
+
+	DefenseEffect = new class'X2Effect_PersistentStatChange';
+	DefenseEffect.EffectName = 'PreservationEffect';
+	DefenseEffect.AddPersistentStatChange(eStat_Defense, default.PRESERVATION_PASSIVE_DEFENSE_BONUS);
+	DefenseEffect.BuildPersistentEffect(1, true, false, false);
+
+
+	Template = PurePassive('PreservationPassive', "img:///UILibrary_XPerkIconPack.UIPerk_stealth_defense2", false,,false);
+
+	Template.AbilityTargetEffects.AddItem(DefenseEffect);
+	
+	Template.bDontDisplayInAbilitySummary = true;
 
 	return Template;
 }

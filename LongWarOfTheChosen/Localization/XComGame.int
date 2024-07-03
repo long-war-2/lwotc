@@ -6369,9 +6369,9 @@ LocPromotionPopupText="<Bullet/> Fire a shot with your primary weapon that does 
 LocFriendlyName="Preservation"
 LocFlyOverText="Preservation"
 ; LWOTC Needs Translation (2)
-LocLongDescription="When your concealment is broken, gain +<Ability:PRESERVATION_DEFENSE_BONUS> defense for <Ability:PRESERVATION_DURATION> turns."
-LocHelpText="When your concealment is broken, gain +<Ability:PRESERVATION_DEFENSE_BONUS> defense for <Ability:PRESERVATION_DURATION> turns."
-LocPromotionPopupText="<Bullet/> When your concealment is broken, gain +<Ability:PRESERVATION_DEFENSE_BONUS> defense for <Ability:PRESERVATION_DURATION> turns.<br/>"
+LocLongDescription="When your concealment is broken, gain +<Ability:PRESERVATION_DEFENSE_BONUS> defense for <Ability:PRESERVATION_DURATION> turns. Also grants 5 defense passively."
+LocHelpText="When your concealment is broken, gain +<Ability:PRESERVATION_DEFENSE_BONUS> defense for <Ability:PRESERVATION_DURATION> turns. Also grants 5 defense passively."
+LocPromotionPopupText="<Bullet/> When your concealment is broken, gain +<Ability:PRESERVATION_DEFENSE_BONUS> defense for <Ability:PRESERVATION_DURATION> turns. Also grants 5 defense passively.<br/>"
 ; End Translation (2)
 
 [LickYourWounds_LW X2AbilityTemplate]
