@@ -5,6 +5,12 @@
 //---------------------------------------------------------------------------------------
 class XComGameState_LWAlienActivity extends XComGameState_GeoscapeEntity config(LW_Overhaul);
 
+struct LWRewardScalar
+{
+	var Name ActivityName;
+	var float RewardScalar;
+};
+
 var protected name							m_TemplateName;
 var protected X2LWAlienActivityTemplate		m_Template;
 
@@ -57,6 +63,8 @@ var config array<string> SlightlyLargeMaps;
 var config array<string> LargeMaps;
 
 var config array<string> VeryLargeMaps;
+
+var config array<LWRewardScalar> ActivityRewardScalars;
 
 //#############################################################################################
 //----------------   REQUIRED FROM BASEOBJECT   -----------------------------------------------
@@ -482,7 +490,7 @@ function bool SpawnMission(XComGameState NewGameState)
 	local int idx;
 	local Vector2D v2Loc;
 	local name MissionFamily;
-	local float SecondsUntilActivityComplete, DesiredSecondsOfMissionDuration;
+	local float SecondsUntilActivityComplete, DesiredSecondsOfMissionDuration, RewardScalar;
 	local XComGameState_HeadquartersResistance ResHQ;
 
 	MissionFamily = GetNextMissionFamily(NewGameState);
@@ -514,11 +522,22 @@ function bool SpawnMission(XComGameState NewGameState)
 		RewardNames.Remove(idx, 1); // peel off the first Reward_POI, since base-game only supports one per mission.
 	}
 
+	idx = default.ActivityRewardScalars.Find('ActivityName', ActivityTemplate.DataName);
+
+	if(idx != INDEX_NONE)
+	{
+		RewardScalar = ActivityRewardScalars[idx].RewardScalar;
+	}
+	else
+	{
+		RewardScalar = 1.0;
+	}
+
 	foreach RewardNames(RewardName)
 	{
 		RewardTemplate = X2RewardTemplate(StratMgr.FindStrategyElementTemplate(RewardName)); 
 		RewardState = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
-		RewardState.GenerateReward(NewGameState, 1.0 /*reward scalar */ , PrimaryRegion);
+		RewardState.GenerateReward(NewGameState, RewardScalar /*reward scalar */ , PrimaryRegion);
 		MissionRewards.AddItem(RewardState);
 	}
 
