@@ -646,6 +646,11 @@ LocFriendlyName="Dedicated Suppression"
 LocLongDescription="Taking damage no longer cancels Suppression and Area Suppression."
 LocHelpText="Taking damage no longer canccels Suppression and Area Suppression."
 
+[ImprovedSuppression_LW X2AbilityTemplate]
+LocFriendlyName="Improved Suppression"
+LocLongDescription="Suppression deals 1 damage and shreds 1 armor when applied and now has a 25% chance to panic, 10% chance to stun, and 3% chance to panic targets upon activating Suppression."
+LocHelpText="Suppression deals 1 damage and shreds 1 armor when applied and now has a 25% chance to panic, 10% chance to stun, and 3% chance to panic targets upon activating Suppression."
+
 ;POTENTIALLY DEPRECATED
 [X2Item_StingGrenade]
 DenseSmokeGrenadeEffectDisplayName="Sting Grenade"

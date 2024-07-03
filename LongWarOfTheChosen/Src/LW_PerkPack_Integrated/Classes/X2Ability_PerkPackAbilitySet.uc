@@ -129,6 +129,11 @@ var config int BOMBARD_BONUS_RANGE_TILES;
 var config int SHARPSHOOTERAIM_CRITBONUS;
 var config int MACROPHAGES_HEAL_AMT;
 
+var config int IMPROVEDSUPPRESSION_DISORIENTCHANCE;
+var config int IMPROVEDSUPPRESSION_STUNCHANCE;
+var config int IMPROVEDSUPPRESSION_PANICCHANCE;
+var config WeaponDamageValue IMPROVEDSUPPRESSION_DMG;
+
 var config int CE_USES_PER_TURN;
 var config int CE_MAX_TILES;
 var config array<name> CE_ABILITYNAMES;
@@ -195,6 +200,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddRunAndGun_LWAbility());
 	Templates.AddItem(AddKillerInstinctAbility());
 	Templates.AddItem(AddExtraConditioningAbility());
+	Templates.AddItem(AddImprovedSuppressionAbility());
 	Templates.AddItem(AddSuppressionAbility_LW());
 	Templates.AddItem(SuppressionShot_LW()); //Additional Ability
 	Templates.AddItem(AddAreaSuppressionAbility());
@@ -2440,6 +2446,16 @@ static function X2AbilityTemplate AddLockdownAbility()
 	return Template;
 }
 
+static function X2AbilityTemplate AddImprovedSuppressionAbility()
+{
+	local X2AbilityTemplate                 Template;	
+
+	Template = PurePassive('ImprovedSuppression_LW', "img:///UILibrary_LW_PerkPack.LW_AbilityLockdown", false, 'eAbilitySource_Perk');
+	Template.bCrossClassEligible = false;
+	return Template;
+}
+
+
 static function X2AbilityTemplate AddSuppressionAbility_LW()
 {
 	local X2AbilityTemplate                 Template;	
@@ -2447,9 +2463,13 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
 	local X2AbilityCost_ActionPoints        ActionPointCost;
 	local X2Effect_ReserveActionPoints      ReserveActionPointsEffect;
 	local X2Effect_Suppression              SuppressionEffect;
+	local X2Effect_PersistentStatChange		DisorientedStatusEffect;
+	local X2Effect_Stunned					StunnedStatusEffect;
+	local X2Effect_Panicked					PanicStatusEffect;
 	local X2Condition_UnitInventory         UnitInventoryCondition;
 	local name								WeaponCategory;
 	local X2Condition_UnitEffects			SuppressedCondition;
+	local X2Effect_ApplyWeaponDamage		ShredderEffect;
 	local X2Condition_OwnerDoesNotHaveAbility	DoesNotHaveAbilityCondition;
 	local X2Condition_AbilityProperty AbilityCondition;
 
@@ -2532,6 +2552,38 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
 	Template.AdditionalAbilities.AddItem('SuppressionShot_LW');
 	Template.AdditionalAbilities.AddItem('LockdownBonuses');
 	Template.AdditionalAbilities.AddItem('MayhemBonuses');
+
+	// new Improved Suppression effects:
+
+	AbilityCondition = new class 'X2Condition_AbilityProperty';
+	AbilityCondition.OwnerHasSoldierAbilities.AddItem('ImprovedSuppression_LW');
+
+	// Disorient
+	DisorientedStatusEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect(, , false);
+	DisorientedStatusEffect.ApplyChance = default.IMPROVEDSUPPRESSION_DISORIENTCHANCE;
+	DisorientedStatusEffect.TargetConditions.AddItem(AbilityCondition);
+	Template.AddTargetEffect(DisorientedStatusEffect);
+	
+
+	// Stun
+	StunnedStatusEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2, default.IMPROVEDSUPPRESSION_STUNCHANCE, false);
+	StunnedStatusEffect.TargetConditions.AddItem(AbilityCondition);
+	Template.AddTargetEffect(StunnedStatusEffect);
+
+	// Panic
+	PanicStatusEffect = class'X2StatusEffects'.static.CreatePanickedStatusEffect();
+	PanicStatusEffect.ApplyChance = default.IMPROVEDSUPPRESSION_PANICCHANCE;
+	PanicStatusEffect.TargetConditions.AddItem(AbilityCondition);
+	Template.AddTargetEffect(PanicStatusEffect);
+
+	// Shred
+
+	ShredderEffect = new class'X2Effect_ApplyWeaponDamage';
+	ShredderEffect.TargetConditions.AddItem(AbilityCondition);
+	ShredderEffect.bIgnoreBaseDamage = true;
+	ShredderEffect.EffectDamageValue = default.IMPROVEDSUPPRESSION_DMG;
+	Template.AddTargetEffect(ShredderEffect);
+
 
 	Template.bIsASuppressionEffect = true;
 	//Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
