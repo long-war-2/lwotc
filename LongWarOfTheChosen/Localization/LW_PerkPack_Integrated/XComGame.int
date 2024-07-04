@@ -765,15 +765,15 @@ LocFlyOverText="Iron Curtain"
 ; LWOTC Needs Translation
 LocLongDescription="Special shot that does <Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>% of normal damage but reduces target mobility for the following <Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/> turn(s). Cone-based attack with primary weapon. The mobility penalty is applied even if the attack misses."
 LocHelpText="Special shot that does low damage but reduces enemy mobility for the following two turns."
-LocPromotionPopupText="<Bullet/> If this cone-based attack hits, Iron Curtain does <Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>% of normal damage and imposes -<Ability:IRON_CURTAIN_MOBILITY_DAMAGE> mobility to the enemy for <Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/> turn(s).<br/><Bullet/> Iron Curtain has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Uses <Ability:IRON_CURTAIN_AMMO_COST> ammo.<br/><Bullet/> Can be used after moving.<br/><Bullet/> Iron Curtain does not work with shotguns or sniper rifles.<br/><Bullet/> Allies in the cone can be hit by this ability.<br/><Bullet/> The mobility penalty is applied even if the attack misses."
+LocPromotionPopupText="<Bullet/> Iron Curtain does <Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>% of normal damage and imposes -<Ability:IRON_CURTAIN_MOBILITY_DAMAGE> mobility to the enemy for <Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/> turn(s).<br/><Bullet/> Iron Curtain has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Uses <Ability:IRON_CURTAIN_AMMO_COST> ammo.<br/><Bullet/> Can be used after moving.<br/><Bullet/> Iron Curtain does not work with shotguns or sniper rifles.<br/><Bullet/> Allies in the cone can be hit by this ability.<br/><Bullet/> The mobility penalty is applied even if the attack misses."
 ; End Translation
 
 [IronCurtainShot X2AbilityTemplate]
 LocFriendlyName="Iron Curtain"
 LocFlyOverText="Iron Curtain"
-LocLongDescription="Special shot that does low damage but reduces enemy mobility for the following two turns. Cone-based attack with primary weapon."
+LocLongDescription="Special shot that does <Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>% of normal damage but reduces target mobility for the following <Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/> turn(s). Cone-based attack with primary weapon. The mobility penalty is applied even if the attack misses."
 LocHelpText="Special shot that does low damage but reduces enemy mobility for the following two turns."
-LocPromotionPopupText="<Bullet/> If it hits, Iron Curtain does 25% normal damage and imposes -4 mobility to the enemy for two turns.<br/><Bullet/> Four-turn cooldown.<br/><Bullet/> Uses <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Can be used after moving.<br/><Bullet/> Iron Curtain does not work with shotguns or sniper rifles.<br/>"
+LocPromotionPopupText="<Bullet/> Iron Curtain does <Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>% of normal damage and imposes -<Ability:IRON_CURTAIN_MOBILITY_DAMAGE> mobility to the enemy for <Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/> turn(s).<br/><Bullet/> Iron Curtain has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Uses <Ability:IRON_CURTAIN_AMMO_COST> ammo.<br/><Bullet/> Can be used after moving.<br/><Bullet/> Iron Curtain does not work with shotguns or sniper rifles.<br/><Bullet/> Allies in the cone can be hit by this ability.<br/><Bullet/> The mobility penalty is applied even if the attack misses."
 str_IronCurtainEffect="Iron Curtain"
 
 [Slash_LW X2AbilityTemplate]
