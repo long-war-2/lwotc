@@ -82,6 +82,7 @@ var config int IRON_CURTAIN_COOLDOWN;
 var config int IRON_CURTAIN_ACTION_POINTS;
 var config int IRON_CURTAIN_AMMO_COST;
 var config int IRON_CURTAIN_TILE_WIDTH;
+var config int IRON_CURTAIN_TILE_LENGTH;
 var config int IRON_CURTAIN_MOB_DAMAGE_DURATION;
 var config int IRON_CURTAIN_MOBILITY_DAMAGE;
 var config int ABSORPTION_FIELDS_COOLDOWN;
@@ -3925,7 +3926,7 @@ static function X2AbilityTemplate IronCurtainShot()
 	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone';
 	ConeMultiTarget.bExcludeSelfAsTargetIfWithinRadius = true;
 	ConeMultiTarget.ConeEndDiameter = default.IRON_CURTAIN_TILE_WIDTH * class'XComWorldData'.const.WORLD_StepSize;
-	ConeMultiTarget.bUseWeaponRangeForLength = true;
+	ConeMultiTarget.ConeLength = default.IRON_CURTAIN_TILE_LENGTH * class'XComWorldData'.const.WORLD_StepSize;
 	ConeMultiTarget.fTargetRadius = 99;     //  large number to handle weapon range - targets will get filtered according to cone constraints
 	ConeMultiTarget.bIgnoreBlockingCover = false;
 	Template.AbilityMultiTargetStyle = ConeMultiTarget;
@@ -3959,6 +3960,8 @@ static function X2AbilityTemplate IronCurtainShot()
 	MobilityDamageEffect.SetDisplayInfo(ePerkBuff_Penalty,Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
 	MobilityDamageEffect.AddPersistentStatChange (eStat_Mobility, -default.IRON_CURTAIN_MOBILITY_DAMAGE);
 	MobilityDamageEffect.DuplicateResponse = eDupe_Allow;
+	MobilityDamageEffect.bApplyOnHit = true;
+	MobilityDamageEffect.bApplyOnMiss = true;
 	MobilityDamageEffect.EffectName = 'IronCurtainEffect';
 	Template.AddTargetEffect(MobilityDamageEffect);
 	Template.AddMultiTargetEffect(MobilityDamageEffect);
