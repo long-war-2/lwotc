@@ -1658,6 +1658,8 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 				QuickdrawActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('Quickdraw');
 			}
 		}
+		Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
+		Template.AssociatedPassives.AddItem('HoloTargeting');
 
 		AmmoCost = new class'X2AbilityCost_Ammo';
 		AmmoCost.iAmmo = 1;
