@@ -358,7 +358,7 @@ static function X2GrenadeTemplate CreateGhostGrenade()
 {
 	local X2GrenadeTemplate Template;
 
-	`CREATE_X2TEMPLATE(class'X2GrenadeTemplate', Template, 'GhostGrenade');
+	`CREATE_X2TEMPLATE(class'X2GrenadeTemplate', Template, 'GhostGrenade_LW');
 
 	Template.WeaponCat = 'Utility';
     Template.ItemCat = 'Utility';

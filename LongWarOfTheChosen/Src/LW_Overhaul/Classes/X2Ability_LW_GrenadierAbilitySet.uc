@@ -298,7 +298,7 @@ static function X2AbilityTemplate AddGhostGrenadeAbility()
 	*/
 
 	GhostGrenadeEffect = new class'XMBEffect_AddUtilityItem';
-	GhostGrenadeEffect.DataName = 'GhostGrenade';
+	GhostGrenadeEffect.DataName = 'GhostGrenade_LW';
 	GhostGrenadeEffect.EffectName = 'GhostGrenadeEffect';
 	GhostGrenadeEffect.BuildPersistentEffect(1, true, false);
 	GhostGrenadeEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
