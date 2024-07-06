@@ -2724,7 +2724,11 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		case 'AlienHunterRifle_BM':
 			WeaponTemplate.Abilities.AddItem('LockNLoad_LW');
 			WeaponTemplate.Abilities.AddItem('Concentration_LW');
-		break;
+			break;
+		case 'GrenadeLauncher_MG':
+			WeaponTemplate.Abilities.AddItem('HeavyOrdnance_LW');
+			WeaponTemplate.Abilities.AddItem('Protector');
+			break;
 		default:
 			break;
 		}
