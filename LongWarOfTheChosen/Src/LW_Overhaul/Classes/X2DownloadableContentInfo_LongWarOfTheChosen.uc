@@ -244,6 +244,7 @@ static event OnPostTemplatesCreated()
 	ModCompatibilityConfig();
 	EditModdedRocketAbilities();
 	UpdateSkulljackAllShooterEffectExclusions();
+	class'X2Ability_PerkPackAbilitySet2'.static.AddEffectsToGrenades();
 }
 
 static function ModCompatibilityConfig()

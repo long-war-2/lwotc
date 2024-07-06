@@ -506,6 +506,12 @@ LocFlyOverText="Biggest Booms"
 LocPromotionPopupText="<Bullet/> Grenades, standard rockets, and MEC micromissiles can inflict critical damage (<Ability:BIGGESTBOOMSCHANCE/>% chance for +<Ability:BIGGESTBOOMSDAMAGE/> damage).<br/><Bullet/> <Ability:BIGGESTBOOMSCHANCE/>% chance for critical damage is not affected by other critical chance modifiers.<br/><Bullet/> Does not apply to non-damaging grenades or the concussion rocket or Bunker Buster abilities.<br/><Bullet/> Grenade crits will grant +1 damage to ongoing damaging effects such as fire."
 ; End Translation
 
+[Shellshock_LW X2AbilityTemplate]
+LocFriendlyName="Shellshock"
+LocLongDescription="Your grenades decrease enemy aim by <Ability:SHELLSHOCK_AIM_REDUCTION/> and critical chance by <Ability:SHELLSHOCK_CRIT_CHANCE_REDUCTION/>."
+LocHelpText="Your grenades decrease enemy aim by <Ability:SHELLSHOCK_AIM_REDUCTION/> and critical chance by <Ability:SHELLSHOCK_CRIT_CHANCE_REDUCTION/>."
+LocFlyOverText="Shellshock"
+
 ;;;;;;;;;;;;;;;;;;;;  GUNNER ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
 [KnifeFighter X2AbilityTemplate]

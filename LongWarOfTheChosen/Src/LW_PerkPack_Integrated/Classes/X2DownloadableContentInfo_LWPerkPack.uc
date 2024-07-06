@@ -628,6 +628,12 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'NEUTRALIZE_COOLDOWN':
 			Outstring = string(class'X2Ability_PerkPackAbilitySet2'.default.NEUTRALIZE_COOLDOWN);
 			return true;
+		case 'SHELLSHOCK_AIM_REDUCTION':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet2'.default.SHELLSHOCK_AIM_REDUCTION);
+			return true;
+		case 'SHELLSHOCK_CRIT_CHANCE_REDUCTION':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet2'.default.SHELLSHOCK_CRIT_CHANCE_REDUCTION);
+			return true;
         default:
             return false;
     }
