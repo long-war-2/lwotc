@@ -10,7 +10,7 @@ var localized string TrojanVirus;
 var localized string TrojanVirusTriggered;
 var localized string DenseSmokeGrenadeEffectDisplayName;
 var localized string DenseSmokeGrenadeEffectDisplayDesc;
-var localized string ShellshockEffectName, ShellshockEffectDesc;
+var localized string ShellshockEffectName, ShellshockEffectDesc, ShockwaveEffectName, ShockwaveEffectDesc;
 
 var config int NUM_AIRDROP_CHARGES;
 var config int SAVIOR_BONUS_HEAL;
@@ -62,6 +62,10 @@ var config array<name> ATTACK_GRENADES;
 var config int SHELLSHOCK_AIM_REDUCTION;
 var config int SHELLSHOCK_CRIT_CHANCE_REDUCTION;
 var config int SHELLSHOCK_TURNS;
+
+var config int SHOCKWAVE_DEF_REDUCTION;
+var config int SHOCKWAVE_DODGE_REDUCTION;
+var config int SHOCKWAVE_TURNS;
 
 
 
@@ -117,6 +121,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateComboHoloAAAbility());
 	Templates.AddItem(CreateSpectralStunLancerImpairingEffectAbility());
 	Templates.AddItem(PurePassive('Shellshock_LW', "img:///UILibrary_LWOTC.UIPerk_shellshock"));
+	Templates.AddItem(PurePassive('Shockwave_LW', "img:///UILibrary_LWOTC.UIPerk_shockwave"));
 
 	return Templates;
 }
@@ -2652,7 +2657,7 @@ static function AddEffectsToGrenades()
 	local X2DataTemplate				Template;
 	local X2GrenadeTemplate				GrenadeTemplate;
 	local name							TemplateName;
-	local X2Effect_PersistentStatChange	ShellShockEffect;
+	local X2Effect_PersistentStatChange	ShellShockEffect, ShockwaveEffect;
 	local X2Condition_AbilityProperty	AbilityCondition;
 	local X2Condition_UnitProperty		EnemyCondition;
 
@@ -2663,18 +2668,31 @@ static function AddEffectsToGrenades()
 	ShellShockEffect = new class'X2Effect_PersistentStatChange';
 	AbilityCondition = new class'X2Condition_AbilityProperty';
 	AbilityCondition.OwnerHasSoldierAbilities.AddItem('Shellshock_LW');
-	ShellShockEffect.AddPersistentStatChange(eStat_Offense, default.SHELLSHOCK_AIM_REDUCTION, modop_Addition);
-	ShellShockEffect.AddPersistentStatChange(eStat_CritChance, default.SHELLSHOCK_CRIT_CHANCE_REDUCTION, modop_Addition);
+	ShellShockEffect.AddPersistentStatChange(eStat_Offense, -default.SHELLSHOCK_AIM_REDUCTION, modop_Addition);
+	ShellShockEffect.AddPersistentStatChange(eStat_CritChance, -default.SHELLSHOCK_CRIT_CHANCE_REDUCTION, modop_Addition);
 	ShellShockEffect.BuildPersistentEffect(default.SHELLSHOCK_TURNS, false, false, false, eGameRule_PlayerTurnEnd);
 	ShellShockEffect.SetDisplayInfo(ePerkBuff_Penalty, default.ShellshockEffectName , default.ShellshockEffectDesc, "img:///UILibrary_LWOTC.UIPerk_shellshock", true);
 	ShellShockEffect.TargetConditions.AddItem(AbilityCondition);
 	ShellShockEffect.TargetConditions.AddItem(EnemyCondition);
 	ShellShockEffect.bDisplayInSpecialDamageMessageUI = true;
+
+	ShockwaveEffect = new class'X2Effect_PersistentStatChange';
+	AbilityCondition = new class'X2Condition_AbilityProperty';
+	AbilityCondition.OwnerHasSoldierAbilities.AddItem('Shockwave_LW');
+	ShockwaveEffect.AddPersistentStatChange(eStat_Defense, -default.SHOCKWAVE_DEF_REDUCTION, modop_Addition);
+	ShockwaveEffect.AddPersistentStatChange(eStat_Dodge, -default.SHOCKWAVE_DODGE_REDUCTION, modop_Addition);
+	ShockwaveEffect.BuildPersistentEffect(default.SHOCKWAVE_TURNS, false, false, false, eGameRule_PlayerTurnEnd);
+	ShockwaveEffect.SetDisplayInfo(ePerkBuff_Penalty, default.ShockwaveEffectName, default.ShockwaveEffectDesc, "img:///UILibrary_LWOTC.UIPerk_shockwave", true);
+	ShockwaveEffect.TargetConditions.AddItem(AbilityCondition);
+	ShockwaveEffect.TargetConditions.AddItem(EnemyCondition);
+	ShockwaveEffect.bDisplayInSpecialDamageMessageUI = true;
 	
 
 	ItemManager = class'X2ItemTemplateManager'.static.GetItemTemplateManager();
 
 	ItemManager.GetTemplateNames(TemplateNames);
+
+	// All grenades
 	foreach TemplateNames(TemplateName)
 	{
 		ItemManager.FindDataTemplateAllDifficulties(TemplateName, TemplateAllDifficulties);
@@ -2693,6 +2711,27 @@ static function AddEffectsToGrenades()
 			}
 		}
 	}
+	
+	// Damaging Grenades
 
+	ItemManager.GetTemplateNames(TemplateNames);
+	foreach TemplateNames(TemplateName)
+	{
+		ItemManager.FindDataTemplateAllDifficulties(TemplateName, TemplateAllDifficulties);
+		// Iterate over all variants
+		
+		foreach TemplateAllDifficulties(Template)
+		{
+			GrenadeTemplate = X2GrenadeTemplate(Template);
+			if (GrenadeTemplate != none)
+			{
+				if ( (GrenadeTemplate.BaseDamage.Damage > 0  && (GrenadeTemplate.ThrownGrenadeEffects.Length > 0 || GrenadeTemplate.LaunchedGrenadeEffects.Length > 0)))
+				{
+					GrenadeTemplate.ThrownGrenadeEffects.AddItem(ShockwaveEffect);
+					GrenadeTemplate.LaunchedGrenadeEffects.AddItem(ShockwaveEffect);
+				}
+			}
+		}
+	}
 
 }

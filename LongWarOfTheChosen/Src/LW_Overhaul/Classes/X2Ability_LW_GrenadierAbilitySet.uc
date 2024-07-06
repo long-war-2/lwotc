@@ -13,6 +13,8 @@ var config int HEAVY_ORDNANCE_LW_BONUS_CHARGES;
 var config int PROTECTOR_BONUS_CHARGES;
 var config int HEAT_WARHEADS_PIERCE;
 var config int HEAT_WARHEADS_SHRED;
+var config int TANDEMHEAT_WARHEADS_PIERCE;
+var config int TANDEMHEAT_WARHEADS_SHRED;
 var config int BLUESCREENBOMB_HACK_DEFENSE_CHANGE;
 var config int VANISHINGACT_CHARGES;
 var config int NEEDLE_BONUS_UNARMORED_DMG;
@@ -32,6 +34,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddHeavyOrdnance_LW());
 	Templates.AddItem(AddProtector());
 	Templates.AddItem(AddHEATWarheads());
+	Templates.AddItem(AddHEATTandemWarheads());
 	Templates.AddItem(AddBombard());
 	Templates.AddItem(AddGhostGrenadeAbility());
 	Templates.AddItem(AddVanishingActAbility());
@@ -116,6 +119,34 @@ static function X2AbilityTemplate AddHEATWarheads()
 	HEATEffect = new class 'X2Effect_HEATGrenades';
 	HEATEffect.Pierce = default.HEAT_WARHEADS_PIERCE;
 	HEATEffect.Shred=default.HEAT_WARHEADS_SHRED;
+	HEATEffect.BuildPersistentEffect (1, true, false);
+	HEATEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Template.AddTargetEffect (HEATEffect);
+	
+	Template.bCrossClassEligible = false;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}
+
+static function X2AbilityTemplate AddHEATTandemWarheads()
+{
+	local X2AbilityTemplate				Template;
+	local X2Effect_HEATGrenades			HEATEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'TandemHEATWarheads');
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityHEATWarheads"; 
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bIsPassive = true;
+
+	HEATEffect = new class 'X2Effect_HEATGrenades';
+	HEATEffect.Pierce = default.TANDEMHEAT_WARHEADS_PIERCE;
+	HEATEffect.Shred=default.TANDEMHEAT_WARHEADS_SHRED;
 	HEATEffect.BuildPersistentEffect (1, true, false);
 	HEATEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	Template.AddTargetEffect (HEATEffect);

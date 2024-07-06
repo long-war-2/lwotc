@@ -634,6 +634,19 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'SHELLSHOCK_CRIT_CHANCE_REDUCTION':
 			Outstring = string(class'X2Ability_PerkPackAbilitySet2'.default.SHELLSHOCK_CRIT_CHANCE_REDUCTION);
 			return true;
+		case 'SHELLSHOCK_TURNS':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet2'.default.SHELLSHOCK_TURNS);
+			return true;
+		case 'SHOCKWAVE_DEF_REDUCTION':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet2'.default.SHOCKWAVE_DEF_REDUCTION);
+			return true;
+		case 'SHOCKWAVE_DODGE_REDUCTION':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet2'.default.SHOCKWAVE_DODGE_REDUCTION);
+			return true;
+		case 'SHOCKWAVE_TURNS':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet2'.default.SHOCKWAVE_TURNS);
+			return true;
+				
         default:
             return false;
     }

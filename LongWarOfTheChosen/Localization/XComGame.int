@@ -457,6 +457,15 @@ LocFlyOverText="HEAT Warheads"
 LocPromotionPopupText="<Bullet/> Grenades that do not innately shred any armor do not benefit from the additional shred."
 ; End Translation
 
+[TandemHEATWarheads X2AbilityTemplate]
+LocFriendlyName="Tandem HEAT Warheads"
+; LWOTC Needs Translation
+LocLongDescription="Your grenades now pierce up to <ABILITY:TANDEMHEAT_WARHEADS_PIERCE_LW/> point(s) of armor, shred <ABILITY:TANDEMHEAT_WARHEADS_SHRED_LW/> additional point(s) of armor, and do full damage to units to the maximum extent of their area of effect."
+LocHelpText="Your grenades now pierce up to <ABILITY:TANDEMHEAT_WARHEADS_PIERCE_LW/> point(s) of armor, shred <ABILITY:TANDEMHEAT_WARHEADS_SHRED_LW/> additional point(s) of armor, and do full damage to units to the maximum extent of their area of effect."
+LocFlyOverText="HEAT Warheads"
+LocPromotionPopupText="<Bullet/> Grenades that do not innately shred any armor do not benefit from the additional shred. Damage increase does not apply to Environmental damage."
+; End Translation
+
 [Bombard_LW X2AbilityTemplate]
 LocFriendlyName="Bombardier"
 ; LWOTC Needs Translation (2)
@@ -508,8 +517,16 @@ LocPromotionPopupText="<Bullet/> Grenades, standard rockets, and MEC micromissil
 
 [Shellshock_LW X2AbilityTemplate]
 LocFriendlyName="Shellshock"
-LocLongDescription="Your grenades decrease enemy aim by <Ability:SHELLSHOCK_AIM_REDUCTION/> and critical chance by <Ability:SHELLSHOCK_CRIT_CHANCE_REDUCTION/>."
-LocHelpText="Your grenades decrease enemy aim by <Ability:SHELLSHOCK_AIM_REDUCTION/> and critical chance by <Ability:SHELLSHOCK_CRIT_CHANCE_REDUCTION/>."
+LocLongDescription="Your grenades decrease enemy aim by <Ability:SHELLSHOCK_AIM_REDUCTION/> and critical chance by <Ability:SHELLSHOCK_CRIT_CHANCE_REDUCTION/> for <Ability:SHELLSHOCK_TURNS/> turn(s)."
+LocHelpText="Your grenades decrease enemy aim by <Ability:SHELLSHOCK_AIM_REDUCTION/> and critical chance by <Ability:SHELLSHOCK_CRIT_CHANCE_REDUCTION/> for <Ability:SHELLSHOCK_TURNS/> turn(s)."
+LocPromotionPopupText="<Bullet/> Shellshock does  apply to flashbang grenades."
+LocFlyOverText="Shellshock"
+
+[Shockwave_LW X2AbilityTemplate]
+LocFriendlyName="Shockwave"
+LocLongDescription="Your damaging grenades decrease enemy defense by <Ability:SHOCKWAVE_DEF_REDUCTION/> and dodge by <Ability:SHOCKWAVE_DODGE_REDUCTION/> for <Ability:SHOCKWAVE_TURNS/> turn(s)."
+LocHelpText="Your damaging grenades decrease enemy defense by <Ability:SHOCKWAVE_DEF_REDUCTION/> and dodge by <Ability:SHOCKWAVE_DODGE_REDUCTION/> for <Ability:SHOCKWAVE_TURNS/> turn(s)."
+LocPromotionPopupText="<Bullet/> Shockwave does not apply to flashbang grenades or other grenades that do not deal damage."
 LocFlyOverText="Shellshock"
 
 ;;;;;;;;;;;;;;;;;;;;  GUNNER ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;

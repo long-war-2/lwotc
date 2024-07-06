@@ -2040,6 +2040,7 @@ function SwapExplosiveFalloffItem(X2ItemTemplate Template, int Difficulty)
 		FalloffDamageEffect = new class'X2Effect_ApplyExplosiveFalloffWeaponDamage' (ThrownDamageEffect);
 
 		//Falloff-specific settings
+		FalloffDamageEffect.UnitDamageAbilityExclusions.AddItem('HEATTandemWarheads'); // if has any of these abilities, skip any falloff
 		FalloffDamageEffect.UnitDamageAbilityExclusions.AddItem('TandemWarheads'); // if has any of these abilities, skip any falloff
 		FalloffDamageEffect.EnvironmentDamageAbilityExclusions.AddItem('CombatEngineer'); // if has any of these abilities, skip any falloff
 		FalloffDamageEffect.UnitDamageSteps = default.UnitDamageSteps;
