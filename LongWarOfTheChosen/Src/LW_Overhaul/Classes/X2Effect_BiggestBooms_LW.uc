@@ -28,7 +28,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 				{			
 					if (WeaponDamageEffect.bIgnoreBaseDamage)
 					{	
-						if(AbilityState.GetMyTemplateName() == 'ConcussionRocket' || AbilityState.GetMyTemplateName() == 'ShredderRocket_LW' || AbilityState.GetMyTemplateName() == 'BlasterConcussionRocket' AbilityState.GetMyTemplateName() == 'BlasterShredderRocket_LW')
+						if(AbilityState.GetMyTemplateName() == 'ConcussionRocket' || AbilityState.GetMyTemplateName() == 'ShredderRocket_LW' || AbilityState.GetMyTemplateName() == 'BlasterConcussionRocket' || AbilityState.GetMyTemplateName() == 'BlasterShredderRocket_LW')
 						{
 							return default.CRIT_DAMAGE_BONUS;
 						}
