@@ -237,6 +237,14 @@ LocLongDescription="特殊ロケット弾を発射して効果範囲内にいる
 LocHelpText="ターゲットをスタンまたは混乱させ、煙雲を後に残す特殊ロケット弾。"
 LocPromotionPopupText="<Bullet/>ミッション中に1度しか使用できない。<br/><Bullet/>ターゲットの意志力スコアに応じてスタンまたは混乱効果が発生する。<br/><Bullet/>行動値1を消費し、使用した兵士のターンは終了となる。"
 
+[BlasterConcussionRocket X2AbilityTemplate]
+LocFriendlyName="コンカッションロケット"
+LocFlyOverText="コンカッションロケット"
+LocLongDescription="特殊ロケット弾を発射して効果範囲内にいる有機生命体に小ダメージを与え、一定確率でスタンまたは混乱状態にする。また、煙雲を後に残す。"
+LocHelpText="ターゲットをスタンまたは混乱させ、煙雲を後に残す特殊ロケット弾。"
+LocPromotionPopupText="<Bullet/>ミッション中に1度しか使用できない。<br/><Bullet/>ターゲットの意志力スコアに応じてスタンまたは混乱効果が発生する。<br/><Bullet/>行動値1を消費し、使用した兵士のターンは終了となる。"
+
+
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
 [CoupDeGrace X2AbilityTemplate]

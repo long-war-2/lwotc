@@ -291,6 +291,21 @@ LocLongDescription="發射一枚特殊火箭，造成少量傷害，但能使範
 LocHelpText="發射一枚特殊火箭，造成少量傷害，但能使範圍內的所有敵方機械單位在一回合內停止運作。"
 LocPromotionPopupText="<Bullet/> 造成1-2點傷害，並使敵方機械單位暈眩2個行動點。<br/><Bullet/> 作用範圍為5格。"
 
+[BlasterShredderRocket_LW X2AbilityTemplate]
+LocFriendlyName="破甲火箭"
+LocFlyOverText="破甲火箭"
+LocLongDescription="發射一枚特殊火箭，使範圍內的單位破甲並施加撕裂效果。"
+LocHelpText="發射一枚特殊火箭，使範圍內的單位破甲並施加撕裂效果。"
+LocPromotionPopupText="<Bullet/> 可以削減5點護甲，並施加2點撕裂效果。<br/>"
+
+[BlasterEMPRocket_LW X2AbilityTemplate]
+LocFriendlyName="EMP火箭"
+LocFlyOverText="EMP火箭"
+LocLongDescription="發射一枚特殊火箭，造成少量傷害，但能使範圍內的所有敵方機械單位在一回合內停止運作。"
+LocHelpText="發射一枚特殊火箭，造成少量傷害，但能使範圍內的所有敵方機械單位在一回合內停止運作。"
+LocPromotionPopupText="<Bullet/> 造成1-2點傷害，並使敵方機械單位暈眩2個行動點。<br/><Bullet/> 作用範圍為5格。"
+
+
 [BunkerBuster X2AbilityTemplate]
 LocFriendlyName="掩體剋星"
 LocFlyOverText="掩體剋星"
@@ -312,6 +327,15 @@ LocFlyOverText="震盪火箭"
 LocLongDescription="發射一枚特殊的火箭，造成的傷害有限但是有幾率使範圍內的有機敵人眩暈或混亂。"
 LocHelpText="一種特殊的火箭，能夠使有機敵人眩暈或混亂。<Ability:ROCKETSCATTER/>"
 LocPromotionPopupText="<Bullet/> 每次任務1充能。<br/><Bullet/> 眩暈幾率為20%。<br/><Bullet/> 混亂幾率為100%，無視混亂抵抗（但不會無視免疫）。<br/><Bullet/> 需要1個行動點並結束士兵的回合。<br/><Bullet/> 精英原典和靈能殭屍免疫此技能的所有效果，包括傷害。<br/><Bullet/> 盟友不會受到這次攻擊的傷害。<br/>"
+
+; LWOTC Needs Translation (2)
+[BlasterConcussionRocket X2AbilityTemplate]
+LocFriendlyName="震盪火箭"
+LocFlyOverText="震盪火箭"
+LocLongDescription="發射一枚特殊的火箭，造成的傷害有限但是有幾率使範圍內的有機敵人眩暈或混亂。"
+LocHelpText="一種特殊的火箭，能夠使有機敵人眩暈或混亂。<Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> 每次任務1充能。<br/><Bullet/> 眩暈幾率為20%。<br/><Bullet/> 混亂幾率為100%，無視混亂抵抗（但不會無視免疫）。<br/><Bullet/> 需要1個行動點並結束士兵的回合。<br/><Bullet/> 精英原典和靈能殭屍免疫此技能的所有效果，包括傷害。<br/><Bullet/> 盟友不會受到這次攻擊的傷害。<br/>"
+
 
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 

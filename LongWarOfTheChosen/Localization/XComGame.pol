@@ -267,6 +267,14 @@ LocLongDescription="Wystrzel specjalną rakietę, która zadaje ograniczone obra
 LocHelpText="Rakieta, która ogłusza lub dezorientuje cele i pozostawia chmurę dymu. <Ability:ROCKETSCATTER/>"
 LocPromotionPopupText="<Bullet/> Jedno użycie na misję.<br/><Bullet/> Szanse na ogłuszenie w oparciu o wynik Woli celu i poziom żołnierza.<br/><Bullet/> Szanse na dezorientację w oparciu o tylko punktację celu. <br/><Bullet/> Wymaga jednej akcji i kończy turę żołnierza.<br/><Bullet/> Elitarne Kodeksy i Psi Zombie są odporne na wszystkie efekty, łącznie z obrażeniami.<br/><Bullet/> Sojusznicy nie mogą zostać ranni przez ten atak.<br/>"
 
+[BlasterConcussionRocket X2AbilityTemplate]
+LocFriendlyName="Rakieta wstrząsowa"
+LocFlyOverText="Rakieta wstrząsowa"
+LocLongDescription="Wystrzel specjalną rakietę, która zadaje ograniczone obrażenia, ale ma szansę ogłuszyć lub zdezorientować organicznych wrogów w swoim obszarze działania i pozostawi chmurę dymu."
+LocHelpText="Rakieta, która ogłusza lub dezorientuje cele i pozostawia chmurę dymu. <Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> Jedno użycie na misję.<br/><Bullet/> Szanse na ogłuszenie w oparciu o wynik Woli celu i poziom żołnierza.<br/><Bullet/> Szanse na dezorientację w oparciu o tylko punktację celu. <br/><Bullet/> Wymaga jednej akcji i kończy turę żołnierza.<br/><Bullet/> Elitarne Kodeksy i Psi Zombie są odporne na wszystkie efekty, łącznie z obrażeniami.<br/><Bullet/> Sojusznicy nie mogą zostać ranni przez ten atak.<br/>"
+
+
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
 [CoupDeGrace X2AbilityTemplate]

@@ -299,6 +299,21 @@ LocLongDescription="Fire a special rocket which deals a small amount of damage b
 LocHelpText="Fire a special rocket which deals a small amount of damage but shuts down all robotic units for a turn.<Ability:ROCKETSCATTER/>"
 LocPromotionPopupText="<Bullet/> This rocket deals 1-2 damage and stuns robots for 2 AP.<br/><Bullet/> The rocket has a 5 tile AOE diameter."
 
+[BlasterShredderRocket_LW X2AbilityTemplate]
+LocFriendlyName="Shredder Rocket"
+LocFlyOverText="Shredder Rocket"
+LocLongDescription="Fire a special rocket which shreds and ruptures targets in a small area."
+LocHelpText="Fire a special rocket which shreds and ruptures targets in a small area.<Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> This rocket shreds 3 points of armor and applies 1 point of Rupture.<br/><Bullet/> The rocket has the same area of effect as a Frag Grenade."
+
+[BlasterEMPRocket_LW X2AbilityTemplate]
+LocFriendlyName="EMP Rocket"
+LocFlyOverText="EMP Rocket"
+LocLongDescription="Fire a special rocket which deals a small amount of damage but shuts down all robotic units for a turn."
+LocHelpText="Fire a special rocket which deals a small amount of damage but shuts down all robotic units for a turn.<Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> This rocket deals 1-2 damage and stuns robots for 2 AP.<br/><Bullet/> The rocket has a 5 tile AOE diameter."
+
+
 
 
 [JavelinRockets X2AbilityTemplate]
@@ -324,6 +339,14 @@ LocPromotionPopupText="<Bullet/> Attacks with your gauntlet, and fires set by ga
 
 ; LWOTC Needs Translation (4)
 [ConcussionRocket X2AbilityTemplate]
+LocFriendlyName="Concussion Rocket"
+LocFlyOverText="Concussion Rocket"
+LocLongDescription="Fire a special rocket that deals low damage but impairs organic enemies within its area of effect."
+LocHelpText="Fire a rocket that always disorients organic enemies. It also has a <Ability:CONCUSSION_ROCKET_STUN_CHANCE>% chance to stun them. <Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> Deals 2 damage.<br/><Bullet/> Always disorients organic targets. Additionally, each organic target has a <Ability:CONCUSSION_ROCKET_STUN_CHANCE>% chance to be stunned instead.<br/><Bullet/> Requires one action and ends the soldier's turn.<br/><Bullet/> One use per mission.<br/>"
+; End Translation (4)
+
+[BlasterConcussionRocket X2AbilityTemplate]
 LocFriendlyName="Concussion Rocket"
 LocFlyOverText="Concussion Rocket"
 LocLongDescription="Fire a special rocket that deals low damage but impairs organic enemies within its area of effect."

@@ -2263,6 +2263,62 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 		}
 	}
 
+	// New Rocket stuff
+
+	if(UnitState.HasItemOfTemplateType('LWGauntlet_BM'))
+	{
+		// This assumes secondary gauntlet!
+
+		// Concussion Rocket
+		index = SetupData.Find('TemplateName', 'ConcussionRocket');
+		if (index != -1)
+		{
+			AbilityTemplate = AbilityTemplateMan.FindAbilityTemplate('BlasterConcussionRocket');
+
+			if(AbilityTemplate != none)
+			{
+				Data = EmptyData;
+				Data.TemplateName = AbilityName;
+				Data.Template = AbilityTemplate;
+				Data.SourceWeaponRef = UnitState.GetSecondaryWeapon().GetReference();
+				SetupData[index]=(Data);  // swap the ability
+			}
+		}
+
+		// Shredder Rocket
+		index = SetupData.Find('TemplateName', 'ShredderRocket_LW');
+		if (index != -1)
+		{
+			AbilityTemplate = AbilityTemplateMan.FindAbilityTemplate('BlasterShredderRocket_LW');
+
+			if(AbilityTemplate != none)
+			{
+				Data = EmptyData;
+				Data.TemplateName = AbilityName;
+				Data.Template = AbilityTemplate;
+				Data.SourceWeaponRef = UnitState.GetSecondaryWeapon().GetReference();
+				SetupData[index]=(Data);  // swap the ability
+			}
+		}
+
+		// EMP Rocket
+		index = SetupData.Find('TemplateName', 'EMPRocket_LW');
+		if (index != -1)
+		{
+			AbilityTemplate = AbilityTemplateMan.FindAbilityTemplate('BlasterEMPRocket_LW');
+
+			if(AbilityTemplate != none)
+			{
+				Data = EmptyData;
+				Data.TemplateName = AbilityName;
+				Data.Template = AbilityTemplate;
+				Data.SourceWeaponRef = UnitState.GetSecondaryWeapon().GetReference();
+				SetupData[index]=(Data);  // swap the ability
+			}
+		}
+
+	}
+
 	`LWTrace("FinalizeUnitAbilitiesForInit: complete");
 }
 
