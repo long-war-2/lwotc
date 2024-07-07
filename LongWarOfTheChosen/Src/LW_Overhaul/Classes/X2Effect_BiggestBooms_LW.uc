@@ -15,7 +15,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 		{
 			Explosives = true;
 		}
-		if (AbilityState.GetMyTemplateName() == 'LWRocketLauncher' || AbilityState.GetMyTemplateName() == 'LWBlasterLauncher' || AbilityState.GetMyTemplateName() == 'MicroMissiles' || AbilityState.GetMyTemplateName() == 'ConcussionRocket' || AbilityState.GetMyTemplateName() == 'ShredderRocket_LW' || AbilityState.GetMyTemplateName() == 'BlasterConcussionRocket' AbilityState.GetMyTemplateName() == 'BlasterShredderRocket_LW')
+		if (AbilityState.GetMyTemplateName() == 'LWRocketLauncher' || AbilityState.GetMyTemplateName() == 'LWBlasterLauncher' || AbilityState.GetMyTemplateName() == 'MicroMissiles' || AbilityState.GetMyTemplateName() == 'ConcussionRocket' || AbilityState.GetMyTemplateName() == 'ShredderRocket_LW' || AbilityState.GetMyTemplateName() == 'BlasterConcussionRocket' || AbilityState.GetMyTemplateName() == 'BlasterShredderRocket_LW')
 		{
 			Explosives = true;
 		}
@@ -47,7 +47,7 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 {
     local ShotModifierInfo BoomInfo;
 
-	if(bIndirectFire || AbilityState.GetMyTemplateName() == 'LWRocketLauncher' || AbilityState.GetMyTemplateName() == 'LWBlasterLauncher' || AbilityState.GetMyTemplateName() == 'MicroMissiles' || AbilityState.GetMyTemplateName() == 'ConcussionRocket' || AbilityState.GetMyTemplateName() == 'ShredderRocket_LW' || AbilityState.GetMyTemplateName() == 'BlasterConcussionRocket' AbilityState.GetMyTemplateName() == 'BlasterShredderRocket_LW')
+	if(bIndirectFire || AbilityState.GetMyTemplateName() == 'LWRocketLauncher' || AbilityState.GetMyTemplateName() == 'LWBlasterLauncher' || AbilityState.GetMyTemplateName() == 'MicroMissiles' || AbilityState.GetMyTemplateName() == 'ConcussionRocket' || AbilityState.GetMyTemplateName() == 'ShredderRocket_LW' || AbilityState.GetMyTemplateName() == 'BlasterConcussionRocket' || AbilityState.GetMyTemplateName() == 'BlasterShredderRocket_LW')
 	{
 		BoomInfo.ModType = eHit_Crit;
 		BoomInfo.Value = default.CRIT_CHANCE_BONUS;
