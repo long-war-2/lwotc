@@ -237,6 +237,14 @@ LocLongDescription="Spara un razzo speciale che infligge danni limitati ma ha un
 LocHelpText="Razzo speciale che stordisce o disorienta i bersagli e lascia una nube di fumo."
 LocPromotionPopupText="<Bullet/> Un uso per missione.<br/><Bullet/> La probabilità di stordimento e disorientamento varia in base alla Volontà del bersaglio.<br/><Bullet/> Richiede un'azione e conclude il turno del soldato."
 
+[BlasterConcussionRocket X2AbilityTemplate]
+LocFriendlyName="Razzo dirompente"
+LocFlyOverText="Razzo dirompente"
+LocLongDescription="Spara un razzo speciale che infligge danni limitati ma ha una probabilità di stordire o disorientare i nemici organici all'interno dell'area d'effetto. Lascia una nube di fumo."
+LocHelpText="Razzo speciale che stordisce o disorienta i bersagli e lascia una nube di fumo."
+LocPromotionPopupText="<Bullet/> Un uso per missione.<br/><Bullet/> La probabilità di stordimento e disorientamento varia in base alla Volontà del bersaglio.<br/><Bullet/> Richiede un'azione e conclude il turno del soldato."
+
+
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
 [CoupDeGrace X2AbilityTemplate]

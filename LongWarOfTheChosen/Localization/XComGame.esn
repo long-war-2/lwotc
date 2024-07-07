@@ -282,6 +282,16 @@ LocHelpText="Cohete especial que aturde o desorienta a los objetivos y deja una 
 LocPromotionPopupText="<Bullet/> Un uso por misión.<br/><Bullet/> La probabilidad de aturdir será del 20%.<br/><Bullet/> En cuanto a la desorientación, la probabilidad será del 100% y superará cualquier resistencia (pero no una inmunidad).<br/><Bullet/> Requiere una acción y termina el turno del soldado.<br/><Bullet/>Los códices y zombies psiónicos son inmunes a todos los efectos, incluido el daño.<br/><Bullet/> Los aliados no pueden ser heridos por este ataque.<br/>"
 ; End translated
 
+[BlasterConcussionRocket X2AbilityTemplate]
+LocFriendlyName="Cohete de conmoción"
+LocFlyOverText="Cohete de conmoción"
+LocLongDescription="Dispara un cohete especial que inflige daño limitado, pero tiene una probabilidad de aturdir o desorientar a los enemigos orgánicos dentro de su área de efecto y deja una nube de humo."
+; LWOTC translated
+LocHelpText="Cohete especial que aturde o desorienta a los objetivos y deja una nube de humo. <Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> Un uso por misión.<br/><Bullet/> La probabilidad de aturdir será del 20%.<br/><Bullet/> En cuanto a la desorientación, la probabilidad será del 100% y superará cualquier resistencia (pero no una inmunidad).<br/><Bullet/> Requiere una acción y termina el turno del soldado.<br/><Bullet/>Los códices y zombies psiónicos son inmunes a todos los efectos, incluido el daño.<br/><Bullet/> Los aliados no pueden ser heridos por este ataque.<br/>"
+; End translated
+
+
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
 [CoupDeGrace X2AbilityTemplate]

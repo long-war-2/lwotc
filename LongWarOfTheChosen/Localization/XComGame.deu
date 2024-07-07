@@ -269,6 +269,14 @@ LocLongDescription="Feuere eine Spezialrakete ab, die geringen Schaden verursach
 LocHelpText="Spezialrakete, die Ziele betäubt oder desorientiert und eine Rauchwolke hinterlässt. <Ability:ROCKETSCATTER/>"
 LocPromotionPopupText="<Bullet/> Einmal pro Einsatz einsetzbar.<br/><Bullet/> Chance auf Betäubung basiert auf dem Willenswert des Ziels.<br/><Bullet/> Chance auf Desorientierung basiert nur auf dem Willenswert des Ziels.<br/><Bullet/> Erfordert 1 Aktion und beendet die Runde des Soldaten.<br/><Bullet/> Elite-Codices und Psi-Zombies sind immun gegenüber allen Effekten einschließlich dem Schaden.<br/><Bullet/> Verbündete können von dieser Fähigkeit nicht verletzt werden.<br/>"
 
+[BlasterConcussionRocket X2AbilityTemplate]
+LocFriendlyName="Erschütterungsrakete"
+LocFlyOverText="Erschütterungsrakete"
+LocLongDescription="Feuere eine Spezialrakete ab, die geringen Schaden verursacht, aber eine Chance hat, organische Feinde innerhalb ihres Wirkungsbereichs zu betäuben oder zu desorientieren. Hinterlässt eine Rauchwolke."
+LocHelpText="Spezialrakete, die Ziele betäubt oder desorientiert und eine Rauchwolke hinterlässt. <Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> Einmal pro Einsatz einsetzbar.<br/><Bullet/> Chance auf Betäubung basiert auf dem Willenswert des Ziels.<br/><Bullet/> Chance auf Desorientierung basiert nur auf dem Willenswert des Ziels.<br/><Bullet/> Erfordert 1 Aktion und beendet die Runde des Soldaten.<br/><Bullet/> Elite-Codices und Psi-Zombies sind immun gegenüber allen Effekten einschließlich dem Schaden.<br/><Bullet/> Verbündete können von dieser Fähigkeit nicht verletzt werden.<br/>"
+
+
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
 [CoupDeGrace X2AbilityTemplate]

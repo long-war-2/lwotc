@@ -237,6 +237,14 @@ LocLongDescription="제한된 피해를 입히는 특수 로켓을 발사하여,
 LocHelpText="목표물을 기절시키거나 혼란시키고 연막을 생성하는 특수 로켓입니다."
 LocPromotionPopupText="<Bullet/> 임무당 한 번만 사용할 수 있습니다.<br/><Bullet/> 기절, 혼란 확률은 목표물의 의지 점수에 따라 다릅니다.<br/><Bullet/> 행동력 1개가 소모되고 병사의 턴이 종료됩니다"
 
+[BlasterConcussionRocket X2AbilityTemplate]
+LocFriendlyName="고폭 로켓"
+LocFlyOverText="고폭 로켓"
+LocLongDescription="제한된 피해를 입히는 특수 로켓을 발사하여, 일정 확률로 효과 범위 내 유기체 적들을 기절시키거나 혼란시키고 연막을 생성합니다."
+LocHelpText="목표물을 기절시키거나 혼란시키고 연막을 생성하는 특수 로켓입니다."
+LocPromotionPopupText="<Bullet/> 임무당 한 번만 사용할 수 있습니다.<br/><Bullet/> 기절, 혼란 확률은 목표물의 의지 점수에 따라 다릅니다.<br/><Bullet/> 행동력 1개가 소모되고 병사의 턴이 종료됩니다"
+
+
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
 [CoupDeGrace X2AbilityTemplate]

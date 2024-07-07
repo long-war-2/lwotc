@@ -1826,6 +1826,8 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			case 'LWBlasterLauncher':           // Salvo
 			case 'RocketLauncher':              // Salvo
 			case 'ConcussionRocket':            // Salvo
+			case 'ShredderRocket_LW':           // Salvo\
+			case 'EMPRocket_LW':            // Salvo
 			case 'ShredderGun':                 // Salvo
 			case 'PlasmaBlaster':               // Salvo
 			case 'ShredstormCannon':            // Salvo

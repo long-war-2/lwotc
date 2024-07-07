@@ -292,6 +292,21 @@ LocLongDescription="发射一枚特殊火箭，造成少量伤害，但能使范
 LocHelpText="发射一枚特殊火箭，造成少量伤害，但能使范围内的所有敌方机械单位在一回合内停止运作。"
 LocPromotionPopupText="<Bullet/> 造成1-2点伤害，并使敌方机械单位晕眩2个行动点。<br/><Bullet/> 作用范围为5格。"
 
+
+[BlasterShredderRocket_LW X2AbilityTemplate]
+LocFriendlyName="破甲火箭"
+LocFlyOverText="破甲火箭"
+LocLongDescription="发射一枚特殊火箭，使范围内的单位破甲并施加撕裂效果。"
+LocHelpText="发射一枚特殊火箭，使范围内的单位破甲并施加撕裂效果。"
+LocPromotionPopupText="<Bullet/> 可以削减5点护甲，并施加2点撕裂效果。<br/>"
+
+[BlasterEMPRocket_LW X2AbilityTemplate]
+LocFriendlyName="EMP火箭"
+LocFlyOverText="EMP火箭"
+LocLongDescription="发射一枚特殊火箭，造成少量伤害，但能使范围内的所有敌方机械单位在一回合内停止运作。"
+LocHelpText="发射一枚特殊火箭，造成少量伤害，但能使范围内的所有敌方机械单位在一回合内停止运作。"
+LocPromotionPopupText="<Bullet/> 造成1-2点伤害，并使敌方机械单位晕眩2个行动点。<br/><Bullet/> 作用范围为5格。"
+
 [JavelinRockets X2AbilityTemplate]
 LocFriendlyName="标枪火箭"
 LocFlyOverText="标枪火箭"
@@ -315,6 +330,14 @@ LocPromotionPopupText="<Bullet/> 用你的臂套造成的攻击以及臂套武�
 
 ; LWOTC Translated (4)
 [ConcussionRocket X2AbilityTemplate]
+LocFriendlyName="震荡火箭"
+LocFlyOverText="震荡火箭"
+LocLongDescription="发射一枚特殊的火箭，造成的伤害有限但是有几率使范围内的有机敌人眩晕或混乱。"
+LocHelpText="一种特殊的火箭，能够使有机敌人眩晕或混乱。<Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> 每次任务1充能。<br/><Bullet/> 眩晕几率为20%。<br/><Bullet/> 混乱几率为100%，无视混乱抵抗（但不会无视免疫）。<br/><Bullet/> 需要1个行动点并结束士兵的回合。<br/><Bullet/> 精英原典和灵能僵尸免疫此技能的所有效果，包括伤害。<br/><Bullet/> 盟友不会受到这次攻击的伤害。<br/>"
+; End Translated
+
+[BlasterConcussionRocket X2AbilityTemplate]
 LocFriendlyName="震荡火箭"
 LocFlyOverText="震荡火箭"
 LocLongDescription="发射一枚特殊的火箭，造成的伤害有限但是有几率使范围内的有机敌人眩晕或混乱。"
