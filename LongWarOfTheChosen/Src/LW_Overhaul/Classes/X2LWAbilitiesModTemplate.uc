@@ -221,6 +221,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'Quickdraw':
 			AddQuickdrawMobilityBoost(Template);
+			break;
 		case 'PistolStandardShot':
 		case 'PistolOverwatchShot':
 		case 'FanFire':

@@ -756,7 +756,7 @@ strDismiss_Button = "OK"
 [UISL_Shell_BetaPatchNotes]
 strMessage_Title = "Long War Of The Chosen"
 strMessage_Header = "Latest Beta Changes:"
-strMessage_Body = "<ul><li>New UI for Infiltration information in Squad Select + new UI on mission information on geoscape. Squad select screen is currently localized only for English, accepting translation help. UI can be turned off by flipping a switch at the bottom of XComLW_Overhaul.ini</li></ul>"
+strMessage_Body = "<ul><li>Complete rework of Grenadier tree with a completely redone middle row.</li><li>Additional grenade perks are now granted by grenade launcher upgrades.</li><li>Beam Grenade Launcher and Blaster Launcher are now unlocked by Powered Armor research.</li><li>Gunner and Shinobi received smaller tweaks to their trees</li></ul>"
 strDismiss_Button = "OK"
 
 [UISL_PullAdvisors]

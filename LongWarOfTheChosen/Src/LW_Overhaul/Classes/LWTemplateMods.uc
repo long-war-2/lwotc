@@ -1658,6 +1658,8 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 				QuickdrawActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('Quickdraw');
 			}
 		}
+		Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
+		Template.AssociatedPassives.AddItem('HoloTargeting');
 
 		AmmoCost = new class'X2AbilityCost_Ammo';
 		AmmoCost.iAmmo = 1;
@@ -2038,6 +2040,7 @@ function SwapExplosiveFalloffItem(X2ItemTemplate Template, int Difficulty)
 		FalloffDamageEffect = new class'X2Effect_ApplyExplosiveFalloffWeaponDamage' (ThrownDamageEffect);
 
 		//Falloff-specific settings
+		FalloffDamageEffect.UnitDamageAbilityExclusions.AddItem('HEATTandemWarheads'); // if has any of these abilities, skip any falloff
 		FalloffDamageEffect.UnitDamageAbilityExclusions.AddItem('TandemWarheads'); // if has any of these abilities, skip any falloff
 		FalloffDamageEffect.EnvironmentDamageAbilityExclusions.AddItem('CombatEngineer'); // if has any of these abilities, skip any falloff
 		FalloffDamageEffect.UnitDamageSteps = default.UnitDamageSteps;
@@ -2347,6 +2350,8 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'SpectralStunLancerM3':
 		case 'SpectralStunLancerM4':
 			Template.Abilities.AddItem('SpectralStunImpairingAbility');
+			// Give them mental ability
+			Template.Abilities.AddItem('MindShield');
 			// make them move before chosen
 			Template.InitiativePriority = -101;
 			Template.DefaultLoadout='SpectralStunLancerM1_Loadout';
@@ -2720,7 +2725,11 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		case 'AlienHunterRifle_BM':
 			WeaponTemplate.Abilities.AddItem('LockNLoad_LW');
 			WeaponTemplate.Abilities.AddItem('Concentration_LW');
-		break;
+			break;
+		case 'GrenadeLauncher_MG':
+			WeaponTemplate.Abilities.AddItem('HeavyOrdnance_LW');
+			WeaponTemplate.Abilities.AddItem('Protector');
+			break;
 		default:
 			break;
 		}

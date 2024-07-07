@@ -37,6 +37,12 @@ TrojanVirusTriggered="<XGParam:StrValue0/!UnitName/> triggered Trojan Virus."
 DenseSmokeGrenadeEffectDisplayName="Dense Smoke"
 DenseSmokeGrenadeEffectDisplayDesc="The dense smoke grants this unit a additional defensive bonus."
 
+ShellshockEffectDesc="This unit has reduced aim and critical hit chance."
+ShellshockEffectName="Shellshocked"
+
+ShockwaveEffectName="Shocked"
+ShockwaveEffectDesc="This unit has reduced defense and dodge."
+
 [X2Effect_Savior]
 strSavior_WorldMessage="Savior: Healed extra <XGParam:IntValue0/> Health."
 
