@@ -285,27 +285,26 @@ LocLongDescription="发射一枚特殊火箭，使范围内的单位破甲并施
 LocHelpText="发射一枚特殊火箭，使范围内的单位破甲并施加撕裂效果。"
 LocPromotionPopupText="<Bullet/> 可以削减5点护甲，并施加2点撕裂效果。<br/>"
 
-[EMPRocket_LW X2AbilityTemplate]
-LocFriendlyName="EMP火箭"
-LocFlyOverText="EMP火箭"
-LocLongDescription="发射一枚特殊火箭，造成少量伤害，但能使范围内的所有敌方机械单位在一回合内停止运作。"
-LocHelpText="发射一枚特殊火箭，造成少量伤害，但能使范围内的所有敌方机械单位在一回合内停止运作。"
-LocPromotionPopupText="<Bullet/> 造成1-2点伤害，并使敌方机械单位晕眩2个行动点。<br/><Bullet/> 作用范围为5格。"
-
-
 [BlasterShredderRocket_LW X2AbilityTemplate]
 LocFriendlyName="破甲火箭"
 LocFlyOverText="破甲火箭"
 LocLongDescription="发射一枚特殊火箭，使范围内的单位破甲并施加撕裂效果。"
-LocHelpText="发射一枚特殊火箭，使范围内的单位破甲并施加撕裂效果。"
+LocHelpText="发射一枚特殊火箭，使范围内的单位破甲并施加撕裂效果。<Ability:ROCKETSCATTER/>"
 LocPromotionPopupText="<Bullet/> 可以削减5点护甲，并施加2点撕裂效果。<br/>"
 
 [BlasterEMPRocket_LW X2AbilityTemplate]
 LocFriendlyName="EMP火箭"
 LocFlyOverText="EMP火箭"
 LocLongDescription="发射一枚特殊火箭，造成少量伤害，但能使范围内的所有敌方机械单位在一回合内停止运作。"
+LocHelpText="发射一枚特殊火箭，造成少量伤害，但能使范围内的所有敌方机械单位在一回合内停止运作。<Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> 造成1-2点伤害，并使敌方机械单位晕眩2个行动点。<br/><Bullet/> 盟友不会受到这次攻击的影响。<br/><Bullet/> 作用范围为5格。"
+
+[EMPRocket_LW X2AbilityTemplate]
+LocFriendlyName="EMP火箭"
+LocFlyOverText="EMP火箭"
+LocLongDescription="发射一枚特殊火箭，造成少量伤害，但能使范围内的所有敌方机械单位在一回合内停止运作。"
 LocHelpText="发射一枚特殊火箭，造成少量伤害，但能使范围内的所有敌方机械单位在一回合内停止运作。"
-LocPromotionPopupText="<Bullet/> 造成1-2点伤害，并使敌方机械单位晕眩2个行动点。<br/><Bullet/> 作用范围为5格。"
+LocPromotionPopupText="<Bullet/> 造成1-2点伤害，并使敌方机械单位晕眩2个行动点。<br/><Bullet/> 盟友不会受到这次攻击的影响。<br/><Bullet/> 作用范围为5格。"
 
 [JavelinRockets X2AbilityTemplate]
 LocFriendlyName="标枪火箭"
@@ -332,18 +331,18 @@ LocPromotionPopupText="<Bullet/> 用你的臂套造成的攻击以及臂套武�
 [ConcussionRocket X2AbilityTemplate]
 LocFriendlyName="震荡火箭"
 LocFlyOverText="震荡火箭"
-LocLongDescription="发射一枚特殊的火箭，造成的伤害有限但是有几率使范围内的有机敌人眩晕或混乱。"
-LocHelpText="一种特殊的火箭，能够使有机敌人眩晕或混乱。<Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> 每次任务1充能。<br/><Bullet/> 眩晕几率为20%。<br/><Bullet/> 混乱几率为100%，无视混乱抵抗（但不会无视免疫）。<br/><Bullet/> 需要1个行动点并结束士兵的回合。<br/><Bullet/> 精英原典和灵能僵尸免疫此技能的所有效果，包括伤害。<br/><Bullet/> 盟友不会受到这次攻击的伤害。<br/>"
+LocLongDescription="发射一枚特殊的火箭，对敌方造成的伤害有限，但必定使范围内的有机单位混乱并有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使其眩晕。"
+LocHelpText="发射一枚特殊的火箭，对敌方造成的伤害有限，但必定使范围内的有机单位混乱并有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使其眩晕。<Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> 每次任务1充能。<br/><Bullet/> 造成2点伤害。<br/><Bullet/> 必定使有机单位混乱，无视混乱抵抗（但不会无视免疫）。<br/><Bullet/> 有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使有机单位眩晕。<br/><Bullet/> 消耗1个行动点并结束士兵的回合。<br/><Bullet/> 精英原典和灵能僵尸免疫此技能的所有效果，包括伤害。<br/><Bullet/> 盟友不会受到这次攻击的伤害，但无法免疫其混乱和眩晕效果。<br/>"
 ; End Translated
 
 [BlasterConcussionRocket X2AbilityTemplate]
 LocFriendlyName="震荡火箭"
 LocFlyOverText="震荡火箭"
-LocLongDescription="发射一枚特殊的火箭，造成的伤害有限但是有几率使范围内的有机敌人眩晕或混乱。"
-LocHelpText="一种特殊的火箭，能够使有机敌人眩晕或混乱。<Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> 每次任务1充能。<br/><Bullet/> 眩晕几率为20%。<br/><Bullet/> 混乱几率为100%，无视混乱抵抗（但不会无视免疫）。<br/><Bullet/> 需要1个行动点并结束士兵的回合。<br/><Bullet/> 精英原典和灵能僵尸免疫此技能的所有效果，包括伤害。<br/><Bullet/> 盟友不会受到这次攻击的伤害。<br/>"
-; End Translated
+LocLongDescription="发射一枚特殊的火箭，对敌方造成的伤害有限，但必定使范围内的有机单位混乱并有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使其眩晕。"
+LocHelpText="发射一枚特殊的火箭，对敌方造成的伤害有限，但必定使范围内的有机单位混乱并有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%概率使其眩晕。<Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> 每次任务1充能。<br/><Bullet/> 造成2点伤害。<br/><Bullet/> 必定使有机单位混乱，无视混乱抵抗（但不会无视免疫）。<br/><Bullet/> 有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使有机单位眩晕。<br/><Bullet/> 消耗1个行动点并结束士兵的回合。<br/><Bullet/> 精英原典和灵能僵尸免疫此技能的所有效果，包括伤害。<br/><Bullet/> 盟友不会受到这次攻击的伤害，但无法免疫其混乱和眩晕效果。<br/>"
+; End Translation (4)
 
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -463,6 +462,15 @@ LocHelpText="你的榴弹和火箭穿透<ABILITY:HEAT_WARHEADS_PIERCE_LW/>点护
 LocFlyOverText="高热弹头"
 LocPromotionPopupText="<Bullet/> 本身不具备破甲效果的榴弹不会受益于额外的破甲效果。<br/><Bullet/> 不适用于EMP火箭和掩体克星。<br/>"
 
+[TandemHEATWarheads X2AbilityTemplate]
+LocFriendlyName="串联高热弹头"
+; LWOTC Needs Translation
+LocLongDescription="你的榴弹穿透<ABILITY:TANDEMHEAT_WARHEADS_PIERCE_LW/>点护甲，额外撕碎<ABILITY:TANDEMHEAT_WARHEADS_SHRED_LW/>点护甲，并对范围内最边缘的目标造成最大程度的伤害。"
+LocHelpText="你的榴弹穿透<ABILITY:TANDEMHEAT_WARHEADS_PIERCE_LW/>点护甲，额外撕碎<ABILITY:TANDEMHEAT_WARHEADS_SHRED_LW/>点护甲，并对范围内最边缘的目标造成最大程度的伤害。"
+LocFlyOverText="串联高热弹头"
+LocPromotionPopupText="<Bullet/> 本身不具备破甲效果的榴弹不会受益于额外的破甲效果。不适用于环境伤害。"
+; End Translation
+
 [Bombard_LW X2AbilityTemplate]
 LocFriendlyName="轰炸者"
 LocLongDescription="投掷或发射榴弹的距离增加2格。"
@@ -500,7 +508,21 @@ LocFriendlyName="超级炸药"
 LocLongDescription="你的榴弹和火箭能够造成暴击伤害（<Ability:BIGGESTBOOMSCHANCE/>%几率+<Ability:BIGGESTBOOMSDAMAGE/>伤害）。"
 LocHelpText="你的榴弹、火箭和微型飞弹能够造成暴击伤害。"
 LocFlyOverText="超级炸药"
-LocPromotionPopupText="<Bullet/> 榴弹、火箭和MEC微型飞弹能够造成暴击伤害。（<Ability:BIGGESTBOOMSCHANCE/>%几率+<Ability:BIGGESTBOOMSDAMAGE/>伤害）。<br/><Bullet/> <Ability:BIGGESTBOOMSCHANCE/>%暴击几率不受其他暴击率修正的影响。<br/><Bullet/> 不适用于非伤害型榴弹或是EMP火箭或是掩体克星能力。<br/><Bullet/> 榴弹造成暴击伤害后，对榴弹造成的持续性伤害增加1点，例如火焰的烧伤。"
+LocPromotionPopupText="<Bullet/> 榴弹、火箭和MEC微型飞弹能够造成暴击伤害。（<Ability:BIGGESTBOOMSCHANCE/>%几率+<Ability:BIGGESTBOOMSDAMAGE/>伤害）。<br/><Bullet/> <Ability:BIGGESTBOOMSCHANCE/>%暴击几率不受其他暴击率修正的影响。<br/><Bullet/> 不适用于非伤害型榴弹或是EMP火箭或是掩体克星能力。<br/><Bullet/> 榴弹造成暴击伤害后，其施加的持续性伤害增加1点，例如火焰的烧伤。"
+
+[Shellshock_LW X2AbilityTemplate]
+LocFriendlyName="弹震"
+LocLongDescription="你的榴弹能够降低敌人<Ability:SHELLSHOCK_AIM_REDUCTION/>命中和<Ability:SHELLSHOCK_CRIT_CHANCE_REDUCTION/>暴击，持续<Ability:SHELLSHOCK_TURNS/>回合。"
+LocHelpText="你的榴弹能够降低敌人<Ability:SHELLSHOCK_AIM_REDUCTION/>命中和<Ability:SHELLSHOCK_CRIT_CHANCE_REDUCTION/>暴击，持续<Ability:SHELLSHOCK_TURNS/>回合。"
+LocPromotionPopupText="<Bullet/> 弹震也适用于闪光榴弹。"
+LocFlyOverText="弹震"
+
+[Shockwave_LW X2AbilityTemplate]
+LocFriendlyName="冲击波"
+LocLongDescription="你的伤害性榴弹能够降低敌人<Ability:SHOCKWAVE_DEF_REDUCTION/>防御和<Ability:SHOCKWAVE_DODGE_REDUCTION/>闪避，持续<Ability:SHOCKWAVE_TURNS/>回合。"
+LocHelpText="你的伤害性榴弹能够降低敌人<Ability:SHOCKWAVE_DEF_REDUCTION/>防御和<Ability:SHOCKWAVE_DODGE_REDUCTION/>闪避，持续<Ability:SHOCKWAVE_TURNS/>回合。"
+LocPromotionPopupText="<Bullet/> 冲击波不适用于闪光弹等非伤害性榴弹。"
+LocFlyOverText="冲击波"
 
 ;;;;;;;;;;;;;;;;;;;;  GUNNER ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -615,7 +637,7 @@ LocFriendlyName="高清全息"
 LocLongDescription="被全息瞄准的敌人更容易受到暴击。"
 LocHelpText="被全息瞄准的敌人更容易受到暴击。"
 LocFlyOverText="高清全息"
-LocPromotionPopupText="<Bullet/> 基础全息瞄准器+<Ability:HDHOLO_CV_CRIT_BONUS_LW/>暴击率 ，随着全息瞄准器层级提升为+<Ability:HDHOLO_MG_CRIT_BONUS_LW/>和+<Ability:HDHOLO_BM_CRIT_BONUS_LW/>。<br/>"
+LocPromotionPopupText="<Bullet/> 基础全息瞄准器+<Ability:HDHOLO_CV_CRIT_BONUS_LW/>暴击率，随着全息瞄准器层级提升为+<Ability:HDHOLO_MG_CRIT_BONUS_LW/>和+<Ability:HDHOLO_BM_CRIT_BONUS_LW/>。<br/>"
 
 [IndependentTracking X2AbilityTemplate]
 LocFriendlyName="独立追踪"
@@ -5340,7 +5362,7 @@ LocFriendlyName="清算"
 LocLongDescription="解锁<Ability:SecondaryWeaponName/>直斩攻击。"
 LocHelpText="解锁<Ability:SecondaryWeaponName/>直斩攻击。"
 LocFlyOverText="清算"
-LocPromotionPopupText="<Bullet/> 你可以通过将移动光标放在敌人身上并右击来触发直斩能力。<br/><Bullet/> 直斩消耗1个行动点并不会结束回合，需要<Ability:RECKONING_LW_COOLDOWN/>回合冷却。<br/><Bullet/> 散兵可以在冲刺移动下进行直斩攻击，只需要花费1个行动点。<br/>"
+LocPromotionPopupText="<Bullet/> 可以通过将移动光标放在敌人身上并右击来触发直斩能力。<br/><Bullet/> 直斩消耗1个行动点并不会结束回合，需要<Ability:RECKONING_LW_COOLDOWN/>回合冷却。<br/><Bullet/> 可以在冲刺移动下进行直斩攻击，只需要花费1个行动点。<br/>"
 
 ; LWOTC Needs Translation (2)
 [SkirmisherFleche X2AbilityTemplate]
@@ -5498,10 +5520,10 @@ LocPromotionPopupText="<Bullet/> 在回合开始时确保击杀，以充分利�
 
 [Judgment X2AbilityTemplate]
 LocFriendlyName="审判"
-LocLongDescription="当成为攻击目标时，有几率使敌人恐慌。 本单位的意志越高，恐慌的几率就越高。"
-LocHelpText="当成为攻击目标时，有几率使敌人恐慌。 本单位的意志越高，恐慌的几率就越高。"
+LocLongDescription="当成为攻击目标时，有几率使敌人恐慌。本单位的意志越高，恐慌的几率就越高。"
+LocHelpText="当成为攻击目标时，有几率使敌人恐慌。本单位的意志越高，恐慌的几率就越高。"
 LocFlyOverText="审判"
-LocPromotionPopupText="<Bullet/> 近战与效果范围攻击可触发审判。<br/><Bullet/> 监视射击无法触发审判。<br/><Bullet/> 恐慌几率为<Ability:JUDGEMENT_LW_APPLYCHANCE/>%同时受到进攻单位的意志力和目标单位的意志力的影响。<br/><Bullet/> 意志力强的单位使用审判最有效。<br/>"
+LocPromotionPopupText="<Bullet/> 近战与范围攻击都可触发审判。<br/><Bullet/> 监视射击无法触发审判。<br/><Bullet/> 恐慌的基础几率为<Ability:JUDGEMENT_LW_APPLYCHANCE/>%，同时受到进攻单位的意志力和目标单位的意志力的影响。<br/><Bullet/> 意志力高的单位使用审判最有效。<br/>"
 
 [ManualOverride_LW X2AbilityTemplate]
 LocFriendlyName="手动超载"

@@ -34,16 +34,16 @@ LocPromotionPopupText="<Bullet/> 造成混乱于爆炸中所有有机单位的�
 
 [DisablingShot X2AbilityTemplate]
 LocFriendlyName="阻断射击"
-LocLongDescription="用精确的射击击晕敌人，如果暴击则造成额外的眩晕持续时间。 射击不会造成暴击伤害。"
-LocHelpText="用精确的射击击晕敌人，如果暴击则造成额外的眩晕持续时间。 射击不会造成暴击伤害。"
+LocLongDescription="用精确的射击击晕敌人，如果暴击则造成额外的眩晕持续时间。射击不会造成暴击伤害。"
+LocHelpText="用精确的射击击晕敌人，如果暴击则造成额外的眩晕持续时间。射击不会造成暴击伤害。"
 ; LWOTC Needs Translation (2)
 LocPromotionPopupText="<Bullet/> 如果命中(包括擦伤)眩晕敌人<Ability:DisablingShotStunActions/>行动点。<br/><Bullet/> 如果暴击额外眩晕敌人<Ability:DisablingShotCritStunActions/>行动点, 但是射击不会造成暴击伤害。<br/><Bullet/> 阻断射击需要<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 阻断射击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 只有化身和灵能僵尸不能被眩晕。"
 ; End Translation (2)
 
 [DisablingShotSnapShot X2AbilityTemplate]
 LocFriendlyName="阻断射击（急射）"
-LocLongDescription="用精确的射击击晕敌人，如果暴击则造成额外的眩晕持续时间。 射击不会造成暴击伤害。"
-LocHelpText="用精确的射击击晕敌人，如果暴击则造成额外的眩晕持续时间。 射击不会造成暴击伤害。"
+LocLongDescription="用精确的射击击晕敌人，如果暴击则造成额外的眩晕持续时间。射击不会造成暴击伤害。"
+LocHelpText="用精确的射击击晕敌人，如果暴击则造成额外的眩晕持续时间。射击不会造成暴击伤害。"
 ; LWOTC Needs Translation (2)
 LocPromotionPopupText="<Bullet/> 如果命中(包括擦伤)眩晕敌人<Ability:DisablingShotStunActions/>行动点。<br/><Bullet/> 如果暴击额外眩晕敌人<Ability:DisablingShotCritStunActions/>行动点, 但是射击不会造成暴击伤害。<br/><Bullet/> 阻断射击需要<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 阻断射击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 只有化身和灵能僵尸不能被眩晕。"
 ; End Translation (2)
