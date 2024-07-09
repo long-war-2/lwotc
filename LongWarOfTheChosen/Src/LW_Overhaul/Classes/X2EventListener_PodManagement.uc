@@ -23,7 +23,7 @@ static function CHEventListenerTemplate CreateListeners()
 	`LWTrace("Registering evac event listeners");
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'PodManagementListeners');
-	Template.AddCHEvent('AlienTurnBegun', OnAlienTurnBegin, ELD_OnStateSubmitted, 110);
+	Template.AddCHEvent('PlayerTurnBegun', OnAlienTurnBegin, ELD_OnStateSubmitted, 150);
 	Template.AddCHEvent('UnitGroupTurnBegun', OnUnitGroupTurnBegun, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('AbilityActivated', SetPodManagerAlert, ELD_OnStateSubmitted, GetListenerPriority());
 
@@ -64,6 +64,13 @@ static function EventListenerReturn OnAlienTurnBegin(Object EventData, Object Ev
 {
 	local XComGameState NewGameState;
 	local XComGameState_LWPodManager NewPodManager;
+	local XComGameState_Player PlayerState;
+
+	PlayerState = XComGameState_Player (EventData);
+	if(PlayerState.GetTeam() != eTeam_Alien)
+	{
+		return ELR_NoInterrupt;
+	}
 
 	// If we're still concealed, don't take any actions yet.
 	// XComPlayer = class'Utilities_LW'.static.FindPlayer(eTeam_XCom);
