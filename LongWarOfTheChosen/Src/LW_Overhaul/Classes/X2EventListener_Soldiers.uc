@@ -88,7 +88,7 @@ static function CHEventListenerTemplate CreatePromotionListeners()
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'SoldierPromotionListeners');
 	Template.AddCHEvent('OverrideShowPromoteIcon', OnCheckForPsiPromotion, ELD_Immediate);
-	Template.AddCHEvent('OverridePromotionUIClass', OverridePromotionUIClass, ELD_Immediate, 50);
+	Template.AddCHEvent('OverridePromotionUIClass', OverridePromotionUIClass, ELD_Immediate, 49);
 	Template.AddCHEvent('OverridePromotionBlueprintTagPrefix', OverridePromotionBlueprintTagPrefix, ELD_Immediate);
 	Template.AddCHEvent('CPS_OverrideCanPurchaseAbility', OverrideCanPurchaseAbility, ELD_Immediate);
 	Template.AddCHEvent('CPS_OverrideAbilityPointCost', OverrideAbilityPointCost, ELD_Immediate);
@@ -458,6 +458,9 @@ static function EventListenerReturn OverridePromotionUIClass(
 	Name InEventID,
 	Object CallbackData)
 {
+	local XComLWTuple Tuple;
+    local CHLPromotionScreenType ScreenType;
+
 	if (class'Helpers_LW'.default.XCOM2RPGOverhaulActive)
 	{
 		// Prevent CPS from overriding RPGO's promotion screen.
@@ -465,6 +468,18 @@ static function EventListenerReturn OverridePromotionUIClass(
 	}
 	else
 	{
+		Tuple = XComLWTuple(EventData);
+   		if (Tuple == none) { return ELR_NoInterrupt; }
+
+   		ScreenType = CHLPromotionScreenType(Tuple.Data[0].i);
+
+    	// CPS will always replace standard and hero promotion screens.
+    	if (ScreenType == eCHLPST_PsiOp)
+    	{
+			Tuple.Data[0].i = eCHLPST_Hero;
+        	Tuple.Data[1].o = class'X2WOTCCommunityPromotionScreen.CPS_UIArmory_PromotionHero';
+    	}
+
 		return ELR_NoInterrupt;
 	}
 }
@@ -525,7 +540,14 @@ static function EventListenerReturn OverrideCanPurchaseAbility(
 	{
 		Tuple.Data[13].b = false; // CanPurchaseAbility
 		Tuple.Data[15].s = default.ReasonClassAbilityPickedAtRank; // LocReasonLocked
-		return ELR_NoInterrupt;
+
+		if (UnitState.GetSoldierClassTemplateName() != 'PsiOperative')  { return ELR_NoInterrupt; }
+
+   		if (Tuple.Data[2].i <= 1) //row 0, row 1
+   		{
+    		Tuple.Data[13].b = false;                   //Can't buy it ...
+    		Tuple.Data[15].s = "Psi Operative";  //.. because its a psi-op perk from the lab
+    	}
 	}
 
 	// All non-class abilities should be available for purchase as soon as the
@@ -550,6 +572,14 @@ static function EventListenerReturn OverrideCanPurchaseAbility(
 			Tuple.Data[14].i = 2;   // Reason: No Training Center
 		}
 	}
+
+	if (UnitState.GetSoldierClassTemplateName() != 'PsiOperative')  { return ELR_NoInterrupt; }
+
+   	if (Tuple.Data[2].i <= 1) //row 0, row 1
+   	{
+    	Tuple.Data[13].b = false;                   //Can't buy it ...
+    	Tuple.Data[15].s = "Psi Operative";  //.. because its a psi-op perk from the lab
+    }
 
 	return ELR_NoInterrupt;
 }
