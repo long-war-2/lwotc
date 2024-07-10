@@ -6,6 +6,7 @@
 class XComGameState_LWListenerManager extends XComGameState_BaseObject config(LW_Overhaul) dependson(XComGameState_LWPersistentSquad);
 
 var config int DEFAULT_LISTENER_PRIORITY;
+var config bool AI_PATROLS_WHEN_SIGHTED_BY_HIDDEN_XCOM;
 
 var localized string ResistanceHQBodyText;
 
