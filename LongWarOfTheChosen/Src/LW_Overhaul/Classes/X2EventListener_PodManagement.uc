@@ -67,6 +67,13 @@ static function EventListenerReturn OnAlienTurnBegin(Object EventData, Object Ev
 	local XComGameState_Player PlayerState;
 
 	PlayerState = XComGameState_Player (EventData);
+
+	if (PlayerState == none)
+	{
+		`LOG ("LW2OnPlayerTurnBegun: PlayerState Not Found");
+		return ELR_NoInterrupt;
+	}
+	
 	if(PlayerState.GetTeam() != eTeam_Alien)
 	{
 		return ELR_NoInterrupt;
