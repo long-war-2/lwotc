@@ -57,6 +57,7 @@ var config bool bNerfFrostLegion;
 var config bool bDisableDiversitySystem;
 
 var config array<MissionDefinition> ReplacementMissionDefs;
+var config array<EncounterBucket> ReplacementEncounterBuckets;
 
 var config array<string> MissionsToNotDiversify;
 
@@ -241,6 +242,7 @@ static event OnPostTemplatesCreated()
 	ModifyYellAbility();
 	ModifyMissionSchedules();
 	ModifyEncountersForFL21();
+	UpdateWaterworldRNF();
 	ModCompatibilityConfig();
 	EditModdedRocketAbilities();
 	UpdateSkulljackAllShooterEffectExclusions();
@@ -361,6 +363,25 @@ static function ModifyEncountersForFL21()
     	}
 	}
 
+}
+
+static function UpdateWaterworldRNF()
+{
+	local XComTacticalMissionManager MissionManager;
+	local EncounterBucket EncounterBucket;
+	local int idx;
+
+	MissionManager = `TACTICALMISSIONMGR;
+
+	foreach default.ReplacementEncounterBuckets (EncounterBucket)
+	{
+		idx = MissionManager.EncounterBuckets.Find('EncounterBucketID', EncounterBucket.EncounterBucketID);
+		if(idx != INDEX_NONE)
+		{
+			MissionManager.EncounterBuckets[idx] = EncounterBucket;
+			`LWTrace("Replacing EncounterBucket" @EncounterBucket.EncounterBucketId);
+		}
+	}
 }
 
 static function UpdateEncounterLists()

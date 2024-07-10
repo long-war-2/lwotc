@@ -74,6 +74,7 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	Template.AddCHEvent('PlayerTurnEnded', RollForPerTurnWillLoss, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('OverrideR3Button', BindR3ToPlaceDelayedEvacZone, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('OverrideDamageRemovesReserveActionPoints', OnOverrideDamageRemovesReserveActionPoints, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('ShouldUnitPatrolUnderway', OnShouldUnitPatrol, ELD_Immediate, GetListenerPriority());
 	// This seems to be causing stutter in the game, so commenting out for now.
 	// if (XCom_Perfect_Information_UIScreenListener.default.ENABLE_PERFECT_INFORMATION)
 	// {
@@ -1253,4 +1254,71 @@ static function EventListenerReturn OnOverrideDamageRemovesReserveActionPoints(O
     Tuple.Data[0].b = bDamageRemovesReserveActionPoints;
 
     return ELR_NoInterrupt;
+}
+
+
+static function EventListenerReturn OnShouldUnitPatrol(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID,  Object CallbackObject)
+{
+	local XComLWTuple				OverrideTuple;
+	local XComGameState_Unit		UnitState;
+	local XComGameState_AIUnitData	AIData;
+	local int						AIUnitDataID, idx;
+	local XComGameState_Player		ControllingPlayer;
+	local bool						bHasValidAlert;
+
+	`LWTrace("Firing OnShouldUnitPatrol");
+	OverrideTuple = XComLWTuple(EventData);
+	if(OverrideTuple == none)
+	{
+		`LWTrace("OnShouldUnitPatrol event triggered with invalid event data.");
+		return ELR_NoInterrupt;
+	}
+	UnitState = XComGameState_Unit(OverrideTuple.Data[1].o);
+	if (class'XComGameState_LWListenerManager'.default.AI_PATROLS_WHEN_SIGHTED_BY_HIDDEN_XCOM)
+	{
+		if (UnitState.GetCurrentStat(eStat_AlertLevel) <= `ALERT_LEVEL_YELLOW)
+		{
+			if (UnitState.GetCurrentStat(eStat_AlertLevel) == `ALERT_LEVEL_YELLOW)
+			{
+				// don't do normal patrolling if the unit has current AlertData
+				AIUnitDataID = UnitState.GetAIUnitDataID();
+				if (AIUnitDataID > 0)
+				{
+					if (NewGameState != none)
+						AIData = XComGameState_AIUnitData(NewGameState.GetGameStateForObjectID(AIUnitDataID));
+
+					if (AIData == none)
+					{
+						AIData = XComGameState_AIUnitData(`XCOMHISTORY.GetGameStateForObjectID(AIUnitDataID));
+					}
+					if (AIData != none)
+					{
+						if (AIData.m_arrAlertData.length == 0)
+						{
+							OverrideTuple.Data[0].b = true;
+						}
+						else // there is some alert data, but how old ?
+						{
+							ControllingPlayer = XComGameState_Player(`XCOMHISTORY.GetGameStateForObjectID(UnitState.ControllingPlayer.ObjectID));
+							for (idx = 0; idx < AIData.m_arrAlertData.length; idx++)
+							{
+								if (ControllingPlayer.PlayerTurnCount - AIData.m_arrAlertData[idx].PlayerTurn < 3)
+								{
+									bHasValidAlert = true;
+									break;
+								}
+							}
+							if (!bHasValidAlert)
+							{
+								OverrideTuple.Data[0].b = true;
+							}
+						}
+					}
+				}
+			}
+			`LWTrace("overriding patrol behavior.");
+			OverrideTuple.Data[0].b = true;
+		}
+	}
+	return ELR_NoInterrupt;
 }
