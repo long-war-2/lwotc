@@ -1312,6 +1312,8 @@ LocPromotionPopupText="Grants the Adaptive Aim and Holo Targeting abilities, imp
 RankNames[8]="Master"
 ShortNames[8]="Mstr."
 RankIcons[8]= "UILibrary_LW_PerkPack.psirank_Master"
+AbilityTreeTitles[3]="Pistols"
+
 
 ; plot type loc since sewer and subway can be combined now.
 
