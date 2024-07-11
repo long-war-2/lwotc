@@ -4,7 +4,15 @@ class X2Effect_LayeredArmour_LW extends X2Effect_BonusArmor;
 
 var float MaxDamage;
 
-function int GetDefendingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, X2Effect_ApplyWeaponDamage WeaponDamageEffect, optional XComGameState NewGameState)
+function float GetPostDefaultDefendingDamageModifier_CH(
+	XComGameState_Effect EffectState,
+	XComGameState_Unit SourceUnit,
+	XComGameState_Unit TargetUnit,
+	XComGameState_Ability AbilityState,
+	const out EffectAppliedData ApplyEffectParameters,
+	float WeaponDamage,
+	X2Effect_ApplyWeaponDamage WeaponDamageEffect,
+	XComGameState NewGameState)
 {
 	local int DamageMod;
 	local int FinalDamage;
@@ -13,10 +21,10 @@ function int GetDefendingDamageModifier(XComGameState_Effect EffectState, XComGa
 	local XComGameState_Unit TargetState;
 	local ArmorMitigationResults FakeArmor;
 
-	if (CurrentDamage <= 0)
+	if (WeaponDamage <= 0)
 		return 0;
 
-	TargetState = XComGameState_Unit(TargetDamageable);
+	TargetState = XComGameState_Unit(TargetUnit);
 
 	if (TargetState == none)
 		return 0;
@@ -28,7 +36,7 @@ function int GetDefendingDamageModifier(XComGameState_Effect EffectState, XComGa
 
 	HealthGate = Round(MaxHealth * MaxDamage);
 
-	FinalDamage = CurrentDamage;
+	FinalDamage = int(WeaponDamage);
 	FinalDamage -= TargetState.GetArmorMitigation(FakeArmor);
 	
 	if (FinalDamage >= HealthGate)
@@ -38,6 +46,19 @@ function int GetDefendingDamageModifier(XComGameState_Effect EffectState, XComGa
 		return DamageMod;
 	}
 
+	return 0;
+}
+
+function int GetDefendingDamageModifier(XComGameState_Effect EffectState, 
+	XComGameState_Unit Attacker,
+	Damageable TargetDamageable,
+	XComGameState_Ability AbilityState,
+	const out EffectAppliedData AppliedData,
+	const int CurrentDamage,
+	X2Effect_ApplyWeaponDamage WeaponDamageEffect,
+	optional XComGameState NewGameState)
+
+{
 	return 0;
 }
 
