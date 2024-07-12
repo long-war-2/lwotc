@@ -330,7 +330,7 @@ LocFriendlyName="闪电反射"
 LocFlyOverText="闪电反射"
 LocLongDescription="大幅减少敌人对你的反应攻击的命中率。此加成会随着敌人对你反应攻击次数的增加而减弱。"
 LocHelpText="减少敌人对你的反应攻击的命中率。"
-LocPromotionPopupText="<Bullet/> 大幅减少敌人对你的反应攻击的命中率。<br/><Bullet/> 回合内首次对你的反应攻击-100命中；第二次-80；第3次-60；第4次-40；第五次-20。再往后的命中率会恢复正常。<br/><Bullet/> 此项能力在单位处于混乱、眩晕、恐慌、燃烧或其他受损状态中时将不提供防御加成。"
+LocPromotionPopupText="<Bullet/> 大幅减少敌人对你的反应攻击的命中率。<br/><Bullet/> 回合内首次对你的反应攻击-100命中；第二次-80；第三次-60；第四次-40；第五次-20。再往后的命中率会恢复正常。<br/><Bullet/> 此项能力在单位处于混乱、眩晕、恐慌、燃烧或其他受损状态中时将不提供防御加成。"
 
 [Cutthroat X2AbilityTemplate]
 LocFriendlyName="割喉"
@@ -372,7 +372,7 @@ LocFriendlyName="区域压制"
 LocFlyOverText="区域压制"
 LocLongDescription="发射一片弹幕，压制4格半径范围内的所有敌方目标，降低其命中<Ability:SUPPRESSIONPENALTY/>点，直到压制效果移除。范围内任何移动的敌方目将触发反应射击。在隐蔽时无法使用。"
 LocHelpText="压制一片区域内的多个目标。"
-LocPromotionPopupText="<Bullet/> 士兵隐蔽时无法使用区域压制。<Bullet/> 只要进行压制的单位有足够弹药，任何试图移动的敌方目标都会受到反应射击。<br/><Bullet/> 散弹枪或狙击步枪无法使用该能力。<br/><Bullet/> 区域压制消耗<Ability:SelfAmmoCost/>弹药，每次反应射击要再消耗1个弹药。没有冷却时间。<br/><Bullet/> 如果进行压制的单位受到伤害，区域压制将中止。<br/><Bullet/> 如果多个单位压制同样的目标，命中惩罚不会叠加。<br/><Bullet/> 压制限制了目标许多能力的使用，包括火箭和榴弹。"
+LocPromotionPopupText="<Bullet/> 士兵隐蔽时无法使用区域压制。<br/><Bullet/> 只要进行压制的单位有足够弹药，任何试图移动的敌方目标都会受到反应射击。<br/><Bullet/> 散弹枪或狙击步枪无法使用该能力。<br/><Bullet/> 区域压制消耗<Ability:SelfAmmoCost/>弹药，每次反应射击要再消耗1弹药。没有冷却时间。<br/><Bullet/> 如果进行压制的单位受到伤害，区域压制将中止。<br/><Bullet/> 如果多个单位压制同样的目标，命中惩罚不会叠加。<br/><Bullet/> 压制限制了目标许多能力的使用，包括火箭和榴弹。"
 
 [SuppressionShot_LW X2AbilityTemplate]
 LocFriendlyName="压制"
@@ -453,7 +453,7 @@ LocFriendlyName="急射"
 LocFlyOverText="急射"
 LocLongDescription="你可以在一次不结束回合的行动后用狙击步枪进行标准射击，但是超过小队视野5格以外的所有射击都会受到严重的射程惩罚。"
 LocHelpText="射击目标。"
-LocPromotionPopupText="<Bullet/> 这个能力显著改变了狙击手的作战方式：士兵现在可以在移动后使用狙击步枪进行标准射击，但是在超过22个格子范围的目标上，无论士兵是否移动，所有射击都会受到严重的命中惩罚。<br/><Bullet/> 仅适用于狙击步枪。<br/><Bullet/> 相对于普通狙击步枪，减少<Ability:WPN_HANDLING_MODIFIER/>近距离惩罚。<br/><Bullet/> 在超过小队视野5格后，每个格子额外受到-20的命中惩罚。<br/><Bullet/> 某些特殊射击和守望仍需要两个行动点才能使用。守望允许小队视野监视射击，但仍会受到射程惩罚。<br/><Bullet/> 至少有1%命中的情况下士兵才会进行守望射击或者杀戮地带射击。<br/><Bullet/> 在一次不结束回合的行动后无法使用狙击步枪进行监视。<br/>"
+LocPromotionPopupText="<Bullet/> 这个能力显著改变了狙击手的作战方式：士兵现在可以在移动后使用狙击步枪进行标准射击，但是在超过22格范围的目标上，无论士兵是否移动，所有射击都会受到严重的命中惩罚。<br/><Bullet/> 仅适用于狙击步枪。<br/><Bullet/> 相对于普通狙击步枪，减少<Ability:WPN_HANDLING_MODIFIER/>%近距离惩罚。<br/><Bullet/> 在超过小队视野5格后，每个格子额外受到-20的命中惩罚。<br/><Bullet/> 某些特殊射击和守望仍需要两个行动点才能使用。守望允许小队视野监视射击，但仍会受到射程惩罚。<br/><Bullet/> 至少有1%命中的情况下士兵才会进行守望射击或者杀戮地带射击。<br/><Bullet/> 在一次不结束回合的行动后无法使用狙击步枪进行监视。<br/>"
 
 [SnapShotOverwatch X2AbilityTemplate]
 LocFriendlyName="监视"
@@ -679,16 +679,16 @@ LocPromotionPopupText="<Bullet/> 堡垒有<Ability:BASTION_RADIUS_TILES>格半�
 [IronCurtain X2AbilityTemplate]
 LocFriendlyName="铁幕"
 LocFlyOverText="铁幕"
-LocLongDescription="使用主武器进行的锥形射击。只造成<Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>%伤害，但会在<Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/>回合内减少目标的移动力。"
-LocHelpText="使用主武器进行的锥形射击。只造成<Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>%伤害，但会在<Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/>回合内减少目标的移动力。"
-LocPromotionPopupText="<Bullet/> 如果该锥形攻击命中，铁幕造成<Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>%伤害并在<Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/>回合内使敌人的移动力-<Ability:IRON_CURTAIN_MOBILITY_DAMAGE>。<br/><Bullet/> 冷却时间<Ability:SelfCooldown_LW/>回合。<br/><Bullet/> 使用<Ability:IRON_CURTAIN_AMMO_COST>弹药。<br/><Bullet/> 可在移动后使用。<br/><Bullet/> 铁幕不适用霰弹枪和狙击步枪。<br/><Bullet/> 在锥形区域内的友军也会被此能力击中。<br/>"
+LocLongDescription="使用主武器进行的锥形射击。只造成<Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>%伤害，但会在<Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/>回合内减少目标的移动力。移动力减少效果即使未命中也会生效。"
+LocHelpText="使用主武器进行的锥形射击。只造成<Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>%伤害，但会在<Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/>回合内减少目标的移动力。移动力减少效果即使未命中也会生效。"
+LocPromotionPopupText="<Bullet/> 铁幕造成<Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>%伤害并在<Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/>回合内使敌人的移动力-<Ability:IRON_CURTAIN_MOBILITY_DAMAGE>。<br/><Bullet/> 冷却时间<Ability:SelfCooldown_LW/>回合。<br/><Bullet/> 使用<Ability:IRON_CURTAIN_AMMO_COST>弹药。<br/><Bullet/> 可在移动后使用。<br/><Bullet/> 铁幕不适用于霰弹枪和狙击步枪。<br/><Bullet/> 在锥形区域内的友军也会被此能力击中。<br/><Bullet/> 移动力减少效果即使未命中也会生效。<br/>"
 
 [IronCurtainShot X2AbilityTemplate]
 LocFriendlyName="铁幕"
 LocFlyOverText="铁幕"
-LocLongDescription="造成<Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>%伤害的特殊射击，在<Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/>回合内减少目标的移动力。使用主武器进行的锥形射击。"
-LocHelpText="造成<Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>%伤害的特殊射击，在<Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/>回合内减少目标的移动力。使用主武器进行的锥形射击。"
-LocPromotionPopupText="<Bullet/> 如果该锥形攻击命中，铁幕造成<Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>%伤害并在<Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/>回合内使敌人的移动力-<Ability:IRON_CURTAIN_MOBILITY_DAMAGE>。<br/><Bullet/> 冷却时间<Ability:SelfCooldown_LW/>回合。<br/><Bullet/> 使用<Ability:IRON_CURTAIN_AMMO_COST>弹药。<br/><Bullet/> 可在移动后使用。<br/><Bullet/> 铁幕不适用于散弹枪和狙击步枪。<br/><Bullet/> 在锥形区域内的友军也会被此能力击中。<br/>"
+LocLongDescription="使用主武器进行的锥形射击。只造成<Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>%伤害，但会在<Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/>回合内减少目标的移动力。移动力减少效果即使未命中也会生效。"
+LocHelpText="使用主武器进行的锥形射击。只造成<Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>%伤害，但会在<Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/>回合内减少目标的移动力。移动力减少效果即使未命中也会生效。"
+LocPromotionPopupText="<Bullet/> 铁幕造成<Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>%伤害并在<Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/>回合内使敌人的移动力-<Ability:IRON_CURTAIN_MOBILITY_DAMAGE>。<br/><Bullet/> 冷却时间<Ability:SelfCooldown_LW/>回合。<br/><Bullet/> 消耗<Ability:IRON_CURTAIN_AMMO_COST>弹药。<br/><Bullet/> 可在移动后使用。<br/><Bullet/> 铁幕不适用于散弹枪和狙击步枪。<br/><Bullet/> 在锥形区域内的友军也会被此能力击中。<br/><Bullet/> 移动力减少效果即使未命中也会生效。<br/>"
 str_IronCurtainEffect="铁幕"
 
 [Slash_LW X2AbilityTemplate]
@@ -1212,3 +1212,10 @@ LocPromotionPopupText="赋予自适应瞄准和全息瞄准能力，提高SPARK�
 RankNames[8]="大师"
 ShortNames[8]="大师"
 RankIcons[8]="UILibrary_LW_PerkPack.psirank_Master"
+AbilityTreeTitles[3]="手枪"
+
+; plot type loc since sewer and subway can be combined now.
+
+[XComGame.X2MPData_Shell]
+arrMPMapFriendlyNames[9]="下水道"
+arrMPMapFriendlyNames[10]="下水道"
