@@ -74,7 +74,7 @@ static function FixAssaultMecCCS(X2AbilityTemplate Template)
     {
        Template.AbilityTriggers.Length = 0;
 
-      Trigger = new class'X2AbilityTrigger_EventListener';
+        Trigger = new class'X2AbilityTrigger_EventListener';
     	Trigger.ListenerData.EventID = 'ObjectMoved';
     	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
     	Trigger.ListenerData.Filter = eFilter_None;
