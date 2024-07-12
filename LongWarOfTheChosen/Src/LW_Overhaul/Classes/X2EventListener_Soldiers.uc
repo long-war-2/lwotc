@@ -88,7 +88,7 @@ static function CHEventListenerTemplate CreatePromotionListeners()
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'SoldierPromotionListeners');
 	Template.AddCHEvent('OverrideShowPromoteIcon', OnCheckForPsiPromotion, ELD_Immediate);
-	Template.AddCHEvent('OverridePromotionUIClass', OverridePromotionUIClass, ELD_Immediate, 49);
+	Template.AddCHEvent('OverridePromotionUIClass', OverridePromotionUIClass, ELD_Immediate, 99);
 	Template.AddCHEvent('OverridePromotionBlueprintTagPrefix', OverridePromotionBlueprintTagPrefix, ELD_Immediate);
 	Template.AddCHEvent('CPS_OverrideCanPurchaseAbility', OverrideCanPurchaseAbility, ELD_Immediate);
 	Template.AddCHEvent('CPS_OverrideAbilityPointCost', OverrideAbilityPointCost, ELD_Immediate);
@@ -477,7 +477,7 @@ static function EventListenerReturn OverridePromotionUIClass(
     	if (ScreenType == eCHLPST_PsiOp)
     	{
 			Tuple.Data[0].i = eCHLPST_Hero;
-        	Tuple.Data[1].o = class'X2WOTCCommunityPromotionScreen.CPS_UIArmory_PromotionHero';
+        	Tuple.Data[1].o = class'UIArmory_PromotionHero';
     	}
 
 		return ELR_NoInterrupt;
