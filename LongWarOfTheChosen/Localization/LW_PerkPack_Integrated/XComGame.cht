@@ -1211,3 +1211,10 @@ LocPromotionPopupText="賦予自適應瞄準和全息瞄準能力，提高SPARK�
 RankNames[8]="大師"
 ShortNames[8]="大師"
 RankIcons[8]="UILibrary_LW_PerkPack.psirank_Master"
+AbilityTreeTitles[3]="手槍"
+
+; plot type loc since sewer and subway can be combined now.
+
+[XComGame.X2MPData_Shell]
+arrMPMapFriendlyNames[9]="下水道"
+arrMPMapFriendlyNames[10]="下水道"

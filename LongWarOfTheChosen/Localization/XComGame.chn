@@ -512,16 +512,16 @@ LocPromotionPopupText="<Bullet/> 榴弹、火箭和MEC微型飞弹能够造成�
 
 [Shellshock_LW X2AbilityTemplate]
 LocFriendlyName="弹震"
-LocLongDescription="你的榴弹能够降低敌人<Ability:SHELLSHOCK_AIM_REDUCTION/>命中和<Ability:SHELLSHOCK_CRIT_CHANCE_REDUCTION/>暴击，持续<Ability:SHELLSHOCK_TURNS/>回合。"
-LocHelpText="你的榴弹能够降低敌人<Ability:SHELLSHOCK_AIM_REDUCTION/>命中和<Ability:SHELLSHOCK_CRIT_CHANCE_REDUCTION/>暴击，持续<Ability:SHELLSHOCK_TURNS/>回合。"
+LocLongDescription="你的榴弹和臂套火箭能够降低敌人<Ability:SHELLSHOCK_AIM_REDUCTION/>命中和<Ability:SHELLSHOCK_CRIT_CHANCE_REDUCTION/>暴击，持续<Ability:SHELLSHOCK_TURNS/>回合。"
+LocHelpText="你的榴弹和臂套火箭能够降低敌人<Ability:SHELLSHOCK_AIM_REDUCTION/>命中和<Ability:SHELLSHOCK_CRIT_CHANCE_REDUCTION/>暴击，持续<Ability:SHELLSHOCK_TURNS/>回合。"
 LocPromotionPopupText="<Bullet/> 弹震也适用于闪光榴弹。"
 LocFlyOverText="弹震"
 
 [Shockwave_LW X2AbilityTemplate]
 LocFriendlyName="冲击波"
-LocLongDescription="你的伤害性榴弹能够降低敌人<Ability:SHOCKWAVE_DEF_REDUCTION/>防御和<Ability:SHOCKWAVE_DODGE_REDUCTION/>闪避，持续<Ability:SHOCKWAVE_TURNS/>回合。"
-LocHelpText="你的伤害性榴弹能够降低敌人<Ability:SHOCKWAVE_DEF_REDUCTION/>防御和<Ability:SHOCKWAVE_DODGE_REDUCTION/>闪避，持续<Ability:SHOCKWAVE_TURNS/>回合。"
-LocPromotionPopupText="<Bullet/> 冲击波不适用于闪光弹等非伤害性榴弹。"
+LocLongDescription="你的伤害性榴弹和臂套火箭能够降低敌人<Ability:SHOCKWAVE_DEF_REDUCTION/>防御和<Ability:SHOCKWAVE_DODGE_REDUCTION/>闪避，持续<Ability:SHOCKWAVE_TURNS/>回合。"
+LocHelpText="你的伤害性榴弹和臂套火箭能够降低敌人<Ability:SHOCKWAVE_DEF_REDUCTION/>防御和<Ability:SHOCKWAVE_DODGE_REDUCTION/>闪避，持续<Ability:SHOCKWAVE_TURNS/>回合。"
+LocPromotionPopupText="<Bullet/> 冲击波不适用于闪光榴弹等非伤害性榴弹。"
 LocFlyOverText="冲击波"
 
 ;;;;;;;;;;;;;;;;;;;;  GUNNER ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
