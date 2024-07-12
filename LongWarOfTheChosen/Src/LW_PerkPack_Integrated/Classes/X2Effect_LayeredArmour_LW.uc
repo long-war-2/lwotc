@@ -24,7 +24,7 @@ function float GetPostDefaultDefendingDamageModifier_CH(
 	if (WeaponDamage <= 0)
 		return 0;
 
-	TargetState = XComGameState_Unit(TargetUnit);
+	TargetState = TargetUnit;
 
 	if (TargetState == none)
 		return 0;
