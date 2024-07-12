@@ -2729,8 +2729,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponTemplate.Abilities.AddItem('Concentration_LW');
 			break;
 		case 'GrenadeLauncher_MG':
-			WeaponTemplate.Abilities.AddItem('HeavyOrdnance_LW');
-			WeaponTemplate.Abilities.AddItem('Protector');
+			WeaponTemplate.Abilities.AddItem('HeavyOrdnance');
 			break;
 		default:
 			break;
