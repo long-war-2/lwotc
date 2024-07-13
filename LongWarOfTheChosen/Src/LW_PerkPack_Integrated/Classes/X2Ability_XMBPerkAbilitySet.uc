@@ -3886,12 +3886,13 @@ static function X2AbilityTemplate QuickdrawMobility()
 	WeaponCatCondition = new class'X2Condition_UnitInventory';
 	WeaponCatCondition.RelevantSlot = eInvSlot_Pistol;
 	WeaponCatCondition.RequireWeaponCategory = 'pistol';
-	Template.AbilityTargetConditions.AddItem(WeaponCatCondition);
+	
 
 	MobilityIncreaseEffect = new class'X2Effect_PersistentStatChange';
 	MobilityIncreaseEffect.BuildPersistentEffect(1, true, false);
 	
 	MobilityIncreaseEffect.AddPersistentStatChange(eStat_Mobility, default.QUICKDRAW_MOBILITY_INCREASE);
+	MobilityIncreaseEffect.TargetConditions.AddItem(WeaponCatCondition);
 	Template.AddTargetEffect(MobilityIncreaseEffect);
 
 	// Duplicate for autopistols
@@ -3899,12 +3900,12 @@ static function X2AbilityTemplate QuickdrawMobility()
 	WeaponCatCondition = new class'X2Condition_UnitInventory';
 	WeaponCatCondition.RelevantSlot = eInvSlot_Pistol;
 	WeaponCatCondition.RequireWeaponCategory = 'sidearm';
-	Template.AbilityTargetConditions.AddItem(WeaponCatCondition);
 
 	MobilityIncreaseEffect = new class'X2Effect_PersistentStatChange';
 	MobilityIncreaseEffect.BuildPersistentEffect(1, true, false);
 	
 	MobilityIncreaseEffect.AddPersistentStatChange(eStat_Mobility, default.QUICKDRAW_MOBILITY_INCREASE);
+	MobilityIncreaseEffect.TargetConditions.AddItem(WeaponCatCondition);
 	Template.AddTargetEffect(MobilityIncreaseEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
