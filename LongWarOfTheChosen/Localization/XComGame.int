@@ -7804,3 +7804,43 @@ LocFlyOverText="Spectral Zombie Immunities"
 LocLongDescription="Spectral Zombies are immune to mental impairments, fire, poison, and acid."
 LocHelpText="Spectral Zombies are immune to mental impairments, fire, poison, and acid.
 LocPromotionPopupText=""
+
+[Anatomy_LW X2AbilityTemplate]
+LocFriendlyName="Anatomy"
+LocFlyOverText="Anatomy"
+LocLongDescription="You know exactly where to strike to cause the most damage. You gain +15% Critical Chance and 2 Armor Pierce on all attacks."
+LocHelpText="You gain bonuses to Critical Chance and Armor Pierce."
+LocPromotionPopupText="<Bullet/> This is an unconditional passive bonus.\n<Bullet/> The Armor Pierce bonus will not show on attack previews, but it will function when the attack lands."
+
+[ScoutScanner_LW X2AbilityTemplate]
+LocFriendlyName="Reconnoiter"
+LocHelpText="Every 4 turns, as a free action, you can use a Battle Scanner."
+LocLongDescription="Every 4 turns, as a free action, you can use a Battle Scanner. This does not require or consume any actual equipped Battle Scanners."
+LocPromotionPopupText="<Bullet/> The Battle Scanners granted by Reconnoiter can be used indefinitely, only limited by the cooldown.\n<Bullet/> These Battle Scanners are separate from the ones granted by the Battle Scanner item or the Scout ability."
+
+[FreeScanner_LW X2AbilityTemplate]
+LocFriendlyName="Reconnoiter"
+LocHelpText="Every 4 turns, as a free action, you can use a Battle Scanner."
+LocLongDescription="Every 4 turns, as a free action, you can use a Battle Scanner. This does not require or consume any actual equipped Battle Scanners."
+LocPromotionPopupText="<Bullet/> The Battle Scanners granted by Reconnoiter can be used indefinitely, only limited by the cooldown.\n<Bullet/> These Battle Scanners are separate from the ones granted by the Battle Scanner item or the Scout ability."
+
+[LineEmUp_LW X2AbilityTemplate]
+LocFriendlyName="Priority Target"
+LocLongDescription="You get <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit chance on ranged attacks against the closest visible enemy."
+LocHelpText="You get <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit chance on ranged attacks against the closest visible enemy."
+LocFlyOverText="Priority Target"
+LocPromotionPopupText="<Bullet/> If multiple enemies are equally distant, you get the bonus against all of them.<br/><Bullet/> Priority Target doesn't affect melee attacks.<br/>"
+
+[SensorOverlays_LW X2AbilityTemplate]
+LocFriendlyName="Sensor Overlays"
+LocLongDescription="All squad members get <Ability:+Crit> Crit chance against enemies you can see."
+LocHelpText="All squad members get <Ability:+Crit> Crit chance against enemies you can see."
+LocFlyOverText="Sensor Overlays"
+LocPromotionPopupText="<Bullet/> This doesn't count enemies only visible through squadsight.<br/>"
+
+[FocusedDefense_LW X2AbilityTemplate]
+LocFriendlyName="Focused Defense"
+LocLongDescription="You get an additional <Ability:+Defense/> Defense and <Ability:+Dodge/> Dodge against attacks by the closest visible enemy while not flanked."
+LocHelpText="You get an additional <Ability:+Defense/> Defense and <Ability:+Dodge/> Dodge against attacks by the closest visible enemy while not flanked."
+LocFlyOverText="Focused Defense"
+LocPromotionPopupText="<Bullet/> The bonus doesn't apply against melee attacks.<br/><Bullet/> If multiple enemies are equally distant, you get the bonus against all of them.<br/>"

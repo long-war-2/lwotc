@@ -46,7 +46,7 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Items.AddItem(CreateShapedCharge());
 
-
+	Items.AddItem(CreateScoutScanner());
 
 	return Items;
 }
@@ -452,3 +452,35 @@ static function X2DataTemplate CreateShapedCharge()
 	return Template;
 }
 
+static function X2WeaponTemplate CreateScoutScanner()
+{
+	local X2WeaponTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'ScoutScanner_LW');
+
+	Template.strImage = "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_Battle_Scanner";
+	Template.EquipSound = "StrategyUI_Grenade_Equip";
+
+	Template.GameArchetype = "WP_Grenade_BattleScanner.WP_Grenade_BattleScanner";
+	Template.Abilities.AddItem('ScoutScanner_LW');
+	Template.ItemCat = 'tech';
+	Template.WeaponCat = 'utility';
+	Template.WeaponTech = 'conventional';
+	Template.InventorySlot = eInvSlot_Utility;
+	Template.StowedLocation = eSlot_BeltHolster;
+	Template.bMergeAmmo = true;
+	Template.iClipSize = 1;
+	Template.Tier = 1;
+
+	Template.iRadius = class'X2Item_DefaultUtilityItems'.default.BATTLESCANNER_RADIUS;
+	Template.iRange = class'X2Item_DefaultUtilityItems'.default.BATTLESCANNER_RANGE;
+
+	Template.CanBeBuilt = false;
+
+	Template.bShouldCreateDifficultyVariants = true;
+
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.RangeLabel, , class'X2Item_DefaultUtilityItems'.default.BATTLESCANNER_RANGE);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.RadiusLabel, , class'X2Item_DefaultUtilityItems'.default.BATTLESCANNER_RADIUS);
+
+	return Template;
+}
