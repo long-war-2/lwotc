@@ -1140,12 +1140,39 @@ static event OnPostMission()
 // called for the creation of Gatecrasher.
 static function PostSitRepCreation(out GeneratedMissionData GeneratedMission, optional XComGameState_BaseObject SourceObject)
 {
-	local XComGameState_HeadquartersAlien AlienHQ;
+	//local XComGameState_HeadquartersAlien AlienHQ;
+	local XComGameState_WorldRegion Region;
+	local XComGameState_MissionSite Mission;
+	local XComGameState_LWAlienActivity Activity;
+	local XComGameState_WorldRegion_LWStrategyAI RegionalAI;
 
-	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	//AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	Activity = XComGameState_LWAlienActivity(SourceObject);
+	Mission = XComGameState_MissionSite(SourceObject);
 
-	// Disable TheLost SitRep if we haven't reached the appropriate force level yet.
-	if (AlienHQ.ForceLevel < default.MIN_FL_FOR_LOST[`TACTICALDIFFICULTYSETTING])
+	if(Activity != none)
+	{
+		Region = XComGameState_WorldRegion(`XCOMHISTORY.GetGameStateForObjectID(Activity.PrimaryRegion.ObjectID));
+	}
+
+	if(Mission != none)
+	{
+		Region = XComGameState_WorldRegion(`XCOMHISTORY.GetGameStateForObjectID(Mission.Region.ObjectID));
+	}
+
+	if(Region != none)
+	{
+		RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(Region);
+
+		// Disable TheLost SitRep if we haven't reached the appropriate force level yet.
+		if (RegionalAI.LocalForceLevel < default.MIN_FL_FOR_LOST[`TACTICALDIFFICULTYSETTING])
+		{
+		GeneratedMission.SitReps.RemoveItem('TheLost');
+		GeneratedMission.SitReps.RemoveItem('TheHorde');
+		}
+	}
+	// If we don't have a region, also disable it so you don't get them on CAD.
+	else
 	{
 		GeneratedMission.SitReps.RemoveItem('TheLost');
 		GeneratedMission.SitReps.RemoveItem('TheHorde');
