@@ -4032,7 +4032,7 @@ static function X2AbilityTemplate AddAnatomyAbility()
 	local X2AbilityTemplate					Template;
 	local X2Effect_PersistentStatChange		AnatomyEffect;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'Anatomy');	
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Anatomy_LW');	
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.IconImage = "img:///BetterIcons_LW.Perks.Anatomy";
 	Template.Hostility = eHostility_Neutral;
