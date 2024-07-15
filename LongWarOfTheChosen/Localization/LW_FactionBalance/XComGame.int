@@ -50,8 +50,8 @@ LocPromotionPopupText="<Bullet/> Stuns the target for <Ability:DisablingShotStun
 
 [Meditation X2AbilityTemplate]
 LocFriendlyName="Meditation"
-LocLongDescription="Adds up to <Ability:MeditationFocusRecovery/> focus to the Templar."
-LocHelpText="Adds up to <Ability:MeditationFocusRecovery/> focus to the Templar."
+LocLongDescription="Adds up to <Ability:MeditationFocusRecovery/> focus to the Templar. Starts with 0 charges, and gains one charge per kill the Templar gets."
+LocHelpText="Adds up to <Ability:MeditationFocusRecovery/> focus to the Templar. Starts with 0 charges, and gains one charge per kill the Templar gets."
 LocPromotionPopupText="<Bullet/> Adds <Ability:MeditationFocusRecovery/> points of focus to the Templar.<br/><Bullet/> Ends the turn.<br/><Bullet/> Has a <Ability:SelfCooldown/>-turn cooldown."
 
 [Overcharge_LW X2AbilityTemplate]

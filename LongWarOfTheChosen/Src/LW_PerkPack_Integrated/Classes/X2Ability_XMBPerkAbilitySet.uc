@@ -246,6 +246,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddScoutScanner());
 	Templates.AddItem(SensorOverlays());
 	Templates.AddItem(FocusedDefense());
+	Templates.AddItem(GrappleExpert());
 	
 	
 	return Templates;
@@ -1764,6 +1765,8 @@ static function X2AbilityTemplate Predator()
 	return Passive('Predator_LW', "img:///UILibrary_FavidsPerkPack.Perk_Ph_Predator", true, Effect);
 }
 
+
+
 static function X2AbilityTemplate Stiletto()
 {
 	local XMBEffect_ConditionalBonus ShootingEffect;
@@ -2352,6 +2355,7 @@ static function X2AbilityTemplate PrimaryReturnFireShot()
 	
 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
 	StandardAim.bReactionFire = true;
+	StandardAim.bIgnoreCoverBonus = true;
 	Template.AbilityToHitCalc = StandardAim;
 	Template.AbilityToHitOwnerOnMissCalc = StandardAim;
 
@@ -4206,6 +4210,22 @@ static function X2AbilityTemplate SensorOverlays()
 	Effect.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
 
 	return SquadPassive('SensorOverlays_LW', "img:///UILibrary_SODragoon.UIPerk_sensoroverlays", false, Effect);
+}
+
+static function X2AbilityTemplate GrappleExpert()
+{
+
+	local X2AbilityTemplate				Template;
+	local X2Effect_SkirmMeleeHitMod		HitModEffect;
+
+
+	// Create a persistent effect that triggers status effects on Crit
+	HitModEffect = new class'X2Effect_SkirmMeleeHitMod';
+	HitModEffect.BuildPersistentEffect(1, true, false, false);
+
+	Template = Passive('GrappleExpert_LW', "UILibrary_PerkIcons.UIPerk_closeandpersonal", false, HitModEffect);
+
+	return Template;
 }
 
 defaultproperties

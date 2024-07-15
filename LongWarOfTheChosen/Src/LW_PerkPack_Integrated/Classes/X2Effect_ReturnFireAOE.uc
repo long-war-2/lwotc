@@ -47,6 +47,17 @@ static function EventListenerReturn ReturnFireAOECheck(Object EventData, Object 
 	AbilityContext = XComGameStateContext_Ability(GameState.GetContext());
 	if (AbilityContext != none)
 	{
+		AbilityState = XComGameState_Ability(EventData);
+		if(AbilityState != none)
+		{
+			if(AbilityState.GetMyTemplate().Hostility != eHostility_Offensive)
+				return ELR_NoInterrupt;
+		}
+		else
+		{
+			return ELR_NoInterrupt;
+		}
+		
 		//`LOG("=== ReturnFireAOECheck 1");
 		History = `XCOMHISTORY;
 		EffectState = XComGameState_Effect(CallbackData);
