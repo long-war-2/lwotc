@@ -181,9 +181,9 @@ LocPromotionPopupText="<Bullet/> 你的火焰噴射器現在可以使敵人恐�
 [PhosphorusPassive X2AbilityTemplate]
 LocFriendlyName="磷"
 LocFlyOverText="磷"
-LocLongDescription="你的火焰噴射器可以傷害火焰免疫的敵人，撕裂1/2/3點護甲。"
-LocHelpText="你的火焰噴射器可以傷害火焰免疫的敵人，撕裂1/2/3點護甲。"
-LocPromotionPopupText="<Bullet/> 可以傷害火焰免疫的敵人。<br/><Bullet/> 根據臂套等級撕裂1/2/3點護甲。</br>"
+LocLongDescription="你的火焰噴射器可以傷害火焰免疫的敵人，撕碎1/2/3點護甲。"
+LocHelpText="你的火焰噴射器可以傷害火焰免疫的敵人，撕碎1/2/3點護甲。"
+LocPromotionPopupText="<Bullet/> 可以傷害火焰免疫的敵人。<br/><Bullet/> 根據臂套等級撕碎1/2/3點護甲。</br>"
 
 [Incinerator X2AbilityTemplate]
 LocFriendlyName="焚燒裝置"
@@ -354,9 +354,9 @@ LocPromotionPopupText="<Bullet/> 致命一擊對眩暈、恐慌的敵人提供+5
 [Tradecraft X2AbilityTemplate]
 LocFriendlyName="諜報技術"
 LocFlyOverText="諜報技術"
-LocLongDescription="該士兵在任務中的潛入時間極大地減少了。"
-LocHelpText="該士兵在任務中的潛入時間極大地減少了。"
-LocPromotionPopupText="<Bullet/>該士兵在任務中的潛入時間極大地減少了。<br/>"
+LocLongDescription="減少該士兵在任務中的潛入時間。"
+LocHelpText="減少該士兵在任務中的潛入時間。"
+LocPromotionPopupText="<Bullet/>減少該士兵在任務中的潛入時間。<br/>"
 
 ;;;;;;;;;;;;;;;;;;;;  SPECIALIST ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -443,12 +443,12 @@ LocFriendlyName="刺針榴彈"
 LocLongDescription="你的爆炸物擊殺敵人時不會破壞戰利品且對無護甲的敵人造成<ABILITY:NEEDLE_BONUS_UNARMORED_DMG_LW/>額外傷害。"
 LocHelpText="你的爆炸物擊殺敵人時不會破壞戰利品且對無護甲的敵人造成<ABILITY:NEEDLE_BONUS_UNARMORED_DMG_LW/>額外傷害。"
 LocFlyOverText="刺針榴彈"
-LocPromotionPopupText="<Bullet/> 你受過額外的訓練，能讓你使用能夠發射出特殊裂片的爆炸性榴彈，使戰利品完好無損，撕裂未加固的材料。<br/><Bullet/> 被該士兵的任何其他爆炸物（如重武器）擊殺的敵人的戰利品和屍體，也會被保留下來。"
+LocPromotionPopupText="<Bullet/> 你受過額外的訓練，能讓你使用能夠發射出特殊裂片的爆炸性榴彈，使戰利品完好無損，撕碎未加固的材料。<br/><Bullet/> 被該士兵的任何其他爆炸物（如重武器）擊殺的敵人的戰利品和屍體，也會被保留下來。"
 
 [HEATWarheads X2AbilityTemplate]
 LocFriendlyName="高熱彈頭"
-LocLongDescription="你的榴彈和火箭穿透<ABILITY:HEAT_WARHEADS_PIERCE_LW/>點護甲並撕裂額外<ABILITY:HEAT_WARHEADS_SHRED_LW/>點護甲。"
-LocHelpText="你的榴彈和火箭穿透<ABILITY:HEAT_WARHEADS_PIERCE_LW/>點護甲並撕裂額外<ABILITY:HEAT_WARHEADS_SHRED_LW/>點護甲。"
+LocLongDescription="你的榴彈和火箭穿透<ABILITY:HEAT_WARHEADS_PIERCE_LW/>點護甲並撕碎額外<ABILITY:HEAT_WARHEADS_SHRED_LW/>點護甲。"
+LocHelpText="你的榴彈和火箭穿透<ABILITY:HEAT_WARHEADS_PIERCE_LW/>點護甲並撕碎額外<ABILITY:HEAT_WARHEADS_SHRED_LW/>點護甲。"
 LocFlyOverText="高熱彈頭"
 LocPromotionPopupText="<Bullet/> 本身不具備破甲效果的榴彈不會受益於額外的破甲效果。<br/><Bullet/> 不適用於EMP火箭和掩體剋星。<br/>"
 
@@ -498,7 +498,7 @@ LocFriendlyName="超級炸藥"
 LocLongDescription="你的榴彈和火箭能夠造成暴擊傷害（<Ability:BIGGESTBOOMSCHANCE/>%幾率+<Ability:BIGGESTBOOMSDAMAGE/>傷害）。"
 LocHelpText="你的榴彈、火箭和微型飛彈能夠造成暴擊傷害。"
 LocFlyOverText="超級炸藥"
-LocPromotionPopupText="<Bullet/> 榴彈、火箭和MEC微型飛彈能夠造成暴擊傷害。（<Ability:BIGGESTBOOMSCHANCE/>%幾率+<Ability:BIGGESTBOOMSDAMAGE/>傷害）。<br/><Bullet/> <Ability:BIGGESTBOOMSCHANCE/>% 暴擊幾率不受其他暴擊率修正的影響。<br/> <Bullet/> 不適用於非傷害型榴彈或是EMP火箭或是掩體剋星能力。<br/><Bullet/> 榴彈造成暴擊傷害後，其施加的持續性傷害增加1點，例如火焰的燒傷。"
+LocPromotionPopupText="<Bullet/> 榴彈、火箭和MEC微型飛彈能夠造成暴擊傷害（<Ability:BIGGESTBOOMSCHANCE/>%幾率+<Ability:BIGGESTBOOMSDAMAGE/>傷害）。<br/><Bullet/> <Ability:BIGGESTBOOMSCHANCE/>% 暴擊幾率不受其他暴擊率修正的影響。<br/> <Bullet/> 不適用於非傷害型榴彈或是EMP火箭或是掩體剋星能力。<br/><Bullet/> 榴彈造成暴擊傷害後，其施加的持續性傷害增加1點，例如火焰的燒傷。"
 
 [Shellshock_LW X2AbilityTemplate]
 LocFriendlyName="彈震"
@@ -801,8 +801,8 @@ LocHelpText="對非機械類變種人的傷害+2。對所有敵人+1傷害。"
 [Shredder_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="粉碎彈"
 LocFlyOverText="粉碎彈"
-LocLongDescription="每次命中撕裂2點護甲。"
-LocHelpText="每次命中撕裂2點護甲。"
+LocLongDescription="每次命中撕碎2點護甲。"
+LocHelpText="每次命中撕碎2點護甲。"
 
 [Flechette_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="飛鏢彈"
@@ -1551,8 +1551,8 @@ TacticalText="<Bullet/>對非機械類變種人的傷害+2。對所有敵人+1�
 [FalconRounds X2AmmoTemplate]
 FriendlyName="粉碎彈"
 FriendlyNamePlural="粉碎彈"
-BriefSummary="每次命中撕裂敵人2點護甲。"
-TacticalText="<Bullet/> 每次命中撕裂敵人2點護甲。<br/><Bullet/> 每次僅可以裝備1種彈藥加強裝備。"
+BriefSummary="每次命中撕碎敵人2點護甲。"
+TacticalText="<Bullet/> 每次命中撕碎敵人2點護甲。<br/><Bullet/> 每次僅可以裝備1種彈藥加強裝備。"
 
 [APRounds X2AmmoTemplate]
 BriefSummary="這些致命的彈藥由超強，超輕的外星合金手工加工而成，可有效穿透 <Ability:APROUNDSPIERCEBONUS/> 敵方護甲造成傷害。"
@@ -3675,7 +3675,7 @@ Summary="這些彈藥是用來刺穿柔軟的目標的，能對沒有護甲防�
 
 [FalconRoundsProject X2TechTemplate]
 DisplayName="粉碎彈"
-Summary="該彈藥設計將會在命中後釋放碎彈片，能撕裂敵人的護甲。"
+Summary="該彈藥設計將會在命中後釋放碎彈片，能撕碎敵人的護甲。"
 
 [TracerRoundsProject X2TechTemplate]
 DisplayName="曳光彈"
@@ -4608,7 +4608,7 @@ LocLongDescription="一些敵人獲得致命武器能力，在使用主武器時
 ; Shredder
 [DarkEvent_Shredder X2DarkEventTemplate]
 DisplayName="永久性：粉碎彈"
-SummaryText="一些敵人獲得粉碎彈能力，使他們的武器能夠在命中時撕裂護甲。"
+SummaryText="一些敵人獲得粉碎彈能力，使他們的武器能夠在命中時撕碎護甲。"
 QuoteText="\"為什麼你把我叫做戰術防護護甲？什麼意思？\""
 QuoteTextAuthor="- 匿名的新兵"
 PreMissionText="一些敵人獲得粉碎彈能力。"
@@ -4617,7 +4617,7 @@ PostMissionFailureText="反擊黑暗事件失敗：戰術升級（粉碎彈）"
 
 [DarkEventAbility_Shredder X2AbilityTemplate]
 LocFriendlyName="黑暗事件：戰術升級（粉碎彈）"
-LocLongDescription="一些敵人獲得粉碎彈能力，使他們的武器能夠在命中時撕裂護甲。"
+LocLongDescription="一些敵人獲得粉碎彈能力，使他們的武器能夠在命中時撕碎護甲。"
 
 ; HI
 [DarkEvent_HuntersInstinct X2DarkEventTemplate]
@@ -5114,9 +5114,9 @@ LocFlyOverText="已平靜"
 
 [Shredder X2AbilityTemplate]
 LocFriendlyName="粉碎彈"
-LocLongDescription="你的主武器攻擊撕裂護甲。"
-LocHelpText="你的主武器攻擊撕裂護甲。"
-LocPromotionPopupText="<Bullet/> 常規武器成功射擊將從目標身上撕裂1點護甲。<br/><Bullet/> 更先進的武器會從目標身上撕裂更多的護甲。<br/>"
+LocLongDescription="你的主武器攻擊撕碎護甲。"
+LocHelpText="你的主武器攻擊撕碎護甲。"
+LocPromotionPopupText="<Bullet/> 常規武器成功射擊將從目標身上撕碎1點護甲。<br/><Bullet/> 更先進的武器會從目標身上撕裂更多的護甲。<br/>"
 
 [Interact_SmashNGrab X2AbilityTemplate]
 LocFriendlyName="打開/關閉箱子"
@@ -6205,9 +6205,9 @@ LocPromotionPopupText="<Bullet/> 投擲或發射榴彈後，將自動進入監�
 [Avenger_LW X2AbilityTemplate]
 LocFriendlyName="復仇者"
 LocFlyOverText="復仇者"
-LocLongDescription="每回合1次，使用<Ability:WeaponName/>對向你的可見隊友開火的可見敵人進行反應射擊。"
-LocHelpText="每回合1次，使用<Ability:WeaponName/>對向你的可見隊友開火的可見敵人進行反應射擊。"
-LocPromotionPopupText="<Bullet/> 如果該單位被擊中復仇者將不會激活。<br/><Bullet/> 只能在敵人回合激活。<br/><Bullet/> 每回合只能觸發一次。<br/>"
+LocLongDescription="每回合1次，使用<Ability:WeaponName/>對向你的可見隊友開火的可見敵人進行反應射擊。本次反應射擊無視掩體加成。"
+LocHelpText="每回合1次，使用<Ability:WeaponName/>對向你的可見隊友開火的可見敵人進行反應射擊。本次反應射擊無視掩體加成。"
+LocPromotionPopupText="<Bullet/> 本單位被射擊時復仇者不會觸發。<br/><Bullet/> 只能在敵人回合觸發。<br/><Bullet/> 每回合只能觸發一次。<br/>"
 ; End Translation (2)
 
 [Predator_LW X2AbilityTemplate]
@@ -6436,15 +6436,15 @@ LocPromotionPopupText="<Bullet/> 不適用於小隊視野。<br/><Bullet/> 每�
 
 [PrimaryReturnFire X2AbilityTemplate]
 LocFriendlyName="還擊"
-LocHelpText="當被敵人攻擊時, 自動使用<Ability:WeaponName/>每回合還擊一次。"
-LocLongDescription="當被敵人攻擊時, 自動使用<Ability:WeaponName/>每回合還擊一次。"
-LocPromotionPopupText="<Bullet/> 還擊每回合只觸發一次。<br/><Bullet/> 還擊可以由近戰攻擊和範圍攻擊觸發。<br/><Bullet/> 當目標監視射擊時，不會觸發還擊。<br/>"
+LocHelpText="當被敵人攻擊時, 自動使用<Ability:WeaponName/>每回合還擊一次。本次還擊無視掩體加成。"
+LocLongDescription="當被敵人攻擊時, 自動使用<Ability:WeaponName/>每回合還擊一次。本次還擊無視掩體加成。"
+LocPromotionPopupText="<Bullet/> 還擊每回合只觸發一次。<br/><Bullet/> 還擊可以由近戰攻擊或範圍攻擊觸發。<br/><Bullet/> 當被監視射擊時，不會觸發還擊。<br/>"
 
 [PrimaryReturnFireShot X2AbilityTemplate]
 LocFriendlyName="還擊"
-LocHelpText="當被敵人攻擊時, 自動使用<Ability:WeaponName/>每回合還擊一次。"
-LocLongDescription="當被敵人攻擊時, 自動使用<Ability:WeaponName/>每回合還擊一次。"
-LocPromotionPopupText="<Bullet/> 還擊每回合只觸發一次。<br/><Bullet/> 還擊可以由近戰攻擊和範圍攻擊觸發。<br/><Bullet/> 當目標監視射擊時，不會觸發還擊。<br/>"
+LocHelpText="當被敵人攻擊時, 自動使用<Ability:WeaponName/>每回合還擊一次。本次還擊無視掩體加成。"
+LocLongDescription="當被敵人攻擊時, 自動使用<Ability:WeaponName/>每回合還擊一次。本次還擊無視掩體加成。"
+LocPromotionPopupText="<Bullet/> 還擊每回合只觸發一次。<br/><Bullet/> 還擊可以由近戰攻擊或範圍攻擊觸發。<br/><Bullet/> 當被監視射擊時，不會觸發還擊。<br/>"
 
 [TriggerBot X2AbilityTemplate]
 LocFriendlyName="扳機機器人"
@@ -7441,3 +7441,76 @@ LocPromotionPopupText="<Bullet/> 戰爭協議有3回合冷卻。<br/><Bullet/> �
 
 [ResCard_LiveFireTraining X2StrategyCardTemplate]
 SummaryText="在游擊戰術學校中完成訓練的新兵將達到下士軍銜。"
+
+[UIStrategyMapItem_Region]
+m_strLockedTT=我們無法與該地區的抵抗組織取得聯繫。我們必須先與相鄰地區取得聯繫。
+m_strUnlockedTT=如果我們與<XGParam:StrValue0/!WorldRegionName/>地區的抵抗組織取得聯繫，他們會加入我們的事業！
+m_strContactTT=<XGParam:StrValue0/!WorldRegionName/>地區的抵抗組織為我們提供了<XGParam:StrValue1/!Quantity/>單位的物資收入。
+m_strOutpostTT=我們已在該地區安裝了無線電中繼站！該中繼站提高了反抗軍工作的效率，並降低了與相鄰地區取得聯繫的成本。
+
+[LostImmunitiesPassive X2AbilityTemplate]
+LocFriendlyName="失魂者免疫"
+LocFlyOverText="失魂者免疫"
+LocLongDescription="失魂者免疫精神損害、毒和酸液。"
+LocHelpText="失魂者免疫精神損害、毒和酸液。"
+LocPromotionPopupText=""
+
+[PsiZombieImmunitiesPassive X2AbilityTemplate]
+LocFriendlyName="靈能殭屍免疫"
+LocFlyOverText="靈能殭屍免疫"
+LocLongDescription="靈能殭屍免疫精神損害和毒。"
+LocHelpText="靈能殭屍免疫精神損害和毒。"
+LocPromotionPopupText=""
+
+[SpectralZombieImmunitiesPassive X2AbilityTemplate]
+LocFriendlyName="幽靈槍兵免疫"
+LocFlyOverText="幽靈槍兵免疫"
+LocLongDescription="幽靈槍兵免疫精神損害、火焰、毒和酸液。"
+LocHelpText="幽靈槍兵免疫精神損害、火焰、毒和酸液。"
+LocPromotionPopupText=""
+
+[Anatomy_LW X2AbilityTemplate]
+LocFriendlyName="解剖學"
+LocFlyOverText="解剖學"
+LocLongDescription="你知道如何精準打擊敵人以造成最大傷害。所有攻擊獲得+15%的暴擊率和2點護甲穿透。"
+LocHelpText="所有攻擊獲得額外的暴擊率和護甲穿透。"
+LocPromotionPopupText="<Bullet/> 這是一個無條件的被動加成。\n<Bullet/> 護甲穿透加成不會顯示在攻擊預覽中，但在攻擊命中時會生效。"
+
+[ScoutScanner_LW X2AbilityTemplate]
+LocFriendlyName="偵查"
+LocHelpText="每4回合，作為一個自由動作，你可以使用戰場掃描器。"
+LocLongDescription="每4回合，作為一個自由動作，你可以使用戰場掃描器。這不需要或消耗任何實際裝備的戰場掃描器。"
+LocPromotionPopupText="<Bullet/> 偵查賦予的戰場掃描器可以無限使用，只受冷卻時間限制。\n<Bullet/> 這些戰場掃描器與由戰鬥掃描器物品賦予的不同。"
+
+[FreeScanner_LW X2AbilityTemplate]
+LocFriendlyName="偵查"
+LocHelpText="每4回合，作為一個自由動作，你可以使用戰場掃描器。"
+LocLongDescription="每4回合，作為一個自由動作，你可以使用戰場掃描器。這不需要或消耗任何實際裝備的戰場掃描器。"
+LocPromotionPopupText="<Bullet/> 偵查賦予的戰場掃描器可以無限使用，只受冷卻時間限制。\n<Bullet/> 這些戰場掃描器與由戰鬥掃描器物品賦予的不同。"
+
+[LineEmUp_LW X2AbilityTemplate]
+LocFriendlyName="首要目標"
+LocLongDescription="你對距離最近的可見敵人的遠程攻擊獲得<Ability:+ToHit/>命中和<Ability:+Crit/>暴擊率。"
+LocHelpText="你對距離最近的可見敵人的遠程攻擊獲得<Ability:+ToHit/>命中和<Ability:+Crit/>暴擊率。"
+LocFlyOverText="首要目標"
+LocPromotionPopupText="<Bullet/> 如果有多個距離最近的敵人，你對所有這些敵人都獲得加成。<br/><Bullet/> 首要目標不適用於近戰攻擊。<br/>"
+
+[SensorOverlays_LW X2AbilityTemplate]
+LocFriendlyName="感知共享"
+LocLongDescription="小隊所有成員對你視野內可見的敵人獲得<Ability:+Crit>暴擊率。"
+LocHelpText="小隊所有成員對你視野內可見的敵人獲得<Ability:+Crit>暴擊率。"
+LocFlyOverText="感知共享"
+LocPromotionPopupText="<Bullet/> 這不包括僅通過小隊視野可見的敵人。<br/>"
+
+[FocusedDefense_LW X2AbilityTemplate]
+LocFriendlyName="重點防禦"
+LocLongDescription="在沒有被側翼的情況下，受到距離最近的可見敵人攻擊時，你額外獲得<Ability:+Defense/>防禦和<Ability:+Dodge/>閃避。"
+LocHelpText="在沒有被側翼的情況下，受到距離最近的可見敵人攻擊時，你額外獲得<Ability:+Defense/>防禦和<Ability:+Dodge/>閃避。"
+LocFlyOverText="重點防禦"
+LocPromotionPopupText="<Bullet/> 這個加成不適用於近戰攻擊。<br/><Bullet/> 如果有多個距離最近的敵人，你對所有這些敵人都獲得加成。<br/>"
+
+[GrappleExpert_LW X2AbilityTemplate]
+LocFriendlyName="鈎爪專家"
+LocLongDescription="正義、怒火、鞭笞獲得額外+15命中."
+LocHelpText="正義、怒火、鞭笞獲得額外+15命中."
+LocFlyOverText="鈎爪專家"
