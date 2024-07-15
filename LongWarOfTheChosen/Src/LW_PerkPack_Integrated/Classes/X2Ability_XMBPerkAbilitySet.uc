@@ -244,6 +244,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddAnatomyAbility());
 	Templates.AddItem(AddFreeScanner());
 	Templates.AddItem(AddScoutScanner());
+	Templates.AddItem(LineEmUp());
 	Templates.AddItem(SensorOverlays());
 	Templates.AddItem(FocusedDefense());
 	Templates.AddItem(GrappleExpert());
@@ -4223,7 +4224,7 @@ static function X2AbilityTemplate GrappleExpert()
 	HitModEffect = new class'X2Effect_SkirmMeleeHitMod';
 	HitModEffect.BuildPersistentEffect(1, true, false, false);
 
-	Template = Passive('GrappleExpert_LW', "UILibrary_PerkIcons.UIPerk_closeandpersonal", false, HitModEffect);
+	Template = Passive('GrappleExpert_LW', "img:///UILibrary_PerkIcons.UIPerk_grapple", false, HitModEffect);
 
 	return Template;
 }

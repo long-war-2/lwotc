@@ -468,7 +468,7 @@ LocFriendlyName="Needle Grenades"
 LocLongDescription="Your explosives do not destroy loot when they kill enemies and deal <ABILITY:NEEDLE_BONUS_UNARMORED_DMG_LW/> bonus damage to unarmored enemies."
 LocHelpText="Your explosives do not destroy loot when they kill enemies and deal <ABILITY:NEEDLE_BONUS_UNARMORED_DMG_LW/> bonus damage to unarmored enemies."
 LocFlyOverText="Needle Grenades"
-LocPromotionPopupText="<Bullet/> You have received extra training that enables you to employ explosive grenades that deploy specialized slivers that leave enemy loot and corpse intact and tears through unreinforced material.<br/><Bullet/> Loot and corpses of enemies killed by any other explosives of this soldier, such as heavy weapons, are also preserved."
+LocPromotionPopupText="<Bullet/> You have received extra training that enables you to employ explosive grenades that deploy specialized slivers that leave enemy loot and corpse intact and tears through unreinforced material.<br/><Bullet/> Loot and corpses of enemies killed by any other explosives of this soldier, such as heavy weapons, are also preserved.<br/><Bullet/> Needle Grenades applies to both Gauntlet rockets and flamethrower."
 ; End Translation (2)
 
 [HEATWarheads X2AbilityTemplate]
