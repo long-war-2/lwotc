@@ -326,6 +326,7 @@ UnitInSquad="单位在一支小队中"
 RankTooLow="级别太低"
 CannotModifyOnMissionSoldierTooltip="不能修改任务中的士兵"
 ReasonClassAbilityPickedAtRank="已经在该军阶选择了一个职业技能"
+ReasonPsiOperativePerkFromLab="只能在灵能实验室中学习的能力"
 
 [X2Effect_LWHolotarget]
 HoloTargetEffectName="被全息瞄准"

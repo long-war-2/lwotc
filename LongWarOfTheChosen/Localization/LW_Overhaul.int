@@ -334,6 +334,7 @@ RankTooLow="Rank Too Low"
 CannotModifyOnMissionSoldierTooltip="Cannot modify soldier currently on mission"
 ; LWOTC Needs Translation
 ReasonClassAbilityPickedAtRank="Already picked a class ability at this rank"
+ReasonPsiOperativePerkFromLab="Psi Operative"
 ; End Translation
 
 [XComGameState_LWPersistentSquad]

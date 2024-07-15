@@ -7,6 +7,7 @@ var localized string UnitInSquad;
 var localized string RankTooLow;
 var localized string CannotModifyOnMissionSoldierTooltip;
 var localized string ReasonClassAbilityPickedAtRank;
+var localized string ReasonPsiOperativePerkFromLab;
 
 var config array<EInventorySlot> UNMODIFIABLE_SLOTS_WHILE_ON_MISSION;
 
@@ -546,7 +547,7 @@ static function EventListenerReturn OverrideCanPurchaseAbility(
    		if (Tuple.Data[2].i <= 1) //row 0, row 1
    		{
     		Tuple.Data[13].b = false;                   //Can't buy it ...
-    		Tuple.Data[15].s = "Psi Operative";  //.. because its a psi-op perk from the lab
+    		Tuple.Data[15].s = default.ReasonPsiOperativePerkFromLab;  //.. because its a psi-op perk from the lab
     	}
 	}
 
@@ -578,7 +579,7 @@ static function EventListenerReturn OverrideCanPurchaseAbility(
    	if (Tuple.Data[2].i <= 1) //row 0, row 1
    	{
     	Tuple.Data[13].b = false;                   //Can't buy it ...
-    	Tuple.Data[15].s = "Psi Operative";  //.. because its a psi-op perk from the lab
+    	Tuple.Data[15].s = default.ReasonPsiOperativePerkFromLab;  //.. because its a psi-op perk from the lab
     }
 
 	return ELR_NoInterrupt;
