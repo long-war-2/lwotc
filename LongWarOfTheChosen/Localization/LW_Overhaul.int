@@ -756,7 +756,7 @@ strDismiss_Button = "OK"
 [UISL_Shell_BetaPatchNotes]
 strMessage_Title = "Long War Of The Chosen"
 strMessage_Header = "Latest Beta Changes:"
-strMessage_Body = "<ul><li>Complete rework of Grenadier tree with a completely redone middle row.</li><li>Additional grenade perks are now granted by grenade launcher upgrades.</li><li>Beam Grenade Launcher and Blaster Launcher are now unlocked by Powered Armor research.</li><li>Gunner and Shinobi received smaller tweaks to their trees</li></ul>"
+strMessage_Body = "<ul><li>Complete rework of all XCOM decks for all classes. Instead of having 4 decks, classes now have 7, one for each rank. Complete review/shuffle of all XCOM deck perks to go with this. The number of perks have been reduced, meaning less filler and more fun perks.</li><li>XCOM perk cost is now 10/10/15/20/25/30/35 instead of 10/10/20/20/30/30/40. Defensive perks will be cheaper than the offensive ones due to the relative power levels.</li><li>Psi Operatives now have XCOM decks and Pistol perks. Note that to allow this, LWOTC now has a conflict with Instant Avenger Menus until a Highlander update is made.</li><li>Added some new perks as part of the XCOM deck reshuffle: Anatomy, Focused Defense, Grapple Expert, Priority Target, Reconnoiter, Sensor Overlays.</li><li>Perk tweaks and bugfixes: Avenger and Return Fire now ignore the target's cover, quickdraw fixed to work properly again, Layered Armor now functions against attacks that add additional % based modifiers, Gunslinger range nerfed from 13m to 11m.</li><li>Fixed issue where Lost missions sometimes spawned a single Advent Officer onto the Lost team.</li></ul>"
 strDismiss_Button = "OK"
 
 [UISL_PullAdvisors]
