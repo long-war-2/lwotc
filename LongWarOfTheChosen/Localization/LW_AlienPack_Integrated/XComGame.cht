@@ -131,7 +131,7 @@ TacticalText="<Bullet/>單發高傷害性榴彈。"
 ThrownAbilityName="投擲外星榴彈"
 ThrownAbilityHelpText="對目標區域投擲一枚外星榴彈。"
 LaunchedAbilityName="發射外星榴彈"
-LaunchedAbilityHelpText="朝目標區域發射外星榴彈，可撕裂護甲。"
+LaunchedAbilityHelpText="朝目標區域發射外星榴彈，可撕碎護甲。"
 
 [MutonM2_LW_MeleeAttack X2WeaponTemplate]
 FriendlyName="刺刀"
@@ -153,7 +153,7 @@ TacticalText="<Bullet/>單發高傷害性榴彈。"
 ThrownAbilityName="投擲外星榴彈"
 ThrownAbilityHelpText="對目標區域投擲一枚外星榴彈。"
 LaunchedAbilityName="發射外星榴彈"
-LaunchedAbilityHelpText="朝目標區域發射外星榴彈，可撕裂護甲。"
+LaunchedAbilityHelpText="朝目標區域發射外星榴彈，可撕碎護甲。"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Naja ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

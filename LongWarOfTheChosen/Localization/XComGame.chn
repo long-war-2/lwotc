@@ -181,9 +181,9 @@ LocPromotionPopupText="<Bullet/> 你的火焰喷射器现在可以使敌人恐�
 [PhosphorusPassive X2AbilityTemplate]
 LocFriendlyName="磷"
 LocFlyOverText="磷"
-LocLongDescription="你的火焰喷射器可以伤害火焰免疫的敌人，撕裂1/2/3点护甲。"
-LocHelpText="你的火焰喷射器可以伤害火焰免疫的敌人，撕裂1/2/3点护甲。"
-LocPromotionPopupText="<Bullet/> 可以伤害火焰免疫的敌人。<br/><Bullet/> 根据臂套等级撕裂1/2/3点护甲。</br>"
+LocLongDescription="你的火焰喷射器可以伤害火焰免疫的敌人，撕碎1/2/3点护甲。"
+LocHelpText="你的火焰喷射器可以伤害火焰免疫的敌人，撕碎1/2/3点护甲。"
+LocPromotionPopupText="<Bullet/> 可以伤害火焰免疫的敌人。<br/><Bullet/> 根据臂套等级撕碎1/2/3点护甲。</br>"
 
 [Incinerator X2AbilityTemplate]
 LocFriendlyName="焚烧装置"
@@ -363,9 +363,9 @@ LocPromotionPopupText="<Bullet/> 致命一击对眩晕、恐慌的敌人提供+5
 [Tradecraft X2AbilityTemplate]
 LocFriendlyName="谍报技术"
 LocFlyOverText="谍报技术"
-LocLongDescription="该士兵在任务中的潜入时间极大地减少了。"
-LocHelpText="该士兵在任务中的潜入时间极大地减少了。"
-LocPromotionPopupText="<Bullet/> 该士兵在任务中的潜入时间极大地减少了。<br/>"
+LocLongDescription="减少该士兵在任务中的潜入时间。"
+LocHelpText="减少该士兵在任务中的潜入时间。"
+LocPromotionPopupText="<Bullet/> 减少该士兵在任务中的潜入时间。<br/>"
 
 ;;;;;;;;;;;;;;;;;;;;  SPECIALIST ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -459,12 +459,12 @@ LocFriendlyName="刺针榴弹"
 LocLongDescription="你的爆炸物击杀敌人时不会破坏战利品且对无护甲的敌人造成<ABILITY:NEEDLE_BONUS_UNARMORED_DMG_LW/>额外伤害。"
 LocHelpText="你的爆炸物击杀敌人时不会破坏战利品且对无护甲的敌人造成<ABILITY:NEEDLE_BONUS_UNARMORED_DMG_LW/>额外伤害。"
 LocFlyOverText="刺针榴弹"
-LocPromotionPopupText="<Bullet/> 你受过额外的训练，能让你使用能够发射出特殊裂片的爆炸性榴弹，使战利品完好无损，撕裂未加固的材料。<br/><Bullet/> 被该士兵的任何其他爆炸物（如重武器）击杀的敌人的战利品和尸体，也会被保留下来。"
+LocPromotionPopupText="<Bullet/> 你受过额外的训练，能让你使用能够发射出特殊裂片的爆炸性榴弹，使战利品完好无损，撕碎未加固的材料。<br/><Bullet/> 被该士兵的任何其他爆炸物（如重武器）击杀的敌人的战利品和尸体，也会被保留下来。<br/><Bullet/> 刺针榴弹对臂套火箭和火焰喷射器都有效。"
 
 [HEATWarheads X2AbilityTemplate]
 LocFriendlyName="高热弹头"
-LocLongDescription="你的榴弹和火箭穿透<ABILITY:HEAT_WARHEADS_PIERCE_LW/>点护甲并撕裂额外<ABILITY:HEAT_WARHEADS_SHRED_LW/>点护甲。"
-LocHelpText="你的榴弹和火箭穿透<ABILITY:HEAT_WARHEADS_PIERCE_LW/>点护甲并撕裂额外<ABILITY:HEAT_WARHEADS_SHRED_LW/>点护甲。"
+LocLongDescription="你的榴弹和火箭穿透<ABILITY:HEAT_WARHEADS_PIERCE_LW/>点护甲并撕碎额外<ABILITY:HEAT_WARHEADS_SHRED_LW/>点护甲。"
+LocHelpText="你的榴弹和火箭穿透<ABILITY:HEAT_WARHEADS_PIERCE_LW/>点护甲并撕碎额外<ABILITY:HEAT_WARHEADS_SHRED_LW/>点护甲。"
 LocFlyOverText="高热弹头"
 LocPromotionPopupText="<Bullet/> 本身不具备破甲效果的榴弹不会受益于额外的破甲效果。<br/><Bullet/> 不适用于EMP火箭和掩体克星。<br/>"
 
@@ -514,7 +514,7 @@ LocFriendlyName="超级炸药"
 LocLongDescription="你的榴弹和火箭能够造成暴击伤害（<Ability:BIGGESTBOOMSCHANCE/>%几率+<Ability:BIGGESTBOOMSDAMAGE/>伤害）。"
 LocHelpText="你的榴弹、火箭和微型飞弹能够造成暴击伤害。"
 LocFlyOverText="超级炸药"
-LocPromotionPopupText="<Bullet/> 榴弹、火箭和MEC微型飞弹能够造成暴击伤害。（<Ability:BIGGESTBOOMSCHANCE/>%几率+<Ability:BIGGESTBOOMSDAMAGE/>伤害）。<br/><Bullet/> <Ability:BIGGESTBOOMSCHANCE/>%暴击几率不受其他暴击率修正的影响。<br/><Bullet/> 不适用于非伤害型榴弹或是EMP火箭或是掩体克星能力。<br/><Bullet/> 榴弹造成暴击伤害后，其施加的持续性伤害增加1点，例如火焰的烧伤。"
+LocPromotionPopupText="<Bullet/> 榴弹、火箭和MEC微型飞弹能够造成暴击伤害（<Ability:BIGGESTBOOMSCHANCE/>%几率+<Ability:BIGGESTBOOMSDAMAGE/>伤害）。<br/><Bullet/> <Ability:BIGGESTBOOMSCHANCE/>%暴击几率不受其他暴击率修正的影响。<br/><Bullet/> 不适用于非伤害型榴弹或是EMP火箭或是掩体克星能力。<br/><Bullet/> 榴弹造成暴击伤害后，其施加的持续性伤害增加1点，例如火焰的烧伤。"
 
 [Shellshock_LW X2AbilityTemplate]
 LocFriendlyName="弹震"
@@ -817,8 +817,8 @@ LocHelpText="对非机械类变种人的伤害+2。对所有敌人+1伤害。"
 [Shredder_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="粉碎弹"
 LocFlyOverText="粉碎弹"
-LocLongDescription="每次命中撕裂2点护甲。"
-LocHelpText="每次命中撕裂2点护甲。"
+LocLongDescription="每次命中撕碎2点护甲。"
+LocHelpText="每次命中撕碎2点护甲。"
 
 [Flechette_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="飞镖弹"
@@ -1567,8 +1567,8 @@ TacticalText="<Bullet/>对非机械类变种人的伤害+2。对所有敌人+1�
 [FalconRounds X2AmmoTemplate]
 FriendlyName="粉碎弹"
 FriendlyNamePlural="粉碎弹"
-BriefSummary="每次命中撕裂敌人2点护甲。"
-TacticalText="<Bullet/> 每次命中撕裂敌人2点护甲。<br/><Bullet/> 每次仅可以装备1种弹药加强装备。"
+BriefSummary="每次命中撕碎敌人2点护甲。"
+TacticalText="<Bullet/> 每次命中撕碎敌人2点护甲。<br/><Bullet/> 每次仅可以装备1种弹药加强装备。"
 
 [APRounds X2AmmoTemplate]
 BriefSummary="这些致命的弹药由超强，超轻的外星合金手工加工而成，可有效穿透<Ability:APROUNDSPIERCEBONUS/>敌方护甲造成伤害。"
@@ -2531,9 +2531,9 @@ ObjectiveTextPools[1]="消灭外星人突击部队"
 ObjectiveTextPools[2]="撤离所有XCOM士兵"
 
 [Terror_LW X2MissionTemplate]
-DisplayName="阻止变种人的报复行动"
-Briefing="阻止变种人的报复行动"
-PostMissionType="阻止变种人的报复行动"
+DisplayName="大报复：全歼敌人"
+Briefing="阻止变种人的报复行动，全歼敌人！"
+PostMissionType="阻止变种人的报复行动，全歼敌人！"
 BriefingImage="img:///UILibrary_Common.Xcom_default"
 ObjectiveTextPools[0]="消灭所有敌方部队"
 ObjectiveTextPools[1]="尽可能多的营救反抗军"
@@ -2560,9 +2560,9 @@ ObjectiveTextPools[7]="斩首"
 ObjectiveTextPools[8]="指挥官：虽然我们击退了变种人先头入侵部队，但是我们没办法阻止他们击杀地区反抗军的领导层。没有领袖的情况下，我们将无法保持对地区的控制，需要撤退，直到我们能在这片区域找到愿意领导行动的联络人。"
 
 [Invasion_LW X2MissionTemplate]
-DisplayName="击退变种人突袭"
-Briefing="击退变种人突袭"
-PostMissionType="击退变种人突袭"
+DisplayName="入侵：击退入侵"
+Briefing="击退变种人大规模入侵"
+PostMissionType="击退变种人大规模入侵"
 BriefingImage="img:///UILibrary_Common.Xcom_default"
 ObjectiveTextPools[0]="消灭所有敌方部队"
 ObjectiveTextPools[1]="摧毁灵能指挥中继器"
@@ -2784,7 +2784,7 @@ BriefingImage="img:///UILibrary_Common.Xcom_default"
 ObjectiveTextPools[0]="逃离战斗区"
 
 [ProtectDevice_LW X2MissionTemplate]
-DisplayName="保护装置"
+DisplayName="小报复：情报突袭"
 Briefing="保护装置"
 PostMissionType="保护装置"
 BriefingImage="img:///UILibrary_Common.Xcom_default"
@@ -2950,7 +2950,7 @@ PreMissionNarratives[3]="X2NarrativeMoments.TACTICAL.SabotageCC.T_SabotageCC_Nar
 PreMissionNarratives[4]="X2NarrativeMoments.TACTICAL.SabotageCC.T_SabotageCC_Narrative_Wrappers_05"
 
 [AvengerDefense_LW X2MissionTemplate]
-DisplayName="保卫复仇者号"
+DisplayName="生死存亡：保卫复仇者号"
 Briefing="保护复仇者号"
 PostMissionType="保护复仇者号"
 BriefingImage="img:///UILibrary_Common.Xcom_default"
@@ -3086,7 +3086,7 @@ ObjectiveTextPools[5]="欢迎来到LWOTC的第一个任务！<br/><br/>目标很
 
 
 [Rendezvous_LW X2MissionTemplate]
-DisplayName="集结点"
+DisplayName="锄奸：集结点"
 Briefing="阻止间谍与变种人部队的会面"
 PostMissionType="消灭变种人间谍"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Flight_Device"
@@ -3095,29 +3095,29 @@ ObjectiveTextPools[0]="消灭所有目标敌人"
 [DefaultRendezvous_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="消灭所有目标敌人"
 ObjectiveTextPools[1]="撤离所有的XCOM和反抗军人员"
-ObjectiveTextPools[2]="集结点"
+ObjectiveTextPools[2]="锄奸：集结点"
 ObjectiveTextPools[3]="变种人间谍被发现在一个敌人军队的会面点。由于干扰此会议以及消灭间谍和他们管理者的时间紧迫，我们没有时间让复仇者号派来常规XCOM军力。少数的反抗军成员自愿拿起武器与避难所顾问一起前去消除威胁。建议：天际游侠号到达进行紧急撤离的时间要比往常长很多。"
 
 [Defend_LW X2MissionTemplate]
-DisplayName="避难所防御"
-Briefing="防御避难所免受变种人突袭"
+DisplayName="大报复：迎击空投"
+Briefing="防御避难所免受变种人突袭，小心敌人的空投增援！"
 PostMissionType="撤离反抗军成员"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Retaliation"
 ObjectiveTextPools[0]="在红恶魔回来之前守住任务区"
 ObjectiveTextPools[1]="撤离反抗军成员"
 
 [DefaultDefend_LW X2MissionNarrativeTemplate]
-ObjectiveTextPools[0]="在红恶魔回来之前防御任务区"
+ObjectiveTextPools[0]="在红恶魔回来之前防御任务区，小心敌人的空投增援！"
 ObjectiveTextPools[1]="撤离至少1名反抗军成员"
 ObjectiveTextPools[2]="撤离所有XCOM士兵"
 ObjectiveTextPools[3]="撤离额外的反抗军成员（可选）"
-ObjectiveTextPools[4]="防御避难所"
+ObjectiveTextPools[4]="大报复：迎击空投"
 ObjectiveTextPools[5]="变种人发起了对这片区域反抗军避难所的全面突击。传感器显示了有涌入的军队运输载具，在外星人网络的不寻常活动表明变种人意图一劳永逸地摧毁这座避难所。坚守反抗军成员，直到红恶魔能够摆脱追踪它的敌人干扰器并返回进行撤离。然后让尽可能多的反抗军成员撤离，让我们可以在一个新的避难所安置他们。在该任务的任何时候，通过移动士兵靠近反抗军的人员以控制他们。一旦撤离点出现，就将他们移动到那里以逃离；任何留下的成员都会被击杀。"
 
 [IntelRaid_LW X2MissionTemplate]
-DisplayName="保护数据点"
-Briefing="保护反抗军资产"
-PostMissionType="保护反抗军资产"
+DisplayName="小报复：情报突袭"
+Briefing="保护数据点"
+PostMissionType="保护数据点"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"
 ObjectiveTextPools[0]="保护数据点"
 
@@ -3125,13 +3125,13 @@ ObjectiveTextPools[0]="保护数据点"
 ObjectiveTextPools[0]="保护反抗军数据点"
 ObjectiveTextPools[1]="消灭所有目标敌人"
 ObjectiveTextPools[2]="撤离所有的XCOM和反抗军成员"
-ObjectiveTextPools[3]="情报突袭"
+ObjectiveTextPools[3]="小报复：情报突袭"
 ObjectiveTextPools[4]="我们在该地区的情报收集行动没有逃脱变种人的注意。反抗军成员已经在敌方领地建立了监听点，并获得了该地区有关敌人行动的关键情报。不幸的是，他们的数据点已被发现，变种人也在接近那里准备摧毁它并干掉他们。在变种人摧毁数据前消灭突击部队，并让我们在变种人重整部队之前撤离相关设备。失败将让我们在一段时间内无法在该地区进行情报收集工作。"
 
 [RecruitRaid_LW X2MissionTemplate]
-DisplayName="撤离反抗军招募者"
-Briefing="撤离反抗军招募者"
-PostMissionType="撤离反抗军招募者"
+DisplayName="小报复：招募中断"
+Briefing="撤离招募人员"
+PostMissionType="撤离招募人员"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Advent_Ops_Appear"
 ObjectiveTextPools[0]="将反抗军人员护送至撤离点"
 
@@ -3139,11 +3139,11 @@ ObjectiveTextPools[0]="将反抗军人员护送至撤离点"
 ObjectiveTextPools[0]="护送反抗军人员前往撤离点"
 ObjectiveTextPools[1]="撤离所有的剩余的反抗军成员"
 ObjectiveTextPools[2]="撤离所有XCOM士兵"
-ObjectiveTextPools[3]="紧急撤离"
+ObjectiveTextPools[3]="小报复：招募中断"
 ObjectiveTextPools[4]="反抗军在这片地区的招募行动已经招致了变种人的报复行动。一支进行招募任务的非武装反抗军队伍已经被变种人的巡逻队发现了。我们必须护送他们前往撤离点并逃离。红恶魔的燃料有限，飞行位置也较低，因此会优先撤离反抗军成员。在完成一次撤离后它会返回继续撤离我们的部队。没能营救任何反抗军成员将让我们在一段时间内无法在该地区进行招募工作。"
 
 [SupplyConvoy_LW X2MissionTemplate]
-DisplayName="保护反抗军补给车队"
+DisplayName="小报复：补给防卫"
 Briefing="保护反抗军补给车队"
 PostMissionType="保护反抗军补给车队"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Advent_Ops_Appear"
@@ -3154,7 +3154,7 @@ ObjectiveTextPools[1]="保护补给"
 ObjectiveTextPools[0]="保护补给"
 ObjectiveTextPools[1]="消灭所有目标敌人"
 ObjectiveTextPools[2]="撤离所有的XCOM和反抗军人员"
-ObjectiveTextPools[3]="补给车队"
+ObjectiveTextPools[3]="小报复：补给防卫"
 ObjectiveTextPools[4]="在这片地区收集补给的队伍已经被变种人注意到了。敌人的部队已经包围了一支正在运输补给返回反抗军的队伍！他们已经派出了运输载具意图击杀所有他们发现的人并且摧毁一切有用的物资。我们的目标是保护人员和重要物资。在他们造成额外伤害前击杀所有敌方部队，让我们的运输队在变种人空袭到来之前逃离这片区域。失败将让我们在一段时间内无法在该地区进行补给收集工作。"
 
 [MissionSource_LWSGenericMissionSource X2MissionSourceTemplate]
@@ -3697,7 +3697,7 @@ Summary="这些弹药是用来刺穿柔软的目标的，能对没有护甲防�
 
 [FalconRoundsProject X2TechTemplate]
 DisplayName="粉碎弹"
-Summary="该弹药设计将会在命中后释放碎弹片，能撕裂敌人的护甲。"
+Summary="该弹药设计将会在命中后释放碎弹片，能撕碎敌人的护甲。"
 
 [TracerRoundsProject X2TechTemplate]
 DisplayName="曳光弹"
@@ -4630,7 +4630,7 @@ LocLongDescription="一些敌人获得致命武器能力，在使用主武器时
 ; Shredder
 [DarkEvent_Shredder X2DarkEventTemplate]
 DisplayName="永久性：粉碎弹"
-SummaryText="一些敌人获得粉碎弹能力，使他们的武器能够在命中时撕裂护甲。"
+SummaryText="一些敌人获得粉碎弹能力，使他们的武器能够在命中时撕碎护甲。"
 QuoteText="\"为什么你把我叫做战术防护护甲？什么意思？\""
 QuoteTextAuthor="- 匿名的新兵"
 PreMissionText="一些敌人获得粉碎弹能力。"
@@ -4639,7 +4639,7 @@ PostMissionFailureText="反击黑暗事件失败：战术升级（粉碎弹）"
 
 [DarkEventAbility_Shredder X2AbilityTemplate]
 LocFriendlyName="黑暗事件：战术升级（粉碎弹）"
-LocLongDescription="一些敌人获得粉碎弹能力，使他们的武器能够在命中时撕裂护甲。"
+LocLongDescription="一些敌人获得粉碎弹能力，使他们的武器能够在命中时撕碎护甲。"
 
 ; HI
 [DarkEvent_HuntersInstinct X2DarkEventTemplate]
@@ -5136,9 +5136,9 @@ LocFlyOverText="已平静"
 
 [Shredder X2AbilityTemplate]
 LocFriendlyName="粉碎弹"
-LocLongDescription="你的主武器攻击撕裂护甲。"
-LocHelpText="你的主武器攻击撕裂护甲。"
-LocPromotionPopupText="<Bullet/> 常规武器成功射击将从目标身上撕裂1点护甲。<br/><Bullet/> 更先进的武器会从目标身上撕裂更多的护甲。<br/>"
+LocLongDescription="你的主武器攻击撕碎护甲。"
+LocHelpText="你的主武器攻击撕碎护甲。"
+LocPromotionPopupText="<Bullet/> 常规武器成功射击将从目标身上撕碎1点护甲。<br/><Bullet/> 更先进的武器会从目标身上撕碎更多的护甲。<br/>"
 
 [Interact_SmashNGrab X2AbilityTemplate]
 LocFriendlyName="打开/关闭箱子"
@@ -6235,9 +6235,9 @@ LocPromotionPopupText="<Bullet/> 投掷或发射榴弹后，将自动进入监�
 [Avenger_LW X2AbilityTemplate]
 LocFriendlyName="复仇者"
 LocFlyOverText="复仇者"
-LocLongDescription="每回合1次，使用<Ability:WeaponName/>对向你的可见队友开火的可见敌人进行反应射击。"
-LocHelpText="每回合1次，使用<Ability:WeaponName/>对向你的可见队友开火的可见敌人进行反应射击。"
-LocPromotionPopupText="<Bullet/> 如果该单位被击中复仇者将不会激活。<br/><Bullet/> 只能在敌人回合激活。<br/><Bullet/> 每回合只能触发一次。<br/>"
+LocLongDescription="每回合1次，使用<Ability:WeaponName/>对向你的可见队友开火的可见敌人进行反应射击。本次反应射击无视掩体加成。"
+LocHelpText="每回合1次，使用<Ability:WeaponName/>对向你的可见队友开火的可见敌人进行反应射击。本次反应射击无视掩体加成。"
+LocPromotionPopupText="<Bullet/> 本单位被射击时复仇者不会触发。<br/><Bullet/> 只能在敌人回合触发。<br/><Bullet/> 每回合只能触发一次。<br/>"
 ; End Translation (2)
 
 [Predator_LW X2AbilityTemplate]
@@ -6466,15 +6466,15 @@ LocPromotionPopupText="<Bullet/> 不适用于小队视野。<br/><Bullet/> 每�
 
 [PrimaryReturnFire X2AbilityTemplate]
 LocFriendlyName="还击"
-LocHelpText="当被敌人攻击时, 自动使用<Ability:WeaponName/>每回合还击一次。"
-LocLongDescription="当被敌人攻击时, 自动使用<Ability:WeaponName/>每回合还击一次。"
-LocPromotionPopupText="<Bullet/> 还击每回合只触发一次。<br/><Bullet/> 还击可以由近战攻击和范围攻击触发。<br/><Bullet/> 当目标监视射击时，不会触发还击。<br/>"
+LocHelpText="当被敌人攻击时, 自动使用<Ability:WeaponName/>每回合还击一次。本次还击无视掩体加成。"
+LocLongDescription="当被敌人攻击时, 自动使用<Ability:WeaponName/>每回合还击一次。本次还击无视掩体加成。"
+LocPromotionPopupText="<Bullet/> 还击每回合只触发一次。<br/><Bullet/> 还击可以由近战攻击或范围攻击触发。<br/><Bullet/> 当被监视射击时，不会触发还击。<br/>"
 
 [PrimaryReturnFireShot X2AbilityTemplate]
 LocFriendlyName="还击"
-LocHelpText="当被敌人攻击时, 自动使用<Ability:WeaponName/>每回合还击一次。"
-LocLongDescription="当被敌人攻击时, 自动使用<Ability:WeaponName/>每回合还击一次。"
-LocPromotionPopupText="<Bullet/> 还击每回合只触发一次。<br/><Bullet/> 还击可以由近战攻击和范围攻击触发。<br/><Bullet/> 当目标监视射击时，不会触发还击。<br/>"
+LocHelpText="当被敌人攻击时, 自动使用<Ability:WeaponName/>每回合还击一次。本次还击无视掩体加成。"
+LocLongDescription="当被敌人攻击时, 自动使用<Ability:WeaponName/>每回合还击一次。本次还击无视掩体加成。"
+LocPromotionPopupText="<Bullet/> 还击每回合只触发一次。<br/><Bullet/> 还击可以由近战攻击或范围攻击触发。<br/><Bullet/> 当被监视射击时，不会触发还击。<br/>"
 
 [TriggerBot X2AbilityTemplate]
 LocFriendlyName="扳机机器人"
@@ -7497,3 +7497,76 @@ LocPromotionPopupText="<Bullet/> 战争协议有3回合冷却。<br/><Bullet/> �
 
 [ResCard_LiveFireTraining X2StrategyCardTemplate]
 SummaryText="在游击战术学校中完成训练的新兵将达到下士军衔。"
+
+[UIStrategyMapItem_Region]
+m_strLockedTT=我们无法与该地区的抵抗组织取得联系。我们必须先与相邻地区取得联系。
+m_strUnlockedTT=如果我们与<XGParam:StrValue0/!WorldRegionName/>地区的抵抗组织取得联系，他们会加入我们的事业！
+m_strContactTT=<XGParam:StrValue0/!WorldRegionName/>地区的抵抗组织为我们提供了<XGParam:StrValue1/!Quantity/>单位的物资收入。
+m_strOutpostTT=我们已在该地区安装了无线电中继站！该中继站提高了反抗军工作的效率，并降低了与相邻地区取得联系的成本。
+
+[LostImmunitiesPassive X2AbilityTemplate]
+LocFriendlyName="失魂者免疫"
+LocFlyOverText="失魂者免疫"
+LocLongDescription="失魂者免疫精神损害、毒和酸液。"
+LocHelpText="失魂者免疫精神损害、毒和酸液。"
+LocPromotionPopupText=""
+
+[PsiZombieImmunitiesPassive X2AbilityTemplate]
+LocFriendlyName="灵能僵尸免疫"
+LocFlyOverText="灵能僵尸免疫"
+LocLongDescription="灵能僵尸免疫精神损害和毒。"
+LocHelpText="灵能僵尸免疫精神损害和毒。"
+LocPromotionPopupText=""
+
+[SpectralZombieImmunitiesPassive X2AbilityTemplate]
+LocFriendlyName="幽灵枪兵免疫"
+LocFlyOverText="幽灵枪兵免疫"
+LocLongDescription="幽灵枪兵免疫精神损害、火焰、毒和酸液。"
+LocHelpText="幽灵枪兵免疫精神损害、火焰、毒和酸液。"
+LocPromotionPopupText=""
+
+[Anatomy_LW X2AbilityTemplate]
+LocFriendlyName="解剖学"
+LocFlyOverText="解剖学"
+LocLongDescription="你知道如何精准打击敌人以造成最大伤害。所有攻击获得+15%的暴击率和2点护甲穿透。"
+LocHelpText="所有攻击获得额外的暴击率和护甲穿透。"
+LocPromotionPopupText="<Bullet/> 这是一个无条件的被动加成。\n<Bullet/> 护甲穿透加成不会显示在攻击预览中，但在攻击命中时会生效。"
+
+[ScoutScanner_LW X2AbilityTemplate]
+LocFriendlyName="侦查"
+LocHelpText="每4回合，作为一个自由动作，你可以使用战场扫描器。"
+LocLongDescription="每4回合，作为一个自由动作，你可以使用战场扫描器。这不需要或消耗任何实际装备的战场扫描器。"
+LocPromotionPopupText="<Bullet/> 侦查赋予的战场扫描器可以无限使用，只受冷却时间限制。\n<Bullet/> 这些战场扫描器与由战斗扫描器物品赋予的不同。"
+
+[FreeScanner_LW X2AbilityTemplate]
+LocFriendlyName="侦查"
+LocHelpText="每4回合，作为一个自由动作，你可以使用战场扫描器。"
+LocLongDescription="每4回合，作为一个自由动作，你可以使用战场扫描器。这不需要或消耗任何实际装备的战场扫描器。"
+LocPromotionPopupText="<Bullet/> 侦查赋予的战场扫描器可以无限使用，只受冷却时间限制。\n<Bullet/> 这些战场扫描器与由战斗扫描器物品赋予的不同。"
+
+[LineEmUp_LW X2AbilityTemplate]
+LocFriendlyName="首要目标"
+LocLongDescription="你对距离最近的可见敌人的远程攻击获得<Ability:+ToHit/>命中和<Ability:+Crit/>暴击率。"
+LocHelpText="你对距离最近的可见敌人的远程攻击获得<Ability:+ToHit/>命中和<Ability:+Crit/>暴击率。"
+LocFlyOverText="首要目标"
+LocPromotionPopupText="<Bullet/> 如果有多个距离最近的敌人，你对所有这些敌人都获得加成。<br/><Bullet/> 首要目标不适用于近战攻击。<br/>"
+
+[SensorOverlays_LW X2AbilityTemplate]
+LocFriendlyName="感知共享"
+LocLongDescription="小队所有成员对你视野内可见的敌人获得<Ability:+Crit>暴击率。"
+LocHelpText="小队所有成员对你视野内可见的敌人获得<Ability:+Crit>暴击率。"
+LocFlyOverText="感知共享"
+LocPromotionPopupText="<Bullet/> 这不包括仅通过小队视野可见的敌人。<br/>"
+
+[FocusedDefense_LW X2AbilityTemplate]
+LocFriendlyName="重点防御"
+LocLongDescription="在没有被侧翼的情况下，受到距离最近的可见敌人攻击时，你额外获得<Ability:+Defense/>防御和<Ability:+Dodge/>闪避。"
+LocHelpText="在没有被侧翼的情况下，受到距离最近的可见敌人攻击时，你额外获得<Ability:+Defense/>防御和<Ability:+Dodge/>闪避。"
+LocFlyOverText="重点防御"
+LocPromotionPopupText="<Bullet/> 这个加成不适用于近战攻击。<br/><Bullet/> 如果有多个距离最近的敌人，你对所有这些敌人都获得加成。<br/>"
+
+[GrappleExpert_LW X2AbilityTemplate]
+LocFriendlyName="钩爪专家"
+LocLongDescription="正义、怒火、鞭笞获得额外+15命中."
+LocHelpText="正义、怒火、鞭笞获得额外+15命中."
+LocFlyOverText="钩爪专家"

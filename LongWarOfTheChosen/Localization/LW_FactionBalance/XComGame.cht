@@ -50,9 +50,9 @@ LocPromotionPopupText="<Bullet/> 如果命中(包括擦傷)眩暈敵人<Ability:
 
 [Meditation X2AbilityTemplate]
 LocFriendlyName="冥想"
-LocLongDescription="聖殿騎士增加 <Ability:MeditationFocusRecovery/> 專注。"
-LocHelpText="聖殿騎士增加 <Ability:MeditationFocusRecovery/> 專注。"
-LocPromotionPopupText="<Bullet/> 聖殿騎士增加 <Ability:MeditationFocusRecovery/> 點專注。<br/><Bullet/> 結束本回合。<br/><Bullet/> 有 <Ability:SelfCooldown/>-回合冷卻。"
+LocLongDescription="為聖殿騎士增加<Ability:MeditationFocusRecovery/>點專注。初始0充能，聖殿騎士每殺死一個敵人獲得一層充能。"
+LocHelpText="為聖殿騎士增加<Ability:MeditationFocusRecovery/>點專注。初始0充能，聖殿騎士每殺死一個敵人獲得一層充能。"
+LocPromotionPopupText="<Bullet/> 為聖殿騎士增加<Ability:MeditationFocusRecovery/>點專注。<br/><Bullet/> 結束回合。<br/><Bullet/> <Ability:SelfCooldown/>回合冷卻時間。"
 
 [Overcharge_LW X2AbilityTemplate]
 LocFriendlyName="超載"

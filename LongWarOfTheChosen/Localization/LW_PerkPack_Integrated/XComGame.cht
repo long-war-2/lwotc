@@ -485,9 +485,9 @@ LocPromotionPopupText="<Bullet/>敵人對你的偵查範圍減少<Ability:COVERT
 [Ghostwalker X2AbilityTemplate]
 LocFriendlyName="鬼行者"
 LocFlyOverText="鬼行者"
-LocLongDescription="啟用此能力可在<Ability:GHOSTWALKER_DURATION/>回合內使敵人對你的偵查範圍減少<Ability:GHOSTWALKER_DETECTION_RANGE_REDUCTION/>%(包括當前回合)，如未發現你的敵人周圍的紅色格子所示。"
-LocHelpText="啟用此能力可在<Ability:GHOSTWALKER_DURATION/>回合內使敵人對你的偵查範圍減少<Ability:GHOSTWALKER_DETECTION_RANGE_REDUCTION/>%(包括當前回合)，如未發現你的敵人周圍的紅色格子所示。"
-LocPromotionPopupText="<Bullet/>啟用此能力可在<Ability:GHOSTWALKER_DURATION/>回合內使敵人對你的偵查範圍減少<Ability:GHOSTWALKER_DETECTION_RANGE_REDUCTION/>%(包括當前回合)，如未發現你的敵人周圍的紅色格子所示。<br/><Bullet/>冷卻時間<Ability:SelfCooldown/>回合。<br/><Bullet/>不需要行動點數。<br/><Bullet/>該能力也會略微減少該士兵的潛入時間。<br/><Bullet/>對變種人安保塔沒有效果。"
+LocLongDescription="啟用此能力可在<Ability:GHOSTWALKER_DURATION/>回合內使敵人對你的偵查範圍減少<Ability:GHOSTWALKER_DETECTION_RANGE_REDUCTION/>%(包括當前回合)，未暴露時敵人周圍的紅色格子代表其偵查範圍。"
+LocHelpText="啟用此能力可在<Ability:GHOSTWALKER_DURATION/>回合內使敵人對你的偵查範圍減少<Ability:GHOSTWALKER_DETECTION_RANGE_REDUCTION/>%(包括當前回合)，未暴露時敵人周圍的紅色格子代表其偵查範圍。"
+LocPromotionPopupText="<Bullet/>啟用此能力可在<Ability:GHOSTWALKER_DURATION/>回合內使敵人對你的偵查範圍減少<Ability:GHOSTWALKER_DETECTION_RANGE_REDUCTION/>%(包括當前回合)，未暴露時敵人周圍的紅色格子代表其偵查範圍。<br/><Bullet/>冷卻時間<Ability:SelfCooldown/>回合。<br/><Bullet/>不需要行動點數。<br/><Bullet/>該能力也會略微減少該士兵的潛入時間。<br/><Bullet/>對變種人安保塔沒有效果。"
 
 [Kubikuri X2AbilityTemplate]
 LocFriendlyName="斬首"
