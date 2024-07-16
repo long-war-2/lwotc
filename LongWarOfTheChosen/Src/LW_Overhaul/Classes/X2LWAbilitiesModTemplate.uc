@@ -119,6 +119,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			MakeAbilityNonTurnEnding(Template);
 			MakeAbilitiesUnusableOnLost(Template);
 			MakeAbilityHostile(Template);
+			class'X2Ability_LWAlienAbilities'.static.UpdatePriestStasis(Template);
 			break;
 		case 'Stasis':
 			MakeAbilityHostile(Template);
