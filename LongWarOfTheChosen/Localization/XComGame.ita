@@ -305,6 +305,12 @@ LocHelpText="Le granate che infliggono danni nel tuo slot delle granate ottengon
 LocFlyOverText="Armamento pesante"
 LocPromotionPopupText="<Bullet/> Tutte le granate che infliggono danni sono influenzate da Armamento pesante.<br/>"
 
+[HeavyOrdnanceV2 X2AbilityTemplate]
+LocFriendlyName="Armamento pesante"
+LocLongDescription="La granata nel tuo slot delle granate ottiene un utilizzo bonus."
+LocHelpText="La granata nel tuo slot delle granate ottiene un utilizzo bonus."
+LocPromotionPopupText="<Bullet/> Tutte le granate funzionano con Armamento pesante, anche quelle non offensive come gli scanner militari e le granate fumogene.<br/>"
+
 [Sapper X2AbilityTemplate]
 LocFriendlyName="Sabotatore"
 LocLongDescription="I tuoi esplosivi possono distruggere molti ripari."

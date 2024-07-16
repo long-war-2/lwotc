@@ -340,6 +340,12 @@ LocHelpText="Наносящая урон граната в специально 
 LocFlyOverText="Тяжелая артиллерия"
 LocPromotionPopupText="<Bullet/> Способность \"Тяжелая артиллерия\" совместима с любыми гранатами, наносящими урон.<br/>"
 
+[HeavyOrdnanceV2 X2AbilityTemplate]
+LocFriendlyName="Тяжелая артиллерия"
+LocLongDescription="Граната в специально отведенной для нее ячейке может быть использована еще раз."
+LocHelpText="Граната в специально отведенной для нее ячейке может быть использована еще раз."
+LocPromotionPopupText="<Bullet/> Способность \"Тяжелая артиллерия\" позволяет стрелять любыми гранатами, даже боевыми сканерами и дымовыми.<br/>"
+
 [Sapper X2AbilityTemplate]
 LocFriendlyName="Сапер"
 LocLongDescription="Взрывчатка способна уничтожать укрытия."

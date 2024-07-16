@@ -448,6 +448,13 @@ LocHelpText="Any damaging grenade in your grenade-only slot gains a bonus use."
 LocFlyOverText="Heavy Ordnance"
 LocPromotionPopupText="<Bullet/> All damaging grenades are viable for Heavy Ordnance.<br/>"
 
+[HeavyOrdnanceV2 X2AbilityTemplate]
+LocFriendlyName="Heavy Ordnance"
+LocLongDescription="The grenade in your grenade-only slot gains a bonus use."
+LocHelpText="The grenade in your grenade-only slot gains a bonus use."
+LocPromotionPopupText="<Bullet/> All grenades are viable for Heavy Ordnance, even non-offensive grenades like Battle Scanners and Smoke Grenades.<br/>"
+
+
 [Sapper X2AbilityTemplate]
 LocFriendlyName="Sapper"
 LocLongDescription="Your explosives can destroy many cover objects."

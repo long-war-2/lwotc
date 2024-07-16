@@ -434,6 +434,12 @@ LocHelpText="在榴弹专用槽中任何伤害型榴弹可以额外使用一次�
 LocFlyOverText="重型军火"
 LocPromotionPopupText="<Bullet/> 所有伤害型榴弹都适用重型军火。<br/>"
 
+[HeavyOrdnanceV2 X2AbilityTemplate]
+LocFriendlyName="重型军火"
+LocLongDescription="在榴弹专用槽中获得一个额外榴弹。"
+LocHelpText="在榴弹专用槽中获得一个额外榴弹。"
+LocPromotionPopupText="<Bullet/>所有榴弹都属于重型军火，即便是非进攻性的榴弹，例如战场扫描器和烟雾榴弹。<br/>"
+
 [Sapper X2AbilityTemplate]
 LocFriendlyName="工兵"
 LocLongDescription="你的爆炸物可以摧毁多数掩体。"

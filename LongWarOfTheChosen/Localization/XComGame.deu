@@ -360,6 +360,12 @@ LocHelpText="Jede Schaden verursachende Granate in deinem Granatenplatz erhält 
 LocFlyOverText="Schwere Geschütze"
 LocPromotionPopupText="<Bullet/> Alle Schaden verursachenden Granaten eignen sich für \"Schwere Geschütze\".<br/>"
 
+[HeavyOrdnanceV2 X2AbilityTemplate]
+LocFriendlyName="Schwere Geschütze"
+LocLongDescription="Die Granate in deinem Granatenplatz erhält eine zusätzliche Verwendung."
+LocHelpText="Die Granate in deinem Granatenplatz erhält eine zusätzliche Verwendung."
+LocPromotionPopupText="<Bullet/> Alle Granaten eignen sich für \"Schwere Geschütze\", selbst nicht-offensive Granaten wie Gefechtsscanner oder Rauchgranaten.<br/>"
+
 [Sapper X2AbilityTemplate]
 LocFriendlyName="Sprengstoffexperte"
 LocLongDescription="Deine Sprengsätze können viele Deckungsobjekte zerstören."
