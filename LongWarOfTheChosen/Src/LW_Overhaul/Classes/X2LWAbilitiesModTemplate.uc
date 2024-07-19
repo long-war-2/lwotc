@@ -253,6 +253,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'AbsorptionField':
 			ReworkAbsorptionField(Template);
 			break;
+		case 'IRI_Bombard':
 		case 'Bombard':
 			ReworkBombard(Template);
 			break;
