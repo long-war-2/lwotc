@@ -12,6 +12,8 @@ var config int REFLEX_COOLDOWN;
 var config int SKIRMISHER_INTERRUPT_COOLDOWN;
 var config int BATTLEFIELD_AWARENESS_COOLDOWN;
 
+var config array<name> PACKMASTER_CUSTOM_ABILITIES;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates; 
@@ -283,6 +285,8 @@ static function X2AbilityTemplate AddPackMaster()
 {
 	local X2AbilityTemplate						Template;
 	local X2Effect_PackMaster_LW				FullKitEffect;
+	local XMBEffect_AddAbilityCharges			AddChargesEffect;
+	local name 									AbilityName;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'PackMaster_LW');
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityFullKit";
@@ -297,6 +301,16 @@ static function X2AbilityTemplate AddPackMaster()
 	FullKitEffect.BuildPersistentEffect (1, true, false);
 	FullKitEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	Template.AddTargetEffect(FullKitEffect);
+
+	AddChargesEffect = new class'XMBEffect_AddAbilityCharges';
+	AddChargesEffect.BonusCharges = 1;
+	foreach default.PACKMASTER_CUSTOM_ABILITIES (AbilityName)
+	{
+		AddChargesEffect.AbilityNames.AddItem(AbilityName);
+	}
+	
+	Template.AddTargetEffect (AddChargesEffect);
+
 	Template.bCrossClassEligible = true;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
