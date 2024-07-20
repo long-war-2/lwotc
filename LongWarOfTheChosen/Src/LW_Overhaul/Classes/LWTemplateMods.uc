@@ -2371,6 +2371,9 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'AdvTurretM1':
 			Template.Abilities.AddItem('RobotImmunities');
 			break;
+		case 'Soldier_VIP':
+			Template.CharacterBaseStats[eStat_Mobility] = 15;
+			break;
 		default:
 			break;
 	}
