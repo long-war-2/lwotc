@@ -419,6 +419,24 @@ static function UpdateEncounterLists()
 			}
 		}
 	}
+
+	// Handle pre-made encounters
+	for(i = MissionManager.ConfigurableEncounters.Length-1; i >= 0; i--)
+	{
+
+		for(j = MissionManager.ConfigurableEncounters[i].ForceSpawnTemplateNames.Length - 1; j >= 0; j--)
+		{
+			// Try to find the character template
+			TestTemplate = CharacterTemplateMgr.FindCharacterTemplate(MissionManager.ConfigurableEncounters[i].ForceSpawnTemplateNames[j]);
+
+			// Remove if invalid
+			if(TestTemplate == none)
+			{
+				MissionManager.ConfigurableEncounters[i].ForceSpawnTemplateNames.Remove(j,1);
+				`LWTrace("Removing nonexistant unit" @MissionManager.ConfigurableEncounters[i].ForceSpawnTemplateNames[j] @ "From fixed ecnounter " @MissionManager.ConfigurableEncounters[i].EncounterID);
+			}
+		}
+	}
 }
 
 // Remove the red alert affect from the yell ability since it cause AI units to go into red alert
