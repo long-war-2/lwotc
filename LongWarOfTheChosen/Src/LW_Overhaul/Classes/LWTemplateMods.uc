@@ -1314,8 +1314,8 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			WeaponDamageEffect = X2Effect_ApplyWeaponDamage(Template.AbilityTargetEffects[k]);
 			if (WeaponDamageEffect != none)
 			{
-				WeaponDamageEffect.EffectDamageValue.Pierce = 99;
-				WeaponDamageEffect.EffectDamageValue.Damage = 99;
+				WeaponDamageEffect.EffectDamageValue.Pierce = 200;
+				WeaponDamageEffect.EffectDamageValue.Damage = 200;
 			}
 		}
 	}
