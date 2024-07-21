@@ -18,6 +18,8 @@ var config int TANDEMHEAT_WARHEADS_SHRED;
 var config int BLUESCREENBOMB_HACK_DEFENSE_CHANGE;
 var config int VANISHINGACT_CHARGES;
 var config int NEEDLE_BONUS_UNARMORED_DMG;
+var config int HEAVYORDNANCEV2_BONUS_CHARGES;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -33,6 +35,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	
 	Templates.AddItem(AddHeavyOrdnance_LW());
 	Templates.AddItem(AddProtector());
+	Templates.AddItem(AddHeavyOrdnanceV2());
 	Templates.AddItem(AddHEATWarheads());
 	Templates.AddItem(AddHEATTandemWarheads());
 	Templates.AddItem(AddBombard());
@@ -211,6 +214,37 @@ static function X2AbilityTemplate AddProtector()
 	BonusGrenadeEffect.EffectName='ProtectorEffect';
 	BonusGrenadeEffect.bNonDamagingGrenadesOnly = true;
 	BonusGrenadeEffect.BonusUses = default.PROTECTOR_BONUS_CHARGES;
+	BonusGrenadeEffect.SlotType = eInvSlot_GrenadePocket;
+	BonusGrenadeEffect.BuildPersistentEffect (1, true, false);
+	BonusGrenadeEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Template.AddTargetEffect (BonusGrenadeEffect);
+	
+	Template.bCrossClassEligible = false;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}
+
+// This ability grants +1 charge to any grenade in the grenade pocket.
+static function X2AbilityTemplate AddHeavyOrdnanceV2()
+{
+	local X2AbilityTemplate						Template;
+	local X2Effect_BonusGrenadeSlotUse			BonusGrenadeEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'HeavyOrdnanceV2');
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_aceinthehole";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.bUniqueSource = true;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bIsPassive = true;
+
+	BonusGrenadeEffect = new class 'X2Effect_BonusGrenadeSlotUse';
+	BonusGrenadeEffect.EffectName='HeavyOrdnanceV2Effect';
+	BonusGrenadeEffect.BonusUses = default.HEAVYORDNANCEV2_BONUS_CHARGES;
 	BonusGrenadeEffect.SlotType = eInvSlot_GrenadePocket;
 	BonusGrenadeEffect.BuildPersistentEffect (1, true, false);
 	BonusGrenadeEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);

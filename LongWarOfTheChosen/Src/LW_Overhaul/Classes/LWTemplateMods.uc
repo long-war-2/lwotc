@@ -1314,8 +1314,8 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			WeaponDamageEffect = X2Effect_ApplyWeaponDamage(Template.AbilityTargetEffects[k]);
 			if (WeaponDamageEffect != none)
 			{
-				WeaponDamageEffect.EffectDamageValue.Pierce = 99;
-				WeaponDamageEffect.EffectDamageValue.Damage = 99;
+				WeaponDamageEffect.EffectDamageValue.Pierce = 200;
+				WeaponDamageEffect.EffectDamageValue.Damage = 200;
 			}
 		}
 	}
@@ -2371,6 +2371,9 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'AdvTurretM1':
 			Template.Abilities.AddItem('RobotImmunities');
 			break;
+		case 'Soldier_VIP':
+			Template.CharacterBaseStats[eStat_Mobility] = 15;
+			break;
 		default:
 			break;
 	}
@@ -2729,8 +2732,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponTemplate.Abilities.AddItem('Concentration_LW');
 			break;
 		case 'GrenadeLauncher_MG':
-			WeaponTemplate.Abilities.AddItem('HeavyOrdnance_LW');
-			WeaponTemplate.Abilities.AddItem('Protector');
+			WeaponTemplate.Abilities.AddItem('HeavyOrdnanceV2');
 			break;
 		default:
 			break;

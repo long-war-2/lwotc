@@ -359,6 +359,12 @@ LocHelpText="Zapewnia dodatkowy egzemplarz granatu zadającego obrażenia, któr
 LocFlyOverText="Ciężka artyleria"
 LocPromotionPopupText="<Bullet/> Zdolność \"ciężka artyleria\" obejmuje swym działaniem wszystkie granaty powodujące obrażenia.<br/>"
 
+[HeavyOrdnanceV2 X2AbilityTemplate]
+LocFriendlyName="Ciężka artyleria"
+LocLongDescription="Umieszczenie granatu w przeznaczonym wyłącznie dla niego miejscu zapewni ci jego dodatkowy egzemplarz."
+LocHelpText="Umieszczenie granatu w przeznaczonym wyłącznie dla niego miejscu zapewni ci jego dodatkowy egzemplarz."
+LocPromotionPopupText="<Bullet/> Do ciężkiej artylerii zaliczają się wszystkie granaty, nawet te pozbawione potencjału ofensywnego, takie jak skanery bojowe i granaty dymne.<br/>"
+
 [Sapper X2AbilityTemplate]
 LocFriendlyName="Saper"
 LocLongDescription="Twoje materiały wybuchowe mogą zniszczyć wiele obiektów pełniących rolę osłon."

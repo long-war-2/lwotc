@@ -34,6 +34,15 @@ m_strNoWeaponUpgradesTooltip="没有可用的武器升级"
 TrojanVirus="特洛伊病毒"
 TrojanVirusTriggered="<XGParam:StrValue0/!UnitName/>已触发特洛伊病毒。"
 
+DenseSmokeGrenadeEffectDisplayName="浓密烟雾"
+DenseSmokeGrenadeEffectDisplayDesc="浓密烟雾赋予该单位额外的防御加成。"
+
+ShellshockEffectDesc="这个单位的命中和暴击几率降低了。"
+ShellshockEffectName="被弹震"
+
+ShockwaveEffectName="被冲击"
+ShockwaveEffectDesc="这个单位的防御和闪避降低了。"
+
 [X2Effect_Savior]
 strSavior_WorldMessage="妙手回春：已回复额外<XGParam:IntValue0/>生命值。"
 

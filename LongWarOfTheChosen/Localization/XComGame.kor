@@ -305,6 +305,12 @@ LocHelpText="수류탄 전용 슬롯에 있는 살상 수류탄을 추가로 한
 LocFlyOverText="중화력"
 LocPromotionPopupText="<Bullet/> 모든 살상 수류탄을 중화기에 사용할 수 있습니다.<br/>"
 
+[HeavyOrdnanceV2 X2AbilityTemplate]
+LocFriendlyName="중화력"
+LocLongDescription="수류탄 전용 슬롯에 있는 수류탄을 추가로 한 번 더 사용할 수 있습니다."
+LocHelpText="수류탄 전용 슬롯에 있는 수류탄을 추가로 한 번 더 사용할 수 있습니다."
+LocPromotionPopupText="<Bullet/> 전투 스캐너나 연막 수류탄 같은 비공격용 수류탄을 포함한 모든 수류탄이 중화력 무기에 적용됩니다.<br/>"
+
 [Sapper X2AbilityTemplate]
 LocFriendlyName="공병"
 LocLongDescription="폭발물이 많은 엄폐물을 파괴할 수 있습니다."

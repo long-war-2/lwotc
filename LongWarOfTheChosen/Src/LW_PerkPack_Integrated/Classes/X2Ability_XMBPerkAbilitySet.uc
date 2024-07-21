@@ -138,6 +138,10 @@ var config int QUICKDRAW_MOBILITY_INCREASE;
 
 var config array<name> PISTOL_WEAPON_CATEGORIES;
 
+var config int LineEmUpOffense, LineEmUpCrit;
+var config int SensorOverlaysCritBonus;
+var config int FocusedDefenseDefense, FocusedDefenseDodge;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -237,6 +241,13 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(TriggerBotDamage());
 
 	Templates.AddItem(CreateBonusChargesAbility());
+	Templates.AddItem(AddAnatomyAbility());
+	Templates.AddItem(AddFreeScanner());
+	Templates.AddItem(AddScoutScanner());
+	Templates.AddItem(LineEmUp());
+	Templates.AddItem(SensorOverlays());
+	Templates.AddItem(FocusedDefense());
+	Templates.AddItem(GrappleExpert());
 	
 	
 	return Templates;
@@ -1755,6 +1766,8 @@ static function X2AbilityTemplate Predator()
 	return Passive('Predator_LW', "img:///UILibrary_FavidsPerkPack.Perk_Ph_Predator", true, Effect);
 }
 
+
+
 static function X2AbilityTemplate Stiletto()
 {
 	local XMBEffect_ConditionalBonus ShootingEffect;
@@ -2343,6 +2356,7 @@ static function X2AbilityTemplate PrimaryReturnFireShot()
 	
 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
 	StandardAim.bReactionFire = true;
+	StandardAim.bIgnoreCoverBonus = true;
 	Template.AbilityToHitCalc = StandardAim;
 	Template.AbilityToHitOwnerOnMissCalc = StandardAim;
 
@@ -3886,12 +3900,12 @@ static function X2AbilityTemplate QuickdrawMobility()
 	WeaponCatCondition = new class'X2Condition_UnitInventory';
 	WeaponCatCondition.RelevantSlot = eInvSlot_Pistol;
 	WeaponCatCondition.RequireWeaponCategory = 'pistol';
-	Template.AbilityTargetConditions.AddItem(WeaponCatCondition);
 
 	MobilityIncreaseEffect = new class'X2Effect_PersistentStatChange';
 	MobilityIncreaseEffect.BuildPersistentEffect(1, true, false);
 	
 	MobilityIncreaseEffect.AddPersistentStatChange(eStat_Mobility, default.QUICKDRAW_MOBILITY_INCREASE);
+	MobilityIncreaseEffect.TargetConditions.AddItem(WeaponCatCondition);
 	Template.AddTargetEffect(MobilityIncreaseEffect);
 
 	// Duplicate for autopistols
@@ -3899,12 +3913,12 @@ static function X2AbilityTemplate QuickdrawMobility()
 	WeaponCatCondition = new class'X2Condition_UnitInventory';
 	WeaponCatCondition.RelevantSlot = eInvSlot_Pistol;
 	WeaponCatCondition.RequireWeaponCategory = 'sidearm';
-	Template.AbilityTargetConditions.AddItem(WeaponCatCondition);
 
 	MobilityIncreaseEffect = new class'X2Effect_PersistentStatChange';
 	MobilityIncreaseEffect.BuildPersistentEffect(1, true, false);
 	
 	MobilityIncreaseEffect.AddPersistentStatChange(eStat_Mobility, default.QUICKDRAW_MOBILITY_INCREASE);
+	MobilityIncreaseEffect.TargetConditions.AddItem(WeaponCatCondition);
 	Template.AddTargetEffect(MobilityIncreaseEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -4017,6 +4031,203 @@ static function X2AbilityTemplate CreateBonusChargesAbility()
 	return Template;
 }
 
+// From ABB Perk Pack
+static function X2AbilityTemplate AddAnatomyAbility()
+{
+	local X2AbilityTemplate					Template;
+	local X2Effect_PersistentStatChange		AnatomyEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Anatomy_LW');	
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.IconImage = "img:///BetterIcons_LW.Perks.Anatomy";
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.AbilityToHitCalc = default.DeadEye;
+    Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bCrossClassEligible = false;
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+
+	AnatomyEffect = new class'X2Effect_PersistentStatChange';
+	AnatomyEffect.BuildPersistentEffect(1,true,false);
+	AnatomyEffect.SetDisplayInfo (ePerkBuff_Passive,Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName); 
+	AnatomyEffect.AddPersistentStatChange(eStat_CritChance, 15);
+	AnatomyEffect.AddPersistentStatChange(eStat_ArmorPiercing, 2);
+	Template.AddTargetEffect(AnatomyEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.CriticalChanceLabel, eStat_Critchance, 15);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.PierceLabel, eStat_ArmorPiercing, 2);
+
+	return Template;
+}
+
+
+static function X2AbilityTemplate AddFreeScanner()
+{
+	local X2AbilityTemplate				Template;
+	local X2Effect_TemporaryItem		ItemEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'FreeScanner_LW');
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_item_battlescanner"; 
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bIsPassive = true;
+
+	ItemEffect = new class 'X2Effect_TemporaryItem';
+	ItemEffect.ItemName = 'ScoutScanner_LW';
+	ItemEffect.bIgnoreItemEquipRestrictions = true;
+	Template.AddTargetEffect (ItemEffect);
+
+	Template.bCrossClassEligible = false;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}
+
+static function X2AbilityTemplate AddScoutScanner()
+{
+	local X2AbilityTemplate             Template;
+	//local X2AbilityCost_ActionPoints    ActionPointCost;
+	local X2AbilityTarget_Cursor        CursorTarget;
+	local X2AbilityMultiTarget_Radius   RadiusMultiTarget;
+	local X2Effect_PersistentSquadViewer    ViewerEffect;
+	local X2Effect_ScanningProtocol     ScanningEffect;
+	local X2Condition_UnitProperty      CivilianProperty;
+	local X2AbilityCooldown					Cooldown;	
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ScoutScanner_LW');
+
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_item_battlescanner";
+	Template.AbilitySourceName = 'eAbilitySource_Item';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bDisplayInUITacticalText = false;
+	Template.bHideWeaponDuringFire = true;
+
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = 4;
+	Template.AbilityCooldown = Cooldown;
+
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.STANDARD_GRENADE_PRIORITY;
+
+	//ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	//ActionPointCost.iNumPoints = 1;
+	//Template.AbilityCosts.AddItem(ActionPointCost);
+
+	Template.AbilityCosts.AddItem(default.FreeActionCost);
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AddShooterEffectExclusions();
+
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+
+	CursorTarget = new class'X2AbilityTarget_Cursor';
+	CursorTarget.bRestrictToWeaponRange = true;
+	Template.AbilityTargetStyle = CursorTarget;
+
+	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
+	RadiusMultiTarget.bUseWeaponRadius = true;
+	RadiusMultiTarget.bIgnoreBlockingCover = true; // we don't need this, the squad viewer will do the appropriate things once thrown
+	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
+
+	Template.TargetingMethod = class'X2TargetingMethod_Grenade';
+
+	ScanningEffect = new class'X2Effect_ScanningProtocol';
+	ScanningEffect.BuildPersistentEffect(1, false, false, false, eGameRule_PlayerTurnEnd);
+	ScanningEffect.TargetConditions.AddItem(default.LivingHostileUnitOnlyProperty);
+	Template.AddMultiTargetEffect(ScanningEffect);
+
+	ScanningEffect = new class'X2Effect_ScanningProtocol';
+	ScanningEffect.BuildPersistentEffect(1, false, false, false, eGameRule_PlayerTurnEnd);
+	CivilianProperty = new class'X2Condition_UnitProperty';
+	CivilianProperty.ExcludeNonCivilian = true;
+	CivilianProperty.ExcludeHostileToSource = false;
+	CivilianProperty.ExcludeFriendlyToSource = false;
+	ScanningEffect.TargetConditions.AddItem(CivilianProperty);
+	Template.AddMultiTargetEffect(ScanningEffect);
+
+	ViewerEffect = new class'X2Effect_PersistentSquadViewer';
+	ViewerEffect.BuildPersistentEffect(class'X2Ability_ItemGrantedAbilitySet'.default.BATTLESCANNER_DURATION, false, false, false, eGameRule_PlayerTurnBegin);
+	Template.AddShooterEffect(ViewerEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.NonAggressiveChosenActivationIncreasePerUse;
+		
+	return Template;
+}
+
+static function X2AbilityTemplate LineEmUp()
+{
+	local XMBEffect_ConditionalBonus Effect;
+
+	Effect = new class'XMBEffect_ConditionalBonus';
+	Effect.AddToHitModifier(default.LineEmUpOffense, eHit_Success);
+	Effect.AddToHitModifier(default.LineEmUpCrit, eHit_Crit);
+
+	Effect.AbilityTargetConditions.AddItem(new class'X2Condition_ClosestVisibleEnemy');
+	Effect.AbilityTargetConditions.AddItem(default.RangedCondition);
+
+	// TODO: icon
+	return Passive('LineEmUp_LW', "img:///UILibrary_SOCombatEngineer.UIPerk_lineemup", true, Effect);
+}
+
+static function X2AbilityTemplate FocusedDefense()
+{
+	local XMBEffect_ConditionalBonus Effect;
+	local XMBCondition_CoverType NotFlankedCondition;
+
+	NotFlankedCondition = new class'XMBCondition_CoverType';
+	NotFlankedCondition.ExcludedCoverTypes.AddItem(CT_None);
+
+	Effect = new class'XMBEffect_ConditionalBonus';
+	Effect.AddToHitAsTargetModifier(-default.FocusedDefenseDefense, eHit_Success);
+	Effect.AddToHitAsTargetModifier(default.FocusedDefenseDodge, eHit_Graze);
+
+	Effect.AbilityTargetConditionsAsTarget.AddItem(NotFlankedCondition);
+	Effect.AbilityTargetConditionsAsTarget.AddItem(new class'X2Condition_ClosestVisibleEnemy');
+
+	// TODO: icon
+	return Passive('FocusedDefense_LW', "img:///UILibrary_SOCombatEngineer.UIPerk_focuseddefense", true, Effect);
+}
+
+static function X2AbilityTemplate SensorOverlays()
+{
+	local X2Effect_SensorOverlays Effect;
+
+	Effect = new class'X2Effect_SensorOverlays';
+	Effect.EffectName = 'SensorOverlays';
+	Effect.DuplicateResponse = eDupe_Allow;
+	Effect.AddToHitModifier(default.SensorOverlaysCritBonus, eHit_Crit);
+	Effect.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
+
+	return SquadPassive('SensorOverlays_LW', "img:///UILibrary_SODragoon.UIPerk_sensoroverlays", false, Effect);
+}
+
+static function X2AbilityTemplate GrappleExpert()
+{
+
+	local X2AbilityTemplate				Template;
+	local X2Effect_SkirmMeleeHitMod		HitModEffect;
+
+
+	// Create a persistent effect that triggers status effects on Crit
+	HitModEffect = new class'X2Effect_SkirmMeleeHitMod';
+	HitModEffect.BuildPersistentEffect(1, true, false, false);
+
+	Template = Passive('GrappleExpert_LW', "img:///UILibrary_PerkIcons.UIPerk_grapple", false, HitModEffect);
+
+	return Template;
+}
 
 defaultproperties
 {

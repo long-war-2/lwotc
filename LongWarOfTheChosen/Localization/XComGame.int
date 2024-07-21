@@ -448,6 +448,13 @@ LocHelpText="Any damaging grenade in your grenade-only slot gains a bonus use."
 LocFlyOverText="Heavy Ordnance"
 LocPromotionPopupText="<Bullet/> All damaging grenades are viable for Heavy Ordnance.<br/>"
 
+[HeavyOrdnanceV2 X2AbilityTemplate]
+LocFriendlyName="Heavy Ordnance"
+LocLongDescription="The grenade in your grenade-only slot gains a bonus use."
+LocHelpText="The grenade in your grenade-only slot gains a bonus use."
+LocPromotionPopupText="<Bullet/> All grenades are viable for Heavy Ordnance, even non-offensive grenades like Battle Scanners and Smoke Grenades.<br/>"
+
+
 [Sapper X2AbilityTemplate]
 LocFriendlyName="Sapper"
 LocLongDescription="Your explosives can destroy many cover objects."
@@ -468,7 +475,7 @@ LocFriendlyName="Needle Grenades"
 LocLongDescription="Your explosives do not destroy loot when they kill enemies and deal <ABILITY:NEEDLE_BONUS_UNARMORED_DMG_LW/> bonus damage to unarmored enemies."
 LocHelpText="Your explosives do not destroy loot when they kill enemies and deal <ABILITY:NEEDLE_BONUS_UNARMORED_DMG_LW/> bonus damage to unarmored enemies."
 LocFlyOverText="Needle Grenades"
-LocPromotionPopupText="<Bullet/> You have received extra training that enables you to employ explosive grenades that deploy specialized slivers that leave enemy loot and corpse intact and tears through unreinforced material.<br/><Bullet/> Loot and corpses of enemies killed by any other explosives of this soldier, such as heavy weapons, are also preserved."
+LocPromotionPopupText="<Bullet/> You have received extra training that enables you to employ explosive grenades that deploy specialized slivers that leave enemy loot and corpse intact and tears through unreinforced material.<br/><Bullet/> Loot and corpses of enemies killed by any other explosives of this soldier, such as heavy weapons, are also preserved.<br/><Bullet/> Needle Grenades applies to both Gauntlet rockets and flamethrower."
 ; End Translation (2)
 
 [HEATWarheads X2AbilityTemplate]
@@ -540,15 +547,15 @@ LocPromotionPopupText="<Bullet/> Grenades, standard rockets, and MEC micromissil
 
 [Shellshock_LW X2AbilityTemplate]
 LocFriendlyName="Shellshock"
-LocLongDescription="Your grenades decrease enemy aim by <Ability:SHELLSHOCK_AIM_REDUCTION/> and critical chance by <Ability:SHELLSHOCK_CRIT_CHANCE_REDUCTION/> for <Ability:SHELLSHOCK_TURNS/> turn(s)."
-LocHelpText="Your grenades decrease enemy aim by <Ability:SHELLSHOCK_AIM_REDUCTION/> and critical chance by <Ability:SHELLSHOCK_CRIT_CHANCE_REDUCTION/> for <Ability:SHELLSHOCK_TURNS/> turn(s)."
-LocPromotionPopupText="<Bullet/> Shellshock does  apply to flashbang grenades."
+LocLongDescription="Your grenades and gauntlet rockets decrease enemy aim by <Ability:SHELLSHOCK_AIM_REDUCTION/> and critical chance by <Ability:SHELLSHOCK_CRIT_CHANCE_REDUCTION/> for <Ability:SHELLSHOCK_TURNS/> turn(s)."
+LocHelpText="Your grenades and gauntlet rockets decrease enemy aim by <Ability:SHELLSHOCK_AIM_REDUCTION/> and critical chance by <Ability:SHELLSHOCK_CRIT_CHANCE_REDUCTION/> for <Ability:SHELLSHOCK_TURNS/> turn(s)."
+LocPromotionPopupText="<Bullet/> Shellshock does apply to flashbang grenades."
 LocFlyOverText="Shellshock"
 
 [Shockwave_LW X2AbilityTemplate]
 LocFriendlyName="Shockwave"
-LocLongDescription="Your damaging grenades decrease enemy defense by <Ability:SHOCKWAVE_DEF_REDUCTION/> and dodge by <Ability:SHOCKWAVE_DODGE_REDUCTION/> for <Ability:SHOCKWAVE_TURNS/> turn(s)."
-LocHelpText="Your damaging grenades decrease enemy defense by <Ability:SHOCKWAVE_DEF_REDUCTION/> and dodge by <Ability:SHOCKWAVE_DODGE_REDUCTION/> for <Ability:SHOCKWAVE_TURNS/> turn(s)."
+LocLongDescription="Your damaging grenades and gauntlet rockets decrease enemy defense by <Ability:SHOCKWAVE_DEF_REDUCTION/> and dodge by <Ability:SHOCKWAVE_DODGE_REDUCTION/> for <Ability:SHOCKWAVE_TURNS/> turn(s)."
+LocHelpText="Your damaging grenades and gauntlet rockets decrease enemy defense by <Ability:SHOCKWAVE_DEF_REDUCTION/> and dodge by <Ability:SHOCKWAVE_DODGE_REDUCTION/> for <Ability:SHOCKWAVE_TURNS/> turn(s)."
 LocPromotionPopupText="<Bullet/> Shockwave does not apply to flashbang grenades or other grenades that do not deal damage."
 LocFlyOverText="Shellshock"
 
@@ -6492,8 +6499,8 @@ LocPromotionPopupText="<Bullet/> After throwing or launching a grenade, you will
 [Avenger_LW X2AbilityTemplate]
 LocFriendlyName="Avenger"
 LocFlyOverText="Avenger"
-LocLongDescription="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has taken an offensive action."
-LocHelpText="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has taken an offensive action."
+LocLongDescription="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has taken an offensive action.  The reaction shot ingores cover bonuses."
+LocHelpText="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has taken an offensive action.  The reaction shot ingores cover bonuses."
 LocPromotionPopupText="<Bullet/> Avenger will not activate if this unit is shot at.<br/><Bullet/> Can only activate during the enemy's turn.<br/><Bullet/> Can only trigger once per turn.<br/>"
 ; End Translation (2)
 
@@ -6736,14 +6743,14 @@ LocPromotionPopupText="<Bullet/> Give a friendly unit <Ability:INSPIRE_DODGE/> D
 
 [PrimaryReturnFire X2AbilityTemplate]
 LocFriendlyName="Return Fire"
-LocHelpText="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn."
-LocLongDescription="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn."
+LocHelpText="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn. The return shot ingores cover bonuses."
+LocLongDescription="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn. The return shot ingores cover bonuses."
 LocPromotionPopupText="<Bullet/> Return Fire will only trigger once per turn.<br/><Bullet/> Return Fire can be triggered by melee attacks and area of effect attacks.<br/><Bullet/> Return Fire will not trigger when targeted by overwatch fire.<br/>"
 
 [PrimaryReturnFireShot X2AbilityTemplate]
 LocFriendlyName="Return Fire"
-LocHelpText="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn."
-LocLongDescription="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn."
+LocHelpText="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn. The return shot ingores cover bonuses."
+LocLongDescription="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn. The return shot ingores cover bonuses."
 LocPromotionPopupText="<Bullet/> Return Fire will only trigger once per turn.<br/><Bullet/> Return Fire can be triggered by melee attacks and area of effect attacks.<br/><Bullet/> Return Fire will not trigger when targeted by overwatch fire.<br/>"
 
 [TriggerBot X2AbilityTemplate]
@@ -7846,3 +7853,50 @@ LocFlyOverText="Spectral Zombie Immunities"
 LocLongDescription="Spectral Zombies are immune to mental impairments, fire, poison, and acid."
 LocHelpText="Spectral Zombies are immune to mental impairments, fire, poison, and acid.
 LocPromotionPopupText=""
+
+[Anatomy_LW X2AbilityTemplate]
+LocFriendlyName="Anatomy"
+LocFlyOverText="Anatomy"
+LocLongDescription="You know exactly where to strike to cause the most damage. You gain +15% Critical Chance and 2 Armor Pierce on all attacks."
+LocHelpText="You gain bonuses to Critical Chance and Armor Pierce."
+LocPromotionPopupText="<Bullet/> This is an unconditional passive bonus.\n<Bullet/> The Armor Pierce bonus will not show on attack previews, but it will function when the attack lands."
+
+[ScoutScanner_LW X2AbilityTemplate]
+LocFriendlyName="Reconnoiter"
+LocHelpText="Every 4 turns, as a free action, you can use a Battle Scanner."
+LocLongDescription="Every 4 turns, as a free action, you can use a Battle Scanner. This does not require or consume any actual equipped Battle Scanners."
+LocPromotionPopupText="<Bullet/> The Battle Scanners granted by Reconnoiter can be used indefinitely, only limited by the cooldown.\n<Bullet/> These Battle Scanners are separate from the ones granted by the Battle Scanner item or the Scout ability."
+
+[FreeScanner_LW X2AbilityTemplate]
+LocFriendlyName="Reconnoiter"
+LocHelpText="Every 4 turns, as a free action, you can use a Battle Scanner."
+LocLongDescription="Every 4 turns, as a free action, you can use a Battle Scanner. This does not require or consume any actual equipped Battle Scanners."
+LocPromotionPopupText="<Bullet/> The Battle Scanners granted by Reconnoiter can be used indefinitely, only limited by the cooldown.\n<Bullet/> These Battle Scanners are separate from the ones granted by the Battle Scanner item or the Scout ability."
+
+[LineEmUp_LW X2AbilityTemplate]
+LocFriendlyName="Priority Target"
+LocLongDescription="You get <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit chance on ranged attacks against the closest visible enemy."
+LocHelpText="You get <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit chance on ranged attacks against the closest visible enemy."
+LocFlyOverText="Priority Target"
+LocPromotionPopupText="<Bullet/> If multiple enemies are equally distant, you get the bonus against all of them.<br/><Bullet/> Priority Target doesn't affect melee attacks.<br/>"
+
+[SensorOverlays_LW X2AbilityTemplate]
+LocFriendlyName="Sensor Overlays"
+LocLongDescription="All squad members get <Ability:+Crit> Crit chance against enemies you can see."
+LocHelpText="All squad members get <Ability:+Crit> Crit chance against enemies you can see."
+LocFlyOverText="Sensor Overlays"
+LocPromotionPopupText="<Bullet/> This doesn't count enemies only visible through squadsight.<br/>"
+
+[FocusedDefense_LW X2AbilityTemplate]
+LocFriendlyName="Focused Defense"
+LocLongDescription="You get an additional <Ability:+Defense/> Defense and <Ability:+Dodge/> Dodge against attacks by the closest visible enemy while not flanked."
+LocHelpText="You get an additional <Ability:+Defense/> Defense and <Ability:+Dodge/> Dodge against attacks by the closest visible enemy while not flanked."
+LocFlyOverText="Focused Defense"
+LocPromotionPopupText="<Bullet/> The bonus doesn't apply against melee attacks.<br/><Bullet/> If multiple enemies are equally distant, you get the bonus against all of them.<br/>"
+
+
+[GrappleExpert_LW X2AbilityTemplate]
+LocFriendlyName="Grapple Expert"
+LocLongDescription="Justice, Whiplash, and Wrath gain +15 aim."
+LocHelpText="Justice, Whiplash, and Wrath gain +15 aim."
+LocFlyOverText="Grapple Expert"

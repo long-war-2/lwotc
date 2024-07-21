@@ -334,6 +334,7 @@ RankTooLow="Rank Too Low"
 CannotModifyOnMissionSoldierTooltip="Cannot modify soldier currently on mission"
 ; LWOTC Needs Translation
 ReasonClassAbilityPickedAtRank="Already picked a class ability at this rank"
+ReasonPsiOperativePerkFromLab="Psi Operative"
 ; End Translation
 
 [XComGameState_LWPersistentSquad]
@@ -756,7 +757,7 @@ strDismiss_Button = "OK"
 [UISL_Shell_BetaPatchNotes]
 strMessage_Title = "Long War Of The Chosen"
 strMessage_Header = "Latest Beta Changes:"
-strMessage_Body = "<ul><li>Complete rework of Grenadier tree with a completely redone middle row.</li><li>Additional grenade perks are now granted by grenade launcher upgrades.</li><li>Beam Grenade Launcher and Blaster Launcher are now unlocked by Powered Armor research.</li><li>Gunner and Shinobi received smaller tweaks to their trees</li></ul>"
+strMessage_Body = "<ul><li>More small tweaks to the class XCOM decks, increasing perk diversity and better aligning the perks with some of the classes.</li><li><b>Psi Operative Update: Conflict with Instant Avenger Menus has been resolved, but requires switching to the BETA Highlander.</b> If you see a weird promotion screen for Psi operatives, this is why.</li><li>Hunter tracking shot now ignores spark sacrifice to prevent an infinite loop of Hunter shots.</li></ul>"
 strDismiss_Button = "OK"
 
 [UISL_PullAdvisors]

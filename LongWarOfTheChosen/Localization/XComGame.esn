@@ -377,6 +377,12 @@ LocHelpText="Cualquier granada dañina de tu espacio exclusivo para granadas gan
 LocFlyOverText="Artillería pesada"
 LocPromotionPopupText="<Bullet/> Todas las granadas dañinas son viables para Artillería pesada.<br/>"
 
+[HeavyOrdnanceV2 X2AbilityTemplate]
+LocFriendlyName="Artillería pesada"
+LocLongDescription="La granada en tu espacio exclusivo para granadas gana un uso adicional."
+LocHelpText="La granada en tu espacio exclusivo para granadas gana un uso adicional."
+LocPromotionPopupText="<Bullet/> Todas las granadas están disponibles en Artillería pesada, incluso las granadas no ofensivas como los escáneres de batalla y las granadas de humo.<br/>"
+
 [Sapper X2AbilityTemplate]
 LocFriendlyName="Zapador"
 LocLongDescription="Tus explosivos pueden destruir muchos objetos de cobertura."

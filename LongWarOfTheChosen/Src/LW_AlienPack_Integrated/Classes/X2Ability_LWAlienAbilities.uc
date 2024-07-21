@@ -1174,3 +1174,8 @@ static function X2AbilityTemplate AddFireOnDeathAbility()
 
 	return Template;
 }
+
+static function UpdatePriestStasis(X2AbilityTemplate Template)
+{
+	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+}

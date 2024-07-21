@@ -305,6 +305,12 @@ LocHelpText="グレネード専用スロットに入れたダメージの発生�
 LocFlyOverText="重武装"
 LocPromotionPopupText="<Bullet/>重武装によって、ダメージの発生するグレネードはすべて使用可能になる。<br/>"
 
+[HeavyOrdnanceV2 X2AbilityTemplate]
+LocFriendlyName="重武装"
+LocLongDescription="グレネード専用スロットに入れたグレネードに一つ分のボーナスを得る。"
+LocHelpText="グレネード専用スロットに入れたグレネードに一つ分のボーナスを得る。"
+LocPromotionPopupText="<Bullet/>重武装はすべてのグレネードが可視化される（バトルスキャナーやスモークグレネードなどの非攻撃グレネードを含む）。<br/>"
+
 [Sapper X2AbilityTemplate]
 LocFriendlyName="サッパー"
 LocLongDescription="爆発物で大量の遮へい物を破壊できる。"

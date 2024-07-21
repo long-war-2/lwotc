@@ -388,6 +388,12 @@ LocHelpText="Toute grenade offensive équipée à l'emplacement de grenade reço
 LocFlyOverText="Munitions lourdes"
 LocPromotionPopupText="<Bullet/> Toutes les grenades faisant des dégâts sont disponibles pour la capacité Munitions lourdes.<br/>"
 
+[HeavyOrdnanceV2 X2AbilityTemplate]
+LocFriendlyName="Munitions lourdes"
+LocLongDescription="Utilisation supplémentaire d'une grenade à l'emplacement réservé aux grenades."
+LocHelpText="Utilisation supplémentaire d'une grenade à l'emplacement réservé aux grenades."
+LocPromotionPopupText="<Bullet/> Toutes les grenades sont disponibles pour la capacité Munitions lourdes, comme les détecteurs et les grenades fumigènes.<br/>"
+
 [Sapper X2AbilityTemplate]
 LocFriendlyName="Ravage"
 LocLongDescription="Vos explosifs sont capables de détruire de nombreux abris."
