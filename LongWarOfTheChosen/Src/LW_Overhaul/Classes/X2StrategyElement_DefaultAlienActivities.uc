@@ -507,6 +507,11 @@ static function array<name> ProtectRegionMissionRewards (XComGameState_LWAlienAc
 		case 'Rescue_LW': RewardArray[0] = RescueReward(false, false, NewGameState); break;
 		case 'DestroyObject_LW':
 			RewardArray[0] = 'Reward_Intel';
+			if (CanAddPOI())
+			{
+				RewardArray.AddItem('Reward_POI_LW');
+				RewardArray.AddItem('Reward_Dummy_POI'); // The first POI rewarded on any mission doesn't display in rewards, so this corrects for that
+			}
 			break;
 		case 'Neutralize_LW':
 			RewardArray[0] = 'Reward_AvengerResComms'; // give if capture
