@@ -31,6 +31,8 @@ var array<DetectionModifierInfo> DetectionModifiers;       // Can be configured 
 
 var protected name RebelMissionsJob;
 
+var bool bDebugLog;
+
 function AddDetectionModifier(const int ModValue, const string ModReason)
 {
 	local DetectionModifierInfo Mod;
@@ -100,6 +102,11 @@ function bool CanBeDetected(XComGameState_LWAlienActivity ActivityState, XComGam
 	ActivityState.MissionResourcePool += GetMissionIncomeForUpdate(OutpostState);
 	ActivityState.MissionResourcePool += GetExternalMissionModifiersForUpdate(ActivityState, NewGameState); // for other mods to hook into
 
+	if(bDebugLog)
+	{
+		`LWTrace("Activity" @ActivityTemplate.DataName@ "Mission income pool:" @ActivityState.MissionResourcePool);
+	}
+
 	if(MeetsRequiredMissionIncome(ActivityState, ActivityTemplate)) // have enough income
 	{
 		if(MeetsOnMissionJobRequirements(ActivityState, ActivityTemplate, OutpostState))  // have enough rebels on job -- use the daily income, to include Avenger/Dark Events, etc
@@ -135,14 +142,32 @@ function float GetDetectionChance(XComGameState_LWAlienActivity ActivityState, X
 	local int DiffInHours;
 
 	ResourcePool = ActivityState.MissionResourcePool;
+
 	if (ActivityTemplate.RequiredRebelMissionIncome > 0)
 		ResourcePool -= ActivityTemplate.RequiredRebelMissionIncome;
+
+	if(bDebugLog)
+	{
+		`LWTrace("GetDetectionChance pool post required income:" @ResourcePool);
+	}
+
+	
 	DetectionChance = ResourcePool / 100.0 * ActivityTemplate.DiscoveryPctChancePerDayPerHundredMissionIncome;
+
+	if(bDebugLog)
+	{
+		`LWTrace("GetDetectionChance initial chance:" @DetectionChance);
+	}
 
 	//add fixed modifiers
 	foreach DetectionModifiers(Mod)
 	{
 		DetectionChance += Mod.Value;
+	}
+
+	if(bDebugLog)
+	{
+		`LWTrace("GetDetectionChance chance after modifiers:" @DetectionChance);
 	}
 
 	// insert something sort of cheaty
@@ -256,5 +281,7 @@ defaultProperties
 	bSkipUncontactedRegions = true
 
 	RebelMissionsJob="Intel"
+
+	bDebugLog = true;
 
 }

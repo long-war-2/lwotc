@@ -494,7 +494,7 @@ function bool SpawnMission(XComGameState NewGameState)
 	local XComGameState_HeadquartersResistance ResHQ;
 
 	MissionFamily = GetNextMissionFamily(NewGameState);
-	`LWTrace("Mission Family selected:" @MissionFamily);
+	
 	if(MissionFamily == '')
 		return false;
 
@@ -508,6 +508,8 @@ function bool SpawnMission(XComGameState NewGameState)
 		return false;
 
 	ActivityTemplate = GetMyTemplate();
+
+	`LWTrace(ActivityTemplate.DataName @ "Mission Family selected:" @MissionFamily);
 
 	// Generate the mission reward
 	if(ActivityTemplate.GetMissionRewardsFn != none)
@@ -583,6 +585,7 @@ function bool SpawnMission(XComGameState NewGameState)
 	else
 		SecondsUntilActivityComplete = class'X2StrategyGameRulesetDataStructures'.static.DifferenceInSeconds(DateTimeActivityComplete, class'XComGameState_GeoscapeEntity'.static.GetCurrentTime());
 	DesiredSecondsOfMissionDuration = 3600.0 * (arrDuration_Hours[CurrentMissionLevel] > 0 ? arrDuration_Hours[CurrentMissionLevel] : 500000.0);
+	`LWTrace("SecondsUntilActivityComplete =" @SecondsUntilActivityComplete);
 	MissionState.TimeUntilDespawn = FMin(SecondsUntilActivityComplete, DesiredSecondsOfMissionDuration);
 	MissionState.ExpirationDateTime = class'XComGameState_GeoscapeEntity'.static.GetCurrentTime();
 	class'X2StrategyGameRulesetDataStructures'.static.AddTime(MissionState.ExpirationDateTime, MissionState.TimeUntilDespawn);
