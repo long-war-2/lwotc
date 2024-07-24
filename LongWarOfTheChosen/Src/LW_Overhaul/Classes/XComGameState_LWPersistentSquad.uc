@@ -563,6 +563,7 @@ function PostMissionRevertSoldierStatus(XComGameState NewGameState, XComGameStat
 	local StaffUnitInfo UnitInfo;
 	local XComGameState_LWPersistentSquad SquadState, UpdatedSquad;
 	local XComGameState_HeadquartersProjectHealSoldier HealProject;
+	local XComGameState_HeadquartersProjectRecoverWill WillProject;
 
 	//History = `XCOMHISTORY;
 	XComHQ = `XCOMHQ;
@@ -660,6 +661,22 @@ function PostMissionRevertSoldierStatus(XComGameState NewGameState, XComGameStat
 			HealProject.ResumeProject();
 		}
 
+		// add code to create another heal or will recovery project if one doesn't exist. This fires after PostMissionUpdateSoldierHealing so other mods should have already set up healing projects for their special stuff.
+		if(UnitState.IsInjured() && HealProject == None)
+		{
+			HealProject = XComGameState_HeadquartersProjectHealSoldier(NewGameState.CreateNewStateObject(class'XComGameState_HeadquartersProjectHealSoldier'));
+			HealProject.SetProjectFocus(UnitState.GetReference(), NewGameState);
+			UnitState.SetStatus(eStatus_Healing);
+			XComHQ.Projects.AddItem(HealProject.GetReference());
+		}
+
+		if(!HasWillProject(UnitState) && UnitState.NeedsWillRecovery() && UnitState.UsesWillSystem())
+		{
+			WillProject = XComGameState_HeadquartersProjectRecoverWill(NewGameState.CreateNewStateObject(class'XComGameState_HeadquartersProjectRecoverWill'));
+			WillProject.SetProjectFocus(UnitState.GetReference(), NewGameState);
+			XComHQ.Projects.AddItem(WillProject.GetReference());
+		}
+
 		//if soldier still has OnMission status, set status to active (unless it's a SPARK that's healing)
 		if(class'LWDLCHelpers'.static.IsUnitOnMission(UnitState) && UnitState.GetStatus() != eStatus_Healing)
 		{
@@ -667,6 +684,24 @@ function PostMissionRevertSoldierStatus(XComGameState NewGameState, XComGameStat
 			class'Helpers_LW'.static.UpdateUnitWillRecoveryProject(UnitState);
 		}
 	}
+}
+
+static function bool HasWillProject(XComGameState_Unit UnitState)
+{
+	local XComGameStateHistory History;
+	local XComGameState_HeadquartersProjectRecoverWill WillProject;
+
+	History = `XCOMHISTORY;
+
+	foreach History.IterateByClassType(class'XComGameState_HeadquartersProjectRecoverWill', WillProject)
+	{
+		if(WillProject.ProjectFocus == UnitState.GetReference())
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
 function bool IsDeployedOnMission()
