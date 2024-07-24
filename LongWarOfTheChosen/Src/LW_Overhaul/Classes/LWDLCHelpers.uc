@@ -411,7 +411,7 @@ static function XComGameState_HeadquartersProjectHealSoldier GetHealProject(Stat
     for(Idx = 0; Idx < XCOMHQ.Projects.Length; ++ Idx)
     {
         HealProject = XComGameState_HeadquartersProjectHealSoldier(History.GetGameStateForObjectID(XCOMHQ.Projects[Idx].ObjectID));
-        if(HealProject != none && HealProject.IsA('XComGameState_HeadquartersProjectHealSoldier'))
+        if(HealProject != none && ClassIsChildOf(HealProject.Class,class'XComGameState_HeadquartersProjectHealSoldier'))
         {
             if(UnitRef == HealProject.ProjectFocus)
             {
