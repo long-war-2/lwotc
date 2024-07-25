@@ -18,6 +18,7 @@ static event OnPostTemplatesCreated()
     PatchCollateral(AbilityTemplateManager.FindAbilityTemplate('RM_CollateralDamage'));
     PatchCollateral(AbilityTemplateManager.FindAbilityTemplate('Collateral'));
     FixAssaultMecCCS(AbilityTemplateManager.FindAbilityTemplate('AssaultMecCCS'));
+    FixPrototypeKineticDrivers(AbilityTemplateManager.FindAbilityTemplate('PrototypeKineticDrivers'));
 }
 
 static function PatchSolaceBack(X2AbilityTemplate Template)
@@ -89,5 +90,30 @@ static function PatchCollateral(X2AbilityTemplate Template)
     if(Template != none)
     {
         Template.TargetingMethod = class'LW_PerkPack_Integrated.X2TargetingMethod_Collateral';
+    }
+}
+
+static function FixPrototypeKineticDrivers(X2AbilityTemplate Template)
+{
+    local X2Effect Effect;
+    local XMBEffect_ConditionalBonus BonusEffect;
+
+    if(Template != none)
+    {
+        foreach Template.AbilityTargetEffects (Effect)
+        {
+            BonusEffect = XMBEffect_ConditionalBonus(Effect);
+
+            if(BonusEffect != None)
+            {
+                BonusEffect.Modifiers.length = 0;
+
+                BonusEffect.AddDamageModifier(2);
+
+                BonusEffect.BuildPersistentEffect(1, true, false, false);
+                BonusEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.LocHelpText, Template.IconImage, true,,Template.AbilitySourceName);
+                BonusEffect.bHideWhenNotRelevant = true;
+            }
+        }
     }
 }

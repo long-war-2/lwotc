@@ -16,6 +16,7 @@ var config array <float> FORCE_LEVEL_DETECTION_MODIFIER_LEGENDARY;
 var config bool BOOST_EARLY_DETECTION;
 var config float EARLY_DETECTION_CHANCE_BOOST;
 var config int EARLY_DETECTION_DAYS;
+var config float MULTI_DETECT_MODIFIER;
 
 struct DetectionModifierInfo
 {
@@ -26,10 +27,13 @@ struct DetectionModifierInfo
 var bool bSkipUncontactedRegions;
 var protectedwrite bool bAlwaysDetected;
 var protectedwrite bool bNeverDetected;
+var bool bAllowMultiCycleDetectionBonus;
 
 var array<DetectionModifierInfo> DetectionModifiers;       // Can be configured in the activity template to provide always-on modifiers.
 
 var protected name RebelMissionsJob;
+
+var bool bDebugLog;
 
 function AddDetectionModifier(const int ModValue, const string ModReason)
 {
@@ -100,6 +104,11 @@ function bool CanBeDetected(XComGameState_LWAlienActivity ActivityState, XComGam
 	ActivityState.MissionResourcePool += GetMissionIncomeForUpdate(OutpostState);
 	ActivityState.MissionResourcePool += GetExternalMissionModifiersForUpdate(ActivityState, NewGameState); // for other mods to hook into
 
+	if(bDebugLog)
+	{
+		`LWTrace("Activity" @ActivityTemplate.DataName@ "Mission income pool:" @ActivityState.MissionResourcePool);
+	}
+
 	if(MeetsRequiredMissionIncome(ActivityState, ActivityTemplate)) // have enough income
 	{
 		if(MeetsOnMissionJobRequirements(ActivityState, ActivityTemplate, OutpostState))  // have enough rebels on job -- use the daily income, to include Avenger/Dark Events, etc
@@ -135,14 +144,32 @@ function float GetDetectionChance(XComGameState_LWAlienActivity ActivityState, X
 	local int DiffInHours;
 
 	ResourcePool = ActivityState.MissionResourcePool;
+
 	if (ActivityTemplate.RequiredRebelMissionIncome > 0)
 		ResourcePool -= ActivityTemplate.RequiredRebelMissionIncome;
+
+	if(bDebugLog)
+	{
+		`LWTrace("GetDetectionChance pool post required income:" @ResourcePool);
+	}
+
+	
 	DetectionChance = ResourcePool / 100.0 * ActivityTemplate.DiscoveryPctChancePerDayPerHundredMissionIncome;
+
+	if(bDebugLog)
+	{
+		`LWTrace("GetDetectionChance initial chance:" @DetectionChance);
+	}
 
 	//add fixed modifiers
 	foreach DetectionModifiers(Mod)
 	{
 		DetectionChance += Mod.Value;
+	}
+
+	if(bDebugLog)
+	{
+		`LWTrace("GetDetectionChance chance after modifiers:" @DetectionChance);
 	}
 
 	// insert something sort of cheaty
@@ -187,6 +214,14 @@ function float GetDetectionChance(XComGameState_LWAlienActivity ActivityState, X
 
 	`LWTrace("GetDetectionChance: DetectionChance post early boost:" @DetectionChance);
 
+	// Adjust for repeating missions if relevant.
+
+	if(bAllowMultiCycleDetectionBonus)
+	{
+		DetectionChance *=  default.MULTI_DETECT_MODIFIER ** ActivityState.NumTimesDetected;
+		`LWTrace("GetDetectionChance: DetectionChance after activity timeout multiplier:" @DetectionChance);
+	}
+	
 	//normalize for update rate
 	DetectionChance *= float(class'X2LWAlienActivityTemplate'.default.HOURS_BETWEEN_ALIEN_ACTIVITY_DETECTION_UPDATES) / 24.0;
 
@@ -256,5 +291,7 @@ defaultProperties
 	bSkipUncontactedRegions = true
 
 	RebelMissionsJob="Intel"
+
+	bDebugLog = true;
 
 }

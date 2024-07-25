@@ -1486,7 +1486,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 				}
 
 				// Tedster - add check for plot gating here:
-				if(!XCOMHQ.MeetsObjectiveRequirements(FollowerCharacterTemplate.SpawnRequirements.RequiredObjectives) )
+				if(!XCOMHQ.MeetsObjectiveRequirements(FollowerCharacterTemplate.SpawnRequirements.RequiredObjectives))
 				{
 					// reroll the unit instead of shuffling all pods to allow codex to to be added to pods as defined followers.
 					SpawnInfo.SelectedCharacterTemplateNames[k] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
@@ -1776,8 +1776,8 @@ static function GetSpawnDistributionList(
 
 							if(CharacterTemplate != none)
 							{
-
-								if(XComHQ.MeetsObjectiveRequirements(CharacterTemplate.SpawnRequirements.RequiredObjectives) == true)
+									// Add check for tech requirements
+								if(XComHQ.MeetsObjectiveRequirements(CharacterTemplate.SpawnRequirements.RequiredObjectives) == true && XCOMHQ.MeetsTechRequirements(CharacterTemplate.SpawnRequirements.RequiredTechs))
 								{
 									//`LWDiversityTrace("Adding " $ CurrentListEntry.Template $ " to the merged spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
 									SpawnList.AddItem(CurrentListEntry);
@@ -1907,7 +1907,14 @@ static function name SelectNewPodLeader(PodSpawnInfo SpawnInfo, int ForceLevel, 
 		if (CharacterTemplate.DataName == 'AdvPsiWitchM3' && XCOMHQ.GetObjectiveStatus ('T1_M5_SKULLJACKCodex') != eObjectiveState_Completed)
 			continue;
 
+
 		if(XCOMHQ.MeetsObjectiveRequirements(CharacterTemplate.SpawnRequirements.RequiredObjectives) == false)
+		{
+			continue;
+		}
+		
+			// Chose Your Aliens uses required tech, so implement that.
+		if(XCOMHQ.MeetsTechRequirements(CharacterTemplate.SpawnRequirements.RequiredTechs) == false)
 		{
 			continue;
 		}
