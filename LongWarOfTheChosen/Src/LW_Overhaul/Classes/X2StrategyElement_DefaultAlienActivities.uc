@@ -437,6 +437,7 @@ static function X2DataTemplate CreateProtectRegionTemplate()
 	//these define the requirements for discovering each activity, based on the RebelJob "Missions"
 	//they can be overridden by template config values
 	Template.DetectionCalc = new class'X2LWActivityDetectionCalc';
+	Template.DetectionCalc.bAllowMultiCycleDetectionBonus = true;
 
 	// required delegates
 	Template.OnMissionSuccessFn = TypicalAdvanceActivityOnMissionSuccess;
@@ -450,7 +451,7 @@ static function X2DataTemplate CreateProtectRegionTemplate()
 	Template.GetMissionAlertLevelFn = GetTypicalMissionAlertLevel; // use regional AlertLevel
 
 	Template.GetTimeUpdateFn = none;		// never updates
-	Template.OnMissionExpireFn = none;  // nothing special, just remove mission and trigger failure
+	Template.OnMissionExpireFn = ProtectRegionMissionExpired;  // nothing special, just remove mission and trigger failure
 	Template.OnActivityUpdateFn = none;  // never updates
 	Template.GetMissionRewardsFn = ProtectRegionMissionRewards;
 
@@ -480,11 +481,25 @@ static function ProtectRegionMissionFailure(XComGameState_LWAlienActivity Activi
 			RecordResistanceActivity(false, ActivityState, MissionState, NewGameState);  //record failure
 			MissionState.RemoveEntity(NewGameState);		// remove the mission
 		}
+		// Respawn the mission
+		ActivityState.SpawnMission(NewGameState);
 	}
 	else
 	{
 		//missions higher up in the chain just don't advance
 		TypicalNoActionOnMissionFailure (ActivityState, MissionState, NewGameState);
+	}
+}
+
+static function ProtectRegionMissionExpired(XComGameState_LWAlienActivity ActivityState, XComGameState_MissionSite MissionState, XComGameState NewGameState)
+{
+	`LWTrace("Increment ActivityState counter");
+	if (ActivityState.CurrentMissionLevel < default.PROTECTREGION_RESET_LEVEL)
+	{
+		if(ActivityState.bFailedFromMissionExpiration && ActivityState.bDiscovered)
+		{
+			ActivityState.NumTimesDetected++;
+		}
 	}
 }
 

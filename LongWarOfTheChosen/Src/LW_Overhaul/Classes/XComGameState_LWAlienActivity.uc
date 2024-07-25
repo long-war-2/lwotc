@@ -42,6 +42,7 @@ var bool						bActivityComplete;			// an activity just completed, so need object
 var StateObjectReference		CurrentMissionRef;			// The current mission in the chain, the one that is active
 var int							CurrentMissionLevel;		// The depth in the activity's mission tree for the current mission
 var GeneratedMissionData		CurrentMissionData;			// used only for accessing data, and matching
+var int							NumTimesDetected;
 
 var StateObjectReference		DarkEvent;					//associated Dark Event, if any
 var float						DarkEventDuration_Hours;	//randomized duration for the DarkEvent

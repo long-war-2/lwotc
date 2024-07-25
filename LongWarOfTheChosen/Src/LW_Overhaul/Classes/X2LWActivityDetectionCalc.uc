@@ -16,6 +16,7 @@ var config array <float> FORCE_LEVEL_DETECTION_MODIFIER_LEGENDARY;
 var config bool BOOST_EARLY_DETECTION;
 var config float EARLY_DETECTION_CHANCE_BOOST;
 var config int EARLY_DETECTION_DAYS;
+var config float MULTI_DETECT_MODIFIER;
 
 struct DetectionModifierInfo
 {
@@ -26,6 +27,7 @@ struct DetectionModifierInfo
 var bool bSkipUncontactedRegions;
 var protectedwrite bool bAlwaysDetected;
 var protectedwrite bool bNeverDetected;
+var bool bAllowMultiCycleDetectionBonus;
 
 var array<DetectionModifierInfo> DetectionModifiers;       // Can be configured in the activity template to provide always-on modifiers.
 
@@ -212,6 +214,14 @@ function float GetDetectionChance(XComGameState_LWAlienActivity ActivityState, X
 
 	`LWTrace("GetDetectionChance: DetectionChance post early boost:" @DetectionChance);
 
+	// Adjust for repeating missions if relevant.
+
+	if(bAllowMultiCycleDetectionBonus)
+	{
+		DetectionChance *=  default.MULTI_DETECT_MODIFIER ** ActivityState.NumTimesDetected;
+		`LWTrace("GetDetectionChance: DetectionChance after activity timeout multiplier:" @DetectionChance);
+	}
+	
 	//normalize for update rate
 	DetectionChance *= float(class'X2LWAlienActivityTemplate'.default.HOURS_BETWEEN_ALIEN_ACTIVITY_DETECTION_UPDATES) / 24.0;
 
