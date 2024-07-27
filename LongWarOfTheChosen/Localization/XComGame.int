@@ -7275,6 +7275,13 @@ LocLongDescription="You get an additional +<Ability:MOVING_TARGET_DEFENSE> Defen
 LocHelpText="You get an additional +<Ability:MOVING_TARGET_DEFENSE> Defense and +<Ability:MOVING_TARGET_DODGE> Dodge against reaction fire."
 LocPromotionPopupText="You get an additional +<Ability:MOVING_TARGET_DEFENSE> Defense and +<Ability:MOVING_TARGET_DODGE> Dodge against reaction fire."
 
+[ChainingJolt_LW X2AbilityTemplate]
+LocFriendlyName="Chaining Jolt"
+LocHelpText="Send the GREMLIN to an enemy to jolt them. Attack chains to nearby enemies."
+LocLongDescription="The <Ability:ClassName/> sends the GREMLIN to an enemy to jolt them. Attack chains to nearby enemies. Damage is increased against robotic enemies."
+LocFlyOverText="Chaining Jolt"
+LocPromotionPopupText="<Bullet/> Deals electrical damage that pierces armour.<br/><Bullet/> Can only chain to units friendly to the targeted unit.<br/><Bullet/> Has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+
 ; End Translation
 
 ; LWOTC Needs Translation

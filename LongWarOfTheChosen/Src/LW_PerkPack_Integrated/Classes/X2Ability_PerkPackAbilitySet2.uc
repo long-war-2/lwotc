@@ -67,7 +67,7 @@ var config int SHOCKWAVE_DEF_REDUCTION;
 var config int SHOCKWAVE_DODGE_REDUCTION;
 var config int SHOCKWAVE_TURNS;
 
-
+var config int ChainingJolt_Cooldown;
 
 const DAMAGED_COUNT_NAME = 'DamagedCountThisTurn';
 
@@ -122,6 +122,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateSpectralStunLancerImpairingEffectAbility());
 	Templates.AddItem(PurePassive('Shellshock_LW', "img:///UILibrary_LWOTC.UIPerk_shellshock"));
 	Templates.AddItem(PurePassive('Shockwave_LW', "img:///UILibrary_LWOTC.UIPerk_shockwave"));
+	Templates.AddItem(ChainingJolt());
 
 	return Templates;
 }
@@ -2734,4 +2735,311 @@ static function AddEffectsToGrenades()
 		}
 	}
 
+}
+
+
+static function X2AbilityTemplate ChainingJolt()
+{
+	local X2AbilityTemplate                     Template;
+	local X2AbilityCost_ActionPoints            ActionPointCost;
+	local X2Effect_ApplyWeaponDamage            RobotDamage;
+	local X2AbilityCooldown         Cooldown;
+	local X2Condition_Visibility                VisCondition;
+	local X2Condition_AbilityProperty			ShockTherapyCondition;
+	local X2Effect_Persistent					DisorientedEffect;
+	local X2Effect_Stunned						StunnedEffect;
+	local X2Effect_SetUnitValue					UnitValueEffect;
+	local X2Condition_UnitValue					UnitValueCondition;
+	local X2Effect_DisableWeapon				DisableEffect;
+	local X2Condition_AbilityProperty			AbilityCondition;
+	local X2Condition_UnitProperty RobotProperty;
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChainingJolt_LW');
+
+	Template.IconImage = "img:///UILibrary_LWOTC.Ability_ChainingJolt";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.Hostility = eHostility_Offensive;
+	Template.DisplayTargetHitChance = false;
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_CORPORAL_PRIORITY;
+	//Template.bFeatureInCharacterUnlock = true;
+
+	Template.AbilityMultiTargetStyle = new class'X2AbilityMultiTarget_Volt';
+
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = default.ChainingJolt_Cooldown;
+	Template.AbilityCooldown = Cooldown;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SingleTargetWithSelf;
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bConsumeAllPoints = false;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AddShooterEffectExclusions();
+
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitOnlyProperty);
+	Template.AbilityMultiTargetConditions.AddItem(default.LivingHostileUnitDisallowMindControlProperty);
+	
+	VisCondition = new class'X2Condition_Visibility';
+	VisCondition.bRequireGameplayVisible = true;
+	VisCondition.bActAsSquadsight = true;
+	Template.AbilityTargetConditions.AddItem(VisCondition);
+
+	Template.AddTargetEffect(new class'X2Effect_ApplyWeaponDamage');
+	Template.AddMultiTargetEffect(new class'X2Effect_ApplyWeaponDamage');
+	
+	RobotDamage = new class'X2Effect_ApplyWeaponDamage';
+	RobotDamage.bIgnoreBaseDamage = true;
+	RobotDamage.DamageTag = 'CombatProtocol_Robotic';
+	RobotProperty = new class'X2Condition_UnitProperty';
+	RobotProperty.ExcludeOrganic = true;
+	RobotDamage.TargetConditions.AddItem(RobotProperty);
+	Template.AddTargetEffect(RobotDamage);
+	Template.AddMultiTargetEffect(RobotDamage);
+
+	AbilityCondition = new class'X2Condition_AbilityProperty';
+	AbilityCondition.OwnerHasSoldierAbilities.AddItem('GrimySabotage');
+	DisableEffect = new class'X2Effect_DisableWeapon';
+	DisableEffect.TargetConditions.AddItem(AbilityCondition);
+	Template.AddTargetEffect(DisableEffect);
+	Template.AddMultiTargetEffect(DisableEffect);
+
+	ShockTherapyCondition = new class'X2Condition_AbilityProperty';
+	ShockTherapyCondition.OwnerHasSoldierAbilities.AddItem('MZShockTherapy');
+
+	// Stun effect
+	UnitValueEffect = new class'X2Effect_SetUnitValue';
+	UnitValueEffect.NewValueToSet = 1;
+	UnitValueEffect.UnitName = 'MZShockTherapyStunResult';
+	UnitValueEffect.CleanupType = eCleanup_BeginTurn;
+	UnitValueEffect.ApplyChance = 50;
+	Template.AddTargetEffect(UnitValueEffect);
+	Template.AddMultiTargetEffect(UnitValueEffect);
+
+	UnitValueCondition = new class'X2Condition_UnitValue';
+	UnitValueCondition.AddCheckValue('MZShockTherapyStunResult', 1);
+
+	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2, 100, false);
+	StunnedEffect.bRemoveWhenSourceDies = false;
+	StunnedEffect.TargetConditions.AddItem(ShockTherapyCondition);
+	StunnedEffect.TargetConditions.AddItem(UnitValueCondition);
+	Template.AddTargetEffect(StunnedEffect);
+	Template.AddMultiTargetEffect(StunnedEffect);
+
+	// Disorient effect
+	UnitValueCondition = new class'X2Condition_UnitValue';
+	UnitValueCondition.AddCheckValue('MZShockTherapyStunResult', 0);
+
+	DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect(, , false);
+	DisorientedEffect.bRemoveWhenSourceDies = false;
+	DisorientedEffect.TargetConditions.AddItem(ShockTherapyCondition);
+	DisorientedEffect.TargetConditions.AddItem(UnitValueCondition);
+	Template.AddTargetEffect(DisorientedEffect);
+	Template.AddMultiTargetEffect(DisorientedEffect);
+	
+	// remove the result value, so other Shock Therapy abilities will roll correctly.
+	UnitValueEffect = new class'X2Effect_SetUnitValue';
+	UnitValueEffect.NewValueToSet = 0;
+	UnitValueEffect.UnitName = 'MZShockTherapyStunResult';
+	UnitValueEffect.CleanupType = eCleanup_BeginTurn;
+	Template.AddTargetEffect(UnitValueEffect);
+
+	Template.TargetingMethod = class'X2TargetingMethod_Volt';
+
+	Template.bStationaryWeapon = true;
+	Template.BuildNewGameStateFn = class'X2Ability_SpecialistAbilitySet'.static.AttachGremlinToTarget_BuildGameState;
+	Template.BuildVisualizationFn = ChainingJolt_BuildVisualization;
+	Template.bSkipPerkActivationActions = true;
+	Template.PostActivationEvents.AddItem('ItemRecalled');
+
+	//Template.CinescriptCameraType = "Specialist_CombatProtocol";
+	Template.AdditionalAbilities.AddItem('ChainingJoltFocus');
+	Template.bFrameEvenWhenUnitIsHidden = true;
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+	Template.OverrideAbilities.AddItem('CombatProtocol');
+
+	//Template.ActivationSpeech = 'AbilCombatProtocol';
+
+	return Template;
+}
+
+simulated function ChainingJolt_BuildVisualization(XComGameState VisualizeGameState)
+{
+	local XComGameStateHistory			History;
+	local XComGameStateContext_Ability  Context;
+	local X2AbilityTemplate             AbilityTemplate;
+	local XComGameState_Item			GremlinItem;
+	local XComGameState_Unit			GremlinUnitState;
+	local StateObjectReference          InteractingUnitRef;
+	local VisualizationActionMetadata   EmptyTrack;
+	local VisualizationActionMetadata   ActionMetadata;
+	local X2Action_CameraLookAt			CameraAction;
+	local X2Action_PlaySoundAndFlyOver	SoundAndFlyOver;
+	local Actor							TargetVisualizer;
+	local XComGameState_Unit			AttachedUnitState;
+	local XComGameState_Unit			TargetUnitState;
+	local array<PathPoint>				Path;
+	local TTile                         TargetTile;
+	local TTile							StartTile;
+	local PathingInputData              PathData;
+	local PathingResultData				ResultData;
+	local X2Action_CameraLookAt			TargetCameraAction;
+	local X2Action_AbilityPerkStart		PerkStartAction;
+	local int							i, j;
+	local X2VisualizerInterface			TargetVisualizerInterface;
+	local X2Action_WaitForAbilityEffect DelayAction;
+	local int							EffectIndex;
+
+	History = `XCOMHISTORY;
+
+	Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
+	AbilityTemplate = class'XComGameState_Ability'.static.GetMyTemplateManager().FindAbilityTemplate(Context.InputContext.AbilityTemplateName);
+
+	TargetUnitState = XComGameState_Unit(VisualizeGameState.GetGameStateForObjectID(Context.InputContext.PrimaryTarget.ObjectID));
+
+	GremlinItem = XComGameState_Item(History.GetGameStateForObjectID(Context.InputContext.ItemObject.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
+	GremlinUnitState = XComGameState_Unit(History.GetGameStateForObjectID(GremlinItem.CosmeticUnitRef.ObjectID));
+	AttachedUnitState = XComGameState_Unit(History.GetGameStateForObjectID(GremlinItem.AttachedUnitRef.ObjectID));
+
+	if (GremlinUnitState == none)
+	{
+		`RedScreen("Attempting GremlinSingleTarget_BuildVisualization with a GremlinUnitState of none");
+		return;
+	}
+
+	//Configure the visualization track for the shooter
+	//****************************************************************************************
+
+	//****************************************************************************************
+	InteractingUnitRef = Context.InputContext.SourceObject;
+	ActionMetadata = EmptyTrack;
+	ActionMetadata.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+	ActionMetadata.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
+	ActionMetadata.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
+
+	CameraAction = X2Action_CameraLookAt(class'X2Action_CameraLookAt'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded));
+	CameraAction.LookAtActor = ActionMetadata.VisualizeActor;
+	CameraAction.BlockUntilActorOnScreen = true;
+
+	class'X2Action_IntrusionProtocolSoldier'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded);
+
+	if (AbilityTemplate.ActivationSpeech != '')
+	{
+		SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded));
+		SoundAndFlyOver.SetSoundAndFlyOverParameters(None, "", AbilityTemplate.ActivationSpeech, eColor_Good);
+	}
+
+	// make sure he waits for the gremlin to come back, so that the cinescript camera doesn't pop until then
+	X2Action_WaitForAbilityEffect(class'X2Action_WaitForAbilityEffect'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded)).SetCustomTimeOutSeconds(30);
+
+	//Configure the visualization track for the gremlin
+	//****************************************************************************************
+
+	InteractingUnitRef = GremlinUnitState.GetReference();
+
+	ActionMetadata = EmptyTrack;
+	History.GetCurrentAndPreviousGameStatesForObjectID(GremlinUnitState.ObjectID, ActionMetadata.StateObject_OldState, ActionMetadata.StateObject_NewState, , VisualizeGameState.HistoryIndex);
+	ActionMetadata.VisualizeActor = GremlinUnitState.GetVisualizer();
+	TargetVisualizer = History.GetVisualizer(Context.InputContext.PrimaryTarget.ObjectID);
+
+	class'X2Action_WaitForAbilityEffect'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded);
+
+	if (AttachedUnitState.TileLocation != TargetUnitState.TileLocation)
+	{
+		// Given the target location, we want to generate the movement data.  
+
+		//Handle tall units.
+		TargetTile = TargetUnitState.GetDesiredTileForAttachedCosmeticUnit();
+		StartTile = AttachedUnitState.GetDesiredTileForAttachedCosmeticUnit();
+
+		class'X2PathSolver'.static.BuildPath(GremlinUnitState, StartTile, TargetTile, PathData.MovementTiles);
+		class'X2PathSolver'.static.GetPathPointsFromPath(GremlinUnitState, PathData.MovementTiles, Path);
+		class'XComPath'.static.PerformStringPulling(XGUnitNativeBase(ActionMetadata.VisualizeActor), Path);
+
+		PathData.MovingUnitRef = GremlinUnitState.GetReference();
+		PathData.MovementData = Path;
+		Context.InputContext.MovementPaths.AddItem(PathData);
+
+		class'X2TacticalVisibilityHelpers'.static.FillPathTileData(PathData.MovingUnitRef.ObjectID, PathData.MovementTiles, ResultData.PathTileData);
+		Context.ResultContext.PathResults.AddItem(ResultData);
+
+		class'X2VisualizerHelpers'.static.ParsePath(Context, ActionMetadata);
+
+		if (TargetVisualizer != none)
+		{
+			TargetCameraAction = X2Action_CameraLookAt(class'X2Action_CameraLookAt'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded));
+			TargetCameraAction.LookAtActor = TargetVisualizer;
+			TargetCameraAction.BlockUntilActorOnScreen = true;
+			TargetCameraAction.LookAtDuration = 10.0f;		// longer than we need - camera will be removed by tag below
+			TargetCameraAction.CameraTag = 'TargetFocusCamera';
+			TargetCameraAction.bRemoveTaggedCamera = false;
+		}
+	}
+
+	PerkStartAction = X2Action_AbilityPerkStart(class'X2Action_AbilityPerkStart'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded));
+	PerkStartAction.NotifyTargetTracks = true;
+
+	class'MZ_Action_ChainJolt'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded);
+
+	class'X2Action_AbilityPerkEnd'.static.AddToVisualizationTree(ActionMetadata, Context);
+
+	//****************************************************************************************
+
+	//Configure the visualization track for the target(s)
+	//****************************************************************************************
+	InteractingUnitRef = Context.InputContext.PrimaryTarget;
+	ActionMetadata = EmptyTrack;
+	ActionMetadata.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+	ActionMetadata.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
+	ActionMetadata.VisualizeActor = TargetVisualizer;
+
+	DelayAction = X2Action_WaitForAbilityEffect(class'X2Action_WaitForAbilityEffect'.static.AddToVisualizationTree(ActionMetadata, Context));
+	DelayAction.ChangeTimeoutLength(class'X2Ability_SpecialistAbilitySet'.default.GREMLIN_ARRIVAL_TIMEOUT);       //  give the gremlin plenty of time to show up
+
+	for (EffectIndex = 0; EffectIndex < AbilityTemplate.AbilityTargetEffects.Length; ++EffectIndex)
+	{
+		AbilityTemplate.AbilityTargetEffects[EffectIndex].AddX2ActionsForVisualization(VisualizeGameState, ActionMetadata, Context.FindTargetEffectApplyResult(AbilityTemplate.AbilityTargetEffects[EffectIndex]));
+	}
+
+	TargetVisualizerInterface = X2VisualizerInterface(ActionMetadata.VisualizeActor);
+	if (TargetVisualizerInterface != none)
+	{
+		//Allow the visualizer to do any custom processing based on the new game state. For example, units will create a death action when they reach 0 HP.
+		TargetVisualizerInterface.BuildAbilityEffectsVisualization(VisualizeGameState, ActionMetadata);
+	}
+
+	for (i = 0; i < Context.InputContext.MultiTargets.Length; ++i)
+	{
+		InteractingUnitRef = Context.InputContext.MultiTargets[i];
+		ActionMetadata = EmptyTrack;
+		ActionMetadata.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+		ActionMetadata.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
+		ActionMetadata.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
+	
+		class'X2Action_WaitForAbilityEffect'.static.AddToVisualizationTree(ActionMetadata, Context);
+	
+		for (j = 0; j < Context.ResultContext.MultiTargetEffectResults[i].Effects.Length; ++j)
+		{
+			Context.ResultContext.MultiTargetEffectResults[i].Effects[j].AddX2ActionsForVisualization(VisualizeGameState, ActionMetadata, Context.ResultContext.MultiTargetEffectResults[i].ApplyResults[j]);
+		}
+	
+		TargetVisualizerInterface = X2VisualizerInterface(ActionMetadata.VisualizeActor);
+		if (TargetVisualizerInterface != none)
+		{
+			//Allow the visualizer to do any custom processing based on the new game state. For example, units will create a death action when they reach 0 HP.
+			TargetVisualizerInterface.BuildAbilityEffectsVisualization(VisualizeGameState, ActionMetadata);
+		}
+	}
+
+	if (TargetCameraAction != none)
+	{
+		TargetCameraAction = X2Action_CameraLookAt(class'X2Action_CameraLookAt'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded));
+		TargetCameraAction.CameraTag = 'TargetFocusCamera';
+		TargetCameraAction.bRemoveTaggedCamera = true;
+	}
 }
