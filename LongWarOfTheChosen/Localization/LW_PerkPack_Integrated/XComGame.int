@@ -1173,10 +1173,10 @@ LocFlyOverText="Rapid Fire"
 
 [RepairMW_LW X2AbilityTemplate]
 LocFriendlyName="Repair"
-LocLongDescription="Send the BIT to a damaged robotic ally and heal it for 4HP, neutralize acid, and repair all shredded armor."
+LocLongDescription="Send the BIT to a damaged robotic ally and heal it, neutralize acid, and repair all shredded armor."
 LocHelpText="Send the BIT to repair a damaged robotic ally."
 LocFlyOverText="Repair"
-LocPromotionPopupText="<Bullet/> The <Ability:ClassName/> can use Repair to heal other robotic allies during battle (or itself, in the case of SPARKs).<br/><Bullet/> Repair will restore 4HP, remove any acid, and reset the target's armor to maximum.<br/><Bullet/> Upgrading your BIT will grant more charges of Repair per mission.<br/><Bullet/> Repair has 2/3/4 charges per mission, depending on the equipped BIT.<br/><Bullet/> Using Repair as your first action will end your turn without the Rapid Repair ability.<br/><Bullet/> Repair has a 1-turn cooldown (cannot be used multiple times per turn).<br/>"
+LocPromotionPopupText="<Bullet/> The <Ability:ClassName/> can use Repair to heal other robotic allies during battle (or itself, in the case of SPARKs).<br/><Bullet/> Repair will restore 4/6/8HP, remove any acid, and reset the target's armor to maximum.<br/><Bullet/> Repair has 1 charge per mission and gains an additional charge with the Enhanced Repair Systems ability.<br/><Bullet/> Using Repair as your first action will end your turn without the Rapid Repair ability.<br/><Bullet/> Repair has a 1-turn cooldown (cannot be used multiple times per turn).<br/>"
 
 [KineticStrike_LW X2AbilityTemplate]
 LocFriendlyName="Kinetic Strike"
