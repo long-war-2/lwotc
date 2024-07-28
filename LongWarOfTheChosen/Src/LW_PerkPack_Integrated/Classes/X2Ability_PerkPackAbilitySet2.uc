@@ -2774,7 +2774,7 @@ static function X2AbilityTemplate ChainingJolt()
 
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = 1;
-	ActionPointCost.bConsumeAllPoints = false;
+	ActionPointCost.bConsumeAllPoints = true;
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
