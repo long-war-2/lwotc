@@ -7280,7 +7280,7 @@ LocFriendlyName="Chaining Jolt"
 LocHelpText="Send the GREMLIN to an enemy to jolt them. Attack chains to nearby enemies."
 LocLongDescription="The <Ability:ClassName/> sends the GREMLIN to an enemy to jolt them. Attack chains to nearby enemies. Damage is increased against robotic enemies."
 LocFlyOverText="Chaining Jolt"
-LocPromotionPopupText="<Bullet/> Deals electrical damage that pierces armour.<br/><Bullet/> Can only chain to units friendly to the targeted unit.<br/><Bullet/> Has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Deals electrical damage that pierces armour.<br/><Bullet/>Chaining Jolt does the same damage as Combat Protocol.<br/><Bullet/> Can only chain to units friendly to the targeted unit.<br/><Bullet/> Has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 ; End Translation
 
