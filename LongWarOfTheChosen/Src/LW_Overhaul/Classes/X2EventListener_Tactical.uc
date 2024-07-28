@@ -1214,9 +1214,9 @@ static protected function EventListenerReturn HideFocusOnAssaults(
 	if (Tuple == none)
 		return ELR_NoInterrupt;
 
-	if (Unit.GetSoldierClassTemplate() != none && Unit.GetSoldierClassTemplate().DataName == 'LWS_Assault')
+	if (Unit.GetSoldierClassTemplate() != none && Unit.GetSoldierClassTemplate().DataName == 'LWS_Assault' || Unit.GetSoldierClassTemplate().DataName == 'LWS_Specialist')
 	{
-		// Hide focus on assaults
+		// Hide focus on assaults and specialists
 		Tuple.Data[0].b = false;
 	}
 
