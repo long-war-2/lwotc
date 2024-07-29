@@ -81,7 +81,7 @@ LocPromotionPopupText="<Bullet/> 每回合一次，用主武器对一名侧翼�
 [HitandRun X2AbilityTemplate]
 LocFriendlyName="游击战术"
 LocFlyOverText="游击战术"
-LocLongDescription="用主武器对一名侧翼敌人进行标准射击后，获得一个额外的行动点。每回合一次。不能在同一回合触发短兵相接。 "
+LocLongDescription="用主武器对一名侧翼敌人进行标准射击后，获得一个额外的行动点。每回合一次。不能在同一回合触发短兵相接。"
 LocHelpText="用主武器对一名侧翼敌人进行标准射击后，获得一个额外的行动点。每回合一次。不能在同一回合触发短兵相接。"
 LocPromotionPopupText="<Bullet/> 不能在同一回合使用奔袭战术。<br/><Bullet/> 连环杀戮和死神天降的奖励将会优先获得。"
 
@@ -827,10 +827,10 @@ LocPromotionPopupText="<Bullet/> 快射拔枪可以让士兵在同一个回合�
 
 [XComGame.SharpshooterAim X2AbilityTemplate]
 [SharpshooterAim X2AbilityTemplate]
-LocFriendlyName="命中"
+LocFriendlyName="蓄势待发"
 LocLongDescription="蹲伏现在会在下一回合的首次射击中给予+<Ability:SHARPSHOOTERAIMBONUS/>的命中和+<Ability:SHARPSHOOTERAIM_CRITBONUS/>暴击率。"
 LocHelpText="蹲伏现在会在下一回合的首次射击中给予+<Ability:SHARPSHOOTERAIMBONUS/>的命中和+<Ability:SHARPSHOOTERAIM_CRITBONUS/>暴击率。"
-LocFlyOverText="蹲伏 - 命中"
+LocFlyOverText="蹲伏 - 蓄势待发"
 LocPromotionPopupText="<Bullet/> 命中、暴击的加成适用于任何武器射击。<br/>"
 
 [XComGame.LightningHands X2AbilityTemplate]
@@ -1073,10 +1073,10 @@ LocFlyOverText="速射"
 
 [RepairMW_LW X2AbilityTemplate]
 LocFriendlyName="维修"
-LocLongDescription="指挥BIT对受损的机器人盟友进行治疗，恢复4HP，中和酸，修复所有被撕碎的护甲。"
+LocLongDescription="指挥BIT对受损的机器人盟友进行治疗，中和酸，修复所有被撕碎的护甲。"
 LocHelpText="指挥BIT对受损的机器人盟友进行治疗。"
 LocFlyOverText="维修"
-LocPromotionPopupText="<Bullet/> <Ability:ClassName/>可以使用维修在战斗中治疗其他机器人盟友（或自身，如果是SPARK）。<br/><Bullet/> 恢复4HP，中和酸液，并将目标的护甲重置为最大值。<br/><Bullet/> 升级你的BIT将为每个任务提供更多的维修次数。<br/><Bullet/> 每次任务可以使用2/3/4次，具体取决于装备的BIT。<br/><Bullet/> 如果没有学习快速维修，维修将结束你的回合。<br/><Bullet/> 维修有1回合冷却时间（每回合不能多次使用）。<br/>"
+LocPromotionPopupText="<Bullet/> <Ability:ClassName/>可以使用维修在战斗中治疗其他机器人盟友（或自身，如果是SPARK）。<br/><Bullet/> 恢复4/6/8HP，中和酸液，并将目标的护甲重置为最大值。<br/><Bullet/> 初始1充能，升级你的BIT来获得额外的维修次数。<br/><Bullet/> 如果没有学习快速维修，维修将结束你的回合。<br/><Bullet/> 维修有1回合冷却时间（每回合不能多次使用）。<br/>"
 
 [KineticStrike_LW X2AbilityTemplate]
 LocFriendlyName="动能打击"

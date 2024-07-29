@@ -436,9 +436,9 @@ LocPromotionPopupText="<Bullet/> 所有伤害型榴弹都适用重型军火。<b
 
 [HeavyOrdnanceV2 X2AbilityTemplate]
 LocFriendlyName="重型军火"
-LocLongDescription="在榴弹专用槽中获得一个额外榴弹。"
-LocHelpText="在榴弹专用槽中获得一个额外榴弹。"
-LocPromotionPopupText="<Bullet/>所有榴弹都属于重型军火，即便是非进攻性的榴弹，例如战场扫描器和烟雾榴弹。<br/>"
+LocLongDescription="在榴弹专用槽中的榴弹可以额外使用一次。"
+LocHelpText="在榴弹专用槽中的榴弹可以额外使用一次。"
+LocPromotionPopupText="<Bullet/> 所有榴弹都适用于重型军火，即便是非伤害性的榴弹，例如战场扫描器和烟雾榴弹。<br/>"
 
 [Sapper X2AbilityTemplate]
 LocFriendlyName="工兵"
@@ -1420,8 +1420,8 @@ TacticalText="<Bullet/>为士兵增加3点生命值。\n<Bullet/>提供1点护�
 [HazmatVest X2EquipmentTemplate]
 FriendlyName="生化防护背心"
 FriendlyNamePlural="生化防护背心"
-BriefSummary="通过使用特种材料对纳米纤维背心进行强化，我们能让士兵完全抵抗火、酸或毒等环境威胁。"
-TacticalText="<Bullet/> 提升3点士兵的生命值。\n<Bullet/> 提供对火、酸或毒的免疫。\n<Bullet/> 同时仅可装备1种护甲或背心物品。"
+BriefSummary="通过使用特种材料对纳米纤维背心进行强化，我们能让士兵完全抵抗火、酸和毒等环境威胁。"
+TacticalText="<Bullet/> 提升3点士兵的生命值。\n<Bullet/> 提供对火、酸和毒的免疫。\n<Bullet/> 同时仅可装备1种护甲或背心物品。"
 
 [Hellweave X2EquipmentTemplate]
 FriendlyName="地狱网背心"
@@ -5208,7 +5208,8 @@ LocPromotionPopupText="<Bullet/> 心灵控制需要灵能士兵的灵能威力�
 
 ; LWOTC Needs Translation
 [VoidRift X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> 产生一个心灵能量的爆炸场，立即伤害里面的一切。有机敌人有几率遭受精神错乱。<br/><Bullet/> 虚空裂痕使目标受到1伤口撕裂效果。伤口撕裂量随灵能增幅器层级而提高。<br/><Bullet/> 虚空裂痕有<Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
+LocLongDescription="产生一个心灵能量的爆炸场，立即伤害里面的一切。有机敌人有50%几率遭受错乱。"
+LocPromotionPopupText="<Bullet/> 虚空裂痕使目标受到1伤口撕裂效果。伤口撕裂量随灵能增幅器层级而提高。<br/><Bullet/> 虚空裂痕有<Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
 ; End Translation
 
 [CoveringFire X2AbilityTemplate]
@@ -6253,17 +6254,17 @@ LocPromotionPopupText="<Bullet/> 对侧翼敌人的远程攻击获得<Ability:PR
 LocFriendlyName="穿孔"
 LocFlyOverText="穿孔"
 ; LWOTC Needs Translation (2)
-LocLongDescription= "使用<Ability:WeaponName/>开火射击穿透<Ability:STILETTO_ARMOR_PIERCING/>护甲。"
-LocHelpText="使用<Ability:WeaponName/>开火射击穿透<Ability:STILETTO_ARMOR_PIERCING/>护甲"
-LocPromotionPopupText="<Bullet/> 使用<Ability:WeaponName/>开火射击穿透<Ability:STILETTO_ARMOR_PIERCING/>护甲<br/>"
+LocLongDescription= "使用<Ability:WeaponName/>攻击穿透<Ability:STILETTO_ARMOR_PIERCING/>点护甲。"
+LocHelpText="使用<Ability:WeaponName/>攻击穿透<Ability:STILETTO_ARMOR_PIERCING/>点护甲"
+LocPromotionPopupText="<Bullet/> 使用<Ability:WeaponName/>攻击穿透<Ability:STILETTO_ARMOR_PIERCING/>点护甲<br/>"
 ; End Translation (2)
 
 [Reposition_LW X2AbilityTemplate]
 LocFriendlyName="转移阵地"
 LocFlyOverText="转移阵地"
-LocLongDescription="每回合一次，用主武器对侧翼目标进行一次标准射击后，获得一个额外的移动点。适用于游击战术。不能同时触发短兵相接。"
-LocHelpText="每回合一次，用主武器对侧翼目标进行一次标准射击后，获得一个额外的移动点。适用于游击战术。不能同时触发短兵相接"
-LocPromotionPopupText="<Bullet/> 每回合一次，用主武器对侧翼目标进行一次标准射击后，获得一个额外的移动点。<br/><Bullet/> 适用于游击战术。<br/><Bullet/> 不能同时触发短兵相接。<br/>"
+LocLongDescription="用主武器对侧翼目标进行一次标准射击后，获得一个额外的移动点。每回合一次。适用于游击战术。不能同时触发短兵相接。"
+LocHelpText="用主武器对侧翼目标进行一次标准射击后，获得一个额外的移动点。每回合一次。适用于游击战术。不能同时触发短兵相接"
+LocPromotionPopupText="<Bullet/> 用主武器对侧翼目标进行一次标准射击后，获得一个额外的移动点。<br/><Bullet/> 每回合只能触发一次。<br/><Bullet/> 适用于游击战术。<br/><Bullet/> 不能同时触发短兵相接。<br/>"
 
 [NeutralizingAgents_LW X2AbilityTemplate]
 LocFriendlyName="中和剂"
@@ -6374,7 +6375,7 @@ LocFlyOverText = "顶级掠食者"
 ; LWOTC Needs Translation (2)
 LocHelpText = "使用主武器暴击有几率使目标及目标<Ability:APEX_PREDATOR_PANIC_RADIUS/>格范围内的敌人恐慌。"
 LocLongDescription = "使用主武器暴击有几率使目标及目标<Ability:APEX_PREDATOR_PANIC_RADIUS/>格范围内的敌人恐慌。"
-LocPromotionPopupText = "<Bullet/> 使用主武器暴击有几率使目标及目标<Ability:APEX_PREDATOR_PANIC_RADIUS/>格范围内的敌人恐慌。<br/><Bullet/> 恐慌几率为<Ability:APEX_PREDATOR_BASE_PANIC_CHANCE/>%并受到目标意志力的影响。"
+LocPromotionPopupText = "<Bullet/> 使用主武器暴击有几率使目标及目标<Ability:APEX_PREDATOR_PANIC_RADIUS/>格范围内的敌人恐慌。<br/><Bullet/> 基础恐慌几率为<Ability:APEX_PREDATOR_BASE_PANIC_CHANCE/>%并受到目标意志力的影响。"
 ; End Translation (2)
 
 [BlindingProtocol_LW X2AbilityTemplate]
@@ -6459,9 +6460,9 @@ LocPromotionPopupText="<Bullet/> 使用<Ability:BOUND_WEAPON_NAME/>攻击蓝色�
 LocFriendlyName="灵感"
 LocFlyOverText="灵感"
 ; LWOTC Needs Translation (2)
-LocLongDescription="给予一名视野内的友军<Ability:INSPIRE_DODGE/>闪避直到下一个回合开始。每当你击杀一名敌人，将获得1次额外充能。初始1充能，自由动作。每回合可使用1次。"
-LocHelpText="给予一名视野内的友军<Ability:INSPIRE_DODGE/>闪避直到下一个回合开始。每当你击杀一名敌人，将获得1次额外充能。初始1充能，自由动作。每回合可使用1次。"
-LocPromotionPopupText="<Bullet/> 不适用于小队视野。<br/><Bullet/> 每击杀一名敌方单位将获得1次额外充能。<br/><Bullet/> 每回合可用1次。<br/><Bullet/> 初始1充能，自由动作。<br/>"
+LocLongDescription="给予一名视野内的友军<Ability:INSPIRE_DODGE/>闪避直到下一回合开始。自由动作。每回合可使用1次。初始1充能，每当你击杀一名敌人，将获得1次额外充能。"
+LocHelpText="给予一名视野内的友军<Ability:INSPIRE_DODGE/>闪避直到下一回合开始。自由动作。每回合可使用1次。初始1充能，每当你击杀一名敌人，将获得1次额外充能。"
+LocPromotionPopupText="<Bullet/> 不适用于小队视野。<br/><Bullet/> 初始1充能，每击杀一名敌方单位将获得1次额外充能。<br/><Bullet/> 每回合可用1次。<br/><Bullet/> 自由动作。<br/>"
 ; End Translation (2)
 
 [PrimaryReturnFire X2AbilityTemplate]
@@ -7017,6 +7018,13 @@ LocLongDescription="针对反应攻击获得额外+<Ability:MOVING_TARGET_DEFENS
 LocHelpText="针对反应攻击获得额外+<Ability:MOVING_TARGET_DEFENSE>防御和+<Ability:MOVING_TARGET_DODGE>闪避。"
 LocPromotionPopupText="针对反应攻击获得额外+<Ability:MOVING_TARGET_DEFENSE>防御和+<Ability:MOVING_TARGET_DODGE>闪避。"
 
+[ChainingJolt_LW X2AbilityTemplate]
+LocFriendlyName="连锁电击"
+LocHelpText="战争协议的攻击现在会链向目标附近的敌人。最多攻击到3个敌方单位。"
+LocLongDescription="战争协议的攻击现在会链向目标附近的敌人。最多攻击到3个敌方单位。"
+LocFlyOverText="连锁电击"
+LocPromotionPopupText="<Bullet/> 造成穿透护甲的电击伤害，机械单位会受到额外伤害。<br/><Bullet/> 连锁的判定距离为5格。<br/><Bullet/> 只能链向目标单位的友军单位。<br/><Bullet/> 冷却时间为<Ability:SelfCooldown_LW/>回合。<br/>"
+
 ; End Translation
 
 ; LWOTC Needs Translation
@@ -7528,7 +7536,7 @@ LocPromotionPopupText=""
 [Anatomy_LW X2AbilityTemplate]
 LocFriendlyName="解剖学"
 LocFlyOverText="解剖学"
-LocLongDescription="你知道如何精准打击敌人以造成最大伤害。所有攻击获得+15%的暴击率和2点护甲穿透。"
+LocLongDescription="你知道如何精准打击敌人以造成最大伤害。所有攻击获得+15的暴击率和2点护甲穿透。"
 LocHelpText="所有攻击获得额外的暴击率和护甲穿透。"
 LocPromotionPopupText="<Bullet/> 这是一个无条件的被动加成。\n<Bullet/> 护甲穿透加成不会显示在攻击预览中，但在攻击命中时会生效。"
 
@@ -7567,6 +7575,6 @@ LocPromotionPopupText="<Bullet/> 这个加成不适用于近战攻击。<br/><Bu
 
 [GrappleExpert_LW X2AbilityTemplate]
 LocFriendlyName="钩爪专家"
-LocLongDescription="正义、怒火、鞭笞获得额外+15命中."
-LocHelpText="正义、怒火、鞭笞获得额外+15命中."
+LocLongDescription="正义、怒火、鞭笞获得额外+15命中。"
+LocHelpText="正义、怒火、鞭笞获得额外+15命中。"
 LocFlyOverText="钩爪专家"
