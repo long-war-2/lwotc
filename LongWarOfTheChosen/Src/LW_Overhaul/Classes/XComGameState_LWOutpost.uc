@@ -414,7 +414,7 @@ function InitOutpost(XComGameState NewState, XComGameState_WorldRegion WorldRegi
 		// Rebels are assigned to jobs roughly in thirds, with remainders going to "intel".
 		// On Rookie, Vet, push some more toward intel to help generate easier missions
 
-		if (i <= MaxRebels) 
+		if (i <= MaxRebels && WorldRegion.IsStartingRegion()) 
 			Rebels[i].Job = class'LWRebelJob_DefaultJobSet'.const.INTEL_JOB;
 		else
 			Rebels[i].Job = class'LWRebelJob_DefaultJobSet'.const.HIDING_JOB;
