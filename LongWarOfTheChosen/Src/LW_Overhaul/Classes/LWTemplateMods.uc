@@ -1484,6 +1484,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		switch (Template.DataName)
 		{
 			case 'StandardShot':
+			case 'StandardShot_NoEnd':
 			case 'PistolStandardShot':
 			case 'SniperStandardFire':
 			case 'Shadowfall':
