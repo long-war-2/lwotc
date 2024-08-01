@@ -471,10 +471,10 @@ LocPromotionPopupText="<Bullet/> 本身不具备破甲效果的榴弹不会受�
 [TandemHEATWarheads X2AbilityTemplate]
 LocFriendlyName="串联高热弹头"
 ; LWOTC Needs Translation
-LocLongDescription="你的榴弹穿透<ABILITY:TANDEMHEAT_WARHEADS_PIERCE_LW/>点护甲，额外撕碎<ABILITY:TANDEMHEAT_WARHEADS_SHRED_LW/>点护甲，并对范围内最边缘的目标造成最大程度的伤害。"
-LocHelpText="你的榴弹穿透<ABILITY:TANDEMHEAT_WARHEADS_PIERCE_LW/>点护甲，额外撕碎<ABILITY:TANDEMHEAT_WARHEADS_SHRED_LW/>点护甲，并对范围内最边缘的目标造成最大程度的伤害。"
+LocLongDescription="你的榴弹和火箭穿透<ABILITY:TANDEMHEAT_WARHEADS_PIERCE_LW/>点护甲，额外撕碎<ABILITY:TANDEMHEAT_WARHEADS_SHRED_LW/>点护甲，并对范围内最边缘的目标造成最大程度的伤害。"
+LocHelpText="你的榴弹和火箭穿透<ABILITY:TANDEMHEAT_WARHEADS_PIERCE_LW/>点护甲，额外撕碎<ABILITY:TANDEMHEAT_WARHEADS_SHRED_LW/>点护甲，并对范围内最边缘的目标造成最大程度的伤害。"
 LocFlyOverText="串联高热弹头"
-LocPromotionPopupText="<Bullet/> 本身不具备破甲效果的榴弹不会受益于额外的破甲效果。不适用于环境伤害。"
+LocPromotionPopupText="<Bullet/> 本身不具备破甲效果的榴弹不会受益于额外的破甲效果。<br/><Bullet/> 不适用于环境伤害。"
 ; End Translation
 
 [Bombard_LW X2AbilityTemplate]
@@ -7387,9 +7387,9 @@ LocHelpText="当该单位处于隐蔽或暗影状态时，变种人安保哨塔�
 LocLongDescription="使穿戴者对负面精神状况免疫，如混乱、恐慌、心灵控制和眩晕。"
 
 [Sustain X2AbilityTemplate]
-LocLongDescription="该士兵的伤口恢复时间减少<Ability:SUSTAIN_WOUND_HP_REDUCTTION/>HP。如果该单位受到足以致命的伤害，他会立刻进入静滞状态，持续1回合，且生命值会降到1点。此能力每次任务发动一次。"
-LocHelpText="如果该单位受到足以致命的伤害，他会立刻进入静滞状态，持续1回合，且生命值会降到1点。此能力每次任务发动一次。"
-LocPromotionPopupText="<Bullet/>注意，在坚守状态下的单位在从静滞状态恢复时依然会受到状态效果如毒素或燃烧的伤害。<br/>"
+LocLongDescription="该单位的伤口恢复时间减少<Ability:SUSTAIN_WOUND_HP_REDUCTTION/>HP，并在受到足以致命的伤害后会立刻进入静滞状态，持续1回合，且生命值维持在1点。此能力每次任务发动一次。"
+LocHelpText="该单位受到足以致命的伤害后会立刻进入静滞状态，持续1回合，且生命值维持在1点。此能力每次任务发动一次。"
+LocPromotionPopupText="<Bullet/> 注意，单位从静滞状态恢复时依然会受到状态效果（如毒素或燃烧）的伤害。<br/><Bullet/> 注意，单位如果处于眩晕状态，则不会触发静滞。<br/><Bullet/> 注意，受到的致命伤害每溢出1HP，根据祭司的级别，其触发静滞的概率会降低25%/17%/10%。"
 
 [SustainTriggered X2AbilityTemplate]
 LocLongDescription="该单位逃过一次致死攻击，并进入静滞状态1回合。本次战斗中仅触发一次。"

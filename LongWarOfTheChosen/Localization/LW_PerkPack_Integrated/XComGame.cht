@@ -778,10 +778,10 @@ LocFlyOverText=""
 [XComGame.Killzone X2AbilityTemplate]
 [KillZone X2AbilityTemplate]
 LocFriendlyName="殺戮地帶"
-LocLongDescription="對錐形範圍內任意移動的敵人進行一次反應射擊。"
-LocHelpText="加強的錐形射程的監視。"
+LocLongDescription="監視指定的錐形區域，對在範圍內移動或攻擊的每個敵人進行一次反應射擊。"
+LocHelpText="加強的錐形射程監視。"
 LocFlyOverText="殺戮地帶"
-LocPromotionPopupText="<Bullet/>士兵發動殺戮地帶沒有彈藥限制。<br/><Bullet/>殺戮地帶可以利用小隊視野，即便士兵沒有守望能力。<br/><Bullet/>殺戮地帶有<Ability:SelfCooldown/>回合冷卻時間。<br/>"
+LocPromotionPopupText="<Bullet/>士兵不會在隱匿狀態下觸發反應射擊。<br/><Bullet/>士兵發動殺戮地帶沒有彈藥限制。<br/><Bullet/>殺戮地帶可以利用小隊視野，即便士兵沒有守望能力。<br/><Bullet/>殺戮地帶有<Ability:SelfCooldown/>回合冷卻時間。<br/>"
 LocFriendlyNameWhenConcealed="殺戮地帶（隱蔽）"
 
 [XComGame.DeathFromAbove X2AbilityTemplate]
