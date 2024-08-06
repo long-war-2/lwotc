@@ -235,3 +235,15 @@ LocPromotionPopupText="<Bullet/> Cheap Shot triggers if the target was previousl
 LocFriendlyName="True Predator"
 LocLongDescription="Decreases the per-shot aim penalty of Banish by <Ability:THEBANISHER_HIT_BUFF> and decreases its cooldown by 1. Increases the range of Knife Encounters to <Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/>. Death Dealer now doubles the critical damage bonus of your weapon against unflankable targets."
 LocHelpText="Decreases the per-shot aim penalty of Banish by <Ability:THEBANISHER_HIT_BUFF> and decreases its cooldown by 1. Increases the range of Knife Encounters to <Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/>. Death Dealer now doubles the critical damage bonus of your weapon against unflankable targets."
+
+[SwiftThrow_LW X2AbilityTemplate]
+LocFriendlyName="Swift Throw"
+LocHelpText="Throw a knife as a free action. 4 Turn Cooldown."
+LocLongDescription="Throw a knife as a free action. 4 Turn Cooldown."
+LocPromotionPopupText="<Bullet/> Throw a knife as a free action. 4 Turn Cooldown."
+
+[TacticalRetreat_LW X2AbilityTemplate]
+LocFriendlyName="Tactical Retreat"
+LocHelpText="Tactical Retreat"
+LocLongDescription="Grants a movement only action after throwing a knife. This can happen multiple times in a turn."
+LocPromotionPopupText="<Bullet/> Grants a movement only action after throwing a knife. This can happen multiple times in a turn."

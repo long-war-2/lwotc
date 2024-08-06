@@ -54,6 +54,10 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 	if (EffectState == none)
 		return;
 
+	// Don't add temp stuff twice.
+	if (SkipForDirectMissionTransfer(ApplyEffectParameters))
+		return;
+
 	XComHQ = `XCOMHQ;
 	UseItemName = ItemName;
 	//check if we meet any of the optional research conditions to add a better item
@@ -382,6 +386,27 @@ static function ClearTemporaryItems(XComGameState_Effect_TemporaryItem EffectSta
 
 	// Remove this gamestate object from history
 	NewGameState.RemoveStateObject(EffectState.ObjectID);
+}
+
+// borrowed from XMB
+static function bool SkipForDirectMissionTransfer(const out EffectAppliedData ApplyEffectParameters)
+{
+	local XComGameState_Ability AbilityState;
+	local XComGameStateHistory History;
+	local XComGameState_BattleData BattleData;
+	local int Priority;
+
+	History = `XCOMHISTORY;
+
+	BattleData = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
+	if (!BattleData.DirectTransferInfo.IsDirectMissionTransfer)
+		return false;
+
+	AbilityState = XComGameState_Ability(History.GetGameStateForObjectID(ApplyEffectParameters.AbilityStateObjectRef.ObjectID));
+	if (!AbilityState.IsAbilityTriggeredOnUnitPostBeginTacticalPlay(Priority))
+		return false;
+
+	return true;
 }
 
 defaultProperties

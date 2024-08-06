@@ -608,7 +608,7 @@ LocFriendlyName="Collateral Damage"
 LocLongDescription="Fire a barrage of <Ability:WeaponName/> rounds to a location, destroying cover within the area. Deals a small amount of damage to enemies. 4-turn cooldown and uses 2 ammo."
 LocHelpText="Fire a barrage of <Ability:WeaponName/> rounds to a location, destroying cover within the area."
 LocFlyOverText="Collateral Damage"
-LocPromotionPopupText="<Bullet/> Fire a barrage of <Ability:WeaponName/> rounds to a location, destroying cover within the area.<br/><Bullet/> Deals high environmental damage to all objects in the area of effect.<br/><Bullet/> Collateral Damage does 40% of base weapon damage to enemies within the area of effect.<Ability:WeaponName/>.<br/><Bullet/> Costs 2 ammo and has a 4-turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Fire a barrage of <Ability:WeaponName/> rounds to a location, destroying cover within the area.<br/><Bullet/> Deals high environmental damage to all objects in the area of effect.<br/><Bullet/> Collateral Damage does 40% of base weapon damage to enemies within the area of effect.<br/><Bullet/> Costs 2 ammo and has a 4-turn cooldown.<br/>"
 
 ;POTENTIALLY DEPERECATED AS WELL AS ALL TRANSLATIONS
 [DenseSmokeGrenade X2GrenadeTemplate]
