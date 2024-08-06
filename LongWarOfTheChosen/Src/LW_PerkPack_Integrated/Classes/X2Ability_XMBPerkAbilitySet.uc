@@ -249,6 +249,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(FocusedDefense());
 	Templates.AddItem(GrappleExpert());
 	
+	Templates.AddItem(TacticalRetreat());
 	
 	return Templates;
 }
@@ -4228,6 +4229,35 @@ static function X2AbilityTemplate GrappleExpert()
 
 	return Template;
 }
+
+// Borrowed from Captain Pet Rock
+static function X2AbilityTemplate TacticalRetreat()
+{
+	local X2Effect_GrantActionPoints Effect;
+	local X2AbilityTemplate Template;
+    local XMBCondition_AbilityName NameCondition;
+
+	// Effect adds a Run and Gun action point
+	Effect = new class'X2Effect_GrantActionPoints';
+	Effect.NumActionPoints = 1;
+	Effect.PointType = class'X2CharacterTemplateManager'.default.MoveActionPoint;
+
+	// Create a triggered ability that will activate whenever the unit uses an ability that meets the condition
+	Template = SelfTargetTrigger('TacticalRetreat_LW', "img:///UILibrary_PerkIcons.UIPerk_stickandmove", false, Effect, 'AbilityActivated');
+
+	// Only trigger with Shield Wall
+	NameCondition = new class'XMBCondition_AbilityName';
+	NameCondition.IncludeAbilityNames.AddItem('SwiftThrow_LW');
+	NameCondition.IncludeAbilityNames.AddItem('SwiftThrow');
+	NameCondition.IncludeAbilityNames.AddItem('ThrowKnife');
+	NameCondition.IncludeAbilityNames.AddItem('MusashiThrowKnifeSecondary_LW');
+	NameCondition.IncludeAbilityNames.AddItem('CripplingStrike');
+
+	AddTriggerTargetCondition(Template, NameCondition);
+
+    return Template;
+}
+
 
 defaultproperties
 {
