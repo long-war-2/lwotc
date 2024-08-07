@@ -22,7 +22,7 @@
 //
 //  XMBEffectUtilities.uc
 //---------------------------------------------------------------------------------------
-class XMBEffect_AddUtilityItem extends X2Effect_Persistent config(Core);
+class XMBEffect_AddUtilityItem extends X2Effect_Persistent config(GameCore);
 
 struct AbilityBonusAmmo {
 	var name AbilityName;
