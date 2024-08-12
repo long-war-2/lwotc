@@ -2792,7 +2792,7 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 		}
 	}
 
-	if (AlienHQ.bChosenActive)
+	if (AlienHQ.bChosenActive && !`SecondWaveEnabled('DisableChosen'))
 	{
 		// now grab the undefeated chosen
 		AllChosen = AlienHQ.GetAllChosen(, true);
