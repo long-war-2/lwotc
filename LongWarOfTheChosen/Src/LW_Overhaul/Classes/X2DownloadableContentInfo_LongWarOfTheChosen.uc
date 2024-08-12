@@ -208,6 +208,12 @@ static event InstallNewCampaign(XComGameState StartState)
 
 	`LWOVERHAULOptions.InitChosenKnowledge();
 
+	// Mark the chosen as defeated if the SWO is enabled.
+	if (`SecondWaveEnabled('DisableChosen'))
+	{
+		MarkAllChosenDefeated(StartState);
+	}
+
 	class'XComGameState_LWSquadManager'.static.CreateFirstMissionSquad(StartState);
 
 	// Clear starting resistance modes because we don't actually start
@@ -216,6 +222,21 @@ static event InstallNewCampaign(XComGameState StartState)
 	class'X2StrategyElement_DefaultResistanceModes'.static.OnXCOMLeavesIntelMode(StartState, StartingFactionState.GetReference());
 	class'X2StrategyElement_DefaultResistanceModes'.static.OnXCOMLeavesMedicalMode(StartState, StartingFactionState.GetReference());
 	class'X2StrategyElement_DefaultResistanceModes'.static.OnXCOMLeavesBuildMode(StartState, StartingFactionState.GetReference());
+}
+
+static function MarkAllChosenDefeated(XComGameState StartState)
+{
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local XComGameState_AdventChosen ChosenState;
+
+	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	AllChosen = AlienHQ.GetAllChosen(, true);
+
+	foreach AllChosen (ChosenState)
+	{
+		ChosenState.bDefeated = true;
+	}
 }
 
 static function OnPreCreateTemplates()
