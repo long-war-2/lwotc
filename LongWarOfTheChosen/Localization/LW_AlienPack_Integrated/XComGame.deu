@@ -279,19 +279,19 @@ AbilityDescName="Magnetgewehr"
 [AdvGrenadierM1 X2CharacterTemplate]
 strCharacterName="ADVENT-Ingenieur"
 
-[AdvGrenadierM1_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM1_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="ADVENT-Granatwerfer"
 
 [AdvGrenadierM2 X2CharacterTemplate]
 strCharacterName="ADVENT-Grenadier"
 
-[AdvGrenadierM2_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM2_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="ADVENT-Granatwerfer"
 
 [AdvGrenadierM3 X2CharacterTemplate]
 strCharacterName="Schwerer ADVENT-Grenadier"
 
-[AdvGrenadierM3_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM3_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="ADVENT-Granatwerfer"
 
 [AdvGrenadierFlashbangGrenade X2GrenadeTemplate]

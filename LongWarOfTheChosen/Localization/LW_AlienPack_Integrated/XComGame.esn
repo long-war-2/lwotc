@@ -314,19 +314,19 @@ AbilityDescName="rifle magnético"
 [AdvGrenadierM1 X2CharacterTemplate]
 strCharacterName="Ingeniero de ADVENT"
 
-[AdvGrenadierM1_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM1_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="Lanzagranadas de ADVENT"
 
 [AdvGrenadierM2 X2CharacterTemplate]
 strCharacterName="Granadero de ADVENT"
 
-[AdvGrenadierM2_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM2_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="Lanzagranadas de ADVENT"
 
 [AdvGrenadierM3 X2CharacterTemplate]
 strCharacterName="Granadero pesado de ADVENT"
 
-[AdvGrenadierM3_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM3_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="Lanzagranadas de ADVENT"
 
 [AdvGrenadierFlashbangGrenade X2GrenadeTemplate]

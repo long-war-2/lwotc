@@ -280,19 +280,19 @@ AbilityDescName="磁力步枪"
 [AdvGrenadierM1 X2CharacterTemplate]
 strCharacterName="变种人工兵"
 
-[AdvGrenadierM1_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM1_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="变种人榴弹发射器"
 
 [AdvGrenadierM2 X2CharacterTemplate]
 strCharacterName="变种人榴弹兵"
 
-[AdvGrenadierM2_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM2_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="变种人榴弹发射器"
 
 [AdvGrenadierM3 X2CharacterTemplate]
 strCharacterName="变种人重型榴弹兵"
 
-[AdvGrenadierM3_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM3_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="变种人榴弹发射器"
 
 [AdvGrenadierFlashbangGrenade X2GrenadeTemplate]

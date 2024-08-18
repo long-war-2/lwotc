@@ -279,19 +279,19 @@ AbilityDescName="karabin magnetyczny"
 [AdvGrenadierM1 X2CharacterTemplate]
 strCharacterName="Technik ADVENT-u"
 
-[AdvGrenadierM1_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM1_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="Granatnik ADVENT-u"
 
 [AdvGrenadierM2 X2CharacterTemplate]
 strCharacterName="Grenadier ADVENT-u"
 
-[AdvGrenadierM2_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM2_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="Granatnik ADVENT-u"
 
 [AdvGrenadierM3 X2CharacterTemplate]
 strCharacterName="Ciężki grenadier ADVENT-u"
 
-[AdvGrenadierM3_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM3_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="Granatnik ADVENT-u"
 
 [AdvGrenadierFlashbangGrenade X2GrenadeTemplate]
