@@ -7040,8 +7040,8 @@ LocFlyOverText="Misty Madness"
 
 [Impenetrable_LW X2AbilityTemplate]
 LocFriendlyName="Impenetrable"
-LocHelpText="Impact Compensation Stacking limit is increased by 1."
-LocLongDescription="Impact Compensation Stacking limit is increased by 1."
+LocHelpText="Impact Compensation Stacking limit is increased by 1, and Enhanced Layered Armor damage cap is reduced by 10%."
+LocLongDescription="Impact Compensation Stacking limit is increased by 1, and Enhanced Layered Armor damage cap is reduced by 10%."
 LocFlyOverText="Impenetrable"
 
 [YouCannotHide_LW X2AbilityTemplate]
@@ -7267,6 +7267,19 @@ LocFlyOverText="Impact Compensation"
 LocLongDescription="After taking damage, gain a stacking <Ability:IMPACT_COMPENSATION_PCT_DR>% damage reduction until the end of your turn. Max stacks: <Ability:IMPACT_COMPENSATION_MAX_STACKS/>."
 LocHelpText="After taking damage, gain a stacking <Ability:IMPACT_COMPENSATION_PCT_DR>% damage reduction until the end of your turn. Max stacks: <Ability:IMPACT_COMPENSATION_MAX_STACKS/>."
 ; End Translation (2)
+
+[ImpactCompensationV2_LW X2AbilityTemplate]
+LocFriendlyName="Enhanced Layered Armor"
+LocFlyOverText="Enhanced Layered Armor"
+LocLongDescription="This unit can only take <Ability:IMPACT_V2_DAMAGE_CAP>% of their max HP per turn. Damage per turn above this limit is reduced by <Ability:IMPACT_V2_PCT_DR>%."
+LocHelpText="The damage cap resets at the start of each turn."
+
+[ImpactCompensationPassiveV2_LW X2AbilityTemplate]
+LocFriendlyName="Enhanced Layered Armor"
+LocFlyOverText="Enhanced Layered Armor"
+LocLongDescription="This unit can only take <Ability:IMPACT_V2_DAMAGE_CAP>% of their max HP per turn. Damage per turn above this limit is reduced by <Ability:IMPACT_V2_PCT_DR>%."
+LocHelpText="The damage cap resets at the start of each turn."
+
 
 [MovingTarget_LW X2AbilityTemplate]
 LocFriendlyName="Moving Target"

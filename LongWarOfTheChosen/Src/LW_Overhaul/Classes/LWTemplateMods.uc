@@ -2470,7 +2470,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('FreeGrenades');
 		
 		Template.Abilities.AddItem('AssassinSlash_LW');
-		Template.Abilities.AddItem('ImpactCompensation_LW');
+		Template.Abilities.AddItem('ImpactCompensationV2_LW');
 		Template.Abilities.AddItem('Infighter');
 		Template.Abilities.AddItem('ChosenLootAbility');
 		Template.Abilities.AddItem('Unstoppable_LW');
@@ -2713,7 +2713,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		case 'ChosenShotgun_XCOM':
 			//WeaponTemplate.Abilities.AddItem('Brawler');
 			WeaponTemplate.Abilities.AddItem('Vampirism_LW');
-			WeaponTemplate.Abilities.AddItem('ImpactCompensation_LW');
+			WeaponTemplate.Abilities.AddItem('ImpactCompensationV2_LW');
 			WeaponTemplate.OnAcquiredFn = none;
 			WeaponTemplate.NumUpgradeSlots = 2;
 			break;
