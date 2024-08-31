@@ -1487,6 +1487,8 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			case 'StandardShot_NoEnd':
 			case 'PistolStandardShot':
 			case 'SniperStandardFire':
+			case 'PistolReturnFire':
+			case 'DarkEventAbility_PistolReturnFire':
 			case 'Shadowfall':
 			// Light Em Up and Snap Shot are handled in the template
 				UnitEffects = new class'X2Condition_UnitEffects';
@@ -2436,7 +2438,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('LongWatch');
 		Template.Abilities.AddItem('quickdraw');
 		Template.Abilities.AddItem('ChosenImmuneMelee');
-		//Template.Abilities.AddItem('Squadsight');
+		Template.Abilities.AddItem('Squadsight');
 		
 		Template.Abilities.AddItem('FreeGrenades');
 		Template.Abilities.AddItem('Infighter');

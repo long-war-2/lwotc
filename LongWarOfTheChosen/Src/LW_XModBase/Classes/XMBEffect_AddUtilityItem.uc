@@ -22,7 +22,7 @@
 //
 //  XMBEffectUtilities.uc
 //---------------------------------------------------------------------------------------
-class XMBEffect_AddUtilityItem extends X2Effect_Persistent;
+class XMBEffect_AddUtilityItem extends X2Effect_Persistent config(GameCore);
 
 struct AbilityBonusAmmo {
 	var name AbilityName;
@@ -39,6 +39,8 @@ var int BonusCharges;						// Number of extra charges of the item to add for eac
 var bool bUseHighestAvailableUpgrade;		// If true, grant the highest available upgraded version of the item.
 var array<name> SkipAbilities;				// List of abilities to not add
 var EInventorySlot InvSlotEnum;				//which slot to put it in.
+
+var config array<name> GrenadeLauncherCats;
 
 var array<AbilityBonusAmmo> AbilityForBonusAmmo;
 var int MaxCharges;
@@ -139,7 +141,7 @@ simulated function AddUtilityItem(XComGameState_Unit NewUnit, X2ItemTemplate Ite
 			}
 
 			// Flag whether the unit has a Grenade Launcher to apply any Grenade items to it
-			if (ItemState != none && X2WeaponTemplate(ItemState.GetMyTemplate()).WeaponCat ==  'grenade_launcher')
+			if (ItemState != none && default.GrenadeLauncherCats.find(X2WeaponTemplate(ItemState.GetMyTemplate()).WeaponCat) != INDEX_NONE)
 			{
 				GrenadeLauncherItem = ItemState;
 			}

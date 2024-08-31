@@ -1392,9 +1392,6 @@ static function X2DataTemplate SwiftThrow()
 
 	Template.AddTargetEffect(new class'X2Effect_ApplyWeaponDamage');
 
-	class'X2Ability_ThrowingKnifeAbilitySet'.static.AddRendTheMarkedEffect(Template);
-	class'X2Ability_ThrowingKnifeAbilitySet'.static.AddBlueScreenKnivesEffect(Template);
-
 	Template.AbilityCosts.AddItem(default.FreeActionCost);
 
 	Cooldown = new class'X2AbilityCooldown';

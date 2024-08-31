@@ -81,7 +81,7 @@ LocPromotionPopupText="<Bullet/>每回合一次，用主武器對一名側翼敵
 [HitandRun X2AbilityTemplate]
 LocFriendlyName="游擊戰術"
 LocFlyOverText="游擊戰術"
-LocLongDescription="用主武器對一名側翼敵人進行標準射擊後，獲得一個額外的行動點。每回合一次。不能在同一回合觸發短兵相接。 "
+LocLongDescription="用主武器對一名側翼敵人進行標準射擊後，獲得一個額外的行動點。每回合一次。不能在同一回合觸發短兵相接。"
 LocHelpText="用主武器對一名側翼敵人進行標準射擊後，獲得一個額外的行動點。每回合一次。不能在同一回合觸發短兵相接。"
 LocPromotionPopupText="<Bullet/> 不能在同一回合使用奔襲戰術。<br/><Bullet/> 連環殺戮和死神天降的獎勵將會優先獲得。"
 
@@ -778,10 +778,10 @@ LocFlyOverText=""
 [XComGame.Killzone X2AbilityTemplate]
 [KillZone X2AbilityTemplate]
 LocFriendlyName="殺戮地帶"
-LocLongDescription="對錐形範圍內任意移動的敵人進行一次反應射擊。"
-LocHelpText="加強的錐形射程的監視。"
+LocLongDescription="監視指定的錐形區域，對在範圍內移動或攻擊的每個敵人進行一次反應射擊。"
+LocHelpText="加強的錐形射程監視。"
 LocFlyOverText="殺戮地帶"
-LocPromotionPopupText="<Bullet/>士兵發動殺戮地帶沒有彈藥限制。<br/><Bullet/>殺戮地帶可以利用小隊視野，即便士兵沒有守望能力。<br/><Bullet/>殺戮地帶有<Ability:SelfCooldown/>回合冷卻時間。<br/>"
+LocPromotionPopupText="<Bullet/>士兵不會在隱匿狀態下觸發反應射擊。<br/><Bullet/>士兵發動殺戮地帶沒有彈藥限制。<br/><Bullet/>殺戮地帶可以利用小隊視野，即便士兵沒有守望能力。<br/><Bullet/>殺戮地帶有<Ability:SelfCooldown/>回合冷卻時間。<br/>"
 LocFriendlyNameWhenConcealed="殺戮地帶（隱蔽）"
 
 [XComGame.DeathFromAbove X2AbilityTemplate]
@@ -826,10 +826,10 @@ LocPromotionPopupText="<Bullet/>快射拔槍可以讓士兵在同一個回合內
 
 [XComGame.SharpshooterAim X2AbilityTemplate]
 [SharpshooterAim X2AbilityTemplate]
-LocFriendlyName="命中"
+LocFriendlyName="蓄勢待發"
 LocLongDescription="蹲伏現在會在下一回合的首次射擊中給予+<Ability:SHARPSHOOTERAIMBONUS/>的命中和+<Ability:SHARPSHOOTERAIM_CRITBONUS/>暴擊率。"
 LocHelpText="蹲伏現在會在下一回合的首次射擊中給予+<Ability:SHARPSHOOTERAIMBONUS/>的命中和+<Ability:SHARPSHOOTERAIM_CRITBONUS/>暴擊率。"
-LocFlyOverText="蹲伏 - 命中"
+LocFlyOverText="蹲伏 - 蓄勢待發"
 LocPromotionPopupText="<Bullet/>命中、暴擊的加成適用於任何武器射擊。<br/>"
 
 [XComGame.LightningHands X2AbilityTemplate]
@@ -1072,10 +1072,10 @@ LocFlyOverText="速射"
 
 [RepairMW_LW X2AbilityTemplate]
 LocFriendlyName="維修"
-LocLongDescription="指揮BIT對受損的機器人盟友進行治療，恢復4HP，中和酸，修復所有被撕碎的護甲。"
+LocLongDescription="指揮BIT對受損的機器人盟友進行治療，中和酸，修復所有被撕碎的護甲。"
 LocHelpText="指揮BIT對受損的機器人盟友進行治療。"
 LocFlyOverText="維修"
-LocPromotionPopupText="<Bullet/> <Ability:ClassName/>可以使用維修在戰鬥中治療其他機器人盟友（或自身，如果是SPARK）。<br/><Bullet/> 恢復4HP，中和酸液，並將目標的護甲重置為最大值。<br/><Bullet/> 升級你的BIT將為每個任務提供更多的維修次數。<br/><Bullet/> 每次任務可以使用2/3/4次，具體取決於裝備的BIT。<br/><Bullet/> 如果沒有學習快速維修，維修將結束你的回合。<br/><Bullet/> 維修有1回合冷卻時間（每回合不能多次使用）。<br/>"
+LocPromotionPopupText="<Bullet/> <Ability:ClassName/>可以使用維修在戰鬥中治療其他機器人盟友（或自身，如果是SPARK）。<br/><Bullet/> 恢復4/6/8HP，中和酸液，並將目標的護甲重置為最大值。<br/><Bullet/> 初始1充能，升級你的BIT來獲得額外的維修次數。<br/><Bullet/> 如果沒有學習快速維修，維修將結束你的回合。<br/><Bullet/> 維修有1回合冷卻時間（每回合不能多次使用）。<br/>"
 
 [KineticStrike_LW X2AbilityTemplate]
 LocFriendlyName="動能打擊"

@@ -36,7 +36,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
             }
 
 			DamageEffect = X2Effect_ApplyWeaponDamage(class'X2Effect'.static.GetX2Effect(AppliedData.EffectRef));
-            if (DamageEffect != none && (ApplyToNonBaseDamage || !DamageEffect.bIgnoreBaseDamage))
+            if (DamageEffect != none && (ApplyToNonBaseDamage || !DamageEffect.bIgnoreBaseDamage) && CurrentDamage > 0)
             {
                 return BonusDamage;
             }

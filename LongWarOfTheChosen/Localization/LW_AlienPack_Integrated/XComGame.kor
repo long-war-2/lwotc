@@ -263,19 +263,19 @@ FriendlyName="어드밴트 전자기 소총"
 [AdvGrenadierM1 X2CharacterTemplate]
 strCharacterName="어드밴트 기술자"
 
-[AdvGrenadierM1_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM1_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="어드밴트 유탄 발사기"
 
 [AdvGrenadierM2 X2CharacterTemplate]
 strCharacterName="어드밴트 척탄병"
 
-[AdvGrenadierM2_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM2_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="어드밴트 유탄 발사기"
 
 [AdvGrenadierM3 X2CharacterTemplate]
 strCharacterName="어드밴트 중장갑 척탄병"
 
-[AdvGrenadierM3_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM3_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="어드밴트 유탄 발사기"
 
 [AdvGrenadierFlashbangGrenade X2GrenadeTemplate]

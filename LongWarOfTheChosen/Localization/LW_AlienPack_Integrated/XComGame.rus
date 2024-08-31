@@ -263,19 +263,19 @@ FriendlyName="Магнитная винтовка \"Адвента\""
 [AdvGrenadierM1 X2CharacterTemplate]
 strCharacterName="Инженер \"Адвента\""
 
-[AdvGrenadierM1_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM1_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="Гранатомет \"Адвента\""
 
 [AdvGrenadierM2 X2CharacterTemplate]
 strCharacterName="Гранатометчик \"Адвента\""
 
-[AdvGrenadierM2_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM2_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="Гранатомет \"Адвента\""
 
 [AdvGrenadierM3 X2CharacterTemplate]
 strCharacterName="Тяжелый гранатометчик \"Адвента\""
 
-[AdvGrenadierM3_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM3_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="Гранатомет \"Адвента\""
 
 [AdvGrenadierFlashbangGrenade X2GrenadeTemplate]
