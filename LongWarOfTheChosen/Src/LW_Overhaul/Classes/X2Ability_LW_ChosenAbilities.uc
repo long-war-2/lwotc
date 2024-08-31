@@ -2045,6 +2045,8 @@ static function X2AbilityTemplate ImpactCompensationV2()
 	ImpactEffect.DamageModifier = default.IMPACT_V2_PCT_DR;
 	ImpactEffect.MaxCap = default.IMPACT_V2_DAMAGE_CAP;
 	ImpactEffect.BuildPersistentEffect(1, true, false);
+	ImpactEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,,Template.AbilitySourceName);
+
 	ImpactEffect.DuplicateResponse = eDupe_Ignore;
 	Template.AddTargetEffect(ImpactEffect);
 
@@ -2052,7 +2054,7 @@ static function X2AbilityTemplate ImpactCompensationV2()
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 	//Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
 
-	Template.AdditionalAbilities.AddItem('ImpactCompensationPassiveV2_LW');
+	//Template.AdditionalAbilities.AddItem('ImpactCompensationPassiveV2_LW');
 
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;

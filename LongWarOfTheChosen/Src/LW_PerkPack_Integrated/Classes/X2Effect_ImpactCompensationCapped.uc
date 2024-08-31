@@ -35,14 +35,24 @@ function float GetPostDefaultDefendingDamageModifier_CH(XComGameState_Effect Eff
 
     TargetUnit.GetUnitValue('DamageThisTurn', UnitVal);
 
-    if (UnitVal.fValue > DamageLimit)
+    if (UnitVal.fValue >= DamageLimit)
     {
         return WeaponDamage * -DamageModifier;
     }
 
-    if (WeaponDamage > DamageLimit)
+    if(UnitVal.fValue + WeaponDamage >= DamageLimit)
+    {
+        return (WeaponDamage - max(0,(DamageLimit - UnitVal.fValue))) * -DamageModifier;
+    }
+
+    if (WeaponDamage >= DamageLimit)
     {
         FinalDamage = -WeaponDamage + DamageLimit;
         return FinalDamage;
     }
+}
+
+defaultproperties
+{
+    bDisplayInSpecialDamageMessageUI = true;
 }
