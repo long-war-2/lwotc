@@ -1354,7 +1354,6 @@ static function X2DataTemplate SwiftThrow()
 	local X2AbilityTemplate					Template;
 	local X2AbilityToHitCalc_StandardAim	ToHitCalc;
 	local X2AbilityCooldown					Cooldown;
-	local X2AbilityCost_ActionPoints		ActionPointCost;
 	local X2AbilityCost_Ammo				AmmoCost;
 	local X2Condition_Visibility			VisibilityCondition;
 	local X2Condition_UnitProperty			UnitPropertyCondition;

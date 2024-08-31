@@ -37,12 +37,12 @@ function float GetPostDefaultDefendingDamageModifier_CH(XComGameState_Effect Eff
 
     if (UnitVal.fValue >= DamageLimit)
     {
-        return WeaponDamage * -DamageModifier;
+        return WeaponDamage * -DamageModifierFinal;
     }
 
     if(UnitVal.fValue + WeaponDamage >= DamageLimit)
     {
-        return (WeaponDamage - max(0,(DamageLimit - UnitVal.fValue))) * -DamageModifier;
+        return (WeaponDamage - max(0,(DamageLimit - UnitVal.fValue))) * -DamageModifierFinal;
     }
 
     if (WeaponDamage >= DamageLimit)
