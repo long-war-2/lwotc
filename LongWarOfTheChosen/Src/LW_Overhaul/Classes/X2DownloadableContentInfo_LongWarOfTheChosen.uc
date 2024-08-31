@@ -1860,7 +1860,7 @@ static function GetSpawnDistributionList(
 }
 
 // Returns true if the pod is undersized
-static function bool CheckPodSize(out name EncounterName, out PodSpawnInfo SpawnInfo, int ForceLevel, int AlertLevel, out int ProperPodLength, optional XComGameState_BaseObject SourceObject)
+static final function bool CheckPodSize(out name EncounterName, out PodSpawnInfo SpawnInfo, int ForceLevel, int AlertLevel, out int ProperPodLength, optional XComGameState_BaseObject SourceObject)
 {
 	local XComTacticalMissionManager MissionManager;
 	local int idx;
@@ -1964,7 +1964,7 @@ static final function string names_to_str(array<name> arr)
 
 // End code borrowed from DABFL
 
-static function int CountMembers(name CountItem, array<name> ArrayToScan)
+static final function int CountMembers(name CountItem, array<name> ArrayToScan)
 {
 	local int idx, k;
 
@@ -1980,7 +1980,7 @@ static function int CountMembers(name CountItem, array<name> ArrayToScan)
 	return k;
 }
 
-static function name FindMostCommonMember(array<name> ArrayToScan)
+static final function name FindMostCommonMember(array<name> ArrayToScan)
 {
 	local int idx, highest, highestidx;
 	local array<int> kount;
