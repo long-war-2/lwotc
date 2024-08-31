@@ -5664,7 +5664,7 @@ LocPromotionPopupText="<Bullet/> Reduces Shadow's cooldown by 1 turn.<br/>"
 LocFriendlyName="Blood Trail"
 LocLongDescription="Attacks deal +<Ability:BLOODTRAILDAMAGE/> damage and ignore up to <Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> Dodge if the target has taken damage after your previous turn."
 LocHelpText="Attacks deal +<Ability:BLOODTRAILDAMAGE/> damage and ignore up to <Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> Dodge if the target has been wounded this turn."
-LocPromotionPopupText="<Bullet/> The bonuses apply if the enemy has taken damage on your turn or its previous turn.<br/><Bullet/> Works with all weapons, including grenades.<br/>"
+LocPromotionPopupText="<Bullet/> The bonuses apply if the enemy has taken damage on your turn or its previous turn.<br/><Bullet/> Works with all weapons, except grenades.<br/>"
 ; End Translation (4)
 
 [PaleHorse X2AbilityTemplate]
