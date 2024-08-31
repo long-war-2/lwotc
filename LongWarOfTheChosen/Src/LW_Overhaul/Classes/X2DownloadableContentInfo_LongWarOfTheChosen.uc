@@ -1225,7 +1225,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	local XComGameStateHistory History;
 	local XComGameState_BattleData BattleData;
 	local name								CharacterTemplateName, FirstFollowerName, NewMostCommonMember;
-	local int								idx, Tries, PodSize, k, numAttempts, iNumCommonUnits;
+	local int								idx, Tries, PodSize, k, numAttempts, iNumCommonUnits, j, ProperPodLength;
 	local X2CharacterTemplateManager		TemplateManager;
 	local X2CharacterTemplate				LeaderCharacterTemplate, FollowerCharacterTemplate, CurrentCharacterTemplate, NewCommonTemplate;
 	local bool								Swap, Satisfactory, bKeepTrying;
@@ -1244,6 +1244,8 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	
 
 	//INSTANT BAILOUTS THAT NEED NO FURTHER INVESTIGATIONS
 	if(default.bDisableDiversitySystem)
@@ -1471,6 +1473,17 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		FirstFollowerName = FindMostCommonMember(SpawnInfo.SelectedCharacterTemplateNames);
 		FollowerCharacterTemplate = TemplateManager.FindCharacterTemplate(FirstFollowerName);
 		`LWDiversityTrace("Main Pod Follower:" @ FirstFollowerName);
+
+		// handle bad pod size stuff
+		if(CheckPodSize(EncounterName, SpawnInfo, ForceLevel, AlertLevel, ProperPodLength, SourceObject))
+		{
+			// Fill out the pod as is then pass into the normal system.
+			for(j = 1; j < ProperPodLength; j++)
+			{
+				SpawnInfo.SelectedCharacterTemplateNames[j] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
+			}
+			swap = true;
+		}
 
 		// Handle vanilla pod construction of one type of alien follower;
 		if (LeaderCharacterTemplate.bIsAlien && FollowerCharacterTemplate.bIsAlien && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) > 1)
@@ -1730,8 +1743,9 @@ static function GetSpawnDistributionList(
 	local SpawnDistributionList CurrentList;
 	local SpawnDistributionListEntry CurrentListEntry;
 	local XComTacticalMissionManager MissionManager;
-	local name SpawnListID;
-	local int idx;
+	local name SpawnListID, SitrepName;
+	local array<name> SitrepListNames;
+	local int idx, index;
 	local XComGameState_HeadquartersXCom XComHQ;
 	local X2CharacterTemplateManager TemplateManager;
 	local X2CharacterTemplate CharacterTemplate;
@@ -1775,18 +1789,25 @@ static function GetSpawnDistributionList(
 		}
 	}
 
+	SitRepListNames = GetSitRepListNames(MissionState);
+
+
 	`LWDiversityTrace("Using spawn distribution list " $ SpawnListID);
+
+	foreach SitrepListNames (SitrepName)
+	{
+		`LWDiversityTrace("Adding Sitrep Spawn List" @SitrepName);
+	}
 	
 	// Build a merged list of all spawn distribution list entries that satisfy the selected
 	// list ID and force level.
 	foreach MissionManager.SpawnDistributionLists(CurrentList)
 	{
-		if (CurrentList.ListID == SpawnListID)
+		if (CurrentList.ListID == SpawnListID || SitrepListNames.Find(CurrentList.ListID) != INDEX_NONE)
 		{
 			foreach CurrentList.SpawnDistribution(CurrentListEntry)
 			{
-			
-			if (ForceLevel >= CurrentListEntry.MinForceLevel && ForceLevel <= CurrentListEntry.MaxForceLevel)
+				if (ForceLevel >= CurrentListEntry.MinForceLevel && ForceLevel <= CurrentListEntry.MaxForceLevel)
 				{
 					
 					if(GoodUnits.Find(CurrentListEntry.Template) == INDEX_NONE)
@@ -1818,6 +1839,18 @@ static function GetSpawnDistributionList(
 					else
 					{
 						//`LWDiversityTrace("Adding " $ CurrentListEntry.Template $ " to the merged spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
+
+						// check if unit already present  - duplicate combination
+						index = SpawnList.find('Template', CurrentListEntry.Template);
+
+						while(index != INDEX_NONE)
+						{
+							CurrentListEntry.SpawnWeight += SpawnList[index].SpawnWeight;
+							SpawnList.remove(index, 1);
+							index = SpawnList.find('Template', CurrentListEntry.Template);
+
+						}
+
 						SpawnList.AddItem(CurrentListEntry);
 					}
 				}
@@ -1825,6 +1858,111 @@ static function GetSpawnDistributionList(
 		}
 	}
 }
+
+// Returns true if the pod is undersized
+static function bool CheckPodSize(out name EncounterName, out PodSpawnInfo SpawnInfo, int ForceLevel, int AlertLevel, out int ProperPodLength, optional XComGameState_BaseObject SourceObject)
+{
+	local XComTacticalMissionManager MissionManager;
+	local int idx;
+
+	MissionManager = `TACTICALMISSIONMGR;
+
+	idx = MissionManager.ConfigurableEncounters.Find('EncounterID', EncounterName);
+
+	if(idx != INDEX_NONE)
+	{
+		// If the encounter defines a MaxSpawnCount AND the current length is not the same as the max spawn count.
+		if(MissionManager.ConfigurableEncounters[idx].MaxSpawnCount > 0 && SpawnInfo.SelectedCharacterTemplateNames.length != MissionManager.ConfigurableEncounters[idx].MaxSpawnCount)
+		{
+			return true;
+			ProperPodLength = MissionManager.ConfigurableEncounters[idx].MaxSpawnCount;
+		}
+	}
+	
+	return false;
+}
+
+// Borrowed from DABFL code thanks to H4ilst0rm
+
+static final function array<name> GetSitRepListNames(XComGameState_MissionSite Mission)
+{
+	local X2SitRepTemplateManager SitRepMgr;
+	local X2SitRepTemplate SitRepTemplate;
+	local array<name> PositiveListOverrides, NegativeListOverrides;
+	local name entry;
+
+	//PositiveListOverrides.length = 0;
+	//NegativeListOverrides.length = 0;
+
+	// no sitreps, return empty array
+	if (Mission.GeneratedMission.SitReps.Length == 0)
+	{
+		return PositiveListOverrides;
+	}
+
+	SitRepMgr = class'X2SitRepTemplateManager'.static.GetSitRepTemplateManager();
+
+	// parse sitrep list effects
+	foreach Mission.GeneratedMission.SitReps(entry)
+	{
+		SitRepTemplate = SitRepMgr.FindSitRepTemplate(entry);
+		ParseListOverrideEffects(PositiveListOverrides, SitRepTemplate.PositiveEffects);
+		ParseListOverrideEffects(NegativeListOverrides, SitRepTemplate.NegativeEffects);
+	}
+
+	if(PositiveListOverrides.length > 0)
+	{
+		`LWDiversityTrace("Positive SitRep list override(s):" @ names_to_str(PositiveListOverrides));
+	}
+
+	if(NegativeListOverrides.length > 0)
+	{
+		`LWDiversityTrace("Negative SitRep list override(s):" @ names_to_str(NegativeListOverrides));
+	}
+
+	// append negatives to the end of positives to return all at once
+	// we can read the last of array for the final negative override
+	foreach NegativeListOverrides(entry)
+	{
+		PositiveListOverrides.addItem(entry);
+	}
+
+	return PositiveListOverrides;
+}
+
+static final function ParseListOverrideEffects(out array<name> result,  array<name> EffectNames)
+{
+	local X2SitRepEffectTemplateManager SitRepEffectMgr;
+	local name Effect;
+	local X2SitRepEffect_ModifyDefaultEncounterLists EncounterListEffect;
+	
+	SitRepEffectMgr = class'X2SitRepEffectTemplateManager'.static.GetSitRepEffectTemplateManager();
+
+	foreach EffectNames(Effect)
+	{
+		EncounterListEffect = X2SitRepEffect_ModifyDefaultEncounterLists(SitRepEffectMgr.FindSitRepEffectTemplate(Effect));
+		if(EncounterListEffect != none)
+		{
+			// separate ifs to avoid accessed none
+			if(EncounterListEffect.DefaultFollowerListOverride != '')
+			{
+				result.additem(EncounterListEffect.DefaultFollowerListOverride);
+			}
+		}
+	}
+}
+
+static final function string names_to_str(array<name> arr)
+{
+	local string result;
+	local name entry;
+
+	foreach arr(entry) result @= entry;
+
+	return result == "" ? "None" : result;
+}
+
+// End code borrowed from DABFL
 
 static function int CountMembers(name CountItem, array<name> ArrayToScan)
 {
