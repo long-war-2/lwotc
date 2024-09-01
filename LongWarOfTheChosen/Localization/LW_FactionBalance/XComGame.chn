@@ -228,3 +228,15 @@ RendTheMarkedEffectDesc="在本回合剩余时间内从所有来源对目标的�
 LocFriendlyName="万物天敌"
 LocLongDescription="放逐在每次射击时的命中惩罚减少<Ability:THEBANISHER_HIT_BUFF>点，并将其冷却时间降低1回合。刀锋相接的范围增加到<Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/>格。死亡贩子现在对无侧翼的目标也能生效。"
 LocHelpText="放逐在每次射击时的命中惩罚减少<Ability:THEBANISHER_HIT_BUFF>点，并将其冷却时间降低1回合。刀锋相接的范围增加到<Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/>格。死亡贩子现在对无侧翼的目标也能生效。 注意: 刀锋相接的圆环视觉效果没有正确更新该技能。你在刀锋相接的圆环外还有2个格子的射程范围。"
+
+[SwiftThrow_LW X2AbilityTemplate]
+LocFriendlyName="雷霆快刀"
+LocHelpText="不消耗行动点投掷一把飞刀，4回合冷却。"
+LocLongDescription="不消耗行动点投掷一把飞刀，4回合冷却。"
+LocPromotionPopupText="<Bullet/> 自由动作，4回合冷却。"
+
+[TacticalRetreat_LW X2AbilityTemplate]
+LocFriendlyName="飞刀撤退"
+LocHelpText="飞刀撤退"
+LocLongDescription="在投掷飞刀后，获得一次仅限移动的动作。一回合内可以多次触发。"
+LocPromotionPopupText="<Bullet/> 在投掷飞刀后，获得一次仅限移动的动作。一回合内可以多次触发。"

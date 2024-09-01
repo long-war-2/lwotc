@@ -260,9 +260,9 @@ LocPromotionPopupText="<Bullet/> 你装备一支额外的火箭。<br/>"
 [FireInTheHole X2AbilityTemplate]
 LocFriendlyName="精准火箭"
 LocFlyOverText="精准火箭"
-LocLongDescription="你的火箭更为精准，标准火箭额外+2伤害"
-LocHelpText="你的火箭更为精准，标准火箭额外+2伤害"
-LocPromotionPopupText="<Bullet/> 你的火箭更容易飞向瞄准点，或至少更为接近。<br/><Bullet/> 它最多偏离的距离减少2格。"
+LocLongDescription="你的火箭更为精准，臂套火箭额外+2伤害"
+LocHelpText="你的火箭更为精准，臂套火箭额外+2伤害"
+LocPromotionPopupText="<Bullet/> 你的火箭更容易飞向瞄准点，或至少更为接近。<br/><Bullet/> 火箭偏离的最大距离减少2格。<br/><Bullet/> 任何受‘标枪火箭’影响的火箭能力都可以获得此额外伤害加成。"
 
 [ImprovedMunitions_LW X2AbilityTemplate]
 LocFriendlyName="强化军火"
@@ -5472,9 +5472,9 @@ LocPromotionPopupText="<Bullet/> 减少暗影的冷却时间1回合。<br/>"
 ; LWOTC Needs Translation (3)
 [BloodTrail X2AbilityTemplate]
 LocFriendlyName="血迹追踪"
-LocLongDescription="若目标此回合已受过伤，则攻击造成+<Ability:BLOODTRAILDAMAGE/>伤害并且无视敌人<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/>闪避 。"
-LocHelpText="若目标此回合已受过伤，则攻击造成+<Ability:BLOODTRAILDAMAGE/>伤害并且无视敌人<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/>闪避 。"
-LocPromotionPopupText="<Bullet/> 只适用于敌人受到伤害的同一回合。<br/><Bullet/> 提前计划好小队攻击顺序，充分利用血迹追踪。<br/><Bullet/> 适用于所有武器，包括榴弹。<br/>"
+LocLongDescription="若目标此回合已受过伤，则你对其攻击时造成额外+<Ability:BLOODTRAILDAMAGE/>伤害并且无视敌人<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/>闪避。"
+LocHelpText="若目标此回合已受过伤，则你对其攻击时造成额外+<Ability:BLOODTRAILDAMAGE/>伤害并且无视敌人<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/>闪避。"
+LocPromotionPopupText="<Bullet/> 只适用于敌人受到伤害的同一回合。<br/><Bullet/> 提前计划好小队攻击顺序，充分利用血迹追踪。<br/><Bullet/> 适用于所有武器，除了榴弹。<br/>"
 
 [PaleHorse X2AbilityTemplate]
 LocFriendlyName="灵魂收割"
@@ -7010,6 +7010,18 @@ LocFriendlyName="冲击补偿"
 LocFlyOverText="冲击补偿"
 LocLongDescription="受到伤害后，获得<Ability:IMPACT_COMPENSATION_PCT_DR>%可堆叠伤害减免直到你的回合结束。最大堆叠值：<Ability:IMPACT_COMPENSATION_MAX_STACKS/>。"
 LocHelpText="受到伤害后，获得<Ability:IMPACT_COMPENSATION_PCT_DR>%可堆叠伤害减免直到你的回合结束。最大堆叠值：<Ability:IMPACT_COMPENSATION_MAX_STACKS/>。"
+
+[ImpactCompensationV2_LW X2AbilityTemplate]
+LocFriendlyName="强化复层装甲"
+LocFlyOverText="强化复层装甲"
+LocLongDescription="该单位每回合在受到的伤害超过其最大生命值<Ability:IMPACT_V2_DAMAGE_CAP>%后，后续伤害将减少<Ability:IMPACT_V2_PCT_DR>%。"
+LocHelpText="受到的伤害阈值在每回合开始时重置。"
+
+[ImpactCompensationPassiveV2_LW X2AbilityTemplate]
+LocFriendlyName="强化复层装甲"
+LocFlyOverText="强化复层装甲"
+LocLongDescription="该单位每回合在受到的伤害超过其最大生命值<Ability:IMPACT_V2_DAMAGE_CAP>%后，后续伤害将减少<Ability:IMPACT_V2_PCT_DR>%。"
+LocHelpText="受到的伤害阈值在每回合开始时重置。"
 
 [MovingTarget_LW X2AbilityTemplate]
 LocFriendlyName="移动目标"
