@@ -1572,8 +1572,8 @@ TacticalText="<Bullet/> 提供高壓能力，為火焰噴射器提供+2的充能
 [ExtraRocket X2WeaponTemplate]
 FriendlyName="額外火箭"
 FriendlyNamePlural="額外火箭"
-BriefSummary="提供第二枚標準臂套火箭。"
-TacticalText="<Bullet/>為火箭發射器提供第二枚標準火箭。"
+BriefSummary="額外提供一枚標準臂套火箭以及一次震盪火箭使用次數。"
+TacticalText="<Bullet/> 為火箭發射器額外提供一枚標準火箭以及一次震盪火箭使用次數。"
 
 [Neurowhip X2EquipmentTemplate]
 FriendlyName="神經鞭"

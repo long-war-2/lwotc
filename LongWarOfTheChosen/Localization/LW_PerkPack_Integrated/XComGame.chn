@@ -363,9 +363,9 @@ LocPromotionPopupText="<Bullet/> 奔袭战术可以让士兵快速接近目标�
 [Suppression_LW X2AbilityTemplate]
 LocFriendlyName="压制"
 LocFlyOverText="压制"
-LocLongDescription="对目标进行火力压制，如果目标移动，则向其发动反应射击，限制其许多能力的使用，并使其命中降低<Ability:SUPPRESSIONPENALTY/>。"
+LocLongDescription="对目标进行火力压制，如果目标移动，则向其发动反应射击，限制其许多能力的使用，并使其命中降低<Ability:SUPPRESSIONPENALTY/>。此外，还会在本回合额外降低目标15点命中，这个减益效果不会因为压制解除而消失。"
 LocHelpText="降低敌人命中，并在他们移动时开火。"
-LocPromotionPopupText="<Bullet/> 压制消耗<Ability:SelfAmmoCost/>弹药，但无冷却时间。<br/><Bullet/> 进行压制的单位若受到伤害就会中止压制。<br/><Bullet/> 如果多个单位压制同一个目标，命中惩罚不会叠加。<br/><Bullet/> 装备狙击步枪或散弹枪类别的武器时无法使用压制。<br/><Bullet/> 压制限制了目标许多能力的使用，包括火箭和榴弹。"
+LocPromotionPopupText="<Bullet/> 压制消耗<Ability:SelfAmmoCost/>弹药，但无冷却时间。<br/><Bullet/> 进行压制的单位若受到伤害就会中止压制。<br/><Bullet/> 如果多个单位压制同一个目标，命中惩罚不会叠加。<br/><Bullet/> 装备狙击步枪或散弹枪类别的武器时无法使用压制。<br/><Bullet/> 压制限制了目标许多能力的使用，包括火箭和榴弹。<br/><Bullet/> 同时会在本回合额外降低目标15点命中，这个减益效果不会因为压制解除而消失。"
 
 [AreaSuppression X2AbilityTemplate]
 LocFriendlyName="区域压制"
@@ -541,7 +541,7 @@ LocPromotionPopupText="<Bullet/> 你的烟雾榴弹对处于烟雾中的单位�
 
 [Collateral_LW X2AbilityTemplate]
 LocFriendlyName="附带损害"
-LocLongDescription="用<Ability:WeaponName/>向指定位置开火，摧毁该区域内的掩体。对敌人造成少量伤害。4回合冷却时间，使用3发弹药。"
+LocLongDescription="用<Ability:WeaponName/>向指定位置开火，摧毁该区域内的掩体。对敌人造成少量伤害。消耗2发弹药，4回合冷却时间。"
 LocHelpText="用<Ability:WeaponName/>向指定位置开火，摧毁该区域内的掩体。"
 LocFlyOverText="附带损害"
 LocPromotionPopupText="<Bullet/> 对影响范围内的所有物体造成大量环境伤害。<br/><Bullet/> 对效果范围内的敌人造成40%武器伤害，具体取决于<Ability:WeaponName/>的等级。<br/><Bullet/> 消耗2发弹药，冷却时间为4回合。<br/>"
@@ -788,10 +788,10 @@ LocFriendlyNameWhenConcealed="杀戮地带（隐蔽）"
 [XComGame.DeathFromAbove X2AbilityTemplate]
 [DeathFromAbove X2AbilityTemplate]
 LocFriendlyName="死神天降"
-LocLongDescription="用<Ability:WeaponName/>击杀一名位于低处的敌人将返还一个行动点，并且不会结束你的回合。同时在任何高度为<Ability:WeaponName/>提供远距离命中加成。一回合只能触发一次。"
-LocHelpText="用<Ability:WeaponName/>击杀一名位于低处的敌人将返还一个行动点，并且不会结束你的回合。同时在任何高度为<Ability:WeaponName/>提供远距离命中加成。一回合只能触发一次。"
+LocLongDescription="用<Ability:WeaponName/>击杀一名位于低处的敌人将返还一个行动点，并且不会结束你的回合。一回合只能触发一次。此外，还会减少狙击步枪和维克多步枪50%的远距离射程惩罚。"
+LocHelpText="用<Ability:WeaponName/>击杀一名位于低处的敌人将返还一个行动点，并且不会结束你的回合。一回合只能触发一次。此外，还会减少狙击步枪和维克多步枪50%的远距离射程惩罚。"
 LocFlyOverText="死神天降"
-LocPromotionPopupText="<Bullet/> 死神天降能够和手枪能力进行连击，或是简单地让士兵更具移动力。<br/><Bullet/> 同时在任何高度为<Ability:WeaponName/>提供远距离命中加成。<br/><Bullet/> 一回合只能触发一次。"
+LocPromotionPopupText="<Bullet/> 死神天降与枪托插件的搭配效果良好，或是简单地让士兵更具移动力。<br/><Bullet/> 同时会减少狙击步枪和维克多步枪50%的远距离射程惩罚。<br/><Bullet/> 一回合只能触发一次。"
 
 [XComGame.Implacable X2AbilityTemplate]
 [Implacable X2AbilityTemplate]
