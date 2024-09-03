@@ -22,11 +22,7 @@ function int GetExtraArmorPiercing(XComGameState_Effect EffectState, XComGameSta
 	// make sure the weapon is either a grenade or a grenade launcher
 	if(X2GrenadeTemplate(WeaponTemplate) != none ||
 		X2GrenadeLauncherTemplate(WeaponTemplate) != none ||
-		AbilityState.GetMyTemplateName() == 'LWRocketLauncher' ||
-		AbilityState.GetMyTemplateName() == 'LWBlasterLauncher' ||
-		AbilityState.GetMyTemplateName() == 'ConcussionRocket' ||
-		AbilityState.GetMyTemplateName() == 'ShredderRocket_LW' ||
-		AbilityState.GetMyTemplateName() == 'BlasterConcussionRocket' || AbilityState.GetMyTemplateName() == 'BlasterShredderRocket_LW')
+		class'X2Effect_BonusRocketDamage_LW'.default.VALID_ABILITIES.Find(AbilityState.GetMyTemplateName()) != INDEX_NONE)
 	{
 		return Pierce;
 	}
@@ -45,7 +41,7 @@ function int GetExtraShredValue(XComGameState_Effect EffectState, XComGameState_
 		return 0;
 
 	// make sure the weapon is either a grenade or a grenade launcher
-	if(X2GrenadeTemplate(WeaponTemplate) != none || X2GrenadeLauncherTemplate(WeaponTemplate) != none || AbilityState.GetMyTemplateName() == 'LWRocketLauncher' || AbilityState.GetMyTemplateName() == 'LWBlasterLauncher' || AbilityState.GetMyTemplateName() == 'ConcussionRocket' || AbilityState.GetMyTemplateName() == 'ShredderRocket_LW' || AbilityState.GetMyTemplateName() == 'BlasterConcussionRocket' || AbilityState.GetMyTemplateName() == 'BlasterShredderRocket_LW')
+	if(X2GrenadeTemplate(WeaponTemplate) != none || X2GrenadeLauncherTemplate(WeaponTemplate) != none || class'X2Effect_BonusRocketDamage_LW'.default.VALID_ABILITIES.Find(AbilityState.GetMyTemplateName()) != INDEX_NONE)
 	{
 		// make sure it already shreds
 		if (WeaponTemplate.BaseDamage.Shred > 0)

@@ -412,10 +412,10 @@ LocPromotionPopupText="<Bullet/> Run and Gun allows soldiers to close the distan
 [Suppression_LW X2AbilityTemplate]
 LocFriendlyName="Suppression"
 LocFlyOverText="Suppression"
-LocLongDescription="Fire a barrage that pins down a target, grants reaction fire against it if it moves, restricts the use of many abilities, and imposing a <Ability:SUPPRESSIONPENALTY/> penalty to the target's aim."
+LocLongDescription="Fire a barrage that pins down a target, grants reaction fire against it if it moves, restricts the use of many abilities, and imposing a <Ability:SUPPRESSIONPENALTY/> penalty to the target's aim. Also adds an additional -15 aim debuff for the turn that is not cleared with the suppression."
 LocHelpText="Penalize target's aim and shoot them if they move."
 ; LWOTC Needs Translation
-LocPromotionPopupText="<Bullet/> Suppression costs <Ability:SelfAmmoCost/> ammo points to use, but has no cooldown.<br/><Bullet/> Suppression will be canceled if the suppressing unit is damaged.<br/><Bullet/> If multiple units suppress a target, the aim penalty will not stack.<br/><Bullet/> May not be used if sniper rifle or shotgun-class weapons are equipped.<br/><Bullet/> Suppression restricts many of the target's abilities, including the use of rockets and grenades."
+LocPromotionPopupText="<Bullet/> Suppression costs <Ability:SelfAmmoCost/> ammo points to use, but has no cooldown.<br/><Bullet/> Suppression will be canceled if the suppressing unit is damaged.<br/><Bullet/> If multiple units suppress a target, the aim penalty will not stack.<br/><Bullet/> May not be used if sniper rifle or shotgun-class weapons are equipped.<br/><Bullet/> Suppression restricts many of the target's abilities, including the use of rockets and grenades.<br./><Bullet/> Also adds an additional -15 aim debuff for the turn that is not cleared with the suppression."
 ; End Translation
 
 [AreaSuppression X2AbilityTemplate]
@@ -883,11 +883,11 @@ LocFriendlyNameWhenConcealed="Kill Zone (Concealed)"
 [DeathFromAbove X2AbilityTemplate]
 LocFriendlyName="Death From Above"
 ; LWOTC Needs Translation
-LocLongDescription="Killing an enemy at a lower elevation with your <Ability:WeaponName/> refunds a single action, and does not end your turn. Also grants a long-range accuracy bonus for sniper rifles and vektor rifles."
+LocLongDescription="Killing an enemy at a lower elevation with your <Ability:WeaponName/> refunds a single action, and does not end your turn. Also decreases the long range penalties for Sniper rifles and Vektor rifles by 50%."
 LocHelpText="Killing an enemy at a lower elevation with your <Ability:WeaponName/> refunds a single action, and does not end your turn."
 ; End Translation
 LocFlyOverText="Death From Above"
-LocPromotionPopupText="<Bullet/> Death From Above can combo well with pistol abilities or can simply make a soldier more mobile.<br/><Bullet/> Also grants a long-range accuracy bonus for sniper rifles at any elevation."
+LocPromotionPopupText="<Bullet/> Death From Above can combo well with the Stock attachment or can simply make a soldier more mobile.<br/><Bullet/> Also decreases the long range penalties for Sniper rifles and Vektor rifles by 50%."
 
 [XComGame.Implacable X2AbilityTemplate]
 [Implacable X2AbilityTemplate]

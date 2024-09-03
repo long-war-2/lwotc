@@ -1679,8 +1679,8 @@ TacticalText="<Bullet/> Grants the High Pressure ability, which provides +2 char
 [ExtraRocket X2WeaponTemplate]
 FriendlyName="Extra Rocket"
 FriendlyNamePlural="Extra Rocket"
-BriefSummary="Grants a second standard Gauntlet rocket."
-TacticalText="<Bullet/> Grants a second standard rocket for the Technical's rocket launcher."
+BriefSummary="Grants an additional standard Gauntlet rocket and an additional use of Concussion Rocket."
+TacticalText="<Bullet/> Grants an additional standard rocket for the Technical's rocket launcher and an additional use of Concussion Rocket."
 
 [Neurowhip X2EquipmentTemplate]
 FriendlyName="Neurowhip"

@@ -42,7 +42,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 					bShouldApply = true;
 				}
 
-				if (AbilityState.GetMyTemplateName() == 'LWRocketLauncher' || AbilityState.GetMyTemplateName() == 'LWBlasterLauncher' || AbilityState.GetMyTemplateName() == 'MicroMissiles')
+				if (class'X2Effect_BonusRocketDamage_LW'.default.VALID_ABILITIES.Find(AbilityState.GetMyTemplateName()) != INDEX_NONE || AbilityState.GetMyTemplateName() == 'MicroMissiles')
 				{
 					bShouldApply = true;
 				}
