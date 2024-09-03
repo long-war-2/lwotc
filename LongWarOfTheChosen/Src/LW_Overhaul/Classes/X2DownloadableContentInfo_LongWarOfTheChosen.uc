@@ -453,7 +453,7 @@ static function UpdateEncounterLists()
 			// Remove if invalid
 			if(TestTemplate == none)
 			{
-				`LWTrace("Removing nonexistant unit" @MissionManager.ConfigurableEncounters[i].ForceSpawnTemplateNames[j] @ "From fixed ecnounter" @MissionManager.ConfigurableEncounters[i].EncounterID);
+				`LWTrace("Removing nonexistant unit" @MissionManager.ConfigurableEncounters[i].ForceSpawnTemplateNames[j] @ "From fixed encounter" @MissionManager.ConfigurableEncounters[i].EncounterID);
 				MissionManager.ConfigurableEncounters[i].ForceSpawnTemplateNames.Remove(j,1);
 			}
 		}
