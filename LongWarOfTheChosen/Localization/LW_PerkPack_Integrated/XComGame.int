@@ -412,10 +412,10 @@ LocPromotionPopupText="<Bullet/> Run and Gun allows soldiers to close the distan
 [Suppression_LW X2AbilityTemplate]
 LocFriendlyName="Suppression"
 LocFlyOverText="Suppression"
-LocLongDescription="Fire a barrage that pins down a target, grants reaction fire against it if it moves, restricts the use of many abilities, and imposing a <Ability:SUPPRESSIONPENALTY/> penalty to the target's aim."
+LocLongDescription="Fire a barrage that pins down a target, grants reaction fire against it if it moves, restricts the use of many abilities, and imposing a <Ability:SUPPRESSIONPENALTY/> penalty to the target's aim. Also adds an additional -15 aim debuff for the turn that is not cleared with the suppression."
 LocHelpText="Penalize target's aim and shoot them if they move."
 ; LWOTC Needs Translation
-LocPromotionPopupText="<Bullet/> Suppression costs <Ability:SelfAmmoCost/> ammo points to use, but has no cooldown.<br/><Bullet/> Suppression will be canceled if the suppressing unit is damaged.<br/><Bullet/> If multiple units suppress a target, the aim penalty will not stack.<br/><Bullet/> May not be used if sniper rifle or shotgun-class weapons are equipped.<br/><Bullet/> Suppression restricts many of the target's abilities, including the use of rockets and grenades."
+LocPromotionPopupText="<Bullet/> Suppression costs <Ability:SelfAmmoCost/> ammo points to use, but has no cooldown.<br/><Bullet/> Suppression will be canceled if the suppressing unit is damaged.<br/><Bullet/> If multiple units suppress a target, the aim penalty will not stack.<br/><Bullet/> May not be used if sniper rifle or shotgun-class weapons are equipped.<br/><Bullet/> Suppression restricts many of the target's abilities, including the use of rockets and grenades.<br./><Bullet/> Also adds an additional -15 aim debuff for the turn that is not cleared with the suppression."
 ; End Translation
 
 [AreaSuppression X2AbilityTemplate]
