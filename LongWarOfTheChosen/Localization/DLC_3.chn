@@ -1,0 +1,21 @@
+; Spark armor localization here
+
+[PlatedSparkHeavyArmor_LW X2SparkArmorTemplate_DLC_3]
+FriendlyName="重型SPARK骨架"
+BriefSummary="这是对我们的SPARK加固骨架的改装版本，这种变化以牺牲机动性为代价，提升了耐久性和火力，配备了一个弹药槽。"
+TacticalText="<Bullet/> 提供更多的护甲和生命值，但牺牲了机动性和防御。<br/><Bullet/> 为单位提供一个弹药槽。"
+
+[PlatedSparkLightArmor_LW X2SparkArmorTemplate_DLC_3]
+FriendlyName="轻型SPARK骨架"
+BriefSummary="这是对我们的SPARK加固骨架的改装版本，这种变化以牺牲耐久性为代价，提升了机动性。"
+TacticalText="<Bullet/> 提供更高的机动性和防御，但牺牲了护甲和生命值。"
+
+[PoweredSparkHeavyArmor_LW X2SparkArmorTemplate_DLC_3]
+FriendlyName="重型SPARK机身"
+BriefSummary="这是对我们的SPARK阳极氧化机身的改装版本，这种变化以牺牲机动性为代价，提升了耐久性和火力，配备了一个弹药槽。"
+TacticalText="<Bullet/> 提供更多的护甲和生命值，但牺牲了机动性和防御。<Bullet/> 为单位提供一个弹药槽。"
+
+[PoweredSparkLightArmor_LW X2SparkArmorTemplate_DLC_3]
+FriendlyName="轻型SPARK机身"
+BriefSummary="这是对我们的SPARK阳极氧化机身的改装版本，这种变化以牺牲耐久性为代价，提升了机动性。"
+TacticalText="<Bullet/> 提供更高的机动性和防御，但牺牲了护甲和生命值。"

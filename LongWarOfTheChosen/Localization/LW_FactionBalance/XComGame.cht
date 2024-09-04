@@ -150,16 +150,16 @@ LocPromotionPopupText="撕裂標記賦予投擲飛刀堆疊效果。當飛刀擊
 [KnifeEncounters X2AbilityTemplate]
 LocFriendlyName="刀鋒相接"
 LocFlyOverText="刀鋒相接"
-LocLongDescription="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格範圍內的敵人投擲飛刀後獲得額外行動。不能在同一回合觸發暗箭傷人。"
-LocHelpText="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格範圍內的敵人投擲飛刀後獲得額外行動。不能在同一回合觸發暗箭傷人。"
-LocPromotionPopupText="<Bullet/> 每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格範圍內的敵人投擲飛刀後獲得額外行動。<br/><Bullet/> 一個紅環將標記該能力的範圍。<br/><Bullet/> 刀鋒相接不能與奔襲戰術或者暗箭傷人同時使用。<br/>"
+LocLongDescription="在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格範圍內的敵人投擲飛刀後獲得額外行動。每回合一次。不能在同一回合觸發暗箭傷人。"
+LocHelpText="在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格範圍內的敵人投擲飛刀後獲得額外行動。每回合一次。不能在同一回合觸發暗箭傷人。"
+LocPromotionPopupText="<Bullet/> 在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格範圍內的敵人投擲飛刀後獲得額外行動。每回合一次。<br/><Bullet/> 一個紅環將標記該能力的範圍。<br/><Bullet/> 刀鋒相接不能與奔襲戰術或者暗箭傷人同時使用。<br/>"
 
 [KnifeEncountersExtendedRange X2AbilityTemplate]
 LocFriendlyName="刀鋒相接"
 LocFlyOverText="刀鋒相接"
-LocLongDescription="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格範圍內的敵人投擲飛刀後獲得額外行動。不能在同一回合觸發暗箭傷人。"
-LocHelpText="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格範圍內的敵人投擲飛刀後獲得額外行動。不能在同一回合觸發暗箭傷人。"
-LocPromotionPopupText="<Bullet/> 每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格範圍內的敵人投擲飛刀後獲得額外行動。<br/><Bullet/> 一個紅環將標記該能力的範圍。<br/><Bullet/> 刀鋒相接不能與奔襲戰術或者暗箭傷人同時使用。<br/>"
+LocLongDescription="在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格範圍內的敵人投擲飛刀後獲得額外行動。每回合一次。不能在同一回合觸發暗箭傷人。"
+LocHelpText="在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格範圍內的敵人投擲飛刀後獲得額外行動。每回合一次。不能在同一回合觸發暗箭傷人。"
+LocPromotionPopupText="<Bullet/> 在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格範圍內的敵人投擲飛刀後獲得額外行動。每回合一次。<br/><Bullet/> 一個紅環將標記該能力的範圍。<br/><Bullet/> 刀鋒相接不能與奔襲戰術或者暗箭傷人同時使用。<br/>"
 
 
 [ImpersonalEdge X2AbilityTemplate]
@@ -211,8 +211,8 @@ LocPromotionPopupText="<Bullet/> 戰鬥存在能讓隊友利用額外的攻擊�
 [CheapShot X2AbilityTemplate]
 LocFriendlyName="暗箭傷人"
 LocFlyOverText="暗箭傷人"
-LocLongDescription= "每回合一次，用主武器對一名該回合受到傷害的目標進行射擊後，獲得一個額外的移動點。不能在同一回合觸發刀鋒相接。"
-LocHelpText="每回合一次，用主武器對一名該回合受到傷害的目標進行射擊後，獲得一個額外的移動點。不能在同一回合觸發刀鋒相接。"
+LocLongDescription= "用主武器對一名該回合受到傷害的目標進行射擊後，獲得一個額外的移動點。每回合一次。不能在同一回合觸發刀鋒相接。"
+LocHelpText="用主武器對一名該回合受到傷害的目標進行射擊後，獲得一個額外的移動點。每回合一次。不能在同一回合觸發刀鋒相接。"
 LocPromotionPopupText="<Bullet/> 如果目標在玩家最後回合前受到任何類型的傷害，如在敵人回合期間受到的監視傷害和持續性傷害，則觸發暗箭傷人。<br/><Bullet/> 除了標準射擊外，還適用於趕盡殺絕、連環射擊和放逐。<br/><Bullet/> 如果暗影不是冷卻狀態，該移動點可用於進入暗影。"
 ; End Translation
 

@@ -6269,8 +6269,8 @@ LocPromotionPopupText="<Bullet/> 武器操作不影響急射命中。<br/>"
 LocFriendlyName="近在咫尺"
 LocFlyOverText="近在咫尺"
 ; LWOTC Needs Translation (2)
-LocLongDescription="在敵人回合，向<Ability:THATS_CLOSE_ENOUGH_TILE_RANGE/>格內任何移動或開火的可見敵人發射電弧發射器。與電弧發射器的眩暈技能共享冷卻時間。"
-LocHelpText="在敵人回合，向<Ability:THATS_CLOSE_ENOUGH_TILE_RANGE/>格內任何移動或開火的可見敵人發射電弧發射器。與電弧發射器的眩暈技能共享冷卻時間。"
+LocLongDescription="在敵方回合，向<Ability:THATS_CLOSE_ENOUGH_TILE_RANGE/>格內任何移動或開火的可見敵人發射電弧。與電弧發射器的眩暈技能共享冷卻時間。"
+LocHelpText="在敵方回合，向<Ability:THATS_CLOSE_ENOUGH_TILE_RANGE/>格內任何移動或開火的可見敵人發射電弧。與電弧發射器的眩暈技能共享冷卻時間。"
 ; End Translation (2)
 LocPromotionPopupText="<Bullet/> 隱蔽時不會觸發。<br/><Bullet/> 該技能每回合可以觸發<Ability:THATS_CLOSE_ENOUGH_PER_TARGET_COOLDOWN/>次。<br/>"
 
