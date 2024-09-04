@@ -119,6 +119,11 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateBluescreenRoundsDisorient());
 	//Templates.AddItem(CreateConsumeWhenActivatedAbility ('ConsumeShapedCharge', 'ShapedChargeUsed'));
 
+	Templates.AddItem(SparkPlatedHeavyArmorStats());
+	Templates.AddItem(SparkPlatedLightArmorStats());
+	Templates.AddItem(SparkPoweredHeavyArmorStats());
+	Templates.AddItem(SparkPoweredLightArmorStats());
+
 	return Templates;
 }
 
@@ -842,3 +847,163 @@ static function X2AbilityTemplate CreateBluescreenRoundsDisorient()
 	return Template;
 }
 	
+
+static function X2AbilityTemplate SparkPlatedHeavyArmorStats()
+{
+	local X2AbilityTemplate                 Template;
+	local X2AbilityTrigger					Trigger;
+	local X2AbilityTarget_Self				TargetStyle;
+	local X2Effect_PersistentStatChange		PersistentStatChangeEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'PlatedSparkHeavyArmorStats_LW');
+	Template.RemoveTemplateAvailablility(Template.BITFIELD_GAMEAREA_Multiplayer);
+	// Template.IconImage  -- no icon needed for armor stats
+
+	Template.AbilitySourceName = 'eAbilitySource_Item';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bDisplayInUITacticalText = false;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+
+	TargetStyle = new class'X2AbilityTarget_Self';
+	Template.AbilityTargetStyle = TargetStyle;
+
+	Trigger = new class'X2AbilityTrigger_UnitPostBeginPlay';
+	Template.AbilityTriggers.AddItem(Trigger);
+
+	// giving health here; medium plated doesn't have mitigation
+	//
+	PersistentStatChangeEffect = new class'X2Effect_PersistentStatChange';
+	PersistentStatChangeEffect.BuildPersistentEffect(1, true, false, false);
+	// PersistentStatChangeEffect.SetDisplayInfo(ePerkBuff_Passive, default.MediumPlatedHealthBonusName, default.MediumPlatedHealthBonusDesc, Template.IconImage);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_HP, class'X2Item_SparkWeapons'.default.SPARK_PLATED_HEAVY_HEALTH_BONUS);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Mobility, class'X2Item_SparkWeapons'.default.SPARK_PLATED_HEAVY_MOBILITY_BONUS);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_ArmorChance, class'X2Item_SparkWeapons'.default.SPARK_PLATED_HEAVY_MITIGATION_CHANCE);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_ArmorMitigation, class'X2Item_SparkWeapons'.default.SPARK_PLATED_HEAVY_MITIGATION_AMOUNT);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Defense, class'X2Item_SparkWeapons'.default.SPARK_PLATED_HEAVY_DEF_BONUS);
+	Template.AddTargetEffect(PersistentStatChangeEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}
+
+static function X2AbilityTemplate SparkPlatedLightArmorStats()
+{
+	local X2AbilityTemplate                 Template;
+	local X2AbilityTrigger					Trigger;
+	local X2AbilityTarget_Self				TargetStyle;
+	local X2Effect_PersistentStatChange		PersistentStatChangeEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'PlatedSparkLightArmorStats_LW');
+	Template.RemoveTemplateAvailablility(Template.BITFIELD_GAMEAREA_Multiplayer);
+	// Template.IconImage  -- no icon needed for armor stats
+
+	Template.AbilitySourceName = 'eAbilitySource_Item';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bDisplayInUITacticalText = false;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+
+	TargetStyle = new class'X2AbilityTarget_Self';
+	Template.AbilityTargetStyle = TargetStyle;
+
+	Trigger = new class'X2AbilityTrigger_UnitPostBeginPlay';
+	Template.AbilityTriggers.AddItem(Trigger);
+
+	// giving health here; medium plated doesn't have mitigation
+	//
+	PersistentStatChangeEffect = new class'X2Effect_PersistentStatChange';
+	PersistentStatChangeEffect.BuildPersistentEffect(1, true, false, false);
+	// PersistentStatChangeEffect.SetDisplayInfo(ePerkBuff_Passive, default.MediumPlatedHealthBonusName, default.MediumPlatedHealthBonusDesc, Template.IconImage);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_HP, class'X2Item_SparkWeapons'.default.SPARK_PLATED_LIGHT_HEALTH_BONUS);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Mobility, class'X2Item_SparkWeapons'.default.SPARK_PLATED_LIGHT_MOBILITY_BONUS);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_ArmorChance, class'X2Item_SparkWeapons'.default.SPARK_PLATED_LIGHT_MITIGATION_CHANCE);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_ArmorMitigation, class'X2Item_SparkWeapons'.default.SPARK_PLATED_LIGHT_MITIGATION_AMOUNT);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Defense, class'X2Item_SparkWeapons'.default.SPARK_PLATED_LIGHT_DEF_BONUS);
+	Template.AddTargetEffect(PersistentStatChangeEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}
+
+static function X2AbilityTemplate SparkPoweredHeavyArmorStats()
+{
+	local X2AbilityTemplate                 Template;
+	local X2AbilityTrigger					Trigger;
+	local X2AbilityTarget_Self				TargetStyle;
+	local X2Effect_PersistentStatChange		PersistentStatChangeEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'PoweredSparkHeavyArmorStats_LW');
+	Template.RemoveTemplateAvailablility(Template.BITFIELD_GAMEAREA_Multiplayer);
+	// Template.IconImage  -- no icon needed for armor stats
+
+	Template.AbilitySourceName = 'eAbilitySource_Item';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bDisplayInUITacticalText = false;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+
+	TargetStyle = new class'X2AbilityTarget_Self';
+	Template.AbilityTargetStyle = TargetStyle;
+
+	Trigger = new class'X2AbilityTrigger_UnitPostBeginPlay';
+	Template.AbilityTriggers.AddItem(Trigger);
+
+	PersistentStatChangeEffect = new class'X2Effect_PersistentStatChange';
+	PersistentStatChangeEffect.BuildPersistentEffect(1, true, false, false);
+	// PersistentStatChangeEffect.SetDisplayInfo(ePerkBuff_Passive, default.MediumPlatedHealthBonusName, default.MediumPlatedHealthBonusDesc, Template.IconImage);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_HP, class'X2Item_SparkWeapons'.default.SPARK_POWERED_HEAVY_HEALTH_BONUS);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Mobility, class'X2Item_SparkWeapons'.default.SPARK_POWERED_HEAVY_MOBILITY_BONUS);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_ArmorChance, class'X2Item_SparkWeapons'.default.SPARK_POWERED_HEAVY_MITIGATION_CHANCE);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_ArmorMitigation, class'X2Item_SparkWeapons'.default.SPARK_POWERED_HEAVY_MITIGATION_AMOUNT);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Defense, class'X2Item_SparkWeapons'.default.SPARK_POWERED_HEAVY_DEF_BONUS);
+	Template.AddTargetEffect(PersistentStatChangeEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}
+
+static function X2AbilityTemplate SparkPoweredLightArmorStats()
+{
+	local X2AbilityTemplate                 Template;
+	local X2AbilityTrigger					Trigger;
+	local X2AbilityTarget_Self				TargetStyle;
+	local X2Effect_PersistentStatChange		PersistentStatChangeEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'PoweredSparkLightArmorStats_LW');
+	Template.RemoveTemplateAvailablility(Template.BITFIELD_GAMEAREA_Multiplayer);
+	// Template.IconImage  -- no icon needed for armor stats
+
+	Template.AbilitySourceName = 'eAbilitySource_Item';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bDisplayInUITacticalText = false;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+
+	TargetStyle = new class'X2AbilityTarget_Self';
+	Template.AbilityTargetStyle = TargetStyle;
+
+	Trigger = new class'X2AbilityTrigger_UnitPostBeginPlay';
+	Template.AbilityTriggers.AddItem(Trigger);
+
+	PersistentStatChangeEffect = new class'X2Effect_PersistentStatChange';
+	PersistentStatChangeEffect.BuildPersistentEffect(1, true, false, false);
+	// PersistentStatChangeEffect.SetDisplayInfo(ePerkBuff_Passive, default.MediumPlatedHealthBonusName, default.MediumPlatedHealthBonusDesc, Template.IconImage);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_HP, class'X2Item_SparkWeapons'.default.SPARK_POWERED_LIGHT_HEALTH_BONUS);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Mobility, class'X2Item_SparkWeapons'.default.SPARK_POWERED_LIGHT_MOBILITY_BONUS);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_ArmorChance, class'X2Item_SparkWeapons'.default.SPARK_POWERED_LIGHT_MITIGATION_CHANCE);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_ArmorMitigation, class'X2Item_SparkWeapons'.default.SPARK_POWERED_LIGHT_MITIGATION_AMOUNT);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Defense, class'X2Item_SparkWeapons'.default.SPARK_POWERED_LIGHT_DEF_BONUS);
+	Template.AddTargetEffect(PersistentStatChangeEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}

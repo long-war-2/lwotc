@@ -1,0 +1,21 @@
+; Spark armor localization here
+
+[PlatedSparkHeavyArmor_LW X2SparkArmorTemplate_DLC_3]
+FriendlyName="Plated Heavy SPARK Armor"
+BriefSummary="A modification of our Plated SPARK Armor, this variation sacrifices mobility for improved durability and firepower, featuring an Ammo slot."
+TacticalText="<Bullet/> Provides increased armor and hit points, at the expense of mobility and defense.<br/><Bullet/> Grants the unit an Ammo slot."
+
+[PlatedSparkLightArmor_LW X2SparkArmorTemplate_DLC_3]
+FriendlyName="Plated Light SPARK Armor"
+BriefSummary="A modification of our Plated SPARK Armor, this variation sacrifices durability for improved mobility."
+TacticalText="<Bullet/> Provides increased mobility and defense, at the expense of armor and hit points."
+
+[PoweredSparkHeavyArmor_LW X2SparkArmorTemplate_DLC_3]
+FriendlyName="Powered Heavy SPARK Armor"
+BriefSummary="A modification of our Powered SPARK Armor, this variation sacrifices mobility for improved durability and firepower, featuring an Ammo slot."
+TacticalText="<Bullet/> Provides increased armor and hit points, at the expense of mobility and defense.<Bullet/> Grants the unit an Ammo slot."
+
+[PoweredSparkLightArmor_LW X2SparkArmorTemplate_DLC_3]
+FriendlyName="Powered Light SPARK Armor"
+BriefSummary="A modification of our Powered SPARK Armor, this variation sacrifices durability for improved mobility."
+TacticalText="<Bullet/> Provides increased mobility and defense, at the expense of armor and hit points."
