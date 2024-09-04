@@ -3027,6 +3027,12 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 					ArmorTemplate.SetUIStatMarkup(class'XLocalizedData'.default.DefenseLabel, eStat_Defense, class'X2Ability_LW_GearAbilities'.default.SPARK_POWERED_ARMOR_DEF);
 					break;
 
+				case 'PlatedSparkHeavyArmor_LW':
+				case 'PlatedSparkLightArmor_LW':
+				case 'PoweredSparkHeavyArmor_LW':
+				case 'PoweredSparkLightArmor_LW':
+					break;
+
 				default:
 					// Assume any other armors we don't know about should get the extra
 					// utility slot. (Issue #89)
