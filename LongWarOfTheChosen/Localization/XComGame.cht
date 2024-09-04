@@ -252,9 +252,9 @@ LocPromotionPopupText="<Bullet/>你裝備一支額外的火箭。<br/>"
 [FireInTheHole X2AbilityTemplate]
 LocFriendlyName="精準火箭"
 LocFlyOverText="精準火箭"
-LocLongDescription="你的火箭更為精準，標準火箭額外+2傷害"
-LocHelpText="你的火箭更為精準，標準火箭額外+2傷害"
-LocPromotionPopupText="<Bullet/>你的火箭更容易飛向瞄準點，或至少更為接近。<br/><Bullet/>它最多偏離的距離減少2格。"
+LocLongDescription="你的火箭更為精準，臂套火箭額外+2傷害"
+LocHelpText="你的火箭更為精準，臂套火箭額外+2傷害"
+LocPromotionPopupText="<Bullet/>你的火箭更容易飛向瞄準點，或至少更為接近。<br/><Bullet/>火箭偏離的最大距離減少2格。<br/><Bullet/>任何受‘標槍火箭’影響的火箭能力都可以獲得此額外傷害加成。"
 
 [JavelinRockets X2AbilityTemplate]
 LocFriendlyName="標槍火箭"
@@ -1572,8 +1572,8 @@ TacticalText="<Bullet/> 提供高壓能力，為火焰噴射器提供+2的充能
 [ExtraRocket X2WeaponTemplate]
 FriendlyName="額外火箭"
 FriendlyNamePlural="額外火箭"
-BriefSummary="提供第二枚標準臂套火箭。"
-TacticalText="<Bullet/>為火箭發射器提供第二枚標準火箭。"
+BriefSummary="額外提供一枚標準臂套火箭以及一次震盪火箭使用次數。"
+TacticalText="<Bullet/> 為火箭發射器額外提供一枚標準火箭以及一次震盪火箭使用次數。"
 
 [Neurowhip X2EquipmentTemplate]
 FriendlyName="神經鞭"
@@ -5455,9 +5455,9 @@ LocPromotionPopupText="<Bullet/> 減少暗影的冷卻時間1回合。<br/>"
 ; LWOTC Needs Translation (3)
 [BloodTrail X2AbilityTemplate]
 LocFriendlyName="血跡追蹤"
-LocLongDescription="若目標此回合已受過傷，則攻擊造成+<Ability:BLOODTRAILDAMAGE/>傷害並且無視敵人<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/>閃避 。"
-LocHelpText="若目標此回合已受過傷，則攻擊造成+<Ability:BLOODTRAILDAMAGE/>傷害並且無視敵人<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/>閃避 。"
-LocPromotionPopupText="<Bullet/> 只適用於敵人受到傷害的同一回合。<br/><Bullet/> 提前計劃好小隊攻擊順序，充分利用血跡追蹤。<br/><Bullet/> 適用於所有武器，包括榴彈。<br/>"
+LocLongDescription="若目標此回合已受過傷，則你對其攻擊時造成額外+<Ability:BLOODTRAILDAMAGE/>傷害並且無視敵人<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/>閃避。"
+LocHelpText="若目標此回合已受過傷，則你對其攻擊時造成額外+<Ability:BLOODTRAILDAMAGE/>傷害並且無視敵人<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/>閃避。"
+LocPromotionPopupText="<Bullet/> 只適用於敵人受到傷害的同一回合。<br/><Bullet/> 提前計劃好小隊攻擊順序，充分利用血跡追蹤。<br/><Bullet/> 適用於所有武器，除了榴彈。<br/>"
 
 [PaleHorse X2AbilityTemplate]
 LocFriendlyName="靈魂收割"
@@ -6269,8 +6269,8 @@ LocPromotionPopupText="<Bullet/> 武器操作不影響急射命中。<br/>"
 LocFriendlyName="近在咫尺"
 LocFlyOverText="近在咫尺"
 ; LWOTC Needs Translation (2)
-LocLongDescription="在敵人回合，向<Ability:THATS_CLOSE_ENOUGH_TILE_RANGE/>格內任何移動或開火的可見敵人發射電弧發射器。與電弧發射器的眩暈技能共享冷卻時間。"
-LocHelpText="在敵人回合，向<Ability:THATS_CLOSE_ENOUGH_TILE_RANGE/>格內任何移動或開火的可見敵人發射電弧發射器。與電弧發射器的眩暈技能共享冷卻時間。"
+LocLongDescription="在敵方回合，向<Ability:THATS_CLOSE_ENOUGH_TILE_RANGE/>格內任何移動或開火的可見敵人發射電弧。與電弧發射器的眩暈技能共享冷卻時間。"
+LocHelpText="在敵方回合，向<Ability:THATS_CLOSE_ENOUGH_TILE_RANGE/>格內任何移動或開火的可見敵人發射電弧。與電弧發射器的眩暈技能共享冷卻時間。"
 ; End Translation (2)
 LocPromotionPopupText="<Bullet/> 隱蔽時不會觸發。<br/><Bullet/> 該技能每回合可以觸發<Ability:THATS_CLOSE_ENOUGH_PER_TARGET_COOLDOWN/>次。<br/>"
 
@@ -6963,6 +6963,18 @@ LocFriendlyName="衝擊補償"
 LocFlyOverText="衝擊補償"
 LocLongDescription="受到傷害後，獲得<Ability:IMPACT_COMPENSATION_PCT_DR>%可堆疊傷害減免直到你的回合結束。最大堆疊值：<Ability:IMPACT_COMPENSATION_MAX_STACKS/>。"
 LocHelpText="受到傷害後，獲得<Ability:IMPACT_COMPENSATION_PCT_DR>%可堆疊傷害減免直到你的回合結束。最大堆疊值：<Ability:IMPACT_COMPENSATION_MAX_STACKS/>。"
+
+[ImpactCompensationV2_LW X2AbilityTemplate]
+LocFriendlyName="強化復層裝甲"
+LocFlyOverText="強化復層裝甲"
+LocLongDescription="該單位每回合在受到的傷害超過其最大生命值<Ability:IMPACT_V2_DAMAGE_CAP>%後，後續傷害將減少<Ability:IMPACT_V2_PCT_DR>%。"
+LocHelpText="受到的傷害閾值在每回合開始時重置。"
+
+[ImpactCompensationPassiveV2_LW X2AbilityTemplate]
+LocFriendlyName="強化復層裝甲"
+LocFlyOverText="強化復層裝甲"
+LocLongDescription="該單位每回合在受到的傷害超過其最大生命值<Ability:IMPACT_V2_DAMAGE_CAP>%後，後續傷害將減少<Ability:IMPACT_V2_PCT_DR>%。"
+LocHelpText="受到的傷害閾值在每回合開始時重置。"
 
 [MovingTarget_LW X2AbilityTemplate]
 LocFriendlyName="移動目標"

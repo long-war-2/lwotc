@@ -150,17 +150,16 @@ LocPromotionPopupText="撕裂标记赋予投掷飞刀堆叠效果。当飞刀击
 [KnifeEncounters X2AbilityTemplate]
 LocFriendlyName="刀锋相接"
 LocFlyOverText="刀锋相接"
-LocLongDescription="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。不能在同一回合触发暗箭伤人。"
-LocHelpText="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。不能在同一回合触发暗箭伤人。"
-LocPromotionPopupText="<Bullet/> 每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。<br/><Bullet/> 一个红环将标记该能力的范围。<br/><Bullet/> 刀锋相接不能与奔袭战术或者暗箭伤人同时使用。<br/>"
-
+LocLongDescription="在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。每回合一次。不能在同一回合触发暗箭伤人。"
+LocHelpText="在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。每回合一次。不能在同一回合触发暗箭伤人。"
+LocPromotionPopupText="<Bullet/> 在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。每回合一次。<br/><Bullet/> 一个红环将标记该能力的范围。<br/><Bullet/> 刀锋相接不能与奔袭战术或者暗箭伤人同时使用。<br/>"
 
 [KnifeEncountersExtendedRange X2AbilityTemplate]
 LocFriendlyName="刀锋相接"
 LocFlyOverText="刀锋相接"
-LocLongDescription="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。不能在同一回合触发暗箭伤人。"
-LocHelpText="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。不能在同一回合触发暗箭伤人。"
-LocPromotionPopupText="<Bullet/> 每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。<br/><Bullet/> 一个红环将标记该能力的范围。<br/><Bullet/> 刀锋相接不能与奔袭战术或者暗箭伤人同时使用。<br/>"
+LocLongDescription="在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。每回合一次。不能在同一回合触发暗箭伤人。"
+LocHelpText="在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。每回合一次。不能在同一回合触发暗箭伤人。"
+LocPromotionPopupText="<Bullet/> 在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。每回合一次。<br/><Bullet/> 一个红环将标记该能力的范围。<br/><Bullet/> 刀锋相接不能与奔袭战术或者暗箭伤人同时使用。<br/>"
 
 
 [ImpersonalEdge X2AbilityTemplate]
@@ -214,8 +213,8 @@ LocPromotionPopupText="<Bullet/> 战斗存在能让队友利用额外的攻击�
 [CheapShot X2AbilityTemplate]
 LocFriendlyName="暗箭伤人"
 LocFlyOverText="暗箭伤人"
-LocLongDescription= "每回合一次，用主武器对一名该回合受到伤害的目标进行射击后，获得一个额外的移动点。不能在同一回合触发刀锋相接。"
-LocHelpText="每回合一次，用主武器对一名该回合受到伤害的目标进行射击后，获得一个额外的移动点。不能在同一回合触发刀锋相接。"
+LocLongDescription= "用主武器对一名该回合受到伤害的目标进行射击后，获得一个额外的移动点。每回合一次。不能在同一回合触发刀锋相接。"
+LocHelpText="用主武器对一名该回合受到伤害的目标进行射击后，获得一个额外的移动点。每回合一次。不能在同一回合触发刀锋相接。"
 LocPromotionPopupText="<Bullet/> 如果目标在玩家最后回合前受到任何类型的伤害，如在敌人回合期间受到的监视伤害和持续性伤害，则触发暗箭伤人。<br/><Bullet/> 除了标准射击外，还适用于赶尽杀绝、连环射击和放逐。<br/><Bullet/> 如果暗影不是冷却状态，该移动点可用于进入暗影。"
 ; End Translation
 
@@ -228,3 +227,15 @@ RendTheMarkedEffectDesc="在本回合剩余时间内从所有来源对目标的�
 LocFriendlyName="万物天敌"
 LocLongDescription="放逐在每次射击时的命中惩罚减少<Ability:THEBANISHER_HIT_BUFF>点，并将其冷却时间降低1回合。刀锋相接的范围增加到<Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/>格。死亡贩子现在对无侧翼的目标也能生效。"
 LocHelpText="放逐在每次射击时的命中惩罚减少<Ability:THEBANISHER_HIT_BUFF>点，并将其冷却时间降低1回合。刀锋相接的范围增加到<Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/>格。死亡贩子现在对无侧翼的目标也能生效。 注意: 刀锋相接的圆环视觉效果没有正确更新该技能。你在刀锋相接的圆环外还有2个格子的射程范围。"
+
+[SwiftThrow_LW X2AbilityTemplate]
+LocFriendlyName="雷霆快刀"
+LocHelpText="不消耗行动点投掷一把飞刀，4回合冷却。"
+LocLongDescription="不消耗行动点投掷一把飞刀，4回合冷却。"
+LocPromotionPopupText="<Bullet/> 自由动作，4回合冷却。"
+
+[TacticalRetreat_LW X2AbilityTemplate]
+LocFriendlyName="飞刀撤退"
+LocHelpText="飞刀撤退"
+LocLongDescription="在投掷飞刀后，获得一次仅限移动的动作。一回合内可以多次触发。"
+LocPromotionPopupText="<Bullet/> 在投掷飞刀后，获得一次仅限移动的动作。一回合内可以多次触发。"
