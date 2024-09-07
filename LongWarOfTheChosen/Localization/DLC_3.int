@@ -7,8 +7,8 @@ TacticalText="<Bullet/> Provides increased armor and hit points, at the expense 
 
 [PlatedSparkLightArmor_LW X2SparkArmorTemplate_DLC_3]
 FriendlyName="Plated Light SPARK Armor"
-BriefSummary="A modification of our Plated SPARK Armor, this variation sacrifices durability for improved mobility."
-TacticalText="<Bullet/> Provides increased mobility and defense, at the expense of armor and hit points."
+BriefSummary="A modification of our Plated SPARK Armor, this variation sacrifices durability for improved mobility and grants the Dedication ability."
+TacticalText="<Bullet/> Provides increased mobility and defense, at the expense of armor and hit points. Grants the Dedication ability."
 
 [PoweredSparkHeavyArmor_LW X2SparkArmorTemplate_DLC_3]
 FriendlyName="Powered Heavy SPARK Armor"
@@ -17,5 +17,5 @@ TacticalText="<Bullet/> Provides increased armor and hit points, at the expense 
 
 [PoweredSparkLightArmor_LW X2SparkArmorTemplate_DLC_3]
 FriendlyName="Powered Light SPARK Armor"
-BriefSummary="A modification of our Powered SPARK Armor, this variation sacrifices durability for improved mobility."
-TacticalText="<Bullet/> Provides increased mobility and defense, at the expense of armor and hit points."
+BriefSummary="A modification of our Powered SPARK Armor, this variation sacrifices durability for improved mobility and grants the Dedication ability."
+TacticalText="<Bullet/> Provides increased mobility and defense, at the expense of armor and hit points. Grants the Dedication ability."
