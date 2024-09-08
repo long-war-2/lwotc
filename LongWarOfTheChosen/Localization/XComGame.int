@@ -5397,15 +5397,15 @@ LocLongDescription="Overwatch now trigger on any hostile action, not just moveme
 LocPromotionPopupText="<Bullet/> If triggered by an enemy action, Covering Fire will trigger before the enemy action completes.<br/><Bullet/> In addition, having the Covering Fire ability allows the owner to ignore 2/3 of cover bonuses with reaction fire."
 
 [GrenadeLauncher_MG X2GrenadeLauncherTemplate]
-BriefSummary="Our Advanced Grenade Launcher uses magnetic technology to propel grenades further than our conventional launcher."
-TacticalText="<Bullet/> The Advanced Grenade Launcher has an increased range over the standard Grenade Launcher.\n."
+BriefSummary="Our Advanced Grenade Launcher uses magnetic technology to propel grenades further than our conventional launcher and provides an additional grenade to grenade only slots."
+TacticalText="<Bullet/> The Advanced Grenade Launcher has an increased range over the standard Grenade Launcher and will give a bonus grenade item to grenades equipped in the grenade-only slot.\n."
 
 ; LWOTC Needs Translation
 [GrenadeLauncher_BM X2GrenadeLauncherTemplate]
 FriendlyName="Beam Grenade Launcher"
 FriendlyNamePlural="Beam Grenade Launchers"
-BriefSummary="The Beam Grenade Launcher combines our latest breakthroughs in beam technology-based propulsion and AI-assisted targeting systems to deliver payloads with unprecedented precision."
-TacticalText="<Bullet/> The Beam Grenade Launcher transforms any grenade into an autonomous projectile that can navigate around obstacles with ease."
+BriefSummary="The Beam Grenade Launcher combines our latest breakthroughs in beam technology-based propulsion and AI-assisted targeting systems to deliver payloads with unprecedented precision. Also provides extra grenades items to all utility and grenade slot grenades."
+TacticalText="<Bullet/> The Beam Grenade Launcher transforms any grenade into an autonomous projectile that can navigate around obstacles with ease. Grants Full Kit as well as Heavy Ordnance, providing bonus uses of utility slot and grenade slot grenades."
 ; End Translation
 
 [FlashbangGrenade X2GrenadeTemplate]
