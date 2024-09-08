@@ -1084,7 +1084,7 @@ static function X2AbilityTemplate AddFullKit()
 	local X2Effect_FullKit					FullKitEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'FullKit');
-	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityFullKit";
+	Template.IconImage = "img:///XPerkIconPack_LW.UIPerk_grenade_plus";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;

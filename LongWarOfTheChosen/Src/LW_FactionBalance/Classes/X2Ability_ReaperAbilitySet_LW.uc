@@ -1323,7 +1323,7 @@ static function ChargeBattery_BuildVisualization(XComGameState VisualizeGameStat
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
-	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_crit_move2";
+	Template.IconImage = "img:///XPerkIconPack_LW.UIPerk_star_shot";
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
@@ -1343,7 +1343,7 @@ static function X2AbilityTemplate AddTheBanisherAbility()
 {
 	local X2AbilityTemplate Template;
 
-	Template = PurePassive('TheBanisher_LW', "img:///UILibrary_PerkIcons.UIPerk_reaper", false);
+	Template = PurePassive('TheBanisher_LW', "img:///XPerkIconPack_LW.UIPerk_enemy_shot_plus", false);
 	//Template.AdditionalAbilities.AddItem('KnifeEncountersExtendedRange');
 
 	return Template;
@@ -1360,7 +1360,7 @@ static function X2DataTemplate SwiftThrow()
 	local array<name>                       SkipExclusions;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'SwiftThrow_LW');
-	Template.IconImage = "img:///UILibrary_LW_PerkPack.UIPerk_CripplingStrike";
+	Template.IconImage = "img:///XPerkIconPack_LW.UIPerk_star_knife";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
 	Template.DisplayTargetHitChance = true;

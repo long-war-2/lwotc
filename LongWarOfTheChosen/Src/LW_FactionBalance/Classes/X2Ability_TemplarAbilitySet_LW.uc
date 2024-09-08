@@ -428,7 +428,7 @@ static function X2AbilityTemplate AddTemplarTerror()
 {
 	local X2AbilityTemplate Template;
 
-	Template = PurePassive('TemplarTerror', "img:///UILibrary_LWOTC.LW_AbilityNapalmX", false, 'eAbilitySource_Perk');
+	Template = PurePassive('TemplarTerror', "img:///XPerkIconPack_LW.UIPerk_panic_psi", false, 'eAbilitySource_Perk');
 	Template.bCrossClassEligible = false;
 	Template.PrerequisiteAbilities.AddItem('Volt');
 	return Template;
