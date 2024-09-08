@@ -333,6 +333,9 @@ strCharacterName="Elite Grenadier"
 [AdvGrenadierM3_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="ADVENT Grenade Launcher"
 
+[AdvHeavyEngineer X2CharacterTemplate]
+strCharacterName="Elite Engineer"
+
 [AdvGrenadierFlashbangGrenade X2GrenadeTemplate]
 FriendlyName="Flashbang Grenade"
 FriendlyNamePlural="Flashbang Grenades"

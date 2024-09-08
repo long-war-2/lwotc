@@ -1990,7 +1990,7 @@ static function X2AbilityTemplate ImpactCompensation()
 	local X2Effect_ImpactCompensation		ImpactEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ImpactCompensation_LW');
-	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityDamageControl";
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_defense_blossom";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.Hostility = eHostility_Neutral;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
@@ -2029,7 +2029,7 @@ static function X2AbilityTemplate ImpactCompensationV2()
 	local X2Effect_ImpactCompensationCapped		ImpactEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ImpactCompensationV2_LW');
-	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityDamageControl";
+	Template.IconImage = "img:///UILibrary_MW.UIPerk_intimidate";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.Hostility = eHostility_Neutral;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
@@ -2066,7 +2066,7 @@ static function X2AbilityTemplate ImpactCompensationPassiveV2()
 {
 	local X2AbilityTemplate                 Template;	
 
-	Template = PurePassive('ImpactCompensationPassiveV2_LW', "img:///UILibrary_LW_PerkPack.LW_AbilityDamageControl", true, 'eAbilitySource_Perk');
+	Template = PurePassive('ImpactCompensationPassiveV2_LW', "img:///UILibrary_MW.UIPerk_intimidate", true, 'eAbilitySource_Perk');
 	Template.bCrossClassEligible = false;
 	//Template.AdditionalAbilities.AddItem('DamageControlAbilityActivated');
 	return Template;

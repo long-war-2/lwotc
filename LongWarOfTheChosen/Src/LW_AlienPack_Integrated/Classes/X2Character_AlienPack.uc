@@ -50,6 +50,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateTemplate_AdvGrenadier('AdvGrenadierM1'));
 	Templates.AddItem(CreateTemplate_AdvGrenadier('AdvGrenadierM2'));
 	Templates.AddItem(CreateTemplate_AdvGrenadier('AdvGrenadierM3'));
+	Templates.AddItem(CreateTemplate_AdvGrenadier('AdvHeavyEngineer'));
 
 	Templates.AddItem(CreateTemplate_AdvRocketeer('AdvRocketeerM1'));
 	Templates.AddItem(CreateTemplate_AdvRocketeer('AdvRocketeerM2'));
@@ -1006,6 +1007,8 @@ static function X2CharacterTemplate CreateTemplate_AdvGrenadier(name TemplateNam
 		CharTemplate.DefaultLoadout='AdvGrenadierM2_Loadout';
 	if (TemplateName == 'AdvGrenadierM3')
 		CharTemplate.DefaultLoadout='AdvGrenadierM3_Loadout';
+	if (TemplateName == 'AdvHeavyEngineer')
+		CharTemplate.DefaultLoadout='AdvHeavyEngineer_Loadout';
 
 	CharTemplate.BehaviorClass=class'XGAIBehavior';
 	CharTemplate.strPawnArchetypes.AddItem("XAdventTrooper.Archetypes.GameUnit_AdvSoldier_M"); 
@@ -1013,7 +1016,7 @@ static function X2CharacterTemplate CreateTemplate_AdvGrenadier(name TemplateNam
 	Loot.ForceLevel=0;
 	if (TemplateName == 'AdvGrenadierM1')
 		Loot.LootTableName='AdvTrooperM1_BaseLoot';
-	if (TemplateName == 'AdvGrenadierM2')
+	if (TemplateName == 'AdvGrenadierM2' || TemplateName == 'AdvHeavyEngineer')
 		Loot.LootTableName='AdvTrooperM2_BaseLoot';
 	if (TemplateName == 'AdvGrenadierM3')
 		Loot.LootTableName='AdvTrooperM3_BaseLoot';
@@ -1024,7 +1027,7 @@ static function X2CharacterTemplate CreateTemplate_AdvGrenadier(name TemplateNam
 	Loot.ForceLevel = 0;
 	if (TemplateName == 'AdvGrenadierM1')
 		Loot.LootTableName='AdvTrooperM1_TimedLoot';
-	if (TemplateName == 'AdvGrenadierM2')
+	if (TemplateName == 'AdvGrenadierM2' || TemplateName == 'AdvHeavyEngineer')
 		Loot.LootTableName='AdvTrooperM2_TimedLoot';
 	if (TemplateName == 'AdvGrenadierM3')
 		Loot.LootTableName='AdvTrooperM3_TimedLoot';
@@ -1032,7 +1035,7 @@ static function X2CharacterTemplate CreateTemplate_AdvGrenadier(name TemplateNam
 	CharTemplate.TimedLoot.LootReferences.AddItem(Loot);
 	if (TemplateName == 'AdvGrenadierM1')
 		Loot.LootTableName='AdvTrooperM1_VultureLoot';
-	if (TemplateName == 'AdvGrenadierM2')
+	if (TemplateName == 'AdvGrenadierM2' || TemplateName == 'AdvHeavyEngineer')
 		Loot.LootTableName='AdvTrooperM2_VultureLoot';
 	if (TemplateName == 'AdvGrenadierM3')
 		Loot.LootTableName='AdvTrooperM3_VultureLoot';
@@ -1086,6 +1089,11 @@ static function X2CharacterTemplate CreateTemplate_AdvGrenadier(name TemplateNam
 	{
 		CharTemplate.Abilities.AddItem('Salvo');
 		CharTemplate.Abilities.AddItem('BiggestBooms_LW');
+	}
+
+	if (TemplateName == 'AdvHeavyEngineer')
+	{
+		CharTemplate.Abilities.AddItem('WatchThemRun_LW');
 	}
 
 	CharTemplate.SightedNarrativeMoments.AddItem(XComNarrativeMoment'X2NarrativeMoments.TACTICAL.AlienSitings.T_Central_AlienSightings_AdvTrooperM1');
