@@ -2527,6 +2527,7 @@ static function X2AbilityTemplate CreateEMPRocketAbility()
 
 	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2, 100, false);
 	StunnedEffect.SetDisplayInfo(ePerkBuff_Penalty, class'X2StatusEffects'.default.RoboticStunnedFriendlyName, class'X2StatusEffects'.default.RoboticStunnedFriendlyDesc, "img:///UILibrary_PerkIcons.UIPerk_stun");
+	StunnedEffect.bRemoveWhenSourceDies = false;
 	StunnedEffect.TargetConditions.AddItem(UnitCondition);
 	Template.AddMultiTargetEffect(StunnedEffect);
 
@@ -2662,6 +2663,7 @@ static function X2AbilityTemplate CreateBlasterEMPRocketAbility()
 
 	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2, 100, false);
 	StunnedEffect.SetDisplayInfo(ePerkBuff_Penalty, class'X2StatusEffects'.default.RoboticStunnedFriendlyName, class'X2StatusEffects'.default.RoboticStunnedFriendlyDesc, "img:///UILibrary_PerkIcons.UIPerk_stun");
+	StunnedEffect.bRemoveWhenSourceDies = false;
 	StunnedEffect.TargetConditions.AddItem(UnitCondition);
 	Template.AddMultiTargetEffect(StunnedEffect);
 
