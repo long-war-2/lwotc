@@ -114,8 +114,8 @@ LocHelpText="攻击较低地形下的目标时获得+10命中和+10防御。"
 LocPromotionPopupText="<Bullet/> 攻击较低地形下的目标时获得+10命中和+10防御。<br/><Bullet/> 此项能力在单位处于混乱、眩晕、恐慌、着火或其他受损状态中时将不提供防御加成。"
 
 [Executioner_LW X2AbilityTemplate]
-LocFriendlyName="处刑决者"
-LocFlyOverText="处刑决者"
+LocFriendlyName="处刑者"
+LocFlyOverText="处刑者"
 LocLongDescription="攻击只有一半或更少生命值的目标时，获得+<Ability:EXECUTIONER_AIM_BONUS/>命中和+<Ability:EXECUTIONER_CRIT_BONUS/>暴击率。"
 LocHelpText="攻击只有一半或更少生命值的目标时，获得+<Ability:EXECUTIONER_AIM_BONUS/>命中和+<Ability:EXECUTIONER_CRIT_BONUS/>暴击率。"
 LocPromotionPopupText="<Bullet/> 攻击只有一半或更少生命值的目标时，获得+<Ability:EXECUTIONER_AIM_BONUS/>命中和+<Ability:EXECUTIONER_CRIT_BONUS/>暴击率。<br/>"

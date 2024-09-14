@@ -438,11 +438,11 @@ LocFlyOverText="工兵"
 LocPromotionPopupText="<Bullet/>工兵可以使用破片榴彈和其他爆炸物摧毀多數掩體。"
 
 [CombatEngineer X2AbilityTemplate]
-LocFriendlyName="戰鬥工兵"
+LocFriendlyName="戰鬥工程師"
 LocLongDescription="你的爆炸物對戰場上的掩體和其他物體造成更大的環境傷害。"
 LocHelpText="你的爆炸物對環境造成更大的傷害。"
-LocFlyOverText="戰鬥工兵"
-LocPromotionPopupText="<Bullet/> 戰鬥工兵比工兵更為強力，它更注重最大化環境傷害，雖然兩種技能都能摧毀許多掩體。<br/><Bullet/> 戰鬥工兵還能防止環境傷害隨著爆炸中心距離的遞減，這意味著你將摧毀更大範圍的物體。"
+LocFlyOverText="戰鬥工程師"
+LocPromotionPopupText="<Bullet/> 戰鬥工程師比工兵更為強力，它更注重最大化環境傷害，雖然兩種技能都能摧毀許多掩體。<br/><Bullet/> 戰鬥工程師還能防止環境傷害隨著爆炸中心距離的遞減，這意味著你將摧毀更大範圍的物體。"
 
 [NeedleGrenades X2AbilityTemplate]
 LocFriendlyName="刺針榴彈"
@@ -3258,7 +3258,7 @@ GameplayTips_Tactical[4]="閃避值提升後，能讓敵人的射擊造成\"擦�
 GameplayTips_Tactical[10]="擁有魅影技能的士兵每次任務開始都會處於隱蔽狀態，即使小隊其他成員未隱匿也不例外。"
 GameplayTips_Tactical[12]="在更高的難度下，如果敵人在他們的回合巡邏發現了你，那麼有時候他們能獲得額外行動點數。"
 +GameplayTips_Tactical[13]="在突襲變種人區域總部的時候，儘可能地在小隊中多帶人手。"
-+GameplayTips_Tactical[14]="沒有\"工兵\"或\"戰鬥工兵\"技能的士兵投擲的破片或外星榴彈不一定能夠摧毀掩體。可以試試火箭。"
++GameplayTips_Tactical[14]="沒有\"工兵\"或\"戰鬥工程師\"技能的士兵投擲的破片或外星榴彈不一定能夠摧毀掩體。可以試試火箭。"
 +GameplayTips_Tactical[15]="每個通用物品會減少士兵1點移動力，所以有時候應該把裝備欄留空來獲得額外的移動力。"
 +GameplayTips_Tactical[16]="士兵可以裝備一件護盾裝備和一件防護背心。護盾提供的生命值不能通過治療恢復，但是當損失時也不被視作受傷。"
 +GameplayTips_Tactical[17]="衝鋒鎗的威力不及其他主武器，但是它們對移動力和潛入都有加成。"
