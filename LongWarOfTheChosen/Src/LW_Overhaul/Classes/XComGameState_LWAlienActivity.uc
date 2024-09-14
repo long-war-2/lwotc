@@ -187,7 +187,7 @@ function bool Update(XComGameState NewGameState)
 
 	// Warn if critical noninfiltrated missions are close to expiry
 	ExpiryDateTime = MissionState.ExpirationDateTime;
-	class'X2StrategyGameRulesetDataStructures'.static.RemoveHours(ExpiryDateTime, 3);
+	class'X2StrategyGameRulesetDataStructures'.static.RemoveHours(ExpiryDateTime, 6);
 	if (!bExpiryWarningShown && MissionState != none &&
 		class'Utilities_LW'.static.IsMissionRetaliation(MissionState.GetReference()) &&
 		class'X2StrategyGameRulesetDataStructures'.static.LessThan(ExpiryDateTime, class'XComGameState_GeoscapeEntity'.static.GetCurrentTime()))
