@@ -193,8 +193,8 @@ LocHelpText="你的火焰噴射器射程更長，影響範圍更廣。"
 LocPromotionPopupText="<Bullet/> 你的火焰噴射器射程更長，影響範圍更廣。"
 
 [Roust X2AbilityTemplate]
-LocFriendlyName="驅逐"
-LocFlyOverText="驅逐"
+LocFriendlyName="火焰驅逐"
+LocFlyOverText="火焰驅逐"
 LocLongDescription="特殊的火焰噴射器攻擊，造成有限的傷害，但是能降低敵人的防禦和移動力並迫使其移動位置。"
 LocHelpText="特殊的火焰噴射器攻擊，造成有限的傷害，但是能降低敵人的防禦和移動力並迫使其移動位置。"
 LocPromotionPopupText="<Bullet/>造成<Ability:ROUST_DAMAGE_PENALTY>%的傷害，有<Ability:ROUST_DIRECT_APPLY_CHANCE>%的幾率使區域內的敵人著火。<br/><Bullet/>範圍中的目標移動力減少<Ability:ROUST_MOB_REDUCTION>，防禦減少<Ability:ROUST_DEF_REDUCTION>，持續<Ability:ROUST_STATEFFECT_DURATION>回合。<br/><Bullet/>狹窄的火焰噴射對環境影響較小。<br/><Bullet/>被擊中的單位將被迫移動，會觸發反應射擊。<br/><Bullet/>每個任務可用一次，但是能夠通過更高級的裝備來獲得額外的使用次數。<br/><Bullet/> 隱蔽狀態時不能使用。"
@@ -1332,22 +1332,22 @@ LootTooltip="這種武器強化部件可為武器的非反應射擊增加額外�
 [MissDamageUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="槍托"
 FriendlyNamePlural="槍托"
-BriefSummary="提供穩定武器能力，為下一次射擊提供+<Ability:STOCK_BSC_SW_AIM_BONUS/>命中和+<Ability:STOCK_BSC_SW_AIM_BONUS/>暴擊率。"
-TinySummary="賦予穩定武器"
+BriefSummary="提供「穩定武器」能力，為下一次射擊提供+<Ability:STOCK_BSC_SW_AIM_BONUS/>命中和+<Ability:STOCK_BSC_SW_AIM_BONUS/>暴擊率。"
+TinySummary="賦予「穩定武器」"
 LootTooltip="當裝備了該武器強化時，將獲得技能：穩定武器。"
 
 [MissDamageUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="高級槍托"
 FriendlyNamePlural="高級槍托"
-BriefSummary="提供穩定武器能力，為下一次射擊提供+<Ability:STOCK_ADV_SW_AIM_BONUS/>命中和+<Ability:STOCK_ADV_SW_AIM_BONUS/>暴擊率。"
-TinySummary="賦予穩定武器"
+BriefSummary="提供「穩定武器」能力，為下一次射擊提供+<Ability:STOCK_ADV_SW_AIM_BONUS/>命中和+<Ability:STOCK_ADV_SW_AIM_BONUS/>暴擊率。"
+TinySummary="賦予「穩定武器」"
 LootTooltip="當裝備了該武器強化時，將獲得技能：穩定武器。"
 
 [MissDamageUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="精英槍托"
 FriendlyNamePlural="精英槍托"
-BriefSummary="提供穩定武器能力，為下一次射擊提供+<Ability:STOCK_SUP_SW_AIM_BONUS/>命中和+<Ability:STOCK_SUP_SW_AIM_BONUS/>暴擊率。"
-TinySummary="賦予穩定武器"
+BriefSummary="提供「穩定武器」能力，為下一次射擊提供+<Ability:STOCK_SUP_SW_AIM_BONUS/>命中和+<Ability:STOCK_SUP_SW_AIM_BONUS/>暴擊率。"
+TinySummary="賦予「穩定武器」"
 LootTooltip="當裝備了該武器強化時，將獲得技能：穩定武器。"
 
 [FreeKillUpgrade_Bsc X2WeaponUpgradeTemplate]
@@ -1567,7 +1567,7 @@ BriefSummary="這些致命的彈藥由超強，超輕的外星合金手工加工
 FriendlyName="高壓容器"
 FriendlyNamePlural="高壓容器"
 BriefSummary="提供火焰噴射器額外的使用次數。"
-TacticalText="<Bullet/> 提供高壓能力，為火焰噴射器提供+2的充能，為驅逐能力提供額外1次充能。"
+TacticalText="<Bullet/> 提供高壓能力，為火焰噴射器提供+2的充能，為「火焰驅逐」能力提供額外1次充能。"
 
 [ExtraRocket X2WeaponTemplate]
 FriendlyName="額外火箭"
@@ -3844,7 +3844,7 @@ DisplayName="高級消音器"
 Summary="允許這些升級的大規模生產，能夠顯著減少任務中的潛入時間。"
 
 [SuperiorSuppressorProject X2TechTemplate]
-DisplayName="精英抑制器"
+DisplayName="精英消音器"
 Summary="允許這些升級的批量生產，它們可以在任務中極大地減少潛入時間。"
 
 [BuildSpark X2TechTemplate]
@@ -5201,15 +5201,15 @@ LocLongDescription="監視射擊現在會在任何敵對行動完成前觸發，
 LocPromotionPopupText="<Bullet/> 如果由敵人動作觸發，掩護射擊將在敵人動作完成前觸發。<br/><Bullet/> 掩護火力會讓被你監視的單位獲得-<Ability:COVERING_FIRE_OFFENSE_MALUS>的命中懲罰，不論是掩護火力，還是普通的監視。<br/>"
 
 [GrenadeLauncher_MG X2GrenadeLauncherTemplate]
-BriefSummary="高級榴彈發射器使用電磁技術，比傳統的發射器射程更遠。"
-TacticalText="<Bullet/>高級榴彈發射器比傳統的發射器射程更遠。"
+BriefSummary="高級榴彈發射器使用電磁技術，比傳統的發射器射程更遠，並為榴彈專用槽中的榴彈提供額外的使用次數。"
+TacticalText="<Bullet/>高級榴彈發射器比傳統的發射器射程更遠，並為榴彈專用槽中的榴彈提供額外的使用次數。"
 
 ; LWOTC Needs Translation
 [GrenadeLauncher_BM X2GrenadeLauncherTemplate]
 FriendlyName="光束榴彈發射器"
 FriendlyNamePlural="光束榴彈發射器"
-BriefSummary="光束榴彈發射器結合了我們基於光束技術的進展和人工智慧輔助瞄準系統方面的最新突破，以前所未有的精度提供有效載荷。"
-TacticalText="<Bullet/> 光束榴彈發射器將任何榴彈轉換成一個能輕鬆繞過障礙物的自導發射體。"
+BriefSummary="光束榴彈發射器結合了我們基於光束技術的進展和人工智慧輔助瞄準系統方面的最新突破，以前所未有的精度提供有效載荷。此外，還為所有裝備在通用槽和榴彈槽的榴彈提供額外的使用次數。"
+TacticalText="<Bullet/> 光束榴彈發射器將任何榴彈轉換成一個能輕鬆繞過障礙物的自導發射體。授予「重型軍火」和「全副武裝」的能力，增加通用槽和榴彈槽中的榴彈使用次數。"
 ; End Translation
 
 [FlashbangGrenade X2GrenadeTemplate]
@@ -7267,7 +7267,7 @@ LocPromotionPopupText="<Bullet/> 放逐中的每一次射擊都有單獨的命�
 LocFriendlyName="全面戰鬥"
 LocLongDescription="獲得+1移動力和+5命中，投擲榴彈或使用物品不會結束回合且榴彈不再有冷卻時間。此外，榴彈投擲的距離增加3格，爆炸半徑增加1格。授予榴彈專用槽。"
 LocHelpText="獲得+1移動力和+5命中，投擲榴彈或使用物品不會結束回合且榴彈不再有冷卻時間。此外，榴彈投擲的距離增加3格，爆炸半徑增加1格。授予榴彈專用槽。"
-LocPromotionPopupText="<Bullet/> 全面戰鬥讓<Ability:ClassName/>的戰術更為多樣化，能夠在需要的時候採取精準的行動。<br/><Bullet/> 消除榴彈的冷卻時間。<br/><Bullet/> 授予爆炸揮發技能，因此它不會與該技能疊加。"
+LocPromotionPopupText="<Bullet/> 全面戰鬥讓<Ability:ClassName/>的戰術更為多樣化，能夠在需要的時候採取精準的行動。<br/><Bullet/> 消除榴彈的冷卻時間。<br/><Bullet/> 授予「爆炸揮發」技能，因此它不會與該技能疊加。"
 
 [PackMaster_LW X2AbilityTemplate]
 LocFriendlyName="背包大師"

@@ -135,8 +135,8 @@ LocHelpText="你视野内的每个敌人使你获得3点防御，最多15点。"
 LocPromotionPopupText="<Bullet/> 你视野内的每个敌人使你获得3点防御，最多15点。<br/><Bullet/> 不包括小队视野范围内的单位。<br/><Bullet/> 此项能力在单位处于混乱、眩晕、恐慌、着火或其他受损状态中时将不提供防御加成。"
 
 [Aggression X2AbilityTemplate]
-LocFriendlyName="争强斗胜"
-LocFlyOverText="争强斗胜"
+LocFriendlyName="高侵略性"
+LocFlyOverText="高侵略性"
 LocLongDescription="你视野内的每个敌人会为你+5暴击率，最多30。"
 LocHelpText="你视野内的每个敌人会为你+5暴击率，最多30。"
 LocPromotionPopupText="<Bullet/> 你视野内的每个敌人会为你+5暴击率，最多30。<br/><Bullet/> 在小队视野中可见的单位也会产生此效果。<br/>"
@@ -910,8 +910,8 @@ LocPromotionPopupText="<Bullet/> 复活协议可以用来恢复失去意识的�
 
 [XComGame.ThreatAssessment X2AbilityTemplate]
 [ThreatAssessment X2AbilityTemplate]
-LocLongDescription="援助协议授予目标一次掩护火力监视。"
-LocPromotionPopupText="<Bullet/> 援助协议授予目标一次掩护火力监视。"
+LocLongDescription="援助协议授予目标一次「掩护火力」监视。"
+LocPromotionPopupText="<Bullet/> 援助协议授予目标一次「掩护火力」监视。"
 
 ; Gear loc updates for new classes
 
@@ -1086,7 +1086,7 @@ LocPromotionPopupText="<Bullet/> 你可以通过将移动光标放在敌人身�
 
 [Obliterator_LW X2AbilityTemplate]
 LocFriendlyName="突袭模块"
-LocLongDescription="所有打击攻击获得+2伤害和+10命中，赋予“横冲直撞”能力，当过载激活时，能够在移动时撞穿墙壁和掩体。"
+LocLongDescription="所有打击攻击获得+2伤害和+10命中，授予「横冲直撞」能力，当过载激活时，能够在移动时撞穿墙壁和掩体。"
 LocHelpText="所有打击攻击获得+2伤害和+10命中。"
 LocPromotionPopupText="<Bullet/> 学习突袭模块技能将为所有动能打击攻击提供+2点伤害和额外的+10命中。"
 
@@ -1184,13 +1184,13 @@ LocPromotionPopupText="<Bullet/> 如果一名敌人在相邻格中开始他们�
 
 [EnhancedSystems_LW X2AbilityTemplate]
 LocFriendlyName="强化维修系统"
-LocLongDescription="赋予快速维修和冗余系统技能，维修不再结束回合，移除与重启相关的属性减益。重启时，SPARK将自动使用维修。"
-LocHelpText="赋予快速维修和冗余系统技能，维修不再结束回合，移除与重启相关的属性减益。重启时，SPARK将自动使用维修。"
+LocLongDescription="授予「快速维修」和「冗余系统」技能，维修不再结束回合，移除与重启相关的属性减益。重启时，SPARK将自动使用维修。"
+LocHelpText="授予「快速维修」和「冗余系统」技能，维修不再结束回合，移除与重启相关的属性减益。重启时，SPARK将自动使用维修。"
 LocPromotionPopupText="快速维修使得维修不再结束回合。冗余系统意味着SPARK在重启后不会受到任何属性惩罚。SPARK在重启时将自动使用维修。"
 
 [ReactionSystems_LW X2AbilityTemplate]
 LocFriendlyName="强化防御系统"
-LocLongDescription="赋予牺牲和引导力场技能，获得防御和护甲，允许SPARK将4X4格范围内队友受到的伤害引导至自身，被任何攻击命中后SPARK会获得暂时的增伤效果。"
+LocLongDescription="授予「牺牲」和「引导力场」技能，获得防御和护甲，允许SPARK将4X4格范围内队友受到的伤害引导至自身，被任何攻击命中后SPARK会获得暂时的增伤效果。"
 LocHelpText="<Bullet/> 当牺牲开启时，SPARK获得+<Ability:Sacrifice_Defense/>防御和+<Ability:Sacrifice_Armor/>护甲。<br/><Bullet/> 牺牲有<Ability:SACRIFICE_COOLDOWN/>回合冷却。<br/><Bullet/> 每引导一点能量，下一次攻击<Ability:WeaponName>伤害+1。<br/>"
 LocPromotionPopupText="<Bullet/> 当牺牲开启时，SPARK获得+<Ability:Sacrifice_Defense/>防御和+<Ability:Sacrifice_Armor/>护甲。<br/><Bullet/> 牺牲有<Ability:SACRIFICE_COOLDOWN/>回合冷却。<br/><Bullet/> 每引导一点能量，下一次攻击<Ability:WeaponName>伤害+1。<br/>"
 
@@ -1202,9 +1202,9 @@ LocPromotionPopupText="增加<Ability:ClassName/>的侵入属性<Ability:ADVANCE
 
 [HoloAACombo_LW X2AbilityTemplate]
 LocFriendlyName="强化定位系统"
-LocLongDescription="赋予自适应瞄准和全息瞄准能力，超载不再有命中惩罚，射击敌人后，对敌人施加全息标记。"
-LocHelpText="赋予自适应瞄准和全息瞄准能力，超载不再有命中惩罚，射击敌人后，对敌人施加全息标记。"
-LocPromotionPopupText="赋予自适应瞄准和全息瞄准能力，提高SPARK在超载状态下连续射击的能力，并提高小队命中SPARK射击的目标的能力。"
+LocLongDescription="授予「自适应瞄准」和「全息瞄准」能力，超载不再有命中惩罚，射击敌人后，对敌人施加全息标记。"
+LocHelpText="授予「自适应瞄准」和「全息瞄准」能力，超载不再有命中惩罚，射击敌人后，对敌人施加全息标记。"
+LocPromotionPopupText="授予「自适应瞄准」和「全息瞄准」能力，提高SPARK在超载状态下连续射击的能力，并提高小队命中SPARK射击的目标的能力。"
 
 ; New Class loc
 

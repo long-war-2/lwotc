@@ -193,8 +193,8 @@ LocHelpText="你的火焰喷射器射程更长，影响范围更广。"
 LocPromotionPopupText="<Bullet/> 你的火焰喷射器射程更长，影响范围更广。"
 
 [Roust X2AbilityTemplate]
-LocFriendlyName="驱逐"
-LocFlyOverText="驱逐"
+LocFriendlyName="火焰驱逐"
+LocFlyOverText="火焰驱逐"
 LocLongDescription="特殊的火焰喷射器攻击，造成有限的伤害，但是能降低敌人的防御和移动力并迫使其移动位置。"
 LocHelpText="特殊的火焰喷射器攻击，造成有限的伤害，但是能降低敌人的防御和移动力并迫使其移动位置。"
 LocPromotionPopupText="<Bullet/> 造成<Ability:ROUST_DAMAGE_PENALTY>%的伤害，有<Ability:ROUST_DIRECT_APPLY_CHANCE>%的概率使区域内的敌人着火。<br/><Bullet/> 范围中的目标移动力减少<Ability:ROUST_MOB_REDUCTION>，防御减少<Ability:ROUST_DEF_REDUCTION>，持续<Ability:ROUST_STATEFFECT_DURATION>回合。<br/><Bullet/> 狭窄的火焰喷射对环境影响较小。<br/><Bullet/> 被击中的单位将被迫移动，能触发反应射击。<br/><Bullet/> 每个任务可用一次，但是能够通过更高级的装备来获得额外的使用次数。<br/><Bullet/> 隐匿状态时无法使用。"
@@ -1342,22 +1342,22 @@ LootTooltip="这种武器强化部件可为武器的非反应射击增加额外�
 [MissDamageUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="枪托"
 FriendlyNamePlural="枪托"
-BriefSummary="提供稳定武器能力，为下一次射击提供+<Ability:STOCK_BSC_SW_AIM_BONUS/>命中和+<Ability:STOCK_BSC_SW_AIM_BONUS/>暴击率。"
-TinySummary="赋予稳定武器"
+BriefSummary="提供「稳定武器」能力，为下一次射击提供+<Ability:STOCK_BSC_SW_AIM_BONUS/>命中和+<Ability:STOCK_BSC_SW_AIM_BONUS/>暴击率。"
+TinySummary="赋予「稳定武器」"
 LootTooltip="当装备了该武器强化时，将获得技能：稳定武器。"
 
 [MissDamageUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="高级枪托"
 FriendlyNamePlural="高级枪托"
-BriefSummary="提供稳定武器能力，为下一次射击提供+<Ability:STOCK_ADV_SW_AIM_BONUS/>命中和+<Ability:STOCK_ADV_SW_AIM_BONUS/>暴击率。"
-TinySummary="赋予稳定武器"
+BriefSummary="提供「稳定武器」能力，为下一次射击提供+<Ability:STOCK_ADV_SW_AIM_BONUS/>命中和+<Ability:STOCK_ADV_SW_AIM_BONUS/>暴击率。"
+TinySummary="赋予「稳定武器」"
 LootTooltip="当装备了该武器强化时，将获得技能：稳定武器。"
 
 [MissDamageUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="精英枪托"
 FriendlyNamePlural="精英枪托"
-BriefSummary="提供稳定武器能力，为下一次射击提供+<Ability:STOCK_SUP_SW_AIM_BONUS/>命中和+<Ability:STOCK_SUP_SW_AIM_BONUS/>暴击率。"
-TinySummary="赋予稳定武器"
+BriefSummary="提供「稳定武器」能力，为下一次射击提供+<Ability:STOCK_SUP_SW_AIM_BONUS/>命中和+<Ability:STOCK_SUP_SW_AIM_BONUS/>暴击率。"
+TinySummary="赋予「稳定武器」"
 LootTooltip="当装备了该武器强化时，将获得技能：稳定武器。"
 
 [FreeKillUpgrade_Bsc X2WeaponUpgradeTemplate]
@@ -1576,8 +1576,8 @@ BriefSummary="这些致命的弹药由超强，超轻的外星合金手工加工
 [HighPressureTanks X2WeaponTemplate]
 FriendlyName="高压容器"
 FriendlyNamePlural="高压容器"
-BriefSummary="提供火焰喷射器额外的使用次数。"
-TacticalText="<Bullet/> 提供高压能力，为火焰喷射器提供+2的充能，为驱逐能力提供额外1次充能。"
+BriefSummary="为火焰喷射器提供额外的使用次数。"
+TacticalText="<Bullet/> 提供高压能力，为火焰喷射器提供+2的充能，为「火焰驱逐」能力提供额外1次充能。"
 
 [ExtraRocket X2WeaponTemplate]
 FriendlyName="额外火箭"
@@ -3860,7 +3860,7 @@ DisplayName="高级消音器"
 Summary="允许这些升级的大规模生产，能够显著减少任务中的潜入时间。"
 
 [SuperiorSuppressorProject X2TechTemplate]
-DisplayName="精英抑制器"
+DisplayName="精英消音器"
 Summary="允许这些升级的批量生产，它们可以在任务中极大地减少潜入时间。"
 
 [BuildSpark X2TechTemplate]
@@ -5217,15 +5217,15 @@ LocLongDescription="监视射击现在会在任何敌对行动完成前触发，
 LocPromotionPopupText="<Bullet/> 如果由敌人的动作触发，掩护火力将在敌人动作完成前触发。<br/><Bullet/> 掩护火力会让被你监视的单位获得-<Ability:COVERING_FIRE_OFFENSE_MALUS>的命中惩罚，不论是掩护火力，还是普通的监视。<br/>"
 
 [GrenadeLauncher_MG X2GrenadeLauncherTemplate]
-BriefSummary="高级榴弹发射器使用电磁技术，比传统的发射器射程更远。"
-TacticalText="<Bullet/>高级榴弹发射器比传统的发射器射程更远。"
+BriefSummary="高级榴弹发射器使用电磁技术，比传统的发射器射程更远，并为榴弹专用槽中的榴弹提供额外的使用次数。"
+TacticalText="<Bullet/>高级榴弹发射器比传统的发射器射程更远，并为榴弹专用槽中的榴弹提供额外的使用次数。"
 
 ; LWOTC Needs Translation
 [GrenadeLauncher_BM X2GrenadeLauncherTemplate]
 FriendlyName="光束榴弹发射器"
 FriendlyNamePlural="光束榴弹发射器"
-BriefSummary="光束榴弹发射器结合了我们基于光束技术的进展和人工智能辅助瞄准系统方面的最新突破，以前所未有的精度提供有效载荷。"
-TacticalText="<Bullet/> 光束榴弹发射器将任何榴弹转换成一个能轻松绕过障碍物的自导发射体。"
+BriefSummary="光束榴弹发射器结合了我们基于光束技术的进展和人工智能辅助瞄准系统方面的最新突破，以前所未有的精度提供有效载荷。此外，还为所有装备在通用槽和榴弹槽的榴弹提供额外的使用次数。"
+TacticalText="<Bullet/> 光束榴弹发射器将任何榴弹转换成一个能轻松绕过障碍物的自导发射体。授予「重型军火」和「全副武裝」的能力，增加通用槽和榴弹槽中的榴弹使用次数。"
 ; End Translation
 
 [FlashbangGrenade X2GrenadeTemplate]
@@ -7316,7 +7316,7 @@ LocPromotionPopupText="<Bullet/> 放逐中的每一次射击都有单独的命�
 LocFriendlyName="全面战斗"
 LocLongDescription="获得+1移动力和+5命中，投掷榴弹或使用物品不会结束回合且榴弹不再有冷却时间。此外，榴弹投掷的距离增加2格，爆炸半径增加1格。授予榴弹专用槽。"
 LocHelpText="获得+1移动力和+5命中，投掷榴弹或使用物品不会结束回合且榴弹不再有冷却时间。此外，榴弹投掷的距离增加2格，爆炸半径增加1格。授予榴弹专用槽。"
-LocPromotionPopupText="<Bullet/> 全面战斗让<Ability:ClassName/>的战术更为多样化，能够在需要的时候采取精准的行动。<br/><Bullet/> 消除榴弹的冷却时间。<br/><Bullet/> 授予爆炸挥发技能，因此它不会与该技能叠加。"
+LocPromotionPopupText="<Bullet/> 全面战斗让<Ability:ClassName/>的战术更为多样化，能够在需要的时候采取精准的行动。<br/><Bullet/> 消除榴弹的冷却时间。<br/><Bullet/> 授予「爆炸挥发」技能，因此它不会与该技能叠加。"
 
 [PackMaster_LW X2AbilityTemplate]
 LocFriendlyName="背包大师"
