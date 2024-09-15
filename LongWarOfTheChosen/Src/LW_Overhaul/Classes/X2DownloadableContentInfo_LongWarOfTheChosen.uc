@@ -605,6 +605,20 @@ static event OnLoadedSavedGameToStrategy()
 			}
 		}
 	}
+	// Auto grant vulture if needed
+	foreach History.IterateByClassType(class'XComGameState_WorldRegion', RegionState)
+	{
+		// check we're above the minimum FL to activate chosen
+		RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState, NewGameState, true);
+		if(RegionalAI.LocalForceLevel >= class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_ACTIVATE_AT_FL)
+		{
+			if(!`XCOMHQ.HasSoldierUnlockTemplate('VultureUnlock'))
+			{
+				class'X2StrategyElement_DefaultAlienActivities'.static.AddSoldierUnlock(NewGameState,'VultureUnlock');
+			}
+		}
+		break;
+	}
 
 	`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
 
@@ -6937,3 +6951,7 @@ exec function LWOTC_FixChosenKnowledgeForNewScaling()
 	`GAMERULES.SubmitGameState(NewGameState);
 }
 
+exec function Ted_CheckUnlockStatus(name TemplateName)
+{
+	class'Helpers'.static.OutputMsg(string(`XCOMHQ.HasSoldierUnlockTemplate(TemplateName)));
+}

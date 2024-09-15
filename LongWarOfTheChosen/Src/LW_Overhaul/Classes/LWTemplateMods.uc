@@ -3852,8 +3852,8 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 			{
     			FacilityTemplate.SoldierUnlockTemplates.RemoveItem(default.GTSUnlocksToRemove[i]);
 			}
-			FacilityTemplate.SoldierUnlockTemplates.AddItem('VultureUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.AddItem('VengeanceUnlock');
+			//FacilityTemplate.SoldierUnlockTemplates.AddItem('VultureUnlock');
+			//FacilityTemplate.SoldierUnlockTemplates.AddItem('VengeanceUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('WetWorkUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('LightningStrikeUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('IntegratedWarfareUnlock');
