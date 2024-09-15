@@ -290,9 +290,9 @@ static function X2CharacterTemplate CreateTemplate_MutonM3_LW()
 
 	CharTemplate.Abilities.AddItem('TacticalSense');
 	CharTemplate.Abilities.AddItem('PersonalShield');
+	CharTemplate.Abilities.AddItem('SkirmisherStrike');
 	// WOTC abilities
 	CharTemplate.Abilities.AddItem('DarkEventAbility_Barrier');
-	// LightEmUp: Weapon Template
 
 	CharTemplate.AddTemplateAvailablility(CharTemplate.BITFIELD_GAMEAREA_Multiplayer); // Allow in MP!
 	CharTemplate.MPPointValue = CharTemplate.XpKillscore * 10;
