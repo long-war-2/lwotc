@@ -7,8 +7,8 @@ TacticalText="<Bullet/> 提供更多的護甲和生命值，但犧牲了機動�
 
 [PlatedSparkLightArmor_LW X2SparkArmorTemplate_DLC_3]
 FriendlyName="輕型SPARK骨架"
-BriefSummary="這是對我們的SPARK加固骨架的改裝版本，這種變化以犧牲耐久性為代價，提升了機動性。"
-TacticalText="<Bullet/> 提供更高的機動性和防禦，但犧牲了護甲和生命值。"
+BriefSummary="這是對我們的SPARK加固骨架的改裝版本，這種變化以犧牲耐久性為代價，提升了機動性，並授予「奉獻精神」。"
+TacticalText="<Bullet/> 提供更高的機動性和防禦，但犧牲了護甲和生命值。授予「奉獻精神」。"
 
 [PoweredSparkHeavyArmor_LW X2SparkArmorTemplate_DLC_3]
 FriendlyName="重型SPARK機身"
@@ -17,5 +17,5 @@ TacticalText="<Bullet/> 提供更多的護甲和生命值，但犧牲了機動�
 
 [PoweredSparkLightArmor_LW X2SparkArmorTemplate_DLC_3]
 FriendlyName="輕型SPARK機身"
-BriefSummary="這是對我們的SPARK陽極氧化機身的改裝版本，這種變化以犧牲耐久性為代價，提升了機動性。"
-TacticalText="<Bullet/> 提供更高的機動性和防禦，但犧牲了護甲和生命值。"
+BriefSummary="這是對我們的SPARK陽極氧化機身的改裝版本，這種變化以犧牲耐久性為代價，提升了機動性，並授予「奉獻精神」。"
+TacticalText="<Bullet/> 提供更高的機動性和防禦，但犧牲了護甲和生命值。授予「奉獻精神」。"
