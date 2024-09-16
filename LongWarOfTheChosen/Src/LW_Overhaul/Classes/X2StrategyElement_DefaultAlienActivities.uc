@@ -182,6 +182,9 @@ var config int COINOPS_MIN_ALERT;
 
 var config int BIGSUPPLYEXTRACTION_MAX_ALERT;
 
+var config int VULTURE_UNLOCK_AT_FL;
+var config bool bENABLE_AUTO_VULTURE;
+
 //helpers for checking for name typos
 var name ProtectRegionEarlyName;
 var name ProtectRegionMidName;
@@ -1907,6 +1910,11 @@ static function OnScheduledOffworldReinforcementsComplete(bool bAlienSuccess, XC
 		{
 			AddSoldierUnlock(NewGameState,'VultureUnlock');
 			ActivateChosenIfEnabled(NewGameState);
+		}
+
+		if(RegionalAI.LocalForceLevel == default.VULTURE_UNLOCK_AT_FL && default.bENABLE_AUTO_VULTURE)
+		{
+			AddSoldierUnlock(NewGameState,'VultureUnlock');
 		}
 	}
 	else

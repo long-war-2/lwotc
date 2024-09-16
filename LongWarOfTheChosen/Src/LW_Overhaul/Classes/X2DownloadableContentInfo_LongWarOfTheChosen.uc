@@ -610,7 +610,7 @@ static event OnLoadedSavedGameToStrategy()
 	{
 		// check we're above the minimum FL to activate chosen
 		RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState, NewGameState, true);
-		if(RegionalAI.LocalForceLevel >= class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_ACTIVATE_AT_FL)
+		if(class'X2StrategyElement_DefaultAlienActivities'.default.bENABLE_AUTO_VULTURE && RegionalAI.LocalForceLevel >= class'X2StrategyElement_DefaultAlienActivities'.default.VULTURE_UNLOCK_AT_FL)
 		{
 			if(!`XCOMHQ.HasSoldierUnlockTemplate('VultureUnlock'))
 			{
