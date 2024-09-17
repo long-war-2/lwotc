@@ -4840,3 +4840,9 @@ LocFriendlyName="신성"
 LocLongDescription="에너지 폭발을 일으켜 주위의 모든 적에게 대미지를 입힙니다. 노바는 행동력을 소모하지 않고 쿨타임이 없으나, 연속으로 사용하면 SPARK는 대미지를 입습니다."
 LocHelpText="주위의 모든 적을 폭발시킵니다. 연속으로 노바를 사용하면 SPARK는 대미지를 입습니다."
 LocPromotionPopupText="<Bullet/> 노바는 행동력을 소모하지 않으며 쿨타임이 없습니다.<br/><Bullet/> 매번 임무에서 노바를 첫 번째로 사용하면 SPARK는 대미지를 입지 않습니다.<br/><Bullet/> 이후의 모든 노바 사용은 SPARK에 누적되는 <Ability:Nova_Damage/> 대미지를 입힙니다.<br/>"
+
+;Marauder
+[SkirmisherStrike X2AbilityTemplate]
+LocLongDescription="첫 번째 행동으로 주요 무기를 사용하여 일반 사격을 하면 턴이 종료되지 않습니다."
+LocHelpText="첫 번째 행동으로 주요 무기를 사용하여 일반 사격을 하면 턴이 종료되지 않습니다."
+LocPromotionPopupText=""

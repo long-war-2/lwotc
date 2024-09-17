@@ -7553,3 +7553,9 @@ LocFriendlyName="Nova"
 LocLongDescription="Libera un estallido de energía que daña a todas las unidades cercanas. Este ataque no tiene coste ni enfriamiento, pero las Novas consecutivas causarán daños al SPARK."
 LocHelpText="Causa una explosión que afecta a todas las unidades cercanas. Las Novas consecutivas causarán daños al SPARK."
 LocPromotionPopupText="<Bullet/> Nova no tiene coste en puntos de acción ni tiempo de enfriamiento.<br/><Bullet/> El primer ataque de Nova en cada misión infligirá 0 de daño al SPARK.<br/><Bullet/> Todos los ataques de Nova posteriores infligirán un daño acumulado de <Ability:Nova_Damage/> al SPARK.<br/>"
+
+;Marauder
+[SkirmisherStrike X2AbilityTemplate]
+LocLongDescription="Efectuar un disparo estándar con tu arma principal como primera acción ya no termina tu turno."
+LocHelpText="Efectuar un disparo estándar con tu arma principal como primera acción ya no termina tu turno."
+LocPromotionPopupText="<Bullet/> Efectuar un disparo estándar con tu arma principal como primera acción ya no termina tu turno.<br/>"

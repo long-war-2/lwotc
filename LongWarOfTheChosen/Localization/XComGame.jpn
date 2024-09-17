@@ -4837,3 +4837,9 @@ LocFriendlyName="ノヴァ"
 LocLongDescription="エネルギーを爆発的に放出して、近くにいるすべてのユニットにダメージを与える。行動値は消費せず、クールダウン時間も発生しないが、初撃以降はノヴァを使用するたびにSPARKがダメージを受ける。"
 LocHelpText="すべてのユニットに爆発でダメージを与える。初撃以降はノヴァを使用するたびにSPARKがダメージを受ける。"
 LocPromotionPopupText="<Bullet/>ノヴァは行動値を消費せず、クールダウンもない。<br/><Bullet/> ミッション最初のノヴァ攻撃では、SPARKはダメージを受けない。<br/><Bullet/>ただし、初撃以降のノヴァ攻撃はSPARKに<Ability:Nova_Damage/>の蓄積ダメージを与えていく。<br/>"
+
+;Marauder
+[SkirmisherStrike X2AbilityTemplate]
+LocLongDescription="最初の行動でメイン武器による通常射撃を行ってもターン終了とならない。"
+LocHelpText="最初の行動でメイン武器による通常射撃を行ってもターン終了とならない。"
+LocPromotionPopupText=""

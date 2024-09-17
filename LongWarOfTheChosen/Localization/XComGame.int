@@ -7878,3 +7878,9 @@ LocFriendlyName="Grapple Expert"
 LocLongDescription="Justice, Whiplash, and Wrath gain +15 aim."
 LocHelpText="Justice, Whiplash, and Wrath gain +15 aim."
 LocFlyOverText="Grapple Expert"
+
+;Marauder
+[SkirmisherStrike X2AbilityTemplate]
+LocLongDescription="Standard shots with your primary weapon are not turn-ending."
+LocHelpText="Standard shots with your primary weapon are not turn-ending."
+LocPromotionPopupText=""
