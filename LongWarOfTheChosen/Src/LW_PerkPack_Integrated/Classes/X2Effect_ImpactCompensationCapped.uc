@@ -13,6 +13,8 @@ function float GetPostDefaultDefendingDamageModifier_CH(XComGameState_Effect Eff
     WeaponDamageEffect.GetEffectDamageTypes(NewGameState, ApplyEffectParameters, IncomingTypes);
     MaxHP = TargetUnit.GetMaxStat(eStat_HP);
 
+    `LWTrace("ELA: Unit Max HP:" @MaxHP);
+
     DamageLimit = MaxHP * MaxCap;
 
     DamageModifierFinal = DamageModifier;
@@ -35,21 +37,28 @@ function float GetPostDefaultDefendingDamageModifier_CH(XComGameState_Effect Eff
 
     TargetUnit.GetUnitValue('DamageThisTurn', UnitVal);
 
+    `LWTrace("Current Damage This Turn:" @string(int(UnitVal.fValue)));
+
     if (UnitVal.fValue >= DamageLimit)
     {
+        `LWTrace("If statement 1 hit: UnitVal.fValue >= DamageLimit");
         return WeaponDamage * -DamageModifierFinal;
     }
 
     if(UnitVal.fValue + WeaponDamage >= DamageLimit)
     {
+        `LWTrace("If Statement 2 hit: UnitVal.fValue + WeaponDamage >= DamageLimit");
         return (WeaponDamage - max(0,(DamageLimit - UnitVal.fValue))) * -DamageModifierFinal;
     }
 
     if (WeaponDamage >= DamageLimit)
     {
+        `LWTrace("If Statement 3 hit: WeaponDamage >= DamageLimit");
         FinalDamage = -WeaponDamage + DamageLimit;
         return FinalDamage;
     }
+    
+    return 0;
 }
 
 defaultproperties

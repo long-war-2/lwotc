@@ -6955,3 +6955,19 @@ exec function Ted_CheckUnlockStatus(name TemplateName)
 {
 	class'Helpers'.static.OutputMsg(string(`XCOMHQ.HasSoldierUnlockTemplate(TemplateName)));
 }
+
+exec function Ted_CheckUnitValue()
+{
+	local XComGameState_Unit Unit;
+	local XComTacticalController    TacticalController;
+	local UnitValue DamageUnitValue;
+
+	TacticalController = XComTacticalController(`BATTLE.GetALocalPlayerController());
+	Unit = XComTacticalCheatManager(TacticalController.CheatManager).GetClosestUnitToCursor();
+
+	if (Unit != none)
+	{
+		Unit.GetUnitValue('DamageThisTurn', DamageUnitValue);
+		class'Helpers'.static.OutputMsg(string(DamageUnitValue.fValue));
+	}
+}
