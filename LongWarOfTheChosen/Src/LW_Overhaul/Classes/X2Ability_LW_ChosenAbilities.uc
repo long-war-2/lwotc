@@ -526,7 +526,7 @@ static function X2AbilityTemplate CreateShieldAlly(name Templatename, int Shield
 	Template.AddTargetEffect(StatBuffsEffect);
 
 
-	ShieldedEffect = CreateShieldedEffect(Template.LocFriendlyName, Template.GetMyLongDescription(), int(ShieldAmount * default.UNHOLY_ASCENSION_MOD));
+	ShieldedEffect = CreateShieldedEffect(Template.LocFriendlyName, Template.GetMyLongDescription(), ShieldAmount);
 	ShieldedEffect.TargetConditions.AddItem(AbilityCondition);
 	Template.AddTargetEffect(ShieldedEffect);
 
