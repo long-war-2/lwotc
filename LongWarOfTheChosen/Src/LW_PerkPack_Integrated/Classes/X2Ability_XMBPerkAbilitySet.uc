@@ -4236,6 +4236,7 @@ static function X2AbilityTemplate TacticalRetreat()
 	local X2Effect_GrantActionPoints Effect;
 	local X2AbilityTemplate Template;
     local XMBCondition_AbilityName NameCondition;
+	local X2AbilityCooldown	Cooldown;
 	local X2Effect_Flyover FlyoverEffect;
 
 	// Effect adds a Run and Gun action point
@@ -4253,6 +4254,10 @@ static function X2AbilityTemplate TacticalRetreat()
 	NameCondition.IncludeAbilityNames.AddItem('ThrowKnife');
 	NameCondition.IncludeAbilityNames.AddItem('MusashiThrowKnifeSecondary_LW');
 	NameCondition.IncludeAbilityNames.AddItem('CripplingStrike');
+
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = 1;
+	Template.AbilityCooldown = Cooldown;
 
 	FlyoverEffect= new class'X2Effect_Flyover';
 	FlyoverEffect.CustomFlyover = Template.LocFriendlyName;

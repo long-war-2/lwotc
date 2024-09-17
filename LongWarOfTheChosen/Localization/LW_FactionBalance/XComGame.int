@@ -245,5 +245,5 @@ LocPromotionPopupText="<Bullet/> Throw a knife as a free action. 4 Turn Cooldown
 [TacticalRetreat_LW X2AbilityTemplate]
 LocFriendlyName="Tactical Retreat"
 LocHelpText="Tactical Retreat"
-LocLongDescription="Grants a movement only action after throwing a knife. This can happen multiple times in a turn."
-LocPromotionPopupText="<Bullet/> Grants a movement only action after throwing a knife. This can happen multiple times in a turn."
+LocLongDescription="Grants a movement only action after throwing a knife. This can happen once per turn."
+LocPromotionPopupText="<Bullet/> Grants a movement only action after throwing a knife. This can happen once per turn."
