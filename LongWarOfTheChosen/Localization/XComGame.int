@@ -6981,8 +6981,8 @@ LocFlyOverText="Blood Thirst"
 ; LWOTC Needs Translation (2)
 [UnholyAscension_LW X2AbilityTemplate]
 LocFriendlyName="Unholy Ascension"
-LocLongDescription="Warlock's Greatest Champion's Shield, Aim, Crit, Will, and Psi Offense bonuses are doubled and grant crit immunity."
-LocHelpText="Warlock's Greatest Champion's Shield, Aim, Crit, Will, and Psi Offense bonuses are doubled and grant crit immunity."
+LocLongDescription="Warlock's Greatest Champion's Aim, Crit, Will, and Psi Offense bonuses are doubled and grant crit immunity."
+LocHelpText="Warlock's Greatest Champion's Aim, Crit, Will, and Psi Offense bonuses are doubled and grant crit immunity."
 LocFlyOverText="Unholy Ascension"
 
 [RuptureImmunity X2AbilityTemplate]
