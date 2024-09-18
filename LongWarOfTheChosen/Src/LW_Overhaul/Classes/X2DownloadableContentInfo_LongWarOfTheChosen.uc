@@ -1615,7 +1615,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		Satisfactory = false;
 		Tries = 0;
 		
-		While (!Satisfactory && Tries < 12)
+		While (!Satisfactory && Tries < 16)
 		{
 			foreach SpawnInfo.SelectedCharacterTemplateNames(CharacterTemplateName, idx)
 			{
