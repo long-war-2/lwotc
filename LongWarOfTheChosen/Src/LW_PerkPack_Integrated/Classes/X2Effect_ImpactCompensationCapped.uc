@@ -1,7 +1,7 @@
 class X2Effect_ImpactCompensationCapped extends X2Effect_Persistent config(LW_SoldierSkills);
 
-var float DamageModifier;
-var float MaxCap;
+var array<float> DamageModifier;
+var array<float> MaxCap;
 
 function float GetPostDefaultDefendingDamageModifier_CH(XComGameState_Effect EffectState, XComGameState_Unit SourceUnit, XComGameState_Unit TargetUnit, XComGameState_Ability AbilityState, const out EffectAppliedData ApplyEffectParameters, float WeaponDamage, X2Effect_ApplyWeaponDamage WeaponDamageEffect, XComGameState NewGameState)
 {
@@ -15,9 +15,9 @@ function float GetPostDefaultDefendingDamageModifier_CH(XComGameState_Effect Eff
 
     `LWTrace("ELA: Unit Max HP:" @MaxHP);
 
-    DamageLimit = MaxHP * MaxCap;
+    DamageLimit = MaxHP * MaxCap[`TACTICALDIFFICULTYSETTING];
 
-    DamageModifierFinal = DamageModifier;
+    DamageModifierFinal = DamageModifier[`TACTICALDIFFICULTYSETTING];
 
     if(TargetUnit.HasSoldierAbility('Impenetrable_LW'))
 	{

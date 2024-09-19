@@ -33,8 +33,8 @@ var config float UNHOLY_ASCENSION_MOD;
 var config float SHIELD_ALLY_PCT_DR;
 var config float IMPACT_COMPENSATION_PCT_DR;
 var config int IMPACT_COMPENSATION_MAX_STACKS;
-var config float IMPACT_V2_DAMAGE_CAP;
-var config float IMPACT_V2_PCT_DR;
+var config array<float> IMPACT_V2_DAMAGE_CAP;
+var config array<float> IMPACT_V2_PCT_DR;
 
 var config float WARLOCK_MOBILITY_DEBUFF;
 var config float HUNTER_MOBILITY_DEBUFF;
