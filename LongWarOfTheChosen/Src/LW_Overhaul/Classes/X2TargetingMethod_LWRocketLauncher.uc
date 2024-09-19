@@ -64,7 +64,7 @@ function Update(float DeltaTime)
 	if( NewTargetLocation != CachedTargetLocation )
 	{
 		FiringLocation = FiringUnit.Location;
-		FiringLocation.Z += 80; // (World_FloorHeight is 64, add 16 for a bit of jank improvement)
+		FiringLocation.Z += 96; // (World_FloorHeight is 64, add 32 for a bit of jank improvement)
 		World = `XWORLD;
 		GoodView = false;
 		if( World.VoxelRaytrace_Locations(FiringLocation, NewTargetLocation, Raytrace) )
