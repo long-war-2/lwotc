@@ -4601,6 +4601,12 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'IMPACT_V2_PCT_DR':
 			Outstring = string(int(class'X2Ability_LW_ChosenAbilities'.default.IMPACT_V2_PCT_DR[`TACTICALDIFFICULTYSETTING] * 100));
 			return true;
+		case 'IMPACT_V2XCOM_DAMAGE_CAP':
+			Outstring = string(int(class'X2Ability_LW_ChosenAbilities'.default.IMPACT_V2XCOM_DAMAGE_CAP[`TACTICALDIFFICULTYSETTING] * 100));
+			return true;
+		case 'IMPACT_V2XCOM_PCT_DR':
+			Outstring = string(int(class'X2Ability_LW_ChosenAbilities'.default.IMPACT_V2XCOM_PCT_DR[`TACTICALDIFFICULTYSETTING] * 100));
+			return true;
 		case 'SHIELD_ALLY_PCT_DR':
 			Outstring = string(int(class'X2Ability_LW_ChosenAbilities'.default.SHIELD_ALLY_PCT_DR * 100));
 			return true;

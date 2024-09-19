@@ -36,6 +36,10 @@ var config int IMPACT_COMPENSATION_MAX_STACKS;
 var config array<float> IMPACT_V2_DAMAGE_CAP;
 var config array<float> IMPACT_V2_PCT_DR;
 
+var config array<float> IMPACT_V2XCOM_DAMAGE_CAP;
+var config array<float> IMPACT_V2XCOM_PCT_DR;
+
+
 var config float WARLOCK_MOBILITY_DEBUFF;
 var config float HUNTER_MOBILITY_DEBUFF;
 var config int HUNTER_MOB_PER_ATTACK;
@@ -99,6 +103,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(ImpactCompensationPassive());
 	Templates.AddItem(ImpactCompensationV2());
 	Templates.AddItem(ImpactCompensationPassiveV2());
+	Templates.AddItem(ImpactCompensationV2XCOM());
 
 	Templates.AddItem(CreateDisabler());
 
@@ -2067,6 +2072,55 @@ static function X2AbilityTemplate ImpactCompensationPassiveV2()
 	local X2AbilityTemplate                 Template;	
 
 	Template = PurePassive('ImpactCompensationPassiveV2_LW', "img:///UILibrary_MW.UIPerk_intimidate", true, 'eAbilitySource_Perk');
+	Template.bCrossClassEligible = false;
+	//Template.AdditionalAbilities.AddItem('DamageControlAbilityActivated');
+	return Template;
+}
+
+static function X2AbilityTemplate ImpactCompensationV2XCOM()
+{
+	local X2AbilityTemplate					Template;
+	local X2Effect_ImpactCompensationCapped		ImpactEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ImpactCompensationV2XCOM_LW');
+	Template.IconImage = "img:///UILibrary_MW.UIPerk_intimidate";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.AbilityToHitCalc = default.DeadEye;
+    Template.AbilityTargetStyle = default.SelfTarget;
+	Template.bShowActivation = false;
+	Template.bSkipFireAction = true;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	ImpactEffect = new class'X2Effect_ImpactCompensationCapped';
+	ImpactEffect.DamageModifier = default.IMPACT_V2XCOM_PCT_DR;
+	ImpactEffect.MaxCap = default.IMPACT_V2XCOM_DAMAGE_CAP;
+	ImpactEffect.BuildPersistentEffect(1, true, false);
+	ImpactEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,,Template.AbilitySourceName);
+
+	ImpactEffect.DuplicateResponse = eDupe_Ignore;
+	Template.AddTargetEffect(ImpactEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	//Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+
+	//Template.AdditionalAbilities.AddItem('ImpactCompensationPassiveV2_LW');
+
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+
+	return Template;
+}
+
+static function X2AbilityTemplate ImpactCompensationPassiveV2XCOM()
+{
+	local X2AbilityTemplate                 Template;	
+
+	Template = PurePassive('ImpactCompensationPassiveV2XCOM_LW', "img:///UILibrary_MW.UIPerk_intimidate", true, 'eAbilitySource_Perk');
 	Template.bCrossClassEligible = false;
 	//Template.AdditionalAbilities.AddItem('DamageControlAbilityActivated');
 	return Template;
