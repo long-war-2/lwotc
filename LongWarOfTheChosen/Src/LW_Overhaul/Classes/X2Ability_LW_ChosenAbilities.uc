@@ -104,6 +104,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(ImpactCompensationV2());
 	Templates.AddItem(ImpactCompensationPassiveV2());
 	Templates.AddItem(ImpactCompensationV2XCOM());
+	Templates.AddItem(ClearUnitValueEachTurnAbility());
 
 	Templates.AddItem(CreateDisabler());
 
@@ -2059,7 +2060,7 @@ static function X2AbilityTemplate ImpactCompensationV2()
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 	//Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
 
-	//Template.AdditionalAbilities.AddItem('ImpactCompensationPassiveV2_LW');
+	Template.AdditionalAbilities.AddItem('ClearDamageThisTurnAbility_LW');
 
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;
@@ -2108,10 +2109,47 @@ static function X2AbilityTemplate ImpactCompensationV2XCOM()
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 	//Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
 
-	//Template.AdditionalAbilities.AddItem('ImpactCompensationPassiveV2_LW');
+	Template.AdditionalAbilities.AddItem('ClearDamageThisTurnAbility_LW');
 
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;
+
+	return Template;
+}
+
+static function X2AbilityTemplate ClearUnitValueEachTurnAbility()
+{
+	local X2AbilityTemplate Template;
+	local X2AbilityTrigger_EventListener Trigger;
+	local X2Effect_ClearUnitValue ClearUnitValue;
+
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ClearDamageThisTurnAbility_LW');
+
+	Template.AbilitySourceName = 'eAbilitySource_Standard';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.bShowActivation = false;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+
+	Trigger = new class'X2AbilityTrigger_EventListener';
+    Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+    Trigger.ListenerData.EventID = 'PlayerTurnEnded';
+    Trigger.ListenerData.Filter = eFilter_Player;
+    Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+    Template.AbilityTriggers.AddItem(Trigger);
+
+	Trigger = new class'X2AbilityTrigger_EventListener';
+    Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+    Trigger.ListenerData.EventID = 'PlayerTurnBegun';
+    Trigger.ListenerData.Filter = eFilter_Player;
+    Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+    Template.AbilityTriggers.AddItem(Trigger);
+
+	ClearUnitValue = new class'X2Effect_ClearUnitValue';
+	ClearUnitValue.UnitValueName = 'DamageThisTurn';
+	Template.AddTargetEffect(ClearUnitValue);
 
 	return Template;
 }
