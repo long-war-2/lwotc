@@ -2713,7 +2713,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		case 'ChosenShotgun_XCOM':
 			//WeaponTemplate.Abilities.AddItem('Brawler');
 			WeaponTemplate.Abilities.AddItem('Vampirism_LW');
-			WeaponTemplate.Abilities.AddItem('ImpactCompensationV2_LW');
+			WeaponTemplate.Abilities.AddItem('ImpactCompensationV2XCOM_LW');
 			WeaponTemplate.OnAcquiredFn = none;
 			WeaponTemplate.NumUpgradeSlots = 2;
 			break;
