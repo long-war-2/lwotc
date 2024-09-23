@@ -627,9 +627,9 @@ static function X2AbilityTemplate CreateCLFocus(name AbilityName, int FocusLevel
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
-	Template.AdditionalAbilities.AddItem('SupremeFocus');
-	Template.AdditionalAbilities.AddItem('DeepFocus');
-	Template.AdditionalAbilities.AddItem('AddSuperGigaOmegaFocus');
+	Template.AdditionalAbilities.AddItem('SupremeFocus2');
+	Template.AdditionalAbilities.AddItem('DeepFocus2');
+	Template.AdditionalAbilities.AddItem('SuperGigaOmegaFocus');
 	
 	Template.AddTargetEffect(new class'X2Effect_TemplarFocus');
 

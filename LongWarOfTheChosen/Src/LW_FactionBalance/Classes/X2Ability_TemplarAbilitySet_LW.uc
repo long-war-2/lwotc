@@ -31,6 +31,8 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	//from Udaya
 	Templates.AddItem(AddSupremeFocus());
+	Templates.AddItem(DeepFocus2());
+	Templates.AddItem(AddSupremeFocus2());
 	Templates.AddItem(AddSuperGigaOmegaFocus());
 	Templates.AddItem(AddTemplarSolace());
 	Templates.AddItem(AddTemplarFleche());
@@ -71,12 +73,27 @@ static function X2AbilityTemplate AddSupremeFocus()
 }
 
 
+static function X2AbilityTemplate DeepFocus2()
+{
+	return PurePassive('DeepFocus2', "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_DeepFocus", false, 'eAbilitySource_Psionic', false);
+}
+
+static function X2AbilityTemplate AddSupremeFocus2()
+{
+	local X2AbilityTemplate Template;
+
+	Template = PurePassive('SupremeFocus2', "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_SupremeFocus", false, 'eAbilitySource_Psionic', false);
+	Template.PrerequisiteAbilities.AddItem('DeepFocus2');
+
+	return Template;
+}
+
+
 static function X2AbilityTemplate AddSuperGigaOmegaFocus()
 {
 	local X2AbilityTemplate Template;
 
-	Template = PurePassive('AddSuperGigaOmegaFocus', "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_SupremeFocus", false, 'eAbilitySource_Psionic', false);
-	Template.PrerequisiteAbilities.AddItem('SupremeFocus');
+	Template = PurePassive('SuperGigaOmegaFocus', "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_SupremeFocus", false, 'eAbilitySource_Psionic', false);
 
 	return Template;
 }
