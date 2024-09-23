@@ -376,7 +376,7 @@ static function X2AbilityTemplate Hipfire()
 {
 	local X2AbilityTemplate		Template;
 	
-	Template = PurePassive('Hipfire_LW', "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_strike", false, 'eAbilitySource_Perk', true);
+	Template = PurePassive('Hipfire_LW', "img:///UILibrary_XPerkIconPack.UIPerk_pistol_shot", false, 'eAbilitySource_Perk', true);
 
 
 	return Template;
@@ -4245,7 +4245,7 @@ static function X2AbilityTemplate TacticalRetreat()
 	Effect.PointType = class'X2CharacterTemplateManager'.default.MoveActionPoint;
 
 	// Create a triggered ability that will activate whenever the unit uses an ability that meets the condition
-	Template = SelfTargetTrigger('TacticalRetreat_LW', "img:///UILibrary_PerkIcons.UIPerk_stickandmove", false, Effect, 'AbilityActivated');
+	Template = SelfTargetTrigger('TacticalRetreat_LW', "img:///UILibrary_XPerkIconPack.UIPerk_knife_move", false, Effect, 'AbilityActivated');
 
 	// Only trigger with Shield Wall
 	NameCondition = new class'XMBCondition_AbilityName';
