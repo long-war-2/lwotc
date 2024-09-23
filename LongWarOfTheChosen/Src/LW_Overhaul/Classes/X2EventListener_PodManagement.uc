@@ -127,7 +127,7 @@ static function EventListenerReturn OnUnitGroupTurnBegun(Object EventData, Objec
 		return ELR_NoInterrupt;
 	}
 
-	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Updating Pod Job");
+	//NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Updating Pod Job");
 	NewPodManager = XComGameState_LWPodManager(NewGameState.ModifyStateObject(class'XComGameState_LWPodManager', `LWPODMGR.ObjectID));
 	NewPodManager.UpdatePod(NewGameState, GroupState);
 
