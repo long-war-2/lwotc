@@ -146,6 +146,7 @@ var config array<string> MapsToDisable;
 var config array<Name> EncountersToExclude;
 
 var config array<Name> ROCKET_ABILITIES_TO_UPDATE;
+var config array<Name> NOSCATTER_ROCKET_ABILITIES_TO_UPDATE;
 
 // End data and data structures
 //-----------------------------
@@ -304,6 +305,17 @@ static function EditModdedRocketAbilities()
 		{
 			`LWTrace("Patching Rocket launcher ability" @AbilityTemplate.DataName);
 			AbilityTemplate.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher';
+		}
+	}
+
+	foreach default.NOSCATTER_ROCKET_ABILITIES_TO_UPDATE(AbilityName)
+	{
+		AbilityTemplate = AbilityManager.FindAbilityTemplate(AbilityName);
+
+		if(AbilityTemplate != none)
+		{
+			`LWTrace("Patching Rocket launcher ability" @AbilityTemplate.DataName);
+			AbilityTemplate.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher_NoScatter';
 		}
 	}
 }
