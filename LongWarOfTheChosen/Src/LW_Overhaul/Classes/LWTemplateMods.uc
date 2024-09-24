@@ -1903,6 +1903,12 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		AddDoubleTapActionPoint (Template, class'X2Ability_LW_SharpshooterAbilitySet'.default.DoubleTapActionPoint);
 	}
 
+	// Swap vanilla rocket targeting abilities to improved targeting.
+	if (Template.TargetingMethod == class'X2TargetingMethod_RocketLauncher')
+	{
+		Template.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher_NoScatter';
+	}
+
 	// bugfix, hat tip to BountyGiver, needs test
 	if (Template.DataName == 'SkullOuch')
 	{
