@@ -4225,7 +4225,7 @@ static function X2AbilityTemplate GrappleExpert()
 	HitModEffect = new class'X2Effect_SkirmMeleeHitMod';
 	HitModEffect.BuildPersistentEffect(1, true, false, false);
 
-	Template = Passive('GrappleExpert_LW', "img:///UILibrary_PerkIcons.UIPerk_grapple", false, HitModEffect);
+	Template = Passive('GrappleExpert_LW', "img:///UILibrary_LWOTC.UIPerk_grappleexpert", false, HitModEffect);
 
 	return Template;
 }
