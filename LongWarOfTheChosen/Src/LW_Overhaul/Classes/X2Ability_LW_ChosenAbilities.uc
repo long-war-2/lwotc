@@ -33,6 +33,12 @@ var config float UNHOLY_ASCENSION_MOD;
 var config float SHIELD_ALLY_PCT_DR;
 var config float IMPACT_COMPENSATION_PCT_DR;
 var config int IMPACT_COMPENSATION_MAX_STACKS;
+var config array<float> IMPACT_V2_DAMAGE_CAP;
+var config array<float> IMPACT_V2_PCT_DR;
+
+var config array<float> IMPACT_V2XCOM_DAMAGE_CAP;
+var config array<float> IMPACT_V2XCOM_PCT_DR;
+
 
 var config float WARLOCK_MOBILITY_DEBUFF;
 var config float HUNTER_MOBILITY_DEBUFF;
@@ -95,6 +101,10 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AssassinSlash_LW());
 	Templates.AddItem(ImpactCompensation());
 	Templates.AddItem(ImpactCompensationPassive());
+	Templates.AddItem(ImpactCompensationV2());
+	Templates.AddItem(ImpactCompensationPassiveV2());
+	Templates.AddItem(ImpactCompensationV2XCOM());
+	Templates.AddItem(ClearUnitValueEachTurnAbility());
 
 	Templates.AddItem(CreateDisabler());
 
@@ -522,7 +532,7 @@ static function X2AbilityTemplate CreateShieldAlly(name Templatename, int Shield
 	Template.AddTargetEffect(StatBuffsEffect);
 
 
-	ShieldedEffect = CreateShieldedEffect(Template.LocFriendlyName, Template.GetMyLongDescription(), int(ShieldAmount * default.UNHOLY_ASCENSION_MOD));
+	ShieldedEffect = CreateShieldedEffect(Template.LocFriendlyName, Template.GetMyLongDescription(), ShieldAmount);
 	ShieldedEffect.TargetConditions.AddItem(AbilityCondition);
 	Template.AddTargetEffect(ShieldedEffect);
 
@@ -1986,7 +1996,7 @@ static function X2AbilityTemplate ImpactCompensation()
 	local X2Effect_ImpactCompensation		ImpactEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ImpactCompensation_LW');
-	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityDamageControl";
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_defense_blossom";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.Hostility = eHostility_Neutral;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
@@ -2016,6 +2026,141 @@ static function X2AbilityTemplate ImpactCompensation()
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;
 
+	return Template;
+}
+
+static function X2AbilityTemplate ImpactCompensationV2()
+{
+	local X2AbilityTemplate					Template;
+	local X2Effect_ImpactCompensationCapped		ImpactEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ImpactCompensationV2_LW');
+	Template.IconImage = "img:///UILibrary_MW.UIPerk_intimidate";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.AbilityToHitCalc = default.DeadEye;
+    Template.AbilityTargetStyle = default.SelfTarget;
+	Template.bShowActivation = false;
+	Template.bSkipFireAction = true;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	ImpactEffect = new class'X2Effect_ImpactCompensationCapped';
+	ImpactEffect.DamageModifier = default.IMPACT_V2_PCT_DR;
+	ImpactEffect.MaxCap = default.IMPACT_V2_DAMAGE_CAP;
+	ImpactEffect.BuildPersistentEffect(1, true, false);
+	ImpactEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,,Template.AbilitySourceName);
+
+	ImpactEffect.DuplicateResponse = eDupe_Ignore;
+	Template.AddTargetEffect(ImpactEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	//Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+
+	Template.AdditionalAbilities.AddItem('ClearDamageThisTurnAbility_LW');
+
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+
+	return Template;
+}
+
+static function X2AbilityTemplate ImpactCompensationPassiveV2()
+{
+	local X2AbilityTemplate                 Template;	
+
+	Template = PurePassive('ImpactCompensationPassiveV2_LW', "img:///UILibrary_MW.UIPerk_intimidate", true, 'eAbilitySource_Perk');
+	Template.bCrossClassEligible = false;
+	//Template.AdditionalAbilities.AddItem('DamageControlAbilityActivated');
+	return Template;
+}
+
+static function X2AbilityTemplate ImpactCompensationV2XCOM()
+{
+	local X2AbilityTemplate					Template;
+	local X2Effect_ImpactCompensationCapped		ImpactEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ImpactCompensationV2XCOM_LW');
+	Template.IconImage = "img:///UILibrary_MW.UIPerk_intimidate";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.AbilityToHitCalc = default.DeadEye;
+    Template.AbilityTargetStyle = default.SelfTarget;
+	Template.bShowActivation = false;
+	Template.bSkipFireAction = true;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	ImpactEffect = new class'X2Effect_ImpactCompensationCapped';
+	ImpactEffect.DamageModifier = default.IMPACT_V2XCOM_PCT_DR;
+	ImpactEffect.MaxCap = default.IMPACT_V2XCOM_DAMAGE_CAP;
+	ImpactEffect.BuildPersistentEffect(1, true, false);
+	ImpactEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,,Template.AbilitySourceName);
+
+	ImpactEffect.DuplicateResponse = eDupe_Ignore;
+	Template.AddTargetEffect(ImpactEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	//Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+
+	Template.AdditionalAbilities.AddItem('ClearDamageThisTurnAbility_LW');
+
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+
+	return Template;
+}
+
+static function X2AbilityTemplate ClearUnitValueEachTurnAbility()
+{
+	local X2AbilityTemplate Template;
+	local X2AbilityTrigger_EventListener Trigger;
+	local X2Effect_ClearUnitValue ClearUnitValue;
+
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ClearDamageThisTurnAbility_LW');
+
+	Template.AbilitySourceName = 'eAbilitySource_Standard';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.bShowActivation = false;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+
+	Trigger = new class'X2AbilityTrigger_EventListener';
+    Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+    Trigger.ListenerData.EventID = 'PlayerTurnEnded';
+    Trigger.ListenerData.Filter = eFilter_Player;
+    Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+    Template.AbilityTriggers.AddItem(Trigger);
+
+	Trigger = new class'X2AbilityTrigger_EventListener';
+    Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+    Trigger.ListenerData.EventID = 'PlayerTurnBegun';
+    Trigger.ListenerData.Filter = eFilter_Player;
+    Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+    Template.AbilityTriggers.AddItem(Trigger);
+
+	ClearUnitValue = new class'X2Effect_ClearUnitValue';
+	ClearUnitValue.UnitValueName = 'DamageThisTurn';
+	Template.AddTargetEffect(ClearUnitValue);
+
+	return Template;
+}
+
+static function X2AbilityTemplate ImpactCompensationPassiveV2XCOM()
+{
+	local X2AbilityTemplate                 Template;	
+
+	Template = PurePassive('ImpactCompensationPassiveV2XCOM_LW', "img:///UILibrary_MW.UIPerk_intimidate", true, 'eAbilitySource_Perk');
+	Template.bCrossClassEligible = false;
+	//Template.AdditionalAbilities.AddItem('DamageControlAbilityActivated');
 	return Template;
 }
 

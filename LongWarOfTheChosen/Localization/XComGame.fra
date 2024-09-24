@@ -7343,6 +7343,14 @@ LocLongDescription="Relâche une explosion énergétique blessant toutes les uni
 LocHelpText="Explose en blessant toutes les unités à proximité. Les Novas suivantes endommageront le Spark."
 LocPromotionPopupText="<Bullet/> La capacité Nova ne consomme pas de point d'action et n'a pas besoin de se recharger. <br/><Bullet/> La première Nova de chaque mission ne fait perdre aucun PV au Spark. <br/><Bullet/> Toutes les Novas suivantes font systématiquement perdre <Ability:Nova_Damage/> PV au Spark (effet cumulatif). <br/>"
 
+;Marauder
+[SkirmisherStrike X2AbilityTemplate]
+; LWOTC translated
+LocLongDescription="Un tir standard avec votre arme principale ne met plus fin à votre tour."
+LocHelpText="Un tir standard avec votre arme principale ne met plus fin à votre tour."
+LocPromotionPopupText=""
+; End translated
+
 ;;;;;;;;;;;;;;;;;;;;  SPECIFICITES FRA ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; LWotC(FRA) - Was here before, can't say if I've to delete it
 [X2Ability_PerkPackAbilitySet]

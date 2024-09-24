@@ -1745,7 +1745,7 @@ static function X2AbilityTemplate CreateHighPressureAbility()
 static function X2AbilityTemplate CreateConcussionRocketAbility()
 {
 	local X2AbilityTemplate					Template;
-	local X2AbilityCharges					Charges;
+	local X2AbilityCharges_BonusCharges		Charges;
 	local X2AbilityCost_Charges				ChargeCost;
 	local X2AbilityCost_ActionPoints		ActionPointCost;
 	local X2AbilityTarget_Cursor			CursorTarget;
@@ -1792,8 +1792,10 @@ static function X2AbilityTemplate CreateConcussionRocketAbility()
 	ActionPointCost = new class'X2AbilityCost_HeavyWeaponActionPoints';
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
-	Charges = new class'X2AbilityCharges';
+	Charges = new class'X2AbilityCharges_BonusCharges';
 	Charges.InitialCharges = 1;
+	Charges.BonusItem = 'ExtraRocket';
+	Charges.BonusChargesCount =  default.ROCKET_SHOCKANDAWE_CHARGES;
 	Template.AbilityCharges = Charges;
 
 	ChargeCost = new class'X2AbilityCost_Charges';
@@ -1887,7 +1889,7 @@ static function X2AbilityTemplate CreateConcussionRocketAbility()
 static function X2AbilityTemplate CreateBlasterConcussionRocketAbility()
 {
 	local X2AbilityTemplate					Template;
-	local X2AbilityCharges					Charges;
+	local X2AbilityCharges_BonusCharges		Charges;
 	local X2AbilityCost_Charges				ChargeCost;
 	local X2AbilityCost_ActionPoints		ActionPointCost;
 	local X2AbilityTarget_Cursor			CursorTarget;
@@ -1934,8 +1936,10 @@ static function X2AbilityTemplate CreateBlasterConcussionRocketAbility()
 	ActionPointCost = new class'X2AbilityCost_HeavyWeaponActionPoints';
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
-	Charges = new class'X2AbilityCharges';
+	Charges = new class'X2AbilityCharges_BonusCharges';
 	Charges.InitialCharges = 1;
+	Charges.BonusItem = 'ExtraRocket';
+	Charges.BonusChargesCount =  default.ROCKET_SHOCKANDAWE_CHARGES;
 	Template.AbilityCharges = Charges;
 
 	ChargeCost = new class'X2AbilityCost_Charges';
@@ -2523,6 +2527,7 @@ static function X2AbilityTemplate CreateEMPRocketAbility()
 
 	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2, 100, false);
 	StunnedEffect.SetDisplayInfo(ePerkBuff_Penalty, class'X2StatusEffects'.default.RoboticStunnedFriendlyName, class'X2StatusEffects'.default.RoboticStunnedFriendlyDesc, "img:///UILibrary_PerkIcons.UIPerk_stun");
+	StunnedEffect.bRemoveWhenSourceDies = false;
 	StunnedEffect.TargetConditions.AddItem(UnitCondition);
 	Template.AddMultiTargetEffect(StunnedEffect);
 
@@ -2658,6 +2663,7 @@ static function X2AbilityTemplate CreateBlasterEMPRocketAbility()
 
 	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2, 100, false);
 	StunnedEffect.SetDisplayInfo(ePerkBuff_Penalty, class'X2StatusEffects'.default.RoboticStunnedFriendlyName, class'X2StatusEffects'.default.RoboticStunnedFriendlyDesc, "img:///UILibrary_PerkIcons.UIPerk_stun");
+	StunnedEffect.bRemoveWhenSourceDies = false;
 	StunnedEffect.TargetConditions.AddItem(UnitCondition);
 	Template.AddMultiTargetEffect(StunnedEffect);
 

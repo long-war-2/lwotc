@@ -101,7 +101,7 @@ static function AddCritUpgrade(X2ItemTemplateManager ItemTemplateManager, Name T
 	Template.AddUpgradeAttachment('Scope', 'UIPawnLocation_WeaponUpgrade_Shotgun_Optic', "IRI_Bullpup_LS_LW.Meshes.SM_Bullpup_LS_LaserSight", "", 'Bullpup_LS', , "img:///IRI_Bullpup_LS_LW.UI.Laser-bullop-laser", "img:///IRI_Bullpup_LS_LW.UI.Laser", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
 	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_Shotgun_Optic', "BemSMG.Meshes.SM_HOR_Bem_SMG_OpticB", "", 'Bullpup_CG', , "img:///IRI_Bullpup_CG_LW.UI.coil_bullop_laser", "img:///UILibrary_XPACK_StrategyImages.BeamSMG_OpticB_inv", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
 	
-	Template.AddUpgradeAttachment('LaserSight', 'UIPawnLocation_WeaponUpgrade_Sniper_Optic', "IRI_VektorRifle_LS_LW.Meshes.SM_VektorRifle_LS_LaserSight", "", 'Vektor_LS', , "img:///IRI_VektorRifle_LS_LW.UI.screen-laser-pointer", "img:///IRI_Bullpup_LS_LW.UI.Screen-LaserSight", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
+	Template.AddUpgradeAttachment('LaserSight', 'UIPawnLocation_WeaponUpgrade_Sniper_Optic', "IRI_VektorRifle_LS_LW.Meshes.SM_VektorRifle_LS_LaserSight", "", 'Vektor_LS', , "img:///IRI_VektorRifle_LS_LW.UI.Laser-laser", "img:///IRI_Bullpup_LS_LW.UI.Screen-LaserSight", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
 	Template.AddUpgradeAttachment('LaserSight', 'UIPawnLocation_WeaponUpgrade_Shotgun_Optic', "IRI_VektorRifle_CG_LW.Meshes.SM_Vektor_CG_LaserSight", "", 'Vektor_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilSniperRifle_OpticB", "img:///IRI_VektorRifle_CG_LW.UI.Scope", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
 
 }

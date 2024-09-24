@@ -181,7 +181,7 @@ LocFlyOverText="Napalm-X"
 ; LWOTC Needs Translation (3)
 LocLongDescription="Your Flamethrower can now panic enemies, and enemies set on fire take 1 additional damage per tick."
 LocHelpText="Your Flamethrower can now panic enemies, and enemies set on fire take 1 additional damage per tick."
-LocPromotionPopupText="<Bullet/> Your Flamethrower can now panic enemies. Enemy units must pass a will check to avoid negative effects.<br/><Bullet/> The chance to panic is <Ability:NAPALM_X_BASEVALUE>% + <Ability:GAUNTLET_CONVENTIONAL_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_MAG_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_BEAM_OPPOSED_STAT_STRENTH>%, depending on soldier's gauntlet tier, and is negatively affected by target's Will score.<br/><Bullet/> Enemies hit by Roust are not affected by Napalm-X."
+LocPromotionPopupText="<Bullet/> Your Flamethrower can now panic enemies. Enemy units must pass a will check to avoid negative effects.<br/><Bullet/> The chance to panic is <Ability:NAPALM_X_BASEVALUE>% + <Ability:GAUNTLET_CONVENTIONAL_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_MAG_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_BEAM_OPPOSED_STAT_STRENTH>%, depending on soldier's gauntlet tier, and is negatively affected by target's Will score."
 ; End Translation (3)
 
 [PhosphorusPassive X2AbilityTemplate]
@@ -267,9 +267,9 @@ LocPromotionPopupText="<Bullet/> You equip one additional rocket.<br/>"
 [FireInTheHole X2AbilityTemplate]
 LocFriendlyName="Fire In The Hole"
 LocFlyOverText="Fire In The Hole"
-LocLongDescription="Your rockets are more accurate, and the standard gauntlet rocket deals +2 damage."
-LocHelpText="Your rockets are more accurate. and the standard gauntlet rocket deals +2 damage."
-LocPromotionPopupText="<Bullet/> Your rockets are more likely to hit their intended point of impact, or at least close to it.<br/><Bullet/> The maximum it can miss by is reduced by two tiles."
+LocLongDescription="Your rockets are more accurate, and gauntlet rockets deal +2 damage."
+LocHelpText="Your rockets are more accurate, and gauntlet rockets deal +2 damage."
+LocPromotionPopupText="<Bullet/> Your rockets are more likely to hit their intended point of impact, or at least close to it.<br/><Bullet/> The maximum it can miss by is reduced by two tiles.<br/><Bullet/> Any rocket ability that is affected by Javelin Rockets will gain the bonus damage."
 
 [ImprovedMunitions_LW X2AbilityTemplate]
 LocFriendlyName="Improved Warheads"
@@ -1679,8 +1679,8 @@ TacticalText="<Bullet/> Grants the High Pressure ability, which provides +2 char
 [ExtraRocket X2WeaponTemplate]
 FriendlyName="Extra Rocket"
 FriendlyNamePlural="Extra Rocket"
-BriefSummary="Grants a second standard Gauntlet rocket."
-TacticalText="<Bullet/> Grants a second standard rocket for the Technical's rocket launcher."
+BriefSummary="Grants an additional standard Gauntlet rocket and an additional use of Concussion Rocket."
+TacticalText="<Bullet/> Grants an additional standard rocket for the Technical's rocket launcher and an additional use of Concussion Rocket."
 
 [Neurowhip X2EquipmentTemplate]
 FriendlyName="Neurowhip"
@@ -5403,15 +5403,15 @@ LocLongDescription="Overwatch now trigger on any hostile action, not just moveme
 LocPromotionPopupText="<Bullet/> If triggered by an enemy action, Covering Fire will trigger before the enemy action completes.<br/><Bullet/> In addition, having the Covering Fire ability allows the owner to ignore 2/3 of cover bonuses with reaction fire."
 
 [GrenadeLauncher_MG X2GrenadeLauncherTemplate]
-BriefSummary="Our Advanced Grenade Launcher uses magnetic technology to propel grenades further than our conventional launcher."
-TacticalText="<Bullet/> The Advanced Grenade Launcher has an increased range over the standard Grenade Launcher.\n."
+BriefSummary="Our Advanced Grenade Launcher uses magnetic technology to propel grenades further than our conventional launcher and provides an additional grenade to grenade only slots."
+TacticalText="<Bullet/> The Advanced Grenade Launcher has an increased range over the standard Grenade Launcher and will give a bonus grenade item to grenades equipped in the grenade-only slot.\n."
 
 ; LWOTC Needs Translation
 [GrenadeLauncher_BM X2GrenadeLauncherTemplate]
 FriendlyName="Beam Grenade Launcher"
 FriendlyNamePlural="Beam Grenade Launchers"
-BriefSummary="The Beam Grenade Launcher combines our latest breakthroughs in beam technology-based propulsion and AI-assisted targeting systems to deliver payloads with unprecedented precision."
-TacticalText="<Bullet/> The Beam Grenade Launcher transforms any grenade into an autonomous projectile that can navigate around obstacles with ease."
+BriefSummary="The Beam Grenade Launcher combines our latest breakthroughs in beam technology-based propulsion and AI-assisted targeting systems to deliver payloads with unprecedented precision. Also provides extra grenades items to all utility and grenade slot grenades."
+TacticalText="<Bullet/> The Beam Grenade Launcher transforms any grenade into an autonomous projectile that can navigate around obstacles with ease. Grants Full Kit as well as Heavy Ordnance, providing bonus uses of utility slot and grenade slot grenades."
 ; End Translation
 
 [FlashbangGrenade X2GrenadeTemplate]
@@ -5670,7 +5670,7 @@ LocPromotionPopupText="<Bullet/> Reduces Shadow's cooldown by 1 turn.<br/>"
 LocFriendlyName="Blood Trail"
 LocLongDescription="Attacks deal +<Ability:BLOODTRAILDAMAGE/> damage and ignore up to <Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> Dodge if the target has taken damage after your previous turn."
 LocHelpText="Attacks deal +<Ability:BLOODTRAILDAMAGE/> damage and ignore up to <Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> Dodge if the target has been wounded this turn."
-LocPromotionPopupText="<Bullet/> The bonuses apply if the enemy has taken damage on your turn or its previous turn.<br/><Bullet/> Works with all weapons, including grenades.<br/>"
+LocPromotionPopupText="<Bullet/> The bonuses apply if the enemy has taken damage on your turn or its previous turn.<br/><Bullet/> Works with all weapons, except grenades.<br/>"
 ; End Translation (4)
 
 [PaleHorse X2AbilityTemplate]
@@ -7023,8 +7023,8 @@ LocFlyOverText="Blood Thirst"
 ; LWOTC Needs Translation (2)
 [UnholyAscension_LW X2AbilityTemplate]
 LocFriendlyName="Unholy Ascension"
-LocLongDescription="Warlock's Greatest Champion's Shield, Aim, Crit, Will, and Psi Offense bonuses are doubled and grant crit immunity."
-LocHelpText="Warlock's Greatest Champion's Shield, Aim, Crit, Will, and Psi Offense bonuses are doubled and grant crit immunity."
+LocLongDescription="Warlock's Greatest Champion's Aim, Crit, Will, and Psi Offense bonuses are doubled and grant crit immunity."
+LocHelpText="Warlock's Greatest Champion's Aim, Crit, Will, and Psi Offense bonuses are doubled and grant crit immunity."
 LocFlyOverText="Unholy Ascension"
 
 [RuptureImmunity X2AbilityTemplate]
@@ -7082,8 +7082,8 @@ LocFlyOverText="Misty Madness"
 
 [Impenetrable_LW X2AbilityTemplate]
 LocFriendlyName="Impenetrable"
-LocHelpText="Impact Compensation Stacking limit is increased by 1."
-LocLongDescription="Impact Compensation Stacking limit is increased by 1."
+LocHelpText="Impact Compensation Stacking limit is increased by 1, and Enhanced Layered Armor damage cap is reduced by 10%."
+LocLongDescription="Impact Compensation Stacking limit is increased by 1, and Enhanced Layered Armor damage cap is reduced by 10%."
 LocFlyOverText="Impenetrable"
 
 [YouCannotHide_LW X2AbilityTemplate]
@@ -7309,6 +7309,25 @@ LocFlyOverText="Impact Compensation"
 LocLongDescription="After taking damage, gain a stacking <Ability:IMPACT_COMPENSATION_PCT_DR>% damage reduction until the end of your turn. Max stacks: <Ability:IMPACT_COMPENSATION_MAX_STACKS/>."
 LocHelpText="After taking damage, gain a stacking <Ability:IMPACT_COMPENSATION_PCT_DR>% damage reduction until the end of your turn. Max stacks: <Ability:IMPACT_COMPENSATION_MAX_STACKS/>."
 ; End Translation (2)
+
+[ImpactCompensationV2_LW X2AbilityTemplate]
+LocFriendlyName="Enhanced Layered Armor"
+LocFlyOverText="Enhanced Layered Armor"
+LocLongDescription="This unit can only take <Ability:IMPACT_V2_DAMAGE_CAP>% of their max HP per turn. Damage per turn above this limit is reduced by <Ability:IMPACT_V2_PCT_DR>%."
+LocHelpText="The damage cap resets at the start of each turn."
+
+[ImpactCompensationV2XCOM_LW X2AbilityTemplate]
+LocFriendlyName="Enhanced Layered Armor"
+LocFlyOverText="Enhanced Layered Armor"
+LocLongDescription="This unit can only take <Ability:IMPACT_V2XCOM_DAMAGE_CAP>% of their max HP per turn. Damage per turn above this limit is reduced by <Ability:IMPACT_V2XCOM_PCT_DR>%."
+LocHelpText="The damage cap resets at the start of each turn."
+
+[ImpactCompensationPassiveV2_LW X2AbilityTemplate]
+LocFriendlyName="Enhanced Layered Armor"
+LocFlyOverText="Enhanced Layered Armor"
+LocLongDescription="This unit can only take <Ability:IMPACT_V2_DAMAGE_CAP>% of their max HP per turn. Damage per turn above this limit is reduced by <Ability:IMPACT_V2_PCT_DR>%."
+LocHelpText="The damage cap resets at the start of each turn."
+
 
 [MovingTarget_LW X2AbilityTemplate]
 LocFriendlyName="Moving Target"
@@ -7907,3 +7926,9 @@ LocFriendlyName="Grapple Expert"
 LocLongDescription="Justice, Whiplash, and Wrath gain +15 aim."
 LocHelpText="Justice, Whiplash, and Wrath gain +15 aim."
 LocFlyOverText="Grapple Expert"
+
+;Marauder
+[SkirmisherStrike X2AbilityTemplate]
+LocLongDescription="Standard shots with your primary weapon are not turn-ending."
+LocHelpText="Standard shots with your primary weapon are not turn-ending."
+LocPromotionPopupText=""

@@ -295,6 +295,9 @@ strCharacterName="變種人重型榴彈兵"
 [AdvGrenadierM3_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="變種人榴彈發射器"
 
+[AdvHeavyEngineer X2CharacterTemplate]
+strCharacterName="變種人精英工兵"
+
 [AdvGrenadierFlashbangGrenade X2GrenadeTemplate]
 FriendlyName="閃光榴彈"
 FriendlyNamePlural="閃光榴彈"

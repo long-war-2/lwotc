@@ -544,7 +544,7 @@ static function EventListenerReturn OverrideCanPurchaseAbility(
 
 		if (UnitState.GetSoldierClassTemplateName() != 'PsiOperative')  { return ELR_NoInterrupt; }
 
-   		if (Tuple.Data[2].i <= 1) //row 0, row 1
+   		if (Branch < ClassAbilityRankCount) //row 0, row 1
    		{
     		Tuple.Data[13].b = false;                   //Can't buy it ...
     		Tuple.Data[15].s = default.ReasonPsiOperativePerkFromLab;  //.. because its a psi-op perk from the lab
@@ -576,7 +576,7 @@ static function EventListenerReturn OverrideCanPurchaseAbility(
 
 	if (UnitState.GetSoldierClassTemplateName() != 'PsiOperative')  { return ELR_NoInterrupt; }
 
-   	if (Tuple.Data[2].i <= 1) //row 0, row 1
+   	if (Branch< ClassAbilityRankCount) //row 0, row 1
    	{
     	Tuple.Data[13].b = false;                   //Can't buy it ...
     	Tuple.Data[15].s = default.ReasonPsiOperativePerkFromLab;  //.. because its a psi-op perk from the lab
@@ -785,6 +785,7 @@ static function EventListenerReturn OnPsiProjectCompleted(
 
 	Tries = 0;
 	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Granting Bonus Psi Starter abilities");
+	UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectId));
 	while (BonusAbilitiesGranted < default.PSI_SQUADDIE_BONUS_ABILITIES)
 	{
 		BonusAbilityRank = `SYNC_RAND_STATIC(1 + (default.PSI_SQUADDIE_BONUS_ABILITIES / 2));

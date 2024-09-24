@@ -2448,6 +2448,7 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
 	local X2AbilityCost_ActionPoints        ActionPointCost;
 	local X2Effect_ReserveActionPoints      ReserveActionPointsEffect;
 	local X2Effect_Suppression              SuppressionEffect;
+	local X2Effect_PersistentStatChange		StatChangeEffect;
 	local X2Condition_UnitInventory         UnitInventoryCondition;
 	local name								WeaponCategory;
 	local X2Condition_UnitEffects			SuppressedCondition;
@@ -2533,6 +2534,12 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
 	Template.AdditionalAbilities.AddItem('SuppressionShot_LW');
 	Template.AdditionalAbilities.AddItem('LockdownBonuses');
 	Template.AdditionalAbilities.AddItem('MayhemBonuses');
+
+	StatChangeEffect = new class'X2Effect_PersistentStatChange';
+	StatChangeEffect.AddPersistentStatChange(eStat_Offense, -15, modOP_Addition);
+	StatChangeEffect.BuildPersistentEffect(2, false, true, false, eGameRule_PlayerTurnBegin);
+	//StatChangeEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage);
+	Template.AddTargetEffect(StatChangeEffect);
 
 	Template.bIsASuppressionEffect = true;
 	//Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";

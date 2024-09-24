@@ -193,8 +193,8 @@ LocHelpText="你的火焰喷射器射程更长，影响范围更广。"
 LocPromotionPopupText="<Bullet/> 你的火焰喷射器射程更长，影响范围更广。"
 
 [Roust X2AbilityTemplate]
-LocFriendlyName="驱逐"
-LocFlyOverText="驱逐"
+LocFriendlyName="火焰驱逐"
+LocFlyOverText="火焰驱逐"
 LocLongDescription="特殊的火焰喷射器攻击，造成有限的伤害，但是能降低敌人的防御和移动力并迫使其移动位置。"
 LocHelpText="特殊的火焰喷射器攻击，造成有限的伤害，但是能降低敌人的防御和移动力并迫使其移动位置。"
 LocPromotionPopupText="<Bullet/> 造成<Ability:ROUST_DAMAGE_PENALTY>%的伤害，有<Ability:ROUST_DIRECT_APPLY_CHANCE>%的概率使区域内的敌人着火。<br/><Bullet/> 范围中的目标移动力减少<Ability:ROUST_MOB_REDUCTION>，防御减少<Ability:ROUST_DEF_REDUCTION>，持续<Ability:ROUST_STATEFFECT_DURATION>回合。<br/><Bullet/> 狭窄的火焰喷射对环境影响较小。<br/><Bullet/> 被击中的单位将被迫移动，能触发反应射击。<br/><Bullet/> 每个任务可用一次，但是能够通过更高级的装备来获得额外的使用次数。<br/><Bullet/> 隐匿状态时无法使用。"
@@ -260,9 +260,9 @@ LocPromotionPopupText="<Bullet/> 你装备一支额外的火箭。<br/>"
 [FireInTheHole X2AbilityTemplate]
 LocFriendlyName="精准火箭"
 LocFlyOverText="精准火箭"
-LocLongDescription="你的火箭更为精准，标准火箭额外+2伤害"
-LocHelpText="你的火箭更为精准，标准火箭额外+2伤害"
-LocPromotionPopupText="<Bullet/> 你的火箭更容易飞向瞄准点，或至少更为接近。<br/><Bullet/> 它最多偏离的距离减少2格。"
+LocLongDescription="你的火箭更为精准，臂套火箭额外+2伤害"
+LocHelpText="你的火箭更为精准，臂套火箭额外+2伤害"
+LocPromotionPopupText="<Bullet/> 你的火箭更容易飞向瞄准点，或至少更为接近。<br/><Bullet/> 火箭偏离的最大距离减少2格。<br/><Bullet/> 任何受‘标枪火箭’影响的火箭能力都可以获得此额外伤害加成。"
 
 [ImprovedMunitions_LW X2AbilityTemplate]
 LocFriendlyName="强化军火"
@@ -448,11 +448,11 @@ LocFlyOverText="工兵"
 LocPromotionPopupText="<Bullet/> 工兵可以使用破片榴弹和其他爆炸物摧毁多数掩体。"
 
 [CombatEngineer X2AbilityTemplate]
-LocFriendlyName="战斗工兵"
+LocFriendlyName="战斗工程师"
 LocLongDescription="你的爆炸物对战场上的掩体和其他物体造成更大的环境伤害。"
 LocHelpText="你的爆炸物对环境造成更大的伤害。"
-LocFlyOverText="战斗工兵"
-LocPromotionPopupText="<Bullet/> 战斗工兵比工兵更为强力，它更注重最大化环境伤害，虽然两种技能都能摧毁许多掩体。<br/><Bullet/> 战斗工兵还能防止环境伤害随着爆炸中心距离的递减，这意味着你将摧毁更大范围的物体。"
+LocFlyOverText="战斗工程师"
+LocPromotionPopupText="<Bullet/> 战斗工程师比工兵更为强力，它更注重最大化环境伤害，虽然两种技能都能摧毁许多掩体。<br/><Bullet/> 战斗工程师还能防止环境伤害随着爆炸中心距离的递减，这意味着你将摧毁更大范围的物体。"
 
 [NeedleGrenades X2AbilityTemplate]
 LocFriendlyName="刺针榴弹"
@@ -1342,22 +1342,22 @@ LootTooltip="这种武器强化部件可为武器的非反应射击增加额外�
 [MissDamageUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="枪托"
 FriendlyNamePlural="枪托"
-BriefSummary="提供稳定武器能力，为下一次射击提供+<Ability:STOCK_BSC_SW_AIM_BONUS/>命中和+<Ability:STOCK_BSC_SW_AIM_BONUS/>暴击率。"
-TinySummary="赋予稳定武器"
+BriefSummary="提供「稳定武器」能力，为下一次射击提供+<Ability:STOCK_BSC_SW_AIM_BONUS/>命中和+<Ability:STOCK_BSC_SW_AIM_BONUS/>暴击率。"
+TinySummary="赋予「稳定武器」"
 LootTooltip="当装备了该武器强化时，将获得技能：稳定武器。"
 
 [MissDamageUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="高级枪托"
 FriendlyNamePlural="高级枪托"
-BriefSummary="提供稳定武器能力，为下一次射击提供+<Ability:STOCK_ADV_SW_AIM_BONUS/>命中和+<Ability:STOCK_ADV_SW_AIM_BONUS/>暴击率。"
-TinySummary="赋予稳定武器"
+BriefSummary="提供「稳定武器」能力，为下一次射击提供+<Ability:STOCK_ADV_SW_AIM_BONUS/>命中和+<Ability:STOCK_ADV_SW_AIM_BONUS/>暴击率。"
+TinySummary="赋予「稳定武器」"
 LootTooltip="当装备了该武器强化时，将获得技能：稳定武器。"
 
 [MissDamageUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="精英枪托"
 FriendlyNamePlural="精英枪托"
-BriefSummary="提供稳定武器能力，为下一次射击提供+<Ability:STOCK_SUP_SW_AIM_BONUS/>命中和+<Ability:STOCK_SUP_SW_AIM_BONUS/>暴击率。"
-TinySummary="赋予稳定武器"
+BriefSummary="提供「稳定武器」能力，为下一次射击提供+<Ability:STOCK_SUP_SW_AIM_BONUS/>命中和+<Ability:STOCK_SUP_SW_AIM_BONUS/>暴击率。"
+TinySummary="赋予「稳定武器」"
 LootTooltip="当装备了该武器强化时，将获得技能：稳定武器。"
 
 [FreeKillUpgrade_Bsc X2WeaponUpgradeTemplate]
@@ -1576,14 +1576,14 @@ BriefSummary="这些致命的弹药由超强，超轻的外星合金手工加工
 [HighPressureTanks X2WeaponTemplate]
 FriendlyName="高压容器"
 FriendlyNamePlural="高压容器"
-BriefSummary="提供火焰喷射器额外的使用次数。"
-TacticalText="<Bullet/> 提供高压能力，为火焰喷射器提供+2的充能，为驱逐能力提供额外1次充能。"
+BriefSummary="为火焰喷射器提供额外的使用次数。"
+TacticalText="<Bullet/> 提供高压能力，为火焰喷射器提供+2的充能，为「火焰驱逐」能力提供额外1次充能。"
 
 [ExtraRocket X2WeaponTemplate]
 FriendlyName="额外火箭"
 FriendlyNamePlural="额外火箭"
-BriefSummary="提供第二枚标准臂套火箭。"
-TacticalText="<Bullet/> 为火箭发射器提供第二枚标准火箭。"
+BriefSummary="额外提供一枚标准臂套火箭以及一次震荡火箭使用次数。"
+TacticalText="<Bullet/> 为火箭发射器额外提供一枚标准火箭以及一次震荡火箭使用次数。"
 
 [Neurowhip X2EquipmentTemplate]
 FriendlyName="神经鞭"
@@ -3274,7 +3274,7 @@ GameplayTips_Tactical[4]="闪避值提升后，能让敌人的射击造成\"擦�
 GameplayTips_Tactical[10]="拥有魅影技能的士兵每次任务开始都会处于隐蔽状态，即使小队其他成员未隐匿也不例外。"
 GameplayTips_Tactical[12]="在更高的难度下，如果敌人在他们的回合巡逻发现了你，那么有时候他们能获得额外行动点数。"
 +GameplayTips_Tactical[13]="在突袭变种人区域总部的时候，尽可能地在小队中多带人手。"
-+GameplayTips_Tactical[14]="没有\"工兵\"或\"战斗工兵\"技能的士兵投掷的破片或外星榴弹不一定能够摧毁掩体。可以试试火箭。"
++GameplayTips_Tactical[14]="没有\"工兵\"或\"战斗工程师\"技能的士兵投掷的破片或外星榴弹不一定能够摧毁掩体。可以试试火箭。"
 +GameplayTips_Tactical[15]="每个通用物品会减少士兵1点移动力，所以有时候应该把装备栏留空来获得额外的移动力。"
 +GameplayTips_Tactical[16]="士兵可以装备一件护盾装备和一件防护背心。护盾提供的生命值不能通过治疗恢复，但是当损失时也不被视作受伤。"
 +GameplayTips_Tactical[17]="冲锋枪的威力不及其他主武器，但是它们对移动力和潜入都有加成。"
@@ -3860,7 +3860,7 @@ DisplayName="高级消音器"
 Summary="允许这些升级的大规模生产，能够显著减少任务中的潜入时间。"
 
 [SuperiorSuppressorProject X2TechTemplate]
-DisplayName="精英抑制器"
+DisplayName="精英消音器"
 Summary="允许这些升级的批量生产，它们可以在任务中极大地减少潜入时间。"
 
 [BuildSpark X2TechTemplate]
@@ -5217,15 +5217,15 @@ LocLongDescription="监视射击现在会在任何敌对行动完成前触发，
 LocPromotionPopupText="<Bullet/> 如果由敌人的动作触发，掩护火力将在敌人动作完成前触发。<br/><Bullet/> 掩护火力会让被你监视的单位获得-<Ability:COVERING_FIRE_OFFENSE_MALUS>的命中惩罚，不论是掩护火力，还是普通的监视。<br/>"
 
 [GrenadeLauncher_MG X2GrenadeLauncherTemplate]
-BriefSummary="高级榴弹发射器使用电磁技术，比传统的发射器射程更远。"
-TacticalText="<Bullet/>高级榴弹发射器比传统的发射器射程更远。"
+BriefSummary="高级榴弹发射器使用电磁技术，比传统的发射器射程更远，并为榴弹专用槽中的榴弹提供额外的使用次数。"
+TacticalText="<Bullet/>高级榴弹发射器比传统的发射器射程更远，并为榴弹专用槽中的榴弹提供额外的使用次数。"
 
 ; LWOTC Needs Translation
 [GrenadeLauncher_BM X2GrenadeLauncherTemplate]
 FriendlyName="光束榴弹发射器"
 FriendlyNamePlural="光束榴弹发射器"
-BriefSummary="光束榴弹发射器结合了我们基于光束技术的进展和人工智能辅助瞄准系统方面的最新突破，以前所未有的精度提供有效载荷。"
-TacticalText="<Bullet/> 光束榴弹发射器将任何榴弹转换成一个能轻松绕过障碍物的自导发射体。"
+BriefSummary="光束榴弹发射器结合了我们基于光束技术的进展和人工智能辅助瞄准系统方面的最新突破，以前所未有的精度提供有效载荷。此外，还为所有装备在通用槽和榴弹槽的榴弹提供额外的使用次数。"
+TacticalText="<Bullet/> 光束榴弹发射器将任何榴弹转换成一个能轻松绕过障碍物的自导发射体。授予「重型军火」和「全副武裝」的能力，增加通用槽和榴弹槽中的榴弹使用次数。"
 ; End Translation
 
 [FlashbangGrenade X2GrenadeTemplate]
@@ -5472,9 +5472,9 @@ LocPromotionPopupText="<Bullet/> 减少暗影的冷却时间1回合。<br/>"
 ; LWOTC Needs Translation (3)
 [BloodTrail X2AbilityTemplate]
 LocFriendlyName="血迹追踪"
-LocLongDescription="若目标此回合已受过伤，则攻击造成+<Ability:BLOODTRAILDAMAGE/>伤害并且无视敌人<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/>闪避 。"
-LocHelpText="若目标此回合已受过伤，则攻击造成+<Ability:BLOODTRAILDAMAGE/>伤害并且无视敌人<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/>闪避 。"
-LocPromotionPopupText="<Bullet/> 只适用于敌人受到伤害的同一回合。<br/><Bullet/> 提前计划好小队攻击顺序，充分利用血迹追踪。<br/><Bullet/> 适用于所有武器，包括榴弹。<br/>"
+LocLongDescription="若目标此回合已受过伤，则你对其攻击时造成额外+<Ability:BLOODTRAILDAMAGE/>伤害并且无视敌人<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/>闪避。"
+LocHelpText="若目标此回合已受过伤，则你对其攻击时造成额外+<Ability:BLOODTRAILDAMAGE/>伤害并且无视敌人<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/>闪避。"
+LocPromotionPopupText="<Bullet/> 只适用于敌人受到伤害的同一回合。<br/><Bullet/> 提前计划好小队攻击顺序，充分利用血迹追踪。<br/><Bullet/> 适用于所有武器，除了榴弹。<br/>"
 
 [PaleHorse X2AbilityTemplate]
 LocFriendlyName="灵魂收割"
@@ -6329,8 +6329,8 @@ LocPromotionPopupText="<Bullet/> 武器操作不影响急射命中。<br/>"
 LocFriendlyName="近在咫尺"
 LocFlyOverText="近在咫尺"
 ; LWOTC Needs Translation (2)
-LocLongDescription="在敌人回合，向<Ability:THATS_CLOSE_ENOUGH_TILE_RANGE/>格内任何移动或开火的可见敌人发射电弧发射器。与电弧发射器的眩晕技能共享冷却时间。"
-LocHelpText="在敌人回合，向<Ability:THATS_CLOSE_ENOUGH_TILE_RANGE/>格内任何移动或开火的可见敌人发射电弧发射器。与电弧发射器的眩晕技能共享冷却时间。"
+LocLongDescription="在敌方回合，向<Ability:THATS_CLOSE_ENOUGH_TILE_RANGE/>格内任何移动或开火的可见敌人发射电弧。与电弧发射器的眩晕技能共享冷却时间。"
+LocHelpText="在敌方回合，向<Ability:THATS_CLOSE_ENOUGH_TILE_RANGE/>格内任何移动或开火的可见敌人发射电弧。与电弧发射器的眩晕技能共享冷却时间。"
 ; End Translation (2)
 LocPromotionPopupText="<Bullet/> 隐蔽时不会触发。<br/><Bullet/> 该技能每回合可以触发<Ability:THATS_CLOSE_ENOUGH_PER_TARGET_COOLDOWN/>次。<br/>"
 
@@ -7047,6 +7047,18 @@ LocFlyOverText="冲击补偿"
 LocLongDescription="受到伤害后，获得<Ability:IMPACT_COMPENSATION_PCT_DR>%可堆叠伤害减免直到你的回合结束。最大堆叠值：<Ability:IMPACT_COMPENSATION_MAX_STACKS/>。"
 LocHelpText="受到伤害后，获得<Ability:IMPACT_COMPENSATION_PCT_DR>%可堆叠伤害减免直到你的回合结束。最大堆叠值：<Ability:IMPACT_COMPENSATION_MAX_STACKS/>。"
 
+[ImpactCompensationV2_LW X2AbilityTemplate]
+LocFriendlyName="强化复层装甲"
+LocFlyOverText="强化复层装甲"
+LocLongDescription="该单位每回合在受到的伤害超过其最大生命值<Ability:IMPACT_V2_DAMAGE_CAP>%后，后续伤害将减少<Ability:IMPACT_V2_PCT_DR>%。"
+LocHelpText="受到的伤害阈值在每回合开始时重置。"
+
+[ImpactCompensationPassiveV2_LW X2AbilityTemplate]
+LocFriendlyName="强化复层装甲"
+LocFlyOverText="强化复层装甲"
+LocLongDescription="该单位每回合在受到的伤害超过其最大生命值<Ability:IMPACT_V2_DAMAGE_CAP>%后，后续伤害将减少<Ability:IMPACT_V2_PCT_DR>%。"
+LocHelpText="受到的伤害阈值在每回合开始时重置。"
+
 [MovingTarget_LW X2AbilityTemplate]
 LocFriendlyName="移动目标"
 LocFlyOverText="针对反应攻击获得额外+<Ability:MOVING_TARGET_DEFENSE>防御和+<Ability:MOVING_TARGET_DODGE>闪避。"
@@ -7340,7 +7352,7 @@ LocPromotionPopupText="<Bullet/> 放逐中的每一次射击都有单独的命�
 LocFriendlyName="全面战斗"
 LocLongDescription="获得+1移动力和+5命中，投掷榴弹或使用物品不会结束回合且榴弹不再有冷却时间。此外，榴弹投掷的距离增加2格，爆炸半径增加1格。授予榴弹专用槽。"
 LocHelpText="获得+1移动力和+5命中，投掷榴弹或使用物品不会结束回合且榴弹不再有冷却时间。此外，榴弹投掷的距离增加2格，爆炸半径增加1格。授予榴弹专用槽。"
-LocPromotionPopupText="<Bullet/> 全面战斗让<Ability:ClassName/>的战术更为多样化，能够在需要的时候采取精准的行动。<br/><Bullet/> 消除榴弹的冷却时间。<br/><Bullet/> 授予爆炸挥发技能，因此它不会与该技能叠加。"
+LocPromotionPopupText="<Bullet/> 全面战斗让<Ability:ClassName/>的战术更为多样化，能够在需要的时候采取精准的行动。<br/><Bullet/> 消除榴弹的冷却时间。<br/><Bullet/> 授予「爆炸挥发」技能，因此它不会与该技能叠加。"
 
 [PackMaster_LW X2AbilityTemplate]
 LocFriendlyName="背包大师"
@@ -7614,3 +7626,9 @@ LocFriendlyName="钩爪专家"
 LocLongDescription="正义、怒火、鞭笞获得额外+15命中。"
 LocHelpText="正义、怒火、鞭笞获得额外+15命中。"
 LocFlyOverText="钩爪专家"
+
+;Marauder
+[SkirmisherStrike X2AbilityTemplate]
+LocLongDescription="第一个行动点使用主武器进行标准射击将不再结束回合。"
+LocHelpText="第一个行动点使用主武器进行标准射击将不再结束回合。"
+LocPromotionPopupText=""

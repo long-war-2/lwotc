@@ -146,6 +146,7 @@ var config array<string> MapsToDisable;
 var config array<Name> EncountersToExclude;
 
 var config array<Name> ROCKET_ABILITIES_TO_UPDATE;
+var config array<Name> NOSCATTER_ROCKET_ABILITIES_TO_UPDATE;
 
 // End data and data structures
 //-----------------------------
@@ -306,6 +307,17 @@ static function EditModdedRocketAbilities()
 			AbilityTemplate.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher';
 		}
 	}
+
+	foreach default.NOSCATTER_ROCKET_ABILITIES_TO_UPDATE(AbilityName)
+	{
+		AbilityTemplate = AbilityManager.FindAbilityTemplate(AbilityName);
+
+		if(AbilityTemplate != none)
+		{
+			`LWTrace("Patching Rocket launcher ability" @AbilityTemplate.DataName);
+			AbilityTemplate.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher_NoScatter';
+		}
+	}
 }
 
 // Vanilla Skulljack and Skullmine can be used while burning
@@ -453,8 +465,8 @@ static function UpdateEncounterLists()
 			// Remove if invalid
 			if(TestTemplate == none)
 			{
+				`LWTrace("Removing nonexistant unit" @MissionManager.ConfigurableEncounters[i].ForceSpawnTemplateNames[j] @ "From fixed encounter" @MissionManager.ConfigurableEncounters[i].EncounterID);
 				MissionManager.ConfigurableEncounters[i].ForceSpawnTemplateNames.Remove(j,1);
-				`LWTrace("Removing nonexistant unit" @MissionManager.ConfigurableEncounters[i].ForceSpawnTemplateNames[j] @ "From fixed ecnounter " @MissionManager.ConfigurableEncounters[i].EncounterID);
 			}
 		}
 	}
@@ -604,6 +616,20 @@ static event OnLoadedSavedGameToStrategy()
 			break;
 			}
 		}
+	}
+	// Auto grant vulture if needed
+	foreach History.IterateByClassType(class'XComGameState_WorldRegion', RegionState)
+	{
+		// check we're above the minimum FL to activate chosen
+		RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState, NewGameState, true);
+		if(class'X2StrategyElement_DefaultAlienActivities'.default.bENABLE_AUTO_VULTURE && RegionalAI.LocalForceLevel >= class'X2StrategyElement_DefaultAlienActivities'.default.VULTURE_UNLOCK_AT_FL)
+		{
+			if(!`XCOMHQ.HasSoldierUnlockTemplate('VultureUnlock'))
+			{
+				class'X2StrategyElement_DefaultAlienActivities'.static.AddSoldierUnlock(NewGameState,'VultureUnlock');
+			}
+		}
+		break;
 	}
 
 	`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
@@ -1601,7 +1627,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		Satisfactory = false;
 		Tries = 0;
 		
-		While (!Satisfactory && Tries < 12)
+		While (!Satisfactory && Tries < 16)
 		{
 			foreach SpawnInfo.SelectedCharacterTemplateNames(CharacterTemplateName, idx)
 			{
@@ -1860,7 +1886,7 @@ static function GetSpawnDistributionList(
 }
 
 // Returns true if the pod is undersized
-static function bool CheckPodSize(out name EncounterName, out PodSpawnInfo SpawnInfo, int ForceLevel, int AlertLevel, out int ProperPodLength, optional XComGameState_BaseObject SourceObject)
+static final function bool CheckPodSize(out name EncounterName, out PodSpawnInfo SpawnInfo, int ForceLevel, int AlertLevel, out int ProperPodLength, optional XComGameState_BaseObject SourceObject)
 {
 	local XComTacticalMissionManager MissionManager;
 	local int idx;
@@ -1964,7 +1990,7 @@ static final function string names_to_str(array<name> arr)
 
 // End code borrowed from DABFL
 
-static function int CountMembers(name CountItem, array<name> ArrayToScan)
+static final function int CountMembers(name CountItem, array<name> ArrayToScan)
 {
 	local int idx, k;
 
@@ -1980,7 +2006,7 @@ static function int CountMembers(name CountItem, array<name> ArrayToScan)
 	return k;
 }
 
-static function name FindMostCommonMember(array<name> ArrayToScan)
+static final function name FindMostCommonMember(array<name> ArrayToScan)
 {
 	local int idx, highest, highestidx;
 	local array<int> kount;
@@ -4581,6 +4607,18 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'IMPACT_COMPENSATION_MAX_STACKS':
 			Outstring = string(class'X2Ability_LW_ChosenAbilities'.default.IMPACT_COMPENSATION_MAX_STACKS);
 			return true;
+		case 'IMPACT_V2_DAMAGE_CAP':
+			Outstring = string(int(class'X2Ability_LW_ChosenAbilities'.default.IMPACT_V2_DAMAGE_CAP[`TACTICALDIFFICULTYSETTING] * 100));
+			return true;
+		case 'IMPACT_V2_PCT_DR':
+			Outstring = string(int(class'X2Ability_LW_ChosenAbilities'.default.IMPACT_V2_PCT_DR[`TACTICALDIFFICULTYSETTING] * 100));
+			return true;
+		case 'IMPACT_V2XCOM_DAMAGE_CAP':
+			Outstring = string(int(class'X2Ability_LW_ChosenAbilities'.default.IMPACT_V2XCOM_DAMAGE_CAP[`TACTICALDIFFICULTYSETTING] * 100));
+			return true;
+		case 'IMPACT_V2XCOM_PCT_DR':
+			Outstring = string(int(class'X2Ability_LW_ChosenAbilities'.default.IMPACT_V2XCOM_PCT_DR[`TACTICALDIFFICULTYSETTING] * 100));
+			return true;
 		case 'SHIELD_ALLY_PCT_DR':
 			Outstring = string(int(class'X2Ability_LW_ChosenAbilities'.default.SHIELD_ALLY_PCT_DR * 100));
 			return true;
@@ -6931,3 +6969,23 @@ exec function LWOTC_FixChosenKnowledgeForNewScaling()
 	`GAMERULES.SubmitGameState(NewGameState);
 }
 
+exec function Ted_CheckUnlockStatus(name TemplateName)
+{
+	class'Helpers'.static.OutputMsg(string(`XCOMHQ.HasSoldierUnlockTemplate(TemplateName)));
+}
+
+exec function Ted_CheckUnitValue()
+{
+	local XComGameState_Unit Unit;
+	local XComTacticalController    TacticalController;
+	local UnitValue DamageUnitValue;
+
+	TacticalController = XComTacticalController(`BATTLE.GetALocalPlayerController());
+	Unit = XComTacticalCheatManager(TacticalController.CheatManager).GetClosestUnitToCursor();
+
+	if (Unit != none)
+	{
+		Unit.GetUnitValue('DamageThisTurn', DamageUnitValue);
+		class'Helpers'.static.OutputMsg(string(DamageUnitValue.fValue));
+	}
+}

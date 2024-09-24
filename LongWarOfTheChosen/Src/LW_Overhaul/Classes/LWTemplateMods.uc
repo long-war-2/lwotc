@@ -2470,7 +2470,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('FreeGrenades');
 		
 		Template.Abilities.AddItem('AssassinSlash_LW');
-		Template.Abilities.AddItem('ImpactCompensation_LW');
+		Template.Abilities.AddItem('ImpactCompensationV2_LW');
 		Template.Abilities.AddItem('Infighter');
 		Template.Abilities.AddItem('ChosenLootAbility');
 		Template.Abilities.AddItem('Unstoppable_LW');
@@ -2713,7 +2713,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		case 'ChosenShotgun_XCOM':
 			//WeaponTemplate.Abilities.AddItem('Brawler');
 			WeaponTemplate.Abilities.AddItem('Vampirism_LW');
-			WeaponTemplate.Abilities.AddItem('ImpactCompensation_LW');
+			WeaponTemplate.Abilities.AddItem('ImpactCompensationV2XCOM_LW');
 			WeaponTemplate.OnAcquiredFn = none;
 			WeaponTemplate.NumUpgradeSlots = 2;
 			break;
@@ -3025,6 +3025,12 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 					ArmorTemplate.Abilities.AddItem('SPARK_Powered_Plating_Ability');
 					ArmorTemplate.Abilities.AddItem('SPARK_Powered_Armor_Def');
 					ArmorTemplate.SetUIStatMarkup(class'XLocalizedData'.default.DefenseLabel, eStat_Defense, class'X2Ability_LW_GearAbilities'.default.SPARK_POWERED_ARMOR_DEF);
+					break;
+
+				case 'PlatedSparkHeavyArmor_LW':
+				case 'PlatedSparkLightArmor_LW':
+				case 'PoweredSparkHeavyArmor_LW':
+				case 'PoweredSparkLightArmor_LW':
 					break;
 
 				default:
@@ -3846,8 +3852,11 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 			{
     			FacilityTemplate.SoldierUnlockTemplates.RemoveItem(default.GTSUnlocksToRemove[i]);
 			}
-			FacilityTemplate.SoldierUnlockTemplates.AddItem('VultureUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.AddItem('VengeanceUnlock');
+			if(!class'X2StrategyElement_DefaultAlienActivities'.default.bENABLE_AUTO_VULTURE)
+			{
+				FacilityTemplate.SoldierUnlockTemplates.AddItem('VultureUnlock');
+			}
+			//FacilityTemplate.SoldierUnlockTemplates.AddItem('VengeanceUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('WetWorkUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('LightningStrikeUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('IntegratedWarfareUnlock');

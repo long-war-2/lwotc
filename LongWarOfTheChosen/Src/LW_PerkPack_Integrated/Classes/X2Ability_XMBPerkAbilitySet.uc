@@ -376,7 +376,7 @@ static function X2AbilityTemplate Hipfire()
 {
 	local X2AbilityTemplate		Template;
 	
-	Template = PurePassive('Hipfire_LW', "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_strike", false, 'eAbilitySource_Perk', true);
+	Template = PurePassive('Hipfire_LW', "img:///UILibrary_XPerkIconPack.UIPerk_pistol_shot", false, 'eAbilitySource_Perk', true);
 
 
 	return Template;
@@ -2026,7 +2026,7 @@ static function X2AbilityTemplate ShootingSharp()
 	ShootingEffect.BuildPersistentEffect(1, true, false, false, eGameRule_TacticalGameStart);
 	
 	// Activated ability that targets user
-	Template = Passive('ShootingSharp_LW', "img:///UILibrary_XPerkIconPack.UIPerk_shot_box", true, ShootingEffect);
+	Template = Passive('ShootingSharp_LW', "img:///XPerkIconPack_LW.UIPerk_rifle_box", true, ShootingEffect);
 
 	// If this ability is set up as a cross class ability, but it's not directly assigned to any classes, this is the weapon slot it will use
 	Template.DefaultSourceItemSlot = eInvSlot_PrimaryWeapon;
@@ -4018,7 +4018,7 @@ static function X2AbilityTemplate CreateBonusChargesAbility()
 	local X2AbilityTemplate Template;
 	local XMBEffect_AddItemCharges Effect;
 
-	Template = Passive('BonusBombard_LW', "img:///UILibrary_LW_PerkPack.LW_AbilityFullKit", true);
+	Template = Passive('BonusBombard_LW', "img:///UILibrary_XPerkIconPack.UIPerk_rocket_bullet_x2", true);
 
 	Effect = new class'XMBEffect_AddItemCharges';
 	Effect.ApplyToSlots.AddItem(eInvSlot_HeavyWeapon);
@@ -4225,7 +4225,7 @@ static function X2AbilityTemplate GrappleExpert()
 	HitModEffect = new class'X2Effect_SkirmMeleeHitMod';
 	HitModEffect.BuildPersistentEffect(1, true, false, false);
 
-	Template = Passive('GrappleExpert_LW', "img:///UILibrary_PerkIcons.UIPerk_grapple", false, HitModEffect);
+	Template = Passive('GrappleExpert_LW', "img:///UILibrary_LWOTC.UIPerk_grappleexpert", false, HitModEffect);
 
 	return Template;
 }
@@ -4236,6 +4236,7 @@ static function X2AbilityTemplate TacticalRetreat()
 	local X2Effect_GrantActionPoints Effect;
 	local X2AbilityTemplate Template;
     local XMBCondition_AbilityName NameCondition;
+	local X2AbilityCooldown	Cooldown;
 	local X2Effect_Flyover FlyoverEffect;
 
 	// Effect adds a Run and Gun action point
@@ -4244,7 +4245,7 @@ static function X2AbilityTemplate TacticalRetreat()
 	Effect.PointType = class'X2CharacterTemplateManager'.default.MoveActionPoint;
 
 	// Create a triggered ability that will activate whenever the unit uses an ability that meets the condition
-	Template = SelfTargetTrigger('TacticalRetreat_LW', "img:///UILibrary_PerkIcons.UIPerk_stickandmove", false, Effect, 'AbilityActivated');
+	Template = SelfTargetTrigger('TacticalRetreat_LW', "img:///UILibrary_XPerkIconPack.UIPerk_knife_move", false, Effect, 'AbilityActivated');
 
 	// Only trigger with Shield Wall
 	NameCondition = new class'XMBCondition_AbilityName';
@@ -4253,6 +4254,10 @@ static function X2AbilityTemplate TacticalRetreat()
 	NameCondition.IncludeAbilityNames.AddItem('ThrowKnife');
 	NameCondition.IncludeAbilityNames.AddItem('MusashiThrowKnifeSecondary_LW');
 	NameCondition.IncludeAbilityNames.AddItem('CripplingStrike');
+
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = 1;
+	Template.AbilityCooldown = Cooldown;
 
 	FlyoverEffect= new class'X2Effect_Flyover';
 	FlyoverEffect.CustomFlyover = Template.LocFriendlyName;

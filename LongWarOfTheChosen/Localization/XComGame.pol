@@ -6954,3 +6954,9 @@ LocFriendlyName="Nova"
 LocLongDescription="Wywołaj wybuch energii zadający obrażenia wszystkim pobliskim jednostkom. Nie wymaga to akcji ani odnawiania, ale kolejne użycia powodują uszkadzanie Sparka."
 LocHelpText="Wybuch trafiający wszystkie pobliskie jednostki. Kolejne użycia powodują uszkadzanie Sparka."
 LocPromotionPopupText="<Bullet/> Nova nie zabiera punktów akcji i nie wymaga czasu na odnowienie.<br/><Bullet/> Pierwszy atak novą w każdej misji nie zada Sparkowi obrażeń.<br/><Bullet/> Wszystkie następne ataki novą zadadzą Sparkowi kumulujące się <Ability:Nova_Damage/> pkt. obrażeń.<br/>"
+
+;Marauder
+[SkirmisherStrike X2AbilityTemplate]
+LocLongDescription="Zwykły strzał z broni głównej w pierwszej akcji nie kończy już twojej tury."
+LocHelpText="Zwykły strzał z broni głównej w pierwszej akcji nie kończy już twojej tury."
+LocPromotionPopupText=""

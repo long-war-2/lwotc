@@ -182,6 +182,9 @@ var config int COINOPS_MIN_ALERT;
 
 var config int BIGSUPPLYEXTRACTION_MAX_ALERT;
 
+var config int VULTURE_UNLOCK_AT_FL;
+var config bool bENABLE_AUTO_VULTURE;
+
 //helpers for checking for name typos
 var name ProtectRegionEarlyName;
 var name ProtectRegionMidName;
@@ -1904,7 +1907,15 @@ static function OnScheduledOffworldReinforcementsComplete(bool bAlienSuccess, XC
 		// level reaches the configured threshold.
 		TryIncreasingChosenLevel(RegionalAI.LocalForceLevel);
 		if (RegionalAI.LocalForceLevel == default.CHOSEN_ACTIVATE_AT_FL)
+		{
+			AddSoldierUnlock(NewGameState,'VultureUnlock');
 			ActivateChosenIfEnabled(NewGameState);
+		}
+
+		if(RegionalAI.LocalForceLevel == default.VULTURE_UNLOCK_AT_FL && default.bENABLE_AUTO_VULTURE)
+		{
+			AddSoldierUnlock(NewGameState,'VultureUnlock');
+		}
 	}
 	else
 	{
@@ -5162,8 +5173,40 @@ static function XComGameState_MissionSite GetRebelRaidMissionSite(XComGameState_
     return RaidMission;
 }
 
+// Below 2 functions Stolen from the resistance cards code
+static function AddSoldierUnlock(XComGameState NewGameState, name UnlockTemplateName)
+{
+	local XComGameState_HeadquartersXCom XComHQ;
+	local X2StrategyElementTemplateManager StratMgr;
+	local X2SoldierUnlockTemplate UnlockTemplate;
 
+	XComHQ = GetNewXComHQState(NewGameState);
+	StratMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+	UnlockTemplate = X2SoldierUnlockTemplate(StratMgr.FindStrategyElementTemplate(UnlockTemplateName));
 
+	if(UnlockTemplate != none)
+	{
+		XComHQ.AddSoldierUnlockTemplate(NewGameState, UnlockTemplate, true);
+	}
+}
+
+static function XComGameState_HeadquartersXCom GetNewXComHQState(XComGameState NewGameState)
+{
+	local XComGameState_HeadquartersXCom NewXComHQ;
+
+	foreach NewGameState.IterateByClassType(class'XComGameState_HeadquartersXCom', NewXComHQ)
+	{
+		break;
+	}
+
+	if(NewXComHQ == none)
+	{
+		NewXComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+		NewXComHQ = XComGameState_HeadquartersXCom(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersXCom', NewXComHQ.ObjectID));
+	}
+
+	return NewXComHQ;
+}
 
 defaultProperties
 {

@@ -325,7 +325,7 @@ static function X2DataTemplate CreateHighPressureTanks()
 	Template.InventorySlot = eInvSlot_HeavyWeapon;
 	Template.strImage = "img:///UILibrary_LWOTC.InventoryArt.Inv_HighPressureTanks"; 
 	Template.EquipSound = "StrategyUI_Heavy_Weapon_Equip";
-	Template.Abilities.AddItem ('HighPressure');
+	//Template.Abilities.AddItem ('HighPressure');
 	Template.CanBeBuilt = false;
 	Template.StartingItem = true;
 	Template.bInfiniteItem = true;
@@ -344,7 +344,7 @@ static function X2DataTemplate CreateExtraRocket()
 	Template.InventorySlot = eInvSlot_HeavyWeapon;
 	Template.strImage = "img:///UILibrary_LWOTC.InventoryArt.Inv_ExtraRocket"; 
 	Template.EquipSound = "StrategyUI_Heavy_Weapon_Equip";
-	Template.Abilities.AddItem ('ShockAndAwe');
+	//Template.Abilities.AddItem ('ShockAndAwe');
 	Template.CanBeBuilt = false;
 	Template.StartingItem = true;
 	Template.bInfiniteItem = true;
