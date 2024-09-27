@@ -558,7 +558,7 @@ static function X2AbilityTemplate LeadTheTarget_LW()
 	Template.AbilityCosts.AddItem(AmmoCost);
 
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
-	ActionPointCost.iNumPoints = 2;
+	ActionPointCost.bAddWeaponTypicalCost = true;
 	ActionPointCost.bConsumeAllPoints = true;   //  this will guarantee the unit has at least 1 action point
 	ActionPointCost.bFreeCost = true;           //  ReserveActionPoints effect will take all action points away
 	ActionPointCost.DoNotConsumeAllEffects.Length = 0;
