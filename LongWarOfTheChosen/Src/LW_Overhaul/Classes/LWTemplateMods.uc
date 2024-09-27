@@ -2715,6 +2715,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 				}
 			}
 			WeaponTemplate.OnAcquiredFn = none;
+			WeaponTemplate.NumUpgradeSlots = 0;
 			break;
 		case 'ChosenShotgun_XCOM':
 			//WeaponTemplate.Abilities.AddItem('Brawler');
