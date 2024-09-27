@@ -13,18 +13,23 @@ function float GetPostDefaultDefendingDamageModifier_CH(XComGameState_Effect Eff
     WeaponDamageEffect.GetEffectDamageTypes(NewGameState, ApplyEffectParameters, IncomingTypes);
     MaxHP = TargetUnit.GetMaxStat(eStat_HP);
 
-    `LWTrace("ELA: Unit Max HP:" @MaxHP);
+    //`LWTrace("ELA: Unit Max HP:" @MaxHP);
 
     DamageLimit = MaxHP * MaxCap[`TACTICALDIFFICULTYSETTING];
+
+    //`LWTrace("ELA: MaxCap:" @MaxCap[`TACTICALDIFFICULTYSETTING]);
+
+    //`LWTrace("ELA: DamageLimit:" @DamageLimit);
 
     DamageModifierFinal = DamageModifier[`TACTICALDIFFICULTYSETTING];
 
     if(TargetUnit.HasSoldierAbility('Impenetrable_LW'))
 	{
-        DamageLimit =- MaxHP * 0.1;
+        DamageLimit -= MaxHP * 0.1;
         //DamageModifierFinal += 0.1;
 	}
 
+    //`LWTrace("ELA: DamageLimit After Impenetrable :" @DamageLimit);
 
     if (WeaponDamage <= 0)
         return 0;
@@ -37,23 +42,23 @@ function float GetPostDefaultDefendingDamageModifier_CH(XComGameState_Effect Eff
 
     TargetUnit.GetUnitValue('DamageThisTurn', UnitVal);
 
-    `LWTrace("Current Damage This Turn:" @string(int(UnitVal.fValue)));
+    //`LWTrace("Current Damage This Turn:" @string(int(UnitVal.fValue)));
 
     if (UnitVal.fValue >= DamageLimit)
     {
-        `LWTrace("If statement 1 hit: UnitVal.fValue >= DamageLimit");
+        //`LWTrace("If statement 1 hit: UnitVal.fValue >= DamageLimit");
         return WeaponDamage * -DamageModifierFinal;
     }
 
     if(UnitVal.fValue + WeaponDamage >= DamageLimit)
     {
-        `LWTrace("If Statement 2 hit: UnitVal.fValue + WeaponDamage >= DamageLimit");
+        //`LWTrace("If Statement 2 hit: UnitVal.fValue + WeaponDamage >= DamageLimit");
         return (WeaponDamage - max(0,(DamageLimit - UnitVal.fValue))) * -DamageModifierFinal;
     }
 
     if (WeaponDamage >= DamageLimit)
     {
-        `LWTrace("If Statement 3 hit: WeaponDamage >= DamageLimit");
+        //`LWTrace("If Statement 3 hit: WeaponDamage >= DamageLimit");
         FinalDamage = -WeaponDamage + DamageLimit;
         return FinalDamage;
     }
