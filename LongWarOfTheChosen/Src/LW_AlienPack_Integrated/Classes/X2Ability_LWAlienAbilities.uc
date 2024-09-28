@@ -1177,5 +1177,14 @@ static function X2AbilityTemplate AddFireOnDeathAbility()
 
 static function UpdatePriestStasis(X2AbilityTemplate Template)
 {
+	local X2AbilityCooldown_LocalAndGlobal Cooldown;
+
+	Cooldown = new class'X2AbilityCooldown_LocalAndGlobal';
+
+	Cooldown.iNumTurns = class'X2Ability_PsiOperativeAbilitySet'.default.STASIS_COOLDOWN;
+	Cooldown.NumGlobalTurns = 1;
+
+	Template.AbilityCooldown = Cooldown;
+
 	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
 }
