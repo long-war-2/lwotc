@@ -49,6 +49,6 @@ defaultproperties
     MajorVersion = 1;
     MinorVersion = 2;
     PatchVersion = 0;
-    Classifier = "Beta v46"
+    Classifier = "Beta v47"
 
 }
