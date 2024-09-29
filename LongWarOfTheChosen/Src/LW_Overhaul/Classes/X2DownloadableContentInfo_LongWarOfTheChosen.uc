@@ -147,6 +147,8 @@ var config array<Name> EncountersToExclude;
 
 var config array<Name> ROCKET_ABILITIES_TO_UPDATE;
 
+var config bool bUpdateWaterworldLW;
+
 // End data and data structures
 //-----------------------------
 
@@ -974,16 +976,51 @@ static function bool UseAlternateMissionIntroDefinition(MissionDefinition Active
 /// </summary>
 static function bool UpdateMissionSpawningInfo(StateObjectReference MissionRef)
 {
+	local XComGameState_MissionSite MissionState;
+	local MissionDefinition MissionDef;
+	local XComGameState NewGameState;
+	local bool bUpdated;
+
 	// We need to clear up the mess that the Alien Rulers DLC leaves in its wake.
 	// In this case, it clears all the alien ruler gameplay tags from XComHQ, just
 	// before the schedules are picked (which rely on those tags). And of course it
 	// may apply the ruler tags itself when we don't want them. Bleh.
 	if (class'XComGameState_AlienRulerManager' != none)
 	{
-		return FixAlienRulerTags(MissionRef);
+		bUpdated = FixAlienRulerTags(MissionRef);
 	}
 
-	return false;
+	// Patching waterworld hardcoded stuff
+	MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(MissionRef.ObjectID));
+
+	// Waterworld hardcoded here.
+	if(MissionState.GetMissionSource().DataName == 'MissionSource_Final' && default.bUpdateWaterworldLW)
+	{
+
+		// LW waterworld hardcode here:
+		`TACTICALMISSIONMGR.GetMissionDefinitionForType("GP_Fortress_LW", MissionDef);
+
+		// Hardcode checking for MJ schedules
+		if(instr(MissionState.GeneratedMission.Mission.MapNames[0], "_LW") != -1)
+		{
+			return bUpdated;
+		}
+
+		`Log("Mission Def mapname:" @MissionDef.MapNames[0],, 'TedLog');
+
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Update Mission Data");
+
+		MissionState = XComGameState_MissionSite(NewGameState.ModifyStateObject(class'XComGameState_MissionSite', MissionState.ObjectID));
+		MissionState.GeneratedMission.Mission.MapNames[0]="Obj_FortressLeadup_LW";
+	
+		`Log("Updating waterworld cached missiondef.",,'TedLog');
+
+		`GAMERULES.SubmitGameState(NewGameState);
+
+		return true;
+	}
+
+	return bUpdated;
 }
 
 static function bool FixAlienRulerTags(StateObjectReference MissionRef)
@@ -4775,6 +4812,24 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 	}
 }
 
+// Stuff for updating the 
+static function bool ShouldUpdateMissionSpawningInfo(StateObjectReference MissionRef)
+{
+	local XComGameState_MissionSite MissionState;
+
+	MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(MissionRef.ObjectID));
+
+	// Waterworld hardcode here
+	if(MissionState.GetMissionSource().DataName == 'MissionSource_Final')
+	{
+		`Log("Updating waterworld caching.",,'TedLog');
+		return true;
+	}
+
+	return false;
+}
+
+
 //=========================================================================================
 //================== BEGIN EXEC LONG WAR CONSOLE EXEC =====================================
 //=========================================================================================
@@ -6507,6 +6562,9 @@ exec function PrintCurrentMissionDef()
 
 	foreach XComHQ.arrGeneratedMissionData (MissionData)
 	{
+		if(MissionData.Mission.stype != "GP_Fortress_LW")
+			continue;
+
 		class'Helpers'.static.OutputMsg("Found MissionDef" @ MissionData.Mission.MissionName);
 
 		foreach MissionData.Mission.MapNames (CurrentMap)
@@ -6779,6 +6837,7 @@ exec function LWOTC_ViewMissionDef(name MissionDefName)
 	local XComTacticalMissionManager MissionManager;
 	local int MissionIdx;
 	local name MissionSchedule;
+	local string MapName;
 
 	MissionManager = `TACTICALMISSIONMGR;
 
@@ -6790,6 +6849,11 @@ exec function LWOTC_ViewMissionDef(name MissionDefName)
 			`LWTrace("Mission Def name:" @ MissionDefinition.MissionName);
 
 			`LWTrace("stype:" @MissionDefinition.sType);
+
+			foreach MissionDefinition.MapNames (MapName)
+			{
+				`LWTrace("MapName:" @MapName);
+			}
 
 			foreach MissionDefinition.MissionSchedules (MissionSchedule)
 			{
@@ -6976,4 +7040,36 @@ exec function Ted_CheckUnitValue()
 		Unit.GetUnitValue('DamageThisTurn', DamageUnitValue);
 		class'Helpers'.static.OutputMsg(string(DamageUnitValue.fValue));
 	}
+}
+
+exec function Ted_ClearWaterworldCache()
+{
+	local XComGameState_HeadquartersXCom XComHQ;
+	local XComGameState_MissionSite		MissionState;
+	local XComGameState NewGameState;
+	local int i;
+
+	XComHQ = `XCOMHQ;
+
+	foreach `XCOMHISTORY.IterateByClassType(class'XComGameState_MissionSite', MissionState)
+	{
+		if(MissionState.GetMissionSource().DataName == 'MissionSource_Final')
+			break;
+	}
+
+	if(MissionState != None)
+	{
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Clear waterworld info");
+
+		XComHQ = XComGameState_HeadquartersXCom(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
+
+		i = XComHQ.arrGeneratedMissionData.Find('MissionID', MissionState.ObjectID);
+		if (i != INDEX_NONE)
+		{
+			XComHQ.arrGeneratedMissionData.Remove(i, 1);
+		}
+
+		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+	}
+
 }

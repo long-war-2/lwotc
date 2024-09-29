@@ -19,6 +19,8 @@
         "Obj_DestroyObject_LW",
         "Obj_DestroyTransmitter_LW",
         "Obj_Forge_LW",
+        "Obj_FortressLeadup_LW",
+        "Obj_FortressShowdown_LW",
         "Obj_HackWorkstation_LW",
         "Obj_IntelRaid_LW",
         "Obj_Jailbreak_LW",

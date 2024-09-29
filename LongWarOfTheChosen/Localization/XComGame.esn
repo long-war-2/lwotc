@@ -2490,6 +2490,14 @@ ObjectiveTextPools[1]="Neutraliza todos los objetivos enemigos."
 ObjectiveTextPools[0]="El Avatar del comandante debe sobrevivir."
 ObjectiveTextPools[1]="Destruye los Avatares."
 
+[DefaultAssaultFortressLeadup_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="El Avatar del comandante debe sobrevivir."
+ObjectiveTextPools[1]="Neutraliza todos los objetivos enemigos."
+
+[DefaultDestroyAvatarProject_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="El Avatar del comandante debe sobrevivir."
+ObjectiveTextPools[1]="Destruye los Avatares."
+
 [DefaultSabotage_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Coloca X4 para destruir la instalación alienígena."
 ObjectiveTextPools[1]="Extrae a todos los soldados de XCOM."
@@ -2842,6 +2850,13 @@ PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.support.T_Support_Broadcast
 DisplayName="Asaltar la fortaleza alienígena"
 Briefing="Asalta la fortaleza alienígena."
 PostMissionType="Asalta la fortaleza alienígena."
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
+ObjectiveTextPools[0]="Destruye la Directiva Avatar."
+
+[DestroyAvatarProject_LW X2MissionTemplate]
+DisplayName="Destruir el proyecto Avatar"
+Briefing="Destruye el proyecto Avatar."
+PostMissionType="Destruir proyecto Avatar"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
 ObjectiveTextPools[0]="Destruye la Directiva Avatar."
 

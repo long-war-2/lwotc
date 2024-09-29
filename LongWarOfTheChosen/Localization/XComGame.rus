@@ -2348,6 +2348,14 @@ ObjectiveTextPools[1]="Уничтожьте всех врагов"
 ObjectiveTextPools[0]="Аватар Шефа должен выжить"
 ObjectiveTextPools[1]="Уничтожьте аватаров"
 
+[DefaultAssaultFortressLeadup_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Аватар шефа должен выжить"
+ObjectiveTextPools[1]="Уничтожить всех врагов"
+
+[DefaultDestroyAvatarProject_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Аватар шефа должен выжить"
+ObjectiveTextPools[1]="Уничтожить аватаров"
+
 [DefaultSabotage_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Заложите X4, чтобы уничтожить объект пришельцев"
 ObjectiveTextPools[1]="Эвакуируйте всех солдат XCOM"
@@ -2716,6 +2724,13 @@ Briefing="Атакуйте крепость пришельцев"
 PostMissionType="Атакуйте крепость пришельцев"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
 ObjectiveTextPools[0]="Ликвидируйте руководство проекта \"Аватар\""
+
+[DestroyAvatarProject_LW X2MissionTemplate]
+DisplayName="Уничтожить проект \"Аватар\""
+Briefing="Уничтожить проект \"Аватар\""
+PostMissionType="Уничтожить проект \"Аватар\""
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
+ObjectiveTextPools[0]="Уничтожить проект \"Аватар\""
 
 [SecureUFO_LW X2MissionTemplate]
 DisplayName="Захватите обездвиженный НЛО"

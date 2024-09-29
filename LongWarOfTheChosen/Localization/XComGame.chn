@@ -2502,6 +2502,14 @@ ObjectiveTextPools[1]="消灭所有目标敌人"
 ObjectiveTextPools[0]="指挥官的化身必须存活"
 ObjectiveTextPools[1]="摧毁所有化身"
 
+[DefaultAssaultFortressLeadup_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="指挥官的化身必须存活"
+ObjectiveTextPools[1]="消灭所有目标敌人"
+
+[DefaultDestroyAvatarProject_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="指挥官的化身必须存活"
+ObjectiveTextPools[1]="摧毁所有化身"
+
 [DefaultSabotage_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="安置X4炸药以摧毁外星人设施"
 ObjectiveTextPools[1]="撤离所有XCOM士兵"
@@ -2907,6 +2915,13 @@ PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.support.T_Support_Broadcast
 DisplayName="突袭外星人要塞"
 Briefing="突袭外星人要塞"
 PostMissionType="突袭外星人要塞"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
+ObjectiveTextPools[0]="破坏化身指令"
+
+[DestroyAvatarProject_LW X2MissionTemplate]
+DisplayName="摧毁化身计划"
+Briefing="摧毁化身计划"
+PostMissionType="摧毁化身计划"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
 ObjectiveTextPools[0]="破坏化身指令"
 

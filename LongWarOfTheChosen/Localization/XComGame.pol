@@ -2428,6 +2428,14 @@ ObjectiveTextPools[1]="Zneutralizuj wszystkich wrogów"
 ObjectiveTextPools[0]="Awatar dowódcy musi przetrwać"
 ObjectiveTextPools[1]="Zniszcz awatary"
 
+[DefaultAssaultFortressLeadup_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Awatar dowódcy musi przetrwać"
+ObjectiveTextPools[1]="Zneutralizuj wszystkich wrogów"
+
+[DefaultDestroyAvatarProject_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Awatar dowódcy musi przetrwać"
+ObjectiveTextPools[1]="Zniszcz awatary"
+
 [DefaultSabotage_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Podłóż X4, żeby zniszczyć placówkę obcych"
 ObjectiveTextPools[1]="Ewakuuj wszystkich żołnierzy XCOM"
@@ -2794,6 +2802,13 @@ PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.support.T_Support_Broadcast
 DisplayName="Zaatakuj bazę obcych"
 Briefing="Zaatakuj bazę obcych"
 PostMissionType="Zaatakuj bazę obcych"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
+ObjectiveTextPools[0]="Połóż kres dyrektywie Awatar"
+
+[DestroyAvatarProject_LW X2MissionTemplate]
+DisplayName="Połóż kres projektowi Awatar"
+Briefing="Połóż kres projektowi Awatar"
+PostMissionType="Połóż kres projektowi Awatar"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
 ObjectiveTextPools[0]="Połóż kres dyrektywie Awatar"
 
