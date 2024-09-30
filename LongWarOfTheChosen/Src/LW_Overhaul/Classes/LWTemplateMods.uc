@@ -1907,6 +1907,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	if (Template.TargetingMethod == class'X2TargetingMethod_RocketLauncher')
 	{
 		Template.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher_NoScatter';
+		`LWTrace("Swapping no-scatter rocket ability targeting for ability:" @Template.DataName);
 	}
 
 	// bugfix, hat tip to BountyGiver, needs test
