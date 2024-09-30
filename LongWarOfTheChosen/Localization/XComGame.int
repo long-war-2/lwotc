@@ -6472,8 +6472,8 @@ LocPromotionPopupText="<Bullet/> After throwing or launching a grenade, you will
 [Avenger_LW X2AbilityTemplate]
 LocFriendlyName="Avenger"
 LocFlyOverText="Avenger"
-LocLongDescription="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has taken an offensive action.  The reaction shot ingores cover bonuses."
-LocHelpText="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has taken an offensive action.  The reaction shot ingores cover bonuses."
+LocLongDescription="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has taken an offensive action.  The reaction shot ignores cover bonuses."
+LocHelpText="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has taken an offensive action.  The reaction shot ignores cover bonuses."
 LocPromotionPopupText="<Bullet/> Avenger will not activate if this unit is shot at.<br/><Bullet/> Can only activate during the enemy's turn.<br/><Bullet/> Can only trigger once per turn.<br/>"
 ; End Translation (2)
 
@@ -6716,14 +6716,14 @@ LocPromotionPopupText="<Bullet/> Give a friendly unit <Ability:INSPIRE_DODGE/> D
 
 [PrimaryReturnFire X2AbilityTemplate]
 LocFriendlyName="Return Fire"
-LocHelpText="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn. The return shot ingores cover bonuses."
-LocLongDescription="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn. The return shot ingores cover bonuses."
+LocHelpText="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn. The return shot ignores cover bonuses."
+LocLongDescription="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn. The return shot ignores cover bonuses."
 LocPromotionPopupText="<Bullet/> Return Fire will only trigger once per turn.<br/><Bullet/> Return Fire can be triggered by melee attacks and area of effect attacks.<br/><Bullet/> Return Fire will not trigger when targeted by overwatch fire.<br/>"
 
 [PrimaryReturnFireShot X2AbilityTemplate]
 LocFriendlyName="Return Fire"
-LocHelpText="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn. The return shot ingores cover bonuses."
-LocLongDescription="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn. The return shot ingores cover bonuses."
+LocHelpText="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn. The return shot ignores cover bonuses."
+LocLongDescription="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn. The return shot ignores cover bonuses."
 LocPromotionPopupText="<Bullet/> Return Fire will only trigger once per turn.<br/><Bullet/> Return Fire can be triggered by melee attacks and area of effect attacks.<br/><Bullet/> Return Fire will not trigger when targeted by overwatch fire.<br/>"
 
 [TriggerBot X2AbilityTemplate]
