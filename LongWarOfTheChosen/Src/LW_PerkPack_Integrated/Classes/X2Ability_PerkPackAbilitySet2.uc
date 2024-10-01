@@ -2457,7 +2457,7 @@ static function X2AbilityTemplate CreateComboHoloAAAbility()
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'HoloAACombo_LW');
 
-	Template.IconImage = "img:///UILibrary_DLC3Images.UIPerk_spark_adaptiveaim;
+	Template.IconImage = "img:///UILibrary_DLC3Images.UIPerk_spark_adaptiveaim";
 	Template.Hostility = eHostility_Neutral;
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
