@@ -3843,7 +3843,7 @@ static function X2AbilityTemplate AddIronCurtainAbility()
 	local X2AbilityTemplate                 Template;
 	local X2Effect_IronCurtain				WeaponDamageEffect;
 
-	`CREATE_X2ABILITY_TEMPLATE (Template, 'IronCurtain');	
+	`CREATE_X2ABILITY_TEMPLATE (Template, 'IronCurtain');
 	Template.Hostility = eHostility_Neutral;
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
