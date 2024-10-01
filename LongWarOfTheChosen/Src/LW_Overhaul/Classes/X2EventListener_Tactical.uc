@@ -1316,8 +1316,11 @@ static function EventListenerReturn OnShouldUnitPatrol(Object EventData, Object 
 					}
 				}
 			}
-			`LWTrace("overriding patrol behavior.");
-			OverrideTuple.Data[0].b = true;
+			else
+			{
+				`LWTrace("overriding patrol behavior.");
+				OverrideTuple.Data[0].b = true;
+			}
 		}
 	}
 	return ELR_NoInterrupt;

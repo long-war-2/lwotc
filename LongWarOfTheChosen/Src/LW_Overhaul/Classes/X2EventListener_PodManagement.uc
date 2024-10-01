@@ -23,8 +23,8 @@ static function CHEventListenerTemplate CreateListeners()
 	`LWTrace("Registering evac event listeners");
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'PodManagementListeners');
-	Template.AddCHEvent('PlayerTurnBegun', OnAlienTurnBegin, ELD_Immediate, 150);
-	Template.AddCHEvent('UnitGroupTurnBegun', OnUnitGroupTurnBegun, ELD_Immediate, 150);
+	Template.AddCHEvent('PlayerTurnBegun', OnAlienTurnBegin, ELD_OnStateSubmitted, 150);
+	Template.AddCHEvent('UnitGroupTurnBegun', OnUnitGroupTurnBegun, ELD_OnStateSubmitted, 150);
 	Template.AddCHEvent('AbilityActivated', SetPodManagerAlert, ELD_OnStateSubmitted, 150);
 
 	Template.RegisterInTactical = true;
@@ -61,9 +61,9 @@ static function EventListenerReturn SetPodManagerAlert(Object EventData, Object 
 }
 
 // Tedster - converted to ELD_Immediate instead of ELD_OnStateSubmitted
-static function EventListenerReturn OnAlienTurnBegin(Object EventData, Object EventSource, XComGameState NewGameState, Name EventID, Object CallbackData)
+static function EventListenerReturn OnAlienTurnBegin(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
-	//local XComGameState NewGameState;
+	local XComGameState NewGameState;
 	local XComGameState_LWPodManager NewPodManager;
 	local XComGameState_Player PlayerState;
 
@@ -83,6 +83,7 @@ static function EventListenerReturn OnAlienTurnBegin(Object EventData, Object Ev
 	// If we're still concealed, don't take any actions yet.
 	// XComPlayer = class'Utilities_LW'.static.FindPlayer(eTeam_XCom);
 
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Preparing Pod Jobs");
 
 	NewPodManager = XComGameState_LWPodManager(NewGameState.ModifyStateObject(class'XComGameState_LWPodManager', `LWPODMGR.ObjectID));
 
@@ -101,7 +102,6 @@ static function EventListenerReturn OnAlienTurnBegin(Object EventData, Object Ev
 		NewPodManager.TurnInit(NewGameState);
 	}
 
-	/* // Disabling this code block because it's now an ELD_Interrupt
 	if (NewGameState.GetNumGameStateObjects() > 0)
 	{
 		`TACTICALRULES.SubmitGameState(NewGameState);
@@ -109,14 +109,14 @@ static function EventListenerReturn OnAlienTurnBegin(Object EventData, Object Ev
 	else
 	{
 		`XCOMHISTORY.CleanupPendingGameState(NewGameState);
-	}*/
+	}
 
 	return ELR_NoInterrupt;
 }
 // Converted from ELD_OSS to ELD_Immediate
-static function EventListenerReturn OnUnitGroupTurnBegun(Object EventData, Object EventSource, XComGameState NewGameState, Name EventID, Object CallbackData)
+static function EventListenerReturn OnUnitGroupTurnBegun(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
-	//local XComGameState NewGameState;
+	local XComGameState NewGameState;
 	local XComGameState_LWPodManager NewPodManager;
 	local XComGameState_AIGroup GroupState;
 	
@@ -127,11 +127,11 @@ static function EventListenerReturn OnUnitGroupTurnBegun(Object EventData, Objec
 		return ELR_NoInterrupt;
 	}
 
-	//NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Updating Pod Job");
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Updating Pod Job");
 	NewPodManager = XComGameState_LWPodManager(NewGameState.ModifyStateObject(class'XComGameState_LWPodManager', `LWPODMGR.ObjectID));
 	NewPodManager.UpdatePod(NewGameState, GroupState);
 
-	/*
+	
 	// no longer necessary
 	if (NewGameState.GetNumGameStateObjects() > 0)
 	{
@@ -141,6 +141,6 @@ static function EventListenerReturn OnUnitGroupTurnBegun(Object EventData, Objec
 	{
 		`XCOMHISTORY.CleanupPendingGameState(NewGameState);
 	}
- 	*/
+ 	
 	return ELR_NoInterrupt;
 }
