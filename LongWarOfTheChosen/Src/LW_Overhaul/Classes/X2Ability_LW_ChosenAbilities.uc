@@ -2062,6 +2062,8 @@ static function X2AbilityTemplate ImpactCompensationV2()
 
 	Template.AdditionalAbilities.AddItem('ClearDamageThisTurnAbility_LW');
 
+	Template.ConcealmentRule = eConceal_Always;
+
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;
 
@@ -2109,6 +2111,8 @@ static function X2AbilityTemplate ImpactCompensationV2XCOM()
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 	//Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
 
+	Template.ConcealmentRule = eConceal_Always;
+
 	Template.AdditionalAbilities.AddItem('ClearDamageThisTurnAbility_LW');
 
 	Template.bDisplayInUITooltip = true;
@@ -2146,6 +2150,8 @@ static function X2AbilityTemplate ClearUnitValueEachTurnAbility()
     Trigger.ListenerData.Filter = eFilter_Player;
     Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
     Template.AbilityTriggers.AddItem(Trigger);
+
+	Template.ConcealmentRule = eConceal_Always;
 
 	ClearUnitValue = new class'X2Effect_ClearUnitValue';
 	ClearUnitValue.UnitValueName = 'DamageThisTurn';
