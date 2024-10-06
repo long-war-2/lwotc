@@ -328,6 +328,7 @@ static function X2AbilityTemplate SawedOffOverwatch()
 	local X2Condition_UnitEffectsWithAbilitySource NoneShallPassTargetCondition;
 	local X2AbilityTrigger_EventListener	Trigger;
 	local X2Condition_UnitProperty			ExcludeSquadmatesCondition;
+	local X2Condition_NotItsOwnTurn NotItsOwnTurnCondition;
 
 	Template = Attack('NoneShallPass_LW', "img:///'BstarsPerkPack_Icons.UIPerk_SawedOffOverwatch'", false, none, class'UIUtilities_Tactical'.const.CLASS_SERGEANT_PRIORITY, eCost_None);
 	
@@ -362,6 +363,9 @@ static function X2AbilityTemplate SawedOffOverwatch()
 	ExcludeSquadmatesCondition = new class'X2Condition_UnitProperty';
 	ExcludeSquadmatesCondition.ExcludeSquadmates = true;
 	Template.AbilityTargetConditions.AddItem(ExcludeSquadmatesCondition);
+
+	NotItsOwnTurnCondition = new class'X2Condition_NotItsOwnTurn';
+	Template.AbilityShooterConditions.AddItem(NotItsOwnTurnCondition);
 
 	NoneShallPassTargetEffect = new class'X2Effect_Persistent';
 	NoneShallPassTargetEffect.BuildPersistentEffect(1, false, true, true, eGameRule_PlayerTurnEnd);
