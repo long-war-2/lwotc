@@ -21,6 +21,8 @@ var config int APOTHEOSIS_DODGE_BONUS;
 var config int APOTHEOSIS_MOBILITY_BONUS;
 var config float APOTHEOSIS_DAMAGE_MULTIPLIER;
 
+var config int SOUL_SHOT_AIM_MOD;
+
 var config int AMPLIFY_SHOTS;
 
 var name PanicImpairingAbilityName;
@@ -667,6 +669,7 @@ static function X2AbilityTemplate SoulShot()
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_SQUADDIE_PRIORITY;
 
 	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
+	ToHitCalc.BuiltInHitMod = default.SOUL_SHOT_AIM_MOD;
 	Template.AbilityToHitCalc = ToHitCalc;
 	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
 
