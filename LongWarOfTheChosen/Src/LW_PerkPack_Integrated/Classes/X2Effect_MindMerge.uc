@@ -51,20 +51,21 @@ protected simulated function OnEffectAdded(const out EffectAppliedData ApplyEffe
 	WillChange.StatAmount = BaseWillIncrease;
 	CritChange.StatAmount = BaseCritIncrease;
 
-	// Add mag tier bonuses
-	if (SourceItem.GetMyTemplateName() == 'PsiAmp_MG')
+	// Convert to weapon cat
+	switch (SourceItem.GetWeaponTech())
 	{
-		ShieldHPChange.StatAmount += AmpMGShieldHPBonus;
-		WillChange.StatAmount += AmpMGWillBonus;
-		CritChange.StatAmount += AmpMGCritBonus;
-	}
-
-	// Add beam tier bonuses
-	if (SourceItem.GetMyTemplateName() == 'PsiAmp_BM')
-	{
-		ShieldHPChange.StatAmount += AmpBMShieldHPBonus;
-		WillChange.StatAmount += AmpBMWillBonus;
-		CritChange.StatAmount += AmpBMCritBonus;
+		case 'laser_lw':
+		case 'magnetic':
+			ShieldHPChange.StatAmount += AmpMGShieldHPBonus;
+			WillChange.StatAmount += AmpMGWillBonus;
+			CritChange.StatAmount += AmpMGCritBonus;
+			break;
+		case 'coilgun_lw':
+		case 'beam':
+			ShieldHPChange.StatAmount += AmpBMShieldHPBonus;
+			WillChange.StatAmount += AmpBMWillBonus;
+			CritChange.StatAmount += AmpBMCritBonus;
+			break;
 	}
 
 	// Add per psi offense bonuses
