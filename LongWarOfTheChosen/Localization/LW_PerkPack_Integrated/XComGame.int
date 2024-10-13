@@ -366,7 +366,7 @@ LocFriendlyName="Rapid Reaction"
 LocFlyOverText="Rapid Reaction"
 LocLongDescription="When in overwatch, each shot you hit with grants another reaction fire shot, up to a maximum of three shots."
 LocHelpText="When in overwatch, each shot you hit with grants another shot, up to a maximum of three shots."
-LocPromotionPopupText="<Bullet/> When in overwatch, each shot you hit with grants another reaction fire shot, up to a maximum of three shots.<br/>"
+LocPromotionPopupText=""
 
 [LightningReflexes_LW X2AbilityTemplate]
 LocFriendlyName="Lightning Reflexes"
