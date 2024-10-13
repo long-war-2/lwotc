@@ -155,7 +155,7 @@ LocFriendlyName="Aggression"
 LocFlyOverText="Aggression"
 LocLongDescription="Gain +5 critical chance for each enemy you can see, up to a maximum of 30."
 LocHelpText="Gain +5 critical chance for each enemy you can see, up to a maximum of 30."
-LocPromotionPopupText="<Bullet/> Gain +5 critical chance for each enemy you can see, up to a maximum of 30.<br/><Bullet/> Units visible at squadsight ranges do confer bonus.<br/>"
+LocPromotionPopupText="<Bullet/> Units visible at squadsight ranges do confer bonus.<br/>"
 
 [BringEmOn X2AbilityTemplate]
 LocFriendlyName="Bring 'Em On"
