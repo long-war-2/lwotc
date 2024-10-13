@@ -6424,7 +6424,7 @@ LocFlyOverText="Lock 'N Load"
 ; LWOTC Needs Translation (2)
 LocLongDescription="Kills with your <Ability:BOUND_WEAPON_NAME/> restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo."
 LocHelpText="Kills with your <Ability:BOUND_WEAPON_NAME/> restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo."
-LocPromotionPopupText="<Bullet/> Kills with your <Ability:BOUND_WEAPON_NAME/> restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo.<br/>"
+LocPromotionPopupText=""
 ; End Translation (2)
 
 [TrenchWarfare_LW X2AbilityTemplate]
