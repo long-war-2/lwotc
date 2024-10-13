@@ -1143,7 +1143,7 @@ LocFriendlyName="Cool Under Pressure"
 LocLongDescription="You gain +<Ability:COOLUNDERPRESSUREBONUS/> Aim on Overwatch and other reaction shots, and they can critically hit."
 LocHelpText="Bonus aim and chance to crit on Overwatch and reaction shots."
 LocFlyOverText="Cool Under Pressure"
-LocPromotionPopupText="<Bullet/> You gain +<Ability:COOLUNDERPRESSUREBONUS/> Aim on Overwatch and other reaction shots, and they can critically hit.<br/>
+LocPromotionPopupText=""
 
 [BiggestBooms X2AbilityTemplate]
 LocFriendlyName="Biggest Booms"
