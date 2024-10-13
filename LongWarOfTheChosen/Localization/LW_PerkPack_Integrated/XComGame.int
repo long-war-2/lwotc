@@ -179,7 +179,7 @@ LocFriendlyName="Infighter"
 LocFlyOverText="Infighter"
 LocLongDescription="Gain <Ability:INFIGHTER_DODGE_BONUS/> Dodge against attacks within four tiles."
 LocHelpText="Gain <Ability:INFIGHTER_DODGE_BONUS/> Dodge against attacks within four tiles."
-LocPromotionPopupText="<Bullet/> Gain <Ability:INFIGHTER_DODGE_BONUS/> Dodge against attacks within four tiles.<br/><Bullet/> Dodge bonus also applies to melee attacks.<br/><Bullet/> This ability does not provide defensive bonuses if the unit is disoriented, stunned, panicking or otherwise impaired.<br/><Bullet/> Burning does not affect this ability."
+LocPromotionPopupText="<Bullet/> Dodge bonus also applies to melee attacks.<br/><Bullet/> This ability does not provide defensive bonuses if the unit is disoriented, stunned, panicking or otherwise impaired.<br/><Bullet/> Burning does not affect this ability."
 ; End Translation (2)
 
 [DepthPerception X2AbilityTemplate]
