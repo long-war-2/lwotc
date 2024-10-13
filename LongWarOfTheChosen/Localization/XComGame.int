@@ -6564,7 +6564,7 @@ LocFriendlyName="Scrap Metal"
 LocFlyOverText="Scrap Metal: Recovered ammo"
 LocLongDescription="Kills with your <Ability:BOUND_WEAPON_NAME/> restore one sawed-off shotgun charge."
 LocHelpText="Kills with your <Ability:BOUND_WEAPON_NAME/> restore one sawed-off shotgun charge."
-LocPromotionPopupText="<Bullet/> Kills with your <Ability:BOUND_WEAPON_NAME/> restore one sawed-off shotgun charge.<br/><Bullet/> This does not apply to kills from using the sawed-off shotgun itself.<br/><Bullet/> This ability cannot grant ammo if the sawed-off shotgun charges are already at their starting value.<br/>"
+LocPromotionPopupText="<Bullet/> This does not apply to kills from using the sawed-off shotgun itself.<br/><Bullet/> With this ability, you can gain more sawed-off shotgun charges than you started with.<br/>"
 
 [ScrapMetalTrigger_LW X2AbilityTemplate]
 LocFriendlyName="Scrap Metal: Recovered ammo"
