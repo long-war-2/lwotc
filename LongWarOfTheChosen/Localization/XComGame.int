@@ -6456,7 +6456,7 @@ LocFlyOverText="Open Fire"
 LocLongDescription="Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health."
 LocHelpText="Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health."
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health.<br/>"
+LocPromotionPopupText=""
 ; End Translation (2)
 
 [WatchThemRun_LW X2AbilityTemplate]
