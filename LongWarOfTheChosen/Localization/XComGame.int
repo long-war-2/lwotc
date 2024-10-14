@@ -649,8 +649,8 @@ LocPromotionPopUpText="<Bullet/> Activate to grant the soldier +<ABILITY:FORTIFY
 [CombatFitness X2AbilityTemplate]
 LocFriendlyName="Combat Fitness"
 LocLongDescription="Gain <ABILITY:COMBAT_FITNESS_OFFENSE_LW/> aim, <ABILITY:COMBAT_FITNESS_MOBILITY_LW/> mobility, <ABILITY:COMBAT_FITNESS_HP_LW/> HP, <ABILITY:COMBAT_FITNESS_WILL_LW/> will, and <ABILITY:COMBAT_FITNESS_DODGE_LW/> dodge."
-LocHelpText="This soldier has numerous stat bonuses."
-LocPromotionPopUpText="<Bullet/> Combat Fitness provides <ABILITY:COMBAT_FITNESS_OFFENSE_LW/> aim, <ABILITY:COMBAT_FITNESS_MOBILITY_LW/> mobility, <ABILITY:COMBAT_FITNESS_HP_LW/> HP, <ABILITY:COMBAT_FITNESS_WILL_LW/> will, and <ABILITY:COMBAT_FITNESS_DODGE_LW/> dodge."
+LocHelpText="<Bullet/> Combat Fitness provides <ABILITY:COMBAT_FITNESS_OFFENSE_LW/> aim, <ABILITY:COMBAT_FITNESS_MOBILITY_LW/> mobility, <ABILITY:COMBAT_FITNESS_HP_LW/> HP, <ABILITY:COMBAT_FITNESS_WILL_LW/> will, and <ABILITY:COMBAT_FITNESS_DODGE_LW/> dodge."
+LocPromotionPopUpText=""
 
 [Sprinter X2AbilityTemplate]
 LocFriendlyName="Sprinter"
