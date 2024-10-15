@@ -235,5 +235,5 @@ LocPromotionPopupText="<Bullet/> 自由動作，4回合冷卻。"
 [TacticalRetreat_LW X2AbilityTemplate]
 LocFriendlyName="飛刀撤退"
 LocHelpText="飛刀撤退"
-LocLongDescription="在投擲飛刀後，獲得一次僅限移動的動作。一回合內可以多次觸發。"
-LocPromotionPopupText="<Bullet/> 在投擲飛刀後，獲得一次僅限移動的動作。一回合內可以多次觸發。"
+LocLongDescription="在投擲飛刀後，獲得一次僅限移動的動作。一回合只能觸發一次。"
+LocPromotionPopupText="<Bullet/> 在投擲飛刀後，獲得一次僅限移動的動作。一回合只能觸發一次。"
