@@ -6871,10 +6871,10 @@ LocHelpText="每次用近战武器攻击且命中时，获得可叠加的+<Abili
 LocFlyOverText="嗜血"
 
 [OverbearingSuperiority_LW X2AbilityTemplate]
-LocFriendlyName="霸气侧漏"
+LocFriendlyName="势如破竹"
 LocLongDescription="你的<Ability:BOUND_WEAPON_NAME/>暴击率增加+<Ability:OVERBEARING_SUPERIORITY_CRIT/>。当你使用<Ability:BOUND_WEAPON_NAME/>造成暴击时，行动点将返还。"
 LocHelpText="你的<Ability:BOUND_WEAPON_NAME/>暴击率增加+<Ability:OVERBEARING_SUPERIORITY_CRIT/>。当你使用<Ability:BOUND_WEAPON_NAME/>造成暴击时，行动点将返还。"
-LocFlyOverText="霸气侧漏"
+LocFlyOverText="势如破竹"
 
 [DisruptorRifleCrit X2AbilityTemplate]
 LocFriendlyName="不义之怒"
@@ -7351,17 +7351,17 @@ ShortSummaryText="我们的隐秘行动将被推迟2周！"
 ; LWOTC Needs Translation
 
 [Unstoppable_LW X2AbilityTemplate]
-LocFriendlyName="势不可挡"
+LocFriendlyName="刹不住"
 LocLongDescription="该单位的移动力不会低于<Ability:UNSTOPPABLE_MIN_MOB>。"
 LocHelpText="该单位的移动力不会低于<Ability:UNSTOPPABLE_MIN_MOB>。"
-LocFlyOverText="势不可挡"
+LocFlyOverText="刹不住"
 LocPromotionPopupText="该单位的移动力不会低于<Ability:UNSTOPPABLE_MIN_MOB>。"
 
 [UnstoppablePassive_LW X2AbilityTemplate]
-LocFriendlyName="势不可挡"
+LocFriendlyName="刹不住"
 LocLongDescription="该单位的移动力不会低于<Ability:UNSTOPPABLE_MIN_MOB>。"
 LocHelpText="该单位的移动力不会低于<Ability:UNSTOPPABLE_MIN_MOB>。"
-LocFlyOverText="势不可挡"
+LocFlyOverText="刹不住"
 LocPromotionPopupText="该单位的移动力不会低于<Ability:UNSTOPPABLE_MIN_MOB>。"
 
 [TargetingAimAndCrit X2AbilityTemplate]
