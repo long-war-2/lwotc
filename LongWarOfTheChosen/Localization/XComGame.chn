@@ -412,7 +412,7 @@ Description="在接下来的任务中控制该单位并使其获得属性加成�
 ; LWOTC Needs Translation (2)
 [ScanningProtocol X2AbilityTemplate]
 LocLongDescription="小精灵在区域内进行即时扫描，一个回合内大幅增加专家的视野半径，并在视野中显示任何隐藏或伪装的敌人。自由行动。"
-LocPromotionPopupText="<Bullet/> 扫描协议最初有<ABILITY:SCANNING_PROTOCOL_INITIAL_CHARGES_LW/>充能。<br/><Bullet/> 扫描协议可以通过高级小精灵获得额外充能。<br/><Bullet/> 除了隐藏和伪装的敌人外，被墙壁或障碍物挡住视线的敌人也将通过扫描协议显示出来。<br/><Bullet/> 扫描协议是自由行动。<br/><Bullet/> 如果专家被雇佣为避难所顾问，扫描协议将减少40%的几率招募到无面怪（与其他类似的能力叠加）。<br/>"
+LocPromotionPopupText="<Bullet/> 扫描协议最初有<ABILITY:SCANNING_PROTOCOL_INITIAL_CHARGES_LW/>充能。<br/><Bullet/> 扫描协议可以通过高级小精灵获得额外充能。<br/><Bullet/> 除了隐藏和伪装的敌人外，被墙壁或障碍物挡住视线的敌人也将通过扫描协议显示出来。<br/><Bullet/> 扫描协议是自由行动。<br/><Bullet/> 如果专家被雇佣为避难所顾问，扫描协议将减少40%的几率“招募”到无面怪（与其他类似的能力叠加）。<br/>"
 ; End Translation (2)
 
 ;End translation
@@ -608,8 +608,8 @@ LocPromotionPopUpText="<Bullet/> 强身健体给予士兵<ABILITY:COMBAT_FITNESS
 
 [Sprinter X2AbilityTemplate]
 LocFriendlyName="神行太保"
-LocLongDescription="获得1点移动力。"
-LocHelpText="该士兵拥有额外的移动力。"
+LocLongDescription="获得1点额外移动力。"
+LocHelpText="该单位拥有额外的移动力。"
 LocPromotionPopUpText="<Bullet/> 神行太保提供1点额外移动力。"
 
 [TakeThis X2AbilityTemplate]
@@ -811,105 +811,105 @@ LocFlyOverText="稳定武器"
 [Needle_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="刺针弹"
 LocFlyOverText="刺针弹"
-LocLongDescription="对非机械类变种人的伤害+2。对所有敌人+1伤害。"
-LocHelpText="对非机械类变种人的伤害+2。对所有敌人+1伤害。"
+LocLongDescription="对非机械类变种人的伤害+<Ability:NEEDLE_ADVENT_DMG>。对所有敌人+<Ability:NEEDLE_DMGMOD>伤害。"
+LocHelpText="对非机械类变种人的伤害+<Ability:NEEDLE_ADVENT_DMG>。对所有敌人+<Ability:NEEDLE_DMGMOD>伤害。"
 
 [Shredder_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="粉碎弹"
 LocFlyOverText="粉碎弹"
-LocLongDescription="每次命中撕碎2点护甲。"
-LocHelpText="每次命中撕碎2点护甲。"
+LocLongDescription="每次命中撕碎<Ability:SHREDDER_ROUNDS_SHRED>点护甲。"
+LocHelpText="每次命中撕碎<Ability:SHREDDER_ROUNDS_SHRED>点护甲。"
 
 [Flechette_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="飞镖弹"
 LocFlyOverText="飞镖弹"
-LocLongDescription="对没有护甲的目标造成+2伤害。对所有敌人+1伤害。"
-LocHelpText="对没有护甲的目标造成+2伤害。对所有敌人+1伤害。"
+LocLongDescription="对没有护甲的目标造成+<Ability:FLECHETTE_BONUS_DMG>伤害。对所有敌人+<Ability:FLECHETTE_DMGMOD>伤害。"
+LocHelpText="对没有护甲的目标造成+<Ability:FLECHETTE_BONUS_DMG>伤害。对所有敌人+<Ability:FLECHETTE_DMGMOD>伤害。"
 
 [Redscreen_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="红屏弹"
 LocFlyOverText="红屏弹"
-LocLongDescription="每次命中可以降低目标<Ability:REDSCREEN_EFFECT_LW/>点侵入防御。不堆叠，但刷新。"
-LocHelpText="每次命中可以降低目标<Ability:REDSCREEN_EFFECT_LW/>点侵入防御。不堆叠，但刷新。"
+LocLongDescription="每次命中可以降低目标<Ability:REDSCREEN_EFFECT_LW/>点侵入防御。不堆叠效果，但刷新持续时间。"
+LocHelpText="每次命中可以降低目标<Ability:REDSCREEN_EFFECT_LW/>点侵入防御。不堆叠效果，但刷新持续时间。"
 
 ; LWOTC Needs Translation
 [Stiletto_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="短剑弹"
 LocFlyOverText="短剑弹"
-LocLongDescription="对非机械类外星人的伤害+2。对所有敌人+1伤害。"
-LocHelpText="对非机械类外星人的伤害+2。对所有敌人+1伤害。"
+LocLongDescription="对非机械类外星人的伤害+<Ability:STILETTO_ALIEN_DMG>。对所有敌人+<Ability:STILETTO_DMGMOD>伤害。"
+LocHelpText="对非机械类外星人的伤害+<Ability:STILETTO_ALIEN_DMG>。对所有敌人+<Ability:STILETTO_DMGMOD>伤害。"
 
 [AP_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="穿甲弹"
 LocFlyOverText="穿甲弹"
-LocLongDescription="每次命中穿透2点护甲。"
-LocHelpText="每次命中穿透2点护甲。"
+LocLongDescription="每次命中穿透<Ability:APROUNDSPIERCEBONUS>点护甲。"
+LocHelpText="每次命中穿透<Ability:APROUNDSPIERCEBONUS>点护甲。"
 
 [Tracer_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="曳光弹"
 LocFlyOverText="曳光弹"
-LocLongDescription="你的武器拥有+5命中。"
-LocHelpText="你的武器拥有+5命中。"
+LocLongDescription="你的武器拥有+<Ability:TRACERROUNDSAIMBONUS>命中。"
+LocHelpText="你的武器拥有+<Ability:TRACERROUNDSAIMBONUS>命中。"
 
 [Talon_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="利爪弹"
 LocFlyOverText="利爪弹"
-LocLongDescription="你的武器拥有+10暴击率和+1暴击伤害。"
-LocHelpText="你的武器拥有+10暴击率和+1暴击伤害。"
+LocLongDescription="你的武器拥有+<Ability:TALONROUNDSCRITCHANCE>暴击率和+<Ability:TALONROUNDSCRITDAMAGEBONUS>暴击伤害。"
+LocHelpText="你的武器拥有+<Ability:TALONROUNDSCRITCHANCE>暴击率和+<Ability:TALONROUNDSCRITDAMAGEBONUS>暴击伤害。"
 
 [Dragon_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="火龙弹"
 LocFlyOverText="火龙弹"
-LocLongDescription="你的武器造成+1伤害且能让敌人着火。"
-LocHelpText="你的武器造成+1伤害且能让敌人着火。"
+LocLongDescription="你的武器造成+1伤害且有<Ability:DRAGON_ROUNDS_APPLY_CHANCE>%概率使敌人着火。"
+LocHelpText="你的武器造成+1伤害且有<Ability:DRAGON_ROUNDS_APPLY_CHANCE>%概率使敌人着火。"
 
 [Bluescreen_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="蓝屏弹"
 LocFlyOverText="蓝屏弹"
-LocLongDescription="你的武器对机械敌人造成+3的伤害并移除防御型护盾。"
-LocHelpText="你的武器对机械敌人造成+3的伤害并移除防御型护盾。"
+LocLongDescription="你的武器对机械敌人造成+<Ability:BLUESCREEN_DMGMOD>的伤害并移除防御型护盾。"
+LocHelpText="你的武器对机械敌人造成+<Ability:BLUESCREEN_DMGMOD>的伤害并移除防御型护盾。"
 
 [Venom_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="毒液弹"
 LocFlyOverText="毒液弹"
-LocLongDescription="你的武器+1伤害并能使敌人中毒。"
-LocHelpText="你的武器+1伤害并能使敌人中毒。"
+LocLongDescription="你的武器+1伤害并有<Ability:VENOM_ROUNDS_APPLY_CHANCE>%概率使敌人中毒。"
+LocHelpText="你的武器+1伤害并有<Ability:VENOM_ROUNDS_APPLY_CHANCE>%概率使敌人中毒。"
 
 [Ceramic_Plating_Ability X2AbilityTemplate]
 LocFriendlyName="陶瓷护甲"
 LocFlyOverText="陶瓷护甲"
-LocLongDescription="你获得2点护盾值。"
-LocHelpText="你获得2点护盾值。"
+LocLongDescription="你获得<Ability:CERAMIC_PLATING_HP>点护盾值。"
+LocHelpText="你获得<Ability:CERAMIC_PLATING_HP>点护盾值。"
 
 [Alloy_Plating_Ability X2AbilityTemplate]
 LocFriendlyName="合金护甲"
 LocFlyOverText="合金护甲"
-LocLongDescription="你获得3点护盾值。"
-LocHelpText="你获得3点护盾值。"
+LocLongDescription="你获得<Ability:ALLOY_PLATING_HP>点护盾值。"
+LocHelpText="你获得<Ability:ALLOY_PLATING_HP>点护盾值。"
 
 [Chitin_Plating_Ability X2AbilityTemplate]
 LocFriendlyName="壳质护甲"
 LocFlyOverText="壳质护甲"
-LocLongDescription="你获得4点护盾值。"
-LocHelpText="你获得4点护盾值。"
+LocLongDescription="你获得<Ability:CHITIN_PLATING_HP>点护盾值。"
+LocHelpText="你获得<Ability:CHITIN_PLATING_HP>点护盾值。"
 
 [Carapace_Plating_Ability X2AbilityTemplate]
 LocFriendlyName="甲壳护甲"
 LocFlyOverText="甲壳护甲"
-LocLongDescription="你获得5点护盾值。"
-LocHelpText="你获得5点护盾值。"
+LocLongDescription="你获得<Ability:CARAPACE_PLATING_HP>点护盾值。"
+LocHelpText="你获得<Ability:CARAPACE_PLATING_HP>点护盾值。"
 
 [HazmatVestBonus_LW X2AbilityTemplate]
 LocFriendlyName="生化防护背心"
 LocFlyOverText="生化防护背心"
-LocLongDescription="提供3点生命值并免疫火焰、酸和毒的侵害。"
-LocHelpText="提供3点生命值并免疫火焰、酸和毒的侵害。"
+LocLongDescription="提供<Ability:HAZMAT_VEST_HP_BONUS>点生命值并免疫火焰、酸和毒的侵害。"
+LocHelpText="提供<Ability:HAZMAT_VEST_HP_BONUS>点生命值并免疫火焰、酸和毒的侵害。"
 
 [NanofiberVestBonus_LW X2AbilityTemplate]
 LocFriendlyName="纳米背心"
 LocFlyOverText="纳米背心"
-LocLongDescription="增加2点生命值并减少敌人25的暴击率。"
-LocHelpText="增加2点生命值并减少敌人25的暴击率。"
+LocLongDescription="增加<Ability:NANOFIBER_HEALTH_BONUS_LW>点生命值并减少敌人<Ability:NANOFIBER_CRITDEF_BONUS_LW>的暴击率。"
+LocHelpText="增加<Ability:NANOFIBER_HEALTH_BONUS_LW>点生命值并减少敌人<Ability:NANOFIBER_CRITDEF_BONUS_LW>的暴击率。"
 
 [FireControl25 X2AbilityTemplate]
 LocFriendlyName="开火控制 （25）"
@@ -932,8 +932,8 @@ LocHelpText="该单位将不会对75%命中率以下的反应射击开火。"
 [Neurowhip_Ability X2AbilityTemplate]
 LocFriendlyName="神经鞭"
 LocFlyoverText="神经鞭"
-LocLongDescription="减少10点意志力，增加10点灵能威力。"
-LocHelpText="减少10点意志力，增加10点灵能威力。"
+LocLongDescription="减少<Ability:NEUROWHIP_WILL_MALUS>点意志力，增加<Ability:NEUROWHIP_PSI_BONUS>点灵能威力。"
+LocHelpText="减少<Ability:NEUROWHIP_WILL_MALUS>点意志力，增加<Ability:NEUROWHIP_PSI_BONUS>点灵能威力。"
 
 ;;;;;;;;;;;;;;;;;;;;  ITEM TEMPLATES ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -979,11 +979,11 @@ TacticalText="<Bullet/>影护者的威力与常规手枪相当，但具有改进
 
 [AlienHunterPistol_MG X2WeaponTemplate]
 UnknownUtilityCategory="手枪"
-TacticalText="<Bullet/>强化型影护者的威力与常规手枪相当，但具有改进的精度和暴击几率。\n<Bullet/>手枪射击只需要一个行动点。\n<Bullet/>使用\"暗影坠落\"技能造成的击杀将立刻使该单位进入隐匿状态。"
+TacticalText="<Bullet/>强化型影护者的威力与磁力手枪相当，但具有改进的精度和暴击几率。\n<Bullet/>手枪射击只需要一个行动点。\n<Bullet/>使用\"暗影坠落\"技能造成的击杀将立刻使该单位进入隐匿状态。"
 
 [AlienHunterPistol_BM X2WeaponTemplate]
 UnknownUtilityCategory="手枪"
-TacticalText="<Bullet/>动力型影护者的威力和光束手枪相当，但具有改进的精度和暴击几率。\n<Bullet/>手枪射击只需要一个行动点。\n<Bullet/>使用\"暗影坠落\"技能造成的击杀将立刻使该单位进入隐匿状态。<br/><Bullet/>电浆武器会导致目标在未来每次被攻击命中时额外受到1点伤害。"
+TacticalText="<Bullet/>动力型影护者的威力和电浆手枪相当，但具有改进的精度和暴击几率。\n<Bullet/>手枪射击只需要一个行动点。\n<Bullet/>使用\"暗影坠落\"技能造成的击杀将立刻使该单位进入隐匿状态。<br/><Bullet/>电浆武器会导致目标在未来每次被攻击命中时额外受到1点伤害。"
 
 [SawedOffShotgun_CV X2WeaponTemplate]
 FriendlyName="短管散弹枪"
@@ -1198,22 +1198,22 @@ TacticalText="<Bullet/> 该武器的设计基于沈博士从原始外星人入�
 AbilityDescName="重型链炮"
 
 [SparkRifle_LS X2WeaponTemplate]
-FriendlyName="重型轨道炮"
-FriendlyNamePlural="重型轨道炮"
-BriefSummary="重型轨道炮以极高的速度射击致命的弹药，造成巨大的伤害。"
-TacticalText="<Bullet/> 激光武器会获得命中加成。\n<Bullet/> 重型轨道炮是激光版本的自动加农炮。"
-AbilityDescName="重型轨道炮"
+FriendlyName="激光轨道炮"
+FriendlyNamePlural="激光轨道炮"
+BriefSummary="激光轨道炮以极高的速度射击致命的弹药，造成巨大的伤害。"
+TacticalText="<Bullet/> 激光武器会获得命中加成。\n<Bullet/> 激光轨道炮是激光版本的自动加农炮。"
+AbilityDescName="激光轨道炮"
 
 [SparkRifle_CG X2WeaponTemplate]
-FriendlyName="粒子投射炮"
-FriendlyNamePlural="粒子投射炮"
+FriendlyName="高斯投射炮"
+FriendlyNamePlural="高斯投射炮"
 BriefSummary="使用多个加速线圈来制造聚焦的带电粒子束，这些粒子在任何范围内均保持有效。" 
-TacticalText="<Bullet/> 线圈武器会穿透1点敌方护甲。<br/><Bullet/> 粒子投射炮是线圈版本的自动加农炮。"
-AbilityDescName="粒子投射炮"
+TacticalText="<Bullet/> 线圈武器会穿透1点敌方护甲。<br/><Bullet/> 高斯投射炮是线圈版本的自动加农炮。"
+AbilityDescName="高斯投射炮"
 
 ; LWOTC Needs Translation (2)
 [BattleScanner X2WeaponTemplate]
-TacticalText="<Bullet/> 战场扫描器可以揭露一处被“战争迷雾”隐藏了多个回合的区域。\n<Bullet/> 战场扫描器也能显示隐藏或伪装的敌人。\n<Bullet/> 携带战场扫描器的避难所顾问将减少40%招募无面怪的几率（与其他类似能力叠加）。"
+TacticalText="<Bullet/> 战场扫描器可以揭露一处被“战争迷雾”隐藏了多个回合的区域。\n<Bullet/> 战场扫描器也能显示隐藏或伪装的敌人。\n<Bullet/> 携带战场扫描器的避难所顾问将减少40%“招募”无面怪的几率（与其他类似能力叠加）。"
 ; End Translation (2)
 
 [AdvStunLancerM1_StunLance X2WeaponTemplate]
@@ -1282,10 +1282,10 @@ TacticalText="<Bullet/>从EMP榴弹升级而来的EMP炸弹可以在更大范围
 TacticalText="<Bullet/>投掷感应地雷不会解除士兵的隐匿状态。<br><Bullet/>友方单位不会触发感应地雷，但要是身处地雷的爆炸范围，也会受到伤害。<br><Bullet/>伤害从爆炸中心向外递减。"
 
 [Firebomb X2GrenadeTemplate]
-TacticalText="<Bullet/>火焰榴弹会伤害爆炸范围内的所有单位，并有概率对任何容易受到火焰攻击的单位施加\"燃烧\"效果。\n<Bullet/>火焰榴弹的爆炸伤害高于其他任何榴弹。\n<Bullet/>有些敌人对火焰免疫，不受\"燃烧\"效果影响，尤其是金属系敌人。<br><Bullet/>伤害会随着离中心的距离递增而递减。"
+TacticalText="<Bullet/>火焰榴弹会伤害爆炸范围内的所有单位，并有概率对任何容易受到火焰攻击的单位施加\"燃烧\"效果。\n<Bullet/>火焰榴弹的爆炸伤害高于其他任何榴弹。\n<Bullet/>有些敌人对火焰免疫，不受\"燃烧\"效果影响，尤其是机械系敌人。<br><Bullet/>伤害会随着离中心的距离递增而递减。"
 
 [FirebombMK2 X2GrenadeTemplate]
-TacticalText="<Bullet/>火焰炸弹会伤害爆炸范围内的所有单位，并有概率对任何容易受到火焰攻击的单位施加\"燃烧\"效果。\n<Bullet/>火焰炸弹的爆炸伤害高于其他任何炸弹。\n<Bullet/>有些敌人对火焰免疫，不受\"燃烧\"效果影响，尤其是金属系敌人。<br><Bullet/>伤害会随着离中心的距离递增而递减。"
+TacticalText="<Bullet/>火焰炸弹会伤害爆炸范围内的所有单位，并有概率对任何容易受到火焰攻击的单位施加\"燃烧\"效果。\n<Bullet/>火焰炸弹的爆炸伤害高于其他任何炸弹。\n<Bullet/>有些敌人对火焰免疫，不受\"燃烧\"效果影响，尤其是机械系敌人。<br><Bullet/>伤害会随着离中心的距离递增而递减。"
 
 [SparkBit_MG X2GremlinTemplate]
 BriefSummary="升级后的装甲版提高了BIT的伤害和治疗能力，并提供了额外的闪避和入侵属性。"
@@ -1409,87 +1409,87 @@ FriendlyNamePlural="精英自动装填器"
 FriendlyName="纳米背心"
 FriendlyNamePlural="纳米背心"
 BriefSummary="这件背心是从变种人的护甲研究而来的轻型护甲，它可以跟其他的XCOM护甲同时装备来增加士兵<ABILITY:NANOFIBER_HEALTH_BONUS_LW/>点生命值并减少<ABILITY:NANOFIBER_CRITDEF_BONUS_LW/>点敌人对你的暴击率。"
-TacticalText="<Bullet/>为士兵增加<ABILITY:NANOFIBER_HEALTH_BONUS_LW/>点生命值。\n<Bullet/>减少敌人<ABILITY:NANOFIBER_CRITDEF_BONUS_LW/>点的暴击率。\n<Bullet/>一次只能装备一件护甲装备和一件背心。"
+TacticalText="<Bullet/>为士兵增加<ABILITY:NANOFIBER_HEALTH_BONUS_LW/>点生命值。\n<Bullet/>减少敌人<ABILITY:NANOFIBER_CRITDEF_BONUS_LW/>点的暴击率。\n<Bullet/>最多只能同时装备一件护甲和一件背心。"
 
 [PlatedVest X2EquipmentTemplate]
 FriendlyName="战术背心"
 FriendlyNamePlural="战术背心"
 BriefSummary="沈博士用装甲镀层技术改良了纳米纤维背心，减少了战斗中受到的伤害。"
-TacticalText="<Bullet/>为士兵增加3点生命值。\n<Bullet/>提供1点护甲。\n<Bullet/>减少<Ability:PLATED_CRITDEF_BONUS>点敌人对你的暴击率。\n<Bullet/>一次只能装备一件镀层物品和一件背心。"
+TacticalText="<Bullet/>为士兵增加3点生命值。\n<Bullet/>提供1点护甲。\n<Bullet/>减少<Ability:PLATED_CRITDEF_BONUS>点敌人对你的暴击率。\n<Bullet/>最多只能同时装备一件护甲和一件背心。"
 
 [HazmatVest X2EquipmentTemplate]
 FriendlyName="生化防护背心"
 FriendlyNamePlural="生化防护背心"
 BriefSummary="通过使用特种材料对纳米纤维背心进行强化，我们能让士兵完全抵抗火、酸和毒等环境威胁。"
-TacticalText="<Bullet/> 提升3点士兵的生命值。\n<Bullet/> 提供对火、酸和毒的免疫。\n<Bullet/> 同时仅可装备1种护甲或背心物品。"
+TacticalText="<Bullet/>提升3点士兵的生命值。\n<Bullet/>提供对火、酸和毒的免疫。\n<Bullet/>最多只能同时装备一件护甲和一件背心。"
 
 [Hellweave X2EquipmentTemplate]
 FriendlyName="地狱网背心"
 FriendlyNamePlural="地狱网背心"
 BriefSummary="地狱网不但可以为士兵提供+6的生命值，还可以将伤害返回发动近距离攻击的敌人身上，并有<Ability:HELLWEAVEPROCCHANCE/>%的概率点燃他们。"
-TacticalText="<Bullet/>在给近战袭击者造成直接伤害的同时，地狱网有概率点燃袭击者并致其伤残。\n<Bullet/>地狱网同时也提供6点生命值加成。<Bullet/>同时仅可装备1种护甲或背心物品。"
+TacticalText="<Bullet/>在给近战袭击者造成直接伤害的同时，地狱网有概率点燃袭击者并致其伤残。\n<Bullet/>地狱网同时也提供6点生命值加成。<Bullet/>最多只能同时装备一件护甲和一件背心。"
 
 ;;; New
 
 [FireControl25PCS X2EquipmentTemplate]
-FriendlyName="个人战斗芯片：开火控制 （25）"
-FriendlyNamePlural="个人战斗芯片：开火控制 （25）"
+FriendlyName="个人战斗芯片：开火控制（25）"
+FriendlyNamePlural="个人战斗芯片：开火控制（25）"
 BriefSummary="该植入物帮助士兵在监视时决定何时射击。安装后，士兵将不会在少于25%命中率的情况下进行监视射击。注意：这种个人战斗芯片是少数XCOM可以在复仇者号上制造的。我们在将这些芯片植入士兵之前需要游击战术学校。"
 
 [FireControl50PCS X2EquipmentTemplate]
-FriendlyName="个人战斗芯片：开火控制 （50）"
-FriendlyNamePlural="个人战斗芯片：开火控制 （50）"
+FriendlyName="个人战斗芯片：开火控制（50）"
+FriendlyNamePlural="个人战斗芯片：开火控制（50）"
 BriefSummary="该植入物帮助士兵在监视时决定何时射击。安装后，士兵将不会在少于50%命中率的情况下进行监视射击。注意：这种个人战斗芯片是少数XCOM可以在复仇者号上制造的。我们在将这些芯片植入士兵之前需要游击战术学校。"
 
 [FireControl75PCS X2EquipmentTemplate]
-FriendlyName="个人战斗芯片：开火控制 （75）"
-FriendlyNamePlural="个人战斗芯片：开火控制 （75）"
+FriendlyName="个人战斗芯片：开火控制（75）"
+FriendlyNamePlural="个人战斗芯片：开火控制（75）"
 BriefSummary="该植入物帮助士兵在监视时决定何时射击。安装后，士兵将不会在少于75%命中率的情况下进行监视射击。注意：这种个人战斗芯片是少数XCOM可以在复仇者号上制造的。我们在将这些芯片植入士兵之前需要游击战术学校。"
 
 [CommonPCSHacking X2EquipmentTemplate]
 FriendlyName="个人战斗芯片：侵入"
 FriendlyNamePlural="个人战斗芯片：侵入"
-BriefSummary="该植入物能提升士兵对复杂电脑系统的认识并能穿越他们的安全系统。"
+BriefSummary="该植入物提高了士兵驾驭复杂计算机系统并穿透其安全系统的能力。"
 
 [RarePCSHacking X2EquipmentTemplate]
 FriendlyName="个人战斗芯片：高级侵入"
 FriendlyNamePlural="个人战斗芯片：高级侵入"
-BriefSummary="此植入物极大地提高士兵操作复杂和侵入电脑系统的能力。"
+BriefSummary="该植入物较大程度地提高了士兵驾驭复杂计算机系统并穿透其安全系统的能力。"
 
 [EpicPCSHacking X2EquipmentTemplate]
 FriendlyName="个人战斗芯片：终极侵入"
 FriendlyNamePlural="个人战斗芯片：终极侵入"
-BriefSummary="该植入物能极大地提升士兵对复杂电脑系统的认识并能穿越他们的安全系统。"
+BriefSummary="该植入物极大地提高了士兵驾驭复杂计算机系统并穿透其安全系统的能力。"
 
 [CommonPCSDefense X2EquipmentTemplate]
 FriendlyName="个人战斗芯片：防御"
 FriendlyNamePlural="个人战斗芯片：防御"
-BriefSummary="该植入物使士兵在战场上拥有强大的战术素养。"
+BriefSummary="该植入物提高了士兵在战场上的防御能力，使其更难被击中。"
 
 [RarePCSDefense X2EquipmentTemplate]
 FriendlyName="个人战斗芯片：高级防御"
 FriendlyNamePlural="个人战斗芯片：高级防御"
-BriefSummary="此植入物使士兵在战场上拥有更强的战术素养。"
+BriefSummary="该植入物较大程度地提高了士兵在战场上的防御能力，使其更难被击中。"
 
 [EpicPCSDefense X2EquipmentTemplate]
 FriendlyName="个人战斗芯片：终极防御"
 FriendlyNamePlural="个人战斗芯片：终极防御"
-BriefSummary="该植入物使士兵在战场上拥有显著的战术素养。"
+BriefSummary="该植入物显著提高了士兵在战场上的防御能力，使其更难被击中。"
 
 [CommonPCSPsi X2EquipmentTemplate]
 FriendlyName="个人战斗芯片：灵能"
 FriendlyNamePlural="个人战斗芯片：灵能"
-BriefSummary="该植入物提供给士兵更强的灵能威力。"
+BriefSummary="该植入物增强了士兵的灵能威力。"
 
 [RarePCSPsi X2EquipmentTemplate]
 FriendlyName="个人战斗芯片：高级灵能"
 FriendlyNamePlural="个人战斗芯片：高级灵能"
-BriefSummary="此植入物能极大地提高士兵的灵能威力。"
+BriefSummary="该植入物较大程度地增强了士兵的灵能威力。"
 
 [EpicPCSPsi X2EquipmentTemplate]
 FriendlyName="个人战斗芯片：终极灵能"
 FriendlyNamePlural="个人战斗芯片：终极灵能"
-BriefSummary="该植入物提供给士兵极强的灵能威力。"
+BriefSummary="该植入物极大地增强了士兵的灵能威力。"
 
 [CommonPCSFocus X2EquipmentTemplate]
 FriendlyName="个人战斗芯片：集中"
@@ -1504,71 +1504,71 @@ BriefSummary="高级集中芯片可以较大程度地提升士兵抵抗恐慌和
 [EpicPCSFocus X2EquipmentTemplate]
 FriendlyName="个人战斗芯片：终极集中"
 FriendlyNamePlural="个人战斗芯片：终极集中"
-BriefSummary="终极集中芯片可以最大程度提升士兵抵抗恐慌和灵能攻击的能力。"
+BriefSummary="终极集中芯片可以极大地提升士兵抵抗恐慌和灵能攻击的能力。"
 
 [CeramicPlating X2EquipmentTemplate]
 FriendlyName="陶瓷护甲"
 FriendlyNamePlural="陶瓷护甲"
 UnknownUtilityCategory="护甲"
-BriefSummary="提供2点护盾值。"
-TacticalText="<Bullet/> 获得2点护盾值。<br/><Bullet/> 这些护盾值，一旦损失，将在任务剩余期间无法恢复。<br/><Bullet/> 陶瓷护甲护盾值的损失不会提升受伤时间。\n<Bullet/> 同一时间仅可以装备1种护甲和背心物品。"
+BriefSummary="提供<Ability:CERAMIC_PLATING_HP>点护盾值。"
+TacticalText="<Bullet/> 获得<Ability:CERAMIC_PLATING_HP>点护盾值。<br/><Bullet/> 这些护盾一旦损失，将在任务剩余期间无法恢复。<br/><Bullet/> 陶瓷护甲护盾值的损失不会提升受伤时间。\n<Bullet/> 最多只能同时装备一件护甲和一件背心。"
 
 [ChameleonSuit X2EquipmentTemplate]
 FriendlyName="变色龙套甲"
 FriendlyNamePlural="变色龙套甲"
 BriefSummary="显著地减少该士兵的潜入时间。"
-TacticalText="<Bullet/> 显著地减少该单位的潜入时间。\n<Bullet/> 同时仅可装备1种护甲或背心物品。"
+TacticalText="<Bullet/> 显著地减少该单位的潜入时间。\n<Bullet/> 最多只能同时装备一件护甲和一件背心。"
 
 [AlloyPlating X2EquipmentTemplate]
 FriendlyName="合金护甲"
 FriendlyNamePlural="合金护甲"
 UnknownUtilityCategory="护甲"
-BriefSummary="提供3点护盾值。"
-TacticalText="<Bullet/> 获得3点护盾值。<br/><Bullet/> 这些护盾值，一旦损失，将在任务剩余期间无法恢复。<br/><Bullet/> 护盾值的损失不会提升受伤时间。\n<Bullet/> 同一时间仅可以装备1种护甲和背心物品。"
+BriefSummary="提供<Ability:ALLOY_PLATING_HP>点护盾值。"
+TacticalText="<Bullet/> 获得<Ability:ALLOY_PLATING_HP>点护盾值。<br/><Bullet/> 这些护盾一旦损失，将在任务剩余期间无法恢复。<br/><Bullet/> 护盾值的损失不会提升受伤时间。\n<Bullet/> 最多只能同时装备一件护甲和一件背心。"
 
 [ChitinPlating X2EquipmentTemplate]
 FriendlyName="壳质护甲"
 FriendlyNamePlural="壳质护甲"
 UnknownUtilityCategory="护甲"
-BriefSummary="获得4点护盾值。"
-TacticalText="<Bullet/> 获得4点护盾值。<br/><Bullet/> 这些护盾值，一旦损失，将在任务剩余期间无法恢复。<br/><Bullet/> 护盾值的损失不会提升受伤时间。\n<Bullet/> 同一时间仅可以装备1种护甲和背心物品。"
+BriefSummary="获得<Ability:CHITIN_PLATING_HP>点护盾值。"
+TacticalText="<Bullet/> 获得<Ability:CHITIN_PLATING_HP>点护盾值。<br/><Bullet/> 这些护盾一旦损失，将在任务剩余期间无法恢复。<br/><Bullet/> 护盾值的损失不会提升受伤时间。\n<Bullet/> 最多只能同时装备一件护甲和一件背心。"
 
 [CarapacePlating X2EquipmentTemplate]
 FriendlyName="甲壳护甲"
 FriendlyNamePlural="甲壳护甲"
 UnknownUtilityCategory="护甲"
-BriefSummary="提供5点护盾值。"
-TacticalText="<Bullet/> 获得5点护盾值。<br/><Bullet/> 这些护盾值，一旦损失，将在任务剩余期间无法恢复。<br/><Bullet/> 护盾值的损失不会提升受伤时间。\n<Bullet/> 同一时间仅可以装备1种护甲和背心物品。"
+BriefSummary="提供<Ability:CARAPACE_PLATING_HP>点护盾值。"
+TacticalText="<Bullet/> 获得<Ability:CARAPACE_PLATING_HP>点护盾值。<br/><Bullet/> 这些护盾一旦损失，将在任务剩余期间无法恢复。<br/><Bullet/> 护盾值的损失不会提升受伤时间。\n<Bullet/> 最多只能同时装备一件护甲和一件背心。"
 
 [StilettoRounds X2AmmoTemplate]
 FriendlyName="短剑弹"
 FriendlyNamePlural="短剑弹"
-BriefSummary="对非机械类外星人的伤害+2。对所有敌人+1伤害。"
-TacticalText="<Bullet/>对非机械类外星人的伤害+2。对所有敌人+1伤害。<br/><Bullet/>一次只能装备一个弹药强化。"
+BriefSummary="对非机械类外星人的伤害+<Ability:STILETTO_ALIEN_DMG>。对所有敌人+<Ability:STILETTO_DMGMOD>伤害。"
+TacticalText="<Bullet/> 对非机械类外星人的伤害+<Ability:STILETTO_ALIEN_DMG>。对所有敌人+<Ability:STILETTO_DMGMOD>伤害。<br/><Bullet/> 最多只能装备一个弹药强化。"
 
 [FlechetteRounds X2AmmoTemplate]
 FriendlyName="飞镖弹"
 FriendlyNamePlural="飞镖弹"
-BriefSummary="对没有护甲的目标造成+2伤害。对所有敌人+1伤害。"
-TacticalText="<Bullet/> 对没有护甲的目标造成+2伤害。对所有敌人+1伤害。<br/><Bullet/> 每次仅可以装备1种弹药加强装备。"
+BriefSummary="对没有护甲的目标造成+<Ability:FLECHETTE_BONUS_DMG>伤害。对所有敌人+<Ability:FLECHETTE_DMGMOD>伤害。"
+TacticalText="<Bullet/> 对没有护甲的目标造成+<Ability:FLECHETTE_BONUS_DMG>伤害。对所有敌人+<Ability:FLECHETTE_DMGMOD>伤害。<br/><Bullet/> 最多只能装备一个弹药强化。"
 
 [RedScreenRounds X2AmmoTemplate]
 FriendlyName="红屏弹"
 FriendlyNamePlural="红屏弹"
-BriefSummary="每次命中可以降低敌人<Ability:REDSCREEN_EFFECT_LW/>点侵入防御。不堆叠，但刷新。"
-TacticalText="<Bullet/> 每次命中可以降低敌人<Ability:REDSCREEN_EFFECT_LW/>点侵入防御。<br/><Bullet/> 与其他来源的减少侵入防御堆叠，如蓝屏炸弹。<br/><Bullet/> 一次只能装备一个弹药增强。"
+BriefSummary="每次命中可以降低敌人<Ability:REDSCREEN_EFFECT_LW/>点侵入防御。无法堆叠，但刷新持续时间。"
+TacticalText="<Bullet/> 每次命中可以降低敌人<Ability:REDSCREEN_EFFECT_LW/>点侵入防御。<br/><Bullet/> 与其他来源的减少侵入防御堆叠，如蓝屏炸弹。<br/><Bullet/> 最多只能装备一个弹药强化。"
 
 [NeedleRounds X2AmmoTemplate]
 FriendlyName="刺针弹"
 FriendlyNamePlural="刺针弹"
-BriefSummary="对非机械类变种人单位的伤害+2。对所有敌人+1伤害。"
-TacticalText="<Bullet/>对非机械类变种人的伤害+2。对所有敌人+1伤害。<br/><Bullet/>一次只能装备一个弹药强化。"
+BriefSummary="对非机械类变种人单位的伤害+<Ability:NEEDLE_ADVENT_DMG>。对所有敌人+<Ability:NEEDLE_DMGMOD>伤害。"
+TacticalText="<Bullet/> 对非机械类变种人的伤害+<Ability:NEEDLE_ADVENT_DMG>。对所有敌人+<Ability:NEEDLE_DMGMOD>伤害。<br/><Bullet/> 最多只能装备一个弹药强化。"
 
 [FalconRounds X2AmmoTemplate]
 FriendlyName="粉碎弹"
 FriendlyNamePlural="粉碎弹"
-BriefSummary="每次命中撕碎敌人2点护甲。"
-TacticalText="<Bullet/> 每次命中撕碎敌人2点护甲。<br/><Bullet/> 每次仅可以装备1种弹药加强装备。"
+BriefSummary="每次命中撕碎敌人<Ability:SHREDDER_ROUNDS_SHRED>点护甲。"
+TacticalText="<Bullet/> 每次命中撕碎敌人<Ability:SHREDDER_ROUNDS_SHRED>点护甲。<br/><Bullet/> 最多只能装备一个弹药强化。"
 
 [APRounds X2AmmoTemplate]
 BriefSummary="这些致命的弹药由超强，超轻的外星合金手工加工而成，可有效穿透<Ability:APROUNDSPIERCEBONUS/>敌方护甲造成伤害。"
@@ -1589,7 +1589,7 @@ TacticalText="<Bullet/> 为火箭发射器额外提供一枚标准火箭以及�
 FriendlyName="神经鞭"
 FriendlyNamePlural="神经鞭"
 BriefSummary="以意志力为代价增强灵能威力。"
-TacticalText="<Bullet/> 减少10点意志力，增加10点灵能威力。"
+TacticalText="<Bullet/> 减少<Ability:NEUROWHIP_WILL_MALUS>点意志力，增加<Ability:NEUROWHIP_PSI_BONUS>点灵能威力。"
 UnknownUtilityCategory="神经鞭"
 
 [SmashNGrabQuestItem X2EquipmentTemplate]
@@ -2296,7 +2296,7 @@ LocLongDescription="将变种人逐出该地区，让反抗军和平民获得安
 
 [LW_T2_M0_S1_ReviewOutpost X2ObjectiveTemplate]
 Title="管理避难所（更改避难所人员活动）"
-LocLongDescription="在避难所指派反抗军寻找新的任务，收集所需的补给，或者寻找潜在的新兵。被派去收集情报的反抗军将报告有关活动的线索。军事中心长官布拉德福德建议把重点放在情报收集上，这样部队就有可执行的任务。"
+LocLongDescription="在避难所指派反抗军搜寻新任务的情报，收集所需的补给，或者寻找潜在的新兵。被派去收集情报的反抗军将报告有关活动的线索。军事官布拉德福德建议把重点放在情报收集上，这样部队就有可执行的任务。"
 
 [LW_T2_M0_S2_FindLiberation1Activity X2ObjectiveTemplate]
 Title="开始解放一个地区（完成解放1任务）"
@@ -2458,7 +2458,7 @@ ObjectiveTextPools[2]="撤离所有XCOM士兵"
 
 [DefaultNeutralizeTarget_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="坚守到天际游侠号抵达"
-ObjectiveTextPools[1]="捕获或击杀敌人VIP"
+ObjectiveTextPools[1]="捕获或击杀敌方VIP"
 ObjectiveTextPools[2]="将VIP从指定地点撤离"
 ObjectiveTextPools[3]="撤离所有XCOM士兵"
 ObjectiveTextPools[4]="敌对VIP"
@@ -2466,7 +2466,7 @@ ObjectiveTextPools[5]="要捕捉VIP，控制一名士兵到近距离然后使用
 
 [DefaultNeutralize_Vehicle_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="坚守到天际游侠号抵达"
-ObjectiveTextPools[1]="捕获或击杀敌人VIP"
+ObjectiveTextPools[1]="捕获或击杀敌方VIP"
 ObjectiveTextPools[2]="将VIP从指定地点撤离"
 ObjectiveTextPools[3]="撤离所有XCOM士兵"
 ObjectiveTextPools[4]="敌对VIP"
@@ -2499,14 +2499,6 @@ ObjectiveTextPools[0]="侵入网络阵列"
 ObjectiveTextPools[1]="消灭所有目标敌人"
 
 [DefaultAssaultAlienFortress_LW X2MissionNarrativeTemplate]
-ObjectiveTextPools[0]="指挥官的化身必须存活"
-ObjectiveTextPools[1]="摧毁所有化身"
-
-[DefaultAssaultFortressLeadup_LW X2MissionNarrativeTemplate]
-ObjectiveTextPools[0]="指挥官的化身必须存活"
-ObjectiveTextPools[1]="消灭所有目标敌人"
-
-[DefaultDestroyAvatarProject_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="指挥官的化身必须存活"
 ObjectiveTextPools[1]="摧毁所有化身"
 
@@ -2845,7 +2837,7 @@ DisplayName="消灭目标"
 Briefing="消灭目标"
 PostMissionType="消灭目标"
 BriefingImage="img:///UILibrary_Common.Xcom_default"
-ObjectiveTextPools[0]="捕获或击杀敌人VIP"
+ObjectiveTextPools[0]="捕获或击杀敌方VIP"
 PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.Neutralize.Central_Council_Missions_Neutralize_Target_01"
 PreMissionNarratives[1]="X2NarrativeMoments.TACTICAL.Neutralize.Central_Council_Missions_Neutralize_Target_02"
 PreMissionNarratives[2]="X2NarrativeMoments.TACTICAL.Neutralize.Central_Council_Missions_Neutralize_Target_03"
@@ -2857,7 +2849,7 @@ DisplayName="消灭变种人载具中的目标"
 Briefing="消灭变种人载具中的目标"
 PostMissionType="消灭目标"
 BriefingImage="img:///UILibrary_Common.Xcom_default"
-ObjectiveTextPools[0]="捕获或击杀敌人VIP"
+ObjectiveTextPools[0]="捕获或击杀敌方VIP"
 PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.Neutralize.Central_Council_Missions_Neutralize_Target_Vehicle_01"
 PreMissionNarratives[1]="X2NarrativeMoments.TACTICAL.Neutralize.Central_Council_Missions_Neutralize_Target_Vehicle_02"
 PreMissionNarratives[2]="X2NarrativeMoments.TACTICAL.Neutralize.Central_Council_Missions_Neutralize_Target_Vehicle_03"
@@ -2915,13 +2907,6 @@ PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.support.T_Support_Broadcast
 DisplayName="突袭外星人要塞"
 Briefing="突袭外星人要塞"
 PostMissionType="突袭外星人要塞"
-BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
-ObjectiveTextPools[0]="破坏化身指令"
-
-[DestroyAvatarProject_LW X2MissionTemplate]
-DisplayName="摧毁化身计划"
-Briefing="摧毁化身计划"
-PostMissionType="摧毁化身计划"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
 ObjectiveTextPools[0]="破坏化身指令"
 
@@ -3079,7 +3064,7 @@ ObjectiveTextPools[2]="伏击敌方军队"
 ObjectiveTextPools[3]="变种人通常以大群体的形式转移他们的军队，但是我们还是找到了较小的容易攻击的单位。一次时机恰当的突袭将会挫败变种人在这片地区的势力，并为我们提供将敌人尸体带回研究的宝贵机会。"
 ; LWOTC Needs Translation
 ObjectiveTextPools[4]="LWOTC不速之客"
-ObjectiveTextPools[5]="欢迎来到LWOTC的第一个任务！<br/><br/>目标很简单：击杀所有的敌人。<br/><br/>请注意，这是为数不多可以获得敌人尸体的任务之一，这些尸体是研究和建设许多项目所需要的。在LWOTC用爆炸物击杀敌人会摧毁尸体！"
+ObjectiveTextPools[5]="欢迎来到LWOTC的第一个任务！<br/><br/>目标很简单：击杀所有的敌人。<br/><br/>请注意，这是为数不多可以获得敌人尸体的任务之一，这些尸体是研究和建设许多项目所需要的。在LWOTC，未经特殊训练前用爆炸物击杀敌人会摧毁尸体！"
 ; End Translation
 
 [CovertOpsTroopManeuvers_LW X2MissionTemplate]
@@ -3096,7 +3081,7 @@ ObjectiveTextPools[2]="伏击敌方军队"
 ObjectiveTextPools[3]="变种人通常以大群体的形式转移他们的军队，但是我们还是找到了较小的容易攻击的单位。一次时机恰当的突袭将会挫败变种人在这片地区的势力，并为我们提供将敌人尸体带回研究的宝贵机会。"
 ; LWOTC Needs Translation
 ObjectiveTextPools[4]="LWOTC不速之客"
-ObjectiveTextPools[5]="欢迎来到LWOTC的第一个任务！<br/><br/>目标很简单：击杀所有的敌人。<br/><br/>请注意，这是为数不多可以获得敌人尸体的任务之一，这些尸体是研究和建设许多项目所需要的。在LWOTC用爆炸物击杀敌人会摧毁尸体！"
+ObjectiveTextPools[5]="欢迎来到LWOTC的第一个任务！<br/><br/>目标很简单：击杀所有的敌人。<br/><br/>请注意，这是为数不多可以获得敌人尸体的任务之一，这些尸体是研究和建设许多项目所需要的。在LWOTC，未经特殊训练前用爆炸物击杀敌人会摧毁尸体！"
 ; End Translation
 
 
@@ -3264,7 +3249,7 @@ TemplarMomentumTutorialTitle="圣殿骑士气势&格挡"
 TemplarMomentumTutorialText="使用撕裂后，圣殿骑士总是会触发气势，这是一种自由移动的动作，可以让他们回到安全的掩体处，或者使用圣殿之盾吸引一些攻击。圣殿之盾给予圣殿骑士护盾增益，持续到下一回合开始。"
 
 SkirmisherTutorialTitle="散兵"
-SkirmisherTutorialText="散兵是一种机动单位，可以用无托式对暴露的单位开火，以恢复一个行动点，让他们可以再次射击、移动、投掷榴弹或做其他事情。钩爪增加了他们的多功能性，允许散兵快速穿越战场，进入有利位置。"
+SkirmisherTutorialText="散兵是一种机动单位，可以用无托式对侧翼暴露的单位开火，以恢复一个行动点，让他们可以再次射击、移动、投掷榴弹或做其他事情。钩爪增加了他们的多功能性，允许散兵快速穿越战场，进入有利位置。"
 
 ; End Translation
 
@@ -3391,7 +3376,7 @@ UnlockedDescription="许多工程部计划需要工程师人数已经减少1位�
 DisplayName="激光武器"
 Summary="利用我们对于磁力学和外星超铀的全新理解，我们应当能够开发一种强力的激光武器。"
 CodeName="中后卫"
-LongDescription="通过研究外星人在武器上管理能量消耗和散热的技术，我们成功完成了一种工程原型机，我们将其称之为脉冲激光武器，虽然一些士兵更喜欢叫它们「爆破手」，原因我不太清楚。这些武器能够输出的能量令人叹为观止，但其系统无法维持如此大量的光束输出，因此它的架构依靠一系列的皮秒级的，高能量密度的脉冲去打破光束击中目标的化学键。平均计算，这些武器应当能够比我们之前开发的基础武器造成更大的伤害，虽然它们还比不上那些外星人使用的电浆光束设备。理查德·泰根。"
+LongDescription="通过研究外星人控制武器能量消耗和散热的方法，我们成功完成了一种工程原型机，我们将其称之为脉冲激光武器，虽然一些士兵更喜欢叫它们「爆破手」，原因我不太清楚。这些武器能够输出的能量令人叹为观止，但其系统无法维持如此大量的光束输出，因此它的架构依靠一系列的皮秒级的，高能量密度的脉冲去打破光束击中目标的化学键。平均而言，这些武器应当能够比我们之前使用的弹道武器更精确，破坏力更大，虽然它们还比不上我们看到的外星人使用的武器。理查德·泰根。"
 UnlockedDescription="原型已加入物品栏"
 
 [AdvancedLasers X2TechTemplate]
@@ -3425,7 +3410,7 @@ LongDescription="我们现在已经对变种人机器人战斗系统有了初步
 DisplayName="解剖异变者精英"
 CodeName="布鲁顿"
 Summary="这种巨兽和其他异变者有很大的不同，需要特别的调查。"
-LongDescription="军事中心长官布拉德福德指出XCOM获得情报称有一种精英形态的异变者扮演着长老的守卫者的角色。这种生物外型上变化不大。基因上的加强改进了生物大脑，让它能够更好地理解复杂的信息，能在战斗状态中更迅速地处理信息。理查德·泰根。"
+LongDescription="军事官布拉德福德指出XCOM获得情报称有一种精英形态的异变者扮演着长老的守卫者的角色。这种生物外型上变化不大。基因上的加强改进了生物大脑，让它能够更好地理解复杂的信息，能在战斗状态中更迅速地处理信息。理查德·泰根。"
 AlertString="异变者精英"
 
 [AutopsyDrone X2TechTemplate]
@@ -4264,11 +4249,11 @@ LocLongDescription="额外护甲。"
 
 [WatchList_T1 X2HackRewardTemplate]
 FriendlyName="观察名单"
-Description="降低附近区域33%的联络消耗。"
+Description="降低附近一个区域33%的联络消耗。"
 
 [WatchList_T2 X2HackRewardTemplate]
 FriendlyName="观察名单"
-Description="降低附近区域33%的联络消耗。"
+Description="降低附近一个区域33%的联络消耗。"
 
 [Insight_T1 X2HackRewardTemplate]
 FriendlyName="洞察力"
@@ -4339,7 +4324,7 @@ PreMissionText="为化身计划增加<XGParam:StrValue0/!Quantity/>的进度"
 DisplayName="避难所渗透者"
 SummaryText="外星人派无面怪潜入进我们的避难所。"
 QuoteText="\"那个新家伙，约翰森看起来有些热心过头了。\""
-QuoteTextAuthor="- 未辨识的反抗军成员"
+QuoteTextAuthor="- 匿名的反抗军成员"
 PreMissionText="新招募的反抗军成员将有更大几率是无面怪。"
 PostMissionSuccessText="已阻止黑暗事件：避难所渗透者"
 PostMissionFailureText="反击黑暗事件失败：避难所渗透者"
@@ -4366,7 +4351,7 @@ PostMissionFailureText="反击黑暗事件失败：重要突破"
 DisplayName="空中巡逻"
 SummaryText="外星人空中巡逻减少了复仇者号监测外星人活动的能力。"
 QuoteText="\"他们在封锁我们的天空。\""
-QuoteTextAuthor="- 军事中心长官布拉德福德"
+QuoteTextAuthor="- 军事官布拉德福德"
 PreMissionText="在此事件过程中，复仇者号监测外星人活动的效率减半。"
 PostMissionSuccessText="已阻止黑暗事件：空中巡逻"
 PostMissionFailureText="反击黑暗事件失败：空中巡逻"
@@ -4375,7 +4360,7 @@ PostMissionFailureText="反击黑暗事件失败：空中巡逻"
 DisplayName="永久性：爆破专家"
 SummaryText="外星人部署了拥有更强的掩体破坏能力的单位。"
 QuoteText="\"小心爆炸！\""
-QuoteTextAuthor="- 未辨识的XCOM下士"
+QuoteTextAuthor="- 匿名的XCOM下士"
 PreMissionText="一些变种人士兵和异变者获得工兵能力。"
 PostMissionSuccessText="已阻止黑暗事件：爆破专家"
 PostMissionFailureText="反击黑暗事件失败：爆破专家"
@@ -4384,7 +4369,7 @@ PostMissionFailureText="反击黑暗事件失败：爆破专家"
 DisplayName="变种人郊区检查站"
 SummaryText="变种人遏制了反抗军资源的流动，降低分配到补给工作的反抗军成员的产量。"
 QuoteText="\"看来变种人已经不满足于乖乖呆在墙后了。\""
-QuoteTextAuthor="- 军事中心长官布拉德福德"
+QuoteTextAuthor="- 军事官布拉德福德"
 PreMissionText="降低分配到补给工作的反抗军成员的产量。"
 PostMissionSuccessText="已阻止黑暗事件：变种人郊区检查站"
 PostMissionFailureText="反击黑暗事件失败：变种人郊区检查站"
@@ -4434,7 +4419,7 @@ Description="变种人士兵获得+10暴击率。"
 DisplayName="永久性：变种人激光瞄准器"
 SummaryText="变种人在对他们的瞄准系统加以改进，提升了他们的暴击率。"
 QuoteText="\"如果这些新武器设计投入战场，变种人士兵将会对我们的部队造成更大的威胁。\""
-QuoteTextAuthor="- 军事中心长官布拉德福德"
+QuoteTextAuthor="- 军事官布拉德福德"
 PreMissionText="变种人单位对我们的士兵获得额外暴击率。"
 PostMissionSuccessText="已阻止黑暗事件：变种人激光瞄准器"
 PostMissionFailureText="反击黑暗事件失败：变种人激光瞄准器"
@@ -4447,14 +4432,14 @@ LocLongDescription="+10暴击率"
 
 [DarkEvent_Firewalls X2HackRewardTemplate]
 FriendlyName="黑暗事件：变种人防火墙"
-Description="敌人机器人单位获得15点侵入防御。"
+Description="敌方机械单位获得15点侵入防御。"
 
 [DarkEvent_Firewalls X2DarkEventTemplate]
 DisplayName="永久性：变种人防火墙"
 SummaryText="变种人提升了对我们的侵入攻击的防御。"
-QuoteText="\"变种人的机器人单位不再是我们专家随便上的公交车了。\""
+QuoteText="\"变种人的机械单位不再是我们专家随便上的公交车了。\""
 QuoteTextAuthor="- 沈总工程师"
-PreMissionText="敌人机器人对我们的侵入攻击获得额外防御。"
+PreMissionText="敌方机械单位对我们的侵入攻击获得额外防御。"
 PostMissionSuccessText="已阻止黑暗事件：变种人防火墙"
 PostMissionFailureText="反击黑暗事件失败：变种人防火墙"
 
@@ -4506,7 +4491,7 @@ Description="一些敌人获得1点生命值。"
 DisplayName="永久性：外星生存力"
 SummaryText="外星人战场上的战斗单位将更强大，拥有额外1点生命值。"
 QuoteText="\"我们并不是唯一一个能在战斗中进步的对象。\""
-QuoteTextAuthor="- 军事中心长官布拉德福德"
+QuoteTextAuthor="- 军事官布拉德福德"
 PreMissionText="给一些敌人提供1点额外生命值。"
 PostMissionSuccessText="已阻止黑暗事件：外星生存力"
 PostMissionFailureText="反击黑暗事件失败：外星生存力"
@@ -4557,9 +4542,9 @@ LocLongDescription="+1移动力"
 
 [DarkEvent_TacticalUpgrades X2DarkEventTemplate]
 DisplayName="永久性：防御"
-SummaryText="外星人战场的单位更难以击伤。"
+SummaryText="战场上的外星人单位更难被击中。"
 QuoteText="\"你没打中就杀不掉他们。\""
-QuoteTextAuthor="- 匿名的二等兵"
+QuoteTextAuthor="- 匿名的列兵"
 PreMissionText="一些变种人单位获得额外的防御加成。"
 PostMissionSuccessText="已阻止黑暗事件：战术升级（防御力）"
 PostMissionFailureText="反击黑暗事件失败：战术升级（防御力）"
@@ -4577,7 +4562,7 @@ LocLongDescription="+5防御力"
 DisplayName="永久性：求生意志"
 SummaryText="外星战场单位在掩体中时获得护甲加成。"
 QuoteText="\"我们的与变种人的军备竞赛越发激烈了。\""
-QuoteTextAuthor="- 军事中心长官布拉德福德"
+QuoteTextAuthor="- 军事官布拉德福德"
 PreMissionText="给一些外星人求生意志技能。"
 PostMissionSuccessText="已阻止黑暗事件：战术升级（求生意志）"
 PostMissionFailureText="反击黑暗事件失败：战术升级（求生意志）"
@@ -4591,7 +4576,7 @@ LocLongDescription="一些敌军单位获得求生意志技能，在受掩体保
 DisplayName="永久性：中心质量"
 SummaryText="敌军部署能用主武器造成更多伤害的单位。"
 QuoteText="\"赢得一些，输掉一些。然后一束电浆闪电送你上天。\""
-QuoteTextAuthor="- 匿名的二等兵"
+QuoteTextAuthor="- 匿名的列兵"
 PreMissionText="给一些外星人中心质量技能。"
 PostMissionSuccessText="已阻止黑暗事件：战术升级（伤害）"
 PostMissionFailureText="反击黑暗事件失败：战术升级（伤害）"
@@ -4619,7 +4604,7 @@ LocLongDescription="变种人强袭枪兵获得近身斗士能力，在面对附
 DisplayName="永久性：坚不可摧"
 SummaryText="一些敌人获得了坚不可摧能力，提供给他们对爆炸物额外的护甲和防护。"
 QuoteText="\"我们将需要一些更强的炸弹。\""
-QuoteTextAuthor="- 匿名的参谋军士"
+QuoteTextAuthor="- 匿名的上士"
 PreMissionText="一些敌人获得坚不可摧能力。"
 PostMissionSuccessText="已阻止黑暗事件：战术升级（坚不可摧）"
 PostMissionFailureText="反击黑暗事件失败：战术升级（坚不可摧）"
@@ -4689,7 +4674,7 @@ LocLongDescription="为一些强袭枪兵和其他敌人提供闪电反射能力
 DisplayName="永久性：近战专家"
 SummaryText="执政官获得近战专家能力，让他们对任何4个格子内的敌人进行反应射击。"
 QuoteText="\"死亡天使的名号不是白叫的。\""
-QuoteTextAuthor="- 军事中心长官布拉德福德"
+QuoteTextAuthor="- 军事官布拉德福德"
 PreMissionText="给执政官提供近战专家能力。"
 PostMissionSuccessText="已阻止黑暗事件：战术升级（近战专家）"
 PostMissionFailureText="反击黑暗事件失败：战术升级（近战专家）"
@@ -4702,7 +4687,7 @@ LocLongDescription="执政官获得近战专家能力，让他们对任何4个�
 DisplayName="永久性：低伸火力"
 SummaryText="一些敌人获得了低伸火力能力，能有更高的几率将未命中变为擦伤。"
 QuoteText="\"我们不被射中的最好方法就是一下也别被打到。\""
-QuoteTextAuthor="- 匿名的二等兵"
+QuoteTextAuthor="- 匿名的列兵"
 PreMissionText="一些敌人获得低伸火力能力。"
 PostMissionSuccessText="已阻止黑暗事件：战术升级（低伸火力）"
 PostMissionFailureText="反击黑暗事件失败：战术升级（低伸火力）"
@@ -4741,7 +4726,7 @@ LocLongDescription="变种人哨兵获得了战术意识能力，为他们在监
 DisplayName="永久性：铜皮铁甲"
 SummaryText="给变种人机器人单位铜皮铁甲能力，让他们在面对近战攻击时获得伤害减免。"
 QuoteText="\"中世纪武器也能干掉机器人入侵者的想法不管什么时候都非常好笑。\""
-QuoteTextAuthor="- 匿名的英国二等兵"
+QuoteTextAuthor="- 匿名的英国列兵"
 PreMissionText="给变种人机器人单位铜皮铁甲能力。"
 PostMissionSuccessText="已阻止黑暗事件：战术升级（铜皮铁甲）"
 PostMissionFailureText="反击黑暗事件失败：战术升级（铜皮铁甲）"
@@ -4754,7 +4739,7 @@ LocLongDescription="给变种人机器人单位铜皮铁甲能力，让他们在
 DisplayName="永久性：战术素养"
 SummaryText="一些敌军单位获得战术素养能力，给他们提供额外的防御力。"
 QuoteText="\"反抗军的情报称外星人在创造一种精英兵种专注于反暴动行动。\""
-QuoteTextAuthor="- 军事中心长官布拉德福德"
+QuoteTextAuthor="- 军事官布拉德福德"
 PreMissionText="为一些敌军单位提供战术素养能力。"
 PostMissionSuccessText="已阻止黑暗事件：战术升级（战术素养）"
 PostMissionFailureText="反击黑暗事件失败：战术升级（战术素养）"
@@ -4767,7 +4752,7 @@ LocLongDescription="一些敌军单位获得战术素养能力，给他们提供
 DisplayName="永久性：穷兵窦武"
 SummaryText="一些敌军单位获得穷兵窦武能力，给他们提供额外的暴击率。"
 QuoteText="\"我觉得我们让他们变得疯狂了。\""
-QuoteTextAuthor="- 匿名的枪兵"
+QuoteTextAuthor="- 匿名的上等兵"
 PreMissionText="为一些敌军单位提供穷兵窦武能力。"
 PostMissionSuccessText="已阻止黑暗事件：战术升级（穷兵窦武）"
 PostMissionFailureText="反击黑暗事件失败：战术升级（穷兵窦武）"
@@ -4777,17 +4762,17 @@ LocFriendlyName="黑暗事件：战术升级（穷兵窦武）"
 LocLongDescription="一些敌军单位获得穷兵窦武能力，给他们提供额外的暴击率。"
 
 [DarkEvent_Resilience X2DarkEventTemplate]
-DisplayName="永久性：见切之技"
-SummaryText="原典单位获得见切之技能力，减少对他们造成的暴击率。"
+DisplayName="永久性：韧性"
+SummaryText="原典单位获得韧性能力，减少对他们造成的暴击率。"
 QuoteText="\"我们甚至还不知道这些东西怎么在我们的世界生存的，更别说我们的武器是怎么伤害他们的了。\""
 QuoteTextAuthor="- 沈总工程师"
-PreMissionText="给原典单位提供见切之技能力。"
-PostMissionSuccessText="已阻止黑暗事件：战术升级（见切之技）"
-PostMissionFailureText="反击黑暗事件失败：战术升级（见切之技）"
+PreMissionText="给原典单位提供韧性能力。"
+PostMissionSuccessText="已阻止黑暗事件：战术升级（韧性）"
+PostMissionFailureText="反击黑暗事件失败：战术升级（韧性）"
 
 [DarkEventAbility_Resilience X2AbilityTemplate]
-LocFriendlyName="黑暗事件：战术升级（见切之技）"
-LocLongDescription="原典单位获得见切之技能力，减少对他们造成的暴击率。"
+LocFriendlyName="黑暗事件：战术升级（韧性）"
+LocLongDescription="原典单位获得韧性能力，减少对他们造成的暴击率。"
 
 [DarkEvent_Shadowstep X2DarkEventTemplate]
 DisplayName="永久性：暗影步"
@@ -5443,8 +5428,8 @@ LocPromotionPopupText="<Bullet/> 这是一个自由动作。<br/><Bullet/> 某�
 
 [Pillar X2AbilityTemplate]
 ; LWOTC Needs Translation (2)
-LocLongDescription="召唤一个灵能支柱作为高掩体。自由行动，不需要专注。"
-LocHelpText="召唤一个灵能支柱作为高掩体。自由行动，不需要专注。"
+LocLongDescription="召唤一个灵能支柱作为全掩体。自由行动，不需要专注。"
+LocHelpText="召唤一个灵能支柱作为全掩体。自由行动，不需要专注。"
 LocPromotionPopupText="<Bullet/> 当被圣殿骑士召唤时，支柱将持续相当于其专注等级的回合数。<br/><Bullet/> 支柱不会结束圣殿骑士的回合。<br/><Bullet/> 可以在撕裂后使用。<br/><Bullet/> 支柱有<Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
 ; End Translation (2)
 
@@ -5531,8 +5516,8 @@ LocFriendlyName="跟踪"
 LocFlyOverText="跟踪"
 
 [SkirmisherReflex X2AbilityTemplate]
-LocLongDescription="受到射击后下一回合额外获得1点行动力。每回合最多触发一次。 对你的攻击遭受-<Ability:REFLEX_CRIT_DEF/>暴击率惩罚。"
-LocHelpText="受到射击后下一回合额外获得1点行动力。每回合最多触发一次。 对你的攻击遭受-<Ability:REFLEX_CRIT_DEF/>暴击率惩罚。"
+LocLongDescription="受到射击后下一回合额外获得1点行动力。每回合最多触发一次。对你的攻击遭受-<Ability:REFLEX_CRIT_DEF/>暴击率惩罚。"
+LocHelpText="受到射击后下一回合额外获得1点行动力。每回合最多触发一次。对你的攻击遭受-<Ability:REFLEX_CRIT_DEF/>暴击率惩罚。"
 LocPromotionPopupText="<Bullet/> 爪钩让散兵具有更好的侦察优势，条件反射则能让他们更具侵略性。<br/><Bullet/> 条件反射每回合只能触发一次。<br/>"
 
 [FullThrottle X2AbilityTemplate]
@@ -6408,9 +6393,9 @@ LocPromotionPopupText = "<Bullet/> 应用于小队视野。<br/><Bullet/> 致盲
 LocFriendlyName = "引导目标"
 LocFlyOverText = "引导目标"
 ; LWOTC Needs Translation (2)
-LocHelpText = "引导一名目标，对该目标获得+<Ability:LEAD_TARGET_AIM_BONUS/>命中加成，直到该引导目标回合行动时进行射击。消耗2个行动点并有<Ability:SelfCooldown_LW/>回合冷却时间。"
-LocLongDescription = "引导一名目标，对该目标获得+<Ability:LEAD_TARGET_AIM_BONUS/>命中加成，直到该引导目标回合行动时进行射击。消耗2个行动点并有<Ability:SelfCooldown_LW/>回合冷却时间。"
-LocPromotionPopupText = "<Bullet/> 小心的引导目标，获得+<Ability:LEAD_TARGET_AIM_BONUS/>命中加成，直到该引导目标回合行动时进行射击。消耗2个行动点。<br/><Bullet/> 引导目标有<Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
+LocHelpText = "对敌方目标施加一次+<Ability:LEAD_TARGET_AIM_BONUS/>命中的延迟攻击，直到该目标移动时才进行射击。<Ability:SelfCooldown_LW/>回合冷却时间。"
+LocLongDescription = "对敌方目标施加一次+<Ability:LEAD_TARGET_AIM_BONUS/>命中的延迟攻击，直到该目标移动时才进行射击。<Ability:SelfCooldown_LW/>回合冷却时间。"
+LocPromotionPopupText = "<Bullet/> 要触发射击，你需要能看见敌方目标移动。<br/><Bullet/> 如果在你的下一个回合开始前还没触发射击，该技能效果失效。<br/><Bullet/> 虽然是在敌人移动时才触发，但引导目标不属于反应攻击。<br/><Bullet/> 引导目标有<Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
 ; End Translation (2)
 
 [LeadTheTargetShot_LW X2AbilityTemplate]
@@ -6755,8 +6740,8 @@ LocFlyOverText="嗜血"
 ; LWOTC Translated (2)
 [UnholyAscension_LW X2AbilityTemplate]
 LocFriendlyName="邪恶的升华"
-LocLongDescription="冠军术士的护盾、命中、暴击、意志和灵能攻击加成翻倍，并提供暴击免疫的效果。"
-LocHelpText="冠军术士的护盾、命中、暴击、意志和灵能攻击加成翻倍，并提供暴击免疫的效果。"
+LocLongDescription="冠军术士的命中、暴击、意志和灵能攻击加成翻倍，并提供暴击免疫的效果。"
+LocHelpText="冠军术士的命中、暴击、意志和灵能攻击加成翻倍，并提供暴击免疫的效果。"
 LocFlyOverText="邪恶的升华"
 
 [RuptureImmunity X2AbilityTemplate]
@@ -6886,10 +6871,10 @@ LocHelpText="每次用近战武器攻击且命中时，获得可叠加的+<Abili
 LocFlyOverText="嗜血"
 
 [OverbearingSuperiority_LW X2AbilityTemplate]
-LocFriendlyName="霸气侧漏"
+LocFriendlyName="势如破竹"
 LocLongDescription="你的<Ability:BOUND_WEAPON_NAME/>暴击率增加+<Ability:OVERBEARING_SUPERIORITY_CRIT/>。当你使用<Ability:BOUND_WEAPON_NAME/>造成暴击时，行动点将返还。"
 LocHelpText="你的<Ability:BOUND_WEAPON_NAME/>暴击率增加+<Ability:OVERBEARING_SUPERIORITY_CRIT/>。当你使用<Ability:BOUND_WEAPON_NAME/>造成暴击时，行动点将返还。"
-LocFlyOverText="霸气侧漏"
+LocFlyOverText="势如破竹"
 
 [DisruptorRifleCrit X2AbilityTemplate]
 LocFriendlyName="不义之怒"
@@ -7050,7 +7035,7 @@ LocFriendlyName="连锁电击"
 LocHelpText="战争协议的攻击现在会链向目标附近的敌人。最多攻击到3个敌方单位。"
 LocLongDescription="战争协议的攻击现在会链向目标附近的敌人。最多攻击到3个敌方单位。"
 LocFlyOverText="连锁电击"
-LocPromotionPopupText="<Bullet/> 造成穿透护甲的电击伤害，机械单位会受到额外伤害。<br/><Bullet/> 连锁的判定距离为5格。<br/><Bullet/> 只能链向目标单位的友军单位。<br/><Bullet/> 冷却时间为<Ability:SelfCooldown_LW/>回合。<br/>"
+LocPromotionPopupText="<Bullet/> 造成穿透护甲的电击伤害，机械单位会受到额外伤害。<br/><Bullet/> 连锁的判定距离为<Ability:CHAIN_LIGHTNING_CHAIN_RANGE_TILES>格。<br/><Bullet/> 只能链向目标单位的友军单位。<br/><Bullet/> 冷却时间为<Ability:SelfCooldown_LW/>回合。<br/>"
 
 ; End Translation
 
@@ -7265,8 +7250,8 @@ LocFlyOverText="天资"
 
 [Volt X2AbilityTemplate]
 LocFriendlyName="灵能闪电"
-LocLongDescription="一种无回合结束的群体攻击，使其目标更容易命中。消耗1专注。"
-LocHelpText="一种无回合结束的群体攻击，使其目标更容易命中。消耗1专注。"
+LocLongDescription="一种不结束回合的群体攻击，并且使目标更容易被命中。消耗1专注。"
+LocHelpText="一种不结束回合的群体攻击，并且使目标更容易被命中。消耗1专注。"
 LocPromotionPopupText="<Bullet/> 灵能闪电无冷却时间，但消耗1专注。<br/><Bullet/> 灵能闪电增加小队针对该目标时+<Ability:RECOILAIMBONUS/>命中。<br/>"
 
 [Amplify X2AbilityTemplate]
@@ -7281,7 +7266,7 @@ LocFriendlyName="圣殿之怒"
 LocHelpText="每损失25%生命值给予25%伤害提升，最多50%伤害提升。使该士兵的伤口恢复时间减少<Ability:CRUSADER_RAGE_HEAL>HP。"
 LocLongDescription="每损失25%生命值给予25%伤害提升，最多50%伤害提升。使该士兵的伤口恢复时间减少<Ability:CRUSADER_RAGE_HEAL>HP。"
 LocPromotionPopupText="<Bullet/> 如果士兵在执行任务期间进入失血状态，则伤口恢复不起作用。<br/>"
-LocFlyOverText="精神发狂"
+LocFlyOverText="圣殿之怒"
 
 [Sidearm_CV X2WeaponTemplate]
 FriendlyName="自动手枪"
@@ -7366,17 +7351,17 @@ ShortSummaryText="我们的隐秘行动将被推迟2周！"
 ; LWOTC Needs Translation
 
 [Unstoppable_LW X2AbilityTemplate]
-LocFriendlyName="势不可挡"
+LocFriendlyName="刹不住"
 LocLongDescription="该单位的移动力不会低于<Ability:UNSTOPPABLE_MIN_MOB>。"
 LocHelpText="该单位的移动力不会低于<Ability:UNSTOPPABLE_MIN_MOB>。"
-LocFlyOverText="势不可挡"
+LocFlyOverText="刹不住"
 LocPromotionPopupText="该单位的移动力不会低于<Ability:UNSTOPPABLE_MIN_MOB>。"
 
 [UnstoppablePassive_LW X2AbilityTemplate]
-LocFriendlyName="势不可挡"
+LocFriendlyName="刹不住"
 LocLongDescription="该单位的移动力不会低于<Ability:UNSTOPPABLE_MIN_MOB>。"
 LocHelpText="该单位的移动力不会低于<Ability:UNSTOPPABLE_MIN_MOB>。"
-LocFlyOverText="势不可挡"
+LocFlyOverText="刹不住"
 LocPromotionPopupText="该单位的移动力不会低于<Ability:UNSTOPPABLE_MIN_MOB>。"
 
 [TargetingAimAndCrit X2AbilityTemplate]
@@ -7605,9 +7590,3 @@ LocFriendlyName="钩爪专家"
 LocLongDescription="正义、怒火、鞭笞获得额外+15命中。"
 LocHelpText="正义、怒火、鞭笞获得额外+15命中。"
 LocFlyOverText="钩爪专家"
-
-;Marauder
-[SkirmisherStrike X2AbilityTemplate]
-LocLongDescription="第一个行动点使用主武器进行标准射击将不再结束回合。"
-LocHelpText="第一个行动点使用主武器进行标准射击将不再结束回合。"
-LocPromotionPopupText=""

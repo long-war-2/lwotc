@@ -121,8 +121,8 @@ LocHelpText="攻擊只有一半或更少生命值的目標時，獲得+<Ability:
 LocPromotionPopupText="<Bullet/>攻擊只有一半或更少生命值的目標時，獲得+<Ability:EXECUTIONER_AIM_BONUS/>命中和+<Ability:EXECUTIONER_CRIT_BONUS/>暴擊率。<br/>"
 
 [Resilience X2AbilityTemplate]
-LocFriendlyName="見切之技"
-LocFlyOverText="見切之技"
+LocFriendlyName="堅韌"
+LocFlyOverText="堅韌"
 LocLongDescription="敵人對你的攻擊受到-<ABILITY:RESILIENCE_BONUS_LW/>暴擊率的減益。"
 LocHelpText="敵人對你的攻擊受到-<ABILITY:RESILIENCE_BONUS_LW/>暴擊率的減益。"
 LocPromotionPopupText="<Bullet/>敵人對你的攻擊受到-<ABILITY:RESILIENCE_BONUS_LW/>暴擊率的減益。<br/>"
@@ -874,16 +874,16 @@ LocPromotionPopupText="<Bullet/>擁有暗影步能力的士兵不會觸發敵人
 [XComGame.Bladestorm X2AbilityTemplate]
 [Bladestorm X2AbilityTemplate]
 LocFriendlyName="劍刃風暴"
-LocLongDescription="對所有進入、離開或從近戰範圍內發起攻擊的敵人使用<Ability:SecondaryWeaponName/>進行反應攻擊。"
-LocHelpText="對所有進入、離開或從近戰範圍內發起攻擊的敵人使用<Ability:SecondaryWeaponName/>進行反應攻擊。"
+LocLongDescription="對所有進入、離開或從近戰範圍內發起攻擊的敵人使用<Ability:SecondaryWeaponName/>進行反應攻擊，僅在非玩家回合觸發。"
+LocHelpText="對所有進入、離開或從近戰範圍內發起攻擊的敵人使用<Ability:SecondaryWeaponName/>進行反應攻擊，僅在非玩家回合觸發。"
 LocFlyOverText="劍刃風暴"
 LocPromotionPopupText="<Bullet/>敵人在相鄰位置開始回合且打算離開或攻擊士兵時會觸發劍刃風暴。<br/><Bullet/>如果敵人不在相鄰位置，則劍刃風暴在敵人進入近戰範圍後觸發。<br/>"
 
 [XComeGame.BladestormAttack X2AbilityTemplate]
 [BladestormAttack X2AbilityTemplate]
 LocFriendlyName="劍刃風暴"
-LocLongDescription="對所有進入、離開或從近戰範圍內發起攻擊的敵人使用<Ability:SecondaryWeaponName/>進行反應攻擊。"
-LocHelpText="對所有進入、離開或從近戰範圍內發起攻擊的敵人使用<Ability:SecondaryWeaponName/>進行反應攻擊。"
+LocLongDescription="對所有進入、離開或從近戰範圍內發起攻擊的敵人使用<Ability:SecondaryWeaponName/>進行反應攻擊，僅在非玩家回合觸發。"
+LocHelpText="對所有進入、離開或從近戰範圍內發起攻擊的敵人使用<Ability:SecondaryWeaponName/>進行反應攻擊，僅在非玩家回合觸發。"
 LocFlyOverText="劍刃風暴"
 LocPromotionPopupText="<Bullet/>敵人在相鄰位置開始回合且打算離開或攻擊士兵時會觸發劍刃風暴。<br/><Bullet/>如果敵人不在相鄰位置，則劍刃風暴在敵人進入近戰範圍後觸發。<br/>"
 
