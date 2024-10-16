@@ -1596,6 +1596,21 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			break;
 	}
 
+	// Add a one turn cooldown to heavy weapon use
+	switch (Template.DataName)
+	{
+		case 'PlasmaBlaster':
+		case 'ShredderGun':
+		case 'ShredstormCannon':
+		case 'SparkPlasmaBlaster':
+		case 'SparkShredderGun':
+		case 'SparkShredstormCannon':
+			AddOneTurnCooldown(Template);
+			break;
+		default:
+			break;
+	}
+
 	if(Template.DataName == 'LongWatch')
 	{
 		Template.OverrideAbilities.Length = 0;
@@ -4294,6 +4309,20 @@ static function FixRapidFire2(X2AbilityTemplate Template)
 		{
 			EventTrigger.ListenerData.Priority = 80;
 		}
+	}
+}
+
+static function AddOneTurnCooldown(X2AbilityTemplate Template)
+{
+	local X2AbilityCooldown Cooldown;
+
+	if (Template != None)
+	{
+		Cooldown = new class'X2AbilityCooldown';
+
+		Cooldown.iNumTurns = 1;
+
+		Template.AbilityCooldown = Cooldown;
 	}
 }
 
