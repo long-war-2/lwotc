@@ -649,8 +649,8 @@ LocPromotionPopUpText="<Bullet/> Activate to grant the soldier +<ABILITY:FORTIFY
 [CombatFitness X2AbilityTemplate]
 LocFriendlyName="Combat Fitness"
 LocLongDescription="Gain <ABILITY:COMBAT_FITNESS_OFFENSE_LW/> aim, <ABILITY:COMBAT_FITNESS_MOBILITY_LW/> mobility, <ABILITY:COMBAT_FITNESS_HP_LW/> HP, <ABILITY:COMBAT_FITNESS_WILL_LW/> will, and <ABILITY:COMBAT_FITNESS_DODGE_LW/> dodge."
-LocHelpText="This soldier has numerous stat bonuses."
-LocPromotionPopUpText="<Bullet/> Combat Fitness provides <ABILITY:COMBAT_FITNESS_OFFENSE_LW/> aim, <ABILITY:COMBAT_FITNESS_MOBILITY_LW/> mobility, <ABILITY:COMBAT_FITNESS_HP_LW/> HP, <ABILITY:COMBAT_FITNESS_WILL_LW/> will, and <ABILITY:COMBAT_FITNESS_DODGE_LW/> dodge."
+LocHelpText="<Bullet/> Combat Fitness provides <ABILITY:COMBAT_FITNESS_OFFENSE_LW/> aim, <ABILITY:COMBAT_FITNESS_MOBILITY_LW/> mobility, <ABILITY:COMBAT_FITNESS_HP_LW/> HP, <ABILITY:COMBAT_FITNESS_WILL_LW/> will, and <ABILITY:COMBAT_FITNESS_DODGE_LW/> dodge."
+LocPromotionPopUpText=""
 
 [Sprinter X2AbilityTemplate]
 LocFriendlyName="Sprinter"
@@ -6437,7 +6437,7 @@ LocFlyOverText="Lock 'N Load"
 ; LWOTC Needs Translation (2)
 LocLongDescription="Kills with your <Ability:BOUND_WEAPON_NAME/> restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo."
 LocHelpText="Kills with your <Ability:BOUND_WEAPON_NAME/> restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo."
-LocPromotionPopupText="<Bullet/> Kills with your <Ability:BOUND_WEAPON_NAME/> restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo.<br/>"
+LocPromotionPopupText=""
 ; End Translation (2)
 
 [TrenchWarfare_LW X2AbilityTemplate]
@@ -6469,7 +6469,7 @@ LocFlyOverText="Open Fire"
 LocLongDescription="Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health."
 LocHelpText="Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health."
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health.<br/>"
+LocPromotionPopupText=""
 ; End Translation (2)
 
 [WatchThemRun_LW X2AbilityTemplate]
@@ -6577,7 +6577,7 @@ LocFriendlyName="Scrap Metal"
 LocFlyOverText="Scrap Metal: Recovered ammo"
 LocLongDescription="Kills with your <Ability:BOUND_WEAPON_NAME/> restore one sawed-off shotgun charge."
 LocHelpText="Kills with your <Ability:BOUND_WEAPON_NAME/> restore one sawed-off shotgun charge."
-LocPromotionPopupText="<Bullet/> Kills with your <Ability:BOUND_WEAPON_NAME/> restore one sawed-off shotgun charge.<br/><Bullet/> This does not apply to kills from using the sawed-off shotgun itself.<br/><Bullet/> This ability cannot grant ammo if the sawed-off shotgun charges are already at their starting value.<br/>"
+LocPromotionPopupText="<Bullet/> This does not apply to kills from using the sawed-off shotgun itself.<br/><Bullet/> With this ability, you can gain more sawed-off shotgun charges than you started with.<br/>"
 
 [ScrapMetalTrigger_LW X2AbilityTemplate]
 LocFriendlyName="Scrap Metal: Recovered ammo"
@@ -7601,7 +7601,7 @@ LocFriendlyName="Paramedic"
 LocLongDescription="Unlocks an ability to perform a dash move to use a medikit on an ally. Gain a free medikit. Equipped medikits have <Ability:PARAMEDIC_BONUS_CHARGES/> extra charges."
 LocHelpText="Unlocks an ability to perform a dash move to use a medikit on an ally. Gain a free medikit. Equipped medikits have <Ability:PARAMEDIC_BONUS_CHARGES/> extra charges."
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> "Unlocks an ability to perform a dash move to use a medikit on an ally. Gain a free medikit. Equipped medikits have <Ability:PARAMEDIC_BONUS_CHARGES/> extra charges."
+LocPromotionPopupText="<Bullet/> This ability uses 1 action regardless of distance moved and does not end your turn.<br/><Bullet/> Only a single medikit charge is provided by this ability.<br/>"
 ; End Translation (2)
 [ParaMedikitHeal X2AbilityTemplate]
 LocFriendlyName="Paramedic Heal"
@@ -7612,7 +7612,7 @@ LocHelpText="Run towards an Ally and heal them with your medikit."
 [ParaMedikitStabilize X2AbilityTemplate]
 LocFriendlyName="Paramedic Stabilize"
 LocLongDescription="Run towards an Ally and stabilize them with your medikit."
-LocHelpText="Run towards an Ally and heal stabilize with your medikit."
+LocHelpText="Run towards an Ally and stabilize with your medikit."
 
 [SoulReaper X2AbilityTemplate]
 LocFriendlyName="Banish"

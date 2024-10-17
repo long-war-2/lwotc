@@ -118,7 +118,7 @@ LocFriendlyName="Close and Personal"
 LocFlyOverText="Close and Personal"
 LocLongDescription="Confers +30 critical chance against adjacent targets. The bonus declines with distance from the target."
 LocHelpText="Confers +30 critical chance against adjacent targets. The bonus declines with distance from the target."
-LocPromotionPopupText="<Bullet/> Confers +30 critical chance against adjacent targets.<br/><Bullet/> Bonus reduced by 5% for each additional tile of distance from the target, down to 0% at 7 or more tiles.<br/>"
+LocPromotionPopupText="<Bullet/> Bonus reduced by 5% for each additional tile of distance from the target, down to 0% at 7 or more tiles.<br/>"
 
 [DamnGoodGround X2AbilityTemplate]
 LocFriendlyName="Damn Good Ground"
@@ -133,7 +133,7 @@ LocFlyOverText="Executioner"
 ; LWOTC Needs Translation
 LocLongDescription="Confers +<Ability:EXECUTIONER_AIM_BONUS/> aim and +<Ability:EXECUTIONER_CRIT_BONUS/> critical chance against targets at half or less of their original hit points."
 LocHelpText="Confers +<Ability:EXECUTIONER_AIM_BONUS/> aim and +<Ability:EXECUTIONER_CRIT_BONUS/> critical chance against targets at half or less of their original hit points."
-LocPromotionPopupText="<Bullet/> Confers +<Ability:EXECUTIONER_CRIT_BONUS/> aim and +<Ability:EXECUTIONER_CRIT_BONUS/> critical chance against targets at half or less of their original hit points.<br/>"
+LocPromotionPopupText=""
 ; End Translation
 
 [Resilience X2AbilityTemplate]
@@ -155,7 +155,7 @@ LocFriendlyName="Aggression"
 LocFlyOverText="Aggression"
 LocLongDescription="Gain +5 critical chance for each enemy you can see, up to a maximum of 30."
 LocHelpText="Gain +5 critical chance for each enemy you can see, up to a maximum of 30."
-LocPromotionPopupText="<Bullet/> Gain +5 critical chance for each enemy you can see, up to a maximum of 30.<br/><Bullet/> Units visible at squadsight ranges do confer bonus.<br/>"
+LocPromotionPopupText="<Bullet/> Units visible at squadsight ranges do confer bonus.<br/>"
 
 [BringEmOn X2AbilityTemplate]
 LocFriendlyName="Bring 'Em On"
@@ -179,7 +179,7 @@ LocFriendlyName="Infighter"
 LocFlyOverText="Infighter"
 LocLongDescription="Gain <Ability:INFIGHTER_DODGE_BONUS/> Dodge against attacks within four tiles."
 LocHelpText="Gain <Ability:INFIGHTER_DODGE_BONUS/> Dodge against attacks within four tiles."
-LocPromotionPopupText="<Bullet/> Gain <Ability:INFIGHTER_DODGE_BONUS/> Dodge against attacks within four tiles.<br/><Bullet/> Dodge bonus also applies to melee attacks.<br/><Bullet/> This ability does not provide defensive bonuses if the unit is disoriented, stunned, panicking or otherwise impaired.<br/><Bullet/> Burning does not affect this ability."
+LocPromotionPopupText="<Bullet/> Dodge bonus also applies to melee attacks.<br/><Bullet/> This ability does not provide defensive bonuses if the unit is disoriented, stunned, panicking or otherwise impaired.<br/><Bullet/> Burning does not affect this ability."
 ; End Translation (2)
 
 [DepthPerception X2AbilityTemplate]
@@ -366,7 +366,7 @@ LocFriendlyName="Rapid Reaction"
 LocFlyOverText="Rapid Reaction"
 LocLongDescription="When in overwatch, each shot you hit with grants another reaction fire shot, up to a maximum of three shots."
 LocHelpText="When in overwatch, each shot you hit with grants another shot, up to a maximum of three shots."
-LocPromotionPopupText="<Bullet/> When in overwatch, each shot you hit with grants another reaction fire shot, up to a maximum of three shots.<br/>"
+LocPromotionPopupText=""
 
 [LightningReflexes_LW X2AbilityTemplate]
 LocFriendlyName="Lightning Reflexes"
@@ -1143,7 +1143,7 @@ LocFriendlyName="Cool Under Pressure"
 LocLongDescription="You gain +<Ability:COOLUNDERPRESSUREBONUS/> Aim on Overwatch and other reaction shots, and they can critically hit."
 LocHelpText="Bonus aim and chance to crit on Overwatch and reaction shots."
 LocFlyOverText="Cool Under Pressure"
-LocPromotionPopupText="<Bullet/> You gain +<Ability:COOLUNDERPRESSUREBONUS/> Aim on Overwatch and other reaction shots, and they can critically hit.<br/>
+LocPromotionPopupText=""
 
 [BiggestBooms X2AbilityTemplate]
 LocFriendlyName="Biggest Booms"
