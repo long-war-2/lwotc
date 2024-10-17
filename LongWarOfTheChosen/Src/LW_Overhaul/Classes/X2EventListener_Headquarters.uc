@@ -823,7 +823,7 @@ static function EventListenerReturn UpdateWillProjectForStaff(
 	}
 
 	// SPARKs don't have Will recovery projects!
-	if (UnitState.GetMyTemplateName() == 'SparkSoldier')
+	if (!UnitState.UsesWillSystem())
 		return ELR_NoInterrupt;
 
 	// Only update Will projects for certain staff slots.
