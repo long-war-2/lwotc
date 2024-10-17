@@ -171,7 +171,7 @@ LocFriendlyName="Hard Target"
 LocFlyOverText="Hard Target"
 LocLongDescription="Gain 5 dodge per enemy you can see, up to a maximum of +30."
 LocHelpText="Gain 5 dodge per enemy you can see, up to a maximum of +30."
-LocPromotionPopupText="<Bullet/> Gain 5 dodge per enemy you can see, up to a maximum of +30.<br/><Bullet/> Units visible at squadsight ranges do not confer bonus.<br/><Bullet/> This ability does not provide defensive bonuses if the unit is disoriented, stunned, panicking, on fire or otherwise impaired."
+LocPromotionPopupText="<Bullet/> Units visible at squadsight ranges do not confer bonus.<br/><Bullet/> This ability does not provide defensive bonuses if the unit is disoriented, stunned, panicking, on fire or otherwise impaired."
 
 ; LWOTC Needs Translation (2)
 [Infighter X2AbilityTemplate]
