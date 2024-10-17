@@ -153,6 +153,8 @@ static function EventListenerReturn OnWeaponUpgradeNavHelpUpdated(
 	}
 
 	NavHelp.Show();
+
+	return ELR_NoInterrupt;
 }
 
 static function EventListenerReturn OverrideScienceScore(
@@ -833,4 +835,6 @@ static function EventListenerReturn UpdateWillProjectForStaff(
 	{
 		class'Helpers_LW'.static.UpdateUnitWillRecoveryProject(UnitState);
 	}
+
+	return ELR_NoInterrupt;
 }

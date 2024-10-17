@@ -1161,6 +1161,8 @@ static protected function EventListenerReturn CheckForMissionCompleted(
 
 		`TACTICALRULES.SubmitGameStateContext(EventContext);
 	}
+
+	return ELR_NoInterrupt;
 }
 
 static protected function EventListenerReturn BindR3ToPlaceDelayedEvacZone(
