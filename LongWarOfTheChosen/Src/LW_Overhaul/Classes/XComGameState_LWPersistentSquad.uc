@@ -678,7 +678,7 @@ function PostMissionRevertSoldierStatus(XComGameState NewGameState, XComGameStat
 		}
 
 		//if soldier still has OnMission status, set status to active (unless it's a SPARK that's healing)
-		if(class'LWDLCHelpers'.static.IsUnitOnMission(UnitState) && UnitState.GetStatus() != eStatus_Healing)
+		if(class'LWDLCHelpers'.static.IsUnitOnMission(UnitState) && UnitState.GetStatus() != eStatus_Healing && !UnitState.IsPsiAbilityTraining() && !UnitState.IsPsiTraining() && !UnitState.IsTraining())
 		{
 			UnitState.SetStatus(eStatus_Active);
 			class'Helpers_LW'.static.UpdateUnitWillRecoveryProject(UnitState);
