@@ -6639,6 +6639,33 @@ exec function LWOTC_CheckWillProjects()
 
 }
 
+exec function LWOTC_CheckPsiProjects()
+{
+	local XComGameState_Unit	                        UnitState;
+    local XComGameStateHistory                          History;
+	local XComGameState_HeadquartersProjectPsiTraining	PsiTrainingProject;
+
+	History = `XCOMHISTORY;
+
+	foreach History.IterateByClassType(class'XComGameState_HeadquartersProjectPsiTraining', PsiTrainingProject)
+	{
+		UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(PsiTrainingProject.ProjectFocus.ObjectID));
+
+		class'Helpers'.static.OutputMsg("==============================================");
+		class'Helpers'.static.OutputMsg("PsiTrainingProject found for" @UnitState.GetFullName());
+
+		class'Helpers'.static.OutputMsg(`SHOWVAR(PsiTrainingProject.ProjectPointsRemaining));
+
+		class'Helpers'.static.OutputMsg(`SHOWVAR(PsiTrainingProject.bForcePaused));
+		class'Helpers'.static.OutputMsg(`SHOWVAR(PsiTrainingProject.GetProjectedNumHoursRemaining()));
+		class'Helpers'.static.OutputMsg(`SHOWVAR(PsiTrainingProject.GetCurrentNumHoursRemaining()));
+
+		class'Helpers'.static.OutputMsg(`SHOWVAR(PsiTrainingProject.GetCurrentWorkPerHour()));
+
+	}
+
+}
+
 exec function LWOTC_CheckCapturedSoldiers()
 {
 	local XComGameState_HeadquartersAlien AlienHQ;
