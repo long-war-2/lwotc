@@ -1642,6 +1642,7 @@ static function X2DataTemplate CreateChosenKidnap()
 	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName); //okay when disoriented
 	Template.AddShooterEffectExclusions(SkipExclusions);
 
+	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
 
 	NeedOneOfTheEffects=new class'X2Condition_TargetHasOneOfTheEffects';
 	NeedOneOfTheEffects.EffectNames.AddItem(class'X2StatusEffects'.default.BleedingOutName);
