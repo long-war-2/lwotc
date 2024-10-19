@@ -702,7 +702,7 @@ static function X2AbilityTemplate BlindingProtocol_LW()
 	local X2Condition_UnitProperty								TargetProperty;
 	local X2AbilityTarget_Single								PrimaryTarget;
 	local X2AbilityMultiTarget_Radius							RadiusMultiTarget;
-	local X2Condition_UnitInventory								InventoryCondition;
+	//local X2Condition_UnitInventory								InventoryCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'BlindingProtocol_LW');
 	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_BlindingProtocol"; 
@@ -726,10 +726,13 @@ static function X2AbilityTemplate BlindingProtocol_LW()
 	// Costs, Conditions, and Requirements:
 	// A Gremlin must be equipped in the inventory slot the ability is assigned to
 
+	/* Tedster - remove this so it can be used with modded classes that use Spark Bit
 	InventoryCondition = new class'X2Condition_UnitInventory';
 	InventoryCondition.RelevantSlot = eInvSlot_SecondaryWeapon;
 	InventoryCondition.RequireWeaponCategory = 'gremlin';
 	Template.AbilityShooterConditions.AddItem(InventoryCondition);
+	*/
+
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	Template.AddShooterEffectExclusions();
 
