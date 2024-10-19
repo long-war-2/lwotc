@@ -1837,6 +1837,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		{
 			case 'LaunchGrenade':               // Salvo, Rapid Deployment
 			case 'ThrowGrenade':                // Salvo, Rapid Deployment
+			case 'Battlescanner':				// Rapid Deployment
 			case 'LWFlamethrower':              // Quickburn
 			case 'Roust':                       // Quickburn
 			case 'Firestorm':                   // Quickburn

@@ -975,6 +975,13 @@ static final function EventListenerReturn OnOverrideAbilityIconColor(Object Even
 				}
 			}
 			break;
+		case 'Battlescanner':
+			if (UnitState.AffectedByEffectNames.Find('RapidDeploymentEffect') != -1)
+			{
+				IsTurnEnding = false;
+				IsFree = true;
+			}
+			break;
 		case 'ArcThrowerStun':
 		case 'EMPulser':
 		case 'ChainLightning':
