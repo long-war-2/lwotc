@@ -541,7 +541,7 @@ LocFlyOverText="Covert"
 ; LWOTC Needs Translation
 LocLongDescription="Enemies have <Ability:COVERT_DETECTION_RANGE_REDUCTION/>% smaller detection range against you."
 LocHelpText="Enemies have reduced detection range against you."
-LocPromotionPopupText="<Bullet/> Enemies have <Ability:COVERT_DETECTION_RANGE_REDUCTION/>% smaller detection range against you, as denoted by red tiles surrounding enemies who are not alerted to your presence.<br/><Bullet/> This ability also grants a small reduction in this soldier's impact on infiltration times.<br/><Bullet/> Does not apply to ADVENT security towers."
+LocPromotionPopupText="<Bullet/> Detection range is denoted by red tiles surrounding enemies who are not alerted to your presence.<br/><Bullet/> This ability also grants a small reduction in this soldier's impact on infiltration times.<br/><Bullet/> Does not apply to ADVENT security towers."
 ; End Translation
 
 [Ghostwalker X2AbilityTemplate]
