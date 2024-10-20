@@ -125,7 +125,7 @@ LocFriendlyName="Damn Good Ground"
 LocFlyOverText="Damn Good Ground"
 LocLongDescription="Confers +10 aim and +10 defense against targets at a lower elevation."
 LocHelpText="Confers +10 aim and +10 defense against targets at a lower elevation."
-LocPromotionPopupText="<Bullet/> Confers +10 aim and +10 defense against targets at a lower elevation.<br/><Bullet/> This ability does not provide defensive bonuses if the unit is disoriented, stunned, panicking, on fire or otherwise impaired."
+LocPromotionPopupText="<Bullet/> This ability does not provide defensive bonuses if the unit is disoriented, stunned, panicking, on fire or otherwise impaired."<br/>
 
 [Executioner_LW X2AbilityTemplate]
 LocFriendlyName="Executioner"
