@@ -351,7 +351,7 @@ LocFlyOverText="Locked On"
 ; LWOTC Needs Translation (2)
 LocLongDescription="Gain +<Ability:LOCKEDON_AIM_BONUS/> aim and +<Ability:LOCKEDON_CRIT_BONUS/> crit for successive shots with your <Ability:BOUND_WEAPON_NAME/> at the same enemy unit."
 LocHelpText="Gain +<Ability:LOCKEDON_AIM_BONUS/> aim and +<Ability:LOCKEDON_CRIT_BONUS/> crit for successive shots with your <Ability:BOUND_WEAPON_NAME/> at the same enemy unit."
-LocPromotionPopupText="<Bullet/> Gain +<Ability:LOCKEDON_AIM_BONUS/> aim and +<Ability:LOCKEDON_CRIT_BONUS/> crit for repeated shots with your <Ability:BOUND_WEAPON_NAME/> at the same target. Not cumulative, and only applies to enemy units.<br/><Bullet/> Area-of-Effect-based shots do not grant the bonus."
+LocPromotionPopupText="<Bullet/> Not cumulative, and only applies to enemy units.<br/><Bullet/> Area-of-Effect-based shots do not grant the bonus."
 ; End Translation (2)
 
 [Sentinel_LW X2AbilityTemplate]
