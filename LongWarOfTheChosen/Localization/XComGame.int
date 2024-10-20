@@ -6466,7 +6466,7 @@ LocPromotionPopupText = "<Bullet/> Starts each battle with <Ability:SUPERCHARGE_
 LocFriendlyName = "Shooting Sharp"
 LocHelpText = "Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and +<Ability:SS_AIM_BONUS/> aim against units in cover."
 LocLongDescription = "Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and +<Ability:SS_AIM_BONUS/> aim against units in cover."
-LocPromotionPopupText = "<Bullet/>Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and +<Ability:SS_AIM_BONUS/> aim against units in cover. <br/>"
+LocPromotionPopupText = ""
 ; End Translation (3)
 
 [Unlimitedpower_LW X2AbilityTemplate]
