@@ -6215,7 +6215,7 @@ LocFlyOverText="Impulse"
 ; LWOTC Needs Translation (2)
 LocLongDescription="Your ranged attacks gain <Ability:IMPULSE_AIM_BONUS/> aim and <Ability:IMPULSE_CRIT_BONUS/> critical chance if you have moved this turn."
 LocHelpText="Your ranged attacks gain <Ability:IMPULSE_AIM_BONUS/> aim and <Ability:IMPULSE_CRIT_BONUS/> critical chance if you have moved this turn."
-LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:IMPULSE_AIM_BONUS/> aim and <Ability:IMPULSE_CRIT_BONUS/> critical chance if you have moved this turn.<br/>"
+LocPromotionPopupText=""
 ; End Translation (2)
 
 [LockNLoad_LW X2AbilityTemplate]
