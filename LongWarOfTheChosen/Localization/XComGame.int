@@ -552,10 +552,10 @@ LocPromotionPopupText=""
 
 [Fortify X2AbilityTemplate]
 LocFriendlyName="Fortify"
-LocLongDescription="Activate to grant +<ABILITY:FORTIFY_DEFENSE_LW/> defense until the beginning of the next turn. Does not cost an action. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocLongDescription="Activate to grant +<ABILITY:FORTIFY_DEFENSE_LW/> defense until the beginning of the next turn."
 LocHelpText="Activate to grant +<ABILITY:FORTIFY_DEFENSE_LW/> defense. Free action. <Ability:SelfCooldown_LW/> turn cooldown."
 LocFlyOverText="Fortified"
-LocPromotionPopUpText="<Bullet/> Activate to grant the soldier +<ABILITY:FORTIFY_DEFENSE_LW/> defense until the beginning of the soldier's next turn.<br/><Bullet/> Does not cost an action.<br/><Bullet/> Fortify has a <Ability:SelfCooldown_LW> turn cooldown."
+LocPromotionPopUpText="<Bullet/> Does not cost an action.<br/><Bullet/>Has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 [CombatFitness X2AbilityTemplate]
 LocFriendlyName="Combat Fitness"
