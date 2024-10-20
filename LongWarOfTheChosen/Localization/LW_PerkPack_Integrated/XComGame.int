@@ -778,7 +778,7 @@ LocFriendlyName="Slash"
 LocFlyOverText="Slash"
 LocLongDescription="Attack an adjacent target with your sword. Uses one action."
 LocHelpText="Attack an adjacent target with your sword. Uses one action."
-LocPromotionPopupText="<Bullet/> Attack an adjacent target with your sword.<br/><Bullet/> Uses one action and doesn't automatically end your turn, so two attacks a turn are possible."
+LocPromotionPopupText="<Bullet/> Uses one action and doesn't automatically end your turn, so two attacks a turn are possible."
 
 [AbsorptionFields X2AbilityTemplate]
 LocFriendlyName="Impact Fields"
