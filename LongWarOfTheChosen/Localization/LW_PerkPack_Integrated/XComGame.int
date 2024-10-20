@@ -548,9 +548,9 @@ LocPromotionPopupText="<Bullet/> Enemies have <Ability:COVERT_DETECTION_RANGE_RE
 LocFriendlyName="Ghostwalker"
 LocFlyOverText="Ghostwalker"
 ; LWOTC Needs Translation (2)
-LocLongDescription="Activate this ability to reduce enemy detection range against you by almost <Ability:GHOSTWALKER_DETECTION_RANGE_REDUCTION/>% for <Ability:GHOSTWALKER_DURATION/> turn(s)."
+LocLongDescription="Activate this ability to reduce enemy detection range against you by <Ability:GHOSTWALKER_DETECTION_RANGE_REDUCTION/>% for <Ability:GHOSTWALKER_DURATION/> turn(s)."
 LocHelpText="Reduce enemy detection range by <Ability:GHOSTWALKER_DETECTION_RANGE_REDUCTION/>% for <Ability:GHOSTWALKER_DURATION/> turn(s)."
-LocPromotionPopupText="<Bullet/> Activate this ability to reduce enemy detection range against you by almost <Ability:GHOSTWALKER_DETECTION_RANGE_REDUCTION/>% for <Ability:GHOSTWALKER_DURATION/> turn(s) (including the current turn), as denoted by red tiles surrounding enemies who are not alerted to your presence.<br/><Bullet/> Ghostwalker has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Requires no actions to activate.<br/><Bullet/> This ability also grants a small reduction in this soldier's impact on infiltration times.<br/><Bullet/> Does not apply to ADVENT security towers."
+LocPromotionPopupText="<Bullet/> Detection range is denoted by red tiles surrounding enemies who are not alerted to your presence.<br/><Bullet/> Includes the current turn.<br/><Bullet/> Ghostwalker has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Requires no actions to activate.<br/><Bullet/> This ability also grants a small reduction in this soldier's impact on infiltration times.<br/><Bullet/> Does not apply to ADVENT security towers."
 ; End Translation (2)
 
 [Kubikuri X2AbilityTemplate]
