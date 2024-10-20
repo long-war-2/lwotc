@@ -68,7 +68,7 @@ LocFriendlyName="Centеr Mass"
 LocFlyOverText="Centеr Mass"
 LocLongDescription="You do one additional point of base damage when using guns."
 LocHelpText="You do one additional point of base damage when using guns."
-LocPromotionPopupText="<Bullet/> You do one additional point of base damage with your primary weapon, pistols or a sawed-off shotgun."
+LocPromotionPopupText="<Bullet/> This applies to your primary weapon, pistols and sawed-off shotgun."
 
 [Lethal X2AbilityTemplate]
 LocFriendlyName="Lethal"
