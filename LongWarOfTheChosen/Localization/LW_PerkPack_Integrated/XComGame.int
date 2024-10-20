@@ -1122,7 +1122,7 @@ LocFriendlyName="Hunter's Instincts"
 LocLongDescription="Ranged attacks against flanked enemies deal +<Ability:HUNTERSINSTINCTDMG/> damage."
 LocHelpText="Ranged attacks against flanked enemies deal +<Ability:HUNTERSINSTINCTDMG/> damage."
 LocFlyOverText="Hunter's Instincts"
-LocPromotionPopupText="<Bullet/> Ranged attacks against flanked enemies deal +<Ability:HUNTERSINSTINCTDMG/> damage."
+LocPromotionPopupText=""
 
 [HitWhereItHurts X2AbilityTemplate]
 LocFriendlyName="Deadshot"
