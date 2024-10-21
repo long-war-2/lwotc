@@ -641,10 +641,10 @@ LocPromotionPopupText=""
 
 [Fortify X2AbilityTemplate]
 LocFriendlyName="Fortify"
-LocLongDescription="Activate to grant +<ABILITY:FORTIFY_DEFENSE_LW/> defense until the beginning of the next turn. Does not cost an action. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocLongDescription="Activate to grant +<ABILITY:FORTIFY_DEFENSE_LW/> defense until the beginning of the next turn."
 LocHelpText="Activate to grant +<ABILITY:FORTIFY_DEFENSE_LW/> defense. Free action. <Ability:SelfCooldown_LW/> turn cooldown."
 LocFlyOverText="Fortified"
-LocPromotionPopUpText="<Bullet/> Activate to grant the soldier +<ABILITY:FORTIFY_DEFENSE_LW/> defense until the beginning of the soldier's next turn.<br/><Bullet/> Does not cost an action.<br/><Bullet/> Fortify has a <Ability:SelfCooldown_LW> turn cooldown."
+LocPromotionPopUpText="<Bullet/> Does not cost an action.<br/><Bullet/>Has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 [CombatFitness X2AbilityTemplate]
 LocFriendlyName="Combat Fitness"
@@ -6428,7 +6428,7 @@ LocFlyOverText="Impulse"
 ; LWOTC Needs Translation (2)
 LocLongDescription="Your ranged attacks gain <Ability:IMPULSE_AIM_BONUS/> aim and <Ability:IMPULSE_CRIT_BONUS/> critical chance if you have moved this turn."
 LocHelpText="Your ranged attacks gain <Ability:IMPULSE_AIM_BONUS/> aim and <Ability:IMPULSE_CRIT_BONUS/> critical chance if you have moved this turn."
-LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:IMPULSE_AIM_BONUS/> aim and <Ability:IMPULSE_CRIT_BONUS/> critical chance if you have moved this turn.<br/>"
+LocPromotionPopupText=""
 ; End Translation (2)
 
 [LockNLoad_LW X2AbilityTemplate]
@@ -6679,7 +6679,7 @@ LocPromotionPopupText = "<Bullet/> Starts each battle with <Ability:SUPERCHARGE_
 LocFriendlyName = "Shooting Sharp"
 LocHelpText = "Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and +<Ability:SS_AIM_BONUS/> aim against units in cover."
 LocLongDescription = "Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and +<Ability:SS_AIM_BONUS/> aim against units in cover."
-LocPromotionPopupText = "<Bullet/>Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and +<Ability:SS_AIM_BONUS/> aim against units in cover. <br/>"
+LocPromotionPopupText = ""
 ; End Translation (3)
 
 [Unlimitedpower_LW X2AbilityTemplate]
