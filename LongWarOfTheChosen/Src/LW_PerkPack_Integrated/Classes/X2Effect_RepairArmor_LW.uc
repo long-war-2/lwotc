@@ -2,6 +2,8 @@
 
 class X2Effect_RepairArmor_LW extends X2Effect;
 
+var localized string ArmorRepairedMessage;
+
 simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffectParameters, XComGameState_BaseObject kNewTargetState, XComGameState NewGameState, XComGameState_Effect NewEffectState)
 {
 	local XComGameState_Ability				Ability;
@@ -24,11 +26,9 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 simulated function AddX2ActionsForVisualization(XComGameState VisualizeGameState, out VisualizationActionMetadata ActionMetadata, const name EffectApplyResult)
 {
 	local X2Action_PlaySoundAndFlyOver SoundAndFlyOver;
-	local string Message;
 
 	SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, VisualizeGameState.GetContext(), false, ActionMetadata.LastActionAdded));
-	Message = "Shredded Armor Repaired";
-	SoundAndFlyOver.SetSoundAndFlyOverParameters(None, Message, '', eColor_Good, "img:///UILibrary_MW.UIPerk_repair");
+	SoundAndFlyOver.SetSoundAndFlyOverParameters(None, default.ArmorRepairedMessage, '', eColor_Good, "img:///UILibrary_MW.UIPerk_repair");
 }
 
 simulated function AddX2ActionsForVisualization_Tick(XComGameState VisualizeGameState, out VisualizationActionMetadata ActionMetadata, const int TickIndex, XComGameState_Effect EffectState)

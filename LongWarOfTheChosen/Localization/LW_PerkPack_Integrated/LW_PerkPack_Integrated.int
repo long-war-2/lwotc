@@ -52,6 +52,9 @@ HoloTargetEffectName="Holotargeted"
 [X2Effect_ApplyRepairHeal_LW]
 HealedMessage="+<Heal/> HP Healed"
 
+[X2Effect_RepairArmor_LW]
+ArmorRepairedMessage="Shredded Armor Repaired"
+
 ;POTENTIALLY DEPRECATED AS WELL AS ALL TRANSLATIONS!
 
 [X2Item_DenseSmokeGrenade]

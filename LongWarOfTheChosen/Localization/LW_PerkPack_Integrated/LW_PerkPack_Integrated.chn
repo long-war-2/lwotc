@@ -49,6 +49,12 @@ strSavior_WorldMessage="妙手回春：已回复额外<XGParam:IntValue0/>生命
 [X2Effect_LWHolotarget]
 HoloTargetEffectName="全息瞄准"
 
+[X2Effect_ApplyRepairHeal_LW]
+HealedMessage="已回复 +<Heal/> HP"
+
+[X2Effect_RepairArmor_LW]
+ArmorRepairedMessage="护甲已修复"
+
 [X2Item_DenseSmokeGrenade]
 DenseSmokeGrenadeEffectDisplayName="浓密烟雾"
 DenseSmokeGrenadeEffectDisplayDesc="浓密烟雾赋予该单位额外的防御加成。"
