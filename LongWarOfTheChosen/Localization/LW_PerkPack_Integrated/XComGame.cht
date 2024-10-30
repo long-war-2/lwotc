@@ -60,9 +60,9 @@ BriefSummary="減少1HP受傷恢復時間，並免疫毒和酸。"
 [CenterMass X2AbilityTemplate]
 LocFriendlyName="中心質量"
 LocFlyOverText="中心質量"
-LocLongDescription="你使用主武器、手槍或短管散彈槍時會造成1點額外基礎傷害。"
-LocHelpText="你使用主武器、手槍或短管散彈槍時會造成1點額外基礎傷害。"
-LocPromotionPopupText="<Bullet/>你的主武器、手槍或短管散彈槍會造成1點額外基礎傷害。"
+LocLongDescription="你使用主武器、手槍或短管霰彈槍時會造成1點額外基礎傷害。"
+LocHelpText="你使用主武器、手槍或短管霰彈槍時會造成1點額外基礎傷害。"
+LocPromotionPopupText="<Bullet/>你的主武器、手槍或短管霰彈槍會造成1點額外基礎傷害。"
 
 [Lethal X2AbilityTemplate]
 LocFriendlyName="致命武器"
@@ -209,7 +209,7 @@ LocFriendlyName="雙發快射"
 LocFlyOverText="雙發快射"
 LocLongDescription="特殊射擊：使用你的主武器對同一目標射擊2次。需要2個行動點。第二次射擊受到-10命中減益。"
 LocHelpText="對同一目標發射2次射擊，第二次射擊會有命中減益。"
-LocPromotionPopupText="<Bullet/>雙發快射讓你對同一目標射擊2次，第二次射擊有-10命中減益。需要2個行動點，且會結束回合。<br/><Bullet/>消耗<Ability:SelfAmmoCost/>彈藥且需<Ability:SelfCooldown_LW/>回合冷卻時間。 <br/>"
+LocPromotionPopupText="<Bullet/>雙發快射讓你對同一目標射擊2次，第二次射擊有-10命中減益。需要2個行動點，且會結束回合。<br/><Bullet/>消耗<Ability:SelfAmmoCost/>彈藥且需<Ability:SelfCooldown_LW/>回合冷卻時間。<br/>"
 
 [TraverseFire X2AbilityTemplate]
 LocFriendlyName="橫掃射擊"
@@ -223,7 +223,7 @@ LocFriendlyName="遊走射擊"
 LocFlyOverText="遊走射擊"
 LocLongDescription="進行一次高精度射擊，+<Ability:WALK_FIRE_AIM_BONUS>命中但是<Ability:WALK_FIRE_DMG>%傷害並且-<Ability:WALK_FIRE_CRIT_MALUS>暴擊率。消耗<Ability:SelfAmmoCost/>彈藥。"
 LocHelpText="進行一次高精度射擊，+<Ability:WALK_FIRE_AIM_BONUS>命中但是<Ability:WALK_FIRE_DMG>%傷害並且-<Ability:WALK_FIRE_CRIT_MALUS> 暴擊率。消耗<Ability:SelfAmmoCost/>彈藥。"
-LocPromotionPopupText="<Bullet/>這是士兵在使用自動武器時調整準星而進行的特殊射擊，+<Ability:WALK_FIRE_AIM_BONUS>命中但是<Ability:WALK_FIRE_DMG>%傷害並且-<Ability:WALK_FIRE_CRIT_MALUS> 暴擊率。<br/><Bullet/>消耗<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/>需要連發武器；主武器為散彈槍或狙擊步槍時不適用。"
+LocPromotionPopupText="<Bullet/>這是士兵在使用自動武器時調整準星而進行的特殊射擊，+<Ability:WALK_FIRE_AIM_BONUS>命中但是<Ability:WALK_FIRE_DMG>%傷害並且-<Ability:WALK_FIRE_CRIT_MALUS> 暴擊率。<br/><Bullet/>消耗<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/>需要連發武器；主武器為霰彈槍或狙擊步槍時不適用。"
 
 [PrecisionShot X2AbilityTemplate]
 LocFriendlyName="精準射擊"
@@ -245,28 +245,28 @@ LocFriendlyName="循環火力"
 LocFlyOverText="循環火力"
 LocLongDescription="特殊射擊：在1次攻擊中對1個目標進行3次射擊。需要2個行動點並且所有射擊都會受到命中減益。<Ability:SelfCooldown_LW/>回合冷卻時間。"
 LocHelpText="特殊射擊：在1次攻擊中對1個目標進行3次射擊。需要2個行動點並且所有射擊都會受到命中減益。<Ability:SelfCooldown_LW/>回合冷卻時間。"
-LocPromotionPopupText="<Bullet/>特殊射擊：在1次攻擊中對1個目標進行3次射擊。需要2個行動點，且所有射擊-<Ability:CYCLIC_FIRE_AIM_MALUS/>命中。<br/><Bullet/>需要<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/> <Ability:SelfCooldown_LW/> 回合冷卻時間。<br/><Bullet/>需要連發武器；當主武器裝備為散彈槍或狙擊步槍時無法使用此能力。"
+LocPromotionPopupText="<Bullet/>特殊射擊：在1次攻擊中對1個目標進行3次射擊。需要2個行動點，且所有射擊-<Ability:CYCLIC_FIRE_AIM_MALUS/>命中。<br/><Bullet/>需要<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/> <Ability:SelfCooldown_LW/> 回合冷卻時間。<br/><Bullet/>需要連發武器；當主武器裝備為霰彈槍或狙擊步槍時無法使用此能力。"
 
 [StreetSweeper X2AbilityTemplate]
 LocFriendlyName="塹壕槍"
 LocFlyOverText="塹壕槍"
-LocLongDescription="僅限散彈槍為主武器時的特殊射擊：對附近錐型範圍內的目標進行一次攻擊。冷卻時間<Ability:SelfCooldown_LW/>回合。"
-LocHelpText="僅限散彈槍為主武器時的特殊射擊：對附近錐型範圍內的目標進行一次攻擊。冷卻時間<Ability:SelfCooldown_LW/>回合。"
-LocPromotionPopupText="<Bullet/>僅限主武器散彈槍的特殊射擊：對附近錐型範圍內的目標進行一次攻擊。<br/><Bullet/><Ability:SelfCooldown_LW/>回合冷卻，消耗<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/>其他主武器不可使用該能力。<br/><Bullet/>該射擊不會穿透重型掩體，所以這種能力最好用在側翼情況。<br/><Bullet/>在範圍內的友軍也會受到傷害。<br/>"
+LocLongDescription="僅限霰彈槍為主武器時的特殊射擊：對附近錐型範圍內的目標進行一次攻擊。冷卻時間<Ability:SelfCooldown_LW/>回合。"
+LocHelpText="僅限霰彈槍為主武器時的特殊射擊：對附近錐型範圍內的目標進行一次攻擊。冷卻時間<Ability:SelfCooldown_LW/>回合。"
+LocPromotionPopupText="<Bullet/>僅限主武器霰彈槍的特殊射擊：對附近錐型範圍內的目標進行一次攻擊。<br/><Bullet/><Ability:SelfCooldown_LW/>回合冷卻，消耗<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/>其他主武器不可使用該能力。<br/><Bullet/>該射擊不會穿透重型掩體，所以這種能力最好用在側翼情況。<br/><Bullet/>在範圍內的友軍也會受到傷害。<br/>"
 
 [SlugShot X2AbilityTemplate]
 LocFriendlyName="獨頭彈"
 LocFlyOverText="獨頭彈"
-LocLongDescription="僅限散彈槍為主武器時的特殊射擊：進行一次穿透<Ability:SLUG_SHOT_PIERCE/>點護甲，沒有射程懲罰，並額外獲得+<Ability:SLUG_SHOT_ACC_BONUS>命中的射擊。消耗<Ability:SelfAmmoCost/>彈藥。冷卻時間<Ability:SelfCooldown_LW/>回合。"
-LocHelpText="穿透護甲沒有射程懲罰的特殊散彈槍射擊。"
-LocPromotionPopupText="<Bullet/>僅限主武器為散彈槍的特殊射擊：進行一次沒有射程懲罰的射擊。<br/><Bullet/>此次射擊可穿透<Ability:SLUG_SHOT_PIERCE/>點護甲。<br/><Bullet/><Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/>消耗<Ability:SelfAmmoCost/>彈藥。<br/>"
+LocLongDescription="僅限霰彈槍為主武器時的特殊射擊：進行一次穿透<Ability:SLUG_SHOT_PIERCE/>點護甲，沒有射程懲罰，並額外獲得+<Ability:SLUG_SHOT_ACC_BONUS>命中的射擊。消耗<Ability:SelfAmmoCost/>彈藥。冷卻時間<Ability:SelfCooldown_LW/>回合。"
+LocHelpText="穿透護甲沒有射程懲罰的特殊霰彈槍射擊。"
+LocPromotionPopupText="<Bullet/>僅限主武器為霰彈槍的特殊射擊：進行一次沒有射程懲罰的射擊。<br/><Bullet/>此次射擊可穿透<Ability:SLUG_SHOT_PIERCE/>點護甲。<br/><Bullet/><Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/>消耗<Ability:SelfAmmoCost/>彈藥。<br/>"
 
 [SlugShotRangeEffect X2AbilityTemplate]
 LocFriendlyName="獨頭彈"
 LocFlyOverText="獨頭彈"
-LocLongDescription="僅限散彈槍為主武器時的特殊射擊：進行一次穿透<Ability:SLUG_SHOT_PIERCE/>點護甲，沒有射程懲罰，並額外獲得+<Ability:SLUG_SHOT_ACC_BONUS>命中的射擊。消耗<Ability:SelfAmmoCost/>彈藥。冷卻時間<Ability:SelfCooldown_LW/>回合。"
-LocHelpText="僅限散彈槍為主武器時的特殊射擊：進行一次沒有射程懲罰的射擊。消耗<Ability:SelfAmmoCost/>彈藥。冷卻時間<Ability:SelfCooldown_LW/>回合。"
-LocPromotionPopupText="<Bullet/>僅限主武器為散彈槍的特殊射擊：進行一次沒有射程懲罰的射擊。<br/><Bullet/><Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/>消耗<Ability:SelfAmmoCost/>彈藥。<br/>"
+LocLongDescription="僅限霰彈槍為主武器時的特殊射擊：進行一次穿透<Ability:SLUG_SHOT_PIERCE/>點護甲，沒有射程懲罰，並額外獲得+<Ability:SLUG_SHOT_ACC_BONUS>命中的射擊。消耗<Ability:SelfAmmoCost/>彈藥。冷卻時間<Ability:SelfCooldown_LW/>回合。"
+LocHelpText="僅限霰彈槍為主武器時的特殊射擊：進行一次沒有射程懲罰的射擊。消耗<Ability:SelfAmmoCost/>彈藥。冷卻時間<Ability:SelfCooldown_LW/>回合。"
+LocPromotionPopupText="<Bullet/>僅限主武器為霰彈槍的特殊射擊：進行一次沒有射程懲罰的射擊。<br/><Bullet/><Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/>消耗<Ability:SelfAmmoCost/>彈藥。<br/>"
 
 [Commissar X2AbilityTemplate]
 LocFriendlyName="督戰員"
@@ -365,14 +365,14 @@ LocFriendlyName="壓制"
 LocFlyOverText="壓制"
 LocLongDescription="對目標進行火力壓制，如果目標移動，則向其發動反應射擊，限制其許多能力的使用，並使其命中降低<Ability:SUPPRESSIONPENALTY/>。此外，還會在本回合額外降低目標15點命中，這個減益效果不會因為壓制解除而消失。"
 LocHelpText="降低敵人命中，並在他們移動時開火。"
-LocPromotionPopupText="<Bullet/>壓制消耗<Ability:SelfAmmoCost/>彈藥，但無冷卻時間。<br/><Bullet/>進行壓制的單位若受到傷害就會中止壓制。<br/><Bullet/>如果多個單位壓制同一個目標，命中懲罰不會疊加。<br/><Bullet/>裝備狙擊步槍或散彈槍類別的武器時無法使用壓制。<br/><Bullet/>壓制限制了目標許多能力的使用，包括火箭和榴彈。<br/><Bullet/>同時會在本回合額外降低目標15點命中，這個減益效果不會因為壓制解除而消失。"
+LocPromotionPopupText="<Bullet/>壓制消耗<Ability:SelfAmmoCost/>彈藥，但無冷卻時間。<br/><Bullet/>進行壓制的單位若受到傷害就會中止壓制。<br/><Bullet/>如果多個單位壓制同一個目標，命中懲罰不會疊加。<br/><Bullet/>裝備狙擊步槍或霰彈槍類別的武器時無法使用壓制。<br/><Bullet/>壓制限制了目標許多能力的使用，包括火箭和榴彈。<br/><Bullet/>同時會在本回合額外降低目標15點命中，這個減益效果不會因為壓制解除而消失。"
 
 [AreaSuppression X2AbilityTemplate]
 LocFriendlyName="區域壓制"
 LocFlyOverText="區域壓制"
 LocLongDescription="發射一片彈幕，壓制4格半徑範圍內的所有敵方目標，降低其命中<Ability:SUPPRESSIONPENALTY/>點，直到壓制效果移除。範圍內任何移動的敵方目將觸發反應射擊。在隱蔽時無法使用。"
 LocHelpText="壓制一片區域內的多個目標。"
-LocPromotionPopupText="<Bullet/>士兵隱蔽時無法使用區域壓制。<br/><Bullet/>只要進行壓制的單位有足夠彈藥，任何試圖移動的敵方目都會受到反應射擊。<br/><Bullet/>散彈槍或狙擊步槍無法使用該能力。<br/><Bullet/>區域壓制消耗<Ability:SelfAmmoCost/>彈藥，每次反應射擊要再消耗1彈藥。沒有冷卻時間。<br/><Bullet/>如果進行壓制的單位受到傷害，區域壓制將中止。<br/><Bullet/>如果多個單位壓制同樣的目標，命中懲罰不會疊加。<br/><Bullet/> 壓制限制了目標許多能力的使用，包括火箭和榴彈。"
+LocPromotionPopupText="<Bullet/>士兵隱蔽時無法使用區域壓制。<br/><Bullet/>只要進行壓制的單位有足夠彈藥，任何試圖移動的敵方目都會受到反應射擊。<br/><Bullet/>霰彈槍或狙擊步槍無法使用該能力。<br/><Bullet/>區域壓制消耗<Ability:SelfAmmoCost/>彈藥，每次反應射擊要再消耗1彈藥。沒有冷卻時間。<br/><Bullet/>如果進行壓制的單位受到傷害，區域壓制將中止。<br/><Bullet/>如果多個單位壓制同樣的目標，命中懲罰不會疊加。<br/><Bullet/> 壓制限制了目標許多能力的使用，包括火箭和榴彈。"
 
 [SuppressionShot_LW X2AbilityTemplate]
 LocFriendlyName="壓制"
@@ -687,7 +687,7 @@ LocFriendlyName="鐵幕"
 LocFlyOverText="鐵幕"
 LocLongDescription="使用主武器進行的錐形射擊。只造成<Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>%傷害，但會在<Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/>回合內減少目標的移動力。移動力減少效果即使未命中也會生效。"
 LocHelpText="使用主武器進行的錐形射擊。只造成<Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>%傷害，但會在<Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/>回合內減少目標的移動力。移動力減少效果即使未命中也會生效。"
-LocPromotionPopupText="<Bullet/>鐵幕造成<Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>%傷害並在<Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/>回合內使敵人的移動力-<Ability:IRON_CURTAIN_MOBILITY_DAMAGE>。<br/><Bullet/>冷卻時間<Ability:SelfCooldown_LW/>回合。<br/><Bullet/>使用<Ability:IRON_CURTAIN_AMMO_COST>彈藥。<br/><Bullet/>可在移動後使用。<br/><Bullet/>鐵幕不適用於散彈槍和狙擊步槍。<br/><Bullet/>在錐形區域內的友軍也會被此能力擊中。<br/><Bullet/>移動力減少效果即使未命中也會生效。"
+LocPromotionPopupText="<Bullet/>鐵幕造成<Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>%傷害並在<Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/>回合內使敵人的移動力-<Ability:IRON_CURTAIN_MOBILITY_DAMAGE>。<br/><Bullet/>冷卻時間<Ability:SelfCooldown_LW/>回合。<br/><Bullet/>使用<Ability:IRON_CURTAIN_AMMO_COST>彈藥。<br/><Bullet/>可在移動後使用。<br/><Bullet/>鐵幕不適用於霰彈槍和狙擊步槍。<br/><Bullet/>在錐形區域內的友軍也會被此能力擊中。<br/><Bullet/>移動力減少效果即使未命中也會生效。"
 str_IronCurtainEffect="鐵幕"
 
 [Slash_LW X2AbilityTemplate]
@@ -919,8 +919,8 @@ LocPromotionPopupText="<Bullet/> 援助協議授予目標一次「掩護火力�
 FriendlyName="碎片槍"
 FriendlyNamePlural="碎片槍"
 BriefSummary="磁力武器技術讓我們能夠將外星合金碎片合成為一種噴射式的彈丸，我們的士兵使用其會造成可觀的效果：距離越近效果越好。"
-TacticalText="<Bullet/>磁力武器技術很有效地提升了XCOM的戰鬥散彈槍。\n<Bullet/>霰彈型武器在近距離具有很好的效果，但是它們的命中率在遠距離下降得很快。\n<Bullet/>使用從變種人敵人身上取得的升級部件來提升碎片槍的戰術效果。"
-AbilityDescName="散彈槍"
+TacticalText="<Bullet/>磁力武器技術很有效地提升了XCOM的戰鬥霰彈槍。\n<Bullet/>霰彈型武器在近距離具有很好的效果，但是它們的命中率在遠距離下降得很快。\n<Bullet/>使用從變種人敵人身上取得的升級部件來提升碎片槍的戰術效果。"
+AbilityDescName="霰彈槍"
 
 [XComGame.RangerSword X2WeaponTemplate]
 [RangerSword X2WeaponTemplate]

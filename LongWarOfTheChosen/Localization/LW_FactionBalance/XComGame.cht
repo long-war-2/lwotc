@@ -33,19 +33,19 @@ LocHelpText="闊劍地雷爆炸時會混亂非機械敵人。"
 LocPromotionPopupText="<Bullet/> 造成混亂於爆炸中所有有機單位的效果。<br/>"
 
 [DisablingShot X2AbilityTemplate]
-LocFriendlyName="阻斷射擊"
-LocLongDescription="用精確的射擊擊暈敵人，如果暴擊則造成額外的眩暈持續時間。射擊不會造成暴擊傷害。"
-LocHelpText="用精確的射擊擊暈敵人，如果暴擊則造成額外的眩暈持續時間。射擊不會造成暴擊傷害。"
+LocFriendlyName="失能射擊"
+LocLongDescription="用精確的射擊擊暈/癱瘓敵人，如果暴擊則造成額外的眩暈/癱瘓持續時間。射擊不會造成暴擊傷害。"
+LocHelpText="用精確的射擊擊暈/癱瘓敵人，如果暴擊則造成額外的眩暈/癱瘓持續時間。射擊不會造成暴擊傷害。"
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> 如果命中(包括擦傷)眩暈敵人<Ability:DisablingShotStunActions/> 行動點。<br/><Bullet/> 如果暴擊額外眩暈敵人 <Ability:DisablingShotCritStunActions/> 行動點, 但是射擊不會造成暴擊傷害。<br/><Bullet/> 阻斷射擊需要 <Ability:SelfAmmoCost/> 彈藥。<br/><Bullet/> 阻斷射擊有 <Ability:SelfCooldown_LW/> 回合冷卻時間。<br/><Bullet/> 只有化身和靈能殭屍不能被眩暈。"
+LocPromotionPopupText="<Bullet/> 如果命中(包括擦傷)，眩暈/癱瘓敵人<Ability:DisablingShotStunActions/>行動點。<br/><Bullet/> 如果暴擊則額外眩暈/癱瘓敵人<Ability:DisablingShotCritStunActions/>行動點, 但是不會造成暴擊傷害。<br/><Bullet/> 失能射擊需要<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/> 失能射擊有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/> 只有化身和靈能殭屍不能被眩暈。"
 ; End Translation (2)
 
 [DisablingShotSnapShot X2AbilityTemplate]
-LocFriendlyName="阻斷射擊"
-LocLongDescription="用精確的射擊擊暈敵人，如果暴擊則造成額外的眩暈持續時間。射擊不會造成暴擊傷害。"
-LocHelpText="用精確的射擊擊暈敵人，如果暴擊則造成額外的眩暈持續時間。射擊不會造成暴擊傷害。"
+LocFriendlyName="失能射擊（急射）"
+LocLongDescription="用精確的射擊擊暈/癱瘓敵人，如果暴擊則造成額外的眩暈/癱瘓持續時間。射擊不會造成暴擊傷害。"
+LocHelpText="用精確的射擊擊暈/癱瘓敵人，如果暴擊則造成額外的眩暈/癱瘓持續時間。射擊不會造成暴擊傷害。"
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> 如果命中(包括擦傷)眩暈敵人<Ability:DisablingShotStunActions/> 行動點。<br/><Bullet/> 如果暴擊額外眩暈敵人 <Ability:DisablingShotCritStunActions/> 行動點, 但是射擊不會造成暴擊傷害。<br/><Bullet/> 阻斷射擊需要 <Ability:SelfAmmoCost/> 彈藥。<br/><Bullet/> 阻斷射擊有 <Ability:SelfCooldown_LW/> 回合冷卻時間。<br/><Bullet/> 只有化身和靈能殭屍不能被眩暈。"
+LocPromotionPopupText="<Bullet/> 如果命中(包括擦傷)，眩暈/癱瘓敵人<Ability:DisablingShotStunActions/>行動點。<br/><Bullet/> 如果暴擊則額外眩暈敵人<Ability:DisablingShotCritStunActions/>行動點, 但是不會造成暴擊傷害。<br/><Bullet/> 失能射擊需要<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/> 失能射擊有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/> 只有化身和靈能殭屍不能被眩暈。"
 ; End Translation (2)
 
 [Meditation X2AbilityTemplate]
@@ -224,7 +224,7 @@ RendTheMarkedEffectDesc="在本回合剩餘時間內從所有來源對目標的�
 [TheBanisher_LW X2AbilityTemplate]
 LocFriendlyName="萬物天敵"
 LocLongDescription="放逐在每次射擊時的命中懲罰減少<Ability:THEBANISHER_HIT_BUFF>點，並將其冷卻時間降低1回合。刀鋒相接的範圍增加到<Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/>格。死亡販子現在對無側翼的目標也能生效。"
-LocHelpText="放逐在每次射擊時的命中懲罰減少<Ability:THEBANISHER_HIT_BUFF>點，並將其冷卻時間降低1回合。刀鋒相接的範圍增加到<Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/>格。死亡販子現在對無側翼的目標也能生效。 注意: 刀鋒相接的圓環視覺效果沒有正確更新該技能。你在刀鋒相接的圓環外還有2個格子的射程範圍。"
+LocHelpText="放逐在每次射擊時的命中懲罰減少<Ability:THEBANISHER_HIT_BUFF>點，並將其冷卻時間降低1回合。刀鋒相接的範圍增加到<Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/>格。死亡販子現在對無側翼的目標也能生效。注意: 刀鋒相接的圓環視覺效果沒有正確更新該技能。你在刀鋒相接的圓環外還有2個格子的射程範圍。"
 
 [SwiftThrow_LW X2AbilityTemplate]
 LocFriendlyName="雷霆快刀"
