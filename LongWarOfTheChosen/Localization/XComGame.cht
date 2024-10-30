@@ -5430,9 +5430,9 @@ LocPromotionPopupText="<Bullet/> 當被聖殿騎士召喚時，支柱將持續�
 ; End Translation (2)
 
 [StunStrike X2AbilityTemplate]
-LocLongDescription="用強大的靈能力量眩暈敵人，消耗1專注。"
-LocHelpText="用強大的靈能力量眩暈敵人，消耗1專注。"
-LocPromotionPopupText="<Bullet/> 眩暈衝擊有 <Ability:STUNSTRIKEHITCHANCE/>%幾率命中, 每點專注增加 <Ability:STUNSTRIKEFOCUSHITCHANCE/>% 。<br/><Bullet/> 眩暈衝擊有 <Ability:STUNSTRIKE_STUN_CHANCE/>%幾率擊暈目標。<br/><Bullet/> 眩暈衝擊不會結束聖殿騎士的回合。<br/><Bullet/> 眩暈衝擊有<Ability:SelfCooldown_LW/>回合冷卻時間<br/>"
+LocLongDescription="用強大的靈能力量眩暈/癱瘓敵人，消耗1專注。"
+LocHelpText="用強大的靈能力量眩暈/癱瘓敵人，消耗1專注。"
+LocPromotionPopupText="<Bullet/> 眩暈衝擊有 <Ability:STUNSTRIKEHITCHANCE/>%幾率命中, 每點專注增加 <Ability:STUNSTRIKEFOCUSHITCHANCE/>% 。<br/><Bullet/> 眩暈衝擊有 <Ability:STUNSTRIKE_STUN_CHANCE/>%幾率擊暈/癱瘓目標。<br/><Bullet/> 眩暈衝擊不會結束聖殿騎士的回合。<br/><Bullet/> 眩暈衝擊有<Ability:SelfCooldown_LW/>回合冷卻時間<br/>"
 
 [BondmateTeamwork X2AbilityTemplate]
 LocHelpText="給予搭檔額外1移動點。羈絆之間共享1點充能。"
@@ -7004,6 +7004,12 @@ LocHelpText="受到傷害後，獲得<Ability:IMPACT_COMPENSATION_PCT_DR>%可堆
 LocFriendlyName="強化復層裝甲"
 LocFlyOverText="強化復層裝甲"
 LocLongDescription="該單位每回合在受到的傷害超過其最大生命值<Ability:IMPACT_V2_DAMAGE_CAP>%後，後續傷害將減少<Ability:IMPACT_V2_PCT_DR>%。"
+LocHelpText="受到的傷害閾值在每回合開始時重置。"
+
+[ImpactCompensationV2XCOM_LW X2AbilityTemplate]
+LocFriendlyName="強化復層裝甲"
+LocFlyOverText="強化復層裝甲"
+LocLongDescription="該單位每回合在受到的傷害超過其最大生命值<Ability:IMPACT_V2XCOM_DAMAGE_CAP>%後，後續傷害將減少<Ability:IMPACT_V2XCOM_PCT_DR>%。"
 LocHelpText="受到的傷害閾值在每回合開始時重置。"
 
 [ImpactCompensationPassiveV2_LW X2AbilityTemplate]

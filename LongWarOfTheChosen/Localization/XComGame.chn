@@ -5446,9 +5446,9 @@ LocPromotionPopupText="<Bullet/> 当被圣殿骑士召唤时，支柱将持续�
 ; End Translation (2)
 
 [StunStrike X2AbilityTemplate]
-LocLongDescription="用强大的灵能力量眩晕敌人，消耗1专注。"
-LocHelpText="用强大的灵能力量眩晕敌人，消耗1专注。"
-LocPromotionPopupText="<Bullet/> 眩晕冲击有<Ability:STUNSTRIKEHITCHANCE/>%几率命中, 每点专注增加<Ability:STUNSTRIKEFOCUSHITCHANCE/>%命中率。<br/><Bullet/> 眩晕冲击有<Ability:STUNSTRIKE_STUN_CHANCE/>%几率击晕目标。<br/><Bullet/> 眩晕冲击不会结束圣殿骑士的回合。<br/><Bullet/> 眩晕冲击有<Ability:SelfCooldown_LW/>回合冷却时间<br/>"
+LocLongDescription="用强大的灵能力量眩晕/瘫痪敌人，消耗1专注。"
+LocHelpText="用强大的灵能力量眩晕/瘫痪敌人，消耗1专注。"
+LocPromotionPopupText="<Bullet/> 眩晕冲击有<Ability:STUNSTRIKEHITCHANCE/>%几率命中, 每点专注增加<Ability:STUNSTRIKEFOCUSHITCHANCE/>%命中率。<br/><Bullet/> 眩晕冲击有<Ability:STUNSTRIKE_STUN_CHANCE/>%几率击晕/瘫痪目标。<br/><Bullet/> 眩晕冲击不会结束圣殿骑士的回合。<br/><Bullet/> 眩晕冲击有<Ability:SelfCooldown_LW/>回合冷却时间<br/>"
 
 [BondmateTeamwork X2AbilityTemplate]
 LocHelpText="给予搭档额外1移动点。羁绊之间共享1点充能。"
@@ -7028,6 +7028,12 @@ LocHelpText="受到伤害后，获得<Ability:IMPACT_COMPENSATION_PCT_DR>%可堆
 LocFriendlyName="强化复层装甲"
 LocFlyOverText="强化复层装甲"
 LocLongDescription="该单位每回合在受到的伤害超过其最大生命值<Ability:IMPACT_V2_DAMAGE_CAP>%后，后续伤害将减少<Ability:IMPACT_V2_PCT_DR>%。"
+LocHelpText="受到的伤害阈值在每回合开始时重置。"
+
+[ImpactCompensationV2XCOM_LW X2AbilityTemplate]
+LocFriendlyName="强化复层装甲"
+LocFlyOverText="强化复层装甲"
+LocLongDescription="该单位每回合在受到的伤害超过其最大生命值<Ability:IMPACT_V2XCOM_DAMAGE_CAP>%后，后续伤害将减少<Ability:IMPACT_V2XCOM_PCT_DR>%。"
 LocHelpText="受到的伤害阈值在每回合开始时重置。"
 
 [ImpactCompensationPassiveV2_LW X2AbilityTemplate]

@@ -919,7 +919,7 @@ LocPromotionPopupText="<Bullet/> 援助協議授予目標一次「掩護火力�
 FriendlyName="碎片槍"
 FriendlyNamePlural="碎片槍"
 BriefSummary="磁力武器技術讓我們能夠將外星合金碎片合成為一種噴射式的彈丸，我們的士兵使用其會造成可觀的效果：距離越近效果越好。"
-TacticalText="<Bullet/>磁力武器技術很有效地提升了XCOM的戰鬥霰彈槍。\n<Bullet/>霰彈型武器在近距離具有很好的效果，但是它們的命中率在遠距離下降得很快。\n<Bullet/>使用從變種人敵人身上取得的升級部件來提升碎片槍的戰術效果。"
+TacticalText="<Bullet/>磁力武器技術為XCOM的戰鬥霰彈槍提供了特別有效的改進。\n<Bullet/>霰彈型武器在近距離具有很好的效果，但是它們的命中率在遠距離下降得很快。\n<Bullet/>使用從變種人敵人身上取得的升級部件來提升碎片槍的戰術效果。"
 AbilityDescName="霰彈槍"
 
 [XComGame.RangerSword X2WeaponTemplate]
