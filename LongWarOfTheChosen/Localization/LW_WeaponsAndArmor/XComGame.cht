@@ -2,8 +2,8 @@
 [MusashiThrowKnifeSecondary_LW X2AbilityTemplate]
 LocFriendlyName="投擲飛刀"
 LocFlyOverText="投擲飛刀"
-LocLongDescription="向目標投擲一把飛刀。 保持暗影狀態。"
-LocHelpText="向目標投擲一把飛刀。 保持暗影狀態。"
+LocLongDescription="向目標投擲一把飛刀。保持暗影狀態。"
+LocHelpText="向目標投擲一把飛刀。保持暗影狀態。"
 LocPromotionPopupText="<Bullet/> 飛刀不會打破暗影狀態或吸引失魂者。<br/><Bullet/> 這種能力將打破隱蔽。"
 
 [KnifeJuggler_LW X2AbilityTemplate]
@@ -16,15 +16,15 @@ LocPromotionPopupText="<Bullet/> 飛刀+<Ability:KnifeJugglerBonusDamage/>傷害
 [Hailstorm_LW X2AbilityTemplate]
 LocFriendlyName="冰雹風暴"
 LocFlyOverText="冰雹風暴"
-LocLongDescription="快速連續向目標投擲三把飛刀。 保持暗影狀態。"
-LocHelpText="快速連續向目標投擲三把飛刀。 保持暗影狀態。"
+LocLongDescription="快速連續向目標投擲三把飛刀。保持暗影狀態。"
+LocHelpText="快速連續向目標投擲三把飛刀。保持暗影狀態。"
 LocPromotionPopupText="<Bullet/> 每把飛刀保持飛刀的任何加成，如傷害和狀態效果，就像單獨的一把飛刀投擲出去一樣。<br/><Bullet/> 除非在投擲第一把飛刀之前滿足限制條件，否則後續飛刀不會從依賴於目標血量的效果中受益。"
 
 [ThrowingKnifeFaceoff_LW X2AbilityTemplate]
 LocFriendlyName="飛刀對峙"
 LocFlyOverText="飛刀對峙"
-LocLongDescription="向範圍內的每個目標投擲飛刀。 保持暗影狀態。"
-LocHelpText="向範圍內的每個目標投擲飛刀。 保持暗影狀態。"
+LocLongDescription="向範圍內的每個目標投擲飛刀。保持暗影狀態。"
+LocHelpText="向範圍內的每個目標投擲飛刀。保持暗影狀態。"
 ; LWOTC Needs Translation (2)
 LocPromotionPopupText="<Bullet/> 僅消耗一點充能，不消耗任何標準的投擲飛刀充能。<br/><Bullet/> 側翼有多個敵人時的理想選擇。<br/>"
 ; End Translation (2)

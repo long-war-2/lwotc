@@ -293,7 +293,7 @@ strMaxScatter="\n最大散布（格）："
 
 [X2Ability_LW_ChosenAbilities]
 ShieldedStatBuffsLocDescription="命中、暴擊率、意志力和靈能威力增益。"
-ImpactCompensationBuffDescription="減少<Ability:IMPACT_COMPENSATION_CURRENT_DR/>%所有來襲傷害。 "
+ImpactCompensationBuffDescription="減少<Ability:IMPACT_COMPENSATION_CURRENT_DR/>%所有來襲傷害。"
 
 [XComGameState_LWListenerManager]
 ResistanceHQBodyText="獲取反抗軍避難所信息"
