@@ -2340,7 +2340,7 @@ static function X2AbilityTemplate PrimaryReturnFireShot()
 	local X2AbilityToHitCalc_StandardAim    StandardAim;
 	local X2Condition_UnitProperty          ShooterCondition;
 	local X2AbilityTarget_Single            SingleTarget;
-	local X2AbilityTrigger_EventListener	Trigger;
+	//local X2AbilityTrigger_EventListener	Trigger;
 	local X2Effect_Knockback				KnockbackEffect;
 	local array<name>                       SkipExclusions;
 	local X2Condition_Visibility            TargetVisibilityCondition;
@@ -2352,7 +2352,7 @@ static function X2AbilityTemplate PrimaryReturnFireShot()
 	Template.bDontDisplayInAbilitySummary = true;
 	ReserveActionPointCost = new class'X2AbilityCost_ReserveActionPoints';
 	ReserveActionPointCost.iNumPoints = 1;
-	ReserveActionPointCost.AllowedTypes.AddItem(class'X2CharacterTemplateManager'.default.PistolOverwatchReserveActionPoint);
+	//ReserveActionPointCost.AllowedTypes.AddItem(class'X2CharacterTemplateManager'.default.PistolOverwatchReserveActionPoint);
 	ReserveActionPointCost.AllowedTypes.AddItem(class'X2CharacterTemplateManager'.default.ReturnFireActionPoint);
 	Template.AbilityCosts.AddItem(ReserveActionPointCost);
 
@@ -2390,6 +2390,7 @@ static function X2AbilityTemplate PrimaryReturnFireShot()
 	SingleTarget.OnlyIncludeTargetsInsideWeaponRange = true;
 	Template.AbilityTargetStyle = SingleTarget;
 
+	/* 
 	//Trigger on movement - interrupt the move
 	Trigger = new class'X2AbilityTrigger_EventListener';
 	Trigger.ListenerData.EventID = 'ObjectMoved';
@@ -2397,6 +2398,7 @@ static function X2AbilityTemplate PrimaryReturnFireShot()
 	Trigger.ListenerData.Filter = eFilter_None;
 	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalOverwatchListener;
 	Template.AbilityTriggers.AddItem(Trigger);
+	*/
 
 	Template.CinescriptCameraType = "StandardGunFiring";	
 	
