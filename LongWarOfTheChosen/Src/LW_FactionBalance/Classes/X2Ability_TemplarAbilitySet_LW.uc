@@ -977,7 +977,7 @@ static function X2AbilityTemplate ArcWave_LW()
 
 	Template = Rend('ArcWave_LW');
 	Template.OverrideAbilities.AddItem('Rend_LW');
-	Template.TargetingMethod = class'X2TargetingMethod_ArcWave';
+	Template.TargetingMethod = class'X2TargetingMethod_ArcWave_LW';
 	Template.ActionFireClass = class'X2Action_Fire_Wave';
 
 	//	These are all handled in the editor if you want to change them!
@@ -1010,7 +1010,7 @@ static function X2AbilityTemplate ArcWave_LW()
 
 	Template.AbilityMultiTargetConditions.AddItem(default.LivingHostileUnitOnlyProperty);
 
-	Template.AddMultiTargetEffect(new class'X2Effect_ArcWaveMultiDamage');
+	Template.AddMultiTargetEffect(new class'X2Effect_ArcWaveMultiDamage_LW');
 	
 	return Template;
 }
