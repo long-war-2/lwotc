@@ -128,6 +128,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(SparkPoweredHeavyArmorStats());
 	Templates.AddItem(SparkPoweredLightArmorStats());
 
+	Templates.AddItem(SustainSpherePadding());
+
 	return Templates;
 }
 
@@ -1038,6 +1040,48 @@ static function X2AbilityTemplate SparkPoweredLightArmorStats()
 	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Defense, class'X2Item_SparkWeapons'.default.SPARK_POWERED_LIGHT_DEF_BONUS);
 	Template.AddTargetEffect(PersistentStatChangeEffect);
 
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}
+
+static function X2AbilityTemplate SustainSpherePadding()
+{
+	local X2AbilityTemplate						Template;
+	local X2Effect_GreaterPadding				GreaterPaddingEffect;
+	local X2Condition_UnitProperty              TargetProperty;
+	local X2AbilityTrigger_EventListener    	EventTrigger;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'SustainingSpherePaddingAbility');
+	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityFieldSurgeon";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SingleTargetWithSelf;
+
+	EventTrigger = new class'X2AbilityTrigger_EventListener';
+	EventTrigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventTrigger.ListenerData.EventID = class'X2Effect_SustainingSphere'.default.SustainEvent;
+	EventTrigger.ListenerData.Filter = eFilter_Unit;
+	EventTrigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	EventTrigger.ListenerData.Priority = 100;	// Needs to trigger before SustainingSphereTriggered
+	Template.AbilityTriggers.AddItem(EventTrigger);
+
+	TargetProperty = new class'X2Condition_UnitProperty';
+	TargetProperty.ExcludeDead = true;
+	TargetProperty.ExcludeHostileToSource = true;
+	TargetProperty.ExcludeFriendlyToSource = false;
+	TargetProperty.RequireSquadmates = true;
+	Template.AbilityTargetConditions.AddItem(TargetProperty);	
+
+	
+	GreaterPaddingEffect = new class 'X2Effect_GreaterPadding';
+	GreaterPaddingEffect.BuildPersistentEffect (1, true, false);
+	GreaterPaddingEffect.Padding_HealHP = 2;	
+	Template.AddTargetEffect(GreaterPaddingEffect);
+
+	Template.bCrossClassEligible = true;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
 	return Template;
