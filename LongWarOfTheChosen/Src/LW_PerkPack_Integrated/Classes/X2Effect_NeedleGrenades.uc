@@ -1,5 +1,6 @@
 class X2Effect_NeedleGrenades extends X2Effect_Persistent;
 
+var int BonusDamage_Conv;
 var int BonusDamage_Mag;
 var int BonusDamage_Beam;
 
@@ -20,7 +21,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 		return 0;
 	}
 
-	BonusDamage = 0;
+	BonusDamage = BonusDamage_Conv;
 	switch (SourceWeapon.GetWeaponTech())
 	{
 		case 'laser_lw':
