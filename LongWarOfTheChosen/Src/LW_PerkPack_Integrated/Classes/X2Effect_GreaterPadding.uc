@@ -10,6 +10,7 @@ class X2Effect_GreaterPadding extends X2Effect_Persistent;
 
 var const name GreaterPaddingUnitWasBleedingOut;
 var int Padding_HealHP;
+var bool bIgnoreBleedout;
 
 function RegisterForEvents(XComGameState_Effect EffectGameState)
 {
@@ -25,7 +26,10 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
 
 	// Because bleeding out status will be cleared at the CleanupTacticalMission point we have to record
 	// that unit was bleeding out at some point during the mission.
-	`XEVENTMGR.RegisterForEvent(EffectObj, 'UnitBleedingOut', OnUnitBleedingOut, ELD_OnStateSubmitted, ,,, EffectObj);
+	if(!bIgnoreBleedout)
+	{
+		`XEVENTMGR.RegisterForEvent(EffectObj, 'UnitBleedingOut', OnUnitBleedingOut, ELD_OnStateSubmitted, ,,, EffectObj);
+	}
 }
 
 function ApplyGreaterPadding(XComGameState_Effect EffectState, XComGameState_Unit OrigUnitState, XComGameState NewGameState)

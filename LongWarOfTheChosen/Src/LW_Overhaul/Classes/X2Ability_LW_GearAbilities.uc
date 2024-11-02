@@ -1078,6 +1078,7 @@ static function X2AbilityTemplate SustainSpherePadding()
 	
 	GreaterPaddingEffect = new class 'X2Effect_GreaterPadding';
 	GreaterPaddingEffect.BuildPersistentEffect (1, true, false);
+	GreaterPaddingEffect.bIgnoreBleedout = true;
 	GreaterPaddingEffect.Padding_HealHP = 2;	
 	Template.AddTargetEffect(GreaterPaddingEffect);
 
