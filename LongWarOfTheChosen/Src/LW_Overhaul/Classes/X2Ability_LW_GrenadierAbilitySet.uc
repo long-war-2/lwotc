@@ -507,7 +507,8 @@ static function X2AbilityTemplate NeedleGrenades()
 	Bonus = new class'X2Effect_NeedleGrenades';
 	Bonus.BuildPersistentEffect(1, true, false, true);
 	Bonus.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName);
-	Bonus.BonusDamage = default.NEEDLE_BONUS_UNARMORED_DMG;
+	Bonus.BonusDamage_Mag = 1;
+	Bonus.BonusDamage_Beam = 2;
 
 	Template.AddTargetEffect(Bonus);
 
