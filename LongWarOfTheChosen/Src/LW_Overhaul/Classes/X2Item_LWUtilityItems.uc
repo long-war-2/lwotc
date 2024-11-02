@@ -145,6 +145,8 @@ static function X2DataTemplate CreateChameleonSuit()
 	Template.StartingItem = false;
 	Template.CanBeBuilt = true;
 
+	Template.Abilities.AddItem('Chameleon_Suit_Ability');
+
 	//EFFECT IS CAPTURED IN INFILTRATION CODE
 
 	return Template;

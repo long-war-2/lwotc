@@ -986,6 +986,12 @@ LocFlyOverText="Nanoscale Vest"
 LocLongDescription="Grants <Ability:NANOFIBER_HEALTH_BONUS_LW> hit points and enemies have a -<Ability:NANOFIBER_CRITDEF_BONUS_LW> to their critical chances against you."
 LocHelpText="Grants <Ability:NANOFIBER_HEALTH_BONUS_LW> hit points and enemies have a -<Ability:NANOFIBER_CRITDEF_BONUS_LW> to their critical chances against you."
 
+[Chameleon_Suit_Ability X2AbilityTemplate]
+LocFriendlyName="Chameleon Suit"
+LocFlyOverText="Chameleon Suit"
+LocLongDescription="Grants 1 hit point and 5 dodge."
+LocHelpText="Grants 1 hit point and 5 dodge."
+
 [FireControl25 X2AbilityTemplate]
 LocFriendlyName="Fire Control (25)"
 LocFlyoverText="Fire Control"
@@ -1625,7 +1631,7 @@ TacticalText="<Bullet/> Grants <Ability:CERAMIC_PLATING_HP> ablative hit points.
 FriendlyName="Chameleon Suit"
 FriendlyNamePlural="Chameleon Suits"
 BriefSummary="Significantly reduces infiltration time by this soldier."
-TacticalText="<Bullet/> Significantly reduces infiltration time by this unit.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+TacticalText="<Bullet/> Grants 1 hit point and 5 dodge.\n<<Bullet/> Significantly reduces infiltration time by this unit.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [AlloyPlating X2EquipmentTemplate]
 FriendlyName="Alloy Plating"
@@ -3801,7 +3807,7 @@ Summary="This improvement on our ceramic plating should offer additional ablativ
 
 [ChameleonSuitProject X2TechTemplate]
 DisplayName="Chameleon Suit"
-Summary="While this design will not afford any bonus protection, it allows our troops to blend in whatever environment they are operating in, reducing the time necessary to infiltrate enemy targets."
+Summary="While this design affords only limited bonus protection, it allows our troops to blend in whatever environment they are operating in, reducing the time necessary to infiltrate enemy targets."
 
 [CarapacePlatingProject X2TechTemplate]
 DisplayName="Carapace Plating"
