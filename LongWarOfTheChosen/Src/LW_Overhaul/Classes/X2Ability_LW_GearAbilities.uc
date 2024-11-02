@@ -51,6 +51,9 @@ var config int BONUS_COILGUN_SHRED;
 
 var config int BLUESCREEN_DISORIENT_CHANCE;
 
+var config int CHAMELEON_VEST_HP_BONUS;
+var config int CHAMELEON_VEST_DODGE_BONUS;
+
 var localized string strWeight;
 var localized string AblativeHPLabel;
 
@@ -91,6 +94,7 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(CreateHazmatVestBonusAbility_LW());
 	Templates.AddItem(CreateNanofiberBonusAbility_LW());
+	Templates.AddItem(CreateChameleonSuitBonus_LW());
 	Templates.AddItem(CreateNeurowhipAbility());
 	Templates.AddItem(CreateStilettoRoundsAbility());
 	Templates.AddItem(CreateFlechetteRoundsAbility());
@@ -451,6 +455,37 @@ static function X2AbilityTemplate CreateNanoFiberBonusAbility_LW()
 	CritDefEffect.CritDef_Bonus = default.NANOFIBER_CRITDEF_BONUS;
 	CritDefEffect.BuildPersistentEffect (1, true, false, false);
 	Template.AddTargetEffect(CritDefEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;	
+}
+
+static function X2AbilityTemplate CreateChameleonSuitBonus_LW()
+{
+	local X2AbilityTemplate                 Template;	
+	local X2Effect_PersistentStatChange		PersistentStatChangeEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Chameleon_Suit_Ability');
+	Template.IconImage = "img:///UILibrary_LWOTC.InventoryArt.Inv_Tarantula_Suit_512";
+
+	Template.AbilitySourceName = 'eAbilitySource_Item';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bDisplayInUITacticalText = false;
+	
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	
+	// Bonus to health stat Effect
+	//
+	PersistentStatChangeEffect = new class'X2Effect_PersistentStatChange';
+	PersistentStatChangeEffect.BuildPersistentEffect(1, true, false, false);
+	PersistentStatChangeEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false, , Template.AbilitySourceName);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_HP, default.CHAMELEON_VEST_HP_BONUS);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Dodge, default.CHAMELEON_VEST_DODGE_BONUS);
+	Template.AddTargetEffect(PersistentStatChangeEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
