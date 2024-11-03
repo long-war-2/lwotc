@@ -564,7 +564,8 @@ function UpdateRewardTemplate(X2StrategyElementTemplate Template, int Difficulty
 	{
 		case 'Reward_FacilityLead':
 			// change reward string delegate so it returns the template DisplayName
-			RewardTemplate.GetRewardStringFn = class'X2StrategyElement_DefaultRewards'.static.GetMissionRewardString; 
+			RewardTemplate.GetRewardStringFn = class'X2StrategyElement_DefaultRewards'.static.GetMissionRewardString;
+			RewardTemplate.IsRewardAvailableFn = IsFacilityLeadRewardAvailableUpdated; 
 			break;
 		case 'Reward_Soldier':
 			RewardTemplate.GenerateRewardFn = GenerateRandomSoldierReward;
@@ -594,6 +595,26 @@ static function UpdateFactionSoldierReward(X2RewardTemplate Template, int Soldie
 	FnWrapper.SoldierRank = SoldierRank;
 	FnWrapper.OriginalDelegateFn = Template.GiveRewardFn;
 	Template.GiveRewardFn = FnWrapper.GiveFactionSoldierReward;
+}
+
+static function bool IsFacilityLeadRewardAvailableUpdated(
+	optional XComGameState NewGameState,
+	optional StateObjectReference AuxRef)
+{
+	local XComGameStateHistory History;
+	local XComGameState_MissionSite MissionState;
+	local int numActivities;
+
+	History = `XCOMHISTORY;
+	foreach History.IterateByClassType(class'XComGameState_MissionSite', MissionState)
+	{
+		if(MissionState.MakesDoom() && !MissionState.Available && MissionState.Source !='MissionSource_Final')
+		{
+			numActivities++;
+		}
+	}
+
+	return (numActivities > 0);
 }
 
 // This is a modified version of `X2StrategyElement_XpackRewards.IsRescueSoldierRewardAvailable()`
