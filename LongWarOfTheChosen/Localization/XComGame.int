@@ -7735,6 +7735,47 @@ LocLongDescription="The unit would have died, but was saved and put into Stasis 
 LocHelpText="The unit would have died, but was saved and put into Stasis for 1 turn. This cannot happen again during this mission."
 ; End Translation
 
+[SustainingSphere X2WeaponTemplate]
+FriendlyName="Sustaining Sphere"
+FriendlyNamePlural="Sustaining Spheres"
+BriefSummary="The Sustaining Sphere is an emergency failsafe mechanism that automatically activates when a soldier is on the brink of death, placing them in temporary suspension to extend their life. Reduces Wound Recovery times by 2 HP if triggered."
+TacticalText="<Bullet/> Sustaining Sphere will automatically trigger when the soldier carrying it reaches 0 HP.\n<Bullet/> Instead of dying, the soldier will be placed in Stasis for the rest of the turn and their health will be reduced to 1 HP. Reduces Wound Recovery times by 2 HP if triggered."
+
+[SustainingSphereAbility X2AbilityTemplate]
+LocFriendlyName="Sustaining Sphere"
+LocHelpText="The Sustaining Sphere is an emergency failsafe mechanism that automatically activates when a soldier is on the brink of death, placing them in temporary suspension to extend their life. Reduces Wound Recovery times by 2 HP if triggered."
+LocLongDescription="The Sustaining Sphere is an emergency failsafe mechanism that automatically activates when a soldier is on the brink of death, placing them in temporary suspension to extend their life. Reduces Wound Recovery times by 2 HP if triggered."
+LocFlyOverText="Sustaining Sphere"
+LocPromotionPopupText="<Bullet/> Be aware that a sustained Unit may retain damaging status effects like poison or burning after emerging from Stasis.<br/>"
+
+[SustainingSphereTriggeredAbility X2AbilityTemplate]
+LocFriendlyName="Sustaining Sphere"
+LocHelpText="The Sustaining Sphere is an emergency failsafe mechanism that automatically activates when a soldier is on the brink of death, placing them in temporary suspension to extend their life. Reduces Wound Recovery times by 2 HP if triggered."
+LocLongDescription="The Sustaining Sphere is an emergency failsafe mechanism that automatically activates when a soldier is on the brink of death, placing them in temporary suspension to extend their life. Reduces Wound Recovery times by 2 HP if triggered."
+
+[RefractionField X2WeaponTemplate]
+FriendlyName="Refraction Field"
+FriendlyNamePlural="Refraction Fields"
+BriefSummary="Using material recovered from the remains of the alien Spectre, Refraction Field technology will allow the equipped soldier to instantly enter concealment."
+TacticalText="<Bullet/> Refraction Field places a soldier into Concealment.\n<Bullet/> Reapers will be placed into Shadow concealment."
+
+[RefractionFieldAbility X2AbilityTemplate]
+LocFriendlyName="Refraction Field"
+LocHelpText="Instantly enter concealment."
+LocLongDescription="Using material recovered from the remains of the alien Spectre, Refraction Field technology will allow the equipped soldier to instantly enter concealment."
+
+[CombatStims X2AbilityTemplate]
+LocFriendlyName="Overdrive Serum"
+LocHelpText="Gain bonus mobility, mental immunity, and take less damage for the next <Ability:COMBATSTIMSDURATION/> turns. Does not cost an action to activate."
+LocLongDescription="A soldier taking Overdrive Serum receives bonus mobility, mental immunity, and takes less damage for the next <Ability:COMBATSTIMSDURATION/> turns. This does not cost an action to activate."
+LocFlyOverText="Overdrive Serum"
+
+[CombatStims X2AbilityTemplate]
+LocFriendlyName="Overdrive Serum"
+LocHelpText="Gain bonus mobility, mental immunity, and take less damage for the next <Ability:COMBATSTIMSDURATION/> turns. Does not cost an action to activate."
+LocLongDescription="A soldier taking Overdrive Serum receives bonus mobility, mental immunity, and takes less damage for the next <Ability:COMBATSTIMSDURATION/> turns. This does not cost an action to activate."
+LocFlyOverText="Overdrive Serum"
+
 [X2MPData_Shell]
 arrMPMapFriendlyNames[9]="Underground"
 arrMPMapFriendlyNames[10]="Underground"
