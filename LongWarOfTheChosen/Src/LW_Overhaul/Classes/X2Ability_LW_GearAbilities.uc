@@ -1065,7 +1065,7 @@ static function X2AbilityTemplate SustainSpherePadding()
 	EventTrigger.ListenerData.EventID = class'X2Effect_SustainingSphere'.default.SustainEvent;
 	EventTrigger.ListenerData.Filter = eFilter_Unit;
 	EventTrigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
-	EventTrigger.ListenerData.Priority = 100;	// Needs to trigger before SustainingSphereTriggered
+	EventTrigger.ListenerData.Priority = 100;	// Needs to trigger before SustainingSphere Stasis
 	Template.AbilityTriggers.AddItem(EventTrigger);
 
 	TargetProperty = new class'X2Condition_UnitProperty';
