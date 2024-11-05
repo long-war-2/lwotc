@@ -69,6 +69,7 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(CreateTrackingShotMark());
 	Templates.AddItem(CreateMarkForDeathHunter());
+	Templates.AddItem(CreateTrackingShotLW());
 
 	Templates.AddItem(ChosenDragonRounds());
 	Templates.AddItem(ChosenDragonRoundsPassive());
@@ -985,6 +986,79 @@ static function X2DataTemplate CreateKeen()
 	return Template;
 }
 
+static function X2AbilityTemplate CreateTrackingShotLW()
+{
+	local X2AbilityTemplate					Template;
+	local X2Condition_UnitValue				UnitValueCheck;
+	local X2AbilityCost_ActionPoints		ActionPointCost;
+	local X2Condition_Visibility			VisibilityCondition;
+	local array<name> 						SkipExclusions;
+	
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'TrackingShot_LW');
+
+	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_trackingshot";
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
+	Template.DisplayTargetHitChance = true;
+	Template.AbilitySourceName = 'eAbilitySource_Perk'; 
+	Template.Hostility = eHostility_Offensive;
+
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+
+	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
+	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
+	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.ConfusedName);
+	Template.AddShooterEffectExclusions(SkipExclusions);
+
+	VisibilityCondition = new class'X2Condition_Visibility';
+	VisibilityCondition.bRequireGameplayVisible = true;
+	Template.AbilityTargetConditions.AddItem(VisibilityCondition);
+	
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+	
+	UnitValueCheck = new class'X2Condition_UnitValue';
+	UnitValueCheck.AddCheckValue('GrappledThisTurn', 1, eCheck_LessThan);
+	Template.AbilityShooterConditions.AddItem(UnitValueCheck);
+	
+	Template.AbilityTargetConditions.AddItem(default.FlankedCondition);
+
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 2;
+	ActionPointCost.bFreeCost = true;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	AddAmmoCost(Template, 1);
+	AddCooldown(Template, 1);
+
+	Template.bAllowAmmoEffects = true;
+	Template.bAllowBonusWeaponEffects = true;
+
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
+
+	Template.AbilityToHitCalc = default.DeadEye;
+		
+	Template.bShowActivation = true;
+	Template.bFrameEvenWhenUnitIsHidden = true;
+	Template.bUsesFiringCamera = true;
+	Template.CinescriptCameraType = "ChosenSniper_TrackingShot";	
+
+	Template.AssociatedPassives.AddItem('HoloTargeting');
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;	
+	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+
+	Template.bDisplayInUITooltip = false;
+	Template.bDisplayInUITacticalText = false;
+
+	Template.bCrossClassEligible = false;
+
+	return Template;
+}
+
 static function X2DataTemplate CreateTrackingShotMark()
 {
 	local X2AbilityTemplate Template;
@@ -1091,7 +1165,7 @@ static function X2DataTemplate CreateTrackingShotMark()
 
 	Template.CinescriptCameraType = "ChosenSniper_TrackingShotMark";
 
-	Template.AdditionalAbilities.AddItem('MarkedForDeath_Hunter');
+	//Template.AdditionalAbilities.AddItem('MarkedForDeath_Hunter');
 
 	return Template;
 }

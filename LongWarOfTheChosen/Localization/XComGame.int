@@ -7030,6 +7030,11 @@ LocFriendlyName="Tracking Shot Mark"
 LocHelpText="At the start of your turn, mark an enemy that's flanked against you as a free action. Your first shot against that target is guaranteed to hit, and refunded."
 LocLongDescription="At the start of your turn, mark an enemy that's flanked against you as a free action. Your first shot against that target is guaranteed to hit, and refunded."
 
+[TrackingShot_LW X2AbilityTemplate]
+LocFriendlyName="Tracking Shot"
+LocHelpText="At the start of your turn, take a free shot that is guaranteed to hit at any enemy that is flanked by you."
+LocLongDescription="At the start of your turn, take a free shot that is guaranteed to hit at any enemy that is flanked by you."
+
 [TrackingShot X2AbilityTemplate]
 LocFriendlyName="Tracking Shot"
 LocHelpText="At the start of your turn, mark an enemy that's flanked against you as a free action. Your first shot against that target is guaranteed to hit, and refunded."

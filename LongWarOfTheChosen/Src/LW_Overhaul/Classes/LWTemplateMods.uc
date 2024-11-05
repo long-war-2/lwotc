@@ -2473,6 +2473,8 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.RemoveItem('ChosenExtractKnowledgeMove');
 		Template.Abilities.RemoveItem('ChosenExtractKnowledge');
 		Template.Abilities.RemoveItem('Farsight');
+		Template.Abilities.RemoveItem('TrackingShot');
+		Template.Abilities.RemoveItem('TrackingShotMark');
 
 		Template.Abilities.AddItem('HunterReaction');
 		Template.Abilities.AddItem('CombatReadiness');
@@ -2690,8 +2692,10 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		case 'ChosenSniperRifle_MG':
 		case 'ChosenSniperRifle_BM':
 		case 'ChosenSniperRifle_T4':
-			//WeaponTemplate.Abilities.RemoveItem('TrackingShot');
+			WeaponTemplate.Abilities.RemoveItem('TrackingShotMark');
+			WeaponTemplate.Abilities.RemoveItem('TrackingShot');
 			WeaponTemplate.Abilities.RemoveItem('HunterKillzone');
+			WeaponTemplate.Abilities.AddItem('TrackingShot_LW');
 			break;
 
 		case 'Warlock_PsiWeapon':
