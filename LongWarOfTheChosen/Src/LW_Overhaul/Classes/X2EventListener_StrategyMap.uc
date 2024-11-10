@@ -68,6 +68,8 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	Template.AddCHEvent('Geoscape_ResInfoButtonVisible', ShowOrHideResistanceOrdersButton, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('ContinentBonusActivated', HandleContinentBonusActivation, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('StrategyMap_NavHelpUpdated', DisplayResistanceAndHavenManagementNavHelp, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('EnterSquadSelect', PauseGeoscapeOnSquadSelect, ELD_Immediate, 100);
+
 
 	//Added for fix to issue #100
 	Template.AddCHEvent('OverrideCurrentDoom', OverrideCurrentDoom, ELD_Immediate, GetListenerPriority());
@@ -1240,4 +1242,11 @@ static function EventListenerReturn OnUFOSetInterceptionTime(Object EventData, O
 	}
 
     return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn PauseGeoscapeOnSquadSelect(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	`HQPRES.StrategyMap2D.SetUIState(eSMS_Flight);
+
+	return ELR_NoInterrupt;
 }

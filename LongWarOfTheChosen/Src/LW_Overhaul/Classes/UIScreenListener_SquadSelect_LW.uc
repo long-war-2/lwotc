@@ -458,6 +458,8 @@ event OnRemoved(UIScreen Screen)
 			}
 		}
 	}
+
+	`HQPRES.StrategyMap2D.SetUIState(eSMS_Default);
 }
 
 defaultproperties
