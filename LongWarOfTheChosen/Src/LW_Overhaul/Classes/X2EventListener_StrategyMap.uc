@@ -69,6 +69,8 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	Template.AddCHEvent('ContinentBonusActivated', HandleContinentBonusActivation, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('StrategyMap_NavHelpUpdated', DisplayResistanceAndHavenManagementNavHelp, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('EnterSquadSelect', PauseGeoscapeOnSquadSelect, ELD_Immediate, 100);
+	Template.AddCHEvent('OnUFOAttack', PauseGeoscapeOnSquadSelect, ELD_Immediate, 100);
+	Template.AddCHEvent('OnViewAvengerAssaultMission', PauseGeoscapeOnSquadSelect, ELD_Immediate, 100);
 
 
 	//Added for fix to issue #100
