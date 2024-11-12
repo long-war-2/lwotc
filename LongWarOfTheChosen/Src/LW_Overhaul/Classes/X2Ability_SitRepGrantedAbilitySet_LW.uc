@@ -13,6 +13,7 @@ var config array<int> UNDERINFILTRATION_AIM_MODS;
 var config array<int> UNDERINFILTRATION_DEFENSE_MODS;
 var config array<int> UNDERINFILTRATION_DODGE_MODS;
 var config array<float> UNDERINFILTRATION_HP_MODS;
+var config array<int> UNDERINFILTRATION_ARMOR_MODS;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -148,6 +149,7 @@ static function X2AbilityTemplate CreateEnemyScalingTemplate(name TemplateName, 
 	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Defense, default.UNDERINFILTRATION_DEFENSE_MODS[DifficultyIndex], MODOP_Addition);
 	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Dodge, default.UNDERINFILTRATION_DODGE_MODS[DifficultyIndex], MODOP_Addition);
 	PersistentStatChangeEffect.AddPersistentStatChange(eStat_HP, default.UNDERINFILTRATION_HP_MODS[DifficultyIndex], MODOP_Multiplication);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Dodge, default.UNDERINFILTRATION_ARMOR_MODS[DifficultyIndex], MODOP_Addition);
 	PersistentStatChangeEffect.DuplicateResponse = eDupe_Ignore;
 	Template.AddTargetEffect(PersistentStatChangeEffect);
 
