@@ -16,6 +16,9 @@ var config string Gauntlet_BM_UIImage;
 var config WeaponDamageValue Gauntlet_Primary_CONVENTIONAL_BASEDAMAGE;  // Rocket
 var config WeaponDamageValue Gauntlet_Secondary_CONVENTIONAL_BASEDAMAGE;  // Flamethrower
 
+// Tedster - *** Alt Secondary may not actually work ***
+var config array<WeaponDamageValue> Gauntlet_Primary_CONVENTIONAL_EXTRADAMAGE;  // Rocket
+
 // ***** Core properties and variables for weapons *****
 var config int Gauntlet_Primary_CONVENTIONAL_ICLIPSIZE;
 var config int Gauntlet_Primary_CONVENTIONAL_ISOUNDRANGE;
@@ -32,6 +35,8 @@ var config int Gauntlet_Secondary_CONVENTIONAL_ISOUNDRANGE;
 // ***** Damage arrays for attack actions  *****
 var config WeaponDamageValue Gauntlet_Primary_MAG_BASEDAMAGE;  // Rocket
 var config WeaponDamageValue Gauntlet_Secondary_MAG_BASEDAMAGE;  // Flamethrower
+
+var config array<WeaponDamageValue> Gauntlet_Primary_MAG_EXTRADAMAGE;  // Rocket
 
 // ***** Core properties and variables for weapons *****
 var config int Gauntlet_Primary_MAG_ICLIPSIZE;
@@ -66,6 +71,8 @@ var config int Gauntlet_Secondary_COIL_ISOUNDRANGE;
 // ***** Damage arrays for attack actions  *****
 var config WeaponDamageValue Gauntlet_Primary_BEAM_BASEDAMAGE;  // Rocket
 var config WeaponDamageValue Gauntlet_Secondary_BEAM_BASEDAMAGE;  // Flamethrower
+
+var config array<WeaponDamageValue> Gauntlet_Primary_BEAM_EXTRADAMAGE;  // Rocket
 
 // ***** Core properties and variables for weapons *****
 var config int Gauntlet_Primary_BEAM_ICLIPSIZE;
@@ -130,6 +137,7 @@ static function X2DataTemplate CreateTemplate_Gauntlet_Conventional()
 	Template.Tier = 0;
 
 	Template.BaseDamage = default.Gauntlet_Primary_CONVENTIONAL_BASEDAMAGE;
+	Template.ExtraDamage = default.Gauntlet_Primary_CONVENTIONAL_EXTRADAMAGE;
 	Template.iSoundRange = default.Gauntlet_Primary_CONVENTIONAL_ISOUNDRANGE;
 	Template.iEnvironmentDamage = default.Gauntlet_Primary_CONVENTIONAL_IENVIRONMENTDAMAGE;
 	Template.iClipSize = default.Gauntlet_Primary_CONVENTIONAL_ICLIPSIZE;
@@ -163,8 +171,6 @@ static function X2DataTemplate CreateTemplate_Gauntlet_Conventional()
 
 	Template.StartingItem = true;
 	Template.CanBeBuilt = false;
-	
-	Template.DamageTypeTemplateName = 'Electrical';
 
 	Template.SetUIStatMarkup(default.PrimaryRangeLabel, , default.Gauntlet_Primary_CONVENTIONAL_RANGE);
 	Template.SetUIStatMarkup(default.PrimaryRadiusLabel, , default.Gauntlet_Primary_CONVENTIONAL_RADIUS);
@@ -190,6 +196,7 @@ static function X2DataTemplate CreateTemplate_Gauntlet_Mag()
 	Template.Tier = 2;
 
 	Template.BaseDamage = default.Gauntlet_Primary_MAG_BASEDAMAGE;
+	Template.ExtraDamage = default.Gauntlet_Primary_MAG_EXTRADAMAGE;
 	Template.iSoundRange = default.Gauntlet_Primary_MAG_ISOUNDRANGE;
 	Template.iEnvironmentDamage = default.Gauntlet_Primary_MAG_IENVIRONMENTDAMAGE;
 	Template.iClipSize = default.Gauntlet_Primary_MAG_ICLIPSIZE;
@@ -223,8 +230,6 @@ static function X2DataTemplate CreateTemplate_Gauntlet_Mag()
 
 	Template.StartingItem = false;
 	Template.CanBeBuilt = true;
-	
-	Template.DamageTypeTemplateName = 'Electrical';
 
 	Template.SetUIStatMarkup(default.PrimaryRangeLabel, , default.Gauntlet_Primary_MAG_RANGE);
 	Template.SetUIStatMarkup(default.PrimaryRadiusLabel, , default.Gauntlet_Primary_MAG_RADIUS);
@@ -282,8 +287,6 @@ static function X2DataTemplate CreateTemplate_Gauntlet_COIL()
 
 	Template.StartingItem = false;
 	Template.CanBeBuilt = true;
-	
-	Template.DamageTypeTemplateName = 'Electrical';
 
 	Template.SetUIStatMarkup(default.PrimaryRangeLabel, , default.Gauntlet_Primary_COIL_RANGE);
 	Template.SetUIStatMarkup(default.PrimaryRadiusLabel, , default.Gauntlet_Primary_COIL_RADIUS);
@@ -309,6 +312,7 @@ static function X2DataTemplate CreateTemplate_Gauntlet_Beam()
 	Template.Tier = 4;
 
 	Template.BaseDamage = default.Gauntlet_Primary_BEAM_BASEDAMAGE;
+	Template.ExtraDamage = default.Gauntlet_Primary_BEAM_EXTRADAMAGE;
 	Template.iSoundRange = default.Gauntlet_Primary_BEAM_ISOUNDRANGE;
 	Template.iEnvironmentDamage = default.Gauntlet_Primary_BEAM_IENVIRONMENTDAMAGE;
 	Template.iClipSize = default.Gauntlet_Primary_BEAM_ICLIPSIZE;
@@ -342,8 +346,6 @@ static function X2DataTemplate CreateTemplate_Gauntlet_Beam()
 
 	Template.StartingItem = false;
 	Template.CanBeBuilt = true;
-	
-	Template.DamageTypeTemplateName = 'Electrical';
 
 	Template.SetUIStatMarkup(default.PrimaryRangeLabel, , default.Gauntlet_Primary_BEAM_RANGE);
 	Template.SetUIStatMarkup(default.PrimaryRadiusLabel, , default.Gauntlet_Primary_BEAM_RADIUS);

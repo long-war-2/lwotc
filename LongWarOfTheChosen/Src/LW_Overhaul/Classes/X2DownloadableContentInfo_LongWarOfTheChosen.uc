@@ -7100,3 +7100,25 @@ exec function Ted_ClearWaterworldCache()
 	}
 
 }
+
+exec function Ted_CheckWeaponDamageValues(name ItemName)
+{
+	local X2ItemTemplateManager ItemMgr;
+	local X2ItemTemplate ItemTemplate;
+	local int i;
+
+	ItemMgr = class'X2ItemTemplateManager'.static.GetItemTemplateManager();
+
+	ItemTemplate = ItemMgr.FindItemTemplate(ItemName);
+
+	if(ItemTemplate != none)
+	{
+		class'Helpers'.static.OutputMsg("Extra damage length" @`SHOWVAR(X2WeaponTemplate(ItemTemplate).ExtraDamage.length));
+
+		for(i = 0; i < X2WeaponTemplate(ItemTemplate).ExtraDamage.length; i++)
+		{
+			class'Helpers'.static.OutputMsg("Extra damage length" @`SHOWVAR(X2WeaponTemplate(ItemTemplate).ExtraDamage[i].Tag));
+		}
+
+	}
+}
