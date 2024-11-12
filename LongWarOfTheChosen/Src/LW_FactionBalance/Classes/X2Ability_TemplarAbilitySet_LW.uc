@@ -993,6 +993,7 @@ static function X2AbilityTemplate ArcWave_LW()
 	Template.CustomMovingTurnLeftFireKillAnim = 'MV_ArcWave_RunTurn90LeftMeleeKillA';
 	Template.CustomMovingTurnRightFireAnim = 'MV_ArcWave_RunTurn90RightMeleeA';
 	Template.CustomMovingTurnRightFireKillAnim = 'MV_ArcWave_RunTurn90RightMeleeKillA';
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.REND_PRIORITY - 1;
 	Template.ActivationSpeech = 'Rend';
 	Template.CinescriptCameraType = "Templar_Rend";
 	Template.bSkipExitCoverWhenFiring = false;
