@@ -221,7 +221,7 @@ static function X2AbilityTemplate CreateLWFlamethrowerAbility()
 
 	Charges = new class'X2AbilityCharges_BonusCharges';
 	Charges.InitialCharges = default.FLAMETHROWER_CHARGES;
-	Charges.BonusAbility = 'HighPressure';
+	//Charges.BonusAbility = 'HighPressure';
 	Charges.BonusItem = 'HighPressureTanks';
 	Charges.BonusChargesCount =  default.FLAMETHROWER_HIGH_PRESSURE_CHARGES;
 	Template.AbilityCharges = Charges;
@@ -392,9 +392,9 @@ static function X2AbilityTemplate CreateRoustAbility()
 	Template.AbilityTriggers.AddItem(InputTrigger);
 	Template.bPreventsTargetTeleport = false;
 
-	Charges = new class 'X2AbilityCharges_BonusCharges';
+	Charges = new class'X2AbilityCharges_BonusCharges';
 	Charges.InitialCharges = default.ROUST_CHARGES;
-	Charges.BonusAbility = 'HighPressure';
+	//Charges.BonusAbility = 'HighPressure';
 	Charges.BonusItem = 'HighPressureTanks';
 	Charges.BonusChargesCount =  default.ROUST_HIGH_PRESSURE_CHARGES;
 	Template.AbilityCharges = Charges;
