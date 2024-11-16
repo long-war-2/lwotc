@@ -530,6 +530,10 @@ static function array<name> ProtectRegionMissionRewards (XComGameState_LWAlienAc
 				RewardArray.AddItem('Reward_POI_LW');
 				RewardArray.AddItem('Reward_Dummy_POI'); // The first POI rewarded on any mission doesn't display in rewards, so this corrects for that
 			}
+			else
+			{
+				RewardArray.AddItem('Reward_Supplies');
+			}
 			break;
 		case 'Neutralize_LW':
 			RewardArray[0] = 'Reward_AvengerResComms'; // give if capture
