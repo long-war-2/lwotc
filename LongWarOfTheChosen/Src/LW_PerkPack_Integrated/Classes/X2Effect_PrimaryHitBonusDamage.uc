@@ -10,8 +10,8 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
     local X2AbilityToHitCalc_StandardAim StandardHit;
 	local X2Effect_ApplyWeaponDamage WeaponDamageEffect;
 
-	if (class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult))
-	{
+	if (class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult) && CurrentDamage > 0)
+	{ 
 		WeaponDamageEffect = X2Effect_ApplyWeaponDamage(class'X2Effect'.static.GetX2Effect(AppliedData.EffectRef));
 		if (WeaponDamageEffect != none)
 		{			
