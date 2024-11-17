@@ -2232,6 +2232,8 @@ static function X2AbilityTemplate ClearUnitValueEachTurnAbility()
 	ClearUnitValue.UnitValueName = 'DamageThisTurn';
 	Template.AddTargetEffect(ClearUnitValue);
 
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
 	return Template;
 }
 
