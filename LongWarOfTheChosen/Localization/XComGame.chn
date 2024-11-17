@@ -203,16 +203,16 @@ LocPromotionPopupText="<Bullet/> 造成<Ability:ROUST_DAMAGE_PENALTY>%的伤害�
 [Burnout X2AbilityTemplate]
 LocFriendlyName="燃尽"
 LocFlyOverText="燃尽"
-LocLongDescription="使用火焰喷射器后会在你的位置留下一小片烟雾，提供防御加成。"
-LocHelpText="使用火焰喷射器后会在你的位置留下一小片烟雾，提供防御加成。"
-LocPromotionPopupText="<Bullet/> 使用火焰喷射器后，会在你的位置留下一小片烟雾，为范围内的所有单位提供+<Ability:SMOKEGRENADE_HITMOD_LW>的防御加成。<br/><Bullet/> 烟雾影响半径为<Ability:BURNOUT_RADIUS_LW>格。<br/>"
+LocLongDescription="使用火焰喷射器后会在使用者的位置留下一小片烟雾，提供防御加成。"
+LocHelpText="使用火焰喷射器后会在使用者的位置留下一小片烟雾，提供防御加成。"
+LocPromotionPopupText="<Bullet/> 使用火焰喷射器后，会在使用者的位置留下一小片烟雾，为范围内的所有单位提供+<Ability:SMOKEGRENADE_HITMOD_LW>的防御加成。<br/><Bullet/> 烟雾影响半径为<Ability:BURNOUT_RADIUS_LW>格。<br/>"
 
 [BurnoutPassive X2AbilityTemplate]
 LocFriendlyName="燃尽"
 LocFlyOverText="燃尽"
-LocLongDescription="使用火焰喷射器后会在你的位置留下一小片烟雾，提供防御加成。"
-LocHelpText="使用火焰喷射器后会在你的位置留下一小片烟雾，提供防御加成。"
-LocPromotionPopupText="<Bullet/> 使用火焰喷射器后，会在你的位置留下一小片烟雾，为范围内的所有单位提供+<Ability:SMOKEGRENADE_HITMOD_LW>的防御加成。<br/><Bullet/> 烟雾影响半径为<Ability:BURNOUT_RADIUS_LW>格。<br/><Bullet/> 不适用于烈焰风暴。<br/>"
+LocLongDescription="使用火焰喷射器后会在使用者的位置留下一小片烟雾，提供防御加成。"
+LocHelpText="使用火焰喷射器后会在使用者的位置留下一小片烟雾，提供防御加成。"
+LocPromotionPopupText="<Bullet/> 使用火焰喷射器后，会在使用者的位置留下一小片烟雾，为范围内的所有单位提供+<Ability:SMOKEGRENADE_HITMOD_LW>的防御加成。<br/><Bullet/> 烟雾影响半径为<Ability:BURNOUT_RADIUS_LW>格。<br/><Bullet/> 不适用于烈焰风暴。<br/>"
 
 [HighPressure X2AbilityTemplate]
 LocFriendlyName="高压"
@@ -381,7 +381,7 @@ LocFriendlyName="完全破解"
 LocLongDescription="能够永久控制机器人单位，可以为反抗军获得变种人MEC。"
 LocHelpText="能够永久控制机器人单位，可以为反抗军获得变种人MEC。"
 LocFlyOverText="完全破解"
-LocPromotionPopupText="<Bullet/> 完全破解是一种能对敌人机器人单位使用的特殊侵入动作。<br/><Bullet/> 它有1次使用机会，仅在成功的破解之后消耗。<br/><Bullet/> 需要1个行动点并会结束士兵的回合。<br/><Bullet/> 第1种侵入选项，严重宕机，将使单位瘫痪3回合。<br/><Bullet/> 第2种侵入选项，掌控敌人，也会给机器人在任务的剩余时间中提供数值加成，并将永久性地将MEC单位转为反抗军名下。<br/><Bullet/> 如果掌控敌人成功，并且MEC和专家都在任务中存活，那么MEC将遵循新的编程前往反抗军基地，服务反抗军。在任务结束时它不需要撤离。"
+LocPromotionPopupText="<Bullet/> 完全破解是一种能对敌方机器人单位使用的特殊侵入动作。<br/><Bullet/> 它有1次使用机会，仅在成功的破解之后消耗。<br/><Bullet/> 需要1个行动点并会结束士兵的回合。<br/><Bullet/> 第1种侵入选项，严重宕机，将使单位瘫痪3回合。<br/><Bullet/> 第2种侵入选项，掌控敌人，也会给机器人在任务的剩余时间中提供数值加成，并将永久性地将MEC单位转为反抗军名下。<br/><Bullet/> 如果掌控敌人成功，并且MEC和专家都在任务中存活，那么MEC将遵循新的编程前往反抗军基地，服务反抗军。在任务结束时它不需要撤离。"
 
 [BuffEnemy_FullOverride X2HackRewardTemplate]
 FriendlyName="超频模式"
@@ -396,6 +396,14 @@ FriendlyName="掌控敌人"
 Description="在任务的剩余时间控制该单位，并使其获得属性加成。MEC单位将重新编程以服务反抗军。"
 
 ;LWOTC needs translation
+
+[BuffEnemy X2HackRewardTemplate]
+FriendlyName="超级充能"
+Description="失败的侵入将会增加该目标的命中和防御。"
+
+[ShutdownRobot X2HackRewardTemplate]
+FriendlyName="关闭"
+Description="暂时使该单位瘫痪。"
 
 [GreaterShutdownRobot X2HackRewardTemplate]
 FriendlyName="严重宕机"
@@ -442,10 +450,10 @@ LocPromotionPopupText="<Bullet/> 所有榴弹都适用于重型军火，即便�
 
 [Sapper X2AbilityTemplate]
 LocFriendlyName="工兵"
-LocLongDescription="你的爆炸物可以摧毁多数掩体。"
-LocHelpText="你的爆炸物可以摧毁多数掩体。"
+LocLongDescription="你的爆炸物的摧毁掩体的能力得到了稍微增强。"
+LocHelpText="你的爆炸物的摧毁掩体的能力得到了稍微增强。"
 LocFlyOverText="工兵"
-LocPromotionPopupText="<Bullet/> 工兵可以使用破片榴弹和其他爆炸物摧毁多数掩体。"
+LocPromotionPopupText="<Bullet/> 现在，爆炸中心大概可以摧毁部分半掩体或者引爆汽车了。"
 
 [CombatEngineer X2AbilityTemplate]
 LocFriendlyName="战斗工程师"
@@ -713,16 +721,16 @@ LocPromotionPopupText="<Bullet/> 此加成初始为+<Ability:STUNGUNNER_BONUS_CV
 [StreetSweeper2 X2AbilityTemplate]
 LocFriendlyName="清道夫"
 LocFlyOverText="清道夫"
-LocLongDescription="使用霰弹枪进行锥形范围射击，对无护甲目标造成额外伤害。会被重型掩体阻挡。"
-LocHelpText="使用霰弹枪进行锥形范围射击，对无护甲目标造成额外伤害。会被重型掩体阻挡。"
-LocPromotionPopupText="<Bullet/> 中距离射程、锥形范围的霰弹枪攻击。<br/><Bullet/> 射击范围会被重型掩体阻挡。<br/><Bullet/> 花费1点行动与<Ability:SelfAmmoCost/>点弹药，冷却时间<Ability:SelfCooldown_LW/>回合。<br/><Bullet/> 对无护甲目标造成<Ability:STREET_SWEEPER2_UNARMORED_DAMAGE_BONUS_LW/>额外伤害。<br/><Bullet/> 仅限霰弹枪使用。<br/><Bullet/> 范围内的友军也会受到伤害。<br/>"
+LocLongDescription="使用霰弹枪进行锥形范围射击，对无护甲目标造成额外伤害。会被全掩体阻挡。"
+LocHelpText="使用霰弹枪进行锥形范围射击，对无护甲目标造成额外伤害。会被全掩体阻挡。"
+LocPromotionPopupText="<Bullet/> 中距离射程、锥形范围的霰弹枪攻击。<br/><Bullet/> 射击范围会被全掩体阻挡。<br/><Bullet/> 花费1点行动与<Ability:SelfAmmoCost/>点弹药，冷却时间<Ability:SelfCooldown_LW/>回合。<br/><Bullet/> 对无护甲目标造成<Ability:STREET_SWEEPER2_UNARMORED_DAMAGE_BONUS_LW/>额外伤害。<br/><Bullet/> 仅限霰弹枪使用。<br/><Bullet/> 范围内的友军也会受到伤害。<br/>"
 
 [ChainLightning X2AbilityTemplate]
 LocFriendlyName="闪电链"
 LocLongDescription="使用电弧发射器，发射电弧从一个目标弹跳到另一个目标，最多弹跳4次，每个目标之间的距离不超过6格。"
 LocHelpText="使用电弧发射器，发射电弧从一个目标弹跳到另一个目标，最多弹跳4次，每个目标之间的距离不超过6格。"
 LocFlyOverText="闪电链"
-LocPromotionPopupText="<Bullet/> 向视野中的目标发射电弧，电弧与其他目标之间的距离在6格以内，最多可弹跳4次。<br/><Bullet/> 需要1个行动点并结束你的回合。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷却。<br/><Bullet/> 不能在隐蔽状态下使用。"
+LocPromotionPopupText="<Bullet/> 向视野中的目标发射电弧，电弧与其他目标之间的距离在6格以内，最多可弹跳4次。<br/><Bullet/> 需要1个行动点并结束你的回合。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷却。<br/><Bullet/> 不能在隐蔽状态下使用。不能影响机械单位，并且一也算六以内。"
 
 [Leadership X2AbilityTemplate]
 LocFriendlyName="领导力"
@@ -911,6 +919,12 @@ LocFlyOverText="纳米背心"
 LocLongDescription="增加<Ability:NANOFIBER_HEALTH_BONUS_LW>点生命值并减少敌人<Ability:NANOFIBER_CRITDEF_BONUS_LW>的暴击率。"
 LocHelpText="增加<Ability:NANOFIBER_HEALTH_BONUS_LW>点生命值并减少敌人<Ability:NANOFIBER_CRITDEF_BONUS_LW>的暴击率。"
 
+[Chameleon_Suit_Ability X2AbilityTemplate]
+LocFriendlyName="变色龙背心"
+LocFlyOverText="变色龙背心"
+LocLongDescription="提供1点生命值和5点闪避。"
+LocHelpText="提供1点生命值和5点闪避。"
+
 [FireControl25 X2AbilityTemplate]
 LocFriendlyName="开火控制 （25）"
 LocFlyoverText="开火控制"
@@ -945,7 +959,7 @@ BriefSummary="XCOM士兵除了主武器之外还能够携带大口径的手枪�
 TacticalText="<Bullet/>要是由训练有素的士兵使用，手枪可就不仅仅是一件副武器了。\n<Bullet/> 手枪射击只需要一个行动点。\n<Bullet/>士兵们可以通过训练特定的技能来大幅度增加手枪的威力。\n<Bullet/>在远距离射击时手枪的命中率会降低。"
 
 [LWPistol_LS X2WeaponTemplate]
-FriendlyName="雷射手枪"
+FriendlyName="激光手枪"
 FriendlyNamePlural="激光手枪"
 UnknownUtilityCategory="手枪"
 BriefSummary="基于先进的激光武器技术，我们发明了这把新手枪。值得称道的是，它在威力方面和传统手枪相比有非常显著的飞跃。"
@@ -1412,6 +1426,11 @@ FriendlyNamePlural="精英扩展弹匣"
 FriendlyName="精英自动装填器"
 FriendlyNamePlural="精英自动装填器"
 
+[CombatStims X2WeaponTemplate]
+FriendlyName="超能血清"
+FriendlyNamePlural="超能血清"
+BriefSummary="超能血清提取自狂战士外星人的肾上腺，通过刺激使用者的神经系统在数回合内提高其机动性和伤害抗性。"
+TacticalText="<Bullet/>超能血清能显著提升机动性并显著减少士兵受到的伤害。\n<Bullet/>超能血清还能使士兵暂时免疫恐慌和心灵控制等负面精神效果。"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;; GEAR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -1526,10 +1545,10 @@ BriefSummary="提供<Ability:CERAMIC_PLATING_HP>点护盾值。"
 TacticalText="<Bullet/> 获得<Ability:CERAMIC_PLATING_HP>点护盾值。<br/><Bullet/> 这些护盾一旦损失，将在任务剩余期间无法恢复。<br/><Bullet/> 陶瓷护甲护盾值的损失不会提升受伤时间。\n<Bullet/> 最多只能同时装备一件护甲和一件背心。"
 
 [ChameleonSuit X2EquipmentTemplate]
-FriendlyName="变色龙套甲"
-FriendlyNamePlural="变色龙套甲"
-BriefSummary="显著地减少该士兵的潜入时间。"
-TacticalText="<Bullet/> 显著地减少该单位的潜入时间。\n<Bullet/> 最多只能同时装备一件护甲和一件背心。"
+FriendlyName="变色龙背心"
+FriendlyNamePlural="变色龙背心"
+BriefSummary="略微减少该士兵的潜入时间。"
+TacticalText="<Bullet/> 提供1点生命值和5点闪避。<br/><Bullet/> 略微减少该单位的潜入时间。\n<Bullet/> 最多只能同时装备一件护甲和一件背心。"
 
 [AlloyPlating X2EquipmentTemplate]
 FriendlyName="合金护甲"
@@ -3680,8 +3699,8 @@ DisplayName="合金护甲"
 Summary="这种对我们的陶瓷护甲的提升应该会为我们的士兵提供额外的防护。"
 
 [ChameleonSuitProject X2TechTemplate]
-DisplayName="变色龙套甲"
-Summary="虽然设计本身不会提供额外的防护，但是它能让我们的士兵融入任何所处的环境，减少潜入进敌方目标的所需时间。"
+DisplayName="变色龙背心"
+Summary="虽然这个设计提供的额外防护有限，但是它能让我们的士兵融入任何所处的环境，略微减少潜入进敌方目标的所需时间。"
 
 [CarapacePlatingProject X2TechTemplate]
 DisplayName="甲壳护甲"
@@ -5228,6 +5247,11 @@ LocPromotionPopupText="<Bullet/> 虚空裂痕使目标受到1伤口撕裂效果�
 LocLongDescription="监视射击现在会在任何敌对行动完成前触发，而不仅仅是在移动时才触发。监视射击现在会忽略目标3分之2的掩体加成。"
 LocPromotionPopupText="<Bullet/> 如果由敌人的动作触发，掩护火力将在敌人动作完成前触发。<br/><Bullet/> 掩护火力会让被你监视的单位获得-<Ability:COVERING_FIRE_OFFENSE_MALUS>的命中惩罚，不论是掩护火力，还是普通的监视。<br/>"
 
+[CapacitorDischarge X2AbilityTemplate]
+LocLongDescription="派小精灵到目标地点大量放电，对区域内的所有单位造成伤害并有一定几率使其混乱。机械单位将受到更大的伤害。"
+LocHelpText="让你的小精灵电击一定范围内的所有单位。机械单位将受到更大的伤害。"
+LocPromotionPopupText="<Bullet/>电容器放电每次任务可使用一次<br/><Bullet/>升级小精灵可使电容器放电造成更多伤害。<br/>"
+
 [GrenadeLauncher_MG X2GrenadeLauncherTemplate]
 BriefSummary="高级榴弹发射器使用电磁技术，比传统的发射器射程更远，并为榴弹专用槽中的榴弹提供额外的使用次数。"
 TacticalText="<Bullet/>高级榴弹发射器比传统的发射器射程更远，并为榴弹专用槽中的榴弹提供额外的使用次数。"
@@ -5237,7 +5261,7 @@ TacticalText="<Bullet/>高级榴弹发射器比传统的发射器射程更远，
 FriendlyName="光束榴弹发射器"
 FriendlyNamePlural="光束榴弹发射器"
 BriefSummary="光束榴弹发射器结合了我们基于光束技术的进展和人工智能辅助瞄准系统方面的最新突破，以前所未有的精度提供有效载荷。此外，还为所有装备在通用槽和榴弹槽的榴弹提供额外的使用次数。"
-TacticalText="<Bullet/> 光束榴弹发射器将任何榴弹转换成一个能轻松绕过障碍物的自导发射体。授予「重型军火」和「全副武裝」的能力，增加通用槽和榴弹槽中的榴弹使用次数。"
+TacticalText="<Bullet/> 光束榴弹发射器将任何榴弹转换成一个能轻松绕过障碍物的自导发射体。授予「重型军火」和「全副武装」的能力，增加通用槽和榴弹槽中的榴弹使用次数。"
 ; End Translation
 
 [FlashbangGrenade X2GrenadeTemplate]
@@ -6359,26 +6383,26 @@ LocPromotionPopupText="<Bullet/> 通过巧妙地结合残暴和无情的效果�
 
 [ZoneOfControl_LW X2AbilityTemplate]
 LocFriendlyName = "控制区域"
-LocHelpText = "所有敌人进入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半径范围内将受到<Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移动力惩罚。"
-LocLongDescription = "所有敌人进入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半径范围内将受到<Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移动力惩罚。"
+LocHelpText = "所有进入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半径范围内的敌人将受到<Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移动力惩罚。"
+LocLongDescription = "所有进入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半径范围内的敌人将受到<Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移动力惩罚。"
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText = "<Bullet/> 所有敌人进入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半径范围内将受到<Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移动力惩罚。<br/>"
+LocPromotionPopupText = "<Bullet/> 所有进入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半径范围内的敌人将受到<Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移动力惩罚。<br/>"
 ; End Translation (2)
 
 [ZoCCleanse X2AbilityTemplate]
 LocFriendlyName = "控制区域"
-LocHelpText = "所有敌人进入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半径范围内将受到<Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移动力惩罚。"
-LocLongDescription = "所有敌人进入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半径范围内将受到<Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移动力惩罚。"
+LocHelpText = "所有进入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半径范围内的敌人将受到<Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移动力惩罚。"
+LocLongDescription = "所有进入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半径范围内的敌人将受到<Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移动力惩罚。"
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText = "<Bullet/> 所有敌人进入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半径范围内将受到<Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移动力惩罚。<br/>"
+LocPromotionPopupText = "<Bullet/> 所有进入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半径范围内的敌人将受到<Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移动力惩罚。<br/>"
 ; End Translation (2)
 
 [ZoCPassive X2AbilityTemplate]
 LocFriendlyName = "控制区域"
-LocHelpText = "所有敌人进入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半径范围内将受到<Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移动力惩罚。"
-LocLongDescription = "所有敌人进入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半径范围内将受到<Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移动力惩罚。"
+LocHelpText = "所有进入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半径范围内的敌人将受到<Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移动力惩罚。"
+LocLongDescription = "所有进入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半径范围内的敌人将受到<Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移动力惩罚。"
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText = "<Bullet/> 所有敌人进入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半径范围内将受到<Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移动力惩罚。<br/>"
+LocPromotionPopupText = "<Bullet/> 所有进入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半径范围内的敌人将受到<Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移动力惩罚。<br/>"
 ; End Translation (2)
 
 [ApexPredator_LW X2AbilityTemplate]
@@ -6768,6 +6792,11 @@ LocFriendlyName="追踪射击标记"
 LocHelpText="在你的回合开始时，可以对一名对你暴露（侧袭）的敌人免费进行标记。对该目标的第一次射击保证命中，并且会返还行动点数。"
 LocLongDescription="在你的回合开始时，可以对一名对你暴露（侧袭）的敌人免费进行标记。对该目标的第一次射击保证命中，并且会返还行动点数。"
 
+[TrackingShot_LW X2AbilityTemplate]
+LocFriendlyName="追踪射击"
+LocHelpText="在你的回合开始时，可以对一名对你暴露（侧袭）的敌人进行一次必中的免费射击。"
+LocLongDescription="在你的回合开始时，可以对一名对你暴露（侧袭）的敌人进行一次必中的免费射击。"
+
 [TrackingShot X2AbilityTemplate]
 LocFriendlyName="追踪射击"
 LocHelpText="在你的回合开始时，可以对一名对你暴露（侧袭）的敌人免费进行标记。对该目标的第一次射击保证命中，并且会返还行动点数。"
@@ -6903,8 +6932,8 @@ LocFlyOverText="死亡标记"
 
 [Fatality_LW X2AbilityTemplate]
 LocFriendlyName="宿命"
-LocLongDescription="使用<Ability:BOUND_WEAPON_NAME/>对<Ability:FATALITY_THRESHOLD/>％生命或更低的目标增加+100命中和暴击率。"
-LocHelpText="使用<Ability:BOUND_WEAPON_NAME/>对<Ability:FATALITY_THRESHOLD/>％生命或更低的目标增加+100命中和暴击率。"
+LocLongDescription="对生命值小于等于<Ability:FATALITY_THRESHOLD/>％的目标使用黑爪进行攻击时，获得额外+100命中和暴击率。"
+LocHelpText="对生命值小于等于<Ability:FATALITY_THRESHOLD/>％的目标使用黑爪进行攻击时，获得额外+100命中和暴击率。"
 LocFlyOverText="宿命"
 
 [Vampirism_LW X2AbilityTemplate]
@@ -7426,6 +7455,50 @@ LocPromotionPopupText="<Bullet/> 注意，单位从静滞状态恢复时依然�
 LocLongDescription="该单位逃过一次致死攻击，并进入静滞状态1回合。本次战斗中仅触发一次。"
 LocHelpText="该单位逃过一次致死攻击，并进入静滞状态1回合。本次战斗中仅触发一次。"
 ; End Translation
+
+[SustainingSphere X2WeaponTemplate]
+FriendlyName="维生领域"
+FriendlyNamePlural="维生领域"
+BriefSummary="维生领域是一种会在士兵濒死时自动发动的紧急保险装置，将其暂时置入不会受伤的状态。如果触发，则伤口恢复时间减少2HP。"
+TacticalText="<Bullet/> 维生领域会在士兵生命值归0时自动发动。\n<Bullet/> 士兵不会死亡，而是将在本回合内进入静滞状态，生命值将维持在1点。如果触发，则伤口恢复时间减少2HP。"
+
+[SustainingSphereAbility X2AbilityTemplate]
+LocFriendlyName="维生领域"
+LocHelpText="维生领域是一种会在士兵濒死时自动发动的紧急保险装置，将其暂时置入不会受伤的状态。如果触发，则伤口恢复时间减少2HP。"
+LocLongDescription="维生领域是一种会在士兵濒死时自动发动的紧急保险装置，将其暂时置入不会受伤的状态。如果触发，则伤口恢复时间减少2HP。"
+LocFlyOverText="维生领域"
+LocPromotionPopupText="<Bullet/> 注意，在静滞状态下的单位在从静滞状态恢复时依然会受到状态效果如毒素或燃烧的伤害。<br/>"
+
+[SustainingSphereTriggeredAbility X2AbilityTemplate]
+LocFriendlyName="维生领域"
+LocHelpText="维生领域是一种会在士兵濒死时自动发动的紧急保险装置，将其暂时置入不会受伤的状态。如果触发，则伤口恢复时间减少2HP。"
+LocLongDescription="维生领域是一种会在士兵濒死时自动发动的紧急保险装置，将其暂时置入不会受伤的状态。如果触发，则伤口恢复时间减少2HP。"
+
+[RefractionField X2WeaponTemplate]
+FriendlyName="折射力场"
+FriendlyNamePlural="折射力场"
+BriefSummary="运用从外星人幽灵的残骸中回收来的材料，折射力场技术能让装备了该力场的士兵立刻进入隐蔽状态。"
+TacticalText="<Bullet/> 折射力场能让士兵进入隐蔽状态。\n<Bullet/> 死神则会进入暗影隐蔽状态。"
+
+[RefractionFieldAbility X2AbilityTemplate]
+LocFriendlyName="折射力场"
+LocHelpText="立刻进入隐蔽状态。"
+LocLongDescription="运用从外星人幽灵的残骸中回收来的材料，折射力场技术能让装备了该力场的士兵立刻进入隐蔽状态。"
+
+[CombatStims X2AbilityTemplate]
+LocFriendlyName="超能血清"
+LocHelpText="在接下来的<Ability:COMBATSTIMSDURATION/>回合内，获得额外的机动性、负面精神免疫效果并减轻受到的伤害。使用无需消耗行动点数。"
+LocLongDescription="使用超能血清后可获得额外的机动性和负面精神免疫效果，并在此后的<Ability:COMBATSTIMSDURATION/>回合内所受伤害减少。使用无需消耗行动点数。"
+LocFlyOverText="超能血清"
+
+[LightningStrikeUnlock X2SoldierAbilityUnlockTemplate]
+DisplayName="闪电出击"
+Summary="当小队保持隐蔽时，单位在战斗的前<Ability:LIGHTNINGSTRIKEDURATION/>个回合内移动力+<Ability:LIGHTNINGSTRIKEMOVEBONUS/>。"
+
+[LightningStrike X2AbilityTemplate]
+LocFriendlyName="闪电出击"
+LocHelpText="当小队保持隐蔽时，单位在战斗的前<Ability:LIGHTNINGSTRIKEDURATION/>个回合内移动力+<Ability:LIGHTNINGSTRIKEMOVEBONUS/>。"
+LocLongDescription="当小队保持隐蔽时，单位在战斗的前<Ability:LIGHTNINGSTRIKEDURATION/>个回合内移动力+<Ability:LIGHTNINGSTRIKEMOVEBONUS/>。"
 
 [X2MPData_Shell]
 arrMPMapFriendlyNames[9]="下水道"

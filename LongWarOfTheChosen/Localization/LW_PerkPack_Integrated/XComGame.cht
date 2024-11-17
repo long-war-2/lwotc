@@ -245,7 +245,7 @@ LocFriendlyName="循環火力"
 LocFlyOverText="循環火力"
 LocLongDescription="特殊射擊：在1次攻擊中對1個目標進行3次射擊。需要2個行動點並且所有射擊都會受到命中減益。<Ability:SelfCooldown_LW/>回合冷卻時間。"
 LocHelpText="特殊射擊：在1次攻擊中對1個目標進行3次射擊。需要2個行動點並且所有射擊都會受到命中減益。<Ability:SelfCooldown_LW/>回合冷卻時間。"
-LocPromotionPopupText="<Bullet/>特殊射擊：在1次攻擊中對1個目標進行3次射擊。需要2個行動點，且所有射擊-<Ability:CYCLIC_FIRE_AIM_MALUS/>命中。<br/><Bullet/>需要<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/> <Ability:SelfCooldown_LW/> 回合冷卻時間。<br/><Bullet/>需要連發武器；當主武器裝備為霰彈槍或狙擊步槍時無法使用此能力。"
+LocPromotionPopupText="<Bullet/>特殊射擊：在1次攻擊中對1個目標進行3次射擊。需要2個行動點，且所有射擊-<Ability:CYCLIC_FIRE_AIM_MALUS/>命中。<br/><Bullet/>需要<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/> <Ability:SelfCooldown_LW/> 回合冷卻時間。<br/><Bullet/>需要連發武器；當主武器裝備為狙擊步槍時無法使用此能力。"
 
 [StreetSweeper X2AbilityTemplate]
 LocFriendlyName="塹壕槍"
