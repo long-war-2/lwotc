@@ -6516,6 +6516,7 @@ exec function PrintKismetVariables(optional bool bAllVars)
     local SequenceObject SeqObj;
     local SequenceVariable SeqVar;
     local SeqVar_Int SeqVarTimer;
+	local SeqVar_Vector SeqVarVector;
     local Sequence CurrentSequence;
 
     CurrentSequence = `XWORLDINFO.GetGameSequence();
@@ -6536,18 +6537,25 @@ exec function PrintKismetVariables(optional bool bAllVars)
             {
                 if(bAllVars)
                 {
-                    class'Helpers'.static.OutputMsg("Found KismetVariable: " $ SeqVar.VarName $ ", Value= " $ SeqVarTimer.IntValue);
+                    class'Helpers'.static.OutputMsg("Found KismetVariable: " $ SeqVarTimer.VarName $ ", Value= " $ SeqVarTimer.IntValue);
                 }
 
 
                     //class'Helpers'.static.OutputMsg("KismetVariable: " $ SeqVar.VarName $ ", Value= " $ SeqVarTimer.IntValue);
                     //class'Helpers'.static.OutputMsg("Found KismetVariable To Adjust: " $ Adjustment);
                     //SeqVarTimer.IntValue = SeqVarTimer.IntValue + Adjustment;
-                    `LWTrace("Named KismetVariable: " $ SeqVar.VarName $ ", Value= " $ SeqVarTimer.IntValue);
-                    class'Helpers'.static.OutputMsg("Named KismetVariable: " $ SeqVar.VarName $ ", Value= " $ SeqVarTimer.IntValue);
+                    `LWTrace("Named KismetVariable: " $ SeqVarTimer.VarName $ ", Value= " $ SeqVarTimer.IntValue);
+                    class'Helpers'.static.OutputMsg("Named KismetVariable: " $ SeqVarTimer.VarName $ ", Value= " $ SeqVarTimer.IntValue);
                 
             }
         }
+		SeqVarVector = SeqVar_Vector(SeqObj);
+		if(SeqVarVector != none)
+		{
+			class'Helpers'.static.OutputMsg("Named KismetVariable: " $ SeqVarVector.VarName $ ", X Value= " $ SeqVarVector.VectValue.x);
+			class'Helpers'.static.OutputMsg("Named KismetVariable: " $ SeqVarVector.VarName $ ", Y Value= " $ SeqVarVector.VectValue.y);
+			class'Helpers'.static.OutputMsg("Named KismetVariable: " $ SeqVarVector.VarName $ ", Z Value= " $ SeqVarVector.VectValue.z);
+		}
     }
 }
 
