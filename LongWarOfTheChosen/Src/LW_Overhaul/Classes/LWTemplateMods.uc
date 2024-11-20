@@ -1212,11 +1212,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	
 	if (Template.DataName == 'PoisonSpit' || Template.DataName == 'MicroMissiles')
 	{
-		VisibilityCondition = new class'X2Condition_Visibility';
-		VisibilityCondition.bVisibletoAnyAlly = true;
-		VisibilityCondition.bAllowSquadsight = true;
-		Template.AbilityTargetConditions.AddItem(VisibilityCondition);
-		Template.AbilityMultiTargetConditions.AddItem(VisibilityCondition);
+		X2AbilityTarget_Cursor(Template.AbilityTargetStyle).bRestrictToSquadsightRange = true;
 	}
 
 	// should allow covering fire at micromissiles and ADVENT rockets
