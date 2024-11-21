@@ -996,7 +996,7 @@ LocHelpText="Grants 1 hit point and 5 dodge."
 LocFriendlyName="Fire Control (25)"
 LocFlyoverText="Fire Control"
 LocLongDescription="This unit will not take reaction shots with less than a 25% chance to hit."
-LocHelpText="This soldier unit not take reaction shots with less than a 25% chance to hit."
+LocHelpText="This unit will not take reaction shots with less than a 25% chance to hit."
 
 [FireControl50 X2AbilityTemplate]
 LocFriendlyName="Fire Control (50)"
