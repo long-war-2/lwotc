@@ -142,6 +142,8 @@ var config int LineEmUpOffense, LineEmUpCrit;
 var config int SensorOverlaysCritBonus;
 var config int FocusedDefenseDefense, FocusedDefenseDodge;
 
+var config array<name> LICK_YOUR_WOUNDS_ALLOWED_ABILITIES;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -1443,8 +1445,7 @@ static function X2AbilityTemplate LickYourWounds()
 
 	// Only trigger with Hunker Down
 	NameCondition = new class'XMBCondition_AbilityName';
-	NameCondition.IncludeAbilityNames.AddItem('HunkerDown');
-	NameCondition.IncludeAbilityNames.AddItem('ShieldWall');
+	NameCondition.IncludeAbilityNames = default.LICK_YOUR_WOUNDS_ALLOWED_ABILITIES;
 	AddTriggerTargetCondition(Template, NameCondition);
 
 	// Restore health effect
