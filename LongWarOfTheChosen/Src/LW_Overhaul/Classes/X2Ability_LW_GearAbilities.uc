@@ -919,6 +919,7 @@ static function X2AbilityTemplate SparkPlatedHeavyArmorStats()
 	PersistentStatChangeEffect.AddPersistentStatChange(eStat_ArmorChance, class'X2Item_SparkWeapons'.default.SPARK_PLATED_HEAVY_MITIGATION_CHANCE);
 	PersistentStatChangeEffect.AddPersistentStatChange(eStat_ArmorMitigation, class'X2Item_SparkWeapons'.default.SPARK_PLATED_HEAVY_MITIGATION_AMOUNT);
 	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Defense, class'X2Item_SparkWeapons'.default.SPARK_PLATED_HEAVY_DEF_BONUS);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Defense, class'X2Item_SparkWeapons'.default.SPARK_PLATED_HEAVY_DODGE_BONUS);
 	Template.AddTargetEffect(PersistentStatChangeEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -999,6 +1000,7 @@ static function X2AbilityTemplate SparkPoweredHeavyArmorStats()
 	PersistentStatChangeEffect.AddPersistentStatChange(eStat_ArmorChance, class'X2Item_SparkWeapons'.default.SPARK_POWERED_HEAVY_MITIGATION_CHANCE);
 	PersistentStatChangeEffect.AddPersistentStatChange(eStat_ArmorMitigation, class'X2Item_SparkWeapons'.default.SPARK_POWERED_HEAVY_MITIGATION_AMOUNT);
 	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Defense, class'X2Item_SparkWeapons'.default.SPARK_POWERED_HEAVY_DEF_BONUS);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Defense, class'X2Item_SparkWeapons'.default.SPARK_POWERED_HEAVY_DODGE_BONUS);
 	Template.AddTargetEffect(PersistentStatChangeEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
