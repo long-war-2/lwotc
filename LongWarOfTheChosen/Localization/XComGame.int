@@ -6266,8 +6266,8 @@ LocPromotionPopupText="<Bullet/> The targeted tile must be visible to you or an 
 
 [LW_NullWard X2AbilityTemplate]
 LocFriendlyName="Null Ward"
-LocLongDescription="Project psionic shields around the soldier and nearby allies. The shields will collapse if this soldier is killed."
-LocHelpText="Project psionic shields around nearby allies and yourself. The shields will collapse if this soldier is killed."
+LocLongDescription="Project psionic shields around the soldier and nearby allies for 3 turns. The shields will collapse if this soldier is killed."
+LocHelpText="Project psionic shields around nearby allies and yourself for 3 turns. The shields will collapse if this soldier is killed."
 LocFlyOverText="Null Ward"
 ; LWOTC Needs Translation (2)
 LocPromotionPopupText="<Bullet/> Null Ward grants <Ability:NULL_WARD_BASE_SHIELD> ablative hit points.<br/><Bullet/> Improved Psi Amps grant additional bonuses to ablative hit points.<br/><Bullet/> Null Ward requires one action and does not end your turn.<br/><Bullet/> Null Ward has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Null Ward has a radius of <Ability:NULL_WARD_RADIUS_TILES> tiles.<br/><Bullet/> Null Ward reveals you.<br/>"
