@@ -305,12 +305,12 @@ function UpdateGameBoard()
 	local XComGameState NewGameState;
 	local XComGameState_LWAlienActivity ActivityState;
 	local XComGameStateHistory History;
-	local UIStrategyMap StrategyMap;
+	//local UIStrategyMap StrategyMap;
 	local bool ShouldPause, UpdateObjectiveUI;
 	local XGGeoscape Geoscape;
 
-	StrategyMap = `HQPRES.StrategyMap2D;
-	if (StrategyMap != none && StrategyMap.m_eUIState != eSMS_Flight)
+	//StrategyMap = `HQPRES.StrategyMap2D;
+	if (class'Helpers_LW'.static.GeoscapeReadyForUpdate())
 	{
 		History = `XCOMHISTORY;
 		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Update Alien Activities");
