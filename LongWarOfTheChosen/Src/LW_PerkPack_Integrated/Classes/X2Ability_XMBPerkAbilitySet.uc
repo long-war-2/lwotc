@@ -660,7 +660,7 @@ static function X2AbilityTemplate LeadTheTargetShot_LW()
 	Trigger.ListenerData.EventID = 'ObjectMoved';
 	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
 	Trigger.ListenerData.Filter = eFilter_None;
-	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalOverwatchListener;
+	Trigger.ListenerData.EventFn = LTTListener;
 	Template.AbilityTriggers.AddItem(Trigger);
 	//  trigger on an attack
 	Trigger = new class'X2AbilityTrigger_EventListener';
@@ -692,6 +692,36 @@ static function X2AbilityTemplate LeadTheTargetShot_LW()
 	Template.bFrameEvenWhenUnitIsHidden = true;
 
 	return Template;
+}
+
+static function EventListenerReturn LTTListener(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComGameState_Unit TargetUnit;
+	local XComGameStateContext_Ability AbilityContext;
+	local XComGameState_Ability AbilityState;
+	local XComGameStateHistory History;
+
+	History = `XCOMHISTORY;
+	TargetUnit = XComGameState_Unit(EventData);
+	AbilityContext = XComGameStateContext_Ability(GameState.GetContext());
+
+	if (AbilityContext != none)
+	{
+		if (class'X2Ability_DefaultAbilitySet'.default.OverwatchIgnoreAbilities.Find(AbilityContext.InputContext.AbilityTemplateName) != INDEX_NONE)
+			return ELR_NoInterrupt;
+	}
+
+	AbilityState = XComGameState_Ability(CallbackData);
+	if (AbilityState != none)
+	{
+		if (AbilityState.CanActivateAbilityForObserverEvent( TargetUnit ) == 'AA_Success')
+		{
+			AbilityState.AbilityTriggerAgainstSingleTarget(TargetUnit.GetReference(), false);
+		}
+	}
+	
+
+	return ELR_NoInterrupt;
 }
 
 static function X2AbilityTemplate BlindingProtocol_LW()
