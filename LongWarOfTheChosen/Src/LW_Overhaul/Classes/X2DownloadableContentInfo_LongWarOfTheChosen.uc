@@ -61,6 +61,8 @@ var config array<EncounterBucket> ReplacementEncounterBuckets;
 
 var config array<string> MissionsToNotDiversify;
 
+var config array<name> NoReinforcementEnemies;
+
 
 // An array of mission types where we should just let vanilla do its
 // thing with regard to the Chosen rather than try to override its
@@ -1279,7 +1281,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	local int								idx, Tries, PodSize, k, numAttempts, iNumCommonUnits, j, ProperPodLength;
 	local X2CharacterTemplateManager		TemplateManager;
 	local X2CharacterTemplate				LeaderCharacterTemplate, FollowerCharacterTemplate, CurrentCharacterTemplate, NewCommonTemplate;
-	local bool								Swap, Satisfactory, bKeepTrying;
+	local bool								Swap, Satisfactory, bKeepTrying, bIsRNF;
 	local XComGameState_MissionSite			MissionState;
 	local XComGameState_AIReinforcementSpawner	RNFSpawnerState;
 	local XComGameState_HeadquartersXCom XCOMHQ;
@@ -1430,6 +1432,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	//	`LWTRACE ("PE2");
 	if (RNFSpawnerState != none)
 	{
+		bIsRNF = true;
 		`LWDiversityTrace("Called from AIReinforcementSpawner.OnReinforcementSpawnerCreated -- modifying reinforcement spawninfo");
 	}
 	else
@@ -1468,6 +1471,13 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		swap = true;
 		SpawnInfo.SelectedCharacterTemplateNames[0] = SelectNewPodLeader(SpawnInfo, ForceLevel, LeaderSpawnList);
 		`LWDiversityTrace("Swapping Codex leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
+	}
+
+	if ( RNFSpawnerState != none && default.NoReinforcementEnemies.Find(SpawnInfo.SelectedCharacterTemplateNames[0]) != INDEX_NONE)
+	{
+		swap = true;
+		SpawnInfo.SelectedCharacterTemplateNames[0] = SelectNewPodLeader(SpawnInfo, ForceLevel, LeaderSpawnList, true);
+		`LWDiversityTrace("Swapping Banned RNF leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
 	}
 
 	// forces special conditions for avatar to pop
@@ -1601,6 +1611,11 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 					`LWDiversityTrace("Too many" @SpawnInfo.SelectedCharacterTemplateNames[k] @"; Max specified:" @ GetCharacterSpawnEntry(FollowerSpawnList, FollowerCharacterTemplate, ForceLevel).MaxCharactersPerGroup);
 					swap = true;
 				}
+				// Ban certain enemies from RNF pods.
+				if(bIsRNF && default.NoReinforcementEnemies.find(SpawnInfo.SelectedCharacterTemplateNames[k]) != INDEX_NONE)
+				{
+					swap = true;
+				}
 			}
 			if (swap)
 			{
@@ -1663,7 +1678,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 				if(CurrentCharacterTemplate == none)
 				{
 					`LWDiversityTrace("Rerolling nonexistant Character Template.");
-					SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
+					SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList, bIsRNF);
 				}
 
 				//BAIL CONDITIONS, Tedster - fix off by one error 2 -> 1
@@ -1674,7 +1689,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 					continue;
 				}
 
-				SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
+				SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList, bIsRNF);
 				`LWDiversityTrace("Selected new follower for position" @idx @":" @ SpawnInfo.SelectedCharacterTemplateNames[idx]);
 				if(CurrentCharacterTemplate == none)
 				{
@@ -1693,7 +1708,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 						numAttempts = 0;
 						while (numAttempts < 12 && bKeepTrying)
 						{
-							SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
+							SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList, bIsRNF);
 
 							if((InStr(CAPS(SpawnInfo.SelectedCharacterTemplateNames[k]), "FROST") != INDEX_NONE || InStr(CAPS(SpawnInfo.SelectedCharacterTemplateNames[k]), "CRYO") != INDEX_NONE))
 							{
@@ -1925,8 +1940,8 @@ static final function bool CheckPodSize(out name EncounterName, out PodSpawnInfo
 		// If the encounter defines a MaxSpawnCount AND the current length is not the same as the max spawn count.
 		if(MissionManager.ConfigurableEncounters[idx].MaxSpawnCount > 0 && SpawnInfo.SelectedCharacterTemplateNames.length != MissionManager.ConfigurableEncounters[idx].MaxSpawnCount)
 		{
-			return true;
 			ProperPodLength = MissionManager.ConfigurableEncounters[idx].MaxSpawnCount;
+			return true;
 		}
 	}
 	
@@ -2086,7 +2101,7 @@ static function float GetCharacterSpawnWeight(out array<SpawnDistributionListEnt
 	}
 }
 
-static function name SelectNewPodLeader(PodSpawnInfo SpawnInfo, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList)
+static function name SelectNewPodLeader(PodSpawnInfo SpawnInfo, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList, optional bool bReinforcement)
 {
 	local X2CharacterTemplateManager CharacterTemplateMgr;
 	local X2DataTemplate Template;
@@ -2117,6 +2132,8 @@ static function name SelectNewPodLeader(PodSpawnInfo SpawnInfo, int ForceLevel, 
 		if (CharacterTemplate.DataName == 'AdvPsiWitchM3' && XCOMHQ.GetObjectiveStatus ('T1_M5_SKULLJACKCodex') != eObjectiveState_Completed)
 			continue;
 
+		if (bReinforcement && default.NoReinforcementEnemies.Find(CharacterTemplate.DataName) != INDEX_NONE)
+			continue;
 
 		if(XCOMHQ.MeetsObjectiveRequirements(CharacterTemplate.SpawnRequirements.RequiredObjectives) == false)
 		{
@@ -2230,7 +2247,7 @@ static function name SelectRandomPodFollower(PodSpawnInfo SpawnInfo, array<name>
 }
 
 // improved version that doesn't have nested loops
-static final function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnInfo, array<name> SupportedFollowers, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList)
+static final function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnInfo, array<name> SupportedFollowers, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList, optional bool bReinforcement)
 {
 //	local X2CharacterTemplateManager CharacterTemplateMgr;
 //	local X2CharacterTemplate CharacterTemplate;
@@ -2272,6 +2289,8 @@ static final function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnIn
 			continue;
 		}
 		*/
+		if (bReinforcement && default.NoReinforcementEnemies.Find(SpawnEntry.Template) != INDEX_NONE)
+			continue;
 
 		// if entry out of force level range.
 		if (ForceLevel < SpawnEntry.MinForceLevel && ForceLevel > SpawnEntry.MaxForceLevel)
@@ -2363,7 +2382,7 @@ static function PostReinforcementCreation(out name EncounterName, out PodSpawnIn
 	    }
 	}
 	// Send into normal PostEncounterCreation otherwise.
-	PostEncounterCreation(EncounterName, Encounter, ForceLevel, AlertLevel, SourceObject);
+	PostEncounterCreation(EncounterName, Encounter, ForceLevel, AlertLevel, ReinforcementState);
 }
 
 // Increase the size of Lost Brutes (unless WWL is installed)
