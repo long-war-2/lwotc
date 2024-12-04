@@ -139,6 +139,7 @@ function bool Update(XComGameState NewGameState)
 	local X2LWAlienActivityTemplate ActivityTemplate;
 	local XComGameState_MissionSite MissionState;
 	local TDateTime TempUpdateDateTime, ExpiryDateTime;
+	local XComGameState_LWPersistentSquad CurrentSquad;
 
 	History = `XCOMHISTORY;
 	MissionState = XComGameState_MissionSite(History.GetGameStateForObjectID(CurrentMissionRef.ObjectID));
@@ -200,7 +201,8 @@ function bool Update(XComGameState NewGameState)
 	if (MissionState != none && class'X2StrategyGameRulesetDataStructures'.static.LessThan(MissionState.ExpirationDateTime, class'XComGameState_GeoscapeEntity'.static.GetCurrentTime()))
 	{
 		bUpdated = true;
-		if(`LWSQUADMGR.GetSquadOnMission(CurrentMissionRef) == none)
+		CurrentSquad = `LWSQUADMGR.GetSquadOnMission(CurrentMissionRef);
+		if(CurrentSquad == none)
 		{
 			bNeedsUpdateMissionFailure = true;
 			bFailedFromMissionExpiration = true;
@@ -209,6 +211,7 @@ function bool Update(XComGameState NewGameState)
 		}
 		else
 		{
+
 			bNeedsAppearedPopup = true;	// Need a mission pop-up at next opportunity
 			bMustLaunch = true;			// And the player has to either abort or launch
 		}
