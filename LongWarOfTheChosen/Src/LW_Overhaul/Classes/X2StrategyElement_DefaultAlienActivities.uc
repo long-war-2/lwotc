@@ -185,6 +185,9 @@ var config int BIGSUPPLYEXTRACTION_MAX_ALERT;
 var config int VULTURE_UNLOCK_AT_FL;
 var config bool bENABLE_AUTO_VULTURE;
 
+var localized string VultureUnlockTitle;
+var localized string VultureUnlockDesc;
+
 //helpers for checking for name typos
 var name ProtectRegionEarlyName;
 var name ProtectRegionMidName;
@@ -1912,12 +1915,16 @@ static function OnScheduledOffworldReinforcementsComplete(bool bAlienSuccess, XC
 		TryIncreasingChosenLevel(RegionalAI.LocalForceLevel);
 		if (RegionalAI.LocalForceLevel == default.CHOSEN_ACTIVATE_AT_FL)
 		{
-			AddSoldierUnlock(NewGameState,'VultureUnlock');
+			//AddSoldierUnlock(NewGameState,'VultureUnlock');
 			ActivateChosenIfEnabled(NewGameState);
 		}
 
 		if(RegionalAI.LocalForceLevel == default.VULTURE_UNLOCK_AT_FL && default.bENABLE_AUTO_VULTURE)
 		{
+			`PRESBASE.UITutorialBox(
+			default.VultureUnlockTitle,
+			default.VultureUnlockDesc,
+			"img:///UILibrary_LWOTC.TutorialImages.LWOTC_Logo");
 			AddSoldierUnlock(NewGameState,'VultureUnlock');
 		}
 	}
