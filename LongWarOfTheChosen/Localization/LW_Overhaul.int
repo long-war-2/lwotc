@@ -637,8 +637,11 @@ m_strProhibitedJobEnded="Resistance members in <XGParam:StrValue0/> assigned to 
 ;LWOTC needs translation
 m_strRetributionEnded="Resistance members in <XGParam:StrValue0/> have recovered from one of the Chosen's retributions"
 ;End translation
+
 [X2StrategyElement_DefaultAlienActivities]
 m_strInsufficientRebels="Need at least <XGParam:IntValue0/> rebels in Haven to make contact with neighbors"
+VultureUnlockTitle = "Vulture Obtained"
+VultureUnlockDesc = "XCOM has improved at scavenging corpses and will now recover more items from loot drops."
 
 [UIScreenListener_Alert]
 m_strInvasionTitle=ADVENT INVASION
