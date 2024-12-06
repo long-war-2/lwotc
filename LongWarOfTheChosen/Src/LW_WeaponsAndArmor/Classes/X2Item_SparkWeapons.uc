@@ -300,7 +300,7 @@ static function X2DataTemplate CreatePlatedSparkHeavyArmor()
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, eStat_ArmorMitigation, default.SPARK_PLATED_HEAVY_MITIGATION_AMOUNT);
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, default.SPARK_PLATED_HEAVY_MOBILITY_BONUS);
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.DefenseLabel, eStat_Defense, default.SPARK_PLATED_HEAVY_DEF_BONUS);
-	Template.SetUIStatMarkup(class'XLocalizedData'.default.DodgeLabel, eStat_Defense, default.SPARK_PLATED_HEAVY_DODGE_BONUS);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.DodgeLabel, eStat_Dodge, default.SPARK_PLATED_HEAVY_DODGE_BONUS);
 
 	return Template;
 }
@@ -364,7 +364,7 @@ static function X2DataTemplate CreatePoweredSparkHeavyArmor()
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, eStat_ArmorMitigation, default.SPARK_POWERED_HEAVY_MITIGATION_AMOUNT);
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, default.SPARK_POWERED_HEAVY_MOBILITY_BONUS);
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.DefenseLabel, eStat_Defense, default.SPARK_POWERED_HEAVY_DEF_BONUS);
-	Template.SetUIStatMarkup(class'XLocalizedData'.default.DodgeLabel, eStat_Defense, default.SPARK_POWERED_HEAVY_DODGE_BONUS);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.DodgeLabel, eStat_Dodge, default.SPARK_POWERED_HEAVY_DODGE_BONUS);
 
 	return Template;
 }
