@@ -619,10 +619,10 @@ static function OnProtectRegionActivityComplete(bool bAlienSuccess, XComGameStat
 			return;
 		}
 
-		RemoveOrAdjustExistingActivitiesFromRegion(PrimaryRegionState, NewGameState);
-
 		PrimaryRegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(PrimaryRegionState, NewGameState, true);
 		PrimaryRegionalAI.bLiberated = true;
+
+		RemoveOrAdjustExistingActivitiesFromRegion(PrimaryRegionState, NewGameState);
 
 		if (PrimaryRegionalAI.NumTimesLiberated == 0)
 		{
@@ -4470,7 +4470,11 @@ static function TypicalAdvanceActivityOnMissionFailure(XComGameState_LWAlienActi
 
 	if (MissionState != none)
 	{
-		RecordResistanceActivity(false, ActivityState, MissionState, NewGameState);
+		// if missions get canceled because liberated don't log them as failed.
+		if(!RegionIsLiberated(RegionState, NewGameState))
+		{
+			RecordResistanceActivity(false, ActivityState, MissionState, NewGameState);
+		}
 		if (MissionState.POIToSpawn.ObjectID > 0)
 		{
 			// This mission had a POI, deactivate it.
@@ -4486,6 +4490,7 @@ static function TypicalAdvanceActivityOnMissionFailure(XComGameState_LWAlienActi
 		if(ActivityTemplate.OnActivityCompletedFn != none)
 			ActivityTemplate.OnActivityCompletedFn(false /* alien failure */, ActivityState, NewGameState);
 		NewGameState.RemoveStateObject(ActivityState.ObjectID);
+		return;
 	}
 
 	if (ActivityTemplate.MissionTree.length > ActivityState.CurrentMissionLevel+1)
@@ -5089,7 +5094,7 @@ static function bool RegionIsLiberated(XComGameState_WorldRegion RegionState, op
 	{
 		return RegionalAI.bLiberated;
 	}
-	//`REDSCREEN("RegionIsLiberated : Supplied Region " $ RegionState.GetMyTemplate().DataName $ " has no regional AI info");
+	`LWTrace("RegionIsLiberated : Supplied Region " $ RegionState.GetMyTemplate().DataName $ " has no regional AI info");
 	return false;
 
 }
