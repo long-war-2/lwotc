@@ -4470,7 +4470,7 @@ static function TypicalAdvanceActivityOnMissionFailure(XComGameState_LWAlienActi
 
 	if (MissionState != none)
 	{
-		// if missions get canceled because liberated don't log them as failed.
+		// if missions get canceled because the region was liberated, don't log them as failed.
 		if(!RegionIsLiberated(RegionState, NewGameState))
 		{
 			RecordResistanceActivity(false, ActivityState, MissionState, NewGameState);
