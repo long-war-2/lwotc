@@ -120,7 +120,7 @@ strCharacterName="異變者百夫長"
 [MutonM2_LW_Wpn X2WeaponTemplate]
 FriendlyName="百夫長步槍"
 BriefSummary="XCOM已經成功獲得了一些不同的標準步兵小型武器了，這是最基本的武器，類似20年前使用的步槍。雖然這些武器比起變種人磁力技術的武器差得多，但在標準技術研究完成後，至少可以用額外的武器碎片對它們進行升級。"
-TacticalText="<Bullet/>用主武器射擊會結束該士兵的回合\n<Bullet/>如果士兵在兩個行動點都可用時射擊，那麼他可以在減少精準度的條件下射擊3次，但總體上還是提升了效率\n<Bullet/>使用從變種人敵人身上取得的升級部件提升突擊步槍的戰術效率"
+TacticalText="<Bullet/>用主武器射擊會結束該士兵的回合\n<Bullet/>如果士兵在兩個行動點都可用時射擊，那麼他可以在減少精準度的條件下射擊3次，但總體上還是提升了效率\n<Bullet/>使用從變種人敵人身上取得的升級部件提升突擊步槍的戰術效果"
 AbilityDescName="等離子步槍"
 
 [MutonM2_LWGrenade X2GrenadeTemplate]

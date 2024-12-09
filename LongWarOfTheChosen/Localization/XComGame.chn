@@ -283,28 +283,28 @@ LocFriendlyName="破甲火箭"
 LocFlyOverText="破甲火箭"
 LocLongDescription="发射一枚特殊火箭，使范围内的单位破甲并施加撕裂效果。"
 LocHelpText="发射一枚特殊火箭，使范围内的单位破甲并施加撕裂效果。"
-LocPromotionPopupText="<Bullet/> 可以削减5点护甲，并施加2点撕裂效果。<br/>"
+LocPromotionPopupText="<Bullet/> 根据臂套等级可以撕碎3/4/5点护甲，并施加1/2/3点撕裂效果。<br/>"
 
 [BlasterShredderRocket_LW X2AbilityTemplate]
 LocFriendlyName="破甲火箭"
 LocFlyOverText="破甲火箭"
 LocLongDescription="发射一枚特殊火箭，使范围内的单位破甲并施加撕裂效果。"
 LocHelpText="发射一枚特殊火箭，使范围内的单位破甲并施加撕裂效果。<Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> 可以削减5点护甲，并施加2点撕裂效果。<br/>"
+LocPromotionPopupText="<Bullet/> 根据臂套等级可以撕碎3/4/5点护甲，并施加1/2/3点撕裂效果。<br/>"
 
 [BlasterEMPRocket_LW X2AbilityTemplate]
 LocFriendlyName="EMP火箭"
 LocFlyOverText="EMP火箭"
 LocLongDescription="发射一枚特殊火箭，造成少量伤害，但能使范围内的所有敌方机械单位在一回合内停止运作。"
 LocHelpText="发射一枚特殊火箭，造成少量伤害，但能使范围内的所有敌方机械单位在一回合内停止运作。<Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> 造成1-2点伤害，并使敌方机械单位晕眩2个行动点。<br/><Bullet/> 盟友不会受到这次攻击的影响。<br/><Bullet/> 作用范围为5格。"
+LocPromotionPopupText="<Bullet/> 根据臂套等级造成1-2/2-3/3-4点伤害，并使敌方机械单位瘫痪2个行动点。<br/><Bullet/> 盟友不会受到这次攻击的影响。<br/><Bullet/> 作用范围为5格。"
 
 [EMPRocket_LW X2AbilityTemplate]
 LocFriendlyName="EMP火箭"
 LocFlyOverText="EMP火箭"
 LocLongDescription="发射一枚特殊火箭，造成少量伤害，但能使范围内的所有敌方机械单位在一回合内停止运作。"
 LocHelpText="发射一枚特殊火箭，造成少量伤害，但能使范围内的所有敌方机械单位在一回合内停止运作。"
-LocPromotionPopupText="<Bullet/> 造成1-2点伤害，并使敌方机械单位晕眩2个行动点。<br/><Bullet/> 盟友不会受到这次攻击的影响。<br/><Bullet/> 作用范围为5格。"
+LocPromotionPopupText="<Bullet/> 根据臂套等级造成1-2/2-3/3-4点伤害，并使敌方机械单位瘫痪2个行动点。<br/><Bullet/> 盟友不会受到这次攻击的影响。<br/><Bullet/> 作用范围为5格。"
 
 [JavelinRockets X2AbilityTemplate]
 LocFriendlyName="标枪火箭"
@@ -333,7 +333,7 @@ LocFriendlyName="震荡火箭"
 LocFlyOverText="震荡火箭"
 LocLongDescription="发射一枚特殊的火箭，对敌方造成的伤害有限，但必定使范围内的有机单位混乱并有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使其眩晕。"
 LocHelpText="发射一枚特殊的火箭，对敌方造成的伤害有限，但必定使范围内的有机单位混乱并有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使其眩晕。<Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> 每次任务1充能。<br/><Bullet/> 造成2点伤害。<br/><Bullet/> 必定使有机单位混乱，无视混乱抵抗（但不会无视免疫）。<br/><Bullet/> 有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使有机单位眩晕。<br/><Bullet/> 消耗1个行动点并结束士兵的回合。<br/><Bullet/> 精英原典和灵能僵尸免疫此技能的所有效果，包括伤害。<br/><Bullet/> 盟友不会受到这次攻击的伤害，但无法免疫其混乱和眩晕效果。<br/>"
+LocPromotionPopupText="<Bullet/> 每次任务1充能。<br/><Bullet/> 根据臂套等级造成2/3/4点伤害。<br/><Bullet/> 必定使有机单位混乱，无视混乱抵抗（但不会无视免疫）。<br/><Bullet/> 有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使有机单位眩晕。<br/><Bullet/> 消耗1个行动点并结束士兵的回合。<br/><Bullet/> 精英原典和灵能僵尸免疫此技能的所有效果，包括伤害。<br/><Bullet/> 盟友不会受到这次攻击的伤害，但无法免疫其混乱和眩晕效果。<br/>"
 ; End Translated
 
 [BlasterConcussionRocket X2AbilityTemplate]
@@ -341,7 +341,7 @@ LocFriendlyName="震荡火箭"
 LocFlyOverText="震荡火箭"
 LocLongDescription="发射一枚特殊的火箭，对敌方造成的伤害有限，但必定使范围内的有机单位混乱并有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使其眩晕。"
 LocHelpText="发射一枚特殊的火箭，对敌方造成的伤害有限，但必定使范围内的有机单位混乱并有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%概率使其眩晕。<Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> 每次任务1充能。<br/><Bullet/> 造成2点伤害。<br/><Bullet/> 必定使有机单位混乱，无视混乱抵抗（但不会无视免疫）。<br/><Bullet/> 有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使有机单位眩晕。<br/><Bullet/> 消耗1个行动点并结束士兵的回合。<br/><Bullet/> 精英原典和灵能僵尸免疫此技能的所有效果，包括伤害。<br/><Bullet/> 盟友不会受到这次攻击的伤害，但无法免疫其混乱和眩晕效果。<br/>"
+LocPromotionPopupText="<Bullet/> 每次任务1充能。<br/><Bullet/> 根据臂套等级造成2/3/4点伤害。<br/><Bullet/> 必定使有机单位混乱，无视混乱抵抗（但不会无视免疫）。<br/><Bullet/> 有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使有机单位眩晕。<br/><Bullet/> 消耗1个行动点并结束士兵的回合。<br/><Bullet/> 精英原典和灵能僵尸免疫此技能的所有效果，包括伤害。<br/><Bullet/> 盟友不会受到这次攻击的伤害，但无法免疫其混乱和眩晕效果。<br/>"
 ; End Translation (4)
 
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
@@ -727,10 +727,10 @@ LocPromotionPopupText="<Bullet/> 中距离射程、锥形范围的霰弹枪攻�
 
 [ChainLightning X2AbilityTemplate]
 LocFriendlyName="闪电链"
-LocLongDescription="使用电弧发射器，发射电弧从一个目标弹跳到另一个目标，最多弹跳4次，每个目标之间的距离不超过6格。"
-LocHelpText="使用电弧发射器，发射电弧从一个目标弹跳到另一个目标，最多弹跳4次，每个目标之间的距离不超过6格。"
+LocLongDescription="向视野中的指定目标发射电弧，电弧会从目标开始弹跳，最多影响<Ability:CHAIN_LIGHTNING_TARGETS>名敌人，弹跳距离不超过<Ability:CHAIN_LIGHTNING_CHAIN_RANGE_TILES>格。"
+LocHelpText="向视野中的指定目标发射电弧，电弧会从目标开始弹跳，最多影响<Ability:CHAIN_LIGHTNING_TARGETS>名敌人，弹跳距离不超过<Ability:CHAIN_LIGHTNING_CHAIN_RANGE_TILES>格。"
 LocFlyOverText="闪电链"
-LocPromotionPopupText="<Bullet/> 向视野中的目标发射电弧，电弧与其他目标之间的距离在6格以内，最多可弹跳4次。<br/><Bullet/> 需要1个行动点并结束你的回合。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷却。<br/><Bullet/> 不能在隐蔽状态下使用。不能影响机械单位，并且一也算六以内。"
+LocPromotionPopupText="<Bullet/> 向视野中的指定目标发射眩晕电弧，电弧会从目标开始弹跳，最多影响<Ability:CHAIN_LIGHTNING_TARGETS>名敌人，弹跳距离不超过<Ability:CHAIN_LIGHTNING_CHAIN_RANGE_TILES>格。<br/><Bullet/> 需要1个行动点并结束你的回合。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷却。<br/><Bullet/> 不能在隐蔽状态下使用。无法影响机械单位。"
 
 [Leadership X2AbilityTemplate]
 LocFriendlyName="领导力"
@@ -926,22 +926,22 @@ LocLongDescription="提供1点生命值和5点闪避。"
 LocHelpText="提供1点生命值和5点闪避。"
 
 [FireControl25 X2AbilityTemplate]
-LocFriendlyName="开火控制 （25）"
+LocFriendlyName="开火控制（25）"
 LocFlyoverText="开火控制"
-LocLongDescription="该单位将不会对25%命中率以下的反应射击开火。"
-LocHelpText="该士兵单位将不会对25%命中率以下的反应射击开火。"
+LocLongDescription="该单位将不会在命中率低于25%的情况下进行反应射击。"
+LocHelpText="该单位将不会在命中率低于25%的情况下进行反应射击。"
 
 [FireControl50 X2AbilityTemplate]
-LocFriendlyName="开火控制 （50）"
+LocFriendlyName="开火控制（50）"
 LocFlyoverText="开火控制"
-LocLongDescription="该单位将不会对50%命中率以下的反应射击开火。"
-LocHelpText="该单位将不会对50%命中率以下的反应射击开火。"
+LocLongDescription="该单位将不会在命中率低于50%的情况下进行反应射击。"
+LocHelpText="该单位将不会在命中率低于50%的情况下进行反应射击。"
 
 [FireControl75 X2AbilityTemplate]
-LocFriendlyName="开火控制 （75）"
+LocFriendlyName="开火控制（75）"
 LocFlyoverText="开火控制"
-LocLongDescription="该单位将不会对75%命中率以下的反应射击开火。"
-LocHelpText="该单位将不会对75%命中率以下的反应射击开火。"
+LocLongDescription="该单位将不会在命中率低于75%的情况下进行反应射击。"
+LocHelpText="该单位将不会在命中率低于75%的情况下进行反应射击。"
 
 [Neurowhip_Ability X2AbilityTemplate]
 LocFriendlyName="神经鞭"
@@ -1112,14 +1112,14 @@ FriendlyNamePlural="磁力步枪"
 FriendlyName="线圈步枪"
 FriendlyNamePlural="线圈步枪"
 BriefSummary="一种强大的、中距离护甲穿透线圈枪，担任突击步枪的角色。"
-TacticalText="<Bullet/>线圈武器穿透（无视）1点敌人护甲。<br/><Bullet/>缺乏特殊训练的情况下，用主武器射击将会结束该士兵的回合。\n<Bullet/>使用从变种人敌人身上取得的升级部件来提升线圈步枪的战术效率。<br/>"
+TacticalText="<Bullet/>线圈武器穿透（无视）1点敌人护甲。<br/><Bullet/>缺乏特殊训练的情况下，用主武器射击将会结束该士兵的回合。\n<Bullet/>使用从变种人敌人身上取得的升级部件来提升线圈步枪的战术效果。<br/>"
 AbilityDescName="突击步枪"
 
 [Cannon_CG X2WeaponTemplate]
 FriendlyName="高斯加农炮"
 FriendlyNamePlural="高斯加农炮"
 BriefSummary="一种重型的自动化线圈枪，射速很快。"
-TacticalText="<Bullet/>线圈武器穿透（无视）1点敌人护甲。<br/><Bullet/>加农炮担任的是小队自动化武器的职责，拥有更多的弹药，比步枪能造成更多伤害，但是比较笨重。<br/><Bullet/>使用从变种人敌人身上取得的升级部件来提升高斯加农炮的战术效率。<br/>"
+TacticalText="<Bullet/>线圈武器穿透（无视）1点敌人护甲。<br/><Bullet/>加农炮担任的是小队自动化武器的职责，拥有更多的弹药，比步枪能造成更多伤害，但是比较笨重。<br/><Bullet/>使用从变种人敌人身上取得的升级部件来提升高斯加农炮的战术效果。<br/>"
 AbilityDescName="加农炮"
 
 [SniperRifle_CG X2WeaponTemplate]
@@ -1131,10 +1131,10 @@ AbilityDescName="狙击步枪"
 
 [Shotgun_CG X2WeaponTemplate]
 ; LWOTC Needs Translation
-FriendlyName="高斯散射枪"
-FriendlyNamePlural="高斯散射枪"
+FriendlyName="高斯霰弹枪"
+FriendlyNamePlural="高斯霰弹枪"
 BriefSummary="一种可以代替霰弹枪的近距离线圈武器。"
-TacticalText="<Bullet/>线圈武器穿透（无视）1点敌方护甲。<br/><Bullet/>霰弹型武器在近距离极为有效，但是它们的命中率在远距离下降得很快。\n<Bullet/>使用从敌人身上取得的升级部件来提升高斯散射枪的战术效率。"
+TacticalText="<Bullet/>线圈武器穿透（无视）1点敌方护甲。<br/><Bullet/>霰弹型武器在近距离极为有效，但是它们的命中率在远距离下降得很快。\n<Bullet/>使用从敌人身上取得的升级部件来提升高斯霰弹枪的战术效果。"
 AbilityDescName="霰弹枪"
 
 [SMG_CG X2WeaponTemplate]
@@ -1214,7 +1214,7 @@ AbilityDescName="重型链炮"
 [SparkRifle_LS X2WeaponTemplate]
 FriendlyName="激光轨道炮"
 FriendlyNamePlural="激光轨道炮"
-BriefSummary="激光轨道炮以极高的速度射击致命的弹药，造成巨大的伤害。"
+BriefSummary="激光轨道炮是我们武器库中最大型的便携式自动激光武器。旋转枪管组件解决了过热问题，而脆弱的枪管部件则由独立的可收缩护罩保护，能为SPARK提供可靠的输出。"
 TacticalText="<Bullet/> 激光武器会获得命中加成。\n<Bullet/> 激光轨道炮是激光版本的自动加农炮。"
 AbilityDescName="激光轨道炮"
 
@@ -5079,7 +5079,7 @@ AbilityAvailabilityStrings[89]=""
 AbilityAvailabilityStrings[90]="情报不足。"
 
 [VultureUnlock X2SoldierUnlockTemplate]
-DisplayName="掠夺者"
+DisplayName="强取豪夺"
 Summary="敌人每次掉落物品时经常会额外掉落一个。"
 
 [WetWorkUnlock X2SoldierUnlockTemplate]
@@ -5508,8 +5508,8 @@ LocPromotionPopupText="<Bullet/> 减少暗影的冷却时间1回合。<br/>"
 ; LWOTC Needs Translation (3)
 [BloodTrail X2AbilityTemplate]
 LocFriendlyName="血迹追踪"
-LocLongDescription="若目标此回合已受过伤，则你对其攻击时造成额外+<Ability:BLOODTRAILDAMAGE/>伤害并且无视敌人<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/>闪避。"
-LocHelpText="若目标此回合已受过伤，则你对其攻击时造成额外+<Ability:BLOODTRAILDAMAGE/>伤害并且无视敌人<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/>闪避。"
+LocLongDescription="若目标此回合已受过伤，则你对其攻击时造成额外+<Ability:BLOODTRAILDAMAGE/>伤害并且无视<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/>闪避。"
+LocHelpText="若目标此回合已受过伤，则你对其攻击时造成额外+<Ability:BLOODTRAILDAMAGE/>伤害并且无视<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/>闪避。"
 LocPromotionPopupText="<Bullet/> 只适用于敌人受到伤害的同一回合。<br/><Bullet/> 提前计划好小队攻击顺序，充分利用血迹追踪。<br/><Bullet/> 适用于所有武器，除了榴弹。<br/>"
 
 [PaleHorse X2AbilityTemplate]
@@ -5535,9 +5535,9 @@ LocPromotionPopupText="<Bullet/> 确保队友远离爆炸区！<br/><Bullet/> �
 ; LWOTC Needs Translation
 [HomingMine X2AbilityTemplate]
 LocFriendlyName="追踪地雷"
-LocLongDescription="消耗1行动点使目标敌人身上附着一枚地雷，不会结束你的回合。对身上附着了地雷的敌人的射击必定会命中。每次任务有4充能。"
+LocLongDescription="消耗1行动点使目标敌人身上附着一枚地雷，不会结束你的回合。对身上附着了地雷的敌人的射击必定会命中。每次任务有3充能。"
 LocHelpText="消耗1行动点使目标敌人身上附着一枚地雷，对身上附着了地雷的敌人的射击必定会命中。"
-LocPromotionPopupText="<Bullet/> 对身上附着了地雷的敌人的射击必定会命中。<br/><Bullet/> 追踪地雷每次任务有4充能。<br/><Bullet/> 追踪地雷需要一个行动点，不会结束你的回合。<br/>"
+LocPromotionPopupText="<Bullet/> 对身上附着了地雷的敌人的射击必定会命中。<br/><Bullet/> 追踪地雷每次任务有3充能。<br/><Bullet/> 追踪地雷需要一个行动点，不会结束你的回合。<br/>"
 ; End Translation
 
 [Hero_Tracking X2AbilityTemplate]
@@ -6049,8 +6049,8 @@ LocPromotionPopupText="<Bullet/> 目标位置必须在队伍视线内可见。<b
 
 [LW_NullWard X2AbilityTemplate]
 LocFriendlyName="守护力场"
-LocLongDescription="为士兵和附近的队友制造灵能护盾。如果该士兵被击杀，护盾就会消失。"
-LocHelpText="为士兵和附近的队友制造灵能护盾。如果该士兵被击杀，护盾就会消失。"
+LocLongDescription="为士兵和附近的队友制造持续3回合的灵能护盾。如果该士兵被击杀，护盾就会消失。"
+LocHelpText="为士兵和附近的队友制造持续3回合的灵能护盾。如果该士兵被击杀，护盾就会消失。"
 LocFlyOverText="守护力场"
 ; LWOTC Needs Translation (2)
 LocPromotionPopupText="<Bullet/> 守护立场提供<Ability:NULL_WARD_BASE_SHIELD>点基础护盾。<br/><Bullet/> 增强的灵能增幅器提供额外的护盾。<br/><Bullet/> 守护立场需要一个行动点，不会结束你的回合。<br/><Bullet/> 守护立场有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 守护立场半径为<Ability:NULL_WARD_RADIUS_TILES>格。<br/><Bullet/> 守护立场会使你暴露。<br/>"
