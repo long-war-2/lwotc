@@ -632,6 +632,8 @@ m_strRetributionEnded=" <XGParam:StrValue0/> 中的反抗军成员已从天选�
 
 [X2StrategyElement_DefaultAlienActivities]
 m_strInsufficientRebels="避难所需要至少<XGParam:IntValue0/>反抗军才能与邻近地区联络"
+VultureUnlockTitle = "获得“强取豪夺”"
+VultureUnlockDesc = "XCOM在搜刮尸体方面有所改进，现在可以从掉落中回收更多战利品。"
 
 [UIScreenListener_Alert]
 m_strInvasionTitle="变种人入侵"

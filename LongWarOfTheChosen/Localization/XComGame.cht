@@ -282,28 +282,28 @@ LocFriendlyName="破甲火箭"
 LocFlyOverText="破甲火箭"
 LocLongDescription="發射一枚特殊火箭，使範圍內的單位破甲並施加撕裂效果。"
 LocHelpText="發射一枚特殊火箭，使範圍內的單位破甲並施加撕裂效果。"
-LocPromotionPopupText="<Bullet/> 可以削減5點護甲，並施加2點撕裂效果。<br/>"
+LocPromotionPopupText="<Bullet/> 根據臂套等級可以撕碎3/4/5點護甲，並施加1/2/3點撕裂效果。<br/>"
 
 [BlasterShredderRocket_LW X2AbilityTemplate]
 LocFriendlyName="破甲火箭"
 LocFlyOverText="破甲火箭"
 LocLongDescription="發射一枚特殊火箭，使範圍內的單位破甲並施加撕裂效果。"
 LocHelpText="發射一枚特殊火箭，使範圍內的單位破甲並施加撕裂效果。<Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> 可以削減5點護甲，並施加2點撕裂效果。<br/>"
+LocPromotionPopupText="<Bullet/> 根據臂套等級可以撕碎3/4/5點護甲，並施加1/2/3點撕裂效果。<br/>"
 
 [EMPRocket_LW X2AbilityTemplate]
 LocFriendlyName="EMP火箭"
 LocFlyOverText="EMP火箭"
 LocLongDescription="發射一枚特殊火箭，造成少量傷害，但能使範圍內的所有敵方機械單位在一回合內停止運作。"
 LocHelpText="發射一枚特殊火箭，造成少量傷害，但能使範圍內的所有敵方機械單位在一回合內停止運作。"
-LocPromotionPopupText="<Bullet/> 造成1-2點傷害，並使敵方機械單位暈眩2個行動點。<br/><Bullet/> 盟友不會受到這次攻擊的影響。<br/><Bullet/> 作用範圍為5格。"
+LocPromotionPopupText="<Bullet/> 根據臂套等級造成1-2/2-3/3-4點傷害，並使敵方機械單位癱瘓2個行動點。<br/><Bullet/> 盟友不會受到這次攻擊的影響。<br/><Bullet/> 作用範圍為5格。"
 
 [BlasterEMPRocket_LW X2AbilityTemplate]
 LocFriendlyName="EMP火箭"
 LocFlyOverText="EMP火箭"
 LocLongDescription="發射一枚特殊火箭，造成少量傷害，但能使範圍內的所有敵方機械單位在一回合內停止運作。"
 LocHelpText="發射一枚特殊火箭，造成少量傷害，但能使範圍內的所有敵方機械單位在一回合內停止運作。<Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> 造成1-2點傷害，並使敵方機械單位暈眩2個行動點。<br/><Bullet/> 盟友不會受到這次攻擊的影響。<br/><Bullet/> 作用範圍為5格。"
+LocPromotionPopupText="<Bullet/> 根據臂套等級造成1-2/2-3/3-4點傷害，並使敵方機械單位癱瘓2個行動點。<br/><Bullet/> 盟友不會受到這次攻擊的影響。<br/><Bullet/> 作用範圍為5格。"
 
 [BunkerBuster X2AbilityTemplate]
 LocFriendlyName="掩體剋星"
@@ -325,14 +325,14 @@ LocFriendlyName="震盪火箭"
 LocFlyOverText="震盪火箭"
 LocLongDescription="發射一枚特殊的火箭，造成的傷害有限，但必定使範圍內的有機敵人混亂並有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使其眩暈。"
 LocHelpText="發射一枚特殊的火箭，造成的傷害有限，但必定使範圍內的有機敵人混亂並有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使其眩暈。<Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> 每次任務1充能。<br/><Bullet/> 造成2點傷害。<br/><Bullet/> 必定使有機敵人混亂，無視混亂抵抗（但不會無視免疫）。<br/><Bullet/> 有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使有機敵人眩暈。<br/><Bullet/> 消耗1個行動點並結束士兵的回合。<br/><Bullet/> 精英原典和靈能殭屍免疫此技能的所有效果，包括傷害。<br/><Bullet/> 盟友不會受到這次攻擊的傷害，但無法免疫其混亂和眩暈效果。<br/>"
+LocPromotionPopupText="<Bullet/> 每次任務1充能。<br/><Bullet/> 根據臂套等級造成2/3/4點傷害。<br/><Bullet/> 必定使有機敵人混亂，無視混亂抵抗（但不會無視免疫）。<br/><Bullet/> 有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使有機敵人眩暈。<br/><Bullet/> 消耗1個行動點並結束士兵的回合。<br/><Bullet/> 精英原典和靈能殭屍免疫此技能的所有效果，包括傷害。<br/><Bullet/> 盟友不會受到這次攻擊的傷害，但無法免疫其混亂和眩暈效果。<br/>"
 
 [BlasterConcussionRocket X2AbilityTemplate]
 LocFriendlyName="震盪火箭"
 LocFlyOverText="震盪火箭"
 LocLongDescription="發射一枚特殊的火箭，造成的傷害有限，但必定使範圍內的有機敵人混亂並有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使其眩暈。"
 LocHelpText="發射一枚特殊的火箭，造成的傷害有限，但必定使範圍內的有機敵人混亂並有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使其眩暈。<Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> 每次任務1充能。<br/><Bullet/> 造成2點傷害。<br/><Bullet/> 必定使有機敵人混亂，無視混亂抵抗（但不會無視免疫）。<br/><Bullet/> 有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使有機敵人眩暈。<br/><Bullet/> 消耗1個行動點並結束士兵的回合。<br/><Bullet/> 精英原典和靈能殭屍免疫此技能的所有效果，包括傷害。<br/><Bullet/> 盟友不會受到這次攻擊的傷害，但無法免疫其混亂和眩暈效果。<br/>"
+LocPromotionPopupText="<Bullet/> 每次任務1充能。<br/><Bullet/> 根據臂套等級造成2/3/4點傷害。<br/><Bullet/> 必定使有機敵人混亂，無視混亂抵抗（但不會無視免疫）。<br/><Bullet/> 有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使有機敵人眩暈。<br/><Bullet/> 消耗1個行動點並結束士兵的回合。<br/><Bullet/> 精英原典和靈能殭屍免疫此技能的所有效果，包括傷害。<br/><Bullet/> 盟友不會受到這次攻擊的傷害，但無法免疫其混亂和眩暈效果。<br/>"
 ; End Translation (4)
 
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
@@ -717,10 +717,10 @@ LocPromotionPopupText="<Bullet/> 中距離射程、錐形範圍的霰彈槍攻�
 
 [ChainLightning X2AbilityTemplate]
 LocFriendlyName="閃電鏈"
-LocLongDescription="使用電弧發射器，發射電弧從一個目標彈跳到另一個目標，最多彈跳4次，每個目標之間的距離不超過6格。"
-LocHelpText="使用電弧發射器，發射電弧從一個目標彈跳到另一個目標，最多彈跳4次，每個目標之間的距離不超過6格。"
+LocLongDescription="向視野中的指定目標發射電弧，電弧會從目標開始彈跳，最多影響<Ability:CHAIN_LIGHTNING_TARGETS>名敵人，彈跳距離不超過<Ability:CHAIN_LIGHTNING_CHAIN_RANGE_TILES>格。"
+LocHelpText="向視野中的指定目標發射電弧，電弧會從目標開始彈跳，最多影響<Ability:CHAIN_LIGHTNING_TARGETS>名敵人，彈跳距離不超過<Ability:CHAIN_LIGHTNING_CHAIN_RANGE_TILES>格。"
 LocFlyOverText="閃電鏈"
-LocPromotionPopupText="<Bullet/> 向視野中的目標發射電弧，電弧與其他目標之間的距離在6格以內，最多可彈跳4次。<br/><Bullet/> 需要1個行動點並結束你的回合。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷卻。<br/><Bullet/> 不能在隱蔽狀態下使用。"
+LocPromotionPopupText="<Bullet/> 向視野中的指定目標發射眩暈電弧，電弧會從目標開始彈跳，最多影響<Ability:CHAIN_LIGHTNING_TARGETS>名敵人，彈跳距離不超過<Ability:CHAIN_LIGHTNING_CHAIN_RANGE_TILES>格。<br/><Bullet/> 需要1個行動點並結束你的回合。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷卻。<br/><Bullet/> 不能在隱蔽狀態下使用。無法影響機械單位。"
 
 [Leadership X2AbilityTemplate]
 LocFriendlyName="領導力"
@@ -1102,14 +1102,14 @@ FriendlyNamePlural="磁力步槍"
 FriendlyName="線圈步槍"
 FriendlyNamePlural="線圈步槍"
 BriefSummary="一種強大的、中距離護甲穿透線圈槍，擔任突擊步槍的角色。"
-TacticalText="<Bullet/>線圈武器穿透（無視）1點敵人護甲。<br/><Bullet/>缺乏特殊訓練的情況下，用主武器射擊將會結束該士兵的回合。\n<Bullet/>使用從變種人敵人身上取得的升級部件來提升線圈步槍的戰術效率。<br/>"
+TacticalText="<Bullet/>線圈武器穿透（無視）1點敵人護甲。<br/><Bullet/>缺乏特殊訓練的情況下，用主武器射擊將會結束該士兵的回合。\n<Bullet/>使用從變種人敵人身上取得的升級部件來提升線圈步槍的戰術效果。<br/>"
 AbilityDescName="突擊步槍"
 
 [Cannon_CG X2WeaponTemplate]
 FriendlyName="高斯加農炮"
 FriendlyNamePlural="高斯加農炮"
 BriefSummary="一種重型的自動化線圈槍，射速很快。"
-TacticalText="<Bullet/>線圈武器穿透（無視）1點敵人護甲。<br/><Bullet/>加農炮擔任的是小隊自動化武器的職責，擁有更多的彈藥，比步槍能造成更多傷害，但是比較笨重。<br/><Bullet/>使用從變種人敵人身上取得的升級部件來提升高斯加農炮的戰術效率。<br/>"
+TacticalText="<Bullet/>線圈武器穿透（無視）1點敵人護甲。<br/><Bullet/>加農炮擔任的是小隊自動化武器的職責，擁有更多的彈藥，比步槍能造成更多傷害，但是比較笨重。<br/><Bullet/>使用從變種人敵人身上取得的升級部件來提升高斯加農炮的戰術效果。<br/>"
 AbilityDescName="加農炮"
 
 [SniperRifle_CG X2WeaponTemplate]
@@ -1121,10 +1121,10 @@ AbilityDescName="狙擊步槍"
 
 [Shotgun_CG X2WeaponTemplate]
 ; LWOTC Needs Translation
-FriendlyName="高斯散射槍"
-FriendlyNamePlural="高斯散射槍"
+FriendlyName="高斯霰彈槍"
+FriendlyNamePlural="高斯霰彈槍"
 BriefSummary="一種可以代替霰彈槍的近距離線圈武器。"
-TacticalText="<Bullet/>線圈武器穿透（無視）1點敵方護甲。<br/><Bullet/>霰彈型武器在近距離極為有效，但是它們的命中率在遠距離下降得很快。\n<Bullet/>使用從敵人身上取得的升級部件來提升高斯散射槍的戰術效率。"
+TacticalText="<Bullet/>線圈武器穿透（無視）1點敵方護甲。<br/><Bullet/>霰彈型武器在近距離極為有效，但是它們的命中率在遠距離下降得很快。\n<Bullet/>使用從敵人身上取得的升級部件來提升高斯霰彈槍的戰術效果。"
 AbilityDescName="霰彈槍"
 
 [SMG_CG X2WeaponTemplate]
@@ -1204,7 +1204,7 @@ AbilityDescName="重型鏈炮"
 [SparkRifle_LS X2WeaponTemplate]
 FriendlyName="激光軌道炮"
 FriendlyNamePlural="激光軌道炮"
-BriefSummary="激光軌道炮以極高的速度射擊致命的彈藥，造成巨大的傷害。"
+BriefSummary="激光軌道炮是我們武器庫中最大型的便攜式自動激光武器。旋轉槍管組件解決了過熱問題，而脆弱的槍管部件則由獨立的可收縮護罩保護，能為SPARK提供可靠的輸出。"
 TacticalText="<Bullet/> 激光武器會獲得命中加成。\n<Bullet/> 激光軌道炮是激光版本的自動加農炮。"
 AbilityDescName="激光軌道炮"
 
@@ -5063,7 +5063,7 @@ AbilityAvailabilityStrings[89]=""
 AbilityAvailabilityStrings[90]="情報不足。"
 
 [VultureUnlock X2SoldierUnlockTemplate]
-DisplayName="掠奪者"
+DisplayName="強取豪奪"
 Summary="敵人每次掉落物品時經常會額外掉落一個。"
 
 [WetWorkUnlock X2SoldierUnlockTemplate]
@@ -5491,8 +5491,8 @@ LocPromotionPopupText="<Bullet/> 減少暗影的冷卻時間1回合。<br/>"
 ; LWOTC Needs Translation (3)
 [BloodTrail X2AbilityTemplate]
 LocFriendlyName="血跡追蹤"
-LocLongDescription="若目標此回合已受過傷，則你對其攻擊時造成額外+<Ability:BLOODTRAILDAMAGE/>傷害並且無視敵人<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/>閃避。"
-LocHelpText="若目標此回合已受過傷，則你對其攻擊時造成額外+<Ability:BLOODTRAILDAMAGE/>傷害並且無視敵人<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/>閃避。"
+LocLongDescription="若目標此回合已受過傷，則你對其攻擊時造成額外+<Ability:BLOODTRAILDAMAGE/>傷害並且無視<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/>閃避。"
+LocHelpText="若目標此回合已受過傷，則你對其攻擊時造成額外+<Ability:BLOODTRAILDAMAGE/>傷害並且無視<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/>閃避。"
 LocPromotionPopupText="<Bullet/> 只適用於敵人受到傷害的同一回合。<br/><Bullet/> 提前計劃好小隊攻擊順序，充分利用血跡追蹤。<br/><Bullet/> 適用於所有武器，除了榴彈。<br/>"
 
 [PaleHorse X2AbilityTemplate]
@@ -5518,9 +5518,9 @@ LocPromotionPopupText="<Bullet/> 確保隊友遠離爆炸區！<br/><Bullet/> �
 ; LWOTC Needs Translation
 [HomingMine X2AbilityTemplate]
 LocFriendlyName="追蹤地雷"
-LocLongDescription="消耗1行動點使目標敵人身上附着一枚地雷，不會結束你的回合。對身上附着了地雷的敵人的射擊必定會命中。每次任務有4充能。"
+LocLongDescription="消耗1行動點使目標敵人身上附着一枚地雷，不會結束你的回合。對身上附着了地雷的敵人的射擊必定會命中。每次任務有3充能。"
 LocHelpText="消耗1行動點使目標敵人身上附着一枚地雷，對身上附着了地雷的敵人的射擊必定會命中。"
-LocPromotionPopupText="<Bullet/> 對身上附着了地雷的敵人的射擊必定會命中。<br/><Bullet/> 追蹤地雷每次任務有4充能。<br/><Bullet/> 追蹤地雷需要一個行動點，不會結束你的回合。<br/>"
+LocPromotionPopupText="<Bullet/> 對身上附着了地雷的敵人的射擊必定會命中。<br/><Bullet/> 追蹤地雷每次任務有3充能。<br/><Bullet/> 追蹤地雷需要一個行動點，不會結束你的回合。<br/>"
 ; End Translation
 
 [Hero_Tracking X2AbilityTemplate]
@@ -6025,8 +6025,8 @@ LocPromotionPopupText="<Bullet/> 目標點必須在隊伍視線內可見。<br/>
 
 [LW_NullWard X2AbilityTemplate]
 LocFriendlyName="守護力場"
-LocLongDescription="為士兵和附近的隊友製造靈能護盾。如果該士兵被擊殺，護盾就會消失。"
-LocHelpText="為士兵和附近的隊友製造靈能護盾。如果該士兵被擊殺，護盾就會消失。"
+LocLongDescription="為士兵和附近的隊友製造持續3回合的靈能護盾。如果該士兵被擊殺，護盾就會消失。"
+LocHelpText="為士兵和附近的隊友製造持續3回合的靈能護盾。如果該士兵被擊殺，護盾就會消失。"
 LocFlyOverText="守護力場"
 ; LWOTC Needs Translation (2)
 LocPromotionPopupText="<Bullet/> 守護立場提供<Ability:NULL_WARD_BASE_SHIELD>點基礎護盾。<br/><Bullet/> 增強的靈能增幅器提供額外的護盾。<br/><Bullet/> 守護立場需要一個行動點，不會結束你的回合。<br/><Bullet/> 守護立場半徑為<Ability:NULL_WARD_RADIUS_TILES>格。<br/><Bullet/> 守護立場會使你暴露。<br/>"

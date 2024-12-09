@@ -172,8 +172,8 @@ LocPromotionPopupText="<Bullet/>當相比於目標處於更高的地形時，獲
 [WilltoSurvive X2AbilityTemplate]
 LocFriendlyName="求生意志"
 LocFlyOverText="求生意志"
-LocLongDescription="在掩體中並受到穿透掩體的攻擊時，受到的傷害減1。同時賦予5意志力。"
-LocHelpText="在掩體中並受到穿透掩體的攻擊時，受到的傷害減1。"
+LocLongDescription="永久增加5意志力。在掩體中受到穿透掩體的攻擊時，承受的傷害減1。"
+LocHelpText="永久增加5意志力。在掩體中受到穿透掩體的攻擊時，承受的傷害減1。"
 LocPromotionPopupText="<Bullet/>在掩體中並受到穿透掩體的攻擊時，受到的傷害減1。<br/><Bullet/>對爆炸或其他間接攻擊的掩體效果是從爆炸點計算的。<br/><Bullet/>護甲穿透效果不影響此加成。<br/><Bullet/>該單位也會永久增加5意志力。<br/><Bullet/>此項能力在單位處於混亂、眩暈、恐慌、著火或其他受損狀態中時將不提供防禦加成。"
 
 [LightEmUp X2AbilityTemplate]
@@ -819,8 +819,8 @@ LocPromotionPopupText="<Bullet/>擁有齊射能力的士兵是使用重型護甲
 [XComGame.Quickdraw X2AbilityTemplate]
 [Quickdraw X2AbilityTemplate]
 LocFriendlyName="快射拔槍"
-LocLongDescription="第一個行動點使用手槍將不再結束回合。"
-LocHelpText="第一個行動點使用手槍將不再結束回合。"
+LocLongDescription="第一個行動點使用手槍將不再結束回合。手槍不再減少移動力。"
+LocHelpText="第一個行動點使用手槍將不再結束回合。手槍不再減少移動力。"
 LocFlyOverText="快射拔槍"
 LocPromotionPopupText="<Bullet/>快射拔槍可以讓士兵在同一個回合內朝不同的目標射擊。<br/><Bullet/>只對手槍標準射擊和制勝一擊有效。<br/>"
 
@@ -916,10 +916,10 @@ LocPromotionPopupText="<Bullet/> 援助協議授予目標一次「掩護火力�
 
 [XComGame.Shotgun_MG X2WeaponTemplate]
 [Shotgun_MG X2WeaponTemplate]
-FriendlyName="碎片槍"
-FriendlyNamePlural="碎片槍"
+FriendlyName="磁力霰彈槍"
+FriendlyNamePlural="磁力霰彈槍"
 BriefSummary="磁力武器技術讓我們能夠將外星合金碎片合成為一種噴射式的彈丸，我們的士兵使用其會造成可觀的效果：距離越近效果越好。"
-TacticalText="<Bullet/>磁力武器技術為XCOM的戰鬥霰彈槍提供了特別有效的改進。\n<Bullet/>霰彈型武器在近距離具有很好的效果，但是它們的命中率在遠距離下降得很快。\n<Bullet/>使用從變種人敵人身上取得的升級部件來提升碎片槍的戰術效果。"
+TacticalText="<Bullet/>磁力武器技術為XCOM的戰鬥霰彈槍提供了特別有效的改進。\n<Bullet/>霰彈型武器在近距離具有很好的效果，但是它們的命中率在遠距離下降得很快。\n<Bullet/>使用從變種人敵人身上取得的升級部件來提升磁力霰彈槍的戰術效果。"
 AbilityDescName="霰彈槍"
 
 [XComGame.RangerSword X2WeaponTemplate]

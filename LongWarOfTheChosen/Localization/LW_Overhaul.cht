@@ -632,6 +632,8 @@ m_strRetributionEnded=" <XGParam:StrValue0/> 中的反抗軍成員已從天選�
 
 [X2StrategyElement_DefaultAlienActivities]
 m_strInsufficientRebels="避難所需要至少<XGParam:IntValue0/>反抗軍才能與鄰近地區聯絡"
+VultureUnlockTitle = "獲得“強取豪奪”"
+VultureUnlockDesc = "XCOM在搜刮屍體方面有所改進，現在可以從掉落中回收更多戰利品。"
 
 [UIScreenListener_Alert]
 m_strInvasionTitle="變種人入侵"
