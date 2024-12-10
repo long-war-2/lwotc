@@ -2302,7 +2302,7 @@ static function X2AbilityTemplate CreateShredderRocketAbility()
 	ShockwaveEffect.bDisplayInSpecialDamageMessageUI = true;
 	Template.AddMultiTargetEffect(ShockwaveEffect);
 
-	Template.ActivationSpeech = 'Explosion';
+	Template.ActivationSpeech = 'RocketLauncher';
 	Template.CinescriptCameraType = "Soldier_HeavyWeapons";
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -2423,7 +2423,7 @@ static function X2AbilityTemplate CreateBlasterShredderRocketAbility()
 	ShockwaveEffect.bDisplayInSpecialDamageMessageUI = true;
 	Template.AddMultiTargetEffect(ShockwaveEffect);
 
-	Template.ActivationSpeech = 'Explosion';
+	Template.ActivationSpeech = 'RocketLauncher';
 	Template.CinescriptCameraType = "Soldier_HeavyWeapons";
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -2559,7 +2559,7 @@ static function X2AbilityTemplate CreateEMPRocketAbility()
 	ShockwaveEffect.bDisplayInSpecialDamageMessageUI = true;
 	Template.AddMultiTargetEffect(ShockwaveEffect);
 
-	Template.ActivationSpeech = 'Explosion';
+	Template.ActivationSpeech = 'RocketLauncher';
 	Template.CinescriptCameraType = "Soldier_HeavyWeapons";
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -2695,7 +2695,7 @@ static function X2AbilityTemplate CreateBlasterEMPRocketAbility()
 	ShockwaveEffect.bDisplayInSpecialDamageMessageUI = true;
 	Template.AddMultiTargetEffect(ShockwaveEffect);
 
-	Template.ActivationSpeech = 'Explosion';
+	Template.ActivationSpeech = 'RocketLauncher';
 	Template.CinescriptCameraType = "Soldier_HeavyWeapons";
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
