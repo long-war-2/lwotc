@@ -5822,6 +5822,14 @@ LocLongDescription="Kiedy aktywujesz Strzał w biegu, czas odnowienia Twojego Mi
 LocHelpText="Kiedy aktywujesz Strzał w biegu, czas odnowienia Twojego Miotacza Łukowego zostaje natychmiast zresetowany do 0."
 LocPromotionPopupText="<Bullet/> Kiedy aktywujesz Strzał w biegu, czas odnowienia Twojego Miotacza Łukowego zostaje natychmiast usunięty.<br/><Pocisk/> Nie dotyczy Łańcucha Błyskawic.<br/>"
 
+[LikeLightningPassive_LW X2AbilityTemplate]
+LocFriendlyName="Jak błyskawica"
+LocFlyOverText="Jak błyskawica"
+LocLongDescription="Kiedy aktywujesz Strzał w biegu, czas odnowienia Twojego Miotacza Łukowego zostaje natychmiast zresetowany do 0."
+LocHelpText="Kiedy aktywujesz Strzał w biegu, czas odnowienia Twojego Miotacza Łukowego zostaje natychmiast zresetowany do 0."
+LocPromotionPopupText="<Bullet/> Kiedy aktywujesz Strzał w biegu, czas odnowienia Twojego Miotacza Łukowego zostaje natychmiast usunięty.<br/><Pocisk/> Nie dotyczy Łańcucha Błyskawic.<br/>"
+
+
 [Maim_LW X2AbilityTemplate]
 LocFriendlyName="Okaleczenie"
 LocFlyOverText="Okaleczenie"

@@ -168,6 +168,7 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(Concentration());
 	Templates.AddItem(LikeLightning());
+	Templates.AddItem(PurePassive('LikeLightningPassive_LW', "img:///UILibrary_XPerkIconPack.UIPerk_lightning_chevron", false, , true));
 	Templates.AddItem(Preservation());
 	Templates.AddItem(LockNLoad());
 	Templates.AddItem(TrenchWarfare());
@@ -1380,8 +1381,12 @@ static function X2AbilityTemplate LikeLightning()
 	// If this ability is set up as a cross class ability, but it's not directly assigned to any classes, this is the weapon slot it will use
 	Template.DefaultSourceItemSlot = eInvSlot_SecondaryWeapon;
 
+	Template.AdditionalAbilities.AddItem('LikeLightningPassive_LW');
+
 	return Template;
 }
+
+
 /*
 static function X2AbilityTemplate LikeLightningRefund()
 {

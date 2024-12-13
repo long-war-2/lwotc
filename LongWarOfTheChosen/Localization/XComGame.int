@@ -6401,6 +6401,15 @@ LocHelpText="When Run and Gun is activated, your Arc Thrower cooldown is immedia
 LocPromotionPopupText="<Bullet/> When Run and Gun is activated, your Arc Thrower cooldown is immediately removed.<br/><Bullet/> Does not apply to Chain Lightning.<br/>"
 ; End Translation (2)
 
+[LikeLightningPassive_LW X2AbilityTemplate]
+LocFriendlyName="Like Lightning"
+LocFlyOverText="Like Lightning"
+; LWOTC Needs Translation (2)
+LocLongDescription="When Run and Gun is activated, your Arc Thrower cooldown is immediately reset to 0."
+LocHelpText="When Run and Gun is activated, your Arc Thrower cooldown is immediately removed."
+LocPromotionPopupText="<Bullet/> When Run and Gun is activated, your Arc Thrower cooldown is immediately removed.<br/><Bullet/> Does not apply to Chain Lightning.<br/>"
+; End Translation (2)
+
 [Maim_LW X2AbilityTemplate]
 LocFriendlyName="Maim"
 LocFlyOverText="Maim"

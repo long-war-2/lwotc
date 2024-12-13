@@ -5759,6 +5759,14 @@ LocLongDescription="Wenn Sturm und Schuss aktiviert wird, sinkt die Abklingzeit 
 LocHelpText="Wenn Sturm und Schuss aktiviert wird, wird die Abklingzeit deines Pulsbogens automatisch aufgehoben."
 LocPromotionPopupText="<Bullet/> Wird Sturm und Schuss aktiviert, wird die Abklingzeit deines Pulsbogens automatisch aufgehoben.<br/><Bullet/> Gilt nicht für Kettenblitz.<br/>"
 
+[LikeLightningPassive_LW X2AbilityTemplate]
+LocFriendlyName="Wie ein Blitz"
+LocFlyOverText="Wie ein Blitz"
+LocLongDescription="Wenn Sturm und Schuss aktiviert wird, sinkt die Abklingzeit deines Pulsbogens automatisch auf 0."
+LocHelpText="Wenn Sturm und Schuss aktiviert wird, wird die Abklingzeit deines Pulsbogens automatisch aufgehoben."
+LocPromotionPopupText="<Bullet/> Wird Sturm und Schuss aktiviert, wird die Abklingzeit deines Pulsbogens automatisch aufgehoben.<br/><Bullet/> Gilt nicht für Kettenblitz.<br/>"
+
+
 [Maim_LW X2AbilityTemplate]
 LocFriendlyName="Verstümmeln"
 LocFlyOverText="Verstümmeln"

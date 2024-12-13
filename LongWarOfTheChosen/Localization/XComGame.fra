@@ -6089,6 +6089,15 @@ LocHelpText="Lorsque la capacité Course et tir est activée, le temps de rechar
 LocPromotionPopupText="<Bullet/> Lorsque la capacité Course et tir est activée, le temps de rechargement de votre électro flux est immédiatement réinitialisé à 0.<br/><Bullet/> Ne s'applique pas à la capacité Foudroiement.<br/>"
 ; End translated (2)
 
+[LikeLightningPassive_LW X2AbilityTemplate]
+LocFriendlyName="Dynamo"
+LocFlyOverText="Dynamo"
+; LWOTC translated (2)
+LocLongDescription="Lorsque la capacité Course et tir est activée, le temps de rechargement de votre électro flux est immédiatement réinitialisé à 0."
+LocHelpText="Lorsque la capacité Course et tir est activée, le temps de rechargement de votre électro flux est immédiatement réinitialisé à 0."
+LocPromotionPopupText="<Bullet/> Lorsque la capacité Course et tir est activée, le temps de rechargement de votre électro flux est immédiatement réinitialisé à 0.<br/><Bullet/> Ne s'applique pas à la capacité Foudroiement.<br/>"
+; End translated (2)
+
 [Maim_LW X2AbilityTemplate]
 LocFriendlyName="Mutilation"
 LocFlyOverText="Mutilation"

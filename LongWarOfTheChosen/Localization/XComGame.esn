@@ -6204,6 +6204,15 @@ LocHelpText="Cuando se activa Correr y disparar el tiempo de reutilización del 
 LocPromotionPopupText="<Bullet/> Cuando se activa Correr y disparar el tiempo de reutilización del lanzaarcos se elimina de inmediato.<br/><Bullet/> No se aplica con Cadena de rayos.<br/>"
 ; End translated
 
+[LikeLightningPassive_LW X2AbilityTemplate]
+LocFriendlyName="Como un rayo"
+LocFlyOverText="Como un rayo"
+; LWOTC translated
+LocLongDescription="Cuando se activa Correr y disparar el tiempo de reutilización del lanzaarcos se restablece inmediatamente."
+LocHelpText="Cuando se activa Correr y disparar el tiempo de reutilización del lanzaarcos se elimina de inmediato."
+LocPromotionPopupText="<Bullet/> Cuando se activa Correr y disparar el tiempo de reutilización del lanzaarcos se elimina de inmediato.<br/><Bullet/> No se aplica con Cadena de rayos.<br/>"
+; End translated
+
 [Maim_LW X2AbilityTemplate]
 LocFriendlyName="Mutilar"
 LocFlyOverText="Mutilar"
