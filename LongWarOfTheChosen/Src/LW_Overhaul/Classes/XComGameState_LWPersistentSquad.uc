@@ -684,6 +684,9 @@ function PostMissionRevertSoldierStatus(XComGameState NewGameState, XComGameStat
 			class'Helpers_LW'.static.UpdateUnitWillRecoveryProject(UnitState);
 		}
 	}
+
+	// Refresh staffing to update all heal projects.
+	XComHQ.HandlePowerOrStaffingChange(NewGameState);
 }
 
 static function bool HasWillProject(XComGameState_Unit UnitState)
