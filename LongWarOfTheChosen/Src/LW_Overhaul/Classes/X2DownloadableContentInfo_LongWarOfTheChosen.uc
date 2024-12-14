@@ -1002,7 +1002,7 @@ static function bool UpdateMissionSpawningInfo(StateObjectReference MissionRef)
 		// LW waterworld hardcode here:
 		`TACTICALMISSIONMGR.GetMissionDefinitionForType("GP_Fortress_LW", MissionDef);
 
-		// Hardcode checking for MJ schedules
+
 		if(instr(MissionState.GeneratedMission.Mission.MapNames[0], "_LW") != -1)
 		{
 			return bUpdated;
@@ -1021,6 +1021,35 @@ static function bool UpdateMissionSpawningInfo(StateObjectReference MissionRef)
 
 		return true;
 	}
+
+	// Psi Gate here:
+
+	if(MissionState.GetMissionSource().DataName == 'MissionSource_PsiGate' && default.bUpdateWaterworldLW)
+	{
+
+		// LW waterworld hardcode here:
+		`TACTICALMISSIONMGR.GetMissionDefinitionForType("GP_PsiGate_LW", MissionDef);
+
+		
+		if(instr(MissionState.GeneratedMission.Mission.MapNames[0], "_LW") != -1)
+		{
+			return bUpdated;
+		}
+
+		`Log("Mission Def mapname:" @MissionDef.MapNames[0],, 'TedLog');
+
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Update Mission Data");
+
+		MissionState = XComGameState_MissionSite(NewGameState.ModifyStateObject(class'XComGameState_MissionSite', MissionState.ObjectID));
+		MissionState.GeneratedMission.Mission.MapNames[0]="Obj_PsiGate_LW";
+	
+		`Log("Updating PsiGate cached missiondef.",,'TedLog');
+
+		`GAMERULES.SubmitGameState(NewGameState);
+
+		return true;
+	}
+
 
 	return bUpdated;
 }
@@ -1466,7 +1495,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	// override native insisting every mission have a codex while certain tactical options are active
 
 	// Swap out forced Codices on regular encounters
-	if (SpawnInfo.SelectedCharacterTemplateNames[0] == 'Cyberus' && InStr (EncounterName,"PROTECTED") == INDEX_NONE && EncounterName != 'LoneCodex')
+	if (SpawnInfo.SelectedCharacterTemplateNames[0] == 'Cyberus' && InStr (EncounterName,"PROTECTED") == INDEX_NONE && EncounterName != 'LoneCodex' && EncounterName != 'GP_PsiGate_CodexGuards')
 	{
 		swap = true;
 		SpawnInfo.SelectedCharacterTemplateNames[0] = SelectNewPodLeader(SpawnInfo, ForceLevel, LeaderSpawnList);
@@ -4839,9 +4868,14 @@ static function bool ShouldUpdateMissionSpawningInfo(StateObjectReference Missio
 	MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(MissionRef.ObjectID));
 
 	// Waterworld hardcode here
-	if(MissionState.GetMissionSource().DataName == 'MissionSource_Final')
+	if(MissionState.GetMissionSource().DataName == 'MissionSource_Final' || MissionState.GetMissionSource().DataName == 'MissionSource_PsiGate')
 	{
-		`Log("Updating waterworld caching.",,'TedLog');
+		if(instr(MissionState.GeneratedMission.Mission.MapNames[0], "_LW") != -1)
+		{
+			return false;
+		}
+		`Log("Updating waterworld / psi gate caching.",,'TedLog');
+		
 		return true;
 	}
 
