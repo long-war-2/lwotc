@@ -955,7 +955,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	local X2Effect_ModifyReactionFire       ReactionFire;
 	local X2Effect_HunkerDown_LW            HunkerDownEffect;
 	local X2Effect_CancelLongRangePenalty   DFAEffect;
-	local X2Condition_Visibility            VisibilityCondition, TargetVisibilityCondition;
+	local X2Condition_Visibility            TargetVisibilityCondition;
 	local X2Condition_UnitProperty          UnitPropertyCondition;
 	//local X2AbilityTarget_Single          PrimaryTarget;
 	//local X2AbilityMultiTarget_Radius     RadiusMultiTarget;

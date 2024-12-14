@@ -335,7 +335,7 @@ static function X2Effect_PersistentStatChange CreateRoboticDisorientedStatusEffe
 static function X2AbilityTemplate AddGhostGrenadeAbility()
 {
 	local X2AbilityTemplate			Template;
-	local X2Effect_TemporaryItem	TemporaryItemEffect;
+	//local X2Effect_TemporaryItem	TemporaryItemEffect;
 	local XMBEffect_AddUtilityItem  GhostGrenadeEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'GhostGrenade');
