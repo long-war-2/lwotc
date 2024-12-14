@@ -134,6 +134,8 @@ var config int CE_USES_PER_TURN;
 var config int CE_MAX_TILES;
 var config array<name> CE_ABILITYNAMES;
 
+var config array<name> SHOTGUN_WEAPONCATS;
+
 var localized string LocCoveringFire;
 var localized string LocCoveringFireMalus;
 var localized string LocSoulStealBuff;
@@ -1776,7 +1778,7 @@ static function X2AbilityTemplate AddSlugShotAbility()
 	local X2AbilityCost_ActionPoints        ActionPointCost;
 	local X2AbilityCooldown                 Cooldown;
 	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
-	local X2Condition_UnitInventory			InventoryCondition;
+	local X2Condition_UnitInventoryExpanded			InventoryCondition;
 	local X2Condition_Visibility			VisibilityCondition;
 	local X2Effect_Knockback				KnockbackEffect;
 	
@@ -1825,9 +1827,9 @@ static function X2AbilityTemplate AddSlugShotAbility()
 	AmmoCost.iAmmo = default.SLUG_SHOT_AMMO_COST;
 	Template.AbilityCosts.AddItem(AmmoCost);
 
-	InventoryCondition = new class'X2Condition_UnitInventory';
+	InventoryCondition = new class'X2Condition_UnitInventoryExpanded';
 	InventoryCondition.RelevantSlot=eInvSlot_PrimaryWeapon;
-	InventoryCondition.RequireWeaponCategory = 'shotgun';
+	InventoryCondition.RequireWeaponCategory = default.SHOTGUN_WEAPONCATS;
 	Template.AbilityShooterConditions.AddItem(InventoryCondition);
 	
 	KnockbackEffect = new class'X2Effect_Knockback';
@@ -2449,7 +2451,7 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
 	local X2Effect_ReserveActionPoints      ReserveActionPointsEffect;
 	local X2Effect_Suppression              SuppressionEffect;
 	local X2Effect_PersistentStatChange		StatChangeEffect;
-	local X2Condition_UnitInventory         UnitInventoryCondition;
+	local X2Condition_UnitInventoryExpanded         UnitInventoryCondition;
 	local name								WeaponCategory;
 	local X2Condition_UnitEffects			SuppressedCondition;
 	local X2Condition_OwnerDoesNotHaveAbility	DoesNotHaveAbilityCondition;
@@ -2475,13 +2477,12 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
 	
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	
-	foreach default.SUPPRESSION_LW_INVALID_WEAPON_CATEGORIES(WeaponCategory)
-	{
-		UnitInventoryCondition = new class'X2Condition_UnitInventory';
-		UnitInventoryCondition.RelevantSlot = eInvSlot_PrimaryWeapon;
-		UnitInventoryCondition.ExcludeWeaponCategory = WeaponCategory;
-		Template.AbilityShooterConditions.AddItem(UnitInventoryCondition);
-	}
+	
+	UnitInventoryCondition = new class'X2Condition_UnitInventoryExpanded';
+	UnitInventoryCondition.RelevantSlot = eInvSlot_PrimaryWeapon;
+	UnitInventoryCondition.ExcludeWeaponCategory = default.SUPPRESSION_LW_INVALID_WEAPON_CATEGORIES;
+	Template.AbilityShooterConditions.AddItem(UnitInventoryCondition);
+	
 
 	Template.AddShooterEffectExclusions();
 
@@ -3747,7 +3748,7 @@ static function X2AbilityTemplate AddStreetSweeperAbility()
 	local X2Condition_UnitProperty          UnitPropertyCondition;
 	local X2AbilityToHitCalc_StandardAim    StandardAim;
 	local X2AbilityCooldown                 Cooldown;
-	local X2Condition_UnitInventory			InventoryCondition;
+	local X2Condition_UnitInventoryExpanded			InventoryCondition;
 	local X2Effect_Shredder					WeaponDamageEffect;
 	local X2Condition_UnitEffects			SuppressedCondition;
 
@@ -3788,9 +3789,9 @@ static function X2AbilityTemplate AddStreetSweeperAbility()
 	Template.AbilityShooterConditions.AddItem(UnitPropertyCondition);
 	Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
 
-	InventoryCondition = new class'X2Condition_UnitInventory';
+	InventoryCondition = new class'X2Condition_UnitInventoryExpanded';
 	InventoryCondition.RelevantSlot=eInvSlot_PrimaryWeapon;
-	InventoryCondition.RequireWeaponCategory = 'shotgun';
+	InventoryCondition.RequireWeaponCategory = default.SHOTGUN_WEAPONCATS;
 	Template.AbilityShooterConditions.AddItem(InventoryCondition);
 
 	Template.AddShooterEffectExclusions();

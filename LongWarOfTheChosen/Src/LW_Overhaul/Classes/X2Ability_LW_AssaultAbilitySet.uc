@@ -399,7 +399,7 @@ static function X2AbilityTemplate CreateStreetSweeper2Ability()
 	local X2Condition_UnitProperty          UnitPropertyCondition;
 	local X2AbilityToHitCalc_StandardAim    StandardAim;
 	local X2AbilityCooldown                 Cooldown;
-	local X2Condition_UnitInventory			InventoryCondition;
+	local X2Condition_UnitInventoryExpanded			InventoryCondition;
 	local X2Effect_Shredder					WeaponDamageEffect;
 	local X2Condition_UnitEffects			SuppressedCondition;
 
@@ -446,9 +446,9 @@ static function X2AbilityTemplate CreateStreetSweeper2Ability()
 	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
 	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
 
-	InventoryCondition = new class'X2Condition_UnitInventory';
+	InventoryCondition = new class'X2Condition_UnitInventoryExpanded';
 	InventoryCondition.RelevantSlot=eInvSlot_PrimaryWeapon;
-	InventoryCondition.RequireWeaponCategory = 'shotgun';
+	InventoryCondition.RequireWeaponCategory = class'X2Ability_PerkPackAbilitySet'.default.SHOTGUN_WEAPONCATS;
 	Template.AbilityShooterConditions.AddItem(InventoryCondition);
 
 	Template.AddShooterEffectExclusions();
