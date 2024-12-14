@@ -460,6 +460,10 @@ function static string GetBoostedInfiltrationString(XComGameState_MissionSite Mi
 static function int GetExpectedAlertModifier(XComGameState_MissionSite MissionState, float InfiltrationPct)
 {
 	local int i, AlertModifier;
+
+	if(MissionState.GetMissionSource().bGoldenPath)
+		return 0;
+
 	i = 0;
 	while (i + 1 < class'XComGameState_LWPersistentSquad'.default.AlertModifierAtInfiltration.Length 
 			&& class'XComGameState_LWPersistentSquad'.default.AlertModifierAtInfiltration[i + 1].Infiltration <= InfiltrationPct)
