@@ -6169,6 +6169,15 @@ LocHelpText="當激活奔襲戰術後，你的電弧發射器冷卻時間立即�
 LocPromotionPopupText="<Bullet/> 當激活奔襲戰術後，你的電弧發射器冷卻時間立即被移除。<br/><Bullet/> 不適用於閃電鏈。<br/>"
 ; End Translation (2)
 
+[LikeLightningPassive_LW X2AbilityTemplate]
+LocFriendlyName="猶如閃電"
+LocFlyOverText="猶如閃電"
+; LWOTC Needs Translation (2)
+LocLongDescription="當激活奔襲戰術時，你的電弧發射器冷卻時間立即重置為0。"
+LocHelpText="當激活奔襲戰術後，你的電弧發射器冷卻時間立即被移除。"
+LocPromotionPopupText="<Bullet/> 當激活奔襲戰術後，你的電弧發射器冷卻時間立即被移除。<br/><Bullet/> 不適用於閃電鏈。<br/>"
+; End Translation (2)
+
 [Maim_LW X2AbilityTemplate]
 LocFriendlyName="致殘"
 LocFlyOverText="致殘"

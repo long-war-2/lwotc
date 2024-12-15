@@ -6194,6 +6194,15 @@ LocHelpText="当激活奔袭战术后，你的电弧发射器冷却时间立即�
 LocPromotionPopupText="<Bullet/> 当激活奔袭战术后，你的电弧发射器冷却时间立即被移除。<br/><Bullet/> 不适用于闪电链。<br/>"
 ; End Translation (2)
 
+[LikeLightningPassive_LW X2AbilityTemplate]
+LocFriendlyName="犹如闪电"
+LocFlyOverText="犹如闪电"
+; LWOTC Needs Translation (2)
+LocLongDescription="当激活奔袭战术时，你的电弧发射器冷却时间立即重置为0。"
+LocHelpText="当激活奔袭战术后，你的电弧发射器冷却时间立即被移除。"
+LocPromotionPopupText="<Bullet/> 当激活奔袭战术后，你的电弧发射器冷却时间立即被移除。<br/><Bullet/> 不适用于闪电链。<br/>"
+; End Translation (2)
+
 [Maim_LW X2AbilityTemplate]
 LocFriendlyName="致残"
 LocFlyOverText="致残"
