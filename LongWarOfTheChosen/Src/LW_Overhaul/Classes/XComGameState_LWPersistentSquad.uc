@@ -1069,6 +1069,46 @@ function float GetSecondsRemainingToFullInfiltration(optional bool bBoost = fals
 	return SecondsToInfiltrate;
 }
 
+function float GetSecondsRemainingToFullInfiltrationUI(optional bool bBoost = false)
+{
+	local float TotalSecondsToInfiltrate, InfiltrationBonusOnLiberation;
+	local float SecondsOfInfiltration;
+	local float SecondsToInfiltrate;
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_WorldRegion_LWStrategyAI RegionalAI;
+    local XComGameState_MissionSite MissionSite;
+	
+
+	if(bBoost)
+	{
+		TotalSecondsToInfiltrate = 3600.0 * GetHoursToFullInfiltrationCached() / class'XComGameState_LWPersistentSquad'.default.DefaultBoostInfiltrationFactor[`STRATEGYDIFFICULTYSETTING];
+	}
+	else
+	{
+		TotalSecondsToInfiltrate = 3600.0 * GetHoursToFullInfiltrationCached(); // test caching here roo
+	}
+	
+	SecondsOfInfiltration = class'X2StrategyGameRulesetDataStructures'.static.DifferenceInSeconds(GetCurrentTime(), StartInfiltrationDateTime);
+	SecondsToInfiltrate = TotalSecondsToInfiltrate - SecondsOfInfiltration;
+
+	MissionSite = GetCurrentMission();
+	if(MissionSite != none)
+	{
+		RegionState = MissionSite.GetWorldRegion();
+		if(RegionState != none)
+		{
+			RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState);
+			if(RegionalAI.bLiberated)
+			{
+				InfiltrationBonusOnLiberation = class'X2StrategyElement_DefaultAlienActivities'.default.INFILTRATION_BONUS_ON_LIBERATION[`STRATEGYDIFFICULTYSETTING] / 100.0;
+				SecondsToInfiltrate -= TotalSecondsToInfiltrate * InfiltrationBonusOnLiberation;
+			}
+		}
+	}
+
+	return SecondsToInfiltrate;
+}
+
 static function float GetBaselineHoursToInfiltration(StateObjectReference MissionRef)
 {
 	local XComGameState_LWAlienActivity ActivityState;

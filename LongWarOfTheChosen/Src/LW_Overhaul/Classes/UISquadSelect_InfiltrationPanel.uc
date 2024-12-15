@@ -327,14 +327,31 @@ simulated function Update(array<StateObjectReference> Soldiers)
 {
 	local XComGameState_MissionSite MissionState;
 	local XComGameState_LWAlienActivity ActivityState;
-	local float TotalInfiltrationHours, TotalMissionHours, BoostedInfiltrationHours, InfiltratePct, BoostedInfiltratePct;
+	local float TotalInfiltrationHours, TotalMissionHours, BoostedInfiltrationHours, InfiltratePct, BoostedInfiltratePct, InfiltrationBonusOnLiberation;
 	local int SquadSizeHours, CovertnessHours, NumSoldiers, LiberationHours;
+	local XComGameState_WorldRegion_LWStrategyAI RegionalAI;
+	local XComGameState_WorldRegion RegionState;
 	local string OverallTimeColor, BoostedTimeColor;
 	local StateObjectReference Soldier;
+	local bool bLiberatedRegion;
 	
 	MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(MissionData.MissionID));
 
-	TotalInfiltrationHours = class'XComGameState_LWPersistentSquad'.static.GetHoursToFullInfiltration_Static(Soldiers, MissionState.GetReference(), SquadSizeHours, CovertnessHours, LiberationHours) + 2.0;
+	TotalInfiltrationHours = class'XComGameState_LWPersistentSquad'.static.GetHoursToFullInfiltration_Static(Soldiers, MissionState.GetReference(), SquadSizeHours, CovertnessHours, LiberationHours) + 0.5;
+
+	if(MissionState != none)
+	{
+		RegionState = MissionState.GetWorldRegion();
+		if(RegionState != none)
+		{
+			RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState);
+			if(RegionalAI.bLiberated)
+			{
+				bLiberatedRegion = true;
+				InfiltrationBonusOnLiberation = class'X2StrategyElement_DefaultAlienActivities'.default.INFILTRATION_BONUS_ON_LIBERATION[`STRATEGYDIFFICULTYSETTING] / 100.0;
+			}
+		}
+	}
 
 	TotalMissionHours = 99999;
 	if(MissionState.ExpirationDateTime.m_iYear < 2100)
@@ -394,20 +411,30 @@ simulated function Update(array<StateObjectReference> Soldiers)
 	}
 	else
 	{
-		if (TotalMissionHours > TotalInfiltrationHours * 1.25 || NumSoldiers == 0)
+		InfiltratePct = (TotalMissionHours / TotalInfiltrationHours) * 100;
+
+		if (bLiberatedRegion)
+		{
+			InfiltratePct += (InfiltrationBonusOnLiberation * 100);
+		}
+		InfiltratePct = Clamp(InfiltratePct, 0, 200);
+
+		if (InfiltratePct >= 125 || NumSoldiers == 0)
 			OverallTimeColor = class'UIUtilities_Colors'.const.GOOD_HTML_COLOR;
-		else if (TotalMissionHours > TotalInfiltrationHours)
+		else if (InfiltratePct >= 100)
 			OverallTimeColor = class'UIUtilities_Colors'.const.NORMAL_HTML_COLOR;
 		else if (TotalMissionHours > TotalInfiltrationHours * (class'XComGameState_LWPersistentSquad'.static.GetRequiredPctInfiltrationToLaunch(MissionState) / 100.0))
 			OverallTimeColor = class'UIUtilities_Colors'.const.WARNING2_HTML_COLOR;
 		else
 			OverallTimeColor = class'UIUtilities_Colors'.const.BAD_HTML_COLOR;
 
-		InfiltratePct = (TotalMissionHours / TotalInfiltrationHours) * 100;
-		InfiltratePct = Clamp(InfiltratePct, 0, 200);
 
 		BoostedInfiltrationHours = TotalInfiltrationHours / class'XComGameState_LWPersistentSquad'.default.DefaultBoostInfiltrationFactor[`STRATEGYDIFFICULTYSETTING];
 		BoostedInfiltratePct = (TotalMissionHours / BoostedInfiltrationHours) * 100;
+		if (bLiberatedRegion)
+		{
+			BoostedInfiltratePct += (InfiltrationBonusOnLiberation * 100);
+		}
 		BoostedInfiltratePct = Clamp(BoostedInfiltratePct, 0, 200);
 
 		if (TotalMissionHours > BoostedInfiltrationHours * 1.25 || NumSoldiers == 0)
@@ -418,6 +445,12 @@ simulated function Update(array<StateObjectReference> Soldiers)
 			BoostedTimeColor = class'UIUtilities_Colors'.const.WARNING2_HTML_COLOR;
 		else
 			BoostedTimeColor = class'UIUtilities_Colors'.const.BAD_HTML_COLOR;
+
+		if (bLiberatedRegion)
+		{
+			TotalInfiltrationHours -= TotalInfiltrationHours * (InfiltrationBonusOnLiberation);
+			BoostedInfiltrationHours = TotalInfiltrationHours / class'XComGameState_LWPersistentSquad'.default.DefaultBoostInfiltrationFactor[`STRATEGYDIFFICULTYSETTING];
+		}
 
 		if(default.USE_NEW_VERSION)
 		{

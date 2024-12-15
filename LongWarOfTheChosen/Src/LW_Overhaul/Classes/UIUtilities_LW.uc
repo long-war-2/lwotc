@@ -320,7 +320,7 @@ function static string GetInfiltrationString(XComGameState_MissionSite MissionSt
 	{
 		//determine if can fully infiltrate before mission expires
 		TotalSeconds_Mission = ActivityState.SecondsRemainingCurrentMission();
-		TotalSeconds_Infiltration = InfiltratingSquad.GetSecondsRemainingToFullInfiltration();
+		TotalSeconds_Infiltration = InfiltratingSquad.GetSecondsRemainingToFullInfiltrationUI();
 
 		bCanFullyInfiltrate = (TotalSeconds_Infiltration < TotalSeconds_Mission) && (InfiltratingSquad.CurrentInfiltration < 1.0);
 		if(bCanFullyInfiltrate)
@@ -346,7 +346,7 @@ function static string GetInfiltrationString(XComGameState_MissionSite MissionSt
 		//ID 619 - allow non-expiring missions to show remaining time until 100% infiltration will be reached
 		if (InfiltratingSquad.CurrentInfiltration < 1.0)
 		{
-			TotalSeconds = InfiltratingSquad.GetSecondsRemainingToFullInfiltration();
+			TotalSeconds = InfiltratingSquad.GetSecondsRemainingToFullInfiltrationUI();
 			TotalHours = int(TotalSeconds / 3600.0) % 24;
 			TotalDays = TotalSeconds / 86400.0;
 			ParamTag.IntValue1 = int(TotalDays);
@@ -408,7 +408,7 @@ function static string GetBoostedInfiltrationString(XComGameState_MissionSite Mi
 	{
 		//determine if can fully infiltrate before mission expires / boosted state
 		TotalSeconds_Mission = ActivityState.SecondsRemainingCurrentMission();
-		TotalSeconds_Infiltration = InfiltratingSquad.GetSecondsRemainingToFullInfiltration(true);
+		TotalSeconds_Infiltration = InfiltratingSquad.GetSecondsRemainingToFullInfiltrationUI(true);
 
 		bCanFullyInfiltrate = (TotalSeconds_Infiltration < TotalSeconds_Mission) && (InfiltratingSquad.CurrentInfiltration * BoostFactor < 1.0);
 		if(bCanFullyInfiltrate)
@@ -434,7 +434,7 @@ function static string GetBoostedInfiltrationString(XComGameState_MissionSite Mi
 		//ID 619 - allow non-expiring missions to show remaining time until 100% infiltration will be reached
 		if (InfiltratingSquad.CurrentInfiltration < 1.0)
 		{
-			TotalSeconds = InfiltratingSquad.GetSecondsRemainingToFullInfiltration();
+			TotalSeconds = InfiltratingSquad.GetSecondsRemainingToFullInfiltrationUI();
 			TotalHours = int(TotalSeconds / 3600.0) % 24;
 			TotalDays = TotalSeconds / 86400.0;
 			ParamTag.IntValue1 = int(TotalDays);
