@@ -127,8 +127,8 @@ LocHelpText="当被敌人攻击时，每回合自动用手枪还击一次。"
 LocLongDescription="当被敌人攻击时，每回合自动用手枪还击一次。"
 
 [Quickdraw X2AbilityTemplate]
-LocLongDescription="用第一个行动点进行手枪射击不再结束回合。"
-LocHelpText="用第一个行动点进行手枪射击不再结束回合。"
+LocLongDescription="用第一个行动点进行手枪射击不再结束回合。手枪不再减少移动力。"
+LocHelpText="用第一个行动点进行手枪射击不再结束回合。手枪不再减少移动力。"
 
 [LightningHands X2AbilityTemplate]
 LocLongDescription="用手枪射击目标。不消耗行动点。"
@@ -2533,6 +2533,14 @@ ObjectiveTextPools[1]="消灭所有目标敌人"
 ObjectiveTextPools[0]="指挥官的化身必须存活"
 ObjectiveTextPools[1]="摧毁所有化身"
 
+[DefaultAssaultFortressLeadup_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="指挥官的化身必须存活"
+ObjectiveTextPools[1]="歼灭所有敌人"
+
+[DefaultDestroyAvatarProject_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="指挥官的化身必须存活"
+ObjectiveTextPools[1]="摧毁所有的化身"
+
 [DefaultSabotage_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="安置X4炸药以摧毁外星人设施"
 ObjectiveTextPools[1]="撤离所有XCOM士兵"
@@ -2939,7 +2947,14 @@ DisplayName="突袭外星人要塞"
 Briefing="突袭外星人要塞"
 PostMissionType="突袭外星人要塞"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
-ObjectiveTextPools[0]="破坏化身指令"
+ObjectiveTextPools[0]="破坏化身计划"
+
+[DestroyAvatarProject_LW X2MissionTemplate]
+DisplayName="破坏化身计划"
+Briefing="破坏化身计划"
+PostMissionType="破坏化身计划"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
+ObjectiveTextPools[0]="破坏化身计划"
 
 [SecureUFO_LW X2MissionTemplate]
 DisplayName="肃清残损的幽浮"
@@ -3052,7 +3067,7 @@ ObjectiveTextPools[1]="撤离所有XCOM士兵"
 
 [SupplyExtraction_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="标记并回收变种人物资箱"
-ObjectiveTextPools[1]="标记并回收变种人物资箱"
+ObjectiveTextPools[1]="标记并回收至少4个变种人物资箱"
 ObjectiveTextPools[2]="撤离所有XCOM士兵"
 ObjectiveTextPools[3]="消灭所有残存目标敌人(可选)"
 
@@ -3363,6 +3378,7 @@ LocFriendlyName="暗影坠落"
 LocHelpText="特殊的手枪射击，如果目标被击杀，使用者将进入隐匿状态。"
 LocLongDescription="特殊的手枪射击，如果目标被击杀，使用者将进入隐匿状态。"
 LocFlyOverText="暗影坠落"
+
 
 ;;;;;;;;;;;;;;;;;;;;; STAFF SLOTS ;;;;;;;;;;;;;;;;;;;;;;
 
@@ -5439,12 +5455,6 @@ FocusLevelDescriptions[4]="撕裂伤害+<Ability:FOCUS4RENDDAMAGE/>\n移动力+<
 [TemplarFocus X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> 圣殿骑士在开始任务时比其他士兵弱，但在更高的专注水平下会变得非常强大。<br/><Bullet/> 专注是通过用撕裂攻击敌人获得的（即使未命中也能获得）。<br/>"
 
-[ArcWave_LW X2AbilityTemplate]
-LocFriendlyName="撕裂"
-LocLongDescription="近战攻击有几率使目标眩晕或混乱。触发气势，产生专注。"
-LocHelpText="近战攻击有几率使目标眩晕或混乱。触发气势，产生专注。"
-LocPromotionPopupText="<Bullet/> 使用撕裂是圣殿骑士产生专注的主要方法。<br/><Bullet/> 施展撕裂后，圣殿骑士将获得气势，允许他们进行一次移动动作。攻击后撤回掩体。<br/><Bullet/> 撕裂每1点专注有<Ability:RENDSTUNCHANCE/>%几率眩晕。眩晕的目标也会被击退。<br/><Bullet/> 撕裂每1点专注有<Ability:RENDDISORIENTCHANCE/>%几率混乱。<br/>"
-
 [Rend_LW X2AbilityTemplate]
 LocFriendlyName="撕裂"
 LocLongDescription="近战攻击有几率使目标眩晕或混乱。触发气势，产生专注。"
@@ -6184,14 +6194,6 @@ LocHelpText="当激活奔袭战术后，你的电弧发射器冷却时间立即�
 LocPromotionPopupText="<Bullet/> 当激活奔袭战术后，你的电弧发射器冷却时间立即被移除。<br/><Bullet/> 不适用于闪电链。<br/>"
 ; End Translation (2)
 
-[LikeLightningPassive_LW X2AbilityTemplate]
-LocFriendlyName="犹如闪电"
-LocFlyOverText="犹如闪电"
-; LWOTC Needs Translation (2)
-LocLongDescription="当激活奔袭战术时，你的电弧发射器冷却时间立即重置为0。"
-LocHelpText="当激活奔袭战术后，你的电弧发射器冷却时间立即被移除。"
-LocPromotionPopupText="<Bullet/> 当激活奔袭战术后，你的电弧发射器冷却时间立即被移除。<br/><Bullet/> 不适用于闪电链。<br/>"
-
 [Maim_LW X2AbilityTemplate]
 LocFriendlyName="致残"
 LocFlyOverText="致残"
@@ -6500,6 +6502,14 @@ LocHelpText="使用<Ability:BOUND_WEAPON_NAME/>攻击蓝色移动范围内的任
 LocPromotionPopupText="<Bullet/> 使用<Ability:BOUND_WEAPON_NAME/>攻击蓝色移动范围内的任何敌人。<br/><Bullet/> 这次攻击不会结束回合。<br/><Bullet/> 闪电裂斩有<Ability:LIGHTNINGSLASH_COOLDOWN/>回合冷却时间。<br/>"
 ; End Translation (2)
 
+[LightningSlashLastAction_LW X2AbilityTemplate]
+LocFriendlyName="闪电裂斩"
+; LWOTC Needs Translation (3)
+LocLongDescription="使用<Ability:BOUND_WEAPON_NAME/>攻击蓝色移动范围内的任何敌人，不会结束回合。"
+LocHelpText="使用<Ability:BOUND_WEAPON_NAME/>攻击蓝色移动范围内的任何敌人，不会结束回合。"
+LocPromotionPopupText="<Bullet/> 使用<Ability:BOUND_WEAPON_NAME/>攻击蓝色移动范围内的任何敌人。<br/><Bullet/> 这次攻击不会结束回合。<br/><Bullet/> 闪电裂斩有<Ability:LIGHTNINGSLASH_COOLDOWN/>回合冷却时间。<br/>"
+; End Translation (3)
+
 [InspireAgility_LW X2AbilityTemplate]
 LocFriendlyName="灵感"
 LocFlyOverText="灵感"
@@ -6549,7 +6559,7 @@ LocPromotionPopupText="<Bullet/> 致命射击降低<Ability:DeadEyeAim/>%命中�
 LocFriendlyName="致命射击"
 LocPromotionPopupText="<Bullet/> 致命射击降低<Ability:DeadEyeAim/>%命中率，但是增加<Ability:DeadEyeDmg/>%基础伤害 。<br/><Bullet/> 致命射击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 可以与急射配合使用。<br/>"
 
-; AdvPriest Abilities
+; AdvPriest Abilities3
 [HolyWarriorM1 X2AbilityTemplate]
 LocFriendlyName="圣战士"
 LocHelpText="祭司与另一个单位进行心灵融合。当融合存在时，该单位获得属性提升。"
@@ -7166,6 +7176,13 @@ LocHelpText="祭司被一种光环所包围，这种光环能立即为他们自�
 LocFlyOverText="慰藉"
 LocPromotionPopupText="<Bullet/> 慰藉的作用范围有4格。<br/><Bullet/> 移动到受折磨的队友旁边能直接解除精神异常状态。<br/>"
 
+[SolacePassive X2AbilityTemplate]
+LocFriendlyName="慰藉光环"
+LocLongDescription="该单位被一种光环所包围，这种光环能立即为他们自己和附近的队友消除或阻止任何精神异常。"
+LocHelpText="该单位被一种光环所包围，这种光环能立即为他们自己和附近的队友消除或阻止任何精神异常。"
+LocFlyOverText="慰藉"
+LocPromotionPopupText="<Bullet/> 慰藉的作用范围有4格。<br/><Bullet/> 移动到受折磨的队友旁边能直接解除精神异常状态。<br/>"
+
 ; End Translation
 
 ; LWOTC Needs Translation
@@ -7386,6 +7403,12 @@ LocFriendlyName="阻断"
 LocLongDescription="一种强有力的监视方式。触发时不再自动开火，而是执行任何单个动作。自由行动。"
 LocHelpText="一种强有力的监视方式。触发时不再自动开火，而是执行任何单个动作。自由行动。"
 LocPromotionPopupText="<Bullet/> 自由行动。<br/><Bullet/> 某些操作在阻断期间不可用，例如监视。<br/><Bullet/> 阻断有<Ability:SelfCooldown_LW/>回合冷却时间。"
+
+[ArcWave_LW X2AbilityTemplate]
+LocFriendlyName="撕裂"
+LocLongDescription="近战攻击，有一定几率使目标眩晕或混乱。触发气势，并生成专注。"
+LocHelpText="近战攻击，有一定几率使目标眩晕或混乱。触发气势，并生成专注。"
+LocPromotionPopupText="<Bullet/> 使用撕裂是圣殿骑士生成专注的主要方法。<br/><Bullet/>  施放撕裂后，圣殿骑士将获得气势点数，允许其进行一次移动动作，以便在攻击后撤回掩体。<br/><Bullet/> 撕裂每点专注有<Ability:RENDSTUNCHANCE/>%的几率使目标眩晕。眩晕的目标也会被击退。<br/><Bullet/> 撕裂每点专注有<Ability:RENDSTUNCHANCE/>%的几率使目标混乱。<br/>"
 
 [ArcWavePassive_LW X2AbilityTemplate]
 LocFriendlyName="电弧波"
@@ -7690,3 +7713,9 @@ LocFriendlyName="钩爪专家"
 LocLongDescription="正义、怒火、鞭笞获得额外+15命中。"
 LocHelpText="正义、怒火、鞭笞获得额外+15命中。"
 LocFlyOverText="钩爪专家"
+
+;Marauder
+[SkirmisherStrike X2AbilityTemplate]
+LocLongDescription="使用主武器进行标准射击不再结束回合。"
+LocHelpText="使用主武器进行标准射击不再结束回合。"
+LocPromotionPopupText=""
