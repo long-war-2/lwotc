@@ -754,7 +754,7 @@ m_strChosenLoot="(<XGParam:IntValue0/>) <XGParam:StrValue0/!ItemName/> Rewarded 
 [UISL_Shell_LWoTCVersion]
 strMessage_Title = "Long War Of The Chosen"
 strMessage_Header = "Long War Of The Chosen has been Updated!
-strMessage_Body = "Version 1.1.0 is now released, with lots of features and improvements, including:<ul><li>New 5 Tier Chosen system for Better Progression</li><li>New Covert Actions that Reward Infiltration Missions</li><li>New Maps for Network Tower and Crate Race Missions</li><li>Reworked Templar with Iridar's Psi Shield</li><li>QOL Improvements</li><li>Improved Mod Compatibility</li><li>Balance Tweaks for Classes, Heros, and More</li><li>Way more than I can fit here unless you want a giant scrollbar</li></ul>Check out the google doc linked on the Steam change notes, or visit the LWoTC discord!"
+strMessage_Body = "Version 1.2.0 is now released, with lots of features and improvements, including:<ul><li>Complete SPARK rework, redone trees for Grenadier, Specialist, and Technical.</li><li>Redone XCOM rows for all classes and reduced AP costs for them.</li><li>Redone Infiltration UI in Squad Select and Geoscape</li><li>Two new mission types.</li><li>More Chosen updates with new activities and rebalanced knowledge and Avenger Defense mission rebalanced.</li><li>A lot of smaller balance tweaks</li><li>A pile of bugfixes and QOL</li><li>Way more than I can fit here unless you want a giant scrollbar</li></ul>Check out the google doc linked on the Steam change notes, or visit the LWoTC discord!"
 strDismiss_Button = "OK"
 
 [UISL_Shell_BetaPatchNotes]
