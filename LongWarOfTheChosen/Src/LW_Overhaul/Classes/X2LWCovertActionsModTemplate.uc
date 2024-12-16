@@ -106,6 +106,7 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 			break;
 		case 'CovertAction_RescueSoldier':
 			// There are currently no risks to mitigate
+			CATemplate.RequiredFactionInfluence = eFactionInfluence_MAX;
 			CATemplate.OptionalCosts.Length = 0;
 			break;
 		default:

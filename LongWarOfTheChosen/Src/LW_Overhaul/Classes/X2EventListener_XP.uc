@@ -21,6 +21,8 @@ var config int LISTENER_PRIORITY;
 
 var config array<name> CLASSES_INELIGIBLE_FOR_MISSION_XP;
 
+var config array<name> MULTI_STAGE_MISSIONS;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -87,15 +89,16 @@ static function EventListenerReturn OnAddMissionEncountersToUnits(Object EventDa
 	History = `XCOMHISTORY;
 
 	BattleState = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
-	if (BattleState.m_iMissionID != XComHQ.MissionRef.ObjectID)
-	{
-		`REDSCREEN("LongWar: Mismatch in BattleState and XComHQ MissionRef when assigning XP");
-		return ELR_NoInterrupt;
-	}
 
 	MissionState = XComGameState_MissionSite(History.GetGameStateForObjectID(BattleState.m_iMissionID));
 	if(MissionState == none)
 		return ELR_NoInterrupt;
+
+	if (BattleState.m_iMissionID != XComHQ.MissionRef.ObjectID && default.MULTI_STAGE_MISSIONS.Find(MissionState.GeneratedMission.Mission.MissionName) == INDEX_NONE)
+	{
+		`REDSCREEN("LongWar: Mismatch in BattleState and XComHQ MissionRef when assigning XP");
+		return ELR_NoInterrupt;
+	}
 
 	MissionWeight = GetMissionWeight(History, XComHQ, BattleState, MissionState);
 
@@ -225,7 +228,9 @@ static function EventListenerReturn OnAddMissionEncountersToUnits(Object EventDa
 			}
 			
 			// Tedster - for future reference - add thing that modifies max rank of Trial by Fire here.
-			if (UnitState.GetRank() < class'LW_OfficerPack_Integrated.X2Ability_OfficerAbilitySet'.default.TRIAL_BY_FIRE_RANK_CAP)
+			if (UnitState.GetRank() < class'LW_OfficerPack_Integrated.X2Ability_OfficerAbilitySet'.default.TRIAL_BY_FIRE_RANK_CAP
+				|| ((`XCOMHQ.SoldierUnlockTemplates.Find('TrialByFireUpgradeUnlock') != -1) && UnitState.GetRank() < class'LW_OfficerPack_Integrated.X2Ability_OfficerAbilitySet'.default.TRIAL_BY_FIRE_RANK_CAP+1)
+				)
 			{
 				idx = default.CLASS_MISSION_EXPERIENCE_WEIGHTS.Find('SoldierClass', UnitState.GetSoldierClassTemplateName());
 				if (idx != -1)
@@ -289,7 +294,6 @@ static function float GetMissionWeight(XComGameStateHistory History, XComGameSta
 	}
 
 	fTotal = float (OrigMissionAliens);
-
 	if (!PlayerWonMission)
 	{
 		fTotal *= default.MAX_RATIO_MISSION_XP_ON_FAILED_MISSION * FMin (1.0, float (AliensKilled) / float(OrigMissionAliens));

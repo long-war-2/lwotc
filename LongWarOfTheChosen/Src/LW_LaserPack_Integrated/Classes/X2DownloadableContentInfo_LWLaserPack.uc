@@ -97,6 +97,9 @@ static function AddCritUpgrade(X2ItemTemplateManager ItemTemplateManager, Name T
 	// Cannon
 	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_Cannon_Optic', "LWCannon_LS.Meshes.SK_LaserCannon_Optic_B", "", 'Cannon_LS', , "img:///UILibrary_LW_LaserPack.LaserCannon_OpticB", "img:///UILibrary_LW_LaserPack.Inv_Laser_OpticC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
 
+	// SparkRifle
+	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_Cannon_Optic', "IRI_Sparkgun_LS_LW.Meshes.SM_SparkRifle_LS_LaserSight", "", 'SparkRifle_LS', , "img:///IRI_Sparkgun_LS_LW.UI.SPARK_Laser_laser", "img:///IRI_Sparkgun_LS_LW.UI.screen_laser", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
+
 }
 
 static function AddAimBonusUpgrade(X2ItemTemplateManager ItemTemplateManager, Name TemplateName)
@@ -125,6 +128,10 @@ static function AddAimBonusUpgrade(X2ItemTemplateManager ItemTemplateManager, Na
 	
 	// Cannon
 	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_Cannon_Optic', "LWCannon_LS.Meshes.SK_LaserCannon_Optic_A", "", 'Cannon_LS', , "img:///UILibrary_LW_LaserPack.LaserCannon_OpticA", "img:///UILibrary_LW_LaserPack.Inv_LaserCannon_OpticA", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
+
+	//SparkRifle
+	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_Cannon_Optic', "IRI_Sparkgun_LS_LW.Meshes.SM_SparkRifle_LS_Scope", "", 'SparkRifle_LS', , "img:///IRI_Sparkgun_LS_LW.UI.SPARK_Laser_laser", "img:///IRI_Sparkgun_LS_LW.UI.screen_laser", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
+
 }
 
 static function AddClipSizeBonusUpgrade(X2ItemTemplateManager ItemTemplateManager, Name TemplateName)
@@ -153,6 +160,10 @@ static function AddClipSizeBonusUpgrade(X2ItemTemplateManager ItemTemplateManage
 
 	// Cannon
 	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Cannon_Mag', "LWCannon_LS.Meshes.SK_LaserCannon_Mag_B", "", 'Cannon_LS', , "img:///UILibrary_LW_LaserPack.LaserCannon_MagB", "img:///UILibrary_LW_LaserPack.Inv_LaserCannon_MagB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip");
+
+	//SparkRifle
+	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Shotgun_Mag', "IRI_Sparkgun_LS_LW.Meshes.SM_SparkRifle_LS_MagB", "", 'SparkRifle_LS', , "img:///IRI_Sparkgun_LS_LW.UI.SPARK_Laser_magazine", "img:///IRI_Sparkgun_LS_LW.UI.screen_magazine", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip");
+
 }
 
 static function AddFreeFireBonusUpgrade(X2ItemTemplateManager ItemTemplateManager, Name TemplateName)
@@ -181,6 +192,10 @@ static function AddFreeFireBonusUpgrade(X2ItemTemplateManager ItemTemplateManage
 
 	// Cannon
 	Template.AddUpgradeAttachment('Reargrip', 'UIPawnLocation_WeaponUpgrade_Cannon_Mag', "LWCannon_LS.Meshes.SK_LaserCannon_Trigger_B", "", 'Cannon_LS', , "img:///UILibrary_LW_LaserPack.LaserCannon_TriggerB", "img:///UILibrary_LW_LaserPack.Inv_LaserCannon_TriggerB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_trigger");
+
+	//SparkRifle
+	Template.AddUpgradeAttachment('RearCrossGuard', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Mag', "IRI_Sparkgun_LS_LW.Meshes.SM_SparkRifle_LS_RearCrossGuardA", "", 'SparkRifle_LS', , "img:///IRI_Sparkgun_LS_LW.UI.SPARK_Laser_crossguard", "img:///IRI_Sparkgun_LS_LW.UI.SPARK_Laser_crossguard_base", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_trigger");
+
 } 
 
 static function AddReloadUpgrade(X2ItemTemplateManager ItemTemplateManager, Name TemplateName)
@@ -209,6 +224,9 @@ static function AddReloadUpgrade(X2ItemTemplateManager ItemTemplateManager, Name
 
 	// Cannon
 	Template.AddUpgradeAttachment('Reload', 'UIPawnLocation_WeaponUpgrade_Cannon_Mag', "LWCannon_LS.Meshes.SK_LaserCannon_Reload", "", 'Cannon_LS', , "img:///UILibrary_LW_LaserPack.LaserCannon_Reload", "img:///UILibrary_LW_LaserPack.Inv_LaserCannon_Reload", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip");
+
+	//SparkRifle
+	Template.AddUpgradeAttachment('AutoLoader', 'UIPawnLocation_WeaponUpgrade_Cannon_Mag', "IRI_Sparkgun_LS_LW.Meshes.SM_SparkRifle_LS_AutoLoader", "", 'SparkRifle_LS', , "img:///IRI_Sparkgun_LS_LW.UI.SPARK_Laser_autoloader", "img:///IRI_Sparkgun_LS_LW.UI.screen_autoloader", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip");
 }
 
 static function AddMissDamageUpgrade(X2ItemTemplateManager ItemTemplateManager, Name TemplateName)
@@ -241,6 +259,10 @@ static function AddMissDamageUpgrade(X2ItemTemplateManager ItemTemplateManager, 
 
 	// Cannon
 	Template.AddUpgradeAttachment('Stock', 'UIPawnLocation_WeaponUpgrade_Cannon_Stock', "LWCannon_LS.Meshes.SK_LaserCannon_Stock_B", "", 'Cannon_LS', , "img:///UILibrary_LW_LaserPack.LaserCannon_StockB", "img:///UILibrary_LW_LaserPack.Inv_LaserCannon_StockB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_stock");
+
+	//SparkRifle
+	Template.AddUpgradeAttachment('Stock', 'UIPawnLocation_WeaponUpgrade_Cannon_Stock', "IRI_Sparkgun_LS_LW.Meshes.SM_SparkRifle_LS_Stock", "", 'SparkRifle_LS', , "img:///IRI_Sparkgun_LS_LW.UI.SPARK_Laser_stock", "img:///IRI_Sparkgun_LS_LW.UI.screen_stock", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_stock");
+
 } 
 
 static function AddFreeKillUpgrade(X2ItemTemplateManager ItemTemplateManager, Name TemplateName)
@@ -269,4 +291,8 @@ static function AddFreeKillUpgrade(X2ItemTemplateManager ItemTemplateManager, Na
 	
 	// Cannon
 	Template.AddUpgradeAttachment('Suppressor', 'UIPawnLocation_WeaponUpgrade_Cannon_Suppressor', "LWCannon_LS.Meshes.SK_LaserCannon_Suppressor", "", 'Cannon_LS', , "img:///UILibrary_LW_LaserPack.LaserCannon_Suppressor", "img:///UILibrary_LW_LaserPack.Inv_LaserCannon_Suppressor", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_barrel");
+
+	//SparkRifle
+		Template.AddUpgradeAttachment('Suppressor', 'UIPawnLocation_WeaponUpgrade_Cannon_Suppressor', "IRI_Sparkgun_LS_LW.Meshes.SM_SparkRifle_LS_Suppressor", "", 'SparkRifle_LS', , "img:///IRI_Sparkgun_LS_LW.UI.SPARK_Laser_suppresso", "img:///IRI_Sparkgun_LS_LW.UI.screen_suppressor", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_barrel");
+
 } 

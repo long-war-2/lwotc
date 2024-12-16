@@ -7,9 +7,16 @@
 
 class CHItemSlot_PistolSlot_LW extends CHItemSlotSet config(LW_Overhaul);
 
+struct PistolSlotOverrideStruct
+{
+	var name ClassName;
+	var name AllowedWeaponCat;
+};
+
 var config bool DISABLE_LW_PISTOL_SLOT;
 var config array<name> EXCLUDE_FROM_PISTOL_SLOT_CLASSES;
 var config array<name> PISTOL_SLOT_WEAPON_CATS;
+var config array<PistolSlotOverrideStruct> PISTOL_CLASS_OVERRIDES;
 
 var const array<name> DEFAULT_ALLOWED_WEAPON_CATS;
 
@@ -71,7 +78,7 @@ static function SlotValidateLoadout(CHItemSlot Slot, XComGameState_Unit Unit, XC
 	}
 	else if (ItemState != none)
 	{
-		if (!IsWeaponAllowedInPistolSlot(X2WeaponTemplate(ItemState.GetMyTemplate())))
+		if (!IsWeaponAllowedInPistolSlot(X2WeaponTemplate(ItemState.GetMyTemplate()), Unit))
 		{
 			bShouldUnequip = true;
 		}
@@ -102,7 +109,7 @@ static function bool CanAddItemToPistolSlot(
 	WeaponTemplate = X2WeaponTemplate(Template);
 	if (WeaponTemplate != none && UnitState.GetItemInSlot(Slot.InvSlot, CheckGameState) == none)
 	{
-		return IsWeaponAllowedInPistolSlot(WeaponTemplate);
+		return IsWeaponAllowedInPistolSlot(WeaponTemplate, UnitState);
 	}
 	return false;
 }
@@ -133,7 +140,7 @@ static function bool ShowPistolItemInLockerList(
 	WeaponTemplate = X2WeaponTemplate(ItemTemplate);
 	if (WeaponTemplate != none)
 	{
-		return IsWeaponAllowedInPistolSlot(WeaponTemplate);
+		return IsWeaponAllowedInPistolSlot(WeaponTemplate, Unit);
 	}
 	return false;
 }
@@ -149,8 +156,38 @@ static function ECHSlotUnequipBehavior PistolGetUnequipBehavior(
 }
 
 // Determines whether the given weapon type is allowed in the pistol slot
-static function bool IsWeaponAllowedInPistolSlot(X2WeaponTemplate WeaponTemplate)
+static function bool IsWeaponAllowedInPistolSlot(X2WeaponTemplate WeaponTemplate, optional XCOmGameState_Unit UnitState)
 {
+	local array<PistolSlotOverrideStruct> arrOverrides;
+	local PistolSlotOverrideStruct Override;
+	local name UnitClassName;
+
+	// custom pistol slot class overrides array logic.
+	if(UnitState != none)
+	{
+		UnitClassName = UnitState.GetSoldierClassTemplateName();
+
+		foreach default.PISTOL_CLASS_OVERRIDES (Override)
+		{
+			if(Override.ClassName == UnitClassName)
+			{
+				arrOverrides.AddItem(Override);
+			}
+		}
+
+		if(arrOverrides.length > 0)
+		{
+			foreach arrOverrides (Override)
+			{
+				if(WeaponTemplate.WeaponCat == Override.AllowedWeaponCat)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+
+	}
 	// Check the config var for allowed weapon categories, but if that's empty,
 	// fall back to the default list.
 	return default.PISTOL_SLOT_WEAPON_CATS.Length > 0 ?

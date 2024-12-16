@@ -18,6 +18,9 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 	local X2WeaponTemplate			WeaponTemplate;
 	local int						Idx, InnerIdx, BonusAmmo;
 
+	if(SkipForDirectMissionTransfer(ApplyEffectParameters))
+		return;
+
 	History = `XCOMHISTORY;
 
 	UnitState = XComGameState_Unit(kNewTargetState);
@@ -59,6 +62,26 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 	}
 
 	super.OnEffectAdded(ApplyEffectParameters, kNewTargetState, NewGameState, NewEffectState);
+}
+
+static function bool SkipForDirectMissionTransfer(const out EffectAppliedData ApplyEffectParameters)
+{
+	local XComGameState_Ability AbilityState;
+	local XComGameStateHistory History;
+	local XComGameState_BattleData BattleData;
+	local int Priority;
+
+	History = `XCOMHISTORY;
+
+	BattleData = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
+	if (!BattleData.DirectTransferInfo.IsDirectMissionTransfer)
+		return false;
+
+	AbilityState = XComGameState_Ability(History.GetGameStateForObjectID(ApplyEffectParameters.AbilityStateObjectRef.ObjectID));
+	if (!AbilityState.IsAbilityTriggeredOnUnitPostBeginTacticalPlay(Priority))
+		return false;
+
+	return true;
 }
 
 

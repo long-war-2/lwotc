@@ -237,6 +237,14 @@ LocLongDescription="特殊ロケット弾を発射して効果範囲内にいる
 LocHelpText="ターゲットをスタンまたは混乱させ、煙雲を後に残す特殊ロケット弾。"
 LocPromotionPopupText="<Bullet/>ミッション中に1度しか使用できない。<br/><Bullet/>ターゲットの意志力スコアに応じてスタンまたは混乱効果が発生する。<br/><Bullet/>行動値1を消費し、使用した兵士のターンは終了となる。"
 
+[BlasterConcussionRocket X2AbilityTemplate]
+LocFriendlyName="コンカッションロケット"
+LocFlyOverText="コンカッションロケット"
+LocLongDescription="特殊ロケット弾を発射して効果範囲内にいる有機生命体に小ダメージを与え、一定確率でスタンまたは混乱状態にする。また、煙雲を後に残す。"
+LocHelpText="ターゲットをスタンまたは混乱させ、煙雲を後に残す特殊ロケット弾。"
+LocPromotionPopupText="<Bullet/>ミッション中に1度しか使用できない。<br/><Bullet/>ターゲットの意志力スコアに応じてスタンまたは混乱効果が発生する。<br/><Bullet/>行動値1を消費し、使用した兵士のターンは終了となる。"
+
+
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
 [CoupDeGrace X2AbilityTemplate]
@@ -296,6 +304,12 @@ LocLongDescription="グレネード専用スロットに入れたダメージの
 LocHelpText="グレネード専用スロットに入れたダメージの発生するグレネードに一つ分のボーナスを得る。"
 LocFlyOverText="重武装"
 LocPromotionPopupText="<Bullet/>重武装によって、ダメージの発生するグレネードはすべて使用可能になる。<br/>"
+
+[HeavyOrdnanceV2 X2AbilityTemplate]
+LocFriendlyName="重武装"
+LocLongDescription="グレネード専用スロットに入れたグレネードに一つ分のボーナスを得る。"
+LocHelpText="グレネード専用スロットに入れたグレネードに一つ分のボーナスを得る。"
+LocPromotionPopupText="<Bullet/>重武装はすべてのグレネードが可視化される（バトルスキャナーやスモークグレネードなどの非攻撃グレネードを含む）。<br/>"
 
 [Sapper X2AbilityTemplate]
 LocFriendlyName="サッパー"
@@ -2130,6 +2144,14 @@ ObjectiveTextPools[1]="すべての敵ターゲットを無力化する"
 ObjectiveTextPools[0]="コマンダーのアヴァターを守り抜く"
 ObjectiveTextPools[1]="アヴァターを破壊する"
 
+[DefaultAssaultFortressLeadup_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="コマンダーのアヴァターを守り抜く"
+ObjectiveTextPools[1]="すべての敵を無力化する"
+
+[DefaultDestroyAvatarProject_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="コマンダーのアヴァターを守り抜く"
+ObjectiveTextPools[1]="アヴァターを破壊する"
+
 [DefaultSabotage_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="X4を仕掛けてエイリアンの施設を破壊する"
 ObjectiveTextPools[1]="XCOM兵を全員撤収させる"
@@ -2485,6 +2507,13 @@ PostMissionType="エイリアンの要塞を強襲する"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
 ObjectiveTextPools[0]="アヴァター指令を壊滅させる"
 
+[DestroyAvatarProject_LW X2MissionTemplate]
+DisplayName="アヴァター計画を阻止する"
+Briefing="アヴァター計画を阻止する"
+PostMissionType="アヴァター計画を阻止する"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
+ObjectiveTextPools[0]="アヴァター計画を阻止する"
+
 [SecureUFO_LW X2MissionTemplate]
 DisplayName="動作不能となったUFOを確保せよ"
 Briefing="動作不能となったUFOを確保せよ"
@@ -2813,6 +2842,10 @@ BonusEmptyText="兵士の回復速度が上昇する。"
 BonusText="回復速度+%AVENGERBONUS%"
 FilledText="%UNITNAMEの先進医療装備により、兵士の回復速度が向上する。"
 LockedText="ロック中：アップグレードを購入する"
+
+[CovertActionIntenseTrainingStaffSlot X2StaffSlotTemplate]
+EmptyText="兵士"
+BonusText="秘密工作中"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Techs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -4819,3 +4852,9 @@ LocFriendlyName="ノヴァ"
 LocLongDescription="エネルギーを爆発的に放出して、近くにいるすべてのユニットにダメージを与える。行動値は消費せず、クールダウン時間も発生しないが、初撃以降はノヴァを使用するたびにSPARKがダメージを受ける。"
 LocHelpText="すべてのユニットに爆発でダメージを与える。初撃以降はノヴァを使用するたびにSPARKがダメージを受ける。"
 LocPromotionPopupText="<Bullet/>ノヴァは行動値を消費せず、クールダウンもない。<br/><Bullet/> ミッション最初のノヴァ攻撃では、SPARKはダメージを受けない。<br/><Bullet/>ただし、初撃以降のノヴァ攻撃はSPARKに<Ability:Nova_Damage/>の蓄積ダメージを与えていく。<br/>"
+
+;Marauder
+[SkirmisherStrike X2AbilityTemplate]
+LocLongDescription="最初の行動でメイン武器による通常射撃を行ってもターン終了とならない。"
+LocHelpText="最初の行動でメイン武器による通常射撃を行ってもターン終了とならない。"
+LocPromotionPopupText=""

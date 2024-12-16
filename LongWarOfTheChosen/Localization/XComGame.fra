@@ -161,11 +161,11 @@ LocPromotionPopupText="<Bullet/> Le lance-flammes est une arme à courte portée
 
 [LWRocketLauncher X2AbilityTemplate]
 LocFriendlyName="Lance-roquettes"
-LocHelpText="Tir de roquette sur la zone ciblée. <Ability:ROCKETSCATTER/>"
+LocHelpText="Tir de roquette sur la zone ciblée.<Ability:ROCKETSCATTER/>"
 
 [LWBlasterLauncher X2AbilityTemplate]
 LocFriendlyName="Missile nucléaire"
-LocHelpText="Tir de missile nucléaire sur la zone ciblée. <Ability:ROCKETSCATTER/>"
+LocHelpText="Tir de missile nucléaire sur la zone ciblée.<Ability:ROCKETSCATTER/>"
 
 [NapalmX X2AbilityTemplate]
 LocFriendlyName="Napalm-X"
@@ -265,7 +265,7 @@ LocPromotionPopupText="<Bullet/> La portée de vos roquettes augmente de 6 cases
 [BunkerBuster X2AbilityTemplate]
 LocFriendlyName="Destruction"
 LocFlyOverText="Destruction"
-LocHelpText="Tire une roquette spéciale qui détruit les bâtiments et d'autres éléments de l'environnement. <Ability:ROCKETSCATTER/>"
+LocHelpText="Tire une roquette spéciale qui détruit les bâtiments et d'autres éléments de l'environnement."
 LocLongDescription="Tire une roquette spéciale qui détruit les bâtiments et d'autres éléments de l'environnement."
 LocPromotionPopupText="<Bullet/> Tire une roquette spéciale avec une large zone d'effet qui inflige des dégâts moyens aux ennemis, mais cause de gros dégâts aux bâtiments, aux véhicules et à d'autres éléments de l'environnement.<br/><Bullet/> Coûte 2 actions et ne peut être utilisée qu'une seule fois par mission.<br/>"
 
@@ -284,6 +284,15 @@ LocLongDescription="Tire une roquette spéciale qui inflige des dégâts limité
 LocHelpText="Roquette spéciale qui étourdit ou désoriente les cibles et libère un nuage de fumée. <Ability:ROCKETSCATTER/>"
 LocPromotionPopupText="<Bullet/> Utilisable une seule fois par mission.<br/><Bullet/> Les chances d'étourdissement ou de désorientation dépendent de la volonté de la cible et du modèle de gantelet utilisé.<br/><Bullet/> Coûte 1 action et met fin à votre tour.<br/><Bullet/> Les codex d'élite et les zombies psis ne sont pas blessés par cette attaque et sont immunisés contre ses effets.<br/>"
 ; End translated (2)
+
+[BlasterConcussionRocket X2AbilityTemplate]
+LocFriendlyName="Roquette désorientante"
+LocFlyOverText="Roquette désorientante"
+LocLongDescription="Tire une roquette spéciale qui inflige des dégâts limités et libère un nuage de fumée. Peut étourdir ou désorienter les cibles organiques prises dans sa zone d'effet."
+LocHelpText="Roquette spéciale qui étourdit ou désoriente les cibles et libère un nuage de fumée. <Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> Utilisable une seule fois par mission.<br/><Bullet/> Les chances d'étourdissement ou de désorientation dépendent de la volonté de la cible et du modèle de gantelet utilisé.<br/><Bullet/> Coûte 1 action et met fin à votre tour.<br/><Bullet/> Les codex d'élite et les zombies psis ne sont pas blessés par cette attaque et sont immunisés contre ses effets.<br/>"
+; End translated (2)
+
 
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -378,6 +387,12 @@ LocLongDescription="Toute grenade offensive équipée à l'emplacement de grenad
 LocHelpText="Toute grenade offensive équipée à l'emplacement de grenade reçoit une utilisation bonus."
 LocFlyOverText="Munitions lourdes"
 LocPromotionPopupText="<Bullet/> Toutes les grenades faisant des dégâts sont disponibles pour la capacité Munitions lourdes.<br/>"
+
+[HeavyOrdnanceV2 X2AbilityTemplate]
+LocFriendlyName="Munitions lourdes"
+LocLongDescription="Utilisation supplémentaire d'une grenade à l'emplacement réservé aux grenades."
+LocHelpText="Utilisation supplémentaire d'une grenade à l'emplacement réservé aux grenades."
+LocPromotionPopupText="<Bullet/> Toutes les grenades sont disponibles pour la capacité Munitions lourdes, comme les détecteurs et les grenades fumigènes.<br/>"
 
 [Sapper X2AbilityTemplate]
 LocFriendlyName="Ravage"
@@ -2476,6 +2491,14 @@ ObjectiveTextPools[1]="Neutraliser toutes les cibles ennemies"
 ObjectiveTextPools[0]="L'Avatar du commandant doit survivre !"
 ObjectiveTextPools[1]="Détruire les Avatars"
 
+[DefaultAssaultFortressLeadup_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="L'Avatar du commandant doit survivre !"
+ObjectiveTextPools[1]="Neutraliser toutes les cibles ennemies"
+
+[DefaultDestroyAvatarProject_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="L'Avatar du commandant doit survivre !"
+ObjectiveTextPools[1]="Détruire les Avatars"
+
 [DefaultSabotage_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Poser du X4 pour détruire l'installation extraterrestre"
 ObjectiveTextPools[1]="Évacuer tous les soldats d'XCOM"
@@ -2842,6 +2865,13 @@ PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.support.T_Support_Broadcast
 DisplayName="Attaquer la forteresse extraterrestre"
 Briefing="Attaquer la forteresse extraterrestre"
 PostMissionType="Attaquer la forteresse extraterrestre"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
+ObjectiveTextPools[0]="Détruire la directive Avatar"
+
+[DestroyAvatarProject_LW X2MissionTemplate]
+DisplayName="Détruire le projet Avatar"
+Briefing="Détruire le projet Avatar"
+PostMissionType="Détruire le projet Avatar"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
 ObjectiveTextPools[0]="Détruire la directive Avatar"
 
@@ -3230,6 +3260,10 @@ BonusEmptyText="Accélère la vitesse de guérison des soldats"
 BonusText="VITESSE DE GUÉRISON +%AVENGERBONUS%"
 FilledText="L'équipement médical avancé de %UNITNAME augmente la vitesse de récupération des soldats blessés."
 LockedText="VERROUILLÉ: ACHETER AMÉLIORATION"
+
+[CovertActionIntenseTrainingStaffSlot X2StaffSlotTemplate]
+EmptyText="SOLDAT"
+BonusText="EN MISSION SECRÈTE"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Techs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -5669,6 +5703,10 @@ LocLongDescription="Lorsque vous réalisez un coup critique avec un tir ou une c
 [LocationScout X2SitRepTemplate]
 Description="La résistance a placé des détecteurs de mouvement à courte portée qui quadrillent toute la zone d'opération. Vos soldats seront capables de détecter les unités ennemies qui ne sont pas dans leur champ de vision."
 
+[SlightlyLargeMap X2SitRepTemplate]
+FriendlyName="Grande carte"
+Description="La zone d'opération est plus vaste que celles des autres missions, et il vous faudra sans doute plus de temps pour vous frayer un chemin jusqu'à votre objectif."
+
 ; LWOTC translated (2)
 [LargeMap X2SitRepTemplate]
 FriendlyName="Grande carte"
@@ -5996,7 +6034,7 @@ strCharacterName="Ombre brutale"
 [TheLostBruteHP16_LW X2CharacterTemplate]
 strCharacterName="Ombre brutale"
 
-[LWTheLostBruteHP18 X2CharacterTemplate]
+[TheLostBruteHP18_LW X2CharacterTemplate]
 strCharacterName="Ombre brutale"
 
 [TheLostBruteHP21_LW X2CharacterTemplate]
@@ -6043,6 +6081,15 @@ LocHelpText="Les écorchures que vous infligez sont automatiquement converties e
 LocPromotionPopupText="<Bullet/> Les attaques qui devraient écorcher vos cibles sont automatiquement converties en attaques réussies.<br/><Bullet/> S'applique aux armes principales, aux armes secondaires et aux pistolets.<br/>"
 
 [LikeLightning_LW X2AbilityTemplate]
+LocFriendlyName="Dynamo"
+LocFlyOverText="Dynamo"
+; LWOTC translated (2)
+LocLongDescription="Lorsque la capacité Course et tir est activée, le temps de rechargement de votre électro flux est immédiatement réinitialisé à 0."
+LocHelpText="Lorsque la capacité Course et tir est activée, le temps de rechargement de votre électro flux est immédiatement réinitialisé à 0."
+LocPromotionPopupText="<Bullet/> Lorsque la capacité Course et tir est activée, le temps de rechargement de votre électro flux est immédiatement réinitialisé à 0.<br/><Bullet/> Ne s'applique pas à la capacité Foudroiement.<br/>"
+; End translated (2)
+
+[LikeLightningPassive_LW X2AbilityTemplate]
 LocFriendlyName="Dynamo"
 LocFlyOverText="Dynamo"
 ; LWOTC translated (2)
@@ -6108,9 +6155,9 @@ LocPromotionPopupText="<Bullet/> Si vous éliminez au moins un ennemi pendant vo
 [Dedication_LW X2AbilityTemplate]
 LocFriendlyName="Célérité"
 LocFlyOverText="Célérité"
-LocLongDescription="Action gratuite. Jusqu'à la fin du tour, vous gagnez un bonus de +<Ability:DEDICATION_MOBILITY/> en mobilité et vous ne déclenchez pas les tirs en mode Vigilance ou les tirs réflexes. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
-LocHelpText="Action gratuite. Jusqu'à la fin du tour, vous gagnez un bonus de +<Ability:DEDICATION_MOBILITY/> en mobilité et vous ne déclenchez pas les tirs en mode Vigilance ou les tirs réflexes. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
-LocPromotionPopupText="<Bullet/> Action gratuite. Jusqu'à la fin du tour, vous gagnez un bonus de +<Ability:DEDICATION_MOBILITY/> en mobilité et vous ne déclenchez pas les tirs en mode Vigilance ou les tirs réflexes. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/>"
+LocLongDescription="Action gratuite. Jusqu'à la fin du tour, vous gagnez un bonus de +<Ability:DEDICATIONLW_MOBILITY/> en mobilité et vous ne déclenchez pas les tirs en mode Vigilance ou les tirs réflexes. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+LocHelpText="Action gratuite. Jusqu'à la fin du tour, vous gagnez un bonus de +<Ability:DEDICATIONLW_MOBILITY/> en mobilité et vous ne déclenchez pas les tirs en mode Vigilance ou les tirs réflexes. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+LocPromotionPopupText="<Bullet/> Action gratuite. Jusqu'à la fin du tour, vous gagnez un bonus de +<Ability:DEDICATIONLW_MOBILITY/> en mobilité et vous ne déclenchez pas les tirs en mode Vigilance ou les tirs réflexes. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/>"
 
 [Corpsman_LW X2AbilityTemplate]
 LocFriendlyName="Doc Morbide"
@@ -6359,6 +6406,14 @@ LocLongDescription = "Éliminer une unité vous confère un bonus cumulatif de +
 LocPromotionPopupText = "<Bullet/>Éliminer une unité vous confère un bonus cumulatif de +<Ability:DISASSEMBLY_HACK/> en piratage durant 3 tours.<br/>"
 
 [LightningSlash_LW X2AbilityTemplate]
+LocFriendlyName="Iaijutsu"
+; LWOTC translated (3)
+LocLongDescription="Attaquez un ennemi à portée de déplacement bleu avec votre <Ability:BOUND_WEAPON_NAME/>. Cette attaque ne met pas fin à votre tour."
+LocHelpText="Attaquez un ennemi à portée de déplacement bleu avec votre <Ability:BOUND_WEAPON_NAME/>. Cette attaque ne met pas fin à votre tour."
+LocPromotionPopupText="<Bullet/> Attaquez un ennemi à portée de déplacement bleu avec votre <Ability:BOUND_WEAPON_NAME/>. Cette attaque ne met pas fin à votre tour.<br/> <Bullet/> Temps de rechargement de <Ability:LIGHTNINGSLASH_COOLDOWN/> tour(s).<br/>"
+; End translated (3)
+
+[LightningSlashLastAction_LW X2AbilityTemplate]
 LocFriendlyName="Iaijutsu"
 ; LWOTC translated (3)
 LocLongDescription="Attaquez un ennemi à portée de déplacement bleu avec votre <Ability:BOUND_WEAPON_NAME/>. Cette attaque ne met pas fin à votre tour."
@@ -7275,6 +7330,14 @@ LocFriendlyName="Nova"
 LocLongDescription="Relâche une explosion énergétique blessant toutes les unités à proximité. Ne coûte aucun point d'action et n'a pas besoin d'être rechargée, mais les Novas suivantes endommageront le Spark."
 LocHelpText="Explose en blessant toutes les unités à proximité. Les Novas suivantes endommageront le Spark."
 LocPromotionPopupText="<Bullet/> La capacité Nova ne consomme pas de point d'action et n'a pas besoin de se recharger. <br/><Bullet/> La première Nova de chaque mission ne fait perdre aucun PV au Spark. <br/><Bullet/> Toutes les Novas suivantes font systématiquement perdre <Ability:Nova_Damage/> PV au Spark (effet cumulatif). <br/>"
+
+;Marauder
+[SkirmisherStrike X2AbilityTemplate]
+; LWOTC translated
+LocLongDescription="Un tir standard avec votre arme principale ne met plus fin à votre tour."
+LocHelpText="Un tir standard avec votre arme principale ne met plus fin à votre tour."
+LocPromotionPopupText=""
+; End translated
 
 ;;;;;;;;;;;;;;;;;;;;  SPECIFICITES FRA ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; LWotC(FRA) - Was here before, can't say if I've to delete it

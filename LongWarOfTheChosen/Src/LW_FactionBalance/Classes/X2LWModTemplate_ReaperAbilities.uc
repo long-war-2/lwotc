@@ -177,7 +177,7 @@ static function X2Effect_PersistentStatChange CreateTemporaryShadowEffect()
 	return StealthyEffect;
 }
 
-static function EnterSuperConcealment(X2Effect_Persistent PersistentEffect, const out EffectAppliedData ApplyEffectParameters, XComGameState_BaseObject kNewTargetState, XComGameState NewGameState)
+static final function EnterSuperConcealment(X2Effect_Persistent PersistentEffect, const out EffectAppliedData ApplyEffectParameters, XComGameState_BaseObject kNewTargetState, XComGameState NewGameState)
 {
 	local XComGameState_Unit UnitState;
 	local XComGameState_Ability ShadowAbility;
@@ -211,7 +211,7 @@ static function EnterSuperConcealment(X2Effect_Persistent PersistentEffect, cons
 	ShadowAbility.iCooldown -= 1;
 }
 
-static function ShadowExpired(
+static final function ShadowExpired(
 	X2Effect_Persistent PersistentEffect,
 	const out EffectAppliedData ApplyEffectParameters,
 	XComGameState NewGameState,
@@ -226,7 +226,7 @@ static function ShadowExpired(
 	`XEVENTMGR.TriggerEvent('EffectBreakUnitConcealment', UnitState, UnitState, NewGameState);
 }
 
-static function VisualizeShadowExpired(
+static final function VisualizeShadowExpired(
 	XComGameState VisualizeGameState,
 	out VisualizationActionMetadata ActionMetadata,
 	const name EffectApplyResult)

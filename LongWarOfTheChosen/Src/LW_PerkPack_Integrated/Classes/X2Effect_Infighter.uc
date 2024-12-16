@@ -14,11 +14,11 @@ function GetToHitAsTargetModifiers(XComGameState_Effect EffectState, XComGameSta
     local ShotModifierInfo				ShotInfo;
 	local int							Tiles;
 
-	if (Target.IsImpaired(false) || Target.IsPanicked())
+	if (Target.IsImpaired(false) || Target.IsPanicked() || Target.IsBurning())
 		return;
 
 	Tiles = Attacker.TileDistanceBetween(Target);       
-	if (Tiles <= default.INFIGHTER_MAX_TILES - 1)
+	if (Tiles <= default.INFIGHTER_MAX_TILES - 1 || bMelee)
 	{
 		ShotInfo.ModType = eHit_Graze;
 		ShotInfo.Reason = FriendlyName;

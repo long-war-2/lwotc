@@ -124,13 +124,14 @@ function Update(float DeltaTime)
 	local array<TTile> Tiles;
 
 	NewTargetLocation = GetSplashRadiusCenter();
+	NewTargetLocation.Z += class'XComWorldData'.const.WORLD_HalfFloorHeight;
 
 	if(NewTargetLocation != CachedTargetLocation)
 	{		
 		World = `XWORLD;
 		GoodView = false;
 		FiringUnitLocation = FiringUnit.Location;
-		FiringUnitLocation.Z += World.WORLD_HalfFloorHeight;
+		FiringUnitLocation.Z += class'XComWorldData'.const.WORLD_FloorHeight;
 		if (World.VoxelRaytrace_Locations(FiringUnitLocation, NewTargetLocation, Raytrace))
 		{
 			BlockedPosition = Raytrace.TraceBlocked;

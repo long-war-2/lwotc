@@ -104,7 +104,7 @@ ShortNames[8]="Tpr."
 
 ; LWOTC Needs Translation
 +AbilityTreeTitles[0]="Future Combat"
-+AbilityTreeTitles[1]=""
++AbilityTreeTitles[1]="Mechanical Superiority"
 +AbilityTreeTitles[2]="War Machine"
 +AbilityTreeTitles[3]="XCOM"
 ; End Translation
@@ -142,6 +142,12 @@ LocLongDescription="Fire your pistol at a target. This attack does not cost an a
 LocHelpText="Fire your pistol at a target. This attack does not cost an action."
 LocPromotionPopupText="<Bullet/> Lightning Hands can combo well with other <Ability:ClassName/> abilities, as it does not prevent the use of other abilities in the same turn.<br/><Bullet/> Lightning Hands has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
+[MedicalProtocol X2AbilityTemplate]
+LocFriendlyName="Medical Protocol"
+LocLongDescription="The GREMLIN can perform healing actions remotely: GREMLIN Heal and GREMLIN Stabilize. The GREMLIN has a single charge. If a medikit is equipped, the GREMLIN will gain 3 additional charges."
+LocHelpText="The GREMLIN now performs healing actions: GREMLIN Heal and GREMLIN Stabilize."
+LocFlyOverText="Medical Protocol"
+LocPromotionPopupText="<Bullet/> Upgrading your GREMLIN will lead to more HP healed per charge.<br/><Bullet/> GREMLIN Heal or GREMLIN Stabilize, when used as your first action, will not end your turn.<br/>"
 
 
 
@@ -163,19 +169,19 @@ LocPromotionPopupText="<Bullet/> The flamethrower is a short-range weapon that c
 
 [LWRocketLauncher X2AbilityTemplate]
 LocFriendlyName="Rocket Launcher"
-LocHelpText="Fire a rocket at target area. <Ability:ROCKETSCATTER/>"
+LocHelpText="Fire a rocket at target area.<Ability:ROCKETSCATTER/>"
 
 [LWBlasterLauncher X2AbilityTemplate]
 LocFriendlyName="Blaster Bomb"
-LocHelpText="Fire a guided Blaster Bomb at a target area. <Ability:ROCKETSCATTER/>"
+LocHelpText="Fire a guided Blaster Bomb at a target area.<Ability:ROCKETSCATTER/>"
 
 [NapalmX X2AbilityTemplate]
 LocFriendlyName="Napalm-X"
 LocFlyOverText="Napalm-X"
 ; LWOTC Needs Translation (3)
-LocLongDescription="Your Flamethrower can now panic enemies."
-LocHelpText="Your Flamethrower can now panic enemies."
-LocPromotionPopupText="<Bullet/> Your Flamethrower can now panic enemies. Enemy units must pass a will check to avoid negative effects.<br/><Bullet/> The chance to panic is <Ability:NAPALM_X_BASEVALUE>% + <Ability:GAUNTLET_CONVENTIONAL_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_MAG_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_BEAM_OPPOSED_STAT_STRENTH>%, depending on soldier's gauntlet tier, and is negatively affected by target's Will score.<br/><Bullet/> Enemies hit by Roust are not affected by Napalm-X."
+LocLongDescription="Your Flamethrower can now panic enemies, and enemies set on fire take 1 additional damage per tick."
+LocHelpText="Your Flamethrower can now panic enemies, and enemies set on fire take 1 additional damage per tick."
+LocPromotionPopupText="<Bullet/> Your Flamethrower can now panic enemies. Enemy units must pass a will check to avoid negative effects.<br/><Bullet/> The chance to panic is <Ability:NAPALM_X_BASEVALUE>% + <Ability:GAUNTLET_CONVENTIONAL_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_MAG_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_BEAM_OPPOSED_STAT_STRENTH>%, depending on soldier's gauntlet tier, and is negatively affected by target's Will score."
 ; End Translation (3)
 
 [PhosphorusPassive X2AbilityTemplate]
@@ -261,9 +267,54 @@ LocPromotionPopupText="<Bullet/> You equip one additional rocket.<br/>"
 [FireInTheHole X2AbilityTemplate]
 LocFriendlyName="Fire In The Hole"
 LocFlyOverText="Fire In The Hole"
-LocLongDescription="Your rockets are more accurate."
-LocHelpText="Your rockets are more accurate."
-LocPromotionPopupText="<Bullet/> Your rockets are more likely to hit their intended point of impact, or at least close to it.<br/><Bullet/> The maximum it can miss by is reduced by two tiles."
+LocLongDescription="Your rockets are more accurate, and gauntlet rockets deal +2 damage."
+LocHelpText="Your rockets are more accurate, and gauntlet rockets deal +2 damage."
+LocPromotionPopupText="<Bullet/> Your rockets are more likely to hit their intended point of impact, or at least close to it.<br/><Bullet/> The maximum it can miss by is reduced by two tiles.<br/><Bullet/> Any rocket ability that is affected by Javelin Rockets will gain the bonus damage."
+
+[ImprovedMunitions_LW X2AbilityTemplate]
+LocFriendlyName="Improved Warheads"
+LocFlyOverText="Improved Warheads"
+LocLongDescription="Your standard rockets deal +2 damage and can set the environment on fire."
+LocHelpText="Your standard rockets deal +2 damage and can set the environment on fire."
+LocPromotionPopupText="<Bullet/> Your standard rockets deal +2 damage and can set the environment on fire.<br/><Bullet/> The damage boost does not apply to special rocket abilities.<br/><Bullet/> Adds 3 environment damage."
+
+[ConcussionWarheads_LW X2AbilityTemplate]
+LocFriendlyName="Concussion Warheads"
+LocFlyOverText="Concussion Warheads"
+LocLongDescription="Your rockets have 20% chance to stun targets and deal additional environmental damage."
+LocHelpText="Your rockets have 20% chance to stun targets and deal additional environmental damage."
+LocPromotionPopupText="<Bullet/> Your rockets have 20% chance to stun targets.<br/><Bullet/> Increases environmental damage by +7."
+
+[ShredderRocket_LW X2AbilityTemplate]
+LocFriendlyName="Shredder Rocket"
+LocFlyOverText="Shredder Rocket"
+LocLongDescription="Fire a special rocket which shreds and ruptures targets in a small area."
+LocHelpText="Fire a special rocket which shreds and ruptures targets in a small area.<Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> This rocket shreds 3/4/5 points of armor and applies 1/2/3 point of Rupture depending on gauntlet tier.<br/><Bullet/> The rocket has the same area of effect as a Frag Grenade."
+
+[EMPRocket_LW X2AbilityTemplate]
+LocFriendlyName="EMP Rocket"
+LocFlyOverText="EMP Rocket"
+LocLongDescription="Fire a special rocket which deals a small amount of damage but shuts down all robotic units for a turn."
+LocHelpText="Fire a special rocket which deals a small amount of damage but shuts down all robotic units for a turn.<Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> This rocket deals 1-2/2-3/3-4 damage depending on gauntlet tier and stuns robots for 2 AP.<br/><Bullet/> The rocket has a 5 tile AOE diameter."
+
+[BlasterShredderRocket_LW X2AbilityTemplate]
+LocFriendlyName="Shredder Rocket"
+LocFlyOverText="Shredder Rocket"
+LocLongDescription="Fire a special rocket which shreds and ruptures targets in a small area."
+LocHelpText="Fire a special rocket which shreds and ruptures targets in a small area.<Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> This rocket shreds 3/4/5 points of armor and applies 1/2/3 point of Rupture depending on gauntlet tier.<br/><Bullet/> The rocket has the same area of effect as a Frag Grenade."
+
+[BlasterEMPRocket_LW X2AbilityTemplate]
+LocFriendlyName="EMP Rocket"
+LocFlyOverText="EMP Rocket"
+LocLongDescription="Fire a special rocket which deals a small amount of damage but shuts down all robotic units for a turn."
+LocHelpText="Fire a special rocket which deals a small amount of damage but shuts down all robotic units for a turn.<Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> This rocket deals 1-2/2-3/3-4 damage depending on gauntlet tier and stuns robots for 2 AP.<br/><Bullet/> The rocket has a 5 tile AOE diameter."
+
+
+
 
 [JavelinRockets X2AbilityTemplate]
 LocFriendlyName="Javelin Rockets"
@@ -275,7 +326,7 @@ LocPromotionPopupText="<Bullet/> The range of your rockets is increased by 6 til
 [BunkerBuster X2AbilityTemplate]
 LocFriendlyName="Bunker Buster"
 LocFlyOverText="Bunker Buster"
-LocHelpText="Fire a Bunker Buster. <Ability:ROCKETSCATTER/>"
+LocHelpText="Fire a Bunker Buster."
 LocLongDescription="Fire a special rocket that destroys buildings and other objects in the environment."
 LocPromotionPopupText="<Bullet/> Fire a special rocket with a large area of effect that does moderate damage to enemies but huge damage to buildings, vehicles and other objects in the environment.<br/><Bullet/> Requires both actions and usable only once per mission.<br/>"
 
@@ -290,9 +341,17 @@ LocPromotionPopupText="<Bullet/> Attacks with your gauntlet, and fires set by ga
 [ConcussionRocket X2AbilityTemplate]
 LocFriendlyName="Concussion Rocket"
 LocFlyOverText="Concussion Rocket"
-LocLongDescription="Fire a special rocket that does limited damage but has a chance to stun or disorient organic enemies within its area of effect."
-LocHelpText="Rocket that stuns or disorients targets. <Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> One use per mission.<br/><Bullet/> Stun chance is 20% .<br/><Bullet/> Disorientation chance is 100% and bypasses disorient resist (but not immunity).<br/><Bullet/> Requires one action and ends the soldier's turn.<br/><Bullet/> Elite Codexes and Psi Zombies are immune to all effects including damage.<br/><Bullet/> Allies cannot be injured by this attack.<br/>"
+LocLongDescription="Fire a special rocket that deals low damage but impairs organic enemies within its area of effect."
+LocHelpText="Fire a rocket that always disorients organic enemies. It also has a <Ability:CONCUSSION_ROCKET_STUN_CHANCE>% chance to stun them. <Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> Deals 2/3/4 damage depending on gauntlet tier.<br/><Bullet/> Always disorients organic targets. Additionally, each organic target has a <Ability:CONCUSSION_ROCKET_STUN_CHANCE>% chance to be stunned instead.<br/><Bullet/> Requires one action and ends the soldier's turn.<br/><Bullet/> One use per mission.<br/>"
+; End Translation (4)
+
+[BlasterConcussionRocket X2AbilityTemplate]
+LocFriendlyName="Concussion Rocket"
+LocFlyOverText="Concussion Rocket"
+LocLongDescription="Fire a special rocket that deals low damage but impairs organic enemies within its area of effect."
+LocHelpText="Fire a rocket that always disorients organic enemies. It also has a <Ability:CONCUSSION_ROCKET_STUN_CHANCE>% chance to stun them. <Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> Deals 2/3/4 damage.<br/><Bullet/> Always disorients organic targets. Additionally, each organic target has a <Ability:CONCUSSION_ROCKET_STUN_CHANCE>% chance to be stunned instead.<br/><Bullet/> Requires one action and ends the soldier's turn.<br/><Bullet/> One use per mission.<br/>"
 ; End Translation (4)
 
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
@@ -310,7 +369,7 @@ LocFriendlyName="Coup de Grâce"
 LocFlyOverText="Coup de Grâce"
 LocLongDescription="Bonus to hit, damage, and critical chance with your <Ability:BOUND_WEAPON_NAME/> against a disoriented, stunned or panicking enemy."
 LocHelpText="Bonus to hit, damage, and critical chance with your <Ability:BOUND_WEAPON_NAME/> against a disoriented, stunned, or panicking enemy."
-LocPromotionPopupText="<Bullet/> Coup de Grâce grants +50 aim, +50 critical chance and +2 damage against stunned and panicking enemies.<br/><Bullet/> The bonuses are reduced against disoriented enemies."
+LocPromotionPopupText="<Bullet/> Coup de Grâce grants +50 aim, +50 critical chance and +2 damage against stunned and panicking enemies.<br/><Bullet/> Coup de Grâce grants +25 aim, +25 critical chance and +1 damage against disoriented enemies."
 ; End Translation (2)
 
 [Tradecraft X2AbilityTemplate]
@@ -324,8 +383,8 @@ LocPromotionPopupText="<Bullet/> This soldier has significantly reduced infiltra
 
 [Failsafe X2AbilityTemplate]
 LocFriendlyName="Failsafe"
-LocLongDescription="If you fail a hack, you prevent any negative effects from occurring."
-LocHelpText="If you fail a hack, you prevent any negative effects from occurring."
+LocLongDescription="If you fail a hack, you prevent any negative effects from occurring and gain 1 AP back."
+LocHelpText="If you fail a hack, you prevent any negative effects from occurring and gain 1 AP back."
 LocFlyOverText="Failsafe"
 LocPromotionPopupText="<Bullet/> Negative effects prevented by Failsafe include losing squad concealment."
 
@@ -389,6 +448,13 @@ LocHelpText="Any damaging grenade in your grenade-only slot gains a bonus use."
 LocFlyOverText="Heavy Ordnance"
 LocPromotionPopupText="<Bullet/> All damaging grenades are viable for Heavy Ordnance.<br/>"
 
+[HeavyOrdnanceV2 X2AbilityTemplate]
+LocFriendlyName="Heavy Ordnance"
+LocLongDescription="The grenade in your grenade-only slot gains a bonus use."
+LocHelpText="The grenade in your grenade-only slot gains a bonus use."
+LocPromotionPopupText="<Bullet/> All grenades are viable for Heavy Ordnance, even non-offensive grenades like Battle Scanners and Smoke Grenades.<br/>"
+
+
 [Sapper X2AbilityTemplate]
 LocFriendlyName="Sapper"
 LocLongDescription="Your explosives can destroy many cover objects."
@@ -409,7 +475,7 @@ LocFriendlyName="Needle Grenades"
 LocLongDescription="Your explosives do not destroy loot when they kill enemies and deal <ABILITY:NEEDLE_BONUS_UNARMORED_DMG_LW/> bonus damage to unarmored enemies."
 LocHelpText="Your explosives do not destroy loot when they kill enemies and deal <ABILITY:NEEDLE_BONUS_UNARMORED_DMG_LW/> bonus damage to unarmored enemies."
 LocFlyOverText="Needle Grenades"
-LocPromotionPopupText="<Bullet/> You have received extra training that enables you to employ explosive grenades that deploy specialized slivers that leave enemy loot and corpse intact and tears through unreinforced material.<br/><Bullet/> Loot and corpses of enemies killed by any other explosives of this soldier, such as heavy weapons, are also preserved."
+LocPromotionPopupText="<Bullet/> You have received extra training that enables you to employ explosive grenades that deploy specialized slivers that leave enemy loot and corpse intact and tears through unreinforced material.<br/><Bullet/> Loot and corpses of enemies killed by any other explosives of this soldier, such as heavy weapons, are also preserved.<br/><Bullet/> Needle Grenades applies to both Gauntlet rockets and flamethrower."
 ; End Translation (2)
 
 [HEATWarheads X2AbilityTemplate]
@@ -419,6 +485,15 @@ LocLongDescription="Your grenades now pierce up to <ABILITY:HEAT_WARHEADS_PIERCE
 LocHelpText="Your grenades now pierce up to <ABILITY:HEAT_WARHEADS_PIERCE_LW/> point(s) of armor and shred <ABILITY:HEAT_WARHEADS_SHRED_LW/> additional point(s) of armor."
 LocFlyOverText="HEAT Warheads"
 LocPromotionPopupText="<Bullet/> Grenades that do not innately shred any armor do not benefit from the additional shred."
+; End Translation
+
+[TandemHEATWarheads X2AbilityTemplate]
+LocFriendlyName="Tandem HEAT Warheads"
+; LWOTC Needs Translation
+LocLongDescription="Your grenades now pierce up to <ABILITY:TANDEMHEAT_WARHEADS_PIERCE_LW/> point(s) of armor, shred <ABILITY:TANDEMHEAT_WARHEADS_SHRED_LW/> additional point(s) of armor, and do full damage to units to the maximum extent of their area of effect."
+LocHelpText="Your grenades now pierce up to <ABILITY:TANDEMHEAT_WARHEADS_PIERCE_LW/> point(s) of armor, shred <ABILITY:TANDEMHEAT_WARHEADS_SHRED_LW/> additional point(s) of armor, and do full damage to units to the maximum extent of their area of effect."
+LocFlyOverText="HEAT Warheads"
+LocPromotionPopupText="<Bullet/> Grenades that do not innately shred any armor do not benefit from the additional shred. Damage increase does not apply to Environmental damage."
 ; End Translation
 
 [Bombard_LW X2AbilityTemplate]
@@ -470,6 +545,20 @@ LocFlyOverText="Biggest Booms"
 LocPromotionPopupText="<Bullet/> Grenades, standard rockets, and MEC micromissiles can inflict critical damage (<Ability:BIGGESTBOOMSCHANCE/>% chance for +<Ability:BIGGESTBOOMSDAMAGE/> damage).<br/><Bullet/> <Ability:BIGGESTBOOMSCHANCE/>% chance for critical damage is not affected by other critical chance modifiers.<br/><Bullet/> Does not apply to non-damaging grenades or the concussion rocket or Bunker Buster abilities.<br/><Bullet/> Grenade crits will grant +1 damage to ongoing damaging effects such as fire."
 ; End Translation
 
+[Shellshock_LW X2AbilityTemplate]
+LocFriendlyName="Shellshock"
+LocLongDescription="Your grenades and gauntlet rockets decrease enemy aim by <Ability:SHELLSHOCK_AIM_REDUCTION/> and critical chance by <Ability:SHELLSHOCK_CRIT_CHANCE_REDUCTION/> for <Ability:SHELLSHOCK_TURNS/> turn(s)."
+LocHelpText="Your grenades and gauntlet rockets decrease enemy aim by <Ability:SHELLSHOCK_AIM_REDUCTION/> and critical chance by <Ability:SHELLSHOCK_CRIT_CHANCE_REDUCTION/> for <Ability:SHELLSHOCK_TURNS/> turn(s)."
+LocPromotionPopupText="<Bullet/> Shellshock does apply to flashbang grenades."
+LocFlyOverText="Shellshock"
+
+[Shockwave_LW X2AbilityTemplate]
+LocFriendlyName="Shockwave"
+LocLongDescription="Your damaging grenades and gauntlet rockets decrease enemy defense by <Ability:SHOCKWAVE_DEF_REDUCTION/> and dodge by <Ability:SHOCKWAVE_DODGE_REDUCTION/> for <Ability:SHOCKWAVE_TURNS/> turn(s)."
+LocHelpText="Your damaging grenades and gauntlet rockets decrease enemy defense by <Ability:SHOCKWAVE_DEF_REDUCTION/> and dodge by <Ability:SHOCKWAVE_DODGE_REDUCTION/> for <Ability:SHOCKWAVE_TURNS/> turn(s)."
+LocPromotionPopupText="<Bullet/> Shockwave does not apply to flashbang grenades or other grenades that do not deal damage."
+LocFlyOverText="Shellshock"
+
 ;;;;;;;;;;;;;;;;;;;;  GUNNER ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
 [KnifeFighter X2AbilityTemplate]
@@ -481,11 +570,11 @@ LocPromotionPopupText="<Bullet/> Knife attacks use one action and do not end you
 
 [Combatives X2AbilityTemplate]
 LocFriendlyName="Combatives"
-LocLongDescription="Once per enemy turn, automatically parry a melee attack that grazes or misses against you, and counterattack with your <Ability:BOUND_WEAPON_NAME>. Also gain +<ABILITY:COMBATIVES_DODGE_LW/> dodge."
-LocHelpText="Once per enemy turn, automatically parry and counter a melee attack that grazes or misses."
+LocLongDescription="Automatically parry melee attacks that grazes or miss against you, and counterattack with your <Ability:BOUND_WEAPON_NAME>. Also gain +<ABILITY:COMBATIVES_DODGE_LW/> dodge."
+LocHelpText="Automatically parry and counter melee attacks that grazes or miss."
 LocFlyOverText="Combatives"
 ; LWOTC needs translation
-LocPromotionPopupText="<Bullet/> Combatives grants you +<Ability:COUNTERATTACK_DODGE_AMOUNT_LW/> dodge against melee attacks each enemy turn. The bonus dodge is lost when you parry a melee attack.<br/><Bullet/> Combatives passively grants you +<ABILITY:COMBATIVES_DODGE_LW/> dodge.<br/><Bullet/> You can only counterattack single target melee attacks."
+LocPromotionPopupText="<Bullet/> Combatives grants you +<Ability:COUNTERATTACK_DODGE_AMOUNT_LW/> dodge against melee attacks each enemy turn. The bonus dodge is lost when you parry the first melee attack.<br/><Bullet/> Combatives passively grants you +<ABILITY:COMBATIVES_DODGE_LW/> dodge.<br/><Bullet/> You can only counterattack single target melee attacks."
 ; End Translation
 
 [Flush X2AbilityTemplate]
@@ -552,16 +641,16 @@ LocPromotionPopupText=""
 
 [Fortify X2AbilityTemplate]
 LocFriendlyName="Fortify"
-LocLongDescription="Activate to grant +<ABILITY:FORTIFY_DEFENSE_LW/> defense until the beginning of the next turn. Does not cost an action. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocLongDescription="Activate to grant +<ABILITY:FORTIFY_DEFENSE_LW/> defense until the beginning of the next turn."
 LocHelpText="Activate to grant +<ABILITY:FORTIFY_DEFENSE_LW/> defense. Free action. <Ability:SelfCooldown_LW/> turn cooldown."
 LocFlyOverText="Fortified"
-LocPromotionPopUpText="<Bullet/> Activate to grant the soldier +<ABILITY:FORTIFY_DEFENSE_LW/> defense until the beginning of the soldier's next turn.<br/><Bullet/> Does not cost an action.<br/><Bullet/> Fortify has a <Ability:SelfCooldown_LW> turn cooldown."
+LocPromotionPopUpText="<Bullet/> Does not cost an action.<br/><Bullet/>Has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 [CombatFitness X2AbilityTemplate]
 LocFriendlyName="Combat Fitness"
 LocLongDescription="Gain <ABILITY:COMBAT_FITNESS_OFFENSE_LW/> aim, <ABILITY:COMBAT_FITNESS_MOBILITY_LW/> mobility, <ABILITY:COMBAT_FITNESS_HP_LW/> HP, <ABILITY:COMBAT_FITNESS_WILL_LW/> will, and <ABILITY:COMBAT_FITNESS_DODGE_LW/> dodge."
-LocHelpText="This soldier has numerous stat bonuses."
-LocPromotionPopUpText="<Bullet/> Combat Fitness provides <ABILITY:COMBAT_FITNESS_OFFENSE_LW/> aim, <ABILITY:COMBAT_FITNESS_MOBILITY_LW/> mobility, <ABILITY:COMBAT_FITNESS_HP_LW/> HP, <ABILITY:COMBAT_FITNESS_WILL_LW/> will, and <ABILITY:COMBAT_FITNESS_DODGE_LW/> dodge."
+LocHelpText="<Bullet/> Combat Fitness provides <ABILITY:COMBAT_FITNESS_OFFENSE_LW/> aim, <ABILITY:COMBAT_FITNESS_MOBILITY_LW/> mobility, <ABILITY:COMBAT_FITNESS_HP_LW/> HP, <ABILITY:COMBAT_FITNESS_WILL_LW/> will, and <ABILITY:COMBAT_FITNESS_DODGE_LW/> dodge."
+LocPromotionPopUpText=""
 
 [Sprinter X2AbilityTemplate]
 LocFriendlyName="Sprinter"
@@ -691,10 +780,10 @@ LocPromotionPopupText="<Bullet/> Medium-range, cone-based shotgun attack.<br/><B
 [ChainLightning X2AbilityTemplate]
 LocFriendlyName="Chain Lightning"
 ; LWOTC Needs Translation (3)
-LocLongDescription="An Arc Thrower attack that jumps from target to target up to 4 times, while each target is within 6 tiles of each other."
-LocHelpText="An Arc Thrower attack that jumps from target to target up to 4 times, while each target is within 6 tiles of each other."
+LocLongDescription="A chaining arc thrower attack that stuns up to <Ability:CHAIN_LIGHTNING_TARGETS> targets.
+LocHelpText="A chaining arc thrower attack that stuns up to <Ability:CHAIN_LIGHTNING_TARGETS> targets.
 LocFlyOverText="Chain Lightning"
-LocPromotionPopupText="<Bullet/> Fires the Arc Thrower at a target in vision, with the arc chaining up to 4 times to other targets within 6 tiles of each other.<br/><Bullet/> Requires one action and ends your turn.<br/><Bullet/> Chain Lightning has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Cannot be used from concealment."
+LocPromotionPopupText="<Bullet/> Chain Lightning chains from target to target in a sequence. Successive targets can be up to <Ability:CHAIN_LIGHTNING_CHAIN_RANGE_TILES> tiles away from each other. The attack will not chain to previous targets in the sequence.<br/><Bullet/> The sequence of targets will be shown when you preview a target. A hit roll will be made against all targets in the sequence, even if you miss against a previous target. Cover bonuses are calculated from your position, not from the previous target.<br/><Bullet/> Chain Lightning cannot be fired at robotic enemies, and it will not chain to them.<br/><Bullet/> Requires one action and ends your turn.<br/><Bullet/> Chain Lightning has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Cannot be used from concealment."
 ; End Translation (3)
 
 [Leadership X2AbilityTemplate]
@@ -897,11 +986,17 @@ LocFlyOverText="Nanoscale Vest"
 LocLongDescription="Grants <Ability:NANOFIBER_HEALTH_BONUS_LW> hit points and enemies have a -<Ability:NANOFIBER_CRITDEF_BONUS_LW> to their critical chances against you."
 LocHelpText="Grants <Ability:NANOFIBER_HEALTH_BONUS_LW> hit points and enemies have a -<Ability:NANOFIBER_CRITDEF_BONUS_LW> to their critical chances against you."
 
+[Chameleon_Suit_Ability X2AbilityTemplate]
+LocFriendlyName="Chameleon Suit"
+LocFlyOverText="Chameleon Suit"
+LocLongDescription="Grants 1 hit point and 5 dodge."
+LocHelpText="Grants 1 hit point and 5 dodge."
+
 [FireControl25 X2AbilityTemplate]
 LocFriendlyName="Fire Control (25)"
 LocFlyoverText="Fire Control"
 LocLongDescription="This unit will not take reaction shots with less than a 25% chance to hit."
-LocHelpText="This soldier unit not take reaction shots with less than a 25% chance to hit."
+LocHelpText="This unit will not take reaction shots with less than a 25% chance to hit."
 
 [FireControl50 X2AbilityTemplate]
 LocFriendlyName="Fire Control (50)"
@@ -1187,18 +1282,31 @@ TacticalText="<Bullet/> This weapon's design is based on R. Shen's blueprints fr
 AbilityDescName="Heavy Chaingun"
 
 [SparkRifle_LS X2WeaponTemplate]
-FriendlyName="Heavy Railgun"
-FriendlyNamePlural="Heavy Railguns"
-BriefSummary="Heavy Railgun fires high-caliber projectiles at extreme velocities that deal massive damage."
-TacticalText="<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Heavy Railgun is the laser equivalent of the Autocannon."
-AbilityDescName="Heavy Railgun"
+FriendlyName="Spitfire Pulsecannon"
+FriendlyNamePlural="Spitfire Pulsecannons"
+BriefSummary="The Spitfire Pulsecannon is the largest portable automatic laser weapon in our arsenal. Using the rotating barrel assembly solves the overheating problem, and the fragile barrel parts are protected by individual retractable cowls."
+TacticalText="The Spitfire Pulsecannon is the largest portable automatic laser weapon in our arsenal. Using the rotating barrel assembly solves the overheating problem, and the fragile barrel parts are protected by individual retractable cowls.\n<Bullet/> Firing the primary weapon always ends the soldier's turn, in the absence of special training.\n<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Spitfire Pulsecannon is the laser equivalent of the Autocannon."
+AbilityDescName="autocannon"
 
 [SparkRifle_CG X2WeaponTemplate]
-FriendlyName="Particle Projection Cannon"
-FriendlyNamePlural="Particle Projection Cannons"
-BriefSummary="PPC uses several acceleration contours to create a focused beam of supercharged particles that remain effective at any range." 
-TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> Particle Projection Cannon is the Coil equivalent of the Autocannon."
-AbilityDescName="Particle Projection Cannon"
+FriendlyName="Rush-Nano Gausscannon"
+FriendlyNamePlural="Rush-Nano Gausscannons"
+BriefSummary="Introduction of new Elerium-based rush capacitors with separation distance of mere nanometers has allowed us to develop a new kind of autocannon, where capacitors are overloaded and discharged one by one during firing, which keeps the damage output consistently high during a volley."
+TacticalText="Introduction of new Elerium-based rush capacitors with separation distance of mere nanometers has allowed us to develop a new kind of autocannon, where capacitors are overloaded and discharged one by one during firing, which keeps the damage output consistently high during a volley.\n<Bullet/> Firing the primary weapon always ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades looted from enemies to improve the Rush-Nano Gausscannon's tactical effectiveness.\n<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> Rush-Nano Gausscannon is the Coil equivalent of the Autocannon."
+AbilityDescName="autocannon"
+
+[PrototypePlasmaBlaster X2WeaponTemplate]
+FriendlyName="Prototype Plasma Blaster"
+FriendlyNamePlural="Prototype Plasma Blasters"
+BriefSummary="Using technology salaved from the original invasion, we've devised a means of releasing a massive, focused pulse of plasma energy that will devastate targets in a fixed path. Has enough energy for two activations."
+TacticalText="<Bullet/> The Plasma Blaster releases a beam of devastating energy in a straight line, capable of damaging multiple targets\n<Bullet/> Its ammo is limited, so use it only when it will be decisive."
+
+[PlasmaBlaster X2WeaponTemplate]
+FriendlyName="Plasma Blaster"
+FriendlyNamePlural="Plasma Blasters"
+BriefSummary="Using technology adapted from the aliens' own plasma weaponry, we've devised a means of releasing a massive, focused pulse of plasma energy that will devastate targets in a fixed path. Has enough energy for two activations."
+TacticalText="<Bullet/> The Plasma Blaster releases a beam of devastating energy in a straight line, capable of damaging multiple targets\n<Bullet/> Its ammo is limited, so use it only when it will be decisive."
+
 
 ; LWOTC Needs Translation (2)
 [BattleScanner X2WeaponTemplate]
@@ -1278,10 +1386,10 @@ TacticalText="<Bullet/> Incendiary grenades will damage all units in the blast r
 TacticalText="<Bullet/> Incendiary bombs will damage all units in the blast radius, and may apply the \"burning\" effect to any units vulnerable to flame.\n<Bullet/> Incendiary bombs do more blast damage than all other bombs.\n<Bullet/> Some enemies, particularly metallic ones, are immune to fire and will not suffer the \"burning\" effect.<br><Bullet/> Damage falls off from center of area of effect."
 
 [SparkBit_MG X2GremlinTemplate]
-BriefSummary="The upgraded plated model improves the damage and healing capabilities of the BIT."
+BriefSummary="The plated model improves the damage and healing capabilities of the BIT and grants bonuses to dodge and hack."
 
 [SparkBit_BM X2GremlinTemplate]
-BriefSummary="The upgraded powered model greatly improves the damage and healing capabilities of the BIT."
+BriefSummary="The powered model improves the damage and healing capabilities of the BIT and grants bonuses to dodge and hack."
 
 [XComGame.UIArmory_WeaponUpgradeItem]
 [UIArmory_WeaponUpgradeItem]
@@ -1523,7 +1631,7 @@ TacticalText="<Bullet/> Grants <Ability:CERAMIC_PLATING_HP> ablative hit points.
 FriendlyName="Chameleon Suit"
 FriendlyNamePlural="Chameleon Suits"
 BriefSummary="Significantly reduces infiltration time by this soldier."
-TacticalText="<Bullet/> Significantly reduces infiltration time by this unit.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+TacticalText="<Bullet/> Grants 1 hit point and 5 dodge.\n<<Bullet/> Significantly reduces infiltration time by this unit.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [AlloyPlating X2EquipmentTemplate]
 FriendlyName="Alloy Plating"
@@ -1590,8 +1698,8 @@ TacticalText="<Bullet/> Grants the High Pressure ability, which provides +2 char
 [ExtraRocket X2WeaponTemplate]
 FriendlyName="Extra Rocket"
 FriendlyNamePlural="Extra Rocket"
-BriefSummary="Grants a second standard Gauntlet rocket."
-TacticalText="<Bullet/> Grants a second standard rocket for the Technical's rocket launcher."
+BriefSummary="Grants an additional standard Gauntlet rocket and an additional use of Concussion Rocket."
+TacticalText="<Bullet/> Grants an additional standard rocket for the Technical's rocket launcher and an additional use of Concussion Rocket."
 
 [Neurowhip X2EquipmentTemplate]
 FriendlyName="Neurowhip"
@@ -2307,7 +2415,7 @@ Title="Set Resistance Priorities"
 LocLongDescription="Assign the rebels in the Haven to search for new missions, gather needed supplies, or find potential recruits. Rebels assigned to intelligence gathering will report leads on ADVENT activities. Central Officer Bradford recommends a heavy focus on intelligence gathering so the troops have some missions to go on."
 
 [LW_T2_M0_S2_FindLiberation1Activity X2ObjectiveTemplate]
-Title="Discover a lead"
+Title="Start Liberating a Region"
 LocLongDescription="Send troops to investigate any leads discovered by the Resistance. One of the missions may provide us crucial information about defeating the ADVENT administration in this region."
 
 [LW_T2_M0_S3_DefeatLiberation2Activity X2ObjectiveTemplate]
@@ -2388,6 +2496,21 @@ ObjectiveTextPools[1]="Neutralize all enemy targets"
 ObjectiveTextPools[2]="Extract all XCOM soldiers"
 
 [DefaultSupplyRaidConvoy_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Avoid destroying critical supplies"
+ObjectiveTextPools[1]="Neutralize all enemy targets"
+ObjectiveTextPools[2]="Extract all XCOM soldiers"
+
+[DefaultChosenSupplyRaidATT_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Avoid destroying critical supplies"
+ObjectiveTextPools[1]="Neutralize all enemy targets"
+ObjectiveTextPools[2]="Extract all XCOM soldiers"
+
+[DefaultChosenSupplyRaidTrain_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Avoid destroying critical supplies"
+ObjectiveTextPools[1]="Neutralize all enemy targets"
+ObjectiveTextPools[2]="Extract all XCOM soldiers"
+
+[DefaultChosenSupplyRaidConvoy_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Avoid destroying critical supplies"
 ObjectiveTextPools[1]="Neutralize all enemy targets"
 ObjectiveTextPools[2]="Extract all XCOM soldiers"
@@ -2496,6 +2619,14 @@ ObjectiveTextPools[0]="Hack the Network Array"
 ObjectiveTextPools[1]="Neutralize all enemy targets"
 
 [DefaultAssaultAlienFortress_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Commander's Avatar must survive"
+ObjectiveTextPools[1]="Destroy the Avatars"
+
+[DefaultAssaultFortressLeadup_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Commander's Avatar must survive"
+ObjectiveTextPools[1]="Neutralize all enemy targets"
+
+[DefaultDestroyAvatarProject_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Commander's Avatar must survive"
 ObjectiveTextPools[1]="Destroy the Avatars"
 
@@ -2704,6 +2835,45 @@ PreMissionNarratives[2]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_R
 PreMissionNarratives[3]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Convoy_04"
 PreMissionNarratives[4]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Convoy_05"
 
+[ChosenSupplyLineRaidATT_LW X2MissionTemplate]
+DisplayName="Raid the Chosen Troop Transport"
+Briefing="Supply Line Raid - Chosen Troop Transport"
+PostMissionType="Supply Raid"
+BriefingImage="img:///UILibrary_Common.Xcom_default"
+ObjectiveTextPools[0]="Neutralize all enemy targets"
+ObjectiveTextPools[1]="Secure supplies at transport station"
+PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Transport_01"
+PreMissionNarratives[1]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Transport_02"
+PreMissionNarratives[2]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Transport_03"
+PreMissionNarratives[3]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Transport_04"
+PreMissionNarratives[4]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Transport_05"
+
+[ChosenSupplyLineRaidTrain_LW X2MissionTemplate]
+DisplayName="Raid the Chosen Train"
+Briefing="Supply Line Raid - Chosen Train"
+PostMissionType="Supply Raid"
+BriefingImage="img:///UILibrary_Common.Xcom_default"
+ObjectiveTextPools[0]="Neutralize all enemy targets"
+ObjectiveTextPools[1]="Secure supplies on Chosen train"
+PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Train_01"
+PreMissionNarratives[1]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Train_02"
+PreMissionNarratives[2]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Train_03"
+PreMissionNarratives[3]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Train_04"
+PreMissionNarratives[4]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Train_05"
+
+[ChosenSupplyLineRaidConvoy_LW X2MissionTemplate]
+DisplayName="Raid the Chosen Convoy"
+Briefing="Supply Line Raid - Chosen Convoy"
+PostMissionType="Supply Raid"
+BriefingImage="img:///UILibrary_Common.Xcom_default"
+ObjectiveTextPools[0]="Neutralize all enemy targets"
+ObjectiveTextPools[1]="Secure supplies from Chosen convoy"
+PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Convoy_01"
+PreMissionNarratives[1]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Convoy_02"
+PreMissionNarratives[2]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Convoy_03"
+PreMissionNarratives[3]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Convoy_04"
+PreMissionNarratives[4]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Convoy_05"
+
 [DestroyRelay_LW X2MissionTemplate]
 DisplayName="Destroy the Alien Relay"
 Briefing="Destroy Alien Relay"
@@ -2865,6 +3035,13 @@ PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.support.T_Support_Broadcast
 DisplayName="Assault the Alien Fortress"
 Briefing="Assault Alien Fortress"
 PostMissionType="Assault Alien Fortress"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
+ObjectiveTextPools[0]="Destroy the Avatar Directive"
+
+[DestroyAvatarProject_LW X2MissionTemplate]
+DisplayName="Destroy Avatar Project"
+Briefing="Destroy Avatar Project"
+PostMissionType="Destroy Avatar Project"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
 ObjectiveTextPools[0]="Destroy the Avatar Directive"
 
@@ -3125,6 +3302,29 @@ ObjectiveTextPools[0]="(optional) Plant X4 on back of Turrets !WARNING! EXPLOSIV
 ObjectiveTextPools[1]="Plant Bomb to Destroy the Mobile Power Generator !WARNING! EXPLOSIVE WILL DETONATE ON TURN END"
 ObjectiveTextPools[2]="Eliminate all enemy forces"
 
+[DefaultCompoundRescueOperative_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Turns until Skyranger must retreat"
+ObjectiveTextPools[1]="Rescue XCOM VIP from ADVENT Compound"
+ObjectiveTextPools[2]="Extract the rescued VIP"
+ObjectiveTextPools[3]="Extract all XCOM soldiers"
+ObjectiveTextPools[4]="Compound Rescue"
+ObjectiveTextPools[5]="We've located a compound holding a VIP important to the resistance! Infiltrate the compound and rescue the VIP. Once alerted, ADVENT will begin increasing security each turn, eventually summoning reinforcements. Firebrand will embark once XCOM signals that the VIP is in custody."
+
+[CompoundRescueOperative_LW X2MissionTemplate]
+DisplayName="Rescue VIP from ADVENT Compound"
+Briefing="Rescue VIP from ADVENT Compound"
+PostMissionType="Rescue VIP"
+BriefingImage="img:///UILibrary_Common.Xcom_default"
+ObjectiveTextPools[0]="Rescue VIP from ADVENT custody"
+
+
+PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.RescueVIP.Central_Council_Missions_Rescue_VIP_01"
+PreMissionNarratives[1]="X2NarrativeMoments.TACTICAL.RescueVIP.Central_Council_Missions_Rescue_VIP_02"
+PreMissionNarratives[2]="X2NarrativeMoments.TACTICAL.RescueVIP.Central_Council_Missions_Rescue_VIP_03"
+PreMissionNarratives[3]="X2NarrativeMoments.TACTICAL.RescueVIP.Central_Council_Missions_Rescue_VIP_04"
+PreMissionNarratives[4]="X2NarrativeMoments.TACTICAL.RescueVIP.Central_Council_Missions_Rescue_VIP_05"
+
+
 [XComGame.UIMission]
 [UIMission]
 m_strMissionDifficulty="CURRENT ENEMY ACTIVITY"
@@ -3286,6 +3486,10 @@ BonusEmptyText="Increases Soldier Healing Rate."
 BonusText="HEALING RATE +%AVENGERBONUS%"
 FilledText="%UNITNAME's advanced medical equipment is increasing the rate soldiers recover from injuries."
 LockedText="LOCKED: PURCHASE UPGRADE"
+
+[CovertActionIntenseTrainingStaffSlot X2StaffSlotTemplate]
+EmptyText="SOLDIER"
+BonusText="ON COVERT ACTION"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Techs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -3603,7 +3807,7 @@ Summary="This improvement on our ceramic plating should offer additional ablativ
 
 [ChameleonSuitProject X2TechTemplate]
 DisplayName="Chameleon Suit"
-Summary="While this design will not afford any bonus protection, it allows our troops to blend in whatever environment they are operating in, reducing the time necessary to infiltrate enemy targets."
+Summary="While this design affords only limited bonus protection, it allows our troops to blend in whatever environment they are operating in, reducing the time necessary to infiltrate enemy targets."
 
 [CarapacePlatingProject X2TechTemplate]
 DisplayName="Carapace Plating"
@@ -5080,6 +5284,11 @@ Summary="Infiltrations for squads of 6 or 7 soldiers will take less time.<br/><b
 DisplayName="Large Unit Infiltrations"
 Summary="Infiltrations for squads of 8 to 10 soldiers will take less time.<br/><br/>Special Requirement: This upgrade requires an officer of at least Colonel rank to unlock."
 
+[TrialByFireUpgradeUnlock X2SoldierUnlockTemplate]
+DisplayName="The Crucible"
+Summary="Trial By Fire maximum rank increased by 1.<br/><br/>Special Requirement: This upgrade requires an officer of at least Field Commander rank to unlock."
+
+
 [UITodoWidget]
 DescLowScienceScoreText="There are not enough scientists to begin the majority of available research projects. Build, upgrade, or staff a Laboratory to boost a scientists' contribution, or buy a scientist from the Black Market."
 DescLowEngineeringScoreText="There are not enough engineers to build available weapons or armor. Recruit an engineer from the Black Market!"
@@ -5216,19 +5425,21 @@ LocPromotionPopupText="<Bullet/> Generate an explosive field of Psionic energy t
 ; End Translation
 
 [CoveringFire X2AbilityTemplate]
-LocLongDescription="Reaction shots now trigger on any hostile action, not just movement. Additionally, they confer a penalty of -<Ability:COVERING_FIRE_OFFENSE_MALUS> aim on targets, even on a miss."
-LocPromotionPopupText="<Bullet/> If triggered by an enemy action, Covering Fire will trigger before the enemy action completes.<br/><Bullet/> In addition, having the Covering Fire ability confers a penalty of -<Ability:COVERING_FIRE_OFFENSE_MALUS> aim upon any units you take a reaction shot at, regardless of whether it was a covering fire shot or not."
+LocLongDescription="Overwatch now trigger on any hostile action, not just movement. Overwatch shots now ignore 2/3 of cover bonuses."
+;
+;LocPromotionPopupText="<Bullet/> If triggered by an enemy action, Covering Fire will trigger before the enemy action completes.<br/><Bullet/> In addition, having the Covering Fire ability confers a penalty of -<Ability:COVERING_FIRE_OFFENSE_MALUS> aim upon any units you take a reaction shot at, regardless of whether it was a covering fire shot or not."
+LocPromotionPopupText="<Bullet/> If triggered by an enemy action, Covering Fire will trigger before the enemy action completes.<br/><Bullet/> In addition, having the Covering Fire ability allows the owner to ignore 2/3 of cover bonuses with reaction fire."
 
 [GrenadeLauncher_MG X2GrenadeLauncherTemplate]
-BriefSummary="Our Advanced Grenade Launcher uses magnetic technology to propel grenades further than our conventional launcher."
-TacticalText="<Bullet/> The Advanced Grenade Launcher has an increased range over the standard Grenade Launcher.\n."
+BriefSummary="Our Advanced Grenade Launcher uses magnetic technology to propel grenades further than our conventional launcher and provides an additional grenade to grenade only slots."
+TacticalText="<Bullet/> The Advanced Grenade Launcher has an increased range over the standard Grenade Launcher and will give a bonus grenade item to grenades equipped in the grenade-only slot.\n."
 
 ; LWOTC Needs Translation
 [GrenadeLauncher_BM X2GrenadeLauncherTemplate]
 FriendlyName="Beam Grenade Launcher"
 FriendlyNamePlural="Beam Grenade Launchers"
-BriefSummary="The Beam Grenade Launcher combines our latest breakthroughs in beam technology-based propulsion and AI-assisted targeting systems to deliver payloads with unprecedented precision."
-TacticalText="<Bullet/> The Beam Grenade Launcher transforms any grenade into an autonomous projectile that can navigate around obstacles with ease."
+BriefSummary="The Beam Grenade Launcher combines our latest breakthroughs in beam technology-based propulsion and AI-assisted targeting systems to deliver payloads with unprecedented precision. Also provides extra grenades items to all utility and grenade slot grenades."
+TacticalText="<Bullet/> The Beam Grenade Launcher transforms any grenade into an autonomous projectile that can navigate around obstacles with ease. Grants Full Kit as well as Heavy Ordnance, providing bonus uses of utility slot and grenade slot grenades."
 ; End Translation
 
 [FlashbangGrenade X2GrenadeTemplate]
@@ -5308,6 +5519,10 @@ TacticalText="<Bullet/> Plasma weapons cause targets to take 1 additional damage
 AbilityTreeTitles[4]="Pistols"
 
 [Reaper X2SoldierClassTemplate]
+AbilityTreeTitles[0]="Marksman"
+AbilityTreeTitles[1]="Partisan"
+AbilityTreeTitles[2]="Prepper"
+AbilityTreeTitles[3]="XCOM"
 AbilityTreeTitles[4]="Pistols"
 ; End Translation
 
@@ -5483,7 +5698,7 @@ LocPromotionPopupText="<Bullet/> Reduces Shadow's cooldown by 1 turn.<br/>"
 LocFriendlyName="Blood Trail"
 LocLongDescription="Attacks deal +<Ability:BLOODTRAILDAMAGE/> damage and ignore up to <Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> Dodge if the target has taken damage after your previous turn."
 LocHelpText="Attacks deal +<Ability:BLOODTRAILDAMAGE/> damage and ignore up to <Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> Dodge if the target has been wounded this turn."
-LocPromotionPopupText="<Bullet/> The bonuses apply if the enemy has taken damage on your turn or its previous turn.<br/><Bullet/> Works with all weapons, including grenades.<br/>"
+LocPromotionPopupText="<Bullet/> The bonuses apply if the enemy has taken damage on your turn or its previous turn.<br/><Bullet/> Works with all weapons, except grenades.<br/>"
 ; End Translation (4)
 
 [PaleHorse X2AbilityTemplate]
@@ -5751,6 +5966,10 @@ Description="The resistance have placed low-range motion detectors throughout th
 [ChosenOnMissionSitrep X2SitrepTemplate]
 FriendlyName="Chosen Presence"
 Description="A Chosen's energy signature has been detected. Expect them to appear on this mission."
+
+[SlightlyLargeMap X2SitRepTemplate]
+FriendlyName="Large Map"
+Description="The area of operations is larger than normal, so it will probably take you longer to get to the objective than usual."
 
 ; LWOTC Needs Translation (2)
 [LargeMap X2SitRepTemplate]
@@ -6047,8 +6266,8 @@ LocPromotionPopupText="<Bullet/> The targeted tile must be visible to you or an 
 
 [LW_NullWard X2AbilityTemplate]
 LocFriendlyName="Null Ward"
-LocLongDescription="Project psionic shields around the soldier and nearby allies. The shields will collapse if this soldier is killed."
-LocHelpText="Project psionic shields around nearby allies and yourself. The shields will collapse if this soldier is killed."
+LocLongDescription="Project psionic shields around the soldier and nearby allies for 3 turns. The shields will collapse if this soldier is killed."
+LocHelpText="Project psionic shields around nearby allies and yourself for 3 turns. The shields will collapse if this soldier is killed."
 LocFlyOverText="Null Ward"
 ; LWOTC Needs Translation (2)
 LocPromotionPopupText="<Bullet/> Null Ward grants <Ability:NULL_WARD_BASE_SHIELD> ablative hit points.<br/><Bullet/> Improved Psi Amps grant additional bonuses to ablative hit points.<br/><Bullet/> Null Ward requires one action and does not end your turn.<br/><Bullet/> Null Ward has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Null Ward has a radius of <Ability:NULL_WARD_RADIUS_TILES> tiles.<br/><Bullet/> Null Ward reveals you.<br/>"
@@ -6127,7 +6346,7 @@ strCharacterName="Lost Brute"
 [TheLostBruteHP16_LW X2CharacterTemplate]
 strCharacterName="Lost Brute"
 
-[LWTheLostBruteHP18 X2CharacterTemplate]
+[TheLostBruteHP18_LW X2CharacterTemplate]
 strCharacterName="Lost Brute"
 
 [TheLostBruteHP21_LW X2CharacterTemplate]
@@ -6182,6 +6401,15 @@ LocHelpText="When Run and Gun is activated, your Arc Thrower cooldown is immedia
 LocPromotionPopupText="<Bullet/> When Run and Gun is activated, your Arc Thrower cooldown is immediately removed.<br/><Bullet/> Does not apply to Chain Lightning.<br/>"
 ; End Translation (2)
 
+[LikeLightningPassive_LW X2AbilityTemplate]
+LocFriendlyName="Like Lightning"
+LocFlyOverText="Like Lightning"
+; LWOTC Needs Translation (2)
+LocLongDescription="When Run and Gun is activated, your Arc Thrower cooldown is immediately reset to 0."
+LocHelpText="When Run and Gun is activated, your Arc Thrower cooldown is immediately removed."
+LocPromotionPopupText="<Bullet/> When Run and Gun is activated, your Arc Thrower cooldown is immediately removed.<br/><Bullet/> Does not apply to Chain Lightning.<br/>"
+; End Translation (2)
+
 [Maim_LW X2AbilityTemplate]
 LocFriendlyName="Maim"
 LocFlyOverText="Maim"
@@ -6215,7 +6443,7 @@ LocFlyOverText="Impulse"
 ; LWOTC Needs Translation (2)
 LocLongDescription="Your ranged attacks gain <Ability:IMPULSE_AIM_BONUS/> aim and <Ability:IMPULSE_CRIT_BONUS/> critical chance if you have moved this turn."
 LocHelpText="Your ranged attacks gain <Ability:IMPULSE_AIM_BONUS/> aim and <Ability:IMPULSE_CRIT_BONUS/> critical chance if you have moved this turn."
-LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:IMPULSE_AIM_BONUS/> aim and <Ability:IMPULSE_CRIT_BONUS/> critical chance if you have moved this turn.<br/>"
+LocPromotionPopupText=""
 ; End Translation (2)
 
 [LockNLoad_LW X2AbilityTemplate]
@@ -6224,7 +6452,7 @@ LocFlyOverText="Lock 'N Load"
 ; LWOTC Needs Translation (2)
 LocLongDescription="Kills with your <Ability:BOUND_WEAPON_NAME/> restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo."
 LocHelpText="Kills with your <Ability:BOUND_WEAPON_NAME/> restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo."
-LocPromotionPopupText="<Bullet/> Kills with your <Ability:BOUND_WEAPON_NAME/> restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo.<br/>"
+LocPromotionPopupText=""
 ; End Translation (2)
 
 [TrenchWarfare_LW X2AbilityTemplate]
@@ -6239,9 +6467,9 @@ LocPromotionPopupText="<Bullet/> If you get at least one kill during your turn, 
 [Dedication_LW X2AbilityTemplate]
 LocFriendlyName="Dedication"
 LocFlyOverText="Dedication"
-LocLongDescription="Free action. Gain <Ability:DEDICATION_MOBILITY/> mobility and ignore reaction fire for the rest of the turn. Has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocHelpText="Free action. Gain <Ability:DEDICATION_MOBILITY/> mobility and ignore reaction fire for the rest of the turn. Has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocPromotionPopupText="<Bullet/> Gain <Ability:DEDICATION_MOBILITY/> mobility and ignore reaction fire for the rest of the turn.<br/><Bullet/> Free action.<br/><Bullet/> Dedication has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocLongDescription="Free action. Gain <Ability:DEDICATIONLW_MOBILITY/> mobility and ignore reaction fire for the rest of the turn. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocHelpText="Free action. Gain <Ability:DEDICATIONLW_MOBILITY/> mobility and ignore reaction fire for the rest of the turn. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocPromotionPopupText="<Bullet/> Gain <Ability:DEDICATIONLW_MOBILITY/> mobility and ignore reaction fire for the rest of the turn.<br/><Bullet/> Free action.<br/><Bullet/> Dedication has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 [Corpsman_LW X2AbilityTemplate]
 LocFriendlyName="Corpsman"
@@ -6256,7 +6484,7 @@ LocFlyOverText="Open Fire"
 LocLongDescription="Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health."
 LocHelpText="Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health."
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health.<br/>"
+LocPromotionPopupText=""
 ; End Translation (2)
 
 [WatchThemRun_LW X2AbilityTemplate]
@@ -6272,8 +6500,8 @@ LocPromotionPopupText="<Bullet/> After throwing or launching a grenade, you will
 [Avenger_LW X2AbilityTemplate]
 LocFriendlyName="Avenger"
 LocFlyOverText="Avenger"
-LocLongDescription="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has taken an offensive action."
-LocHelpText="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has taken an offensive action."
+LocLongDescription="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has taken an offensive action. The reaction shot ignores cover bonuses."
+LocHelpText="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has taken an offensive action. The reaction shot ignores cover bonuses."
 LocPromotionPopupText="<Bullet/> Avenger will not activate if this unit is shot at.<br/><Bullet/> Can only activate during the enemy's turn.<br/><Bullet/> Can only trigger once per turn.<br/>"
 ; End Translation (2)
 
@@ -6355,16 +6583,16 @@ LocPromotionPopupText="<Bullet/> With this ability, Point Blank and Both Barrels
 [NoneShallPass_LW X2AbilityTemplate]
 LocFriendlyName="None Shall Pass"
 LocFlyOverText="None Shall Pass"
-LocLongDescription="During enemy turns, fire a free reaction shot that can critically hit with your sawed-off shotgun at any visible enemy within <Ability:NONE_SHALL_PASS_TILE_RANGE/> tiles who moves or fires. Can only trigger once per turn."
-LocHelpText="During enemy turns, fire a free reaction shot that can critically hit with your sawed-off shotgun at any visible enemy within <Ability:NONE_SHALL_PASS_TILE_RANGE/> tiles who moves or fires."
-LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><Bullet/> Only triggers once per turn.<br/><Bullet/> Uses 1 ammo and will only trigger if the sawed-off shotgun is loaded.<br/><Bullet/> Can critically hit.<br/><Bullet/> Works during any enemy turn: alien, Lost, Chosen and Ruler.<br/>"
+LocLongDescription="During enemy turns, fire a free shot that can critically hit with your sawed-off shotgun at any visible enemy within <Ability:NONE_SHALL_PASS_TILE_RANGE/> tiles who moves or fires."
+LocHelpText="During enemy turns, fire a free shot that can critically hit with your sawed-off shotgun at any visible enemy within <Ability:NONE_SHALL_PASS_TILE_RANGE/> tiles who moves or fires."
+LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><Bullet/> Uses 1 ammo and will only trigger if the sawed-off shotgun is loaded.<br/><Bullet/> Can critically hit.<br/><Bullet/> Works during any enemy turn: alien, Lost, Chosen and Ruler.<br/><Bullet/>This cannot trigger more than once per enemy and will not fire against allies when panicked"
 
 [ScrapMetal_LW X2AbilityTemplate]
 LocFriendlyName="Scrap Metal"
 LocFlyOverText="Scrap Metal: Recovered ammo"
 LocLongDescription="Kills with your <Ability:BOUND_WEAPON_NAME/> restore one sawed-off shotgun charge."
 LocHelpText="Kills with your <Ability:BOUND_WEAPON_NAME/> restore one sawed-off shotgun charge."
-LocPromotionPopupText="<Bullet/> Kills with your <Ability:BOUND_WEAPON_NAME/> restore one sawed-off shotgun charge.<br/><Bullet/> This does not apply to kills from using the sawed-off shotgun itself.<br/><Bullet/> This ability cannot grant ammo if the sawed-off shotgun charges are already at their starting value.<br/>"
+LocPromotionPopupText="<Bullet/> This does not apply to kills from using the sawed-off shotgun itself.<br/><Bullet/> With this ability, you can gain more sawed-off shotgun charges than you started with.<br/>"
 
 [ScrapMetalTrigger_LW X2AbilityTemplate]
 LocFriendlyName="Scrap Metal: Recovered ammo"
@@ -6432,9 +6660,9 @@ LocPromotionPopupText = "<Bullet/> Works with Squadsight.<br/><Bullet/> Blinding
 LocFriendlyName = "Lead The Target"
 LocFlyOverText = "Lead The Target"
 ; LWOTC Needs Translation (3)
-LocHelpText = "Take a delayed shot with +<Ability:LEAD_TARGET_AIM_BONUS/> Aim at an enemy if it moves. Costs two actions and has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocLongDescription = "Take a delayed shot with +<Ability:LEAD_TARGET_AIM_BONUS/> Aim at an enemy if it moves. Costs two actions and has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocPromotionPopupText = "<Bullet> To take the shot, you need line of sight to the enemy when it moves.<br/><Bullet/> Lead The Target ends if you haven't taken the shot until the start of your next turn.<br/><Bullet/> Costs two actions.<br/><Bullet/> Lead The Target is not a reaction attack, despite activating on enemy movement.<br/><Bullet/> Lead The Target has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocHelpText = "Take a delayed shot with +<Ability:LEAD_TARGET_AIM_BONUS/> Aim at an enemy if it moves. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocLongDescription = "Take a delayed shot with +<Ability:LEAD_TARGET_AIM_BONUS/> Aim at an enemy if it moves. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocPromotionPopupText = "<Bullet> To take the shot, you need line of sight to the enemy when it moves.<br/><Bullet/> Lead The Target ends if you haven't taken the shot until the start of your next turn.<br/><Bullet/> Lead The Target is not a reaction attack, despite activating on enemy movement.<br/><Bullet/> Lead The Target has a <Ability:SelfCooldown_LW/> turn cooldown."
 ; End Translation (3)
 
 [LeadTheTargetShot_LW X2AbilityTemplate]
@@ -6453,7 +6681,7 @@ LocPromotionPopupText = "<Bullet/> Your ranged attacks gain +<Ability:TARGET_FOC
 LocFriendlyName = "Aim Assist"
 LocHelpText = "Gain additional +<Ability:AIM_ASSIST_AIM_BONUS/> aim and +<Ability:AIM_ASSIST_CRIT_BONUS/> crit against holotargeted units."
 LocLongDescription = "Gain additional +<Ability:AIM_ASSIST_AIM_BONUS/> aim and +<Ability:AIM_ASSIST_CRIT_BONUS/> crit against holotargeted units."
-LocPromotionPopupText = "<Bullet/> Gain additional +<Ability:AIM_ASSIST_AIM_BONUS/> aim and +<Ability:AIM_ASSIST_CRIT_BONUS/> crit against holotargeted units. <br/>"
+LocPromotionPopupText = "<Bullet/> Works with both the Holotargeter and Holo Targeting perk, but does not stack if both effects are applied to the same target. <br/>"
 
 [SuperCharge_LW X2AbilityTemplate]
 LocFriendlyName = "Arc Welder"
@@ -6466,7 +6694,7 @@ LocPromotionPopupText = "<Bullet/> Starts each battle with <Ability:SUPERCHARGE_
 LocFriendlyName = "Shooting Sharp"
 LocHelpText = "Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and +<Ability:SS_AIM_BONUS/> aim against units in cover."
 LocLongDescription = "Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and +<Ability:SS_AIM_BONUS/> aim against units in cover."
-LocPromotionPopupText = "<Bullet/>Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and +<Ability:SS_AIM_BONUS/> aim against units in cover. <br/>"
+LocPromotionPopupText = ""
 ; End Translation (3)
 
 [Unlimitedpower_LW X2AbilityTemplate]
@@ -6497,6 +6725,14 @@ LocHelpText="Attack any enemy within blue movement range with your <Ability:BOUN
 LocPromotionPopupText="<Bullet/> Attack any enemy within blue movement range with your <Ability:BOUND_WEAPON_NAME/>.<br/><Bullet/> This attack does not end the turn.<br/><Bullet/> Lightning Slash has a <Ability:LIGHTNINGSLASH_COOLDOWN/> turn cooldown.<br/>"
 ; End Translation (3)
 
+[LightningSlashLastAction_LW X2AbilityTemplate]
+LocFriendlyName="Lightning Slash"
+; LWOTC Needs Translation (3)
+LocLongDescription="Attack any enemy within blue movement range with your <Ability:BOUND_WEAPON_NAME/>. This attack does not end the turn."
+LocHelpText="Attack any enemy within blue movement range with your <Ability:BOUND_WEAPON_NAME/>. This attack does not end the turn."
+LocPromotionPopupText="<Bullet/> Attack any enemy within blue movement range with your <Ability:BOUND_WEAPON_NAME/>.<br/><Bullet/> This attack does not end the turn.<br/><Bullet/> Lightning Slash has a <Ability:LIGHTNINGSLASH_COOLDOWN/> turn cooldown.<br/>"
+; End Translation (3)
+
 [InspireAgility_LW X2AbilityTemplate]
 LocFriendlyName="Inspire Agility"
 LocFlyOverText="Inspire Agility"
@@ -6508,14 +6744,14 @@ LocPromotionPopupText="<Bullet/> Give a friendly unit <Ability:INSPIRE_DODGE/> D
 
 [PrimaryReturnFire X2AbilityTemplate]
 LocFriendlyName="Return Fire"
-LocHelpText="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn."
-LocLongDescription="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn."
+LocHelpText="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn. The return shot ignores cover bonuses."
+LocLongDescription="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn. The return shot ignores cover bonuses."
 LocPromotionPopupText="<Bullet/> Return Fire will only trigger once per turn.<br/><Bullet/> Return Fire can be triggered by melee attacks and area of effect attacks.<br/><Bullet/> Return Fire will not trigger when targeted by overwatch fire.<br/>"
 
 [PrimaryReturnFireShot X2AbilityTemplate]
 LocFriendlyName="Return Fire"
-LocHelpText="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn."
-LocLongDescription="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn."
+LocHelpText="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn. The return shot ignores cover bonuses."
+LocLongDescription="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn. The return shot ignores cover bonuses."
 LocPromotionPopupText="<Bullet/> Return Fire will only trigger once per turn.<br/><Bullet/> Return Fire can be triggered by melee attacks and area of effect attacks.<br/><Bullet/> Return Fire will not trigger when targeted by overwatch fire.<br/>"
 
 [TriggerBot X2AbilityTemplate]
@@ -6788,8 +7024,8 @@ LocFlyOverText="Blood Thirst"
 ; LWOTC Needs Translation (2)
 [UnholyAscension_LW X2AbilityTemplate]
 LocFriendlyName="Unholy Ascension"
-LocLongDescription="Warlock's Greatest Champion's Shield, Aim, Crit, Will, and Psi Offense bonuses are doubled and grant crit immunity."
-LocHelpText="Warlock's Greatest Champion's Shield, Aim, Crit, Will, and Psi Offense bonuses are doubled and grant crit immunity."
+LocLongDescription="Warlock's Greatest Champion's Aim, Crit, Will, and Psi Offense bonuses are doubled and grant crit immunity."
+LocHelpText="Warlock's Greatest Champion's Aim, Crit, Will, and Psi Offense bonuses are doubled and grant crit immunity."
 LocFlyOverText="Unholy Ascension"
 
 [RuptureImmunity X2AbilityTemplate]
@@ -6802,6 +7038,11 @@ LocFlyOverText="Unbreakable"
 LocFriendlyName="Tracking Shot Mark"
 LocHelpText="At the start of your turn, mark an enemy that's flanked against you as a free action. Your first shot against that target is guaranteed to hit, and refunded."
 LocLongDescription="At the start of your turn, mark an enemy that's flanked against you as a free action. Your first shot against that target is guaranteed to hit, and refunded."
+
+[TrackingShot_LW X2AbilityTemplate]
+LocFriendlyName="Tracking Shot"
+LocHelpText="At the start of your turn, take a free shot that is guaranteed to hit at any enemy that is flanked by you."
+LocLongDescription="At the start of your turn, take a free shot that is guaranteed to hit at any enemy that is flanked by you."
 
 [TrackingShot X2AbilityTemplate]
 LocFriendlyName="Tracking Shot"
@@ -6827,6 +7068,12 @@ LocHelpText="You deal +<Ability:HERO_SLAYER_DMG/>% damage against hero classes."
 LocLongDescription="You deal +<Ability:HERO_SLAYER_DMG/>% damage against hero classes."
 LocFlyOverText="Big Game Hunter"
 
+[BonusBombard_LW X2AbilityTemplate]
+LocFriendlyName="Extended Reserves"
+LocLongDescription="Gain an additional use of equipped Heavy Weapons and Bombard."
+LocHelpText="Gain an additional use of equipped Heavy Weapons and Bombard. The extra use of Bombard is only granted if the Bombard ability is taken."
+LocPromotionPopupText="Gain an additional use of equipped Heavy Weapons and Bombard. The extra use of Bombard is only granted if the Bombard ability is taken."
+
 [BloodBath_LW X2AbilityTemplate]
 LocFriendlyName="Blood Bath"
 LocHelpText="Harbor wave cone is wider by 2 tiles, and each enemy hit by it grants a blood thirst stack."
@@ -6841,8 +7088,8 @@ LocFlyOverText="Misty Madness"
 
 [Impenetrable_LW X2AbilityTemplate]
 LocFriendlyName="Impenetrable"
-LocHelpText="Impact Compensation Stacking limit is increased by 1."
-LocLongDescription="Impact Compensation Stacking limit is increased by 1."
+LocHelpText="Impact Compensation Stacking limit is increased by 1, and Enhanced Layered Armor damage cap is reduced by 10%."
+LocLongDescription="Impact Compensation Stacking limit is increased by 1, and Enhanced Layered Armor damage cap is reduced by 10%."
 LocFlyOverText="Impenetrable"
 
 [YouCannotHide_LW X2AbilityTemplate]
@@ -6941,21 +7188,21 @@ LocFlyOverText="Mark For Death"
 [Fatality_LW X2AbilityTemplate]
 LocFriendlyName="Fatality"
 ;LWOTC Needs translation(2)
-LocLongDescription="Gain +100 aim and crit against units at <Ability:FATALITY_THRESHOLD>% hp or lower with your <Ability:BOUND_WEAPON_NAME/>."
-LocHelpText="Gain +100 aim and crit against units at <Ability:FATALITY_THRESHOLD>% hp or lower with your <Ability:BOUND_WEAPON_NAME/>."
+LocLongDescription="Gain +100 aim and crit against units at <Ability:FATALITY_THRESHOLD>% hp or lower with your Darkclaw."
+LocHelpText="Gain +100 aim and crit against units at <Ability:FATALITY_THRESHOLD>% hp or lower with your Darkclaw."
 ;End Translation(2)
 LocFlyOverText="Fatality"
 
 [Vampirism_LW X2AbilityTemplate]
 LocFriendlyName="Vampirism"
-LocLongDescription="Dealing damage with this weapon heals you for the same amount."
-LocHelpText="Dealing damage with this weapon heals you for the same amount."
+LocLongDescription="Dealing damage with this weapon heals you for the same amount. Overhealing is converted to 2 Ablative HP per instance of dealing damage that expires after 3 turns. There is no limit to how much ablative can be gained but can only hold up to 8 at a time."
+LocHelpText="Dealing damage with this weapon heals you for the same amount. There is no maximum amout of Ablative HP per mission, but the effect will not provide additional shielding if the unit currently has 8 or more Ablative HP at the time of dealing damage."
 LocFlyOverText="Vampirism"
 
 [VampirismPassive_LW X2AbilityTemplate]
 LocFriendlyName="Vampirism"
-LocLongDescription="Dealing damage with this weapon heals you for the same amount."
-LocHelpText="Dealing damage with this weapon heals you for the same amount."
+LocLongDescription="Dealing damage with this weapon heals you for the same amount. Overhealing is converted to 2 Ablative HP per instance of dealing damage that expires after 3 turns. There is no limit to how much ablative can be gained but can only hold up to 8 at a time."
+LocHelpText="Dealing damage with this weapon heals you for the same amount. Overhealing is converted to 2 Ablative HP per instance of dealing damage that expires after 3 turns. There is no maximum amout of Ablative HP per mission, but the effect will not provide additional shielding if the unit currently has 8 or more Ablative HP at the time of dealing damage."
 LocFlyOverText="Vampirism"
 
 [ChosenLowProfile X2AbilityTemplate]
@@ -6992,7 +7239,7 @@ LocFlyOverText="Chosen Prime Reaction"
 
 [HunterPrimeReactionPassive X2AbilityTemplate]
 LocFriendlyName="Chosen Prime Reaction"
-LocLongDescription="Gain a reduced mobility movement action or Combat Readiness after taking damage on XCOM's turn."
+LocLongDescription="Gain a movement action or Combat Readiness after taking damage on XCOM's turn."
 LocHelpText="Gain a movement action or Combat Readiness after taking damage on XCOM's turn."
 LocFlyOverText="Chosen Prime Reaction"
 
@@ -7005,8 +7252,8 @@ LocFlyOverText="Chosen Prime Reaction"
 ; LWOTC Needs Translation (3)
 [ChosenImmunities X2AbilityTemplate]
 LocFriendlyName="Chosen Immunities"
-LocLongDescription="Chosen are immune to stun, disorient, and frost."
-LocHelpText="Chosen are immune to stun, disorient, and frost."
+LocLongDescription="Chosen are immune to all mental impairments and frost."
+LocHelpText="Chosen are immune to all mental impairments and frost."
 LocFlyOverText="Chosen Immunities"
 ; End Translation (3)
 
@@ -7023,9 +7270,9 @@ LocFlyOverText="Harbor Wave"
 [Brawler X2AbilityTemplate]
 LocFriendlyName="Brawler"
 LocFlyOverText="Brawler"
-LocLongDescription="Take <Ability:BRAWLER_DR_PCT>% less damage from any melee attack, or attacks from within four tiles."
-LocHelpText="Take <Ability:BRAWLER_DR_PCT>% less damage from any melee attack, or attacks from within four tiles."
-LocPromotionPopupText="<Bullet/>Take <Ability:BRAWLER_DR_PCT>% less damage from any melee attack, or attacks from within four tiles.<br/>"
+LocLongDescription="Take <Ability:BRAWLER_DR_PCT>% less damage from any melee attack, or attacks from within <Ability:BRAWLER_MAX_TILES> tiles."
+LocHelpText="Take <Ability:BRAWLER_DR_PCT>% less damage from any melee attack, or attacks from within <Ability:BRAWLER_MAX_TILES> tiles."
+LocPromotionPopupText="<Bullet/>Take <Ability:BRAWLER_DR_PCT>% less damage from any melee attack, or attacks from within <Ability:BRAWLER_MAX_TILES> tiles.<br/>"
 
 [InstantReactionTime X2AbilityTemplate]
 LocFriendlyName="Instant Reaction Time"
@@ -7069,12 +7316,38 @@ LocLongDescription="After taking damage, gain a stacking <Ability:IMPACT_COMPENS
 LocHelpText="After taking damage, gain a stacking <Ability:IMPACT_COMPENSATION_PCT_DR>% damage reduction until the end of your turn. Max stacks: <Ability:IMPACT_COMPENSATION_MAX_STACKS/>."
 ; End Translation (2)
 
+[ImpactCompensationV2_LW X2AbilityTemplate]
+LocFriendlyName="Enhanced Layered Armor"
+LocFlyOverText="Enhanced Layered Armor"
+LocLongDescription="This unit can only take <Ability:IMPACT_V2_DAMAGE_CAP>% of their max HP per turn. Damage per turn above this limit is reduced by <Ability:IMPACT_V2_PCT_DR>%."
+LocHelpText="The damage cap resets at the start of each turn."
+
+[ImpactCompensationV2XCOM_LW X2AbilityTemplate]
+LocFriendlyName="Enhanced Layered Armor"
+LocFlyOverText="Enhanced Layered Armor"
+LocLongDescription="This unit can only take <Ability:IMPACT_V2XCOM_DAMAGE_CAP>% of their max HP per turn. Damage per turn above this limit is reduced by <Ability:IMPACT_V2XCOM_PCT_DR>%."
+LocHelpText="The damage cap resets at the start of each turn."
+
+[ImpactCompensationPassiveV2_LW X2AbilityTemplate]
+LocFriendlyName="Enhanced Layered Armor"
+LocFlyOverText="Enhanced Layered Armor"
+LocLongDescription="This unit can only take <Ability:IMPACT_V2_DAMAGE_CAP>% of their max HP per turn. Damage per turn above this limit is reduced by <Ability:IMPACT_V2_PCT_DR>%."
+LocHelpText="The damage cap resets at the start of each turn."
+
+
 [MovingTarget_LW X2AbilityTemplate]
 LocFriendlyName="Moving Target"
 LocFlyOverText="You get an additional +<Ability:MOVING_TARGET_DEFENSE> Defense and +<Ability:MOVING_TARGET_DODGE> Dodge against reaction fire."
 LocLongDescription="You get an additional +<Ability:MOVING_TARGET_DEFENSE> Defense and +<Ability:MOVING_TARGET_DODGE> Dodge against reaction fire."
 LocHelpText="You get an additional +<Ability:MOVING_TARGET_DEFENSE> Defense and +<Ability:MOVING_TARGET_DODGE> Dodge against reaction fire."
 LocPromotionPopupText="You get an additional +<Ability:MOVING_TARGET_DEFENSE> Defense and +<Ability:MOVING_TARGET_DODGE> Dodge against reaction fire."
+
+[ChainingJolt_LW X2AbilityTemplate]
+LocFriendlyName="Chaining Jolt"
+LocHelpText="Send the GREMLIN to an enemy to jolt them. Attack chains to nearby enemies. This ability replaces Combat Protocol."
+LocLongDescription="The <Ability:ClassName/> sends the GREMLIN to an enemy to jolt them. Attack chains to nearby enemies. Damage is increased against robotic enemies."
+LocFlyOverText="Chaining Jolt"
+LocPromotionPopupText="<Bullet/> Deals electrical damage that pierces armour.<br/><Bullet/>Chaining Jolt does the same damage as Combat Protocol and replaces it for the soldier.<br/><Bullet/> Can only chain to units friendly to the targeted unit and within <Ability:CHAIN_LIGHTNING_CHAIN_RANGE_TILES> tiles of each other.<br/><Bullet/> Has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 ; End Translation
 
@@ -7083,10 +7356,18 @@ LocPromotionPopupText="You get an additional +<Ability:MOVING_TARGET_DEFENSE> De
 SummaryText="A brutal crackdown on the Resistance, lowering all rebel income (intel, recruit and supply) in the region for <Ability:CHOSEN_RETRIBUTION_DURATION/> days."
 ; End Translation
 
+[ChosenAction_ReinforceRegion X2ChosenActionTemplate]
+DisplayName="Reinforcement"
+SummaryText="Bring additional ADVENT forces onto the world."
+
+[ChosenAction_DoNothing X2ChosenActionTemplate]
+DisplayName="Combat Readiness"
+SummaryText="Not doing anything, just preparing."
+
 ; LWOTC Needs Translation
 [XComGameState_AdventChosen]
 KnowledgeGainFirstBullet[eChosenKnowledge_Start]=""
-KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]=" "
+KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]="Chosen can bring additional strength to a region!"
 KnowledgeGainFirstBullet[eChosenKnowledge_Sentinel]="Chosen can instigate an additional dark event!"
 KnowledgeGainFirstBullet[eChosenKnowledge_Collector]="Chosen can hinder rebel activities!"
 KnowledgeGainFirstBullet[eChosenKnowledge_Raider]="Chosen can launch an assault on the Avenger!"
@@ -7100,10 +7381,10 @@ KnowledgeGainSecondBullet[eChosenKnowledge_Sentinel]=""
 
 [Magnum_LW X2AbilityTemplate]
 LocFriendlyName="Magnum"
-LocLongDescription="Standard pistol shots have no long range penalty."
-LocHelpText="Standard pistol shots have no long range penalty."
+LocLongDescription="All pistol shots have no long range penalty."
+LocHelpText="All pistol shots have no long range penalty."
 LocFlyOverText="Magnum"
-LocPromotionPopupText="<Bullet/> Only applies to standard pistol shot, and pistol overwatch.<br/><Bullet/> Does not apply to special abilities like Lightning Hands, Gunslinger or Faceoff.<br/>"
+LocPromotionPopupText="<Bullet/> Applies to any ability that makes use of pistols.<br/>"
 
 [HunterFlashbang X2GrenadeTemplate]
 FriendlyName="Flashbang Grenade"
@@ -7140,10 +7421,17 @@ AbilityDescName="Purifier Flamethrower"
 
 [Solace X2AbilityTemplate]
 LocFriendlyName="Solace Aura"
-LocLongDescription="The Priest is surrounded by an aura that immediately extinguishes or blocks any mental impairments for themselves and any nearby squadmates."
-LocHelpText="The Priest is surrounded by an aura that immediately extinguishes or blocks any mental impairments for for themselves and any nearby squadmates."
+LocLongDescription="This unit is affected by an aura that protects it from any mental impairments."
+LocHelpText="This unit is affected by an aura that protects it from any mental impairments."
 LocFlyOverText="Solace"
-LocPromotionPopupText="<Bullet/> Solace has a 4 tile radius.<br/><Bullet/> Moving next to afflicted allies will immediately cleanse their mental impairments.<br/>"
+LocPromotionPopupText="<Bullet/> Solace has a 4 tile radius.<br/><Bullet/> Moving next to afflicted organic allies will immediately cleanse their mental impairments.<br/>"
+
+[SolacePassive X2AbilityTemplate]
+LocFriendlyName="Solace"
+LocLongDescription="This unit is surrounded by an aura that immediately extinguishes or blocks any mental impairments for themselves and any nearby organic allies."
+LocHelpText="This unit is surrounded by an aura that immediately extinguishes or blocks any mental impairments for themselves and any nearby organic allies."
+LocFlyOverText="Solace"
+LocPromotionPopupText="<Bullet/> Solace has a 4 tile radius.<br/><Bullet/> Moving next to afflicted organic allies will immediately cleanse their mental impairments.<br/>"
 
 ; End Translation
 
@@ -7255,8 +7543,8 @@ LocPromotionPopupText="<Bullet/> Soul Shot has +20 bonus to Aim.<br/><Bullet/> S
 
 [IRI_TemplarShield X2AbilityTemplate]
 LocFriendlyName="Templar Shield"
-LocLongDescription="Use your shard gauntlets to generate a psionic shield and gain <Ability:TEMPLAR_SHIELD_TAG/> Shield HP that will last until the start of your next turn. Can be used with Momentum actions."
-LocHelpText="Use your shard gauntlets to generate a psionic shield and gain <Ability:TEMPLAR_SHIELD_TAG/> Shield HP that will last until the start of your next turn. Can be used with Momentum actions."
+LocLongDescription="Use your shard gauntlets to generate a psionic shield and gain <Ability:TEMPLAR_SHIELD_TAG/> Shield HP that will last until the start of your next turn. Can be used with Momentum actions. While active, enemy crit chance is reduced by <Ability:TEMPLAR_SHIELD_CRIT_RESIST> against the unit."
+LocHelpText="Use your shard gauntlets to generate a psionic shield and gain <Ability:TEMPLAR_SHIELD_TAG/> Shield HP that will last until the start of your next turn. Can be used with Momentum actions. While active, enemy crit chance is reduced by <Ability:TEMPLAR_SHIELD_CRIT_RESIST> against the unit."
 LocPromotionPopupText="<bullet/> Ends turn when used.<br/><bullet/> Shield strength will increase with shard gauntlets' tech level."
 
 [Indomitable X2AbilityTemplate]
@@ -7302,8 +7590,8 @@ LocPromotionPopupText="<Bullet/> Amplify will last for 3 damage instances.<br/><
 
 [CrusaderRage_LW X2AbilityTemplate]
 LocFriendlyName="Crusader's Rage"
-LocHelpText="Gain 25% damage boost for every 25% HP missing, up to 50% damage boost. Reduce wound recovery times for this soldier by 6 HP"
-LocLongDescription="Gain 25% damage boost for every 25% HP missing, up to 50% damage boost. Reduce wound recovery times for this soldier by 6 HP."
+LocHelpText="Gain 25% damage boost for every 25% HP missing, up to 50% damage boost. Reduce wound recovery times for this soldier by <Ability:CRUSADER_RAGE_HEAL> HP"
+LocLongDescription="Gain 25% damage boost for every 25% HP missing, up to 50% damage boost. Reduce wound recovery times for this soldier by <Ability:CRUSADER_RAGE_HEAL> HP."
 LocPromotionPopupText="<Bullet/> Wound reduction does not work if the soldier entered a bleeding out state during the mission.<br/>"
 LocFlyOverText="Psychotic Rage"
 
@@ -7333,7 +7621,7 @@ LocFriendlyName="Paramedic"
 LocLongDescription="Unlocks an ability to perform a dash move to use a medikit on an ally. Gain a free medikit. Equipped medikits have <Ability:PARAMEDIC_BONUS_CHARGES/> extra charges."
 LocHelpText="Unlocks an ability to perform a dash move to use a medikit on an ally. Gain a free medikit. Equipped medikits have <Ability:PARAMEDIC_BONUS_CHARGES/> extra charges."
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> "Unlocks an ability to perform a dash move to use a medikit on an ally. Gain a free medikit. Equipped medikits have <Ability:PARAMEDIC_BONUS_CHARGES/> extra charges."
+LocPromotionPopupText="<Bullet/> This ability uses 1 action regardless of distance moved and does not end your turn.<br/><Bullet/> Only a single medikit charge is provided by this ability.<br/>"
 ; End Translation (2)
 [ParaMedikitHeal X2AbilityTemplate]
 LocFriendlyName="Paramedic Heal"
@@ -7344,7 +7632,7 @@ LocHelpText="Run towards an Ally and heal them with your medikit."
 [ParaMedikitStabilize X2AbilityTemplate]
 LocFriendlyName="Paramedic Stabilize"
 LocLongDescription="Run towards an Ally and stabilize them with your medikit."
-LocHelpText="Run towards an Ally and heal stabilize with your medikit."
+LocHelpText="Run towards an Ally and stabilize with your medikit."
 
 [SoulReaper X2AbilityTemplate]
 LocFriendlyName="Banish"
@@ -7427,7 +7715,7 @@ LocLongDescription="Soldier Dodge increased by <Ability:TargetingDodge_DodgeBonu
 LocLongDescription="Soldier critical chance increased by <Ability:TargetingCrit_CritBonus/> for <Ability:TURNSREMAINING/> turns."
 
 [Hypnography X2AbilityTemplate]
-LocLongDescription="All enemy Will reduced by <Ability:Hypnography_WillBonus/>%."
+LocLongDescription="All enemy Will reduced by <Ability:Hypnography_WillBonus/>."
 ; End Translation
 
 ; LWOTC Needs Translation
@@ -7460,6 +7748,47 @@ LocPromotionPopupText="<Bullet/> Beware that a sustained unit may retain damagin
 LocLongDescription="The unit would have died, but was saved and put into Stasis for 1 turn. This cannot happen again during this mission."
 LocHelpText="The unit would have died, but was saved and put into Stasis for 1 turn. This cannot happen again during this mission."
 ; End Translation
+
+[SustainingSphere X2WeaponTemplate]
+FriendlyName="Sustaining Sphere"
+FriendlyNamePlural="Sustaining Spheres"
+BriefSummary="The Sustaining Sphere is an emergency failsafe mechanism that automatically activates when a soldier is on the brink of death, placing them in temporary suspension to extend their life. Reduces Wound Recovery times by 2 HP if triggered."
+TacticalText="<Bullet/> Sustaining Sphere will automatically trigger when the soldier carrying it reaches 0 HP.\n<Bullet/> Instead of dying, the soldier will be placed in Stasis for the rest of the turn and their health will be reduced to 1 HP. Reduces Wound Recovery times by 2 HP if triggered."
+
+[SustainingSphereAbility X2AbilityTemplate]
+LocFriendlyName="Sustaining Sphere"
+LocHelpText="The Sustaining Sphere is an emergency failsafe mechanism that automatically activates when a soldier is on the brink of death, placing them in temporary suspension to extend their life. Reduces Wound Recovery times by 2 HP if triggered."
+LocLongDescription="The Sustaining Sphere is an emergency failsafe mechanism that automatically activates when a soldier is on the brink of death, placing them in temporary suspension to extend their life. Reduces Wound Recovery times by 2 HP if triggered."
+LocFlyOverText="Sustaining Sphere"
+LocPromotionPopupText="<Bullet/> Be aware that a sustained Unit may retain damaging status effects like poison or burning after emerging from Stasis.<br/>"
+
+[SustainingSphereTriggeredAbility X2AbilityTemplate]
+LocFriendlyName="Sustaining Sphere"
+LocHelpText="The Sustaining Sphere is an emergency failsafe mechanism that automatically activates when a soldier is on the brink of death, placing them in temporary suspension to extend their life. Reduces Wound Recovery times by 2 HP if triggered."
+LocLongDescription="The Sustaining Sphere is an emergency failsafe mechanism that automatically activates when a soldier is on the brink of death, placing them in temporary suspension to extend their life. Reduces Wound Recovery times by 2 HP if triggered."
+
+[RefractionField X2WeaponTemplate]
+FriendlyName="Refraction Field"
+FriendlyNamePlural="Refraction Fields"
+BriefSummary="Using material recovered from the remains of the alien Spectre, Refraction Field technology will allow the equipped soldier to instantly enter concealment."
+TacticalText="<Bullet/> Refraction Field places a soldier into Concealment.\n<Bullet/> Reapers will be placed into Shadow concealment."
+
+[RefractionFieldAbility X2AbilityTemplate]
+LocFriendlyName="Refraction Field"
+LocHelpText="Instantly enter concealment."
+LocLongDescription="Using material recovered from the remains of the alien Spectre, Refraction Field technology will allow the equipped soldier to instantly enter concealment."
+
+[CombatStims X2AbilityTemplate]
+LocFriendlyName="Overdrive Serum"
+LocHelpText="Gain bonus mobility, mental immunity, and take less damage for the next <Ability:COMBATSTIMSDURATION/> turns. Does not cost an action to activate."
+LocLongDescription="A soldier taking Overdrive Serum receives bonus mobility, mental immunity, and takes less damage for the next <Ability:COMBATSTIMSDURATION/> turns. This does not cost an action to activate."
+LocFlyOverText="Overdrive Serum"
+
+[CombatStims X2AbilityTemplate]
+LocFriendlyName="Overdrive Serum"
+LocHelpText="Gain bonus mobility, mental immunity, and take less damage for the next <Ability:COMBATSTIMSDURATION/> turns. Does not cost an action to activate."
+LocLongDescription="A soldier taking Overdrive Serum receives bonus mobility, mental immunity, and takes less damage for the next <Ability:COMBATSTIMSDURATION/> turns. This does not cost an action to activate."
+LocFlyOverText="Overdrive Serum"
 
 [X2MPData_Shell]
 arrMPMapFriendlyNames[9]="Underground"
@@ -7516,7 +7845,7 @@ LocFriendlyName="Channeling Field"
 LocLongDescription="Every time you are targeted, part of the energy is channeled to your <Ability:WeaponName>. This energy is unleashed with your next Standard Shot."
 LocHelpText="Channel energy to your <Ability:WeaponName> when targeted, and unleash it with your next Standard Shot."
 LocFlyOverText="Energy Channeled: +1"
-LocPromotionPopupText="<Bullet/> Each point of energy channeled by Channeling Field increases the damage of the next <Ability:WeaponName> attack by 1.<br/><Bullet/> The energy stored by channeling field is expended even if the next shot misses.<br/>"
+LocPromotionPopupText="<Bullet/> Each point of energy channeled by Channeling Field increases the damage of the next <Ability:WeaponName> attack by 1.<br/>"
 
 [Sacrifice X2AbilityTemplate]
 LocFriendlyName="Sacrifice"
@@ -7557,7 +7886,7 @@ LocPromotionPopupText="<Bullet/> Hunter Protocol makes the SPARK an ideal unit f
 
 [Nova X2AbilityTemplate]
 LocFriendlyName="Nova"
-LocLongDescription="Release a blast of energy, damaging all nearby units. This attack has no cost or cooldown, but consecutive Novas will damage the SPARK."
+LocLongDescription="Release a blast of energy, dealing 6 damage to nearby units. This attack has no cost or cooldown, but consecutive Novas will damage the SPARK."
 LocHelpText="Blast all nearby units. Consecutive Novas will damage the SPARK."
 LocPromotionPopupText="<Bullet/> Nova has no action point cost and no cooldown.<br/><Bullet/> The first Nova attack each mission will deal 0 damage to the SPARK.<br/><Bullet/> All Nova attacks after the first will deal a stacking <Ability:Nova_Damage/> damage to the SPARK.<br/>"
 
@@ -7576,3 +7905,77 @@ m_strLockedTT=We cannot make contact with the Resistance in this region. We must
 m_strUnlockedTT=The Resistance in <XGParam:StrValue0/!WorldRegionName/> would join our cause if we made contact with them!
 m_strContactTT=The Resistance in <XGParam:StrValue0/!WorldRegionName/> is generating an income of <XGParam:StrValue1/!Quantity/> supplies for us.
 m_strOutpostTT=We have installed a radio relay in this region! The relay increases the efficiency of rebel jobs and it reduces the cost of contact with any connected regions.
+
+[LostImmunitiesPassive X2AbilityTemplate]
+LocFriendlyName="The Lost Immunities"
+LocFlyOverText="The Lost Immunities"
+LocLongDescription="The Lost are immune to mental impairments, poison, and acid."
+LocHelpText="The Lost are immune to mental impairments, poison, and acid.
+LocPromotionPopupText=""
+
+[PsiZombieImmunitiesPassive X2AbilityTemplate]
+LocFriendlyName="Psi Zombie Immunities"
+LocFlyOverText="Psi Zombie Immunities"
+LocLongDescription="Psi Zombies are immune to mental impairments and poison."
+LocHelpText="Psi Zombies are immune to mental impairments and poison.
+LocPromotionPopupText=""
+
+[SpectralZombieImmunitiesPassive X2AbilityTemplate]
+LocFriendlyName="Spectral Zombie Immunities"
+LocFlyOverText="Spectral Zombie Immunities"
+LocLongDescription="Spectral Zombies are immune to mental impairments, fire, poison, and acid."
+LocHelpText="Spectral Zombies are immune to mental impairments, fire, poison, and acid.
+LocPromotionPopupText=""
+
+[Anatomy_LW X2AbilityTemplate]
+LocFriendlyName="Anatomy"
+LocFlyOverText="Anatomy"
+LocLongDescription="You know exactly where to strike to cause the most damage. You gain +15% Critical Chance and 2 Armor Pierce on all attacks."
+LocHelpText="You gain bonuses to Critical Chance and Armor Pierce."
+LocPromotionPopupText="<Bullet/> This is an unconditional passive bonus.\n<Bullet/> The Armor Pierce bonus will not show on attack previews, but it will function when the attack lands."
+
+[ScoutScanner_LW X2AbilityTemplate]
+LocFriendlyName="Reconnoiter"
+LocHelpText="Every 4 turns, as a free action, you can use a Battle Scanner."
+LocLongDescription="Every 4 turns, as a free action, you can use a Battle Scanner. This does not require or consume any actual equipped Battle Scanners."
+LocPromotionPopupText="<Bullet/> The Battle Scanners granted by Reconnoiter can be used indefinitely, only limited by the cooldown.\n<Bullet/> These Battle Scanners are separate from the ones granted by the Battle Scanner item or the Scout ability."
+
+[FreeScanner_LW X2AbilityTemplate]
+LocFriendlyName="Reconnoiter"
+LocHelpText="Every 4 turns, as a free action, you can use a Battle Scanner."
+LocLongDescription="Every 4 turns, as a free action, you can use a Battle Scanner. This does not require or consume any actual equipped Battle Scanners."
+LocPromotionPopupText="<Bullet/> The Battle Scanners granted by Reconnoiter can be used indefinitely, only limited by the cooldown.\n<Bullet/> These Battle Scanners are separate from the ones granted by the Battle Scanner item or the Scout ability."
+
+[LineEmUp_LW X2AbilityTemplate]
+LocFriendlyName="Priority Target"
+LocLongDescription="You get <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit chance on ranged attacks against the closest visible enemy."
+LocHelpText="You get <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit chance on ranged attacks against the closest visible enemy."
+LocFlyOverText="Priority Target"
+LocPromotionPopupText="<Bullet/> If multiple enemies are equally distant, you get the bonus against all of them.<br/><Bullet/> Priority Target doesn't affect melee attacks.<br/>"
+
+[SensorOverlays_LW X2AbilityTemplate]
+LocFriendlyName="Sensor Overlays"
+LocLongDescription="All squad members get <Ability:+Crit> Crit chance against enemies you can see."
+LocHelpText="All squad members get <Ability:+Crit> Crit chance against enemies you can see."
+LocFlyOverText="Sensor Overlays"
+LocPromotionPopupText="<Bullet/> This doesn't count enemies only visible through squadsight.<br/>"
+
+[FocusedDefense_LW X2AbilityTemplate]
+LocFriendlyName="Focused Defense"
+LocLongDescription="You get an additional <Ability:+Defense/> Defense and <Ability:+Dodge/> Dodge against attacks by the closest visible enemy while not flanked."
+LocHelpText="You get an additional <Ability:+Defense/> Defense and <Ability:+Dodge/> Dodge against attacks by the closest visible enemy while not flanked."
+LocFlyOverText="Focused Defense"
+LocPromotionPopupText="<Bullet/> The bonus doesn't apply against melee attacks.<br/><Bullet/> If multiple enemies are equally distant, you get the bonus against all of them.<br/>"
+
+
+[GrappleExpert_LW X2AbilityTemplate]
+LocFriendlyName="Grapple Expert"
+LocLongDescription="Justice, Whiplash, and Wrath gain +15 aim."
+LocHelpText="Justice, Whiplash, and Wrath gain +15 aim."
+LocFlyOverText="Grapple Expert"
+
+;Marauder
+[SkirmisherStrike X2AbilityTemplate]
+LocLongDescription="Standard shots with your primary weapon are not turn-ending."
+LocHelpText="Standard shots with your primary weapon are not turn-ending."
+LocPromotionPopupText=""

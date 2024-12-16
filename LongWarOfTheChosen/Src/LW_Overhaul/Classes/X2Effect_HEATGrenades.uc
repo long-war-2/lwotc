@@ -20,7 +20,9 @@ function int GetExtraArmorPiercing(XComGameState_Effect EffectState, XComGameSta
 		return 0;
 
 	// make sure the weapon is either a grenade or a grenade launcher
-	if(X2GrenadeTemplate(WeaponTemplate) != none || X2GrenadeLauncherTemplate(WeaponTemplate) != none)
+	if(X2GrenadeTemplate(WeaponTemplate) != none ||
+		X2GrenadeLauncherTemplate(WeaponTemplate) != none ||
+		class'X2Effect_BonusRocketDamage_LW'.default.VALID_ABILITIES.Find(AbilityState.GetMyTemplateName()) != INDEX_NONE)
 	{
 		return Pierce;
 	}
@@ -39,7 +41,7 @@ function int GetExtraShredValue(XComGameState_Effect EffectState, XComGameState_
 		return 0;
 
 	// make sure the weapon is either a grenade or a grenade launcher
-	if(X2GrenadeTemplate(WeaponTemplate) != none || X2GrenadeLauncherTemplate(WeaponTemplate) != none)
+	if(X2GrenadeTemplate(WeaponTemplate) != none || X2GrenadeLauncherTemplate(WeaponTemplate) != none || class'X2Effect_BonusRocketDamage_LW'.default.VALID_ABILITIES.Find(AbilityState.GetMyTemplateName()) != INDEX_NONE)
 	{
 		// make sure it already shreds
 		if (WeaponTemplate.BaseDamage.Shred > 0)

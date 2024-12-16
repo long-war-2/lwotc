@@ -96,6 +96,7 @@ static function X2DataTemplate CreateTemplate_ThrowingKnife_MG_Secondary()
 
 	Template.CritChance = default.THROWING_KNIFE_MG_CRITCHANCE;
 	Template.BaseDamage = default.THROWING_KNIFE_MG_BASEDAMAGE;
+	Template.iClipSize += 1;
 
 	// Add chance to inflict bleeding
 	BleedingEffect = class'X2StatusEffects'.static.CreateBleedingStatusEffect(
@@ -128,6 +129,7 @@ static function X2DataTemplate CreateTemplate_ThrowingKnife_BM_Secondary()
 
 	Template.CritChance = default.THROWING_KNIFE_BM_CRITCHANCE;
 	Template.BaseDamage = default.THROWING_KNIFE_BM_BASEDAMAGE;
+	Template.iClipSize += 2;
 
 	// Add chance to inflict bleeding
 	BleedingEffect = class'X2StatusEffects'.static.CreateBleedingStatusEffect(

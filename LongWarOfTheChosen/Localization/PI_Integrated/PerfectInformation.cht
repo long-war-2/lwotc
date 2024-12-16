@@ -1,0 +1,75 @@
+[PI_MCMListener]
+MOD_NAME="Perfect Information"
+OPTIONS_HEADER="Options"
+
+DURATION_TITLE_DAMAGE="Damage Flyover Duration"
+DURATION_DESCRIPTION_DAMAGE="Guaranteed Damage Flyover Duration"
+
+FLYOVER_TITLE_XCOM="Show Flyovers For XCom"
+FLYOVER_TITLE_ENEMY="Show Flyovers For Enemies"
+
+REACTION_FLYOVERS_TITLE="Only Show Flyovers Reaction Shots"
+AIM_ASSIST_FLYOVER_TITLE="Show Aim Assist Flyovers"
+
+HIT_CHANCE_TITLE="Show Hit Chance"
+CRIT_CHANCE_TITLE="Show Crit Chance"
+DODGE_CHANCE_TITLE="Show Dodge Chance"
+MISS_CHANCE_TITLE="Show Miss Chance"
+
+SHORT_STRING_TITLE="Use Short Strings"
+
+SHOW_GUARANTEED_HITS_TITLE="Show Guaranteed Hits"
+SHOW_GUARANTEED_MISS_TITLE="Show Guaranteed Misses"
+
+REPEATER_TITLE="Show Repeater Flyovers"
+
+SHOW_ENEMY_STATS_TITLE="Show Enemy Stats Tooltip"
+
+SHOW_EXTRA_WEAPONSTATS_TITLE="Show Weapon Extra Weapon Stats"
+
+SHOW_AIM_ASSIST_MAIN_HUD_TITLE="Show Aim Assist on Shot HUD"
+SHOW_MISS_CHANCE_MAIN_HUD_TITLE="Show Miss chance on Shot HUD"
+
+AIM_LEFT_OF_CRIT_TITLE="Show Aim Left of Crit on Shot Bar"
+PREVIEW_MINIMUM_TITLE="Damage Preview Shows Minimum"
+SHOW_DODGE_TITLE="Show Dodge on Shot HUD"
+SHOW_CRIT_DMG_TITLE="Show Crit Damage on Shot HUD"
+PREVIEW_HACKING_TITLE="Preview Hacking"
+
+SHOW_AIM_ASSIST_OVER_ENEMY_ICON_TITLE="Show Aim Assists Over Enemy Icon"
+SHOW_MISS_CHANCE_OVER_ENEMY_ICON_TITLE="Show Miss Chance Over Enemy Icon"
+
+SHOW_ALWAYS_SHOT_BREAKDOWN_HUD_TITLE="Always Show Shot Breakdown"
+SHOW_MISS_CHANCE_BREAKDOWN_HUD_TITLE="Show Miss Chance Breakdown"
+SHOW_AIM_ASSIST_BREAKDOWN_HUD_TITLE="Show Aim Assist Breakdown"
+
+[XCom_Perfect_Information_X2Action_ApplyWeaponDamageToUnit]
+//HIT_CHANCE_MSG ="HIT:";
+HIT_CHANCE_MSG ="HC.HIT:";
+CRIT_CHANCE_MSG ="CRIT:";
+//DODGE_CHANCE_MSG ="DODGE:";
+DODGE_CHANCE_MSG ="GRAZE:";
+MISS_CHANCE_MSG ="MISS:";
+
+GUARANTEED_HIT_MSG =" - GUARANTEED_HIT";
+GUARANTEED_MISS_MSG =" - GUARANTEED_MISS";
+
+REPEATER_KILL_MSG =" - Repeater: ";
+
+[XCom_Perfect_Information_UITacticalHUD_ShotWings]
+LOWER_DIFFICULTY_MSG = "LOWER DIFFICULTY";
+MISS_STREAK_MSG = "MISS STREAK";
+SOLDIER_LOST_BONUS = "SOLDIER LOST BONUS";
+
+[XCom_Perfect_Information_UITacticalHUD_SoldierInfoTooltip]
+KILLS_LABEL = "Kills";
+ASSIST_LABEL = "Assist";
+FLANKING_CRIT_LABEL = "Flanking Crit";
+
+[XCom_Perfect_Information_UITacticalHUD_EnemyTooltip]
+PrimaryBase = "Damage Base"
+PrimarySpread = "Damage Spread"
+PrimaryPlusOne = "Damage +1"
+
+[XCom_Perfect_Information_UIEffectListItem]
+TURNS_REMAINING = "TURNS REMAINING"

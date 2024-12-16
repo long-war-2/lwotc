@@ -67,7 +67,7 @@ static function EventListenerReturn OnGetItemRange(Object EventData, Object Even
 	{
 		if(AbilityName == 'LWRocketLauncher' || AbilityName == 'LWBlasterLauncher' || default.VALID_ABILITIES.Find (AbilityName) != -1)
 		{
-			OverrideTuple.Data[1].i = class'X2Ability_LW_TechnicalAbilitySet'.default.JAVELIN_ROCKETS_BONUS_RANGE_TILES;
+			OverrideTuple.Data[1].i += class'X2Ability_LW_TechnicalAbilitySet'.default.JAVELIN_ROCKETS_BONUS_RANGE_TILES;
 		}
 	}
 

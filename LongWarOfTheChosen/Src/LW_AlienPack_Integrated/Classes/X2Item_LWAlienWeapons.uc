@@ -326,15 +326,13 @@ static function X2DataTemplate CreateTemplate_MutonM3_LW_WPN()
 	Template.DamageTypeTemplateName = 'Projectile_BeamXCom';
 	
 	Template.InventorySlot = eInvSlot_PrimaryWeapon;
-	//Template.Abilities.AddItem('StandardShot');
+	Template.Abilities.AddItem('StandardShot');
 	Template.Abilities.AddItem('Overwatch');
 	Template.Abilities.AddItem('OverwatchShot');
 	Template.Abilities.AddItem('Reload');
 	Template.Abilities.AddItem('Suppression');
 	Template.Abilities.AddItem('HotLoadAmmo');
 	Template.Abilities.AddItem('Execute');
-
-	Template.Abilities.AddItem('LightEmUp');
 
  	// This all the resources; sounds, animations, models, physics, the works.
 	Template.GameArchetype = "LWMutonM3Rifle.Archetypes.WP_MutonM3Rifle_Base";  // upscaled, recolored beam cannon
@@ -628,7 +626,7 @@ static function X2DataTemplate CreateTemplate_AdvSentry_WPN(name TemplateName)
 	{
 		Template.Abilities.AddItem('CoolUnderPressure');
 		Template.Abilities.AddItem('Sentinel');
-		Template.Abilities.AddItem('CoveringFire');
+		//Template.Abilities.AddItem('CoveringFire');
 	}
 
 	if (TemplateName == 'AdvSentryM3_WPN')

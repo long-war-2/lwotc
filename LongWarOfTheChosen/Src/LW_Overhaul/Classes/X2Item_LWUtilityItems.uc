@@ -46,7 +46,7 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Items.AddItem(CreateShapedCharge());
 
-
+	Items.AddItem(CreateScoutScanner());
 
 	return Items;
 }
@@ -145,6 +145,10 @@ static function X2DataTemplate CreateChameleonSuit()
 	Template.StartingItem = false;
 	Template.CanBeBuilt = true;
 
+	Template.Abilities.AddItem('Chameleon_Suit_Ability');
+
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.HealthLabel, eStat_HP, class'X2Ability_LW_GearAbilities'.default.CHAMELEON_VEST_HP_BONUS);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.DodgeLabel, eStat_Dodge, class'X2Ability_LW_GearAbilities'.default.CHAMELEON_VEST_DODGE_BONUS);
 	//EFFECT IS CAPTURED IN INFILTRATION CODE
 
 	return Template;
@@ -325,7 +329,7 @@ static function X2DataTemplate CreateHighPressureTanks()
 	Template.InventorySlot = eInvSlot_HeavyWeapon;
 	Template.strImage = "img:///UILibrary_LWOTC.InventoryArt.Inv_HighPressureTanks"; 
 	Template.EquipSound = "StrategyUI_Heavy_Weapon_Equip";
-	Template.Abilities.AddItem ('HighPressure');
+	//Template.Abilities.AddItem ('HighPressure');
 	Template.CanBeBuilt = false;
 	Template.StartingItem = true;
 	Template.bInfiniteItem = true;
@@ -344,7 +348,7 @@ static function X2DataTemplate CreateExtraRocket()
 	Template.InventorySlot = eInvSlot_HeavyWeapon;
 	Template.strImage = "img:///UILibrary_LWOTC.InventoryArt.Inv_ExtraRocket"; 
 	Template.EquipSound = "StrategyUI_Heavy_Weapon_Equip";
-	Template.Abilities.AddItem ('ShockAndAwe');
+	//Template.Abilities.AddItem ('ShockAndAwe');
 	Template.CanBeBuilt = false;
 	Template.StartingItem = true;
 	Template.bInfiniteItem = true;
@@ -358,7 +362,7 @@ static function X2GrenadeTemplate CreateGhostGrenade()
 {
 	local X2GrenadeTemplate Template;
 
-	`CREATE_X2TEMPLATE(class'X2GrenadeTemplate', Template, 'GhostGrenade');
+	`CREATE_X2TEMPLATE(class'X2GrenadeTemplate', Template, 'GhostGrenade_LW');
 
 	Template.WeaponCat = 'Utility';
     Template.ItemCat = 'Utility';
@@ -452,3 +456,35 @@ static function X2DataTemplate CreateShapedCharge()
 	return Template;
 }
 
+static function X2WeaponTemplate CreateScoutScanner()
+{
+	local X2WeaponTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'ScoutScanner_LW');
+
+	Template.strImage = "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_Battle_Scanner";
+	Template.EquipSound = "StrategyUI_Grenade_Equip";
+
+	Template.GameArchetype = "WP_Grenade_BattleScanner.WP_Grenade_BattleScanner";
+	Template.Abilities.AddItem('ScoutScanner_LW');
+	Template.ItemCat = 'tech';
+	Template.WeaponCat = 'utility';
+	Template.WeaponTech = 'conventional';
+	Template.InventorySlot = eInvSlot_Utility;
+	Template.StowedLocation = eSlot_BeltHolster;
+	Template.bMergeAmmo = true;
+	Template.iClipSize = 1;
+	Template.Tier = 1;
+
+	Template.iRadius = class'X2Item_DefaultUtilityItems'.default.BATTLESCANNER_RADIUS;
+	Template.iRange = class'X2Item_DefaultUtilityItems'.default.BATTLESCANNER_RANGE;
+
+	Template.CanBeBuilt = false;
+
+	Template.bShouldCreateDifficultyVariants = true;
+
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.RangeLabel, , class'X2Item_DefaultUtilityItems'.default.BATTLESCANNER_RANGE);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.RadiusLabel, , class'X2Item_DefaultUtilityItems'.default.BATTLESCANNER_RADIUS);
+
+	return Template;
+}

@@ -4,11 +4,14 @@
 //  PURPOSE: Grants ablative on use, scales with shield tier
 //---------------------------------------------------------------------------------------
 
-class X2Effect_OneForAll extends X2Effect_ModifyStats;
+class X2Effect_OneForAll extends X2Effect_ModifyStats config(GameData_WeaponData);
 
 var int BaseShieldHPIncrease;
 var int MK2ShieldIncrease;
 var int MK3ShieldIncrease;
+
+var config array<Name> Mk2ShieldWeapons;
+var config array<Name> Mk3ShieldWeapons;
 
 protected simulated function OnEffectAdded(const out EffectAppliedData ApplyEffectParameters, XComGameState_BaseObject kNewTargetState, XComGameState NewGameState, XComGameState_Effect NewEffectState)
 {
@@ -32,11 +35,11 @@ protected simulated function OnEffectAdded(const out EffectAppliedData ApplyEffe
 
 	ShieldHPChange.StatAmount = BaseShieldHPIncrease;
 
-	if (SourceItem.GetMyTemplateName() == 'TemplarBallisticShield_MG')
+	if (default.Mk2ShieldWeapons.Find(SourceItem.GetMyTemplateName()) != INDEX_NONE)
 	{
 		ShieldHPChange.StatAmount += MK2ShieldIncrease;
 	}
-	if (SourceItem.GetMyTemplateName() == 'TemplarBallisticShield_BM')
+	if (default.Mk3ShieldWeapons.Find(SourceItem.GetMyTemplateName()) != INDEX_NONE)
 	{
 		ShieldHPChange.StatAmount += MK3ShieldIncrease;
 	}

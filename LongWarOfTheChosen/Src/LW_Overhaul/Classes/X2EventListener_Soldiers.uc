@@ -7,6 +7,7 @@ var localized string UnitInSquad;
 var localized string RankTooLow;
 var localized string CannotModifyOnMissionSoldierTooltip;
 var localized string ReasonClassAbilityPickedAtRank;
+var localized string ReasonPsiOperativePerkFromLab;
 
 var config array<EInventorySlot> UNMODIFIABLE_SLOTS_WHILE_ON_MISSION;
 
@@ -16,6 +17,7 @@ var config int NUM_HOURS_TO_DAYS;
 
 var config int BLEEDOUT_CHANCE_BASE;
 var config int DEATH_CHANCE_PER_OVERKILL_DAMAGE;
+var config int DEATH_CHANCE_PER_OVERKILL_DAMAGE_STAYWITHME;
 
 struct CustomAbilityCost
 {
@@ -26,6 +28,11 @@ struct CustomAbilityCost
 var config array<CustomAbilityCost> CUSTOM_ABILITY_COSTS;
 var config array<int> FACTION_ABILITY_COSTS;
 var config float BASE_ABILITY_COST_MODIFIER;
+var config array<name>CLASSES_IGNORE_CUSTOM_COSTS;
+
+var config array<name> SPARKUnitValues, SPARKCharacterTemplates, SPARKSoldierClasses, SPARKAbilities;
+
+var config float fSPARK_HP_MIN;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -67,7 +74,7 @@ static function CHEventListenerTemplate CreateStatusListeners()
 	Template.AddCHEvent('OverridePersonnelStatus', OnOverridePersonnelStatus, ELD_Immediate);
 	Template.AddCHEvent('OverridePersonnelStatusTime', OnOverridePersonnelStatusTime, ELD_Immediate);
 	Template.AddCHEvent('DSLShouldShowPsi', OnShouldShowPsi, ELD_Immediate);
-
+	//Template.AddCHEvent('UIPersonnel_OnSortFinished', OnUIPSortDone, ELD_Immediate, 60);
 	// Armory Main Menu - disable buttons for On-Mission soldiers
 	Template.AddCHEvent('OnArmoryMainMenuUpdate', UpdateArmoryMainMenuItems, ELD_Immediate);
 
@@ -82,7 +89,7 @@ static function CHEventListenerTemplate CreatePromotionListeners()
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'SoldierPromotionListeners');
 	Template.AddCHEvent('OverrideShowPromoteIcon', OnCheckForPsiPromotion, ELD_Immediate);
-	Template.AddCHEvent('OverridePromotionUIClass', OverridePromotionUIClass, ELD_Immediate, 50);
+	Template.AddCHEvent('OverridePromotionUIClass', OverridePromotionUIClass, ELD_Immediate, 99);
 	Template.AddCHEvent('OverridePromotionBlueprintTagPrefix', OverridePromotionBlueprintTagPrefix, ELD_Immediate);
 	Template.AddCHEvent('CPS_OverrideCanPurchaseAbility', OverrideCanPurchaseAbility, ELD_Immediate);
 	Template.AddCHEvent('CPS_OverrideAbilityPointCost', OverrideAbilityPointCost, ELD_Immediate);
@@ -322,6 +329,12 @@ static function EventListenerReturn OnOverridePersonnelStatusTime(Object EventDa
 	local XComGameState_Unit	UnitState;
 	local int					Hours, Days;
 
+	if(class'Helpers_LW'.default.bDSLReduxActive)
+	{
+		// DSL Redux active, let it handle things.
+		return ELR_NoInterrupt;
+	}
+
 	OverrideTuple = XComLWTuple(EventData);
 	if (OverrideTuple == none)
 	{
@@ -341,7 +354,13 @@ static function EventListenerReturn OnOverridePersonnelStatusTime(Object EventDa
 		return ELR_NoInterrupt;
 	}
 
+	if (OverrideTuple.Data[0].b) 
+	{
+		return ELR_NoInterrupt; //mental states fire twice apparently
+	}
+
 	Hours = OverrideTuple.Data[2].i;
+
 	if (Hours < 0 || Hours > 24 * 30 * 12) // Ignore year long missions
 	{
 		OverrideTuple.Data[1].s = "";
@@ -360,6 +379,7 @@ static function EventListenerReturn OnOverridePersonnelStatusTime(Object EventDa
 		OverrideTuple.Data[1].s = class'UIUtilities_Text'.static.GetHoursString(Hours);
 		OverrideTuple.Data[2].i = Hours;
 	}
+	return ELR_NoInterrupt;
 }
 
 static function EventListenerReturn OnShouldShowPsi(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
@@ -439,6 +459,9 @@ static function EventListenerReturn OverridePromotionUIClass(
 	Name InEventID,
 	Object CallbackData)
 {
+	local XComLWTuple Tuple;
+    local CHLPromotionScreenType ScreenType;
+
 	if (class'Helpers_LW'.default.XCOM2RPGOverhaulActive)
 	{
 		// Prevent CPS from overriding RPGO's promotion screen.
@@ -446,6 +469,18 @@ static function EventListenerReturn OverridePromotionUIClass(
 	}
 	else
 	{
+		Tuple = XComLWTuple(EventData);
+   		if (Tuple == none) { return ELR_NoInterrupt; }
+
+   		ScreenType = CHLPromotionScreenType(Tuple.Data[0].i);
+
+    	// CPS will always replace standard and hero promotion screens.
+    	if (ScreenType == eCHLPST_PsiOp)
+    	{
+			Tuple.Data[0].i = eCHLPST_Hero;
+        	Tuple.Data[1].o = class'UIArmory_PromotionHero';
+    	}
+
 		return ELR_NoInterrupt;
 	}
 }
@@ -506,7 +541,14 @@ static function EventListenerReturn OverrideCanPurchaseAbility(
 	{
 		Tuple.Data[13].b = false; // CanPurchaseAbility
 		Tuple.Data[15].s = default.ReasonClassAbilityPickedAtRank; // LocReasonLocked
-		return ELR_NoInterrupt;
+
+		if (UnitState.GetSoldierClassTemplateName() != 'PsiOperative')  { return ELR_NoInterrupt; }
+
+   		if (Branch < ClassAbilityRankCount) //row 0, row 1
+   		{
+    		Tuple.Data[13].b = false;                   //Can't buy it ...
+    		Tuple.Data[15].s = default.ReasonPsiOperativePerkFromLab;  //.. because its a psi-op perk from the lab
+    	}
 	}
 
 	// All non-class abilities should be available for purchase as soon as the
@@ -531,6 +573,14 @@ static function EventListenerReturn OverrideCanPurchaseAbility(
 			Tuple.Data[14].i = 2;   // Reason: No Training Center
 		}
 	}
+
+	if (UnitState.GetSoldierClassTemplateName() != 'PsiOperative')  { return ELR_NoInterrupt; }
+
+   	if (Branch< ClassAbilityRankCount) //row 0, row 1
+   	{
+    	Tuple.Data[13].b = false;                   //Can't buy it ...
+    	Tuple.Data[15].s = default.ReasonPsiOperativePerkFromLab;  //.. because its a psi-op perk from the lab
+    }
 
 	return ELR_NoInterrupt;
 }
@@ -581,11 +631,16 @@ static function EventListenerReturn OverrideAbilityPointCost(
 		AbilityCost = default.FACTION_ABILITY_COSTS[Rank];
 	}
 	else
-	{
-		idx = default.CUSTOM_ABILITY_COSTS.Find('AbilityName', AbilityName);
-		if (idx != INDEX_NONE)
+	{	
+		// if class isn't found in new exclude list, continue to adjust pistol row costs.
+		if(default.CLASSES_IGNORE_CUSTOM_COSTS.Find(UnitState.GetSoldierClassTemplateName()) == INDEX_NONE)
 		{
+			
+			idx = default.CUSTOM_ABILITY_COSTS.Find('AbilityName', AbilityName);
+			if (idx != INDEX_NONE)
+			{
 			AbilityCost = default.CUSTOM_ABILITY_COSTS[idx].AbilityCost;
+			}
 		}
 	}
 
@@ -730,6 +785,7 @@ static function EventListenerReturn OnPsiProjectCompleted(
 
 	Tries = 0;
 	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Granting Bonus Psi Starter abilities");
+	UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectId));
 	while (BonusAbilitiesGranted < default.PSI_SQUADDIE_BONUS_ABILITIES)
 	{
 		BonusAbilityRank = `SYNC_RAND_STATIC(1 + (default.PSI_SQUADDIE_BONUS_ABILITIES / 2));
@@ -919,6 +975,13 @@ static final function EventListenerReturn OnOverrideAbilityIconColor(Object Even
 				}
 			}
 			break;
+		case 'Battlescanner':
+			if (UnitState.AffectedByEffectNames.Find('RapidDeploymentEffect') != -1)
+			{
+				IsTurnEnding = false;
+				IsFree = true;
+			}
+			break;
 		case 'ArcThrowerStun':
 		case 'EMPulser':
 		case 'ChainLightning':
@@ -976,6 +1039,7 @@ static function EventListenerReturn  OnOverrideBleedOutChance(Object EventData, 
 {
 	local XComLWTuple				OverrideTuple;
 	local int						BleedOutChance;
+	local XComGameState_HeadquartersXCom XComHQ;
 
 	OverrideTuple = XComLWTuple(EventData);
 	if(OverrideTuple == none)
@@ -989,8 +1053,23 @@ static function EventListenerReturn  OnOverrideBleedOutChance(Object EventData, 
 	//   1: Size of die to roll
 	//   2: Overkill damage, i.e. how much damage was dealt over and above what was needed
 	//      to take the solider to 0 health.
-	BleedOutChance = default.BLEEDOUT_CHANCE_BASE - (OverrideTuple.Data[2].i * default.DEATH_CHANCE_PER_OVERKILL_DAMAGE);
+	
+
+	XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom', true));
+	if (XComHQ != none && XComHQ.SoldierUnlockTemplates.Find('StayWithMeUnlock') != INDEX_NONE)
+	{
+		BleedOutChance = default.BLEEDOUT_CHANCE_BASE - (OverrideTuple.Data[2].i * default.DEATH_CHANCE_PER_OVERKILL_DAMAGE_STAYWITHME);
+	}
+	else
+	{
+		BleedOutChance = default.BLEEDOUT_CHANCE_BASE - (OverrideTuple.Data[2].i * default.DEATH_CHANCE_PER_OVERKILL_DAMAGE);
+	}
+
 	OverrideTuple.Data[0].i = BleedOutChance;
+	`LWTrace("Bleedout Calc data");
+	`LWTrace("RollOutOf:" @ OverrideTuple.Data[1].i);
+	`LWTrace("Overkill Damage:" @OverrideTuple.Data[2].i);
+	`LWTrace("LW bleedout chance after calc:" @BleedOutChance);
 
 	return ELR_NoInterrupt;
 
@@ -1213,4 +1292,132 @@ static function EventListenerReturn OnSerialKill(Object EventData, Object EventS
 	ShooterState.GetUnitValue ('SerialKills', UnitVal);
 	ShooterState.SetUnitFloatValue ('SerialKills', UnitVal.fValue + 1.0, eCleanup_BeginTurn);
 	return ELR_NoInterrupt;
+}
+
+// Helper functions below borrowed from RustyDios
+static final function bool IsUnitSpark(const out XComGameState_Unit UnitState)
+{
+	local UnitValue	UV;
+	local name ValueName;
+
+	//Attempts to find 'SPARK' units
+	if (UnitState.GetMyTemplateName() == 'SparkSoldier' || UnitState.GetMyTemplateName() == 'LostTowersSpark')	{ return true; }
+	else if (UnitState.HasAnyOfTheAbilitiesFromAnySource(default.SPARKAbilities)) 								{ return true; }
+	else if (default.SPARKCharacterTemplates.Find(UnitState.GetMyTemplateName()) != INDEX_NONE)					{ return true; }
+	else if (default.SPARKSoldierClasses.Find(UnitState.GetSoldierClassTemplateName()) != INDEX_NONE) 			{ return true; }
+
+	foreach default.SPARKUnitValues(ValueName)
+	{
+		if (UnitState.GetUnitValue(ValueName, UV))
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+static function int GetUnitStatsValue(XComGameState_Unit Unit, ECharStatType Stat, bool bAddPerk, bool bAddGear, optional bool bIsMax)
+{
+    local int StatValue;
+
+    //GET BASE VALUE, FIGURE OUT IF WE NEED MAX OR CURRENT
+    StatValue = bIsMax ? int(Unit.GetMaxStat(Stat)) : int(Unit.GetCurrentStat(Stat));
+
+    //ADD TO STAT VALUE FROM VARIOUS PLACES
+    if (bAddPerk) { StatValue += Unit.GetUIStatFromAbilities(Stat); }
+    if (bAddGear) { StatValue += Unit.GetUIStatFromInventory(Stat); }
+
+    //RETURN COMBINED TOTAL
+    return StatValue;
+}
+
+// Disabled now:
+static function EventListenerReturn OnUIPSortDone(Object EventData, Object EventSource, XComGameState GameState, Name Event, Object CallbackData)
+{
+	local UIPersonnel SS_Screen;
+
+	SS_Screen = UIPersonnel(EventSource);
+
+	if (SS_Screen != none)
+	{
+		if (SS_Screen.IsA('UIPersonnel_SquadSelect') || SS_Screen.IsA('SSAAT_UIPersonnel_Select') )
+		{
+			 TryDisableForSpark(SS_Screen);
+		}
+
+		RefreshTitle(SS_Screen);
+	}
+
+	return ELR_NoInterrupt;
+}
+
+static function RefreshTitle(UIPersonnel SS_Screen)
+{
+	local string HeaderString;
+
+	if( SS_Screen.m_arrNeededTabs.Length == 1 )
+	{
+		switch( SS_Screen.m_arrNeededTabs[0] )
+		{
+			case eUIPersonnel_Soldiers:		HeaderString = SS_Screen.m_strSoldierTab;	break;
+			case eUIPersonnel_Scientists:	HeaderString = SS_Screen.m_strScientistTab;	break;
+			case eUIPersonnel_Engineers:	HeaderString = SS_Screen.m_strEngineerTab;	break;
+			case eUIPersonnel_Deceased:		HeaderString = SS_Screen.m_strDeceasedTab;	break;
+		}
+
+		SS_Screen.SetScreenHeader(HeaderString $ " [" $ SS_Screen.m_kList.GetItemCount() $ "]" );
+	}
+}
+
+
+static function TryDisableForSpark(UIScreen Screen)
+{
+	local UIPersonnel SS_Screen;
+	local UIPersonnel_SoldierListItem ListItem;
+
+    local XComGameState_Unit UnitState;
+	local int i;
+
+	//cast the screen
+	SS_Screen = UIPersonnel(Screen);
+
+	//if the screen is not UIP bail
+	if (SS_Screen == none)	{ return; }
+
+	//bail if the squad is empty or unit no Spark in Squad
+
+	if (SS_Screen.IsA('UIPersonnel_SquadSelect') || SS_Screen.IsA('SSAAT_UIPersonnel_Select') )
+	{
+		for (i = 0 ; i < SS_Screen.m_kList.GetItemCount() ; i++)
+		{
+			ListItem = UIPersonnel_SoldierListItem(SS_Screen.m_kList.GetItem(i));
+			UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ListItem.UnitRef.ObjectID));
+
+			if (IsUnitSpark(UnitState) && !ListItem.IsDisabled)
+			{
+				if(SparkTooWounded(UnitState))
+				{
+					ListItem.SetDisabled(true, "TOO INJURED");
+					ListItem.RefreshTooltipText();
+				}
+			}
+		}
+	}
+}
+
+static final function bool SparkTooWounded(XComGameState_Unit UnitState)
+{
+	local float SparkHPpercentage;
+
+	SparkHPpercentage = float(GetUnitStatsValue(UnitState, eStat_HP, true, true)) / float(GetUnitStatsValue(UnitState, eStat_HP, true, true, true));
+
+	if(SparkHPpercentage < default.fSPARK_HP_MIN)
+	{
+		return true;
+	}
+	else 
+	{
+		return false;
+	}
 }

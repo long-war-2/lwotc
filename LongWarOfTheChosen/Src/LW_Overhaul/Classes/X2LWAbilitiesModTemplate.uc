@@ -119,6 +119,10 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			MakeAbilityNonTurnEnding(Template);
 			MakeAbilitiesUnusableOnLost(Template);
 			MakeAbilityHostile(Template);
+			class'X2Ability_LWAlienAbilities'.static.UpdatePriestStasis(Template);
+			break;
+		case 'Stasis':
+			MakeAbilityHostile(Template);
 			break;
 		case 'HunterGrapple':
 		case 'Grapple':
@@ -138,6 +142,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			UpdateSustainEffect(Template);
 			break;
 		case 'RevivalProtocol':
+			RemoveRevivalProtocolNonMentalCleanse(Template);
 			AllowRevivalProtocolToRemoveStunned(Template);
 			break;
 		case 'DeadeyeDamage':
@@ -206,15 +211,18 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'TrackingShot':
 			class'Helpers_LW'.static.MakeFreeAction(Template);
+			//MakeAbilityUseAmmo(Template);
 			break;
 		case 'HarborWave':
 			ReworkHarborWave(Template);
 			break;
 		case 'HunterRifleShot':
 			MakeAbilityWorkWhenBurning(Template);
+			//MakeAbilityUseAmmo(Template);
 			break;
 		case 'Quickdraw':
 			AddQuickdrawMobilityBoost(Template);
+			break;
 		case 'PistolStandardShot':
 		case 'PistolOverwatchShot':
 		case 'FanFire':
@@ -242,6 +250,31 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'CombatProtocol':
 			UpdateCombatProtocol(Template);
 			break;
+		case 'AbsorptionField':
+			ReworkAbsorptionField(Template);
+			break;
+		case 'IRI_Bombard':
+		case 'Bombard':
+			ReworkBombard(Template);
+			break;
+		case 'Overdrive':
+			FixOverdrive(Template);
+			break;
+		case 'MedicalProtocol':
+			Template.GetBonusWeaponAmmoFn =FieldMedic_BonusWeaponAmmo;
+			break;
+		case 'SustainingSphereTriggeredAbility':
+			Template.AdditionalAbilities.AddItem('SustainingSpherePaddingAbility');
+			RemoveItemCost(Template);
+			Add1ChargeAndCost(Template);
+			break;
+		case 'RefractionFieldAbility':
+			RemoveItemCost(Template);
+			break;
+		case 'CombatStims':
+			RemoveItemCost(Template);
+			Add1ChargeAndCost(Template);
+			break;
 		default:
 			break;
 
@@ -265,7 +298,76 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 	UpdateMeleeAbilityForBloodThirst(Template);
 }
 
+function int FieldMedic_BonusWeaponAmmo(XComGameState_Unit UnitState, XComGameState_Item ItemState)
+{
+	if (ItemState.GetWeaponCategory() == class'X2Item_DefaultUtilityItems'.default.MedikitCat)
+		return class'X2Ability_SpecialistAbilitySet'.default.FIELD_MEDIC_BONUS;
 
+	return 0;
+}
+
+static function ReworkAbsorptionField(X2AbilityTemplate Template)
+{
+	local X2Effect_DLC_3AbsorptionField_LW         FieldEffect;
+
+	// Make this only work on hit.
+	Template.AbilityTargetEffects.length = 0;
+
+	FieldEffect = new class 'X2Effect_DLC_3AbsorptionField_LW';
+	FieldEffect.BuildPersistentEffect(1, true, false);
+	FieldEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true, , Template.AbilitySourceName);
+	Template.AddTargetEffect(FieldEffect);
+}
+
+static function ReworkBombard(X2AbilityTemplate Template)
+{
+	local X2AbilityCost AbilityCost;
+	local X2AbilityCost_ActionPoints    ActionPointCost;
+	local X2AbilityCharges              Charges;
+	local BonusCharge					BonusCharge;
+
+	foreach Template.AbilityCosts (AbilityCost)
+	{
+		ActionPointCost = X2AbilityCost_ActionPoints(AbilityCost);
+
+		if(ActionPointCost != none)
+		{
+			ActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('Salvo');
+		}
+	}
+
+	Charges = new class'X2AbilityCharges';
+	Charges.InitialCharges = class'x2Ability_SparkAbilitySet'.default.BOMBARD_CHARGES;
+	
+	BonusCharge.AbilityName = 'BonusBombard_LW';
+	BonusCharge.NumCharges = 1;
+	Charges.BonusCharges.AddItem(BonusCharge);
+	Template.AbilityCharges = Charges;
+
+	
+}
+
+static function FixOverdrive(X2AbilityTemplate Template)
+{
+	local X2Effect_DLC_3Overdrive OverdriveEffect;
+	local X2Effect_DLC_3Overdrive_LW NewOverdriveEffect;
+	local int i;
+
+	for(i= Template.AbilityTargetEffects.Length - 1; i >= 0; i--)
+	{
+		OverdriveEffect = X2Effect_DLC_3Overdrive(Template.AbilityTargetEffects[i]);
+
+		if(OverdriveEffect != none)
+		{
+			Template.AbilityTargetEffects.Remove(i, 1);
+			break;
+		}
+	}
+
+	NewOverdriveEffect = new class'X2Effect_DLC_3Overdrive_LW'(OverdriveEffect);
+	Template.AddTargetEffect(NewOverdriveEffect);
+
+}
 
 static function UpdateMeleeAbilityForBloodThirst(X2AbilityTemplate Template)
 {
@@ -299,9 +401,19 @@ static function bool OverrideFinalHitChance(X2AbilityToHitCalc AbilityToHitCalc,
 	// as a hit.
 	// ShotBreakdown.FinalHitChance = ShotBreakdown.ResultTable[eHit_Success] + Adjustments.DodgeHitAdjust;
 	ShotBreakdown.FinalHitChance = Adjustments.FinalSuccessChance + Adjustments.FinalGrazeChance + Adjustments.FinalCritChance;
-	ShotBreakdown.ResultTable[eHit_Crit] = Adjustments.FinalCritChance;
-	ShotBreakdown.ResultTable[eHit_Success] = Adjustments.FinalSuccessChance;
-	ShotBreakdown.ResultTable[eHit_Graze] = Adjustments.FinalGrazeChance;
+
+	if(StandardAim.bHitsAreCrits)
+	{
+		ShotBreakdown.ResultTable[eHit_Crit] = Adjustments.FinalCritChance + Adjustments.FinalGrazeChance + Adjustments.FinalSuccessChance;
+		ShotBreakdown.ResultTable[eHit_Success] = 0;
+		ShotBreakdown.ResultTable[eHit_Graze] = 0;
+	}
+	else
+	{
+		ShotBreakdown.ResultTable[eHit_Crit] = Adjustments.FinalCritChance;
+		ShotBreakdown.ResultTable[eHit_Success] = Adjustments.FinalSuccessChance;
+		ShotBreakdown.ResultTable[eHit_Graze] = Adjustments.FinalGrazeChance;
+	}
 	ShotBreakdown.ResultTable[eHit_Miss] = Adjustments.FinalMissChance;
 
 	if(Adjustments.DodgeHitAdjust != 0)
@@ -363,12 +475,19 @@ static function GetUpdatedHitChances(X2AbilityToHitCalc_StandardAim ToHitCalc, o
 	GrazeBand = `LWOVERHAULOPTIONS.GetGrazeBand();
 
 	// options to zero out the band for certain abilities -- either GuaranteedHit or an ability-by-ability
-	if (default.GUARANTEED_HIT_ABILITIES_IGNORE_GRAZE_BAND && ToHitCalc.bGuaranteedHit)
+	if (default.GUARANTEED_HIT_ABILITIES_IGNORE_GRAZE_BAND && ToHitCalc.bGuaranteedHit || ToHitCalc.bIndirectFire)
 	{
 		GrazeBand = 0;
 	}
 
 	HitChance = ShotBreakdown.ResultTable[eHit_Success];
+
+	// Brute force for indirect fire and guaranteed hit abilities.
+	if(ToHitCalc.bIndirectFire || ToHitCalc.bGuaranteedHit)
+	{
+		HitChance += 1000;
+	}
+	
 	// LWOTC: If hit chance is within grazeband of either 0 or 100%, then adjust
 	// the band so that 100% is a hit and 0% is a miss.
 	if (HitChance < GrazeBand)
@@ -723,6 +842,15 @@ static function MakeAbilityNonTurnEnding(X2AbilityTemplate Template)
 	}
 }
 
+static function MakeAbilityUseAmmo(X2AbilityTemplate Template)
+{
+	local X2AbilityCost_Ammo AmmoCost;
+
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = 1;
+	Template.AbilityCosts.AddItem(AmmoCost);
+}
+
 // Adds an extra unit condition to both Solace and Solace Cleanse that
 // prevents them from affecting robotic units. This also removes Holy
 // Warrior from the list of effects that Solace Cleanse removes.
@@ -831,6 +959,32 @@ static function UseNewDeadeyeEffect(X2AbilityTemplate Template)
 	DeadeyeEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
 	DeadeyeEffect.DamageMultiplier = class'X2Effect_DeadeyeDamage'.default.DamageMultiplier;
 	Template.AddTargetEffect(DeadeyeEffect);
+}
+
+static function RemoveRevivalProtocolNonMentalCleanse(X2AbilityTemplate Template)
+{
+	local int i;
+	local int j;
+	local name HealType;
+	local X2Effect_RemoveEffectsByDamageType RemoveEffects;
+
+	for (i = 0; i < Template.AbilityTargetEffects.Length; i++)
+	{
+		if (Template.AbilityTargetEffects[i].isA('X2Effect_RemoveEffectsByDamageType'))
+		{
+			RemoveEffects = X2Effect_RemoveEffectsByDamageType(Template.AbilityTargetEffects[i]);
+			foreach class'X2Ability_DefaultAbilitySet'.default.MedikitHealEffectTypes(HealType)
+			{
+				for (j = 0; j < RemoveEffects.DamageTypesToRemove.Length; j++)
+				{
+					if (RemoveEffects.DamageTypesToRemove[j] == HealType)
+					{
+						RemoveEffects.DamageTypesToRemove.Remove(j, 1);
+					}
+				}
+			}
+		}
+	}
 }
 
 static function AllowRevivalProtocolToRemoveStunned(X2AbilityTemplate Template)
@@ -1006,7 +1160,7 @@ static function ReworkMindScorch(X2AbilityTemplate Template)
 	TargetCondition.FailOnNonUnits = true;
 	TargetCondition.ExcludeCivilian = true;
 	TargetCondition.ExcludeCosmetic = true;
-	TargetCondition.ExcludeRobotic = true;
+	TargetCondition.ExcludeRobotic = false;
 
 
 	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
@@ -1483,6 +1637,7 @@ static function name GetMultiShotContinueUnitValueName(name AbilityName)
 static function MakeAbilityHostile(X2AbilityTemplate Template)
 {
 	Template.Hostility = eHostility_Offensive;
+	Template.BuildInterruptGameStateFn = class'X2Ability'.static.TypicalAbility_BuildInterruptGameState;
 }
 
 static function AddCritResistanceToPlatedVests(X2AbilityTemplate Template)
@@ -1512,9 +1667,9 @@ static function UpdateSpectralStunLance(X2AbilityTemplate Template)
 	ImpairingAbilityEffect = new class 'X2Effect_ImmediateAbilityActivation';
 	ImpairingAbilityEffect.BuildPersistentEffect(1, false, true, , eGameRule_PlayerTurnBegin);
 	ImpairingAbilityEffect.EffectName = 'ImmediateStunImpair';
-	ImpairingAbilityEffect.AbilityName = 'StunImpairingAbility';
+	ImpairingAbilityEffect.AbilityName = 'SpectralStunImpairingAbility';
 	ImpairingAbilityEffect.bRemoveWhenTargetDies = true;
-	ImpairingAbilityEffect.VisualizationFn = class'X2Ability_StunLancer'.static.ImpairingAbilityEffectTriggeredVisualization;
+	ImpairingAbilityEffect.VisualizationFn = class'X2Ability_PerkPackAbilitySet2'.static.ImpairingAbilityEffectTriggeredVisualization;
 	Template.AddTargetEffect(ImpairingAbilityEffect);
 
 }
@@ -1538,6 +1693,35 @@ static function UpdateCombatProtocol(X2AbilityTemplate Template)
 	Template.AbilityCooldown = Cooldown;
 
 }
+
+static function RemoveItemCost(X2AbilityTemplate Template)
+{
+	local int i;
+
+	for (i = Template.AbilityCosts.Length-1; i >= 0; i--)
+	{
+		if(ClassIsChildOf(Template.AbilityCosts[i].Class, class'X2AbilityCost_ConsumeItem'))
+		{
+			Template.AbilityCosts.Remove(i,1);
+		}
+	}
+
+}
+
+static function Add1ChargeAndCost(X2AbilityTemplate Template)
+{
+	local X2AbilityCost_Charges 	ChargeCost;
+	local X2AbilityCharges			Charges;
+
+	Charges = new class'X2AbilityCharges';
+	Charges.InitialCharges = 1;
+	Template.AbilityCharges = Charges;
+
+	ChargeCost = new class'X2AbilityCost_Charges';
+	ChargeCost.NumCharges = 1;
+	Template.AbilityCosts.AddItem(ChargeCost);
+}
+
 
 defaultproperties
 {

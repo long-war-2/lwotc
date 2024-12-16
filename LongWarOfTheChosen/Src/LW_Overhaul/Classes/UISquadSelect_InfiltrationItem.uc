@@ -34,6 +34,10 @@ simulated function SetText(string Text)
 {
 	MC.FunctionString("setLabelRow", Text);
 }
+simulated function SetNewText(string Text)
+{
+	MC.FunctionString("setLabelRow", "<font face='$NormalFont' size='22'>" $ Text $ "</font>");
+}
 
 simulated function SetSubTitle(string Text, optional string TextColor)
 {
@@ -47,6 +51,11 @@ simulated function SetSubTitle(string Text, optional string TextColor)
 simulated function SetInfoValue(string Text, string TextColor)
 {
 	MC.FunctionString("setLabelRow", "<font face='$NormalFont' size='22' color='#" $ TextColor $ "'>" $ Text  $ "</font>");
+}
+
+simulated function SetNewInfoValue(string PreText, string Text, string TextColor)
+{
+	MC.FunctionString("setLabelRow","<font face='$NormalFont' size='22'>" $ PreText $ ": " $ "</font>" $ "<font face='$NormalFont' size='22' color='#" $ TextColor $ "'>" $ Text  $ "</font>");
 }
 
 

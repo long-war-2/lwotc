@@ -258,6 +258,8 @@ strMinusDaysAndHours="- <XGParam:IntValue0> Days, <XGParam:IntValue1> Hours"
 strPlusDaysAndHours="+ <XGParam:IntValue0> Days, <XGParam:IntValue1> Hours"
 strMissionIndefinite="Indefinite Duration"
 strLiberationTitle="Liberation Progress Modifier:"
+strOverallInfilShort="Current"
+strMissionInfoTitle="Reconnaissance:"
 
 ; LWOTC Needs Translation
 UpToText="Up to"
@@ -266,6 +268,20 @@ BoostedActivityText="Expected Activity (Boosted)"
 BoostTextPre="With"
 BoostTextPost="Boost"
 ; End Translation
+
+strInfilPanelTitle="Mission Brief"
+strActivityHeader="Enemy Activity"
+strModifierHeader="Infiltration Modifiers"
+
+strBaseInfilShort="Base"
+strSquadSizeShort="Squad Size"
+strAbilitiesShort="Abilities/Gear"
+strExpirationShort="Expiration"
+strExpectedShort="Expected"
+strBoostedShort="Boosted"
+strLiberationShort="Liberation"
+strMaxInfilText="Max Infiltration"
+strMapTypeText="Map Type"
 
 [UIScreenListener_DropShipBriefing_MissionStart]
 strLaunchingInfiltration="CONTACT IMMINENT"
@@ -318,6 +334,7 @@ RankTooLow="Rank Too Low"
 CannotModifyOnMissionSoldierTooltip="Cannot modify soldier currently on mission"
 ; LWOTC Needs Translation
 ReasonClassAbilityPickedAtRank="Already picked a class ability at this rank"
+ReasonPsiOperativePerkFromLab="Psi Operative"
 ; End Translation
 
 [XComGameState_LWPersistentSquad]
@@ -551,6 +568,10 @@ ChangeJobStr="CHANGE JOB"
 ChangeAllJobsStr="CHANGE ALL JOBS"
 PerksStr="PERKS" 
 
+m_strIncomeIntel="Mission Finding Power:"
+m_strIncomeSupply="Supplies Per Day:"
+m_strIncomeRecruit="Days Per Recruit:"
+
 [UIScreenListener_TacticalHUD]
 strEvacRequestTitle="EVAC Requested"
 strEvacRequestSubtitle="Turns until Skyranger arrives"
@@ -616,8 +637,11 @@ m_strProhibitedJobEnded="Resistance members in <XGParam:StrValue0/> assigned to 
 ;LWOTC needs translation
 m_strRetributionEnded="Resistance members in <XGParam:StrValue0/> have recovered from one of the Chosen's retributions"
 ;End translation
+
 [X2StrategyElement_DefaultAlienActivities]
 m_strInsufficientRebels="Need at least <XGParam:IntValue0/> rebels in Haven to make contact with neighbors"
+VultureUnlockTitle = "Vulture Obtained"
+VultureUnlockDesc = "XCOM has improved at scavenging corpses and will now recover more items from loot drops."
 
 [UIScreenListener_Alert]
 m_strInvasionTitle=ADVENT INVASION
@@ -688,6 +712,8 @@ m_strMinimumInfiltration="Requires <XGParam:IntValue0>% Infiltration"
 m_strYellowAlert="Enemies on High Alert"
 m_sAverageScatterText="± <XGParam:StrValue0/> Tiles"
 m_strBullet="•"
+m_strExpectedInfiltration="After Boost"
+m_strInfiltrationBoostCost="Cost"
 
 m_strStripWeaponUpgrades=STRIP ALL WEAPON UPGRADES
 m_strStripWeaponUpgradesLower=Strip All Weapon Upgrades
@@ -728,11 +754,18 @@ m_strChosenLoot="(<XGParam:IntValue0/>) <XGParam:StrValue0/!ItemName/> Rewarded 
 [UISL_Shell_LWoTCVersion]
 strMessage_Title = "Long War Of The Chosen"
 strMessage_Header = "Long War Of The Chosen has been Updated!
-strMessage_Body = "Version 1.1.0 is now released, with lots of features and improvements, including:<ul><li>New 5 Tier Chosen system for Better Progression</li><li>New Covert Actions that Reward Infiltration Missions</li><li>New Maps for Network Tower and Crate Race Missions</li><li>Reworked Templar with Iridar's Psi Shield</li><li>QOL Improvements</li><li>Improved Mod Compatibility</li><li>Balance Tweaks for Classes, Heros, and More</li><li>Way more than I can fit here unless you want a giant scrollbar</li></ul>Check out the google doc linked on the Steam change notes, or visit the LWoTC discord!"
+strMessage_Body = "Version 1.2.0 is now released, with lots of features and improvements, including:<ul><li>Complete SPARK rework, redone trees for Grenadier, Specialist, and Technical</li><li>Redone XCOM rows for all classes and reduced AP costs for them.</li><li>Redone Infiltration UI in Squad Select and Geoscape, with a new button to access haven advisors from Squad Select</li><li>Two new mission types, more map tweaks, and city center HQ assaults enabled</li><li>More Chosen updates with less sabotage, rebalanced knowledge, Chosen Avenger Defense mission rebalanced</li><li>Psi Operatives now have pistol rows and XCOM decks</li><li>A pile of bugfixes, QOL updates, and needed balance tweaks, and more</li></ul>Check out the google doc linked on the Steam change notes, or visit the LWoTC discord for more information! </br> Note: Some changes are not fully mid campaign compatible, and while things will work, balance will be off, such as chosen knowledge changes. I recommend starting a new campaign or swapping to the 1.1.0 archive version on the Workshop to finish your current one if you want."
 strDismiss_Button = "OK"
 
 [UISL_Shell_BetaPatchNotes]
 strMessage_Title = "Long War Of The Chosen"
-strMessage_Header = "RC35 Changes:"
-strMessage_Body = "<ul><li>Fixed issue where Chosen respawned at full HP after killing the Sarcophagus.</li><li>Redid custom wilderness crate race maps to prevent crates from spawning on the roofs of trucks.</li><li>Fixed issue where Mind Merge provided no crit bonus with beam tier psi amp.</li><li>Fixed issue where some mission elements used AlienHQ Force Level instead of LW's regional Force Level.</li><li>Covert op version of the crate race mission rewards adjusted: Reduced supply rewards a bit, added PCSs, Weapon Upgrades, Elerium Cores, and Datapads to the crates.</li><li>Fixed issue where Hunter omnivision was not removed from all difficulty variants.</li><li>Fixed corpse requirement inconsistency for instant Spectre, Priest, and Purifier Autopsies.</li><li>Added a configuration toggle to enable/disable the City Center HQ maps for testing. Flipping it off doesn't change existing HQ's if they spawned with City Center maps, but future HQs will not use them.</li><li>Another round of Localization updates from Copyrite.</li></ul>"
+strMessage_Header = "Latest Beta Changes:"
+strMessage_Body = "<ul><li>More small tweaks to the class XCOM decks, increasing perk diversity and better aligning the perks with some of the classes.</li><li><b>Psi Operative Update: Conflict with Instant Avenger Menus has been resolved, but requires switching to the BETA Highlander.</b> If you see a weird promotion screen for Psi operatives, this is why.</li><li>Hunter tracking shot now ignores spark sacrifice to prevent an infinite loop of Hunter shots.</li></ul>"
 strDismiss_Button = "OK"
+
+[UISL_PullAdvisors]
+m_strPullHavenAdvisors="PULL ADVISORS"
+m_strPullHavenAdvisorsTooltip="Removes available Haven advisors from havens. They will need to be manually returned."
+
+m_StrHavenManagement="MANAGE HAVENS"
+m_StrHavenManagementTooltip="Opens the Resistance Management screen."

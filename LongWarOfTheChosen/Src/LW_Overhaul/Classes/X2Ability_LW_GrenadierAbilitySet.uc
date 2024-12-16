@@ -13,9 +13,13 @@ var config int HEAVY_ORDNANCE_LW_BONUS_CHARGES;
 var config int PROTECTOR_BONUS_CHARGES;
 var config int HEAT_WARHEADS_PIERCE;
 var config int HEAT_WARHEADS_SHRED;
+var config int TANDEMHEAT_WARHEADS_PIERCE;
+var config int TANDEMHEAT_WARHEADS_SHRED;
 var config int BLUESCREENBOMB_HACK_DEFENSE_CHANGE;
 var config int VANISHINGACT_CHARGES;
 var config int NEEDLE_BONUS_UNARMORED_DMG;
+var config int HEAVYORDNANCEV2_BONUS_CHARGES;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -31,14 +35,17 @@ static function array<X2DataTemplate> CreateTemplates()
 	
 	Templates.AddItem(AddHeavyOrdnance_LW());
 	Templates.AddItem(AddProtector());
+	Templates.AddItem(AddHeavyOrdnanceV2());
 	Templates.AddItem(AddHEATWarheads());
+	Templates.AddItem(AddHEATTandemWarheads());
 	Templates.AddItem(AddBombard());
 	Templates.AddItem(AddGhostGrenadeAbility());
 	Templates.AddItem(AddVanishingActAbility());
 	Templates.AddItem(AddBiggestBooms_LW());
 
 	//temporary common abilities so the UI will load
-	Templates.AddItem(PurePassive('FireInTheHole', "img:///UILibrary_LWOTC.LW_AbilityFireInTheHole", true));
+	Templates.AddItem(PurePassive('FireInTheHole', "img:///UILibrary_LWOTC.LW_AbilityFireInTheHole"));
+	
 
 	return Templates;
 }
@@ -125,6 +132,34 @@ static function X2AbilityTemplate AddHEATWarheads()
 	return Template;
 }
 
+static function X2AbilityTemplate AddHEATTandemWarheads()
+{
+	local X2AbilityTemplate				Template;
+	local X2Effect_HEATGrenades			HEATEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'TandemHEATWarheads');
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityHEATWarheads"; 
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bIsPassive = true;
+
+	HEATEffect = new class 'X2Effect_HEATGrenades';
+	HEATEffect.Pierce = default.TANDEMHEAT_WARHEADS_PIERCE;
+	HEATEffect.Shred=default.TANDEMHEAT_WARHEADS_SHRED;
+	HEATEffect.BuildPersistentEffect (1, true, false);
+	HEATEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Template.AddTargetEffect (HEATEffect);
+	
+	Template.bCrossClassEligible = false;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}
+
 
 //this ability grants the unit +1 charge for each damaging grenade in a grenade slot
 static function X2AbilityTemplate AddHeavyOrdnance_LW()
@@ -137,6 +172,7 @@ static function X2AbilityTemplate AddHeavyOrdnance_LW()
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
+	Template.bUniqueSource = true;
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
@@ -170,6 +206,7 @@ static function X2AbilityTemplate AddProtector()
 	Template.Hostility = eHostility_Neutral;
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.bUniqueSource = true;
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 	Template.bIsPassive = true;
 
@@ -177,6 +214,37 @@ static function X2AbilityTemplate AddProtector()
 	BonusGrenadeEffect.EffectName='ProtectorEffect';
 	BonusGrenadeEffect.bNonDamagingGrenadesOnly = true;
 	BonusGrenadeEffect.BonusUses = default.PROTECTOR_BONUS_CHARGES;
+	BonusGrenadeEffect.SlotType = eInvSlot_GrenadePocket;
+	BonusGrenadeEffect.BuildPersistentEffect (1, true, false);
+	BonusGrenadeEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Template.AddTargetEffect (BonusGrenadeEffect);
+	
+	Template.bCrossClassEligible = false;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}
+
+// This ability grants +1 charge to any grenade in the grenade pocket.
+static function X2AbilityTemplate AddHeavyOrdnanceV2()
+{
+	local X2AbilityTemplate						Template;
+	local X2Effect_BonusGrenadeSlotUse			BonusGrenadeEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'HeavyOrdnanceV2');
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_aceinthehole";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.bUniqueSource = true;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bIsPassive = true;
+
+	BonusGrenadeEffect = new class 'X2Effect_BonusGrenadeSlotUse';
+	BonusGrenadeEffect.EffectName='HeavyOrdnanceV2Effect';
+	BonusGrenadeEffect.BonusUses = default.HEAVYORDNANCEV2_BONUS_CHARGES;
 	BonusGrenadeEffect.SlotType = eInvSlot_GrenadePocket;
 	BonusGrenadeEffect.BuildPersistentEffect (1, true, false);
 	BonusGrenadeEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
@@ -267,7 +335,8 @@ static function X2Effect_PersistentStatChange CreateRoboticDisorientedStatusEffe
 static function X2AbilityTemplate AddGhostGrenadeAbility()
 {
 	local X2AbilityTemplate			Template;
-	local X2Effect_TemporaryItem	TemporaryItemEffect;
+	//local X2Effect_TemporaryItem	TemporaryItemEffect;
+	local XMBEffect_AddUtilityItem  GhostGrenadeEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'GhostGrenade');
 
@@ -281,6 +350,7 @@ static function X2AbilityTemplate AddGhostGrenadeAbility()
 	Template.bIsPassive = true;
 	Template.bCrossClassEligible = true;
 
+	/*
 	TemporaryItemEffect = new class'X2Effect_TemporaryItem';
 	TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
 	TemporaryItemEffect.EffectName = 'GhostGrenadeEffect';
@@ -291,6 +361,18 @@ static function X2AbilityTemplate AddGhostGrenadeAbility()
 	TemporaryItemEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
 	TemporaryItemEffect.DuplicateResponse = eDupe_Ignore;
 	Template.AddTargetEffect(TemporaryItemEffect);
+
+	*/
+
+	GhostGrenadeEffect = new class'XMBEffect_AddUtilityItem';
+	GhostGrenadeEffect.DataName = 'GhostGrenade_LW';
+	GhostGrenadeEffect.EffectName = 'GhostGrenadeEffect';
+	GhostGrenadeEffect.BuildPersistentEffect(1, true, false);
+	GhostGrenadeEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	GhostGrenadeEffect.DuplicateResponse = eDupe_Ignore;
+	Template.AddTargetEffect(GhostGrenadeEffect);
+
+
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
@@ -425,12 +507,48 @@ static function X2AbilityTemplate NeedleGrenades()
 	Bonus = new class'X2Effect_NeedleGrenades';
 	Bonus.BuildPersistentEffect(1, true, false, true);
 	Bonus.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName);
-	Bonus.BonusDamage = default.NEEDLE_BONUS_UNARMORED_DMG;
+	Bonus.BonusDamage_Conv = default.NEEDLE_BONUS_UNARMORED_DMG;
+	Bonus.BonusDamage_Mag = default.NEEDLE_BONUS_UNARMORED_DMG;
+	Bonus.BonusDamage_Beam = default.NEEDLE_BONUS_UNARMORED_DMG;
 
 	Template.AddTargetEffect(Bonus);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	return Template;
+}
+
+static function X2AbilityTemplate FireInTheHole()
+{
+	Local X2AbilityTemplate Template;
+	local X2Effect_BonusRocketDamage_LW DmgEffect;
+
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'FireInTheHole');
+
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityFireInTheHole";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bIsPassive = true;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	//  This is a dummy effect so that an icon shows up in the UI.
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	// Note: no visualization on purpose!
+
+	Template.bCrossClassEligible = true;
+
+	DmgEffect = new class'X2Effect_BonusRocketDamage_LW';
+	DmgEffect.BuildPersistentEffect(1, true, false, true);
+	DmgEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	DmgEffect.BonusDmg = 2;
+	Template.AddTargetEffect(DmgEffect);
+
+	return Template;
+
 }
 
 defaultProperties

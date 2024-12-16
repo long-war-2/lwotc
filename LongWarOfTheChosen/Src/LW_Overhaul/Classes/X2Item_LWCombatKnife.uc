@@ -195,7 +195,7 @@ static function X2DataTemplate CreateTemplate_CombatKnife_Beam()
 	Template.InfiniteAmmo = true;
 	
 	
-	Template.GameArchetype = "LWCombatKnife.Archetypes.WP_CombatKnife_BM";
+	Template.GameArchetype = "IRI_CombatKnife_CG_LW.Archetypes.WP_CombatKnife_BM";
 
 	Template.CreatorTemplateName = 'CombatKnife_BM_Schematic'; // The schematic which creates this item
 	Template.BaseItem = 'CombatKnife_MG'; // Which item this will be upgraded from

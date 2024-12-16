@@ -40,7 +40,7 @@ var protected localized array<string> LWOfficerShortNames;      //  the abbrevia
 // Accessor and helper functions
 
 // Number of days required to train to a the supplied rank
-static function float GetOfficerTrainingDays(int NewRank)
+static final function float GetOfficerTrainingDays(int NewRank)
 {
 	if (CheckRank(NewRank))
 		return default.TrainingDaysForRank[NewRank];
@@ -48,7 +48,7 @@ static function float GetOfficerTrainingDays(int NewRank)
 }
 
 // Returns the number of current officers in the roster
-static function int GetNumOfficers()
+static final function int GetNumOfficers()
 {
 	local XComGameStateHistory History;
 	local XComGameState_HeadquartersXCom XComHQ;
@@ -61,7 +61,7 @@ static function int GetNumOfficers()
 }
 
 // Returns the number of officers in the supplied list
-static function int GetNumOfficersFromList(array<XComGameState_Unit> SoldierList)
+static final function int GetNumOfficersFromList(array<XComGameState_Unit> SoldierList)
 {
 	local XComGameState_Unit Unit;
 	local int OfficerCount;
@@ -82,7 +82,7 @@ static function int GetNumOfficersFromList(array<XComGameState_Unit> SoldierList
 	return OfficerCount;
 }
 
-static function int GetHighestOfficerRank()
+static final function int GetHighestOfficerRank()
 {
 	local XComGameStateHistory History;
 	local XComGameState_HeadquartersXCom XComHQ;
@@ -112,7 +112,7 @@ static function int GetHighestOfficerRank()
 }
 
 //checks if a unit has any officer abilities
-static function bool IsOfficer(XComGameState_Unit Unit)
+static final function bool IsOfficer(XComGameState_Unit Unit)
 {
 	local XComGameState_Unit_LWOfficer OfficerState;
 
@@ -122,7 +122,7 @@ static function bool IsOfficer(XComGameState_Unit Unit)
 	return false;
 }
 
-static function bool HasOfficerInSquad(optional XComGameState_HeadquartersXCom XComHQ)
+static final function bool HasOfficerInSquad(optional XComGameState_HeadquartersXCom XComHQ)
 {
 	//local XComGameState_HeadquartersXCom XComHQ;
 	local StateObjectReference UnitRef;
@@ -144,7 +144,7 @@ static function bool HasOfficerInSquad(optional XComGameState_HeadquartersXCom X
 	return false;
 }
 
-static function bool IsHighestRankOfficerInSquad(XComGameState_Unit CheckUnit, optional XComGameState_HeadquartersXCom XComHQ)
+static final function bool IsHighestRankOfficerInSquad(XComGameState_Unit CheckUnit, optional XComGameState_HeadquartersXCom XComHQ)
 {
 	local StateObjectReference UnitRef;
 	local XComGameState_Unit UnitState;
@@ -209,7 +209,7 @@ static function bool IsHighestRankOfficerInSquad(XComGameState_Unit CheckUnit, o
 }
 
 //returns the best deployable soldier, with added restriction on no more than 1 officer per squad
-static function XComGameState_Unit GetBestDeployableSoldier(XComGameState_HeadquartersXCom XComHQ, optional bool bDontIncludeSquad=false, optional bool bAllowWoundedSoldiers = false)
+static final function XComGameState_Unit GetBestDeployableSoldier(XComGameState_HeadquartersXCom XComHQ, optional bool bDontIncludeSquad=false, optional bool bAllowWoundedSoldiers = false)
 {
 	local array<XComGameState_Unit> DeployableSoldiers;
 	local int idx, HighestRank;
@@ -249,7 +249,7 @@ static function XComGameState_Unit GetBestDeployableSoldier(XComGameState_Headqu
 }
 
 // Returns the officer component attached to the supplied Unit GameState
-static function XComGameState_Unit_LWOfficer GetOfficerComponent(XComGameState_Unit Unit)
+static final function XComGameState_Unit_LWOfficer GetOfficerComponent(XComGameState_Unit Unit)
 {
 	if (Unit != none) 
 		return XComGameState_Unit_LWOfficer(Unit.FindComponentObject(class'XComGameState_Unit_LWOfficer'));
@@ -257,7 +257,7 @@ static function XComGameState_Unit_LWOfficer GetOfficerComponent(XComGameState_U
 }
 
 // Returns the name of the ability at the given rank/option in the Officer Ability tree
-static function name GetAbilityName(const int Rank, const int Option)
+static final function name GetAbilityName(const int Rank, const int Option)
 {
 	local OfficerAbilityConfig ab;
 	local int count;
@@ -280,13 +280,13 @@ static function name GetAbilityName(const int Rank, const int Option)
 
 // Returns the name of the Command Range ability that grants bonus command
 // range at the given rank.
-static function name GetCommandRangeAbilityName(const int Rank)
+static final function name GetCommandRangeAbilityName(const int Rank)
 {
 	return name("CommandRange" $ Rank);
 }
 
 //Returns the path to the Officer rank icon of the given rank
-static function string GetRankIcon(const int Rank)
+static final function string GetRankIcon(const int Rank)
 {
 	if (ValidateRank(Rank))
 		return "img:///" $ default.LWOfficerRankIcons[Rank];
@@ -294,14 +294,14 @@ static function string GetRankIcon(const int Rank)
 }
 
 //Returns the path to the generic Officer icon
-static function string GetGenericIcon()
+static final function string GetGenericIcon()
 {
 	return "img:///" $ default.LWOfficerGenericIcon;
 }
 
 
 //Returns the localized string rank name of the given rank
-static function string GetLWOfficerRankName(const int Rank)
+static final function string GetLWOfficerRankName(const int Rank)
 {
 	if (ValidateRank(Rank))
 		return default.LWOfficerRankNames[Rank];
@@ -309,7 +309,7 @@ static function string GetLWOfficerRankName(const int Rank)
 }
 
 //Returns the short version of the localized string name of the given rank
-static function string GetLWOfficerShortRankName(const int Rank)
+static final function string GetLWOfficerShortRankName(const int Rank)
 {
 	if (ValidateRank(Rank))
 		return default.LWOfficerShortNames[Rank];
@@ -317,7 +317,7 @@ static function string GetLWOfficerShortRankName(const int Rank)
 }
 
 //Returns the regular rank (non-officer) required to train a given officer rank 
-static function int GetRequiredRegularRank(const int Rank)
+static final function int GetRequiredRegularRank(const int Rank)
 {
 	if (ValidateRank(Rank))
 		return default.RequiredRankPerOfficerRank[Rank];
@@ -325,7 +325,7 @@ static function int GetRequiredRegularRank(const int Rank)
 }
 
 //Returns the number of missions required to train a given officer rank
-static function int GetRequiredMissions(const int Rank)
+static final function int GetRequiredMissions(const int Rank)
 {
 	if (ValidateRank(Rank))
 		return default.MissionsPerOfficerRank[Rank];
@@ -333,14 +333,14 @@ static function int GetRequiredMissions(const int Rank)
 }
 
 //Returns the maximum possible officer rank
-static function int GetMaxRank()
+static final function int GetMaxRank()
 {
 	`Log("LW Officer Pack : Max Rank =" @ string(default.RequiredRankPerOfficerRank.Length-1));
 	`Log("LW Officer Pack : Max Required Rank =" @ string(default.RequiredRankPerOfficerRank[default.RequiredRankPerOfficerRank.Length-1]));
 	return default.RequiredRankPerOfficerRank.Length-1;
 }
 
-static function bool ValidateRank(const int Rank)
+static final function bool ValidateRank(const int Rank)
 {
 	if (!CheckRank(Rank))
 	{
@@ -351,7 +351,7 @@ static function bool ValidateRank(const int Rank)
 }
 
 //Validation check that Rank is within required bounds
-static function bool CheckRank(const int Rank)
+static final function bool CheckRank(const int Rank)
 {
 	if (Rank < 0 || Rank > default.MaxOfficerRank)
 	{
@@ -361,7 +361,7 @@ static function bool CheckRank(const int Rank)
 }
 
 //requires that the UpdateUnitState have already been added to the supplied NewGameState
-static function XComGameState_Unit AddInitialAbilities(XComGameState_Unit UpdatedUnit, XComGameState_Unit_LWOfficer OfficerState, XComGameState NewGameState)
+static final function XComGameState_Unit AddInitialAbilities(XComGameState_Unit UpdatedUnit, XComGameState_Unit_LWOfficer OfficerState, XComGameState NewGameState)
 {
 	local int i;
 	local SoldierClassAbilityType StarterAbility;
@@ -387,7 +387,7 @@ static function XComGameState_Unit AddInitialAbilities(XComGameState_Unit Update
 	return UpdatedUnit;
 }
 
-static function GCandValidationChecks()
+static final function GCandValidationChecks()
 {
 	local XComGameStateHistory History;
 	local XComGameState NewGameState;
@@ -442,7 +442,7 @@ static function GCandValidationChecks()
 // ------------------ LEADERSHIP ------------------
 
 // returns the array of officers that have leadership data for the given unit, sorted by number of missions together
-static function array<LeadershipEntry> GetOfficerLeadershipData_MissionSorted(StateObjectReference UnitRef)
+static final function array<LeadershipEntry> GetOfficerLeadershipData_MissionSorted(StateObjectReference UnitRef)
 {
 	local array<LeadershipEntry> ReturnArray;
 
@@ -453,7 +453,7 @@ static function array<LeadershipEntry> GetOfficerLeadershipData_MissionSorted(St
 }
 
 // returns the array of officers that have leadership data for the given unit
-static function array<LeadershipEntry> GetOfficerLeadershipData(StateObjectReference UnitRef)
+static final function array<LeadershipEntry> GetOfficerLeadershipData(StateObjectReference UnitRef)
 {
 	local array<LeadershipEntry> ReturnArray;
 	local XComGameStateHistory History;
@@ -487,7 +487,7 @@ static function array<LeadershipEntry> GetOfficerLeadershipData(StateObjectRefer
 }
 
 // this is designed to return the value for a unit in tactical combat it has no meaning in strategy, since there is no default officer
-static function int GetTacticalLeadershipSuccessfulMission(StateObjectReference CheckUnitRef)
+static final function int GetTacticalLeadershipSuccessfulMission(StateObjectReference CheckUnitRef)
 {
 	local XComGameStateHistory History;
 	local XComGameState_HeadquartersXCom XComHQ;
@@ -532,7 +532,7 @@ static function int GetTacticalLeadershipSuccessfulMission(StateObjectReference 
 	return 0;
 }
 
-static function int LeadershipMissionSort(LeadershipEntry EntryA, LeadershipEntry EntryB)
+static final function int LeadershipMissionSort(LeadershipEntry EntryA, LeadershipEntry EntryB)
 {
 	local int Result;
 	local XComGameStateHistory History;

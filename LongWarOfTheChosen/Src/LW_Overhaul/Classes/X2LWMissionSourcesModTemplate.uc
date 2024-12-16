@@ -23,8 +23,28 @@ static function UpdateMissionSources(X2StrategyElementTemplate Template, int Dif
 			SourceTemplate.OnFailureFn = ChosenAmbushOnFailure;
 			SourceTemplate.OnExpireFn = ChosenAmbushOnExpire;
 			break;
+			case 'MissionSource_BlackSite':
+			case 'MissionSource_Forge':
+			case 'MissionSource_PsiGate':
+			case 'MissionSource_Broadcast':
+			case 'MissionSource_ChosenAvengerAssault':
+			SourceTemplate.GetMissionDifficultyFn = GetCADDifficulty;
+			break;
 		default:
 			break;
+	}
+}
+
+// Make CAD / Golden Path difficulty scale with strategy difficulty
+static function int GetCADDifficulty(XComGameState_MissionSite MissionState)
+{
+	if(`XCOMHQ.TacticalGameplayTags.Find('DarkEvent_ShowOfForce') != INDEX_NONE)
+	{
+		return `STRATEGYDIFFICULTYSETTING;
+	}
+	else
+	{
+		return `STRATEGYDIFFICULTYSETTING + 1;
 	}
 }
 

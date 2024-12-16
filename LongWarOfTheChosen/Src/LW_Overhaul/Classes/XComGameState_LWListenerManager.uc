@@ -6,6 +6,7 @@
 class XComGameState_LWListenerManager extends XComGameState_BaseObject config(LW_Overhaul) dependson(XComGameState_LWPersistentSquad);
 
 var config int DEFAULT_LISTENER_PRIORITY;
+var config bool AI_PATROLS_WHEN_SIGHTED_BY_HIDDEN_XCOM;
 
 var localized string ResistanceHQBodyText;
 
@@ -323,7 +324,7 @@ function EventListenerReturn OnUFOSetInfiltrationTime(Object EventData, Object E
 
 	if (UFO.bDoesInterceptionSucceed)
 	{
-		UFO.InterceptionTime == UFO.GetCurrentTime();
+		UFO.InterceptionTime = UFO.GetCurrentTime();
 
 		HoursUntilIntercept = (UFO.MinNonInterceptDays * 24) + `SYNC_RAND((UFO.MaxNonInterceptDays * 24) - (UFO.MinNonInterceptDays * 24) + 1);
 		class'X2StrategyGameRulesetDataStructures'.static.AddHours(UFO.InterceptionTime, HoursUntilIntercept);

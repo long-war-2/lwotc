@@ -18,6 +18,9 @@ static function array<X2DataTemplate> CreateTemplates()
     Templates.AddItem(AddMissionTemplate('SupplyLineRaidATT_LW'));
     Templates.AddItem(AddMissionTemplate('SupplyLineRaidTrain_LW'));
     Templates.AddItem(AddMissionTemplate('SupplyLineRaidConvoy_LW'));
+    Templates.AddItem(AddMissionTemplate('ChosenSupplyLineRaidATT_LW'));
+    Templates.AddItem(AddMissionTemplate('ChosenSupplyLineRaidTrain_LW'));
+    Templates.AddItem(AddMissionTemplate('ChosenSupplyLineRaidConvoy_LW'));
     Templates.AddItem(AddMissionTemplate('DestroyRelay_LW'));
     Templates.AddItem(AddMissionTemplate('SabotageTransmitter_LW'));
     Templates.AddItem(AddMissionTemplate('CovertEscape_LW'));
@@ -40,6 +43,7 @@ static function array<X2DataTemplate> CreateTemplates()
     Templates.AddItem(AddMissionTemplate('AdventFacilityPSIGATE_LW'));
     Templates.AddItem(AddMissionTemplate('CentralNetworkBroadcast_LW'));
     Templates.AddItem(AddMissionTemplate('AssaultAlienFortress_LW'));
+    Templates.AddItem(AddMissionTemplate('DestroyAvatarProject_LW'));
     
 	Templates.AddItem(AddMissionTemplate('SecureUFO_LW'));
     Templates.AddItem(AddMissionTemplate('SabotageAlienFacility_LW'));
@@ -57,6 +61,8 @@ static function array<X2DataTemplate> CreateTemplates()
     Templates.AddItem(AddMissionTemplate('IntelRaid_LW'));
 	Templates.AddItem(AddMissionTemplate('SupplyConvoy_LW'));
 	Templates.AddItem(AddMissionTemplate('RecruitRaid_LW'));
+
+    Templates.AddItem(AddMissionTemplate('CompoundRescueOperative_LW'));
 
 	return Templates;
 }

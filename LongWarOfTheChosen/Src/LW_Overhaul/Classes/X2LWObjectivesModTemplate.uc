@@ -22,10 +22,6 @@ static function UpdateObjectives(X2StrategyElementTemplate Template, int Difficu
 			`LWTrace("X2LWObjectivesModTemplate - removing proving grounds objective");
 			ObjectiveTemplate.Steps.RemoveItem('T1_M2_S1_BuildProvingGrounds');
 			break;
-		case 'T5_M2_CompleteBroadcastTheTruthMission':
-			`LWTrace("X2LWObjectivesModTemplate - updating Broadcast the Truth objective");
-			ObjectiveTemplate.AssignObjectiveFn = CreateBroadcastTheTruthMission_LW;
-			break;
 		case 'XP3_M0_NonLostAndAbandoned':
 			`LWTrace("X2LWObjectivesModTemplate - removing the SpawnFirstPOI objective");
 			ObjectiveTemplate.NextObjectives.RemoveItem('XP3_M2_SpawnFirstPOI');
@@ -33,10 +29,22 @@ static function UpdateObjectives(X2StrategyElementTemplate Template, int Difficu
 		case 'CEN_ToDoWarnings':
 			ShutBradfordUp(ObjectiveTemplate);
 			break;
+		case 'T1_M0_FirstMission':
+		 	ObjectiveTemplate.AssignObjectiveFn = class'X2StrategyElement_LWObjectives'.static.CreatePreplacedGoldenPathMissionsLW;
+			break;
 		default:
 			break;
 	}	
 }
+
+/*
+	Tedster: disable Peter/Pavonis change to lock network tower access behind contacting region.
+
+case 'T5_M2_CompleteBroadcastTheTruthMission':
+			`LWTrace("X2LWObjectivesModTemplate - updating Broadcast the Truth objective");
+			ObjectiveTemplate.AssignObjectiveFn = CreateBroadcastTheTruthMission_LW;
+			break;
+ */
 
 static function CreateBroadcastTheTruthMission_LW(XComGameState NewGameState, XComGameState_Objective ObjectiveState)
 {
@@ -44,7 +52,7 @@ static function CreateBroadcastTheTruthMission_LW(XComGameState NewGameState, XC
 	local XComGameState_MissionCalendar CalendarState;
 	local array<XComGameState_Reward> Rewards;
 
-	class'X2StrategyElement_DefaultObjectives'.static.CreateMission(NewGameState, Rewards, 'MissionSource_Broadcast', 2); // remove the bForceAtThreshold flag
+	class'X2StrategyElement_DefaultObjectives'.static.CreateMission(NewGameState, Rewards, 'MissionSource_Broadcast', 0); // remove the bForceAtThreshold flag
 
 	// Update the calendar to use the end game mission decks
 	foreach NewGameState.IterateByClassType(class'XComGameState_MissionCalendar', CalendarState)
@@ -77,6 +85,8 @@ static function ShutBradfordUp(X2ObjectiveTemplate Template)
 		}
 	}
 }
+
+
 
 defaultproperties
 {

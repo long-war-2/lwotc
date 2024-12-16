@@ -12,6 +12,8 @@ var config array<float> CA_STD_REWARD_SCALAR;
 var config int CA_RISK_FL_CAP;
 var config int AMBUSH_RISK_MODIFIER;
 
+var config array<name> NO_INSPIRATION_TECHS;
+
 var config int LISTENER_PRIORITY;
 
 static function array<X2DataTemplate> CreateTemplates()
@@ -151,6 +153,8 @@ static function EventListenerReturn OnWeaponUpgradeNavHelpUpdated(
 	}
 
 	NavHelp.Show();
+
+	return ELR_NoInterrupt;
 }
 
 static function EventListenerReturn OverrideScienceScore(
@@ -231,7 +235,16 @@ static function EventListenerReturn CanTechBeInspired(
 
 	// Exclude repeatable research from inspiration
 	TechState = XComGameState_Tech(EventSource);
-	Tuple.Data[0].b = !TechState.GetMyTemplate().bRepeatable;
+
+	if(default.NO_INSPIRATION_TECHS.Find(TechState.GetMyTemplateName()) != INDEX_NONE)
+	{
+		Tuple.Data[0].b = false;
+		return ELR_NoInterrupt;
+	}
+	else
+	{
+		Tuple.Data[0].b = !TechState.GetMyTemplate().bRepeatable;
+	}
 
 	return ELR_NoInterrupt;
 }
@@ -810,7 +823,7 @@ static function EventListenerReturn UpdateWillProjectForStaff(
 	}
 
 	// SPARKs don't have Will recovery projects!
-	if (UnitState.GetMyTemplateName() == 'SparkSoldier')
+	if (!UnitState.UsesWillSystem())
 		return ELR_NoInterrupt;
 
 	// Only update Will projects for certain staff slots.
@@ -822,4 +835,6 @@ static function EventListenerReturn UpdateWillProjectForStaff(
 	{
 		class'Helpers_LW'.static.UpdateUnitWillRecoveryProject(UnitState);
 	}
+
+	return ELR_NoInterrupt;
 }

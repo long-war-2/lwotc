@@ -312,7 +312,20 @@ static function PutRulerOnCurrentMission(XComGameState NewGameState, XComGameSta
 // helper for sparks to resolve if a wounded spark is on a mission, since that status can override the OnMission one
 static function bool IsUnitOnMission(XComGameState_Unit UnitState)
 {
-	switch (UnitState.GetMyTemplateName())
+	if (UnitState.GetStatus() == eStatus_CovertAction)
+	{
+		return true;
+	}
+	if (`LWSQUADMGR.UnitIsOnMission(UnitState.GetReference()))
+	{
+		return true;
+	}
+	if (`LWOUTPOSTMGR.IsUnitAHavenLiaison(UnitState.GetReference()))
+	{
+		return true;
+	}
+
+	/*switch (UnitState.GetMyTemplateName())
 	{
 		case 'SparkSoldier':
 		case 'LostTowersSpark':
@@ -333,7 +346,7 @@ static function bool IsUnitOnMission(XComGameState_Unit UnitState)
 		default:
 			return UnitState.GetStatus() == eStatus_CovertAction;
 			break;
-	}
+	}*/
 	return false;
 }
 
@@ -343,6 +356,8 @@ static function SetOnMissionStatus(XComGameState_Unit UnitState, XComGameState N
 {
 	local XComGameState_StaffSlot StaffSlotState;
 	local XComGameState_HeadquartersProjectHealSoldier HealProject;
+	local XComGameState_HeadquartersProjectPsiTraining PsiProjectState;
+	local XComGameState_HeadquartersXCom XComHQ;
 
 	if(bClearSlot)
 	{//If we're here, I'm going to assume you're allowed to be on the mission already, meaning that if you're in a slot you should be removed from it.
@@ -350,11 +365,25 @@ static function SetOnMissionStatus(XComGameState_Unit UnitState, XComGameState N
 		if(StaffSlotState != none)
 		{
 			StaffSlotState = XComGameState_StaffSlot(NewGameState.ModifyStateObject(class'XComGameState_StaffSlot', StaffSlotState.ObjectID));
+			
+			XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+
+			PsiProjectState = XComHQ.GetPsiTrainingProject(UnitState.GetReference());
+			if (PsiProjectState != none) // A Psi Training project was found for the unit
+			{
+				// Pause the training project.
+				// Don't need to empty the psi slot, since the soldier is already staffed on the Action
+				PsiProjectState = XComGameState_HeadquartersProjectPsiTraining(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersProjectPsiTraining', PsiProjectState.ObjectID));
+				PsiProjectState.bForcePaused = true;
+			}
+			
 			StaffSlotState.EmptySlot(NewGameState);
 		}
+
 	}
-	if (UnitState.GetStatus() == eStatus_Healing)
-	{
+	// Tedster - see if commenting out this if check to always check for and pause heal projects fixes things.
+	//if (UnitState.GetStatus() == eStatus_Healing)
+//	{
 		//and pause any healing project
 		HealProject = GetHealProject(UnitState.GetReference());
 		if (HealProject != none)
@@ -362,7 +391,7 @@ static function SetOnMissionStatus(XComGameState_Unit UnitState, XComGameState N
 			HealProject = XComGameState_HeadquartersProjectHealSoldier(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersProjectHealSoldier', HealProject.ObjectID));
 			HealProject.PauseProject();
 		}
-	}
+//	}
 
 	UnitState.SetStatus(eStatus_CovertAction);
 	class'Helpers_LW'.static.UpdateUnitWillRecoveryProject(UnitState);
@@ -382,7 +411,7 @@ static function XComGameState_HeadquartersProjectHealSoldier GetHealProject(Stat
     for(Idx = 0; Idx < XCOMHQ.Projects.Length; ++ Idx)
     {
         HealProject = XComGameState_HeadquartersProjectHealSoldier(History.GetGameStateForObjectID(XCOMHQ.Projects[Idx].ObjectID));
-        if(HealProject != none && HealProject.IsA('XComGameState_HeadquartersProjectHealSoldier'))
+        if(HealProject != none && ClassIsChildOf(HealProject.Class,class'XComGameState_HeadquartersProjectHealSoldier'))
         {
             if(UnitRef == HealProject.ProjectFocus)
             {

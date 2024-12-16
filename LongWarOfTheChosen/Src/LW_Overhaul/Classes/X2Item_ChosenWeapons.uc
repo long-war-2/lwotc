@@ -220,7 +220,7 @@ static function X2DataTemplate CreateTemplate_ChosenSword_T5()
 	Template.Abilities.AddItem('OverwatchShot');
 	Template.Abilities.AddItem('Reload');
 	Template.Abilities.AddItem('HotLoadAmmo');
-	Template.Abilities.AddItem('TrackingShot');
+	Template.Abilities.AddItem('TrackingShot_LW');
 
 	// This all the resources; sounds, animations, models, physics, the works.
 	Template.GameArchetype = "WP_ChosenSniperRifle.WP_ChosenSniperRifle_T4";

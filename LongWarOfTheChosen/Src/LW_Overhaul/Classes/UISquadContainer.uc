@@ -4,7 +4,7 @@
 //  PURPOSE: Squad container that will load in and format squad items. 
 //----------------------------------------------------------------------------
 
-class UISquadContainer extends UIPanel;
+class UISquadContainer extends UIPanel config(LW_Overhaul);
 
 var string Title;
 
@@ -15,7 +15,9 @@ var StateObjectReference CurrentSquadRef;
 
 var UISquad_DropDown m_k_SquadDropDown;
 
-var localized string DefaultSquadTitle; 
+var localized string DefaultSquadTitle;
+
+var config bool bLeftSquadButton;
 
 // do a timer-delayed initiation in order to allow other UI elements to settle
 function DelayedInit(float Delay)
@@ -26,7 +28,10 @@ function DelayedInit(float Delay)
 function StartDelayedInit()
 {
 	InitSquadContainer('SquadSelect_SquadContainer_LW', CurrentSquadRef);
-	SetPosition(1150, 0);
+	if (default.bLeftSquadButton)
+		SetPosition(500, 0);
+	else
+		SetPosition(1150, 0);
 }
 simulated function UISquadContainer InitSquadContainer(optional name InitName, optional StateObjectReference SquadRef)
 {

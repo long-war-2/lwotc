@@ -142,8 +142,10 @@ function XComGameState_LWPersistentSquad InitSquad(optional string sName = "", o
 
 	SquadBioTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
 	SquadBioTag.StrValue0 = DateString;
-	sSquadBiography = `XEXPAND.ExpandString(class'UIPersonnel_SquadBarracks'.default.strDefaultSquadBiography);		
-		
+	sSquadBiography = `XEXPAND.ExpandString(class'UIPersonnel_SquadBarracks'.default.strDefaultSquadBiography);
+
+	SquadImagePath = class'UIPersonnel_SquadBarracks'.default.SquadImagePaths[Rand(class'UIPersonnel_SquadBarracks'.default.SquadImagePaths.Length)];
+
 	return self;
 }
 
@@ -560,9 +562,14 @@ function PostMissionRevertSoldierStatus(XComGameState NewGameState, XComGameStat
 	local int SlotIndex, idx;
 	local StaffUnitInfo UnitInfo;
 	local XComGameState_LWPersistentSquad SquadState, UpdatedSquad;
+	local XComGameState_HeadquartersProjectHealSoldier HealProject;
+	local XComGameState_HeadquartersProjectRecoverWill WillProject;
 
 	//History = `XCOMHISTORY;
 	XComHQ = `XCOMHQ;
+
+	XComHQ = XComGameState_HeadquartersXCom(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectId));
+
 	foreach SquadSoldiersOnMission(UnitRef)
 	{
 		if (UnitRef.ObjectID == 0)
@@ -644,13 +651,60 @@ function PostMissionRevertSoldierStatus(XComGameState NewGameState, XComGameStat
 			}
 		}
 
+		// Tedster fix - resume heal project during squad cleanup
+		
+		HealProject = class'LWDLCHelpers'.static.GetHealProject(UnitState.GetReference());
+
+		if(HealProject != NONE && (HealProject.BlockCompletionDateTime.m_iYear == 9999 ||HealProject.BlockCompletionDateTime.m_iYear == 9999 ))
+		{
+			UnitState.SetStatus(eStatus_Healing);
+			HealProject.ResumeProject();
+		}
+
+		// add code to create another heal or will recovery project if one doesn't exist. This fires after PostMissionUpdateSoldierHealing so other mods should have already set up healing projects for their special stuff.
+		if(UnitState.IsInjured() && HealProject == None)
+		{
+			HealProject = XComGameState_HeadquartersProjectHealSoldier(NewGameState.CreateNewStateObject(class'XComGameState_HeadquartersProjectHealSoldier'));
+			HealProject.SetProjectFocus(UnitState.GetReference(), NewGameState);
+			UnitState.SetStatus(eStatus_Healing);
+			XComHQ.Projects.AddItem(HealProject.GetReference());
+		}
+
+		if(!HasWillProject(UnitState) && UnitState.NeedsWillRecovery() && UnitState.UsesWillSystem())
+		{
+			WillProject = XComGameState_HeadquartersProjectRecoverWill(NewGameState.CreateNewStateObject(class'XComGameState_HeadquartersProjectRecoverWill'));
+			WillProject.SetProjectFocus(UnitState.GetReference(), NewGameState);
+			XComHQ.Projects.AddItem(WillProject.GetReference());
+		}
+
 		//if soldier still has OnMission status, set status to active (unless it's a SPARK that's healing)
-		if(class'LWDLCHelpers'.static.IsUnitOnMission(UnitState) && UnitState.GetStatus() != eStatus_Healing)
+		if(class'LWDLCHelpers'.static.IsUnitOnMission(UnitState) && UnitState.GetStatus() != eStatus_Healing && !UnitState.IsPsiAbilityTraining() && !UnitState.IsPsiTraining() && !UnitState.IsTraining())
 		{
 			UnitState.SetStatus(eStatus_Active);
 			class'Helpers_LW'.static.UpdateUnitWillRecoveryProject(UnitState);
 		}
 	}
+
+	// Refresh staffing to update all heal projects.
+	XComHQ.HandlePowerOrStaffingChange(NewGameState);
+}
+
+static function bool HasWillProject(XComGameState_Unit UnitState)
+{
+	local XComGameStateHistory History;
+	local XComGameState_HeadquartersProjectRecoverWill WillProject;
+
+	History = `XCOMHISTORY;
+
+	foreach History.IterateByClassType(class'XComGameState_HeadquartersProjectRecoverWill', WillProject)
+	{
+		if(WillProject.ProjectFocus == UnitState.GetReference())
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
 function bool IsDeployedOnMission()
@@ -994,15 +1048,63 @@ function int GetAlertnessModifierForCurrentInfiltration(optional XComGameState U
 	return iAlertnessModifier;
 }
 
-function float GetSecondsRemainingToFullInfiltration()
+function float GetSecondsRemainingToFullInfiltration(optional bool bBoost = false)
 {
 	local float TotalSecondsToInfiltrate;
 	local float SecondsOfInfiltration;
 	local float SecondsToInfiltrate;
 
-	TotalSecondsToInfiltrate = 3600.0 * GetHoursToFullInfiltrationCached(); // test caching here roo
+	if(bBoost)
+	{
+		TotalSecondsToInfiltrate = 3600.0 * GetHoursToFullInfiltrationCached() / class'XComGameState_LWPersistentSquad'.default.DefaultBoostInfiltrationFactor[`STRATEGYDIFFICULTYSETTING];
+	}
+	else
+	{
+		TotalSecondsToInfiltrate = 3600.0 * GetHoursToFullInfiltrationCached(); // test caching here roo
+	}
+	
 	SecondsOfInfiltration = class'X2StrategyGameRulesetDataStructures'.static.DifferenceInSeconds(GetCurrentTime(), StartInfiltrationDateTime);
 	SecondsToInfiltrate = TotalSecondsToInfiltrate - SecondsOfInfiltration;
+
+	return SecondsToInfiltrate;
+}
+
+function float GetSecondsRemainingToFullInfiltrationUI(optional bool bBoost = false)
+{
+	local float TotalSecondsToInfiltrate, InfiltrationBonusOnLiberation;
+	local float SecondsOfInfiltration;
+	local float SecondsToInfiltrate;
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_WorldRegion_LWStrategyAI RegionalAI;
+    local XComGameState_MissionSite MissionSite;
+	
+
+	if(bBoost)
+	{
+		TotalSecondsToInfiltrate = 3600.0 * GetHoursToFullInfiltrationCached() / class'XComGameState_LWPersistentSquad'.default.DefaultBoostInfiltrationFactor[`STRATEGYDIFFICULTYSETTING];
+	}
+	else
+	{
+		TotalSecondsToInfiltrate = 3600.0 * GetHoursToFullInfiltrationCached(); // test caching here roo
+	}
+	
+	SecondsOfInfiltration = class'X2StrategyGameRulesetDataStructures'.static.DifferenceInSeconds(GetCurrentTime(), StartInfiltrationDateTime);
+	SecondsToInfiltrate = TotalSecondsToInfiltrate - SecondsOfInfiltration;
+
+	MissionSite = GetCurrentMission();
+	if(MissionSite != none)
+	{
+		RegionState = MissionSite.GetWorldRegion();
+		if(RegionState != none)
+		{
+			RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState);
+			if(RegionalAI.bLiberated)
+			{
+				InfiltrationBonusOnLiberation = class'X2StrategyElement_DefaultAlienActivities'.default.INFILTRATION_BONUS_ON_LIBERATION[`STRATEGYDIFFICULTYSETTING] / 100.0;
+				SecondsToInfiltrate -= TotalSecondsToInfiltrate * InfiltrationBonusOnLiberation;
+			}
+		}
+	}
 
 	return SecondsToInfiltrate;
 }

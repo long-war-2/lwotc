@@ -13,6 +13,12 @@ var array<DamageStep> EnvironmentDamageSteps;
 
 var config int SAPPER_ENV_DAMAGE_BONUS;
 var config int COMBAT_ENGINEER_ENV_DAMAGE_BONUS;
+var config int IMPROVED_WARHEADS_ENV_DMG_BONUS;
+var config int CONCUSSION_WARHEADS_ENV_DMG_BONUS;
+
+var config array<Name>IMPROVED_WARHEADS_AFFECT_ABILITIES;
+var config array<Name>CONCUSSION_WARHEADS_AFFECT_ABILITIES;
+
 var config int MAX_ENV_DAMAGE_RANGE_PCT;
 
 // Cannot pass bools as out params, so use an int. Zero is false, non-zero is true.
@@ -271,6 +277,10 @@ simulated function ApplyEffectToWorld(const out EffectAppliedData ApplyEffectPar
 					DamageAmount += default.SAPPER_ENV_DAMAGE_BONUS;
 			if (SourceStateObject.HasSoldierAbility('CombatEngineer', true) && DamageAmount > 0)
 					DamageAmount += default.COMBAT_ENGINEER_ENV_DAMAGE_BONUS;
+			if(SourceStateObject.HasAbilityFromAnySource('ImprovedMunitions_LW') && DamageAmount > 0 && default.IMPROVED_WARHEADS_AFFECT_ABILITIES.find(AbilityTemplate.DataName) != INDEX_NONE)
+					DamageAmount += default.IMPROVED_WARHEADS_ENV_DMG_BONUS;
+			if(SourceStateObject.HasAbilityFromAnySource('ConcussionWarheads_LW') && DamageAmount > 0 && default.CONCUSSION_WARHEADS_AFFECT_ABILITIES.find(AbilityTemplate.DataName) != INDEX_NONE)
+					DamageAmount += default.CONCUSSION_WARHEADS_ENV_DMG_BONUS;
 
 			// Randomize damage
 			if (!bLinearDamage && AbilityRadius > 0.0f && DamageAmount > 0)

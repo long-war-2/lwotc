@@ -134,11 +134,11 @@ LocPromotionPopupText="<Bullet/> Огнемет - оружие малой дал
 
 [LWRocketLauncher X2AbilityTemplate]
 LocFriendlyName="Ракетомет"
-LocHelpText="Выстрел ракетой в указанную зону. <Ability:ROCKETSCATTER/>"
+LocHelpText="Выстрел ракетой в указанную зону.<Ability:ROCKETSCATTER/>"
 
 [LWBlasterLauncher X2AbilityTemplate]
 LocFriendlyName="Бластерная бомба"
-LocHelpText="Выстрел бластерной бомбой по указанной зоне. <Ability:ROCKETSCATTER/>"
+LocHelpText="Выстрел бластерной бомбой по указанной зоне.<Ability:ROCKETSCATTER/>"
 
 [NapalmX X2AbilityTemplate]
 LocFriendlyName="Напалм-Х"
@@ -252,6 +252,14 @@ LocLongDescription="Выстрел особой ракетой, наносяще
 LocHelpText="Особая ракета, оглушающая или дезориентирующая цели и оставляющая дымовую завесу."
 LocPromotionPopupText="<Bullet/> Одно применение в ходе задания.<br/><Bullet/> Вероятность оглушения зависит от воли цели и уровня \"перчатки\" солдата.<br/><Bullet/> Шанс дезориентации зависит только от показателя воли.<br/><Bullet/> Требет одно действие и заканчивает ход.<br/><Bullet/> Элитные Кодексы и Пси-зомби полностью невосприимчивы ко всем эффектам ракеты, включая урон.<br/><Bullet/> Не действует на союзников.<br/>"
 
+[BlasterConcussionRocket X2AbilityTemplate]
+LocFriendlyName="Диверсионная ракета"
+LocFlyOverText="Диверсионная ракета"
+LocLongDescription="Выстрел особой ракетой, наносящей ограниченный урон, но имеющей шанс оглушить или дезориентировать органических противников в зоне поражения. Оставляет дымовую завесу."
+LocHelpText="Особая ракета, оглушающая или дезориентирующая цели и оставляющая дымовую завесу."
+LocPromotionPopupText="<Bullet/> Одно применение в ходе задания.<br/><Bullet/> Вероятность оглушения зависит от воли цели и уровня \"перчатки\" солдата.<br/><Bullet/> Шанс дезориентации зависит только от показателя воли.<br/><Bullet/> Требет одно действие и заканчивает ход.<br/><Bullet/> Элитные Кодексы и Пси-зомби полностью невосприимчивы ко всем эффектам ракеты, включая урон.<br/><Bullet/> Не действует на союзников.<br/>"
+
+
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
 [CoupDeGrace X2AbilityTemplate]
@@ -331,6 +339,12 @@ LocLongDescription="Наносящая урон граната в специал
 LocHelpText="Наносящая урон граната в специально отведенной для гранат ячейке может быть использована еще раз."
 LocFlyOverText="Тяжелая артиллерия"
 LocPromotionPopupText="<Bullet/> Способность \"Тяжелая артиллерия\" совместима с любыми гранатами, наносящими урон.<br/>"
+
+[HeavyOrdnanceV2 X2AbilityTemplate]
+LocFriendlyName="Тяжелая артиллерия"
+LocLongDescription="Граната в специально отведенной для нее ячейке может быть использована еще раз."
+LocHelpText="Граната в специально отведенной для нее ячейке может быть использована еще раз."
+LocPromotionPopupText="<Bullet/> Способность \"Тяжелая артиллерия\" позволяет стрелять любыми гранатами, даже боевыми сканерами и дымовыми.<br/>"
 
 [Sapper X2AbilityTemplate]
 LocFriendlyName="Сапер"
@@ -2334,6 +2348,14 @@ ObjectiveTextPools[1]="Уничтожьте всех врагов"
 ObjectiveTextPools[0]="Аватар Шефа должен выжить"
 ObjectiveTextPools[1]="Уничтожьте аватаров"
 
+[DefaultAssaultFortressLeadup_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Аватар шефа должен выжить"
+ObjectiveTextPools[1]="Уничтожить всех врагов"
+
+[DefaultDestroyAvatarProject_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Аватар шефа должен выжить"
+ObjectiveTextPools[1]="Уничтожить аватаров"
+
 [DefaultSabotage_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Заложите X4, чтобы уничтожить объект пришельцев"
 ObjectiveTextPools[1]="Эвакуируйте всех солдат XCOM"
@@ -2702,6 +2724,13 @@ Briefing="Атакуйте крепость пришельцев"
 PostMissionType="Атакуйте крепость пришельцев"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
 ObjectiveTextPools[0]="Ликвидируйте руководство проекта \"Аватар\""
+
+[DestroyAvatarProject_LW X2MissionTemplate]
+DisplayName="Уничтожить проект \"Аватар\""
+Briefing="Уничтожить проект \"Аватар\""
+PostMissionType="Уничтожить проект \"Аватар\""
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
+ObjectiveTextPools[0]="Уничтожить проект \"Аватар\""
 
 [SecureUFO_LW X2MissionTemplate]
 DisplayName="Захватите обездвиженный НЛО"
@@ -3101,7 +3130,7 @@ strCharacterName="Странник-зверь"
 [TheLostBruteHP16_LW X2CharacterTemplate]
 strCharacterName="Странник-зверь"
 
-[LWTheLostBruteHP18 X2CharacterTemplate]
+[TheLostBruteHP18_LW X2CharacterTemplate]
 strCharacterName="Странник-зверь"
 
 [TheLostBruteHP21_LW X2CharacterTemplate]
@@ -3150,6 +3179,14 @@ LocLongDescription="Использование \"Стрельбы на бегу\
 LocHelpText="Использование \"Стрельбы на бегу\" обнуляет перезарядку дугомёта. Пассивная способность."
 LocPromotionPopupText="<Bullet/> Использование \"Стрельбы на бегу\" обнуляет перезарядку дугомёта. Пассивная способность.<br/><Bullet/> Не действует на способность \"Цепь Молний\".<br/>"
 
+[LikeLightningPassive_LW X2AbilityTemplate]
+LocFriendlyName="Словно молния"
+LocFlyOverText="Словно молния"
+LocLongDescription="Использование \"Стрельбы на бегу\" обнуляет перезарядку дугомёта. Пассивная способность."
+LocHelpText="Использование \"Стрельбы на бегу\" обнуляет перезарядку дугомёта. Пассивная способность."
+LocPromotionPopupText="<Bullet/> Использование \"Стрельбы на бегу\" обнуляет перезарядку дугомёта. Пассивная способность.<br/><Bullet/> Не действует на способность \"Цепь Молний\".<br/>"
+
+
 [Maim_LW X2AbilityTemplate]
 LocFriendlyName="Увечье"
 LocFlyOverText="Увечье"
@@ -3195,9 +3232,9 @@ LocPromotionPopupText="<Bullet/> Если вы убиваете противни
 [Dedication_LW X2AbilityTemplate]
 LocFriendlyName="Окрыляющая отвага"
 LocFlyOverText="Окрыляющая отвага"
-LocLongDescription="Свободное действие. Прибавляет <Ability:DEDICATION_MOBILITY/> к мобильности и игнорирует ответный огонь до конца хода. Ходов до перезарядки: <Ability:DEDICATION_COOLDOWN/>."
-LocHelpText="Свободное действие. Прибавляет <Ability:DEDICATION_MOBILITY/> к мобильности и игнорирует ответный огонь до конца хода. Ходов до перезарядки: <Ability:DEDICATION_COOLDOWN/>."
-LocPromotionPopupText="<Bullet/> Прибавляет <Ability:DEDICATION_MOBILITY/> к мобильности и игнорирует ответный огонь до конца хода.<br/><Bullet/> Свободное действие.<br/><Bullet/> Ходов до перезарядки: <Ability:DEDICATION_COOLDOWN/>.<br/>"
+LocLongDescription="Свободное действие. Прибавляет <Ability:DEDICATIONLW_MOBILITY/> к мобильности и игнорирует ответный огонь до конца хода. Ходов до перезарядки: <Ability:DEDICATION_COOLDOWN/>."
+LocHelpText="Свободное действие. Прибавляет <Ability:DEDICATIONLW_MOBILITY/> к мобильности и игнорирует ответный огонь до конца хода. Ходов до перезарядки: <Ability:DEDICATION_COOLDOWN/>."
+LocPromotionPopupText="<Bullet/> Прибавляет <Ability:DEDICATIONLW_MOBILITY/> к мобильности и игнорирует ответный огонь до конца хода.<br/><Bullet/> Свободное действие.<br/><Bullet/> Ходов до перезарядки: <Ability:DEDICATION_COOLDOWN/>.<br/>"
 
 [Corpsman_LW X2AbilityTemplate]
 LocFriendlyName="Санитар"
@@ -3420,6 +3457,12 @@ LocLongDescription="Атака по врагу в пределах одного 
 LocHelpText="Атака по врагу в пределах одного действия перемещения (оружие: <Ability:SecondaryWeaponName/>). Не заканчивает ход"
 LocPromotionPopupText="<Bullet/>Атака по врагу в пределах одного действия перемещения (оружие: <Ability:SecondaryWeaponName/>). Не заканчивает ход.<br/> <Bullet/>  <Ability:LIGHTNINGSLASH_COOLDOWN/> ходов перезарядки.<br/>"
 
+[LightningSlashLastAction_LW X2AbilityTemplate]
+LocFriendlyName="Молниеносный удар"
+LocLongDescription="Атака по врагу в пределах одного действия перемещения (оружие: <Ability:SecondaryWeaponName/>). Не заканчивает ход"
+LocHelpText="Атака по врагу в пределах одного действия перемещения (оружие: <Ability:SecondaryWeaponName/>). Не заканчивает ход"
+LocPromotionPopupText="<Bullet/>Атака по врагу в пределах одного действия перемещения (оружие: <Ability:SecondaryWeaponName/>). Не заканчивает ход.<br/> <Bullet/>  <Ability:LIGHTNINGSLASH_COOLDOWN/> ходов перезарядки.<br/>"
+
 [InspireAgility_LW X2AbilityTemplate]
 LocFriendlyName="Не зевай!"
 LocFlyOverText="Не зевай!"
@@ -3518,6 +3561,10 @@ BonusEmptyText="Ускоряет восстановление солдат."
 BonusText="ТЕМП ВОССТАНОВЛЕНИЯ +%AVENGERBONUS%"
 FilledText="%UNITNAME ускоряет восстановление солдат после ранений с помощью продвинутого медицинского оборудования."
 LockedText="НЕДОСТУПНО: ПРИОБРЕТИТЕ УЛУЧШЕНИЕ"
+
+[CovertActionIntenseTrainingStaffSlot X2StaffSlotTemplate]
+EmptyText="СОЛДАТ"
+BonusText="НА СЕКРЕТНОМ ЗАДАНИИ"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Techs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -6038,6 +6085,11 @@ Description="Увеличивает время задания на 4 хода."
 ; End Translated
 
 ; LWOTC Translated
+
+[SlightlyLargeMap X2SitRepTemplate]
+FriendlyName="Марш-бросок"
+Description="Местность операции больше чем обычно, может потребоваться больше времени на выполнение задания."
+
 [LargeMap X2SitRepTemplate]
 FriendlyName="Марш-бросок"
 Description="Местность операции больше чем обычно, может потребоваться больше времени на выполнение задания."
@@ -6977,3 +7029,9 @@ LocFriendlyName="Нова"
 LocLongDescription="Выброс энергии, наносящий урон всем бойцам вокруг. Не имеет стоимости и перезарядки, однако последовательные применения повреждают \"Искру\"."
 LocHelpText="Урон всем бойцам вокруг. Каждое последующее применение повреждает \"Искру\"."
 LocPromotionPopupText="<Bullet/> \"Нова\" не требует действий и мгновенно перезаряжается.<br/><Bullet/> Первое применение в течение каждого задания наносит 0 урона \"Искре\".<br/><Bullet/> Все последующие атаки после первой наносят \"Искре\" накапливающийся урон в <Ability:Nova_Damage/> ед.<br/>"
+
+;Marauder
+[SkirmisherStrike X2AbilityTemplate]
+LocLongDescription="Стандартный выстрел из основного оружия в качестве первого действия не заканчивает ход."
+LocHelpText="Стандартный выстрел из основного оружия в качестве первого действия не заканчивает ход."
+LocPromotionPopupText=""

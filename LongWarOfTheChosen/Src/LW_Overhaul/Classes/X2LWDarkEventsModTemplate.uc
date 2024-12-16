@@ -26,7 +26,6 @@ static function UpdateDarkEvents(X2StrategyElementTemplate Template, int Difficu
 		case 'DarkEvent_LostWorld':
 		case 'DarkEvent_ReturnFire':
 		case 'DarkEvent_SealedArmor':
-		case 'DarkEvent_UndyingLoyalty':
 		case 'DarkEvent_Vigilance':
 			// Disable the normal dark event activation as these are handled by
 			// sit reps now.
@@ -40,6 +39,7 @@ static function UpdateDarkEvents(X2StrategyElementTemplate Template, int Difficu
 			DETemplate.MaxDurationDays = 42;
 			break;
 
+		case 'DarkEvent_UndyingLoyalty': // Crash fest
 		case 'DarkEvent_NewConstruction':
 		case 'DarkEvent_RuralCheckpoints':
 		case 'DarkEvent_BendingReed':

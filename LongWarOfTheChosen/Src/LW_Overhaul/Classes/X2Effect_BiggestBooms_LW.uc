@@ -15,7 +15,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 		{
 			Explosives = true;
 		}
-		if (AbilityState.GetMyTemplateName() == 'LWRocketLauncher' || AbilityState.GetMyTemplateName() == 'LWBlasterLauncher' || AbilityState.GetMyTemplateName() == 'MicroMissiles')
+		if (class'X2Effect_JavelinRockets'.default.VALID_ABILITIES.Find(AbilityState.GetMyTemplateName()) != INDEX_NONE || AbilityState.GetMyTemplateName() == 'MicroMissiles')
 		{
 			Explosives = true;
 		}
@@ -28,6 +28,10 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 				{			
 					if (WeaponDamageEffect.bIgnoreBaseDamage)
 					{	
+						if(class'X2Effect_JavelinRockets'.default.VALID_ABILITIES.Find(AbilityState.GetMyTemplateName()) != INDEX_NONE)
+						{
+							return default.CRIT_DAMAGE_BONUS;
+						}
 						return 0;
 					}
 				}
@@ -43,7 +47,7 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 {
     local ShotModifierInfo BoomInfo;
 
-	if(bIndirectFire || AbilityState.GetMyTemplateName() == 'LWRocketLauncher' || AbilityState.GetMyTemplateName() == 'LWBlasterLauncher' || AbilityState.GetMyTemplateName() == 'MicroMissiles')
+	if(bIndirectFire || class'X2Effect_JavelinRockets'.default.VALID_ABILITIES.Find(AbilityState.GetMyTemplateName()) != INDEX_NONE || AbilityState.GetMyTemplateName() == 'MicroMissiles')
 	{
 		BoomInfo.ModType = eHit_Crit;
 		BoomInfo.Value = default.CRIT_CHANCE_BONUS;

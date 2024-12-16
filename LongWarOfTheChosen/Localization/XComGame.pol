@@ -149,11 +149,11 @@ LocPromotionPopupText="<Bullet/> Miotacz ognia to broń o krótkim zasięgu, kt�
 
 [LWRocketLauncher X2AbilityTemplate]
 LocFriendlyName="Wyrzutnia rakiet"
-LocHelpText="Wystrzelenie rakiety na wskazany obszar. <Ability:ROCKETSCATTER/>"
+LocHelpText="Wystrzelenie rakiety na wskazany obszar.<Ability:ROCKETSCATTER/>"
 
 [LWBlasterLauncher X2AbilityTemplate]
 LocFriendlyName="Bomba blasterowa"
-LocHelpText="Wystrzelenie kierowanej bomby blasterowej we wskazane miejsce. <Ability:ROCKETSCATTER/>"
+LocHelpText="Wystrzelenie kierowanej bomby blasterowej we wskazane miejsce.<Ability:ROCKETSCATTER/>"
 
 [NapalmX X2AbilityTemplate]
 LocFriendlyName="Napalm-X"
@@ -267,6 +267,14 @@ LocLongDescription="Wystrzel specjalną rakietę, która zadaje ograniczone obra
 LocHelpText="Rakieta, która ogłusza lub dezorientuje cele i pozostawia chmurę dymu. <Ability:ROCKETSCATTER/>"
 LocPromotionPopupText="<Bullet/> Jedno użycie na misję.<br/><Bullet/> Szanse na ogłuszenie w oparciu o wynik Woli celu i poziom żołnierza.<br/><Bullet/> Szanse na dezorientację w oparciu o tylko punktację celu. <br/><Bullet/> Wymaga jednej akcji i kończy turę żołnierza.<br/><Bullet/> Elitarne Kodeksy i Psi Zombie są odporne na wszystkie efekty, łącznie z obrażeniami.<br/><Bullet/> Sojusznicy nie mogą zostać ranni przez ten atak.<br/>"
 
+[BlasterConcussionRocket X2AbilityTemplate]
+LocFriendlyName="Rakieta wstrząsowa"
+LocFlyOverText="Rakieta wstrząsowa"
+LocLongDescription="Wystrzel specjalną rakietę, która zadaje ograniczone obrażenia, ale ma szansę ogłuszyć lub zdezorientować organicznych wrogów w swoim obszarze działania i pozostawi chmurę dymu."
+LocHelpText="Rakieta, która ogłusza lub dezorientuje cele i pozostawia chmurę dymu. <Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> Jedno użycie na misję.<br/><Bullet/> Szanse na ogłuszenie w oparciu o wynik Woli celu i poziom żołnierza.<br/><Bullet/> Szanse na dezorientację w oparciu o tylko punktację celu. <br/><Bullet/> Wymaga jednej akcji i kończy turę żołnierza.<br/><Bullet/> Elitarne Kodeksy i Psi Zombie są odporne na wszystkie efekty, łącznie z obrażeniami.<br/><Bullet/> Sojusznicy nie mogą zostać ranni przez ten atak.<br/>"
+
+
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
 [CoupDeGrace X2AbilityTemplate]
@@ -350,6 +358,12 @@ LocLongDescription="Zapewnia dodatkowy egzemplarz granatu zadającego obrażenia
 LocHelpText="Zapewnia dodatkowy egzemplarz granatu zadającego obrażenia, który znajduje się w miejscu wyłącznie na granaty."
 LocFlyOverText="Ciężka artyleria"
 LocPromotionPopupText="<Bullet/> Zdolność \"ciężka artyleria\" obejmuje swym działaniem wszystkie granaty powodujące obrażenia.<br/>"
+
+[HeavyOrdnanceV2 X2AbilityTemplate]
+LocFriendlyName="Ciężka artyleria"
+LocLongDescription="Umieszczenie granatu w przeznaczonym wyłącznie dla niego miejscu zapewni ci jego dodatkowy egzemplarz."
+LocHelpText="Umieszczenie granatu w przeznaczonym wyłącznie dla niego miejscu zapewni ci jego dodatkowy egzemplarz."
+LocPromotionPopupText="<Bullet/> Do ciężkiej artylerii zaliczają się wszystkie granaty, nawet te pozbawione potencjału ofensywnego, takie jak skanery bojowe i granaty dymne.<br/>"
 
 [Sapper X2AbilityTemplate]
 LocFriendlyName="Saper"
@@ -2414,6 +2428,14 @@ ObjectiveTextPools[1]="Zneutralizuj wszystkich wrogów"
 ObjectiveTextPools[0]="Awatar dowódcy musi przetrwać"
 ObjectiveTextPools[1]="Zniszcz awatary"
 
+[DefaultAssaultFortressLeadup_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Awatar dowódcy musi przetrwać"
+ObjectiveTextPools[1]="Zneutralizuj wszystkich wrogów"
+
+[DefaultDestroyAvatarProject_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Awatar dowódcy musi przetrwać"
+ObjectiveTextPools[1]="Zniszcz awatary"
+
 [DefaultSabotage_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Podłóż X4, żeby zniszczyć placówkę obcych"
 ObjectiveTextPools[1]="Ewakuuj wszystkich żołnierzy XCOM"
@@ -2780,6 +2802,13 @@ PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.support.T_Support_Broadcast
 DisplayName="Zaatakuj bazę obcych"
 Briefing="Zaatakuj bazę obcych"
 PostMissionType="Zaatakuj bazę obcych"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
+ObjectiveTextPools[0]="Połóż kres dyrektywie Awatar"
+
+[DestroyAvatarProject_LW X2MissionTemplate]
+DisplayName="Połóż kres projektowi Awatar"
+Briefing="Połóż kres projektowi Awatar"
+PostMissionType="Połóż kres projektowi Awatar"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
 ObjectiveTextPools[0]="Połóż kres dyrektywie Awatar"
 
@@ -3173,6 +3202,10 @@ BonusEmptyText="Zwiększa szybkość leczenia żołnierza."
 BonusText="SZYBKOŚĆ LECZENIA +%AVENGERBONUS%"
 FilledText="Specjalistyczna opieka medyczna, której udziela %UNITNAME, przyspiesza czas gojenia się ran żołnierzy."
 LockedText="ZABLOKOWANE: KUP ULEPSZENIE"
+
+[CovertActionIntenseTrainingStaffSlot X2StaffSlotTemplate]
+EmptyText="ŻOŁNIERZ"
+BonusText="NA TAJNEJ OPERACJI"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Techs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -5436,6 +5469,10 @@ LocLongDescription="Kiedy otrzymasz trafienie krytyczne, pobliscy humanoidalni s
 [LocationScout X2SitRepTemplate]
 Description="Ruch oporu umieścił czujniki ruchu niskiego zasięgu, które łączą się z komunikacją twojej drużyny. Twoi żołnierze będą w stanie wykryć jednostki wroga, które znajdują się poza zasięgiem wzroku."
 
+[SlightlyLargeMap X2SitRepTemplate]
+FriendlyName="Wielka mapa"
+Description="Obszar działań jest większy niż zwykle, więc dotarcie do celu zajmie Ci prawdopodobnie więcej czasu."
+
 [LargeMap X2SitRepTemplate]
 FriendlyName="Wielka mapa"
 Description="Obszar działań jest większy niż zwykle, więc dotarcie do celu zajmie Ci prawdopodobnie więcej czasu."
@@ -5738,7 +5775,7 @@ strCharacterName="Zagubiony Brutal"
 [TheLostBruteHP16_LW X2CharacterTemplate]
 strCharacterName="Zagubiony Brutal"
 
-[LWTheLostBruteHP18 X2CharacterTemplate]
+[TheLostBruteHP18_LW X2CharacterTemplate]
 strCharacterName="Zagubiony Brutal"
 
 [TheLostBruteHP21_LW X2CharacterTemplate]
@@ -5785,6 +5822,14 @@ LocLongDescription="Kiedy aktywujesz Strzał w biegu, czas odnowienia Twojego Mi
 LocHelpText="Kiedy aktywujesz Strzał w biegu, czas odnowienia Twojego Miotacza Łukowego zostaje natychmiast zresetowany do 0."
 LocPromotionPopupText="<Bullet/> Kiedy aktywujesz Strzał w biegu, czas odnowienia Twojego Miotacza Łukowego zostaje natychmiast usunięty.<br/><Pocisk/> Nie dotyczy Łańcucha Błyskawic.<br/>"
 
+[LikeLightningPassive_LW X2AbilityTemplate]
+LocFriendlyName="Jak błyskawica"
+LocFlyOverText="Jak błyskawica"
+LocLongDescription="Kiedy aktywujesz Strzał w biegu, czas odnowienia Twojego Miotacza Łukowego zostaje natychmiast zresetowany do 0."
+LocHelpText="Kiedy aktywujesz Strzał w biegu, czas odnowienia Twojego Miotacza Łukowego zostaje natychmiast zresetowany do 0."
+LocPromotionPopupText="<Bullet/> Kiedy aktywujesz Strzał w biegu, czas odnowienia Twojego Miotacza Łukowego zostaje natychmiast usunięty.<br/><Pocisk/> Nie dotyczy Łańcucha Błyskawic.<br/>"
+
+
 [Maim_LW X2AbilityTemplate]
 LocFriendlyName="Okaleczenie"
 LocFlyOverText="Okaleczenie"
@@ -5830,9 +5875,9 @@ LocPromotionPopupText="<Bullet/> Jeśli podczas swojej tury zabijesz przynajmnie
 [Dedication_LW X2AbilityTemplate]
 LocFriendlyName="Dedykacja"
 LocFlyOverText="Dedykacja"
-LocLongDescription="Darmowa akcja. Zyskaj <Ability:DEDICATION_MOBILITY/> mobilność i ignoruj ogień reakcyjny do końca tury. Wymaga <Ability:SelfCooldown_LW/> tur(y) odnowienia."
-LocHelpText="Darmowa akcja. Zyskaj <Ability:DEDICATION_MOBILITY/> mobilność i ignoruj ogień reakcyjny do końca tury. Wymaga <Ability:SelfCooldown_LW/> tur(y) odnowienia."
-LocPromotionPopupText="<Bullet/> Zyskaj <Ability:DEDICATION_MOBILITY/> mobilność i ignoruj ogień reakcyjny do końca tury.<br/><Bullet/> Darmowa akcja.<br/><Bullet/> Wymaga <Ability:SelfCooldown_LW/> tur(y) odnowienia."
+LocLongDescription="Darmowa akcja. Zyskaj <Ability:DEDICATIONLW_MOBILITY/> mobilność i ignoruj ogień reakcyjny do końca tury. Wymaga <Ability:SelfCooldown_LW/> tur(y) odnowienia."
+LocHelpText="Darmowa akcja. Zyskaj <Ability:DEDICATIONLW_MOBILITY/> mobilność i ignoruj ogień reakcyjny do końca tury. Wymaga <Ability:SelfCooldown_LW/> tur(y) odnowienia."
+LocPromotionPopupText="<Bullet/> Zyskaj <Ability:DEDICATIONLW_MOBILITY/> mobilność i ignoruj ogień reakcyjny do końca tury.<br/><Bullet/> Darmowa akcja.<br/><Bullet/> Wymaga <Ability:SelfCooldown_LW/> tur(y) odnowienia."
 
 [Corpsman_LW X2AbilityTemplate]
 LocFriendlyName="Sanitariusz"
@@ -6042,6 +6087,12 @@ LocLongDescription = "Zabicie wroga zapewnia kumulowaną premię hakowania +<Abi
 LocPromotionPopupText = "<Bullet/> Zabicie wroga zapewnia kumulowaną premię hakowania +<Ability:DISASSEMBLY_HACK/>, która trwa 3 tury.<br/>"
 
 [LightningSlash_LW X2AbilityTemplate]
+LocFriendlyName="Błyskawiczny cios"
+LocLongDescription="Zaatakuj dowolnego wroga w niebieskim zasięgu ruchu za pomocą <Ability:BOUND_WEAPON_NAME/>. Atak nie kończy tury."
+LocHelpText="Zaatakuj dowolnego wroga w niebieskim zasięgu ruchu za pomocą <Ability:BOUND_WEAPON_NAME/>. Atak nie kończy tury."
+LocPromotionPopupText="<Bullet/> Zaatakuj dowolnego wroga w niebieskim zasięgu ruchu za pomocą <Ability:BOUND_WEAPON_NAME/>.<br/><Bullet/> Atak nie kończy tury.<br/><Bullet/> Wymaga <Ability:LIGHTNINGSLASH_COOLDOWN/> tur(y) odnowienia.<br/>"
+
+[LightningSlashLastAction_LW X2AbilityTemplate]
 LocFriendlyName="Błyskawiczny cios"
 LocLongDescription="Zaatakuj dowolnego wroga w niebieskim zasięgu ruchu za pomocą <Ability:BOUND_WEAPON_NAME/>. Atak nie kończy tury."
 LocHelpText="Zaatakuj dowolnego wroga w niebieskim zasięgu ruchu za pomocą <Ability:BOUND_WEAPON_NAME/>. Atak nie kończy tury."
@@ -6890,3 +6941,9 @@ LocFriendlyName="Nova"
 LocLongDescription="Wywołaj wybuch energii zadający obrażenia wszystkim pobliskim jednostkom. Nie wymaga to akcji ani odnawiania, ale kolejne użycia powodują uszkadzanie Sparka."
 LocHelpText="Wybuch trafiający wszystkie pobliskie jednostki. Kolejne użycia powodują uszkadzanie Sparka."
 LocPromotionPopupText="<Bullet/> Nova nie zabiera punktów akcji i nie wymaga czasu na odnowienie.<br/><Bullet/> Pierwszy atak novą w każdej misji nie zada Sparkowi obrażeń.<br/><Bullet/> Wszystkie następne ataki novą zadadzą Sparkowi kumulujące się <Ability:Nova_Damage/> pkt. obrażeń.<br/>"
+
+;Marauder
+[SkirmisherStrike X2AbilityTemplate]
+LocLongDescription="Zwykły strzał z broni głównej w pierwszej akcji nie kończy już twojej tury."
+LocHelpText="Zwykły strzał z broni głównej w pierwszej akcji nie kończy już twojej tury."
+LocPromotionPopupText=""

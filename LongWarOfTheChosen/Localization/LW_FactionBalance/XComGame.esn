@@ -34,21 +34,21 @@ LocPromotionPopupText="<Bullet/> Agrega un efecto de desorientación que se apli
 
 [DisablingShot X2AbilityTemplate]
 LocFriendlyName="Sometimiento"
-LocLongDescription="Aturde a los enemigos con un disparo preciso; la duración del aturdimiento aumentará si el impacto es crítico (pero el disparo no podrá causar daño crítico)."
-LocHelpText="Aturde a los enemigos con un disparo preciso; la duración del aturdimiento aumentará si el impacto es crítico (pero el disparo no podrá causar daño crítico)."
-LocPromotionPopupText="<Bullet/> Aturde a los enemigos durante <Ability:DisablingShotStunActions/> acciones si el disparo impacta (incluso si roza).<br/><Bullet/> Si el disparo es crítico acrecentará su duración en <Ability:DisablingShotCritStunActions/> , pero el disparo no infligirá el daño crítico.<br/><Bullet/> Sometimiento requiere <Ability:SelfAmmoCost/> de munición y tiene un tiempo de enfriamiento de <Ability:SelfCooldown/> turnos.<br/><Bullet/> Solamente Avatares y Zombies Psiónicos no se verán afectados."
+LocLongDescription="Disparo con daño reducido del <Ability:DisablingShotDamagePenalty>%, pero aturde si impacta. Los golpes críticos con esta habilidad no causan daño adicional, aunque prolongarán el aturdimiento."
+LocHelpText="Aturde a los objetivos durante <Ability:DisablingShotStunActions> acciones. Los golpes críticos no harán daño extra, pero extenderán el aturdimiento durante <Ability:DisablingShotCritStunActions> acciones."
+LocPromotionPopupText="<Bullet/> Aturde a los objetivos durante <Ability:DisablingShotStunActions/> acciones si el disparo impacta (incluso si roza).<br/><Bullet/> Si el disparo es crítico acrecentará su duración en <Ability:DisablingShotCritStunActions/>, pero el disparo no infligirá el daño crítico.<br/><Bullet/> Sometimiento requiere <Ability:SelfAmmoCost/> de munición y tiene un tiempo de enfriamiento de <Ability:SelfCooldown/> turnos.<br/><Bullet/> No se puede usar contra enemigos que son inmunes al aturdimiento."
 
 [DisablingShotSnapShot X2AbilityTemplate]
 LocFriendlyName="Sometimiento"
-LocLongDescription="Aturde a los enemigos con un disparo preciso; la duración del aturdimiento aumentará si el impacto es crítico (pero el disparo no podrá causar daño crítico)."
-LocHelpText="Aturde a los enemigos con un disparo preciso; la duración del aturdimiento aumentará si el impacto es crítico (pero el disparo no podrá causar daño crítico)."
-LocPromotionPopupText="<Bullet/> Aturde a los enemigos durante <Ability:DisablingShotStunActions/> acciones si el disparo impacta (incluso si roza).<br/><Bullet/> Si el disparo es crítico acrecentará su duración en <Ability:DisablingShotCritStunActions/> , pero el disparo no infligirá el daño crítico.<br/><Bullet/> Sometimiento requiere <Ability:SelfAmmoCost/> de munición y tiene un tiempo de enfriamiento de <Ability:SelfCooldown/> turnos.<br/><Bullet/> Solamente Avatares y Zombies Psiónicos no se verán afectados."
+LocLongDescription="Disparo con daño reducido del <Ability:DisablingShotDamagePenalty>%, pero aturde si impacta. Los golpes críticos con esta habilidad no causan daño adicional, aunque prolongarán el aturdimiento."
+LocHelpText="Aturde a los objetivos durante <Ability:DisablingShotStunActions> acciones. Los golpes críticos no harán daño extra, pero extenderán el aturdimiento durante <Ability:DisablingShotCritStunActions> acciones."
+LocPromotionPopupText="<Bullet/> Aturde a los objetivos durante <Ability:DisablingShotStunActions/> acciones si el disparo impacta (incluso si roza).<br/><Bullet/> Si el disparo es crítico acrecentará su duración en <Ability:DisablingShotCritStunActions/>, pero el disparo no infligirá el daño crítico.<br/><Bullet/> Sometimiento requiere <Ability:SelfAmmoCost/> de munición y tiene un tiempo de enfriamiento de <Ability:SelfCooldown/> turnos.<br/><Bullet/> No se puede usar contra enemigos que son inmunes al aturdimiento."
 
 
 [Meditation X2AbilityTemplate]
 LocFriendlyName="Meditación"
-LocLongDescription="Añade al Templario hasta <Ability:MeditationFocusRecovery/> de concentración."
-LocHelpText="Añade al Templario hasta <Ability:MeditationFocusRecovery/> de concentración."
+LocLongDescription="Añade al Templario hasta <Ability:MeditationFocusRecovery/> de concentración. Comienza con 0 cargas y gana una carga por cada muerte que consigue el Templario."
+LocHelpText="Añade al Templario hasta <Ability:MeditationFocusRecovery/> de concentración. Comienza con 0 cargas y gana una carga por cada muerte que consigue el Templario."
 LocPromotionPopupText="<Bullet/> Agrega al Templario <Ability:MeditationFocusRecovery/> puntos de concentración.<br/><Bullet/> Finaliza el turno.<br/><Bullet/> Tiene un tiempo de reutilización de <Ability:SelfCooldown/> turnos."
 
 [Overcharge_LW X2AbilityTemplate]
@@ -227,6 +227,22 @@ LocPromotionPopupText="<Bullet/> Apresurarse se activa si el objetivo fue previa
 
 [TheBanisher_LW X2AbilityTemplate]
 LocFriendlyName="Superdepredador"
-LocLongDescription="Reduce la penalidad de acierto por tiro en <Ability:THEBANISHER_HIT_BUFF> y el tiempo de enfriamiento en 1. Incrementa en <Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/> el rango de Encuentros a cuchillo. Distribuidor de Muerte ahora dobla el daño de golpes críticos contra enemigos flanqueados."
-LocHelpText="Reduce la penalidad de acierto por tiro en <Ability:THEBANISHER_HIT_BUFF> y el tiempo de enfriamiento en 1. Incrementa en <Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/> el rango de Encuentros a cuchillo. Distribuidor de Muerte ahora dobla el daño de golpes críticos contra enemigos flanqueados."
+LocLongDescription="Reduce la penalización de acierto en cada disparo de Desterrar en <Ability:THEBANISHER_HIT_BUFF> puntos, y el tiempo de enfriamiento en 1. Incrementa en <Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/> el rango de Encuentros a cuchillo. Distribuidor de Muerte ahora dobla el daño de golpes críticos contra enemigos flanqueados."
+LocHelpText="Reduce la penalización de acierto en cada disparo de Desterrar en <Ability:THEBANISHER_HIT_BUFF> puntos, y el tiempo de enfriamiento en 1. Incrementa en <Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/> el rango de Encuentros a cuchillo. Distribuidor de Muerte ahora dobla el daño de golpes críticos contra enemigos flanqueados."
+; End translated
+
+; LWOTC translated
+
+[SwiftThrow_LW X2AbilityTemplate]
+LocFriendlyName="Lanzamiento rápido"
+LocHelpText="Lanza un cuchillo como acción gratuita. 4 turnos de enfriamiento."
+LocLongDescription="Lanza un cuchillo como acción gratuita. 4 turnos de enfriamiento."
+LocPromotionPopupText="<Bullet/> Lanza un cuchillo como acción gratuita. 4 turnos de enfriamiento."
+
+[TacticalRetreat_LW X2AbilityTemplate]
+LocFriendlyName="Retirada Táctica"
+LocHelpText="Retirada Táctica"
+LocLongDescription="Otorga una acción de solo movimiento después de lanzar un cuchillo. Esto puede suceder una vez por turno."
+LocPromotionPopupText="<Bullet/> Otorga una acción de solo movimiento después de lanzar un cuchillo. Esto puede suceder una vez por turno."
+
 ; End translated

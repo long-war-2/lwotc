@@ -22,6 +22,7 @@ var bool bInSquadEdit;
 var GeneratedMissionData MissionData;
 
 var config float SquadInfo_DelayedInit;
+var config bool bLeftMissionInfoPanel;
 
 // This event is triggered after a screen is initialized
 event OnInit(UIScreen Screen)
@@ -33,8 +34,18 @@ event OnInit(UIScreen Screen)
 	local UISquadContainer SquadContainer;
 	local XComGameState_MissionSite MissionState;
 	local UITextContainer InfilRequirementText, MissionBriefText;
+	local UISquadSelect_InfiltrationItem MissionBriefHeader;
+	local UISquadSelect_InfiltrationItem MissionTypeText;
+	local UISquadSelect_InfiltrationItem MissionTimerText;
+	local UISquadSelect_InfiltrationItem EvacTypeText;
+	local UISquadSelect_InfiltrationItem SweepObjectiveText;
+	local UISquadSelect_InfiltrationItem FullSalvageText;
+	local UISquadSelect_InfiltrationItem ConcealStatusText;
+	local UISquadSelect_InfiltrationItem PlotTypeText;
+	local UIPanel MissionInfoPanel;
 	local float RequiredInfiltrationPct;
 	local string BriefingString;
+	local int rollingY, yOffset;
 
 	if(!Screen.IsA('UISquadSelect')) return;
 
@@ -131,34 +142,179 @@ event OnInit(UIScreen Screen)
 
 		MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(XComHQ.MissionRef.ObjectID));
 
-		MissionBriefText = SquadSelect.Spawn (class'UITextContainer', SquadSelect);
-		MissionBriefText.MCName = 'SquadSelect_MissionBrief_LW';
-		MissionBriefText.bAnimateOnInit = false;
-		MissionBriefText.InitTextContainer('',, 35, 375, 400, 300, false);
-		BriefingString = "<font face='$TitleFont' size='22' color='#a7a085'>" $ CAPS(class'UIMissionIntro'.default.m_strMissionTitle) $ "</font>\n";
-		BriefingString $= "<font face='$NormalFont' size='22' color='#" $ class'UIUtilities_Colors'.const.NORMAL_HTML_COLOR $ "'>";
-		BriefingString $= class'UIUtilities_LW'.static.GetMissionTypeString (XComHQ.MissionRef) $ "\n";
-		if (class'UIUtilities_LW'.static.GetTimerInfoString (MissionState) != "")
+		if(class'UISquadSelect_InfiltrationPanel'.default.USE_NEW_VERSION)
 		{
-			BriefingString $= class'UIUtilities_LW'.static.GetTimerInfoString (MissionState) $ "\n";
+			MissionInfoPanel = SquadSelect.Spawn(class'UIPanel', SquadSelect);
+			MissionInfoPanel.InitPanel('LWMissionInfoPanel');
+
+			if(default.bLeftMissionInfoPanel)
+				MissionInfoPanel.SetPosition(505, 60);
+			else
+				MissionInfoPanel.SetPosition(1155, 60);
+
+			rollingY = 0;
+			yOffset = 25;
+
+			MissionBriefHeader = MissionInfoPanel.Spawn(class'UISquadSelect_InfiltrationItem', MissionInfoPanel).InitObjectiveListItem(0, rollingY);
+			MissionBriefHeader.SetSubtitle(class'UISquadSelect_InfiltrationPanel'.default.strMissionInfoTitle);
+			rollingY += YOffset;
+
+			MissionTypeText = MissionInfoPanel.Spawn(class'UISquadSelect_InfiltrationItem', MissionInfoPanel).InitObjectiveListItem(10, rollingY);
+			MissionTypeText.SetNewText(class'UIUtilities_LW'.static.GetMissionTypeString (XComHQ.MissionRef));
+			rollingY += yOffset;
+
+			MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(XComHQ.MissionRef.ObjectID));
+
+			if (class'UIUtilities_LW'.static.GetTimerInfoString (MissionState) != "")
+			{
+				MissionTimerText = MissionInfoPanel.Spawn(class'UISquadSelect_InfiltrationItem', MissionInfoPanel).InitObjectiveListItem(10, rollingY);
+				MissionTimerText.SetNewText(class'UIUtilities_LW'.static.GetTimerInfoString (MissionState));
+				rollingY += yOffset;
+			}
+
+			EvacTypeText = MissionInfoPanel.Spawn(class'UISquadSelect_InfiltrationItem', MissionInfoPanel).InitObjectiveListItem(10, rollingY);
+			EvacTypeText.SetNewText(class'UIUtilities_LW'.static.GetEvacTypeString (MissionState));
+			rollingY += yOffset;
+
+			if (class'UIUtilities_LW'.static.HasSweepObjective(MissionState))
+			{
+				SweepObjectiveText = MissionInfoPanel.Spawn(class'UISquadSelect_InfiltrationItem', MissionInfoPanel).InitObjectiveListItem(10, rollingY);
+				SweepObjectiveText.SetNewText(class'UIUtilities_LW'.default.m_strSweepObjective);
+				rollingY += yOffset;
+			}
+			if (class'UIUtilities_LW'.static.FullSalvage(MissionState))
+			{
+				FullSalvageText = MissionInfoPanel.Spawn(class'UISquadSelect_InfiltrationItem', MissionInfoPanel).InitObjectiveListItem(10, rollingY);
+				FullSalvageText.SetInfoValue(class'UIUtilities_LW'.default.m_strGetCorpses, class'UIUtilities_Colors'.const.GOOD_HTML_COLOR);
+				rollingY += yOffset;
+			}
+
+			ConcealStatusText = MissionInfoPanel.Spawn(class'UISquadSelect_InfiltrationItem', MissionInfoPanel).InitObjectiveListItem(10, rollingY);
+			ConcealStatusText.SetNewText(class'UIUtilities_LW'.static.GetMissionConcealStatusString (XComHQ.MissionRef));
+			rollingY += yOffset;
+
+			PlotTypeText = MissionInfoPanel.Spawn(class'UISquadSelect_InfiltrationItem', MissionInfoPanel).InitObjectiveListItem(10, rollingY);
+			PlotTypeText.SetNewInfoValue(class'UISquadSelect_InfiltrationPanel'.default.strMapTypeText, class'UIUtilities_LW'.static.GetPlotTypeFriendlyName(MissionState.GeneratedMission.Plot.strType), class'UIUtilities_Colors'.const.NORMAL_HTML_COLOR);
+
+			/* 
+			`LWTrace("Initing new mission info panel");
+			MissionBriefText = SquadSelect.Spawn (class'UITextContainer', SquadSelect);
+			MissionBriefText.MCName = 'SquadSelect_MissionBrief_LW';
+			MissionBriefText.bAnimateOnInit = false;
+			MissionBriefText.bIsNavigable = false;
+			x = 1545;
+			y = 375;
+			MissionBriefText.InitTextContainer('LWMissionInfoPanel',, x, y, 375, 300, false);
+			x=0;
+			y=0;
+
+			MissionTypeStr = MissionBriefText.Spawn(class'UIText', MissionBriefText);
+			MissionTypeStr.bAnimateOnInit = false;
+			MissionTypeStr.bIsNavigable = false;
+			MissionTypeStr.InitText();
+			MissionTypeStr.SetPosition(X, Y);
+			MissionTypeStr.SetSubtitle("Mission Information:");
+			MissionTypeStr.Show();
+			rollingY = rollingY + MissionTYpeStr.Height;
+
+			if (class'UIUtilities_LW'.static.GetTimerInfoString (MissionState) != "")
+			{
+				`LWTrace("Adding Timer info string");
+				TimerInfoStr = MissionBriefText.Spawn(class'UIText', MissionBriefText);
+				TimerInfoStr.bAnimateOnInit = false;
+				TimerInfoStr.bIsNavigable = false;
+				TimerInfoStr.InitText();
+				TimerInfoStr.SetPosition(X, y + rollingY);
+				TimerInfoStr.SetText(class'UIUtilities_LW'.static.GetTimerInfoString (MissionState));
+				TimerInfoStr.Show();
+				rollingY += TimerInfoStr.Height;
+			}
+
+			EvacTypeStr = MissionBriefText.Spawn(class'UIText', MissionBriefText);
+			EvacTypeStr.bAnimateOnInit = false;
+			EvacTypeStr.bIsNavigable = false;
+			EvacTypeStr.InitText();
+			EvacTypeStr.SetPosition(X, y + rollingY);
+			EvacTypeStr.SetHTMLText(class'UIUtilities_LW'.static.GetEvacTypeString (MissionState));
+			EvacTypeStr.Show();
+			rollingY += EvacTypeStr.Height;
+
+			if (class'UIUtilities_LW'.static.HasSweepObjective(MissionState))
+			{
+				SweepObjStr = MissionBriefText.Spawn(class'UIText', MissionBriefText);
+				SweepObjStr.bAnimateOnInit = false;
+				SweepObjStr.bIsNavigable = false;
+				SweepObjStr.InitText();
+				SweepObjStr.SetPosition(X, y + rollingY);
+				SweepObjStr.SetHTMLText(class'UIUtilities_LW'.default.m_strSweepObjective);
+				SweepObjStr.Show();
+				rollingY += EvacTypeStr.Height;
+			}
+
+			if (class'UIUtilities_LW'.static.FullSalvage(MissionState))
+			{
+				FullSalvageStr = MissionBriefText.Spawn(class'UIText', MissionBriefText);
+				FullSalvageStr.bAnimateOnInit = false;
+				FullSalvageStr.bIsNavigable = false;
+				FullSalvageStr.InitText();
+				FullSalvageStr.SetPosition(X, y + rollingY);
+				FullSalvageStr.SetHTMLText(class'UIUtilities_LW'.default.m_strGetCorpses);
+				FullSalvageStr.Show();
+				rollingY += EvacTypeStr.Height;
+			}
+
+			ConcealStr = MissionBriefText.Spawn(class'UIText', MissionBriefText);
+			ConcealStr.bAnimateOnInit = false;
+			ConcealStr.bIsNavigable = false;
+			ConcealStr.InitText();
+			ConcealStr.SetPosition(X, y + rollingY);
+			ConcealStr.SetHTMLText(class'UIUtilities_LW'.static.GetMissionConcealStatusString (XComHQ.MissionRef));
+			ConcealStr.Show();
+			rollingY += EvacTypeStr.Height;
+
+			AoAString = MissionBriefText.Spawn(class'UIText', MissionBriefText);
+			AoAString.bAnimateOnInit = false;
+			AoAString.bIsNavigable = false;
+			AoAString.InitText();
+			AoAString.SetPosition(X, y + rollingY);
+			AoAString.SetHTMLText("Map Type: " $class'UIUtilities_LW'.static.GetPlotTypeFriendlyName(MissionState.GeneratedMission.Plot.strType));
+			AoAString.Show();
+
+			*/
+
 		}
-		BriefingString $= class'UIUtilities_LW'.static.GetEvacTypeString (MissionState) $ "\n";
-		if (class'UIUtilities_LW'.static.HasSweepObjective(MissionState))
+		else
 		{
-			BriefingString $= class'UIUtilities_LW'.default.m_strSweepObjective $ "\n";
+			MissionBriefText = SquadSelect.Spawn (class'UITextContainer', SquadSelect);
+			MissionBriefText.MCName = 'SquadSelect_MissionBrief_LW';
+			MissionBriefText.bAnimateOnInit = false;
+			MissionBriefText.InitTextContainer('',, 35, 375, 300, 300, false);
+			BriefingString = "<font face='$TitleFont' size='22' color='#a7a085'>" $ CAPS(class'UIMissionIntro'.default.m_strMissionTitle) $ "</font>\n";
+			BriefingString $= "<font face='$NormalFont' size='22' color='#" $ class'UIUtilities_Colors'.const.NORMAL_HTML_COLOR $ "'>";
+			BriefingString $= class'UIUtilities_LW'.static.GetMissionTypeString (XComHQ.MissionRef) $ "\n";
+			if (class'UIUtilities_LW'.static.GetTimerInfoString (MissionState) != "")
+			{
+				BriefingString $= class'UIUtilities_LW'.static.GetTimerInfoString (MissionState) $ "\n";
+			}
+			BriefingString $= class'UIUtilities_LW'.static.GetEvacTypeString (MissionState) $ "\n";
+			if (class'UIUtilities_LW'.static.HasSweepObjective(MissionState))
+			{
+				BriefingString $= class'UIUtilities_LW'.default.m_strSweepObjective $ "\n";
+			}
+			if (class'UIUtilities_LW'.static.FullSalvage(MissionState))
+			{
+				BriefingString $= class'UIUtilities_LW'.default.m_strGetCorpses $ "\n";
+			}
+			BriefingString $= class'UIUtilities_LW'.static.GetMissionConcealStatusString (XComHQ.MissionRef) $ "\n";
+			BriefingString $= "\n";
+			BriefingString $= "<font face='$TitleFont' size='22' color='#a7a085'>" $ CAPS(strAreaOfOperations) $ "</font>\n";
+			BriefingString $= "<font face='$NormalFont' size='22' color='#" $ class'UIUtilities_Colors'.const.NORMAL_HTML_COLOR $ "'>";
+			BriefingString $= class'UIUtilities_LW'.static.GetPlotTypeFriendlyName(MissionState.GeneratedMission.Plot.strType);
+			BriefingString $= "\n";
+			BriefingString $= "</font>";
+			MissionBriefText.SetHTMLText (BriefingString);
 		}
-		if (class'UIUtilities_LW'.static.FullSalvage(MissionState))
-		{
-			BriefingString $= class'UIUtilities_LW'.default.m_strGetCorpses $ "\n";
-		}
-		BriefingString $= class'UIUtilities_LW'.static.GetMissionConcealStatusString (XComHQ.MissionRef) $ "\n";
-		BriefingString $= "\n";
-		BriefingString $= "<font face='$TitleFont' size='22' color='#a7a085'>" $ CAPS(strAreaOfOperations) $ "</font>\n";
-		BriefingString $= "<font face='$NormalFont' size='22' color='#" $ class'UIUtilities_Colors'.const.NORMAL_HTML_COLOR $ "'>";
-		BriefingString $= class'UIUtilities_LW'.static.GetPlotTypeFriendlyName(MissionState.GeneratedMission.Plot.strType);
-		BriefingString $= "\n";
-		BriefingString $= "</font>";
-		MissionBriefText.SetHTMLText (BriefingString);
+		
 	}
 }
 
@@ -301,6 +457,8 @@ event OnRemoved(UIScreen Screen)
 			}
 		}
 	}
+
+	`HQPRES.StrategyMap2D.SetUIState(eSMS_Default);
 }
 
 defaultproperties

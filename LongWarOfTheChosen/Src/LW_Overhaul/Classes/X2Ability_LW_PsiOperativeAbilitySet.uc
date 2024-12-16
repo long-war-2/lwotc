@@ -340,7 +340,7 @@ static function X2DataTemplate Create_NullWard()
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 
 	Template.AdditionalAbilities.AddItem('LW_NullWard_Anim');
-	Template.PrerequisiteAbilities.AddItem('SoulSteal');
+	Template.PrerequisiteAbilities.AddItem('Fortress');
 	
 	return Template;
 }
@@ -354,7 +354,7 @@ static function X2AbilityTemplate Create_SoulStorm()
 	local X2AbilityCooldown					Cooldown;
 	local array<name>						SkipExclusions;
 	local X2Effect_ApplyWeaponDamage        DamageEffect;
-	local X2AbilityTarget_Cursor            CursorTarget;
+	//local X2AbilityTarget_Cursor            CursorTarget;
 	local X2AbilityMultiTarget_Radius       RadiusMultiTarget;
 	local X2Condition_UnitProperty          UnitPropertyCondition;
 
@@ -366,12 +366,15 @@ static function X2AbilityTemplate Create_SoulStorm()
 
 	//Template.TargetingMethod = class'X2TargetingMethod_AreaSuppression';
 	Template.bFriendlyFireWarning = true;
-	Template.TargetingMethod = class'X2TargetingMethod_Grenade';
+	Template.TargetingMethod = class'X2TargetingMethod_TopDown';
 
+	Template.AbilityTargetStyle = default.SelfTarget;
+	/* 
 	CursorTarget = new class'X2AbilityTarget_Cursor';
 	CursorTarget.bRestrictToSquadsightRange = default.SOULSTORM_TARGET_TILE_MUST_BE_REVEALED;
 	CursorTarget.FixedAbilityRange = default.SOULSTORM_CAST_RANGE_TILES;
 	Template.AbilityTargetStyle = CursorTarget;
+	*/
 
 	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
 	RadiusMultiTarget.fTargetRadius = default.SOULSTORM_CAST_RADIUS_METERS;

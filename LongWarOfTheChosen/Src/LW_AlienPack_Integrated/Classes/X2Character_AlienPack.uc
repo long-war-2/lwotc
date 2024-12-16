@@ -50,6 +50,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateTemplate_AdvGrenadier('AdvGrenadierM1'));
 	Templates.AddItem(CreateTemplate_AdvGrenadier('AdvGrenadierM2'));
 	Templates.AddItem(CreateTemplate_AdvGrenadier('AdvGrenadierM3'));
+	Templates.AddItem(CreateTemplate_AdvGrenadier('AdvHeavyEngineer'));
 
 	Templates.AddItem(CreateTemplate_AdvRocketeer('AdvRocketeerM1'));
 	Templates.AddItem(CreateTemplate_AdvRocketeer('AdvRocketeerM2'));
@@ -289,9 +290,9 @@ static function X2CharacterTemplate CreateTemplate_MutonM3_LW()
 
 	CharTemplate.Abilities.AddItem('TacticalSense');
 	CharTemplate.Abilities.AddItem('PersonalShield');
+	CharTemplate.Abilities.AddItem('SkirmisherStrike');
 	// WOTC abilities
 	CharTemplate.Abilities.AddItem('DarkEventAbility_Barrier');
-	// LightEmUp: Weapon Template
 
 	CharTemplate.AddTemplateAvailablility(CharTemplate.BITFIELD_GAMEAREA_Multiplayer); // Allow in MP!
 	CharTemplate.MPPointValue = CharTemplate.XpKillscore * 10;
@@ -515,7 +516,7 @@ static function X2CharacterTemplate CreateTemplate_Sidewinder(name TemplateName)
 		case 'SidewinderM3':
 			CharTemplate.Abilities.AddItem('Infighter');
 		case 'SidewinderM2':
-			CharTemplate.Abilities.AddItem('HitandSlither');
+			CharTemplate.Abilities.AddItem('Reposition_LW');
 		case 'SidewinderM1':
 			CharTemplate.Abilities.AddItem('Shadowstep');
 		default:
@@ -580,6 +581,7 @@ static function X2CharacterTemplate CreateTemplate_ArchonM2_LW()
 	CharTemplate.bCanUse_eTraversal_Land = true;
 	CharTemplate.bAppearanceDefinesPawn = false;
 	CharTemplate.bCanTakeCover = false;
+	CharTemplate.bImmueToFalling = true;
 
 	CharTemplate.bIsAlien = true;
 	CharTemplate.bIsAdvent = false;
@@ -1005,6 +1007,8 @@ static function X2CharacterTemplate CreateTemplate_AdvGrenadier(name TemplateNam
 		CharTemplate.DefaultLoadout='AdvGrenadierM2_Loadout';
 	if (TemplateName == 'AdvGrenadierM3')
 		CharTemplate.DefaultLoadout='AdvGrenadierM3_Loadout';
+	if (TemplateName == 'AdvHeavyEngineer')
+		CharTemplate.DefaultLoadout='AdvHeavyEngineer_Loadout';
 
 	CharTemplate.BehaviorClass=class'XGAIBehavior';
 	CharTemplate.strPawnArchetypes.AddItem("XAdventTrooper.Archetypes.GameUnit_AdvSoldier_M"); 
@@ -1012,7 +1016,7 @@ static function X2CharacterTemplate CreateTemplate_AdvGrenadier(name TemplateNam
 	Loot.ForceLevel=0;
 	if (TemplateName == 'AdvGrenadierM1')
 		Loot.LootTableName='AdvTrooperM1_BaseLoot';
-	if (TemplateName == 'AdvGrenadierM2')
+	if (TemplateName == 'AdvGrenadierM2' || TemplateName == 'AdvHeavyEngineer')
 		Loot.LootTableName='AdvTrooperM2_BaseLoot';
 	if (TemplateName == 'AdvGrenadierM3')
 		Loot.LootTableName='AdvTrooperM3_BaseLoot';
@@ -1023,7 +1027,7 @@ static function X2CharacterTemplate CreateTemplate_AdvGrenadier(name TemplateNam
 	Loot.ForceLevel = 0;
 	if (TemplateName == 'AdvGrenadierM1')
 		Loot.LootTableName='AdvTrooperM1_TimedLoot';
-	if (TemplateName == 'AdvGrenadierM2')
+	if (TemplateName == 'AdvGrenadierM2' || TemplateName == 'AdvHeavyEngineer')
 		Loot.LootTableName='AdvTrooperM2_TimedLoot';
 	if (TemplateName == 'AdvGrenadierM3')
 		Loot.LootTableName='AdvTrooperM3_TimedLoot';
@@ -1031,7 +1035,7 @@ static function X2CharacterTemplate CreateTemplate_AdvGrenadier(name TemplateNam
 	CharTemplate.TimedLoot.LootReferences.AddItem(Loot);
 	if (TemplateName == 'AdvGrenadierM1')
 		Loot.LootTableName='AdvTrooperM1_VultureLoot';
-	if (TemplateName == 'AdvGrenadierM2')
+	if (TemplateName == 'AdvGrenadierM2' || TemplateName == 'AdvHeavyEngineer')
 		Loot.LootTableName='AdvTrooperM2_VultureLoot';
 	if (TemplateName == 'AdvGrenadierM3')
 		Loot.LootTableName='AdvTrooperM3_VultureLoot';
@@ -1085,6 +1089,11 @@ static function X2CharacterTemplate CreateTemplate_AdvGrenadier(name TemplateNam
 	{
 		CharTemplate.Abilities.AddItem('Salvo');
 		CharTemplate.Abilities.AddItem('BiggestBooms_LW');
+	}
+
+	if (TemplateName == 'AdvHeavyEngineer')
+	{
+		CharTemplate.Abilities.AddItem('WatchThemRun_LW');
 	}
 
 	CharTemplate.SightedNarrativeMoments.AddItem(XComNarrativeMoment'X2NarrativeMoments.TACTICAL.AlienSitings.T_Central_AlienSightings_AdvTrooperM1');
@@ -1411,6 +1420,7 @@ static function X2CharacterTemplate CreateTemplate_Drone(name TemplateName)
 	CharTemplate.bCanUse_eTraversal_Land = true;
 	CharTemplate.bAppearanceDefinesPawn = false;    
 	CharTemplate.bCanTakeCover = false;
+	CharTemplate.bImmueToFalling = true;
 
 	CharTemplate.bIsAlien = false;
 	CharTemplate.bIsAdvent = true;
@@ -1457,7 +1467,7 @@ static function X2CharacterTemplate CreateTemplate_ChryssalidSoldier()
 	CharTemplate.BehaviorClass=class'XGAIBehavior';
 	CharTemplate.strPawnArchetypes.AddItem("LWHiveQueen.Archetypes.ARC_GameUnit_ChryssalidM2");
 	Loot.ForceLevel=0;
-	Loot.LootTableName='Chryssalid_BaseLoot';  
+	Loot.LootTableName='ChryssalidSoldier_BaseLoot';  
 	CharTemplate.Loot.LootReferences.AddItem(Loot);
 
 	// Timed Loot
@@ -1504,7 +1514,7 @@ static function X2CharacterTemplate CreateTemplate_ChryssalidSoldier()
 	CharTemplate.MPPointValue = CharTemplate.XpKillscore * 10;
 	CharTemplate.strScamperBT = "ChryssalidScamperRoot";
 
-	CharTemplate.Abilities.AddItem('ChryssalidSlash');
+	//CharTemplate.Abilities.AddItem('ChryssalidSlash');
 	CharTemplate.Abilities.AddItem('ChryssalidBurrow'); // REMOVE?
 	CharTemplate.Abilities.AddItem('ChyssalidPoison');
 	CharTemplate.Abilities.AddItem('ChryssalidImmunities');
@@ -1533,7 +1543,7 @@ static function X2CharacterTemplate CreateTemplate_HiveQueen()
 	CharTemplate.BehaviorClass=class'XGAIBehavior';
 	CharTemplate.strPawnArchetypes.AddItem("LWHiveQueen.Archetypes.ARC_GameUnit_ChryssalidM3");
 	Loot.ForceLevel=0;
-	Loot.LootTableName='Chryssalid_BaseLoot';  
+	Loot.LootTableName='HiveQueen_BaseLoot';  
 	CharTemplate.Loot.LootReferences.AddItem(Loot);
 
 	// Timed Loot
@@ -1580,7 +1590,7 @@ static function X2CharacterTemplate CreateTemplate_HiveQueen()
 	CharTemplate.MPPointValue = CharTemplate.XpKillscore * 10;
 	CharTemplate.strScamperBT = "ChryssalidScamperRoot";
 
-	CharTemplate.Abilities.AddItem('ChryssalidSlash');
+	//CharTemplate.Abilities.AddItem('ChryssalidSlash');
 	CharTemplate.Abilities.AddItem('ChryssalidBurrow'); // REMOVE?
 	CharTemplate.Abilities.AddItem('ChyssalidPoison');
 	CharTemplate.Abilities.AddItem('ChryssalidImmunities');

@@ -104,7 +104,7 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	local CHEventListenerTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'MiscMissionListeners');
-	Template.AddCHEvent('PlayerTurnBegun', LW2OnPlayerTurnBegun, ELD_Immediate);
+	Template.AddCHEvent('PlayerTurnBegun', LW2OnPlayerTurnBegun, ELD_Immediate, 500);
 
 	Template.RegisterInTactical = true;
 

@@ -119,7 +119,7 @@ LocPromotionPopupText="<Bullet/> Il lanciafiamme è un'arma a breve gittata che 
 
 [LWRocketLauncher X2AbilityTemplate]
 LocFriendlyName="Lanciarazzi"
-LocHelpText="Spara un razzo nell'area bersaglio. <Ability:ROCKETSCATTER/>"
+LocHelpText="Spara un razzo nell'area bersaglio.<Ability:ROCKETSCATTER/>"
 
 [LWBlasterLauncher X2AbilityTemplate]
 LocFriendlyName="Bomba esplosiva"
@@ -237,6 +237,14 @@ LocLongDescription="Spara un razzo speciale che infligge danni limitati ma ha un
 LocHelpText="Razzo speciale che stordisce o disorienta i bersagli e lascia una nube di fumo."
 LocPromotionPopupText="<Bullet/> Un uso per missione.<br/><Bullet/> La probabilità di stordimento e disorientamento varia in base alla Volontà del bersaglio.<br/><Bullet/> Richiede un'azione e conclude il turno del soldato."
 
+[BlasterConcussionRocket X2AbilityTemplate]
+LocFriendlyName="Razzo dirompente"
+LocFlyOverText="Razzo dirompente"
+LocLongDescription="Spara un razzo speciale che infligge danni limitati ma ha una probabilità di stordire o disorientare i nemici organici all'interno dell'area d'effetto. Lascia una nube di fumo."
+LocHelpText="Razzo speciale che stordisce o disorienta i bersagli e lascia una nube di fumo."
+LocPromotionPopupText="<Bullet/> Un uso per missione.<br/><Bullet/> La probabilità di stordimento e disorientamento varia in base alla Volontà del bersaglio.<br/><Bullet/> Richiede un'azione e conclude il turno del soldato."
+
+
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
 [CoupDeGrace X2AbilityTemplate]
@@ -296,6 +304,12 @@ LocLongDescription="Le granate che infliggono danni nel tuo slot delle granate o
 LocHelpText="Le granate che infliggono danni nel tuo slot delle granate ottengono un utilizzo bonus."
 LocFlyOverText="Armamento pesante"
 LocPromotionPopupText="<Bullet/> Tutte le granate che infliggono danni sono influenzate da Armamento pesante.<br/>"
+
+[HeavyOrdnanceV2 X2AbilityTemplate]
+LocFriendlyName="Armamento pesante"
+LocLongDescription="La granata nel tuo slot delle granate ottiene un utilizzo bonus."
+LocHelpText="La granata nel tuo slot delle granate ottiene un utilizzo bonus."
+LocPromotionPopupText="<Bullet/> Tutte le granate funzionano con Armamento pesante, anche quelle non offensive come gli scanner militari e le granate fumogene.<br/>"
 
 [Sapper X2AbilityTemplate]
 LocFriendlyName="Sabotatore"
@@ -2135,6 +2149,14 @@ ObjectiveTextPools[1]="Neutralizza i bersagli nemici"
 ObjectiveTextPools[0]="L'Avatar del comandante deve sopravvivere"
 ObjectiveTextPools[1]="Distruggi gli Avatar"
 
+[DefaultAssaultFortressLeadup_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="L'Avatar del comandante deve sopravvivere"
+ObjectiveTextPools[1]="Neutralizza i bersagli nemici"
+
+[DefaultDestroyAvatarProject_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="L'Avatar del comandante deve sopravvivere"
+ObjectiveTextPools[1]="Distruggi gli Avatar"
+
 [DefaultSabotage_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Piazza l'X4 per distruggere la struttura aliena"
 ObjectiveTextPools[1]="Estrai tutti i soldati XCOM"
@@ -2490,6 +2512,13 @@ PostMissionType="Assalta la fortezza aliena"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
 ObjectiveTextPools[0]="Distruggi la Direttiva Avatar"
 
+[DestroyAvatarProject_LW X2MissionTemplate]
+DisplayName="Distruggi il progetto Avatar"
+Briefing="Distruggi il progetto Avatar"
+PostMissionType="Distruggi il progetto Avatar"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
+ObjectiveTextPools[0]="Distruggi la Direttiva Avatar"
+
 [SecureUFO_LW X2MissionTemplate]
 DisplayName="Conquista l'UFO in panne"
 Briefing="Conquista l'UFO in panne"
@@ -2819,6 +2848,10 @@ BonusEmptyText="Aumenta il tasso di guarigione dei soldati."
 BonusText="TASSO DI GUARIGIONE +%AVENGERBONUS%"
 FilledText="L'attrezzatura medica avanzata di %UNITNAME sta aumentando il tasso di guarigione con il quale i soldati si riprendono dalle ferite."
 LockedText="BLOCCATO: ACQUISTA POTENZIAMENTO"
+
+[CovertActionIntenseTrainingStaffSlot X2StaffSlotTemplate]
+EmptyText="SOLDATO"
+BonusText="IN MISSIONE SEGRETA"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Techs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -4815,3 +4848,9 @@ LocFriendlyName="Nova"
 LocLongDescription="Rilascia una scarica di energia che danneggia tutti i nemici nelle vicinanze. Non costa un'azione e non ha ricarica, ma gli usi successivi danneggiano lo SPARK."
 LocHelpText="Colpisce tutti i nemici nelle vicinanze. Gli attacchi Nova successivi danneggiano lo SPARK."
 LocPromotionPopupText="<Bullet/> Nova non ha un costo in punti azione e non ha ricarica.<br/><Bullet/> Il primo attacco Nova di ogni missione infligge 0 danni allo SPARK.<br/><Bullet/> Gli attacchi Nova successivi infliggono un danno accumulabile di <Ability:Nova_Damage/> allo SPARK.<br/>"
+
+;Marauder
+[SkirmisherStrike X2AbilityTemplate]
+LocLongDescription="Sparare un colpo standard con l'arma primaria come prima azione non conclude più il turno."
+LocHelpText="Sparare un colpo standard con l'arma primaria come prima azione non conclude più il turno."
+LocPromotionPopupText=""

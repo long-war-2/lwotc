@@ -117,7 +117,7 @@ protected function bool DidPlayerRunOutOfPlayableUnits()
 
 function bool UnitIsMindControlled(XComGameState_Unit UnitState)
 {
-	return UnitState.AffectedByEffectNames.Find(class'X2Effect_MindControl'.default.EffectName) != -1;
+	return UnitState.AffectedByEffectNames.Find(class'X2Effect_MindControl'.default.EffectName) != -1 || UnitState.AffectedByEffectNames.Find('FullOverride') != -1;
 }
 
 function bool UnitHasEvacAbility(XComGameState_Unit UnitState)

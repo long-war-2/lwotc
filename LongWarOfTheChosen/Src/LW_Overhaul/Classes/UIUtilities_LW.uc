@@ -39,6 +39,8 @@ var localized string m_strMinimumInfiltration;
 var localized string m_strYellowAlert;
 var localized string m_sAverageScatterText;
 var localized string m_strBullet;
+var localized string m_strExpectedInfiltration;
+var localized string m_strInfiltrationBoostCost;
 
 var localized string m_strStripWeaponUpgrades;
 var localized string m_strStripWeaponUpgradesLower;
@@ -76,6 +78,12 @@ function static Texture2D TakeUnitPicture(
 function static Texture2D FinishUnitPicture(StateObjectReference UnitRef)
 {
 	return GetUnitPictureIfExists(UnitRef);
+}
+
+// Borrowed from CI
+static function string ColourText(string strValue, string strColour)
+{
+    return "<font color='#" $ strColour $ "'>" $ strValue $ "</font>";
 }
 
 function static Texture2D GetUnitPictureIfExists(StateObjectReference UnitRef)
@@ -127,6 +135,7 @@ static function int GetCurrentEvacDelay (XComGameState_LWPersistentSquad Squad, 
 	return EvacDelay;
 
 }
+
 
 static function string GetTurnsLabel(int kounter)
 {
@@ -209,14 +218,14 @@ static function string GetMissionConcealStatusString (StateObjectReference Missi
 				LocTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
 				LocTag.IntValue0 = round (100 * `MIN_INFIL_FOR_CONCEAL[k].MinInfiltration);
 				ExpandedString = `XEXPAND.ExpandString(default.m_strMinimumInfiltration);
-				return default.m_strConcealedStart @ ExpandedString;
+				return ColourText(default.m_strConcealedStart @ ExpandedString, class'UIUtilities_Colors'.const.WARNING_HTML_COLOR);
 			}
 		}
-		return default.m_strConcealedStart;
+		return ColourText(default.m_strConcealedStart, class'UIUtilities_Colors'.const.GOOD_HTML_COLOR);
 	}
 	else
 	{
-		return default.m_strRevealedStart;
+		return ColourText(default.m_strRevealedStart, class'UIUtilities_Colors'.const.BAD_HTML_COLOR);
 	}
 }
 
@@ -311,7 +320,7 @@ function static string GetInfiltrationString(XComGameState_MissionSite MissionSt
 	{
 		//determine if can fully infiltrate before mission expires
 		TotalSeconds_Mission = ActivityState.SecondsRemainingCurrentMission();
-		TotalSeconds_Infiltration = InfiltratingSquad.GetSecondsRemainingToFullInfiltration();
+		TotalSeconds_Infiltration = InfiltratingSquad.GetSecondsRemainingToFullInfiltrationUI();
 
 		bCanFullyInfiltrate = (TotalSeconds_Infiltration < TotalSeconds_Mission) && (InfiltratingSquad.CurrentInfiltration < 1.0);
 		if(bCanFullyInfiltrate)
@@ -337,7 +346,7 @@ function static string GetInfiltrationString(XComGameState_MissionSite MissionSt
 		//ID 619 - allow non-expiring missions to show remaining time until 100% infiltration will be reached
 		if (InfiltratingSquad.CurrentInfiltration < 1.0)
 		{
-			TotalSeconds = InfiltratingSquad.GetSecondsRemainingToFullInfiltration();
+			TotalSeconds = InfiltratingSquad.GetSecondsRemainingToFullInfiltrationUI();
 			TotalHours = int(TotalSeconds / 3600.0) % 24;
 			TotalDays = TotalSeconds / 86400.0;
 			ParamTag.IntValue1 = int(TotalDays);
@@ -362,14 +371,121 @@ function static string GetInfiltrationString(XComGameState_MissionSite MissionSt
 	return InfiltrationString;
 }
 
+function static string GetBoostedInfiltrationString(XComGameState_MissionSite MissionState, XComGameState_LWAlienActivity ActivityState, XComGameState_LWPersistentSquad InfiltratingSquad)
+{
+	local string InfiltrationString;
+	local XGParamTag ParamTag;
+	local float TotalSeconds_Mission, TotalSeconds_Infiltration;
+	local float TotalSeconds, TotalHours, TotalDays, BoostFactor;
+	local bool bExpiringMission, bCanFullyInfiltrate, bMustLaunch;
+
+	local XComGameState_LWPersistentSquad Squad;
+	local StrategyCost BoostInfiltrationCost;
+	local array<StrategyCostScalar> CostScalars;
+
+	BoostFactor = class'XComGameState_LWPersistentSquad'.default.DefaultBoostInfiltrationFactor[`STRATEGYDIFFICULTYSETTING];
+
+	Squad =  `LWSQUADMGR.GetSquadOnMission(MissionState.GetReference());
+	BoostInfiltrationCost = Squad.GetBoostInfiltrationCost();
+	CostScalars.Length = 0;
+
+	InfiltrationString = default.m_strInfiltrationBoostCost $":" @ class'UIUtilities_Strategy'.static.GetStrategyCostString(BoostInfiltrationCost, CostScalars);
+	InfiltrationString $= "\n";
+
+	ParamTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
+	ParamTag.IntValue0 = int(InfiltratingSquad.CurrentInfiltration * 100.0 * BoostFactor);
+
+	bExpiringMission = MissionState.ExpirationDateTime.m_iYear < 2050;
+	bMustLaunch = ActivityState != none && ActivityState.bMustLaunch;
+
+	InfiltrationString $= default.m_strExpectedInfiltration $": ";
+
+	if(bMustLaunch)
+	{
+		InfiltrationString $= `XEXPAND.ExpandString(class'UIMission_LWLaunchDelayedMission'.default.m_strInfiltrationStatusNonExpiring);
+	}
+	else if(bExpiringMission)
+	{
+		//determine if can fully infiltrate before mission expires / boosted state
+		TotalSeconds_Mission = ActivityState.SecondsRemainingCurrentMission();
+		TotalSeconds_Infiltration = InfiltratingSquad.GetSecondsRemainingToFullInfiltrationUI(true);
+
+		bCanFullyInfiltrate = (TotalSeconds_Infiltration < TotalSeconds_Mission) && (InfiltratingSquad.CurrentInfiltration * BoostFactor < 1.0);
+		if(bCanFullyInfiltrate)
+		{
+			TotalSeconds = TotalSeconds_Infiltration ;
+		}
+		else
+		{
+			TotalSeconds = TotalSeconds_Mission;
+		}
+		TotalHours = int(TotalSeconds / 3600.0) % 24 ;
+		TotalDays = TotalSeconds / 86400.0;
+		ParamTag.IntValue1 = int(TotalDays);
+		ParamTag.IntValue2 = int(TotalHours);
+
+		if(bCanFullyInfiltrate && InfiltratingSquad.CurrentInfiltration * BoostFactor < 1.0)
+			InfiltrationString $= `XEXPAND.ExpandString(class'UIMission_LWLaunchDelayedMission'.default.m_strInfiltrationStatusNonExpiring);
+		else
+			InfiltrationString $= `XEXPAND.ExpandString(class'UIMission_LWLaunchDelayedMission'.default.m_strInfiltrationStatusMissionEnding);
+	}
+	else // mission does not expire
+	{
+		//ID 619 - allow non-expiring missions to show remaining time until 100% infiltration will be reached
+		if (InfiltratingSquad.CurrentInfiltration < 1.0)
+		{
+			TotalSeconds = InfiltratingSquad.GetSecondsRemainingToFullInfiltrationUI();
+			TotalHours = int(TotalSeconds / 3600.0) % 24;
+			TotalDays = TotalSeconds / 86400.0;
+			ParamTag.IntValue1 = int(TotalDays);
+			ParamTag.IntValue2 = int(TotalHours);
+			InfiltrationString = `XEXPAND.ExpandString(class'UIMission_LWLaunchDelayedMission'.default.m_strInfiltrationStatusExpiring);
+		}
+		else
+		{
+			InfiltrationString = `XEXPAND.ExpandString(class'UIMission_LWLaunchDelayedMission'.default.m_strInfiltrationStatusNonExpiring);
+		}
+	}
+
+	InfiltrationString $= "\n";
+
+	InfiltrationString $= class'UISquadSelect_InfiltrationPanel'.default.ExpectedActivityTextStr $ ": ";
+
+	//
+	InfiltrationString $= class'UIUtilities_Text_LW'.static.GetDifficultyString(MissionState, GetExpectedAlertModifier(MissionState, float(ParamTag.IntValue0)/100));
+
+	return InfiltrationString;
+}
+
+static function int GetExpectedAlertModifier(XComGameState_MissionSite MissionState, float InfiltrationPct)
+{
+	local int i, AlertModifier;
+
+	if(MissionState.GetMissionSource().bGoldenPath)
+		return 0;
+
+	i = 0;
+	while (i + 1 < class'XComGameState_LWPersistentSquad'.default.AlertModifierAtInfiltration.Length 
+			&& class'XComGameState_LWPersistentSquad'.default.AlertModifierAtInfiltration[i + 1].Infiltration <= InfiltrationPct)
+	{
+		i++;
+	}
+	// use current mission data to minus out the change since GetDifficultyString uses the current alert on the mission, so we need to remove it from the modifier as well to get the proper modifier relative for the boost.
+	AlertModifier = class'XComGameState_LWPersistentSquad'.default.AlertModifierAtInfiltration[i].Modifier + `LWACTIVITYMGR.GetMissionAlertLevel(MissionState)- MissionState.SelectedMissionData.AlertLevel;
+	// `LWACTIVITYMGR.GetMissionAlertLevel(MissionState)
+	`LWTrace("Alert boost %:"@ InfiltrationPct);
+	`LWTrace("new modifier =" @ class'XComGameState_LWPersistentSquad'.default.AlertModifierAtInfiltration[i].Modifier @ "Activity Alert level:" @`LWACTIVITYMGR.GetMissionAlertLevel(MissionState) @"Mission Current Alert Level:" @ MissionState.SelectedMissionData.AlertLevel @ "Boost tooltip modifier:" @AlertModifier);
+	return AlertModifier;
+}
+
 static function GetMissionInfoPanelText(StateObjectReference MissionRef, bool IsInfiltrating,
 	out string TitleString, out string InfiltrationString, out string ExpirationString, out string MissionInfo1String,
 	out string MissionInfo2String)
 {
-	local int EvacFlareTimer;
+	local int EvacFlareTimer, EvacDelayDiff;
 	local float HoursRemaining;
 	local string Header, TimeRemaining, ExpirationTime, MissionType, EvacTurns, SquadSize, MissionTurns, SweepInfo,
-		FullSalvageInfo, RendezvousInfo, ConcealmentInfo, InfiltrationInfo, MissionInfo1, MissionInfo2;
+		FullSalvageInfo, RendezvousInfo, ConcealmentInfo, InfiltrationInfo, MissionInfo1, MissionInfo2, EvacTimerColor;
 	local X2CharacterTemplate FacelessTemplate;
 	local XComGameState_LWAlienActivity ActivityState;
 	local XComGameState_LWPersistentSquad InfiltratingSquad;
@@ -437,7 +553,31 @@ static function GetMissionInfoPanelText(StateObjectReference MissionRef, bool Is
 			(default.EvacFlareMissions.Find(MissionState.GeneratedMission.Mission.MissionName) != -1 ||
 			default.EvacFlareEscapeMissions.Find(MissionState.GeneratedMission.Mission.MissionName) != -1))
 		{
-			EvacTurns @= "(" $ string(EvacFlareTimer) @ GetTurnsLabel(EvacFlareTimer) $ ")";
+			EvacDelayDiff = EvacFlareTimer - class'X2Ability_PlaceDelayedEvacZone'.default.DEFAULT_EVAC_PLACEMENT_DELAY[`TACTICALDIFFICULTYSETTING];
+			
+			switch (EvacDelayDiff)
+			{
+				case 0:
+					EvacTimerColor = class'UIUtilities_Colors'.const.NORMAL_HTML_COLOR;
+					break;
+				case 1:
+					EvacTimerColor = class'UIUtilities_Colors'.const.WARNING_HTML_COLOR;
+					break;
+				default:
+					if(EvacDelayDiff < 0)
+					{
+						EvacTimerColor = class'UIUtilities_Colors'.const.GOOD_HTML_COLOR;
+					}
+					else
+					{
+						EvacTimerColor = class'UIUtilities_Colors'.const.BAD_HTML_COLOR;
+					}
+					break;
+
+			}
+
+
+			EvacTurns @= ColourText("(" $ string(EvacFlareTimer) @ GetTurnsLabel(EvacFlareTimer) $ ")", EvacTimerColor);
 		}
 	}
 
@@ -524,7 +664,7 @@ static function BuildMissionInfoPanel(UIScreen ParentScreen, StateObjectReferenc
 	{
 		MissionExpiryPanel.SetPosition(725, 180);
 	}
-
+	
 	// ---------------- Create background ---------------------
 	MissionExpiryBG = ParentScreen.Spawn(class'UIBGBox', MissionExpiryPanel);
 	MissionExpiryBG.LibID = class'UIUtilities_Controls'.const.MC_X2Background;
@@ -538,6 +678,10 @@ static function BuildMissionInfoPanel(UIScreen ParentScreen, StateObjectReferenc
 	{
 		MissionExpiryBG.InitBG('ExpiryBG', 0, 0, 470, IsInfiltrating ? 200 : 130);
 	}
+
+	MissionExpiryBG.SetTooltipText("This is a test tooltip");
+
+	//MissionExpiryPanel.ProcessMouseEvents(MissionExpiryBG.OnChildMouseEvent);
 
 	// ---------------- Create text container -----------------
 	GetMissionInfoPanelText(MissionRef, IsInfiltrating, TitleString, InfiltrationString,

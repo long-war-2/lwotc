@@ -3,8 +3,10 @@
 //  AUTHOR:  Amineri (Pavonis Interactive)
 //  PURPOSE: Dense Smoke grenade items that get swapped in for regular, providing extra defense
 //--------------------------------------------------------------------------------------- 
+//POTENTIALLY DEPRECATED!!! CONSIDER DELETION OF THIS AND ALL RELATED THINGS! I'LL TRY AND MARK THEM AS I SEE THEM
 class X2Item_DenseSmokeGrenade extends X2Item config(LW_SoldierSkills);
 
+//Migrating all 3 of these to X2Ability_PerkPackAbilitySet2, DEFINITELY consider deletion.
 var localized string DenseSmokeGrenadeEffectDisplayName;
 var localized string DenseSmokeGrenadeEffectDisplayDesc;
 var config int DENSESMOKEGRENADE_HITMOD;

@@ -448,7 +448,7 @@ static function X2AbilityTemplate AddKnifeJuggler()
 static function X2AbilityTemplate AddThrowKnife(name AbilityName)
 {
 	local X2AbilityTemplate                   Template;
-	local X2AbilityCost_QuickdrawActionPoints ActionPointCost;
+	local X2AbilityCost_ActionPoints ActionPointCost;
 	local X2Effect_ApplyWeaponDamage          WeaponDamageEffect;
 	local array<name>                         SkipExclusions;
 	local X2AbilityCost_Ammo                  AmmoCost;
@@ -465,7 +465,7 @@ static function X2AbilityTemplate AddThrowKnife(name AbilityName)
 
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
 
-    ActionPointCost = new class'X2AbilityCost_QuickdrawActionPoints';
+    ActionPointCost = new class'X2AbilityCost_ActionPoints';
     ActionPointCost.iNumPoints = 1;
     ActionPointCost.bConsumeAllPoints = true;
     Template.AbilityCosts.AddItem(ActionPointCost);

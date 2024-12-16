@@ -8,7 +8,7 @@ class X2LWActivityCreation_ProtectResearch extends X2LWActivityCreation;
 
 
 
-simulated function int GetNumActivitiesToCreate(XComGameState NewGameState)
+simulated function int GetNumActivitiesToCreate(XComGameState NewGameState, optional XComGameState_AdventChosen ChosenState = none)
 {
 	PrimaryRegions = FindValidRegions(NewGameState);
 

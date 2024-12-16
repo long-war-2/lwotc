@@ -263,19 +263,19 @@ FriendlyName="어드밴트 전자기 소총"
 [AdvGrenadierM1 X2CharacterTemplate]
 strCharacterName="어드밴트 기술자"
 
-[AdvGrenadierM1_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM1_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="어드밴트 유탄 발사기"
 
 [AdvGrenadierM2 X2CharacterTemplate]
 strCharacterName="어드밴트 척탄병"
 
-[AdvGrenadierM2_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM2_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="어드밴트 유탄 발사기"
 
 [AdvGrenadierM3 X2CharacterTemplate]
 strCharacterName="어드밴트 중장갑 척탄병"
 
-[AdvGrenadierM3_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM3_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="어드밴트 유탄 발사기"
 
 [AdvGrenadierFlashbangGrenade X2GrenadeTemplate]
@@ -364,8 +364,8 @@ strCharacterName="크리살리드 병사"
 
 [ChryssalidSoldierSlash X2AbilityTemplate]
 LocFriendlyName="크리살리드 병사 베기"
-LocLongDescription="베기 공격으로 많은 피해를 입힙니다."
-LocHelpText="베기 공격으로 많은 피해를 입힙니다."
+LocLongDescription="적을 중독시키는 근접 공격입니다."
+LocHelpText="발톱으로 근거리 목표물을 공격해, 적을 이따금 중독시킵니다."
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Hive Queen ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -374,8 +374,8 @@ strCharacterName="하이브 퀸"
 
 [HiveQueenSlash X2AbilityTemplate]
 LocFriendlyName="치명적인 크리살리드 찍기"
-LocLongDescription="베기 공격은 대량의 대미지를 입힙니다."
-LocHelpText="베기 공격은 대량의 대미지를 입힙니다."
+LocLongDescription="적을 중독시키는 근접 공격입니다."
+LocHelpText="발톱으로 근거리 목표물을 공격해, 적을 이따금 중독시킵니다."
 
 ;;;;;;;;;;;;;;;;;;;;;;;;; Additional ADVENT Trooper types ;;;;;;;;;;;;;;;;;;;;;;;;
 

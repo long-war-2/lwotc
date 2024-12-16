@@ -151,11 +151,11 @@ LocPromotionPopupText="<Bullet/> Der Flammenwerfer ist eine Kurzstreckenwaffe, d
 
 [LWRocketLauncher X2AbilityTemplate]
 LocFriendlyName="Raketenwerfer"
-LocHelpText="Feuere eine Rakete auf den Zielbereich. <Ability:ROCKETSCATTER/>"
+LocHelpText="Feuere eine Rakete auf den Zielbereich.<Ability:ROCKETSCATTER/>"
 
 [LWBlasterLauncher X2AbilityTemplate]
 LocFriendlyName="Blasterbombe"
-LocHelpText="Feuert eine Lenk-Blasterbombe auf ein Zielgebiet. <Ability:ROCKETSCATTER/>"
+LocHelpText="Feuert eine Lenk-Blasterbombe auf ein Zielgebiet.<Ability:ROCKETSCATTER/>"
 
 [NapalmX X2AbilityTemplate]
 LocFriendlyName="Napalm-X"
@@ -251,7 +251,7 @@ LocPromotionPopupText="<Bullet/> Die Reichweite deiner Raketen wird um 6 Felder 
 [BunkerBuster X2AbilityTemplate]
 LocFriendlyName="Bunkerknacker"
 LocFlyOverText="Bunkerknacker"
-LocHelpText="Feuert eine Spezialrakete ab, die Gebäude und andere Objekte in der Umgebung zerstört. <Ability:ROCKETSCATTER/>"
+LocHelpText="Feuert eine Spezialrakete ab, die Gebäude und andere Objekte in der Umgebung zerstört."
 LocLongDescription="Feuert eine Spezialrakete ab, die Gebäude und andere Objekte in der Umgebung zerstört."
 LocPromotionPopupText="<Bullet/> Feuert eine Spezialrakete mit großem Wirkungsbereich ab, die bei Feinden mittleren Schaden verursacht, an Gebäuden, Fahrzeugen und anderen Objekten in der Umgebung jedoch gewaltigen Schaden anrichtet.<br/><Bullet/> Erfordert beide Aktionen und kann nur einmal pro Einsatz eingesetzt werden.<br/>"
 
@@ -268,6 +268,14 @@ LocFlyOverText="Erschütterungsrakete"
 LocLongDescription="Feuere eine Spezialrakete ab, die geringen Schaden verursacht, aber eine Chance hat, organische Feinde innerhalb ihres Wirkungsbereichs zu betäuben oder zu desorientieren. Hinterlässt eine Rauchwolke."
 LocHelpText="Spezialrakete, die Ziele betäubt oder desorientiert und eine Rauchwolke hinterlässt. <Ability:ROCKETSCATTER/>"
 LocPromotionPopupText="<Bullet/> Einmal pro Einsatz einsetzbar.<br/><Bullet/> Chance auf Betäubung basiert auf dem Willenswert des Ziels.<br/><Bullet/> Chance auf Desorientierung basiert nur auf dem Willenswert des Ziels.<br/><Bullet/> Erfordert 1 Aktion und beendet die Runde des Soldaten.<br/><Bullet/> Elite-Codices und Psi-Zombies sind immun gegenüber allen Effekten einschließlich dem Schaden.<br/><Bullet/> Verbündete können von dieser Fähigkeit nicht verletzt werden.<br/>"
+
+[BlasterConcussionRocket X2AbilityTemplate]
+LocFriendlyName="Erschütterungsrakete"
+LocFlyOverText="Erschütterungsrakete"
+LocLongDescription="Feuere eine Spezialrakete ab, die geringen Schaden verursacht, aber eine Chance hat, organische Feinde innerhalb ihres Wirkungsbereichs zu betäuben oder zu desorientieren. Hinterlässt eine Rauchwolke."
+LocHelpText="Spezialrakete, die Ziele betäubt oder desorientiert und eine Rauchwolke hinterlässt. <Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> Einmal pro Einsatz einsetzbar.<br/><Bullet/> Chance auf Betäubung basiert auf dem Willenswert des Ziels.<br/><Bullet/> Chance auf Desorientierung basiert nur auf dem Willenswert des Ziels.<br/><Bullet/> Erfordert 1 Aktion und beendet die Runde des Soldaten.<br/><Bullet/> Elite-Codices und Psi-Zombies sind immun gegenüber allen Effekten einschließlich dem Schaden.<br/><Bullet/> Verbündete können von dieser Fähigkeit nicht verletzt werden.<br/>"
+
 
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -351,6 +359,12 @@ LocLongDescription="Jede Schaden verursachende Granate in deinem Granatenplatz e
 LocHelpText="Jede Schaden verursachende Granate in deinem Granatenplatz erhält eine zusätzliche Verwendung."
 LocFlyOverText="Schwere Geschütze"
 LocPromotionPopupText="<Bullet/> Alle Schaden verursachenden Granaten eignen sich für \"Schwere Geschütze\".<br/>"
+
+[HeavyOrdnanceV2 X2AbilityTemplate]
+LocFriendlyName="Schwere Geschütze"
+LocLongDescription="Die Granate in deinem Granatenplatz erhält eine zusätzliche Verwendung."
+LocHelpText="Die Granate in deinem Granatenplatz erhält eine zusätzliche Verwendung."
+LocPromotionPopupText="<Bullet/> Alle Granaten eignen sich für \"Schwere Geschütze\", selbst nicht-offensive Granaten wie Gefechtsscanner oder Rauchgranaten.<br/>"
 
 [Sapper X2AbilityTemplate]
 LocFriendlyName="Sprengstoffexperte"
@@ -2348,6 +2362,14 @@ ObjectiveTextPools[1]="Neutralisiere alle feindlichen Ziele"
 ObjectiveTextPools[0]="Der Avatar des Commanders muss überleben"
 ObjectiveTextPools[1]="Zerstöre die Avatare"
 
+[DefaultAssaultFortressLeadup_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Der Avatar des Commanders muss überleben"
+ObjectiveTextPools[1]="Neutralisiere alle feindlichen Ziele"
+
+[DefaultDestroyAvatarProject_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Der Avatar des Commanders muss überleben"
+ObjectiveTextPools[1]="Zerstöre die Avatare"
+
 [DefaultSabotage_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Platziere X4, um die Alien-Einrichtung zu zerstören"
 ObjectiveTextPools[1]="Evakuiere alle XCOM-Soldaten"
@@ -2714,6 +2736,13 @@ PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.support.T_Support_Broadcast
 DisplayName="Greife die Alien-Festung an"
 Briefing="Greife die Alien-Festung an"
 PostMissionType="Greife die Alien-Festung an"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
+ObjectiveTextPools[0]="Zerstöre die Avatar-Direktive"
+
+[DestroyAvatarProject_LW X2MissionTemplate]
+DisplayName="Zerstöre das Avatar-Projekt"
+Briefing="Zerstöre das Avatar-Projekt"
+PostMissionType="Zerstöre das Avatar-Projekt"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
 ObjectiveTextPools[0]="Zerstöre die Avatar-Direktive"
 
@@ -3109,6 +3138,10 @@ BonusEmptyText="Verbessert die Heilungsrate von Soldaten."
 BonusText="HEILUNGSRATE +%AVENGERBONUS %"
 FilledText="Zusätzliche medizinische Unterstützung durch %UNITNAME erhöht die Rate, mit der sich Soldaten von Verletzungen erholen."
 LockedText="GESPERRT: VERBESSERUNG KAUFEN"
+
+[CovertActionIntenseTrainingStaffSlot X2StaffSlotTemplate]
+EmptyText="OLDAT"
+BonusText="IN VERDECKTER AKTION"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Techs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -5374,6 +5407,10 @@ LocLongDescription="Wenn du mit einem Schuss oder irgendeiner Fähigkeit einen k
 [LocationScout X2SitRepTemplate]
 Description="Der Widerstand hat im gesamten Missionsgebiet Bewegungsmelder mit geringer Reichweite platziert, die sich mit der Kommunikation unseres Trupps verbinden. Deine Soldaten können feindliche Einheiten erkennen, die sich außerhalb der Sichtlinie befinden."
 
+[SlightlyLargeMap X2SitRepTemplate]
+FriendlyName="Große Karte"
+Description="Das Missionsgebiet ist größer als üblich, folglich kann es länger dauern, das Missionsziel zu erreichen."
+
 [LargeMap X2SitRepTemplate]
 FriendlyName="Große Karte"
 Description="Das Missionsgebiet ist größer als üblich, folglich kann es länger dauern, das Missionsziel zu erreichen."
@@ -5722,6 +5759,14 @@ LocLongDescription="Wenn Sturm und Schuss aktiviert wird, sinkt die Abklingzeit 
 LocHelpText="Wenn Sturm und Schuss aktiviert wird, wird die Abklingzeit deines Pulsbogens automatisch aufgehoben."
 LocPromotionPopupText="<Bullet/> Wird Sturm und Schuss aktiviert, wird die Abklingzeit deines Pulsbogens automatisch aufgehoben.<br/><Bullet/> Gilt nicht für Kettenblitz.<br/>"
 
+[LikeLightningPassive_LW X2AbilityTemplate]
+LocFriendlyName="Wie ein Blitz"
+LocFlyOverText="Wie ein Blitz"
+LocLongDescription="Wenn Sturm und Schuss aktiviert wird, sinkt die Abklingzeit deines Pulsbogens automatisch auf 0."
+LocHelpText="Wenn Sturm und Schuss aktiviert wird, wird die Abklingzeit deines Pulsbogens automatisch aufgehoben."
+LocPromotionPopupText="<Bullet/> Wird Sturm und Schuss aktiviert, wird die Abklingzeit deines Pulsbogens automatisch aufgehoben.<br/><Bullet/> Gilt nicht für Kettenblitz.<br/>"
+
+
 [Maim_LW X2AbilityTemplate]
 LocFriendlyName="Verstümmeln"
 LocFlyOverText="Verstümmeln"
@@ -5767,9 +5812,9 @@ LocPromotionPopupText="<Bullet/> Wenn du diese Runde einen Kill erzielt hast, ge
 [Dedication_LW X2AbilityTemplate]
 LocFriendlyName="Voller Einsatz"
 LocFlyOverText="Voller Einsatz"
-LocLongDescription="Erhalte <Ability:DEDICATION_MOBILITY/> Mobilität und ignoriere Reflexschüsse für den Rest der Runde. Kostenlose Aktion mit einer Abklingzeit von <Ability:SelfCooldown_LW/> Runden."
-LocHelpText="Erhalte <Ability:DEDICATION_MOBILITY/> Mobilität und ignoriere Reflexschüsse für den Rest der Runde. Kostet keine Aktion und hat eine Abklingzeit von <Ability:SelfCooldown_LW/> Runden."
-LocPromotionPopupText="<Bullet/> Erhalte <Ability:DEDICATION_MOBILITY/> Mobilität und ignoriere Reflexschüsse für den Rest der Runde.<br/><Bullet/> Voller Einsatz kostet keine Aktion und hat eine Abklingzeit von <Ability:SelfCooldown_LW/> Runden.<br/>"
+LocLongDescription="Erhalte <Ability:DEDICATIONLW_MOBILITY/> Mobilität und ignoriere Reflexschüsse für den Rest der Runde. Kostenlose Aktion mit einer Abklingzeit von <Ability:SelfCooldown_LW/> Runden."
+LocHelpText="Erhalte <Ability:DEDICATIONLW_MOBILITY/> Mobilität und ignoriere Reflexschüsse für den Rest der Runde. Kostet keine Aktion und hat eine Abklingzeit von <Ability:SelfCooldown_LW/> Runden."
+LocPromotionPopupText="<Bullet/> Erhalte <Ability:DEDICATIONLW_MOBILITY/> Mobilität und ignoriere Reflexschüsse für den Rest der Runde.<br/><Bullet/> Voller Einsatz kostet keine Aktion und hat eine Abklingzeit von <Ability:SelfCooldown_LW/> Runden.<br/>"
 
 [Corpsman_LW X2AbilityTemplate]
 LocFriendlyName="Sanitäter"
@@ -5980,6 +6025,12 @@ LocLongDescription = "Das Töten eines Feindes erhöht deinen Hackwert für 3 Ru
 LocPromotionPopupText = "<Bullet/> Das Töten eines Feindes gewährt dir +<Ability:DISASSEMBLY_HACK/> Hacken für 3 Runden.<br/><Bullet/> Durch mehrere getötete Feinde gewährte Boni wirken kumulativ.<br/>"
 
 [LightningSlash_LW X2AbilityTemplate]
+LocFriendlyName="Blitzschneller Schlitzer"
+LocLongDescription="Greife einen Feind innerhalb deiner blauen Bewegungsreichweite mit der Waffe \"<Ability:BOUND_WEAPON_NAME/>\" an. Der Angriff beendet deine Runde nicht."
+LocHelpText="Greife einen Feind innerhalb deiner blauen Bewegungsreichweite mit der Waffe \"<Ability:BOUND_WEAPON_NAME/>\" an. Beendet deine Runde nicht."
+LocPromotionPopupText="<Bullet/> Greife einen Feind innerhalb deiner blauen Bewegungsreichweite mit der Waffe \"<Ability:BOUND_WEAPON_NAME/>\" an.<br/><Bullet/> Der Angriff beendet deine Runde nicht.<br/><Bullet/> Blitzschneller Schlitzer hat eine Abklingzeit von <Ability:LIGHTNINGSLASH_COOLDOWN/> Runden.<br/>"
+
+[LightningSlashLastAction_LW X2AbilityTemplate]
 LocFriendlyName="Blitzschneller Schlitzer"
 LocLongDescription="Greife einen Feind innerhalb deiner blauen Bewegungsreichweite mit der Waffe \"<Ability:BOUND_WEAPON_NAME/>\" an. Der Angriff beendet deine Runde nicht."
 LocHelpText="Greife einen Feind innerhalb deiner blauen Bewegungsreichweite mit der Waffe \"<Ability:BOUND_WEAPON_NAME/>\" an. Beendet deine Runde nicht."
@@ -6846,3 +6897,8 @@ LocLongDescription="Setze eine Energieexplosion frei, die allen Einheiten in der
 LocHelpText="Trifft alle Einheiten in der Nähe mit einer Explosion. Aufeinanderfolgende Novas fügen auch dem SPARK Schaden zu."
 LocPromotionPopupText="<Bullet/> Nova kostet keine Aktionspunkte und hat keine Abklingzeit.<br/><Bullet/> Der erste Nova-Angriff in jedem Einsatz fügt dem SPARK noch keinen Schaden zu.<br/><Bullet/> Alle weiteren Nova-Angriffe fügen dem SPARK steigenden Schaden zu (steigt um <Ability:Nova_Damage/> pro Nova-Angriff).<br/>"
 
+;Marauder
+[SkirmisherStrike X2AbilityTemplate]
+LocLongDescription="Standardschüsse Schüsse mit deiner Primärwaffe beenden nicht automatisch die Runde."
+LocHelpText="Standardschüsse Schüsse mit deiner Primärwaffe beenden nicht automatisch die Runde."
+LocPromotionPopupText=""

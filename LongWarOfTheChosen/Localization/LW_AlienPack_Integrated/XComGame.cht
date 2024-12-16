@@ -2,12 +2,12 @@
 MutonM2_LW="<Bullet/>異變者百夫長可以完成所有異變者能做到的事情，還可以釋放戰爭咆哮提升附近友軍的能力，並可以對任何衝刺範圍內的敵人進行刺刀衝鋒。\n<Bullet/>與入侵時期的異變者不同的是，這個新混血的異變者在近戰方面更為出色。\n<Bullet/>他們的反擊能力能夠讓他們對任何在近戰方面對其攻擊的敵人進行回擊。\n<Bullet/>他們同樣能夠處死附近不能行動的敵人；你無論何時都不能讓異變者處在被眩暈的單位身邊。\n<Bullet/>他們還能使用步槍進行壓制，他們的戰鬥護甲能提供相當不錯的防禦。"
 MutonM3_LW="<Bullet/>"
 
-DroneM1="<Bullet/>守護者無人機是一種低廉的偵查單位，最初是用於平民人群控制。"
+DroneM1="<Bullet/>監視無人機是一種低廉的偵查單位，最初是用於平民人群控制。"
 
 [CorpseDrone X2ItemTemplate]
 FriendlyName="無人機殘骸"
 FriendlyNamePlural="無人機殘骸"
-BriefSummary="這個輕型，自動的安保氣墊船殘骸顯示了其監視公民以及人群控制的設計理念。"
+BriefSummary="這個輕型，自主安保飛行器殘骸顯示了其監視公民以及人群控制的設計理念。"
 
 [CorpseMutonElite X2ItemTemplate]
 FriendlyName="異變者精英屍體"
@@ -18,10 +18,10 @@ BriefSummary="這些外星人處於異變者內部等級的頂端。不同於百
 
 [WarCry X2AbilityTemplate]
 LocFriendlyName="戰爭咆哮"
-LocLongDescription="為其他異變者提供大量命中，意志力，移動力加成；其他智慧外星人和變種人獲得少量加成。6回合冷卻。"
+LocLongDescription="為其他異變者提供大量命中、意志力、移動力加成；其他智慧外星人和變種人獲得少量加成。6回合冷卻。"
 LocHelpText="給其他異變者和外星人加成。"
 LocFlyOverText="戰爭咆哮"
-LocPromotionPopupText="<Bullet/>為其他異變者提供大量命中，意志力，移動力加成；其他智慧外星人和變種人獲得少量加成。<br/><Bullet/>6回合冷卻。<br/>"
+LocPromotionPopupText="<Bullet/>為其他異變者提供大量命中、意志力、移動力加成；其他智慧外星人和變種人獲得少量加成。<br/><Bullet/>6回合冷卻。<br/>"
 
 [BayonetCharge X2AbilityTemplate]
 LocFriendlyName="刺刀衝鋒"
@@ -48,23 +48,23 @@ LocMissMessage="心靈扭曲已抵抗！"
 [LWDroneShock X2AbilityTemplate]
 LocFriendlyName="無人機震擊"
 LocLongDescription="為鎮壓平民而設計，此武器只會造成最小的傷害並使目標混亂。"
-LocHelpText="武器造成最小傷害並使目標受損。"
+LocHelpText="武器造成最小傷害並削弱目標。"
 LocFlyOverText="無人機電擊"
 LocPromotionPopupText="<Bullet/>為鎮壓平民而設計，此武器只會造成最小的傷害並使目標混亂。<br/>"
 
 [LWDroneRepair X2AbilityTemplate]
 LocFriendlyName="修理"
 LocFlyOverText="修理"
-LocHelpText="修理任何附近的機械單位。"
-LocLongDescription="修理任何附近的機械單位。"
-LocPromotionPopupText="<Bullet/>修理任何附近的機械單位。"
+LocHelpText="修理附近的任一機械單位。"
+LocLongDescription="修理附近的任一機械單位。"
+LocPromotionPopupText="<Bullet/>修理附近的任一機械單位。"
 
 [LWDroneMeleeStun X2AbilityTemplate]
 LocFriendlyName="眩暈"
 LocFlyOverText="眩暈"
-LocHelpText="嘗試眩暈近戰範圍內的任何敵人。"
-LocLongDescription="嘗試眩暈近戰範圍內的任何敵人。"
-LocPromotionPopupText="<Bullet/>嘗試眩暈近戰範圍內的任何敵人。"
+LocHelpText="嘗試眩暈近戰範圍內的任一敵人。"
+LocLongDescription="嘗試眩暈近戰範圍內的任一敵人。"
+LocPromotionPopupText="<Bullet/>嘗試眩暈近戰範圍內的任一敵人。"
 LocMissMessage="未命中！"
 
 [PersonalShield X2AbilityTemplate]
@@ -77,9 +77,9 @@ LocPromotionPopupText="<Bullet/>提供5點額外護盾。<br/><Bullet/>5回合�
 [MassReanimation_LW X2AbilityTemplate]
 LocFriendlyName="群體復生"
 LocFlyOverText="群體復生"
-LocHelpText="復活所有周圍死去的有機體，將它們轉化為殭屍。"
-LocLongDescription="復活所有周圍死去的有機體，將它們轉化為殭屍。"
-LocPromotionPopupText="<Bullet/>復活所有周圍死去的有機體，將它們轉化為殭屍。"
+LocHelpText="復活周圍所有死去的有機體，將它們轉化為殭屍。"
+LocLongDescription="復活周圍所有死去的有機體，將它們轉化為殭屍。"
+LocPromotionPopupText="<Bullet/>復活周圍所有死去的有機體，將它們轉化為殭屍。"
 
 [ReadyForAnything X2AbilityTemplate]
 LocFriendlyName="一切就緒"
@@ -120,7 +120,7 @@ strCharacterName="異變者百夫長"
 [MutonM2_LW_Wpn X2WeaponTemplate]
 FriendlyName="百夫長步槍"
 BriefSummary="XCOM已經成功獲得了一些不同的標準步兵小型武器了，這是最基本的武器，類似20年前使用的步槍。雖然這些武器比起變種人磁力技術的武器差得多，但在標準技術研究完成後，至少可以用額外的武器碎片對它們進行升級。"
-TacticalText="<Bullet/>用主武器射擊會結束該士兵的回合\n<Bullet/>如果士兵在兩個行動點都可用時射擊，那麼他可以在減少精準度的條件下射擊3次，但總體上還是提升了效率\n<Bullet/>使用從變種人敵人身上取得的升級部件提升突擊步槍的戰術效率"
+TacticalText="<Bullet/>用主武器射擊會結束該士兵的回合\n<Bullet/>如果士兵在兩個行動點都可用時射擊，那麼他可以在減少精準度的條件下射擊3次，但總體上還是提升了效率\n<Bullet/>使用從變種人敵人身上取得的升級部件提升突擊步槍的戰術效果"
 AbilityDescName="等離子步槍"
 
 [MutonM2_LWGrenade X2GrenadeTemplate]
@@ -131,7 +131,7 @@ TacticalText="<Bullet/>單發高傷害性榴彈。"
 ThrownAbilityName="投擲外星榴彈"
 ThrownAbilityHelpText="對目標區域投擲一枚外星榴彈。"
 LaunchedAbilityName="發射外星榴彈"
-LaunchedAbilityHelpText="朝目標區域發射外星榴彈，可撕裂護甲。"
+LaunchedAbilityHelpText="朝目標區域發射外星榴彈，可撕碎護甲。"
 
 [MutonM2_LW_MeleeAttack X2WeaponTemplate]
 FriendlyName="刺刀"
@@ -153,7 +153,7 @@ TacticalText="<Bullet/>單發高傷害性榴彈。"
 ThrownAbilityName="投擲外星榴彈"
 ThrownAbilityHelpText="對目標區域投擲一枚外星榴彈。"
 LaunchedAbilityName="發射外星榴彈"
-LaunchedAbilityHelpText="朝目標區域發射外星榴彈，可撕裂護甲。"
+LaunchedAbilityHelpText="朝目標區域發射外星榴彈，可撕碎護甲。"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Naja ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -218,6 +218,8 @@ FriendlyName="光束步槍"
 AbilityDescName="等離子步槍"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; ArchonM2_LW ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[Archon_WPN X2WeaponTemplate]
+AbilityDescName="執政官法杖"
 
 [ArchonM2_LW X2CharacterTemplate]
 strCharacterName="大執政官"
@@ -278,20 +280,23 @@ AbilityDescName="磁力步槍"
 [AdvGrenadierM1 X2CharacterTemplate]
 strCharacterName="變種人工兵"
 
-[AdvGrenadierM1_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM1_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="變種人榴彈發射器"
 
 [AdvGrenadierM2 X2CharacterTemplate]
 strCharacterName="變種人榴彈兵"
 
-[AdvGrenadierM2_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM2_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="變種人榴彈發射器"
 
 [AdvGrenadierM3 X2CharacterTemplate]
 strCharacterName="變種人重型榴彈兵"
 
-[AdvGrenadierM3_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM3_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="變種人榴彈發射器"
+
+[AdvHeavyEngineer X2CharacterTemplate]
+strCharacterName="變種人精英工兵"
 
 [AdvGrenadierFlashbangGrenade X2GrenadeTemplate]
 FriendlyName="閃光榴彈"
@@ -307,7 +312,7 @@ LaunchedAbilityHelpText="在指定區域內使所有敵軍混亂。"
 FriendlyName="火焰榴彈"
 FriendlyNamePlural="火焰榴彈"
 BriefSummary="火焰榴彈比起反抗軍多年來一直使用的簡易燃燒武器是一個技術進步。爆炸後大部分目標都會被點燃，遭受持續的燃燒傷害。"
-TacticalText="<Bullet/>火焰榴彈會傷害爆炸範圍內的所有單位，並對任何容易受到火焰攻擊的單位施加\"燃燒\"效果。\n<Bullet/>火焰榴彈的爆炸傷害高於其他任何榴彈。\n<Bullet/>有些敵人對火焰免疫，不受\"燃燒\"效果影響，尤其是金屬系敵人。"
+TacticalText="<Bullet/>火焰榴彈會傷害爆炸範圍內的所有單位，並對任何容易受到火焰攻擊的單位施加\"燃燒\"效果。\n<Bullet/>火焰榴彈的爆炸傷害高於其他任何榴彈。\n<Bullet/>有些敵人對火焰免疫，不受\"燃燒\"效果影響，尤其是機械敵人。"
 ThrownAbilityName="投擲火焰榴彈"
 ThrownAbilityHelpText="點燃目標區域及其中的單位。"
 LaunchedAbilityname="發射火焰榴彈"
@@ -316,7 +321,7 @@ LaunchedAbilityHelpText="點燃目標區域及其中的單位。"
 [AdvGrenadierAcidGrenade X2GrenadeTemplate]
 FriendlyName="酸性榴彈"
 FriendlyNamePlural="酸性榴彈"
-BriefSummary="我們為標準破片榴彈添加了腐蝕性化學添加劑，把它做成了一種十分有效的破甲武器。受影響的目標在其護甲被腐蝕完畢後自身也將承受長時間的腐蝕傷害。"
+BriefSummary="我們為標準破片榴彈添加了腐蝕性化學添加劑，把它做成了一種十分有效的破甲武器。受影響的目標在其護甲被腐蝕完畢後自身也將承受腐蝕傷害。"
 TacticalText="<Bullet/>酸性榴彈對護甲造成的損害比標準破片榴彈更高。<br><Bullet/>受酸性腐蝕的敵人將在數回合中承受額外傷害。"
 ThrownAbilityName="投擲酸性榴彈"
 ThrownAbilityHelpText="產生酸性物質，對單位造成傷害。"
@@ -383,8 +388,8 @@ strCharacterName="寄生獸兵蟲"
 
 [ChryssalidSoldierSlash X2AbilityTemplate]
 LocFriendlyName="寄生獸兵蟲斬擊"
-LocLongDescription="你的斬擊攻擊造成大量傷害。"
-LocHelpText="你的斬擊攻擊造成大量傷害。"
+LocLongDescription="近戰攻擊可以使目標中毒。"
+LocHelpText="使用利爪對目標發動近戰攻擊，可能使其中毒。"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Hive Queen ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -393,8 +398,8 @@ strCharacterName="寄生獸蟲後"
 
 [HiveQueenSlash X2AbilityTemplate]
 LocFriendlyName="寄生獸蟲後斬擊"
-LocLongDescription="你的斬擊攻擊造成大量的傷害。"
-LocHelpText="你的斬擊攻擊造成大量的傷害。"
+LocLongDescription="近戰攻擊可以使目標中毒。"
+LocHelpText="使用利爪對目標發動近戰攻擊，可能使其中毒。"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;; Additional ADVENT Trooper types ;;;;;;;;;;;;;;;;;;;;;;;;
 

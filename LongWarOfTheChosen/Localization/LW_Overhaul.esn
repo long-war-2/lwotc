@@ -264,6 +264,9 @@ strDaysAndHours="<XGParam:IntValue0> días, <XGParam:IntValue1> horas"
 strMinusDaysAndHours="- <XGParam:IntValue0> días, <XGParam:IntValue1> horas"
 strPlusDaysAndHours="<XGParam:IntValue0> días, <XGParam:IntValue1> horas"
 strMissionIndefinite="Duración indefinida"
+strLiberationTitle="Modificador del progreso de la Liberación:"
+strOverallInfilShort="Actual"
+strMissionInfoTitle="Información del terreno:"
 
 ; LWOTC translated
 UpToText="Hasta"
@@ -271,6 +274,22 @@ ExpectedActivityTextStr="Actividad esperada"
 BoostedActivityText="Actividad esperada (potenciada)"
 BoostTextPre="Con"
 BoostTextPost="Potenciar"
+; End translated
+
+; LWOTC translated
+strInfilPanelTitle="Resumen de la misión:"
+strActivityHeader="Actividad enemiga"
+strModifierHeader="Modificadores de infiltración"
+
+strBaseInfilShort="Base"
+strSquadSizeShort="Tamaño del equipo"
+strAbilitiesShort="Habilidades/Equipamiento"
+strExpirationShort="Expiración"
+strExpectedShort="Esperada"
+strBoostedShort="Potenciada"
+strLiberationShort="Liberación"
+strMaxInfilText="Infiltración máxima"
+strMapTypeText="Tipo de mapa"
 ; End translated
 
 [UIScreenListener_DropShipBriefing_MissionStart]
@@ -325,6 +344,8 @@ RankTooLow="Rango demasiado bajo"
 CannotModifyOnMissionSoldierTooltip="No se puede modificar al soldado actualmente en misión."
 ; LWOTC translated
 ReasonClassAbilityPickedAtRank="Ya elegiste una habilidad de clase en este rango."
+; End translated
+ReasonPsiOperativePerkFromLab="Operativo Psi"
 ; End translated
 
 [X2Effect_LWHolotarget]
@@ -557,6 +578,16 @@ m_strProhibited="Prohibido"
 m_strCannotChangeLiaisonTitle="No se puede mover al asesor."
 m_strCannotChangeLiaison="No se puede cambiar de asesor en este momento debido a las misiones activas en la región."
 
+
+ChangeJobStr="CAMBIAR DE TAREA"
+ChangeAllJobsStr="CAMBIAR A TODOS DE TAREA"
+PerksStr="HABILIDADES" 
+
+m_strIncomeIntel="Misiones en búsqueda de datos:"
+m_strIncomeSupply="Suministros cada 24 horas:"
+m_strIncomeRecruit="Días para reclutar:"
+
+
 [UIScreenListener_TacticalHUD]
 strEvacRequestTitle="Evacuación solicitada"
 strEvacRequestSubtitle="Turnos hasta que llegue el Skyranger"
@@ -624,7 +655,8 @@ m_strRetributionEnded="<XGParam:StrValue0/> miembros de la Resistencia se han re
 ; End translated
 [X2StrategyElement_DefaultAlienActivities]
 m_strInsufficientRebels="Necesitas al menos <XGParam:IntValue0/> rebeldes en el refugio para contactar con los vecinos."
-
+VultureUnlockTitle = "Buitre obtenido"
+VultureUnlockDesc = "XCOM ha mejorado en la búsqueda de cadáveres y ahora recuperarás más elementos de cada botín."
 
 [UIScreenListener_Alert]
 m_strInvasionTitle="INVASIÓN DE ADVENT"
@@ -663,6 +695,9 @@ m_strMinimumInfiltration="Requiere <XGParam:IntValue0>% de Infiltración"
 m_strYellowAlert="Enemigos en Alerta Elevada"
 m_sAverageScatterText="± <XGParam:StrValue0/> Cuadros"
 m_strBullet="•"
+
+m_strExpectedInfiltration="Después de potenciar"
+m_strInfiltrationBoostCost="Coste"
 
 m_strStripWeaponUpgrades=QUITAR TODAS LAS MEJORAS DE ARMAS
 m_strStripWeaponUpgradesLower=Quitar todas las mejoras de armas
@@ -717,17 +752,18 @@ ScrollObjectiveDescriptionStr="EXAMINA EN LA DESCRIPCIÓN DEL OBJETIVO"
 m_strChosenLoot=" Recompensa por matar al Elegido: ¡(<XGParam:IntValue0/>) <XGParam:StrValue0/!ItemName/>!"
 
 
-
 [UISL_Shell_LWoTCVersion]
 strMessage_Title = "Long War Of The Chosen"
-strMessage_Header = "Long War Of The Chosen ha sido actualizado!
-strMessage_Body = "La versión 1.1.0 ha sido lanzada, con muchas características y mejoras, que incluyen: <ul><li>Nuevo sistema de Los Elegidos con 5 tiers para una mejor progresión</li><li>Nuevas operaciones encubiertas que recompensan las misiones de infiltración</li><li>Nuevos mapas para las misiones de la Torre de Red y de recolección de cajas</li><li>Templario rediseñado con escudo psi de Iridar (un modder muy popular), entre otros detalles</li><li>Mejoras en la "calidad de vida (QOL)"</li><li>Mejorada la compatibilidad con mods</li><li>Ajustes de equilibrio para clases, héroes y más</li><li>Y muchos más cambios de los que podemos incluir aquí a menos que quieras una barra de desplazamiento gigante (se la han sacado los desarrolladores xD)</li></ul>¡Consulta el documento de google vinculado a las novedades en Steam, o visita el discord de LWoTC!"
+strMessage_Header = "Long War Of The Chosen 1.2 - Reedición del SPARK
+strMessage_Body = "Nueva versión de Long War of The Chosen. Debemos estar eternamente agradecidos a la comunidad de modders que nunca dejan de aportar contenido. <ul><li>Este parche se centra principalmente en la optimización de los SPARKS, ese imponente soldado robótico. Habrá nuevos talentos, armaduras, para escoger entre la especialidad pesada con gran cantidad de blindaje o una más liviana que nos permita mover mayores cantidades de terreno, y más cosas. </li><li>Nuevas misiones para nuestros escuadrones y talentos del centro de entrenamiento.</li><li>Mejoras en la "calidad de vida (QOL)"</li><li>Y muchos más cambios de los que podemos incluir aquí a menos que quieras una barra de desplazamiento gigante (se la han sacado los desarrolladores xD)</li></ul>¡Consulta el documento de google vinculado a las novedades en Steam, o visita el discord de LWoTC!"
 strDismiss_Button = "OK"
 
-[UISL_Shell_BetaPatchNotes]
-strMessage_Title = "Long War Of The Chosen"
-strMessage_Header = "Cambios Build RC35:"
-strMessage_Body = "<ul><li>Se solucionó el problema por el cual el Elegido reaparecía con la barra de vida al completo después de destruir el sarcófago.</li><li>Se rehicieron los mapas personalizados de obtención de cajas para evitar que aparecieran en los techos de los camiones.</li><li>Se reparó el error por el cual Fusión de mentes no proporcionaba bonificación de crítico con amplificador psi avanzado.</li><li>Se arregló por el cual algunos elementos de misiones usaban el nivel tecnológico del cuartel general ADVENT en lugar del nivel de fuerza regional de LW..</li><li>Las operaciones encubiertas recibieron ajustes: se redujeron un poco las recompensas de suministro, y se agregaron a las cajas simuladores de combate personal (SCP), mejoras de armas, núcleos de elerio y datapads.</li><li>Solucionado el bug por el cual la omnivisión del Elegido Cazador no se eliminaba de todas las variantes de dificultad.</li><li>Se corrigió la inconsistencia en los requisitos de cadáveres para las autopsias instantáneas de espectro, sacerdote y purificador.</li><li>Con el fin de realizar pruebas si se desea, se agregó un interruptor de configuración para habilitar/deshabilitar los mapas del cuartel general.</li><li>Otra ronda de actualizaciones de localización de Copyrite (un miembro de discord).</li></ul>"
-strDismiss_Button = "OK"
+[UISL_PullAdvisors]
+m_strPullHavenAdvisors="QUITAR ASESORES"
+m_strPullHavenAdvisorsTooltip="Elimina los asesores disponibles del Refugio. Deberán asignarse manualmente."
+
+m_StrHavenManagement="GESTIONAR LOS REFUGIOS"
+m_StrHavenManagementTooltip="Abre la pantalla de gestión de la Resistencia."
+
 
 ; End translated

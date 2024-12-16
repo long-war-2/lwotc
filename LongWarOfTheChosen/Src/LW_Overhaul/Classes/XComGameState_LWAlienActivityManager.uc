@@ -209,11 +209,18 @@ function UpdatePreMission(XComGameState StartGameState, XComGameState_MissionSit
 	if (RegionState == none) { return; }
 	RegionalAIState = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState);
 
+
 	if(RegionalAIState != None)
 	{
 		// Tedster - Set Force Level to regional FL if one exists
-		BattleData.SetForceLevel(CLAMP(RegionalAIState.LocalForceLevel,1,20));
-		`LWTrace("Updating BattleData with Regional Force Level.");
+		BattleData.SetForceLevel(RegionalAIState.LocalForceLevel);
+		
+		//OnPreMission doesn't appear to add the MissionState to the StartGameState, so add it ourselves.
+		//MissionState = XComGameState_MissionSite(StartGameState.ModifyStateObject(class'XComGameState_MissionSite', MissionState.ObjectId));
+		MissionState.SelectedMissionData.ForceLevel = RegionalAIState.LocalForceLevel;
+		// old one clamping to 20
+		//BattleData.SetForceLevel(CLAMP(RegionalAIState.LocalForceLevel,1,20));
+		`LWTrace("Updating BattleData and Mission Site with Regional Force Level.");
 	}
 
 	if (RegionalAIState != none && RegionalAIState.bLiberated)
@@ -396,6 +403,9 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 	//modifiers
 	if (InfiltratingSquad != none && !MissionSite.GetMissionSource().bGoldenPath)
 	{
+		
+		// Tedster: add call to update infiltration when the mission data is being refreshed.
+		InfiltratingSquad.UpdateInfiltrationState(false);
 		InfiltrationAlertModifier = InfiltratingSquad.GetAlertnessModifierForCurrentInfiltration(); // this submits its own gamestate update
 		AlertLevel += InfiltrationAlertModifier;
 	}
@@ -403,6 +413,12 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 	// Potentially add a Chosen to the mission, and if we do so, reduce the alert level
 	ModifyAlertForChosen(MissionSite, AlertLevel);
 	AlertLevel = Max(AlertLevel, 1); // clamp to be no less than 1
+
+	// Hard Code alert level for Chosen Reinforce mission.
+	if(MissionSite.GeneratedMission.Mission.MissionFamily == "ChosenSupplyLineRaid_LW")
+	{
+		AlertLevel = 4;
+	}
 
 	`LWTRACE("Updating Mission Difficulty: ForceLevel=" $ ForceLevel $ ", AlertLevel=" $ AlertLevel);
 

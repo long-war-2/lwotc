@@ -119,11 +119,11 @@ LocPromotionPopupText="<Bullet/> 화염방사기는 근거리 무기로, 원뿔�
 
 [LWRocketLauncher X2AbilityTemplate]
 LocFriendlyName="로켓 발사기"
-LocHelpText="목표 지점에 로켓을 발사합니다. <Ability:ROCKETSCATTER/>"
+LocHelpText="목표 지점에 로켓을 발사합니다.<Ability:ROCKETSCATTER/>"
 
 [LWBlasterLauncher X2AbilityTemplate]
 LocFriendlyName="블래스터 폭탄"
-LocHelpText="목표 지점에 유도 블래스터 폭탄을 발사합니다. <Ability:ROCKETSCATTER/>"
+LocHelpText="목표 지점에 유도 블래스터 폭탄을 발사합니다.<Ability:ROCKETSCATTER/>"
 
 [NapalmX X2AbilityTemplate]
 LocFriendlyName="네이팜 X"
@@ -237,6 +237,14 @@ LocLongDescription="제한된 피해를 입히는 특수 로켓을 발사하여,
 LocHelpText="목표물을 기절시키거나 혼란시키고 연막을 생성하는 특수 로켓입니다."
 LocPromotionPopupText="<Bullet/> 임무당 한 번만 사용할 수 있습니다.<br/><Bullet/> 기절, 혼란 확률은 목표물의 의지 점수에 따라 다릅니다.<br/><Bullet/> 행동력 1개가 소모되고 병사의 턴이 종료됩니다"
 
+[BlasterConcussionRocket X2AbilityTemplate]
+LocFriendlyName="고폭 로켓"
+LocFlyOverText="고폭 로켓"
+LocLongDescription="제한된 피해를 입히는 특수 로켓을 발사하여, 일정 확률로 효과 범위 내 유기체 적들을 기절시키거나 혼란시키고 연막을 생성합니다."
+LocHelpText="목표물을 기절시키거나 혼란시키고 연막을 생성하는 특수 로켓입니다."
+LocPromotionPopupText="<Bullet/> 임무당 한 번만 사용할 수 있습니다.<br/><Bullet/> 기절, 혼란 확률은 목표물의 의지 점수에 따라 다릅니다.<br/><Bullet/> 행동력 1개가 소모되고 병사의 턴이 종료됩니다"
+
+
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
 [CoupDeGrace X2AbilityTemplate]
@@ -296,6 +304,12 @@ LocLongDescription="수류탄 전용 슬롯에 있는 살상 수류탄을 추가
 LocHelpText="수류탄 전용 슬롯에 있는 살상 수류탄을 추가로 한 번 더 사용할 수 있습니다."
 LocFlyOverText="중화력"
 LocPromotionPopupText="<Bullet/> 모든 살상 수류탄을 중화기에 사용할 수 있습니다.<br/>"
+
+[HeavyOrdnanceV2 X2AbilityTemplate]
+LocFriendlyName="중화력"
+LocLongDescription="수류탄 전용 슬롯에 있는 수류탄을 추가로 한 번 더 사용할 수 있습니다."
+LocHelpText="수류탄 전용 슬롯에 있는 수류탄을 추가로 한 번 더 사용할 수 있습니다."
+LocPromotionPopupText="<Bullet/> 전투 스캐너나 연막 수류탄 같은 비공격용 수류탄을 포함한 모든 수류탄이 중화력 무기에 적용됩니다.<br/>"
 
 [Sapper X2AbilityTemplate]
 LocFriendlyName="공병"
@@ -2134,6 +2148,14 @@ ObjectiveTextPools[1]="모든 적 목표물 무력화하기"
 ObjectiveTextPools[0]="사령관의 아바타는 반드시 생존해야 함"
 ObjectiveTextPools[1]="아바타 파괴하기"
 
+[DefaultAssaultFortressLeadup_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="사령관의 아바타는 반드시 생존해야 함"
+ObjectiveTextPools[1]="모든 적 목표물 무력화하기"
+
+[DefaultDestroyAvatarProject_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="사령관의 아바타는 반드시 생존해야 함"
+ObjectiveTextPools[1]="아바타 파괴하기"
+
 [DefaultSabotage_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="X4를 설치해 외계인 시설 파괴하기"
 ObjectiveTextPools[1]="모든 XCOM 병사 탈출시키기"
@@ -2489,6 +2511,13 @@ PostMissionType="외계인 요새 공격"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
 ObjectiveTextPools[0]="아바타 명령 파괴하기"
 
+[DestroyAvatarProject_LW X2MissionTemplate]
+DisplayName="아바타 프로젝트 파괴"
+Briefing="아바타 프로젝트 파괴하기"
+PostMissionType="아바타 프로젝트 파괴"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
+ObjectiveTextPools[0]="아바타 명령 파괴하기"
+
 [SecureUFO_LW X2MissionTemplate]
 DisplayName="고장난 UFO 확보"
 Briefing="고장난 UFO 확보"
@@ -2817,6 +2846,10 @@ BonusEmptyText="병사 치료 속도가 향상합니다."
 BonusText="치료 속도 +%AVENGERBONUS%"
 FilledText="%UNITNAME의 고급 의료 설비는 병사들이 부상에서 회복하는 속도를 증가시킵니다."
 LockedText="잠김: 업그레이드 구매"
+
+[CovertActionIntenseTrainingStaffSlot X2StaffSlotTemplate]
+EmptyText="병사"
+BonusText="기밀 작전 중"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Techs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -4822,3 +4855,9 @@ LocFriendlyName="신성"
 LocLongDescription="에너지 폭발을 일으켜 주위의 모든 적에게 대미지를 입힙니다. 노바는 행동력을 소모하지 않고 쿨타임이 없으나, 연속으로 사용하면 SPARK는 대미지를 입습니다."
 LocHelpText="주위의 모든 적을 폭발시킵니다. 연속으로 노바를 사용하면 SPARK는 대미지를 입습니다."
 LocPromotionPopupText="<Bullet/> 노바는 행동력을 소모하지 않으며 쿨타임이 없습니다.<br/><Bullet/> 매번 임무에서 노바를 첫 번째로 사용하면 SPARK는 대미지를 입지 않습니다.<br/><Bullet/> 이후의 모든 노바 사용은 SPARK에 누적되는 <Ability:Nova_Damage/> 대미지를 입힙니다.<br/>"
+
+;Marauder
+[SkirmisherStrike X2AbilityTemplate]
+LocLongDescription="첫 번째 행동으로 주요 무기를 사용하여 일반 사격을 하면 턴이 종료되지 않습니다."
+LocHelpText="첫 번째 행동으로 주요 무기를 사용하여 일반 사격을 하면 턴이 종료되지 않습니다."
+LocPromotionPopupText=""

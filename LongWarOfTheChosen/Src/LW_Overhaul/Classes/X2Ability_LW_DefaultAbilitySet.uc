@@ -20,6 +20,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateReactionFireAgainstCoverBonus());
 	Templates.AddItem(CreateSmokeFlankingCritProtection());
 	Templates.AddItem(CreateFlashbangResistancePassive());
+	Templates.AddItem(PurePassive('PsiZombieImmunitiesPassive', , ,'eAbilitySource_Perk'));
+	Templates.AddItem(PurePassive('SpectralZombieImmunitiesPassive', , ,'eAbilitySource_Perk'));
 
 	return Templates;
 }

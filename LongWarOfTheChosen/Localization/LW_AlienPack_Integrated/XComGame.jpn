@@ -263,19 +263,19 @@ FriendlyName="アドヴェント磁力ライフル"
 [AdvGrenadierM1 X2CharacterTemplate]
 strCharacterName="アドヴェント・エンジニア"
 
-[AdvGrenadierM1_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM1_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="アドヴェント・グレネードランチャー"
 
 [AdvGrenadierM2 X2CharacterTemplate]
 strCharacterName="アドヴェント・グレネード兵"
 
-[AdvGrenadierM2_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM2_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="アドヴェント・グレネードランチャー"
 
 [AdvGrenadierM3 X2CharacterTemplate]
 strCharacterName="アドヴェント・ヘビーグレネード兵"
 
-[AdvGrenadierM3_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM3_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="アドヴェント・グレネードランチャー"
 
 [AdvGrenadierFlashbangGrenade X2GrenadeTemplate]
@@ -364,8 +364,8 @@ strCharacterName="クリサリド兵"
 
 [ChryssalidSoldierSlash X2AbilityTemplate]
 LocFriendlyName="クリサリド・ソルジャースラッシュ"
-LocLongDescription="敵を切りつけ、大きなダメージを与える。"
-LocHelpText="敵を切りつけ、大きなダメージを与える。"
+LocLongDescription="ターゲットに毒を与えることがある近接攻撃。"
+LocHelpText="近接攻撃範囲内のターゲットを爪で攻撃し、確率で毒を与える。"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Hive Queen ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -374,8 +374,8 @@ strCharacterName="クリサリド・クイーン"
 
 [HiveQueenSlash X2AbilityTemplate]
 LocFriendlyName="グレーター・クリサリドスラッシュ"
-LocLongDescription="敵を切りつけ、大きなダメージを与える。"
-LocHelpText="敵を切りつけ、大きなダメージを与える。"
+LocLongDescription="ターゲットに毒を与えることがある近接攻撃。"
+LocHelpText="近接攻撃範囲内のターゲットを爪で攻撃し、確率で毒を与える。"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;; Additional ADVENT Trooper types ;;;;;;;;;;;;;;;;;;;;;;;;
 

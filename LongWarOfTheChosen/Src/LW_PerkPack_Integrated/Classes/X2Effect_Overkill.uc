@@ -27,7 +27,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 	if (AppliedData.EffectRef.SourceTemplateName != '')
 	{
 		WeaponDamageEffect = X2Effect_ApplyWeaponDamage(class'X2Effect'.static.GetX2Effect(AppliedData.EffectRef));
-		if (WeaponDamageEffect == none || WeaponDamageEffect.bIgnoreBaseDamage)
+		if (WeaponDamageEffect == none)
 			return 0;
 	}
 

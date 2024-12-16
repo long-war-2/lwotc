@@ -8,7 +8,7 @@ class X2LWActivityCreation_AlertUFOLandingRegion extends X2LWActivityCreation;
 
 
 // only allow once to be created per cycle, then the global cooldown will take effect
-simulated function int GetNumActivitiesToCreate(XComGameState NewGameState)
+simulated function int GetNumActivitiesToCreate(XComGameState NewGameState, optional XComGameState_AdventChosen ChosenState = none)
 {
 	PrimaryRegions = FindValidRegions(NewGameState);
 	NumActivitiesToCreate = Min(NumActivitiesToCreate, 1);

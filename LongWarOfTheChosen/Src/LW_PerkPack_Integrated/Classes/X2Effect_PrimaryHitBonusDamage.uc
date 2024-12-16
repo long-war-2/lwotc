@@ -10,8 +10,8 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
     local X2AbilityToHitCalc_StandardAim StandardHit;
 	local X2Effect_ApplyWeaponDamage WeaponDamageEffect;
 
-	if (class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult))
-	{
+	if (class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult) && CurrentDamage > 0)
+	{ 
 		WeaponDamageEffect = X2Effect_ApplyWeaponDamage(class'X2Effect'.static.GetX2Effect(AppliedData.EffectRef));
 		if (WeaponDamageEffect != none)
 		{			
@@ -25,7 +25,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 		{
 			return 0;
 		}
-		if (AbilityState.GetMyTemplateName() == 'LWRocketLauncher' || AbilityState.GetMyTemplateName() == 'LWBlasterLauncher' || AbilityState.GetMyTemplateName() == 'MicroMissiles')
+		if (class'X2Effect_BonusRocketDamage_LW'.default.VALID_ABILITIES.Find(AbilityState.GetMyTemplateName()) != INDEX_NONE || AbilityState.GetMyTemplateName() == 'MicroMissiles')
 		{
 			return 0;
 		}
@@ -51,6 +51,10 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 			if ((WeaponTemplate.weaponcat == 'pistol' || WeaponTemplate.weaponcat == 'sidearm') && includepistols)
 			{
 				return BonusDmg;
+			}
+			if (WeaponTemplate.weaponcat == 'sawedoffshotgun' && includesos && AbilityState.GetMyTemplateName() == 'BothBarrels')
+			{
+				return BonusDmg*2;
 			}
 			if (WeaponTemplate.weaponcat == 'sawedoffshotgun' && includesos)
 			{

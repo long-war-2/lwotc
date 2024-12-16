@@ -4,6 +4,8 @@
 //  PURPOSE: General effect for granting extra uses of rocket-type items -- technical class only
 //--------------------------------------------------------------------------------------- 
 
+//POTENTIALLY DEPRECATED BECAUSE OF THE MIGRATION OF THE MAIN ROCKET ABILITY'S AMMO COST BEING SWITCHED TO CHARGES
+
 class X2Effect_BonusRocketCharges extends X2Effect_Persistent;
 
 var int BonusUses;

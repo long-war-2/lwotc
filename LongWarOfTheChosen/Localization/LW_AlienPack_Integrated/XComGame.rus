@@ -263,19 +263,19 @@ FriendlyName="Магнитная винтовка \"Адвента\""
 [AdvGrenadierM1 X2CharacterTemplate]
 strCharacterName="Инженер \"Адвента\""
 
-[AdvGrenadierM1_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM1_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="Гранатомет \"Адвента\""
 
 [AdvGrenadierM2 X2CharacterTemplate]
 strCharacterName="Гранатометчик \"Адвента\""
 
-[AdvGrenadierM2_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM2_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="Гранатомет \"Адвента\""
 
 [AdvGrenadierM3 X2CharacterTemplate]
 strCharacterName="Тяжелый гранатометчик \"Адвента\""
 
-[AdvGrenadierM3_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM3_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="Гранатомет \"Адвента\""
 
 [AdvGrenadierFlashbangGrenade X2GrenadeTemplate]
@@ -364,8 +364,8 @@ strCharacterName="Криссалид-солдат"
 
 [ChryssalidSoldierSlash X2AbilityTemplate]
 LocFriendlyName="Удар криссалида-солдата"
-LocLongDescription="Атаки в ближнем бою наносят огромный урон."
-LocHelpText="Атаки в ближнем бою наносят огромный урон."
+LocLongDescription="Ближняя атака, которая может отравить цель."
+LocHelpText="Удар когтями, потенциально способный отравить жертву."
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Hive Queen ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -374,8 +374,8 @@ strCharacterName="Королева роя"
 
 [HiveQueenSlash X2AbilityTemplate]
 LocFriendlyName="Мощный удар криссалида"
-LocLongDescription="Атаки в ближнем бою наносят огромный урон."
-LocHelpText="Атаки в ближнем бою наносят огромный урон."
+LocLongDescription="Ближняя атака, которая может отравить цель."
+LocHelpText="Удар когтями, потенциально способный отравить жертву."
 
 ;;;;;;;;;;;;;;;;;;;;;;;;; Additional ADVENT Trooper types ;;;;;;;;;;;;;;;;;;;;;;;;
 

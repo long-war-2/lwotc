@@ -76,7 +76,7 @@ static function ModifyJudgementPanicChanceFunction(X2AbilityTemplate Template)
 // Replaces the configurable JUDGMENT_APPLYCHANCEATTACKVAL bonus to panic
 // chance with Skirmisher's current will and an extra bonus based on the
 // current tier of armor.
-static function name JudgementApplyChance(
+static final function name JudgementApplyChance(
 	const out EffectAppliedData ApplyEffectParameters,
 	XComGameState_BaseObject kNewTargetState,
 	XComGameState NewGameState)

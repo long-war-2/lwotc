@@ -16,7 +16,7 @@ var protectedwrite array<XComGameState_LWAlienActivity> ActivityStates;
 var protectedwrite X2LWAlienActivityTemplate ActivityTemplate;
 var int NumActivitiesToCreate;
 
-simulated function InitActivityCreation(X2LWAlienActivityTemplate Template, XComGameState NewGameState)
+simulated function InitActivityCreation(X2LWAlienActivityTemplate Template, XComGameState NewGameState, optional XComGameState_AdventChosen ChosenState = none)
 {
 	NumActivitiesToCreate = 999;
 
@@ -24,16 +24,16 @@ simulated function InitActivityCreation(X2LWAlienActivityTemplate Template, XCom
 	ActivityStates = class'XComGameState_LWAlienActivityManager'.static.GetAllActivities(NewGameState);
 }
 
-simulated function int GetNumActivitiesToCreate(XComGameState NewGameState)
+simulated function int GetNumActivitiesToCreate(XComGameState NewGameState, optional  XComGameState_AdventChosen ChosenState = none)
 {
-	PrimaryRegions = FindValidRegions(NewGameState);
+	PrimaryRegions = FindValidRegions(NewGameState, ChosenState);
 
 	NumActivitiesToCreate = Min(NumActivitiesToCreate, PrimaryRegions.Length);
 
 	return NumActivitiesToCreate;
 }
 
-simulated function StateObjectReference GetBestPrimaryRegion(XComGameState NewGameState)
+simulated function StateObjectReference GetBestPrimaryRegion(XComGameState NewGameState, optional XComGameState_AdventChosen ChosenState)
 {
 	local StateObjectReference SelectedRegion;
 
@@ -43,7 +43,7 @@ simulated function StateObjectReference GetBestPrimaryRegion(XComGameState NewGa
 	return SelectedRegion;
 }
 
-simulated function array<StateObjectReference> FindValidRegions(XComGameState NewGameState)
+simulated function array<StateObjectReference> FindValidRegions(XComGameState NewGameState, optional XComGameState_AdventChosen ChosenState = none)
 {
 	local X2LWActivityCondition Condition;
 	local XComGameStateHistory History;
@@ -74,6 +74,12 @@ simulated function array<StateObjectReference> FindValidRegions(XComGameState Ne
 			}
 			RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState, NewGameState);
 			if(RegionalAI.RegionalCooldowns.Find('ActivityName', ActivityTemplate.DataName) != -1)
+			{
+				bValidRegion = false;
+				break;
+			}
+			// LWoTC add - new condition for selecting from regions controlled by a Chosen.
+			if(RegionState.GetControllingChosen()!= ChosenState && ChosenState != NONE)
 			{
 				bValidRegion = false;
 				break;

@@ -66,14 +66,14 @@ BriefSummary="El daño cuerpo a cuerpo recibido se reduce en <Ability:IRON_SKIN_
 [SmartMacrophagesPCS X2EquipmentTemplate]
 FriendlyName="SCP: Macrófagos inteligentes"
 FriendlyNamePlural="SCP: Macrófagos inteligentes"
-BriefSummary="Reduce el tiempo de recuperación de las heridas y confiere inmunidad al veneno y al ácido."
+BriefSummary="Reduce el tiempo de recuperación de las heridas en 1 HP y confiere inmunidad al veneno y al ácido."
 
 [CenterMass X2AbilityTemplate]
 LocFriendlyName="Centro de masas"
 LocFlyOverText="Centro de masas"
-LocLongDescription="Infliges un punto adicional de daño básico con tu arma principal."
-LocHelpText="Infliges un punto adicional de daño básico con tu arma principal."
-LocPromotionPopupText="<Bullet/> Infliges un punto adicional de daño básico con tu arma principal, pistola o escopeta recortada."
+LocLongDescription="Infliges un punto adicional de daño básico con tu armas."
+LocHelpText="Infliges un punto adicional de daño básico con tus armas."
+LocPromotionPopupText="<Bullet/> Se aplica a tu arma principal, pistola y escopeta recortada."
 
 [Lethal X2AbilityTemplate]
 LocFriendlyName="Letal"
@@ -85,51 +85,52 @@ LocPromotionPopupText="<Bullet/> Infliges 2 puntos adicionales de daño básico 
 [HitandRun X2AbilityTemplate]
 LocFriendlyName="Dispara y huye"
 LocFlyOverText="Dispara y huye"
-LocLongDescription="Una vez por turno, obtienes una acción adicional después de efectuar un disparo estándar con tu arma principal contra un objetivo flanqueado o expuesto. "
-LocHelpText="Una vez por turno, obtienes una acción adicional después de efectuar un disparo estándar con tu arma principal contra un objetivo flanqueado o expuesto."
+LocLongDescription="Una vez por turno, obtienes una acción adicional después de efectuar un disparo estándar con tu arma principal contra un enemigo flanqueado. "
+LocHelpText="Una vez por turno, obtienes una acción adicional después de efectuar un disparo estándar con tu arma principal contra un enemigo flanqueado."
 LocPromotionPopupText="<Bullet/> No se puede usar en el mismo turno que Correr y disparar.<br/><Bullet/> Se concederán primero las acciones completas de bonificación de En serie y Muerte desde las alturas."
 
 [HitandSlither X2AbilityTemplate]
-LocLongDescription="Una vez por turno, obtienes una acción de movimiento adicional después de efectuar un disparo estándar con tu arma principal contra un objetivo flanqueado o expuesto."
-LocHelpText="Una vez por turno, obtienes una acción de movimiento adicional después de efectuar un disparo estándar con tu arma principal contra un objetivo flanqueado o expuesto."
-LocPromotionPopupText="<Bullet/> Una vez por turno, obtienes una acción de movimiento adicional después de efectuar un disparo estándar con tu arma principal contra un objetivo flanqueado o expuesto.<br/><Bullet/> Dispara y huye no se puede usar después de activar Correr y disparar.<br/><Bullet/> Se concederán primero las acciones completas de bonificación de Coleccionista y Muerte desde las alturas."
+LocLongDescription="Una vez por turno, obtienes una acción de movimiento adicional después de efectuar un disparo estándar con tu arma principal contra un enemigo flanqueado."
+LocHelpText="Una vez por turno, obtienes una acción de movimiento adicional después de efectuar un disparo estándar con tu arma principal contra un enemigo flanqueado."
+LocPromotionPopupText="<Bullet/> Una vez por turno, obtienes una acción de movimiento adicional después de efectuar un disparo estándar con tu arma principal contra un enemigo flanqueado.<br/><Bullet/> Dispara y huye no se puede usar después de activar Correr y disparar.<br/><Bullet/> Se concederán primero las acciones completas de bonificación de Coleccionista y Muerte desde las alturas."
 LocFriendlyName="Dispara y deslízate"
 LocFlyoverText="Dispara y deslízate"
 
 [CloseCombatSpecialist X2AbilityTemplate]
 LocFriendlyName="Especialista en cuerpo a cuerpo"
 LocFlyOverText="Especialista en cuerpo a cuerpo"
-LocLongDescription="Durante los turnos del enemigo, haces un disparo de reacción gratuito con tu arma principal contra cualquier enemigo visible a 4 casillas o menos de distancia que se mueva o dispare."
-LocHelpText="Durante los turnos del enemigo, haces un disparo de reacción gratuito contra cualquier enemigo visible a 4 casillas o menos de distancia que se mueva o dispare."
-LocPromotionPopupText="<Bullet/> No se activará si el soldado está oculto.<br/><Bullet/> Puedes disparar a cada enemigo con esta habilidad una vez por turno.<br/><Bullet/> Requiere 2 de munición.<br/>""."
+LocLongDescription="Durante los turnos del enemigo, haces un disparo de reacción gratuito con tu arma principal contra cualquier enemigo visible a <Ability:CCS_RANGE> casillas o menos de distancia que se mueva o ataque."
+LocHelpText="Durante los turnos del enemigo, haces un disparo de reacción gratuito contra cualquier enemigo visible a <Ability:CCS_RANGE> casillas o menos de distancia que se mueva o ataque."
+LocPromotionPopupText="<Bullet/> No se activará si el soldado está oculto.<br/><Bullet/> Puedes disparar a cada enemigo con esta habilidad una vez por turno.<br/><Bullet/> Requiere <Ability:CCS_AMMO_PER_SHOT> de munición.<br/>"
 
 [CloseCombatSpecialistAttack X2AbilityTemplate]
 LocFriendlyName="Especialista en cuerpo a cuerpo"
 LocFlyOverText="Especialista en cuerpo a cuerpo"
-LocLongDescription="Durante los turnos del enemigo, haces un disparo de reacción gratuito con tu arma principal contra cualquier enemigo visible a 4 casillas o menos de distancia que se mueva o dispare."
-LocHelpText="Durante los turnos del enemigo, haces un disparo de reacción gratuito contra cualquier enemigo visible a 4 casillas o menos de distancia que se mueva o dispare."
-LocPromotionPopupText="<Bullet/> No se activará si el soldado está oculto.<br/><Bullet/> Puedes disparar a cada enemigo con esta habilidad una vez por turno.<br/><Bullet/> Requiere 2 de munición.<br/>"
+LocLongDescription="Durante los turnos del enemigo, haces un disparo de reacción gratuito con tu arma principal contra cualquier enemigo visible a <Ability:CCS_RANGE> casillas o menos de distancia que se mueva o ataque."
+LocHelpText="Durante los turnos del enemigo, haces un disparo de reacción gratuito contra cualquier enemigo visible a <Ability:CCS_RANGE> casillas o menos de distancia que se mueva o ataque."
+LocPromotionPopupText="<Bullet/> No se activará si el soldado está oculto.<br/><Bullet/> Puedes disparar a cada enemigo con esta habilidad una vez por turno.<br/><Bullet/> Requiere <Ability:CCS_AMMO_PER_SHOT> de munición.<br/>"
 
 [CloseandPersonal X2AbilityTemplate]
 LocFriendlyName="Cercano y personal"
 LocFlyOverText="Cercano y personal"
 LocLongDescription="Confiere +30 de probabilidad de crítico contra objetivos adyacentes. La bonificación se reduce cuanto más lejos esté el objetivo."
 LocHelpText="Confiere +30 de probabilidad de crítico contra objetivos adyacentes. La bonificación se reduce cuanto más lejos esté el objetivo."
-LocPromotionPopupText="<Bullet/> Confiere +30 de probabilidad de crítico contra objetivos adyacentes.<br/><Bullet/> La bonificación se reduce un 5% por cada casilla adicional de distancia del objetivo, hasta un 0% a 7 o más casillas.<br/>"
+LocPromotionPopupText="<Bullet/> La bonificación se reduce un 5% por cada casilla adicional de distancia del objetivo, hasta un 0% a 7 o más casillas.<br/>"
 
 [DamnGoodGround X2AbilityTemplate]
 LocFriendlyName="Una posición de primera"
 LocFlyOverText="Una posición de primera"
 LocLongDescription="Confiere +10 de puntería y +10 de defensa contra objetivos que estén en menor elevación."
 LocHelpText="Confiere +10 de puntería y +10 de defensa contra objetivos que estén en menor elevación."
-LocPromotionPopupText="<Bullet/> Confiere +10 de puntería y +10 de defensa contra objetivos que estén en menor elevación.<br/><Bullet/> Esta habilidad no provee ventajas defensivas si la unidad está desorientada, aturdida, en pánico, en llamas or de alguna otra manera desabilitada."
+LocPromotionPopupText="<Bullet/> Confiere +10 de puntería y +10 de defensa contra objetivos que estén en menor elevación.<br/><Bullet/> Esta habilidad no provee ventajas defensivas si la unidad está desorientada, aturdida, en pánico, en llamas or de alguna otra manera desabilitada.<br/>"
 
 [Executioner_LW X2AbilityTemplate]
 LocFriendlyName="Ejecutor"
 LocFlyOverText="Ejecutor"
-LocLongDescription="Confiere +10 de puntería y +10 de probabilidad de crítico contra objetivos que tengan la mitad o menos de sus puntos de salud originales."
-LocHelpText="Confiere +10 de puntería y +10 de probabilidad de crítico contra objetivos que tengan la mitad o menos de sus puntos de salud originales."
-LocPromotionPopupText="<Bullet/> Confiere +10 de puntería y +10 de probabilidad de crítico contra objetivos que tengan la mitad o menos de sus puntos de salud originales.<br/>"
+LocLongDescription="Confiere +<Ability:EXECUTIONER_AIM_BONUS/> de puntería y +<Ability:EXECUTIONER_CRIT_BONUS/> de probabilidad de crítico contra objetivos que tengan la mitad o menos de sus puntos de salud originales."
+LocHelpText="Confiere +<Ability:EXECUTIONER_AIM_BONUS/> de puntería y +<Ability:EXECUTIONER_CRIT_BONUS/> de probabilidad de crítico contra objetivos que tengan la mitad o menos de sus puntos de salud originales."
+LocPromotionPopupText="<Bullet/> Confiere +<Ability:EXECUTIONER_AIM_BONUS/> de puntería y +<Ability:EXECUTIONER_CRIT_BONUS/> de probabilidad de crítico contra objetivos que tengan la mitad o menos de sus puntos de salud originales.<br/>"
+
 
 [Resilience X2AbilityTemplate]
 LocFriendlyName="Aguante"
@@ -150,28 +151,28 @@ LocFriendlyName="Agresión"
 LocFlyOverText="Agresión"
 LocLongDescription="Obtienes +5 de probabilidad de crítico por cada enemigo que puedas ver, hasta un máximo de 30."
 LocHelpText="Obtienes +5 de probabilidad de crítico por cada enemigo que puedas ver, hasta un máximo de 30."
-LocPromotionPopupText="<Bullet/> Obtienes +5 de probabilidad de crítico por cada enemigo que puedas ver, hasta un máximo de 30.<br/><Bullet/> Las unidades al alcance de la vista del pelotón confieren bonificaciones.<br/>"
+LocPromotionPopupText="<Bullet/> Las unidades al alcance de la vista del pelotón confieren bonificaciones.<br/>"
 
 [BringEmOn X2AbilityTemplate]
 LocFriendlyName="Dejad que vengan"
 LocFlyOverText="Dejad que vengan"
 LocLongDescription="Obtienes +1 de daño en los impactos críticos por cada dos enemigos que puedas ver, hasta un máximo de +8."
 LocHelpText="Obtienes +1 de daño en los impactos críticos por cada dos enemigos que puedas ver, hasta un máximo de +8."
-LocPromotionPopupText="<Bullet/> Obtienes +1 de daño en los impactos críticos por cada dos enemigos que puedas ver, hasta un máximo de +8.<br/><Bullet/> Las unidades al alcance de la vista del pelotón confieren bonificaciones.<br/>"
+LocPromotionPopupText="<Bullet/> Las unidades al alcance de la vista del pelotón confieren bonificaciones.<br/>"
 
 [HardTarget X2AbilityTemplate]
 LocFriendlyName="Objetivo difícil"
 LocFlyOverText="Objetivo difícil"
 LocLongDescription="Obtienes 5 de capacidad de esquivar por cada enemigo que puedas ver, hasta un máximo de +30."
 LocHelpText="Obtienes 5 de capacidad de esquivar por cada enemigo que puedas ver, hasta un máximo de +30."
-LocPromotionPopupText="<Bullet/> Obtienes 5 de capacidad de esquivar por cada enemigo que puedas ver, hasta un máximo de +30.<br/><Bullet/> Las unidades al alcance de la vista del pelotón no confieren bonificaciones.<br/><Bullet/> Esta habilidad no provee ventajas defensivas si la unidad está desorientada, aturdida, en pánico, en llamas or de alguna otra manera desabilitada."
+LocPromotionPopupText="<Bullet/> Las unidades al alcance de la vista del pelotón no confieren bonificaciones.<br/><Bullet/> Esta habilidad no provee ventajas defensivas si la unidad está desorientada, aturdida, en pánico, en llamas or de alguna otra manera desabilitada."
 
 [Infighter X2AbilityTemplate]
 LocFriendlyName="Luchador cercano"
 LocFlyOverText="Luchador cercano"
 LocLongDescription="Obtienes 25 de capacidad de esquivar contra ataques a 4 casillas o menos."
 LocHelpText="Obtienes 25 de capacidad de esquivar contra ataques a 4 casillas o menos."
-LocPromotionPopupText="<Bullet/> Obtienes 25 de capacidad de esquivar contra ataques a 4 casillas o menos.<br/><Bullet/> La bonificación de esquivar también se aplica a los ataques cuerpo a cuerpo.<br/><Bullet/> Esta habilidad no provee ventajas defensivas si la unidad está desorientada, aturdida, en pánico, en llamas or de alguna otra manera desabilitada."
+LocPromotionPopupText="<Bullet/> La bonificación de esquivar también se aplica a los ataques cuerpo a cuerpo.<br/><Bullet/> Esta habilidad no provee ventajas defensivas si la unidad está desorientada, aturdida, en pánico, en llamas or de alguna otra manera desabilitada."
 
 [DepthPerception X2AbilityTemplate]
 LocFriendlyName="Percepción de la profundidad"
@@ -199,7 +200,7 @@ LocFriendlyName="Encuentros cercanos"
 LocFlyOverText="Encuentros cercanos"
 LocLongDescription="Una vez por turno, obtienes una acción de bonificación después de efectuar un disparo estándar con tu arma principal contra un enemigo a 4 casillas o menos de distancia."
 LocHelpText="Una vez por turno, obtienes una acción de bonificación después de efectuar un disparo estándar con tu arma principal contra un enemigo a 4 casillas o menos de distancia."
-LocPromotionPopupText="<Bullet/> Una vez por turno, obtienes una acción de bonificación después de efectuar un disparo estándar con tu arma principal contra un enemigo a 4 casillas o menos de distancia.<br/><Bullet/> Encuentros cercanos no se puede usar después de activar Correr y disparar.<br/><Bullet/> Un anillo rojo marcará el alcance de la habilidad.<br/><Bullet/> No se puede usar en el mismo turno que Correr y disparar.<br/>"
+LocPromotionPopupText="<Bullet/> Un anillo rojo marcará el alcance de la habilidad.<br/><Bullet/> No se puede usar en el mismo turno que Correr y disparar.<br/>"
 
 [LoneWolf X2AbilityTemplate]
 LocFriendlyName="Lobo solitario"
@@ -258,9 +259,9 @@ LocPromotionPopupText="<Bullet/> La bonificación de daño se aplica multiplicat
 [CyclicFire X2AbilityTemplate]
 LocFriendlyName="Fuego cíclico"
 LocFlyOverText="Fuego cíclico"
-LocLongDescription="Disparo especial: efectúa 3 disparos contra un objetivo en un solo ataque. Requiere ambas acciones, y todos los disparos tienen penalizaciones de puntería. Tiempo de enfriamiento de 4 turnos."
-LocHelpText="Disparo especial: efectúa 3 disparos contra un objetivo en un solo ataque. Requiere ambas acciones, y todos los disparos tienen penalizaciones de puntería. Tiempo de enfriamiento de 4 turnos."
-LocPromotionPopupText="<Bullet/> Disparo especial: efectúa 3 disparos contra un objetivo en un solo ataque. Requiere dos acciones, y todos los disparos tienen una penalización de -15 a la puntería. <br/><Bullet/> Requiere <Ability:SelfAmmoCost/> de munición.<br/><Bullet/> Requiere un arma de disparo de ráfaga; la habilidad no estará disponible cuando se equipe una escopeta o un fusil de francotirador como arma principal."
+LocLongDescription="Disparo especial: efectúa 3 disparos contra un objetivo en un solo ataque. Requiere ambas acciones, y todos los disparos tienen penalizaciones de puntería. Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos."
+LocHelpText="Disparo especial: efectúa 3 disparos contra un objetivo en un solo ataque. Requiere ambas acciones, y todos los disparos tienen penalizaciones de puntería. Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos."
+LocPromotionPopupText="<Bullet/> Disparo especial: efectúa 3 disparos contra un objetivo en un solo ataque. Requiere dos acciones, y todos los disparos tienen una penalización de -<Ability:CYCLIC_FIRE_AIM_MALUS/> a la puntería. <br/><Bullet/> Requiere <Ability:SelfAmmoCost/> de munición.<br/><Bullet/> Requiere munición de ráfaga. La habilidad no estará disponible cuando se equipe una escopeta o un fusil de francotirador como arma principal."
 
 [StreetSweeper X2AbilityTemplate]
 LocFriendlyName="Recortada"
@@ -321,9 +322,9 @@ LocPromotionPopupText="<Bullet/>Obtienes +20 de puntería en tu siguiente dispar
 [LockedOn X2AbilityTemplate]
 LocFriendlyName="Blanco fijado"
 LocFlyOverText="Blanco fijado"
-LocLongDescription="Obtienes +10 de puntería y +10 a crítico para los disparos sucesivos contra la misma unidad enemiga."
-LocHelpText="Obtienes +10 de puntería para los disparos sucesivos contra la misma unidad enemiga."
-LocPromotionPopupText="<Bullet/> Obtienes +10 de puntería y +10 a crítico para los disparos sucesivos contra el mismo objetivo. No se acumula y solo se aplica a las unidades enemigas.<br/><Bullet/> Los disparos basados en área de efecto no conceden la bonificación."
+LocLongDescription="Obtienes +<Ability:LOCKEDON_AIM_BONUS/> de puntería y +<Ability:LOCKEDON_CRIT_BONUS/> de crítico para los disparos sucesivos contra la misma unidad enemiga."
+LocHelpText="Obtienes +<Ability:LOCKEDON_AIM_BONUS/> de puntería y +<Ability:LOCKEDON_CRIT_BONUS/> de crítico para los disparos sucesivos contra la misma unidad enemiga."
+LocPromotionPopupText="<Bullet/> No se acumula y solo se aplica a las unidades enemigas.<br/><Bullet/> Los disparos basados en área de efecto no conceden la bonificación."
 
 [Sentinel_LW X2AbilityTemplate]
 LocFriendlyName="Centinela"
@@ -377,14 +378,14 @@ LocPromotionPopupText="<Bullet/> Correr y disparar permite a las unidades acorta
 [Suppression_LW X2AbilityTemplate]
 LocFriendlyName="Contención"
 LocFlyOverText="Contención"
-LocLongDescription="Dispara una ráfaga que inmoviliza al objetivo, concede un disparo de reacción contra él si se mueve y restringe el uso de muchas habilidades. Además, el objetivo sufre una penalización de puntería de <Ability:SUPPRESSIONPENALTY/>."
+LocLongDescription="Dispara una ráfaga que inmoviliza al objetivo, concede un disparo de reacción contra él si se mueve y restringe el uso de muchas habilidades. Además, el objetivo sufre una penalización de puntería de <Ability:SUPPRESSIONPENALTY/>. También agrega una reducción de puntería de -15 para ese turno aunque se zafe de la contención."
 LocHelpText="Penaliza la puntería del objetivo y le dispara si se mueve."
-LocPromotionPopupText="<Bullet/> Usar Contención cuesta <Ability:SelfAmmoCost/> puntos de munición, pero no tiene tiempo de enfriamiento.<br/><Bullet/> La contención se puede cancelar si la unidad que la practica recibe daño.<br/><Bullet/> Si varias unidades contienen a un objetivo, se acumula la penalización a la puntería.<br/><Bullet/> No se puede usar llevando equipados una escopeta o un fusil de francotirador.<br/><Bullet/> La contención restringe muchas de las habilidades del objetivo, incluido el uso de cohetes y granadas."
+LocPromotionPopupText="<Bullet/> Usar Contención cuesta <Ability:SelfAmmoCost/> puntos de munición, pero no tiene tiempo de enfriamiento.<br/><Bullet/> La contención se puede cancelar si la unidad que la practica recibe daño.<br/><Bullet/> Si varias unidades contienen a un objetivo, se acumula la penalización a la puntería.<br/><Bullet/> No se puede usar llevando equipados una escopeta o un fusil de francotirador.<br/><Bullet/> La contención restringe muchas de las habilidades del objetivo, incluido el uso de cohetes y granadas. También agrega una reducción de puntería de -15 para ese turno aunque se zafe de la contención."
 
 [AreaSuppression X2AbilityTemplate]
 LocFriendlyName="Contención de zona"
 LocFlyOverText="Contención de zona"
-LocLongDescription="Dispara una ráfaga que inmoviliza a varios objetivos en un radio de 4 casillas y concede un disparo de reacción contra todo el que se mueva. Todos los objetivos sufren también una penalización a la puntería de <Ability:SUPPRESSIONPENALTY/> hasta el fin de la contención. No puede usarse estando oculto."
+LocLongDescription="Dispara una ráfaga en un radio de <Ability:AREA_SUPPRESSION_RADIUS_TILES> casillas produciendo inmovilización a varios objetivos,  y concede un disparo de reacción contra todo el que se mueva. Los objetivos sufren también una penalización a la puntería de <Ability:SUPPRESSIONPENALTY/> hasta el fin de la contención. No puede usarse en modo oculto."
 LocHelpText="Contiene a varios objetivos dentro de un área de efecto."
 LocPromotionPopupText="<Bullet/> No puede usarse la zona de contención cuando el soldado está oculto.<br/><Bullet/> Cualquier unidad que intente moverse recibirá disparos de reacción mientras le quede munición a la unidad que realice la contención.<br/><Bullet/> No funciona con escopetas o fusiles de francotirador.<br/><Bullet/> Usar la zona de contención cuesta <Ability:SelfAmmoCost/> puntos de munición, más uno de munición adicional por cada disparo de reacción. No tiene tiempo de enfriamiento.<br/><Bullet/> La zona de contención se cancelará si la unidad que la practica recibe daño.<br/><Bullet/> Si varias unidades contienen a un objetivo, se acumula la penalización a la puntería.<br/><Bullet/> La contención restringe muchas de las habilidades del objetivo, incluido el uso de cohetes y granadas."
 
@@ -395,9 +396,9 @@ LocFlyOverText="Contención"
 [DangerZone X2AbilityTemplate]
 LocFriendlyName="Zona de peligro"
 LocFlyOverText="Zona de peligro"
-LocLongDescription="La zona de contención afecta a los enemigos en un radio de 5 casillas."
+LocLongDescription=" Incrementa la zona de contención en un radio de <Ability:DANGER_ZONE_AREA_SUPPRESSION_RADIUS_TILES> casillas."
 LocHelpText="Zona de contención más amplia."
-LocPromotionPopupText="<Bullet/> La zona de contención afecta a los enemigos en un radio de 5 casillas.<br/>"
+LocPromotionPopupText="<Bullet/> Incrementa la zona de contención en un radio de <Ability:DANGER_ZONE_AREA_SUPPRESSION_RADIUS_TILES> casillas.<br/>"
 
 [Lockdown X2AbilityTemplate]
 LocFriendlyName="Encierro"
@@ -494,16 +495,16 @@ LocPromotionPopupText="<Bullet/> Las unidades enemigas pirateadas mediante Proto
 [Covert X2AbilityTemplate]
 LocFriendlyName="Encubierto"
 LocFlyOverText="Encubierto"
-LocLongDescription="El alcance de detección de los enemigos contra ti se reduce un 25%."
+LocLongDescription="El alcance de detección de los enemigos contra ti se reduce un <Ability:COVERT_DETECTION_RANGE_REDUCTION/>%."
 LocHelpText="El alcance de detección de los enemigos contra ti se reduce."
-LocPromotionPopupText="<Bullet/> El alcance de detección de los enemigos contra ti se reduce un 25%, tal y como indican las casillas rojas que rodean a los enemigos no alertados por tu presencia.<br/><Bullet/> Esta habilidad también otorga una pequeña reducción al impacto de este soldado en los tiempos de infiltración.<br/><Bullet/> No se aplica a las torres de seguridad de ADVENT."
+LocPromotionPopupText="<Bullet/> El rango de detección se indica mediante casillas rojas que rodean a los enemigos que no están alertados de tu presencia.<br/><Bullet/> Esta habilidad también otorga una pequeña reducción al impacto de este soldado en los tiempos de infiltración.<br/><Bullet/> No se aplica a las torres de seguridad de ADVENT."
 
 [Ghostwalker X2AbilityTemplate]
 LocFriendlyName="Movimiento fantasmal"
 LocFlyOverText="Movimiento fantasmal"
-LocLongDescription="Activa esta habilidad para reducir el alcance de detección de los enemigos contra ti en un 25% durante el resto de tu turno y del siguiente."
-LocHelpText="Reduce el alcance de detección de los enemigos un 25% durante 2 turnos."
-LocPromotionPopupText="<Bullet/> Activa esta habilidad para reducir el alcance de detección de los enemigos contra ti en un 25% durante 2 turnos (incluido el turno actual), tal y como indican las casillas rojas que rodean a los enemigos no alertados por tu presencia.<br/><Bullet/> Tiempo de enfriamiento de <Ability:SelfCooldown/> turnos.<br/><Bullet/> No requiere acciones para activarse.<br/><Bullet/> Esta habilidad también otorga una pequeña reducción al impacto de este soldado en los tiempos de infiltración.<br/><Bullet/> No se aplica a las torres de seguridad de ADVENT."
+LocLongDescription="Activa esta habilidad para reducir el alcance de detección de los enemigos contra ti en un <Ability:COVERT_DETECTION_RANGE_REDUCTION/>% durante <Ability:GHOSTWALKER_DURATION/> turno/s."
+LocHelpText="Reduce el alcance de detección de los enemigos un <Ability:COVERT_DETECTION_RANGE_REDUCTION/>% durante <Ability:GHOSTWALKER_DURATION/> turno/s."
+LocPromotionPopupText="<Bullet/> El rango de detección se indica mediante casillas rojas que rodean a los enemigos que no están alertados de tu presencia.<br/><Bullet/> Incluye el turno actual.<br/><Bullet/> Tiempo de enfriamiento de <Ability:SelfCooldown/> turnos.<br/><Bullet/> No requiere acciones para activarse.<br/><Bullet/> Esta habilidad también otorga una pequeña reducción al impacto de este soldado en los tiempos de infiltración.<br/><Bullet/> No se aplica a las torres de seguridad de ADVENT."
 
 [Kubikuri X2AbilityTemplate]
 LocFriendlyName="Kubikiri"
@@ -550,16 +551,16 @@ LocPromotionPopupText="<Bullet/> El efecto se aplica a la curación con GREMLIN,
 [DenseSmoke X2AbilityTemplate]
 LocFriendlyName="Humo denso"
 LocFlyOverText="Humo denso"
-LocLongDescription="Tus granadas de humo confieren 10 de defensa adicional."
-LocHelpText="Tus granadas de humo confieren 10 de defensa adicional."
-LocPromotionPopupText="<Bullet/> Tus granadas de humo confieren 10 de defensa adicional a aquellos dentro del humo, para un total de 30.<br/>"
+LocLongDescription="Tus granadas de humo confieren 10 de defensa adicional. También otorga una granada de humo gratis."
+LocHelpText="Tus granadas de humo confieren 10 de defensa adicional. También otorga una granada de humo gratis."
+LocPromotionPopupText="<Bullet/> Tus granadas de humo confieren 10 de defensa adicional a aquellos dentro del humo, para un total de 30. También otorga una granada de humo gratis.<br/>"
 
 [Collateral_LW X2AbilityTemplate]
 LocFriendlyName="Daños colaterales"
-LocLongDescription="Dispara una ráfaga de balas <Ability:WeaponName/> a una ubicación, destruyendo la cobertura dentro del área. Produce una pequeña cantidad de daño a los enemigos. 3 turnos de cooldown y requiere de 2 de munición."
-LocHelpText="Dispara una ráfaga de balas <Ability:WeaponName/> a una ubicación, destruyendo la cobertura dentro del área."
+LocLongDescription="Dispara una ráfaga de balas a una ubicación con tu <Ability:WeaponName/>, destruyendo la cobertura dentro del área. Produce una pequeña cantidad de daño a los enemigos. 4 turnos de cooldown y requiere de 2 de munición."
+LocHelpText="Dispara una ráfaga de balas a una ubicación con tu <Ability:WeaponName/>, destruyendo la cobertura dentro del área."
 LocFlyOverText="Daños colaterales"
-LocPromotionPopupText="<Bullet/> Dispara una ráfaga de balas <Ability:WeaponName/> a una ubicación, destruyendo la cobertura dentro del área.<br/><Bullet/> Causa un gran daño ambiental a todos los objetos en la zona de impacto.<br/><Bullet/> Daños colaterales afecta a los enemigos dentro del área de lanzamiento: dependiendo del tier equipado <Ability:WeaponName/>, 1-2/2/2-3 de daño.<br/><Bullet/> Cuesta 2 de munición y tiene 3 turnos de tiempo de enfriamiento.<br/>"
+LocPromotionPopupText="<Bullet/> Dispara una ráfaga de balas a una ubicación con tu <Ability:WeaponName/>, destruyendo la cobertura dentro del área.<br/><Bullet/> Causa un gran daño ambiental a todos los objetos en la zona de impacto.<br/><Bullet/> Produce a los enemigos dentro del área de efecto un 40% del daño base del arma.<br/><Bullet/> Cuesta 2 de munición y tiene 4 turnos de tiempo de enfriamiento.<br/>"
 
 
 [DenseSmokeGrenade X2GrenadeTemplate]
@@ -677,35 +678,36 @@ LocFriendlyName="Bastión"
 LocLongDescription="Fortaleza ahora otorga inmunidad a los compañeros cercanos."
 LocHelpText="Fortaleza ahora otorga inmunidad a los compañeros cercanos."
 LocFlyOverText="Bastión"
-LocPromotionPopupText="<Bullet/> Bastión tiene un radio de 4 casillas.<br/><Bullet/> Moverse al lado de los aliados afectados eliminará inmediatamente sus efectos de estado físico negativos.<br/>"
+LocPromotionPopupText="<Bullet/> Bastión tiene un radio de <Ability:BASTION_RADIUS_TILES> casillas.<br/><Bullet/> Moverse al lado de los aliados afectados eliminará inmediatamente sus efectos de estado físico negativos.<br/>"
 
 [BastionPassive X2AbilityTemplate]
 LocFriendlyName="Bastión"
 LocLongDescription="Fortaleza ahora otorga inmunidad a los compañeros cercanos."
 LocHelpText="Fortaleza ahora otorga inmunidad a los compañeros cercanos."
 LocFlyOverText="Bastión"
-LocPromotionPopupText="<Bullet/> Bastión tiene un radio de 4 casillas.<br/><Bullet/> Moverse al lado de los aliados afectados eliminará inmediatamente sus efectos de estado físico negativos.<br/>"
+LocPromotionPopupText="<Bullet/> Bastión tiene un radio de <Ability:BASTION_RADIUS_TILES> casillas.<br/><Bullet/> Moverse al lado de los aliados afectados eliminará inmediatamente sus efectos de estado físico negativos.<br/>"
 
 [BastionCleanse X2AbilityTemplate]
 LocFriendlyName="Bastión"
 LocLongDescription="Fortaleza ahora otorga inmunidad a los compañeros cercanos."
 LocHelpText="Fortaleza ahora otorga inmunidad a los compañeros cercanos."
 LocFlyOverText="Bastión"
-LocPromotionPopupText="<Bullet/> Bastión tiene un radio de 4 casillas.<br/><Bullet/> Moverse al lado de los aliados afectados eliminará inmediatamente sus efectos de estado físico negativos.<br/>"
+LocPromotionPopupText="<Bullet/> Bastión tiene un radio de <Ability:BASTION_RADIUS_TILES> casillas.<br/><Bullet/> Moverse al lado de los aliados afectados eliminará inmediatamente sus efectos de estado físico negativos.<br/>"
 
 [IronCurtain X2AbilityTemplate]
 LocFriendlyName="Telón de acero"
 LocFlyOverText="Telón de acero"
-LocLongDescription="Disparo especial que causa la mitad de daño, pero que reduce la movilidad del objetivo durante los siguientes 2 turnos. Ataque con arma principal basado en cono."
+LocLongDescription="Disparo especial que causa la mitad de daño, pero que reduce la movilidad del objetivo durante los siguientes 2 turnos. Ataque con arma principal basado en cono. La penalización por movilidad se aplica incluso si el ataque falla."
 LocHelpText="Disparo especial que causa poco daño, pero que reduce la movilidad del enemigo durante los siguientes 2 turnos."
-LocPromotionPopupText="<Bullet/> Si este ataque basado en cono acierta, Telón de acero causa la mitad de daño y causa -5 a la movilidad del enemigo durante 2 turnos.<br/><Bullet/> Tiempo de enfriamiento de 3 turnos.<br/><Bullet/> Utiliza 3 de munición.<br/><Bullet/> Se puede usar después de moverse.<br/><Bullet/> Telón de acero no funciona con escopetas o fusiles de francotirador.<br/><Bullet/> Los aliados que estén dentro del cono pueden ser dañados por esta habilidad.<br/>"
+LocPromotionPopupText="<Bullet/> Si este ataque basado en cono acierta, Telón de acero causa la mitad de daño y causa -5 a la movilidad del enemigo durante 2 turnos.<br/><Bullet/> Tiempo de enfriamiento de 3 turnos.<br/><Bullet/> Utiliza 3 de munición.<br/><Bullet/> Se puede usar después de moverse.<br/><Bullet/> Telón de acero no funciona con escopetas o fusiles de francotirador.<br/><Bullet/> Los aliados que estén dentro del cono pueden ser dañados por esta habilidad.<br/><Bullet/> La penalización por movilidad se aplica incluso si el ataque falla."
+
 
 [IronCurtainShot X2AbilityTemplate]
 LocFriendlyName="Telón de acero"
 LocFlyOverText="Telón de acero"
-LocLongDescription="Disparo especial que causa poco daño, pero que reduce la movilidad del enemigo durante los siguientes 2 turnos. Ataque con arma principal basado en cono."
-LocHelpText="Disparo especial que causa poco daño, pero que reduce la movilidad del enemigo durante los siguientes 2 turnos."
-LocPromotionPopupText="<Bullet/> Si acierta, Telón de acero causa el 25% del daño normal y causa -4 a la movilidad del enemigo durante 2 turnos.<br/><Bullet/> Tiempo de enfriamiento de 4 turnos.<br/><Bullet/> Utiliza <Ability:SelfAmmoCost/> de munición.<br/><Bullet/> Se puede usar después de moverse.<br/><Bullet/> Telón de acero no funciona con escopetas o fusiles de francotirador.<br/>"
+LocLongDescription="Disparo especial que causa <Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>% de daño normal, pero que reduce la movilidad del objetivo durante los siguientes <Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/> turno/s. Ataque con arma principal basado en cono. La penalización por movilidad se aplica incluso si el ataque falla."
+LocHelpText="Disparo especial que causa <Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>% de daño normal, pero que reduce la movilidad del objetivo durante los siguientes <Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/> turno/s."
+LocPromotionPopupText="<Bullet/> Si acierta, Telón de acero causa un <Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>% del daño normal y aplica -<Ability:IRON_CURTAIN_MOBILITY_DAMAGE> a la movilidad del objetivo durante <Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/> turno/s.<br/><Bullet/> Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos.<br/><Bullet/> Utiliza <Ability:SelfAmmoCost/> de munición.<br/><Bullet/> Se puede usar después de moverse.<br/><Bullet/> Telón de acero no funciona con escopetas o fusiles de francotirador.<br/><Bullet/> Los aliados en el cono pueden ser golpeados por esta habilidad.<br/><Bullet/> La penalización por movilidad se aplica incluso si el ataque falla."
 str_IronCurtainEffect="Telón de acero"
 
 [Slash_LW X2AbilityTemplate]
@@ -713,7 +715,12 @@ LocFriendlyName="Corte"
 LocFlyOverText="Corte"
 LocLongDescription="Atacas a un objetivo adyacente con la espada. Usa una acción."
 LocHelpText="Atacas a un objetivo adyacente con la espada. Usa una acción."
-LocPromotionPopupText="<Bullet/> Atacas a un objetivo adyacente con la espada.<br/><Bullet/> Usa una acción y no finaliza automáticamente tu turno, así que se pueden ejecutar 2 ataques en un turno."
+LocPromotionPopupText="<Bullet/> Usa una acción y no finaliza automáticamente tu turno, así que se pueden ejecutar 2 ataques en un turno."
+
+[SwordSlice X2AbilityTemplate]
+LocFriendlyName="Tajo veloz"
+LocPromotionPopupText="<Bullet/> Puedes activar la habilidad Corte colocando el cursor de movimiento sobre un enemigo.<br/><Bullet/> El <Ability:ClassName> puede realizar un movimiento de \"correr\", usando ambas acciones para moverse, y además activar un Corte contra un enemigo atacante.<br/>"
+
 
 [AbsorptionFields X2AbilityTemplate]
 LocFriendlyName="Campos de impacto"
@@ -725,8 +732,8 @@ LocPromotionPopupText="<Bullet/>Activa un campo de fuerza que reduce el daño re
 [BodyShield X2AbilityTemplate]
 LocFriendlyName="Escudo corporal"
 LocFlyOverText="Escudo corporal"
-LocLongDescription="Acción gratuita. El enemigo objetivo sufre -<Ability:BODY_SHIELD_DEF_BONUS> de puntería y -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> de probabilidad de crítico contra ti durante <Ability:BODY_SHIELD_DURATION> turnos. Tiempo de enfriamiento de <Ability:BODY_SHIELD_COOLDOWN> turnos."
-LocHelpText="Acción gratuita. El enemigo objetivo sufre -<Ability:BODY_SHIELD_DEF_BONUS> de puntería y -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> de probabilidad de crítico contra ti durante <Ability:BODY_SHIELD_DURATION> turnos. Tiempo de enfriamiento de <Ability:BODY_SHIELD_COOLDOWN> turnos."
+LocLongDescription="Acción gratuita. El enemigo objetivo sufre -<Ability:BODY_SHIELD_DEF_BONUS> de puntería y -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> de probabilidad de crítico contra ti durante <Ability:BODY_SHIELD_DURATION> turnos. Tiempo de enfriamiento de <Ability:SelfCooldown_LW> turnos."
+LocHelpText="Acción gratuita. El enemigo objetivo sufre -<Ability:BODY_SHIELD_DEF_BONUS> de puntería y -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> de probabilidad de crítico contra ti durante <Ability:BODY_SHIELD_DURATION> turnos. Tiempo de enfriamiento de <Ability:SelfCooldown_LW> turnos."
 
 ; LWOTC translated
 LocPromotionPopupText="<Bullet/> Un enemigo objetivo sufre -<Ability:BODY_SHIELD_DEF_BONUS> de puntería y -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> de probabilidad de crítico contra el soldado.<br/><Bullet/> Acción sin coste.<br/><Bullet/> Tiempo de enfriamiento de <Ability:SelfCooldown/> turnos."
@@ -756,8 +763,8 @@ LocPromotionPopupText="<Bullet/> El número de puntos de salud que has perdido e
 LocFriendlyName="Fusión de mentes"
 LocFlyOverText="Fusión de mentes"
 LocLongDescription="Incrementa la efectividad de Fusión de mente concediendo una bonificación a la probabilidad de crítico, confiriendo mayores bonificaciones a la voluntad y puntos de salud ablativos, y reduciendo su tiempo de enfriamiento."
-LocHelptext="Concede una bonificación temporal a la voluntad y puntos de salud ablativos a un aliado."
-LocPromotionPopupText="<Bullet/> Concede al aliado objetivo 1 punto de salud ablativo (escudo), además de otro más por cada 30 de puntuación de ataque psi del agente psi que esté usando Fusión de mentes.<br/><Bullet/> Concede al aliado objetivo 1 de voluntad por cada 10 de puntuación de ataque psi del agente psi.<br/><Bullet/> El efecto dura hasta el siguiente turno del agente psi.<br/><Bullet/> Tiempo de enfriamiento de 3 turnos.<br/><Bullet/> Solo se puede tomar como objetivo a aliados visibles.<br/><Bullet/> El amplificador psi mejorado concede una bonificación a la voluntad y puntos de salud ablativos adicionales.<br/><Bullet/> Requiere una acción.<br/><Bullet/> <Bullet/> Concede una bonificación de probabilidad de crítico de 1% por cada 5 puntos de ataque psi."
+LocHelptext="Concede una bonificación temporal a la voluntad y puntos de salud ablativos a un aliado orgánico."
+LocPromotionPopupText="<Bullet/> Concede al aliado orgánico objetivo +1/+<Ability:MIND_MERGE_AMP_MG_TOTAL_SHIELDHP>/+<Ability:MIND_MERGE_AMP_BM_TOTAL_SHIELDHP> puntos de salud ablativo (escudo) dependiendo del nivel de amplificador Psi, además de otro más por cada <Ability:MIND_MERGE_SHIELDHP_DIVISOR> de puntuación de ataque psi del agente psi que esté usando Fusión de mentes.<br/><Bullet/> Concede al aliado orgánico objetivo +0/+<Ability:MIND_MERGE_AMP_MG_TOTAL_WILL>/+<Ability:MIND_MERGE_AMP_BM_TOTAL_WILL> de voluntad, dependiendo del nivel de amplificador Psi, por cada <Ability:MIND_MERGE_WILL_DIVISOR> de puntuación de ataque psi del agente psi.<br/><Bullet/> Otorga al aliado objetivo +0/+<Ability:MIND_MERGE_AMP_MG_TOTAL_CRIT>/+<Ability:MIND_MERGE_AMP_BM_TOTAL_CRIT> de crítico dependiendo del nivel de amplificador Psi, y +1 de crítico por <Ability:MIND_MERGE_CRIT_DIVISOR> de puntuación de ataque psi del agente psi.<br/><Bullet/> El efecto dura hasta el siguiente turno del agente psi.<br/><Bullet/> Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos.<br/><Bullet/> Solo se puede tomar como objetivo a aliados visibles.<br/><Bullet/> El amplificador psi mejorado concede una bonificación a la voluntad y puntos de salud ablativos adicionales.<br/><Bullet/> Requiere una acción.<br/><Bullet/> <Bullet/> Concede una bonificación de probabilidad de crítico de 1% por cada 5 puntos de ataque psi."
 
 [SoulMerge X2AbilityTemplate]
 LocFriendlyName="Fusión de almas"
@@ -765,6 +772,14 @@ LocFlyOverText="Fusión de almas"
 LocLongDescription="Aumenta la eficacia de Fusión de mentes al conferir mayores bonificaciones a la voluntad y puntos de salud ablativos y reduciendo su tiempo de enfriamiento."
 LocHelpText="Aumenta la eficacia de Fusión de mentes."
 LocPromotionPopupText="<Bullet/> Reduce 1 turno el tiempo de enfriamiento de Fusión de mentes.<br/><Bullet/> La bonificación de puntos de salud ablativos mejora en 1 por cada 20 de puntuación de ataque psi.<br/><Bullet/> La bonificación a la voluntad mejora en 1 por cada 5 de puntuación de ataque psi.<br/>"
+
+[NullLance X2AbilityTemplate]
+LocFriendlyName="Lanza de anulación"
+LocLongDescription="Proyecta un haz de terrible potencia que daña a todos los objetivos que atraviese. Este ataque puede penetrar en múltiples enemigos y obstáculos."
+LocHelpText="Proyecta un haz de energía psiónica que daña a todos los objetivos que encuentra a su paso."
+LocFlyOverText="Lanza de anulación"
+LocPromotionPopupText="<Bullet/> Lanza de anulación tiene un tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos.<br/><Bullet/> El daño de Lanza de anulación se puede aumentar mejorando el amplificador psi del agente psi.<br/>"
+
 
 [Shadowstrike_LW X2AbilityTemplate]
 LocFriendlyName="Asesino"
@@ -800,10 +815,10 @@ LocFriendlyNameWhenConcealed="Zona de eliminación (oculto)"
 [XComGame.DeathFromAbove X2AbilityTemplate]
 [DeathFromAbove X2AbilityTemplate]
 LocFriendlyName="Muerte desde las alturas"
-LocLongDescription="Matar a un enemigo en una elevación inferior con tu <Ability:WeaponName/> cuesta una sola acción y no termina el turno. También aporta una mejora de precisión a larga distancia en los rifles de francotirador y Vektor."
+LocLongDescription="Matar a un enemigo en una elevación inferior con tu <Ability:WeaponName/> cuesta una sola acción y no termina el turno. También reduce las penalizaciones de largo alcance en un 50% para rifles de francotirador y rifles Vektor ."
 LocHelpText="Matar a un enemigo en una elevación inferior con tu <Ability:WeaponName/> cuesta una sola acción y no termina el turno."
 LocFlyOverText="Muerte desde las alturas"
-LocPromotionPopupText="<Bullet/> Muerte desde las alturas se combina bien con las habilidades de pistola, o simplemente puede volver más móvil a un soldado.<br/><Bullet/> También aporta una mejora de precisión a larga distancia en los rifles de francotirador."
+LocPromotionPopupText="<Bullet/> Muerte desde las alturas se combina bien con el mod de arma culata, o simplemente puede volver más móvil a un soldado.<br/><Bullet/> También reduce las penalizaciones de largo alcance en un 50% para rifles de francotirador y rifles Vektor."
 
 [XComGame.Implacable X2AbilityTemplate]
 [Implacable X2AbilityTemplate]
@@ -1066,18 +1081,155 @@ LocFriendlyName="Fuego rápido"
 LocLongDescription="Dispara dos veces seguidas a un enemigo. Cada disparo sufre una penalización de <Ability:RAPIDFIREPENALTY/> en la puntería."
 LocHelpText="Dispara dos veces seguidas a un enemigo. Cada disparo sufre una penalización de <Ability:RAPIDFIREPENALTY/> en la puntería."
 LocFlyOverText="Fuego rápido"
-LocPromotionPopupText="<Bullet/> Tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos. Fuego rápido es una habilidad devastadora para infligir daño a distancia.<br/>"
+LocPromotionPopupText="<Bullet/> Tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos. Fuego rápido es una habilidad devastadora para infligir daño a distancia.<br/><Bullet/> Fuego rápido no puede emplearse con Vista de pelotón.<br/>"
 
 [RapidFireSnapShot X2AbilityTemplate]
 LocFriendlyName="Fuego rápido (Disparo instantáneo)"
 LocLongDescription="Dispara dos veces seguidas a un enemigo. Cada disparo sufre una penalización de <Ability:RAPIDFIREPENALTY/> en la puntería. Puede usarse una vez por turno."
 LocHelpText="Dispara dos veces seguidas a un enemigo. Cada disparo sufre una penalización de <Ability:RAPIDFIREPENALTY/> en la puntería."
 LocFlyOverText="Fuego rápido"
-LocPromotionPopupText="<Bullet/> Tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos. Fuego rápido es una habilidad devastadora para infligir daño a distancia.<br/>"
+LocPromotionPopupText="<Bullet/> Tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos. Fuego rápido es una habilidad devastadora para infligir daño a distancia.<br/><Bullet/> Fuego rápido no puede emplearse con Vista de pelotón.<br/>"
 
 [RapidFireSnapShot2 X2AbilityTemplate]
 LocFriendlyName="Fuego rápido"
 LocFlyOverText="Fuego rápido"
+
+
+[RepairMW_LW X2AbilityTemplate]
+LocFriendlyName="Reparar"
+LocLongDescription="Envía el BIT a un aliado robótico dañado y cúralo, neutraliza el ácido y repara toda la armadura destrozada."
+LocHelpText="Envía el BIT para reparar un aliado robótico dañado."
+LocFlyOverText="Reparar"
+LocPromotionPopupText="<Bullet/> El <Ability:ClassName/> puede usar Reparar para curar a otros aliados robóticos durante la batalla (o a sí mismo, en el caso del SPARK).<br/><Bullet/> La reparación restaurará 4/6/8 de HP, eliminará cualquier ácido y restablecerá la armadura del objetivo al máximo.<br/><Bullet/> Reparar tiene 1 carga por misión y obtiene una carga adicional con la habilidad de Sistemas de reparación mejorados.<br/><Bullet/> Usar Reparar como primera acción terminará tu turno sin la habilidad de Reparación rápida.<br/><Bullet/> Reparar tiene 1 turno de enfriamiento (no se puede usar varias veces por turno).<br/>"
+
+[KineticStrike_LW X2AbilityTemplate]
+LocFriendlyName="Golpe cinético"
+LocLongDescription="Ataca a cualquier enemigo dentro del rango de movimiento con un puñetazo devastador. Enfriamiento de 3 turnos. El daño depende del chasis equipado."
+LocHelpText="Ataca a cualquier enemigo dentro del rango de movimiento con un puñetazo devastador."
+LocPromotionPopupText="<Bullet/> Puedes activar la habilidad Golpe cinético colocando el cursor de movimiento sobre un enemigo.<br/><Bullet/> El <Ability:ClassName/> puede realizar un movimiento de \"correr\", usando ambas acciones para moverse, y además activar un ataque contra un enemigo adyacente.<br/><Bullet/> Golpe cinético hará 7/9.5/12 de daño, dependiendo del chasis equipado.<br/><Bullet/> La probabilidad de impactar de Golpe cinético se basa en la puntería de <Ability:ClassName/>'s, más un incremento del +15.<br/><Bullet/> Aprender la habilidad Servoarmaduras de asalto beneficiará con +2 de daño y +10 de puntería adicional a todos los ataques de Golpe cinético.<br/>"
+
+[Obliterator_LW X2AbilityTemplate]
+LocFriendlyName="Servoarmaduras de asalto"
+LocLongDescription="Otorga +2 de daño y +10 de puntería a todos los ataques de golpe. También desbloquea la habilidad Bola de demolición."
+LocHelpText="Obtienes +2 de daño y +10 de puntería a todos los ataques de Golpe cinético."
+LocPromotionPopupText="<Bullet/> Aprendiendo la habilidad Servoarmaduras de asalto, conseguirás +2 de daño y un extra de +10 de puntería para todos los ataques de Golpe cinético."
+
+[RapidRepair_LW X2AbilityTemplate]
+LocFriendlyName="Reparación rápida"
+LocLongDescription="Reparar ya no finaliza el turno, lo que permite que el SPARK se repare y realice una acción diferente, como moverse o disparar."
+LocHelpText="Reparar no finaliza el turno del SPARK."
+LocFlyOverText="Reparación rápida"
+LocPromotionPopupText="<Bullet/> La habilidad del SPARK Reparar no finaliza el turno.<br/><Bullet/> Reparar todavía tiene 1 turno de enfriamiento, evitando que se use dos veces en una misma ronda.<br/><Bullet/> Esto permite que el SPARK sea mucho más flexible en el campo de batalla, y al mismo tiempo mantenga alta su salud y armadura.<br/>"
+
+[Reboot_LW X2AbilityTemplate]
+LocFriendlyName="Reinicio crítico"
+LocLongDescription="Si el SPARK recibe suficiente daño como para morir, su salud se reducirá a 1 y estará protegido por el resto del turno. Solo se puede activar una vez en cada misión; después de ello, el SPARK será utilizable pero quedará muy perjudicado."
+LocHelpText="El SPARK estará protegido durante un turno si sufre suficiente daño como para morir."
+LocFlyOverText="Reinicio crítico"
+LocPromotionPopupText="<Bullet/> El SPARK entrará en Estasis la primera vez que su salud llegue a cero (máximo una vez por misión).<br/><Bullet/> Sin la habilidad de Sistemas redundantes, el SPARK queda paralizado después de reiniciarse, a consecuencia del daño grave, sufriendo enormes penalizaciones en la puntería, movilidad y pirateo.<br/><Bullet/> Debido a estos inconvenientes, y en combinación con la ya baja integridad de la coraza del SPARK en el momento de un reinicio, se recomienda que dichos SPARKs se retiren del campo de batalla en cuanto sea posible, a través del Skyranger.<br/><Bullet/> Gracias a una compleja red de placas redundantes, circuitos de reactivación y un proyector de escudo de carga única, el SPARK podrá recuperarse para el equipo con la seguridad de saber que vivirá para golpear otro día.<br/>"
+
+[RebootTriggered_LW X2AbilityTemplate]
+LocFriendlyName="Reinicio crítico"
+LocLongDescription="Si el SPARK recibe suficiente daño como para morir, su salud se reducirá a 1 y estará protegido por el resto del turno. Solo se puede activar una vez en cada misión; después de ello, el SPARK será utilizable pero quedará muy perjudicado."
+LocHelpText="El SPARK estará protegido durante un turno si sufre suficiente daño como para morir."
+LocFlyOverText="Reinicio crítico"
+LocPromotionPopupText="<Bullet/> El SPARK entrará en Estasis la primera vez que su salud llegue a cero (máximo una vez por misión).<br/><Bullet/> Sin la habilidad de Sistemas redundantes, el SPARK queda paralizado después de reiniciarse, a consecuencia del daño grave, sufriendo enormes penalizaciones en la puntería, movilidad y pirateo.<br/><Bullet/> Debido a estos inconvenientes, y en combinación con la ya baja integridad de la coraza del SPARK en el momento de un reinicio, se recomienda que dichos SPARKs se retiren del campo de batalla en cuanto sea posible, a través del Skyranger.<br/><Bullet/> Gracias a una compleja red de placas redundantes, circuitos de reactivación y un proyector de escudo de carga única, el SPARK podrá recuperarse para el equipo con la seguridad de saber que vivirá para golpear otro día.<br/>"
+
+[RedundantSystems_LW X2AbilityTemplate]
+LocFriendlyName="Sistemas redundantes"
+LocLongDescription="El SPARK ya no sufre ninguna penalización de estadísticas cuando se active un Reinicio crítico."
+LocHelpText="El SPARK ya no sufre ninguna penalización de estadísticas cuando se active un Reinicio crítico."
+LocFlyOverText="Sistemas redundantes"
+LocPromotionPopupText="<Bullet/> El SPARK ya no sufre ninguna penalización de estadísticas cuando se active un Reinicio crítico.<br/><Bullet/> Sin esta habilidad, el SPARK quedará muy devastado después de reiniciarse debido a un daño severo.<br/>"
+
+[RedunSysTriggered_LW X2AbilityTemplate]
+LocFriendlyName="Sistemas redundantes"
+LocLongDescription="Si el SPARK recibe suficiente daño como para morir, su salud se reducirá a 1 y estará protegido por el resto del turno. Solo se puede activar una vez en cada misión."
+LocHelpText="El SPARK estará protegido durante un turno si sufre suficiente daño como para morir."
+LocFlyOverText="Sistemas redundantes"
+LocPromotionPopupText="<Bullet/> El SPARK entrará en Estasis la primera vez que su salud llegue a cero (máximo una vez por misión).<br/><Bullet/> Gracias a una compleja red de placas redundantes, circuitos de reactivación y un proyector de escudo de carga única, el SPARK podrá recuperarse para el equipo con la seguridad de saber que vivirá para golpear otro día.<br/>"
+
+[HeavyRepair_LW X2AbilityTemplate]
+LocFriendlyName="Reparación avanzada"
+LocFlyOverText="Reparación avanzada"
+LocLongDescription="Reparar cura 4 HPs adicionales con cada uso, duplicando su potencial de recuperación."
+LocHelpText="Reparar cura un extra de 4 HPs por cada uso."
+LocPromotionPopupText="<Bullet/> La habilidad de Reparar del SPARK ahora curará 8 HPs en vez de 4.<br/>"
+
+[ConcussiveStrike_LW X2AbilityTemplate]
+LocFriendlyName="Golpe de conmoción cerebral"
+LocLongDescription="Un Golpe especial que causa la mitad del daño pero aturde al objetivo durante dos puntos de acción. No se puede utilizar contra unidades robóticas. Enfriamiento de 4 turnos. También reduce el tiempo de reutilización de Golpe cinético en 1."
+LocHelpText="Un Golpe especial que causa la mitad del daño pero aturde al objetivo durante dos puntos de acción."
+LocFlyOverText="Golpe de conmoción cerebral"
+LocPromotionPopupText="<Bullet/> Golpe de conmoción cerebral no puede marcar unidades robóticas, ya que sus centros de procesamiento no son tan blandos como los cráneos orgánicos.<br/><Bullet/> El daño de Golpe de conmoción cerebral sin el talento Servoarmaduras de asalto es 3/4/5 (dependiendo del chasis equipado).<br/><Bullet/> El daño de Golpe de conmoción cerebral con Servoarmaduras de asalto es 4/5/6 (el chasis utilizado también influirá).<br/><Bullet/> Las mejoras en las habilidades a meleé del SPARK también reducen el tiempo de reutilización de Golpe cinético en 1."
+
+[Neutralize_LW X2AbilityTemplate]
+LocFriendlyName="Protocolo de neutralización"
+LocLongDescription="Lanza el BIT a una ubicación, a fin de desactivar (el radio de acción es pequeño) las armas enemigas y obligándolas a recargar. Cuesta 1 acción y no finaliza el turno."
+LocHelpText="Lanza el BIT a una ubicación, a fin de desactivar (el radio de acción es pequeño) las armas enemigas y obligándolas a recargar. Cuesta 1 acción y no finaliza el turno."
+LocFlyOverText="Protocolo de neutralización"
+LocPromotionPopupText="<Bullet/> Envía el BIT para liberar un pulso de interferencia de corto alcance que sobrecarga los sistemas de armas.<br/><Bullet/> Obliga a los objetivos a recargar su arma principal.<br/><Bullet/> Dichos enemigos pueden usar recargar en su turno, optando por arreglárselas con un solo punto de acción de movimiento y disparo, o renunciar a ello y recurrir a sistemas de armas secundarios.<br/><Bullet/> Protocolo de neutralización cuesta una acción y tiene <Ability:NEUTRALIZE_COOLDOWN/> turnos de reuso.<br/>"
+
+[LayeredArmour_LW X2AbilityTemplate]
+LocFriendlyName="Armadura de capas"
+LocLongDescription="Cualquier fuente única de daño a esta unidad no puede destruir más del 40% de su HP máximo."
+LocHelpText="Cualquier fuente única de daño a esta unidad no puede destruir más del 40% de su HP máximo."
+LocFlyOverText="Armadura de capas"
+LocPromotionPopupText="<Bullet/> Gracias a una nueva técnica de diseño ideada por Shen, el blindaje de este soldado ahora tiene triple coraza. Cualquier daño a una de ellas no puede extenderse a otra.<br/><Bullet/> El daño máximo recibido del <Ability:ClassName/> es igual a su HP máximo multiplicado por 0,4. El resultado se redondea al número entero más cercano.<br/>"
+
+[Triangulation_LW X2AbilityTemplate]
+LocFriendlyName="Triangular"
+LocLongDescription="Cuando el <Ability:ClassName/> es atacado, el escuadrón gana +10 de puntería contra ese objetivo en el siguiente turno."
+LocHelpText="Cuando el <Ability:ClassName/> es atacado, el escuadrón gana +10 de puntería contra ese objetivo en el siguiente turno."
+LocFlyOverText="Triangular"
+LocPromotionPopupText="<Bullet/> El <Ability:ClassName/> puede rastrear la balística lanzada por un objetivo y cargar esa información al resto del equipo.<br/><Bullet/> Triangular no se activará si un enemigo ataca a uno de los compañeros del <Ability:ClassName/>.<br/>"
+
+[TriangulationTrigger_LW X2AbilityTemplate]
+LocFriendlyName="Triangular"
+LocLongDescription="Cuando el <Ability:ClassName/> es atacado, el escuadrón gana +10 de puntería contra ese objetivo en el siguiente turno."
+LocHelpText="Cuando el <Ability:ClassName/> es atacado, el escuadrón gana +10 de puntería contra ese objetivo en el siguiente turno."
+LocFlyOverText="Triangular"
+LocPromotionPopupText="<Bullet/> El <Ability:ClassName/> puede rastrear la balística lanzada por un objetivo y cargar esa información al resto del equipo.<br/><Bullet/> Triangular no se activará si un enemigo ataca a uno de los compañeros del <Ability:ClassName/>.<br/>"
+
+[BrawlerProtocol_LW X2AbilityTemplate]
+LocFriendlyName="Contraataque"
+LocLongDescription="El <Ability:ClassName/> puede lanzar ataques gratuitos con la mitad del daño a cualquier enemigo que entre o ataque desde el rango cuerpo a cuerpo. No requiere la habilidad Golpe cinético. No se puede activar en el propio turno de la unidad."
+LocHelpText=" Ataques melés gratuitos a cualquier enemigo que entre o ataque en un rango de cuerpo a cuerpo."
+LocFlyOverText="Contraataque"
+LocPromotionPopupText="<Bullet/> Si un enemigo comienza su turno en una casilla adyacente, Contraataque se activará si se mueve a otra zona cercana o intenta atacar al <Ability:ClassName/>.<br/><Bullet/> Si un enemigo no comienza su turno en una casilla adyacente, el Contraataque se activará cuando ese enemigo se acerque a cuerpo a cuerpo.<br/><Bullet/> Si un enemigo comienza su turno en una casilla adyacente, Contraataque NO se activará si ese enemigo se aleja directamente del <Ability:ClassName/>.<br/><Bullet/> Contraataque inflige la mitad de daño en comparación con el ataque Golpe cinético normal y obtiene +1 de daño del talento Servoarmaduras de asalto.<br/><Bullet/> No puede activarse en el turno del <Ability:ClassName/>."
+
+[BrawlerTrigger_LW X2AbilityTemplate]
+LocFriendlyName="Contraataque"
+LocLongDescription="El <Ability:ClassName/> puede lanzar ataques gratuitos con la mitad del daño a cualquier enemigo que entre o ataque desde el rango cuerpo a cuerpo. No requiere la habilidad Golpe cinético. No se puede activar en el propio turno de la unidad."
+LocHelpText="Ataques melés gratuitos a cualquier enemigo que entre o ataque en un rango de cuerpo a cuerpo."
+LocFlyOverText="Contraataque"
+LocPromotionPopupText="<Bullet/> Si un enemigo comienza su turno en una casilla adyacente, Contraataque se activará si se mueve a otra zona cercana o intenta atacar al <Ability:ClassName/>.<br/><Bullet/> Si un enemigo no comienza su turno en una casilla adyacente, el Contraataque se activará cuando ese enemigo se acerque a cuerpo a cuerpo.<br/><Bullet/> Si un enemigo comienza su turno en una casilla adyacente, Contraataque NO se activará si ese enemigo se aleja directamente del <Ability:ClassName/>.<br/><Bullet/> Contraataque inflige la mitad de daño en comparación con el ataque Golpe cinético normal y obtiene +1 de daño del talento Servoarmaduras de asalto.<br/><Bullet/> No puede activarse en el turno del <Ability:ClassName/>."
+
+
+[EnhancedSystems_LW X2AbilityTemplate]
+LocFriendlyName="Sistemas de reparación mejorados"
+LocLongDescription="Implementa las habilidades Reparación rápida y Sistemas redundantes, lo que hace que ya no finalice el turno, y elimina las penalizaciones de estadísticas asociadas con el Reinicio crítico. El SPARK utilizará automáticamente Reparar al reiniciar."
+LocHelpText="La Reparación rápida hace que la reparación no finalice el turno. La habilidad Sistemas redundantes se traduce en que el SPARK no sufrirá ninguna penalización de estadísticas después de la activación del talento Reinicio crítico. El SPARK utilizará automáticamente Reparar al reiniciar."
+LocPromotionPopupText="La Reparación rápida hace que la reparación no finalice el turno. La habilidad Sistemas redundantes se traduce en que el SPARK no sufrirá ninguna penalización de estadísticas después de la activación del talento Reinicio crítico. El SPARK utilizará automáticamente Reparar al reiniciar."
+
+[ReactionSystems_LW X2AbilityTemplate]
+LocFriendlyName="Sistemas de defensa mejorados"
+LocLongDescription="Ganas las habilidades de Sacrificar y Campo de canalización, lo que le permite al SPARK redirigir ataques de aliados cercanos, con el fin de aumentar el daño después de ser objetivo de cualquier arremetida."
+LocHelpText="<Bullet/> El SPARK obtiene +<Ability:Sacrifice_Defense/> de defensa y +<Ability:Sacrifice_Armor/> de armadura mientras Sacrificar está activo.<br/><Bullet/> Sacrificar tiene <Ability:SACRIFICE_COOLDOWN/> turnos de reutilización.<br/><Bullet/> Cada punto de energía canalizado por Campo de canalización aumenta el daño del siguiente ataque de <Ability:WeaponName> en 1.<br/>"
+LocPromotionPopupText="<Bullet/> El SPARK obtiene +<Ability:Sacrifice_Defense/> de defensa y +<Ability:Sacrifice_Armor/> de armadura mientras Sacrificar está activo.<br/><Bullet/> Sacrificar tiene <Ability:SACRIFICE_COOLDOWN/> turnos de reutilización.<br/><Bullet/> Cada punto de energía canalizado por Campo de canalización aumenta el daño del siguiente ataque de <Ability:WeaponName> en 1.<br/>"
+
+[AdvancedLogic_LW X2AbilityTemplate]
+LocFriendlyName="Lógica avanzada"
+LocLongDescription="Aumenta la estadística de hackeo del <Ability:ClassName/> en <Ability:ADVANCED_LOGIC_HACK_BONUS>."
+LocHelpText="Aumenta la estadística de hackeo del <Ability:ClassName/> en <Ability:ADVANCED_LOGIC_HACK_BONUS>."
+LocPromotionPopupText="Aumenta la estadística de hackeo del <Ability:ClassName/> en <Ability:ADVANCED_LOGIC_HACK_BONUS>."
+
+[HoloAACombo_LW X2AbilityTemplate]
+LocFriendlyName="Sistemas de focus mejorados"
+LocLongDescription="Otorga las habilidades de Puntería adaptable y Holoapuntar, lo que mejora la capacidad del SPARK para realizar múltiples disparos mientras Sobrecarga está activa, y aumenta la destreza del escuadrón en los objetivos que dispare."
+LocHelpText="Otorga las habilidades de Puntería adaptable y Holoapuntar, lo que mejora la capacidad del SPARK para realizar múltiples disparos mientras Sobrecarga está activa, y aumenta la destreza del escuadrón en los objetivos que dispare."
+LocPromotionPopupText="Otorga las habilidades de Puntería adaptable y Holoapuntar, lo que mejora la capacidad del SPARK para realizar múltiples disparos mientras Sobrecarga está activa, y aumenta la destreza del escuadrón en los objetivos que dispare."
+
 
 ; New Class loc
 
@@ -1085,7 +1237,7 @@ LocFlyOverText="Fuego rápido"
 RankNames[8]="Maestro"
 ShortNames[8]="Mstr."
 RankIcons[8]="UILibrary_LW_PerkPack.psirank_Master"
-
+AbilityTreeTitles[3]="Pistolas"
 
 
 [XComGame.X2MPData_Shell]

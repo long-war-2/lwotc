@@ -31,14 +31,18 @@ protected simulated function OnEffectAdded(const out EffectAppliedData ApplyEffe
 
 	ShieldHPChange.StatAmount = BaseShieldHPIncrease;
 
-	if (SourceItem.GetMyTemplateName() == 'PsiAmp_MG')
+	switch (SourceItem.GetWeaponTech())
 	{
-		ShieldHPChange.StatAmount += AmpMGShieldHPBonus;
+		case 'laser_lw':
+		case 'magnetic':
+			ShieldHPChange.StatAmount += AmpMGShieldHPBonus;
+			break;
+		case 'coilgun_lw':
+		case 'beam':
+			ShieldHPChange.StatAmount += AmpBMShieldHPBonus;
+			break;
 	}
-	if (SourceItem.GetMyTemplateName() == 'PsiAmp_BM')
-	{
-		ShieldHPChange.StatAmount += AmpBMShieldHPBonus;
-	}
+
 
 	Target.SetUnitFloatValue('NullWardShieldHP', ShieldHPChange.StatAmount, eCleanup_BeginTactical);
 	Target.SetUnitFloatValue('PreNullWardShieldHP', Target.GetCurrentStat(eStat_ShieldHP), eCleanup_BeginTactical);

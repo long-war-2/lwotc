@@ -134,12 +134,12 @@ static function X2DataTemplate CreateTemplate_Bullpup_Laser()
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, class'X2Ability_FactionWeaponAbilities'.default.BULLPUP_CONVENTIONAL_MOBILITY_BONUS);
 
 	// This all the resources; sounds, animations, models, physics, the works.
-	Template.GameArchetype = "LWSMG_LS.Archetype.WP_SMG_LS";
+	Template.GameArchetype = "IRI_Bullpup_LS_LW.Archetypes.WP_Bullpup_LS";
 	Template.UIArmoryCameraPointTag = 'UIPawnLocation_WeaponUpgrade_AssaultRifle';
-	Template.AddDefaultAttachment('Mag', "LWAttachments_LS.Meshes.SK_Laser_Mag_A", , "img:///UILibrary_LW_LaserPack.LaserSMG_MagA");
-	Template.AddDefaultAttachment('Stock', "LWShotgun_LS.Meshes.SK_LaserShotgun_Stock_A", , "img:///UILibrary_LW_LaserPack.LaserSMG_StockA"); // switching to use the shotgun-style stock to differentiate better from rifle
-	Template.AddDefaultAttachment('Reargrip', "LWAttachments_LS.Meshes.SK_Laser_Trigger_A", , "img:///UILibrary_LW_LaserPack.LaserSMG_TriggerA");
-	Template.AddDefaultAttachment('Foregrip', "LWAttachments_LS.Meshes.SK_Laser_Foregrip_A", , "img:///UILibrary_LW_LaserPack.LaserSMG_ForegripA");
+	Template.AddDefaultAttachment('Mag', "IRI_Bullpup_LS_LW.Meshes.SM_Bullpup_LS_MagA", , "img:///IRI_Bullpup_LS_LW.UI.Laser-bullop-magazinepA");
+	Template.AddDefaultAttachment('Stock', "IRI_Bullpup_LS_LW.Meshes.SM_Bullpup_LS_StockA", , "img:///IRI_Bullpup_LS_LW.UI.Laser-bullop-stockA"); // switching to use the shotgun-style stock to differentiate better from rifle
+	Template.AddDefaultAttachment('Reargrip', "IRI_Bullpup_LS_LW.Meshes.SM_Bullpup_LS_ReargripA", , "img:///IRI_Bullpup_LS_LW.UI.Laser-bullop-triggerA");
+	Template.AddDefaultAttachment('Foregrip', "IRI_Bullpup_LS_LW.Meshes.SM_Bullpup_LS_ForegripA", , "img:///IRI_Bullpup_LS_LW.UI.Laser-bullop-foregripA");
 	//Template.AddDefaultAttachment('Optic', "LWSMG_LS.Meshes.SK_LaserSMG_Optic_A", , "img:///UILibrary_LW_LaserPack.LaserSMG__OpticA");  // no default optic
 	Template.AddDefaultAttachment('Light', "LWAttachments_LS.Meshes.SK_Laser_Flashlight", , );
 
@@ -179,12 +179,13 @@ static function X2DataTemplate CreateBullpup_Coil_Template()
 
 	Template.NumUpgradeSlots = 3;
 
-	Template.GameArchetype = "LWSMG_CG.Archetypes.WP_SMG_CG";
+	Template.GameArchetype = "IRI_Bullpup_CG_LW.Archetypes.WP_Bullpup_CG";
 	Template.UIArmoryCameraPointTag = 'UIPawnLocation_WeaponUpgrade_AssaultRifle';
-	Template.AddDefaultAttachment('Mag', "LWAssaultRifle_CG.Meshes.LW_CoilRifle_MagA", , "img:///UILibrary_LWOTC.InventoryArt.CoilSMG_MagA");
-	Template.AddDefaultAttachment('Stock', "LWAccessories_CG.Meshes.LW_Coil_StockA", , "img:///UILibrary_LWOTC.InventoryArt.CoilSMG_StockA");
-	Template.AddDefaultAttachment('Reargrip', "LWAccessories_CG.Meshes.LW_Coil_ReargripA", , "img:///UILibrary_LWOTC.InventoryArt.CoilSMG_ReargripA");
-	Template.AddDefaultAttachment('Light', "BeamAttachments.Meshes.BeamFlashLight"); //, , "img:///UILibrary_Common.ConvAssaultRifle.ConvAssault_LightA");  // re-use common conventional flashlight
+	Template.AddDefaultAttachment('Mag', "LWAssaultRifle_CG.Meshes.LW_CoilRifle_MagA");
+	Template.AddDefaultAttachment('Optic', "IRI_Bullpup_CG_LW.Meshes.SM_Bullpup_CG_OpticA", , "img:///IRI_Bullpup_CG_LW.UI.coil_bullop_opticA");
+	Template.AddDefaultAttachment('Reargrip', "LWAccessories_CG.Meshes.LW_Coil_ReargripA");
+	Template.AddDefaultAttachment('Rail', "IRI_Bullpup_CG_LW.Meshes.SM_Bullpup_CG_Rail");
+	Template.AddDefaultAttachment('Light', "ConvAttachments.Meshes.SM_ConvFlashLight"); //, , "img:///UILibrary_Common.ConvAssaultRifle.ConvAssault_LightA");  // re-use common conventional flashlight
 
 
 	Template.CreatorTemplateName = 'Bullpup_CG_Schematic'; // The schematic which creates this item
@@ -297,12 +298,14 @@ static function X2DataTemplate CreateVektor_Laser()
 	Template.Abilities.AddItem('HotLoadAmmo');
 
 	// This all the resources; sounds, animations, models, physics, the works.
-	Template.GameArchetype = "LW_StrikeRifle.Archetypes.WP_DMR_LS";
-	Template.AddDefaultAttachment('Mag', "LWAttachments_LS.Meshes.SK_Laser_Mag_A");//, , "img:///UILibrary_LW_LaserPack.LaserRifle_MagA");
-	Template.AddDefaultAttachment('Stock', "LWAttachments_LS.Meshes.SK_Laser_Stock_A");//, , "img:///UILibrary_LW_LaserPack.LaserRifle_StockA");
-	Template.AddDefaultAttachment('Reargrip', "LWAttachments_LS.Meshes.SK_Laser_Trigger_A");//, , "img:///UILibrary_LW_LaserPack.LaserRifle_TriggerA");
-	Template.AddDefaultAttachment('Foregrip', "LWAttachments_LS.Meshes.SK_Laser_Foregrip_A");//, , "img:///UILibrary_LW_LaserPack.LaserRifle_ForegripA");
-	Template.AddDefaultAttachment('Optic', "LWSniperRifle_LS.Meshes.SK_LaserSniper_Optic_A");//, , "img:///UILibrary_BRPack.Attach.BR_LS_OpticA");
+	Template.GameArchetype = "IRI_VektorRifle_LS_LW.Archetypes.WP_ReaperRifle_LS";
+	Template.AddDefaultAttachment('Mag', "IRI_VektorRifle_LS_LW.Meshes.SM_VektorRifle_LS_MagA", ,"img:///IRI_VektorRifle_LS_LW.UI.Laser-magazineA");//, , "img:///UILibrary_LW_LaserPack.LaserRifle_MagA");
+	Template.AddDefaultAttachment('Stock', "CnvReaperRifle.Meshes.SM_HOR_Cnv_ReaperRifle_StockA" ,, "img:///IRI_VektorRifle_LS_LW.UI.Laser-stockA");//, , "img:///UILibrary_LW_LaserPack.LaserRifle_StockA");
+	Template.AddDefaultAttachment('Reargrip', "CnvReaperRifle.Meshes.SM_HOR_Cnv_ReaperRifle_ReargripA");//, , "img:///UILibrary_LW_LaserPack.LaserRifle_TriggerA");
+	Template.AddDefaultAttachment('Foreguard', "IRI_VektorRifle_LS_LW.Meshes.SM_VektorRifle_LS_Foreguard");//, , "img:///UILibrary_LW_LaserPack.LaserRifle_ForegripA");
+	Template.AddDefaultAttachment('Optic', "IRI_VektorRifle_LS_LW.Meshes.SM_VektorRifle_LS_ScopeA", , "img:///IRI_VektorRifle_LS_LW.UI.Laser-scopeA");//, , "img:///UILibrary_BRPack.Attach.BR_LS_OpticA");
+	Template.AddDefaultAttachment('Light', "LWAttachments_LS.Meshes.SK_Laser_Flashlight");
+	Template.AddDefaultAttachment('Trigger', "CnvReaperRifle.Meshes.SM_HOR_Cnv_ReaperRifle_TriggerA" ,, "img:///IRI_VektorRifle_LS_LW.UI.Laser-triggerA");
 
 	Template.UIArmoryCameraPointTag = 'UIPawnLocation_WeaponUpgrade_Sniper';
 	Template.CreatorTemplateName = 'VEKTOR_LS_Schematic'; // The schematic which creates this item
@@ -340,12 +343,14 @@ static function X2DataTemplate CreateVektor_Coil()
 
 	Template.NumUpgradeSlots = 3;
 
-	Template.GameArchetype = "LW_StrikeRifle.Archetypes.WP_DMR_CG";
-	Template.AddDefaultAttachment('Mag', "LWSniperRifle_CG.Meshes.LW_CoilSniper_MagA");//, , "img:///UILibrary_LWOTC.InventoryArt.CoilRifle_MagA");
-	Template.AddDefaultAttachment('Stock', "LWAccessories_CG.Meshes.LW_Coil_StockB");//, , "img:///UILibrary_LWOTC.InventoryArt.CoilRifle_StockA");
-	Template.AddDefaultAttachment('Reargrip', "LWAccessories_CG.Meshes.LW_Coil_ReargripA");//, , "img:///UILibrary_LWOTC.InventoryArt.CoilRifle_ReargripA");
-	Template.AddDefaultAttachment('Light', "BeamAttachments.Meshes.BeamFlashLight"); //);//, , "img:///UILibrary_Common.ConvAssaultRifle.ConvAssault_LightA");  // re-use common conventional flashlight
-	Template.AddDefaultAttachment('Optic', "BeamAssaultRifle.Meshes.SM_BeamAssaultRifle_OpticC");//, , "img:///UILibrary_LWOTC.InventoryArt.CoilSniperRifle_OpticA");
+	Template.GameArchetype = "IRI_VektorRifle_CG_LW.Archetypes.WP_ReaperRifle_CG";
+	Template.AddDefaultAttachment('Mag', "IRI_VektorRifle_CG_LW.Meshes.SM_Vektor_CG_MagA");//, , "img:///UILibrary_LWOTC.InventoryArt.CoilRifle_MagA");
+	Template.AddDefaultAttachment('Stock', "BemReaperRifle.Meshes.SM_HOR_Bem_ReaperRifle_StockA");//, , "img:///UILibrary_LWOTC.InventoryArt.CoilRifle_StockA");
+	Template.AddDefaultAttachment('Suppressor', "IRI_VektorRifle_CG_LW.Meshes.SM_Vektor_CG_SuppressorA");//, , "img:///UILibrary_LWOTC.InventoryArt.CoilRifle_ReargripA");
+	Template.AddDefaultAttachment('Light', "ConvAttachments.Meshes.SM_ConvFlashLight"); //);//, , "img:///UILibrary_Common.ConvAssaultRifle.ConvAssault_LightA");  // re-use common conventional flashlight
+	Template.AddDefaultAttachment('Optic', "IRI_VektorRifle_CG_LW.Meshes.SM_Vektor_CG_OpticA");//, , "img:///UILibrary_LWOTC.InventoryArt.CoilSniperRifle_OpticA");
+	Template.AddDefaultAttachment('Trigger', "CnvReaperRifle.Meshes.SM_HOR_Cnv_ReaperRifle_TriggerA");
+
 
 	Template.UIArmoryCameraPointTag = 'UIPawnLocation_WeaponUpgrade_Sniper';
 

@@ -35,14 +35,9 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
                 Modifier = -RangeTable[RangeTable.Length - 1];
             }
 			Modifier += AccBonus;
-			if (Modifier > 0)
-			{
-				ShotInfo.Value = Modifier;
-			}
-			else
-			{
-				ShotInfo.Value = AccBonus;
-			}
+			
+			ShotInfo.Value = max(Modifier, AccBonus);
+
 			ShotInfo.ModType = eHit_Success;
             ShotInfo.Reason = FriendlyName;
             ShotModifiers.AddItem(ShotInfo);

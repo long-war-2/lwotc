@@ -28,6 +28,45 @@ var config int SPARKRIFLE_COIL_UPGRADESLOTS;
 var config string SparkRifle_Coil_ImagePath;
 var config array<int> MEDIUM_COIL_RANGE;
 
+var config int TIER2_HEAVYINTIMIDATE_STRENGTH, TIER2_LIGHTINTIMIDATE_STRENGTH, TIER3_HEAVYINTIMIDATE_STRENGTH, TIER3_LIGHTINTIMIDATE_STRENGTH;
+var config WeaponDamageValue TIER2_HEAVYSTRIKE_DMG, TIER2_LIGHTSTRIKE_DMG, TIER3_HEAVYSTRIKE_DMG, TIER3_LIGHTSTRIKE_DMG;
+
+var config int SPARK_PLATED_HEAVY_HEALTH_BONUS;
+var config int SPARK_PLATED_HEAVY_MOBILITY_BONUS;
+var config int SPARK_PLATED_HEAVY_MITIGATION_AMOUNT;
+var config int SPARK_PLATED_HEAVY_MITIGATION_CHANCE;
+var config int SPARK_PLATED_HEAVY_DEF_BONUS;
+var config int SPARK_PLATED_HEAVY_DODGE_BONUS;
+
+var config int SPARK_PLATED_LIGHT_HEALTH_BONUS;
+var config int SPARK_PLATED_LIGHT_MOBILITY_BONUS;
+var config int SPARK_PLATED_LIGHT_MITIGATION_AMOUNT;
+var config int SPARK_PLATED_LIGHT_MITIGATION_CHANCE;
+var config int SPARK_PLATED_LIGHT_DEF_BONUS;
+
+var config int SPARK_POWERED_HEAVY_HEALTH_BONUS;
+var config int SPARK_POWERED_HEAVY_MOBILITY_BONUS;
+var config int SPARK_POWERED_HEAVY_MITIGATION_AMOUNT;
+var config int SPARK_POWERED_HEAVY_MITIGATION_CHANCE;
+var config int SPARK_POWERED_HEAVY_DEF_BONUS;
+var config int SPARK_POWERED_HEAVY_DODGE_BONUS;
+
+var config int SPARK_POWERED_LIGHT_HEALTH_BONUS;
+var config int SPARK_POWERED_LIGHT_MOBILITY_BONUS;
+var config int SPARK_POWERED_LIGHT_MITIGATION_AMOUNT;
+var config int SPARK_POWERED_LIGHT_MITIGATION_CHANCE;
+var config int SPARK_POWERED_LIGHT_DEF_BONUS;
+
+var config WeaponDamageValue PROTOTYPEPLASMABLASTER_BASEDAMAGE;
+var config int PROTOTYPEPLASMABLASTER_ISOUNDRANGE;
+var config int PROTOTYPEPLASMABLASTER_IENVIRONMENTDAMAGE;
+var config int PROTOTYPEPLASMABLASTER_ISUPPLIES;
+var config int PROTOTYPEPLASMABLASTER_TRADINGPOSTVALUE;
+var config int PROTOTYPEPLASMABLASTER_IPOINTS;
+var config int PROTOTYPEPLASMABLASTER_ICLIPSIZE;
+var config int PROTOTYPEPLASMABLASTER_RANGE;
+var config int PROTOTYPEPLASMABLASTER_RADIUS;
+
 
 static function array<X2DataTemplate> CreateTemplates()
 {	local array<X2DataTemplate> Weapons;
@@ -35,7 +74,12 @@ static function array<X2DataTemplate> CreateTemplates()
 	Weapons.AddItem(Create_SparkRifle_Coil());
 	Weapons.AddItem(Create_SPARKChaingun());
 	
+	Weapons.AddItem(CreatePlatedSparkHeavyArmor());
+	Weapons.AddItem(CreatePlatedSparkLightArmor());
+	Weapons.AddItem(CreatePoweredSparkHeavyArmor());
+	Weapons.AddItem(CreatePoweredSparkLightArmor());
 
+	Weapons.AddItem(PrototypePlasmaBlaster());
 	
 	return Weapons;
 }
@@ -126,7 +170,11 @@ static function X2DataTemplate Create_SparkRifle_Laser()
 	Template.NumUpgradeSlots = default.SPARKRIFLE_LASER_UPGRADESLOTS;
 	
 
-	Template.GameArchetype = "EW_MEC_Weapons.Archetypes.WP_MEC_Railgun";
+	Template.GameArchetype = "IRI_Sparkgun_LS_LW.Archetype.WP_SparkRifle_LS";
+	Template.AddDefaultAttachment('Light', "LWAttachments_LS.Meshes.SK_Laser_Flashlight", ,);
+	Template.AddDefaultAttachment('Mag', "IRI_Sparkgun_LS_LW.Meshes.SM_SparkRifle_LS_MagA", , "img:///IRI_Sparkgun_LS_LW.UI.SPARK_Laser_magazine_base");
+	Template.AddDefaultAttachment('Reargip', "IRI_Sparkgun_LS_LW.Meshes.SM_SparkRifle_LS_ReargripA", ,);
+
 	
 	Template.CreatorTemplateName = 'SparkRifle_LS_Schematic'; // The schematic which creates this item
 	
@@ -190,7 +238,15 @@ static function X2DataTemplate Create_SparkRifle_Coil()
 	Template.NumUpgradeSlots = default.SPARKRIFLE_COIL_UPGRADESLOTS;
 	
 
-	Template.GameArchetype = "EW_MEC_Weapons.Archetypes.WP_MEC_PPC";
+	Template.GameArchetype = "IRI_Sparkgun_CG_LW.Archetypes.WP_SparkGunl_CG_Fixed";
+
+	Template.AddDefaultAttachment('Light', "BeamAttachments.Meshes.BeamFlashLight", ,);
+	Template.AddDefaultAttachment('Mag', "IRI_Sparkgun_CG_LW.Meshes.SM_SparkRifle_CG_MagA", , "img:///IRI_Sparkgun_CG_LW.UI.SparkGun_MagA");
+	Template.AddDefaultAttachment('Trigger', "IRI_Sparkgun_CG_LW.Meshes.SM_SparkRifle_CG_TriggerA", , "img:///IRI_Sparkgun_CG_LW.UI.SparkGun_TriggerA");
+	Template.AddDefaultAttachment('Stock', "IRI_Sparkgun_CG_LW.Meshes.SM_SparkRifle_CG_StockA", , "img:///IRI_Sparkgun_CG_LW.UI.SparkGun_StockA");
+
+
+
 	
 	Template.CreatorTemplateName = 'SparkRifle_CG_Schematic'; // The schematic which creates this item
 
@@ -213,6 +269,173 @@ static function X2DataTemplate Create_SparkRifle_Coil()
 	Template.Requirements.RequiredTechs.AddItem('AdvancedCoilguns');
 
 	Template.DamageTypeTemplateName = 'Projectile_MagXCom';
+
+	return Template;
+}
+
+
+static function X2DataTemplate CreatePlatedSparkHeavyArmor()
+{
+	local X2SparkArmorTemplate_DLC_3 Template;
+
+	`CREATE_X2TEMPLATE(class'X2SparkArmorTemplate_DLC_3', Template, 'PlatedSparkHeavyArmor_LW');
+	Template.strImage = "img:///UILibrary_DLC3Images.Inv_Spark_Plated_A";
+	Template.ItemCat = 'armor';
+	Template.StartingItem = false;
+	Template.CanBeBuilt = true;
+	Template.bInfiniteItem = false;
+	Template.TradingPostValue = 20;
+	Template.PointsToComplete = 0;
+	Template.Abilities.AddItem('PlatedSparkHeavyArmorStats_LW');
+	Template.ArmorTechCat = 'plated';
+	Template.ArmorCat = 'spark';
+	Template.Tier = 1;
+	Template.AkAudioSoldierArmorSwitch = 'Predator';
+	Template.EquipSound = "StrategyUI_Armor_Equip_Plated_Spark";
+
+	Template.IntimidateStrength = default.TIER2_HEAVYINTIMIDATE_STRENGTH;
+	Template.StrikeDamage = default.TIER2_HEAVYSTRIKE_DMG;
+
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.HealthLabel, eStat_HP, default.SPARK_PLATED_HEAVY_HEALTH_BONUS, true);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, eStat_ArmorMitigation, default.SPARK_PLATED_HEAVY_MITIGATION_AMOUNT);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, default.SPARK_PLATED_HEAVY_MOBILITY_BONUS);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.DefenseLabel, eStat_Defense, default.SPARK_PLATED_HEAVY_DEF_BONUS);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.DodgeLabel, eStat_Dodge, default.SPARK_PLATED_HEAVY_DODGE_BONUS);
+
+	return Template;
+}
+
+
+static function X2DataTemplate CreatePlatedSparkLightArmor()
+{
+	local X2SparkArmorTemplate_DLC_3 Template;
+
+	`CREATE_X2TEMPLATE(class'X2SparkArmorTemplate_DLC_3', Template, 'PlatedSparkLightArmor_LW');
+	Template.strImage = "img:///UILibrary_DLC3Images.Inv_Spark_Plated_A";
+	Template.ItemCat = 'armor';
+	Template.StartingItem = false;
+	Template.CanBeBuilt = true;
+	Template.bInfiniteItem = false;
+	Template.TradingPostValue = 20;
+	Template.PointsToComplete = 0;
+	Template.Abilities.AddItem('PlatedSparkLightArmorStats_LW');
+	Template.Abilities.AddItem('Dedication_LW');
+	Template.ArmorTechCat = 'plated';
+	Template.ArmorCat = 'spark';
+	Template.Tier = 1;
+	Template.AkAudioSoldierArmorSwitch = 'Predator';
+	Template.EquipSound = "StrategyUI_Armor_Equip_Plated_Spark";
+
+	Template.IntimidateStrength = default.TIER2_LIGHTINTIMIDATE_STRENGTH;
+	Template.StrikeDamage = default.TIER2_LIGHTSTRIKE_DMG;
+
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.HealthLabel, eStat_HP, default.SPARK_PLATED_LIGHT_HEALTH_BONUS, true);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, eStat_ArmorMitigation, default.SPARK_PLATED_LIGHT_MITIGATION_AMOUNT);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, default.SPARK_PLATED_LIGHT_MOBILITY_BONUS);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.DefenseLabel, eStat_Defense, default.SPARK_PLATED_LIGHT_DEF_BONUS);
+
+	return Template;
+}
+
+
+static function X2DataTemplate CreatePoweredSparkHeavyArmor()
+{
+	local X2SparkArmorTemplate_DLC_3 Template;
+
+	`CREATE_X2TEMPLATE(class'X2SparkArmorTemplate_DLC_3', Template, 'PoweredSparkHeavyArmor_LW');
+	Template.strImage = "img:///UILibrary_DLC3Images.Inv_Spark_Powered_A";
+	Template.ItemCat = 'armor';
+	Template.StartingItem = false;
+	Template.CanBeBuilt = true;
+	Template.bInfiniteItem = false;
+	Template.TradingPostValue = 60;
+	Template.PointsToComplete = 0;
+	Template.Abilities.AddItem('PoweredSparkHeavyArmorStats_LW');
+	Template.ArmorTechCat = 'powered';
+	Template.ArmorCat = 'spark';
+	Template.Tier = 3;
+	Template.AkAudioSoldierArmorSwitch = 'Warden';
+	Template.EquipSound = "StrategyUI_Armor_Equip_Powered_Spark";
+
+	Template.IntimidateStrength = default.TIER3_HEAVYINTIMIDATE_STRENGTH;
+	Template.StrikeDamage = default.TIER3_HEAVYSTRIKE_DMG;
+
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.HealthLabel, eStat_HP, default.SPARK_POWERED_HEAVY_HEALTH_BONUS, true);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, eStat_ArmorMitigation, default.SPARK_POWERED_HEAVY_MITIGATION_AMOUNT);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, default.SPARK_POWERED_HEAVY_MOBILITY_BONUS);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.DefenseLabel, eStat_Defense, default.SPARK_POWERED_HEAVY_DEF_BONUS);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.DodgeLabel, eStat_Dodge, default.SPARK_POWERED_HEAVY_DODGE_BONUS);
+
+	return Template;
+}
+
+
+static function X2DataTemplate CreatePoweredSparkLightArmor()
+{
+	local X2SparkArmorTemplate_DLC_3 Template;
+
+	`CREATE_X2TEMPLATE(class'X2SparkArmorTemplate_DLC_3', Template, 'PoweredSparkLightArmor_LW');
+	Template.strImage = "img:///UILibrary_DLC3Images.Inv_Spark_Powered_A";
+	Template.ItemCat = 'armor';
+	Template.StartingItem = false;
+	Template.CanBeBuilt = true;
+	Template.bInfiniteItem = false;
+	Template.TradingPostValue = 60;
+	Template.PointsToComplete = 0;
+	Template.Abilities.AddItem('PoweredSparkLightArmorStats_LW');
+	Template.Abilities.AddItem('Dedication_LW');
+	Template.ArmorTechCat = 'powered';
+	Template.ArmorCat = 'spark';
+	Template.Tier = 3;
+	Template.AkAudioSoldierArmorSwitch = 'Warden';
+	Template.EquipSound = "StrategyUI_Armor_Equip_Powered_Spark";
+
+	Template.IntimidateStrength = default.TIER3_LIGHTINTIMIDATE_STRENGTH;
+	Template.StrikeDamage = default.TIER3_LIGHTSTRIKE_DMG;
+
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.HealthLabel, eStat_HP, default.SPARK_POWERED_LIGHT_HEALTH_BONUS, true);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, eStat_ArmorMitigation, default.SPARK_POWERED_LIGHT_MITIGATION_AMOUNT);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, default.SPARK_POWERED_LIGHT_MOBILITY_BONUS);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.DefenseLabel, eStat_Defense, default.SPARK_POWERED_LIGHT_DEF_BONUS);
+
+	return Template;
+}
+
+static function X2WeaponTemplate PrototypePlasmaBlaster()
+{
+	local X2WeaponTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'PrototypePlasmaBlaster');
+	Template.WeaponCat = 'heavy';
+	Template.strImage = "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_Plasma_Blaster";
+	Template.EquipSound = "StrategyUI_Heavy_Weapon_Equip";
+
+	Template.BaseDamage = default.PROTOTYPEPLASMABLASTER_BASEDAMAGE;
+	Template.iSoundRange = default.PROTOTYPEPLASMABLASTER_ISOUNDRANGE;
+	Template.iEnvironmentDamage = default.PROTOTYPEPLASMABLASTER_IENVIRONMENTDAMAGE;
+	Template.iClipSize = default.PROTOTYPEPLASMABLASTER_ICLIPSIZE;
+	Template.iRange = default.PROTOTYPEPLASMABLASTER_RANGE;
+	Template.iRadius = default.PROTOTYPEPLASMABLASTER_RADIUS;
+	Template.PointsToComplete = 0;
+
+	Template.PointsToComplete = default.PROTOTYPEPLASMABLASTER_IPOINTS;
+	Template.TradingPostValue = default.PROTOTYPEPLASMABLASTER_TRADINGPOSTVALUE;
+	
+	Template.InventorySlot = eInvSlot_HeavyWeapon;
+	Template.StowedLocation = eSlot_HeavyWeapon;
+	Template.GameArchetype = "WP_Heavy_PlasmaBlaster.WP_Heavy_PlasmaBlaster";
+	Template.AltGameArchetype = "WP_Heavy_PlasmaBlaster.WP_Heavy_PlasmaBlaster_Powered";
+	Template.ArmorTechCatForAltArchetype = 'powered';
+	Template.bMergeAmmo = true;
+
+	Template.Abilities.AddItem('PlasmaBlaster');
+
+	Template.CanBeBuilt = false;
+
+	Template.RewardDecks.AddItem('ExperimentalPoweredWeaponRewards');
+
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.RangeLabel, , default.PROTOTYPEPLASMABLASTER_RANGE);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.RadiusLabel, , default.PROTOTYPEPLASMABLASTER_RADIUS);
 
 	return Template;
 }

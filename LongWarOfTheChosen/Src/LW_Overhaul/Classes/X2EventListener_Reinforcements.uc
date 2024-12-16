@@ -128,7 +128,6 @@ static protected function EventListenerReturn OnOverrideReinforcementsAlert(Obje
 			ReinfColor = eUIState_Warning;
 			ReinfState = class 'UIAdventOperations'.default.m_strImminent;
 		}
-
 		OverrideTuple.Data[0].b = true;
 		OverrideTuple.Data[1].s = class'UIUtilities_Text'.static.GetColoredText(class'UITacticalHUD_Countdown'.default.m_strReinforcementsTitle, ReinfColor);
 		OverrideTuple.Data[2].s = class'UIUtilities_Text'.static.GetColoredText(ReinfState, ReinfColor);

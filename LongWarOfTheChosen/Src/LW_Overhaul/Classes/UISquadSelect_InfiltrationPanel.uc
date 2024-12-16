@@ -60,6 +60,46 @@ var localized string strMissionIndefinite;
 
 var localized string strLiberationTitle;
 
+// New version stuff
+var config bool USE_NEW_VERSION;
+var config bool MULTI_LINE_INFIL;
+
+var UISquadSelect_InfiltrationItem NewTitle;
+var UISquadSelect_InfiltrationItem ActivityHeader;
+var UISquadSelect_InfiltrationItem ModifierHeader;
+
+var UISquadSelect_InfiltrationItem BaselineActivity;
+
+var UISquadSelect_InfiltrationItem ExpectedInfiltrationPercent;
+var UISquadSelect_InfiltrationItem BoostedInfiltrationPercent;
+
+var localized string strInfilPanelTitle;
+var localized string strActivityHeader;
+var localized string strModifierHeader;
+var localized string strMissionInfoTitle;
+
+var localized string strBaseInfilShort;
+var localized string strOverallInfilShort;
+var localized string strSquadSizeShort;
+var localized string strAbilitiesShort;
+var localized string strExpirationShort;
+var localized string strExpectedShort;
+var localized string strBoostedShort;
+var localized string strLiberationShort;
+
+var localized string strMaxInfilText;
+var localized string strMapTypeText;
+
+var UISquadSelect_InfiltrationItem MissionBriefHeader;
+var UISquadSelect_InfiltrationItem MissionTypeText;
+var UISquadSelect_InfiltrationItem MissionTimerText;
+var UISquadSelect_InfiltrationItem EvacTypeText;
+var UISquadSelect_InfiltrationItem SweepObjectiveText;
+var UISquadSelect_InfiltrationItem FullSalvageText;
+var UISquadSelect_InfiltrationItem ConcealStatusText;
+var UISquadSelect_InfiltrationItem PlotTypeText;
+
+
 // do a timer-delayed initiation in order to allow other UI elements to settle
 function DelayedInit(float Delay)
 {
@@ -68,7 +108,15 @@ function DelayedInit(float Delay)
 
 function StartDelayedInit()
 {
-	InitInfiltrationPanel();
+	if(default.USE_NEW_VERSION)
+	{
+		InitInfiltrationPanel('LWInfilPanel', ,-375, ,375);
+	}
+	else
+	{
+		InitInfiltrationPanel('LWInfilPanel');
+	}
+	
 	MCName = 'SquadSelect_InfiltrationInfo_LW';
 	Update(SquadSoldiers);
 }
@@ -83,8 +131,13 @@ simulated function UISquadSelect_InfiltrationPanel InitInfiltrationPanel(optiona
 	//local XComGameStateHistory History;
 	//local XComGameState_ObjectivesList ObjectiveList;
 	//local XComGameState_MissionSite MissionState;
+	local int rollingY, yOffset, bigYOffset;
+	local XComGameState_HeadquartersXCom XComHQ;
 
 	InitPanel(InitName, InitLibID);
+
+	yOffset = 25;
+	bigYOffset = 30;
 	
 	Hide();
 
@@ -96,6 +149,79 @@ simulated function UISquadSelect_InfiltrationPanel InitInfiltrationPanel(optiona
 
 	//Save out this info 
 	InitPos = vect2d(X, Y);
+
+	XComHQ = `XCOMHQ;
+
+	XComHQ.PauseProjectsForFlight();
+	XComHQ.ResumeProjectsPostFlight();
+
+	XComHQ = `XCOMHQ;
+
+	if(default.USE_NEW_VERSION)
+	{
+		rollingY = 5;
+		NewTitle = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(0, rollingY);
+		NewTitle.SetTitleTest(default.strInfilPanelTitle);
+		rollingY += 40;
+
+		MissionTimeText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
+		rollingY += YOffset;
+		OverallTime = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
+		rollingY += YOffset;
+
+		if(default.MULTI_LINE_INFIL)
+		{
+			ExpectedInfiltrationPercent = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(35, rollingY);
+			rollingY += YOffset;
+		}
+
+		BoostedInfiltrationTime = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
+
+		if(default.MULTI_LINE_INFIL)
+		{
+			rollingY += YOffset;
+			BoostedInfiltrationPercent = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(35, rollingY);
+			rollingY += bigYOffset;
+		}
+		else
+		{
+			rollingY += bigYOffset;
+		}
+		
+		
+		ActivityHeader = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(0, rollingY);
+		ActivityHeader.SetSubTitle(default.strActivityHeader);
+		rollingY += YOffset;
+
+		BaselineActivity = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
+		rollingY += YOffset;
+		ExpectedActivity = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
+		rollingY += YOffset;
+		BoostedExpectedActivity = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
+		rollingY += bigYOffset;
+
+		ModifierHeader = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(0, rollingY);
+		ModifierHeader.SetSubtitle(default.strModifierHeader);
+		rollingY += YOffset;
+
+		BaseInfiltrationTime = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
+		rollingY += YOffset;
+
+		SquadSizeValue = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
+		rollingY += YOffset;
+
+		SquadCovertnessValue = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
+		rollingY += YOffset;
+
+		LiberationValue = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(10, rollingY);
+		rollingY += bigYOffset;
+
+		InfiltrationMask = Spawn(class'UIMask', self).InitMask('TacticalMask', self);
+		InfiltrationMask.SetPosition(6, 0);
+		InfiltrationMask.SetSize(InitWidth, InitHeight);
+	}
+	else
+	{
 
 	//Debug square to show location:
 	//Spawn(class'UIPanel', self).InitPanel('BGBoxSimpleHit', class'UIUtilities_Controls'.const.MC_X2BackgroundShading).SetSize(InitWidth, InitHeight);
@@ -171,6 +297,8 @@ simulated function UISquadSelect_InfiltrationPanel InitInfiltrationPanel(optiona
 	BoostedExpectedActivityText.SetSubTitle(default.BoostedActivityText);
 	BoostedExpectedActivity = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(20, 558);
 
+	}
+
 	return self;
 }
 
@@ -190,18 +318,40 @@ function string GetExpectedAlertness(XComGameState_MissionSite MissionState, flo
 		class'XComGameState_LWPersistentSquad'.default.AlertModifierAtInfiltration[i].Modifier);
 }
 
+function string GetBaselineAlertness(XComGameState_MissionSite MissionState)
+{
+	return class'UIUtilities_Text_LW'.static.GetDifficultyString(MissionState);
+}
+
 simulated function Update(array<StateObjectReference> Soldiers)
 {
 	local XComGameState_MissionSite MissionState;
 	local XComGameState_LWAlienActivity ActivityState;
-	local float TotalInfiltrationHours, TotalMissionHours, BoostedInfiltrationHours, InfiltratePct, BoostedInfiltratePct;
+	local float TotalInfiltrationHours, TotalMissionHours, BoostedInfiltrationHours, InfiltratePct, BoostedInfiltratePct, InfiltrationBonusOnLiberation;
 	local int SquadSizeHours, CovertnessHours, NumSoldiers, LiberationHours;
+	local XComGameState_WorldRegion_LWStrategyAI RegionalAI;
+	local XComGameState_WorldRegion RegionState;
 	local string OverallTimeColor, BoostedTimeColor;
 	local StateObjectReference Soldier;
+	local bool bLiberatedRegion;
 	
 	MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(MissionData.MissionID));
 
-	TotalInfiltrationHours = class'XComGameState_LWPersistentSquad'.static.GetHoursToFullInfiltration_Static(Soldiers, MissionState.GetReference(), SquadSizeHours, CovertnessHours, LiberationHours) + 2.0;
+	TotalInfiltrationHours = class'XComGameState_LWPersistentSquad'.static.GetHoursToFullInfiltration_Static(Soldiers, MissionState.GetReference(), SquadSizeHours, CovertnessHours, LiberationHours) + 0.5;
+
+	if(MissionState != none)
+	{
+		RegionState = MissionState.GetWorldRegion();
+		if(RegionState != none)
+		{
+			RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState);
+			if(RegionalAI.bLiberated)
+			{
+				bLiberatedRegion = true;
+				InfiltrationBonusOnLiberation = class'X2StrategyElement_DefaultAlienActivities'.default.INFILTRATION_BONUS_ON_LIBERATION[`STRATEGYDIFFICULTYSETTING] / 100.0;
+			}
+		}
+	}
 
 	TotalMissionHours = 99999;
 	if(MissionState.ExpirationDateTime.m_iYear < 2100)
@@ -218,11 +368,25 @@ simulated function Update(array<StateObjectReference> Soldiers)
 		if (Soldier.ObjectID > 0)
 			NumSoldiers++;
 	}
-
-	BaseInfiltrationTime.SetText(GetDaysAndHoursString(Round(class'XComGameState_LWPersistentSquad'.static.GetBaselineHoursToInfiltration(MissionState.GetReference()))));
+	if(default.USE_NEW_VERSION)
+	{
+		BaseInfiltrationTime.SetNewText( default.strBaseInfilShort $ ":" @ GetDaysAndHoursString(Round(class'XComGameState_LWPersistentSquad'.static.GetBaselineHoursToInfiltration(MissionState.GetReference()))));
+	}
+	else
+	{
+		BaseInfiltrationTime.SetText(GetDaysAndHoursString(Round(class'XComGameState_LWPersistentSquad'.static.GetBaselineHoursToInfiltration(MissionState.GetReference()))));
+	}
 	if(TotalMissionHours < 4320) // 6 months
 	{
-		MissionTimeText.SetText(GetDaysAndHoursString(TotalMissionHours));
+		if(default.USE_NEW_VERSION)
+		{
+			MissionTimeText.SetNewText(default.strExpirationShort $ ":" @ GetDaysAndHoursString(TotalMissionHours));
+		}
+		else
+		{
+			MissionTimeText.SetText(GetDaysAndHoursString(TotalMissionHours));
+		}
+		
 	}
 	else
 	{
@@ -247,42 +411,91 @@ simulated function Update(array<StateObjectReference> Soldiers)
 	}
 	else
 	{
-		if (TotalMissionHours > TotalInfiltrationHours || NumSoldiers == 0)
+		InfiltratePct = (TotalMissionHours / TotalInfiltrationHours) * 100;
+
+		if (bLiberatedRegion)
+		{
+			InfiltratePct += (InfiltrationBonusOnLiberation * 100);
+		}
+		InfiltratePct = Clamp(InfiltratePct, 0, 200);
+
+		if (InfiltratePct >= 125 || NumSoldiers == 0)
 			OverallTimeColor = class'UIUtilities_Colors'.const.GOOD_HTML_COLOR;
-		else if (TotalMissionHours > TotalInfiltrationHours * 1.5)
+		else if (InfiltratePct >= 100)
 			OverallTimeColor = class'UIUtilities_Colors'.const.NORMAL_HTML_COLOR;
 		else if (TotalMissionHours > TotalInfiltrationHours * (class'XComGameState_LWPersistentSquad'.static.GetRequiredPctInfiltrationToLaunch(MissionState) / 100.0))
 			OverallTimeColor = class'UIUtilities_Colors'.const.WARNING2_HTML_COLOR;
 		else
 			OverallTimeColor = class'UIUtilities_Colors'.const.BAD_HTML_COLOR;
 
-		InfiltratePct = (TotalMissionHours / TotalInfiltrationHours) * 100;
-		InfiltratePct = Clamp(InfiltratePct, 0, 200);
 
 		BoostedInfiltrationHours = TotalInfiltrationHours / class'XComGameState_LWPersistentSquad'.default.DefaultBoostInfiltrationFactor[`STRATEGYDIFFICULTYSETTING];
 		BoostedInfiltratePct = (TotalMissionHours / BoostedInfiltrationHours) * 100;
+		if (bLiberatedRegion)
+		{
+			BoostedInfiltratePct += (InfiltrationBonusOnLiberation * 100);
+		}
 		BoostedInfiltratePct = Clamp(BoostedInfiltratePct, 0, 200);
 
-		if (TotalMissionHours > BoostedInfiltrationHours || NumSoldiers == 0)
+		if (TotalMissionHours > BoostedInfiltrationHours * 1.25 || NumSoldiers == 0)
 			BoostedTimeColor = class'UIUtilities_Colors'.const.GOOD_HTML_COLOR;
-		else if (TotalMissionHours > BoostedInfiltrationHours * 1.5)
+		else if (TotalMissionHours > BoostedInfiltrationHours)
 			BoostedTimeColor = class'UIUtilities_Colors'.const.NORMAL_HTML_COLOR;
 		else if (TotalMissionHours > BoostedInfiltrationHours * (class'XComGameState_LWPersistentSquad'.static.GetRequiredPctInfiltrationToLaunch(MissionState) / 100.0))
 			BoostedTimeColor = class'UIUtilities_Colors'.const.WARNING2_HTML_COLOR;
 		else
 			BoostedTimeColor = class'UIUtilities_Colors'.const.BAD_HTML_COLOR;
 
-		OverallTime.SetInfoValue(GetDaysAndHoursString(TotalInfiltrationHours) @ TotalMissionHours < 4320 ? "(" $ default.UpToText @ int(InfiltratePct) $ "%)" : "", OverallTimeColor);
-
-		BoostedInfiltrationTime.SetInfoValue(GetDaysAndHoursString(BoostedInfiltrationHours) @ TotalMissionHours < 4320 ? "(" $ default.UpToText @ int(BoostedInfiltratePct) $ "%)" : "", BoostedTimeColor);
-
-		if (TotalMissionHours < 4320 && NumSoldiers > 0)
+		if (bLiberatedRegion)
 		{
-			ExpectedActivity.SetInfoValue(GetExpectedAlertness(MissionState, InfiltratePct / 100), OverallTimeColor);
-			BoostedExpectedActivity.SetInfoValue(GetExpectedAlertness(MissionState, BoostedInfiltratePct / 100), BoostedTimeColor);
+			TotalInfiltrationHours -= TotalInfiltrationHours * (InfiltrationBonusOnLiberation);
+			BoostedInfiltrationHours = TotalInfiltrationHours / class'XComGameState_LWPersistentSquad'.default.DefaultBoostInfiltrationFactor[`STRATEGYDIFFICULTYSETTING];
+		}
+
+		if(default.USE_NEW_VERSION)
+		{
+			if(default.MULTI_LINE_INFIL)
+			{
+				OverallTime.SetNewInfoValue(default.strOverallInfilShort, GetDaysAndHoursString(TotalInfiltrationHours), OverallTimeColor);
+				BoostedInfiltrationTime.SetNewInfoValue(default.strBoostedShort, GetDaysAndHoursString(BoostedInfiltrationHours), BoostedTimeColor);
+				if(TotalMissionHours < 4320)
+				{
+					ExpectedInfiltrationPercent.SetNewInfoValue(default.strMaxInfilText, int(InfiltratePct) $ "%", OverallTimeColor);
+					BoostedInfiltrationPercent.SetNewInfoValue(default.strMaxInfilText,int(BoostedInfiltratePct) $ "%", BoostedTimeColor);
+				}
+			}
+			else
+			{
+				OverallTime.SetNewInfoValue(default.strOverallInfilShort, GetDaysAndHoursString(TotalInfiltrationHours) @ TotalMissionHours < 4320 ? "(" $ default.UpToText @ int(InfiltratePct) $ "%)" : "", OverallTimeColor);
+				BoostedInfiltrationTime.SetNewInfoValue(default.strBoostedShort, GetDaysAndHoursString(BoostedInfiltrationHours) @ TotalMissionHours < 4320 ? "(" $ default.UpToText @ int(BoostedInfiltratePct) $ "%)" : "", BoostedTimeColor);
+			}
 		}
 		else
 		{
+			OverallTime.SetInfoValue(GetDaysAndHoursString(TotalInfiltrationHours) @ TotalMissionHours < 4320 ? "(" $ default.UpToText @ int(InfiltratePct) $ "%)" : "", OverallTimeColor);
+			BoostedInfiltrationTime.SetInfoValue(GetDaysAndHoursString(BoostedInfiltrationHours) @ TotalMissionHours < 4320 ? "(" $ default.UpToText @ int(BoostedInfiltratePct) $ "%)" : "", BoostedTimeColor);
+		}
+
+		
+
+		if (TotalMissionHours < 4320 && NumSoldiers > 0)
+		{
+			if(default.USE_NEW_VERSION)
+			{
+				BaselineActivity.SetNewText(default.strBaseInfilShort $":" @ GetBaselineAlertness(MissionState));
+				ExpectedActivity.SetNewInfoValue(default.strExpectedShort, GetExpectedAlertness(MissionState, InfiltratePct / 100), OverallTimeColor);
+				BoostedExpectedActivity.SetNewInfoValue(default.strBoostedShort, GetExpectedAlertness(MissionState, BoostedInfiltratePct / 100), BoostedTimeColor);
+			}
+			else
+			{
+				ExpectedActivity.SetInfoValue(GetExpectedAlertness(MissionState, InfiltratePct / 100), OverallTimeColor);
+				BoostedExpectedActivity.SetInfoValue(GetExpectedAlertness(MissionState, BoostedInfiltratePct / 100), BoostedTimeColor);
+			}
+			
+		}
+		else
+		{
+			BaselineActivity.SetNewText(default.strBaseInfilShort $":" @ GetBaselineAlertness(MissionState));
 			ExpectedActivityText.Hide();
 			ExpectedActivity.Hide();
 			BoostedExpectedActivityText.Hide();
@@ -290,14 +503,50 @@ simulated function Update(array<StateObjectReference> Soldiers)
 		}
 
 		if(SquadSizeHours < 0)
-			SquadSizeValue.SetInfoValue(GetDaysAndHoursString(Abs(SquadSizeHours), default.strMinusDaysAndHours), GetColorForHours(SquadSizeHours));
+		{
+			if(default.USE_NEW_VERSION)
+			{
+				SquadSizeValue.SetNewInfoValue(default.strSquadSizeShort, GetDaysAndHoursString(Abs(SquadSizeHours), default.strMinusDaysAndHours), GetColorForHours(SquadSizeHours));
+			}
+			else
+			{
+				SquadSizeValue.SetInfoValue(GetDaysAndHoursString(Abs(SquadSizeHours), default.strMinusDaysAndHours), GetColorForHours(SquadSizeHours));
+			}
+		}
 		else
-			SquadSizeValue.SetInfoValue(GetDaysAndHoursString(SquadSizeHours, default.strPlusDaysAndHours), GetColorForHours(SquadSizeHours));
+		{
+			if(default.USE_NEW_VERSION)
+			{
+				SquadSizeValue.SetNewInfoValue(default.strSquadSizeShort, GetDaysAndHoursString(SquadSizeHours, default.strPlusDaysAndHours), GetColorForHours(SquadSizeHours));
+			}
+			else
+			{
+				SquadSizeValue.SetInfoValue(GetDaysAndHoursString(SquadSizeHours, default.strPlusDaysAndHours), GetColorForHours(SquadSizeHours));
+			}
+		}
 
 		if(CovertnessHours < 0)
-			SquadCovertnessValue.SetInfoValue(GetDaysAndHoursString(Abs(CovertnessHours), default.strMinusDaysAndHours), GetColorForHours(CovertnessHours));
+		{
+			if(default.USE_NEW_VERSION)
+			{
+				SquadCovertnessValue.SetNewInfoValue(default.strAbilitiesShort, GetDaysAndHoursString(Abs(CovertnessHours), default.strMinusDaysAndHours), GetColorForHours(CovertnessHours));
+			}
+			else
+			{
+				SquadCovertnessValue.SetInfoValue(GetDaysAndHoursString(Abs(CovertnessHours), default.strMinusDaysAndHours), GetColorForHours(CovertnessHours));
+			}
+		}
 		else
-			SquadCovertnessValue.SetInfoValue(GetDaysAndHoursString(CovertnessHours, default.strPlusDaysAndHours), GetColorForHours(CovertnessHours));
+		{
+			if(default.USE_NEW_VERSION)
+			{
+				SquadCovertnessValue.SetNewInfoValue(default.strAbilitiesShort, GetDaysAndHoursString(CovertnessHours, default.strPlusDaysAndHours), GetColorForHours(CovertnessHours));
+			}
+			else
+			{
+				SquadCovertnessValue.SetInfoValue(GetDaysAndHoursString(CovertnessHours, default.strPlusDaysAndHours), GetColorForHours(CovertnessHours));
+			}
+		}
 
 		//CovertnessValue_Bad.SetText(GetDaysAndHoursString(`SYNC_RAND(100))); 
 	}
@@ -309,10 +558,20 @@ simulated function Update(array<StateObjectReference> Soldiers)
 	}
 	else
 	{
-		if(LiberationHours < 0)
-			LiberationValue.SetInfoValue(GetDaysAndHoursString(Abs(LiberationHours), default.strMinusDaysAndHours), GetColorForHours(LiberationHours));
+		if(default.USE_NEW_VERSION)
+		{
+			if(LiberationHours < 0)
+				LiberationValue.SetNewInfoValue(default.strLiberationShort, GetDaysAndHoursString(Abs(LiberationHours), default.strMinusDaysAndHours), GetColorForHours(LiberationHours));
+			else
+				LiberationValue.SetNewInfoValue(default.strLiberationShort, GetDaysAndHoursString(LiberationHours, default.strPlusDaysAndHours), GetColorForHours(LiberationHours));
+		}
 		else
-			LiberationValue.SetInfoValue(GetDaysAndHoursString(LiberationHours, default.strPlusDaysAndHours), GetColorForHours(LiberationHours));
+		{
+			if(LiberationHours < 0)
+				LiberationValue.SetInfoValue(GetDaysAndHoursString(Abs(LiberationHours), default.strMinusDaysAndHours), GetColorForHours(LiberationHours));
+			else
+				LiberationValue.SetInfoValue(GetDaysAndHoursString(LiberationHours, default.strPlusDaysAndHours), GetColorForHours(LiberationHours));
+		}
 	}
 
 	Show();

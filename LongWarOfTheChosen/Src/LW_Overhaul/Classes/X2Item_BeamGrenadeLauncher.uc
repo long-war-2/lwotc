@@ -60,6 +60,9 @@ static function X2GrenadeLauncherTemplate CreateTemplate_BeamGrenadeLauncher()
 	Template.CanBeBuilt = false;
 	Template.bInfiniteItem = true;
 
+	Template.Abilities.AddItem('HeavyOrdnanceV2');
+	Template.Abilities.AddItem('FullKit');
+
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.GrenadeRangeBonusLabel, , default.BEAMGRENADELAUNCHER_RANGEBONUS);
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.GrenadeRadiusBonusLabel, , default.BEAMGRENADELAUNCHER_RADIUSBONUS);
 

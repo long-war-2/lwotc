@@ -16,6 +16,10 @@ var config int BLACK_MARKET_2ND_SOLDIER_FL;
 var config int BLACK_MARKET_3RD_SOLDIER_FL;
 var config float BLACK_MARKET_PERSONNEL_INFLATION_PER_FORCE_LEVEL;
 var config float BLACK_MARKET_SOLDIER_DISCOUNT;
+var config bool BLACK_MARKET_DOUBLE_SOLDIERS;
+var config bool DISABLE_STARTING_REGION_CHECKS;
+var config int MIN_STARTING_REGION_LINKS;
+var config int MAX_STARTING_REGION_LINKS;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -64,9 +68,14 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	Template.AddCHEvent('Geoscape_ResInfoButtonVisible', ShowOrHideResistanceOrdersButton, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('ContinentBonusActivated', HandleContinentBonusActivation, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('StrategyMap_NavHelpUpdated', DisplayResistanceAndHavenManagementNavHelp, ELD_Immediate, GetListenerPriority());
+	//Template.AddCHEvent('EnterSquadSelect', PauseGeoscapeOnSquadSelect, ELD_Immediate, 100);
+	//Template.AddCHEvent('OnUFOAttack', PauseGeoscapeOnSquadSelect, ELD_Immediate, 100);
+	//Template.AddCHEvent('OnViewAvengerAssaultMission', PauseGeoscapeOnSquadSelect, ELD_Immediate, 100);
+
 
 	//Added for fix to issue #100
 	Template.AddCHEvent('OverrideCurrentDoom', OverrideCurrentDoom, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('PostUFOSetInterceptionTime', OnUFOSetInterceptionTime, ELD_Immediate, GetListenerPriority());
 
 	Template.RegisterInStrategy = true;
 
@@ -79,6 +88,7 @@ static function CHEventListenerTemplate CreateCampaignStartListeners()
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'CampaignStartListeners');
 	Template.AddCHEvent('OverrideAllowStartingRegionLink', AllowOutOfContinentStartingRegionLinks, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('OverrideEligibleStartingRegion', OverrideEligibleStartingRegionMinLinks, ELD_Immediate, GetListenerPriority());
 	Template.RegisterInCampaignStart = true;
 
 	return Template;
@@ -590,14 +600,30 @@ static function EventListenerReturn OnBlackMarketGoodsReset(Object EventData, Ob
 	PersonnelRewardNames.AddItem('Reward_Scientist');
 	PersonnelRewardNames.AddItem('Reward_Engineer');
 	PersonnelRewardNames.AddItem('Reward_Soldier');
+	if(default.BLACK_MARKET_DOUBLE_SOLDIERS)
+	{
+		PersonnelRewardNames.AddItem('Reward_Soldier');
+	}
 
 	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
 	if (AlienHQ.GetForceLevel() >= default.BLACK_MARKET_2ND_SOLDIER_FL)
+	{
 		PersonnelRewardNames.AddItem('Reward_Soldier');
+		if(default.BLACK_MARKET_DOUBLE_SOLDIERS)
+		{
+			PersonnelRewardNames.AddItem('Reward_Soldier');
+		}
+	}
 
 	if (AlienHQ.GetForceLevel() >= default.BLACK_MARKET_3RD_SOLDIER_FL)
+{
 		PersonnelRewardNames.AddItem('Reward_Soldier');
-
+		if(default.BLACK_MARKET_DOUBLE_SOLDIERS)
+		{
+			PersonnelRewardNames.AddItem('Reward_Soldier');
+		}
+	}
+	
 	for (idx=0; idx < PersonnelRewardNames.Length; idx++)
 	{
 		ForSaleItem = EmptyForSaleItem;
@@ -1141,6 +1167,88 @@ static function EventListenerReturn AllowOutOfContinentStartingRegionLinks(
 	// A starting region can be linked to any other neighbouring region.
 	// No restrictions.
 	Tuple.Data[1].b = true;
+
+	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn OverrideEligibleStartingRegionMinLinks(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name EventID,
+	Object CallbackData)
+{
+	local XComGameState StartState;
+	local XComLWTuple Tuple;
+	local XComGameState_WorldRegion RegionState, LinkedRegionState;
+	local int idx, Count;
+
+	if(default.DISABLE_STARTING_REGION_CHECKS) return ELR_NoInterrupt;
+	
+
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none) return ELR_NoInterrupt;
+
+	if(Tuple.Id != 'OverrideEligibleStartingRegion') return ELR_NoInterrupt;
+
+	RegionState = XComGameState_WorldRegion(EventSource);
+
+	if(RegionState == none) return ELR_NoInterrupt;
+
+	`LWTrace("OverrideEligibleStartingRegion called with Region" @RegionState.GetMyTemplateName());
+
+	StartState = `XCOMHISTORY.GetStartState();
+
+	Count = 0;
+
+	for(idx = 0; idx < RegionState.LinkedRegions.Length; idx++)
+	{
+		LinkedRegionState = XComGameState_WorldRegion(StartState.GetGameStateForObjectID(RegionState.LinkedRegions[idx].ObjectID));
+
+		if(LinkedRegionState != none)
+		{
+			Count++;
+		}
+	}
+
+	`LWTrace("Region links:" @Count);
+
+	if(Count < default.MIN_STARTING_REGION_LINKS || Count > default.MAX_STARTING_REGION_LINKS)
+	{
+		Tuple.Data[0].b = false;
+	}
+
+	return ELR_NoInterrupt;
+
+}
+
+// Override how the UFO interception works, since we don't use the calendar
+static function EventListenerReturn OnUFOSetInterceptionTime(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+    local XComGameState_UFO UFO;
+	local int HoursUntilIntercept;
+
+    UFO = XComGameState_UFO(EventData);
+	UFO = XComGameState_UFO(NewGameState.GetGameStateForObjectID(UFO.ObjectID));
+    if (UFO == none)
+    {
+        return ELR_NoInterrupt;
+    }
+
+	if (UFO.bDoesInterceptionSucceed)
+	{
+		UFO.InterceptionTime = UFO.GetCurrentTime();
+
+		HoursUntilIntercept = (UFO.MinNonInterceptDays * 24) + `SYNC_RAND_STATIC((UFO.MaxNonInterceptDays * 24) - (UFO.MinNonInterceptDays * 24) + 1);
+		class'X2StrategyGameRulesetDataStructures'.static.AddHours(UFO.InterceptionTime, HoursUntilIntercept);
+	}
+
+    return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn PauseGeoscapeOnSquadSelect(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	`HQPRES.StrategyMap2D.SetUIState(eSMS_Flight);
 
 	return ELR_NoInterrupt;
 }

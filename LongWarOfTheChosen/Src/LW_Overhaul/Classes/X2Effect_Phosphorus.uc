@@ -28,6 +28,7 @@ function int GetExtraShredValue(XComGameState_Effect EffectState, XComGameState_
 			case 'LWFlamethrower':
 			case 'Roust':
 			case 'Firestorm':
+			case 'FirestormActivation':
 			case 'AdvPurifierFlamethrower':
 			switch(X2WeaponTemplate(SourceWeapon.GetMyTemplate()).WeaponTech)
 				{

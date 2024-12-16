@@ -103,7 +103,8 @@ simulated function ApplyDirectionalDamageToTarget(XComGameState_Unit SourceUnit,
 		DamageEvent.DamageRadius = class'X2Ability_LW_PsiOperativeAbilitySet'.default.SOULSTORM_ENVIRONMENAL_RADIUS;	
 		DamageEvent.DamageCause = SourceUnit.GetReference();
 		DamageEvent.DamageSource = DamageEvent.DamageCause;
-		DamageEvent.bRadialDamage = false;
+		DamageEvent.bRadialDamage = true;
+		DamageEvent.bCausesSurroundingAreaDamage = true;
 		DamageEvent.bAllowDestructionOfDamageCauseCover = bAllowDestructionOfDamageCauseCover;
 
 		if (bHitSourceTile)

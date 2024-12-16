@@ -385,11 +385,15 @@ simulated function UpdateSquadHeader()
 	}
 	else
 	{
-		if (bSelectSquad && SquadState.bOnMission)
+		if (SquadState.bOnMission)
+		{
 			SelectOrViewBtn.SetDisabled(true);
+		}
 		else
+		{
 			SelectOrViewBtn.SetDisabled(false);
-
+		}
+			
 		RenameSquadBtn.Show();
 		if (SquadState.bOnMission || SquadState.CurrentMission.ObjectID > 0)
 			DeleteSquadBtn.Hide();

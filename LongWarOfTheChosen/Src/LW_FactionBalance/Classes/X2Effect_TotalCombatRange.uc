@@ -16,7 +16,7 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
 }
 
 //this is triggered when checking range on an item
-static function EventListenerReturn OnGetItemRange(
+static final function EventListenerReturn OnGetItemRange(
 	Object EventData,
 	Object EventSource,
 	XComGameState NewGameState,
@@ -65,7 +65,7 @@ static function EventListenerReturn OnGetItemRange(
 	if (X2GrenadeTemplate(WeaponTemplate) != none || X2GrenadeLauncherTemplate(WeaponTemplate) != none ||
 		WeaponTemplate.DataName == 'Battlescanner')
 	{
-		OverrideTuple.Data[1].i = class'X2LWModTemplate_SkirmisherAbilities'.default.TOTAL_COMBAT_BONUS_RANGE;
+		OverrideTuple.Data[1].i += class'X2LWModTemplate_SkirmisherAbilities'.default.TOTAL_COMBAT_BONUS_RANGE;
 	}
 
 	return ELR_NoInterrupt;

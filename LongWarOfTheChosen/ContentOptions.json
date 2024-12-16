@@ -1,6 +1,10 @@
 {
 
     "missingUncooked": [
+        "DestroyTransmitter_TempAssets.upk",
+        "MissionAssets_SupplyExtraction.upk",
+        "PsiTransmitter.upk",
+        "SupplyExtraction_TempAssets.upk",
         "FX_Glows_Env.upk",
         "FX_Exhaust_Vapors_Env.upk"
     ],
@@ -15,6 +19,9 @@
         "Obj_DestroyObject_LW",
         "Obj_DestroyTransmitter_LW",
         "Obj_Forge_LW",
+        "Obj_PsiGate_LW",
+        "Obj_FortressLeadup_LW",
+        "Obj_FortressShowdown_LW",
         "Obj_HackWorkstation_LW",
         "Obj_IntelRaid_LW",
         "Obj_Jailbreak_LW",
@@ -37,7 +44,10 @@
         "UMS_LWCommon",
         "UMS_LWContinuousReinforcements",
         "UMS_LWMissionTimer",
-        "Obj_ChosenShowdown_LW"
+        "Obj_ChosenShowdown_LW",
+        "UMS_MissionCore_LW",
+        "UMS_MissionCore_LW_LW",
+        "Obj_CompoundRescueOperative_LW"
     ],
     "sfStandalone": [
         "AdvGrenadeLauncher",

@@ -82,6 +82,7 @@ function static Vector AdjustLocation(Vector Loc, XComGameState_AIGroup Group)
 	local XGUnit Visualizer;
 	local XComWorldData WorldData;
 	local TTile TileDest;
+    local array<TTile> Path;
 
 	WorldData = `XWORLD;
 
@@ -103,6 +104,7 @@ function static Vector AdjustLocation(Vector Loc, XComGameState_AIGroup Group)
 
 		TileDest = class'Helpers'.static.GetClosestValidTile(TileDest); // Ensure the tile isn't occupied before finding a path to it.
 
+    /*
 		if (!class'Helpers'.static.GetFurthestReachableTileOnPathToDestination(TileDest, TileDest, LeaderState, false))
 		{
 			TileDest = Visualizer.m_kReachableTilesCache.GetClosestReachableDestination(TileDest);
@@ -114,19 +116,21 @@ function static Vector AdjustLocation(Vector Loc, XComGameState_AIGroup Group)
 			`RedScreen("Unable to build path to job location.");
 		}
 
-		// // Do we have a valid path there?
-		// if (!Visualizer.m_kReachableTilesCache.BuildPathToTile(TileDest, Path))
-		// {
-		// 	// Nope, find the cloest tile we can reach
-		// 	TileDest = Visualizer.m_kReachableTilesCache.GetClosestReachableDestination(TileDest);
+        */
 
-		// 	// Can we find a path now?
-		// 	if (!Visualizer.m_kReachableTilesCache.BuildPathToTile(TileDest, Path))
-		// 	{
-		// 		// Nope. Give up. So Sad.
-		// 		`RedScreen("Unable to build path to job location.");
-		// 	}
-		// }
+		 // Do we have a valid path there?
+		 if (!Visualizer.m_kReachableTilesCache.BuildPathToTile(TileDest, Path))
+		 {
+		 	// Nope, find the cloest tile we can reach
+		 	TileDest = Visualizer.m_kReachableTilesCache.GetClosestReachableDestination(TileDest);
+
+		 	// Can we find a path now?
+		 	if (!Visualizer.m_kReachableTilesCache.BuildPathToTile(TileDest, Path))
+		 	{
+		 		// Nope. Give up. So Sad.
+		 		`RedScreen("Unable to build path to job location.");
+		 	}
+		 }
 
 		// Set the location at the reachable tile.
 		Loc = WorldData.GetPositionFromTileCoordinates(TileDest);

@@ -7,6 +7,18 @@
 
 class Utilities_LW extends Object dependson(X2StrategyElement_DefaultAlienActivities) config(LW_Overhaul);
 
+struct MissionEnemyCount
+{
+	var name MissionName;
+	var int NumEnemies;
+};
+
+struct MissionEnemyCountOffset
+{
+	var name MissionName;
+	var int OffsetAmount;
+};
+
 var config array<float> REFLEX_ACTION_CHANCE_YELLOW;
 var config array<float> REFLEX_ACTION_CHANCE_GREEN;
 var config float REFLEX_ACTION_CHANCE_REDUCTION;
@@ -15,6 +27,9 @@ var config array<float> LOW_INFILTRATION_MODIFIER_ON_REFLEX_ACTIONS;
 var config array<float> HIGH_INFILTRATION_MODIFIER_ON_REFLEX_ACTIONS;
 
 var config array<string> RETALIATION_MISSION_TYPES;
+
+var config array<MissionEnemyCount> OverrideMissionEnemyCounts;
+var config array<MissionEnemyCountOffset> OverrideMissionEnemyCountOffsets;
 
 const CA_FAILURE_RISK_MARKER = "CovertActionRisk_Failure";
 
@@ -671,7 +686,7 @@ function static XComGameState_Unit AddRebelToMission(StateObjectReference RebelR
 }
 
 /* Find the number of enemies that were on the original mission schedule.
- * If the mission was an RNF-only mission then it returns 8 + the region alert
+ * If the mission was an RNF-only mission then it returns 7 + the region alert
  * the mission is in.
  */
  static function int GetNumEnemiesOnMission(XComGameState_MissionSite MissionState)
@@ -681,10 +696,24 @@ function static XComGameState_Unit AddRebelToMission(StateObjectReference RebelR
 	local XComGameState_WorldRegion Region;
 	local XComGameState_WorldRegion_LWStrategyAI RegionAI;
 	local XComGameStateHistory History;
+	local int index;
 
 	History = `XCOMHISTORY;
+	`LWTrace("GetNumEnemiesOnMission called for Mission" @MissionState.GeneratedMission.Mission.MissionName);
+
+	index = default.OverrideMissionEnemyCounts.Find('MissionName', MissionState.GeneratedMission.Mission.MissionName);
+	if(index != INDEX_NONE)
+	{
+		return default.OverrideMissionEnemyCounts[index].NumEnemies;
+	}
 
 	MissionState.GetShadowChamberMissionInfo(OrigMissionAliens, UnitTemplatesThatWillSpawn);
+
+	index = default.OverrideMissionEnemyCountOffsets.Find('MissionName', MissionState.GeneratedMission.Mission.MissionName);
+	if(index != INDEX_NONE)
+	{
+		OrigMissionAliens += default.OverrideMissionEnemyCountOffsets[index].OffsetAmount;
+	}
 
 	// Handle missions built primarily around RNFs by granting a minimum alien count
 	if (OrigMissionAliens <= 6)
@@ -693,7 +722,6 @@ function static XComGameState_Unit AddRebelToMission(StateObjectReference RebelR
 		RegionAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(Region);
 		OrigMissionAliens = 7 + RegionAI.LocalAlertLevel;
 	}
-
 	return OrigMissionAliens;
 }
 

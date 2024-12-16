@@ -1,7 +1,7 @@
 ; LWOTC translated
 [LWTutorial]
 CampaignStartTitle="Bienvenido al Gran Mod Long War of the Chosen"
-CampaignStartBody="LWOTC es una revisión completa de XCOM 2 WOTC: Hace la campaña más desafiante sintiéndose como una guerra de guerrillas.<br/><br/>Puedes desactivar este tutorial a través de cambiar dificultad> opciones avanzadas en el menú del juego."
+CampaignStartBody="LWOTC es una revisión completa de XCOM 2 War of the Chosen: Hace la campaña más desafiante, sintiéndose como una guerra de guerrillas.<br/><br/>Puedes desactivar este tutorial a través del menú del juego en cambiar dificultad> opciones avanzadas."
 
 [X2EventListener_Tutorial]
 DroneSightedTitle="Nuevo Enemigo: Dron"
@@ -62,7 +62,7 @@ HavenHighlightBody="Los Refugios son esenciales para tu campaña, ya que se util
 
 [UIScreenListener_MissionBriefTutorial]
 MissionBriefTutorialTitle="Resumen de la misión"
-MissionBriefTutorialBody="La expiración de la misión determina cuánto tiempo tienes para infiltrarte en ella. Cuanta más información de misión generes a partir del trabajo rebelde de Datos antes detectarás misiones y más tiempo tendrás para infiltrarte. <br/> <br/> No es necesario hacer todas aunque debes intentar completar cuantas más mejor. Si no dispones de un escuadrón preparado o suficiente tiempo no temas saltarte una misión."
+MissionBriefTutorialBody="La expiración de la misión determina cuánto tiempo tienes para infiltrarte en ella. Cuanta más información de misión generes a partir del trabajo rebelde de Datos antes detectarás misiones y más tiempo tendrás para infiltrarte.<br/><br/> No es necesario hacer todas aunque debes intentar completar cuantas más mejor. Si no dispones de un escuadrón preparado o suficiente tiempo no temas en saltarte alguna."
 MissionEnemyCountTitle="Números de enemigos"
 MissionEnemyCountBody="El recuento de enemigos que se muestra a la izquierda es una aproximación de cuántos habrá en la misión si alcanzas el 100% de infiltración. <br/> <br/> No llegar a ese 100% da como resultado más actividad enemiga en la zona. La infiltración sobrante tiene la posibilidad de reducir el número."
 

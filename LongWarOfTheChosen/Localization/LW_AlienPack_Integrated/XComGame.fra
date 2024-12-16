@@ -313,19 +313,19 @@ AbilityDescName="fusil magnétique"
 [AdvGrenadierM1 X2CharacterTemplate]
 strCharacterName="Ingénieur d'ADVENT"
 
-[AdvGrenadierM1_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM1_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="Lance-grenades d'ADVENT"
 
 [AdvGrenadierM2 X2CharacterTemplate]
 strCharacterName="Grenadier d'ADVENT"
 
-[AdvGrenadierM2_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM2_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="Lance-grenades d'ADVENT"
 
 [AdvGrenadierM3 X2CharacterTemplate]
 strCharacterName="Grenadier lourd d'ADVENT"
 
-[AdvGrenadierM3_GrenadeLauncher X2WeaponTemplate]
+[AdvGrenadierM3_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="Lance-grenades d'ADVENT"
 
 [AdvGrenadierFlashbangGrenade X2GrenadeTemplate]
@@ -426,8 +426,8 @@ strCharacterName="Soldat Chrysalis"
 
 [ChryssalidSoldierSlash X2AbilityTemplate]
 LocFriendlyName="Lacération de Soldat Chrysalis"
-LocLongDescription="Votre Lacération inflige de lourds dégâts."
-LocHelpText="Votre Lacération inflige de lourds dégâts."
+LocLongDescription="Une attaque au corps à corps qui peut empoisonner la cible."
+LocHelpText="Attaque d'une cible au corps à corps avec vos griffes, avec une chance de l'empoisonner."
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Hive Queen ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -436,8 +436,8 @@ strCharacterName="Reine de la ruche"
 
 [HiveQueenSlash X2AbilityTemplate]
 LocFriendlyName="Grande lacération de Chrysalis"
-LocLongDescription="Vos lacérations infligent beaucoup de dégâts."
-LocHelpText="Vos lacérations infligent beaucoup de dégâts."
+LocLongDescription="Une attaque au corps à corps qui peut empoisonner la cible."
+LocHelpText="Attaque d'une cible au corps à corps avec vos griffes, avec une chance de l'empoisonner."
 
 ;;;;;;;;;;;;;;;;;;;;;;;;; Additional ADVENT Trooper types ;;;;;;;;;;;;;;;;;;;;;;;;
 

@@ -89,7 +89,7 @@ static function X2AbilityTemplate AddCombativesAttack()
 	local X2AbilityCost_ActionPoints ActionPointCost;
 	local X2AbilityToHitCalc_StandardMelee MeleeHitCalc;
 	local X2Effect_ApplyWeaponDamage PhysicalDamageEffect;
-	local X2Effect_SetUnitValue SetUnitValEffect;
+	//local X2Effect_SetUnitValue SetUnitValEffect;
 	//local X2Effect_ImmediateAbilityActivation ImpairingAbilityEffect;
 	local X2Effect_RemoveEffects RemoveEffects;
 
@@ -135,6 +135,7 @@ static function X2AbilityTemplate AddCombativesAttack()
 	PhysicalDamageEffect = new class'X2Effect_ApplyWeaponDamage';
 	Template.AddTargetEffect(PhysicalDamageEffect);
 
+	/* 
 	// The Unit gets to counterattack once
 	SetUnitValEffect = new class'X2Effect_SetUnitValue';
 	SetUnitValEffect.UnitName = class'X2Ability'.default.CounterattackDodgeEffectName;
@@ -143,7 +144,8 @@ static function X2AbilityTemplate AddCombativesAttack()
 	SetUnitValEffect.bApplyOnHit = true;
 	SetUnitValEffect.bApplyOnMiss = true;
 	Template.AddShooterEffect(SetUnitValEffect);
-
+	*/
+	
 	// Remove the dodge increase (happens with a counter attack, which is one time per turn)
 	RemoveEffects = new class'X2Effect_RemoveEffects';
 	RemoveEffects.EffectNamesToRemove.AddItem(class'X2Ability'.default.CounterattackDodgeEffectName);

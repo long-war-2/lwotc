@@ -154,11 +154,11 @@ LocPromotionPopupText="<Bullet/> El lanzallamas es un arma de corto alcance que 
 
 [LWRocketLauncher X2AbilityTemplate]
 LocFriendlyName="Lanzacohetes"
-LocHelpText="Dispara un cohete a una zona objetivo. <Ability:ROCKETSCATTER/>"
+LocHelpText="Dispara un cohete a una zona objetivo.<Ability:ROCKETSCATTER/>"
 
 [LWBlasterLauncher X2AbilityTemplate]
 LocFriendlyName="Bomba bláster"
-LocHelpText="Dispara una bomba bláster guiada a una zona objetivo. <Ability:ROCKETSCATTER/>"
+LocHelpText="Dispara una bomba bláster guiada a una zona objetivo.<Ability:ROCKETSCATTER/>"
 
 [NapalmX X2AbilityTemplate]
 LocFriendlyName="Napalm-X"
@@ -282,6 +282,16 @@ LocHelpText="Cohete especial que aturde o desorienta a los objetivos y deja una 
 LocPromotionPopupText="<Bullet/> Un uso por misión.<br/><Bullet/> La probabilidad de aturdir será del 20%.<br/><Bullet/> En cuanto a la desorientación, la probabilidad será del 100% y superará cualquier resistencia (pero no una inmunidad).<br/><Bullet/> Requiere una acción y termina el turno del soldado.<br/><Bullet/>Los códices y zombies psiónicos son inmunes a todos los efectos, incluido el daño.<br/><Bullet/> Los aliados no pueden ser heridos por este ataque.<br/>"
 ; End translated
 
+[BlasterConcussionRocket X2AbilityTemplate]
+LocFriendlyName="Cohete de conmoción"
+LocFlyOverText="Cohete de conmoción"
+LocLongDescription="Dispara un cohete especial que inflige daño limitado, pero tiene una probabilidad de aturdir o desorientar a los enemigos orgánicos dentro de su área de efecto y deja una nube de humo."
+; LWOTC translated
+LocHelpText="Cohete especial que aturde o desorienta a los objetivos y deja una nube de humo. <Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> Un uso por misión.<br/><Bullet/> La probabilidad de aturdir será del 20%.<br/><Bullet/> En cuanto a la desorientación, la probabilidad será del 100% y superará cualquier resistencia (pero no una inmunidad).<br/><Bullet/> Requiere una acción y termina el turno del soldado.<br/><Bullet/>Los códices y zombies psiónicos son inmunes a todos los efectos, incluido el daño.<br/><Bullet/> Los aliados no pueden ser heridos por este ataque.<br/>"
+; End translated
+
+
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
 [CoupDeGrace X2AbilityTemplate]
@@ -366,6 +376,12 @@ LocLongDescription="Cualquier granada dañina de tu espacio exclusivo para grana
 LocHelpText="Cualquier granada dañina de tu espacio exclusivo para granadas gana un uso adicional."
 LocFlyOverText="Artillería pesada"
 LocPromotionPopupText="<Bullet/> Todas las granadas dañinas son viables para Artillería pesada.<br/>"
+
+[HeavyOrdnanceV2 X2AbilityTemplate]
+LocFriendlyName="Artillería pesada"
+LocLongDescription="La granada en tu espacio exclusivo para granadas gana un uso adicional."
+LocHelpText="La granada en tu espacio exclusivo para granadas gana un uso adicional."
+LocPromotionPopupText="<Bullet/> Todas las granadas están disponibles en Artillería pesada, incluso las granadas no ofensivas como los escáneres de batalla y las granadas de humo.<br/>"
 
 [Sapper X2AbilityTemplate]
 LocFriendlyName="Zapador"
@@ -2474,6 +2490,14 @@ ObjectiveTextPools[1]="Neutraliza todos los objetivos enemigos."
 ObjectiveTextPools[0]="El Avatar del comandante debe sobrevivir."
 ObjectiveTextPools[1]="Destruye los Avatares."
 
+[DefaultAssaultFortressLeadup_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="El Avatar del comandante debe sobrevivir."
+ObjectiveTextPools[1]="Neutraliza todos los objetivos enemigos."
+
+[DefaultDestroyAvatarProject_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="El Avatar del comandante debe sobrevivir."
+ObjectiveTextPools[1]="Destruye los Avatares."
+
 [DefaultSabotage_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Coloca X4 para destruir la instalación alienígena."
 ObjectiveTextPools[1]="Extrae a todos los soldados de XCOM."
@@ -2829,6 +2853,13 @@ PostMissionType="Asalta la fortaleza alienígena."
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
 ObjectiveTextPools[0]="Destruye la Directiva Avatar."
 
+[DestroyAvatarProject_LW X2MissionTemplate]
+DisplayName="Destruir el proyecto Avatar"
+Briefing="Destruye el proyecto Avatar."
+PostMissionType="Destruir proyecto Avatar"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
+ObjectiveTextPools[0]="Destruye la Directiva Avatar."
+
 [SecureUFO_LW X2MissionTemplate]
 DisplayName="Asegurar el OVNI desactivado"
 Briefing="Asegura el OVNI desactivado."
@@ -3173,6 +3204,10 @@ BonusEmptyText="Aumenta el ritmo de curación de los soldados."
 BonusText="+%AVENGERBONUS% VELOCIDAD DE CURACIÓN"
 FilledText="El equipo médico avanzado de %UNITNAME está aumentando la velocidad a la que se recuperan los soldados de sus heridas."
 LockedText="BLOQUEADO: COMPRAR MEJORA"
+
+[CovertActionIntenseTrainingStaffSlot X2StaffSlotTemplate]
+EmptyText="SOLDADO"
+BonusText="EN OPERACIÓN ENCUBIERTA"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Techs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -5739,6 +5774,10 @@ Description="La Resistencia ha colocado detectores de movimiento de rango bajo e
 FriendlyName="Alerta, presencia detectada"
 Description="Se ha descubierto el aura oscura de un Elegido. Ten seguro que aparecerán en esta misión."
 
+[SlightlyLargeMap X2SitRepTemplate]
+FriendlyName="Tamaño del mapa considerable"
+Description="El área de operaciones es más grande de lo normal: probablemente te llevará más tiempo de lo habitual en llegar al objetivo."
+
 [LargeMap X2SitRepTemplate]
 FriendlyName="Tamaño del mapa considerable"
 Description="El área de operaciones es más grande de lo normal: probablemente te llevará más tiempo de lo habitual en llegar al objetivo."
@@ -6110,7 +6149,7 @@ strCharacterName="Perdido bruto"
 [TheLostBruteHP16_LW X2CharacterTemplate]
 strCharacterName="Perdido bruto"
 
-[LWTheLostBruteHP18 X2CharacterTemplate]
+[TheLostBruteHP18_LW X2CharacterTemplate]
 strCharacterName="Perdido bruto"
 
 [TheLostBruteHP21_LW X2CharacterTemplate]
@@ -6157,6 +6196,15 @@ LocHelpText="Tus ataques que generen rozados se actualizarán automáticamente a
 LocPromotionPopupText="<Bullet/> Los ataques que normalmente rozarían a tu objetivo se transforman automáticamente en golpes normales.<br/><Bullet/> Se aplica a armas principales, secundarias y pistolas.<br/>"
 
 [LikeLightning_LW X2AbilityTemplate]
+LocFriendlyName="Como un rayo"
+LocFlyOverText="Como un rayo"
+; LWOTC translated
+LocLongDescription="Cuando se activa Correr y disparar el tiempo de reutilización del lanzaarcos se restablece inmediatamente."
+LocHelpText="Cuando se activa Correr y disparar el tiempo de reutilización del lanzaarcos se elimina de inmediato."
+LocPromotionPopupText="<Bullet/> Cuando se activa Correr y disparar el tiempo de reutilización del lanzaarcos se elimina de inmediato.<br/><Bullet/> No se aplica con Cadena de rayos.<br/>"
+; End translated
+
+[LikeLightningPassive_LW X2AbilityTemplate]
 LocFriendlyName="Como un rayo"
 LocFlyOverText="Como un rayo"
 ; LWOTC translated
@@ -6222,9 +6270,9 @@ LocPromotionPopupText="<Bullet/> Si consigues al menos una muerte durante tu tur
 [Dedication_LW X2AbilityTemplate]
 LocFriendlyName="Dedicación"
 LocFlyOverText="Dedicación"
-LocLongDescription="Acción gratuita. Ganas <Ability:DEDICATION_MOBILITY/> de movilidad e ignoras el disparo de reacción durante el resto del turno. Tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos."
-LocHelpText="Acción gratuita. Ganas <Ability:DEDICATION_MOBILITY/> de movilidad e ignoras el disparo de reacción durante el resto del turno. Tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos."
-LocPromotionPopupText="<Bullet/> Ganas <Ability:DEDICATION_MOBILITY/> de movilidad e ignoras el disparo de reacción durante el resto del turno.<br/><Bullet/> Acción sin coste.<br/><Bullet/> Dedicación tiene un tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos.<br/>"
+LocLongDescription="Acción gratuita. Ganas <Ability:DEDICATIONLW_MOBILITY/> de movilidad e ignoras el disparo de reacción durante el resto del turno. Tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos."
+LocHelpText="Acción gratuita. Ganas <Ability:DEDICATIONLW_MOBILITY/> de movilidad e ignoras el disparo de reacción durante el resto del turno. Tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos."
+LocPromotionPopupText="<Bullet/> Ganas <Ability:DEDICATIONLW_MOBILITY/> de movilidad e ignoras el disparo de reacción durante el resto del turno.<br/><Bullet/> Acción sin coste.<br/><Bullet/> Dedicación tiene un tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos.<br/>"
 
 [Corpsman_LW X2AbilityTemplate]
 LocFriendlyName="Asistencia médica"
@@ -6473,6 +6521,14 @@ LocLongDescription = "Matar a un enemigo da como resultado una bonificación acu
 LocPromotionPopupText = "<Bullet/> Matar a un enemigo da como resultado una bonificación acumulable de +<Ability:DISASSEMBLY_HACK/> al pirateo durante 3 turnos.<br/>"
 
 [LightningSlash_LW X2AbilityTemplate]
+LocFriendlyName="Ataque relámpago"
+; LWOTC translated
+LocLongDescription="Ataca a cualquier enemigo con tu <Ability:BOUND_WEAPON_NAME/> dentro del rango de movimiento visualizado en azul. Este ataque no termina el turno."
+LocHelpText="Ataca a cualquier enemigo con tu <Ability:BOUND_WEAPON_NAME/> dentro del rango de movimiento visualizado en azul>. Este ataque no termina el turno."
+LocPromotionPopupText="<Bullet/> Abalánzate sobre cualquier enemigo con tu <Ability:BOUND_WEAPON_NAME/> dentro del rango de movimiento visualizado en azul.<br/><Bullet/> Este ataque no termina el turno.<br/><Bullet/> Tiempo de enfriamiento de <Ability:LIGHTNINGSLASH_COOLDOWN/> turnos.<br/>"
+; End translated
+
+[LightningSlashLastAction_LW X2AbilityTemplate]
 LocFriendlyName="Ataque relámpago"
 ; LWOTC translated
 LocLongDescription="Ataca a cualquier enemigo con tu <Ability:BOUND_WEAPON_NAME/> dentro del rango de movimiento visualizado en azul. Este ataque no termina el turno."
@@ -7521,3 +7577,9 @@ LocFriendlyName="Nova"
 LocLongDescription="Libera un estallido de energía que daña a todas las unidades cercanas. Este ataque no tiene coste ni enfriamiento, pero las Novas consecutivas causarán daños al SPARK."
 LocHelpText="Causa una explosión que afecta a todas las unidades cercanas. Las Novas consecutivas causarán daños al SPARK."
 LocPromotionPopupText="<Bullet/> Nova no tiene coste en puntos de acción ni tiempo de enfriamiento.<br/><Bullet/> El primer ataque de Nova en cada misión infligirá 0 de daño al SPARK.<br/><Bullet/> Todos los ataques de Nova posteriores infligirán un daño acumulado de <Ability:Nova_Damage/> al SPARK.<br/>"
+
+;Marauder
+[SkirmisherStrike X2AbilityTemplate]
+LocLongDescription="Efectuar un disparo estándar con tu arma principal como primera acción ya no termina tu turno."
+LocHelpText="Efectuar un disparo estándar con tu arma principal como primera acción ya no termina tu turno."
+LocPromotionPopupText="<Bullet/> Efectuar un disparo estándar con tu arma principal como primera acción ya no termina tu turno.<br/>"
