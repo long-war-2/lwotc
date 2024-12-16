@@ -127,8 +127,8 @@ LocHelpText="當被敵人攻擊時，每回合自動用手槍還擊一次。"
 LocLongDescription="當被敵人攻擊時，每回合自動用手槍還擊一次。"
 
 [Quickdraw X2AbilityTemplate]
-LocLongDescription="用第一個行動點進行手槍射擊不再結束回合。"
-LocHelpText="用第一個行動點進行手槍射擊不再結束回合。"
+LocLongDescription="用第一個行動點進行手槍射擊不再結束回合。手槍不再減少移動力。"
+LocHelpText="用第一個行動點進行手槍射擊不再結束回合。手槍不再減少移動力。"
 
 [LightningHands X2AbilityTemplate]
 LocLongDescription="用手槍射擊目標。不消耗行動點。"
@@ -2520,6 +2520,14 @@ ObjectiveTextPools[1]="消滅所有目標敵人"
 ObjectiveTextPools[0]="指揮官的化身必須存活"
 ObjectiveTextPools[1]="摧毀所有化身"
 
+[DefaultAssaultFortressLeadup_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="指揮官的化身必須存活"
+ObjectiveTextPools[1]="消滅所有敵人"
+
+[DefaultDestroyAvatarProject_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="指揮官的化身必須存活"
+ObjectiveTextPools[1]="摧毀所有化身"
+
 [DefaultSabotage_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="安置X4炸藥以摧毀外星人設施"
 ObjectiveTextPools[1]="撤離所有XCOM士兵"
@@ -2926,7 +2934,14 @@ DisplayName="突襲外星人要塞"
 Briefing="突襲外星人要塞"
 PostMissionType="突襲外星人要塞"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
-ObjectiveTextPools[0]="破壞化身指令"
+ObjectiveTextPools[0]="破壞化身計劃"
+
+[DestroyAvatarProject_LW X2MissionTemplate]
+DisplayName="破壞化身計劃"
+Briefing="破壞化身計劃"
+PostMissionType="破壞化身計劃"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
+ObjectiveTextPools[0]="破壞化身計劃"
 
 [SecureUFO_LW X2MissionTemplate]
 DisplayName="肅清殘損的幽浮"
@@ -3039,7 +3054,7 @@ ObjectiveTextPools[1]="撤離所有XCOM士兵"
 
 [SupplyExtraction_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="標記並回收變種人物資箱"
-ObjectiveTextPools[1]="標記並回收變種人物資箱"
+ObjectiveTextPools[1]="標記並回收至少4個變種人物資箱"
 ObjectiveTextPools[2]="撤離所有XCOM士兵"
 ObjectiveTextPools[3]="消滅所有殘存目標敵人(可選)"
 
@@ -5423,12 +5438,6 @@ FocusLevelDescriptions[4]="撕裂傷害 +<Ability:FOCUS4RENDDAMAGE/>\n移動力 
 [TemplarFocus X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> 聖殿騎士在開始任務時比其他士兵弱，但在更高的專注水平下會變得非常強大。<br/><Bullet/> 專注是通過用撕裂攻擊敵人獲得的（即使未命中也能獲得）。<br/>"
 
-[ArcWave_LW X2AbilityTemplate]
-LocFriendlyName="撕裂"
-LocLongDescription="近戰攻擊有幾率使目標眩暈或混亂。觸發氣勢，產生專注。"
-LocHelpText="近戰攻擊有幾率使目標眩暈或混亂。觸發氣勢，產生專注。"
-LocPromotionPopupText="<Bullet/> 使用撕裂是聖殿騎士產生專注的主要方法。<br/><Bullet/> 施展撕裂後，聖殿騎士將獲得氣勢，允許他們進行一次移動動作。攻擊後撤回掩體。<br/><Bullet/> 撕裂每1點專注有<Ability:RENDSTUNCHANCE/>%幾率眩暈。眩暈的目標也會被擊退。<br/><Bullet/> 撕裂每1點專注有 <Ability:RENDDISORIENTCHANCE/>%幾率混亂。<br/>"
-
 [Rend_LW X2AbilityTemplate]
 LocFriendlyName="撕裂"
 LocLongDescription="近戰攻擊有幾率使目標眩暈或混亂。觸發氣勢，產生專注。"
@@ -6477,6 +6486,14 @@ LocHelpText="使用<Ability:BOUND_WEAPON_NAME/>攻擊藍色移動範圍內的任
 LocPromotionPopupText="<Bullet/> 使用<Ability:BOUND_WEAPON_NAME/>攻擊藍色移動範圍內的任何敵人。<br/><Bullet/> 這次攻擊不會結束回合。<br/><Bullet/> 閃電裂斬有<Ability:LIGHTNINGSLASH_COOLDOWN/>回合冷卻時間。<br/>"
 ; End Translation (2)
 
+[LightningSlashLastAction_LW X2AbilityTemplate]
+LocFriendlyName="閃電裂斬"
+; LWOTC Needs Translation (3)
+LocLongDescription="使用<Ability:BOUND_WEAPON_NAME/>攻擊藍色移動範圍內的任何敵人，不會結束回合。"
+LocHelpText="使用<Ability:BOUND_WEAPON_NAME/>攻擊藍色移動範圍內的任何敵人，不會結束回合。"
+LocPromotionPopupText="<Bullet/> 使用<Ability:BOUND_WEAPON_NAME/>攻擊藍色移動範圍內的任何敵人。<br/><Bullet/> 這次攻擊不會結束回合。<br/><Bullet/> 閃電裂斬有<Ability:LIGHTNINGSLASH_COOLDOWN/>回合冷卻時間。<br/>"
+; End Translation (3)
+
 [InspireAgility_LW X2AbilityTemplate]
 LocFriendlyName="靈感"
 LocFlyOverText="靈感"
@@ -7140,6 +7157,13 @@ LocHelpText="祭司被一種光環所包圍，這種光環能立即為他們自�
 LocFlyOverText="慰藉"
 LocPromotionPopupText="<Bullet/> 慰藉的作用範圍有4格。<br/><Bullet/> 移動到受折磨的隊友旁邊能直接解除精神異常狀態。<br/>"
 
+[SolacePassive X2AbilityTemplate]
+LocFriendlyName="慰藉光環"
+LocLongDescription="該單位被一種光環所包圍，這種光環能立即為他們自己和附近的隊友消除或阻止任何精神異常。"
+LocHelpText="該單位被一種光環所包圍，這種光環能立即為他們自己和附近的隊友消除或阻止任何精神異常。"
+LocFlyOverText="慰藉"
+LocPromotionPopupText="<Bullet/> 慰藉的作用範圍有4格。<br/><Bullet/> 移動到受折磨的隊友旁邊能直接解除精神異常狀態。<br/>"
+
 ; End Translation
 
 ; LWOTC Needs Translation
@@ -7361,6 +7385,12 @@ LocFriendlyName="阻斷"
 LocLongDescription="一種強有力的監視方式。觸發時不再自動開火，而是執行任何單個動作。自由行動。"
 LocHelpText="一種強有力的監視方式。觸發時不再自動開火，而是執行任何單個動作。自由行動。"
 LocPromotionPopupText="<Bullet/> 自由行動。<br/><Bullet/> 某些操作在阻斷期間不可用，例如監視。<br/><Bullet/> 阻斷有 <Ability:SelfCooldown_LW/> 回合冷卻時間。"
+
+[ArcWave_LW X2AbilityTemplate]
+LocFriendlyName="撕裂"
+LocLongDescription="近戰攻擊，有一定幾率使目標眩暈或混亂。觸發氣勢，並生成專注。"
+LocHelpText="近戰攻擊，有一定幾率使目標眩暈或混亂。觸發氣勢，並生成專注。"
+LocPromotionPopupText="<Bullet/> 使用撕裂是聖殿騎士生成專注的主要方法。<br/><Bullet/>  施放撕裂後，聖殿騎士將獲得氣勢點數，允許其進行一次移動動作，以便在攻擊後撤回掩體。<br/><Bullet/> 撕裂每點專注有<Ability:RENDSTUNCHANCE/>%的幾率使目標眩暈。眩暈的目標也會被擊退。<br/><Bullet/> 撕裂每點專注有<Ability:RENDSTUNCHANCE/>%的幾率使目標混亂。<br/>"
 
 [ArcWavePassive_LW X2AbilityTemplate]
 LocFriendlyName="電弧波"
@@ -7665,3 +7695,9 @@ LocFriendlyName="鈎爪專家"
 LocLongDescription="正義、怒火、鞭笞獲得額外+15命中。"
 LocHelpText="正義、怒火、鞭笞獲得額外+15命中。"
 LocFlyOverText="鈎爪專家"
+
+;Marauder
+[SkirmisherStrike X2AbilityTemplate]
+LocLongDescription="使用主武器進行標準射擊不再結束回合。"
+LocHelpText="使用主武器進行標準射擊不再結束回合。"
+LocPromotionPopupText=""
