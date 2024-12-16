@@ -34,8 +34,33 @@ m_strNoWeaponUpgradesTooltip="NO HAY MEJORAS DE ARMA DISPONIBLES"
 TrojanVirus="Virus troyano"
 TrojanVirusTriggered="<XGParam:StrValue0/!UnitName/> ha activado el virus troyano."
 
+; LWOTC translated
+
+DenseSmokeGrenadeEffectDisplayName="Humo denso"
+DenseSmokeGrenadeEffectDisplayDesc="El humo denso concede una bonificación defensiva adicional a esta unidad."
+
+ShellshockEffectDesc="Esta unidad tiene reducida su puntería y probabilidad de golpe crítico."
+ShellshockEffectName="Conmocionado"
+
+ShockwaveEffectName="Estremecido"
+ShockwaveEffectDesc="Esta unidad tiene defensa y esquiva reducidas."
+
+; End translated
+
 [X2Effect_Savior]
 strSavior_WorldMessage="Salvador: curación de <XGParam:IntValue0/> de salud adicional."
+
+; LWOTC translated
+
+[X2Effect_ApplyRepairHeal_LW]
+HealedMessage="+<Heal/> HPs restablecidos"
+
+[X2Effect_RepairArmor_LW]
+ArmorRepairedMessage="Armazón reconstituido"
+
+;POTENTIALLY DEPRECATED AS WELL AS ALL TRANSLATIONS!
+
+; End translated
 
 [X2Item_DenseSmokeGrenade]
 DenseSmokeGrenadeEffectDisplayName="Humo denso"
@@ -46,7 +71,7 @@ LocCoveringFire="Fuego de cobertura"
 LocCoveringFireMalus="Esta unidad ha sido el objetivo de una guardia con el talento Fuego de cobertura, lo que le confiere -10 para apuntar durante el resto del turno."
 ; LWOTC translated
 LocSoulStealBuff="Robo de alma ablativo"
-LocSoulStealBuffHelpText="Robo de alma otorga puntos de defensa ablativos cuando se cura en exceso."
+LocSoulStealBuffHelpText="Robo de alma otorga puntos de defensa ablativos cuando se usa Fuego del alma."
 ; End translated
 
 ; LWOTC Needs Translation

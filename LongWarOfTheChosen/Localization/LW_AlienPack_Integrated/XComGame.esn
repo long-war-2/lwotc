@@ -241,6 +241,11 @@ AbilityDescName="rifle de plasma"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; ArchonM2_LW ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+[Archon_WPN X2WeaponTemplate]
+; LWOTC Needs translated
+AbilityDescName="Bastón de Arconte"
+; End translated
+
 [ArchonM2_LW X2CharacterTemplate]
 strCharacterName="Gran Arconte"
 
@@ -261,7 +266,7 @@ AbilityDescName="cañón"
 ; End translated
 
 [AdvGunnerM2 X2CharacterTemplate]
-strCharacterName="Artillero pesado de ADVENT"
+strCharacterName="Artillero pesado"
 
 [AdvGunnerM2_WPN X2WeaponTemplate]
 FriendlyName="AutoMag"
@@ -270,7 +275,7 @@ AbilityDescName="cañón"
 ; End translated
 
 [AdvGunnerM3 X2CharacterTemplate]
-strCharacterName="Artillero de élite de ADVENT"
+strCharacterName="Artillero de élite"
 
 [AdvGunnerM3_WPN X2WeaponTemplate]
 FriendlyName="AutoMag"
@@ -291,7 +296,7 @@ AbilityDescName="rifle magnético"
 ; End translated
 
 [AdvSentryM2 X2CharacterTemplate]
-strCharacterName="Guardián de ADVENT"
+strCharacterName="Guardián"
 
 [AdvSentryM2_WPN X2WeaponTemplate]
 FriendlyName="Fusil magnético de ADVENT"
@@ -300,7 +305,7 @@ AbilityDescName="rifle magnético"
 ; End translated
 
 [AdvSentryM3 X2CharacterTemplate]
-strCharacterName="Centinela de ADVENT"
+strCharacterName="Centinela de élite"
 
 [AdvSentryM3_WPN X2WeaponTemplate]
 FriendlyName="Fusil magnético de ADVENT"
@@ -324,10 +329,13 @@ strCharacterName="Granadero de ADVENT"
 FriendlyName="Lanzagranadas de ADVENT"
 
 [AdvGrenadierM3 X2CharacterTemplate]
-strCharacterName="Granadero pesado de ADVENT"
+strCharacterName="Granadero de élite"
 
 [AdvGrenadierM3_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="Lanzagranadas de ADVENT"
+
+[AdvHeavyEngineer X2CharacterTemplate]
+strCharacterName="Ingeniero de élite"
 
 [AdvGrenadierFlashbangGrenade X2GrenadeTemplate]
 FriendlyName="Granada cegadora"
@@ -365,10 +373,10 @@ LaunchedAbilityHelpText="Crea charcos de ácido que dañan a las unidades."
 strCharacterName="Cohetero de ADVENT"
 
 [AdvRocketeerM2 X2CharacterTemplate]
-strCharacterName="Cohetero pesado de ADVENT"
+strCharacterName="Cohetero pesado"
 
 [AdvRocketeerM3 X2CharacterTemplate]
-strCharacterName="Cohetero de élite de ADVENT"
+strCharacterName="Cohetero de élite"
 
 [AdvRocketeerM1_RocketLauncher X2WeaponTemplate]
 FriendlyName="Lanzacohetes de ADVENT"
@@ -384,7 +392,7 @@ strCharacterName="CEM superpesado"
 strCharacterName="Dron de vigilancia de ADVENT"
 
 [LWDroneM2 X2CharacterTemplate]
-strCharacterName="Dron cazador de ADVENT"
+strCharacterName="Dron cazador"
 
 [LWDroneM1_WPN X2WeaponTemplate]
 FriendlyName="Descarga de dron"
@@ -452,7 +460,7 @@ AbilityDescName="rifle magnético"
 ; End translated
 
 [AdvSergeantM2 X2CharacterTemplate]
-strCharacterName="Sargento primero de ADVENT"
+strCharacterName="Sargento primero"
 
 [AdvSergeantM2_WPN X2WeaponTemplate]
 FriendlyName="Fusil magnético de ADVENT"
@@ -506,7 +514,7 @@ AbilityDescName="rifle magnético"
 ; End translated
 
 [AdvGeneralM2_LW X2CharacterTemplate]
-strCharacterName="General de ADVENT"
+strCharacterName="General de élite"
 
 [AdvGeneralM2_LW_WPN X2WeaponTemplate]
 FriendlyName="Fusil magnético de ADVENT"

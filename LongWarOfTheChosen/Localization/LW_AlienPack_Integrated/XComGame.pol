@@ -384,8 +384,8 @@ strCharacterName="Chryzalid-żołnierz"
 
 [ChryssalidSoldierSlash X2AbilityTemplate]
 LocFriendlyName="Cięcie chryzalida żołnierza"
-LocLongDescription="Twoje ataki tnące zadają duże obrażenia."
-LocHelpText="Twoje ataki tnące zadają duże obrażenia."
+LocLongDescription="Atak wręcz, który może zatruć cel."
+LocHelpText="Zaatakuj szponami cel znajdujący się w zasięgu walki wręcz, potencjalnie powodując jego zatrucie."
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Hive Queen ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -394,8 +394,8 @@ strCharacterName="Królowa roju"
 
 [HiveQueenSlash X2AbilityTemplate]
 LocFriendlyName="Lepsze cięcie chryzalida"
-LocLongDescription="Twoje ataki tnące zadają mnóstwo obrażeń."
-LocHelpText="Twoje ataki tnące zadają mnóstwo obrażeń."
+LocLongDescription="Atak wręcz, który może zatruć cel."
+LocHelpText="Zaatakuj szponami cel znajdujący się w zasięgu walki wręcz, potencjalnie powodując jego zatrucie."
 
 ;;;;;;;;;;;;;;;;;;;;;;;;; Additional ADVENT Trooper types ;;;;;;;;;;;;;;;;;;;;;;;;
 
