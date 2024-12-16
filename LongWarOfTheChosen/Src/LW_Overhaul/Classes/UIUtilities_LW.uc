@@ -434,7 +434,7 @@ function static string GetBoostedInfiltrationString(XComGameState_MissionSite Mi
 		//ID 619 - allow non-expiring missions to show remaining time until 100% infiltration will be reached
 		if (InfiltratingSquad.CurrentInfiltration < 1.0)
 		{
-			TotalSeconds = InfiltratingSquad.GetSecondsRemainingToFullInfiltrationUI();
+			TotalSeconds = InfiltratingSquad.GetSecondsRemainingToFullInfiltrationUI(true);
 			TotalHours = int(TotalSeconds / 3600.0) % 24;
 			TotalDays = TotalSeconds / 86400.0;
 			ParamTag.IntValue1 = int(TotalDays);
