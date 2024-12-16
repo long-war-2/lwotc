@@ -1,0 +1,21 @@
+; Spark armor localization here
+
+[PlatedSparkHeavyArmor_LW X2SparkArmorTemplate_DLC_3]
+FriendlyName="Armadura plateada pesada"
+BriefSummary="Una modificación de nuestra armadura SPARK plateada; esta variación sacrifica la movilidad para mejorar la durabilidad y la potencia de fuego, e incluye una ranura para munición."
+TacticalText="<Bullet/> Proporciona mayor armadura y puntos de vida, a expensas de la movilidad y la defensa.<br/><Bullet/> Otorga a la unidad un espacio de munición."
+
+[PlatedSparkLightArmor_LW X2SparkArmorTemplate_DLC_3]
+FriendlyName="Armadura plateada ligera"
+BriefSummary="Una modificación de nuestra armadura SPARK plateada; esta variación sacrifica la durabilidad para mejorar la movilidad y otorga la habilidad Dedicación."
+TacticalText="<Bullet/> Concede mayor movilidad y defensa, a expensas de la armadura y los puntos de vida.<br/><Bullet/> Agrega la habilidad Dedicación."
+
+[PoweredSparkHeavyArmor_LW X2SparkArmorTemplate_DLC_3]
+FriendlyName="Armadura potenciada pesada"
+BriefSummary="Una modificación de nuestra armadura SPARK potenciada; esta variación sacrifica la movilidad para mejorar la durabilidad y la potencia de fuego, e incluye una ranura para munición."
+TacticalText="<Bullet/> Proporciona mayor armadura y puntos de vida, a expensas de la movilidad y la defensa.<br/><Bullet/> Otorga a la unidad un espacio de munición."
+
+[PoweredSparkLightArmor_LW X2SparkArmorTemplate_DLC_3]
+FriendlyName="Armadura potenciada ligera"
+BriefSummary="Una modificación de nuestra armadura SPARK potenciada; esta variación sacrifica la durabilidad para mejorar la movilidad y otorga la habilidad Dedicación."
+TacticalText="<Bullet/> Concede mayor movilidad y defensa, a expensas de la armadura y los puntos de vida.<br/><Bullet/> Agrega la habilidad Dedicación."
