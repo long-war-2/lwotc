@@ -625,16 +625,18 @@ simulated function GetData()
 simulated function UpdateLiaison()
 {
 	local String Str;
+	local bool bDisabled;
 	local Texture2D LiaisonPicture;
 	local XComGameState_Unit Liaison;
 
+	bDisabled = false;
 	if (CachedLiaison.ObjectID == 0)
 	{
 		LiaisonName.SetHtmlText("");
 		LiaisonImage.Hide();
 
 		// Can't edit load out if there is no liaison, so disable that button
-		LiaisonLoadoutButton.SetDisabled(true);
+		bDisabled = true;
 	}
 	else
 	{
@@ -650,10 +652,12 @@ simulated function UpdateLiaison()
 			if (Liaison.IsEngineer())
 			{
 				Str = class'UIUtilities_Text'.static.InjectImage(class'UIUtilities_Image'.const.EventQueue_Engineer, 32, 32, -6);
+				bDisabled = true;
 			}
 			else if (Liaison.IsScientist())
 			{
 				Str = class'UIUtilities_Text'.static.InjectImage(class'UIUtilities_Image'.const.EventQueue_Science, 32, 32, -6);
+				bDisabled = true;
 			}
 			Str $= Liaison.GetFullName();
 		}
@@ -666,9 +670,9 @@ simulated function UpdateLiaison()
 			LiaisonImage.LoadImage(PathName(LiaisonPicture));
 			LiaisonImage.Show();
 		}
-
-		LiaisonLoadoutButton.SetDisabled(false);
 	}
+
+	LiaisonLoadoutButton.SetDisabled(bDisabled);
 
 	RefreshNavHelp();
 }
