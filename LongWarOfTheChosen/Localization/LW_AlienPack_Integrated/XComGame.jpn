@@ -364,8 +364,8 @@ strCharacterName="クリサリド兵"
 
 [ChryssalidSoldierSlash X2AbilityTemplate]
 LocFriendlyName="クリサリド・ソルジャースラッシュ"
-LocLongDescription="敵を切りつけ、大きなダメージを与える。"
-LocHelpText="敵を切りつけ、大きなダメージを与える。"
+LocLongDescription="ターゲットに毒を与えることがある近接攻撃。"
+LocHelpText="近接攻撃範囲内のターゲットを爪で攻撃し、確率で毒を与える。"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Hive Queen ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -374,8 +374,8 @@ strCharacterName="クリサリド・クイーン"
 
 [HiveQueenSlash X2AbilityTemplate]
 LocFriendlyName="グレーター・クリサリドスラッシュ"
-LocLongDescription="敵を切りつけ、大きなダメージを与える。"
-LocHelpText="敵を切りつけ、大きなダメージを与える。"
+LocLongDescription="ターゲットに毒を与えることがある近接攻撃。"
+LocHelpText="近接攻撃範囲内のターゲットを爪で攻撃し、確率で毒を与える。"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;; Additional ADVENT Trooper types ;;;;;;;;;;;;;;;;;;;;;;;;
 

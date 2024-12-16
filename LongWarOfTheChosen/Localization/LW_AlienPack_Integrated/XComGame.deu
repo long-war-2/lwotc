@@ -384,8 +384,8 @@ strCharacterName="Chryssaliden-Soldat"
 
 [ChryssalidSoldierSlash X2AbilityTemplate]
 LocFriendlyName="Chryssaliden-Soldaten-Schlitzer"
-LocLongDescription="Deine Schlitzer-Angriffe verursachen jede Menge Schaden."
-LocHelpText="Deine Schlitzer-Angriffe verursachen jede Menge Schaden."
+LocLongDescription="Ein Nahkampfangriff, der das Ziel vergiften kann."
+LocHelpText="Greife ein Nahkampfziel mit deinen Krallen an und vergifte es möglicherweise."
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Hive Queen ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -394,8 +394,8 @@ strCharacterName="Schwarmkönigin"
 
 [HiveQueenSlash X2AbilityTemplate]
 LocFriendlyName="Großer Chryssaliden-Schlitzer"
-LocLongDescription="Deine Schlitzer-Angriffe verursachen jede Menge Schaden."
-LocHelpText="Deine Schlitzer-Angriffe verursachen jede Menge Schaden."
+LocLongDescription="Ein Nahkampfangriff, der das Ziel vergiften kann."
+LocHelpText="Greife ein Nahkampfziel mit deinen Krallen an und vergifte es möglicherweise."
 
 ;;;;;;;;;;;;;;;;;;;;;;;;; Additional ADVENT Trooper types ;;;;;;;;;;;;;;;;;;;;;;;;
 

@@ -388,8 +388,8 @@ strCharacterName="寄生獸兵蟲"
 
 [ChryssalidSoldierSlash X2AbilityTemplate]
 LocFriendlyName="寄生獸兵蟲斬擊"
-LocLongDescription="你的斬擊攻擊造成大量傷害。"
-LocHelpText="你的斬擊攻擊造成大量傷害。"
+LocLongDescription="近戰攻擊可以使目標中毒。"
+LocHelpText="使用利爪對目標發動近戰攻擊，可能使其中毒。"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Hive Queen ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -398,8 +398,8 @@ strCharacterName="寄生獸蟲後"
 
 [HiveQueenSlash X2AbilityTemplate]
 LocFriendlyName="寄生獸蟲後斬擊"
-LocLongDescription="你的斬擊攻擊造成大量的傷害。"
-LocHelpText="你的斬擊攻擊造成大量的傷害。"
+LocLongDescription="近戰攻擊可以使目標中毒。"
+LocHelpText="使用利爪對目標發動近戰攻擊，可能使其中毒。"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;; Additional ADVENT Trooper types ;;;;;;;;;;;;;;;;;;;;;;;;
 

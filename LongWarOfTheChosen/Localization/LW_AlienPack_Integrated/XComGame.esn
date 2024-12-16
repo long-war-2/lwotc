@@ -427,8 +427,8 @@ strCharacterName="Soldado crisálida"
 
 [ChryssalidSoldierSlash X2AbilityTemplate]
 LocFriendlyName="Corte de Soldado Crisálida"
-LocLongDescription="Tus ataques de corte hacen mucho daño."
-LocHelpText="Tus ataques de corte hacen mucho daño."
+LocLongDescription="Un ataque cuerpo a cuerpo que puede envenenar al objetivo."
+LocHelpText="Ataca a un objetivo cuerpo a cuerpo con tus garras, con la posibilidad de envenenarlo."
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Hive Queen ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -437,8 +437,8 @@ strCharacterName="Reina de la colmena"
 
 [HiveQueenSlash X2AbilityTemplate]
 LocFriendlyName="Corte de Gran Crisálida"
-LocLongDescription="Tus ataques de corte hacen mucho daño."
-LocHelpText="Tus ataques de corte hacen mucho daño."
+LocLongDescription="Un ataque cuerpo a cuerpo que puede envenenar al objetivo."
+LocHelpText="Ataca a un objetivo cuerpo a cuerpo con tus garras, con la posibilidad de envenenarlo."
 
 ;;;;;;;;;;;;;;;;;;;;;;;;; Additional ADVENT Trooper types ;;;;;;;;;;;;;;;;;;;;;;;;
 

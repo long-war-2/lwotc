@@ -364,8 +364,8 @@ strCharacterName="Crisalide guerriera"
 
 [ChryssalidSoldierSlash X2AbilityTemplate]
 LocFriendlyName="Fendente soldato Crisalide"
-LocLongDescription="I tuoi attacchi Fendente infliggono molti danni."
-LocHelpText="I tuoi attacchi Fendente infliggono molti danni."
+LocLongDescription="Un attacco in mischia che può avvelenare il bersaglio."
+LocHelpText="Attacca un bersaglio in mischia con gli artigli, con la possibilità di avvelenarlo."
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Hive Queen ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -374,8 +374,8 @@ strCharacterName="Regina dell'alveare"
 
 [HiveQueenSlash X2AbilityTemplate]
 LocFriendlyName="Fendente potente Crisalide"
-LocLongDescription="I tuoi attacchi Fendente infliggono molti danni."
-LocHelpText="I tuoi attacchi Fendente infliggono molti danni."
+LocLongDescription="Un attacco in mischia che può avvelenare il bersaglio."
+LocHelpText="Attacca un bersaglio in mischia con gli artigli, con la possibilità di avvelenarlo."
 
 ;;;;;;;;;;;;;;;;;;;;;;;;; Additional ADVENT Trooper types ;;;;;;;;;;;;;;;;;;;;;;;;
 

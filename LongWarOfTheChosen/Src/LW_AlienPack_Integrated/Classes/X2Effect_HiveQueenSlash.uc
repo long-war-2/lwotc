@@ -8,7 +8,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
     //local GameRulesCache_VisibilityInfo VisInfo;
 
     TargetUnit = XComGameState_Unit(TargetDamageable);
-    if(AbilityState.IsMeleeAbility() && TargetUnit != none && class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult) && ApplyEffectParameters.EffectRef.ApplyOnTickIndex == INDEX_NONE)
+    if(AbilityState.IsMeleeAbility() && TargetUnit != none && class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult) && EffectState.ApplyEffectParameters.EffectRef.ApplyOnTickIndex == INDEX_NONE)
     {
 		return BonusDamage;
 	}
