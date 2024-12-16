@@ -743,9 +743,9 @@ m_strChosenLoot="(<XGParam:IntValue0/>) <XGParam:StrValue0/!ItemName/> 擊殺天
 
 [UISL_Shell_LWoTCVersion]
 strMessage_Title = "Long War Of The Chosen"
-strMessage_Header = "Long War Of The Chosen has been Updated!
-strMessage_Body = "Version 1.2.0 is now released, with lots of features and improvements, including:<ul><li>Complete SPARK rework, redone trees for Grenadier, Specialist, and Technical</li><li>Redone XCOM rows for all classes and reduced AP costs for them.</li><li>Redone Infiltration UI in Squad Select and Geoscape, with a new button to access haven advisors from Squad Select</li><li>Two new mission types, more map tweaks, and city center HQ assaults enabled</li><li>More Chosen updates with less sabotage, rebalanced knowledge, Chosen Avenger Defense mission rebalanced</li><li>Psi Operatives now have pistol rows and XCOM decks</li><li>A pile of bugfixes, QOL updates, and needed balance tweaks, and more</li></ul>Check out the google doc linked on the Steam change notes, or visit the LWoTC discord for more information! </br> Note: Some changes are not fully mid campaign compatible, and while things will work, balance will be off, such as chosen knowledge changes. I recommend starting a new campaign or swapping to the 1.1.0 archive version on the Workshop to finish your current one if you want."
-strDismiss_Button = "OK"
+strMessage_Header = "Long War Of The Chosen現已更新！
+strMessage_Body = "1.2.0版本現已更新，內含許多新的功能和改進，包括:<ul><li>全面重製SPARK，並重新設計了榴彈兵、專家以及技術兵的技能樹。</li><li>所有職業的XCOM隨機技能調整，並且稍微降低了它們的技能點數消耗。</li><li>在小隊選擇界面和大地圖上重做了滲透潛入界面，並在小隊選擇界面中新增了訪問地區顧問的按鈕。</li><li>新增兩種新任務類型: 正面對決天選者和安保中心解救VIP。</li><li>對天選者進行了更新，包括減少破壞行動，重新平衡知識機制，並調整了“天選者復仇戰”任務的平衡性。</li><li>靈能兵技能的前後置關係調整，新增手槍技能行和XCOM隨機技能。</li><li>大量bug修復，便利程度提升，必要的平衡調整等更多改動。</li></ul>更多詳情，請查看Steam更新說明中的Google文檔鏈接，或訪問LWoTC Discord（作為中文玩家，你可以加入QQ群909123879參與討論）! </br>注意: 某些更改對正在進行的戰役並不完全兼容，雖然遊戲仍然可以繼續，但平衡性可能會受到影響，例如“天選者知識機制”的更改。如果需要，建議您開始新的戰役，或者切換到創意工坊中的1.1.0存檔版本來完成當前的戰役。"
+strDismiss_Button = "好的"
 
 [UISL_PullAdvisors]
 m_strPullHavenAdvisors="拉取顧問"
