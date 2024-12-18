@@ -21,6 +21,8 @@ var config int APOTHEOSIS_DODGE_BONUS;
 var config int APOTHEOSIS_MOBILITY_BONUS;
 var config float APOTHEOSIS_DAMAGE_MULTIPLIER;
 
+var config int SOUL_SHOT_AIM_MOD;
+
 var config int AMPLIFY_SHOTS;
 
 var name PanicImpairingAbilityName;
@@ -198,7 +200,7 @@ static function X2AbilityTemplate AddTemplarFleche()
 	FlecheBonusDamageEffect.BonusDmgPerTile = default.BONUS_REND_DAMAGE_PER_TILE;
 	FlecheBonusDamageEffect.MaxBonusDamage = default.MAX_REND_FLECHE_DAMAGE;
 	FlecheBonusDamageEffect.AbilityNames.AddItem('Rend_LW');
-	FlecheBonusDamageEffect.AbilityNames.AddItem('ArcWave');
+	FlecheBonusDamageEffect.AbilityNames.AddItem('ArcWave_LW');
 	FlecheBonusDamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
 	FlecheBonusDamageEffect.BuildPersistentEffect (1, true, false);
 	Template.AddTargetEffect (FlecheBonusDamageEffect);
@@ -667,6 +669,7 @@ static function X2AbilityTemplate SoulShot()
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_SQUADDIE_PRIORITY;
 
 	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
+	ToHitCalc.BuiltInHitMod = default.SOUL_SHOT_AIM_MOD;
 	Template.AbilityToHitCalc = ToHitCalc;
 	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
 
@@ -974,7 +977,7 @@ static function X2AbilityTemplate ArcWave_LW()
 
 	Template = Rend('ArcWave_LW');
 	Template.OverrideAbilities.AddItem('Rend_LW');
-	Template.TargetingMethod = class'X2TargetingMethod_ArcWave';
+	Template.TargetingMethod = class'X2TargetingMethod_ArcWave_LW';
 	Template.ActionFireClass = class'X2Action_Fire_Wave';
 
 	//	These are all handled in the editor if you want to change them!
@@ -990,6 +993,7 @@ static function X2AbilityTemplate ArcWave_LW()
 	Template.CustomMovingTurnLeftFireKillAnim = 'MV_ArcWave_RunTurn90LeftMeleeKillA';
 	Template.CustomMovingTurnRightFireAnim = 'MV_ArcWave_RunTurn90RightMeleeA';
 	Template.CustomMovingTurnRightFireKillAnim = 'MV_ArcWave_RunTurn90RightMeleeKillA';
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.REND_PRIORITY - 1;
 	Template.ActivationSpeech = 'Rend';
 	Template.CinescriptCameraType = "Templar_Rend";
 	Template.bSkipExitCoverWhenFiring = false;
@@ -1007,7 +1011,7 @@ static function X2AbilityTemplate ArcWave_LW()
 
 	Template.AbilityMultiTargetConditions.AddItem(default.LivingHostileUnitOnlyProperty);
 
-	Template.AddMultiTargetEffect(new class'X2Effect_ArcWaveMultiDamage');
+	Template.AddMultiTargetEffect(new class'X2Effect_ArcWaveMultiDamage_LW');
 	
 	return Template;
 }

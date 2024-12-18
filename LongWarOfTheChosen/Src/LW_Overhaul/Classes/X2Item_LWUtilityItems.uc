@@ -145,6 +145,10 @@ static function X2DataTemplate CreateChameleonSuit()
 	Template.StartingItem = false;
 	Template.CanBeBuilt = true;
 
+	Template.Abilities.AddItem('Chameleon_Suit_Ability');
+
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.HealthLabel, eStat_HP, class'X2Ability_LW_GearAbilities'.default.CHAMELEON_VEST_HP_BONUS);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.DodgeLabel, eStat_Dodge, class'X2Ability_LW_GearAbilities'.default.CHAMELEON_VEST_DODGE_BONUS);
 	//EFFECT IS CAPTURED IN INFILTRATION CODE
 
 	return Template;

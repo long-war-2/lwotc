@@ -293,7 +293,7 @@ strMaxScatter="\n最大散布（格）："
 
 [X2Ability_LW_ChosenAbilities]
 ShieldedStatBuffsLocDescription="命中、暴击率、意志力和灵能威力增益。"
-ImpactCompensationBuffDescription="减少<Ability:IMPACT_COMPENSATION_CURRENT_DR/>%所有来袭伤害。 "
+ImpactCompensationBuffDescription="减少<Ability:IMPACT_COMPENSATION_CURRENT_DR/>%所有来袭伤害。"
 
 [XComGameState_LWListenerManager]
 ResistanceHQBodyText="获取反抗军避难所信息"
@@ -632,6 +632,8 @@ m_strRetributionEnded=" <XGParam:StrValue0/> 中的反抗军成员已从天选�
 
 [X2StrategyElement_DefaultAlienActivities]
 m_strInsufficientRebels="避难所需要至少<XGParam:IntValue0/>反抗军才能与邻近地区联络"
+VultureUnlockTitle = "获得“强取豪夺”"
+VultureUnlockDesc = "XCOM在搜刮尸体方面有所改进，现在可以从掉落中回收更多战利品。"
 
 [UIScreenListener_Alert]
 m_strInvasionTitle="变种人入侵"
@@ -741,9 +743,9 @@ m_strChosenLoot="(<XGParam:IntValue0/>) <XGParam:StrValue0/!ItemName/> 击杀天
 
 [UISL_Shell_LWoTCVersion]
 strMessage_Title = "Long War Of The Chosen"
-strMessage_Header = "Long War Of The Chosen has been Updated!
-strMessage_Body = "Version 1.1.0 is now released, with lots of features and improvements, including:<ul><li>New 5 Tier Chosen system for Better Progression</li><li>New Covert Actions that Reward Infiltration Missions</li><li>New Maps for Network Tower and Crate Race Missions</li><li>Reworked Templar with Iridar's Psi Shield</li><li>QOL Improvements</li><li>Improved Mod Compatibility</li><li>Balance Tweaks for Classes, Heros, and More</li><li>Way more than I can fit here unless you want a giant scrollbar</li></ul>Check out the google doc linked on the Steam change notes, or visit the LWoTC discord!"
-strDismiss_Button = "OK"
+strMessage_Header = "Long War Of The Chosen现已更新！
+strMessage_Body = "1.2.0版本现已更新，内含许多新的功能和改进，包括:<ul><li>全面重制SPARK，并重新设计了榴弹兵、专家以及技术兵的技能树。</li><li>所有职业的XCOM随机技能调整，并且稍微降低了它们的技能点数消耗。</li><li>在小队选择界面和大地图上重做了渗透潜入界面，并在小队选择界面中新增了访问地区顾问的按钮。</li><li>新增两种新任务类型: 正面对决天选者和安保中心解救VIP。</li><li>对天选者进行了更新，包括减少破坏行动，重新平衡知识机制，并调整了“天选者复仇战”任务的平衡性。</li><li>灵能兵技能的前后置关系调整，新增手枪技能行和XCOM随机技能。</li><li>大量bug修复，便利程度提升，必要的平衡调整等更多改动。</li></ul>更多详情，请查看Steam更新说明中的Google文档链接，或访问LWoTC Discord（作为中文玩家，你可以加入QQ群909123879参与讨论）! </br>注意: 某些更改对正在进行的战役并不完全兼容，虽然游戏仍然可以继续，但平衡性可能会受到影响，例如“天选者知识机制”的更改。如果需要，建议您开始新的战役，或者切换到创意工坊中的1.1.0存档版本来完成当前的战役。"
+strDismiss_Button = "好的"
 
 [UISL_PullAdvisors]
 m_strPullHavenAdvisors="拉取顾问"

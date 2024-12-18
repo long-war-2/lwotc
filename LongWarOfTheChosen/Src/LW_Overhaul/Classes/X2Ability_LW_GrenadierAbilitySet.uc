@@ -335,7 +335,7 @@ static function X2Effect_PersistentStatChange CreateRoboticDisorientedStatusEffe
 static function X2AbilityTemplate AddGhostGrenadeAbility()
 {
 	local X2AbilityTemplate			Template;
-	local X2Effect_TemporaryItem	TemporaryItemEffect;
+	//local X2Effect_TemporaryItem	TemporaryItemEffect;
 	local XMBEffect_AddUtilityItem  GhostGrenadeEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'GhostGrenade');
@@ -507,7 +507,9 @@ static function X2AbilityTemplate NeedleGrenades()
 	Bonus = new class'X2Effect_NeedleGrenades';
 	Bonus.BuildPersistentEffect(1, true, false, true);
 	Bonus.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName);
-	Bonus.BonusDamage = default.NEEDLE_BONUS_UNARMORED_DMG;
+	Bonus.BonusDamage_Conv = default.NEEDLE_BONUS_UNARMORED_DMG;
+	Bonus.BonusDamage_Mag = default.NEEDLE_BONUS_UNARMORED_DMG;
+	Bonus.BonusDamage_Beam = default.NEEDLE_BONUS_UNARMORED_DMG;
 
 	Template.AddTargetEffect(Bonus);
 

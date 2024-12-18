@@ -68,7 +68,7 @@ LocFriendlyName="Centеr Mass"
 LocFlyOverText="Centеr Mass"
 LocLongDescription="You do one additional point of base damage when using guns."
 LocHelpText="You do one additional point of base damage when using guns."
-LocPromotionPopupText="<Bullet/> You do one additional point of base damage with your primary weapon, pistols or a sawed-off shotgun."
+LocPromotionPopupText="<Bullet/> This applies to your primary weapon, pistols and sawed-off shotgun."
 
 [Lethal X2AbilityTemplate]
 LocFriendlyName="Lethal"
@@ -118,14 +118,14 @@ LocFriendlyName="Close and Personal"
 LocFlyOverText="Close and Personal"
 LocLongDescription="Confers +30 critical chance against adjacent targets. The bonus declines with distance from the target."
 LocHelpText="Confers +30 critical chance against adjacent targets. The bonus declines with distance from the target."
-LocPromotionPopupText="<Bullet/> Confers +30 critical chance against adjacent targets.<br/><Bullet/> Bonus reduced by 5% for each additional tile of distance from the target, down to 0% at 7 or more tiles.<br/>"
+LocPromotionPopupText="<Bullet/> Bonus reduced by 5% for each additional tile of distance from the target, down to 0% at 7 or more tiles.<br/>"
 
 [DamnGoodGround X2AbilityTemplate]
 LocFriendlyName="Damn Good Ground"
 LocFlyOverText="Damn Good Ground"
 LocLongDescription="Confers +10 aim and +10 defense against targets at a lower elevation."
 LocHelpText="Confers +10 aim and +10 defense against targets at a lower elevation."
-LocPromotionPopupText="<Bullet/> Confers +10 aim and +10 defense against targets at a lower elevation.<br/><Bullet/> This ability does not provide defensive bonuses if the unit is disoriented, stunned, panicking, on fire or otherwise impaired."
+LocPromotionPopupText="<Bullet/> This ability does not provide defensive bonuses if the unit is disoriented, stunned, panicking, on fire or otherwise impaired."<br/>
 
 [Executioner_LW X2AbilityTemplate]
 LocFriendlyName="Executioner"
@@ -133,7 +133,7 @@ LocFlyOverText="Executioner"
 ; LWOTC Needs Translation
 LocLongDescription="Confers +<Ability:EXECUTIONER_AIM_BONUS/> aim and +<Ability:EXECUTIONER_CRIT_BONUS/> critical chance against targets at half or less of their original hit points."
 LocHelpText="Confers +<Ability:EXECUTIONER_AIM_BONUS/> aim and +<Ability:EXECUTIONER_CRIT_BONUS/> critical chance against targets at half or less of their original hit points."
-LocPromotionPopupText="<Bullet/> Confers +<Ability:EXECUTIONER_CRIT_BONUS/> aim and +<Ability:EXECUTIONER_CRIT_BONUS/> critical chance against targets at half or less of their original hit points.<br/>"
+LocPromotionPopupText=""
 ; End Translation
 
 [Resilience X2AbilityTemplate]
@@ -155,7 +155,7 @@ LocFriendlyName="Aggression"
 LocFlyOverText="Aggression"
 LocLongDescription="Gain +5 critical chance for each enemy you can see, up to a maximum of 30."
 LocHelpText="Gain +5 critical chance for each enemy you can see, up to a maximum of 30."
-LocPromotionPopupText="<Bullet/> Gain +5 critical chance for each enemy you can see, up to a maximum of 30.<br/><Bullet/> Units visible at squadsight ranges do confer bonus.<br/>"
+LocPromotionPopupText="<Bullet/> Units visible at squadsight ranges do confer bonus.<br/>"
 
 [BringEmOn X2AbilityTemplate]
 LocFriendlyName="Bring 'Em On"
@@ -163,7 +163,7 @@ LocFlyOverText="Bring 'Em On"
 ; LWOTC Needs Translation
 LocLongDescription="Gain +1 damage on critical hits for every two enemies you can see, up to a maximum of +8. Works for the soldier's <Ability:BOUND_WEAPON_NAME/> and explosives."
 LocHelpText="Gain +1 damage on critical hits for every two enemies you can see, up to a maximum of +8. Works for the soldier's <Ability:BOUND_WEAPON_NAME/> and explosives."
-LocPromotionPopupText="<Bullet/> Gain +1 damage on critical hits for every two enemies you can see, up to a maximum of +8.<br/><Bullet/> Units visible at squadsight ranges do confer bonus.<br/><Bullet/> Applies to damage from the soldier's <Ability:BOUND_WEAPON_NAME/> and, if the soldier has Biggest Booms, explosives (damaging grenades, rockets, etc.).<br/>"
+LocPromotionPopupText="<Bullet/> Units visible at squadsight ranges do confer bonus.<br/><Bullet/> Applies to damage from the soldier's <Ability:BOUND_WEAPON_NAME/> and, if the soldier has Biggest Booms, explosives (damaging grenades, rockets, etc.).<br/>"
 ; End Translation
 
 [HardTarget X2AbilityTemplate]
@@ -171,7 +171,7 @@ LocFriendlyName="Hard Target"
 LocFlyOverText="Hard Target"
 LocLongDescription="Gain 5 dodge per enemy you can see, up to a maximum of +30."
 LocHelpText="Gain 5 dodge per enemy you can see, up to a maximum of +30."
-LocPromotionPopupText="<Bullet/> Gain 5 dodge per enemy you can see, up to a maximum of +30.<br/><Bullet/> Units visible at squadsight ranges do not confer bonus.<br/><Bullet/> This ability does not provide defensive bonuses if the unit is disoriented, stunned, panicking, on fire or otherwise impaired."
+LocPromotionPopupText="<Bullet/> Units visible at squadsight ranges do not confer bonus.<br/><Bullet/> This ability does not provide defensive bonuses if the unit is disoriented, stunned, panicking, on fire or otherwise impaired."
 
 ; LWOTC Needs Translation (2)
 [Infighter X2AbilityTemplate]
@@ -179,7 +179,7 @@ LocFriendlyName="Infighter"
 LocFlyOverText="Infighter"
 LocLongDescription="Gain <Ability:INFIGHTER_DODGE_BONUS/> Dodge against attacks within four tiles."
 LocHelpText="Gain <Ability:INFIGHTER_DODGE_BONUS/> Dodge against attacks within four tiles."
-LocPromotionPopupText="<Bullet/> Gain <Ability:INFIGHTER_DODGE_BONUS/> Dodge against attacks within four tiles.<br/><Bullet/> Dodge bonus also applies to melee attacks.<br/><Bullet/> This ability does not provide defensive bonuses if the unit is disoriented, stunned, panicking or otherwise impaired.<br/><Bullet/> Burning does not affect this ability."
+LocPromotionPopupText="<Bullet/> Dodge bonus also applies to melee attacks.<br/><Bullet/> This ability does not provide defensive bonuses if the unit is disoriented, stunned, panicking or otherwise impaired.<br/><Bullet/> Burning does not affect this ability."
 ; End Translation (2)
 
 [DepthPerception X2AbilityTemplate]
@@ -210,7 +210,7 @@ LocFriendlyName="Close Encounters"
 LocFlyOverText="Close Encounters"
 LocLongDescription="Once per turn, gain a bonus action after taking a standard shot with your primary weapon at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles. Cannot trigger on the same turn as Hit and Run."
 LocHelpText="Once per turn, gain a bonus action after taking a standard shot with your primary weapon at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles."
-LocPromotionPopupText="<Bullet/> Once per turn, gain a bonus action after taking a standard shot with your primary weapon at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles.<br/><Bullet/> A red ring will mark the range of this ability.<br/><Bullet/> Close Encounters cannot be used on the same turn as Run and Gun.<br/>"
+LocPromotionPopupText="<Bullet/> A red ring will mark the range of this ability.<br/><Bullet/> Close Encounters cannot be used on the same turn as Run and Gun.<br/>"
 
 ; LWOTC Needs Translation
 [LoneWolf X2AbilityTemplate]
@@ -277,7 +277,7 @@ LocFlyOverText="Cyclic Fire"
 ; LWOTC Needs Translation (2)
 LocLongDescription="Special Shot: Fire three shots at a target in a single attack. Requires both actions and all shots have aim penalties. Has a <Ability:SelfCooldown_LW/> turn cooldown."
 LocHelpText="Special Shot: Fire three shots at a target in a single attack. Requires both actions and all shots have aim penalties. Has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocPromotionPopupText="<Bullet/> Special Shot: Fire three shots at a target in a single attack. Requires two actions and all shots have a -<Ability:CYCLIC_FIRE_AIM_MALUS/> penalty to aim.<br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Cyclic Fire has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Requires a burst-fire weapon; ability will not be available when a shotgun or sniper rifle is equipped as a primary weapon."
+LocPromotionPopupText="<Bullet/> Special Shot: Fire three shots at a target in a single attack. Requires two actions and all shots have a -<Ability:CYCLIC_FIRE_AIM_MALUS/> penalty to aim.<br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Cyclic Fire has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Requires a burst-fire weapon; ability will not be available when a sniper rifle is equipped as a primary weapon."
 ; End Translation (2)
 
 [StreetSweeper X2AbilityTemplate]
@@ -351,7 +351,7 @@ LocFlyOverText="Locked On"
 ; LWOTC Needs Translation (2)
 LocLongDescription="Gain +<Ability:LOCKEDON_AIM_BONUS/> aim and +<Ability:LOCKEDON_CRIT_BONUS/> crit for successive shots with your <Ability:BOUND_WEAPON_NAME/> at the same enemy unit."
 LocHelpText="Gain +<Ability:LOCKEDON_AIM_BONUS/> aim and +<Ability:LOCKEDON_CRIT_BONUS/> crit for successive shots with your <Ability:BOUND_WEAPON_NAME/> at the same enemy unit."
-LocPromotionPopupText="<Bullet/> Gain +<Ability:LOCKEDON_AIM_BONUS/> aim and +<Ability:LOCKEDON_CRIT_BONUS/> crit for repeated shots with your <Ability:BOUND_WEAPON_NAME/> at the same target. Not cumulative, and only applies to enemy units.<br/><Bullet/> Area-of-Effect-based shots do not grant the bonus."
+LocPromotionPopupText="<Bullet/> Not cumulative, and only applies to enemy units.<br/><Bullet/> Area-of-Effect-based shots do not grant the bonus."
 ; End Translation (2)
 
 [Sentinel_LW X2AbilityTemplate]
@@ -366,7 +366,7 @@ LocFriendlyName="Rapid Reaction"
 LocFlyOverText="Rapid Reaction"
 LocLongDescription="When in overwatch, each shot you hit with grants another reaction fire shot, up to a maximum of three shots."
 LocHelpText="When in overwatch, each shot you hit with grants another shot, up to a maximum of three shots."
-LocPromotionPopupText="<Bullet/> When in overwatch, each shot you hit with grants another reaction fire shot, up to a maximum of three shots.<br/>"
+LocPromotionPopupText=""
 
 [LightningReflexes_LW X2AbilityTemplate]
 LocFriendlyName="Lightning Reflexes"
@@ -381,7 +381,7 @@ LocFlyOverText="Cutthroat"
 ; LWOTC Needs Translation
 LocLongDescription="Your melee attacks against biological enemies ignore their armor, have a +<Ability:CUTTHROAT_BONUS_CRIT_CHANCE/> critical chance, and do +<Ability:CUTTHROAT_BONUS_CRIT_DAMAGE/> critical damage."
 LocHelpText="Your melee attacks against biological enemies ignore their armor, have a +<Ability:CUTTHROAT_BONUS_CRIT_CHANCE/> critical chance, and do +<Ability:CUTTHROAT_BONUS_CRIT_DAMAGE/> critical damage."
-LocPromotionPopupText="<Bullet/> Your melee attacks against biological enemies ignore their armor, have a +<Ability:CUTTHROAT_BONUS_CRIT_CHANCE/> critical chance, and do +<Ability:CUTTHROAT_BONUS_CRIT_DAMAGE/> critical damage."
+LocPromotionPopupText=""
 ; End translation
 
 [KillerInstinct X2AbilityTemplate]
@@ -421,10 +421,10 @@ LocPromotionPopupText="<Bullet/> Suppression costs <Ability:SelfAmmoCost/> ammo 
 [AreaSuppression X2AbilityTemplate]
 LocFriendlyName="Area Suppression"
 LocFlyOverText="Area Suppression"
-LocLongDescription="Fire a barrage that pins down multiple targets within a 4-tile radius, granting reaction fire against anyone that moves, and imposing a <Ability:SUPPRESSIONPENALTY/> penalty to all targets' aim until suppression is removed. Cannot be used when concealed."
+LocLongDescription="Fire a barrage that pins down multiple targets within a <Ability:AREA_SUPPRESSION_RADIUS_TILES>-tile radius, granting reaction fire against anyone that moves, and imposing a <Ability:SUPPRESSIONPENALTY/> penalty to all targets' aim until suppression is removed. Cannot be used when concealed."
 LocHelpText="Suppress multiple targets within an area of effect."
 ; LWOTC Needs Translation
-LocPromotionPopupText="<Bullet/> Area Suppression cannot be used when the soldier is concealed.<br/><Bullet/> Any unit that attempts to move will face reaction fire as long as the suppressing unit has ammo remaining.<br/><Bullet/> Does not work with shotguns or sniper rifles.<br/><Bullet/> Area Suppression costs <Ability:SelfAmmoCost/> ammo points to use, plus one additional ammo for each reaction shot. It has no cooldown.<br/><Bullet/> Area suppression will be canceled if the suppressing unit is damaged.<br/><Bullet/> If multiple units suppress a target, the aim penalty will not stack.<br/><Bullet/> Suppression restricts many of the target's abilities, including the use of rockets and grenades.""
+LocPromotionPopupText="<Bullet/> Area Suppression cannot be used when the soldier is concealed.<br/><Bullet/> Any unit that attempts to move will face reaction fire as long as the suppressing unit has ammo remaining.<br/><Bullet/> Does not work with shotguns or sniper rifles.<br/><Bullet/> Area Suppression costs <Ability:SelfAmmoCost/> ammo points to use, plus one additional ammo for each reaction shot. It has no cooldown.<br/><Bullet/> Area suppression will be canceled if the suppressing unit is damaged.<br/><Bullet/> If multiple units suppress a target, the aim penalty will not stack.<br/><Bullet/> Suppression restricts many of the target's abilities, including the use of rockets and grenades."
 ; End Translation
 
 [SuppressionShot_LW X2AbilityTemplate]
@@ -434,9 +434,9 @@ LocFlyOverText="Suppression"
 [DangerZone X2AbilityTemplate]
 LocFriendlyName="Danger Zone"
 LocFlyOverText="Danger Zone"
-LocLongDescription="Area Suppression suppresses enemies in a 5-tile radius."
+LocLongDescription="Increases Area Suppression radius to <Ability:DANGER_ZONE_AREA_SUPPRESSION_RADIUS_TILES> tiles."
 LocHelpText="Wider Area Suppression."
-LocPromotionPopupText="<Bullet/> Area Suppression suppresses enemies in a 5-tile radius.<br/>
+LocPromotionPopupText=""
 
 [Lockdown X2AbilityTemplate]
 LocFriendlyName="Lockdown"
@@ -541,16 +541,16 @@ LocFlyOverText="Covert"
 ; LWOTC Needs Translation
 LocLongDescription="Enemies have <Ability:COVERT_DETECTION_RANGE_REDUCTION/>% smaller detection range against you."
 LocHelpText="Enemies have reduced detection range against you."
-LocPromotionPopupText="<Bullet/> Enemies have <Ability:COVERT_DETECTION_RANGE_REDUCTION/>% smaller detection range against you, as denoted by red tiles surrounding enemies who are not alerted to your presence.<br/><Bullet/> This ability also grants a small reduction in this soldier's impact on infiltration times.<br/><Bullet/> Does not apply to ADVENT security towers."
+LocPromotionPopupText="<Bullet/> Detection range is denoted by red tiles surrounding enemies who are not alerted to your presence.<br/><Bullet/> This ability also grants a small reduction in this soldier's impact on infiltration times.<br/><Bullet/> Does not apply to ADVENT security towers."
 ; End Translation
 
 [Ghostwalker X2AbilityTemplate]
 LocFriendlyName="Ghostwalker"
 LocFlyOverText="Ghostwalker"
 ; LWOTC Needs Translation (2)
-LocLongDescription="Activate this ability to reduce enemy detection range against you by almost <Ability:GHOSTWALKER_DETECTION_RANGE_REDUCTION/>% for <Ability:GHOSTWALKER_DURATION/> turn(s)."
+LocLongDescription="Activate this ability to reduce enemy detection range against you by <Ability:GHOSTWALKER_DETECTION_RANGE_REDUCTION/>% for <Ability:GHOSTWALKER_DURATION/> turn(s)."
 LocHelpText="Reduce enemy detection range by <Ability:GHOSTWALKER_DETECTION_RANGE_REDUCTION/>% for <Ability:GHOSTWALKER_DURATION/> turn(s)."
-LocPromotionPopupText="<Bullet/> Activate this ability to reduce enemy detection range against you by almost <Ability:GHOSTWALKER_DETECTION_RANGE_REDUCTION/>% for <Ability:GHOSTWALKER_DURATION/> turn(s) (including the current turn), as denoted by red tiles surrounding enemies who are not alerted to your presence.<br/><Bullet/> Ghostwalker has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Requires no actions to activate.<br/><Bullet/> This ability also grants a small reduction in this soldier's impact on infiltration times.<br/><Bullet/> Does not apply to ADVENT security towers."
+LocPromotionPopupText="<Bullet/> Detection range is denoted by red tiles surrounding enemies who are not alerted to your presence.<br/><Bullet/> Includes the current turn.<br/><Bullet/> Ghostwalker has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Requires no actions to activate.<br/><Bullet/> This ability also grants a small reduction in this soldier's impact on infiltration times.<br/><Bullet/> Does not apply to ADVENT security towers."
 ; End Translation (2)
 
 [Kubikuri X2AbilityTemplate]
@@ -717,7 +717,7 @@ LocFlyOverText="Fleche"
 LocLongDescription="Attack any enemy within movement range with your sword. Deals +1 damage for every <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> tiles between your starting position and the target."
 LocHelpText="Attack any enemy within movement range with your sword. Deals bonus damage for attacks from a distance."
 ; LWOTC Needs Translation
-LocPromotionPopupText="<Bullet/> You can trigger the Fleche ability by placing the movement cursor over an enemy.<br/><Bullet/> A soldier can perform a \"Dash\" move, using both actions to move, and still trigger an attack against an adjacent enemy.<br/><Bullet/> Fleche deals 1 bonus damage for every <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> tiles between unit's position at the start of its turn and the target's position up to <Ability:MAX_SLICE_FLECHE_DAMAGE/> maximum bonus damage..<br/>"
+LocPromotionPopupText="<Bullet/> You can trigger the Fleche ability by placing the movement cursor over an enemy.<br/><Bullet/> A soldier can perform a \"Dash\" move, using both actions to move, and still trigger an attack against an adjacent enemy.<br/><Bullet/> Fleche deals 1 bonus damage for every <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> tiles between unit's position at the start of its turn and the target's position up to <Ability:MAX_SLICE_FLECHE_DAMAGE/> maximum bonus damage.<br/>"
 ; End Translation
 
 [Fleche X2AbilityTemplate]
@@ -781,7 +781,7 @@ LocFriendlyName="Slash"
 LocFlyOverText="Slash"
 LocLongDescription="Attack an adjacent target with your sword. Uses one action."
 LocHelpText="Attack an adjacent target with your sword. Uses one action."
-LocPromotionPopupText="<Bullet/> Attack an adjacent target with your sword.<br/><Bullet/> Uses one action and doesn't automatically end your turn, so two attacks a turn are possible."
+LocPromotionPopupText="<Bullet/> Uses one action and doesn't automatically end your turn, so two attacks a turn are possible."
 
 [SwordSlice X2AbilityTemplate]
 LocFriendlyName="Dashing Slash"
@@ -1129,7 +1129,7 @@ LocFriendlyName="Hunter's Instincts"
 LocLongDescription="Ranged attacks against flanked enemies deal +<Ability:HUNTERSINSTINCTDMG/> damage."
 LocHelpText="Ranged attacks against flanked enemies deal +<Ability:HUNTERSINSTINCTDMG/> damage."
 LocFlyOverText="Hunter's Instincts"
-LocPromotionPopupText="<Bullet/> Ranged attacks against flanked enemies deal +<Ability:HUNTERSINSTINCTDMG/> damage."
+LocPromotionPopupText=""
 
 [HitWhereItHurts X2AbilityTemplate]
 LocFriendlyName="Deadshot"
@@ -1143,7 +1143,7 @@ LocFriendlyName="Cool Under Pressure"
 LocLongDescription="You gain +<Ability:COOLUNDERPRESSUREBONUS/> Aim on Overwatch and other reaction shots, and they can critically hit."
 LocHelpText="Bonus aim and chance to crit on Overwatch and reaction shots."
 LocFlyOverText="Cool Under Pressure"
-LocPromotionPopupText="<Bullet/> You gain +<Ability:COOLUNDERPRESSUREBONUS/> Aim on Overwatch and other reaction shots, and they can critically hit.<br/>
+LocPromotionPopupText=""
 
 [BiggestBooms X2AbilityTemplate]
 LocFriendlyName="Biggest Booms"

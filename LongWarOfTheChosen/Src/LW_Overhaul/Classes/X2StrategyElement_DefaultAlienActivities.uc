@@ -185,6 +185,9 @@ var config int BIGSUPPLYEXTRACTION_MAX_ALERT;
 var config int VULTURE_UNLOCK_AT_FL;
 var config bool bENABLE_AUTO_VULTURE;
 
+var localized string VultureUnlockTitle;
+var localized string VultureUnlockDesc;
+
 //helpers for checking for name typos
 var name ProtectRegionEarlyName;
 var name ProtectRegionMidName;
@@ -530,6 +533,10 @@ static function array<name> ProtectRegionMissionRewards (XComGameState_LWAlienAc
 				RewardArray.AddItem('Reward_POI_LW');
 				RewardArray.AddItem('Reward_Dummy_POI'); // The first POI rewarded on any mission doesn't display in rewards, so this corrects for that
 			}
+			else
+			{
+				RewardArray.AddItem('Reward_Supplies');
+			}
 			break;
 		case 'Neutralize_LW':
 			RewardArray[0] = 'Reward_AvengerResComms'; // give if capture
@@ -612,10 +619,10 @@ static function OnProtectRegionActivityComplete(bool bAlienSuccess, XComGameStat
 			return;
 		}
 
-		RemoveOrAdjustExistingActivitiesFromRegion(PrimaryRegionState, NewGameState);
-
 		PrimaryRegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(PrimaryRegionState, NewGameState, true);
 		PrimaryRegionalAI.bLiberated = true;
+
+		RemoveOrAdjustExistingActivitiesFromRegion(PrimaryRegionState, NewGameState);
 
 		if (PrimaryRegionalAI.NumTimesLiberated == 0)
 		{
@@ -1908,12 +1915,16 @@ static function OnScheduledOffworldReinforcementsComplete(bool bAlienSuccess, XC
 		TryIncreasingChosenLevel(RegionalAI.LocalForceLevel);
 		if (RegionalAI.LocalForceLevel == default.CHOSEN_ACTIVATE_AT_FL)
 		{
-			AddSoldierUnlock(NewGameState,'VultureUnlock');
+			//AddSoldierUnlock(NewGameState,'VultureUnlock');
 			ActivateChosenIfEnabled(NewGameState);
 		}
 
 		if(RegionalAI.LocalForceLevel == default.VULTURE_UNLOCK_AT_FL && default.bENABLE_AUTO_VULTURE)
 		{
+			`PRESBASE.UITutorialBox(
+			default.VultureUnlockTitle,
+			default.VultureUnlockDesc,
+			"img:///UILibrary_LWOTC.TutorialImages.LWOTC_Logo");
 			AddSoldierUnlock(NewGameState,'VultureUnlock');
 		}
 	}
@@ -4459,7 +4470,11 @@ static function TypicalAdvanceActivityOnMissionFailure(XComGameState_LWAlienActi
 
 	if (MissionState != none)
 	{
-		RecordResistanceActivity(false, ActivityState, MissionState, NewGameState);
+		// if missions get canceled because the region was liberated, don't log them as failed.
+		if(!RegionIsLiberated(RegionState, NewGameState))
+		{
+			RecordResistanceActivity(false, ActivityState, MissionState, NewGameState);
+		}
 		if (MissionState.POIToSpawn.ObjectID > 0)
 		{
 			// This mission had a POI, deactivate it.
@@ -4475,6 +4490,7 @@ static function TypicalAdvanceActivityOnMissionFailure(XComGameState_LWAlienActi
 		if(ActivityTemplate.OnActivityCompletedFn != none)
 			ActivityTemplate.OnActivityCompletedFn(false /* alien failure */, ActivityState, NewGameState);
 		NewGameState.RemoveStateObject(ActivityState.ObjectID);
+		return;
 	}
 
 	if (ActivityTemplate.MissionTree.length > ActivityState.CurrentMissionLevel+1)
@@ -5078,7 +5094,7 @@ static function bool RegionIsLiberated(XComGameState_WorldRegion RegionState, op
 	{
 		return RegionalAI.bLiberated;
 	}
-	//`REDSCREEN("RegionIsLiberated : Supplied Region " $ RegionState.GetMyTemplate().DataName $ " has no regional AI info");
+	`LWTrace("RegionIsLiberated : Supplied Region " $ RegionState.GetMyTemplate().DataName $ " has no regional AI info");
 	return false;
 
 }

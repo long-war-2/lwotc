@@ -9,7 +9,7 @@ function int GetInitialCharges(XComGameState_Ability Ability, XComGameState_Unit
     local int Charges;
 
     Charges = InitialCharges;
-	if (Unit.HasSoldierAbility(BonusAbility, true))
+	if (Unit.HasAbilityFromAnySource(BonusAbility))
 	{
 		Charges += BonusChargesCount;
 	}

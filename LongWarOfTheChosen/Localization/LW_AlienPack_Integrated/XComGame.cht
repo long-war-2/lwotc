@@ -2,7 +2,7 @@
 MutonM2_LW="<Bullet/>異變者百夫長可以完成所有異變者能做到的事情，還可以釋放戰爭咆哮提升附近友軍的能力，並可以對任何衝刺範圍內的敵人進行刺刀衝鋒。\n<Bullet/>與入侵時期的異變者不同的是，這個新混血的異變者在近戰方面更為出色。\n<Bullet/>他們的反擊能力能夠讓他們對任何在近戰方面對其攻擊的敵人進行回擊。\n<Bullet/>他們同樣能夠處死附近不能行動的敵人；你無論何時都不能讓異變者處在被眩暈的單位身邊。\n<Bullet/>他們還能使用步槍進行壓制，他們的戰鬥護甲能提供相當不錯的防禦。"
 MutonM3_LW="<Bullet/>"
 
-DroneM1="<Bullet/>守護者無人機是一種低廉的偵查單位，最初是用於平民人群控制。"
+DroneM1="<Bullet/>監視無人機是一種低廉的偵查單位，最初是用於平民人群控制。"
 
 [CorpseDrone X2ItemTemplate]
 FriendlyName="無人機殘骸"
@@ -120,7 +120,7 @@ strCharacterName="異變者百夫長"
 [MutonM2_LW_Wpn X2WeaponTemplate]
 FriendlyName="百夫長步槍"
 BriefSummary="XCOM已經成功獲得了一些不同的標準步兵小型武器了，這是最基本的武器，類似20年前使用的步槍。雖然這些武器比起變種人磁力技術的武器差得多，但在標準技術研究完成後，至少可以用額外的武器碎片對它們進行升級。"
-TacticalText="<Bullet/>用主武器射擊會結束該士兵的回合\n<Bullet/>如果士兵在兩個行動點都可用時射擊，那麼他可以在減少精準度的條件下射擊3次，但總體上還是提升了效率\n<Bullet/>使用從變種人敵人身上取得的升級部件提升突擊步槍的戰術效率"
+TacticalText="<Bullet/>用主武器射擊會結束該士兵的回合\n<Bullet/>如果士兵在兩個行動點都可用時射擊，那麼他可以在減少精準度的條件下射擊3次，但總體上還是提升了效率\n<Bullet/>使用從變種人敵人身上取得的升級部件提升突擊步槍的戰術效果"
 AbilityDescName="等離子步槍"
 
 [MutonM2_LWGrenade X2GrenadeTemplate]
@@ -312,7 +312,7 @@ LaunchedAbilityHelpText="在指定區域內使所有敵軍混亂。"
 FriendlyName="火焰榴彈"
 FriendlyNamePlural="火焰榴彈"
 BriefSummary="火焰榴彈比起反抗軍多年來一直使用的簡易燃燒武器是一個技術進步。爆炸後大部分目標都會被點燃，遭受持續的燃燒傷害。"
-TacticalText="<Bullet/>火焰榴彈會傷害爆炸範圍內的所有單位，並對任何容易受到火焰攻擊的單位施加\"燃燒\"效果。\n<Bullet/>火焰榴彈的爆炸傷害高於其他任何榴彈。\n<Bullet/>有些敵人對火焰免疫，不受\"燃燒\"效果影響，尤其是金屬系敵人。"
+TacticalText="<Bullet/>火焰榴彈會傷害爆炸範圍內的所有單位，並對任何容易受到火焰攻擊的單位施加\"燃燒\"效果。\n<Bullet/>火焰榴彈的爆炸傷害高於其他任何榴彈。\n<Bullet/>有些敵人對火焰免疫，不受\"燃燒\"效果影響，尤其是機械敵人。"
 ThrownAbilityName="投擲火焰榴彈"
 ThrownAbilityHelpText="點燃目標區域及其中的單位。"
 LaunchedAbilityname="發射火焰榴彈"

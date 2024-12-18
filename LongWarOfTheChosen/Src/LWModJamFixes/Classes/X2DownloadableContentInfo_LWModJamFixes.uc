@@ -19,6 +19,7 @@ static event OnPostTemplatesCreated()
     PatchCollateral(AbilityTemplateManager.FindAbilityTemplate('Collateral'));
     FixAssaultMecCCS(AbilityTemplateManager.FindAbilityTemplate('AssaultMecCCS'));
     FixPrototypeKineticDrivers(AbilityTemplateManager.FindAbilityTemplate('PrototypeKineticDrivers'));
+    FixIronCurtain(AbilityTemplateManager.FindAbilityTemplate('IronCurtain'));
 }
 
 static function PatchSolaceBack(X2AbilityTemplate Template)
@@ -117,3 +118,13 @@ static function FixPrototypeKineticDrivers(X2AbilityTemplate Template)
         }
     }
 }
+
+// Swap their targeting to LW's more forgiving targeting
+static function FixIronCurtain(X2AbilityTemplate Template)
+{
+    if(Template != none)
+    {
+        Template.AbilityCosts.Length=0;
+    }
+}
+

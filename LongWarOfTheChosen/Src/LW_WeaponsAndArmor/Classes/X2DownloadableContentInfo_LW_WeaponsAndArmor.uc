@@ -14,6 +14,7 @@ var config array<name> TEMPLAR_SHIELDS;
 var config array<name> TEMPLAR_GAUNTLETS_FOR_ONE_HANDED_USE;
 var config array<name> AUTOPISTOL_ANIMS_WEAPONCATS_EXCLUDED;
 
+var config array<Name> SparkHeavyWeaponAbilitiesForBit;
 
 /// <summary>
 /// This method is run if the player loads a saved game that was created prior to this DLC / Mod being installed, and allows the 
@@ -39,6 +40,92 @@ static event OnLoadedSavedGameToStrategy()
 static event OnPostTemplatesCreated()
 {
 	UpdateWeaponAttachmentsForGuns();
+	UpdateNewHeavyWeapon();
+}
+
+static function UpdateNewHeavyWeapon()
+{
+	local AltGameArchetypeUse GameArch;
+	local X2ItemTemplateManager ItemMgr;
+	local array<name> TemplateNames;
+	local name TemplateName;
+	local array<X2DataTemplate> DataTemplates;
+	local X2WeaponTemplate WeaponTemplate;
+	local int ScanTemplates;
+	local string NewAbilityName;
+	
+	GameArch.UseGameArchetypeFn = SparkHeavyWeaponCheck;
+	
+	GameArch.ArchetypeString = "DLC_3_Spark_Heavy.WP_Heavy_PlasmaBlaster";
+	AddAltGameArchetype(GameArch, 'PlasmaBlaster');
+
+	GameArch.UseGameArchetypeFn = BitHeavyWeaponCheck;
+
+	
+	GameArch.ArchetypeString = "DLC_3_Bit_Heavy.WP_Heavy_PlasmaBlaster";
+	AddAltGameArchetype(GameArch, 'PlasmaBlaster');
+
+	ItemMgr = class'X2ItemTemplateManager'.static.GetItemTemplateManager();
+	ItemMgr.GetTemplateNames(TemplateNames);
+
+	foreach TemplateNames(TemplateName)
+	{
+		ItemMgr.FindDataTemplateAllDifficulties(TemplateName, DataTemplates);
+		
+		for( ScanTemplates = 0; ScanTemplates < DataTemplates.Length; ++ScanTemplates )
+		{
+			WeaponTemplate = X2WeaponTemplate(DataTemplates[ScanTemplates]);
+			// Add the new spark only ability
+			if( WeaponTemplate != None && default.SparkHeavyWeaponAbilitiesForBit.Find(TemplateName) != INDEX_NONE )
+			{
+				NewAbilityName = "SparkPlasmaBlaster";
+				WeaponTemplate.Abilities.AddItem(Name(NewAbilityName));
+			}
+		}
+	}
+}
+
+
+static function AddAltGameArchetype(AltGameArchetypeUse GameArch, Name BaseTemplateName)
+{
+	local X2ItemTemplateManager ItemMgr;
+	local X2WeaponTemplate WeaponTemplate;
+	local array<X2DataTemplate> DataTemplates;
+	local int i;
+
+	ItemMgr = class'X2ItemTemplateManager'.static.GetItemTemplateManager();
+	ItemMgr.FindDataTemplateAllDifficulties(BaseTemplateName, DataTemplates);
+	for (i = 0; i < DataTemplates.Length; ++i)
+	{
+		WeaponTemplate = X2WeaponTemplate(DataTemplates[i]);
+		if (WeaponTemplate != none)
+		{
+			WeaponTemplate.AltGameArchetypeArray.AddItem(GameArch);
+		}
+	}
+}
+
+static function bool SparkHeavyWeaponCheck(XComGameState_Item ItemState, XComGameState_Unit UnitState, string ConsiderArchetype)
+{
+	switch(UnitState.GetMyTemplateName())
+	{
+	case 'SparkSoldier':
+	case 'LostTowersSpark':
+		return true;
+	}
+	return false;
+}
+
+static function bool BitHeavyWeaponCheck(XComGameState_Item ItemState, XComGameState_Unit UnitState, string ConsiderArchetype)
+{
+	switch(UnitState.GetMyTemplateName())
+	{
+	case 'SparkBitMk1':
+	case 'SparkBitMk2':
+	case 'SparkBitMk3':
+		return true;
+	}
+	return false;
 }
 
 

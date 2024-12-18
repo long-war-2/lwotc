@@ -139,6 +139,7 @@ function bool Update(XComGameState NewGameState)
 	local X2LWAlienActivityTemplate ActivityTemplate;
 	local XComGameState_MissionSite MissionState;
 	local TDateTime TempUpdateDateTime, ExpiryDateTime;
+	local XComGameState_LWPersistentSquad CurrentSquad;
 
 	History = `XCOMHISTORY;
 	MissionState = XComGameState_MissionSite(History.GetGameStateForObjectID(CurrentMissionRef.ObjectID));
@@ -200,7 +201,8 @@ function bool Update(XComGameState NewGameState)
 	if (MissionState != none && class'X2StrategyGameRulesetDataStructures'.static.LessThan(MissionState.ExpirationDateTime, class'XComGameState_GeoscapeEntity'.static.GetCurrentTime()))
 	{
 		bUpdated = true;
-		if(`LWSQUADMGR.GetSquadOnMission(CurrentMissionRef) == none)
+		CurrentSquad = `LWSQUADMGR.GetSquadOnMission(CurrentMissionRef);
+		if(CurrentSquad == none)
 		{
 			bNeedsUpdateMissionFailure = true;
 			bFailedFromMissionExpiration = true;
@@ -209,6 +211,7 @@ function bool Update(XComGameState NewGameState)
 		}
 		else
 		{
+
 			bNeedsAppearedPopup = true;	// Need a mission pop-up at next opportunity
 			bMustLaunch = true;			// And the player has to either abort or launch
 		}
@@ -305,12 +308,12 @@ function UpdateGameBoard()
 	local XComGameState NewGameState;
 	local XComGameState_LWAlienActivity ActivityState;
 	local XComGameStateHistory History;
-	local UIStrategyMap StrategyMap;
+	//local UIStrategyMap StrategyMap;
 	local bool ShouldPause, UpdateObjectiveUI;
 	local XGGeoscape Geoscape;
 
-	StrategyMap = `HQPRES.StrategyMap2D;
-	if (StrategyMap != none && StrategyMap.m_eUIState != eSMS_Flight)
+	//StrategyMap = `HQPRES.StrategyMap2D;
+	if (class'Helpers_LW'.static.GeoscapeReadyForUpdate())
 	{
 		History = `XCOMHISTORY;
 		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Update Alien Activities");

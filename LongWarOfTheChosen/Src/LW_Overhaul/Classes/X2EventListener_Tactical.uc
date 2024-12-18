@@ -1161,6 +1161,8 @@ static protected function EventListenerReturn CheckForMissionCompleted(
 
 		`TACTICALRULES.SubmitGameStateContext(EventContext);
 	}
+
+	return ELR_NoInterrupt;
 }
 
 static protected function EventListenerReturn BindR3ToPlaceDelayedEvacZone(
@@ -1316,8 +1318,11 @@ static function EventListenerReturn OnShouldUnitPatrol(Object EventData, Object 
 					}
 				}
 			}
-			`LWTrace("overriding patrol behavior.");
-			OverrideTuple.Data[0].b = true;
+			else
+			{
+				`LWTrace("overriding patrol behavior.");
+				OverrideTuple.Data[0].b = true;
+			}
 		}
 	}
 	return ELR_NoInterrupt;

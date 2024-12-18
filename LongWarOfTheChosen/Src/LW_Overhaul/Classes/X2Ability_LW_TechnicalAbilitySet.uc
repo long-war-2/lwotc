@@ -221,7 +221,7 @@ static function X2AbilityTemplate CreateLWFlamethrowerAbility()
 
 	Charges = new class'X2AbilityCharges_BonusCharges';
 	Charges.InitialCharges = default.FLAMETHROWER_CHARGES;
-	Charges.BonusAbility = 'HighPressure';
+	//Charges.BonusAbility = 'HighPressure';
 	Charges.BonusItem = 'HighPressureTanks';
 	Charges.BonusChargesCount =  default.FLAMETHROWER_HIGH_PRESSURE_CHARGES;
 	Template.AbilityCharges = Charges;
@@ -392,9 +392,9 @@ static function X2AbilityTemplate CreateRoustAbility()
 	Template.AbilityTriggers.AddItem(InputTrigger);
 	Template.bPreventsTargetTeleport = false;
 
-	Charges = new class 'X2AbilityCharges_BonusCharges';
+	Charges = new class'X2AbilityCharges_BonusCharges';
 	Charges.InitialCharges = default.ROUST_CHARGES;
-	Charges.BonusAbility = 'HighPressure';
+	//Charges.BonusAbility = 'HighPressure';
 	Charges.BonusItem = 'HighPressureTanks';
 	Charges.BonusChargesCount =  default.ROUST_HIGH_PRESSURE_CHARGES;
 	Template.AbilityCharges = Charges;
@@ -1815,7 +1815,7 @@ static function X2AbilityTemplate CreateConcussionRocketAbility()
 
 	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
 	WeaponDamageEffect.bIgnoreBaseDamage = true;
-	WeaponDamageEffect.EffectDamageValue = default.CONCUSSION_ROCKET_DAMAGE_VALUE;
+	WeaponDamageEffect.DamageTag = 'LWConcussionRocket';
 	WeaponDamageEffect.bExplosiveDamage = true;
 	WeaponDamageEffect.EnvironmentalDamageAmount=default.CONCUSSION_ROCKET_ENV_DAMAGE;
 	Template.AddMultiTargetEffect(WeaponDamageEffect);
@@ -1959,7 +1959,7 @@ static function X2AbilityTemplate CreateBlasterConcussionRocketAbility()
 
 	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
 	WeaponDamageEffect.bIgnoreBaseDamage = true;
-	WeaponDamageEffect.EffectDamageValue = default.CONCUSSION_ROCKET_DAMAGE_VALUE;
+	WeaponDamageEffect.DamageTag = 'LWConcussionRocket';
 	WeaponDamageEffect.bExplosiveDamage = true;
 	WeaponDamageEffect.EnvironmentalDamageAmount=default.CONCUSSION_ROCKET_ENV_DAMAGE;
 	Template.AddMultiTargetEffect(WeaponDamageEffect);
@@ -2260,7 +2260,7 @@ static function X2AbilityTemplate CreateShredderRocketAbility()
 
 	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
 	WeaponDamageEffect.bIgnoreBaseDamage = true;
-	WeaponDamageEffect.EffectDamageValue=default.SHREDDER_ROCKET_DAMAGE_VALUE;
+	WeaponDamageEffect.DamageTag = 'LWShredderRocket';
 	WeaponDamageEffect.bExplosiveDamage = true;
 	WeaponDamageEffect.EnvironmentalDamageAmount=default.SHREDDER_ROCKET_ENV_DAMAGE;
 	Template.AddMultiTargetEffect(WeaponDamageEffect);
@@ -2302,7 +2302,7 @@ static function X2AbilityTemplate CreateShredderRocketAbility()
 	ShockwaveEffect.bDisplayInSpecialDamageMessageUI = true;
 	Template.AddMultiTargetEffect(ShockwaveEffect);
 
-	Template.ActivationSpeech = 'Explosion';
+	Template.ActivationSpeech = 'RocketLauncher';
 	Template.CinescriptCameraType = "Soldier_HeavyWeapons";
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -2381,7 +2381,7 @@ static function X2AbilityTemplate CreateBlasterShredderRocketAbility()
 
 	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
 	WeaponDamageEffect.bIgnoreBaseDamage = true;
-	WeaponDamageEffect.EffectDamageValue=default.SHREDDER_ROCKET_DAMAGE_VALUE;
+	WeaponDamageEffect.DamageTag = 'LWShredderRocket';
 	WeaponDamageEffect.bExplosiveDamage = true;
 	WeaponDamageEffect.EnvironmentalDamageAmount=default.SHREDDER_ROCKET_ENV_DAMAGE;
 	Template.AddMultiTargetEffect(WeaponDamageEffect);
@@ -2423,7 +2423,7 @@ static function X2AbilityTemplate CreateBlasterShredderRocketAbility()
 	ShockwaveEffect.bDisplayInSpecialDamageMessageUI = true;
 	Template.AddMultiTargetEffect(ShockwaveEffect);
 
-	Template.ActivationSpeech = 'Explosion';
+	Template.ActivationSpeech = 'RocketLauncher';
 	Template.CinescriptCameraType = "Soldier_HeavyWeapons";
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -2503,7 +2503,7 @@ static function X2AbilityTemplate CreateEMPRocketAbility()
 
 	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
 	WeaponDamageEffect.bIgnoreBaseDamage = true;
-	WeaponDamageEffect.EffectDamageValue=default.EMP_ROCKET_DAMAGE_VALUE;
+	WeaponDamageEffect.DamageTag = 'LWEMPRocket';
 	WeaponDamageEffect.bExplosiveDamage = true;
 	WeaponDamageEffect.EnvironmentalDamageAmount=default.EMP_ROCKET_ENV_DAMAGE;
 	Template.AddMultiTargetEffect(WeaponDamageEffect);
@@ -2559,7 +2559,7 @@ static function X2AbilityTemplate CreateEMPRocketAbility()
 	ShockwaveEffect.bDisplayInSpecialDamageMessageUI = true;
 	Template.AddMultiTargetEffect(ShockwaveEffect);
 
-	Template.ActivationSpeech = 'Explosion';
+	Template.ActivationSpeech = 'RocketLauncher';
 	Template.CinescriptCameraType = "Soldier_HeavyWeapons";
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -2639,7 +2639,7 @@ static function X2AbilityTemplate CreateBlasterEMPRocketAbility()
 
 	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
 	WeaponDamageEffect.bIgnoreBaseDamage = true;
-	WeaponDamageEffect.EffectDamageValue=default.EMP_ROCKET_DAMAGE_VALUE;
+	WeaponDamageEffect.DamageTag = 'LWEMPRocket';
 	WeaponDamageEffect.bExplosiveDamage = true;
 	WeaponDamageEffect.EnvironmentalDamageAmount=default.EMP_ROCKET_ENV_DAMAGE;
 	Template.AddMultiTargetEffect(WeaponDamageEffect);
@@ -2695,7 +2695,7 @@ static function X2AbilityTemplate CreateBlasterEMPRocketAbility()
 	ShockwaveEffect.bDisplayInSpecialDamageMessageUI = true;
 	Template.AddMultiTargetEffect(ShockwaveEffect);
 
-	Template.ActivationSpeech = 'Explosion';
+	Template.ActivationSpeech = 'RocketLauncher';
 	Template.CinescriptCameraType = "Soldier_HeavyWeapons";
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;

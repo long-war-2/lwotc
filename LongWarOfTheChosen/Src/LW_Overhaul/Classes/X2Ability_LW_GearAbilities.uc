@@ -51,6 +51,9 @@ var config int BONUS_COILGUN_SHRED;
 
 var config int BLUESCREEN_DISORIENT_CHANCE;
 
+var config int CHAMELEON_VEST_HP_BONUS;
+var config int CHAMELEON_VEST_DODGE_BONUS;
+
 var localized string strWeight;
 var localized string AblativeHPLabel;
 
@@ -91,6 +94,7 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(CreateHazmatVestBonusAbility_LW());
 	Templates.AddItem(CreateNanofiberBonusAbility_LW());
+	Templates.AddItem(CreateChameleonSuitBonus_LW());
 	Templates.AddItem(CreateNeurowhipAbility());
 	Templates.AddItem(CreateStilettoRoundsAbility());
 	Templates.AddItem(CreateFlechetteRoundsAbility());
@@ -123,6 +127,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(SparkPlatedLightArmorStats());
 	Templates.AddItem(SparkPoweredHeavyArmorStats());
 	Templates.AddItem(SparkPoweredLightArmorStats());
+
+	Templates.AddItem(SustainSpherePadding());
 
 	return Templates;
 }
@@ -451,6 +457,37 @@ static function X2AbilityTemplate CreateNanoFiberBonusAbility_LW()
 	CritDefEffect.CritDef_Bonus = default.NANOFIBER_CRITDEF_BONUS;
 	CritDefEffect.BuildPersistentEffect (1, true, false, false);
 	Template.AddTargetEffect(CritDefEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;	
+}
+
+static function X2AbilityTemplate CreateChameleonSuitBonus_LW()
+{
+	local X2AbilityTemplate                 Template;	
+	local X2Effect_PersistentStatChange		PersistentStatChangeEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Chameleon_Suit_Ability');
+	Template.IconImage = "img:///UILibrary_LWOTC.InventoryArt.Inv_Tarantula_Suit_512";
+
+	Template.AbilitySourceName = 'eAbilitySource_Item';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bDisplayInUITacticalText = false;
+	
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	
+	// Bonus to health stat Effect
+	//
+	PersistentStatChangeEffect = new class'X2Effect_PersistentStatChange';
+	PersistentStatChangeEffect.BuildPersistentEffect(1, true, false, false);
+	PersistentStatChangeEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false, , Template.AbilitySourceName);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_HP, default.CHAMELEON_VEST_HP_BONUS);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Dodge, default.CHAMELEON_VEST_DODGE_BONUS);
+	Template.AddTargetEffect(PersistentStatChangeEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
@@ -882,6 +919,7 @@ static function X2AbilityTemplate SparkPlatedHeavyArmorStats()
 	PersistentStatChangeEffect.AddPersistentStatChange(eStat_ArmorChance, class'X2Item_SparkWeapons'.default.SPARK_PLATED_HEAVY_MITIGATION_CHANCE);
 	PersistentStatChangeEffect.AddPersistentStatChange(eStat_ArmorMitigation, class'X2Item_SparkWeapons'.default.SPARK_PLATED_HEAVY_MITIGATION_AMOUNT);
 	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Defense, class'X2Item_SparkWeapons'.default.SPARK_PLATED_HEAVY_DEF_BONUS);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Dodge, class'X2Item_SparkWeapons'.default.SPARK_PLATED_HEAVY_DODGE_BONUS);
 	Template.AddTargetEffect(PersistentStatChangeEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -962,6 +1000,7 @@ static function X2AbilityTemplate SparkPoweredHeavyArmorStats()
 	PersistentStatChangeEffect.AddPersistentStatChange(eStat_ArmorChance, class'X2Item_SparkWeapons'.default.SPARK_POWERED_HEAVY_MITIGATION_CHANCE);
 	PersistentStatChangeEffect.AddPersistentStatChange(eStat_ArmorMitigation, class'X2Item_SparkWeapons'.default.SPARK_POWERED_HEAVY_MITIGATION_AMOUNT);
 	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Defense, class'X2Item_SparkWeapons'.default.SPARK_POWERED_HEAVY_DEF_BONUS);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Dodge, class'X2Item_SparkWeapons'.default.SPARK_POWERED_HEAVY_DODGE_BONUS);
 	Template.AddTargetEffect(PersistentStatChangeEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -1003,6 +1042,49 @@ static function X2AbilityTemplate SparkPoweredLightArmorStats()
 	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Defense, class'X2Item_SparkWeapons'.default.SPARK_POWERED_LIGHT_DEF_BONUS);
 	Template.AddTargetEffect(PersistentStatChangeEffect);
 
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}
+
+static function X2AbilityTemplate SustainSpherePadding()
+{
+	local X2AbilityTemplate						Template;
+	local X2Effect_GreaterPadding				GreaterPaddingEffect;
+	local X2Condition_UnitProperty              TargetProperty;
+	local X2AbilityTrigger_EventListener    	EventTrigger;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'SustainingSpherePaddingAbility');
+	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityFieldSurgeon";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SingleTargetWithSelf;
+
+	EventTrigger = new class'X2AbilityTrigger_EventListener';
+	EventTrigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventTrigger.ListenerData.EventID = class'X2Effect_SustainingSphere'.default.SustainEvent;
+	EventTrigger.ListenerData.Filter = eFilter_Unit;
+	EventTrigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	EventTrigger.ListenerData.Priority = 100;	// Needs to trigger before SustainingSphere Stasis
+	Template.AbilityTriggers.AddItem(EventTrigger);
+
+	TargetProperty = new class'X2Condition_UnitProperty';
+	TargetProperty.ExcludeDead = true;
+	TargetProperty.ExcludeHostileToSource = true;
+	TargetProperty.ExcludeFriendlyToSource = false;
+	TargetProperty.RequireSquadmates = true;
+	Template.AbilityTargetConditions.AddItem(TargetProperty);	
+
+	
+	GreaterPaddingEffect = new class 'X2Effect_GreaterPadding';
+	GreaterPaddingEffect.BuildPersistentEffect (1, true, false);
+	GreaterPaddingEffect.bIgnoreBleedout = true;
+	GreaterPaddingEffect.Padding_HealHP = 2;	
+	Template.AddTargetEffect(GreaterPaddingEffect);
+
+	Template.bCrossClassEligible = true;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
 	return Template;

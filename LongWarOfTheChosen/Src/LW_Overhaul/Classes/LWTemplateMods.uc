@@ -564,7 +564,8 @@ function UpdateRewardTemplate(X2StrategyElementTemplate Template, int Difficulty
 	{
 		case 'Reward_FacilityLead':
 			// change reward string delegate so it returns the template DisplayName
-			RewardTemplate.GetRewardStringFn = class'X2StrategyElement_DefaultRewards'.static.GetMissionRewardString; 
+			RewardTemplate.GetRewardStringFn = class'X2StrategyElement_DefaultRewards'.static.GetMissionRewardString;
+			RewardTemplate.IsRewardAvailableFn = IsFacilityLeadRewardAvailableUpdated; 
 			break;
 		case 'Reward_Soldier':
 			RewardTemplate.GenerateRewardFn = GenerateRandomSoldierReward;
@@ -594,6 +595,26 @@ static function UpdateFactionSoldierReward(X2RewardTemplate Template, int Soldie
 	FnWrapper.SoldierRank = SoldierRank;
 	FnWrapper.OriginalDelegateFn = Template.GiveRewardFn;
 	Template.GiveRewardFn = FnWrapper.GiveFactionSoldierReward;
+}
+
+static function bool IsFacilityLeadRewardAvailableUpdated(
+	optional XComGameState NewGameState,
+	optional StateObjectReference AuxRef)
+{
+	local XComGameStateHistory History;
+	local XComGameState_MissionSite MissionState;
+	local int numActivities;
+
+	History = `XCOMHISTORY;
+	foreach History.IterateByClassType(class'XComGameState_MissionSite', MissionState)
+	{
+		if(MissionState.MakesDoom() && !MissionState.Available && MissionState.Source !='MissionSource_Final')
+		{
+			numActivities++;
+		}
+	}
+
+	return (numActivities > 0);
 }
 
 // This is a modified version of `X2StrategyElement_XpackRewards.IsRescueSoldierRewardAvailable()`
@@ -934,7 +955,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	local X2Effect_ModifyReactionFire       ReactionFire;
 	local X2Effect_HunkerDown_LW            HunkerDownEffect;
 	local X2Effect_CancelLongRangePenalty   DFAEffect;
-	local X2Condition_Visibility            VisibilityCondition, TargetVisibilityCondition;
+	local X2Condition_Visibility            TargetVisibilityCondition;
 	local X2Condition_UnitProperty          UnitPropertyCondition;
 	//local X2AbilityTarget_Single          PrimaryTarget;
 	//local X2AbilityMultiTarget_Radius     RadiusMultiTarget;
@@ -1191,11 +1212,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	
 	if (Template.DataName == 'PoisonSpit' || Template.DataName == 'MicroMissiles')
 	{
-		VisibilityCondition = new class'X2Condition_Visibility';
-		VisibilityCondition.bVisibletoAnyAlly = true;
-		VisibilityCondition.bAllowSquadsight = true;
-		Template.AbilityTargetConditions.AddItem(VisibilityCondition);
-		Template.AbilityMultiTargetConditions.AddItem(VisibilityCondition);
+		X2AbilityTarget_Cursor(Template.AbilityTargetStyle).bRestrictToSquadsightRange = true;
 	}
 
 	// should allow covering fire at micromissiles and ADVENT rockets
@@ -1596,6 +1613,21 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			break;
 	}
 
+	// Add a one turn cooldown to heavy weapon use
+	switch (Template.DataName)
+	{
+		case 'PlasmaBlaster':
+		case 'ShredderGun':
+		case 'ShredstormCannon':
+		case 'SparkPlasmaBlaster':
+		case 'SparkShredderGun':
+		case 'SparkShredstormCannon':
+			AddOneTurnCooldown(Template);
+			break;
+		default:
+			break;
+	}
+
 	if(Template.DataName == 'LongWatch')
 	{
 		Template.OverrideAbilities.Length = 0;
@@ -1822,6 +1854,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		{
 			case 'LaunchGrenade':               // Salvo, Rapid Deployment
 			case 'ThrowGrenade':                // Salvo, Rapid Deployment
+			case 'Battlescanner':				// Rapid Deployment
 			case 'LWFlamethrower':              // Quickburn
 			case 'Roust':                       // Quickburn
 			case 'Firestorm':                   // Quickburn
@@ -1901,6 +1934,13 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	{
 		`LWTrace("Adding Double Tap to" @ Template.DataName);
 		AddDoubleTapActionPoint (Template, class'X2Ability_LW_SharpshooterAbilitySet'.default.DoubleTapActionPoint);
+	}
+
+	// Swap vanilla rocket targeting abilities to improved targeting.
+	if (Template.TargetingMethod == class'X2TargetingMethod_RocketLauncher')
+	{
+		Template.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher_NoScatter';
+		`LWTrace("Swapping no-scatter rocket ability targeting for ability:" @Template.DataName);
 	}
 
 	// bugfix, hat tip to BountyGiver, needs test
@@ -2107,7 +2147,7 @@ function bool ValidExplosiveFalloffAbility(X2AbilityTemplate Template, X2Effect_
 	if (!ClassIsChildOf(class'X2Effect_ApplyExplosiveFalloffWeaponDamage', DamageEffect.Class))
 	{
 		// Make
-		`REDSCREEN("Can't apply explosive falloff to" @ DamageEffect.Class @ "as it's not a super class of X2Effect_ApplyExplosiveFalloffWeaponDamage");
+		`LWTrace("Can't apply explosive falloff to" @ DamageEffect.Class @ "as it's not a super class of X2Effect_ApplyExplosiveFalloffWeaponDamage");
 		return false;
 	}
 
@@ -2429,6 +2469,8 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.RemoveItem('ChosenExtractKnowledgeMove');
 		Template.Abilities.RemoveItem('ChosenExtractKnowledge');
 		Template.Abilities.RemoveItem('Farsight');
+		Template.Abilities.RemoveItem('TrackingShot');
+		Template.Abilities.RemoveItem('TrackingShotMark');
 
 		Template.Abilities.AddItem('HunterReaction');
 		Template.Abilities.AddItem('CombatReadiness');
@@ -2646,8 +2688,10 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		case 'ChosenSniperRifle_MG':
 		case 'ChosenSniperRifle_BM':
 		case 'ChosenSniperRifle_T4':
-			//WeaponTemplate.Abilities.RemoveItem('TrackingShot');
+			WeaponTemplate.Abilities.RemoveItem('TrackingShotMark');
+			WeaponTemplate.Abilities.RemoveItem('TrackingShot');
 			WeaponTemplate.Abilities.RemoveItem('HunterKillzone');
+			WeaponTemplate.Abilities.AddItem('TrackingShot_LW');
 			break;
 
 		case 'Warlock_PsiWeapon':
@@ -2709,6 +2753,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 				}
 			}
 			WeaponTemplate.OnAcquiredFn = none;
+			WeaponTemplate.NumUpgradeSlots = 0;
 			break;
 		case 'ChosenShotgun_XCOM':
 			//WeaponTemplate.Abilities.AddItem('Brawler');
@@ -4286,6 +4331,20 @@ static function FixRapidFire2(X2AbilityTemplate Template)
 		{
 			EventTrigger.ListenerData.Priority = 80;
 		}
+	}
+}
+
+static function AddOneTurnCooldown(X2AbilityTemplate Template)
+{
+	local X2AbilityCooldown Cooldown;
+
+	if (Template != None)
+	{
+		Cooldown = new class'X2AbilityCooldown';
+
+		Cooldown.iNumTurns = 1;
+
+		Template.AbilityCooldown = Cooldown;
 	}
 }
 

@@ -263,6 +263,18 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'MedicalProtocol':
 			Template.GetBonusWeaponAmmoFn =FieldMedic_BonusWeaponAmmo;
 			break;
+		case 'SustainingSphereTriggeredAbility':
+			Template.AdditionalAbilities.AddItem('SustainingSpherePaddingAbility');
+			RemoveItemCost(Template);
+			Add1ChargeAndCost(Template);
+			break;
+		case 'RefractionFieldAbility':
+			RemoveItemCost(Template);
+			break;
+		case 'CombatStims':
+			RemoveItemCost(Template);
+			Add1ChargeAndCost(Template);
+			break;
 		default:
 			break;
 
@@ -1681,6 +1693,35 @@ static function UpdateCombatProtocol(X2AbilityTemplate Template)
 	Template.AbilityCooldown = Cooldown;
 
 }
+
+static function RemoveItemCost(X2AbilityTemplate Template)
+{
+	local int i;
+
+	for (i = Template.AbilityCosts.Length-1; i >= 0; i--)
+	{
+		if(ClassIsChildOf(Template.AbilityCosts[i].Class, class'X2AbilityCost_ConsumeItem'))
+		{
+			Template.AbilityCosts.Remove(i,1);
+		}
+	}
+
+}
+
+static function Add1ChargeAndCost(X2AbilityTemplate Template)
+{
+	local X2AbilityCost_Charges 	ChargeCost;
+	local X2AbilityCharges			Charges;
+
+	Charges = new class'X2AbilityCharges';
+	Charges.InitialCharges = 1;
+	Template.AbilityCharges = Charges;
+
+	ChargeCost = new class'X2AbilityCost_Charges';
+	ChargeCost.NumCharges = 1;
+	Template.AbilityCosts.AddItem(ChargeCost);
+}
+
 
 defaultproperties
 {

@@ -45,7 +45,7 @@ event OnInit(UIScreen Screen)
 	local UIPanel MissionInfoPanel;
 	local float RequiredInfiltrationPct;
 	local string BriefingString;
-	local int rollingY, yOffset, bigYOffset;
+	local int rollingY, yOffset;
 
 	if(!Screen.IsA('UISquadSelect')) return;
 
@@ -154,7 +154,6 @@ event OnInit(UIScreen Screen)
 
 			rollingY = 0;
 			yOffset = 25;
-			bigYOffset = 30;
 
 			MissionBriefHeader = MissionInfoPanel.Spawn(class'UISquadSelect_InfiltrationItem', MissionInfoPanel).InitObjectiveListItem(0, rollingY);
 			MissionBriefHeader.SetSubtitle(class'UISquadSelect_InfiltrationPanel'.default.strMissionInfoTitle);
@@ -458,6 +457,8 @@ event OnRemoved(UIScreen Screen)
 			}
 		}
 	}
+
+	`HQPRES.StrategyMap2D.SetUIState(eSMS_Default);
 }
 
 defaultproperties

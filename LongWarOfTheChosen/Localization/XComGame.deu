@@ -2362,6 +2362,14 @@ ObjectiveTextPools[1]="Neutralisiere alle feindlichen Ziele"
 ObjectiveTextPools[0]="Der Avatar des Commanders muss überleben"
 ObjectiveTextPools[1]="Zerstöre die Avatare"
 
+[DefaultAssaultFortressLeadup_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Der Avatar des Commanders muss überleben"
+ObjectiveTextPools[1]="Neutralisiere alle feindlichen Ziele"
+
+[DefaultDestroyAvatarProject_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Der Avatar des Commanders muss überleben"
+ObjectiveTextPools[1]="Zerstöre die Avatare"
+
 [DefaultSabotage_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Platziere X4, um die Alien-Einrichtung zu zerstören"
 ObjectiveTextPools[1]="Evakuiere alle XCOM-Soldaten"
@@ -2728,6 +2736,13 @@ PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.support.T_Support_Broadcast
 DisplayName="Greife die Alien-Festung an"
 Briefing="Greife die Alien-Festung an"
 PostMissionType="Greife die Alien-Festung an"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
+ObjectiveTextPools[0]="Zerstöre die Avatar-Direktive"
+
+[DestroyAvatarProject_LW X2MissionTemplate]
+DisplayName="Zerstöre das Avatar-Projekt"
+Briefing="Zerstöre das Avatar-Projekt"
+PostMissionType="Zerstöre das Avatar-Projekt"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
 ObjectiveTextPools[0]="Zerstöre die Avatar-Direktive"
 
@@ -5780,6 +5795,14 @@ LocFlyOverText="Wie ein Blitz"
 LocLongDescription="Wenn Sturm und Schuss aktiviert wird, sinkt die Abklingzeit deines Pulsbogens automatisch auf 0."
 LocHelpText="Wenn Sturm und Schuss aktiviert wird, wird die Abklingzeit deines Pulsbogens automatisch aufgehoben."
 LocPromotionPopupText="<Bullet/> Wird Sturm und Schuss aktiviert, wird die Abklingzeit deines Pulsbogens automatisch aufgehoben.<br/><Bullet/> Gilt nicht für Kettenblitz.<br/>"
+
+[LikeLightningPassive_LW X2AbilityTemplate]
+LocFriendlyName="Wie ein Blitz"
+LocFlyOverText="Wie ein Blitz"
+LocLongDescription="Wenn Sturm und Schuss aktiviert wird, sinkt die Abklingzeit deines Pulsbogens automatisch auf 0."
+LocHelpText="Wenn Sturm und Schuss aktiviert wird, wird die Abklingzeit deines Pulsbogens automatisch aufgehoben."
+LocPromotionPopupText="<Bullet/> Wird Sturm und Schuss aktiviert, wird die Abklingzeit deines Pulsbogens automatisch aufgehoben.<br/><Bullet/> Gilt nicht für Kettenblitz.<br/>"
+
 
 [Maim_LW X2AbilityTemplate]
 LocFriendlyName="Verstümmeln"

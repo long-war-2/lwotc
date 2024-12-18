@@ -1,8 +1,8 @@
 // Shamelessly stolen from the LW MECs as SPARKs mod for WOTC
-class X2Effect_CollateralDamage extends X2Effect_ApplyWeaponDamage config (Game_CharacterSkills);
+class X2Effect_CollateralDamage extends X2Effect_ApplyWeaponDamage;
 
-var config float BONUS_MULT;
-var config float MIN_BONUS;
+var float BONUS_MULT;
+var float MIN_BONUS;
 
 var bool AllowArmor;
 var bool AddBonus;

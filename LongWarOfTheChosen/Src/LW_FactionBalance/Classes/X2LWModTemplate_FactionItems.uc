@@ -67,6 +67,22 @@ static function UpdateWeapons(X2WeaponTemplate WeaponTemplate, int Difficulty)
 	case 'Sidearm_BM':
 		WeaponTemplate.RangeAccuracy = class'X2Item_DefaultWeapons'.default.SHORT_CONVENTIONAL_RANGE;
 		break;
+	// Tedster: add Grenade launchers here to actually set stuff on them.
+	case 'GrenadeLauncher_CV':
+		WeaponTemplate.Tier = 1;
+		WeaponTemplate.WeaponTech = 'conventional';
+		break;
+	case 'GrenadeLauncher_MG':
+		WeaponTemplate.Tier = 3;
+		WeaponTemplate.WeaponTech = 'magnetic';
+		break;
+	case 'GrenadeLauncher_BM':
+		WeaponTemplate.Tier = 5;
+		WeaponTemplate.WeaponTech = 'beam';
+		break;
+	case 'AHWKosmaLauncher':
+		WeaponTemplate.WeaponTech = 'beam';
+		break;	
 	default:
 		break;
 	}

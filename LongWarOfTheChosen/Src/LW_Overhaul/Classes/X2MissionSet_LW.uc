@@ -43,6 +43,7 @@ static function array<X2DataTemplate> CreateTemplates()
     Templates.AddItem(AddMissionTemplate('AdventFacilityPSIGATE_LW'));
     Templates.AddItem(AddMissionTemplate('CentralNetworkBroadcast_LW'));
     Templates.AddItem(AddMissionTemplate('AssaultAlienFortress_LW'));
+    Templates.AddItem(AddMissionTemplate('DestroyAvatarProject_LW'));
     
 	Templates.AddItem(AddMissionTemplate('SecureUFO_LW'));
     Templates.AddItem(AddMissionTemplate('SabotageAlienFacility_LW'));

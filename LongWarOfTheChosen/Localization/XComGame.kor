@@ -2148,6 +2148,14 @@ ObjectiveTextPools[1]="모든 적 목표물 무력화하기"
 ObjectiveTextPools[0]="사령관의 아바타는 반드시 생존해야 함"
 ObjectiveTextPools[1]="아바타 파괴하기"
 
+[DefaultAssaultFortressLeadup_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="사령관의 아바타는 반드시 생존해야 함"
+ObjectiveTextPools[1]="모든 적 목표물 무력화하기"
+
+[DefaultDestroyAvatarProject_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="사령관의 아바타는 반드시 생존해야 함"
+ObjectiveTextPools[1]="아바타 파괴하기"
+
 [DefaultSabotage_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="X4를 설치해 외계인 시설 파괴하기"
 ObjectiveTextPools[1]="모든 XCOM 병사 탈출시키기"
@@ -2500,6 +2508,13 @@ PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.support.T_Support_Broadcast
 DisplayName="외계인 요새 공격하기"
 Briefing="외계인 요새 공격"
 PostMissionType="외계인 요새 공격"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
+ObjectiveTextPools[0]="아바타 명령 파괴하기"
+
+[DestroyAvatarProject_LW X2MissionTemplate]
+DisplayName="아바타 프로젝트 파괴"
+Briefing="아바타 프로젝트 파괴하기"
+PostMissionType="아바타 프로젝트 파괴"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
 ObjectiveTextPools[0]="아바타 명령 파괴하기"
 

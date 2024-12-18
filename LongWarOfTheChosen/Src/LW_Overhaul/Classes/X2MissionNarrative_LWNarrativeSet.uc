@@ -64,6 +64,8 @@ static function array<X2DataTemplate> CreateTemplates()
     Templates.AddItem(AddBigSupplyExtractionMissionNarrativeTemplate());
     Templates.AddItem(AddCovertOpsTroopManeuversNarrativeTemplate());
     Templates.AddItem(AddDefaultCompoundRescueOperativeNarrativeTemplate());
+    Templates.AddItem(AddDefaultAssaultFortressLeadupMissionNarrativeTemplate());
+    Templates.AddItem(AddDefaultDestroyAvatarProjectMissionNarrativeTemplate());
 
     return Templates;
 }
@@ -1416,6 +1418,64 @@ static function X2MissionNarrativeTemplate AddDefaultCompoundRescueOperativeNarr
     Template.NarrativeMoments[11]="XPACK_NarrativeMoments.X2_XP_CEN_T_Comp_Rescue_Alert_Status_Increaing";
     Template.NarrativeMoments[12]="X2NarrativeMoments.TACTICAL.General.SKY_Gen_EvacRequested_02";
     Template.NarrativeMoments[13]="X2NarrativeMoments.TACTICAL.Extract.Extract_CEN_VIPKilled_Continue";
+
+    return Template;
+}
+
+static function X2MissionNarrativeTemplate AddDefaultAssaultFortressLeadupMissionNarrativeTemplate()
+{
+    local X2MissionNarrativeTemplate Template;
+
+    `CREATE_X2MISSIONNARRATIVE_TEMPLATE(Template, 'DefaultAssaultFortressLeadup_LW');
+
+    Template.MissionType = "GP_FortressLeadup_LW";
+    Template.NarrativeMoments[0]="X2NarrativeMoments.T_Final_Mission_The_Fortress";
+    Template.NarrativeMoments[1]="X2NarrativeMoments.T_Final_Mission_XCOM_Avatar_Has_Died";
+    Template.NarrativeMoments[2]="X2NarrativeMoments.T_Final_Mission_Final_Showdown_Begins";
+    Template.NarrativeMoments[3]="X2NarrativeMoments.T_Final_Mission_Enemy_Avatar_1_Has_Died";
+    Template.NarrativeMoments[4]="X2NarrativeMoments.T_Final_Mission_Final_Set_One";
+    Template.NarrativeMoments[5]="X2NarrativeMoments.T_Final_Mission_Final_Set_Two";
+    Template.NarrativeMoments[6]="X2NarrativeMoments.T_Final_Mission_Final_Set_Three";
+    Template.NarrativeMoments[7]="X2NarrativeMoments.T_Final_Mission_Final_Set_Four";
+    Template.NarrativeMoments[8]="X2NarrativeMoments.T_Final_Mission_First_Set_One";
+    Template.NarrativeMoments[9]="X2NarrativeMoments.T_Final_Mission_First_Set_Two";
+    Template.NarrativeMoments[10]="X2NarrativeMoments.T_Final_Mission_First_Set_Three";
+    Template.NarrativeMoments[11]="X2NarrativeMoments.T_Final_Mission_First_Set_Four";
+    Template.NarrativeMoments[12]="X2NarrativeMoments.T_Final_Mission_First_Set_Five";
+    Template.NarrativeMoments[13]="X2NarrativeMoments.T_Final_Mission_First_Set_Six";
+    Template.NarrativeMoments[14]="X2NarrativeMoments.T_Final_Mission_Middle_Set_One";
+    Template.NarrativeMoments[15]="X2NarrativeMoments.T_Final_Mission_Middle_Set_Two";
+    Template.NarrativeMoments[16]="X2NarrativeMoments.T_Final_Mission_Middle_Set_Three";
+    Template.NarrativeMoments[17]="X2NarrativeMoments.T_Final_Mission_Middle_Set_Four";
+
+    return Template;
+}
+
+static function X2MissionNarrativeTemplate AddDefaultDestroyAvatarProjectMissionNarrativeTemplate()
+{
+    local X2MissionNarrativeTemplate Template;
+
+    `CREATE_X2MISSIONNARRATIVE_TEMPLATE(Template, 'DefaultDestroyAvatarProject_LW');
+
+    Template.MissionType = "GP_FortressShowdown_LW";
+    Template.NarrativeMoments[0]="X2NarrativeMoments.T_Final_Mission_The_Fortress";
+    Template.NarrativeMoments[1]="X2NarrativeMoments.T_Final_Mission_XCOM_Avatar_Has_Died";
+    Template.NarrativeMoments[2]="X2NarrativeMoments.T_Final_Mission_Final_Showdown_Begins";
+    Template.NarrativeMoments[3]="X2NarrativeMoments.T_Final_Mission_Enemy_Avatar_1_Has_Died";
+    Template.NarrativeMoments[4]="X2NarrativeMoments.T_Final_Mission_Final_Set_One";
+    Template.NarrativeMoments[5]="X2NarrativeMoments.T_Final_Mission_Final_Set_Two";
+    Template.NarrativeMoments[6]="X2NarrativeMoments.T_Final_Mission_Final_Set_Three";
+    Template.NarrativeMoments[7]="X2NarrativeMoments.T_Final_Mission_Final_Set_Four";
+    Template.NarrativeMoments[8]="X2NarrativeMoments.T_Final_Mission_First_Set_One";
+    Template.NarrativeMoments[9]="X2NarrativeMoments.T_Final_Mission_First_Set_Two";
+    Template.NarrativeMoments[10]="X2NarrativeMoments.T_Final_Mission_First_Set_Three";
+    Template.NarrativeMoments[11]="X2NarrativeMoments.T_Final_Mission_First_Set_Four";
+    Template.NarrativeMoments[12]="X2NarrativeMoments.T_Final_Mission_First_Set_Five";
+    Template.NarrativeMoments[13]="X2NarrativeMoments.T_Final_Mission_First_Set_Six";
+    Template.NarrativeMoments[14]="X2NarrativeMoments.T_Final_Mission_Middle_Set_One";
+    Template.NarrativeMoments[15]="X2NarrativeMoments.T_Final_Mission_Middle_Set_Two";
+    Template.NarrativeMoments[16]="X2NarrativeMoments.T_Final_Mission_Middle_Set_Three";
+    Template.NarrativeMoments[17]="X2NarrativeMoments.T_Final_Mission_Middle_Set_Four";
 
     return Template;
 }

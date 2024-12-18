@@ -142,6 +142,8 @@ var config int LineEmUpOffense, LineEmUpCrit;
 var config int SensorOverlaysCritBonus;
 var config int FocusedDefenseDefense, FocusedDefenseDodge;
 
+var config array<name> LICK_YOUR_WOUNDS_ALLOWED_ABILITIES;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -166,6 +168,7 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(Concentration());
 	Templates.AddItem(LikeLightning());
+	Templates.AddItem(PurePassive('LikeLightningPassive_LW', "img:///UILibrary_XPerkIconPack.UIPerk_lightning_chevron", false, , true));
 	Templates.AddItem(Preservation());
 	Templates.AddItem(LockNLoad());
 	Templates.AddItem(TrenchWarfare());
@@ -328,6 +331,7 @@ static function X2AbilityTemplate SawedOffOverwatch()
 	local X2Condition_UnitEffectsWithAbilitySource NoneShallPassTargetCondition;
 	local X2AbilityTrigger_EventListener	Trigger;
 	local X2Condition_UnitProperty			ExcludeSquadmatesCondition;
+	local X2Condition_NotItsOwnTurn NotItsOwnTurnCondition;
 
 	Template = Attack('NoneShallPass_LW', "img:///'BstarsPerkPack_Icons.UIPerk_SawedOffOverwatch'", false, none, class'UIUtilities_Tactical'.const.CLASS_SERGEANT_PRIORITY, eCost_None);
 	
@@ -362,6 +366,9 @@ static function X2AbilityTemplate SawedOffOverwatch()
 	ExcludeSquadmatesCondition = new class'X2Condition_UnitProperty';
 	ExcludeSquadmatesCondition.ExcludeSquadmates = true;
 	Template.AbilityTargetConditions.AddItem(ExcludeSquadmatesCondition);
+
+	NotItsOwnTurnCondition = new class'X2Condition_NotItsOwnTurn';
+	Template.AbilityShooterConditions.AddItem(NotItsOwnTurnCondition);
 
 	NoneShallPassTargetEffect = new class'X2Effect_Persistent';
 	NoneShallPassTargetEffect.BuildPersistentEffect(1, false, true, true, eGameRule_PlayerTurnEnd);
@@ -558,7 +565,7 @@ static function X2AbilityTemplate LeadTheTarget_LW()
 	Template.AbilityCosts.AddItem(AmmoCost);
 
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
-	ActionPointCost.iNumPoints = 2;
+	ActionPointCost.bAddWeaponTypicalCost = true;
 	ActionPointCost.bConsumeAllPoints = true;   //  this will guarantee the unit has at least 1 action point
 	ActionPointCost.bFreeCost = true;           //  ReserveActionPoints effect will take all action points away
 	ActionPointCost.DoNotConsumeAllEffects.Length = 0;
@@ -654,7 +661,7 @@ static function X2AbilityTemplate LeadTheTargetShot_LW()
 	Trigger.ListenerData.EventID = 'ObjectMoved';
 	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
 	Trigger.ListenerData.Filter = eFilter_None;
-	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalOverwatchListener;
+	Trigger.ListenerData.EventFn = LTTListener;
 	Template.AbilityTriggers.AddItem(Trigger);
 	//  trigger on an attack
 	Trigger = new class'X2AbilityTrigger_EventListener';
@@ -688,6 +695,36 @@ static function X2AbilityTemplate LeadTheTargetShot_LW()
 	return Template;
 }
 
+static function EventListenerReturn LTTListener(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComGameState_Unit TargetUnit;
+	local XComGameStateContext_Ability AbilityContext;
+	local XComGameState_Ability AbilityState;
+	local XComGameStateHistory History;
+
+	History = `XCOMHISTORY;
+	TargetUnit = XComGameState_Unit(EventData);
+	AbilityContext = XComGameStateContext_Ability(GameState.GetContext());
+
+	if (AbilityContext != none)
+	{
+		if (class'X2Ability_DefaultAbilitySet'.default.OverwatchIgnoreAbilities.Find(AbilityContext.InputContext.AbilityTemplateName) != INDEX_NONE)
+			return ELR_NoInterrupt;
+	}
+
+	AbilityState = XComGameState_Ability(CallbackData);
+	if (AbilityState != none)
+	{
+		if (AbilityState.CanActivateAbilityForObserverEvent( TargetUnit ) == 'AA_Success')
+		{
+			AbilityState.AbilityTriggerAgainstSingleTarget(TargetUnit.GetReference(), false);
+		}
+	}
+	
+
+	return ELR_NoInterrupt;
+}
+
 static function X2AbilityTemplate BlindingProtocol_LW()
 {
 	
@@ -698,7 +735,7 @@ static function X2AbilityTemplate BlindingProtocol_LW()
 	local X2Condition_UnitProperty								TargetProperty;
 	local X2AbilityTarget_Single								PrimaryTarget;
 	local X2AbilityMultiTarget_Radius							RadiusMultiTarget;
-	local X2Condition_UnitInventory								InventoryCondition;
+	//local X2Condition_UnitInventory								InventoryCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'BlindingProtocol_LW');
 	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_BlindingProtocol"; 
@@ -722,10 +759,13 @@ static function X2AbilityTemplate BlindingProtocol_LW()
 	// Costs, Conditions, and Requirements:
 	// A Gremlin must be equipped in the inventory slot the ability is assigned to
 
+	/* Tedster - remove this so it can be used with modded classes that use Spark Bit
 	InventoryCondition = new class'X2Condition_UnitInventory';
 	InventoryCondition.RelevantSlot = eInvSlot_SecondaryWeapon;
 	InventoryCondition.RequireWeaponCategory = 'gremlin';
 	Template.AbilityShooterConditions.AddItem(InventoryCondition);
+	*/
+
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	Template.AddShooterEffectExclusions();
 
@@ -1341,8 +1381,12 @@ static function X2AbilityTemplate LikeLightning()
 	// If this ability is set up as a cross class ability, but it's not directly assigned to any classes, this is the weapon slot it will use
 	Template.DefaultSourceItemSlot = eInvSlot_SecondaryWeapon;
 
+	Template.AdditionalAbilities.AddItem('LikeLightningPassive_LW');
+
 	return Template;
 }
+
+
 /*
 static function X2AbilityTemplate LikeLightningRefund()
 {
@@ -1436,8 +1480,7 @@ static function X2AbilityTemplate LickYourWounds()
 
 	// Only trigger with Hunker Down
 	NameCondition = new class'XMBCondition_AbilityName';
-	NameCondition.IncludeAbilityNames.AddItem('HunkerDown');
-	NameCondition.IncludeAbilityNames.AddItem('ShieldWall');
+	NameCondition.IncludeAbilityNames = default.LICK_YOUR_WOUNDS_ALLOWED_ABILITIES;
 	AddTriggerTargetCondition(Template, NameCondition);
 
 	// Restore health effect
@@ -2333,7 +2376,7 @@ static function X2AbilityTemplate PrimaryReturnFireShot()
 	local X2AbilityToHitCalc_StandardAim    StandardAim;
 	local X2Condition_UnitProperty          ShooterCondition;
 	local X2AbilityTarget_Single            SingleTarget;
-	local X2AbilityTrigger_EventListener	Trigger;
+	//local X2AbilityTrigger_EventListener	Trigger;
 	local X2Effect_Knockback				KnockbackEffect;
 	local array<name>                       SkipExclusions;
 	local X2Condition_Visibility            TargetVisibilityCondition;
@@ -2345,7 +2388,7 @@ static function X2AbilityTemplate PrimaryReturnFireShot()
 	Template.bDontDisplayInAbilitySummary = true;
 	ReserveActionPointCost = new class'X2AbilityCost_ReserveActionPoints';
 	ReserveActionPointCost.iNumPoints = 1;
-	ReserveActionPointCost.AllowedTypes.AddItem(class'X2CharacterTemplateManager'.default.PistolOverwatchReserveActionPoint);
+	//ReserveActionPointCost.AllowedTypes.AddItem(class'X2CharacterTemplateManager'.default.PistolOverwatchReserveActionPoint);
 	ReserveActionPointCost.AllowedTypes.AddItem(class'X2CharacterTemplateManager'.default.ReturnFireActionPoint);
 	Template.AbilityCosts.AddItem(ReserveActionPointCost);
 
@@ -2383,6 +2426,7 @@ static function X2AbilityTemplate PrimaryReturnFireShot()
 	SingleTarget.OnlyIncludeTargetsInsideWeaponRange = true;
 	Template.AbilityTargetStyle = SingleTarget;
 
+	/* 
 	//Trigger on movement - interrupt the move
 	Trigger = new class'X2AbilityTrigger_EventListener';
 	Trigger.ListenerData.EventID = 'ObjectMoved';
@@ -2390,6 +2434,7 @@ static function X2AbilityTemplate PrimaryReturnFireShot()
 	Trigger.ListenerData.Filter = eFilter_None;
 	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalOverwatchListener;
 	Template.AbilityTriggers.AddItem(Trigger);
+	*/
 
 	Template.CinescriptCameraType = "StandardGunFiring";	
 	

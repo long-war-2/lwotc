@@ -164,5 +164,5 @@ defaultproperties
 {
 	ScreenClass = UIFinalShell;
 	iVersion_Installed = 26; // beta is on 26
-	bReleaseVersion = false;
+	bReleaseVersion = true;
 }

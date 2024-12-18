@@ -61,6 +61,8 @@ var config array<EncounterBucket> ReplacementEncounterBuckets;
 
 var config array<string> MissionsToNotDiversify;
 
+var config array<name> NoReinforcementEnemies;
+
 
 // An array of mission types where we should just let vanilla do its
 // thing with regard to the Chosen rather than try to override its
@@ -146,7 +148,8 @@ var config array<string> MapsToDisable;
 var config array<Name> EncountersToExclude;
 
 var config array<Name> ROCKET_ABILITIES_TO_UPDATE;
-var config array<Name> NOSCATTER_ROCKET_ABILITIES_TO_UPDATE;
+
+var config bool bUpdateWaterworldLW;
 
 // End data and data structures
 //-----------------------------
@@ -305,17 +308,6 @@ static function EditModdedRocketAbilities()
 		{
 			`LWTrace("Patching Rocket launcher ability" @AbilityTemplate.DataName);
 			AbilityTemplate.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher';
-		}
-	}
-
-	foreach default.NOSCATTER_ROCKET_ABILITIES_TO_UPDATE(AbilityName)
-	{
-		AbilityTemplate = AbilityManager.FindAbilityTemplate(AbilityName);
-
-		if(AbilityTemplate != none)
-		{
-			`LWTrace("Patching Rocket launcher ability" @AbilityTemplate.DataName);
-			AbilityTemplate.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher_NoScatter';
 		}
 	}
 }
@@ -986,16 +978,80 @@ static function bool UseAlternateMissionIntroDefinition(MissionDefinition Active
 /// </summary>
 static function bool UpdateMissionSpawningInfo(StateObjectReference MissionRef)
 {
+	local XComGameState_MissionSite MissionState;
+	local MissionDefinition MissionDef;
+	local XComGameState NewGameState;
+	local bool bUpdated;
+
 	// We need to clear up the mess that the Alien Rulers DLC leaves in its wake.
 	// In this case, it clears all the alien ruler gameplay tags from XComHQ, just
 	// before the schedules are picked (which rely on those tags). And of course it
 	// may apply the ruler tags itself when we don't want them. Bleh.
 	if (class'XComGameState_AlienRulerManager' != none)
 	{
-		return FixAlienRulerTags(MissionRef);
+		bUpdated = FixAlienRulerTags(MissionRef);
 	}
 
-	return false;
+	// Patching waterworld hardcoded stuff
+	MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(MissionRef.ObjectID));
+
+	// Waterworld hardcoded here.
+	if(MissionState.GetMissionSource().DataName == 'MissionSource_Final' && default.bUpdateWaterworldLW)
+	{
+
+		// LW waterworld hardcode here:
+		`TACTICALMISSIONMGR.GetMissionDefinitionForType("GP_Fortress_LW", MissionDef);
+
+
+		if(instr(MissionState.GeneratedMission.Mission.MapNames[0], "_LW") != -1)
+		{
+			return bUpdated;
+		}
+
+		`Log("Mission Def mapname:" @MissionDef.MapNames[0],, 'TedLog');
+
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Update Mission Data");
+
+		MissionState = XComGameState_MissionSite(NewGameState.ModifyStateObject(class'XComGameState_MissionSite', MissionState.ObjectID));
+		MissionState.GeneratedMission.Mission.MapNames[0]="Obj_FortressLeadup_LW";
+	
+		`Log("Updating waterworld cached missiondef.",,'TedLog');
+
+		`GAMERULES.SubmitGameState(NewGameState);
+
+		return true;
+	}
+
+	// Psi Gate here:
+
+	if(MissionState.GetMissionSource().DataName == 'MissionSource_PsiGate' && default.bUpdateWaterworldLW)
+	{
+
+		// LW waterworld hardcode here:
+		`TACTICALMISSIONMGR.GetMissionDefinitionForType("GP_PsiGate_LW", MissionDef);
+
+		
+		if(instr(MissionState.GeneratedMission.Mission.MapNames[0], "_LW") != -1)
+		{
+			return bUpdated;
+		}
+
+		`Log("Mission Def mapname:" @MissionDef.MapNames[0],, 'TedLog');
+
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Update Mission Data");
+
+		MissionState = XComGameState_MissionSite(NewGameState.ModifyStateObject(class'XComGameState_MissionSite', MissionState.ObjectID));
+		MissionState.GeneratedMission.Mission.MapNames[0]="Obj_PsiGate_LW";
+	
+		`Log("Updating PsiGate cached missiondef.",,'TedLog');
+
+		`GAMERULES.SubmitGameState(NewGameState);
+
+		return true;
+	}
+
+
+	return bUpdated;
 }
 
 static function bool FixAlienRulerTags(StateObjectReference MissionRef)
@@ -1254,7 +1310,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	local int								idx, Tries, PodSize, k, numAttempts, iNumCommonUnits, j, ProperPodLength;
 	local X2CharacterTemplateManager		TemplateManager;
 	local X2CharacterTemplate				LeaderCharacterTemplate, FollowerCharacterTemplate, CurrentCharacterTemplate, NewCommonTemplate;
-	local bool								Swap, Satisfactory, bKeepTrying;
+	local bool								Swap, Satisfactory, bKeepTrying, bIsRNF;
 	local XComGameState_MissionSite			MissionState;
 	local XComGameState_AIReinforcementSpawner	RNFSpawnerState;
 	local XComGameState_HeadquartersXCom XCOMHQ;
@@ -1405,6 +1461,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	//	`LWTRACE ("PE2");
 	if (RNFSpawnerState != none)
 	{
+		bIsRNF = true;
 		`LWDiversityTrace("Called from AIReinforcementSpawner.OnReinforcementSpawnerCreated -- modifying reinforcement spawninfo");
 	}
 	else
@@ -1438,11 +1495,18 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	// override native insisting every mission have a codex while certain tactical options are active
 
 	// Swap out forced Codices on regular encounters
-	if (SpawnInfo.SelectedCharacterTemplateNames[0] == 'Cyberus' && InStr (EncounterName,"PROTECTED") == INDEX_NONE && EncounterName != 'LoneCodex')
+	if (SpawnInfo.SelectedCharacterTemplateNames[0] == 'Cyberus' && InStr (EncounterName,"PROTECTED") == INDEX_NONE && EncounterName != 'LoneCodex' && EncounterName != 'GP_PsiGate_CodexGuards')
 	{
 		swap = true;
 		SpawnInfo.SelectedCharacterTemplateNames[0] = SelectNewPodLeader(SpawnInfo, ForceLevel, LeaderSpawnList);
 		`LWDiversityTrace("Swapping Codex leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
+	}
+
+	if ( RNFSpawnerState != none && default.NoReinforcementEnemies.Find(SpawnInfo.SelectedCharacterTemplateNames[0]) != INDEX_NONE)
+	{
+		swap = true;
+		SpawnInfo.SelectedCharacterTemplateNames[0] = SelectNewPodLeader(SpawnInfo, ForceLevel, LeaderSpawnList, true);
+		`LWDiversityTrace("Swapping Banned RNF leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
 	}
 
 	// forces special conditions for avatar to pop
@@ -1576,6 +1640,11 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 					`LWDiversityTrace("Too many" @SpawnInfo.SelectedCharacterTemplateNames[k] @"; Max specified:" @ GetCharacterSpawnEntry(FollowerSpawnList, FollowerCharacterTemplate, ForceLevel).MaxCharactersPerGroup);
 					swap = true;
 				}
+				// Ban certain enemies from RNF pods.
+				if(bIsRNF && default.NoReinforcementEnemies.find(SpawnInfo.SelectedCharacterTemplateNames[k]) != INDEX_NONE)
+				{
+					swap = true;
+				}
 			}
 			if (swap)
 			{
@@ -1638,7 +1707,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 				if(CurrentCharacterTemplate == none)
 				{
 					`LWDiversityTrace("Rerolling nonexistant Character Template.");
-					SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
+					SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList, bIsRNF);
 				}
 
 				//BAIL CONDITIONS, Tedster - fix off by one error 2 -> 1
@@ -1649,7 +1718,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 					continue;
 				}
 
-				SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
+				SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList, bIsRNF);
 				`LWDiversityTrace("Selected new follower for position" @idx @":" @ SpawnInfo.SelectedCharacterTemplateNames[idx]);
 				if(CurrentCharacterTemplate == none)
 				{
@@ -1668,7 +1737,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 						numAttempts = 0;
 						while (numAttempts < 12 && bKeepTrying)
 						{
-							SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
+							SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList, bIsRNF);
 
 							if((InStr(CAPS(SpawnInfo.SelectedCharacterTemplateNames[k]), "FROST") != INDEX_NONE || InStr(CAPS(SpawnInfo.SelectedCharacterTemplateNames[k]), "CRYO") != INDEX_NONE))
 							{
@@ -1900,8 +1969,8 @@ static final function bool CheckPodSize(out name EncounterName, out PodSpawnInfo
 		// If the encounter defines a MaxSpawnCount AND the current length is not the same as the max spawn count.
 		if(MissionManager.ConfigurableEncounters[idx].MaxSpawnCount > 0 && SpawnInfo.SelectedCharacterTemplateNames.length != MissionManager.ConfigurableEncounters[idx].MaxSpawnCount)
 		{
-			return true;
 			ProperPodLength = MissionManager.ConfigurableEncounters[idx].MaxSpawnCount;
+			return true;
 		}
 	}
 	
@@ -2061,7 +2130,7 @@ static function float GetCharacterSpawnWeight(out array<SpawnDistributionListEnt
 	}
 }
 
-static function name SelectNewPodLeader(PodSpawnInfo SpawnInfo, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList)
+static function name SelectNewPodLeader(PodSpawnInfo SpawnInfo, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList, optional bool bReinforcement)
 {
 	local X2CharacterTemplateManager CharacterTemplateMgr;
 	local X2DataTemplate Template;
@@ -2092,6 +2161,8 @@ static function name SelectNewPodLeader(PodSpawnInfo SpawnInfo, int ForceLevel, 
 		if (CharacterTemplate.DataName == 'AdvPsiWitchM3' && XCOMHQ.GetObjectiveStatus ('T1_M5_SKULLJACKCodex') != eObjectiveState_Completed)
 			continue;
 
+		if (bReinforcement && default.NoReinforcementEnemies.Find(CharacterTemplate.DataName) != INDEX_NONE)
+			continue;
 
 		if(XCOMHQ.MeetsObjectiveRequirements(CharacterTemplate.SpawnRequirements.RequiredObjectives) == false)
 		{
@@ -2205,7 +2276,7 @@ static function name SelectRandomPodFollower(PodSpawnInfo SpawnInfo, array<name>
 }
 
 // improved version that doesn't have nested loops
-static final function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnInfo, array<name> SupportedFollowers, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList)
+static final function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnInfo, array<name> SupportedFollowers, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList, optional bool bReinforcement)
 {
 //	local X2CharacterTemplateManager CharacterTemplateMgr;
 //	local X2CharacterTemplate CharacterTemplate;
@@ -2247,6 +2318,8 @@ static final function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnIn
 			continue;
 		}
 		*/
+		if (bReinforcement && default.NoReinforcementEnemies.Find(SpawnEntry.Template) != INDEX_NONE)
+			continue;
 
 		// if entry out of force level range.
 		if (ForceLevel < SpawnEntry.MinForceLevel && ForceLevel > SpawnEntry.MaxForceLevel)
@@ -2338,7 +2411,7 @@ static function PostReinforcementCreation(out name EncounterName, out PodSpawnIn
 	    }
 	}
 	// Send into normal PostEncounterCreation otherwise.
-	PostEncounterCreation(EncounterName, Encounter, ForceLevel, AlertLevel, SourceObject);
+	PostEncounterCreation(EncounterName, Encounter, ForceLevel, AlertLevel, ReinforcementState);
 }
 
 // Increase the size of Lost Brutes (unless WWL is installed)
@@ -4787,6 +4860,29 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 	}
 }
 
+// Stuff for updating the 
+static function bool ShouldUpdateMissionSpawningInfo(StateObjectReference MissionRef)
+{
+	local XComGameState_MissionSite MissionState;
+
+	MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(MissionRef.ObjectID));
+
+	// Waterworld hardcode here
+	if(MissionState.GetMissionSource().DataName == 'MissionSource_Final' || MissionState.GetMissionSource().DataName == 'MissionSource_PsiGate')
+	{
+		if(instr(MissionState.GeneratedMission.Mission.MapNames[0], "_LW") != -1)
+		{
+			return false;
+		}
+		`Log("Updating waterworld / psi gate caching.",,'TedLog');
+		
+		return true;
+	}
+
+	return false;
+}
+
+
 //=========================================================================================
 //================== BEGIN EXEC LONG WAR CONSOLE EXEC =====================================
 //=========================================================================================
@@ -6473,6 +6569,7 @@ exec function PrintKismetVariables(optional bool bAllVars)
     local SequenceObject SeqObj;
     local SequenceVariable SeqVar;
     local SeqVar_Int SeqVarTimer;
+	local SeqVar_Vector SeqVarVector;
     local Sequence CurrentSequence;
 
     CurrentSequence = `XWORLDINFO.GetGameSequence();
@@ -6493,18 +6590,25 @@ exec function PrintKismetVariables(optional bool bAllVars)
             {
                 if(bAllVars)
                 {
-                    class'Helpers'.static.OutputMsg("Found KismetVariable: " $ SeqVar.VarName $ ", Value= " $ SeqVarTimer.IntValue);
+                    class'Helpers'.static.OutputMsg("Found KismetVariable: " $ SeqVarTimer.VarName $ ", Value= " $ SeqVarTimer.IntValue);
                 }
 
 
                     //class'Helpers'.static.OutputMsg("KismetVariable: " $ SeqVar.VarName $ ", Value= " $ SeqVarTimer.IntValue);
                     //class'Helpers'.static.OutputMsg("Found KismetVariable To Adjust: " $ Adjustment);
                     //SeqVarTimer.IntValue = SeqVarTimer.IntValue + Adjustment;
-                    `LWTrace("Named KismetVariable: " $ SeqVar.VarName $ ", Value= " $ SeqVarTimer.IntValue);
-                    class'Helpers'.static.OutputMsg("Named KismetVariable: " $ SeqVar.VarName $ ", Value= " $ SeqVarTimer.IntValue);
+                    `LWTrace("Named KismetVariable: " $ SeqVarTimer.VarName $ ", Value= " $ SeqVarTimer.IntValue);
+                    class'Helpers'.static.OutputMsg("Named KismetVariable: " $ SeqVarTimer.VarName $ ", Value= " $ SeqVarTimer.IntValue);
                 
             }
         }
+		SeqVarVector = SeqVar_Vector(SeqObj);
+		if(SeqVarVector != none)
+		{
+			class'Helpers'.static.OutputMsg("Named KismetVariable: " $ SeqVarVector.VarName $ ", X Value= " $ SeqVarVector.VectValue.x);
+			class'Helpers'.static.OutputMsg("Named KismetVariable: " $ SeqVarVector.VarName $ ", Y Value= " $ SeqVarVector.VectValue.y);
+			class'Helpers'.static.OutputMsg("Named KismetVariable: " $ SeqVarVector.VarName $ ", Z Value= " $ SeqVarVector.VectValue.z);
+		}
     }
 }
 
@@ -6519,6 +6623,9 @@ exec function PrintCurrentMissionDef()
 
 	foreach XComHQ.arrGeneratedMissionData (MissionData)
 	{
+		if(MissionData.Mission.stype != "GP_Fortress_LW")
+			continue;
+
 		class'Helpers'.static.OutputMsg("Found MissionDef" @ MissionData.Mission.MissionName);
 
 		foreach MissionData.Mission.MapNames (CurrentMap)
@@ -6588,6 +6695,33 @@ exec function LWOTC_CheckWillProjects()
 		class'Helpers'.static.OutputMsg(`SHOWVAR(WillProject.GetCurrentNumHoursRemaining()));
 
 		class'Helpers'.static.OutputMsg(`SHOWVAR(WillProject.GetCurrentWorkPerHour()));
+
+	}
+
+}
+
+exec function LWOTC_CheckPsiProjects()
+{
+	local XComGameState_Unit	                        UnitState;
+    local XComGameStateHistory                          History;
+	local XComGameState_HeadquartersProjectPsiTraining	PsiTrainingProject;
+
+	History = `XCOMHISTORY;
+
+	foreach History.IterateByClassType(class'XComGameState_HeadquartersProjectPsiTraining', PsiTrainingProject)
+	{
+		UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(PsiTrainingProject.ProjectFocus.ObjectID));
+
+		class'Helpers'.static.OutputMsg("==============================================");
+		class'Helpers'.static.OutputMsg("PsiTrainingProject found for" @UnitState.GetFullName());
+
+		class'Helpers'.static.OutputMsg(`SHOWVAR(PsiTrainingProject.ProjectPointsRemaining));
+
+		class'Helpers'.static.OutputMsg(`SHOWVAR(PsiTrainingProject.bForcePaused));
+		class'Helpers'.static.OutputMsg(`SHOWVAR(PsiTrainingProject.GetProjectedNumHoursRemaining()));
+		class'Helpers'.static.OutputMsg(`SHOWVAR(PsiTrainingProject.GetCurrentNumHoursRemaining()));
+
+		class'Helpers'.static.OutputMsg(`SHOWVAR(PsiTrainingProject.GetCurrentWorkPerHour()));
 
 	}
 
@@ -6791,6 +6925,7 @@ exec function LWOTC_ViewMissionDef(name MissionDefName)
 	local XComTacticalMissionManager MissionManager;
 	local int MissionIdx;
 	local name MissionSchedule;
+	local string MapName;
 
 	MissionManager = `TACTICALMISSIONMGR;
 
@@ -6802,6 +6937,11 @@ exec function LWOTC_ViewMissionDef(name MissionDefName)
 			`LWTrace("Mission Def name:" @ MissionDefinition.MissionName);
 
 			`LWTrace("stype:" @MissionDefinition.sType);
+
+			foreach MissionDefinition.MapNames (MapName)
+			{
+				`LWTrace("MapName:" @MapName);
+			}
 
 			foreach MissionDefinition.MissionSchedules (MissionSchedule)
 			{
@@ -6987,5 +7127,59 @@ exec function Ted_CheckUnitValue()
 	{
 		Unit.GetUnitValue('DamageThisTurn', DamageUnitValue);
 		class'Helpers'.static.OutputMsg(string(DamageUnitValue.fValue));
+	}
+}
+
+exec function Ted_ClearWaterworldCache()
+{
+	local XComGameState_HeadquartersXCom XComHQ;
+	local XComGameState_MissionSite		MissionState;
+	local XComGameState NewGameState;
+	local int i;
+
+	XComHQ = `XCOMHQ;
+
+	foreach `XCOMHISTORY.IterateByClassType(class'XComGameState_MissionSite', MissionState)
+	{
+		if(MissionState.GetMissionSource().DataName == 'MissionSource_Final')
+			break;
+	}
+
+	if(MissionState != None)
+	{
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Clear waterworld info");
+
+		XComHQ = XComGameState_HeadquartersXCom(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
+
+		i = XComHQ.arrGeneratedMissionData.Find('MissionID', MissionState.ObjectID);
+		if (i != INDEX_NONE)
+		{
+			XComHQ.arrGeneratedMissionData.Remove(i, 1);
+		}
+
+		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+	}
+
+}
+
+exec function Ted_CheckWeaponDamageValues(name ItemName)
+{
+	local X2ItemTemplateManager ItemMgr;
+	local X2ItemTemplate ItemTemplate;
+	local int i;
+
+	ItemMgr = class'X2ItemTemplateManager'.static.GetItemTemplateManager();
+
+	ItemTemplate = ItemMgr.FindItemTemplate(ItemName);
+
+	if(ItemTemplate != none)
+	{
+		class'Helpers'.static.OutputMsg("Extra damage length" @`SHOWVAR(X2WeaponTemplate(ItemTemplate).ExtraDamage.length));
+
+		for(i = 0; i < X2WeaponTemplate(ItemTemplate).ExtraDamage.length; i++)
+		{
+			class'Helpers'.static.OutputMsg("Extra damage length" @`SHOWVAR(X2WeaponTemplate(ItemTemplate).ExtraDamage[i].Tag));
+		}
+
 	}
 }

@@ -1,6 +1,8 @@
 class X2Effect_NeedleGrenades extends X2Effect_Persistent;
 
-var int BonusDamage;
+var int BonusDamage_Conv;
+var int BonusDamage_Mag;
+var int BonusDamage_Beam;
 
 function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, optional XComGameState NewGameState)
 {
@@ -8,6 +10,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 	local X2GrenadeTemplate GrenadeTemplate;
 	local X2Effect_ApplyWeaponDamage DamageEffect;
 	local XComGameState_Unit TargetUnit;
+	local int BonusDamage;
 	SourceWeapon = AbilityState.GetSourceWeapon();
 
 	TargetUnit = XComGameState_Unit(TargetDamageable);
@@ -16,6 +19,21 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 	if (CurrentDamage == 0)
 	{
 		return 0;
+	}
+
+	BonusDamage = BonusDamage_Conv;
+	switch (SourceWeapon.GetWeaponTech())
+	{
+		case 'laser_lw':
+		case 'magnetic':
+			BonusDamage = BonusDamage_Mag;
+			break;
+		case 'coilgun_lw':
+		case 'beam':
+			BonusDamage = BonusDamage_Beam;
+			break;
+		default:
+			break;
 	}
 
 	if (SourceWeapon != none)

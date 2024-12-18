@@ -33,19 +33,19 @@ LocHelpText="阔剑地雷爆炸时会混乱非机械敌人。"
 LocPromotionPopupText="<Bullet/> 造成混乱于爆炸中所有有机单位的效果。<br/>"
 
 [DisablingShot X2AbilityTemplate]
-LocFriendlyName="阻断射击"
-LocLongDescription="用精确的射击击晕敌人，如果暴击则造成额外的眩晕持续时间。射击不会造成暴击伤害。"
-LocHelpText="用精确的射击击晕敌人，如果暴击则造成额外的眩晕持续时间。射击不会造成暴击伤害。"
+LocFriendlyName="失能射击"
+LocLongDescription="用精确的射击击晕/瘫痪敌人，如果暴击则造成额外的眩晕/瘫痪持续时间。射击不会造成暴击伤害。"
+LocHelpText="用精确的射击击晕/瘫痪敌人，如果暴击则造成额外的眩晕/瘫痪持续时间。射击不会造成暴击伤害。"
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> 如果命中(包括擦伤)眩晕敌人<Ability:DisablingShotStunActions/>行动点。<br/><Bullet/> 如果暴击额外眩晕敌人<Ability:DisablingShotCritStunActions/>行动点, 但是射击不会造成暴击伤害。<br/><Bullet/> 阻断射击需要<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 阻断射击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 只有化身和灵能僵尸不能被眩晕。"
+LocPromotionPopupText="<Bullet/> 如果命中(包括擦伤)，眩晕/瘫痪敌人<Ability:DisablingShotStunActions/>行动点。<br/><Bullet/> 如果暴击则额外眩晕/瘫痪敌人<Ability:DisablingShotCritStunActions/>行动点, 但是不会造成暴击伤害。<br/><Bullet/> 失能射击需要<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 失能射击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 天选者、化身、灵能僵尸以及带有眩晕免疫的高级祭司不能被眩晕。"
 ; End Translation (2)
 
 [DisablingShotSnapShot X2AbilityTemplate]
-LocFriendlyName="阻断射击（急射）"
-LocLongDescription="用精确的射击击晕敌人，如果暴击则造成额外的眩晕持续时间。射击不会造成暴击伤害。"
-LocHelpText="用精确的射击击晕敌人，如果暴击则造成额外的眩晕持续时间。射击不会造成暴击伤害。"
+LocFriendlyName="失能射击（急射）"
+LocLongDescription="用精确的射击击晕/瘫痪敌人，如果暴击则造成额外的眩晕/瘫痪持续时间。射击不会造成暴击伤害。"
+LocHelpText="用精确的射击击晕/瘫痪敌人，如果暴击则造成额外的眩晕/瘫痪持续时间。射击不会造成暴击伤害。"
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> 如果命中(包括擦伤)眩晕敌人<Ability:DisablingShotStunActions/>行动点。<br/><Bullet/> 如果暴击额外眩晕敌人<Ability:DisablingShotCritStunActions/>行动点, 但是射击不会造成暴击伤害。<br/><Bullet/> 阻断射击需要<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 阻断射击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 只有化身和灵能僵尸不能被眩晕。"
+LocPromotionPopupText="<Bullet/> 如果命中(包括擦伤)，眩晕/瘫痪敌人<Ability:DisablingShotStunActions/>行动点。<br/><Bullet/> 如果暴击则额外眩晕/瘫痪敌人<Ability:DisablingShotCritStunActions/>行动点, 但是不会造成暴击伤害。<br/><Bullet/> 失能射击需要<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 失能射击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 天选者、化身、灵能僵尸以及带有眩晕免疫的高级祭司不能被眩晕。"
 ; End Translation (2)
 
 [Meditation X2AbilityTemplate]
@@ -226,7 +226,7 @@ RendTheMarkedEffectDesc="在本回合剩余时间内从所有来源对目标的�
 [TheBanisher_LW X2AbilityTemplate]
 LocFriendlyName="万物天敌"
 LocLongDescription="放逐在每次射击时的命中惩罚减少<Ability:THEBANISHER_HIT_BUFF>点，并将其冷却时间降低1回合。刀锋相接的范围增加到<Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/>格。死亡贩子现在对无侧翼的目标也能生效。"
-LocHelpText="放逐在每次射击时的命中惩罚减少<Ability:THEBANISHER_HIT_BUFF>点，并将其冷却时间降低1回合。刀锋相接的范围增加到<Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/>格。死亡贩子现在对无侧翼的目标也能生效。 注意: 刀锋相接的圆环视觉效果没有正确更新该技能。你在刀锋相接的圆环外还有2个格子的射程范围。"
+LocHelpText="放逐在每次射击时的命中惩罚减少<Ability:THEBANISHER_HIT_BUFF>点，并将其冷却时间降低1回合。刀锋相接的范围增加到<Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/>格。死亡贩子现在对无侧翼的目标也能生效。注意: 刀锋相接的圆环视觉效果没有正确更新该技能。你在刀锋相接的圆环外还有2个格子的射程范围。"
 
 [SwiftThrow_LW X2AbilityTemplate]
 LocFriendlyName="雷霆快刀"
@@ -237,5 +237,5 @@ LocPromotionPopupText="<Bullet/> 自由动作，4回合冷却。"
 [TacticalRetreat_LW X2AbilityTemplate]
 LocFriendlyName="飞刀撤退"
 LocHelpText="飞刀撤退"
-LocLongDescription="在投掷飞刀后，获得一次仅限移动的动作。一回合内可以多次触发。"
-LocPromotionPopupText="<Bullet/> 在投掷飞刀后，获得一次仅限移动的动作。一回合内可以多次触发。"
+LocLongDescription="在投掷飞刀后，获得一次仅限移动的动作。一回合只能触发一次。"
+LocPromotionPopupText="<Bullet/> 在投掷飞刀后，获得一次仅限移动的动作。一回合只能触发一次。"

@@ -678,12 +678,15 @@ function PostMissionRevertSoldierStatus(XComGameState NewGameState, XComGameStat
 		}
 
 		//if soldier still has OnMission status, set status to active (unless it's a SPARK that's healing)
-		if(class'LWDLCHelpers'.static.IsUnitOnMission(UnitState) && UnitState.GetStatus() != eStatus_Healing)
+		if(class'LWDLCHelpers'.static.IsUnitOnMission(UnitState) && UnitState.GetStatus() != eStatus_Healing && !UnitState.IsPsiAbilityTraining() && !UnitState.IsPsiTraining() && !UnitState.IsTraining())
 		{
 			UnitState.SetStatus(eStatus_Active);
 			class'Helpers_LW'.static.UpdateUnitWillRecoveryProject(UnitState);
 		}
 	}
+
+	// Refresh staffing to update all heal projects.
+	XComHQ.HandlePowerOrStaffingChange(NewGameState);
 }
 
 static function bool HasWillProject(XComGameState_Unit UnitState)
@@ -1062,6 +1065,46 @@ function float GetSecondsRemainingToFullInfiltration(optional bool bBoost = fals
 	
 	SecondsOfInfiltration = class'X2StrategyGameRulesetDataStructures'.static.DifferenceInSeconds(GetCurrentTime(), StartInfiltrationDateTime);
 	SecondsToInfiltrate = TotalSecondsToInfiltrate - SecondsOfInfiltration;
+
+	return SecondsToInfiltrate;
+}
+
+function float GetSecondsRemainingToFullInfiltrationUI(optional bool bBoost = false)
+{
+	local float TotalSecondsToInfiltrate, InfiltrationBonusOnLiberation;
+	local float SecondsOfInfiltration;
+	local float SecondsToInfiltrate;
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_WorldRegion_LWStrategyAI RegionalAI;
+    local XComGameState_MissionSite MissionSite;
+	
+
+	if(bBoost)
+	{
+		TotalSecondsToInfiltrate = 3600.0 * GetHoursToFullInfiltrationCached() / class'XComGameState_LWPersistentSquad'.default.DefaultBoostInfiltrationFactor[`STRATEGYDIFFICULTYSETTING];
+	}
+	else
+	{
+		TotalSecondsToInfiltrate = 3600.0 * GetHoursToFullInfiltrationCached(); // test caching here roo
+	}
+	
+	SecondsOfInfiltration = class'X2StrategyGameRulesetDataStructures'.static.DifferenceInSeconds(GetCurrentTime(), StartInfiltrationDateTime);
+	SecondsToInfiltrate = TotalSecondsToInfiltrate - SecondsOfInfiltration;
+
+	MissionSite = GetCurrentMission();
+	if(MissionSite != none)
+	{
+		RegionState = MissionSite.GetWorldRegion();
+		if(RegionState != none)
+		{
+			RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState);
+			if(RegionalAI.bLiberated)
+			{
+				InfiltrationBonusOnLiberation = class'X2StrategyElement_DefaultAlienActivities'.default.INFILTRATION_BONUS_ON_LIBERATION[`STRATEGYDIFFICULTYSETTING] / 100.0;
+				SecondsToInfiltrate -= TotalSecondsToInfiltrate * InfiltrationBonusOnLiberation;
+			}
+		}
+	}
 
 	return SecondsToInfiltrate;
 }

@@ -1192,6 +1192,19 @@ private static function array<XComGameState_WorldRegion> GetRemainingRegionState
 }
 */
 
+// Taken from CI to better check geoscape things
+static function bool GeoscapeReadyForUpdate()
+{
+	local UIStrategyMap StrategyMap;
+
+	StrategyMap = `HQPRES.StrategyMap2D;
+
+	return
+		StrategyMap != none &&
+		StrategyMap.m_eUIState != eSMS_Flight &&
+		StrategyMap.Movie.Pres.ScreenStack.GetCurrentScreen() == StrategyMap;
+}
+
 defaultproperties
 {
 	CHOSEN_SPAWN_TAG_SUFFIX="_LWOTC_ChosenTag"

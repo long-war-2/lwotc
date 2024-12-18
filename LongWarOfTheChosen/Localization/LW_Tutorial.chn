@@ -1,19 +1,19 @@
 ; LWOTC Needs Translation
 [LWTutorial]
 CampaignStartTitle="欢迎来到Long War of the Chosen"
-CampaignStartBody="LWOTC是对XCOM 2 WOTC的一次彻底检修，使这次战役更具挑战性，感觉像是一场游击战。<br/><br/>您可以通过在游戏菜单中的改变难度>高级选项禁用本教程。"
+CampaignStartBody="LWOTC是对XCOM 2 WOTC的一次彻底检修，使这次战役更具挑战性，感觉像是一场游击战。<br/><br/>你可以通过在游戏菜单中的“变更难度>进阶选项”禁用本教程。"
 
 [X2EventListener_Tutorial]
 DroneSightedTitle="新敌人: 无人机"
-DroneSightedBody="变种人无人机是具有高探测距离和控制性武器的坚韧机器人侦察机。他们经常被发现独自巡逻，可以出现在建筑物内和屋顶上。"
+DroneSightedBody="变种人无人机是坚固的机器人侦察兵，拥有较大的侦测范围和控制性武器。它们通常单独巡逻，可以出现在建筑物内和屋顶上。"
 RainbowTrooperSightedTitle="新敌人: 变种人步兵"
-RainbowTrooperSightedBody="变种人现在除了基本的步兵外，还部署了多种步兵部队：<ul><li>哨兵（蓝色）专攻守望</li><li>炮手（绿色）操作具有压制能力的高伤害加农炮</li><li>工兵（红色）使用榴弹发射器控制人群并造成伤害</li><li>火箭兵（橘色）发射高精度火箭</li></ul>"
+RainbowTrooperSightedBody="变种人现在除了基本的士兵外，还部署了多种步兵单位：<ul><li>哨兵（蓝色）专攻监视守望</li><li>炮手（绿色）操作具有压制能力的高伤害加农炮</li><li>工兵（红色）使用榴弹发射器控制人群并造成伤害</li><li>火箭兵（橘色）发射高精度火箭</li></ul>"
 HavenHighlightTitle="检查避难所"
-HavenHighlightBody="避难所对你的战役至关重要，因为它们被用来在该地区寻找任务。此外，您只能联系连接到现有避难所的区域。<br/><br/>单击左侧显示的按钮打开“避难所管理”界面。"
+HavenHighlightBody="避难所对你的战役至关重要，因为它们被用来在该地区寻找任务。此外，你只能联系连接到现有避难所的区域。<br/><br/>单击左侧图中圈出的按钮打开“避难所管理”界面。"
 FirstMissionDiscoveredTitle="发现第一个任务"
-FirstMissionDiscoveredBody="您已经检测到您的第一个任务！下一步是分配一个小队进行潜入。<br/><br/>大多数任务的失效日期和潜入时间都很长。安排更多的反抗军进行情报工作提高潜入率达到100％。与复仇者号一起扫描一个避难所将贡献4名反抗军的情报。"
+FirstMissionDiscoveredBody="你已经侦测到你的第一个任务！下一步是分配一个小队进行渗透潜入。<br/><br/>大多数任务都有一个到期时间，而渗透潜入需要时间。通过安排更多的反抗军从事情报工作，可以更好地发现任务，让你有更高的概率侦测出到期时间充足的任务。在避难所使用复仇者号进行扫描，相当于额外增加4名反抗军的情报产出。"
 FirstRetaliationTitle="变种人报复"
-FirstRetaliationBody="变种人正在报复！这些是您不应该忽略的快速反应任务。<br/><br/>这是一次全面的报复，如果被忽视或丢失，则会摧毁避难所，以及针对具体工作的报复，如果忽视这些报复，从事这项工作的反抗军将会被杀死。你的避难所顾问会和一些反抗军一起执行任务。"
+FirstRetaliationBody="变种人正在报复！这些是你不应该忽略的快速反应任务。<br/><br/>这是一次全面的报复，如果被忽视或丢失，则会摧毁避难所，以及针对具体工作的报复，如果忽视这些报复，从事这项工作的反抗军将会被杀死。你的避难所顾问会和一些反抗军一起执行任务。"
 CommandersQuartersEnteredTitle="LWOTC帮助"
 CommandersQuartersEnteredBody="LWOTC添加了一些条目到XCOM档案中，以更详细地解释其一些核心概念，例如潜入和避难所管理。<br/><br/>还可以通过反抗军管理菜单从一个界面查看所有避难所。"
 
@@ -37,10 +37,10 @@ HunterSightedBody="猎手将始终保持有效距离，并试图从安全的位�
 ; [UIScreenListener_OutpostManagementTutorial]
 [UIScreenListener_HavenManagementTutorial]
 HavenManagementTitle="避难所管理"
-HavenManagementBody="避难所是反抗军的聚集地，他们可以从事几项工作：<br/><ul><li>情报 - 探测任务</li><li>招募 - 招募反抗军和新兵</li><li>补给 - 获得补给</li></ul><br/>在工作中的反抗军越多，他们的效率就越高。让你的反抗军暂时掌握情报。"
+HavenManagementBody="避难所是反抗军的聚集地，他们可以从事几项工作：<br/><ul><li>情报 - 探测任务</li><li>招募 - 招募反抗军和新兵</li><li>补给 - 获得补给</li></ul><br/>在工作中的反抗军越多，他们的效率就越高。暂时让你的反抗军专注于情报工作。"
 ; LWOTC Needs Translation (2)
 HavenAdvisersTitle="避难所顾问"
-HavenAdvisersBody="单击左侧标有（1）的框，为避难所指派一名顾问。您可以指定以下选项之一：<br/><ul><li>士兵-筛查无面怪并帮助招募。装备战场扫描器或有扫描协议的专家或有心灵融合的灵能兵可以降低招募到无面怪的几率</li><li>科学家-提高情报工作的产出，但不再有助于研究</li><li>工程师-提高补给工作的产出</li></ul><br/>花费时间筛查出无面怪后会生成专门的锄奸任务(全面回收)。"
+HavenAdvisersBody="单击左侧标有（1）的框，为避难所指派一名顾问。你可以指定以下选项之一：<br/><ul><li>士兵-筛查无面怪并帮助招募。装备战场扫描器或有扫描协议的专家或有心灵融合的灵能兵可以降低“招募”到无面怪的几率</li><li>科学家-提高情报工作的产出，但无法同时用于科学研究</li><li>工程师-提高补给工作的产出，但无法同时用于工程建设</li></ul><br/>花费时间筛查出无面怪后会生成专门的锄奸任务。"
 
 ; LWOTC Needs Translation
 [UIScreenListener_PromotionScreenTutorial]
@@ -54,20 +54,20 @@ CovertActionsTutorialBody="不像普通的WOTC，你的特工在隐秘行动时�
 
 [UIScreenListener_InitialHavenTutorial]
 HavenHighlightTitle="检查避难所"
-HavenHighlightBody="避难所对你的战役至关重要，因为它们被用来在该地区寻找任务。此外，您只能联系连接到现有避难所的区域。<br/><br/>单击左侧显示的按钮打开“避难所管理”界面。"
+HavenHighlightBody="避难所对你的战役至关重要，因为它们被用来在该地区寻找任务。此外，你只能联系连接到现有避难所的区域。<br/><br/>单击左侧显示的按钮打开“避难所管理”界面。"
 
 [UIScreenListener_MissionBriefTutorial]
 MissionBriefTutorialTitle="任务简介"
-MissionBriefTutorialBody="任务期限决定了你要潜入任务多久。你从反抗军情报工作中获得的任务情报越多，你越早发现任务，潜入的时间就越长。<br/><br/>你不必做每一项任务，但你应该尽可能多地去做。如果你没有一个小队或者没有足够的时间，那么不要害怕跳过一个任务。"
+MissionBriefTutorialBody="任务到期时间决定了你最多有多长时间来进行渗透潜入。通过反抗军的情报工作生成更多的任务情报，可以更早侦测到任务，并且有更多时间进行渗透潜入。<br/><br/>你不必做每一项任务，但你应该尽可能多地去做。如果你没有可以出战的小队或者任务没有足够的到期时间，那么不要害怕跳过一个任务。"
 MissionEnemyCountTitle="敌人数量"
-MissionEnemyCountBody="左边显示的敌人数量是一个近似值，如果你达到100%潜入，那么有多少敌人将执行任务。<br/><br/>潜入不足（未达到100%）导致更多的敌人执行任务。深度潜入有可能减少敌人的数量。"
+MissionEnemyCountBody="左侧显示的底线敌人活动是你在该任务达到100%潜入时敌人数量的一个大致估计。<br/><br/>潜入不足（未达到100%）会导致任务中出现更多敌人。超额潜入则有可能减少敌人数量。"
 
 [UIScreenListener_SquadSelectTutorial]
 SquadSelectInfiltrationTitle="选择小队"
-SquadSelectInfiltrationBody="除了选择足够强大的小队成员执行任务外，你还需要考虑LWOTC的潜入时间。<br/><br/>每一个额外的队员都会在第四个队员之后以指数的速度增加潜入时间。像谍报战术技能和消音器之类的物品可以减少潜入时间。"
+SquadSelectInfiltrationBody="除了选择足够强大的小队成员执行任务外，你还需要考虑LWOTC的潜入时间。<br/><br/>超过四人后，每增加一名小队成员都会使全面渗透（100%潜入）所需的时间快速增长。像「谍报技术」技能和消音器之类的物品可以减少潜入时间。"
 
 [UIScreenListener_InfiltratingMissionTutorial]
 InfiltratingMissionTitle="潜入任务"
-InfiltratingMissionBody="你可以随时发起潜入任务，但潜入不足会使任务更加困难。你可以用情报来提高潜入速度，让它更快完成。<br/><br/>如果任务还没有到期，你可以随时终止潜入，然后重新开始。重新开始会将潜入进度重置为0%。"
+InfiltratingMissionBody="你可以随时开始还在进行渗透潜入的任务，但潜入不足会使任务更加困难。你可以消耗情报来加速潜入进度，让它更快完成。<br/><br/>如果任务还没有到期，你可以随时终止潜入，然后重新开始。重新开始会将潜入进度重置为0%。"
 
 ; End Translation

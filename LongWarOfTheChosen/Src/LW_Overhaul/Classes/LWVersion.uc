@@ -49,6 +49,5 @@ defaultproperties
     MajorVersion = 1;
     MinorVersion = 3;
     PatchVersion = 0;
-    Classifier = "build 2"
-
+    Classifier = "build 3"
 }

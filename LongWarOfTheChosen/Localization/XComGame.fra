@@ -2491,6 +2491,14 @@ ObjectiveTextPools[1]="Neutraliser toutes les cibles ennemies"
 ObjectiveTextPools[0]="L'Avatar du commandant doit survivre !"
 ObjectiveTextPools[1]="Détruire les Avatars"
 
+[DefaultAssaultFortressLeadup_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="L'Avatar du commandant doit survivre !"
+ObjectiveTextPools[1]="Neutraliser toutes les cibles ennemies"
+
+[DefaultDestroyAvatarProject_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="L'Avatar du commandant doit survivre !"
+ObjectiveTextPools[1]="Détruire les Avatars"
+
 [DefaultSabotage_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Poser du X4 pour détruire l'installation extraterrestre"
 ObjectiveTextPools[1]="Évacuer tous les soldats d'XCOM"
@@ -2857,6 +2865,13 @@ PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.support.T_Support_Broadcast
 DisplayName="Attaquer la forteresse extraterrestre"
 Briefing="Attaquer la forteresse extraterrestre"
 PostMissionType="Attaquer la forteresse extraterrestre"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
+ObjectiveTextPools[0]="Détruire la directive Avatar"
+
+[DestroyAvatarProject_LW X2MissionTemplate]
+DisplayName="Détruire le projet Avatar"
+Briefing="Détruire le projet Avatar"
+PostMissionType="Détruire le projet Avatar"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
 ObjectiveTextPools[0]="Détruire la directive Avatar"
 
@@ -6102,6 +6117,15 @@ LocHelpText="Les écorchures que vous infligez sont automatiquement converties e
 LocPromotionPopupText="<Bullet/> Les attaques qui devraient écorcher vos cibles sont automatiquement converties en attaques réussies.<br/><Bullet/> S'applique aux armes principales, aux armes secondaires et aux pistolets.<br/>"
 
 [LikeLightning_LW X2AbilityTemplate]
+LocFriendlyName="Dynamo"
+LocFlyOverText="Dynamo"
+; LWOTC translated (2)
+LocLongDescription="Lorsque la capacité Course et tir est activée, le temps de rechargement de votre électro flux est immédiatement réinitialisé à 0."
+LocHelpText="Lorsque la capacité Course et tir est activée, le temps de rechargement de votre électro flux est immédiatement réinitialisé à 0."
+LocPromotionPopupText="<Bullet/> Lorsque la capacité Course et tir est activée, le temps de rechargement de votre électro flux est immédiatement réinitialisé à 0.<br/><Bullet/> Ne s'applique pas à la capacité Foudroiement.<br/>"
+; End translated (2)
+
+[LikeLightningPassive_LW X2AbilityTemplate]
 LocFriendlyName="Dynamo"
 LocFlyOverText="Dynamo"
 ; LWOTC translated (2)

@@ -153,6 +153,8 @@ static function EventListenerReturn OnWeaponUpgradeNavHelpUpdated(
 	}
 
 	NavHelp.Show();
+
+	return ELR_NoInterrupt;
 }
 
 static function EventListenerReturn OverrideScienceScore(
@@ -821,7 +823,7 @@ static function EventListenerReturn UpdateWillProjectForStaff(
 	}
 
 	// SPARKs don't have Will recovery projects!
-	if (UnitState.GetMyTemplateName() == 'SparkSoldier')
+	if (!UnitState.UsesWillSystem())
 		return ELR_NoInterrupt;
 
 	// Only update Will projects for certain staff slots.
@@ -833,4 +835,6 @@ static function EventListenerReturn UpdateWillProjectForStaff(
 	{
 		class'Helpers_LW'.static.UpdateUnitWillRecoveryProject(UnitState);
 	}
+
+	return ELR_NoInterrupt;
 }

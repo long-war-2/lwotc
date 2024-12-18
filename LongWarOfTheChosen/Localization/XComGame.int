@@ -290,28 +290,28 @@ LocFriendlyName="Shredder Rocket"
 LocFlyOverText="Shredder Rocket"
 LocLongDescription="Fire a special rocket which shreds and ruptures targets in a small area."
 LocHelpText="Fire a special rocket which shreds and ruptures targets in a small area.<Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> This rocket shreds 3 points of armor and applies 1 point of Rupture.<br/><Bullet/> The rocket has the same area of effect as a Frag Grenade."
+LocPromotionPopupText="<Bullet/> This rocket shreds 3/4/5 points of armor and applies 1/2/3 point of Rupture depending on gauntlet tier.<br/><Bullet/> The rocket has the same area of effect as a Frag Grenade."
 
 [EMPRocket_LW X2AbilityTemplate]
 LocFriendlyName="EMP Rocket"
 LocFlyOverText="EMP Rocket"
 LocLongDescription="Fire a special rocket which deals a small amount of damage but shuts down all robotic units for a turn."
 LocHelpText="Fire a special rocket which deals a small amount of damage but shuts down all robotic units for a turn.<Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> This rocket deals 1-2 damage and stuns robots for 2 AP.<br/><Bullet/> The rocket has a 5 tile AOE diameter."
+LocPromotionPopupText="<Bullet/> This rocket deals 1-2/2-3/3-4 damage depending on gauntlet tier and stuns robots for 2 AP.<br/><Bullet/> The rocket has a 5 tile AOE diameter."
 
 [BlasterShredderRocket_LW X2AbilityTemplate]
 LocFriendlyName="Shredder Rocket"
 LocFlyOverText="Shredder Rocket"
 LocLongDescription="Fire a special rocket which shreds and ruptures targets in a small area."
 LocHelpText="Fire a special rocket which shreds and ruptures targets in a small area.<Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> This rocket shreds 3 points of armor and applies 1 point of Rupture.<br/><Bullet/> The rocket has the same area of effect as a Frag Grenade."
+LocPromotionPopupText="<Bullet/> This rocket shreds 3/4/5 points of armor and applies 1/2/3 point of Rupture depending on gauntlet tier.<br/><Bullet/> The rocket has the same area of effect as a Frag Grenade."
 
 [BlasterEMPRocket_LW X2AbilityTemplate]
 LocFriendlyName="EMP Rocket"
 LocFlyOverText="EMP Rocket"
 LocLongDescription="Fire a special rocket which deals a small amount of damage but shuts down all robotic units for a turn."
 LocHelpText="Fire a special rocket which deals a small amount of damage but shuts down all robotic units for a turn.<Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> This rocket deals 1-2 damage and stuns robots for 2 AP.<br/><Bullet/> The rocket has a 5 tile AOE diameter."
+LocPromotionPopupText="<Bullet/> This rocket deals 1-2/2-3/3-4 damage depending on gauntlet tier and stuns robots for 2 AP.<br/><Bullet/> The rocket has a 5 tile AOE diameter."
 
 
 
@@ -343,7 +343,7 @@ LocFriendlyName="Concussion Rocket"
 LocFlyOverText="Concussion Rocket"
 LocLongDescription="Fire a special rocket that deals low damage but impairs organic enemies within its area of effect."
 LocHelpText="Fire a rocket that always disorients organic enemies. It also has a <Ability:CONCUSSION_ROCKET_STUN_CHANCE>% chance to stun them. <Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> Deals 2 damage.<br/><Bullet/> Always disorients organic targets. Additionally, each organic target has a <Ability:CONCUSSION_ROCKET_STUN_CHANCE>% chance to be stunned instead.<br/><Bullet/> Requires one action and ends the soldier's turn.<br/><Bullet/> One use per mission.<br/>"
+LocPromotionPopupText="<Bullet/> Deals 2/3/4 damage depending on gauntlet tier.<br/><Bullet/> Always disorients organic targets. Additionally, each organic target has a <Ability:CONCUSSION_ROCKET_STUN_CHANCE>% chance to be stunned instead.<br/><Bullet/> Requires one action and ends the soldier's turn.<br/><Bullet/> One use per mission.<br/>"
 ; End Translation (4)
 
 [BlasterConcussionRocket X2AbilityTemplate]
@@ -351,7 +351,7 @@ LocFriendlyName="Concussion Rocket"
 LocFlyOverText="Concussion Rocket"
 LocLongDescription="Fire a special rocket that deals low damage but impairs organic enemies within its area of effect."
 LocHelpText="Fire a rocket that always disorients organic enemies. It also has a <Ability:CONCUSSION_ROCKET_STUN_CHANCE>% chance to stun them. <Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> Deals 2 damage.<br/><Bullet/> Always disorients organic targets. Additionally, each organic target has a <Ability:CONCUSSION_ROCKET_STUN_CHANCE>% chance to be stunned instead.<br/><Bullet/> Requires one action and ends the soldier's turn.<br/><Bullet/> One use per mission.<br/>"
+LocPromotionPopupText="<Bullet/> Deals 2/3/4 damage.<br/><Bullet/> Always disorients organic targets. Additionally, each organic target has a <Ability:CONCUSSION_ROCKET_STUN_CHANCE>% chance to be stunned instead.<br/><Bullet/> Requires one action and ends the soldier's turn.<br/><Bullet/> One use per mission.<br/>"
 ; End Translation (4)
 
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
@@ -641,16 +641,16 @@ LocPromotionPopupText=""
 
 [Fortify X2AbilityTemplate]
 LocFriendlyName="Fortify"
-LocLongDescription="Activate to grant +<ABILITY:FORTIFY_DEFENSE_LW/> defense until the beginning of the next turn. Does not cost an action. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocLongDescription="Activate to grant +<ABILITY:FORTIFY_DEFENSE_LW/> defense until the beginning of the next turn."
 LocHelpText="Activate to grant +<ABILITY:FORTIFY_DEFENSE_LW/> defense. Free action. <Ability:SelfCooldown_LW/> turn cooldown."
 LocFlyOverText="Fortified"
-LocPromotionPopUpText="<Bullet/> Activate to grant the soldier +<ABILITY:FORTIFY_DEFENSE_LW/> defense until the beginning of the soldier's next turn.<br/><Bullet/> Does not cost an action.<br/><Bullet/> Fortify has a <Ability:SelfCooldown_LW> turn cooldown."
+LocPromotionPopUpText="<Bullet/> Does not cost an action.<br/><Bullet/>Has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 [CombatFitness X2AbilityTemplate]
 LocFriendlyName="Combat Fitness"
 LocLongDescription="Gain <ABILITY:COMBAT_FITNESS_OFFENSE_LW/> aim, <ABILITY:COMBAT_FITNESS_MOBILITY_LW/> mobility, <ABILITY:COMBAT_FITNESS_HP_LW/> HP, <ABILITY:COMBAT_FITNESS_WILL_LW/> will, and <ABILITY:COMBAT_FITNESS_DODGE_LW/> dodge."
-LocHelpText="This soldier has numerous stat bonuses."
-LocPromotionPopUpText="<Bullet/> Combat Fitness provides <ABILITY:COMBAT_FITNESS_OFFENSE_LW/> aim, <ABILITY:COMBAT_FITNESS_MOBILITY_LW/> mobility, <ABILITY:COMBAT_FITNESS_HP_LW/> HP, <ABILITY:COMBAT_FITNESS_WILL_LW/> will, and <ABILITY:COMBAT_FITNESS_DODGE_LW/> dodge."
+LocHelpText="<Bullet/> Combat Fitness provides <ABILITY:COMBAT_FITNESS_OFFENSE_LW/> aim, <ABILITY:COMBAT_FITNESS_MOBILITY_LW/> mobility, <ABILITY:COMBAT_FITNESS_HP_LW/> HP, <ABILITY:COMBAT_FITNESS_WILL_LW/> will, and <ABILITY:COMBAT_FITNESS_DODGE_LW/> dodge."
+LocPromotionPopUpText=""
 
 [Sprinter X2AbilityTemplate]
 LocFriendlyName="Sprinter"
@@ -986,11 +986,17 @@ LocFlyOverText="Nanoscale Vest"
 LocLongDescription="Grants <Ability:NANOFIBER_HEALTH_BONUS_LW> hit points and enemies have a -<Ability:NANOFIBER_CRITDEF_BONUS_LW> to their critical chances against you."
 LocHelpText="Grants <Ability:NANOFIBER_HEALTH_BONUS_LW> hit points and enemies have a -<Ability:NANOFIBER_CRITDEF_BONUS_LW> to their critical chances against you."
 
+[Chameleon_Suit_Ability X2AbilityTemplate]
+LocFriendlyName="Chameleon Suit"
+LocFlyOverText="Chameleon Suit"
+LocLongDescription="Grants 1 hit point and 5 dodge."
+LocHelpText="Grants 1 hit point and 5 dodge."
+
 [FireControl25 X2AbilityTemplate]
 LocFriendlyName="Fire Control (25)"
 LocFlyoverText="Fire Control"
 LocLongDescription="This unit will not take reaction shots with less than a 25% chance to hit."
-LocHelpText="This soldier unit not take reaction shots with less than a 25% chance to hit."
+LocHelpText="This unit will not take reaction shots with less than a 25% chance to hit."
 
 [FireControl50 X2AbilityTemplate]
 LocFriendlyName="Fire Control (50)"
@@ -1288,6 +1294,19 @@ FriendlyNamePlural="Rush-Nano Gausscannons"
 BriefSummary="Introduction of new Elerium-based rush capacitors with separation distance of mere nanometers has allowed us to develop a new kind of autocannon, where capacitors are overloaded and discharged one by one during firing, which keeps the damage output consistently high during a volley."
 TacticalText="Introduction of new Elerium-based rush capacitors with separation distance of mere nanometers has allowed us to develop a new kind of autocannon, where capacitors are overloaded and discharged one by one during firing, which keeps the damage output consistently high during a volley.\n<Bullet/> Firing the primary weapon always ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades looted from enemies to improve the Rush-Nano Gausscannon's tactical effectiveness.\n<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> Rush-Nano Gausscannon is the Coil equivalent of the Autocannon."
 AbilityDescName="autocannon"
+
+[PrototypePlasmaBlaster X2WeaponTemplate]
+FriendlyName="Prototype Plasma Blaster"
+FriendlyNamePlural="Prototype Plasma Blasters"
+BriefSummary="Using technology salaved from the original invasion, we've devised a means of releasing a massive, focused pulse of plasma energy that will devastate targets in a fixed path. Has enough energy for two activations."
+TacticalText="<Bullet/> The Plasma Blaster releases a beam of devastating energy in a straight line, capable of damaging multiple targets\n<Bullet/> Its ammo is limited, so use it only when it will be decisive."
+
+[PlasmaBlaster X2WeaponTemplate]
+FriendlyName="Plasma Blaster"
+FriendlyNamePlural="Plasma Blasters"
+BriefSummary="Using technology adapted from the aliens' own plasma weaponry, we've devised a means of releasing a massive, focused pulse of plasma energy that will devastate targets in a fixed path. Has enough energy for two activations."
+TacticalText="<Bullet/> The Plasma Blaster releases a beam of devastating energy in a straight line, capable of damaging multiple targets\n<Bullet/> Its ammo is limited, so use it only when it will be decisive."
+
 
 ; LWOTC Needs Translation (2)
 [BattleScanner X2WeaponTemplate]
@@ -1612,7 +1631,7 @@ TacticalText="<Bullet/> Grants <Ability:CERAMIC_PLATING_HP> ablative hit points.
 FriendlyName="Chameleon Suit"
 FriendlyNamePlural="Chameleon Suits"
 BriefSummary="Significantly reduces infiltration time by this soldier."
-TacticalText="<Bullet/> Significantly reduces infiltration time by this unit.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+TacticalText="<Bullet/> Grants 1 hit point and 5 dodge.\n<<Bullet/> Significantly reduces infiltration time by this unit.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [AlloyPlating X2EquipmentTemplate]
 FriendlyName="Alloy Plating"
@@ -2609,6 +2628,14 @@ ObjectiveTextPools[1]="Neutralize all enemy targets"
 ObjectiveTextPools[0]="Commander's Avatar must survive"
 ObjectiveTextPools[1]="Destroy the Avatars"
 
+[DefaultAssaultFortressLeadup_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Commander's Avatar must survive"
+ObjectiveTextPools[1]="Neutralize all enemy targets"
+
+[DefaultDestroyAvatarProject_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Commander's Avatar must survive"
+ObjectiveTextPools[1]="Destroy the Avatars"
+
 [DefaultSabotage_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Plant X4 to Destroy Alien Facility"
 ObjectiveTextPools[1]="Extract all XCOM soldiers"
@@ -3014,6 +3041,13 @@ PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.support.T_Support_Broadcast
 DisplayName="Assault the Alien Fortress"
 Briefing="Assault Alien Fortress"
 PostMissionType="Assault Alien Fortress"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
+ObjectiveTextPools[0]="Destroy the Avatar Directive"
+
+[DestroyAvatarProject_LW X2MissionTemplate]
+DisplayName="Destroy Avatar Project"
+Briefing="Destroy Avatar Project"
+PostMissionType="Destroy Avatar Project"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
 ObjectiveTextPools[0]="Destroy the Avatar Directive"
 
@@ -3779,7 +3813,7 @@ Summary="This improvement on our ceramic plating should offer additional ablativ
 
 [ChameleonSuitProject X2TechTemplate]
 DisplayName="Chameleon Suit"
-Summary="While this design will not afford any bonus protection, it allows our troops to blend in whatever environment they are operating in, reducing the time necessary to infiltrate enemy targets."
+Summary="While this design affords only limited bonus protection, it allows our troops to blend in whatever environment they are operating in, reducing the time necessary to infiltrate enemy targets."
 
 [CarapacePlatingProject X2TechTemplate]
 DisplayName="Carapace Plating"
@@ -6274,8 +6308,8 @@ LocPromotionPopupText="<Bullet/> The targeted tile must be visible to you or an 
 
 [LW_NullWard X2AbilityTemplate]
 LocFriendlyName="Null Ward"
-LocLongDescription="Project psionic shields around the soldier and nearby allies. The shields will collapse if this soldier is killed."
-LocHelpText="Project psionic shields around nearby allies and yourself. The shields will collapse if this soldier is killed."
+LocLongDescription="Project psionic shields around the soldier and nearby allies for 3 turns. The shields will collapse if this soldier is killed."
+LocHelpText="Project psionic shields around nearby allies and yourself for 3 turns. The shields will collapse if this soldier is killed."
 LocFlyOverText="Null Ward"
 ; LWOTC Needs Translation (2)
 LocPromotionPopupText="<Bullet/> Null Ward grants <Ability:NULL_WARD_BASE_SHIELD> ablative hit points.<br/><Bullet/> Improved Psi Amps grant additional bonuses to ablative hit points.<br/><Bullet/> Null Ward requires one action and does not end your turn.<br/><Bullet/> Null Ward has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Null Ward has a radius of <Ability:NULL_WARD_RADIUS_TILES> tiles.<br/><Bullet/> Null Ward reveals you.<br/>"
@@ -6409,6 +6443,15 @@ LocHelpText="When Run and Gun is activated, your Arc Thrower cooldown is immedia
 LocPromotionPopupText="<Bullet/> When Run and Gun is activated, your Arc Thrower cooldown is immediately removed.<br/><Bullet/> Does not apply to Chain Lightning.<br/>"
 ; End Translation (2)
 
+[LikeLightningPassive_LW X2AbilityTemplate]
+LocFriendlyName="Like Lightning"
+LocFlyOverText="Like Lightning"
+; LWOTC Needs Translation (2)
+LocLongDescription="When Run and Gun is activated, your Arc Thrower cooldown is immediately reset to 0."
+LocHelpText="When Run and Gun is activated, your Arc Thrower cooldown is immediately removed."
+LocPromotionPopupText="<Bullet/> When Run and Gun is activated, your Arc Thrower cooldown is immediately removed.<br/><Bullet/> Does not apply to Chain Lightning.<br/>"
+; End Translation (2)
+
 [Maim_LW X2AbilityTemplate]
 LocFriendlyName="Maim"
 LocFlyOverText="Maim"
@@ -6442,7 +6485,7 @@ LocFlyOverText="Impulse"
 ; LWOTC Needs Translation (2)
 LocLongDescription="Your ranged attacks gain <Ability:IMPULSE_AIM_BONUS/> aim and <Ability:IMPULSE_CRIT_BONUS/> critical chance if you have moved this turn."
 LocHelpText="Your ranged attacks gain <Ability:IMPULSE_AIM_BONUS/> aim and <Ability:IMPULSE_CRIT_BONUS/> critical chance if you have moved this turn."
-LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:IMPULSE_AIM_BONUS/> aim and <Ability:IMPULSE_CRIT_BONUS/> critical chance if you have moved this turn.<br/>"
+LocPromotionPopupText=""
 ; End Translation (2)
 
 [LockNLoad_LW X2AbilityTemplate]
@@ -6451,7 +6494,7 @@ LocFlyOverText="Lock 'N Load"
 ; LWOTC Needs Translation (2)
 LocLongDescription="Kills with your <Ability:BOUND_WEAPON_NAME/> restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo."
 LocHelpText="Kills with your <Ability:BOUND_WEAPON_NAME/> restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo."
-LocPromotionPopupText="<Bullet/> Kills with your <Ability:BOUND_WEAPON_NAME/> restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo.<br/>"
+LocPromotionPopupText=""
 ; End Translation (2)
 
 [TrenchWarfare_LW X2AbilityTemplate]
@@ -6483,7 +6526,7 @@ LocFlyOverText="Open Fire"
 LocLongDescription="Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health."
 LocHelpText="Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health."
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health.<br/>"
+LocPromotionPopupText=""
 ; End Translation (2)
 
 [WatchThemRun_LW X2AbilityTemplate]
@@ -6499,8 +6542,8 @@ LocPromotionPopupText="<Bullet/> After throwing or launching a grenade, you will
 [Avenger_LW X2AbilityTemplate]
 LocFriendlyName="Avenger"
 LocFlyOverText="Avenger"
-LocLongDescription="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has taken an offensive action.  The reaction shot ingores cover bonuses."
-LocHelpText="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has taken an offensive action.  The reaction shot ingores cover bonuses."
+LocLongDescription="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has taken an offensive action. The reaction shot ignores cover bonuses."
+LocHelpText="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has taken an offensive action. The reaction shot ignores cover bonuses."
 LocPromotionPopupText="<Bullet/> Avenger will not activate if this unit is shot at.<br/><Bullet/> Can only activate during the enemy's turn.<br/><Bullet/> Can only trigger once per turn.<br/>"
 ; End Translation (2)
 
@@ -6591,7 +6634,7 @@ LocFriendlyName="Scrap Metal"
 LocFlyOverText="Scrap Metal: Recovered ammo"
 LocLongDescription="Kills with your <Ability:BOUND_WEAPON_NAME/> restore one sawed-off shotgun charge."
 LocHelpText="Kills with your <Ability:BOUND_WEAPON_NAME/> restore one sawed-off shotgun charge."
-LocPromotionPopupText="<Bullet/> Kills with your <Ability:BOUND_WEAPON_NAME/> restore one sawed-off shotgun charge.<br/><Bullet/> This does not apply to kills from using the sawed-off shotgun itself.<br/><Bullet/> This ability cannot grant ammo if the sawed-off shotgun charges are already at their starting value.<br/>"
+LocPromotionPopupText="<Bullet/> This does not apply to kills from using the sawed-off shotgun itself.<br/><Bullet/> With this ability, you can gain more sawed-off shotgun charges than you started with.<br/>"
 
 [ScrapMetalTrigger_LW X2AbilityTemplate]
 LocFriendlyName="Scrap Metal: Recovered ammo"
@@ -6659,9 +6702,9 @@ LocPromotionPopupText = "<Bullet/> Works with Squadsight.<br/><Bullet/> Blinding
 LocFriendlyName = "Lead The Target"
 LocFlyOverText = "Lead The Target"
 ; LWOTC Needs Translation (3)
-LocHelpText = "Take a delayed shot with +<Ability:LEAD_TARGET_AIM_BONUS/> Aim at an enemy if it moves. Costs two actions and has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocLongDescription = "Take a delayed shot with +<Ability:LEAD_TARGET_AIM_BONUS/> Aim at an enemy if it moves. Costs two actions and has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocPromotionPopupText = "<Bullet> To take the shot, you need line of sight to the enemy when it moves.<br/><Bullet/> Lead The Target ends if you haven't taken the shot until the start of your next turn.<br/><Bullet/> Costs two actions.<br/><Bullet/> Lead The Target is not a reaction attack, despite activating on enemy movement.<br/><Bullet/> Lead The Target has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocHelpText = "Take a delayed shot with +<Ability:LEAD_TARGET_AIM_BONUS/> Aim at an enemy if it moves. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocLongDescription = "Take a delayed shot with +<Ability:LEAD_TARGET_AIM_BONUS/> Aim at an enemy if it moves. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocPromotionPopupText = "<Bullet> To take the shot, you need line of sight to the enemy when it moves.<br/><Bullet/> Lead The Target ends if you haven't taken the shot until the start of your next turn.<br/><Bullet/> Lead The Target is not a reaction attack, despite activating on enemy movement.<br/><Bullet/> Lead The Target has a <Ability:SelfCooldown_LW/> turn cooldown."
 ; End Translation (3)
 
 [LeadTheTargetShot_LW X2AbilityTemplate]
@@ -6693,7 +6736,7 @@ LocPromotionPopupText = "<Bullet/> Starts each battle with <Ability:SUPERCHARGE_
 LocFriendlyName = "Shooting Sharp"
 LocHelpText = "Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and +<Ability:SS_AIM_BONUS/> aim against units in cover."
 LocLongDescription = "Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and +<Ability:SS_AIM_BONUS/> aim against units in cover."
-LocPromotionPopupText = "<Bullet/>Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and +<Ability:SS_AIM_BONUS/> aim against units in cover. <br/>"
+LocPromotionPopupText = ""
 ; End Translation (3)
 
 [Unlimitedpower_LW X2AbilityTemplate]
@@ -6743,14 +6786,14 @@ LocPromotionPopupText="<Bullet/> Give a friendly unit <Ability:INSPIRE_DODGE/> D
 
 [PrimaryReturnFire X2AbilityTemplate]
 LocFriendlyName="Return Fire"
-LocHelpText="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn. The return shot ingores cover bonuses."
-LocLongDescription="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn. The return shot ingores cover bonuses."
+LocHelpText="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn. The return shot ignores cover bonuses."
+LocLongDescription="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn. The return shot ignores cover bonuses."
 LocPromotionPopupText="<Bullet/> Return Fire will only trigger once per turn.<br/><Bullet/> Return Fire can be triggered by melee attacks and area of effect attacks.<br/><Bullet/> Return Fire will not trigger when targeted by overwatch fire.<br/>"
 
 [PrimaryReturnFireShot X2AbilityTemplate]
 LocFriendlyName="Return Fire"
-LocHelpText="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn. The return shot ingores cover bonuses."
-LocLongDescription="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn. The return shot ingores cover bonuses."
+LocHelpText="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn. The return shot ignores cover bonuses."
+LocLongDescription="When targeted by enemy attacks, automatically fire back with your <Ability:WeaponName/> once per turn. The return shot ignores cover bonuses."
 LocPromotionPopupText="<Bullet/> Return Fire will only trigger once per turn.<br/><Bullet/> Return Fire can be triggered by melee attacks and area of effect attacks.<br/><Bullet/> Return Fire will not trigger when targeted by overwatch fire.<br/>"
 
 [TriggerBot X2AbilityTemplate]
@@ -7038,6 +7081,11 @@ LocFriendlyName="Tracking Shot Mark"
 LocHelpText="At the start of your turn, mark an enemy that's flanked against you as a free action. Your first shot against that target is guaranteed to hit, and refunded."
 LocLongDescription="At the start of your turn, mark an enemy that's flanked against you as a free action. Your first shot against that target is guaranteed to hit, and refunded."
 
+[TrackingShot_LW X2AbilityTemplate]
+LocFriendlyName="Tracking Shot"
+LocHelpText="At the start of your turn, take a free shot that is guaranteed to hit at any enemy that is flanked by you."
+LocLongDescription="At the start of your turn, take a free shot that is guaranteed to hit at any enemy that is flanked by you."
+
 [TrackingShot X2AbilityTemplate]
 LocFriendlyName="Tracking Shot"
 LocHelpText="At the start of your turn, mark an enemy that's flanked against you as a free action. Your first shot against that target is guaranteed to hit, and refunded."
@@ -7182,8 +7230,8 @@ LocFlyOverText="Mark For Death"
 [Fatality_LW X2AbilityTemplate]
 LocFriendlyName="Fatality"
 ;LWOTC Needs translation(2)
-LocLongDescription="Gain +100 aim and crit against units at <Ability:FATALITY_THRESHOLD>% hp or lower with your <Ability:BOUND_WEAPON_NAME/>."
-LocHelpText="Gain +100 aim and crit against units at <Ability:FATALITY_THRESHOLD>% hp or lower with your <Ability:BOUND_WEAPON_NAME/>."
+LocLongDescription="Gain +100 aim and crit against units at <Ability:FATALITY_THRESHOLD>% hp or lower with your Darkclaw."
+LocHelpText="Gain +100 aim and crit against units at <Ability:FATALITY_THRESHOLD>% hp or lower with your Darkclaw."
 ;End Translation(2)
 LocFlyOverText="Fatality"
 
@@ -7338,10 +7386,10 @@ LocPromotionPopupText="You get an additional +<Ability:MOVING_TARGET_DEFENSE> De
 
 [ChainingJolt_LW X2AbilityTemplate]
 LocFriendlyName="Chaining Jolt"
-LocHelpText="Send the GREMLIN to an enemy to jolt them. Attack chains to nearby enemies."
+LocHelpText="Send the GREMLIN to an enemy to jolt them. Attack chains to nearby enemies. This ability replaces Combat Protocol."
 LocLongDescription="The <Ability:ClassName/> sends the GREMLIN to an enemy to jolt them. Attack chains to nearby enemies. Damage is increased against robotic enemies."
 LocFlyOverText="Chaining Jolt"
-LocPromotionPopupText="<Bullet/> Deals electrical damage that pierces armour.<br/><Bullet/>Chaining Jolt does the same damage as Combat Protocol.<br/><Bullet/> Can only chain to units friendly to the targeted unit.<br/><Bullet/> Has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Deals electrical damage that pierces armour.<br/><Bullet/>Chaining Jolt does the same damage as Combat Protocol and replaces it for the soldier.<br/><Bullet/> Can only chain to units friendly to the targeted unit and within <Ability:CHAIN_LIGHTNING_CHAIN_RANGE_TILES> tiles of each other.<br/><Bullet/> Has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 ; End Translation
 
@@ -7615,7 +7663,7 @@ LocFriendlyName="Paramedic"
 LocLongDescription="Unlocks an ability to perform a dash move to use a medikit on an ally. Gain a free medikit. Equipped medikits have <Ability:PARAMEDIC_BONUS_CHARGES/> extra charges."
 LocHelpText="Unlocks an ability to perform a dash move to use a medikit on an ally. Gain a free medikit. Equipped medikits have <Ability:PARAMEDIC_BONUS_CHARGES/> extra charges."
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> "Unlocks an ability to perform a dash move to use a medikit on an ally. Gain a free medikit. Equipped medikits have <Ability:PARAMEDIC_BONUS_CHARGES/> extra charges."
+LocPromotionPopupText="<Bullet/> This ability uses 1 action regardless of distance moved and does not end your turn.<br/><Bullet/> Only a single medikit charge is provided by this ability.<br/>"
 ; End Translation (2)
 [ParaMedikitHeal X2AbilityTemplate]
 LocFriendlyName="Paramedic Heal"
@@ -7626,7 +7674,7 @@ LocHelpText="Run towards an Ally and heal them with your medikit."
 [ParaMedikitStabilize X2AbilityTemplate]
 LocFriendlyName="Paramedic Stabilize"
 LocLongDescription="Run towards an Ally and stabilize them with your medikit."
-LocHelpText="Run towards an Ally and heal stabilize with your medikit."
+LocHelpText="Run towards an Ally and stabilize with your medikit."
 
 [SoulReaper X2AbilityTemplate]
 LocFriendlyName="Banish"
@@ -7742,6 +7790,47 @@ LocPromotionPopupText="<Bullet/> Beware that a sustained unit may retain damagin
 LocLongDescription="The unit would have died, but was saved and put into Stasis for 1 turn. This cannot happen again during this mission."
 LocHelpText="The unit would have died, but was saved and put into Stasis for 1 turn. This cannot happen again during this mission."
 ; End Translation
+
+[SustainingSphere X2WeaponTemplate]
+FriendlyName="Sustaining Sphere"
+FriendlyNamePlural="Sustaining Spheres"
+BriefSummary="The Sustaining Sphere is an emergency failsafe mechanism that automatically activates when a soldier is on the brink of death, placing them in temporary suspension to extend their life. Reduces Wound Recovery times by 2 HP if triggered."
+TacticalText="<Bullet/> Sustaining Sphere will automatically trigger when the soldier carrying it reaches 0 HP.\n<Bullet/> Instead of dying, the soldier will be placed in Stasis for the rest of the turn and their health will be reduced to 1 HP. Reduces Wound Recovery times by 2 HP if triggered."
+
+[SustainingSphereAbility X2AbilityTemplate]
+LocFriendlyName="Sustaining Sphere"
+LocHelpText="The Sustaining Sphere is an emergency failsafe mechanism that automatically activates when a soldier is on the brink of death, placing them in temporary suspension to extend their life. Reduces Wound Recovery times by 2 HP if triggered."
+LocLongDescription="The Sustaining Sphere is an emergency failsafe mechanism that automatically activates when a soldier is on the brink of death, placing them in temporary suspension to extend their life. Reduces Wound Recovery times by 2 HP if triggered."
+LocFlyOverText="Sustaining Sphere"
+LocPromotionPopupText="<Bullet/> Be aware that a sustained Unit may retain damaging status effects like poison or burning after emerging from Stasis.<br/>"
+
+[SustainingSphereTriggeredAbility X2AbilityTemplate]
+LocFriendlyName="Sustaining Sphere"
+LocHelpText="The Sustaining Sphere is an emergency failsafe mechanism that automatically activates when a soldier is on the brink of death, placing them in temporary suspension to extend their life. Reduces Wound Recovery times by 2 HP if triggered."
+LocLongDescription="The Sustaining Sphere is an emergency failsafe mechanism that automatically activates when a soldier is on the brink of death, placing them in temporary suspension to extend their life. Reduces Wound Recovery times by 2 HP if triggered."
+
+[RefractionField X2WeaponTemplate]
+FriendlyName="Refraction Field"
+FriendlyNamePlural="Refraction Fields"
+BriefSummary="Using material recovered from the remains of the alien Spectre, Refraction Field technology will allow the equipped soldier to instantly enter concealment."
+TacticalText="<Bullet/> Refraction Field places a soldier into Concealment.\n<Bullet/> Reapers will be placed into Shadow concealment."
+
+[RefractionFieldAbility X2AbilityTemplate]
+LocFriendlyName="Refraction Field"
+LocHelpText="Instantly enter concealment."
+LocLongDescription="Using material recovered from the remains of the alien Spectre, Refraction Field technology will allow the equipped soldier to instantly enter concealment."
+
+[CombatStims X2AbilityTemplate]
+LocFriendlyName="Overdrive Serum"
+LocHelpText="Gain bonus mobility, mental immunity, and take less damage for the next <Ability:COMBATSTIMSDURATION/> turns. Does not cost an action to activate."
+LocLongDescription="A soldier taking Overdrive Serum receives bonus mobility, mental immunity, and takes less damage for the next <Ability:COMBATSTIMSDURATION/> turns. This does not cost an action to activate."
+LocFlyOverText="Overdrive Serum"
+
+[CombatStims X2AbilityTemplate]
+LocFriendlyName="Overdrive Serum"
+LocHelpText="Gain bonus mobility, mental immunity, and take less damage for the next <Ability:COMBATSTIMSDURATION/> turns. Does not cost an action to activate."
+LocLongDescription="A soldier taking Overdrive Serum receives bonus mobility, mental immunity, and takes less damage for the next <Ability:COMBATSTIMSDURATION/> turns. This does not cost an action to activate."
+LocFlyOverText="Overdrive Serum"
 
 [X2MPData_Shell]
 arrMPMapFriendlyNames[9]="Underground"

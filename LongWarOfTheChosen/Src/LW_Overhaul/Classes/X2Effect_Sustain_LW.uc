@@ -45,6 +45,7 @@ function bool PreDeathCheck(XComGameState NewGameState, XComGameState_Unit UnitS
 
 	UnitState.SetUnitFloatValue(default.SustainUsed, 1, eCleanup_BeginTactical);
 	UnitState.SetCurrentStat(eStat_HP, 1);
+	UnitState.LowestHP = 1;
 	`XEVENTMGR.TriggerEvent(default.SustainEvent, UnitState, UnitState, NewGameState);
 	return true;
 }

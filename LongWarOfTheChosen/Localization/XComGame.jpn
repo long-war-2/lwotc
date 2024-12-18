@@ -2144,6 +2144,14 @@ ObjectiveTextPools[1]="すべての敵ターゲットを無力化する"
 ObjectiveTextPools[0]="コマンダーのアヴァターを守り抜く"
 ObjectiveTextPools[1]="アヴァターを破壊する"
 
+[DefaultAssaultFortressLeadup_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="コマンダーのアヴァターを守り抜く"
+ObjectiveTextPools[1]="すべての敵を無力化する"
+
+[DefaultDestroyAvatarProject_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="コマンダーのアヴァターを守り抜く"
+ObjectiveTextPools[1]="アヴァターを破壊する"
+
 [DefaultSabotage_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="X4を仕掛けてエイリアンの施設を破壊する"
 ObjectiveTextPools[1]="XCOM兵を全員撤収させる"
@@ -2498,6 +2506,13 @@ Briefing="エイリアンの要塞を強襲する"
 PostMissionType="エイリアンの要塞を強襲する"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
 ObjectiveTextPools[0]="アヴァター指令を壊滅させる"
+
+[DestroyAvatarProject_LW X2MissionTemplate]
+DisplayName="アヴァター計画を阻止する"
+Briefing="アヴァター計画を阻止する"
+PostMissionType="アヴァター計画を阻止する"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
+ObjectiveTextPools[0]="アヴァター計画を阻止する"
 
 [SecureUFO_LW X2MissionTemplate]
 DisplayName="動作不能となったUFOを確保せよ"

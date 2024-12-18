@@ -42,8 +42,12 @@ var config int DRONE_STUN_HIT_MODIFIER;
 var config int DRONE_STUN_ACTION_POINT_DAMAGE;
 var config int STUNNER_COOLDOWN;
 
+// No longer used, replaced by below WeaponDamageValues
 var config int CHRYSSALID_SOLDIER_SLASH_BONUS_DAMAGE;
 var config int HIVE_QUEEN_SLASH_BONUS_DAMAGE;
+
+var config WeaponDamageValue CHRYSSALID_SOLDIER_MELEEATTACK_BASEDAMAGE;
+var config WeaponDamageValue HIVEQUEEN_MELEEATTACK_BASEDAMAGE;
 
 var config int REPAIR_SERVOS_BONUS_ARMOR;
 var config int REPAIR_SERVOS_DURATION;
@@ -1076,53 +1080,74 @@ simulated function ReadyForAnything_BuildVisualization(XComGameState VisualizeGa
 static function X2AbilityTemplate CreateChryssalidSoldierSlashAbility()
 {
 	local X2AbilityTemplate Template;
-	local X2Effect_HiveQueenSlash	DamageEffect;
+	local X2Effect_ApplyWeaponDamage PhysicalDamageEffect;
+	local X2Effect_ParthenogenicPoison ParthenogenicPoisonEffect;
+	local X2Condition_UnitProperty UnitPropertyCondition;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChryssalidSoldierSlash');
-	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_chryssalid_slash";
+	Template = class'X2Ability_Chryssalid'.static.CreateSlashAbility('ChryssalidSoldierSlash');
 
-	Template.AbilitySourceName = 'eAbilitySource_Standard';
-	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
-	Template.Hostility = eHostility_Neutral;
-	Template.AbilityToHitCalc = default.DeadEye;
-	Template.AbilityTargetStyle = default.SelfTarget;
-	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
-	Template.bIsPassive = true;
-	DamageEffect = new class'X2Effect_HiveQueenSlash';
-	DamageEffect.BonusDamage = default.CHRYSSALID_SOLDIER_SLASH_BONUS_DAMAGE;
-	DamageEffect.BuildPersistentEffect(1, true, false, false);
-	DamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, 'eAbilitySource_Perk');
-	Template.AddTargetEffect(DamageEffect);
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	// redo damage for them.
+	Template.AbilityTargetEffects.Length = 0;
+
+	ParthenogenicPoisonEffect = new class'X2Effect_ParthenogenicPoison';
+	ParthenogenicPoisonEffect.BuildPersistentEffect(class'X2Ability_Chryssalid'.default.POISON_DURATION, true, false, false, eGameRule_PlayerTurnEnd);
+	ParthenogenicPoisonEffect.SetDisplayInfo(ePerkBuff_Penalty, class'X2Ability_Chryssalid'.default.ParthenogenicPoisonFriendlyName, class'X2Ability_Chryssalid'.default.ParthenogenicPoisonFriendlyDesc, Template.IconImage, true);
+	ParthenogenicPoisonEffect.DuplicateResponse = eDupe_Ignore;
+	ParthenogenicPoisonEffect.SetPoisonDamageDamage();
 	
-	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.MeleeLostSpawnIncreasePerUse;
+	UnitPropertyCondition = new class'X2Condition_UnitProperty';
+	UnitPropertyCondition.ExcludeRobotic = true;
+	UnitPropertyCondition.ExcludeAlive = false;
+	UnitPropertyCondition.ExcludeDead = false;
+	UnitPropertyCondition.FailOnNonUnits = true;
+	UnitPropertyCondition.ExcludeFriendlyToSource = false;
+	ParthenogenicPoisonEffect.TargetConditions.AddItem(UnitPropertyCondition);
+
+	Template.AddTargetEffect(ParthenogenicPoisonEffect);
+
+	PhysicalDamageEffect = new class'X2Effect_ApplyWeaponDamage';
+	PhysicalDamageEffect.EffectDamageValue = default.CHRYSSALID_SOLDIER_MELEEATTACK_BASEDAMAGE;
+	PhysicalDamageEffect.EffectDamageValue.DamageType = 'Melee';
+	Template.AddTargetEffect(PhysicalDamageEffect);
 
 	return Template;
 }
 
+
 static function X2AbilityTemplate CreateHiveQueenSlashAbility()
 {
 	local X2AbilityTemplate Template;
-	local X2Effect_HiveQueenSlash	DamageEffect;
+	local X2Effect_ApplyWeaponDamage PhysicalDamageEffect;
+	local X2Effect_ParthenogenicPoison ParthenogenicPoisonEffect;
+	local X2Condition_UnitProperty UnitPropertyCondition;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'HiveQueenSlash');
-	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_chryssalid_slash";
+	Template = class'X2Ability_Chryssalid'.static.CreateSlashAbility('HiveQueenSlash');
 
-	Template.AbilitySourceName = 'eAbilitySource_Standard';
-	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
-	Template.Hostility = eHostility_Neutral;
-	Template.AbilityToHitCalc = default.DeadEye;
-	Template.AbilityTargetStyle = default.SelfTarget;
-	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
-	Template.bIsPassive = true;
-	DamageEffect = new class'X2Effect_HiveQueenSlash';
-	DamageEffect.BonusDamage = default.HIVE_QUEEN_SLASH_BONUS_DAMAGE;
-	DamageEffect.BuildPersistentEffect(1, true, false, false);
-	DamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, 'eAbilitySource_Perk');
-	Template.AddTargetEffect(DamageEffect);
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	// redo damage for them.
+	Template.AbilityTargetEffects.Length = 0;
 
-	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.MeleeLostSpawnIncreasePerUse;
+	ParthenogenicPoisonEffect = new class'X2Effect_ParthenogenicPoison';
+	ParthenogenicPoisonEffect.BuildPersistentEffect(class'X2Ability_Chryssalid'.default.POISON_DURATION, true, false, false, eGameRule_PlayerTurnEnd);
+	ParthenogenicPoisonEffect.SetDisplayInfo(ePerkBuff_Penalty, class'X2Ability_Chryssalid'.default.ParthenogenicPoisonFriendlyName, class'X2Ability_Chryssalid'.default.ParthenogenicPoisonFriendlyDesc, Template.IconImage, true);
+	ParthenogenicPoisonEffect.DuplicateResponse = eDupe_Ignore;
+	ParthenogenicPoisonEffect.SetPoisonDamageDamage();
+
+	UnitPropertyCondition = new class'X2Condition_UnitProperty';
+	UnitPropertyCondition.ExcludeRobotic = true;
+	UnitPropertyCondition.ExcludeAlive = false;
+	UnitPropertyCondition.ExcludeDead = false;
+	UnitPropertyCondition.FailOnNonUnits = true;
+	UnitPropertyCondition.ExcludeFriendlyToSource = false;
+	ParthenogenicPoisonEffect.TargetConditions.AddItem(UnitPropertyCondition);
+
+	Template.AddTargetEffect(ParthenogenicPoisonEffect);
+
+	PhysicalDamageEffect = new class'X2Effect_ApplyWeaponDamage';
+	PhysicalDamageEffect.EffectDamageValue = default.HIVEQUEEN_MELEEATTACK_BASEDAMAGE;
+	PhysicalDamageEffect.EffectDamageValue.DamageType = 'Melee';
+	Template.AddTargetEffect(PhysicalDamageEffect);
+
+	return Template;
 
 	return Template;
 }
@@ -1177,5 +1202,14 @@ static function X2AbilityTemplate AddFireOnDeathAbility()
 
 static function UpdatePriestStasis(X2AbilityTemplate Template)
 {
+	local X2AbilityCooldown_LocalAndGlobal Cooldown;
+
+	Cooldown = new class'X2AbilityCooldown_LocalAndGlobal';
+
+	Cooldown.iNumTurns = class'X2Ability_PsiOperativeAbilitySet'.default.STASIS_COOLDOWN;
+	Cooldown.NumGlobalTurns = 1;
+
+	Template.AbilityCooldown = Cooldown;
+
 	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
 }

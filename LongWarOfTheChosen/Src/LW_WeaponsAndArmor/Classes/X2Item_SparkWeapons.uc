@@ -36,6 +36,7 @@ var config int SPARK_PLATED_HEAVY_MOBILITY_BONUS;
 var config int SPARK_PLATED_HEAVY_MITIGATION_AMOUNT;
 var config int SPARK_PLATED_HEAVY_MITIGATION_CHANCE;
 var config int SPARK_PLATED_HEAVY_DEF_BONUS;
+var config int SPARK_PLATED_HEAVY_DODGE_BONUS;
 
 var config int SPARK_PLATED_LIGHT_HEALTH_BONUS;
 var config int SPARK_PLATED_LIGHT_MOBILITY_BONUS;
@@ -48,12 +49,23 @@ var config int SPARK_POWERED_HEAVY_MOBILITY_BONUS;
 var config int SPARK_POWERED_HEAVY_MITIGATION_AMOUNT;
 var config int SPARK_POWERED_HEAVY_MITIGATION_CHANCE;
 var config int SPARK_POWERED_HEAVY_DEF_BONUS;
+var config int SPARK_POWERED_HEAVY_DODGE_BONUS;
 
 var config int SPARK_POWERED_LIGHT_HEALTH_BONUS;
 var config int SPARK_POWERED_LIGHT_MOBILITY_BONUS;
 var config int SPARK_POWERED_LIGHT_MITIGATION_AMOUNT;
 var config int SPARK_POWERED_LIGHT_MITIGATION_CHANCE;
 var config int SPARK_POWERED_LIGHT_DEF_BONUS;
+
+var config WeaponDamageValue PROTOTYPEPLASMABLASTER_BASEDAMAGE;
+var config int PROTOTYPEPLASMABLASTER_ISOUNDRANGE;
+var config int PROTOTYPEPLASMABLASTER_IENVIRONMENTDAMAGE;
+var config int PROTOTYPEPLASMABLASTER_ISUPPLIES;
+var config int PROTOTYPEPLASMABLASTER_TRADINGPOSTVALUE;
+var config int PROTOTYPEPLASMABLASTER_IPOINTS;
+var config int PROTOTYPEPLASMABLASTER_ICLIPSIZE;
+var config int PROTOTYPEPLASMABLASTER_RANGE;
+var config int PROTOTYPEPLASMABLASTER_RADIUS;
 
 
 static function array<X2DataTemplate> CreateTemplates()
@@ -66,6 +78,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Weapons.AddItem(CreatePlatedSparkLightArmor());
 	Weapons.AddItem(CreatePoweredSparkHeavyArmor());
 	Weapons.AddItem(CreatePoweredSparkLightArmor());
+
+	Weapons.AddItem(PrototypePlasmaBlaster());
 	
 	return Weapons;
 }
@@ -286,6 +300,7 @@ static function X2DataTemplate CreatePlatedSparkHeavyArmor()
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, eStat_ArmorMitigation, default.SPARK_PLATED_HEAVY_MITIGATION_AMOUNT);
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, default.SPARK_PLATED_HEAVY_MOBILITY_BONUS);
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.DefenseLabel, eStat_Defense, default.SPARK_PLATED_HEAVY_DEF_BONUS);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.DodgeLabel, eStat_Dodge, default.SPARK_PLATED_HEAVY_DODGE_BONUS);
 
 	return Template;
 }
@@ -349,6 +364,7 @@ static function X2DataTemplate CreatePoweredSparkHeavyArmor()
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, eStat_ArmorMitigation, default.SPARK_POWERED_HEAVY_MITIGATION_AMOUNT);
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, default.SPARK_POWERED_HEAVY_MOBILITY_BONUS);
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.DefenseLabel, eStat_Defense, default.SPARK_POWERED_HEAVY_DEF_BONUS);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.DodgeLabel, eStat_Dodge, default.SPARK_POWERED_HEAVY_DODGE_BONUS);
 
 	return Template;
 }
@@ -381,6 +397,45 @@ static function X2DataTemplate CreatePoweredSparkLightArmor()
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, eStat_ArmorMitigation, default.SPARK_POWERED_LIGHT_MITIGATION_AMOUNT);
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, default.SPARK_POWERED_LIGHT_MOBILITY_BONUS);
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.DefenseLabel, eStat_Defense, default.SPARK_POWERED_LIGHT_DEF_BONUS);
+
+	return Template;
+}
+
+static function X2WeaponTemplate PrototypePlasmaBlaster()
+{
+	local X2WeaponTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'PrototypePlasmaBlaster');
+	Template.WeaponCat = 'heavy';
+	Template.strImage = "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_Plasma_Blaster";
+	Template.EquipSound = "StrategyUI_Heavy_Weapon_Equip";
+
+	Template.BaseDamage = default.PROTOTYPEPLASMABLASTER_BASEDAMAGE;
+	Template.iSoundRange = default.PROTOTYPEPLASMABLASTER_ISOUNDRANGE;
+	Template.iEnvironmentDamage = default.PROTOTYPEPLASMABLASTER_IENVIRONMENTDAMAGE;
+	Template.iClipSize = default.PROTOTYPEPLASMABLASTER_ICLIPSIZE;
+	Template.iRange = default.PROTOTYPEPLASMABLASTER_RANGE;
+	Template.iRadius = default.PROTOTYPEPLASMABLASTER_RADIUS;
+	Template.PointsToComplete = 0;
+
+	Template.PointsToComplete = default.PROTOTYPEPLASMABLASTER_IPOINTS;
+	Template.TradingPostValue = default.PROTOTYPEPLASMABLASTER_TRADINGPOSTVALUE;
+	
+	Template.InventorySlot = eInvSlot_HeavyWeapon;
+	Template.StowedLocation = eSlot_HeavyWeapon;
+	Template.GameArchetype = "WP_Heavy_PlasmaBlaster.WP_Heavy_PlasmaBlaster";
+	Template.AltGameArchetype = "WP_Heavy_PlasmaBlaster.WP_Heavy_PlasmaBlaster_Powered";
+	Template.ArmorTechCatForAltArchetype = 'powered';
+	Template.bMergeAmmo = true;
+
+	Template.Abilities.AddItem('PlasmaBlaster');
+
+	Template.CanBeBuilt = false;
+
+	Template.RewardDecks.AddItem('ExperimentalPoweredWeaponRewards');
+
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.RangeLabel, , default.PROTOTYPEPLASMABLASTER_RANGE);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.RadiusLabel, , default.PROTOTYPEPLASMABLASTER_RADIUS);
 
 	return Template;
 }

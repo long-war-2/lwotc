@@ -434,8 +434,9 @@ strCharacterName="Chryssalid Soldier"
 
 [ChryssalidSoldierSlash X2AbilityTemplate]
 LocFriendlyName="Chryssalid Soldier Slash"
-LocLongDescription="Your slash attacks do lots of damage."
-LocHelpText="Your slash attacks do lots of damage."
+LocLongDescription="A melee attack that can poison the target."
+LocHelpText="Attack a melee target with your claws, potentially poisoning them."
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Hive Queen ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -443,9 +444,10 @@ LocHelpText="Your slash attacks do lots of damage."
 strCharacterName="Hive Queen"
 
 [HiveQueenSlash X2AbilityTemplate]
-LocFriendlyName="Greater Chryssalid Slash"
-LocLongDescription="Your slash attacks do lots of damage."
-LocHelpText="Your slash attacks do lots of damage."
+LocFriendlyName="Hive Queen Slash"
+LocLongDescription="A melee attack that can poison the target."
+LocHelpText="Attack a melee target with your claws, potentially poisoning them."
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;; Additional ADVENT Trooper types ;;;;;;;;;;;;;;;;;;;;;;;;
 
