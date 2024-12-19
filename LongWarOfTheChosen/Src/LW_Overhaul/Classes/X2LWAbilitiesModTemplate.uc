@@ -1309,7 +1309,7 @@ static function BuffTeleportAlly(X2AbilityTemplate Template)
 static function AddGrappledThisTurnEffect(X2AbilityTemplate Template)
 {
 	local AdditionalCooldownInfo CooldownInfo;
-	CooldownInfo.AbilityName = 'TrackingShotMark';
+	CooldownInfo.AbilityName = 'TrackingShot_LW';
 	CooldownInfo.NumTurns = 1;
 
 	Template.AbilityCooldown.AditionalAbilityCooldowns.AddItem(CooldownInfo);
