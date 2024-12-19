@@ -7678,8 +7678,8 @@ LocPromotionPopupText="<Bullet/> 如果有多個距離最近的敵人，你對�
 
 [SensorOverlays_LW X2AbilityTemplate]
 LocFriendlyName="感知共享"
-LocLongDescription="小隊所有成員對你視野內可見的敵人獲得<Ability:+Crit>暴擊率。"
-LocHelpText="小隊所有成員對你視野內可見的敵人獲得<Ability:+Crit>暴擊率。"
+LocLongDescription="小隊所有成員對你視野內可見的敵人獲得<Ability:+Crit/>暴擊率。"
+LocHelpText="小隊所有成員對你視野內可見的敵人獲得<Ability:+Crit/>暴擊率。"
 LocFlyOverText="感知共享"
 LocPromotionPopupText="<Bullet/> 這不包括僅通過小隊視野可見的敵人。<br/>"
 
