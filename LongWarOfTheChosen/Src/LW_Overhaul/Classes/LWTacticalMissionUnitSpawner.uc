@@ -544,10 +544,10 @@ static function LoadLiaisonFromOutpost(XComGameState_LWOutpost Outpost,
 		XComGameStateContext_TacticalGameRule(NewGameState.GetContext()).UnitRef = Unit.GetReference();
 		`TACTICALRULES.SubmitGameState(NewGameState);
 
-		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Initialize Unit Abilities");
-
+		// Doesn't actually need to be tied to gamestate submission
 		 // make sure the visualizer has been created so self-applied abilities have a target in the world
-	   Unit.FindOrCreateVisualizer(NewGameState);
+		Unit.FindOrCreateVisualizer(NewGameState);
+
 
 		// add abilities
 		// Must happen after unit is submitted, or it gets confused about when the unit is in play or not 
