@@ -4850,7 +4850,7 @@ LocLongDescription="一些变种人机器人和其他一些单位获得了伤害
 [DarkEvent_HardTarget X2DarkEventTemplate]
 DisplayName="永久性：高难目标"
 SummaryText="一些外星人单位获得高难目标能力，获得额外闪避。"
-QuoteText="\"。\""
+QuoteText="\"外星人的反应能力在我们的环境中变得越来越敏捷。我们应该投资于瞄准镜，并确保出任务时都配备了瞄准镜。\""
 QuoteTextAuthor="- 沈总工程师"
 PreMissionText="一些外星人单位获得高难目标能力。"
 PostMissionSuccessText="已阻止黑暗事件：战术升级（高难目标）"
@@ -5457,9 +5457,9 @@ LocPromotionPopupText="<Bullet/> 圣殿骑士在开始任务时比其他士兵�
 
 [Rend_LW X2AbilityTemplate]
 LocFriendlyName="撕裂"
-LocLongDescription="近战攻击有几率使目标眩晕或混乱。触发气势，产生专注。"
-LocHelpText="近战攻击有几率使目标眩晕或混乱。触发气势，产生专注。"
-LocPromotionPopupText="<Bullet/> 使用撕裂是圣殿骑士产生专注的主要方法。<br/><Bullet/> 施展撕裂后，圣殿骑士将获得气势，允许他们进行一次移动动作。攻击后撤回掩体。<br/><Bullet/> 撕裂每1点专注有<Ability:RENDSTUNCHANCE/>%几率眩晕。眩晕的目标也会被击退。<br/><Bullet/> 撕裂每1点专注有<Ability:RENDDISORIENTCHANCE/>%几率混乱。<br/>"
+LocLongDescription="近战攻击。触发气势，产生专注。有几率使目标眩晕或混乱。"
+LocHelpText="近战攻击。触发气势，产生专注。有几率使目标眩晕或混乱。"
+LocPromotionPopupText="<Bullet/> 使用撕裂是圣殿骑士产生专注的主要方法。<br/><Bullet/> 施展撕裂后，圣殿骑士将获得气势，允许攻击后开启护盾或移动以撤回掩体。<br/><Bullet/> 每1点专注使撕裂获得<Ability:RENDSTUNCHANCE/>%眩晕几率。眩晕的目标也会被击退。<br/><Bullet/> 每1点专注使撕裂获得<Ability:RENDDISORIENTCHANCE/>%混乱几率。<br/>"
 
 [Whiplash X2AbilityTemplate]
 LocLongDescription="用电击鞭攻击敌人。对机器人造成额外伤害。<Ability:SelfCooldown_LW/>回合冷却时间。"
@@ -5569,7 +5569,7 @@ LocPromotionPopupText="<Bullet/> 爪钩让散兵具有更好的侦察优势，�
 [FullThrottle X2AbilityTemplate]
 LocLongDescription="回合内每次击杀移动力+<Ability:FULLTHROTTLEMOBILITY/>。持续<Ability:FULL_THROTTLE_DURATION/>回合，包括当前回合。"
 LocHelpText="回合内每次击杀移动力+<Ability:FULLTHROTTLEMOBILITY/>。持续<Ability:FULL_THROTTLE_DURATION/>回合，包括当前回合。"
-LocPromotionPopupText="<Bullet/> 在回合开始时确保击杀，以充分利用开足马力。<br/><Bullet/> 只有散兵的击杀才能触发开足马力。<br/>"
+LocPromotionPopupText="<Bullet/> 在回合开始时确保击杀，以充分利用开足马力。<br/>"
 
 [Judgment X2AbilityTemplate]
 LocFriendlyName="审判"
@@ -7423,7 +7423,7 @@ LocPromotionPopupText="<Bullet/> 使用撕裂是圣殿骑士生成专注的主�
 LocFriendlyName="电弧波"
 LocLongDescription="撕裂会在攻击方向产生一个心灵能量波。伤害随碎片拳刃层级增加。"
 LocHelpText="撕裂会在攻击方向产生一个心灵能量波。"
-LocPromotionPopupText="<Bullet/> 电弧波不会影响原始撕裂攻击的目标。<br/><Bullet/> 电弧波随着碎片拳刃层级造成的伤害为 4/7/10 。<br/><Bullet/> 电弧波在环境物体中传播。<br/>"
+LocPromotionPopupText="<Bullet/> 电弧波不会影响原始撕裂攻击的目标。<br/><Bullet/> 电弧波随着碎片拳刃层级造成的伤害为4/7/10 。<br/><Bullet/> 电弧波在环境物体中传播。<br/>"
 
 [IonicStorm X2AbilityTemplate]
 LocFriendlyName="离子风暴"
