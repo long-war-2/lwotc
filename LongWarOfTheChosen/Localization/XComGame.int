@@ -7958,8 +7958,8 @@ LocPromotionPopupText="<Bullet/> If multiple enemies are equally distant, you ge
 
 [SensorOverlays_LW X2AbilityTemplate]
 LocFriendlyName="Sensor Overlays"
-LocLongDescription="All squad members get <Ability:+Crit> Crit chance against enemies you can see."
-LocHelpText="All squad members get <Ability:+Crit> Crit chance against enemies you can see."
+LocLongDescription="All squad members get <Ability:+Crit/> Crit chance against enemies you can see."
+LocHelpText="All squad members get <Ability:+Crit/> Crit chance against enemies you can see."
 LocFlyOverText="Sensor Overlays"
 LocPromotionPopupText="<Bullet/> This doesn't count enemies only visible through squadsight.<br/>"
 
