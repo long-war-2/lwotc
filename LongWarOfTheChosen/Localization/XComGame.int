@@ -738,7 +738,7 @@ LocPromotionPopupText="<Bullet/> The Arc Thrower is effective anywhere in the so
 ; LWOTC Needs Translation (2)
 [EMPulser X2AbilityTemplate]
 LocFriendlyName="Arc Pulser"
-LocLongDescription="Fire your Arc Thrower to incapacitate a target and damage mechanical enemies."
+LocLongDescription="Your Arc Thrower can now damage mechanical enemies and reduce their hack defense."
 LocHelpText="Fire your Arc Pulser."
 LocFlyOverText="Arc Pulser"
 LocPromotionPopupText="<Bullet/> The Arc Thrower is effective anywhere in the soldier's sight range.<br/><Bullet/> Requires one action and ends the soldier's turn when fired.<br/><Bullet/> Can use every other turn.<br/><Bullet/> Damage to mechanical units increases as arc thrower technology improves.<br/><Bullet/> Reduces enemy hack defense by <Ability:EMPULSER_HACK_DEFENSE_CHANGE_LW/>.<br/>"
