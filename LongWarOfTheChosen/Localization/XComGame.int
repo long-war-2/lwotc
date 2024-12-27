@@ -5628,7 +5628,9 @@ FocusLevelDescriptions[4]="Rend Damage +<Ability:FOCUS4RENDDAMAGE/>\nMobility +<
 
 ; LWOTC Needs Translation (2)
 [TemplarFocus X2AbilityTemplate]
+LocLongDescription="Gain Focus during missions which can be spent on powerful abilities"
 LocPromotionPopupText="<Bullet/> Templars begin missions weaker than other soldiers, but can become extremely powerful at higher Focus levels.<br/><Bullet/> Focus is gained by attacking enemies with Rend (even misses count).<br/>"
+
 
 ; LWOTC Needs Translation (3)
 [Rend_LW X2AbilityTemplate]
