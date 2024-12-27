@@ -429,6 +429,9 @@ LocLongDescription="The GREMLIN can trigger an instant scan of the area, increas
 LocPromotionPopupText="<Bullet/> Scanning Protocol has <ABILITY:SCANNING_PROTOCOL_INITIAL_CHARGES_LW/> initial charges.<br/><Bullet/> Scanning Protocol gains bonus charges with improved GREMLINs.<br/><Bullet/> In addition to hidden and disguised enemies, enemies blocked from line of sight by walls or obstructions will also be revealed by Scanning Protocol.<br/><Bullet/> Scanning Protocol is a free action.<br/><Bullet/> If the Specialist is employed as Haven Adviser Scanning Protocol will reduce the chance of recruiting Faceless rebels by 40% (stacking cumulatively with other similar abilities).<br/>"
 ; End Translation (3)
 
+[CapacitorDischarge X2AbilityTemplate]
+LocLongDescription="Send the GREMLIN to a location where it emits a substantial electric discharge, damaging and disorienting non-robotic units. Robotic units take more damage."
+
 ; End translation
 
 
