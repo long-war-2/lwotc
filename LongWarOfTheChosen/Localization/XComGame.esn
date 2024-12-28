@@ -1439,14 +1439,14 @@ LootTooltip="Al instalar esta mejora de arma, obtienes arma estable."
 [MissDamageUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Culata avanzada"
 FriendlyNamePlural="Culatas avanzadas"
-BriefSummary="Otorga la habilidad arma estable que confiere +<Ability:STOCK_BSC_SW_AIM_BONUS/> de puntería y +<Ability:STOCK_BSC_SW_AIM_BONUS/> a la probabilidad crítica."
+BriefSummary="Otorga la habilidad arma estable que confiere +<Ability:STOCK_ADV_SW_AIM_BONUS/> de puntería y +<Ability:STOCK_ADV_SW_AIM_BONUS/> a la probabilidad crítica."
 TinySummary="Gana la habilidad arma estable."
 LootTooltip="Al instalar esta mejora de arma, obtienes arma estable."
 
 [MissDamageUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Culata de élite"
 FriendlyNamePlural="Culatas de élite"
-BriefSummary="Otorga la habilidad arma estable que confiere +<Ability:STOCK_BSC_SW_AIM_BONUS/> de puntería y +<Ability:STOCK_BSC_SW_AIM_BONUS/> a la probabilidad crítica."
+BriefSummary="Otorga la habilidad arma estable que confiere +<Ability:STOCK_SUP_SW_AIM_BONUS/> de puntería y +<Ability:STOCK_SUP_SW_AIM_BONUS/> a la probabilidad crítica."
 TinySummary="Gana la habilidad arma estable."
 LootTooltip="Al instalar esta mejora de arma, obtienes arma estable."
 ; End translated
