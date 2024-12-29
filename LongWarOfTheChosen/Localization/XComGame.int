@@ -429,6 +429,9 @@ LocLongDescription="The GREMLIN can trigger an instant scan of the area, increas
 LocPromotionPopupText="<Bullet/> Scanning Protocol has <ABILITY:SCANNING_PROTOCOL_INITIAL_CHARGES_LW/> initial charges.<br/><Bullet/> Scanning Protocol gains bonus charges with improved GREMLINs.<br/><Bullet/> In addition to hidden and disguised enemies, enemies blocked from line of sight by walls or obstructions will also be revealed by Scanning Protocol.<br/><Bullet/> Scanning Protocol is a free action.<br/><Bullet/> If the Specialist is employed as Haven Adviser Scanning Protocol will reduce the chance of recruiting Faceless rebels by 40% (stacking cumulatively with other similar abilities).<br/>"
 ; End Translation (3)
 
+[CapacitorDischarge X2AbilityTemplate]
+LocLongDescription="Send the GREMLIN to a location where it emits a substantial electric discharge, damaging and disorienting non-robotic units. Robotic units take more damage."
+
 ; End translation
 
 
@@ -738,7 +741,7 @@ LocPromotionPopupText="<Bullet/> The Arc Thrower is effective anywhere in the so
 ; LWOTC Needs Translation (2)
 [EMPulser X2AbilityTemplate]
 LocFriendlyName="Arc Pulser"
-LocLongDescription="Fire your Arc Thrower to incapacitate a target and damage mechanical enemies."
+LocLongDescription="Your Arc Thrower can now damage mechanical enemies and reduce their hack defense."
 LocHelpText="Fire your Arc Pulser."
 LocFlyOverText="Arc Pulser"
 LocPromotionPopupText="<Bullet/> The Arc Thrower is effective anywhere in the soldier's sight range.<br/><Bullet/> Requires one action and ends the soldier's turn when fired.<br/><Bullet/> Can use every other turn.<br/><Bullet/> Damage to mechanical units increases as arc thrower technology improves.<br/><Bullet/> Reduces enemy hack defense by <Ability:EMPULSER_HACK_DEFENSE_CHANGE_LW/>.<br/>"
@@ -1528,7 +1531,7 @@ TacticalText="<Bullet/> Grants a <ABILITY:NANOFIBER_HEALTH_BONUS_LW/> hit point 
 [PlatedVest X2EquipmentTemplate]
 FriendlyName="Tactical Vest"
 FriendlyNamePlural="Tactical Vests"
-BriefSummary="Shen has improved the traditional Nanoscale Vest with armored plating, providing reduced damage from armor protection against enemy attacks."
+BriefSummary="Shen has improved the traditional Nanoscale Vest with armored plating, providing reduced damage against enemy attacks."
 TacticalText="<Bullet/> Grants 3 hit points to the soldier.\n<Bullet/> Provides 1 armor.\n<Bullet/> Enemies have a penalty of -<Ability:PLATED_CRITDEF_BONUS> critical chance against the soldier.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [HazmatVest X2EquipmentTemplate]
@@ -5430,6 +5433,9 @@ LocLongDescription="Overwatch now trigger on any hostile action, not just moveme
 ;LocPromotionPopupText="<Bullet/> If triggered by an enemy action, Covering Fire will trigger before the enemy action completes.<br/><Bullet/> In addition, having the Covering Fire ability confers a penalty of -<Ability:COVERING_FIRE_OFFENSE_MALUS> aim upon any units you take a reaction shot at, regardless of whether it was a covering fire shot or not."
 LocPromotionPopupText="<Bullet/> If triggered by an enemy action, Covering Fire will trigger before the enemy action completes.<br/><Bullet/> In addition, having the Covering Fire ability allows the owner to ignore 2/3 of cover bonuses with reaction fire."
 
+[Demolition X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> Demolition requires <Ability:SelfAmmoCost/> ammo points and has a <Ability:SelfCooldown/> turn cooldown.<br/><Bullet/> Demolition does increased environmental damage, and will destroy most cover objects.<br/><Bullet/> Demolition chance is based on the soldier's base aim with a bonus of +<Ability:DEMO_HIT_BONUS>.<br/>"
+
 [GrenadeLauncher_MG X2GrenadeLauncherTemplate]
 BriefSummary="Our Advanced Grenade Launcher uses magnetic technology to propel grenades further than our conventional launcher and provides an additional grenade to grenade only slots."
 TacticalText="<Bullet/> The Advanced Grenade Launcher has an increased range over the standard Grenade Launcher and will give a bonus grenade item to grenades equipped in the grenade-only slot.\n."
@@ -5625,7 +5631,9 @@ FocusLevelDescriptions[4]="Rend Damage +<Ability:FOCUS4RENDDAMAGE/>\nMobility +<
 
 ; LWOTC Needs Translation (2)
 [TemplarFocus X2AbilityTemplate]
+LocLongDescription="Gain Focus during missions which can be spent on powerful abilities"
 LocPromotionPopupText="<Bullet/> Templars begin missions weaker than other soldiers, but can become extremely powerful at higher Focus levels.<br/><Bullet/> Focus is gained by attacking enemies with Rend (even misses count).<br/>"
+
 
 ; LWOTC Needs Translation (3)
 [Rend_LW X2AbilityTemplate]
@@ -7955,8 +7963,8 @@ LocPromotionPopupText="<Bullet/> If multiple enemies are equally distant, you ge
 
 [SensorOverlays_LW X2AbilityTemplate]
 LocFriendlyName="Sensor Overlays"
-LocLongDescription="All squad members get <Ability:+Crit> Crit chance against enemies you can see."
-LocHelpText="All squad members get <Ability:+Crit> Crit chance against enemies you can see."
+LocLongDescription="All squad members get <Ability:+Crit/> Crit chance against enemies you can see."
+LocHelpText="All squad members get <Ability:+Crit/> Crit chance against enemies you can see."
 LocFlyOverText="Sensor Overlays"
 LocPromotionPopupText="<Bullet/> This doesn't count enemies only visible through squadsight.<br/>"
 

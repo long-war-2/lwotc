@@ -2317,7 +2317,7 @@ Title="管理避難所（更改避難所人員活動）"
 LocLongDescription="在避難所指派反抗軍搜尋新任務的情報，收集所需的補給，或者尋找潛在的新兵。被派去收集情報的反抗軍將報告有關活動的線索。軍事中心長官布拉德福德建議把重點放在情報收集上，這樣部隊就有可執行的任務。"
 
 [LW_T2_M0_S2_FindLiberation1Activity X2ObjectiveTemplate]
-Title="开始解放一个地区（完成解放1任务）"
+Title="開始解放一個地區（完成解放1任務）"
 LocLongDescription="派遣部隊調查反抗軍發現的任何線索。其中一個任務可能會為我們提供有關擊敗變種人在該地區管理層的重要信息。"
 
 [LW_T2_M0_S3_DefeatLiberation2Activity X2ObjectiveTemplate]
@@ -4833,7 +4833,7 @@ LocLongDescription="一些變種人機器人和其他一些單位獲得了傷害
 [DarkEvent_HardTarget X2DarkEventTemplate]
 DisplayName="永久性：高難目標"
 SummaryText="一些外星人單位獲得高難目標能力，獲得額外閃避。"
-QuoteText="\"。\""
+QuoteText="\"外星人的反應能力在我們的環境中變得越來越敏捷。我們應該投資於瞄準鏡，並確保出任務時都配備了瞄準鏡。\""
 QuoteTextAuthor="- 沈總工程師"
 PreMissionText="一些外星人單位獲得高難目標能力。"
 PostMissionSuccessText="已阻止黑暗事件：戰術升級（高難目標）"
@@ -5440,9 +5440,9 @@ LocPromotionPopupText="<Bullet/> 聖殿騎士在開始任務時比其他士兵�
 
 [Rend_LW X2AbilityTemplate]
 LocFriendlyName="撕裂"
-LocLongDescription="近戰攻擊有幾率使目標眩暈或混亂。觸發氣勢，產生專注。"
-LocHelpText="近戰攻擊有幾率使目標眩暈或混亂。觸發氣勢，產生專注。"
-LocPromotionPopupText="<Bullet/> 使用撕裂是聖殿騎士產生專注的主要方法。<br/><Bullet/> 施展撕裂後，聖殿騎士將獲得氣勢，允許他們進行一次移動動作。攻擊後撤回掩體。<br/><Bullet/> 撕裂每1點專注有<Ability:RENDSTUNCHANCE/>%幾率眩暈。眩暈的目標也會被擊退。<br/><Bullet/> 撕裂每1點專注有 <Ability:RENDDISORIENTCHANCE/>%幾率混亂。<br/>"
+LocLongDescription="近戰攻擊。觸發氣勢，產生專注。有幾率使目標眩暈或混亂。"
+LocHelpText="近戰攻擊。觸發氣勢，產生專注。有幾率使目標眩暈或混亂。"
+LocPromotionPopupText="<Bullet/> 使用撕裂是聖殿騎士產生專注的主要方法。<br/><Bullet/> 施展撕裂後，聖殿騎士將獲得氣勢，允許攻擊後開啟護盾或移動以撤回掩體。<br/><Bullet/> 每1點專注使撕裂獲得<Ability:RENDSTUNCHANCE/>%眩暈幾率。眩暈的目標也會被擊退。<br/><Bullet/> 每1點專注使撕裂獲得<Ability:RENDDISORIENTCHANCE/>%混亂幾率。<br/>"
 
 [Whiplash X2AbilityTemplate]
 LocLongDescription="用電擊鞭攻擊敵人。對機器人造成額外傷害。<Ability:SelfCooldown_LW/>回合冷卻時間。"
@@ -5551,7 +5551,7 @@ LocPromotionPopupText="<Bullet/> 爪鉤讓散兵具有更好的偵察優勢，�
 [FullThrottle X2AbilityTemplate]
 LocLongDescription="回合內每次擊殺移動力+<Ability:FULLTHROTTLEMOBILITY/>。持續 <Ability:FULL_THROTTLE_DURATION/>回合，包括當前回合。"
 LocHelpText="回合內每次擊殺移動力+<Ability:FULLTHROTTLEMOBILITY/>。持續<Ability:FULL_THROTTLE_DURATION/>回合，包括當前回合。"
-LocPromotionPopupText="<Bullet/> 在回合開始時確保擊殺，以充分利用開足馬力。<br/><Bullet/> 只有散兵的擊殺才能觸發開足馬力。<br/>"
+LocPromotionPopupText="<Bullet/> 在回合開始時確保擊殺，以充分利用開足馬力。<br/>"
 
 [Judgment X2AbilityTemplate]
 LocFriendlyName="審判"
@@ -7396,7 +7396,7 @@ LocPromotionPopupText="<Bullet/> 使用撕裂是聖殿騎士生成專注的主�
 LocFriendlyName="電弧波"
 LocLongDescription="撕裂會在攻擊方向產生一個心靈能量波。傷害隨碎片拳刃層級增加。"
 LocHelpText="撕裂會在攻擊方向產生一個心靈能量波。"
-LocPromotionPopupText="<Bullet/> 電弧波不會影響原始撕裂攻擊的目標。<br/><Bullet/> 電弧波隨著碎片拳刃層級造成的傷害為 4/7/10 。<br/><Bullet/> 電弧波在環境物體中傳播。<br/>"
+LocPromotionPopupText="<Bullet/> 電弧波不會影響原始撕裂攻擊的目標。<br/><Bullet/> 電弧波隨著碎片拳刃層級造成的傷害為4/7/10 。<br/><Bullet/> 電弧波在環境物體中傳播。<br/>"
 
 [IonicStorm X2AbilityTemplate]
 LocFriendlyName="離子風暴"
