@@ -652,6 +652,9 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'SHOCKWAVE_TURNS':
 			Outstring = string(class'X2Ability_PerkPackAbilitySet2'.default.SHOCKWAVE_TURNS);
 			return true;
+		case 'DEMO_HIT_BONUS':
+			Outstring = string(class'X2Ability_GrenadierAbilitySet'.default.DEMO_HIT_BONUS);
+			return true;
 				
         default:
             return false;
