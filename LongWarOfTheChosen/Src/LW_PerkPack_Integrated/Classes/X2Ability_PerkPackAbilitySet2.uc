@@ -1312,6 +1312,7 @@ static function X2AbilityTemplate CreateCollateralAbility()
 	local X2AbilityCooldown						Cooldown;
 	local X2AbilityTarget_Cursor				CursorTarget;
 	local X2AbilityMultiTarget_Radius			RadiusMultiTarget;
+	local X2Condition_UnitProperty         		UnitPropertyCondition;
 	local X2Effect_CollateralDamage				DamageEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Collateral_LW');
@@ -1344,6 +1345,13 @@ static function X2AbilityTemplate CreateCollateralAbility()
 
 	// Slightly modified from Rocket Launcher template to let it get over blocking cover better
 	Template.TargetingMethod = class'X2TargetingMethod_Collateral';
+
+	UnitPropertyCondition = new class'X2Condition_UnitProperty';
+	UnitPropertyCondition.ExcludeDead = false;
+	UnitPropertyCondition.ExcludeFriendlyToSource = false;
+	UnitPropertyCondition.ExcludeHostileToSource = false;
+	UnitPropertyCondition.FailOnNonUnits = false;
+	Template.AbilityMultiTargetConditions.AddItem(UnitPropertyCondition);
 		
 	// Give it a radius multi-target
 	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
