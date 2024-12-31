@@ -1866,7 +1866,7 @@ static function X2AbilityTemplate SlugShotRangeEffect()
 	SlugShotEffect.BuildPersistentEffect (1, true, false);
 	SlugShotEffect.AccBonus = default.SLUG_SHOT_ACC_BONUS;
 	SlugShotEffect.Pierce = default.SLUG_SHOT_PIERCE;
-	//SlugShotEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	SlugShotEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
 	Template.AddTargetEffect(SlugShotEffect);
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	return Template;	
@@ -4252,6 +4252,7 @@ static function X2AbilityTemplate AddSmartMacrophagesAbility()
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;
 	Template.bShowActivation = false;
+	Template.bSkipFireAction = true;
 
 	MacrophagesEffect = new class'X2Effect_SmartMacrophages';
 	MacrophagesEffect.BuildPersistentEffect(1, true, false);
