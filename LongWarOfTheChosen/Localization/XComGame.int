@@ -545,7 +545,7 @@ LocLongDescription="Your grenades and standard rockets can inflict critical dama
 LocHelpText="Your grenades, standard rockets and micromissiles can inflict critical damage."
 LocFlyOverText="Biggest Booms"
 ; LWOTC Needs Translation
-LocPromotionPopupText="<Bullet/> Grenades, standard rockets, and MEC micromissiles can inflict critical damage (<Ability:BIGGESTBOOMSCHANCE/>% chance for +<Ability:BIGGESTBOOMSDAMAGE/> damage).<br/><Bullet/> <Ability:BIGGESTBOOMSCHANCE/>% chance for critical damage is not affected by other critical chance modifiers.<br/><Bullet/> Does not apply to non-damaging grenades or the concussion rocket or Bunker Buster abilities.<br/><Bullet/> Grenade crits will grant +1 damage to ongoing damaging effects such as fire."
+LocPromotionPopupText="<Bullet/> Grenades, standard rockets, MEC micromissiles, and anything that benefits from Javelin Rockets can inflict critical damage (<Ability:BIGGESTBOOMSCHANCE/>% chance for +<Ability:BIGGESTBOOMSDAMAGE/> damage).<br/><Bullet/> <Ability:BIGGESTBOOMSCHANCE/>% chance for critical damage is not affected by other critical chance modifiers.<br/><Bullet/> Does not apply to non-damaging grenades.<br/><Bullet/> Grenade crits will grant +1 damage to ongoing damaging effects such as fire."
 ; End Translation
 
 [Shellshock_LW X2AbilityTemplate]
