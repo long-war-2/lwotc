@@ -297,6 +297,7 @@ static function X2AbilityTemplate ThatsCloseEnough()
 	local X2AbilityToHitCalc_StandardAim ToHit;
 	local X2Effect StunnedEffect;
 	local X2AbilityCooldown_Shared Cooldown;
+	local X2Condition_NotItsOwnTurn NotItsOwnTurnCondition;
 	// Create a stun effect that removes 2 actions and has a 100% chance of success if the attack hits.
 	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2, 100, false);
 
@@ -314,6 +315,9 @@ static function X2AbilityTemplate ThatsCloseEnough()
 	AddPerTargetCooldown(Template, default.THATS_CLOSE_ENOUGH_PER_TARGET_COOLDOWN);
 
 	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitDisallowMindControlProperty);
+
+	NotItsOwnTurnCondition = new class'X2Condition_NotItsOwnTurn';
+	Template.AbilityShooterConditions.AddItem(NotItsOwnTurnCondition);
 
 	Cooldown = new class'X2AbilityCooldown_Shared';
 	Cooldown.iNumTurns = default.THATS_CLOSE_ENOUGH_COOLDOWN;
