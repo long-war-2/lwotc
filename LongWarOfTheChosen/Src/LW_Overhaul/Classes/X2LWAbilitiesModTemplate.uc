@@ -110,6 +110,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'AdvPurifierFlamethrower':
 			UpdatePurifierFlamethrower(Template);
+			MakeAbilityHostile(Template);
 			break;
 		case 'Fuse':
 			//class'Helpers_LW'.static.MakeFreeAction(Template);
