@@ -1521,7 +1521,7 @@ static function PatchFullerOverride(X2AbilityTemplate Template)
 		MindControlEffect = X2Effect_MindControl(Effect);
 		if(MindControlEffect != none)
 		{
-			MindControlEffect.EffectName = 'FullOverride';
+			MindControlEffect.EffectName = 'FullOverrideMC';
 			MindControlEffect.EffectTickedVisualizationFn = none;
 		}
 	}

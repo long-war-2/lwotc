@@ -709,7 +709,7 @@ static function EventListenerReturn OnCleanupTacticalMission(Object EventData, O
 					X2Effect_GreaterPadding(EffectState.GetX2Effect()).ApplyGreaterPadding(EffectState, Unit, NewGameState);
 				}
 					
-				else if (EffectState.GetX2Effect().EffectName == 'FullOverride' && AwardWrecks)
+				else if (EffectState.GetX2Effect().EffectName == 'FullOverrideMC' && AwardWrecks)
 				{
 					Unit.RollForAutoLoot(NewGameState);
 
