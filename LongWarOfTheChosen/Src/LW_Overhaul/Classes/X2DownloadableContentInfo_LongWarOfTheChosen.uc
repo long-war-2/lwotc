@@ -6250,6 +6250,7 @@ static function CacheInstalledMods()
 	class'Helpers_LW'.default.bDABFLActive = class'Helpers_LW'.static.IsModInstalled("DiverseAliensByForceLevelWOTC");
 	class'Helpers_LW'.default.bKirukaSparkActive = class'Helpers_LW'.static.IsModInstalled("KirukasSparkLWOTC_M2");
 	class'Helpers_LW'.default.bDSLReduxActive = class'Helpers_LW'.static.IsModInstalled("WOTC_DSL_Rusty");
+	class'Helpers_LW'.default.bDudeWheresMyLootActive = class'Helpers_LW'.static.IsModInstalled("DudeWheresMyLoot");
 
 	`LWTrace("cached bSmokeStopsFlanksActive: " @ class'Helpers_LW'.default.bSmokeStopsFlanksActive );
 	`LWTrace("cached bImprovedSmokeDefenseActive: " @class'Helpers_LW'.default.bImprovedSmokeDefenseActive);
@@ -6262,6 +6263,7 @@ static function CacheInstalledMods()
 	`LWTrace("cached bDABFLActive: " @class'Helpers_LW'.default.bDABFLActive);
 	`LWTrace("cached bKirukaSparkActive: " @class'Helpers_LW'.default.bKirukaSparkActive);
 	`LWTrace("cached bDSLReduxActive: " @class'Helpers_LW'.default.bDSLReduxActive);
+	`LWTrace("Cached bDudeWheresMyLoot: "@class'Helpers_LW'.default.bDudeWheresMyLootActive);
 }
 
 exec function LWOTC_SetSelectedUnitActive()

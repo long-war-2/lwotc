@@ -187,6 +187,8 @@ var config bool bKirukaSparkActive;
 
 var config bool bDSLReduxActive;
 
+var config bool bDudeWheresMyLootActive;
+
 var config array<string> cachedInstalledModNames;
 
 static final function bool IsModInstalled(coerce string DLCIdentifer)

@@ -709,7 +709,7 @@ static function EventListenerReturn OnCleanupTacticalMission(Object EventData, O
 					X2Effect_GreaterPadding(EffectState.GetX2Effect()).ApplyGreaterPadding(EffectState, Unit, NewGameState);
 				}
 					
-				else if (EffectState.GetX2Effect().EffectName == 'FullOverrideMC' && AwardWrecks)
+				else if (!class'Helpers_LW'.default.bDudeWheresMyLootActive && EffectState.GetX2Effect().EffectName == class'X2Effect_MindControl'.default.EffectName && AwardWrecks)
 				{
 					Unit.RollForAutoLoot(NewGameState);
 
