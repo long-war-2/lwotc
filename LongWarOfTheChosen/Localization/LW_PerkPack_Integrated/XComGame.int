@@ -1284,9 +1284,9 @@ LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent ti
 
 [EnhancedSystems_LW X2AbilityTemplate]
 LocFriendlyName="Enhanced Repair Systems"
-LocLongDescription="Grants the Rapid Repair and Redundant Systems abilities, making it no longer end the turn and removing the stat debuffs associated with Reboot. The SPARK will automatically use Repair when rebooting."
+LocLongDescription="Grants the Rapid Repair and Redundant Systems abilities, making it no longer end the turn and removing the stat debuffs associated with Reboot. The SPARK will automatically use Repair when rebooting. Additionally grant one additional charge to Repair."
 LocHelpText="Rapid Repair makes Repair non turn ending. Redundant Systems means the SPARK will not suffer any stat penalties after Rebooting. The SPARK will automatically use Repair when rebooting."
-LocPromotionPopupText="Rapid Repair makes Repair non turn ending. Redundant Systems means the SPARK will not suffer any stat penalties after Rebooting. The SPARK will automatically use Repair when rebooting."
+LocPromotionPopupText="Rapid Repair makes Repair non turn ending. Redundant Systems means the SPARK will not suffer any stat penalties after Rebooting. The SPARK will automatically use Repair when rebooting. Additionally grant one additional charge to Repair."
 
 [ReactionSystems_LW X2AbilityTemplate]
 LocFriendlyName="Enhanced Defensive Systems"
