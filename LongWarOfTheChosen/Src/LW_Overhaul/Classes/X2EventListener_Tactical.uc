@@ -623,7 +623,7 @@ static function EventListenerReturn OnCleanupTacticalMission(Object EventData, O
 	// transferred to a haven.
 	AwardWrecks = BattleData.AllTacticalObjectivesCompleted();
 
-    if (AwardWrecks)
+    if (AwardWrecks && !class'Helpers_LW'.default.bDudeWheresMyLootActive)
     {
         // If we have completed the tactical objectives (e.g. sweep) we are collecting corpses.
         // Generate wrecks for each of the turrets left on the map that XCOM didn't kill before
@@ -635,7 +635,9 @@ static function EventListenerReturn OnCleanupTacticalMission(Object EventData, O
                 // We can't call the RollForAutoLoot() function here because we have a pending
                 // gamestate with a modified BattleData already. Just add a corpse to the list
                 // of pending auto loot.
-                BattleData.AutoLootBucket.AddItem('CorpseAdventTurret');
+
+				// The above lies apparently per Zelfana and this works
+                Unit.RollForAutoLoot(NewGameState);
             }
         }
     }
