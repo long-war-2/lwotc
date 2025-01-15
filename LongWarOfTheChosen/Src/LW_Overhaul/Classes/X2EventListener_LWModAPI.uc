@@ -182,17 +182,19 @@ static protected function EventListenerReturn LWUnitSquadInfoReturn(Object Event
 
 
 /*
-	This Tuple gets the current LW Force Level for all regions.
+	This Tuple gets the current LW Force Level (and now alert and vigilance) for all regions.
 	Tuple inputs: none
 	Tuple outputs:
 	Tuple.Data[0] - Array Objects - Array of XCGS_WorldRegion.
-	Tuple.Data[1] - Array ints - Force Level for the Regions. Use matched index 
+	Tuple.Data[1] - Array ints - Force Level for the Regions. Use matched index with the regions in Data[0] array.
+	Tuple.Data[2] - Array ints - Alert level for the Regions. Use matched index ""
+	Tuple.Data[3] - Array ints - Vigilance level for the Regions. Use matched index ""
 
 	local XComLWTuple Tuple;
 
 	Tuple = new class'XComLWTuple';
 	Tuple.Id = 'GetLWRegionalForceLevel';
-	Tuple.Data.Add(2);
+	Tuple.Data.Add(4);
 
 	`XEVENTMGR.TriggerEvent('GetLWRegionalForceLevel', Tuple);
 
@@ -227,6 +229,8 @@ static protected function EventListenerReturn OnGetLWRegionalForceLevel(Object E
 			RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState);
 			
 			Tuple.Data[1].ai[i] = RegionalAI.LocalForceLevel;
+			Tuple.Data[2].ai[i] = RegionalAI.LocalAlertLevel;
+			Tuple.Data[3].ai[i] = RegionalAI.LocalVigilanceLevel;
 
 			i += 1;
 		}
@@ -246,14 +250,19 @@ static protected function EventListenerReturn OnGetLWRegionalForceLevel(Object E
 	Tuple.Data[0] - bool - if set to true, adjust FL in all regions.  If set to false, adjust FL in just specified region.
 	Tuple.Data[1] - int - value for the change in Force Level; can be negative.
 
+	// New additions:
+
+	Tuple.Data[3] - int - value for change in Alert; can be negative.
+	Tuple.Data[4] - int - value for change in Vigilance; can be negative.
+
 	Tuple outputs:
-	Tuple.Data[2] - bool - set to true if the change went through, set to false if it failed.
+	Tuple.Data[2] - bool - set to true if the change went through as is, set to false if the inputs would cause the FL/Alert/Vigilance values to be invalid, they will be capped.
 
 	local XComLWTuple Tuple;
 
 	Tuple = new class'XComLWTuple';
 	Tuple.Id = 'SetLWRegionalForceLevel';
-	Tuple.Data.Add(4);
+	Tuple.Data.Add(5);
 	
 	Tuple.Data[0].kind = XComLWTVBool;
 	Tuple.Data[0].b = true;
@@ -263,6 +272,12 @@ static protected function EventListenerReturn OnGetLWRegionalForceLevel(Object E
 
 	Tuple.Data[2].kind = XComLWTVBool;
 	Tuple.Data[2].b = false;
+
+	Tuple.Data[3].kind = XComLWTVInt;
+	Tuple.Data[3].i = 1;
+
+	Tuple.Data[4].kind = XComLWTVInt;
+	Tuple.Data[4].i = 1;
 
 	`XEVENTMGR.TriggerEvent('SetLWRegionalForceLevel', Tuple, RegionState, NewGameState);
 
@@ -301,10 +316,12 @@ static protected function EventListenerReturn OnSetLWRegionalForceLevel(Object E
 		return ELR_NoInterrupt;
 	}
 
+	Tuple.Data[2].b = true;
+
 	if(!bAllRegions) // If just one region is being updated
 	{
 		RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState, NewGameState, true);
-
+		
 		if(RegionalAI == NONE)
 		{
 			`LWTrace("SetRegionalFL event: no RegionalAI found");
@@ -313,6 +330,8 @@ static protected function EventListenerReturn OnSetLWRegionalForceLevel(Object E
 		}
 
 		RegionalAI.LocalForceLevel += Tuple.Data[1].i;
+		RegionalAI.LocalAlertLevel += Tuple.Data[3].i;
+		RegionalAI.LocalVigilanceLevel += Tuple.Data[4].i;
 		
 		// Minimum FL of 1, if it goes below this, reset and return false.
 		if(RegionalAI.LocalForceLevel < 1)
@@ -327,6 +346,21 @@ static protected function EventListenerReturn OnSetLWRegionalForceLevel(Object E
 			Tuple.Data[2].b = false;
 			return ELR_NoInterrupt;
 		}
+
+		// Alert can't go below 1 for a region
+		if(RegionalAI.LocalAlertLevel < 1)
+		{
+			RegionalAI.LocalAlertLevel = 1;
+			Tuple.Data[2].b = false;
+		}
+
+		// Vigilance can't go below 1 for a region 
+		if(RegionalAI.LocalVigilanceLevel < 1)
+		{
+			RegionalAI.LocalVigilanceLevel = 1;
+			Tuple.Data[2].b = false;
+		}
+
 	}
 	else // if all regions are being updated
 	{
@@ -337,6 +371,8 @@ static protected function EventListenerReturn OnSetLWRegionalForceLevel(Object E
 			if(RegionalAI != NONE)
 			{
 				RegionalAI.LocalForceLevel += Tuple.Data[1].i;
+				RegionalAI.LocalAlertLevel += Tuple.Data[3].i;
+				RegionalAI.LocalVigilanceLevel += Tuple.Data[4].i;
 		
 				// Minimum FL of 1, if it goes below this, reset and return false.
 				if(RegionalAI.LocalForceLevel < 1)
@@ -349,11 +385,24 @@ static protected function EventListenerReturn OnSetLWRegionalForceLevel(Object E
 					RegionalAI.LocalForceLevel=99;
 					Tuple.Data[2].b = false;
 				}
+
+				// Alert can't go below 1 for a region
+				if(RegionalAI.LocalAlertLevel < 1)
+				{
+					RegionalAI.LocalAlertLevel = 1;
+					Tuple.Data[2].b = false;
+				}
+
+				// Vigilance can't go below 1 for a region 
+				if(RegionalAI.LocalVigilanceLevel < 1)
+				{
+					RegionalAI.LocalVigilanceLevel = 1;
+					Tuple.Data[2].b = false;
+				}
 			}
 		}
 
 	}
-	Tuple.Data[2].b = true;
 
 	return ELR_NoInterrupt;
 }
