@@ -604,6 +604,8 @@ static function bool IsFacilityLeadRewardAvailableUpdated(
 	local XComGameStateHistory History;
 	local XComGameState_MissionSite MissionState;
 	local int numActivities;
+	local XComGameState_LWAlienActivity ActivityState;
+	local array<XComGameState_LWAlienActivity> ActivityStates;
 
 	History = `XCOMHISTORY;
 	foreach History.IterateByClassType(class'XComGameState_MissionSite', MissionState)
@@ -613,6 +615,21 @@ static function bool IsFacilityLeadRewardAvailableUpdated(
 			numActivities++;
 		}
 	}
+
+	// Check for existing LW activities
+
+	ActivityStates = class'XComGameState_LWAlienActivityManager'.static.GetAllActivities(NewGameState);
+	foreach ActivityStates(ActivityState)
+	{
+		if(ActivityState.GetMyTemplateName() == class'X2StrategyElement_DefaultAlienActivities'.default.ProtectResearchName)
+		{
+			numActivities--;
+		}
+	}
+
+	// Remove facility leads that XCOM already has
+
+	numActivities -= `XCOMHQ.GetNumItemInInventory('FacilityLeadItem');
 
 	return (numActivities > 0);
 }

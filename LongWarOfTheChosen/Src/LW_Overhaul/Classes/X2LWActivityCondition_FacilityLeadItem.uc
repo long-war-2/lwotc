@@ -16,6 +16,8 @@ simulated function bool MeetsCondition(X2LWActivityCreation ActivityCreation, XC
 	local int TotalFacilities, FacilitiesAlreadyAccessible, k;
 	local XComGameState_Item ItemState;
 	local XComGameState_LWAlienActivity ActivityState;
+	local XComGameState_CovertAction ActionState;
+	local XComGameState_ResistanceFaction FactionState;
 
 	History = `XCOMHISTORY;
 	XComHQ = `XCOMHQ;
@@ -76,6 +78,24 @@ simulated function bool MeetsCondition(X2LWActivityCreation ActivityCreation, XC
 	if (XComHQ.GetPausedProject(TechState.GetReference()) != none)
 	{
 		FacilitiesAlreadyAccessible += 1;
+	}
+
+	// Check for presence of Covert Action Facility Lead activity.
+
+	foreach History.IterateByClassType(class'XComGameState_CovertAction', ActionState)
+	{
+		If(ActionState.GetMyTemplateName() == 'CovertAction_FacilityLead')
+		{
+			FactionState = ActionState.GetFaction();
+			if (FactionState.CovertActions.Find('ObjectID', ActionState.ObjectID) != INDEX_NONE ||
+			FactionState.GoldenPathActions.Find('ObjectID', ActionState.ObjectID) != INDEX_NONE)
+			{
+				if(!ActionState.bCompleted && ActionState.CanActionBeDisplayed())
+				{
+					FacilitiesAlreadyAccessible += 1;
+				}
+			}
+		}
 	}
 
 	`LWTRACE ("X2LWActivityCondition_FacilityLeadItem: Total Facilities" @ TotalFacilities @ "Facilities Already Accessible" @ FacilitiesAlreadyAccessible @ "Condition Pass:" @ FacilitiesAlreadyAccessible >= TotalFacilities);
