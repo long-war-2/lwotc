@@ -1048,48 +1048,50 @@ function int GetAlertnessModifierForCurrentInfiltration(optional XComGameState U
 	return iAlertnessModifier;
 }
 
-function float GetSecondsRemainingToFullInfiltration(optional bool bBoost = false)
+function float GetSecondsRemainingToFullInfiltration()
 {
 	local float TotalSecondsToInfiltrate;
 	local float SecondsOfInfiltration;
 	local float SecondsToInfiltrate;
 
-	if(bBoost)
-	{
-		TotalSecondsToInfiltrate = 3600.0 * GetHoursToFullInfiltrationCached() / class'XComGameState_LWPersistentSquad'.default.DefaultBoostInfiltrationFactor[`STRATEGYDIFFICULTYSETTING];
-	}
-	else
-	{
-		TotalSecondsToInfiltrate = 3600.0 * GetHoursToFullInfiltrationCached(); // test caching here roo
-	}
-	
+	TotalSecondsToInfiltrate = 3600.0 * GetHoursToFullInfiltrationCached(); // test caching here roo
+
 	SecondsOfInfiltration = class'X2StrategyGameRulesetDataStructures'.static.DifferenceInSeconds(GetCurrentTime(), StartInfiltrationDateTime);
 	SecondsToInfiltrate = TotalSecondsToInfiltrate - SecondsOfInfiltration;
 
 	return SecondsToInfiltrate;
 }
 
+// only set bBoost to true if this is for preview stuff, since GetHoursToFullInfiltrationCached handles it if the squad has boosted already
 function float GetSecondsRemainingToFullInfiltrationUI(optional bool bBoost = false)
 {
-	local float TotalSecondsToInfiltrate, InfiltrationBonusOnLiberation;
+	local float TotalSecondsToInfiltrate, BaseTotalSecondsToInfiltrate, InfiltrationBonusOnLiberation;
 	local float SecondsOfInfiltration;
 	local float SecondsToInfiltrate;
 	local XComGameState_WorldRegion RegionState;
 	local XComGameState_WorldRegion_LWStrategyAI RegionalAI;
     local XComGameState_MissionSite MissionSite;
 	
+	BaseTotalSecondsToInfiltrate = 3600.0 * GetHoursToFullInfiltrationCached();
 
 	if(bBoost)
 	{
-		TotalSecondsToInfiltrate = 3600.0 * GetHoursToFullInfiltrationCached() / class'XComGameState_LWPersistentSquad'.default.DefaultBoostInfiltrationFactor[`STRATEGYDIFFICULTYSETTING];
+		`LWTrace("bBoost = true");
+		TotalSecondsToInfiltrate = BaseTotalSecondsToInfiltrate / class'XComGameState_LWPersistentSquad'.default.DefaultBoostInfiltrationFactor[`STRATEGYDIFFICULTYSETTING];
 	}
 	else
 	{
-		TotalSecondsToInfiltrate = 3600.0 * GetHoursToFullInfiltrationCached(); // test caching here roo
+		TotalSecondsToInfiltrate = BaseTotalSecondsToInfiltrate; // test caching here too
 	}
-	
+
+	`LWTrace("Base total seconds to infiltrate:" @BaseTotalSecondsToInfiltrate);
+
+	`LWTrace ("TotalSecondsToInfiltrate" @TotalSecondsToInfiltrate);
+
 	SecondsOfInfiltration = class'X2StrategyGameRulesetDataStructures'.static.DifferenceInSeconds(GetCurrentTime(), StartInfiltrationDateTime);
 	SecondsToInfiltrate = TotalSecondsToInfiltrate - SecondsOfInfiltration;
+	`LWTrace("Seconds Of Infiltration:" @SecondsOfInfiltration);
+	`LWTrace("Seconds remaining for infiltration:" @SecondsToInfiltrate);
 
 	MissionSite = GetCurrentMission();
 	if(MissionSite != none)
@@ -1101,10 +1103,23 @@ function float GetSecondsRemainingToFullInfiltrationUI(optional bool bBoost = fa
 			if(RegionalAI.bLiberated)
 			{
 				InfiltrationBonusOnLiberation = class'X2StrategyElement_DefaultAlienActivities'.default.INFILTRATION_BONUS_ON_LIBERATION[`STRATEGYDIFFICULTYSETTING] / 100.0;
-				SecondsToInfiltrate -= TotalSecondsToInfiltrate * InfiltrationBonusOnLiberation;
+				
+				if(bHasBoostedInfiltration)
+				{
+					`LWTrace("Lib removing" @BaseTotalSecondsToInfiltrate * InfiltrationBonusOnLiberation * class'XComGameState_LWPersistentSquad'.default.DefaultBoostInfiltrationFactor[`STRATEGYDIFFICULTYSETTING]@ "seconds from infil");
+					SecondsToInfiltrate -= BaseTotalSecondsToInfiltrate * InfiltrationBonusOnLiberation * class'XComGameState_LWPersistentSquad'.default.DefaultBoostInfiltrationFactor[`STRATEGYDIFFICULTYSETTING];
+				}
+				else
+				{
+					`LWTrace("Lib removing" @BaseTotalSecondsToInfiltrate * InfiltrationBonusOnLiberation @ "seconds from infil");
+					SecondsToInfiltrate -= BaseTotalSecondsToInfiltrate * InfiltrationBonusOnLiberation;
+				}
+
 			}
 		}
 	}
+
+	`LWTrace("Seconds remaining after lib check:" @SecondsToInfiltrate);
 
 	return SecondsToInfiltrate;
 }

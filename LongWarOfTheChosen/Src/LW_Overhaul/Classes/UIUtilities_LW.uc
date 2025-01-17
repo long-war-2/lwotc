@@ -425,7 +425,7 @@ function static string GetBoostedInfiltrationString(XComGameState_MissionSite Mi
 		ParamTag.IntValue2 = int(TotalHours);
 
 		if(bCanFullyInfiltrate && InfiltratingSquad.CurrentInfiltration * BoostFactor < 1.0)
-			InfiltrationString $= `XEXPAND.ExpandString(class'UIMission_LWLaunchDelayedMission'.default.m_strInfiltrationStatusNonExpiring);
+			InfiltrationString $= `XEXPAND.ExpandString(class'UIMission_LWLaunchDelayedMission'.default.m_strInfiltrationStatusExpiring);
 		else
 			InfiltrationString $= `XEXPAND.ExpandString(class'UIMission_LWLaunchDelayedMission'.default.m_strInfiltrationStatusMissionEnding);
 	}
