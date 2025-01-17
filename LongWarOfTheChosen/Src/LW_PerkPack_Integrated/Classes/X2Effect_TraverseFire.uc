@@ -1,7 +1,7 @@
-class X2Effect_TraverseFire extends X2Effect_Persistent;
+class X2Effect_TraverseFire extends X2Effect_Persistent config (LW_SoldierSkills);
 
-var int ActivationsPerTurn;
-var array<name> AllowedAbilities;
+var config int TF_USES_PER_TURN;
+var config array<name> TF_ABILITYNAMES;
 var name CounterName;
 var name EventName;
 
@@ -30,14 +30,14 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 	SourceUnit.GetUnitValue(CounterName, UnitValue);
 	iCounter = int(UnitValue.fValue);
 
-	if (iCounter >= ActivationsPerTurn)
+	if (iCounter >= default.TF_USES_PER_TURN)
 		return false;
 
 	AbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.AbilityStateObjectRef.ObjectID));
 
     if (AbilityState != none)
     {
-        if (AllowedAbilities.Find(kAbility.GetMyTemplateName()) != -1)
+        if (default.TF_ABILITYNAMES.Find(kAbility.GetMyTemplateName()) != -1)
         {
 			if (kAbility.SourceWeapon != EffectState.ApplyEffectParameters.ItemStateObjectRef)
 				return false;
