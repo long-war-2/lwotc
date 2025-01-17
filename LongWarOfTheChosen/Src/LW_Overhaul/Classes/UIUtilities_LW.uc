@@ -182,7 +182,7 @@ static function string GetMissionTypeString (StateObjectReference MissionRef)
 	}
 	else
 	{
-		return default.m_strQuickResponseMission;
+		return ColourText(default.m_strQuickResponseMission, class'UIUtilities_Colors'.const.WARNING_HTML_COLOR);
 	}
 }
 
