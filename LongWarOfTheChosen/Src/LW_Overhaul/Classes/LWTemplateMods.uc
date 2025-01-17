@@ -549,6 +549,9 @@ function GenerateRandomSoldierReward(XComGameState_Reward RewardState, XComGameS
 			NewUnitState.RankUpSoldier(NewGameState, NewUnitState.GetSoldierClassTemplate().DataName);
 		}
 	}   
+
+	`XEVENTMGR.TriggerEvent('RewardUnitGenerated', NewUnitState, NewUnitState);
+	
 	RewardState.RewardObjectReference = NewUnitState.GetReference();
 }
 
