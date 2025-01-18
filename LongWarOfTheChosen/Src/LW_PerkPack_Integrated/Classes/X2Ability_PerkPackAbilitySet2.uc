@@ -1757,8 +1757,8 @@ function bool GetStrikeDamagePreview(XComGameState_Ability AbilityState, StateOb
 
 	AbilityState.NormalDamagePreview(TargetRef, MinDamagePreview, MaxDamagePreview, AllowsShield);
 
-	`LWTrace("MinDamagePreview:" @MinDamagePreview.Damage);
-	`LWTrace("MaxDamagePreview:" @MaxDamagePreview.Damage);
+	//`LWTrace("MinDamagePreview:" @MinDamagePreview.Damage);
+	//`LWTrace("MaxDamagePreview:" @MaxDamagePreview.Damage);
 
 	History = `XCOMHISTORY;
 	AbilityOwner = XComGameState_Unit(History.GetGameStateForObjectID(AbilityState.OwnerStateObject.ObjectID));
@@ -1772,8 +1772,8 @@ function bool GetStrikeDamagePreview(XComGameState_Ability AbilityState, StateOb
 		MaxDamagePreview.Damage += class'X2Ability_RangerAbilitySet'.default.BLADEMASTER_DMG;
 	}
 
-	`LWTrace("MinDamagePreview after Blademaster check:" @MinDamagePreview.Damage);
-	`LWTrace("MaxDamagePreview after Blademaster check:" @MaxDamagePreview.Damage);
+	//`LWTrace("MinDamagePreview after Blademaster check:" @MinDamagePreview.Damage);
+	//`LWTrace("MaxDamagePreview after Blademaster check:" @MaxDamagePreview.Damage);
 
 	//AssaultServosRef = AbilityOwner.FindAbility('Obliterator_LW');
 	//AssaultServosAbility = XComGameState_Ability(History.GetGameStateForObjectID(AssaultServosRef.ObjectID));
@@ -1784,8 +1784,8 @@ function bool GetStrikeDamagePreview(XComGameState_Ability AbilityState, StateOb
 	//	MaxDamagePreview.Damage += default.OBLITERATOR_DMG;
 	//}
 
-	`LWTrace("MinDamagePreview after Assault Servos check:" @MinDamagePreview.Damage);
-	`LWTrace("MaxDamagePreview after Assault Servos check:" @MaxDamagePreview.Damage);
+	//`LWTrace("MinDamagePreview after Assault Servos check:" @MinDamagePreview.Damage);
+	//`LWTrace("MaxDamagePreview after Assault Servos check:" @MaxDamagePreview.Damage);
 
 	return true;
 }
@@ -1903,8 +1903,8 @@ function bool GetConcussiveStrikeDamagePreview(XComGameState_Ability AbilityStat
 	local XComGameStateHistory History;
 
 	AbilityState.NormalDamagePreview(TargetRef, MinDamagePreview, MaxDamagePreview, AllowsShield);
-	`LWTrace("MinDamagePreview:" @MinDamagePreview.Damage);
-	`LWTrace("MaxDamagePreview:" @MaxDamagePreview.Damage);
+	//`LWTrace("MinDamagePreview:" @MinDamagePreview.Damage);
+	//`LWTrace("MaxDamagePreview:" @MaxDamagePreview.Damage);
 
 	History = `XCOMHISTORY;
 	AbilityOwner = XComGameState_Unit(History.GetGameStateForObjectID(AbilityState.OwnerStateObject.ObjectID));
@@ -1917,8 +1917,8 @@ function bool GetConcussiveStrikeDamagePreview(XComGameState_Ability AbilityStat
 		MinDamagePreview.Damage += class'X2Ability_RangerAbilitySet'.default.BLADEMASTER_DMG;
 		MaxDamagePreview.Damage += class'X2Ability_RangerAbilitySet'.default.BLADEMASTER_DMG;
 	}
-	`LWTrace("MinDamagePreview after Blademaster check:" @MinDamagePreview.Damage);
-	`LWTrace("MaxDamagePreview after Blademaster check:" @MaxDamagePreview.Damage);
+	//`LWTrace("MinDamagePreview after Blademaster check:" @MinDamagePreview.Damage);
+	//`LWTrace("MaxDamagePreview after Blademaster check:" @MaxDamagePreview.Damage);
 
 	AssaultServosRef = AbilityOwner.FindAbility('Obliterator_LW');
 	AssaultServosAbility = XComGameState_Ability(History.GetGameStateForObjectID(AssaultServosRef.ObjectID));
@@ -1929,8 +1929,8 @@ function bool GetConcussiveStrikeDamagePreview(XComGameState_Ability AbilityStat
 		MaxDamagePreview.Damage += default.OBLITERATOR_DMG;
 	}
 
-	`LWTrace("MinDamagePreview after Assault Servos check:" @MinDamagePreview.Damage);
-	`LWTrace("MaxDamagePreview after Assault Servos check:" @MaxDamagePreview.Damage);
+	//`LWTrace("MinDamagePreview after Assault Servos check:" @MinDamagePreview.Damage);
+	//`LWTrace("MaxDamagePreview after Assault Servos check:" @MaxDamagePreview.Damage);
 
 	return true;
 }

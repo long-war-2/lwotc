@@ -1076,7 +1076,6 @@ function float GetSecondsRemainingToFullInfiltrationUI(optional bool bBoost = fa
 
 	if(bBoost)
 	{
-		`LWTrace("bBoost = true");
 		TotalSecondsToInfiltrate = BaseTotalSecondsToInfiltrate / class'XComGameState_LWPersistentSquad'.default.DefaultBoostInfiltrationFactor[`STRATEGYDIFFICULTYSETTING];
 	}
 	else
@@ -1084,14 +1083,8 @@ function float GetSecondsRemainingToFullInfiltrationUI(optional bool bBoost = fa
 		TotalSecondsToInfiltrate = BaseTotalSecondsToInfiltrate; // test caching here too
 	}
 
-	`LWTrace("Base total seconds to infiltrate:" @BaseTotalSecondsToInfiltrate);
-
-	`LWTrace ("TotalSecondsToInfiltrate" @TotalSecondsToInfiltrate);
-
 	SecondsOfInfiltration = class'X2StrategyGameRulesetDataStructures'.static.DifferenceInSeconds(GetCurrentTime(), StartInfiltrationDateTime);
 	SecondsToInfiltrate = TotalSecondsToInfiltrate - SecondsOfInfiltration;
-	`LWTrace("Seconds Of Infiltration:" @SecondsOfInfiltration);
-	`LWTrace("Seconds remaining for infiltration:" @SecondsToInfiltrate);
 
 	MissionSite = GetCurrentMission();
 	if(MissionSite != none)
@@ -1106,20 +1099,16 @@ function float GetSecondsRemainingToFullInfiltrationUI(optional bool bBoost = fa
 				
 				if(bHasBoostedInfiltration)
 				{
-					`LWTrace("Lib removing" @BaseTotalSecondsToInfiltrate * InfiltrationBonusOnLiberation * class'XComGameState_LWPersistentSquad'.default.DefaultBoostInfiltrationFactor[`STRATEGYDIFFICULTYSETTING]@ "seconds from infil");
 					SecondsToInfiltrate -= BaseTotalSecondsToInfiltrate * InfiltrationBonusOnLiberation * class'XComGameState_LWPersistentSquad'.default.DefaultBoostInfiltrationFactor[`STRATEGYDIFFICULTYSETTING];
 				}
 				else
 				{
-					`LWTrace("Lib removing" @BaseTotalSecondsToInfiltrate * InfiltrationBonusOnLiberation @ "seconds from infil");
 					SecondsToInfiltrate -= BaseTotalSecondsToInfiltrate * InfiltrationBonusOnLiberation;
 				}
 
 			}
 		}
 	}
-
-	`LWTrace("Seconds remaining after lib check:" @SecondsToInfiltrate);
 
 	return SecondsToInfiltrate;
 }

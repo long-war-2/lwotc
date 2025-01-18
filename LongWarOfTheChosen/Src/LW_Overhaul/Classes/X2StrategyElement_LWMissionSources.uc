@@ -380,7 +380,7 @@ static function name PickSpecialSitRep(XComGameState_MissionSite MissionState, o
 
 	foreach SpecialSitreps(SitRepWithChance)
 	{
-		`LWTrace(" Special Sitreps: evaluating Sitrep" @SitrepWithChance.SitRepName);
+		//`LWTrace(" Special Sitreps: evaluating Sitrep" @SitrepWithChance.SitRepName);
 		if (IsSitRepValidForMission(SitRepWithChance.SitRepName, MissionState) &&
 				`SYNC_FRAND_STATIC() < SitRepWithChance.Chance)
 		{

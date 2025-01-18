@@ -380,19 +380,19 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 	if(ActivityState != none && ActivityState.GetMyTemplate().GetMissionForceLevelFn != none)
 	{
 		ForceLevel = ActivityState.GetMyTemplate().GetMissionForceLevelFn(ActivityState, MissionSite, none);
-		`LWTrace("ActivityState Force Level:" @ForceLevel);
+		//`LWTrace("ActivityState Force Level:" @ForceLevel);
 	}
 	else
 	{
 		if(RegionalAIState != none)
 		{
 			ForceLevel = RegionalAIState.LocalForceLevel;
-			`LWTrace("Force Level pulled from Region:" @ForceLevel);
+			//`LWTrace("Force Level pulled from Region:" @ForceLevel);
 		}
 		else
 		{
 			ForceLevel = AlienHQ.GetForceLevel();
-			`LWTrace("Force Level pulled from Alien HQ:" @ForceLevel);
+			//`LWTrace("Force Level pulled from Alien HQ:" @ForceLevel);
 		}
 	}
 	ForceLevel = Clamp(ForceLevel, class'XComGameState_HeadquartersAlien'.default.AlienHeadquarters_StartingForceLevel, class'XComGameState_HeadquartersAlien'.default.AlienHeadquarters_MaxForceLevel);

@@ -2452,7 +2452,7 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
 	local X2Effect_Suppression              SuppressionEffect;
 	local X2Effect_PersistentStatChange		StatChangeEffect;
 	local X2Condition_UnitInventoryExpanded         UnitInventoryCondition;
-	local name								WeaponCategory;
+	//local name								WeaponCategory;
 	local X2Condition_UnitEffects			SuppressedCondition;
 	local X2Condition_OwnerDoesNotHaveAbility	DoesNotHaveAbilityCondition;
 	local X2Condition_AbilityProperty AbilityCondition;

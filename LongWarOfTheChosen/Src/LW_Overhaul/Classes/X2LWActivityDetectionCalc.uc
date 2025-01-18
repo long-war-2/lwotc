@@ -191,8 +191,10 @@ function float GetDetectionChance(XComGameState_LWAlienActivity ActivityState, X
 			default: break;
 		}
 	}
-	`LWTrace("GetDetectionChance: DetectionChance pre-early boost:" @DetectionChance);
-
+	if(bDebugLog)
+	{
+		`LWDebug("GetDetectionChance: DetectionChance pre-early boost:" @DetectionChance);
+	}
 	// New early campaign detection chance boost system
 	if(default.BOOST_EARLY_DETECTION)
 	{
@@ -211,15 +213,19 @@ function float GetDetectionChance(XComGameState_LWAlienActivity ActivityState, X
 			DetectionChance += (default.EARLY_DETECTION_CHANCE_BOOST * ((1+DiffInHours)/24.0));
 		}
 	}
-
-	`LWTrace("GetDetectionChance: DetectionChance post early boost:" @DetectionChance);
-
+	if(bDebugLog)
+	{
+		`LWDebug("GetDetectionChance: DetectionChance post early boost:" @DetectionChance);
+	}
 	// Adjust for repeating missions if relevant.
 
 	if(bAllowMultiCycleDetectionBonus)
 	{
 		DetectionChance *=  default.MULTI_DETECT_MODIFIER ** ActivityState.NumTimesDetected;
-		`LWTrace("GetDetectionChance: DetectionChance after activity timeout multiplier:" @DetectionChance);
+		if(bDebugLog)
+		{
+			`LWDebug("GetDetectionChance: DetectionChance after activity timeout multiplier:" @DetectionChance);
+		}
 	}
 	
 	//normalize for update rate
@@ -292,6 +298,6 @@ defaultProperties
 
 	RebelMissionsJob="Intel"
 
-	bDebugLog = true;
+	bDebugLog = false;
 
 }

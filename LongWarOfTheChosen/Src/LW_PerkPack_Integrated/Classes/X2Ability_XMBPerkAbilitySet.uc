@@ -748,9 +748,9 @@ static function EventListenerReturn LTTListener(Object EventData, Object EventSo
 	local XComGameState_Unit TargetUnit;
 	local XComGameStateContext_Ability AbilityContext;
 	local XComGameState_Ability AbilityState;
-	local XComGameStateHistory History;
+	//local XComGameStateHistory History;
 
-	History = `XCOMHISTORY;
+	//History = `XCOMHISTORY;
 	TargetUnit = XComGameState_Unit(EventData);
 	AbilityContext = XComGameStateContext_Ability(GameState.GetContext());
 
