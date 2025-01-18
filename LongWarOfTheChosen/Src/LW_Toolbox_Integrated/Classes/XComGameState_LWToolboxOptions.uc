@@ -1574,10 +1574,13 @@ static function UpdateRewardSoldierTemplates()
 	local X2RewardTemplate Template;
 
 	TemplateMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+	
 
-	Template = X2RewardTemplate(TemplateMgr.FindStrategyElementTemplate('Reward_Soldier'));  
-	Template.GenerateRewardFn = class'X2StrategyElement_RandomizedSoldierRewards'.static.GeneratePersonnelReward;
-	TemplateMgr.AddStrategyElementTemplate(Template, true);
+	//Tedster - disable this one so the delegate in LWTemplateMods is used instead
+
+	//Template = X2RewardTemplate(TemplateMgr.FindStrategyElementTemplate('Reward_Soldier'));  
+	//Template.GenerateRewardFn = class'X2StrategyElement_RandomizedSoldierRewards'.static.GeneratePersonnelReward;
+	//TemplateMgr.AddStrategyElementTemplate(Template, true);
 
 	Template = X2RewardTemplate(TemplateMgr.FindStrategyElementTemplate('Reward_Rookie')); 
 	Template.GenerateRewardFn = class'X2StrategyElement_RandomizedSoldierRewards'.static.GeneratePersonnelReward;
@@ -1586,7 +1589,7 @@ static function UpdateRewardSoldierTemplates()
 	Template = X2RewardTemplate(TemplateMgr.FindStrategyElementTemplate('Reward_SoldierCaptured')); 
 	Template.GenerateRewardFn = class'X2StrategyElement_RandomizedSoldierRewards'.static.GenerateCouncilSoldierReward;
 	Template.GiveRewardFn = GiveCouncilSoldierReward;
-	Template.CleanUpRewardFn = class'X2StrategyElement_DefaultRewards'.static.CleanUpRewardWithoutRemoval;
+	Template.CleanUpRewardFn = class'X2StrategyElement_RandomizedSoldierRewards'.static.CleanUpUnitRewardIfDead;
 	TemplateMgr.AddStrategyElementTemplate(Template, true);
 }
 

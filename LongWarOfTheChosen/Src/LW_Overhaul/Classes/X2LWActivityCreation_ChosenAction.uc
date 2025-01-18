@@ -25,7 +25,7 @@ simulated function int GetNumActivitiesToCreate(XComGameState NewGameState, opti
     // Short Circuit this for if this isn't called by the Chosen Activity FN, so the activity doesn't get created normally.
     if(ChosenState == NONE)
     {
-		`LWTrace("None Chosen supplied to GetNumActivitiesToCreate for Chosen version.");
+		//`LWTrace("None Chosen supplied to GetNumActivitiesToCreate for Chosen version.");
         return 0;
     }
 
@@ -57,30 +57,30 @@ simulated function array<StateObjectReference> FindValidRegions(XComGameState Ne
 
 	foreach History.IterateByClassType(class'XComGameState_WorldRegion', RegionState)
 	{
-		`LWTrace("Checkinng Region" @RegionState);
+		`LWTrace("Chosen Action: Checkinng Region" @RegionState);
 		bValidRegion = true;
 		foreach Conditions(Condition)
 		{
-			`LWTrace("Checking Condition:" @Condition);
+			//`LWTrace("Checking Condition:" @Condition);
 			if(!Condition.MeetsConditionWithRegion(self,  RegionState, NewGameState))
 			{
-				`LWTrace("Failed condition check");
+				//`LWTrace("Failed condition check");
 				bValidRegion = false;
 				break;
 			} 
 			RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState, NewGameState);
 			if(RegionalAI.RegionalCooldowns.Find('ActivityName', ActivityTemplate.DataName) != -1)
 			{
-				`LWTrace("Failed cooldown check");
+				//`LWTrace("Failed cooldown check");
 				bValidRegion = false;
 				break;
 			}
 			// LWoTC add - new condition for selecting from regions controlled by a specific Chosen.
-			`LWTrace("Region Chosen:" @RegionState.GetControllingChosen().GetChosenTemplate().CharacterGroupName);
-			`LWTrace("Chosen Activity chosen:" @ChosenState.GetChosenTemplate().CharacterGroupName);
+			//`LWTrace("Region Chosen:" @RegionState.GetControllingChosen().GetChosenTemplate().CharacterGroupName);
+			//`LWTrace("Chosen Activity chosen:" @ChosenState.GetChosenTemplate().CharacterGroupName);
 			if(RegionState.GetControllingChosen().GetChosenTemplate().CharacterGroupName != ChosenState.GetChosenTemplate().CharacterGroupName && ChosenState != NONE)
 			{
-				`LWTrace("Failed controlling Chosen check");
+				//`LWTrace("Failed controlling Chosen check");
 				bValidRegion = false;
 				break;
 			}
@@ -90,6 +90,6 @@ simulated function array<StateObjectReference> FindValidRegions(XComGameState Ne
 			ValidActivityRegions.AddItem(RegionState.GetReference());
 	}
 
-	`LWTrace("Valid regions length:" @ValidActivityRegions.Length);
+	`LWTrace("ChosenAction: Valid regions length:" @ValidActivityRegions.Length);
 	return ValidActivityRegions;
 }

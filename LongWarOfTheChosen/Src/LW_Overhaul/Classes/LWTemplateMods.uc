@@ -484,6 +484,8 @@ function GenerateRandomSoldierReward(XComGameState_Reward RewardState, XComGameS
 	nmCountry = '';
 	RegionState = XComGameState_WorldRegion(History.GetGameStateForObjectID(RegionRef.ObjectID));
 
+	`LWTrace("LW GenerateRandomSoldierReward firing");
+
 	if(RegionState != none)
 	{
 		nmCountry = RegionState.GetMyTemplate().GetRandomCountryInRegion();
@@ -551,7 +553,9 @@ function GenerateRandomSoldierReward(XComGameState_Reward RewardState, XComGameS
 	}   
 
 	`XEVENTMGR.TriggerEvent('RewardUnitGenerated', NewUnitState, NewUnitState);
-	
+
+	`LWTrace("RewardUnitGenerated fired");
+
 	RewardState.RewardObjectReference = NewUnitState.GetReference();
 }
 
@@ -572,6 +576,7 @@ function UpdateRewardTemplate(X2StrategyElementTemplate Template, int Difficulty
 			break;
 		case 'Reward_Soldier':
 			RewardTemplate.GenerateRewardFn = GenerateRandomSoldierReward;
+			`LWTrace("Updating template" @RewardTemplate.name @"With GenerateRandomSoldierReward");
 			break;
 		case 'Reward_FindFaction':
 			UpdateFactionSoldierReward(RewardTemplate, class'X2LWCovertActionsModTemplate'.default.FIND_SECOND_FACTION_REQ_RANK - 1);
@@ -582,6 +587,7 @@ function UpdateRewardTemplate(X2StrategyElementTemplate Template, int Difficulty
 		case 'Reward_RescueSoldier':
 			RewardTemplate.IsRewardAvailableFn = IsRescueSoldierRewardAvailableFixed;
 			RewardTemplate.GenerateRewardFn = GenerateRescueSoldierRewardFixed;
+			RewardTemplate.CleanupRewardFn = class'X2StrategyElement_RandomizedSoldierRewards'.static.CleanUpUnitRewardIfDead;
 			break;
 		default:
 			break;
