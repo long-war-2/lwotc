@@ -208,6 +208,8 @@ static function GeneratePersonnelReward(XComGameState_Reward RewardState, XComGa
 		NewUnitState.SetSkillLevel(GetPersonnelRewardRank(false));
 	}
 
+	`XEVENTMGR.TriggerEvent('RewardUnitGenerated', NewUnitState, NewUnitState);
+
 	RewardState.RewardObjectReference = NewUnitState.GetReference();
 }
 
