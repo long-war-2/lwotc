@@ -48,7 +48,7 @@ defaultproperties
 {
     MajorVersion = 1;
     MinorVersion = 2;
-    PatchVersion = 0;
-    Classifier = "Steam Hotfix 1"
+    PatchVersion = 1;
+    Classifier = "Steam"
 
 }
