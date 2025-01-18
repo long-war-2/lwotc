@@ -333,7 +333,8 @@ static function X2AbilityTemplate SawedOffOverwatch()
 	local X2AbilityToHitCalc_StandardAim 	ToHit;
 	local X2Effect_Persistent               NoneShallPassTargetEffect;
 	local X2Condition_UnitEffectsWithAbilitySource NoneShallPassTargetCondition;
-	local X2AbilityTrigger_EventListener	Trigger;
+	local X2Condition_UnitProperty          SourceNotConcealedCondition;
+	local X2AbilityTrigger_EventListener	Trigger, EventListener;
 	local X2Condition_UnitProperty			ExcludeSquadmatesCondition;
 	local X2Condition_NotItsOwnTurn NotItsOwnTurnCondition;
 
@@ -358,6 +359,14 @@ static function X2AbilityTemplate SawedOffOverwatch()
 	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalOverwatchListener;
 	Template.AbilityTriggers.AddItem(Trigger);
 
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.EventID = 'UnitConcealmentBroken';
+	EventListener.ListenerData.Filter = eFilter_Unit;
+	EventListener.ListenerData.EventFn = NoneShallPassConcealmentListener;
+	EventListener.ListenerData.Priority = 55;
+	Template.AbilityTriggers.AddItem(EventListener);
+
 	Template.AbilityTargetConditions.AddItem(TargetWithinTiles(default.NONE_SHALL_PASS_TILE_RANGE));
 	AddCooldown(Template, default.NONE_SHALL_PASS_COOLDOWN);
 
@@ -374,6 +383,10 @@ static function X2AbilityTemplate SawedOffOverwatch()
 	NotItsOwnTurnCondition = new class'X2Condition_NotItsOwnTurn';
 	Template.AbilityShooterConditions.AddItem(NotItsOwnTurnCondition);
 
+	SourceNotConcealedCondition = new class'X2Condition_UnitProperty';
+	SourceNotConcealedCondition.ExcludeConcealed = true;
+	Template.AbilityShooterConditions.AddItem(SourceNotConcealedCondition);
+
 	NoneShallPassTargetEffect = new class'X2Effect_Persistent';
 	NoneShallPassTargetEffect.BuildPersistentEffect(1, false, true, true, eGameRule_PlayerTurnEnd);
 	NoneShallPassTargetEffect.EffectName = 'NoneShallPassTarget';
@@ -381,6 +394,37 @@ static function X2AbilityTemplate SawedOffOverwatch()
 	Template.AddTargetEffect(NoneShallPassTargetEffect);
 
 	return Template;
+}
+
+static final function EventListenerReturn NoneShallPassConcealmentListener(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComGameStateContext_Ability AbilityContext;
+	local XComGameState_Unit ConcealmentBrokenUnit;
+	local StateObjectReference CloseCombatSpecialistRef;
+	local XComGameState_Ability CloseCombatSpecialistState;
+	local XComGameStateHistory History;
+
+	History = `XCOMHISTORY;
+
+	ConcealmentBrokenUnit = XComGameState_Unit(EventSource);	
+	if (ConcealmentBrokenUnit == None)
+		return ELR_NoInterrupt;
+
+	//Do not trigger if the CloseCombatSpecialist soldier himself moved to cause the concealment break - only when an enemy moved and caused it.
+	AbilityContext = XComGameStateContext_Ability(GameState.GetContext().GetFirstStateInEventChain().GetContext());
+	if (AbilityContext != None && AbilityContext.InputContext.SourceObject != ConcealmentBrokenUnit.ConcealmentBrokenByUnitRef)
+		return ELR_NoInterrupt;
+
+	CloseCombatSpecialistRef = ConcealmentBrokenUnit.FindAbility('NoneShallPass_LW');
+	if (CloseCombatSpecialistRef.ObjectID == 0)
+		return ELR_NoInterrupt;
+
+	CloseCombatSpecialistState = XComGameState_Ability(History.GetGameStateForObjectID(CloseCombatSpecialistRef.ObjectID));
+	if (CloseCombatSpecialistState == None)
+		return ELR_NoInterrupt;
+	
+	CloseCombatSpecialistState.AbilityTriggerAgainstSingleTarget(ConcealmentBrokenUnit.ConcealmentBrokenByUnitRef, false);
+	return ELR_NoInterrupt;
 }
 
 static function X2AbilityTemplate Hipfire()
