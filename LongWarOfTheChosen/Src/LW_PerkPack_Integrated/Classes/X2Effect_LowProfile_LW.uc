@@ -43,7 +43,7 @@ function GetToHitAsTargetModifiers(XComGameState_Effect EffectState, XComGameSta
 	{
 		if(X2TacticalGameRuleset(XComGameInfo(class'Engine'.static.GetCurrentWorldInfo().Game).GameRuleset).VisibilityMgr.GetVisibilityInfo(Attacker.ObjectID, Target.ObjectID, VisInfo))
 		{
-			if (Target.CanTakeCover() && Target.bTreatLowCoverasHigh && VisInfo.TargetCover == CT_Midlevel)
+			if (Target.CanTakeCover() && Target.bTreatLowCoverasHigh && VisInfo.TargetCover == CT_Midlevel !ToHitCalc.bMeleeAttack)
 			{
 				ShotInfo.ModType = eHit_Success;
 				ShotInfo.Reason = FriendlyName;
