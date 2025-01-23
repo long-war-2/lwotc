@@ -1254,9 +1254,11 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			ActionPointCost = X2AbilityCost_ActionPoints(Template.AbilityCosts[k]);
 			if (ActionPointCost != none)
 			{
-				X2AbilityCost_ActionPoints(Template.AbilityCosts[k]).iNumPoints = default.CONCEAL_ACTION_POINTS;
-				X2AbilityCost_ActionPoints(Template.AbilityCosts[k]).bConsumeAllPoints = default.CONCEAL_ENDS_TURN;
-				X2AbilityCost_ActionPoints(Template.AbilityCosts[k]).bFreeCost = false;
+				ActionPointCost = new class'X2AbilityCost_ActionPoints'(ActionPointCost);
+				ActionPointCost.iNumPoints = default.CONCEAL_ACTION_POINTS;
+				ActionPointCost.bConsumeAllPoints = default.CONCEAL_ENDS_TURN;
+				ActionPointCost.bFreeCost = false;
+				Template.AbilityCosts[k] = ActionPointCost;
 			}
 		}
 	}
