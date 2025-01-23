@@ -7792,11 +7792,11 @@ LocHelpText="Gain bonus mobility, mental immunity, and take less damage for the 
 LocLongDescription="A soldier taking Overdrive Serum receives bonus mobility, mental immunity, and takes less damage for the next <Ability:COMBATSTIMSDURATION/> turns. This does not cost an action to activate."
 LocFlyOverText="Overdrive Serum"
 
-[CombatStims X2AbilityTemplate]
-LocFriendlyName="Overdrive Serum"
-LocHelpText="Gain bonus mobility, mental immunity, and take less damage for the next <Ability:COMBATSTIMSDURATION/> turns. Does not cost an action to activate."
-LocLongDescription="A soldier taking Overdrive Serum receives bonus mobility, mental immunity, and takes less damage for the next <Ability:COMBATSTIMSDURATION/> turns. This does not cost an action to activate."
-LocFlyOverText="Overdrive Serum"
+[CombatStims X2WeaponTemplate]
+FriendlyName="Overdrive Serum"
+FriendlyNamePlural="Overdrive Serums"
+BriefSummary="Overdrive Serum, derived from the adrenal glands of a Berserker alien, boosts a soldier's nervous system, resulting in greater mobility and significant damage Resistance for multiple turns. Overdrive Serum can only be used in combat once per mission."
+TacticalText="<Bullet/> Overdrive Serum grants a significant boost to mobility, and a soldier on Overdrive Serum takes significantly less damage.\n<Bullet/> Overdrive Serum also makes the soldier temporarily immune to negative mental effects like panic and mind control."
 
 [X2MPData_Shell]
 arrMPMapFriendlyNames[9]="Underground"
