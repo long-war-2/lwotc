@@ -28,6 +28,11 @@ static function EventListenerReturn RecordShot(Object EventData, Object EventSou
 	local XComGameState_Unit 						UnitStateAbilityOwner;
 	local XComGameState_Ability 					AbilityStateHRP;
 
+	if(GameState.GetContext().InterruptionStatus == eInterruptionStatus_Interrupt)
+	{
+		return ELR_NoInterrupt;
+	}
+	
 	ThisEffect = XComGameState_Effect_LastShotDetails(CallbackData);
 	if (ThisEffect == None)
 	{

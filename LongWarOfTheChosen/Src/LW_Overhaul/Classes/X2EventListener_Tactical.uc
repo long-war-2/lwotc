@@ -903,6 +903,11 @@ static function EventListenerReturn OnAbilityActivated(Object EventData, Object 
 	local float DetectionRadius;
 	local int Modifier;
 
+
+	if(GameState.GetContext().InterruptionStatus == eInterruptionStatus_Interrupt)
+	{
+		return ELR_NoInterrupt;
+	}
 	//ActivatedAbilityStateContext = XComGameStateContext_Ability(GameState.GetContext());
 	ActivatedAbilityState = XComGameState_Ability(EventData);
 	UnitState = XComGameState_Unit(EventSource);
