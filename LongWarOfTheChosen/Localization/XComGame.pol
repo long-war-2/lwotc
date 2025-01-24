@@ -5910,9 +5910,9 @@ LocPromotionPopupText="<Bullet/> Mściciel nie zostanie aktywowany, jeśli ta je
 [Predator_LW X2AbilityTemplate]
 LocFriendlyName="Predator"
 LocFlyOverText="Predator"
-LocLongDescription="Twoje ataki dystansowe zyskują <Ability:PREDATOR_AIM_BONUS/> dodatkowej celności i <Ability:PREDATOR_CRIT_BONUS/> dodatkowej szansy na trafienie krytyczne przeciwko wrogom, którzy są oskrzydleni lub poza osłoną."
-LocHelpText="Twoje ataki dystansowe zyskują <Ability:PREDATOR_AIM_BONUS/> dodatkowej celności i <Ability:PREDATOR_CRIT_BONUS/> dodatkowej szansy na trafienie krytyczne przeciwko wrogom, którzy są oskrzydleni lub poza osłoną."
-LocPromotionPopupText="<Bullet/> Twoje ataki dystansowe zyskują <Ability:PREDATOR_AIM_BONUS/> dodatkowej celności i <Ability:PREDATOR_CRIT_BONUS/> dodatkowej szansy na trafienie krytyczne przeciwko wrogom, którzy są oskrzydleni lub poza osłoną.<br/>"
+LocLongDescription="Twoje ataki dystansowe zyskują <Ability:PREDATOR_AIM_BONUS_LW/> dodatkowej celności i <Ability:PREDATOR_CRIT_BONUS_LW/> dodatkowej szansy na trafienie krytyczne przeciwko wrogom, którzy są oskrzydleni lub poza osłoną."
+LocHelpText="Twoje ataki dystansowe zyskują <Ability:PREDATOR_AIM_BONUS_LW/> dodatkowej celności i <Ability:PREDATOR_CRIT_BONUS_LW/> dodatkowej szansy na trafienie krytyczne przeciwko wrogom, którzy są oskrzydleni lub poza osłoną."
+LocPromotionPopupText="<Bullet/> Twoje ataki dystansowe zyskują <Ability:PREDATOR_AIM_BONUS_LW/> dodatkowej celności i <Ability:PREDATOR_CRIT_BONUS_LW/> dodatkowej szansy na trafienie krytyczne przeciwko wrogom, którzy są oskrzydleni lub poza osłoną.<br/>"
 
 [Stiletto_LW X2AbilityTemplate]
 LocFriendlyName="Stiletto"

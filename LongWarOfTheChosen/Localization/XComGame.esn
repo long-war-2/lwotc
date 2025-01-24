@@ -6538,9 +6538,9 @@ LocPromotionPopupText="<Bullet/> Avenger no se activará si recibes un disparo e
 LocFriendlyName="Depredador"
 LocFlyOverText="Depredador"
 ; LWOTC translated
-LocLongDescription="Tus ataques a distancia adquieren <Ability:PREDATOR_AIM_BONUS/> de bonus de acierto y <Ability:PREDATOR_CRIT_BONUS/> de bonus a la probabilidad crítica contra enemigos flanqueados o fuera de cobertura."
-LocHelpText="Tus ataques a distancia adquieren <Ability:PREDATOR_AIM_BONUS/> de bonus de acierto y <Ability:PREDATOR_CRIT_BONUS/> de bonus a la probabilidad crítica contra enemigos flanqueados o fuera de cobertura."
-LocPromotionPopupText="<Bullet/> Tus ataques a distancia adquieren <Ability:PREDATOR_AIM_BONUS/> de bonus de acierto y <Ability:PREDATOR_CRIT_BONUS/> de bonus a la probabilidad crítica contra enemigos flanqueados o fuera de cobertura.<br/>"
+LocLongDescription="Tus ataques a distancia adquieren <Ability:PREDATOR_AIM_BONUS_LW/> de bonus de acierto y <Ability:PREDATOR_CRIT_BONUS_LW/> de bonus a la probabilidad crítica contra enemigos flanqueados o fuera de cobertura."
+LocHelpText="Tus ataques a distancia adquieren <Ability:PREDATOR_AIM_BONUS_LW/> de bonus de acierto y <Ability:PREDATOR_CRIT_BONUS_LW/> de bonus a la probabilidad crítica contra enemigos flanqueados o fuera de cobertura."
+LocPromotionPopupText="<Bullet/> Tus ataques a distancia adquieren <Ability:PREDATOR_AIM_BONUS_LW/> de bonus de acierto y <Ability:PREDATOR_CRIT_BONUS_LW/> de bonus a la probabilidad crítica contra enemigos flanqueados o fuera de cobertura.<br/>"
 ; End translated
 
 [Stiletto_LW X2AbilityTemplate]

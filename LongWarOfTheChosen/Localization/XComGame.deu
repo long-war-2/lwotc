@@ -5847,9 +5847,9 @@ LocPromotionPopupText="<Bullet/> Rächer wird nicht ausgelöst, wenn diese Einhe
 [Predator_LW X2AbilityTemplate]
 LocFriendlyName="Jäger"
 LocFlyOverText="Jäger"
-LocLongDescription="Deine Fernkampfangriffe erhalten +<Ability:PREDATOR_AIM_BONUS/> % Zielgenauigkeit und +<Ability:PREDATOR_CRIT_BONUS/> % kritische Trefferchance auf flankierte oder ungedeckte Feinde."
-LocHelpText="Deine Fernkampfangriffe erhalten +<Ability:PREDATOR_AIM_BONUS/> % Zielgenauigkeit und +<Ability:PREDATOR_CRIT_BONUS/> % kritische Trefferchance auf flankierte oder ungedeckte Feinde."
-LocPromotionPopupText="<Bullet/> Deine Fernkampfangriffe erhalten +<Ability:PREDATOR_AIM_BONUS/> % Zielgenauigkeit und +<Ability:PREDATOR_CRIT_BONUS/> % kritische Trefferchance auf flankierte oder ungedeckte Feinde.<br/>"
+LocLongDescription="Deine Fernkampfangriffe erhalten +<Ability:PREDATOR_AIM_BONUS_LW/> % Zielgenauigkeit und +<Ability:PREDATOR_CRIT_BONUS_LW/> % kritische Trefferchance auf flankierte oder ungedeckte Feinde."
+LocHelpText="Deine Fernkampfangriffe erhalten +<Ability:PREDATOR_AIM_BONUS_LW/> % Zielgenauigkeit und +<Ability:PREDATOR_CRIT_BONUS_LW/> % kritische Trefferchance auf flankierte oder ungedeckte Feinde."
+LocPromotionPopupText="<Bullet/> Deine Fernkampfangriffe erhalten +<Ability:PREDATOR_AIM_BONUS_LW/> % Zielgenauigkeit und +<Ability:PREDATOR_CRIT_BONUS_LW/> % kritische Trefferchance auf flankierte oder ungedeckte Feinde.<br/>"
 
 [Stiletto_LW X2AbilityTemplate]
 LocFriendlyName="Stiletto"

@@ -6275,9 +6275,9 @@ LocPromotionPopupText="<Bullet/> 本單位被射擊時復仇者不會觸發。<b
 LocFriendlyName="捕食者"
 LocFlyOverText="捕食者"
 ; LWOTC Needs Translation (2)
-LocLongDescription="對側翼敵人的遠程攻擊獲得<Ability:PREDATOR_AIM_BONUS/>命中以及<Ability:PREDATOR_CRIT_BONUS/>暴擊率加成。"
-LocHelpText="對側翼敵人的遠程攻擊獲得<Ability:PREDATOR_AIM_BONUS/>命中以及<Ability:PREDATOR_CRIT_BONUS/>暴擊率加成。"
-LocPromotionPopupText="<Bullet/> 對側翼敵人的遠程攻擊獲得<Ability:PREDATOR_AIM_BONUS/>命中以及<Ability:PREDATOR_CRIT_BONUS/>暴擊率加成。<br/>"
+LocLongDescription="對側翼敵人的遠程攻擊獲得<Ability:PREDATOR_AIM_BONUS_LW/>命中以及<Ability:PREDATOR_CRIT_BONUS_LW/>暴擊率加成。"
+LocHelpText="對側翼敵人的遠程攻擊獲得<Ability:PREDATOR_AIM_BONUS_LW/>命中以及<Ability:PREDATOR_CRIT_BONUS_LW/>暴擊率加成。"
+LocPromotionPopupText="<Bullet/> 對側翼敵人的遠程攻擊獲得<Ability:PREDATOR_AIM_BONUS_LW/>命中以及<Ability:PREDATOR_CRIT_BONUS_LW/>暴擊率加成。<br/>"
 ; End Translation (2)
 
 [Stiletto_LW X2AbilityTemplate]

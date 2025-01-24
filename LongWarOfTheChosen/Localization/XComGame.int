@@ -6517,9 +6517,9 @@ LocPromotionPopupText="<Bullet/> Avenger will not activate if this unit is shot 
 LocFriendlyName="Predator"
 LocFlyOverText="Predator"
 ; LWOTC Needs Translation (2)
-LocLongDescription="Your ranged attacks gain <Ability:PREDATOR_AIM_BONUS/> bonus aim and <Ability:PREDATOR_CRIT_BONUS/> bonus critical chance against enemies that are flanked or out of cover."
-LocHelpText="Your ranged attacks gain <Ability:PREDATOR_AIM_BONUS/> bonus aim and <Ability:PREDATOR_CRIT_BONUS/> bonus critical chance against enemies that are flanked or out of cover."
-LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:PREDATOR_AIM_BONUS/> bonus aim and <Ability:PREDATOR_CRIT_BONUS/> bonus critical chance against enemies that are flanked or out of cover.<br/>"
+LocLongDescription="Your ranged attacks gain <Ability:PREDATOR_AIM_BONUS_LW/> bonus aim and <Ability:PREDATOR_CRIT_BONUS_LW/> bonus critical chance against enemies that are flanked or out of cover."
+LocHelpText="Your ranged attacks gain <Ability:PREDATOR_AIM_BONUS_LW/> bonus aim and <Ability:PREDATOR_CRIT_BONUS_LW/> bonus critical chance against enemies that are flanked or out of cover."
+LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:PREDATOR_AIM_BONUS_LW/> bonus aim and <Ability:PREDATOR_CRIT_BONUS_LW/> bonus critical chance against enemies that are flanked or out of cover.<br/>"
 ; End Translation (2)
 
 [Stiletto_LW X2AbilityTemplate]

@@ -297,10 +297,10 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'APEX_PREDATOR_BASE_PANIC_CHANCE':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.APEX_PREDATOR_BASE_PANIC_CHANCE + class'X2AbilityToHitCalc_PanicCheck'.default.BaseValue);
 			return true;
-		case 'PREDATOR_AIM_BONUS':
+		case 'PREDATOR_AIM_BONUS_LW':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.PREDATOR_AIM_BONUS);
 			return true;
-		case 'PREDATOR_CRIT_BONUS':
+		case 'PREDATOR_CRIT_BONUS_LW':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.PREDATOR_CRIT_BONUS);
 			return true;
 		case 'SAVIOR_BONUS_HEAL':
