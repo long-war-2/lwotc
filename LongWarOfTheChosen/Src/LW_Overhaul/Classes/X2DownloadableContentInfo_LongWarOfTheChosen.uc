@@ -1830,15 +1830,16 @@ static function GetSpawnDistributionList(
 	out array<name> GoodUnits,
 	out array<name> BadUnits)
 {
-	local SpawnDistributionList CurrentList;
+	//local SpawnDistributionList CurrentList;
 	local SpawnDistributionListEntry CurrentListEntry;
 	local XComTacticalMissionManager MissionManager;
-	local name SpawnListID, SitrepName;
+	local name SpawnListID, SitrepName, CurrentSpawnList, SitrepEncounterList;
 	local array<name> SitrepListNames;
 	local int idx, index;
 	local XComGameState_HeadquartersXCom XComHQ;
 	local X2CharacterTemplateManager TemplateManager;
 	local X2CharacterTemplate CharacterTemplate;
+	local array<name> SpawnListsToCheck;
 
 	
 	TemplateManager = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
@@ -1881,6 +1882,7 @@ static function GetSpawnDistributionList(
 
 	SitRepListNames = GetSitRepListNames(MissionState);
 
+	SpawnListsToCheck.AddItem(SpawnListID);
 
 	`LWDiversityTrace("Using spawn distribution list " $ SpawnListID);
 
@@ -1888,18 +1890,31 @@ static function GetSpawnDistributionList(
 	{
 		`LWDiversityTrace("Adding Sitrep Spawn List" @SitrepName);
 	}
+
+	foreach SitRepListNames (SitrepEncounterList)
+	{
+		SpawnListsToCheck.AddItem(SitrepEncounterList);
+	}
+	
+
 	
 	// Build a merged list of all spawn distribution list entries that satisfy the selected
 	// list ID and force level.
-	foreach MissionManager.SpawnDistributionLists(CurrentList)
+	foreach SpawnListsToCheck(CurrentSpawnList)
 	{
-		if (CurrentList.ListID == SpawnListID || SitrepListNames.Find(CurrentList.ListID) != INDEX_NONE)
+		index = MissionManager.SpawnDistributionLists.Find('ListID', CurrentSpawnList);
+
+		`LWDiversityTrace("Checking list:"@MissionManager.SpawnDistributionLists[index].ListID);
+
+		if ((MissionManager.SpawnDistributionLists[index].ListID == SpawnListID || SitrepListNames.Find(MissionManager.SpawnDistributionLists[index].ListID) != INDEX_NONE))
 		{
-			foreach CurrentList.SpawnDistribution(CurrentListEntry)
+			`LWDiversityTrace("List Match:" @MissionManager.SpawnDistributionLists[index].ListID);
+			foreach MissionManager.SpawnDistributionLists[index].SpawnDistribution(CurrentListEntry)
 			{
+				`LWDiversityTrace("Checking entry:" @CurrentListEntry.Template @CurrentListEntry.MinForceLevel @ CurrentListEntry.MaxForceLevel @CurrentListEntry.MaxCharactersPerGroup @CurrentListEntry.SpawnWeight);
 				if (ForceLevel >= CurrentListEntry.MinForceLevel && ForceLevel <= CurrentListEntry.MaxForceLevel)
 				{
-					
+					`LWDiversityTrace("Force Level Match. Current FL:" @ForceLevel $"Min FL of entry:" @CurrentListEntry.MinForceLevel @" Max FL of current entry:" @CurrentListEntry.MaxForceLevel);
 					if(GoodUnits.Find(CurrentListEntry.Template) == INDEX_NONE)
 					{
 						if(BadUnits.Find(CurrentListEntry.Template) == INDEX_NONE)
@@ -1911,7 +1926,7 @@ static function GetSpawnDistributionList(
 									// Add check for tech requirements
 								if(XComHQ.MeetsObjectiveRequirements(CharacterTemplate.SpawnRequirements.RequiredObjectives) == true && XCOMHQ.MeetsTechRequirements(CharacterTemplate.SpawnRequirements.RequiredTechs))
 								{
-									//`LWDiversityTrace("Adding " $ CurrentListEntry.Template $ " to the merged spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
+									`LWDiversityTrace("Adding " $ CurrentListEntry.Template $ " to known good units and spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
 									SpawnList.AddItem(CurrentListEntry);
 									GoodUnits.AddItem(CurrentListEntry.Template);
 								}
@@ -1933,8 +1948,11 @@ static function GetSpawnDistributionList(
 						// check if unit already present  - duplicate combination
 						index = SpawnList.find('Template', CurrentListEntry.Template);
 
+						`LWDiversityTrace("Index value:" @index);
+
 						while(index != INDEX_NONE)
 						{
+							`LWDiversityTrace("Current List with entry: " $MissionManager.SpawnDistributionLists[index].ListID);
 							`LWDiversityTrace("Combining entries for " $ CurrentListEntry.Template);
 							CurrentListEntry.SpawnWeight += SpawnList[index].SpawnWeight;
 							SpawnList.remove(index, 1);
@@ -1948,6 +1966,7 @@ static function GetSpawnDistributionList(
 			}
 		}
 	}
+	`LWDiversityTrace("Final Spawnlist length:" @Spawnlist.Length);
 }
 
 // Returns true if the pod is undersized
