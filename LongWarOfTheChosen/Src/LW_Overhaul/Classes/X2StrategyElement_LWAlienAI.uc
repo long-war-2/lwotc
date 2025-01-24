@@ -28,6 +28,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	return AIComponents;
 }
 
+// This function isn't actually used anywhere and wasn't used anywhere, and not adding it because current avatar balance is fine.
 static function ModifyAddFortressDoomTemplate()
 {
 	local X2StrategyElementTemplateManager TemplateMgr;
