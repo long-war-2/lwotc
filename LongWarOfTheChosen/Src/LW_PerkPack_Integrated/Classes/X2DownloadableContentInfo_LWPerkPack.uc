@@ -270,6 +270,12 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'LICKYOURWOUNDS_MAXHEALAMOUNT':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.LICKYOURWOUNDS_MAXHEALAMOUNT);
 			return true;
+		case 'ANATOMY_CRIT_TAG':
+			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.ANATOMY_CRIT);
+			return true;
+		case 'ANATOMY_PIERCE_TAG':
+			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.ANATOMY_ARMOR_PIERCE);
+			return true;	
 		case 'PRESERVATION_DEFENSE_BONUS':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.PRESERVATION_DEFENSE_BONUS);
 			return true;

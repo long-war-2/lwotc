@@ -7938,9 +7938,9 @@ LocPromotionPopupText=""
 [Anatomy_LW X2AbilityTemplate]
 LocFriendlyName="Anatomy"
 LocFlyOverText="Anatomy"
-LocLongDescription="You know exactly where to strike to cause the most damage. You gain +15% Critical Chance and 2 Armor Pierce on all attacks."
-LocHelpText="You gain bonuses to Critical Chance and Armor Pierce."
-LocPromotionPopupText="<Bullet/> This is an unconditional passive bonus.\n<Bullet/> The Armor Pierce bonus will not show on attack previews, but it will function when the attack lands."
+LocLongDescription="Gain +<Ability:ANATOMY_CRIT_TAG> critical chance and +<Ability:ANATOMY_PIERCE_TAG> armor piercing."
+LocHelpText="Gain +<Ability:ANATOMY_CRIT_TAG> critical chance and +<Ability:ANATOMY_PIERCE_TAG> armor piercing."
+LocPromotionPopupText="<Bullet> Applies to all attacks.<br><Bullet> Passive."
 
 [ScoutScanner_LW X2AbilityTemplate]
 LocFriendlyName="Reconnoiter"

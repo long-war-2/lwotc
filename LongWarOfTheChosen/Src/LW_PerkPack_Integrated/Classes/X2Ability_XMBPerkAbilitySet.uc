@@ -144,6 +144,9 @@ var config int FocusedDefenseDefense, FocusedDefenseDodge;
 
 var config array<name> LICK_YOUR_WOUNDS_ALLOWED_ABILITIES;
 
+var config int ANATOMY_CRIT;
+var config int ANATOMY_ARMOR_PIERCE;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -4129,7 +4132,7 @@ static function X2AbilityTemplate CreateBonusChargesAbility()
 static function X2AbilityTemplate AddAnatomyAbility()
 {
 	local X2AbilityTemplate					Template;
-	local X2Effect_PersistentStatChange		AnatomyEffect;
+	local X2Effect_Anatomy					Effect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Anatomy_LW');	
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
@@ -4143,12 +4146,11 @@ static function X2AbilityTemplate AddAnatomyAbility()
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;
 
-	AnatomyEffect = new class'X2Effect_PersistentStatChange';
-	AnatomyEffect.BuildPersistentEffect(1,true,false);
-	AnatomyEffect.SetDisplayInfo (ePerkBuff_Passive,Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName); 
-	AnatomyEffect.AddPersistentStatChange(eStat_CritChance, 15);
-	AnatomyEffect.AddPersistentStatChange(eStat_ArmorPiercing, 2);
-	Template.AddTargetEffect(AnatomyEffect);
+	Effect = new class'X2Effect_Anatomy';
+	Effect.CritBonus = default.ANATOMY_CRIT;
+	Effect.PierceBonus = default.ANATOMY_ARMOR_PIERCE;
+	Effect.BuildPersistentEffect(1, true, false);
+	Template.AddTargetEffect(Effect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
