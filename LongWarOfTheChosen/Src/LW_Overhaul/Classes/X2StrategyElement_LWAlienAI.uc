@@ -70,7 +70,7 @@ static function AddFortressDoom()
 
 	if(MissionState.Doom >= 2)
 	{
-		`LWTrace("Triggering Avatar Project reveal...");
+		`LWTrace("LW Doom counter triggering Avatar Project reveal...");
 		class'XComGameState_Objective'.static.StartObjectiveByName(NewGameState, 'LW_T2_M1_N2_RevealAvatarProject');
 		`XEVENTMGR.TriggerEvent('StartAvatarProjectReveal');
 	}

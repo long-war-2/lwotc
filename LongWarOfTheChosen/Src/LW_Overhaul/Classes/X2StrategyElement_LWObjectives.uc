@@ -170,7 +170,7 @@ static function X2DataTemplate CreateLW_T2_M0_S5_CompleteActivityTemplate()
 static function TriggerStartAvatarProject(XComGameState NewGameState, XComGameState_Objective ObjectiveState)
 {
 	local XComGameState_HeadquartersAlien AlienHQ;
-	`LWTrace("Trigger start avatar project reveal");
+	`LWTrace("Trigger start avatar project reveal from region lib.");
 
 	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
 	AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
