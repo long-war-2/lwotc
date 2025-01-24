@@ -234,6 +234,7 @@ var config bool SERIAL_DAMAGE_FALLOFF;
 var config int FUSION_SWORD_FIRE_CHANCE;
 var config int KILLZONE_CONE_LENGTH;
 var config int KILLZONE_CONE_WIDTH;
+var config int BLUESCREEN_DISORIENT_CHANCE;
 
 var config int WORKSHOP_ENG_BONUS;
 
@@ -2657,6 +2658,8 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 	local X2GremlinTemplate GremlinTemplate;
 	local delegate<X2StrategyGameRulesetDataStructures.SpecialRequirementsDelegate> SpecialRequirement;
 	local X2Effect_Persistent Effect;
+	local X2Condition_UnitProperty Condition_UnitProperty;
+	local X2Effect_PersistentStatChange DisorientEffect;
 	local UIStatMarkup Markup;
 	// Reconfig Weapons and Weapon Schematics
 	WeaponTemplate = X2WeaponTemplate(Template);
@@ -3064,7 +3067,17 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		{
 			if (EquipmentTemplate.Abilities.Find('Bluescreen_Rounds_Ability_PP') == -1)
 			{
-				EquipmentTemplate.Abilities.AddItem('BluescreenRoundsDisorient');
+				DisorientEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect(,,false);
+
+				Condition_UnitProperty = new class'X2Condition_UnitProperty';
+				Condition_UnitProperty.ExcludeOrganic = true;
+				Condition_UnitProperty.IncludeWeakAgainstTechLikeRobot = true;
+				Condition_UnitProperty.TreatMindControlledSquadmateAsHostile = true;
+				Condition_UnitProperty.FailOnNonUnits = true;
+				DisorientEffect.TargetConditions.AddItem(Condition_UnitProperty);
+
+				X2AmmoTemplate(EquipmentTemplate).TargetEffects.AddItem(DisorientEffect);
+
 				EquipmentTemplate.Abilities.AddItem('Bluescreen_Rounds_Ability_PP');
 			}
 		}
