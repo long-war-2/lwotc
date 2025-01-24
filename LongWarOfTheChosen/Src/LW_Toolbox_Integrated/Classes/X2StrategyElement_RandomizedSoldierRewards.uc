@@ -38,9 +38,9 @@ static function GenerateRandomSoldierReward(XComGameState_Reward RewardState, XC
 	local XComGameStateHistory History;
 	local XComGameState_Unit NewUnitState;
 	local XComGameState_WorldRegion RegionState;
-	local int idx, NewRank;
-	local name nmCountry, SelectedClass;
-	local array<name> arrActiveTemplates;
+	local int idx, NewRank, i;
+	local name nmCountry, SelectedClass, NeededClass;
+	local array<name> arrActiveTemplates, NeededClasses;
 	local X2SoldierClassTemplateManager ClassMgr;
 	local array<X2SoldierClassTemplate> arrClassTemplates;
 	local X2SoldierClassTemplate ClassTemplate;
@@ -76,9 +76,28 @@ static function GenerateRandomSoldierReward(XComGameState_Reward RewardState, XC
 	{
 		if (ClassTemplate.NuminDeck > 0)
 		{
-			arrActiveTemplates.AddItem(ClassTemplate.DataName);
+			for(i = 0; i < ClassTemplate.NumInDeck; ++i)
+			{
+				arrActiveTemplates.AddItem(ClassTemplate.DataName);
+			}
 		}
 	}
+	// weight towards needed ones by adding to deck.
+	NeededClasses = `XCOMHQ.GetNeededSoldierClasses();
+
+	foreach NeededClasses (NeededClass)
+	{
+		ClassTemplate = ClassMgr.FindSoldierClassTemplate(NeededClass);
+
+		if (ClassTemplate.NuminDeck > 0)
+		{
+			for(i = 0; i < ClassTemplate.NumInDeck; ++i)
+			{
+				arrActiveTemplates.AddItem(ClassTemplate.DataName);
+			}
+		}
+	}
+
 	if (arrActiveTemplates.length > 0)
 	{
 		SelectedClass = arrActiveTemplates[`SYNC_RAND_STATIC(arrActiveTemplates.length)];

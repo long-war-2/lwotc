@@ -472,9 +472,9 @@ function GenerateRandomSoldierReward(XComGameState_Reward RewardState, XComGameS
 	local XComGameStateHistory History;
 	local XComGameState_Unit NewUnitState;
 	local XComGameState_WorldRegion RegionState;
-	local int idx, NewRank;
-	local name nmCountry, SelectedClass;
-	local array<name> arrActiveTemplates;
+	local int idx, i, NewRank;
+	local name nmCountry, SelectedClass, NeededClass;
+	local array<name> arrActiveTemplates, NeededClasses;
 	local X2SoldierClassTemplateManager ClassMgr;
 	local array<X2SoldierClassTemplate> arrClassTemplates;
 	local X2SoldierClassTemplate ClassTemplate;
@@ -510,9 +510,28 @@ function GenerateRandomSoldierReward(XComGameState_Reward RewardState, XComGameS
 	{
 		if (ClassTemplate.NuminDeck > 0)
 		{
-			arrActiveTemplates.AddItem(ClassTemplate.DataName);
+			for(i = 0; i < ClassTemplate.NumInDeck; ++i)
+			{
+				arrActiveTemplates.AddItem(ClassTemplate.DataName);
+			}
 		}
 	}
+	// weight towards needed ones by adding to deck.
+	NeededClasses = `XCOMHQ.GetNeededSoldierClasses();
+
+	foreach NeededClasses (NeededClass)
+	{
+		ClassTemplate = ClassMgr.FindSoldierClassTemplate(NeededClass);
+
+		if (ClassTemplate.NuminDeck > 0)
+		{
+			for(i = 0; i < ClassTemplate.NumInDeck; ++i)
+			{
+				arrActiveTemplates.AddItem(ClassTemplate.DataName);
+			}
+		}
+	}
+
 	if (arrActiveTemplates.length > 0)
 	{
 		SelectedClass = arrActiveTemplates[`SYNC_RAND(arrActiveTemplates.length)];
@@ -576,7 +595,6 @@ function UpdateRewardTemplate(X2StrategyElementTemplate Template, int Difficulty
 			break;
 		case 'Reward_Soldier':
 			RewardTemplate.GenerateRewardFn = GenerateRandomSoldierReward;
-			`LWTrace("Updating template" @RewardTemplate.name @"With GenerateRandomSoldierReward");
 			break;
 		case 'Reward_FindFaction':
 			UpdateFactionSoldierReward(RewardTemplate, class'X2LWCovertActionsModTemplate'.default.FIND_SECOND_FACTION_REQ_RANK - 1);
