@@ -1720,11 +1720,6 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 
 				SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList, bIsRNF);
 				`LWDiversityTrace("Selected new follower for position" @idx @":" @ SpawnInfo.SelectedCharacterTemplateNames[idx]);
-				if(CurrentCharacterTemplate == none)
-				{
-					`LWDiversityTrace("Rerolling nonexistant Character Template.");
-					continue;
-				}
 
 				if(default.bNerfFrostLegion 
 					&& (InStr(CAPS(SpawnInfo.SelectedCharacterTemplateNames[k]), "FROST") != INDEX_NONE || InStr(CAPS(SpawnInfo.SelectedCharacterTemplateNames[k]), "CRYO") != INDEX_NONE))
@@ -1933,19 +1928,20 @@ static function GetSpawnDistributionList(
 					}
 					else
 					{
-						//`LWDiversityTrace("Adding " $ CurrentListEntry.Template $ " to the merged spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
+						
 
 						// check if unit already present  - duplicate combination
 						index = SpawnList.find('Template', CurrentListEntry.Template);
 
 						while(index != INDEX_NONE)
 						{
+							`LWDiversityTrace("Combining entries for " $ CurrentListEntry.Template);
 							CurrentListEntry.SpawnWeight += SpawnList[index].SpawnWeight;
 							SpawnList.remove(index, 1);
 							index = SpawnList.find('Template', CurrentListEntry.Template);
 
 						}
-
+						`LWDiversityTrace("Adding " $ CurrentListEntry.Template $ " to the merged spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
 						SpawnList.AddItem(CurrentListEntry);
 					}
 				}
@@ -2322,7 +2318,7 @@ static final function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnIn
 			continue;
 
 		// if entry out of force level range.
-		if (ForceLevel < SpawnEntry.MinForceLevel && ForceLevel > SpawnEntry.MaxForceLevel)
+		if (ForceLevel < SpawnEntry.MinForceLevel || ForceLevel > SpawnEntry.MaxForceLevel)
 		{
 			continue;
 		}
