@@ -4150,6 +4150,7 @@ static function X2AbilityTemplate AddAnatomyAbility()
 	Effect.CritBonus = default.ANATOMY_CRIT;
 	Effect.PierceBonus = default.ANATOMY_ARMOR_PIERCE;
 	Effect.BuildPersistentEffect(1, true, false);
+	Effect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocHelpText, Template.IconImage,,, Template.AbilitySourceName);
 	Template.AddTargetEffect(Effect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
