@@ -183,14 +183,16 @@ function XComGameState_WorldRegion FindBestReinforceOrigRegion(XComGameState_Wor
 	local XComGameState_WorldRegion OrigRegionState, BestOrigRegionState;
 	local XComGameState_WorldRegion_LWStrategyAI OrigRegionalAI, DestRegionalAI;
 	local XComGameState_LWAlienActivity ActivityState;
-	local XComGameState_MissionSite MissionState;
+	//local XComGameState_MissionSite MissionState;
 	local float CurrentDelta;
+	local bool badRegion;
 
 	History = `XCOMHISTORY;
 	`LWTRACE ("FindBestReinforceOrigRegion: Search for source started for reinforcing" @ DestRegionState.GetMyTemplate().DisplayName);
 
 	foreach DestRegionState.LinkedRegions(OrigRegionRef)
 	{
+		badRegion = false;
 		OrigRegionState = XComGameState_WorldRegion(History.GetGameStateForObjectID(OrigRegionRef.ObjectID));
 		//`LWTRACE ("Reinforcements Origin Testing of" @ OrigRegionState.GetMyTemplate().DisplayName);
 
@@ -209,14 +211,22 @@ function XComGameState_WorldRegion FindBestReinforceOrigRegion(XComGameState_Wor
 		{
 			// No, you're reinforcing me, jerk!
 			if (ActivityState.GetMyTemplateName() == 'Reinforce' && OrigRegionState.GetReference() == Activitystate.PrimaryRegion && DestRegionState.GetReference() == ActivityState.SecondaryRegions[0])
-				continue;
+			{
+				badRegion = true;
+				break;
+			}
 
 			// Shut up; I'm invading
 			if (ActivityState.GetMyTemplateName() == 'Invasion' && OrigRegionState.GetReference() == ActivityState.SecondaryRegions[0])
-				continue;
+			{
+				badRegion = true;
+				break;
+			}
 		}
 
 		// if the rebels are in range of a plot site, I'm staying right here
+		// Tedster - intentionally not fixing this one, so just yeeting it for performance.
+		/* 
 		foreach History.IterateByClassType(class'XComGameState_MissionSite', MissionState)
 		{
 			if (MissionState.GetMissionSource().DataName == 'MissionSource_Blacksite' || MissionState.GetMissionSource().DataName == 'MissionSource_Forge')
@@ -229,7 +239,11 @@ function XComGameState_WorldRegion FindBestReinforceOrigRegion(XComGameState_Wor
 				if (MissionState.Region == OrigRegionState.GetReference() && OrigRegionState.ResistanceLevel >= eResLevel_Unlocked && OrigRegionalAI.LocalAlertLevel <= 5)
 					continue;
 			}
-		}
+		} */
+
+		// Short circuit if region has an activity we don't want to pull from.
+		if(badRegion)
+			continue;
 		
 		// Do I have any to spare
 		CurrentDelta = OrigRegionalAI.LocalAlertLevel - GetDesiredAlertLevel (OrigRegionState) - GetNumReinforceActivitiesOriginatingInRegion(OrigRegionRef);
