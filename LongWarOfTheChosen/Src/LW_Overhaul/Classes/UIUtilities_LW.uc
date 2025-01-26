@@ -42,6 +42,7 @@ var localized string m_strBullet;
 var localized string m_strExpectedInfiltration;
 var localized string m_strInfiltrationBoostCost;
 
+var localized string m_StrStripUpgrade;
 var localized string m_strStripWeaponUpgrades;
 var localized string m_strStripWeaponUpgradesLower;
 var localized string m_strStripWeaponUpgradesConfirm;
@@ -861,6 +862,61 @@ simulated static function bool AddBtnToNavigatorAndSelect(UIScreen TheScreen, UI
 	}
 
 	return SelectionSet;
+}
+
+////////////////////////////////
+/// Removing weapon upgrades ///
+////////////////////////////////
+// Code "inspired" by BG's RemoveWeaponUpgradesWOTC
+
+static function RemoveWeaponUpgrade (UIArmory_WeaponUpgradeItem Slot)
+{
+	local UIArmory_WeaponUpgrade UpgradeScreen;
+	local X2WeaponUpgradeTemplate UpgradeTemplate;
+	local XComGameState_Item Weapon;
+
+	local XComGameState_Item UpgradeItem;
+	local XComGameState_Item NewWeapon;
+	local XComGameState_HeadquartersXCom XComHQ;
+	local XComGameStateContext_ChangeContainer ChangeContainer;
+	local XComGameState ChangeState;
+	local array<X2WeaponUpgradeTemplate> EquippedUpgrades;
+	local int i;
+
+	UpgradeScreen = UIArmory_WeaponUpgrade(Slot.Screen);
+	UpgradeTemplate = Slot.UpgradeTemplate;
+	Weapon = Slot.Weapon;
+
+	ChangeContainer = class'XComGameStateContext_ChangeContainer'.static.CreateEmptyChangeContainer("LW: Remove weapon upgrade");
+	ChangeState = `XCOMHISTORY.CreateNewGameState(true, ChangeContainer);
+	NewWeapon = XComGameState_Item(ChangeState.ModifyStateObject(class'XComGameState_Item', Weapon.ObjectID));
+	EquippedUpgrades = NewWeapon.GetMyWeaponUpgradeTemplates();
+	
+	for (i = 0; i < EquippedUpgrades.Length; i++)
+	{
+		if (EquippedUpgrades[i].DataName == UpgradeTemplate.DataName)
+		{
+			EquippedUpgrades.Remove(i, 1);
+			break;
+		}
+	}
+	
+	NewWeapon.WipeUpgradeTemplates();
+	for (i = 0; i < EquippedUpgrades.Length; i++)
+	{
+		NewWeapon.ApplyWeaponUpgradeTemplate(EquippedUpgrades[i], i);
+	}
+	
+	XComHQ = class'UIUtilities_Strategy'.static.GetXComHQ();
+	XComHQ = XComGameState_HeadquartersXCom(ChangeState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
+
+	UpgradeItem = UpgradeTemplate.CreateInstanceFromTemplate(ChangeState);
+	XComHQ.PutItemInInventory(ChangeState, UpgradeItem);
+	
+	`GAMERULES.SubmitGameState(ChangeState);
+
+	UpgradeScreen.UpdateSlots();
+	UpgradeScreen.WeaponStats.PopulateData(Slot.Weapon);
 }
 
 defaultproperties

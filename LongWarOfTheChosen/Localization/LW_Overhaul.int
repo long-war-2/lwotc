@@ -715,6 +715,7 @@ m_strBullet="•"
 m_strExpectedInfiltration="After Boost"
 m_strInfiltrationBoostCost="Cost"
 
+m_StrStripUpgrade=STRIP UPGRADE
 m_strStripWeaponUpgrades=STRIP ALL WEAPON UPGRADES
 m_strStripWeaponUpgradesLower=Strip All Weapon Upgrades
 ; LWOTC Needs Translation

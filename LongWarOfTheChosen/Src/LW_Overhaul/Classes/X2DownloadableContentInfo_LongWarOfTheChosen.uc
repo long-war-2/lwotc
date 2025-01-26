@@ -258,6 +258,7 @@ static event OnPostTemplatesCreated()
 	`Log(">>>> LW_Overhaul OnPostTemplates");
 	class'LWTemplateMods_Utilities'.static.UpdateTemplates();
 	UpdateWeaponAttachmentsForCoilgun();
+	PatchUIWeaponUpgradeItem();
 	UpdateFirstMissionTemplate();
 	AddObjectivesToParcels();
 	UpdateChosenActivities();
@@ -272,6 +273,19 @@ static event OnPostTemplatesCreated()
 	EditModdedRocketAbilities();
 	UpdateSkulljackAllShooterEffectExclusions();
 	class'X2Ability_PerkPackAbilitySet2'.static.AddEffectsToGrenades();
+}
+
+// Borrowed from Xynamek / Prototype Armory code
+static protected function PatchUIWeaponUpgradeItem()
+{
+    local UIArmory_WeaponUpgradeItem ItemCDO;
+
+    ItemCDO = UIArmory_WeaponUpgradeItem(class'XComEngine'.static.GetClassDefaultObject(class'UIArmory_WeaponUpgradeItem'));
+    ItemCDO.bProcessesMouseEvents = false;
+
+     // UIArmory_WeaponUpgradeItem doesn't need to process input - the BG does it
+     // However, if that flag is set then we don't get mouse events for children
+     // which breaks the "drop item" button
 }
 
 static function ModCompatibilityConfig()
