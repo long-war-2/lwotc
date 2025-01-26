@@ -1773,7 +1773,13 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 
 	if (Template.DataName == 'HunkerDown')
 	{
-		Template.AbilityTargetEffects.length = 0;
+		for (k = Template.AbilityTargetEffects.Length - 1; k >= 0; k--)
+        {
+            if (ClassIsChildOf(Template.AbilityTargetEffects[k].Class, class'X2Effect_PersistentStatChange') && X2Effect_Persistent(Template.AbilityTargetEffects[k]).EffectName == 'HunkerDown')
+            {
+                Template.AbilityTargetEffects.Remove(k, 1);
+            }
+        }
 		HunkerDownEffect = new class 'X2Effect_HunkerDown_LW';
 		HunkerDownEffect.EffectName = 'HunkerDown';
 		HunkerDownEffect.DuplicateResponse = eDupe_Refresh;
@@ -1781,14 +1787,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		HunkerDownEffect.SetDisplayInfo (ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage);
 		Template.AddTargetEffect(HunkerDownEffect);
 
-		//Replace the Aim effect with a LW one
-		AimEffect = new class'X2Effect_SharpshooterAim_LW';
-		AimEffect.BuildPersistentEffect(2, false, true, false, eGameRule_PlayerTurnEnd);
-		AimEffect.SetDisplayInfo(ePerkBuff_Bonus, class'X2Ability_SharpshooterAbilitySet'.default.SharpshooterAimBonusName, class'X2Ability_SharpshooterAbilitySet'.default.SharpshooterAimBonusDesc, "img:///UILibrary_PerkIcons.UIPerk_aim");
-	
-		AbilityCondition = new class'X2Condition_AbilityProperty';
-		AbilityCondition.OwnerHasSoldierAbilities.AddItem('SharpshooterAim');
-		AimEffect.TargetConditions.AddItem(AbilityCondition);
+		// Aim effect moved to OPTC_SharpshooterAim
 
 		Template.AddTargetEffect(AimEffect);
 	}
