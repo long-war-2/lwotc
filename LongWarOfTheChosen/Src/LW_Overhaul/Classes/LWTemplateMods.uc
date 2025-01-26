@@ -1016,7 +1016,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	local X2Condition_AbilityProperty		AbilityCondition;
 	local X2Effect_RemoveEffectsByDamageType RemoveEffects;
 	local name 								HealType, AbilityName;
-	local X2Effect_SharpshooterAim_LW   	AimEffect;
+	//local X2Effect_SharpshooterAim_LW   	AimEffect;
 	local X2AbilityCooldown_Shared			CooldownShared;
 	local X2AbilityMultiTarget_Cone			ConeMultiTarget;
 	local X2AbilityCooldown_AllInstances 	AllInstancesCooldown;
@@ -1788,8 +1788,6 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		Template.AddTargetEffect(HunkerDownEffect);
 
 		// Aim effect moved to OPTC_SharpshooterAim
-
-		Template.AddTargetEffect(AimEffect);
 	}
 
 	if (Template.DataName == 'Fuse' && default.FUSE_COOLDOWN > 0)
