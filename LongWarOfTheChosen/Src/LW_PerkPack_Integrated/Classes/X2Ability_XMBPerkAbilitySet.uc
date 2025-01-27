@@ -3952,6 +3952,8 @@ static function X2AbilityTemplate MovingTarget()
 
 	// Create a conditional bonus
 	Effect = new class'X2Effect_MovingTarget_LW';
+	Effect.MT_DEFENSE = default.MOVING_TARGET_DEFENSE;
+	Effect.MT_DODGE = default.MOVING_TARGET_DODGE;
 
 	// Create the template using a helper function
 	return Passive('MovingTarget_LW', "img:///UILibrary_PerkIcons.UIPerk_lightningreflexes", false, Effect);
