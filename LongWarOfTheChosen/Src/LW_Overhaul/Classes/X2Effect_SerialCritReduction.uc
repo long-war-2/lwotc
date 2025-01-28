@@ -43,7 +43,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 
 	if (Damage_Falloff)
 	{
-		return -int(UnitVal.fValue);
+        return max(-int(UnitVal.fValue), (-CurrentDamage + 1));
 	}
 	return 0;
 }
