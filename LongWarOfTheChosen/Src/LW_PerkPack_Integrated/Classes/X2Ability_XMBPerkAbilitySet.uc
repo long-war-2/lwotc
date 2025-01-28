@@ -1754,7 +1754,9 @@ static function X2AbilityTemplate WatchThemRun()
     local X2Effect_AddOverwatchActionPoints   Effect;
     local X2Condition_UnitValue ValueCondition;
     local X2Effect_IncrementUnitValue IncrementEffect;
-	
+	local X2Effect_CoveringFire CoveringFireEffect;
+	local X2Condition_AbilityProperty CoveringFireCondition;
+
     // Effect granting an overwatch shot
 	Effect = new class'X2Effect_AddOverwatchActionPoints';
     
@@ -1789,6 +1791,14 @@ static function X2AbilityTemplate WatchThemRun()
 	IncrementEffect.NewValueToSet = 1; // This means increment by one -- stupid property name
 	IncrementEffect.CleanupType = eCleanup_BeginTurn;
     Template.AddTargetEffect(IncrementEffect);
+
+	CoveringFireEffect = new class'X2Effect_CoveringFire';
+	CoveringFireEffect.AbilityToActivate = 'OverwatchShot';
+	CoveringFireEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
+	CoveringFireCondition = new class'X2Condition_AbilityProperty';
+	CoveringFireCondition.OwnerHasSoldierAbilities.AddItem('CoveringFire');
+	CoveringFireEffect.TargetConditions.AddItem(CoveringFireCondition);
+	Template.AddTargetEffect(CoveringFireEffect);
 	
 	// Trigger abilities don't appear as passives. Add a passive ability icon.
 	AddIconPassive(Template);
