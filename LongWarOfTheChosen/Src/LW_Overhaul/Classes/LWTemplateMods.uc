@@ -1779,6 +1779,10 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
             {
                 Template.AbilityTargetEffects.Remove(k, 1);
             }
+			else if(ClassIsChildOf(Template.AbilityTargetEffects[k].Class, class'X2Effect_RemoveEffects'))
+			{
+                Template.AbilityTargetEffects.Remove(k, 1);
+            }
         }
 		HunkerDownEffect = new class 'X2Effect_HunkerDown_LW';
 		HunkerDownEffect.EffectName = 'HunkerDown';
