@@ -1032,6 +1032,7 @@ TacticalText="<Bullet/> Pistols can be much more than a sidearm in the hands of 
 FriendlyName="Laser Pistol"
 FriendlyNamePlural="Laser Pistols"
 UnknownUtilityCategory="Pistol"
+AbilityDescName="pistol"
 BriefSummary="Based on the advances in beam weapons tech we've achieved, this new pistol boasts a substantial improvement in power over our conventional pistol."
 TacticalText="<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Laser pistols are substantially more effective and accurate than their conventional precursors.\n<Bullet/> Pistols can be fired with a single action.\n<Bullet/> Soldiers can train several abilities that dramatically enhance their use of pistols.\n<Bullet/> Pistols lose accuracy at long ranges."
 
