@@ -2539,6 +2539,7 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
 	StatChangeEffect = new class'X2Effect_PersistentStatChange';
 	StatChangeEffect.AddPersistentStatChange(eStat_Offense, -15, modOP_Addition);
 	StatChangeEffect.BuildPersistentEffect(2, false, true, false, eGameRule_PlayerTurnBegin);
+	StatChangeEffect.duplicateResponse = eDupe_Refresh;
 	//StatChangeEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage);
 	Template.AddTargetEffect(StatChangeEffect);
 
