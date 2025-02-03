@@ -5734,7 +5734,7 @@ LocPromotionPopupText="<Bullet/> Make sure squadmates are clear of the blast zon
 
 ; LWOTC Needs Translation
 [HomingMine X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Shots against the mined target are guaranteed to hit.<br/><Bullet/> Homing Mine has 4 charges per mission.<br/><Bullet/> Homing Mine requires one action and does not end your turn.<br/>"
+LocPromotionPopupText="<Bullet/> Shots against the mined target are guaranteed to hit.<br/><Bullet/> Homing Mine has 3 charges per mission.<br/><Bullet/> Homing Mine requires one action and does not end your turn.<br/>"
 ; End Translation
 
 [Hero_Tracking X2AbilityTemplate]

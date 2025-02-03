@@ -5224,7 +5224,7 @@ LocHelpText="Zünde einen Umgebungssprengsatz, sodass er den doppelten Schaden i
 LocPromotionPopupText="<Bullet/> Sorge dafür, dass sich keine Truppmitglieder im Explosionsbereich befinden!<br/><Bullet/> Fernzündung erfordert <Ability:SelfAmmoCost/> Munitionspunkt(e) und hat eine Abklingzeit von <Ability:SelfCooldown/> Runde(n).<br/><Bullet/> Fernzündung hat <Ability:RemoteStartCharges/> Ladung(en) pro Mission.<br/>"
 
 [HomingMine X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Schüsse auf ein Ziel mit Mine sind garantierte Treffer.<br/><Bullet/> Zielsuchmine hat 4 Ladungen pro Mission.<br/><Bullet/> Zielsuchmine kostet eine Aktion und beendet nicht automatisch deine Runde.<br/>"
+LocPromotionPopupText="<Bullet/> Schüsse auf ein Ziel mit Mine sind garantierte Treffer.<br/><Bullet/> Zielsuchmine hat 3 Ladungen pro Mission.<br/><Bullet/> Zielsuchmine kostet eine Aktion und beendet nicht automatisch deine Runde.<br/>"
 
 [Hero_Tracking X2AbilityTemplate]
 LocFriendlyName="Spurenlesen"

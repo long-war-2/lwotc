@@ -5286,7 +5286,7 @@ LocHelpText="Zdetonuj ładunek wybuchowy, powodując, że zada on podwójne obra
 LocPromotionPopupText="<Bullet/> Upewnij się, że towarzysze z drużyny opuścili strefę wybuchu!<br/><Bullet/> Zdalne uruchomienie wymaga <Ability:SelfAmmoCost/> amunicji i wymaga <Ability:SelfCooldown_LW/> tur(y) odnowienia.<br/><Bullet/> Zdalne uruchamianie ma <Ability:RemoteStartCharges/> użycie(a) na misję.<br/>"
 
 [HomingMine X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Strzały w zaminowany cel gwarantują trafienie.<br/><Bullet/> Mina samonaprowadzająca ma 4 ładunki na misję.<br/><Bullet/> Mina samonaprowadzająca wymaga jednej akcji i nie kończy Twojej tury.<br/>"
+LocPromotionPopupText="<Bullet/> Strzały w zaminowany cel gwarantują trafienie.<br/><Bullet/> Mina samonaprowadzająca ma 3 ładunki na misję.<br/><Bullet/> Mina samonaprowadzająca wymaga jednej akcji i nie kończy Twojej tury.<br/>"
 
 [Hero_Tracking X2AbilityTemplate]
 LocFriendlyName="Śledzenie"
