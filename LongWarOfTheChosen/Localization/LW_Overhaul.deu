@@ -15,7 +15,7 @@ m_strMissionDifficulty_start="FEINDLICHE GRUNDAKTIVITÄT"
 
 [ProtectRegionEarly X2LWAlienActivityTemplate]
 ActivityName="ProtectRegion1Activity"
-ActivityObjectives[0]="Einen Hinweis finden"
+ActivityObjectives[0]="Befreiung: Starte die Befreiung der Region"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Wir haben einen möglichen Hinweis zu ADVENT-Aktivitäten gefunden. Wir sollten der Sache nachgehen.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="Wir haben einen möglichen Hinweis zu ADVENT-Aktivitäten gefunden. Wir sollten der Sache nachgehen.", MissionIndex=0)
