@@ -1282,6 +1282,7 @@ static function EventListenerReturn OnSerialKill(Object EventData, Object EventS
 {
 	local XComGameState_Unit ShooterState;
     local UnitValue UnitVal;
+	local XComGameState NewGameState;
 
 	ShooterState = XComGameState_Unit (EventSource);
 	if (ShooterState == none)
@@ -1289,8 +1290,15 @@ static function EventListenerReturn OnSerialKill(Object EventData, Object EventS
 		return ELR_NoInterrupt;
 	}
 
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Update Unit Serial Value");
+
+	ShooterState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', ShooterState.ObjectID));
+
 	ShooterState.GetUnitValue ('SerialKills', UnitVal);
 	ShooterState.SetUnitFloatValue ('SerialKills', UnitVal.fValue + 1.0, eCleanup_BeginTurn);
+
+	`GAMERULES.SubmitGameState(NewGameState);
+	
 	return ELR_NoInterrupt;
 }
 
