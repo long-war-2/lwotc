@@ -901,7 +901,7 @@ static function EventListenerReturn OnMonthEnd(Object EventData, Object EventSou
 	History = `XCOMHISTORY;
 	ResistanceHQ = XComGameState_HeadquartersResistance(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersResistance'));
 
-	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("");
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Add utility items to new recruits");
 
 	// Add utility items to each recruit
 	foreach ResistanceHQ.Recruits(UnitRef)
@@ -927,7 +927,7 @@ static function EventListenerReturn PostEndOfMonth(Object EventData, Object Even
 	local XComGameState_LWOutpost Outpost, NewOutpost;
 
 	History = `XCOMHISTORY;
-	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("");
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("LWOTC PostEndOfMonth");
 
 	`LWTrace("Running post end of month update");
 
@@ -944,7 +944,7 @@ static function EventListenerReturn PostEndOfMonth(Object EventData, Object Even
 		}
 		else
 		{
-			Outpost = XComGameState_LWOutpost(NewGameState.CreateStateObject(class'XComGameState_LWOutpost', Outpost.ObjectID));
+			Outpost = XComGameState_LWOutpost(NewGameState.ModifyStateObject(class'XComGameState_LWOutpost', Outpost.ObjectID));
 			NewGameState.AddStateObject(Outpost);
 		}
 

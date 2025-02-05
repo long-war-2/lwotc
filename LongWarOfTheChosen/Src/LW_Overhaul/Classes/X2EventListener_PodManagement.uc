@@ -60,7 +60,7 @@ static function EventListenerReturn SetPodManagerAlert(Object EventData, Object 
 	return ELR_NoInterrupt;
 }
 
-// Tedster - converted to ELD_Immediate instead of ELD_OnStateSubmitted
+// Tedster - Tried converting this to ELD_Immediate instead of ELD_OnStateSubmitted, broke things, there's probably other stuff I need to handle
 static function EventListenerReturn OnAlienTurnBegin(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
 	local XComGameState NewGameState;

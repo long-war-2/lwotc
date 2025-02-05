@@ -64,6 +64,7 @@ function EventListenerReturn OnAbilityActivated(Object EventData, Object EventSo
 					`Log("Roll to alert unit " @TargetedUnitState.ObjectID@ " taking sniper fire from " @ SourceUnitState.ObjectID @ "using sniper defense: " @ Roll @ " < "@MissShotAlertChance);
 					if(Roll < MissShotAlertChance)
 					{
+						// No New Gamestate is needed here because UnitAGainsKnowldegeOfUnitB calls UpdateAlertData on the unit which actually handles submitting the gamestate.
 						ThisUnitState.UnitAGainsKnowledgeOfUnitB(TargetedUnitState, SourceUnitState, GameState, eAC_TakingFire, false);
 					}
 				}

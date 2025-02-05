@@ -157,7 +157,7 @@ function RegisterSoldierTacticalToStrategy()
 	ThisObj = self;
 
 	//this should function for SimCombat as well
-	`XEVENTMGR.RegisterForEvent(ThisObj, 'SoldierTacticalToStrategy', OnSoldierTacticalToStrategy, ELD_OnStateSubmitted,,, true);
+	`XEVENTMGR.RegisterForEvent(ThisObj, 'SoldierTacticalToStrategy', OnSoldierTacticalToStrategy, ELD_Immediate,,, true);
 }
 
 simulated function EventListenerReturn OnSoldierTacticalToStrategy(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
@@ -179,14 +179,13 @@ simulated function EventListenerReturn OnSoldierTacticalToStrategy(Object EventD
 		return ELR_NoInterrupt;
 	}
 
-	//create gamestate delta for officer component
-	OfficerState = XComGameState_Unit_LWOfficer(GameState.CreateStateObject(class'XComGameState_Unit_LWOfficer', OfficerState.ObjectID));
+	//create gamestate delta for officer component and add it to the gamestate
+	OfficerState = XComGameState_Unit_LWOfficer(GameState.ModifyStateObject(class'XComGameState_Unit_LWOfficer', OfficerState.ObjectID));
 
 	//Add +1 mission complete to current officer data
 	OfficerState.AddMission();
 
-	//add officer component gamestate delta to change container from triggered event 
-	GameState.AddStateObject(OfficerState);
+
 
 	return ELR_NoInterrupt;
 }

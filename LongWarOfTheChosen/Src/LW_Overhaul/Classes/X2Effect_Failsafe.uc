@@ -63,7 +63,7 @@ static function EventListenerReturn PreAcquiredHackReward(Object EventData, Obje
 		{
 			OverrideHackRewardTuple.Data[0].b = true;
 			AbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.AbilityStateObjectRef.ObjectID));
-			`XEVENTMGR.TriggerEvent('FailsafeTriggered', AbilityState, Hacker, NewGameState);
+			`XEVENTMGR.TriggerEvent('FailsafeTriggered', AbilityState, Hacker);
 		}
 	}
 
