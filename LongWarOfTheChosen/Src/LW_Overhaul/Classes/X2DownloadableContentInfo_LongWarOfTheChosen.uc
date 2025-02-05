@@ -1001,7 +1001,7 @@ static function bool UpdateMissionSpawningInfo(StateObjectReference MissionRef)
 	// In this case, it clears all the alien ruler gameplay tags from XComHQ, just
 	// before the schedules are picked (which rely on those tags). And of course it
 	// may apply the ruler tags itself when we don't want them. Bleh.
-	if (class'XComGameState_AlienRulerManager' != none)
+	if (class'Helpers_LW'.default.bDLC2Active)
 	{
 		bUpdated = FixAlienRulerTags(MissionRef);
 	}
@@ -1198,7 +1198,7 @@ static event OnPreMission(XComGameState StartGameState, XComGameState_MissionSit
 	OverrideConcealmentAtStart(MissionState);
 	OverrideDestructibleHealths(StartGameState);
 	MaybeAddChosenToMission(StartGameState, MissionState);
-	if (class'XComGameState_AlienRulerManager' != none)
+	if (class'Helpers_LW'.default.bDLC2Active)
 	{
 		OverrideAlienRulerSpawning(StartGameState, MissionState);
 	}
@@ -3014,7 +3014,7 @@ static function OverrideAlienRulerSpawning(XComGameState StartState, XComGameSta
 	if (class'LWDLCHelpers'.static.IsAlienRulerOnMission(MissionState))
 	{
 		RulerState = class'LWDLCHelpers'.static.GetAlienRulerForMission(MissionState);
-		class'LWDLCHelpers'.static.PutRulerOnCurrentMission(StartState, RulerState, XComHQ);
+		class'LWDLCHelpers'.static.PutRulerOnCurrentMission(StartState, RulerState, XComHQ, MissionState);
 	}
 }
 
@@ -3048,7 +3048,7 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 	}
 
 	// Don't allow Chosen on the mission if there is already a Ruler
-	if (class'XComGameState_AlienRulerManager' != none && class'LWDLCHelpers'.static.IsAlienRulerOnMission(MissionState))
+	if (class'Helpers_LW'.default.bDLC2Active && class'LWDLCHelpers'.static.IsAlienRulerOnMission(MissionState))
 	{
 		HasRulerOnMission = true;
 	}
@@ -4896,6 +4896,11 @@ static function bool ShouldUpdateMissionSpawningInfo(StateObjectReference Missio
 
 	MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(MissionRef.ObjectID));
 
+	if (class'Helpers_LW'.default.bDLC2Active)
+	{
+		return true;
+	}
+
 	// Waterworld hardcode here
 	if(MissionState.GetMissionSource().DataName == 'MissionSource_Final' || MissionState.GetMissionSource().DataName == 'MissionSource_PsiGate')
 	{
@@ -6280,6 +6285,7 @@ static function CacheInstalledMods()
 	class'Helpers_LW'.default.bKirukaSparkActive = class'Helpers_LW'.static.IsModInstalled("KirukasSparkLWOTC_M2");
 	class'Helpers_LW'.default.bDSLReduxActive = class'Helpers_LW'.static.IsModInstalled("WOTC_DSL_Rusty");
 	class'Helpers_LW'.default.bDudeWheresMyLootActive = class'Helpers_LW'.static.IsModInstalled("DudeWheresMyLoot");
+	class'Helpers_LW'.default.bDLC2Active = class'Helpers_LW'.static.IsModInstalled("DLC_2");
 
 	`LWTrace("cached bSmokeStopsFlanksActive: " @ class'Helpers_LW'.default.bSmokeStopsFlanksActive );
 	`LWTrace("cached bImprovedSmokeDefenseActive: " @class'Helpers_LW'.default.bImprovedSmokeDefenseActive);
@@ -6293,6 +6299,7 @@ static function CacheInstalledMods()
 	`LWTrace("cached bKirukaSparkActive: " @class'Helpers_LW'.default.bKirukaSparkActive);
 	`LWTrace("cached bDSLReduxActive: " @class'Helpers_LW'.default.bDSLReduxActive);
 	`LWTrace("Cached bDudeWheresMyLoot: "@class'Helpers_LW'.default.bDudeWheresMyLootActive);
+	`LWTrace("Cached bDLC2Active: " @class'Helpers_LW'.default.bDLC2Active);
 }
 
 exec function LWOTC_SetSelectedUnitActive()

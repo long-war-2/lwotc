@@ -950,7 +950,7 @@ static function MaybeAddChosenToMission(XComGameState_MissionSite MissionState)
 	}
 
 	// Don't allow Chosen on the mission if there is already a Ruler
-	if (class'XComGameState_AlienRulerManager' != none && class'LWDLCHelpers'.static.IsAlienRulerOnMission(MissionState))
+	if (class'Helpers_LW'.default.bDLC2Active && class'LWDLCHelpers'.static.IsAlienRulerOnMission(MissionState))
 	{
 		return;
 	}

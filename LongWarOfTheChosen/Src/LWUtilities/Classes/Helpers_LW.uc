@@ -189,25 +189,28 @@ var config bool bDSLReduxActive;
 
 var config bool bDudeWheresMyLootActive;
 
-var config array<string> cachedInstalledModNames;
+var config bool bDLC2Active;
 
-static final function bool IsModInstalled(coerce string DLCIdentifer)
+var config array<string> cachedInstalledModNames, cachedInstalledDLCNames;
+
+static final function bool IsModInstalled(coerce string DLCIdentifier)
 {
     if (default.cachedInstalledModNames.Length == 0)
     {
         default.cachedInstalledModNames = class'Helpers'.static.GetInstalledModNames();
+		default.cachedInstalledDLCNames = class'Helpers'.static.GetInstalledDLCNames();
     }
 
-    return default.cachedInstalledModNames.Find(DLCIdentifer) != INDEX_NONE;
+    return default.cachedInstalledModNames.Find(DLCIdentifier) != INDEX_NONE || default.cachedInstalledDLCNames.Find(DLCIdentifier) != INDEX_NONE;
 }
 
-static final function bool IsDLCInstalled(coerce string DLCIdentifer)
+static final function bool IsDLCInstalled(coerce string DLCIdentifier)
 
 {
 	local array<string> DLCs;
 
 	DLCs = class'Helpers'.static.GetInstalledDLCNames();
-	return DLCs.Find(DLCIdentifer) != INDEX_NONE;
+	return DLCs.Find(DLCIdentifier) != INDEX_NONE;
 }
 
 simulated final static function class<object> LWCheckForRecursiveOverride(class<object> ClassToCheck)

@@ -91,6 +91,9 @@ static function String GetDifficultyString(XComGameState_MissionSite MissionStat
 	local int Difficulty, LabelsLength, EnemyUnits;
 	local array<X2CharacterTemplate> Dummy;
 	local XComGameState_MissionSite DummyMissionSite;
+	local XComGameState_AlienRulerManager RulerMgr;
+	local XComGameState_HeadquartersXCOM XComHQ;
+	local XComGameState NewGameState;
 
 	local array<X2CharacterTemplate> TemplatesThatWillSpawn_ADVT, TemplatesThatWillSpawn_LOST, TemplatesThatWillSpawn_FAC1, TemplatesThatWillSpawn_FAC2, TemplatesThatWillSpawn_CIVS;
 	local int NumUnits_ADVT, NumUnits_LOST, NumUnits_FAC1, NumUnits_FAC2, NumUnits_CIVS;
@@ -116,6 +119,14 @@ static function String GetDifficultyString(XComGameState_MissionSite MissionStat
 
 			DummyMissionSite = new class'XComGameState_MissionSite'(MissionState);
 			DummyMissionSite.Source = 'LWInfilListDummyMission';
+
+			if(class'Helpers_LW'.default.bDLC2Active && class'LWDLCHelpers'.static.IsAlienRulerOnMission(DummyMissionSite))
+			{
+				// Add the ruler tags to XCOMHQ if there is one so they show up when we cache the mission data.
+				RulerMgr = XComGameState_AlienRulerManager(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_AlienRulerManager'));
+				class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.FixAlienRulerTags(DummyMissionSite.GetReference());
+			}
+
 			DummyMissionSite.CacheSelectedMissionData(MissionState.SelectedMissionData.ForceLevel, max(1, MissionState.SelectedMissionData.AlertLevel + AlertModifier));
 			//DummyMissionSite.GetShadowChamberMissionInfo (EnemyUnits, Dummy);
 
@@ -128,6 +139,18 @@ static function String GetDifficultyString(XComGameState_MissionSite MissionStat
 
 			`LWTrace("Schedule Selected for Dummy Mission:" @DummyMissionSite.SelectedMissionData.SelectedMissionScheduleName);
 			`LWTrace("Modified Alert check. Alert Modifier:" @AlertModifier @ ". Enemy Count: " @NumUnits_ADVT);
+
+			if(class'LWDLCHelpers'.static.IsAlienRulerOnMission(DummyMissionSite))
+			{
+				// Clear the ruler tags afterwards again.
+				NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Remove ruler tags again");
+				XComHQ = `XCOMHQ;
+				XComHQ = XComGameState_HeadquartersXCom(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
+
+				RulerMgr.ClearActiveRulerTags(XComHQ);
+
+				`GAMERULES.SubmitGameState(NewGameState);
+			}
 		}
 			Difficulty = Max (1, ((NumUnits_ADVT-4) / 3));
 	}
