@@ -3362,9 +3362,6 @@ static function X2AbilityTemplate OverbearingSuperiority()
 	// Require that the activated ability get a critical hit
 	SuperiorityEffect.AbilityTargetConditions.AddItem(default.CritCondition);
 
-	// The effect lasts until the end of the turn
-	SuperiorityEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnEnd);
-
 	// Create the template for an activated ability using a helper function.
 	Template = Passive('OverbearingSuperiority_LW', "img:///UILibrary_XPerkIconPack.UIPerk_enemy_crit_chevron_x3", true, SuperiorityEffect);
 
