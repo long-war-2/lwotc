@@ -144,7 +144,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'RevivalProtocol':
 			RemoveRevivalProtocolNonMentalCleanse(Template);
-			AllowRevivalProtocolToRemoveStunned(Template);
+			//AllowRevivalProtocolToRemoveStunned(Template);
 			break;
 		case 'DeadeyeDamage':
 			UseNewDeadeyeEffect(Template);
@@ -988,6 +988,7 @@ static function RemoveRevivalProtocolNonMentalCleanse(X2AbilityTemplate Template
 	}
 }
 
+// No longer used as CHL 1.29 integrated this.
 static function AllowRevivalProtocolToRemoveStunned(X2AbilityTemplate Template)
 {
 	local X2Effect_RestoreActionPoints RestoreAPEffect;
