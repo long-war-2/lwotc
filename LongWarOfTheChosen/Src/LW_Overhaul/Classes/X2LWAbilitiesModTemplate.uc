@@ -276,6 +276,10 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			RemoveItemCost(Template);
 			Add1ChargeAndCost(Template);
 			break;
+		case 'DarkEventAbility_Shredder':
+		case 'Shredder':
+			AddShredPassive(Template);
+			break;
 		default:
 			break;
 
@@ -305,6 +309,16 @@ function int FieldMedic_BonusWeaponAmmo(XComGameState_Unit UnitState, XComGameSt
 		return class'X2Ability_SpecialistAbilitySet'.default.FIELD_MEDIC_BONUS;
 
 	return 0;
+}
+
+static function AddShredPassive(X2AbilityTemplate Template)
+{
+	local X2Effect_PassiveShredder_LW ShredEffect;
+
+	ShredEffect = new class'X2Effect_PassiveShredder_LW';
+	ShredEffect.BuildPersistentEffect(1, true, false);
+
+	Template.AddTargetEffect(ShredEffect);
 }
 
 static function ReworkAbsorptionField(X2AbilityTemplate Template)

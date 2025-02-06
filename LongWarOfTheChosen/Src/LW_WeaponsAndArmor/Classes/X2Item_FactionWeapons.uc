@@ -202,7 +202,7 @@ static function X2DataTemplate CreateBullpup_Coil_Template()
 	Template.Abilities.AddItem('Reload');
 	Template.Abilities.AddItem('HotLoadAmmo');
 	Template.Abilities.AddItem('PistolReturnFire');
-	Template.Abilities.AddItem('CoilgunBonusShredAbility');
+	//Template.Abilities.AddItem('CoilgunBonusShredAbility');
 	Template.Requirements.RequiredTechs.AddItem('Coilguns');
 
 	Template.Abilities.AddItem('Bullpup_CV_StatBonus');
@@ -364,7 +364,7 @@ static function X2DataTemplate CreateVektor_Coil()
 	Template.Abilities.AddItem('OverwatchShot');
 	Template.Abilities.AddItem('Reload');
 	Template.Abilities.AddItem('HotLoadAmmo');
-	Template.Abilities.AddItem('CoilgunBonusShredAbility');
+	//Template.Abilities.AddItem('CoilgunBonusShredAbility');
 
 	Template.iPhysicsImpulse = 5;
 	Template.StartingItem = false;

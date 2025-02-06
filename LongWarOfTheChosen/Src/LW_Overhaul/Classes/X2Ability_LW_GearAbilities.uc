@@ -118,7 +118,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(RemoveGrenadeWeightAbility()); // does not work
 
 	Templates.AddItem(CreateSedateAbility());
-	Templates.AddItem(CreateBonusShredAbility('CoilgunBonusShredAbility', default.BONUS_COILGUN_SHRED));
+	//Templates.AddItem(CreateBonusShredAbility('CoilgunBonusShredAbility', default.BONUS_COILGUN_SHRED));
 
 	//Templates.AddItem(CreateBluescreenRoundsDisorient());
 	//Templates.AddItem(CreateConsumeWhenActivatedAbility ('ConsumeShapedCharge', 'ShapedChargeUsed'));

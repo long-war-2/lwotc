@@ -99,7 +99,7 @@ static function X2DataTemplate CreateAssaultRifle_Coil_Template()
 	Template.Abilities.AddItem('OverwatchShot');
 	Template.Abilities.AddItem('Reload');
 	Template.Abilities.AddItem('HotLoadAmmo');
-	Template.Abilities.AddItem('CoilgunBonusShredAbility');
+	//Template.Abilities.AddItem('CoilgunBonusShredAbility');
 
 	Template.iPhysicsImpulse = 5;
 
@@ -150,7 +150,7 @@ static function X2DataTemplate CreateSMG_Coil_Template()
 	Template.Abilities.AddItem('OverwatchShot');
 	Template.Abilities.AddItem('Reload');
 	Template.Abilities.AddItem('HotLoadAmmo');
-	Template.Abilities.AddItem('CoilgunBonusShredAbility');
+	//Template.Abilities.AddItem('CoilgunBonusShredAbility');
 
 	Template.iPhysicsImpulse = 5;
 
@@ -200,7 +200,7 @@ static function X2DataTemplate CreateCannon_Coil_Template()
 	Template.Abilities.AddItem('OverwatchShot');
 	Template.Abilities.AddItem('Reload');
 	Template.Abilities.AddItem('HotLoadAmmo');
-	Template.Abilities.AddItem('CoilgunBonusShredAbility');
+	//Template.Abilities.AddItem('CoilgunBonusShredAbility');
 
 	Template.iPhysicsImpulse = 5;
 
@@ -248,7 +248,7 @@ static function X2DataTemplate CreateShotgun_Coil_Template()
 	Template.Abilities.AddItem('OverwatchShot');
 	Template.Abilities.AddItem('Reload');
 	Template.Abilities.AddItem('HotLoadAmmo');
-	Template.Abilities.AddItem('CoilgunBonusShredAbility');
+	//Template.Abilities.AddItem('CoilgunBonusShredAbility');
 
 	Template.iPhysicsImpulse = 5;
 
@@ -299,7 +299,7 @@ static function X2DataTemplate CreateSniperRifle_Coil_Template()
 	Template.Abilities.AddItem('OverwatchShot');
 	Template.Abilities.AddItem('Reload');
 	Template.Abilities.AddItem('HotLoadAmmo');
-	Template.Abilities.AddItem('CoilgunBonusShredAbility');
+	//Template.Abilities.AddItem('CoilgunBonusShredAbility');
 
 	Template.iPhysicsImpulse = 5;
 
