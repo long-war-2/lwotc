@@ -76,6 +76,7 @@ static function CHEventListenerTemplate CreateCovertActionListeners()
 	Template.AddCHEvent('CovertAction_OverrideRewardScalar', CAOverrideRewardScalar, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('CovertActionCompleted', CAProcessCompletion, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('StaffUpdated', CARecalculateRisksForUI, ELD_OnStateSubmitted, GetListenerPriority());
+	Template.AddCHEvent('LWCovertActionScreenOpened', CARecalculateRisksForUI, ELD_Immediate, GetListenerPriority());
 
 	Template.RegisterInStrategy = true;
 
@@ -599,6 +600,8 @@ static function EventListenerReturn CARecalculateRisksForUI(
 	local UICovertActions CAScreen;
 	local XComGameState_CovertAction CAState;
 
+	//`LWTrace(" CARecalculateRisksForUI called");
+
 	CAScreen = UICovertActions(`SCREENSTACK.GetFirstInstanceOf(class'UICovertActions'));
 	if (CAScreen == none)
 	{
@@ -609,6 +612,9 @@ static function EventListenerReturn CARecalculateRisksForUI(
 
 	CAState = CAScreen.GetAction();
 	CAState.RecalculateRiskChanceToOccurModifiers();
+
+	// Refresh the Risks page to show the updated numbers.
+	CAScreen.RefreshRisksPanel();
 
 	return ELR_NoInterrupt;
 }
