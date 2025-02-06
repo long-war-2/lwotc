@@ -683,6 +683,9 @@ function PostMissionRevertSoldierStatus(XComGameState NewGameState, XComGameStat
 			UnitState.SetStatus(eStatus_Active);
 			class'Helpers_LW'.static.UpdateUnitWillRecoveryProject(UnitState);
 		}
+
+		// Handle upgrading unique weapons on unit return.
+		class'X2StrategyElement_XPackStaffSlots'.static.CheckToUpgradeItems(NewGameState, UnitState);
 	}
 
 	// Refresh staffing to update all heal projects.
