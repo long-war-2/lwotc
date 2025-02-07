@@ -4,7 +4,7 @@ var int BonusDmg;
 var bool includepistols;
 var bool includesos;
 
-function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, optional XComGameState NewGameState)
+function int GetPreDefaultAttackingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, optional XComGameState NewGameState)
 {
 	local X2WeaponTemplate WeaponTemplate;
     local X2AbilityToHitCalc_StandardAim StandardHit;

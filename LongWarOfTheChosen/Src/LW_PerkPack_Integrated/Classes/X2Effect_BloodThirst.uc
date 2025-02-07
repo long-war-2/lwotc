@@ -11,7 +11,7 @@ var config int BLOODTHIRST_T3_DMG;
 var config int BLOODTHIRST_T4_DMG;
 var config int BLOODTHIRST_T5_DMG;
 
-function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, optional XComGameState NewGameState)
+function int GetPreDefaultAttackingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, optional XComGameState NewGameState)
 {
 	local XComGameState_Unit TargetUnit;
 	local XComGameState_Item SourceWeapon;
