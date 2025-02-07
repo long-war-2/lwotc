@@ -1576,11 +1576,11 @@ static function UpdateRewardSoldierTemplates()
 	TemplateMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
 	
 
-	//Tedster - disable this one so the delegate in LWTemplateMods is used instead
+	//Tedster - Use this one since this gets loaded if you load a tactical save.
 
-	//Template = X2RewardTemplate(TemplateMgr.FindStrategyElementTemplate('Reward_Soldier'));  
-	//Template.GenerateRewardFn = class'X2StrategyElement_RandomizedSoldierRewards'.static.GeneratePersonnelReward;
-	//TemplateMgr.AddStrategyElementTemplate(Template, true);
+	Template = X2RewardTemplate(TemplateMgr.FindStrategyElementTemplate('Reward_Soldier'));  
+	Template.GenerateRewardFn = class'X2StrategyElement_RandomizedSoldierRewards'.static.GenerateRandomSoldierReward;
+	TemplateMgr.AddStrategyElementTemplate(Template, true);
 
 	Template = X2RewardTemplate(TemplateMgr.FindStrategyElementTemplate('Reward_Rookie')); 
 	Template.GenerateRewardFn = class'X2StrategyElement_RandomizedSoldierRewards'.static.GeneratePersonnelReward;
