@@ -17,12 +17,12 @@ function GetToHitAsTargetModifiers(XComGameState_Effect EffectState, XComGameSta
 
 			ShotInfo.ModType = eHit_Success;
 			ShotInfo.Reason = FriendlyName;
-			ShotInfo.Value = -default.MT_DEFENSE;
+			ShotInfo.Value = -MT_DEFENSE;
 			ShotModifiers.AddItem(ShotInfo);
 
             ShotInfo.ModType = eHit_Graze;
 			ShotInfo.Reason = FriendlyName;
-			ShotInfo.Value = default.MT_DODGE;
+			ShotInfo.Value = MT_DODGE;
 			ShotModifiers.AddItem(ShotInfo);
 		}
 	}
