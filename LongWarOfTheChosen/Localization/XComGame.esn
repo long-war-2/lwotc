@@ -232,8 +232,8 @@ LocPromotionPopupText="<Bullet/> Actívala para que tu próximo uso del lanzalla
 [Firestorm X2AbilityTemplate]
 LocFriendlyName="Tormenta de fuego"
 LocFlyOverText="Tormenta de fuego"
-LocLongDescription="Una vez por combate, ataca a todas las unidades en un círculo completo en torno a la posición del soldado. También concede inmunidad al daño por fuego."
-LocHelpText="Lanza fuego en un círculo completo en torno a tu posición."
+LocLongDescription="Una vez por combate, corre a una posición dentro del rango de movimiento y ataca a todas las unidades en un círculo completo en torno a la posición del soldado. También concede inmunidad al daño por fuego."
+LocHelpText="Corre y lanza fuego en un círculo completo en torno a tu nueva posición."
 LocPromotionPopupText="<Bullet/> Esto encenderá fuegos e infligirá daño por fuego a todos los enemigos en un círculo en torno a la posición del soldado, infligiendo un +<ABILITY:FIRESTORM_DAMAGE_BONUS_LW> de daño adicional en los ataques normales con el lanzallamas.<br/><Bullet/> Tormenta de fuego también concede inmunidad al daño por fuego.<br/><Bullet/> Requiere un turno completo y termina el turno del soldado después de usarlo.<br/><Bullet/> Se puede usar una vez por combate.<br/><Bullet/> No se recomienda que el soldado use Tormenta de fuego en las azoteas."
 
 
@@ -5736,7 +5736,7 @@ LocPromotionPopupText="<Bullet/> ¡Asegúrate de que tus compañeros no se encue
 
 ; LWOTC translated
 [HomingMine X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Se garantiza que los disparos contra el objetivo minado acertarán.<br/><Bullet/> Mina buscadora tiene 4 cargas por misión.<br/><Bullet/> Requiere una acción y no termina tu turno.<br/>"
+LocPromotionPopupText="<Bullet/> Se garantiza que los disparos contra el objetivo minado acertarán.<br/><Bullet/> Mina buscadora tiene 3 cargas por misión.<br/><Bullet/> Requiere una acción y no termina tu turno.<br/>"
 ; End translated
 
 [Hero_Tracking X2AbilityTemplate]
