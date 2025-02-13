@@ -4029,7 +4029,7 @@ static function X2AbilityTemplate AddSlash_LWAbility()
 
 	// Target Conditions
 	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
-	Template.AbilityTargetConditions.AddItem(default.MeleeVisibilityCondition);
+	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
 	AdjacencyCondition = new class'X2Condition_UnitProperty';
 	AdjacencyCondition.RequireWithinRange = true;
 	AdjacencyCondition.WithinRange = 144; //1.5 tiles in Unreal units, allows attacks on the diag

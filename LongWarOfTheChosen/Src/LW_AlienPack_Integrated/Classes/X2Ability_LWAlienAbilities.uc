@@ -574,7 +574,7 @@ static function X2AbilityTemplate AddDroneMeleeStun()
 
 	// Target Conditions
 	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitOnlyProperty); // changed to disallow environmental objects, since nothing will happen
-	Template.AbilityTargetConditions.AddItem(default.MeleeVisibilityCondition);
+	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
 	AdjacencyCondition = new class'X2Condition_UnitProperty';
 	AdjacencyCondition.RequireWithinRange = true;
 	AdjacencyCondition.ExcludeStunned = true;
