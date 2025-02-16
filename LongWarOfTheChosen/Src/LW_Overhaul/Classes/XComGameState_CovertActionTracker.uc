@@ -24,9 +24,8 @@ static function XComGameState_CovertActionTracker CreateOrGetCovertActionTracker
 	}
 	else
 	{
-		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Creating Covert Action Tracker Singleton");
-		CATracker = XComGameState_CovertActionTracker(NewGameState.CreateNewStateObject(class'XComGameState_CovertActionTracker'));
-		`GAMERULES.SubmitGameState(NewGameState);
+		// This should be initialized in InstallNewCampaign which gives the StartState, so this shouldn't be hit. Otherwise, throw an error.
+		`REDSCREEN("COVERT Action Tracker without it existing and no gamestate provided to add one to.");
 	}
 
     return CATracker;

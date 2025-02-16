@@ -195,6 +195,7 @@ static event InstallNewCampaign(XComGameState StartState)
 	class'XComGameState_LWAlienActivityManager'.static.CreateAlienActivityManager(StartState);
 	class'XComGameState_WorldRegion_LWStrategyAI'.static.InitializeRegionalAIs(StartState);
 	class'XComGameState_LWOverhaulOptions'.static.CreateModSettingsState_NewCampaign(class'XComGameState_LWOverhaulOptions', StartState);
+	class'XComGameState_CovertActionTracker'.static.CreateOrGetCovertActionTracker(StartState);
 
 	// Save the second wave options, but only if we've actually started a new
 	// campaign (hence the check for UIShellDifficulty being open).
