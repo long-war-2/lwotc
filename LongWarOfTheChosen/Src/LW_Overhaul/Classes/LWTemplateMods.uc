@@ -319,6 +319,8 @@ var config WeaponDamageValue WARLOCKPSIM5_BASEDAMAGE;
 
 var config array<name> AbilitiesToFixStun;
 
+var config array<Name> SparkRelatedItems;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -3371,23 +3373,18 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 					}
 				}
 
-				switch (EquipmentTemplate.DataName)
-				{
-					//special handling for SLG DLC items
-					case 'SparkRifle_MG':
-					case 'SparkRifle_BM':
-					case 'PlatedSparkArmor':
-					case 'PoweredSparkArmor':
-					case 'SparkBit_MG':
-					case 'SparkBit_BM':
-						AltReq.SpecialRequirementsFn = class'LWDLCHelpers'.static.IsLostTowersNarrativeContentComplete;
-						if (ItemTable[i].RequiredTech1 != '')
-							AltReq.RequiredTechs.AddItem(ItemTable[i].RequiredTech1);
-						Template.AlternateRequirements.AddItem(AltReq);
-						break;
+				// Improved SPARK item handling. In ItemTable, make sure MechanizedWarfare is in RequiredTech2
 
-					default:
-						break;
+				if(default.SparkRelatedItems.Find(EquipmentTemplate.DataName) != INDEX_NONE)
+				{
+					AltReq.SpecialRequirementsFn = class'LWDLCHelpers'.static.IsLostTowersNarrativeContentComplete;
+					if (ItemTable[i].RequiredTech1 != '')
+					{
+						AltReq.RequiredTechs.AddItem(ItemTable[i].RequiredTech1);
+					}
+
+					`LWTrace("Adding Alt Lost Towers Narrative Requirement to" @EquipmentTemplate.DataName);
+					Template.AlternateRequirements.AddItem(AltReq);
 				}
 
 				// Bit abilities:
