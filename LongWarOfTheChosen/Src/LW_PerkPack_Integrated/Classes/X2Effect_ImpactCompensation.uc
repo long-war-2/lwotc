@@ -22,6 +22,9 @@ function float GetPostDefaultDefendingDamageModifier_CH(
 	local UnitValue Value;
 	local int PotentialMaxStacks;
 
+	if (!class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult) || CurrentDamage == 0)
+		return 0;
+
 	PotentialMaxStacks = MaxStacks;
 
 	if(TargetDamageable.HasSoldierAbility('Impenetrable_LW'))

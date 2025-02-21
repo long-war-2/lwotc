@@ -20,6 +20,9 @@ function float GetPostDefaultDefendingDamageModifier_CH(
 	XComGameState NewGameState)
 {
 	local int   Tiles;
+	
+	if(!class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult))
+		return 0;
 
 	Tiles = Attacker.TileDistanceBetween(Target);
 	if (Tiles < default.BRAWLER_MAX_TILES || AbilityState.IsMeleeAbility())

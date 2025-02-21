@@ -7,6 +7,9 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 {
 	local XComGameState_Unit TargetUnit;
 
+	if (!class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult) || CurrentDamage == 0)
+		return 0;
+
     if(AbilityState.GetMyTemplateName() == 'StreetSweeper2')
     {
 		TargetUnit = XComGameState_Unit(TargetDamageable);

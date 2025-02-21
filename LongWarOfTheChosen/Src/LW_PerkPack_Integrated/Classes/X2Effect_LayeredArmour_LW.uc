@@ -21,6 +21,9 @@ function float GetPostDefaultDefendingDamageModifier_CH(
 	local XComGameState_Unit TargetState;
 	local ArmorMitigationResults FakeArmor;
 
+	if (!class'XComGameStateContext_Ability'.static.IsHitResultHit(ApplyEffectParameters.AbilityResultContext.HitResult))
+		return 0;
+
 	if (WeaponDamage <= 0)
 		return 0;
 

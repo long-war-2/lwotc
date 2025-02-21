@@ -17,7 +17,7 @@ function float GetPostDefaultAttackingDamageModifier_CH(
 
 	if (AbilityState.GetMyTemplateName() == 'SuppressionShot_LW' || AbilityState.GetMyTemplateName() == 'AreaSuppressionShot_LW')
 	{
-		if (AppliedData.AbilityResultContext.HitResult == eHit_Success)
+		if (class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult))
 		{
 			SourceWeapon = AbilityState.GetSourceWeapon();
 			if (SourceWeapon != none)

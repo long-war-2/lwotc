@@ -19,6 +19,9 @@ function float GetPreDefaultAttackingDamageModifier_CH(XComGameState_Effect Effe
  
 	History = `XCOMHISTORY;
 
+	if (!class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult) || CurrentDamage == 0)
+		return 0;
+
 	if (AbilityState.SourceWeapon == EffectState.ApplyEffectParameters.ItemStateObjectRef)
 	{
 		

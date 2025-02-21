@@ -46,6 +46,9 @@ function float GetPostDefaultAttackingDamageModifier_CH(
 	local XComGameState_Effect_FocusLevel FocusEffectState;
 	local XComGameState_Unit TargetUnit;
 
+	if (!class'XComGameStateContext_Ability'.static.IsHitResultHit(ApplyEffectParameters.AbilityResultContext.HitResult) || WeaponDamage == 0)
+		return 0;
+
 	FocusEffectState = XComGameState_Effect_FocusLevel(EffectState);
 	TargetUnit = XComGameState_Unit(Target);
 
