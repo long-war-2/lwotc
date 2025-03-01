@@ -169,8 +169,8 @@ LocPromotionPopupText="<Bullet/> Units visible at squadsight ranges do confer bo
 [HardTarget X2AbilityTemplate]
 LocFriendlyName="Hard Target"
 LocFlyOverText="Hard Target"
-LocLongDescription="Gain 5 dodge per enemy you can see, up to a maximum of +30."
-LocHelpText="Gain 5 dodge per enemy you can see, up to a maximum of +30."
+LocLongDescription="Gain <Ability:HT_DODGE_BONUS_PER_ENEMY/> dodge per enemy you can see, up to a maximum of <Ability:HT_MAX_DODGE_BONUS/>."
+LocHelpText="Gain <Ability:HT_DODGE_BONUS_PER_ENEMY/> dodge per enemy you can see, up to a maximum of <Ability:HT_MAX_DODGE_BONUS/>."
 LocPromotionPopupText="<Bullet/> Units visible at squadsight ranges do not confer bonus.<br/><Bullet/> This ability does not provide defensive bonuses if the unit is disoriented, stunned, panicking, on fire or otherwise impaired."
 
 ; LWOTC Needs Translation (2)
@@ -883,8 +883,8 @@ LocFriendlyNameWhenConcealed="Kill Zone (Concealed)"
 [DeathFromAbove X2AbilityTemplate]
 LocFriendlyName="Death From Above"
 ; LWOTC Needs Translation
-LocLongDescription="Killing an enemy at a lower elevation with your <Ability:WeaponName/> refunds a single action, and does not end your turn. Also decreases the long range penalties for Sniper rifles and Vektor rifles by 50%."
-LocHelpText="Killing an enemy at a lower elevation with your <Ability:WeaponName/> refunds a single action, and does not end your turn."
+LocLongDescription="Once per turn, killing an enemy at a lower elevation with your <Ability:WeaponName/> refunds a single action, and does not end your turn. Also decreases the long range penalties for Sniper rifles and Vektor rifles by 50%."
+LocHelpText="Once per turn, killing an enemy at a lower elevation with your <Ability:WeaponName/> refunds a single action, and does not end your turn."
 ; End Translation
 LocFlyOverText="Death From Above"
 LocPromotionPopupText="<Bullet/> Death From Above can combo well with the Stock attachment or can simply make a soldier more mobile.<br/><Bullet/> Also decreases the long range penalties for Sniper rifles and Vektor rifles by 50%."
