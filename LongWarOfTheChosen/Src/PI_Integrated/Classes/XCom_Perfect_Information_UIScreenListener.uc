@@ -20,10 +20,13 @@ event OnInit(UIScreen Screen)
 
 	if (MyScreen.m_kShotInfoWings.Class == class'UITacticalHUD_ShotWings')
 	{
-		MyScreen.m_kShotInfoWings.Remove();
-		MyScreen.m_kShotInfoWings = MyScreen.Spawn(class'XCom_Perfect_Information_UITacticalHUD_ShotWings', MyScreen).InitShotWings();
+		// Use existing shotwings
+		MyScreen.m_kShotInfoWings.InitShotWings();
 
 		// LWOTC: These are currently disabled because they don't work properly/well
+		// MyScreen.m_kShotInfoWings.Remove();
+		// MyScreen.m_kShotInfoWings = MyScreen.Spawn(class'XCom_Perfect_Information_UITacticalHUD_ShotWings', MyScreen).InitShotWings();
+
 		// MyScreen.m_kTooltips.Remove();
 		// MyScreen.m_kTooltips = MyScreen.Spawn(class'XCom_Perfect_Information_UITacticalHUD_Tooltips', MyScreen).InitTooltips();
 		
