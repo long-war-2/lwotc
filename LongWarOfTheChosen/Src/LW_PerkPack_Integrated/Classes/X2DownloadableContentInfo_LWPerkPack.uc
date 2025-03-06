@@ -662,10 +662,10 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 			Outstring = string(class'X2Ability_GrenadierAbilitySet'.default.DEMO_HIT_BONUS);
 			return true;
 		case 'HT_DODGE_BONUS_PER_ENEMY':
-			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.HT_DODGE_BONUS_PER_ENEMY);
+			Outstring = string(class'X2Effect_HardTarget'.default.HT_DODGE_BONUS_PER_ENEMY);
 			return true;
 		case 'HT_MAX_DODGE_BONUS':
-			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.HT_MAX_DODGE_BONUS);
+			Outstring = string(class'X2Effect_HardTarget'.default.HT_MAX_DODGE_BONUS);
 			return true;
 				
         default:
