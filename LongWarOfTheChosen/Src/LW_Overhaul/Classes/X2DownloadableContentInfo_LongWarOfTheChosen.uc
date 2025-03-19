@@ -6008,7 +6008,7 @@ static function RespecSoldier(XComGameState_Unit UnitState, optional bool bReset
 	local XComGameState						NewGameState;
 	local XComGameState_HeadquartersXCom	XComHQ;
 	local name								ClassName;
-	local int								i, NumRanks, iXP;
+	local int								i, NumRanks, iXP, HPDelta, WillDelta;
 	local array<XComGameState_Item>			EquippedImplants;
 
 	History = `XCOMHISTORY;
@@ -6018,6 +6018,9 @@ static function RespecSoldier(XComGameState_Unit UnitState, optional bool bReset
 
 	iXP = UnitState.GetXPValue();
 	iXP -= class'X2ExperienceConfig'.static.GetRequiredXp(NumRanks);
+
+	HPDelta = UnitState.GetMaxStat(eStat_HP) - UnitState.GetCurrentStat(eStat_HP);
+	WillDelta = UnitState.GetMaxStat(eStat_Will) - UnitState.GetCurrentStat(eStat_Will);
 
 	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Respec Soldier");
 	XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
@@ -6070,6 +6073,10 @@ static function RespecSoldier(XComGameState_Unit UnitState, optional bool bReset
 	{
 		UnitState.AddItemToInventory(EquippedImplants[i], eInvSlot_CombatSim, NewGameState);
 	}
+
+	// Restore missing hit and will points
+	UnitState.ModifyCurrentStat(eStat_HP, -HPDelta);
+	UnitState.ModifyCurrentStat(eStat_Will, -WillDelta);
 
 	if (NewGameState.GetNumGameStateObjects() > 0)
 	{
