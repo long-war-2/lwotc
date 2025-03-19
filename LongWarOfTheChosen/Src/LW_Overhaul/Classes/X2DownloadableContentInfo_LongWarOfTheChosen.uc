@@ -1443,6 +1443,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		return;
 	}
 
+
 	// Ignore chryssy pods
 	if (Instr(EncounterName, "Chryssalids") != INDEX_NONE)
 	{
@@ -1508,6 +1509,13 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		`LWDiversityTrace("Swapping Nonexistant leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0] @ "and rerolling followers");
 	}
 	// override native insisting every mission have a codex while certain tactical options are active
+
+	// Ignore rulers
+	if (class'LWDLCHelpers'.static.IsAlienRuler(LeaderCharacterTemplate.DataName, LeaderCharacterTemplate.bDontClearRemovedFromPlay))
+	{
+		`LWDiversityTrace("Ruler Pod detected, aborting shuffle.");
+		return;
+	}
 
 	// Swap out forced Codices on regular encounters
 	if (SpawnInfo.SelectedCharacterTemplateNames[0] == 'Cyberus' && InStr (EncounterName,"PROTECTED") == INDEX_NONE && EncounterName != 'LoneCodex' && EncounterName != 'GP_PsiGate_CodexGuards')
