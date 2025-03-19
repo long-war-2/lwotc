@@ -130,8 +130,8 @@ LocFlyoverText="Shadow: +1 Turn"
 ; LWOTC Needs Translation
 [Parkour_LW X2AbilityTemplate]
 LocFriendlyName="Parkour"
-LocHelpText="The cooldown for the Skrimisher's Grapple is reduced by one turn."
-LocLongDescription="The cooldown for the Skrimisher's Grapple is reduced by one turn."
+LocHelpText="The cooldown for the Skirmisher's Grapple is reduced by one turn."
+LocLongDescription="The cooldown for the Skirmisher's Grapple is reduced by one turn."
 LocPromotionPopupText="<Bullet/> Improves the Skirmisher's mobility around the map.<br/>"
 ; End Translation
 
