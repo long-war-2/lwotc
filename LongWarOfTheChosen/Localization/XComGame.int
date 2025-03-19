@@ -2324,10 +2324,10 @@ RewardDetails="You'll get a Resistance MEC to guard one of your Havens."
 DisplayName="New Resources"
 
 [Reward_POI_LW X2RewardTemplate]
-DisplayName="Intel Package"
+DisplayName="Point of Interest"
 
 [Reward_Dummy_POI X2RewardTemplate]
-DisplayName="Intel Package"
+DisplayName="Point of Interest"
 
 [Reward_Dummy_Materiel X2RewardTemplate]
 DisplayName="Enemy Materiel"
@@ -2339,7 +2339,7 @@ DisplayName="Unknown"
 DisplayName="Unhindered Operations"
 
 [Reward_FacilityLead X2RewardTemplate]
-DisplayName="Intel Package"
+DisplayName="Facility Lead"
 
 [Reward_Dummy_RegionalTower X2RewardTemplate]
 DisplayName="Location of ADVENT Regional HQ"
