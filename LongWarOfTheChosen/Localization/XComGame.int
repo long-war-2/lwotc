@@ -1288,21 +1288,21 @@ AbilityDescName="Heavy Chaingun"
 [SparkRifle_LS X2WeaponTemplate]
 FriendlyName="Spitfire Pulsecannon"
 FriendlyNamePlural="Spitfire Pulsecannons"
-BriefSummary="The Spitfire Pulsecannon is the largest portable automatic laser weapon in our arsenal. Using the rotating barrel assembly solves the overheating problem, and the fragile barrel parts are protected by individual retractable cowls."
-TacticalText="The Spitfire Pulsecannon is the largest portable automatic laser weapon in our arsenal. Using the rotating barrel assembly solves the overheating problem, and the fragile barrel parts are protected by individual retractable cowls.\n<Bullet/> Firing the primary weapon always ends the soldier's turn, in the absence of special training.\n<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Spitfire Pulsecannon is the laser equivalent of the Autocannon."
+BriefSummary="This autocannon design fires the largest bursts of high-energy lasers Shen has been able to concoct. Using the rotating barrel assembly solves the overheating problem, and the fragile barrel parts are protected by individual retractable cowls."
+TacticalText="<Bullet/> Firing the primary weapon always ends the soldier's turn, in the absence of special training.\n<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Spitfire Pulsecannon is the laser equivalent of the Autocannon."
 AbilityDescName="autocannon"
 
 [SparkRifle_CG X2WeaponTemplate]
 FriendlyName="Rush-Nano Gausscannon"
 FriendlyNamePlural="Rush-Nano Gausscannons"
-BriefSummary="Introduction of new Elerium-based rush capacitors with separation distance of mere nanometers has allowed us to develop a new kind of autocannon, where capacitors are overloaded and discharged one by one during firing, which keeps the damage output consistently high during a volley."
-TacticalText="Introduction of new Elerium-based rush capacitors with separation distance of mere nanometers has allowed us to develop a new kind of autocannon, where capacitors are overloaded and discharged one by one during firing, which keeps the damage output consistently high during a volley.\n<Bullet/> Firing the primary weapon always ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades looted from enemies to improve the Rush-Nano Gausscannon's tactical effectiveness.\n<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> Rush-Nano Gausscannon is the Coil equivalent of the Autocannon."
+BriefSummary="The invention of this coil autocannon was enabled by new Elerium-based rush capacitors. Their separation is mere nanometers, allowing capacitors to overload and discharge one by one during firing."
+TacticalText="<Bullet/> Firing the primary weapon always ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades looted from enemies to improve the Rush-Nano Gausscannon's tactical effectiveness.\n<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> Rush-Nano Gausscannon is the Coil equivalent of the Autocannon."
 AbilityDescName="autocannon"
 
 [PrototypePlasmaBlaster X2WeaponTemplate]
 FriendlyName="Prototype Plasma Blaster"
 FriendlyNamePlural="Prototype Plasma Blasters"
-BriefSummary="Using technology salaved from the original invasion, we've devised a means of releasing a massive, focused pulse of plasma energy that will devastate targets in a fixed path. Has enough energy for two activations."
+BriefSummary="Using technology salaved from the original invasion, we've devised a means of releasing a massive, focused pulse of plasma energy that will devastate targets in a fixed path."
 TacticalText="<Bullet/> The Plasma Blaster releases a beam of devastating energy in a straight line, capable of damaging multiple targets\n<Bullet/> Its ammo is limited, so use it only when it will be decisive."
 
 [PlasmaBlaster X2WeaponTemplate]
