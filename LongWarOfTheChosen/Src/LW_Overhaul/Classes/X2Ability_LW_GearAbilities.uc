@@ -847,6 +847,7 @@ static function X2AbilityTemplate CreateBonusShredAbility(name AbilityName, int 
 }
 
 // This does nothing.
+/* 
 static function X2AbilityTemplate CreateBluescreenRoundsDisorient()
 {
 	local X2AbilityTemplate Template;
@@ -884,7 +885,7 @@ static function X2AbilityTemplate CreateBluescreenRoundsDisorient()
 
 	return Template;
 }
-	
+	*/
 
 static function X2AbilityTemplate SparkPlatedHeavyArmorStats()
 {

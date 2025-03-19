@@ -3073,12 +3073,22 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			{
 				DisorientEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect(,,false);
 
-				Condition_UnitProperty = new class'X2Condition_UnitProperty';
-				Condition_UnitProperty.ExcludeOrganic = true;
-				Condition_UnitProperty.IncludeWeakAgainstTechLikeRobot = true;
-				Condition_UnitProperty.TreatMindControlledSquadmateAsHostile = true;
-				Condition_UnitProperty.FailOnNonUnits = true;
-				DisorientEffect.TargetConditions.AddItem(Condition_UnitProperty);
+				for (k = 0; k < DisorientEffect.TargetConditions.Length; k++)
+   				{
+        			// Modify the existing condition the helper creates, which applies only to organics
+        			Condition_UnitProperty = X2Condition_UnitProperty(DisorientEffect.TargetConditions[k]);
+        			if (Condition_UnitProperty != none)
+        			{
+            			Condition_UnitProperty.ExcludeOrganic = true;
+            			Condition_UnitProperty.ExcludeRobotic = false;
+            			Condition_UnitProperty.IncludeWeakAgainstTechLikeRobot = true;
+						Condition_UnitProperty.TreatMindControlledSquadmateAsHostile = true;
+   						Condition_UnitProperty.FailOnNonUnits = true;
+            			break;
+        			}
+    			}
+				// Disorient chance here
+				DisorientEffect.ApplyChance = default.BLUESCREEN_DISORIENT_CHANCE;
 
 				X2AmmoTemplate(EquipmentTemplate).TargetEffects.AddItem(DisorientEffect);
 
