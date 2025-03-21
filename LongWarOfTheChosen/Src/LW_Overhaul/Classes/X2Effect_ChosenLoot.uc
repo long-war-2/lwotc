@@ -32,9 +32,15 @@ static function EventListenerReturn ScavengerAutoLoot(Object EventData, Object E
 		return ELR_NoInterrupt;
 	}
 
-    
     if(DeadUnit.IsChosen())	
     {
+		EffectState = XComGameState_Effect_EffectCounter(CallbackData);
+		if (EffectState == none)
+		{
+			`RedScreen("Chosen Loot Check: no effect game state");
+			return ELR_NoInterrupt;
+		}
+
         NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState(string(GetFuncName()));
         EffectState = XComGameState_Effect_EffectCounter(NewGameState.ModifyStateObject(EffectState.Class, EffectState.ObjectID));
         PutChosenLoot(NewGameState, EffectState, DeadUnit);
