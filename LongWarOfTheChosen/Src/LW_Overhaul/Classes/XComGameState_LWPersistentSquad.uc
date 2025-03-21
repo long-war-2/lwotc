@@ -109,6 +109,8 @@ var config float LEADERSHIP_COVERTNESS_PER_MISSION;
 var config float LEADERSHIP_COVERTNESS_CAP;
 
 var config float SUPPRESSOR_INFILTRATION_EMPOWER_BONUS;
+
+var config bool bEnableForcedHealProjectChecking;
 //---------------------------
 // INIT ---------------------
 //---------------------------
@@ -652,29 +654,31 @@ function PostMissionRevertSoldierStatus(XComGameState NewGameState, XComGameStat
 		}
 
 		// Tedster fix - resume heal project during squad cleanup
-		
-		HealProject = class'LWDLCHelpers'.static.GetHealProject(UnitState.GetReference());
-
-		if(HealProject != NONE && (HealProject.BlockCompletionDateTime.m_iYear == 9999 ||HealProject.BlockCompletionDateTime.m_iYear == 9999 ))
+		if (default.bEnableForcedHealProjectChecking)
 		{
-			UnitState.SetStatus(eStatus_Healing);
-			HealProject.ResumeProject();
-		}
+			HealProject = class'LWDLCHelpers'.static.GetHealProject(UnitState.GetReference());
 
-		// add code to create another heal or will recovery project if one doesn't exist. This fires after PostMissionUpdateSoldierHealing so other mods should have already set up healing projects for their special stuff.
-		if(UnitState.IsInjured() && HealProject == None)
-		{
-			HealProject = XComGameState_HeadquartersProjectHealSoldier(NewGameState.CreateNewStateObject(class'XComGameState_HeadquartersProjectHealSoldier'));
-			HealProject.SetProjectFocus(UnitState.GetReference(), NewGameState);
-			UnitState.SetStatus(eStatus_Healing);
-			XComHQ.Projects.AddItem(HealProject.GetReference());
-		}
+			if(HealProject != NONE && (HealProject.BlockCompletionDateTime.m_iYear == 9999 ||HealProject.BlockCompletionDateTime.m_iYear == 9999 ))
+			{
+				UnitState.SetStatus(eStatus_Healing);
+				HealProject.ResumeProject();
+			}
 
-		if(!HasWillProject(UnitState) && UnitState.NeedsWillRecovery() && UnitState.UsesWillSystem())
-		{
-			WillProject = XComGameState_HeadquartersProjectRecoverWill(NewGameState.CreateNewStateObject(class'XComGameState_HeadquartersProjectRecoverWill'));
-			WillProject.SetProjectFocus(UnitState.GetReference(), NewGameState);
-			XComHQ.Projects.AddItem(WillProject.GetReference());
+			// add code to create another heal or will recovery project if one doesn't exist. This fires after PostMissionUpdateSoldierHealing so other mods should have already set up healing projects for their special stuff.
+			if(UnitState.IsInjured() && HealProject == None)
+			{
+				HealProject = XComGameState_HeadquartersProjectHealSoldier(NewGameState.CreateNewStateObject(class'XComGameState_HeadquartersProjectHealSoldier'));
+				HealProject.SetProjectFocus(UnitState.GetReference(), NewGameState);
+				UnitState.SetStatus(eStatus_Healing);
+				XComHQ.Projects.AddItem(HealProject.GetReference());
+			}
+
+			if(!HasWillProject(UnitState) && UnitState.NeedsWillRecovery() && UnitState.UsesWillSystem())
+			{
+				WillProject = XComGameState_HeadquartersProjectRecoverWill(NewGameState.CreateNewStateObject(class'XComGameState_HeadquartersProjectRecoverWill'));
+				WillProject.SetProjectFocus(UnitState.GetReference(), NewGameState);
+				XComHQ.Projects.AddItem(WillProject.GetReference());
+			}
 		}
 
 		//if soldier still has OnMission status, set status to active (unless it's a SPARK that's healing)
@@ -688,8 +692,11 @@ function PostMissionRevertSoldierStatus(XComGameState NewGameState, XComGameStat
 		class'X2StrategyElement_XPackStaffSlots'.static.CheckToUpgradeItems(NewGameState, UnitState);
 	}
 
-	// Refresh staffing to update all heal projects.
-	XComHQ.HandlePowerOrStaffingChange(NewGameState);
+	if (default.bEnableForcedHealProjectChecking)
+	{
+		// Refresh staffing to update all heal projects.
+		XComHQ.HandlePowerOrStaffingChange(NewGameState);
+	}
 }
 
 static function bool HasWillProject(XComGameState_Unit UnitState)
