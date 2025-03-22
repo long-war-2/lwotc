@@ -71,6 +71,12 @@ static function EventListenerReturn FocusFireCheck(Object EventData, Object Even
 	if (AbilityContext.InterruptionStatus == eInterruptionStatus_Interrupt)
 		return ELR_NoInterrupt;
 
+	// compulsive none-checking
+	if (EffectState == None)
+	{
+		return ELR_NoInterrupt;
+	}
+
 	SourceWeapon = AbilityState.GetSourceWeapon();
 	if ((SourceWeapon == none) || (class'X2Effect_FocusFire'.default.VALIDWEAPONCATEGORIES.Find(SourceWeapon.GetWeaponCategory()) == -1))
 	{

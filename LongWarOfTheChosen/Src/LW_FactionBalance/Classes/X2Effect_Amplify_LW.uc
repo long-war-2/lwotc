@@ -28,7 +28,9 @@ function float GetPostDefaultDefendingDamageModifier_CH(
 		if (NewGameState != none)
 		{
 			AmplifyState = XComGameState_Effect_Amplify_LW(EffectState);
-			`assert(AmplifyState != none);
+			if (AmplifyState == None)
+				return 0;
+				
 			if (AmplifyState.ShotsRemaining == 1)
 			{
 				AmplifyState.RemoveEffect(NewGameState, NewGameState);

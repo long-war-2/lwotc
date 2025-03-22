@@ -57,6 +57,11 @@ static function EventListenerReturn UpdateActivation(Object EventData, Object Ev
 		`REDSCREEN("RedFog UpdateActivation: No Valid Target");
 		return ELR_NoInterrupt;
 	}
+	if (EffectState == none)
+	{
+		`REDSCREEN("RedFog UpdateActivation: No Valid Effect");
+		return ELR_NoInterrupt;
+	}
 
 	`LOG("ActivateForXCom Listener: Testing Activation");
 	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Update RedFog Activation");

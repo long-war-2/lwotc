@@ -20,7 +20,7 @@ simulated protected function OnEffectAdded(
 
 	FocusEffectState = XComGameState_Effect_FocusLevel(NewEffectState);
 	UnitState = XComGameState_Unit(kNewTargetState);
-	if (UnitState != none)
+	if (UnitState != none && FocusEffectState != none)
 	{
 		FocusEffectState.SetFocusLevel(
 			UnitState.GetTemplarFocusLevel(),
@@ -52,7 +52,7 @@ function float GetPostDefaultAttackingDamageModifier_CH(
 	FocusEffectState = XComGameState_Effect_FocusLevel(EffectState);
 	TargetUnit = XComGameState_Unit(Target);
 
-	if (TargetUnit != none)
+	if (TargetUnit != none && FocusEffectState != None)
 	{
 		// Double the current damage (will include bonuses from other persistent
 		// effects that precede this one)

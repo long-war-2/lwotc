@@ -47,6 +47,12 @@ static final function EventListenerReturn OnGetItemRange(
 	Ability = XComGameState_Ability(OverrideTuple.Data[2].o);  // optional ability
 	EffectState = XComGameState_Effect(CallbackData);
 
+	// Compulsive none-checking added
+	if (EffectState == None)
+	{
+		return ELR_NoInterrupt;
+	}
+
 	//verify the owner of the item matches
 	if (Item.OwnerStateObject != EffectState.ApplyEffectParameters.SourceStateObjectRef)
 		return ELR_NoInterrupt;
