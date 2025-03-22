@@ -358,6 +358,20 @@ static function EventListenerReturn OnTacticalGameEnd(Object EventData, Object E
 	return ELR_NoInterrupt;
 }
 
+// let's handle this function too so we can cover all possible things
+function UnitEndedTacticalPlay(XComGameState_Effect EffectState, XComGameState_Unit UnitState)
+{
+	local XComGameState NewGameState;
+	local XComGameState_Effect_TemporaryItem TemporaryEffectState;
+	
+	TemporaryEffectState = XComGameState_Effect_TemporaryItem(EffectState);
+	NewGameState = UnitState.GetParentGameState();
+
+	if (TemporaryEffectState != none)
+		ClearTemporaryItems(TemporaryEffectState, NewGameState);
+}
+
+
 static function ClearTemporaryItems(XComGameState_Effect_TemporaryItem EffectState, XComGameState NewGameState)
 {
 	local XComGameStateHistory		History;
