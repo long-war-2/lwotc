@@ -1260,6 +1260,39 @@ static event OnPreMission(XComGameState StartGameState, XComGameState_MissionSit
 	`LWTRACE("===============================================================");
 }
 
+// Tactical to tactical mission stuff:
+static event ModifyTacticalTransferStartState(XComGameState TransferStartState)
+{
+	local XComGameState_BattleData BattleData;
+	local XComGameState_MissionSite MissionState;
+
+	// re-init the pod manager for subsequent parts
+	InitializePodManager(TransferStartState);
+
+	// Reset Evac (if you ever need to evac from one of these missions)
+	ResetDelayedEvac(TransferStartState);
+
+	// Experimental yeeting of mission stuff to try to spoof spawning a new mission.
+
+	// Get the BattleData from the existing state.
+	// XComPlayerController already adds it and edits it before calling this DLCInfo Hook
+	foreach TransferStartState.IterateByClassType(class'XComGameState_BattleData', BattleData)
+	{
+		break;
+	}
+
+	// Get the Mission state object from History since that is not edited yet.
+	MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(BattleData.m_iMissionID));
+
+	// Edit it (TransferStartState is already created)
+	MissionState = XComGameState_MissionSite(TransferStartState.ModifyStateObject(class'XComGameState_MissionSite', BattleData.m_iMissionID));
+
+	// Clear the data.
+	MissionState.GeneratedMission.Mission = BattleData.MapData.ActiveMission;
+	MissionState.SelectedMissionData.SelectedMissionScheduleName = '';
+	MissionState.SelectedMissionData.SelectedEncounters.Length = 0;
+}
+
 /// <summary>
 /// Called when the player completes a mission while this DLC / Mod is installed.
 /// </summary>
