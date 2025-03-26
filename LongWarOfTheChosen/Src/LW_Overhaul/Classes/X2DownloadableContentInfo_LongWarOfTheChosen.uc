@@ -274,7 +274,6 @@ static event OnPostTemplatesCreated()
 	EditModdedRocketAbilities();
 	UpdateSkulljackAllShooterEffectExclusions();
 	class'X2Ability_PerkPackAbilitySet2'.static.AddEffectsToGrenades();
-	//moved from X2DLCI_LWToolbox as it doesn't need to run later than this -styr
 	class'XComGameState_LWToolboxOptions'.static.UpdateRewardSoldierTemplates();
 }
 
