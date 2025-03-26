@@ -4,9 +4,9 @@
 //  PURPOSE: Initializes Toolbox mod settings on campaign start or when loading campaign without mod previously active
 //--------------------------------------------------------------------------------------- 
 
-class X2DownloadableContentInfo_LWToolbox extends X2DownloadableContentInfo config(LW_Toolbox);	
+class X2DownloadableContentInfo_LWToolbox extends X2DownloadableContentInfo;	
 
-//
+//switched the config file to the only variable, as it left this X2DLCI without a DLCIdentifier
 
 struct DefaultBaseDamageEntry
 {
@@ -15,7 +15,7 @@ struct DefaultBaseDamageEntry
 };
 var transient array<DefaultBaseDamageEntry> arrDefaultBaseDamage;
 
-var config bool bRandomizedInitialStatsEnabledAtStart;
+var config(LW_Toolbox) bool bRandomizedInitialStatsEnabledAtStart;
 
 static function X2DownloadableContentInfo_LWToolbox GetThisDLCInfo()
 {
