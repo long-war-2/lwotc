@@ -94,7 +94,8 @@ static event OnLoadedSavedGameToStrategy()
 
 	ToolboxOptions.RegisterListeners();
 	ToolboxOptions.UpdateWeaponTemplates_RandomizedDamage();
-	ToolboxOptions.UpdateRewardSoldierTemplates();
+	//This is a static function, it should probably run at OPTC instead of at runtime - styr
+	//ToolboxOptions.UpdateRewardSoldierTemplates();
 
 	PatchupMissingPCSStats();
 
