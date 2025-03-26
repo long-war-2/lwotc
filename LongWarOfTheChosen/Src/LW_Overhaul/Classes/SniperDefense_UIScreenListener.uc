@@ -7,13 +7,14 @@ class SniperDefense_UIScreenListener extends UIScreenListener Config(SniperDefen
 
 var config bool EnableMissedShotAlert;
 var config float MissShotAlertChance;
+//DEPRECATED - functionality moved to an EventListenerTemplate in X2EventListener_Tactical
 
-event OnInit(UIScreen screen)
+/*event OnInit(UIScreen screen)
 {
 	local Object ThisObj;
 	ThisObj = self;
 	`XEVENTMGR.RegisterForEvent(ThisObj, 'AbilityActivated', OnAbilityActivated, ELD_OnStateSubmitted);
-}
+}*/
 
 defaultProperties
 {
