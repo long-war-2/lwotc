@@ -101,6 +101,34 @@ static event OnLoadedSavedGameToStrategy()
 		`XCOMHISTORY.RegisterOnNewGameStateDelegate(ToolboxOptions.OnNewGameState_RankWatcher);
 }
 
+//Code copied over from the UITacticalHUD UISL
+//Now that this CHL hook exists it's possible to get rid of the UISL entirely
+static event OnLoadedSavedGameToTactical()
+{
+	local XComGameState_LWToolboxOptions ToolboxOptions;
+
+	//same setup as OnLoadedSavedGameToStrategy
+	ToolboxOptions = class'XComGameState_LWToolboxOptions'.static.GetToolboxOptions();
+	if (ToolboxOptions == none) { ToolboxOptions = XComGameState_LWToolboxOptions(class'XComGameState_LWToolboxOptions'.static.CreateModSettingsState_ExistingCampaign(class'XComGameState_LWToolboxOptions')); }
+
+	if (ToolboxOptions == none)
+	{
+		`REDSCREEN("Toolbox OnLoadedSavedGameToTactical : Unable to find or create ToolboxOptions");
+		return;
+	}
+
+	ToolboxOptions.RegisterListeners();
+	ToolboxOptions.UpdateWeaponTemplates_RandomizedDamage();
+	PatchupMissingPCSStats();
+
+	if(ToolboxOptions.bRandomizedLevelupStatsEnabled)
+		`XCOMHISTORY.RegisterOnNewGameStateDelegate(ToolboxOptions.OnNewGameState_RankWatcher);
+
+	//re-register the hit point observer if necessary
+	if(ToolboxOptions.bRedFogXComActive || ToolboxOptions.bRedFogAliensActive)
+		`XCOMHISTORY.RegisterOnNewGameStateDelegate(ToolboxOptions.OnNewGameState_HealthWatcher);
+}
+
 /// <summary>
 /// Called when the player completes a mission while this DLC / Mod is installed.
 /// </summary>
