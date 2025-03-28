@@ -692,11 +692,9 @@ function PostMissionRevertSoldierStatus(XComGameState NewGameState, XComGameStat
 		class'X2StrategyElement_XPackStaffSlots'.static.CheckToUpgradeItems(NewGameState, UnitState);
 	}
 
-	if (default.bEnableForcedHealProjectChecking)
-	{
-		// Refresh staffing to update all heal projects.
-		XComHQ.HandlePowerOrStaffingChange(NewGameState);
-	}
+	// Refresh staffing to update all heal projects.
+	XComHQ.HandlePowerOrStaffingChange(NewGameState);
+	
 }
 
 static function bool HasWillProject(XComGameState_Unit UnitState)
