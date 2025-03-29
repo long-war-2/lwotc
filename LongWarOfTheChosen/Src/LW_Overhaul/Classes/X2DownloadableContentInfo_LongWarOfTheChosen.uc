@@ -274,6 +274,7 @@ static event OnPostTemplatesCreated()
 	EditModdedRocketAbilities();
 	UpdateSkulljackAllShooterEffectExclusions();
 	class'X2Ability_PerkPackAbilitySet2'.static.AddEffectsToGrenades();
+	class'XComGameState_LWToolboxOptions'.static.UpdateRewardSoldierTemplates();
 }
 
 // Borrowed from Xynamek / Prototype Armory code
