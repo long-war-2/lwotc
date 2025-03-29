@@ -917,53 +917,64 @@ static function EventListenerReturn OnAbilityActivated(Object EventData, Object 
 	UnitState = XComGameState_Unit(EventSource);
 	if (ActivatedAbilityState.GetMyTemplate().DataName == 'RedAlert')
 	{
-		`LWTrace("Max detection radius for " $ UnitState.GetMyTemplateName() $ " = " $UnitState.GetMaxStat(eStat_DetectionRadius));
-		`LWTrace("Current detection radius for " $ UnitState.GetMyTemplateName() $ " = " $UnitState.GetCurrentStat(eStat_DetectionRadius));
-		DetectionRadius = UnitState.GetBaseStat(eStat_DetectionRadius);
-
-		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("On Red Alert Activated");
-		UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
-
-		Modifier = default.RED_ALERT_DETECTION_DIFFICULTY_MODIFIER[`TACTICALDIFFICULTYSETTING];
-		if (class'Utilities_LW'.static.GetPreviousAlertLevel(UnitState) == `ALERT_LEVEL_YELLOW)
+		// Check to make sure we haven't already increased this unit's detection because of Red Alert
+		if(class'Utilities_LW'.static.GetUnitValue(UnitState, 'LWRedAlertDetectionIncreased') < 1.0)
 		{
-			// If the unit was previously in yellow alert, then its detection radius
-			// already has that modifier applied, so don't apply it twice!
-			Modifier -= default.YELLOW_ALERT_DETECTION_DIFFICULTY_MODIFIER[`TACTICALDIFFICULTYSETTING];
+			`LWTrace("Max detection radius for " $ UnitState.GetMyTemplateName() $ " = " $UnitState.GetMaxStat(eStat_DetectionRadius));
+			`LWTrace("Current detection radius for " $ UnitState.GetMyTemplateName() $ " = " $UnitState.GetCurrentStat(eStat_DetectionRadius));
+			DetectionRadius = UnitState.GetBaseStat(eStat_DetectionRadius);
+
+			NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("On Red Alert Activated");
+			UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
+
+			Modifier = default.RED_ALERT_DETECTION_DIFFICULTY_MODIFIER[`TACTICALDIFFICULTYSETTING];
+			if (class'Utilities_LW'.static.GetPreviousAlertLevel(UnitState) == `ALERT_LEVEL_YELLOW)
+			{
+				// If the unit was previously in yellow alert, then its detection radius
+				// already has that modifier applied, so don't apply it twice!
+				Modifier -= default.YELLOW_ALERT_DETECTION_DIFFICULTY_MODIFIER[`TACTICALDIFFICULTYSETTING];
+			}
+
+			`LWTrace("[Red Alert] Modifying detection radius for " $ UnitState.GetMyTemplateName() $ " to " $ int(DetectionRadius + Modifier));
+			UnitState.SetBaseMaxStat(eStat_DetectionRadius, int(DetectionRadius + Modifier));
+
+			UnitState.SetUnitFloatValue('LWRedAlertDetectionIncreased', 1.0, eCleanup_BeginTactical);
+
+			Reinforcements = XComGameState_LWReinforcements(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_LWReinforcements', true));
+			if (Reinforcements != none && !Reinforcements.RedAlertTriggered)
+			{
+				Reinforcements = XComGameState_LWReinforcements(NewGameState.ModifyStateObject(class'XComGameState_LWReinforcements', Reinforcements.ObjectID));
+				Reinforcements.RedAlertTriggered = true;
+			}
+
+			// Clear the stat restoration effect that gets applied when units enter
+			// red or yellow alert, since it overrides the sight radius changes applied
+			// by the Low Visibility sit rep.
+			RemoveSightRadiusRestorationEffect(UnitState, NewGameState);
 		}
-
-		`LWTrace("[Red Alert] Modifying detection radius for " $ UnitState.GetMyTemplateName() $ " to " $ int(DetectionRadius + Modifier));
-		UnitState.SetBaseMaxStat(eStat_DetectionRadius, int(DetectionRadius + Modifier));
-
-		Reinforcements = XComGameState_LWReinforcements(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_LWReinforcements', true));
-		if (Reinforcements != none && !Reinforcements.RedAlertTriggered)
-		{
-			Reinforcements = XComGameState_LWReinforcements(NewGameState.ModifyStateObject(class'XComGameState_LWReinforcements', Reinforcements.ObjectID));
-			Reinforcements.RedAlertTriggered = true;
-		}
-
-		// Clear the stat restoration effect that gets applied when units enter
-		// red or yellow alert, since it overrides the sight radius changes applied
-		// by the Low Visibility sit rep.
-		RemoveSightRadiusRestorationEffect(UnitState, NewGameState);
 
 		`TACTICALRULES.SubmitGameState(NewGameState);
 	}
 	else if (ActivatedAbilityState.GetMyTemplate().DataName == 'YellowAlert')
 	{
-		DetectionRadius = UnitState.GetBaseStat(eStat_DetectionRadius);
+		// Check to see if we've already increased this unit's detection because of Yellow Alert
+		if(class'Utilities_LW'.static.GetUnitValue(UnitState, 'LWYellowAlertDetectionIncreased') < 1.0)
+		{
+			DetectionRadius = UnitState.GetBaseStat(eStat_DetectionRadius);
 
-		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("On Yellow Alert Activated");
-		UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
+			NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("On Yellow Alert Activated");
+			UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
 
-		`LWTrace("[Yellow Alert] Modifying detection radius for " $ UnitState.GetMyTemplateName() $
-			" to " $ int(DetectionRadius + default.YELLOW_ALERT_DETECTION_DIFFICULTY_MODIFIER[`TACTICALDIFFICULTYSETTING]));
-		UnitState.SetBaseMaxStat(eStat_DetectionRadius, int(DetectionRadius + default.YELLOW_ALERT_DETECTION_DIFFICULTY_MODIFIER[`TACTICALDIFFICULTYSETTING]));
-
-		// Clear the stat restoration effect that gets applied when units enter
-		// red or yellow alert, since it overrides the sight radius changes applied
-		// by the Low Visibility sit rep.
-		RemoveSightRadiusRestorationEffect(UnitState, NewGameState);
+			`LWTrace("[Yellow Alert] Modifying detection radius for " $ UnitState.GetMyTemplateName() $
+				" to " $ int(DetectionRadius + default.YELLOW_ALERT_DETECTION_DIFFICULTY_MODIFIER[`TACTICALDIFFICULTYSETTING]));
+			UnitState.SetBaseMaxStat(eStat_DetectionRadius, int(DetectionRadius + default.YELLOW_ALERT_DETECTION_DIFFICULTY_MODIFIER[`TACTICALDIFFICULTYSETTING]));
+		
+			UnitState.SetUnitFloatValue('LWYellowAlertDetectionIncreased', 1.0, eCleanup_BeginTactical);
+			// Clear the stat restoration effect that gets applied when units enter
+			// red or yellow alert, since it overrides the sight radius changes applied
+			// by the Low Visibility sit rep.
+			RemoveSightRadiusRestorationEffect(UnitState, NewGameState);
+		}
 
 		`TACTICALRULES.SubmitGameState(NewGameState);
 	}
