@@ -24,7 +24,7 @@ static function GenerateCouncilSoldierReward(XComGameState_Reward RewardState, X
 		// somehow the soldier to be rescued has been pulled out from under us! Generate one as a fallback.
 		`LWTrace("[RescueSoldier] Failed to find a captured soldier to rescue!");
 		
-		// Tedster - Deprecating this one for the one from
+		// Tedster - Deprecating this one for the one from LWTemplateMods
 		//GeneratePersonnelReward(RewardState, NewGameState, RewardScalar, RegionRef);
 		GenerateRandomSoldierReward(RewardState, NewGameState, RewardScalar, RegionRef);
 		
@@ -183,7 +183,7 @@ static function GeneratePersonnelReward(XComGameState_Reward RewardState, XComGa
 	}
 
 	//Use the character pool's creation method to retrieve a unit
-	NewUnitState = `CHARACTERPOOLMGR.CreateCharacter(NewGameState, class'XComGameState_HeadquartersXCom'.default.RewardUnitCharacterPoolSelectionMode, RewardState.GetMyTemplate().rewardObjectTemplateName, nmCountry);
+	NewUnitState = `CHARACTERPOOLMGR.CreateCharacter(NewGameState, `XPROFILESETTINGS.Data.m_eCharPoolUsage, RewardState.GetMyTemplate().rewardObjectTemplateName, nmCountry);
 	`XEVENTMGR.TriggerEvent( 'SoldierCreatedEvent', NewUnitState, NewUnitState, NewGameState );
 	NewUnitState.RandomizeStats();
 	NewUnitState.GiveRandomPersonality();
