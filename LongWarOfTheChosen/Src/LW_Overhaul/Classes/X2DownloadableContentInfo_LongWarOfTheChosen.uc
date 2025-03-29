@@ -1574,7 +1574,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 			switch (EncounterName)
 			{
 				case 'LoneAvatar' :
-				case 'GP_Fortress_AvatarGroup_First_LW' :
+				case 'GP_Fortress_AvatarGroup_First_LW_PROTECTED' :
 				case 'GP_Fortress_AvatarGroup_First' :
 					break;
 				default:
