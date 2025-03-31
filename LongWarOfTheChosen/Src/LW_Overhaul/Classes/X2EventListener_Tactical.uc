@@ -1352,7 +1352,7 @@ static function EventListenerReturn OnShouldUnitPatrol(Object EventData, Object 
 
 //Turns missed shots from abilities that target enemy units into a UnitAGainsKnowledgeOfUnitB alert for the targeted unit. 
 //This is primarily to alert enemy units that they are being shot at by a unit from squad sight range.
-function EventListenerReturn OnSniperAbilityActivated(Object EventData, Object EventSource, XComGameState GameState, Name Event, Object CallbackData)
+static function EventListenerReturn OnSniperAbilityActivated(Object EventData, Object EventSource, XComGameState GameState, Name Event, Object CallbackData)
 {
 	local XComGameState_Ability ActivatedAbilityState;
 	local XComGameStateContext_Ability ActivatedAbilityStateContext;
