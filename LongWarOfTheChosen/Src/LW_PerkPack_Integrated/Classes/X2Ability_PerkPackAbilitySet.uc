@@ -93,6 +93,7 @@ var config int BODY_SHIELD_ENEMY_CRIT_MALUS;
 var config int BODY_SHIELD_COOLDOWN;
 var config int BODY_SHIELD_DURATION;
 var config int IRON_SKIN_MELEE_DAMAGE_REDUCTION;
+var config float IRON_SKIN_ASSASSIN_MOD;
 var config int MIND_MERGE_MIN_ACTION_POINTS;
 var config int MIND_MERGE_DURATION;
 var config int MIND_MERGE_COOLDOWN;
@@ -4226,6 +4227,7 @@ static function X2AbilityTemplate AddIronSkinAbility()
 	IronSkinEffect.BuildPersistentEffect(1, true, false, true);
 	IronSkinEffect.SetDisplayInfo (ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
 	IronSkinEffect.DamageMod=-default.IRON_SKIN_MELEE_DAMAGE_REDUCTION;
+	IronSkinEffect.Assassin_Dmg_Mod=default.IRON_SKIN_ASSASSIN_MOD;
 	Template.AddTargetEffect(IronSkinEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
