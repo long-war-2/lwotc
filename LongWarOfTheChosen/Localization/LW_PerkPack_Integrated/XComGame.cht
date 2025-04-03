@@ -437,7 +437,7 @@ LocPromotionPopupText="<Bullet/>在受到傷害後，到下回合結束前獲得
 [Evasive X2AbilityTemplate]
 LocFriendlyName="靈活閃避"
 LocFlyOverText="靈活閃避：+100閃避"
-LocLongDescription="每次任務開始都獲得100的閃避加成。在首次受到傷害後該加成會移除。"
+LocLongDescription="每次任務開始都獲得100的閃避加成。在首次受到傷害後（包括護盾）該加成會移除。"
 LocHelpText="在你受到傷害前，獲得100的閃避。"
 LocPromotionPopupText="<Bullet/>該能力會讓首次對士兵的命中變為擦傷，但被無法閃避的攻擊命中會在沒有加成的情況下直接移除該效果。"
 
