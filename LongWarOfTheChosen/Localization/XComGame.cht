@@ -40,7 +40,7 @@ m_strLowEngineersList[2]="一名工程師可能在黑市上被僱傭，並且可
 ;LWOTC needs translation
 m_strRetributionAlertTitle="天選者懲罰"
 m_strRetributionAlertDescription="一名天選者在該地區壓制了抵抗活動，降低了該地區的活動效率。" 
-m_strRetributionAlertIncomeDecreasedTitle="港口被破壞"
+m_strRetributionAlertIncomeDecreasedTitle="避難所被破壞"
 m_strRetributionAlertIncomeDescription="補給、情報和招募效率降低了20%。"
 m_strInfirmaryIntroBody=在醫務室部署一名科學家將會減少人員傷病的恢復時間。士兵可在醫務室消除在戰鬥中獲得的負面特質。
 ;LWOTC end translation
@@ -323,16 +323,16 @@ LocPromotionPopupText="<Bullet/> 用你的臂套造成的攻擊以及臂套武�
 [ConcussionRocket X2AbilityTemplate]
 LocFriendlyName="震盪火箭"
 LocFlyOverText="震盪火箭"
-LocLongDescription="發射一枚特殊的火箭，造成的傷害有限，但必定使範圍內的有機敵人混亂並有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使其眩暈。"
-LocHelpText="發射一枚特殊的火箭，造成的傷害有限，但必定使範圍內的有機敵人混亂並有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使其眩暈。<Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> 每次任務1充能。<br/><Bullet/> 根據臂套等級造成2/3/4點傷害。<br/><Bullet/> 必定使有機敵人混亂，無視混亂抵抗（但不會無視免疫）。<br/><Bullet/> 有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使有機敵人眩暈。<br/><Bullet/> 消耗1個行動點並結束士兵的回合。<br/><Bullet/> 精英原典和靈能殭屍免疫此技能的所有效果，包括傷害。<br/><Bullet/> 盟友不會受到這次攻擊的傷害，但無法免疫其混亂和眩暈效果。<br/>"
+LocLongDescription="發射一枚特殊的火箭，造成的傷害有限，但必定使範圍內的有機敵人混亂並有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使敵人眩暈。"
+LocHelpText="發射一枚特殊的火箭，造成的傷害有限，但必定使範圍內的有機敵人混亂並有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使敵人眩暈。<Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> 每次任務1充能。<br/><Bullet/> 根據臂套等級造成2/3/4點傷害。<br/><Bullet/> 必定使有機敵人混亂，無視閃光抗性。<br/><Bullet/> 有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使敵人眩暈。<br/><Bullet/> 消耗1個行動點並結束士兵的回合。<br/>"
 
 [BlasterConcussionRocket X2AbilityTemplate]
 LocFriendlyName="震盪火箭"
 LocFlyOverText="震盪火箭"
-LocLongDescription="發射一枚特殊的火箭，造成的傷害有限，但必定使範圍內的有機敵人混亂並有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使其眩暈。"
-LocHelpText="發射一枚特殊的火箭，造成的傷害有限，但必定使範圍內的有機敵人混亂並有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使其眩暈。<Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> 每次任務1充能。<br/><Bullet/> 根據臂套等級造成2/3/4點傷害。<br/><Bullet/> 必定使有機敵人混亂，無視混亂抵抗（但不會無視免疫）。<br/><Bullet/> 有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使有機敵人眩暈。<br/><Bullet/> 消耗1個行動點並結束士兵的回合。<br/><Bullet/> 精英原典和靈能殭屍免疫此技能的所有效果，包括傷害。<br/><Bullet/> 盟友不會受到這次攻擊的傷害，但無法免疫其混亂和眩暈效果。<br/>"
+LocLongDescription="發射一枚特殊的火箭，造成的傷害有限，但必定使範圍內的有機敵人混亂並有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使敵人眩暈。"
+LocHelpText="發射一枚特殊的火箭，造成的傷害有限，但必定使範圍內的有機敵人混亂並有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使敵人眩暈。<Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> 每次任務1充能。<br/><Bullet/> 根據臂套等級造成2/3/4點傷害。<br/><Bullet/> 必定使有機敵人混亂，無視閃光抗性。<br/><Bullet/> 有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使敵人眩暈。<br/><Bullet/> 消耗1個行動點並結束士兵的回合。<br/>"
 ; End Translation (4)
 
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
@@ -864,8 +864,8 @@ LocHelpText="你的武器造成+1傷害且有<Ability:DRAGON_ROUNDS_APPLY_CHANCE
 [Bluescreen_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="藍屏彈"
 LocFlyOverText="藍屏彈"
-LocLongDescription="你的武器對機械敵人造成+<Ability:BLUESCREEN_DMGMOD>的傷害並移除防禦型護盾。"
-LocHelpText="你的武器對機械敵人造成+<Ability:BLUESCREEN_DMGMOD>的傷害並移除防禦型護盾。"
+LocLongDescription="你的武器命中將移除目標單位護盾，對機械敵人造成+<Ability:BLUESCREEN_DMGMOD>的傷害，并有<Ability:BLUESCREEN_DISORIENT_CHANCE>%概率混亂機械敵人"
+LocHelpText="你的武器命中將移除目標單位護盾，對機械敵人造成+<Ability:BLUESCREEN_DMGMOD>的傷害，并有<Ability:BLUESCREEN_DISORIENT_CHANCE>%概率混亂機械敵人。"
 
 [Venom_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="毒液彈"
@@ -2228,10 +2228,10 @@ RewardDetails="你會獲取一台反抗軍MEC來守衛你的避難所。"
 DisplayName="新資源"
 
 [Reward_POI_LW X2RewardTemplate]
-DisplayName="情報包"
+DisplayName="掃描節點"
 
 [Reward_Dummy_POI X2RewardTemplate]
-DisplayName="情報包"
+DisplayName="掃描節點"
 
 [Reward_Dummy_Materiel X2RewardTemplate]
 DisplayName="敵方物資"
@@ -2243,7 +2243,7 @@ DisplayName="未知"
 DisplayName="無阻礙的行動"
 
 [Reward_FacilityLead X2RewardTemplate]
-DisplayName="情報包"
+DisplayName="設施綫索"
 
 [Reward_Dummy_RegionalTower X2RewardTemplate]
 DisplayName="變種人地區總部位置"
@@ -4779,17 +4779,17 @@ LocFriendlyName="黑暗事件：戰術升級（戰術素養）"
 LocLongDescription="一些敵軍單位獲得戰術素養能力，給他們提供額外的防禦力。"
 
 [DarkEvent_Aggression X2DarkEventTemplate]
-DisplayName="永久性：窮兵黷武"
-SummaryText="一些敵軍單位獲得窮兵黷武能力，給他們提供額外的暴擊率。"
+DisplayName="永久性：高侵略性"
+SummaryText="一些敵軍單位獲得高侵略性能力，給他們提供額外的暴擊率。"
 QuoteText="\"我覺得我們讓他們變得瘋狂了。\""
 QuoteTextAuthor="- 匿名的槍兵"
-PreMissionText="為一些敵軍單位提供窮兵黷武能力。"
-PostMissionSuccessText="已阻止黑暗事件：戰術升級（窮兵黷武）"
-PostMissionFailureText="反擊黑暗事件失敗：戰術升級（窮兵黷武）"
+PreMissionText="為一些敵軍單位提供高侵略性能力。"
+PostMissionSuccessText="已阻止黑暗事件：戰術升級（高侵略性）"
+PostMissionFailureText="反擊黑暗事件失敗：戰術升級（高侵略性）"
 
 [DarkEventAbility_Aggression X2AbilityTemplate]
-LocFriendlyName="黑暗事件：戰術升級（窮兵黷武）"
-LocLongDescription="一些敵軍單位獲得窮兵黷武能力，給他們提供額外的暴擊率。"
+LocFriendlyName="黑暗事件：戰術升級（高侵略性）"
+LocLongDescription="一些敵軍單位獲得高侵略性能力，給他們提供額外的暴擊率。"
 
 [DarkEvent_Resilience X2DarkEventTemplate]
 DisplayName="永久性：見切之技"
@@ -6275,9 +6275,9 @@ LocPromotionPopupText="<Bullet/> 本單位被射擊時復仇者不會觸發。<b
 LocFriendlyName="捕食者"
 LocFlyOverText="捕食者"
 ; LWOTC Needs Translation (2)
-LocLongDescription="對側翼敵人的遠程攻擊獲得<Ability:PREDATOR_AIM_BONUS_LW/>命中以及<Ability:PREDATOR_CRIT_BONUS_LW/>暴擊率加成。"
-LocHelpText="對側翼敵人的遠程攻擊獲得<Ability:PREDATOR_AIM_BONUS_LW/>命中以及<Ability:PREDATOR_CRIT_BONUS_LW/>暴擊率加成。"
-LocPromotionPopupText="<Bullet/> 對側翼敵人的遠程攻擊獲得<Ability:PREDATOR_AIM_BONUS_LW/>命中以及<Ability:PREDATOR_CRIT_BONUS_LW/>暴擊率加成。<br/>"
+LocLongDescription="對側翼敵人的遠程攻擊獲得<Ability:PREDATOR_AIM_BONUS/>命中以及<Ability:PREDATOR_CRIT_BONUS/>暴擊率加成。"
+LocHelpText="對側翼敵人的遠程攻擊獲得<Ability:PREDATOR_AIM_BONUS/>命中以及<Ability:PREDATOR_CRIT_BONUS/>暴擊率加成。"
+LocPromotionPopupText="<Bullet/> 對側翼敵人的遠程攻擊獲得<Ability:PREDATOR_AIM_BONUS/>命中以及<Ability:PREDATOR_CRIT_BONUS/>暴擊率加成。<br/>"
 ; End Translation (2)
 
 [Stiletto_LW X2AbilityTemplate]
@@ -7315,12 +7315,14 @@ LocHelpText="用靈能透鏡標記一名目標，該目標在未來持續3次受
 LocHitMessage="標記"
 LocPromotionPopupText="<Bullet/> 標記持續3次傷害。<br/><Bullet/> 標記是自由行動。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷卻。<br/>"
 
+[X2Effect_Amplify]
+AmplifyCountdown="標記剩餘數：%d"
 
 [CrusaderRage_LW X2AbilityTemplate]
 LocFriendlyName="聖殿之怒"
 LocHelpText="每損失25%生命值給予25%傷害提升，最多50%傷害提升。使該士兵的傷口恢復時間減少<Ability:CRUSADER_RAGE_HEAL>HP。"
 LocLongDescription="每損失25%生命值給予25%傷害提升，最多50%傷害提升。使該士兵的傷口恢復時間減少<Ability:CRUSADER_RAGE_HEAL>HP。"
-LocPromotionPopupText="<Bullet/> 如果士兵在執行任務期間進入失血狀態，則傷口恢復不起作用。<br/>"
+LocPromotionPopupText="<Bullet/> 如果士兵在執行任務期間進入失血過多狀態，則無法減少傷口恢復時間。<br/>"
 LocFlyOverText="聖殿之怒"
 
 [Sidearm_CV X2WeaponTemplate]
@@ -7462,7 +7464,7 @@ LocLongDescription="使穿戴者對負面精神狀況免疫，如混亂、恐慌
 [Sustain X2AbilityTemplate]
 LocLongDescription="該單位的傷口恢復時間減少<Ability:SUSTAIN_WOUND_HP_REDUCTTION/>HP，並在受到足以致命的傷害後會立刻進入靜滯狀態，持續1回合，且生命值維持在1點。此能力每次任務發動一次。"
 LocHelpText="該單位受到足以致命的傷害後會立刻進入靜滯狀態，持續1回合，且生命值維持在1點。此能力每次任務發動一次。"
-LocPromotionPopupText="<Bullet/>注意，單位從靜滯狀態恢復時依然會受到狀態效果（如毒素或燃燒）的傷害。<br/><Bullet/>注意，單位如果處於眩暈狀態，則不會觸發靜滯。<br/><Bullet/>注意，受到的致命傷害每溢出1HP，根據祭司的級別，其觸發靜滯的概率會降低25%/17%/10%。"
+LocPromotionPopupText="<Bullet/>注意，單位從靜滯狀態恢復時依然會受到狀態效果（如毒素或燃燒）的傷害。<br/><Bullet/>注意，單位如果處於眩暈狀態，則不會觸發靜滯。<br/><Bullet/> 如果士兵在執行任務期間進入失血過多狀態，則無法減少傷口恢復時間。"
 
 [SustainTriggered X2AbilityTemplate]
 LocLongDescription="該單位逃過一次致死攻擊，並進入靜滯狀態1回合。本次戰鬥中僅觸發一次。"
@@ -7678,8 +7680,8 @@ LocPromotionPopupText="<Bullet/> 如果有多個距離最近的敵人，你對�
 
 [SensorOverlays_LW X2AbilityTemplate]
 LocFriendlyName="感知共享"
-LocLongDescription="小隊所有成員對你視野內可見的敵人獲得<Ability:+Crit/>暴擊率。"
-LocHelpText="小隊所有成員對你視野內可見的敵人獲得<Ability:+Crit/>暴擊率。"
+LocLongDescription="小隊所有成員對你視野內可見的敵人獲得<Ability:+Crit>暴擊率。"
+LocHelpText="小隊所有成員對你視野內可見的敵人獲得<Ability:+Crit>暴擊率。"
 LocFlyOverText="感知共享"
 LocPromotionPopupText="<Bullet/> 這不包括僅通過小隊視野可見的敵人。<br/>"
 
