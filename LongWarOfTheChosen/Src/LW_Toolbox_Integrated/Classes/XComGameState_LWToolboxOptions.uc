@@ -1038,7 +1038,7 @@ function bool IsEligibleForRandomStats(XComGameState_Unit Unit)
 {
 	// Note: This specifically looks for 'Soldier' and not Unit.IsSoldier() to exclude sparks. Additional character types can
 	// be re-added via the ExtraCharacterTemplatesToRandomize array.
-	return Unit.GetMyTemplateName() == 'Soldier' || ExtraCharacterTemplatesToRandomize.Find(Unit.GetMyTemplateName()) >= 0;
+	return Unit.GetMyTemplateName() == 'Soldier' || default.ExtraCharacterTemplatesToRandomize.Find(Unit.GetMyTemplateName()) >= 0;
 }
 
 function UpdateAllSoldiers_RandomizedInitialStats(XComGameState GameState)
