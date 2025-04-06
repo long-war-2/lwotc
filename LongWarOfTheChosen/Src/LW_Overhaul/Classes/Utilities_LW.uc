@@ -30,6 +30,7 @@ var config array<string> RETALIATION_MISSION_TYPES;
 
 var config array<MissionEnemyCount> OverrideMissionEnemyCounts;
 var config array<MissionEnemyCountOffset> OverrideMissionEnemyCountOffsets;
+var config bool bDisableKillXPCap;
 
 const CA_FAILURE_RISK_MARKER = "CovertActionRisk_Failure";
 
@@ -734,6 +735,12 @@ static function bool KillXpIsCapped()
 	local int MissionKillXp, MaxKillXp;
 
 	History = `XCOMHISTORY;
+
+	// If people want to abuse, might as well let them.
+	if(default.bDisableKillXPCap)
+	{
+		return false;
+	}
 
 	BattleState = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
 	if(BattleState == none)
