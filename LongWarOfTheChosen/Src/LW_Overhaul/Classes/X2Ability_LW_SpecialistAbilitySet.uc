@@ -273,7 +273,7 @@ static function X2AbilityTemplate AddHackRewardControlRobot_Mission()
 	ControlEffect = class'X2StatusEffects'.static.CreateMindControlStatusEffect(99, true, bInfiniteDuration);
 	// Rename effect so that Stasis doesn't cancel the hack.
 	ControlEffect.EffectName = 'FullOverrideMC';
-	//remove the tick function so it douesn't visualize.
+	//remove the tick function so it doesn't visualize.
 	ControlEffect.EffectTickedVisualizationFn = none;
 	Template.AddTargetEffect(ControlEffect);
 
@@ -377,6 +377,8 @@ static function X2AbilityTemplate AddHackRewardControlRobot_Permanent()
 	ControlEffect.EffectName = 'FullOverrideMC';
 	ControlEffect.bRemoveWhenSourceDies = false; // added for ID 1733 -- mind control effect is no longer lost when source unit dies or evacs
 	ControlEffect.EffectRemovedVisualizationFn = none; // No visualization of this effect being removed (which happens when the unit evacs or dies)
+	//remove the tick function so it doesn't visualize.
+	ControlEffect.EffectTickedVisualizationFn = none;
 	Template.AddTargetEffect(ControlEffect);
 
 	// Save MEC effect
