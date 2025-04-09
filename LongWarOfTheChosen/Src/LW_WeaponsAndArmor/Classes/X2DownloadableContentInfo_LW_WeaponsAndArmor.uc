@@ -39,6 +39,7 @@ static event OnLoadedSavedGameToStrategy()
 }
 static event OnPostTemplatesCreated()
 {
+	UpdateSparkBitUI();
 	UpdateWeaponAttachmentsForGuns();
 	UpdateNewHeavyWeapon();
 }
@@ -537,4 +538,30 @@ static function bool PrimaryWeaponExcluded(XComGameState_Unit UnitState)
 	//	I could declare a bunch of local values to store intermediate steps but meh
 	//	blame Musashi for this kind of style =\
 	return (default.AUTOPISTOL_ANIMS_WEAPONCATS_EXCLUDED.Find(X2WeaponTemplate(UnitState.GetItemInSlot(eInvSlot_PrimaryWeapon).GetMyTemplate()).WeaponCat) != INDEX_NONE);
+}
+
+static function UpdateSparkBitUI()
+{
+	local X2ItemTemplateManager ItemMgr;
+	local X2GremlinTemplate SparkBitTemplate;
+
+	ItemMgr = class'X2ItemTemplateManager'.static.GetItemTemplateManager();
+
+	SparkBitTemplate = X2GremlinTemplate(ItemMgr.FindItemTemplate('SparkBit_CV'));
+	if (SparkBitTemplate != none)
+	{
+		SparkBitTemplate.SetUIStatMarkup(class'XLocalizedData'.default.TechBonusLabel, eStat_Hacking, SparkBitTemplate.HackingAttemptBonus);
+	}
+
+	SparkBitTemplate = X2GremlinTemplate(ItemMgr.FindItemTemplate('SparkBit_MG'));
+	if (SparkBitTemplate != none)
+	{
+		SparkBitTemplate.SetUIStatMarkup(class'XLocalizedData'.default.TechBonusLabel, eStat_Hacking, SparkBitTemplate.HackingAttemptBonus);
+	}
+
+	SparkBitTemplate = X2GremlinTemplate(ItemMgr.FindItemTemplate('SparkBit_BM'));
+	if (SparkBitTemplate != none)
+	{
+		SparkBitTemplate.SetUIStatMarkup(class'XLocalizedData'.default.TechBonusLabel, eStat_Hacking, SparkBitTemplate.HackingAttemptBonus);
+	}
 }
