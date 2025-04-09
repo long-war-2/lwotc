@@ -543,25 +543,25 @@ static function bool PrimaryWeaponExcluded(XComGameState_Unit UnitState)
 static function UpdateSparkBitUI()
 {
 	local X2ItemTemplateManager ItemMgr;
-    local X2GremlinTemplate SparkBitTemplate;
+	local X2GremlinTemplate SparkBitTemplate;
 
-    ItemMgr = class'X2ItemTemplateManager'.static.GetItemTemplateManager();
+	ItemMgr = class'X2ItemTemplateManager'.static.GetItemTemplateManager();
 
 	SparkBitTemplate = X2GremlinTemplate(ItemMgr.FindItemTemplate('SparkBit_CV'));
-    if (SparkBitTemplate != none)
-    {
-        SparkBitTemplate.SetUIStatMarkup(class'XLocalizedData'.default.TechBonusLabel, eStat_Hacking, SparkBitTemplate.HackingAttemptBonus);
-    }
+	if (SparkBitTemplate != none)
+	{
+		SparkBitTemplate.SetUIStatMarkup(class'XLocalizedData'.default.TechBonusLabel, eStat_Hacking, SparkBitTemplate.HackingAttemptBonus);
+	}
 
-    SparkBitTemplate = X2GremlinTemplate(ItemMgr.FindItemTemplate('SparkBit_MG'));
-    if (SparkBitTemplate != none)
-    {
-        SparkBitTemplate.SetUIStatMarkup(class'XLocalizedData'.default.TechBonusLabel, eStat_Hacking, SparkBitTemplate.HackingAttemptBonus);
-    }
+	SparkBitTemplate = X2GremlinTemplate(ItemMgr.FindItemTemplate('SparkBit_MG'));
+	if (SparkBitTemplate != none)
+	{
+		SparkBitTemplate.SetUIStatMarkup(class'XLocalizedData'.default.TechBonusLabel, eStat_Hacking, SparkBitTemplate.HackingAttemptBonus);
+	}
 
-    SparkBitTemplate = X2GremlinTemplate(ItemMgr.FindItemTemplate('SparkBit_BM'));
-    if (SparkBitTemplate != none)
-    {
-        SparkBitTemplate.SetUIStatMarkup(class'XLocalizedData'.default.TechBonusLabel, eStat_Hacking, SparkBitTemplate.HackingAttemptBonus);
-    }
+	SparkBitTemplate = X2GremlinTemplate(ItemMgr.FindItemTemplate('SparkBit_BM'));
+	if (SparkBitTemplate != none)
+	{
+		SparkBitTemplate.SetUIStatMarkup(class'XLocalizedData'.default.TechBonusLabel, eStat_Hacking, SparkBitTemplate.HackingAttemptBonus);
+	}
 }
