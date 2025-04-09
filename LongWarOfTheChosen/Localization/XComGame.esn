@@ -6887,8 +6887,8 @@ LocLongDescription="El Brujo abre su mente hacia el objetivo, dañándolo y quem
 
 [ChosenKidnap X2AbilityTemplate]
 LocFriendlyName="Secuestrar"
-LocLongDescription="Secuestra a un soldado inconsciente o desangrado. Cuesta 2 acciones; 1 turno de enfriamiento."
-LocHelpText="Secuestra a un soldado inconsciente o desangrado. Cuesta 2 acciones; 1 turno de enfriamiento."
+LocLongDescription="Secuestra a un soldado inconsciente o desangrado. Cuesta 2 acciones; 2 turno de enfriamiento."
+LocHelpText="Secuestra a un soldado inconsciente o desangrado. Cuesta 2 acciones; 2 turno de enfriamiento."
 LocFlyOverText="Secuestrar"
 
 [ChosenKeen X2AbilityTemplate]

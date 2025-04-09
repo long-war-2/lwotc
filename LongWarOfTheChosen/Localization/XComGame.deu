@@ -6144,8 +6144,8 @@ LocLongDescription="Der Hexer öffnet seinen Geist für das Ziel, fügt ihm Scha
 
 [ChosenKidnap X2AbilityTemplate]
 LocFriendlyName="Entführen"
-LocLongDescription="Entführe eine bewusstlose oder verblutende Einheit. Kostet 2 Aktionen und hat eine Abklingzeit von 1 Runde."
-LocHelpText="Entführe eine bewusstlose oder verblutende Einheit. Kostet 2 Aktionen. Abklingzeit von 1 Runde."
+LocLongDescription="Entführe eine bewusstlose oder verblutende Einheit. Kostet 2 Aktionen und hat eine Abklingzeit von 2 Runde."
+LocHelpText="Entführe eine bewusstlose oder verblutende Einheit. Kostet 2 Aktionen. Abklingzeit von 2 Runde."
 LocFlyOverText="Entführen"
 
 [ChosenKeen X2AbilityTemplate]

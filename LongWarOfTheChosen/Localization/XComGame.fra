@@ -6533,8 +6533,8 @@ LocLongDescription="Le Sorcier projette des visions cauchemardesques dans l'espr
 
 [ChosenKidnap X2AbilityTemplate]
 LocFriendlyName="Kidnapping"
-LocLongDescription="Kidnappe une unité inconsciente ou souffrant d'hémorragie. Coûte 2 actions, temps de rechargement de 1 tour."
-LocHelpText="Kidnappe une unité inconsciente ou souffrant d'hémorragie. Coûte 2 actions, temps de rechargement de 1 tour."
+LocLongDescription="Kidnappe une unité inconsciente ou souffrant d'hémorragie. Coûte 2 actions, temps de rechargement de 2 tour."
+LocHelpText="Kidnappe une unité inconsciente ou souffrant d'hémorragie. Coûte 2 actions, temps de rechargement de 2 tour."
 LocFlyOverText="Kidnapping"
 
 [ChosenKeen X2AbilityTemplate]

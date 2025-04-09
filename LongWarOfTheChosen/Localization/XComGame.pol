@@ -6206,8 +6206,8 @@ LocLongDescription="Czarnoksiężnik otwiera swój umysł na cel, zadając obra�
 
 [ChosenKidnap X2AbilityTemplate]
 LocFriendlyName="Porwanie"
-LocLongDescription="Porywa nieprzytomną lub wykrwawiającą się jednostkę. Kosztuje 2 akcje, 1 turę odnowienia."
-LocHelpText="Porywa nieprzytomną lub wykrwawiającą się jednostkę. Kosztuje 2 akcje, 1 turę odnowienia.n."
+LocLongDescription="Porywa nieprzytomną lub wykrwawiającą się jednostkę. Kosztuje 2 akcje, 2 turę odnowienia."
+LocHelpText="Porywa nieprzytomną lub wykrwawiającą się jednostkę. Kosztuje 2 akcje, 2 turę odnowienia.n."
 LocFlyOverText="Porwanie"
 
 [ChosenKeen X2AbilityTemplate]

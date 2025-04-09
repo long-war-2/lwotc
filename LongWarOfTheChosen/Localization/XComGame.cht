@@ -6617,8 +6617,8 @@ LocLongDescription="術士向目標敞開心扉，對目標造成傷害，<Abili
 
 [ChosenKidnap X2AbilityTemplate]
 LocFriendlyName="劫持"
-LocLongDescription="劫持一個失去意識或失血的單位。消耗2行動點，1回合冷卻時間。"
-LocHelpText="劫持一個失去意識或失血的單位。消耗2行動點，1回合冷卻時間。"
+LocLongDescription="劫持一個失去意識或失血的單位。消耗2行動點，2回合冷卻時間。"
+LocHelpText="劫持一個失去意識或失血的單位。消耗2行動點，2回合冷卻時間。"
 LocFlyOverText="劫持"
 
 [ChosenKeen X2AbilityTemplate]

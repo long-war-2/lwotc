@@ -6866,8 +6866,8 @@ LocLongDescription="The Warlock opens their mind to the target, damaging and bur
 
 [ChosenKidnap X2AbilityTemplate]
 LocFriendlyName="Kidnap"
-LocLongDescription="Kidnap an unconcious or bleeding out unit. Costs 2 actions, 1 turn cooldown."
-LocHelpText="Kidnap an unconcious or bleeding out unit. Costs 2 actions, 1 turn cooldown."
+LocLongDescription="Kidnap an unconcious or bleeding out unit. Costs 2 actions, 2 turn cooldown."
+LocHelpText="Kidnap an unconcious or bleeding out unit. Costs 2 actions, 2 turn cooldown."
 LocFlyOverText="Kidnap"
 
 [ChosenKeen X2AbilityTemplate]

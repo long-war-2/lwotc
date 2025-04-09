@@ -6642,8 +6642,8 @@ LocLongDescription="术士向目标敞开心扉，对目标造成伤害，<Abili
 
 [ChosenKidnap X2AbilityTemplate]
 LocFriendlyName="劫持"
-LocLongDescription="劫持一个失去意识或失血的单位。消耗2行动点，1回合冷却时间。"
-LocHelpText="劫持一个失去意识或失血的单位。消耗2行动点，1回合冷却时间。"
+LocLongDescription="劫持一个失去意识或失血的单位。消耗2行动点，2回合冷却时间。"
+LocHelpText="劫持一个失去意识或失血的单位。消耗2行动点，2回合冷却时间。"
 LocFlyOverText="劫持"
 
 [ChosenKeen X2AbilityTemplate]
