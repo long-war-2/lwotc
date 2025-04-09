@@ -383,10 +383,10 @@ LocPromotionPopupText="<Bullet/> This soldier has significantly reduced infiltra
 
 [Failsafe X2AbilityTemplate]
 LocFriendlyName="Failsafe"
-LocLongDescription="If you fail a hack, you prevent any negative effects from occurring and gain 1 AP back."
-LocHelpText="If you fail a hack, you prevent any negative effects from occurring and gain 1 AP back."
+LocLongDescription="If you fail a hack, you prevent any negative effects from occurring and once per turn, gain 1 AP back after a failed hack."
+LocHelpText="If you fail a hack, you prevent any negative effects from occurring and once per turn, gain 1 AP back after a failed hack."
 LocFlyOverText="Failsafe"
-LocPromotionPopupText="<Bullet/> Negative effects prevented by Failsafe include losing squad concealment."
+LocPromotionPopupText="<Bullet/> Negative effects prevented by Failsafe include losing squad concealment.<br/><Bullet/> The 1 AP refund can occur once per turn."
 
 [FullOverride X2AbilityTemplate]
 LocFriendlyName="Full Override"
