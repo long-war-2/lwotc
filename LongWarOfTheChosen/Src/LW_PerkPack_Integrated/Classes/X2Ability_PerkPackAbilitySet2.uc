@@ -2440,6 +2440,7 @@ static function X2AbilityTemplate CreateHackBonusAbility()
 
 	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_intrusionprotocol";
 	Template.Hostility = eHostility_Neutral;
+	Template.bIsPassive = true;
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 
@@ -2453,6 +2454,8 @@ static function X2AbilityTemplate CreateHackBonusAbility()
 	HackBonusEffect.AddPersistentStatChange(eStat_Hacking, default.ADVANCED_LOGIC_HACK_BONUS);
 
 	Template.AddTargetEffect(HackBonusEffect);
+
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.TechBonusLabel, eStat_Hacking, default.ADVANCED_LOGIC_HACK_BONUS);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
