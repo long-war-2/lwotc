@@ -2477,6 +2477,8 @@ static function X2AbilityTemplate CreateComboHoloAAAbility()
 	Template.AdditionalAbilities.AddItem('HoloTargeting');
 	Template.AdditionalAbilities.AddItem('AdaptiveAim');
 
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
 	return Template;
 }
 
