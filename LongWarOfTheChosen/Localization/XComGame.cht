@@ -231,9 +231,9 @@ LocPromotionPopupText="<Bullet/> 激活後你下一次的火焰噴射器使用�
 [Firestorm X2AbilityTemplate]
 LocFriendlyName="烈焰風暴"
 LocFlyOverText="烈焰風暴"
-LocLongDescription="以自己為中心噴射圓形的火焰，攻擊範圍內的所有單位。同樣也會獲得對火焰傷害的免疫。每場戰鬥可使用1次。"
-LocHelpText="以自己為中心噴射圓形的火焰，攻擊範圍內的所有單位"
-LocPromotionPopupText="<Bullet/> 該士兵對周圍圓圈內的所有單位造成火焰傷害，比一般的火焰噴射器造成+<ABILITY:FIRESTORM_DAMAGE_BONUS_LW>的額外傷害。<br/><Bullet/> 烈焰風暴同樣也能讓你對火焰傷害免疫。<br/><Bullet/> 需要2個行動點並且會結束士兵的回合。<br/><Bullet/> 可執行衝刺並觸發烈焰風暴。<br/><Bullet/> 每場戰鬥可使用1次。<br/><Bullet/> 不建議士兵在屋頂使用烈焰風暴。<br/><Bullet/> 不適用於速燃。"
+LocLongDescription="衝刺到移動範圍內的指定位置，以自己為中心噴射圓形的火焰，攻擊範圍內的所有單位。同時會獲得對火焰傷害的免疫。每場戰鬥可使用1次。"
+LocHelpText="衝刺到新位置並以自己為中心噴射圓形的火焰，攻擊範圍內的所有單位。"
+LocPromotionPopupText="<Bullet/> 該士兵對周圍圓圈內的所有單位造成火焰傷害，比一般的火焰噴射器造成+<ABILITY:FIRESTORM_DAMAGE_BONUS_LW>的額外傷害。<br/><Bullet/> 烈焰風暴同樣也能讓你暫時對火焰傷害免疫。<br/><Bullet/> 需要2個行動點並且會結束士兵的回合。<br/><Bullet/> 可執行衝刺並觸發烈焰風暴。<br/><Bullet/> 每場戰鬥可使用1次。<br/><Bullet/> 不建議士兵在屋頂使用烈焰風暴。<br/><Bullet/> 不適用於速燃。"
 
 [TechnicalFireImmunity X2AbilityTemplate]
 LocFriendlyName="火焰免疫"
@@ -362,10 +362,10 @@ LocPromotionPopupText="<Bullet/>減少該士兵在任務中的潛入時間。<br
 
 [Failsafe X2AbilityTemplate]
 LocFriendlyName="故障保護"
-LocLongDescription="如果你侵入失敗，你能夠阻止任何負面效果發生並獲得1行動點返還。"
-LocHelpText="如果你侵入失敗，你能夠阻止任何負面效果發生並獲得1行動點返還。"
+LocLongDescription="如果你侵入失敗，你能夠阻止任何負面效果發生並獲得1行動點返還。行動點返還效果每回合只能觸發一次。"
+LocHelpText="如果你侵入失敗，你能夠阻止任何負面效果發生並獲得1行動點返還。行動點返還效果每回合只能觸發一次。"
 LocFlyOverText="故障保護"
-LocPromotionPopupText="<Bullet/> 如果你侵入失敗，你能夠阻止任何負面效果(包括暴露)發生。"
+LocPromotionPopupText="<Bullet/> 如果你侵入失敗，你能夠阻止任何負面效果(包括暴露)發生。<br/><Bullet/> 行動點返還效果每回合只能觸發一次。"
 
 [FullOverride X2AbilityTemplate]
 LocFriendlyName="完全破解"
@@ -457,7 +457,7 @@ LocFriendlyName="刺針榴彈"
 LocLongDescription="你的爆炸物擊殺敵人時不會破壞戰利品且對無護甲的敵人造成<ABILITY:NEEDLE_BONUS_UNARMORED_DMG_LW/>額外傷害。"
 LocHelpText="你的爆炸物擊殺敵人時不會破壞戰利品且對無護甲的敵人造成<ABILITY:NEEDLE_BONUS_UNARMORED_DMG_LW/>額外傷害。"
 LocFlyOverText="刺針榴彈"
-LocPromotionPopupText="<Bullet/> 你受過額外的訓練，能讓你使用能夠發射出特殊裂片的爆炸性榴彈，使戰利品完好無損，撕碎未加固的材料。<br/><Bullet/> 被該士兵的任何其他爆炸物（如重武器）擊殺的敵人的戰利品和屍體，也會被保留下來。<br/><Bullet/> 刺針榴彈對臂套火箭和火焰噴射器都有效。"
+LocPromotionPopupText="<Bullet/> 你受過額外的訓練，能讓你使用能夠發射出特殊裂片的爆炸性榴彈，使戰利品完好無損，撕碎未加固的材料。<br/><Bullet/> 被該士兵的任何其他爆炸物（如重武器）擊殺的敵人的戰利品和屍體，也會被保留下來。<br/><Bullet/> 不破壞戰利品效果對臂套火箭和火焰噴射器都有效。"
 
 [HEATWarheads X2AbilityTemplate]
 LocFriendlyName="高熱彈頭"
@@ -546,8 +546,8 @@ LocPromotionPopupText="<Bullet/> 你將格擋任何擦傷或未命中的近戰�
 
 [Flush X2AbilityTemplate]
 LocFriendlyName="衝散"
-LocLongDescription="一種特殊射擊，增加<Ability:FLUSH_AIM_BONUS>命中，但減少<Ability:FLUSH_DAMAGE_PENALTY>%的傷害。如果命中，目標將失去<Ability:FLUSH_DEFENSE_REDUCTION>防禦和<Ability:FLUSH_DODGE_REDUCTION>閃避，並且強迫目標移動。"
-LocHelpText="一種特殊射擊，增加<Ability:FLUSH_AIM_BONUS>命中，但減少<Ability:FLUSH_DAMAGE_PENALTY>%的傷害。如果命中，目標將失去<Ability:FLUSH_DEFENSE_REDUCTION>防禦和<Ability:FLUSH_DODGE_REDUCTION>閃避，並且強迫目標移動。"
+LocLongDescription="一種特殊射擊，增加<Ability:FLUSH_AIM_BONUS>命中，但減少<Ability:FLUSH_DAMAGE_PENALTY>%的傷害。被命中的目標將失去<Ability:FLUSH_DEFENSE_REDUCTION>防禦和<Ability:FLUSH_DODGE_REDUCTION>閃避，並強迫其進行移動。"
+LocHelpText="一種特殊射擊，增加<Ability:FLUSH_AIM_BONUS>命中，但減少<Ability:FLUSH_DAMAGE_PENALTY>%的傷害。被命中的目標將失去<Ability:FLUSH_DEFENSE_REDUCTION>防禦和<Ability:FLUSH_DODGE_REDUCTION>閃避，並強迫其進行移動。"
 LocFlyOverText="衝散"
 LocPromotionPopupText="<Bullet/>消耗<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/><Ability:SelfCooldown_LW/>回合冷卻。<br/><Bullet/> 隱蔽狀態時無法使用。<br/><Bullet/> 無法暴擊或施加額外彈藥效果。<br/><Bullet/>降低防禦和閃避的效果持續<Ability:FLUSH_STATEFFECT_DURATION>回合。"
 str_FlushEffect="衝散"
@@ -952,6 +952,7 @@ TacticalText="<Bullet/>要是由訓練有素的士兵使用，手槍可就不僅
 FriendlyName="雷射手槍"
 FriendlyNamePlural="雷射手槍"
 UnknownUtilityCategory="手槍"
+AbilityDescName="手槍"
 BriefSummary="基於先進的激光武器技術，我們發明了這把新手槍。值得稱道的是，它在威力方面和傳統手槍相比有非常顯著的飛躍。"
 TacticalText="<Bullet/>雷射手槍在整體上要比普通的手槍威力更大，命中率更高。\n<Bullet/>雷射可以提高命中率。\n<Bullet/>手槍射擊只需要一個行動點。\n<Bullet/>士兵們可以通過訓練特定的技能來大幅度增加手槍的威力。\n<Bullet/>在遠距離射擊時手槍的命中率會降低。"
 
@@ -1211,14 +1212,14 @@ AbilityDescName="激光軌道炮"
 [SparkRifle_CG X2WeaponTemplate]
 FriendlyName="高斯投射炮"
 FriendlyNamePlural="高斯投射炮"
-BriefSummary="使用多個加速線圈來製造聚焦的帶電粒子束，這些粒子在任何範圍內均保持有效，能為SPARK提供強大的火力。" 
+BriefSummary="這種線圈自動炮的發明得益於全新的以超鈾為基礎的極速電容器。其電容間距僅為納米級，使其在射擊時能夠逐個過載並依次放電，能為SPARK提供強大的火力。" 
 TacticalText="<Bullet/> 線圈武器會穿透1點敵方護甲。<br/><Bullet/> 高斯投射炮是線圈版本的自動加農炮。"
 AbilityDescName="高斯投射炮"
 
 [PrototypePlasmaBlaster X2WeaponTemplate]
 FriendlyName="原型電漿毀滅炮"
 FriendlyNamePlural="原型電漿毀滅炮"
-BriefSummary="利用從第一次入侵中回收的技術，我們設計了一種可以發射大量集中電漿能量脈衝的方法，可以摧毀固定路徑上的目標。其能量足以激活兩次。"
+BriefSummary="利用從第一次入侵中回收的技術，我們設計了一種可以發射大量集中電漿能量脈衝的方法，可以摧毀固定路徑上的目標。"
 TacticalText="<Bullet/> 電漿毀滅炮射出一道直線式的毀滅性能量光束，可以傷害多個目標。\n<Bullet/> 它的彈藥有限，儘量在必要時使用。"
 
 [PlasmaBlaster X2WeaponTemplate]
@@ -1419,7 +1420,7 @@ FriendlyNamePlural="精英自動裝填器"
 [CombatStims X2WeaponTemplate]
 FriendlyName="超能血清"
 FriendlyNamePlural="超能血清"
-BriefSummary="超能血清提取自狂戰士外星人的腎上腺，通過刺激使用者的神經系統在數回合內提高其機動性和傷害抗性。"
+BriefSummary="超能血清提取自狂戰士外星人的腎上腺，通過刺激使用者的神經系統在數回合內提高其機動性和傷害抗性。超能血清每次任務只能使用一次。"
 TacticalText="<Bullet/>超能血清能顯著提升機動性並顯著減少士兵受到的傷害。\n<Bullet/>超能血清還能使士兵暫時免疫恐慌和心靈控制等負面精神效果。"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;; GEAR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -6275,9 +6276,9 @@ LocPromotionPopupText="<Bullet/> 本單位被射擊時復仇者不會觸發。<b
 LocFriendlyName="捕食者"
 LocFlyOverText="捕食者"
 ; LWOTC Needs Translation (2)
-LocLongDescription="對側翼敵人的遠程攻擊獲得<Ability:PREDATOR_AIM_BONUS/>命中以及<Ability:PREDATOR_CRIT_BONUS/>暴擊率加成。"
-LocHelpText="對側翼敵人的遠程攻擊獲得<Ability:PREDATOR_AIM_BONUS/>命中以及<Ability:PREDATOR_CRIT_BONUS/>暴擊率加成。"
-LocPromotionPopupText="<Bullet/> 對側翼敵人的遠程攻擊獲得<Ability:PREDATOR_AIM_BONUS/>命中以及<Ability:PREDATOR_CRIT_BONUS/>暴擊率加成。<br/>"
+LocLongDescription="對側翼敵人的遠程攻擊獲得<Ability:PREDATOR_AIM_BONUS_LW/>命中以及<Ability:PREDATOR_CRIT_BONUS_LW/>暴擊率加成。"
+LocHelpText="對側翼敵人的遠程攻擊獲得<Ability:PREDATOR_AIM_BONUS_LW/>命中以及<Ability:PREDATOR_CRIT_BONUS_LW/>暴擊率加成。"
+LocPromotionPopupText="<Bullet/> 對側翼敵人的遠程攻擊獲得<Ability:PREDATOR_AIM_BONUS_LW/>命中以及<Ability:PREDATOR_CRIT_BONUS_LW/>暴擊率加成。<br/>"
 ; End Translation (2)
 
 [Stiletto_LW X2AbilityTemplate]
@@ -7683,7 +7684,7 @@ LocFriendlyName="感知共享"
 LocLongDescription="小隊所有成員對你視野內可見的敵人獲得<Ability:+Crit>暴擊率。"
 LocHelpText="小隊所有成員對你視野內可見的敵人獲得<Ability:+Crit>暴擊率。"
 LocFlyOverText="感知共享"
-LocPromotionPopupText="<Bullet/> 這不包括僅通過小隊視野可見的敵人。<br/>"
+LocPromotionPopupText="<Bullet/> 習得此技能的單位如果是通過小隊視野看見敵人則不會為盟友提供加成。<br/>"
 
 [FocusedDefense_LW X2AbilityTemplate]
 LocFriendlyName="重點防禦"

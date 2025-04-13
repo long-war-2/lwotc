@@ -106,7 +106,7 @@ LocLongDescription="军官提升指挥范围内士兵的命中、意志力、侵
 LocHelpText="在军官指挥范围内的友军能获得命中、意志力和侵入能力提升。"
 LocFlyOverText="以身作则"
 ;displayed for officer in Officer Ability UI
-LocPromotionPopupText="<Bullet/> 如果军官的命中、意志以及（或）侵入能力比指挥范围内的某一士兵要高，那么该士兵获得这些数值与军官之间差额一半的加成。<br/><Bullet/> 指挥范围会随着军官等级提升而提升。<br/><Bullet/> 此技能不会为眩晕或恐慌的盟友提供增益。<br/><Bullet/> 此技能不会为机器人盟友提供增益。"
+LocPromotionPopupText="<Bullet/> 如果军官的命中、意志以及（或）侵入能力比指挥范围内的某一士兵要高，那么该士兵获得这些数值与军官之间差额一半的加成。<br/><Bullet/> 指挥范围会随着军官等级提升而提升。<br/><Bullet/> 此技能不会为眩晕或恐慌的盟友提供增益。<br/>"
 
 ;Displayed on officer in tactical container
 [LeadByExamplePassive X2AbilityTemplate]
@@ -114,7 +114,7 @@ LocFriendlyName="以身作则"
 LocLongDescription="军官提升指挥范围内士兵的命中、意志力、侵入能力，具体数值为士兵和军官数值差额的一半。"
 LocHelpText="在军官指挥范围内的友军能获得命中、意志力和侵入能力提升。"
 LocFlyOverText="以身作则"
-LocPromotionPopupText="<Bullet/> 如果军官的命中、意志以及（或）侵入能力比指挥范围内的某一士兵要高，那么该士兵获得这些数值与军官之间差额一半的加成。<br/><Bullet/> 指挥范围会随着军官等级提升而提升。<br/><Bullet/> 此技能不会为眩晕或恐慌的盟友提供增益。<br/><Bullet/> 此技能不会为机器人盟友提供增益。"
+LocPromotionPopupText="<Bullet/> 如果军官的命中、意志以及（或）侵入能力比指挥范围内的某一士兵要高，那么该士兵获得这些数值与军官之间差额一半的加成。<br/><Bullet/> 指挥范围会随着军官等级提升而提升。<br/><Bullet/> 此技能不会为眩晕或恐慌的盟友提供增益。<br/>"
 
 ;this may not be displayed -- needs testing
 [LeadByExampleLeader X2AbilityTemplate]
