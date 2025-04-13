@@ -50,7 +50,7 @@ BriefSummary="該芯片大幅提高了繞過失血所需的過度殺傷傷害閾
 [IronSkinPCS X2EquipmentTemplate]
 FriendlyName="個人戰鬥晶片：銅皮鐵甲"
 FriendlyNamePlural="個人戰鬥晶片：銅皮鐵甲"
-BriefSummary="受到的近戰傷害減少<Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>點。"
+BriefSummary="受到的近戰傷害減少<Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>點。受到刺客的近戰攻擊時只能獲得67%的效果。"
 
 [SmartMacrophagesPCS X2EquipmentTemplate]
 FriendlyName="個人戰鬥晶片：智能巨噬細胞"
@@ -151,9 +151,9 @@ LocPromotionPopupText="<Bullet/>你視野內的每2個敵人都使你獲得+1暴
 [HardTarget X2AbilityTemplate]
 LocFriendlyName="高難目標"
 LocFlyOverText="高難目標"
-LocLongDescription="你視野內的每個敵人使你獲得5點閃避，最多+30。"
-LocHelpText="你視野內的每個敵人使你獲得5點閃避，最多+30。"
-LocPromotionPopupText="<Bullet/>你視野內的每個敵人使你獲得5點閃避，最多+30。<br/><Bullet/>不包括小隊視野範圍內的單位。<br/><Bullet/>此項能力在單位處於混亂、眩暈、恐慌、著火或其他受損狀態中時將不提供防禦加成。"
+LocLongDescription="你視野內的每個敵人使你獲得<Ability:HT_DODGE_BONUS_PER_ENEMY/>點閃避，最多+<Ability:HT_MAX_DODGE_BONUS/>。"
+LocHelpText="你視野內的每個敵人使你獲得<Ability:HT_DODGE_BONUS_PER_ENEMY/>點閃避，最多+<Ability:HT_MAX_DODGE_BONUS/>。"
+LocPromotionPopupText="<Bullet/>不包括小隊視野範圍內的單位。<br/><Bullet/>此項能力在單位處於混亂、眩暈、恐慌、著火或其他受損狀態中時將不提供防禦加成。"
 
 [Infighter X2AbilityTemplate]
 LocFriendlyName="近身鬥士"
@@ -1101,14 +1101,14 @@ LocFriendlyName="重啟"
 LocLongDescription="如果SPARK受到致命傷害，它的生命值將減少到1點，並且將在回合的剩餘時間中被靜滯。每次任務只能觸發一次，之後SPARK就會陷入破損狀態（降低命中、移動和侵入能力）。"
 LocHelpText="如果SPARK受到致命傷害，它的生命值將減少到1點，並且將在回合的剩餘時間中被靜滯。"
 LocFlyOverText="重啟"
-LocPromotionPopupText="<Bullet/> 每次任務中，當SPARK的生命值首次降到零時，它將被置於靜滯狀態。<br/><Bullet/> 如果沒有“冗餘系統”能力，SPARK觸發重啟後，會遭受巨大的命中、移動和侵入能力的懲罰。<br/><Bullet/> 由於這些缺點，再加上SPARK在重啟時已經很低的外殼完整性，建議在可能的情況下將重啟的SPARK通過天際遊俠號撤離戰場。<br/><Bullet/> 多虧了複雜的冗餘裝甲、激活電路和單次充能的護盾投射器，SPARK可以為隊伍承擔一次打擊，並安心地知道它將活下來，以便在另一天繼續出擊。<br/>"
+LocPromotionPopupText="<Bullet/> 每次任務中，當SPARK的生命值首次降到零時，它將被置於靜滯狀態。<br/><Bullet/> 如果沒有“冗餘系統”能力，SPARK觸發重啟後，會遭受巨大的命中、移動和侵入能力的懲罰。侵入降為0後將無法使用相關能力。<br/><Bullet/> 由於這些缺點，再加上SPARK在重啟時已經很低的外殼完整性，建議在可能的情況下將重啟的SPARK通過天際遊俠號撤離戰場。<br/><Bullet/> 多虧了複雜的冗餘裝甲、激活電路和單次充能的護盾投射器，SPARK可以為隊伍承擔一次打擊，並安心地知道它將活下來，以便在另一天繼續出擊。<br/>"
 
 [RebootTriggered_LW X2AbilityTemplate]
 LocFriendlyName="重啟"
 LocLongDescription="如果SPARK受到致命傷害，它的生命值將減少到1點，並且將在回合的剩餘時間中被靜滯。每次任務只能觸發一次，之後SPARK就會陷入破損狀態（降低命中、移動和侵入能力）。"
 LocHelpText="如果SPARK受到致命傷害，它的生命值將減少到1點，並且將在回合的剩餘時間中被靜滯。"
 LocFlyOverText="重啟"
-LocPromotionPopupText="<Bullet/> 每次任務中，當SPARK的生命值首次降到零時，它將被置於靜滯狀態。<br/><Bullet/> 如果沒有“冗餘系統”能力，SPARK觸發重啟後，會遭受巨大的命中、移動和侵入能力的懲罰。<br/><Bullet/> 由於這些缺點，再加上SPARK在重啟時已經很低的外殼完整性，建議在可能的情況下將重啟的SPARK通過天際遊俠號撤離戰場。<br/><Bullet/> 多虧了複雜的冗餘裝甲、激活電路和單次充能的護盾投射器，SPARK可以為隊伍承擔一次打擊，並安心地知道它將活下來，以便在另一天繼續出擊。<br/>"
+LocPromotionPopupText="<Bullet/> 每次任務中，當SPARK的生命值首次降到零時，它將被置於靜滯狀態。<br/><Bullet/> 如果沒有“冗餘系統”能力，SPARK觸發重啟後，會遭受巨大的命中、移動和侵入能力的懲罰。侵入降為0後將無法使用相關能力。<br/><Bullet/> 由於這些缺點，再加上SPARK在重啟時已經很低的外殼完整性，建議在可能的情況下將重啟的SPARK通過天際遊俠號撤離戰場。<br/><Bullet/> 多虧了複雜的冗餘裝甲、激活電路和單次充能的護盾投射器，SPARK可以為隊伍承擔一次打擊，並安心地知道它將活下來，以便在另一天繼續出擊。<br/>"
 
 [RedundantSystems_LW X2AbilityTemplate]
 LocFriendlyName="冗餘系統"
@@ -1183,9 +1183,9 @@ LocPromotionPopupText="<Bullet/> 如果一名敵人在相鄰格中開始他們�
 
 [EnhancedSystems_LW X2AbilityTemplate]
 LocFriendlyName="強化維修系統"
-LocLongDescription="授予「快速維修」和「冗餘系統」技能，維修不再結束回合，移除與重啟相關的屬性減益。重啟時，SPARK將自動使用維修。"
+LocLongDescription="授予「快速維修」和「冗餘系統」技能，維修不再結束回合，移除與重啟相關的屬性減益。重啟時，SPARK將自動使用維修。此外，額外獲得一次維修使用次數。"
 LocHelpText="授予「快速維修」和「冗餘系統」技能，維修不再結束回合，移除與重啟相關的屬性減益。重啟時，SPARK將自動使用維修。"
-LocPromotionPopupText="快速維修使得維修不再結束回合。冗餘系統意味着SPARK在重啟後不會受到任何屬性懲罰。SPARK在重啟時將自動使用維修。"
+LocPromotionPopupText="快速維修使得維修不再結束回合。冗餘系統意味着SPARK在重啟後不會受到任何屬性懲罰。SPARK在重啟時將自動使用維修。此外，額外獲得一次維修使用次數。"
 
 [ReactionSystems_LW X2AbilityTemplate]
 LocFriendlyName="強化防禦系統"
