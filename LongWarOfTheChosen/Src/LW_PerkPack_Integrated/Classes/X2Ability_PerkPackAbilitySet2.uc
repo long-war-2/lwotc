@@ -1444,7 +1444,7 @@ static function X2DataTemplate RebootTriggered()
 	
 	HackEffect = new class'X2Effect_PersistentStatChange';
 	HackEffect.BuildPersistentEffect(1, true, false);
-	HackEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, "This unit has been Rebooted from catastrophic damage and is suffering -30 aim, -3 mobility, and -100 hack.", Template.IconImage,,, Template.AbilitySourceName); 
+	HackEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName); 
 	HackEffect.AddPersistentStatChange(eStat_Hacking, default.REBOOT_HACK);
 	HackEffect.AddPersistentStatChange(eStat_Offense, default.REBOOT_AIM);
 	HackEffect.AddPersistentStatChange(eStat_Mobility, default.REBOOT_MOB);

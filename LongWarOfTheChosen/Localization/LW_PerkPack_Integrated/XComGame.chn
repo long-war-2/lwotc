@@ -1106,10 +1106,8 @@ LocPromotionPopupText="<Bullet/> 每次任务中，当SPARK的生命值首次降
 
 [RebootTriggered_LW X2AbilityTemplate]
 LocFriendlyName="重启"
-LocLongDescription="如果SPARK受到致命伤害，它的生命值将减少到1点，并且将在回合的剩余时间中被静滞。每次任务只能触发一次，之后SPARK就会陷入破损状态（降低命中、移动和侵入能力）。"
-LocHelpText="如果SPARK受到致命伤害，它的生命值将减少到1点，并且将在回合的剩余时间中被静滞。"
-LocFlyOverText="重启"
-LocPromotionPopupText="<Bullet/> 每次任务中，当SPARK的生命值首次降到零时，它将被置于静滞状态。<br/><Bullet/> 如果没有“冗余系统”能力，SPARK触发重启后，会遭受巨大的命中、移动和侵入能力的惩罚。侵入降为0后将无法使用相关能力。<br/><Bullet/> 由于这些缺点，再加上SPARK在重启时已经很低的外壳完整性，建议在可能的情况下将重启的SPARK通过天际游侠号撤离战场。<br/><Bullet/> 多亏了复杂的冗余装甲、激活电路和单次充能的护盾投射器，SPARK可以为队伍承担一次打击，并安心地知道它将活下来，以便在另一天继续出击。<br/>"
+LocLongDescription="该单位因受到严重破坏而被重启，正在遭受以下负面影响：命中-30，移动力-3，侵入能力-100。"
+LocHelpText="如果该单位受到致命伤害，它的生命值将减少到1点，并且将在本回合的剩余时间中被静滞。"
 
 [RedundantSystems_LW X2AbilityTemplate]
 LocFriendlyName="冗余系统"
