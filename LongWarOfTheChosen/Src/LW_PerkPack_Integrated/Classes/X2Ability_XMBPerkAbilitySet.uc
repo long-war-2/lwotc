@@ -370,6 +370,14 @@ static function X2AbilityTemplate SawedOffOverwatch()
 	EventListener.ListenerData.Priority = 55;
 	Template.AbilityTriggers.AddItem(EventListener);
 
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.EventID = 'AbilityActivated';
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.Filter = eFilter_None;
+	EventListener.ListenerData.Priority = 85;
+	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalAttackListener;
+	Template.AbilityTriggers.AddItem(EventListener);
+
 	Template.AbilityTargetConditions.AddItem(TargetWithinTiles(default.NONE_SHALL_PASS_TILE_RANGE));
 	AddCooldown(Template, default.NONE_SHALL_PASS_COOLDOWN);
 
@@ -378,6 +386,10 @@ static function X2AbilityTemplate SawedOffOverwatch()
 	NoneShallPassTargetCondition = new class'X2Condition_UnitEffectsWithAbilitySource';
 	NoneShallPassTargetCondition.AddExcludeEffect('NoneShallPassTarget', 'AA_DuplicateEffectIgnored');
 	Template.AbilityTargetConditions.AddItem(NoneShallPassTargetCondition);
+
+	// Exclude non-units and mind control
+	Template.AbilityTargetConditions.RemoveItem(default.LivingHostileTargetProperty);
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitDisallowMindControlProperty);
 
 	ExcludeSquadmatesCondition = new class'X2Condition_UnitProperty';
 	ExcludeSquadmatesCondition.ExcludeSquadmates = true;
