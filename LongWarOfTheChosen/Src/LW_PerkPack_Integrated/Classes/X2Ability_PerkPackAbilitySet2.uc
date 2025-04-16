@@ -485,13 +485,18 @@ static function X2AbilityTemplate AddTrojanVirusAPDrain()
 // plays Trojan Virus flyover and message when the effect is removed (which is when the meaningful effects are triggered)
 static function TrojanVirusVisualizationRemoved(XComGameState VisualizeGameState, out VisualizationActionMetadata BuildTrack, const name EffectApplyResult)
 {
-	local XComGameState_Unit UnitState;
+	local XComGameState_Unit UnitState, OldState;
 	local X2Action_PlaySoundAndFlyOver SoundAndFlyOver;
 	local XGParamTag kTag;
 	local X2Action_PlayWorldMessage MessageAction;
 
 	UnitState = XComGameState_Unit(BuildTrack.StateObject_NewState);
-	if (UnitState == none)
+	OldState = XComGameState_Unit(Build.Track.StateObject_OldState);
+	if (UnitState == none || OldState == none)
+		return;
+	
+	//Check if the Unit has died prior to this effect being removed
+	if (OldState.IsDead())
 		return;
 
 	SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, VisualizeGameState.GetContext(), false, BuildTrack.LastActionAdded));
