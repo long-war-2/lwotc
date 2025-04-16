@@ -491,7 +491,7 @@ static function TrojanVirusVisualizationRemoved(XComGameState VisualizeGameState
 	local X2Action_PlayWorldMessage MessageAction;
 
 	UnitState = XComGameState_Unit(BuildTrack.StateObject_NewState);
-	OldState = XComGameState_Unit(Build.Track.StateObject_OldState);
+	OldState = XComGameState_Unit(BuildTrack.StateObject_OldState);
 	if (UnitState == none || OldState == none)
 		return;
 	
