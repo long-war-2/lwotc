@@ -4161,7 +4161,7 @@ static function X2AbilityTemplate AddBodyShieldAbility()
 	BodyShieldEffect.BodyShieldDefBonus = default.BODY_SHIELD_DEF_BONUS;
 	BodyShieldEffect.BodyShieldCritMalus = default.BODY_SHIELD_ENEMY_CRIT_MALUS;
 	BodyShieldEffect.BuildPersistentEffect(default.BODY_SHIELD_DURATION, false, true, false, eGameRule_PlayerTurnEnd);
-	BodyShieldEffect.SetDisplayInfo (ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
+	BodyShieldEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
 	BodyShieldEffect.EffectName='BodyShield';
 	Template.AddTargetEffect(BodyShieldEffect);
 	

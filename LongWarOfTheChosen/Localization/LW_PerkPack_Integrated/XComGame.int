@@ -1206,10 +1206,8 @@ LocPromotionPopupText="<Bullet/> The SPARK will be put into Stasis the first tim
 
 [RebootTriggered_LW X2AbilityTemplate]
 LocFriendlyName="Reboot"
-LocLongDescription="If the SPARK takes enough damage to be killed, its health will be reduced to just 1 HP and it will be shielded for the rest of the turn. Can only trigger once every mission, and afterwards the SPARK is crippled."
-LocHelpText="The SPARK will be shielded for one turn if it takes enough damage to be killed."
-LocFlyOverText="Reboot"
-LocPromotionPopupText="<Bullet/> The SPARK will be put into Stasis the first time each mission that its health hits zero.<br/><Bullet/> Without the Redundant Systems ability, the SPARK is crippled after rebooting from catastrophic damage, suffering massive penatlies to aim, mobility, and hacking.<br/><Bullet/> Because of these drawbacks, in combination with the SPARK's already low hull integrity at the time of a Reboot, it is recommended rebooted SPARKs be withdrawn from the battlefield via Skyranger when possible.<br/><Bullet/> Thanks to a complex network of redundant plating, reactivation circuits, and a single-charge shield projector, the SPARK can take one for the team secure in the knowledge that it will live to punch another day.<br/>"
+LocLongDescription="This unit has been Rebooted from catastrophic damage and is suffering -30 aim, -3 mobility, and -100 hack."
+LocHelpText="The unit will be shielded for one turn if it takes enough damage to be killed."
 
 [RedundantSystems_LW X2AbilityTemplate]
 LocFriendlyName="Redundant Systems"
@@ -1262,10 +1260,9 @@ LocPromotionPopupText="<Bullet/> The <Ability:ClassName/> can trace incoming ord
 
 [TriangulationTrigger_LW X2AbilityTemplate]
 LocFriendlyName="Triangulate"
-LocLongDescription="When the <Ability:ClassName/> is attacked, the squad gains +10 aim against that target on the following turn."
-LocHelpText="When the <Ability:ClassName/> is attacked, the squad gains +10 aim against that target on the following turn."
+LocLongDescription="All enemies of this unit gain extra Aim when firing at it."
+LocHelpText="All enemies of this unit gain extra Aim when firing at it."
 LocFlyOverText="Triangulate"
-LocPromotionPopupText="<Bullet/> The <Ability:ClassName/> can trace incoming ordnance back to their original owners, and upload that information to the rest of the team.<br/><Bullet/> Triangulate will not trigger if an enemy attacks one of the <Ability:ClassName/>'s squadmates.<br/>"
 
 [BrawlerProtocol_LW X2AbilityTemplate]
 LocFriendlyName="Counterstrike"

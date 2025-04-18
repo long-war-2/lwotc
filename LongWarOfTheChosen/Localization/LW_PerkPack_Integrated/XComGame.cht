@@ -1105,10 +1105,8 @@ LocPromotionPopupText="<Bullet/> 每次任務中，當SPARK的生命值首次降
 
 [RebootTriggered_LW X2AbilityTemplate]
 LocFriendlyName="重啟"
-LocLongDescription="如果SPARK受到致命傷害，它的生命值將減少到1點，並且將在回合的剩餘時間中被靜滯。每次任務只能觸發一次，之後SPARK就會陷入破損狀態（降低命中、移動和侵入能力）。"
-LocHelpText="如果SPARK受到致命傷害，它的生命值將減少到1點，並且將在回合的剩餘時間中被靜滯。"
-LocFlyOverText="重啟"
-LocPromotionPopupText="<Bullet/> 每次任務中，當SPARK的生命值首次降到零時，它將被置於靜滯狀態。<br/><Bullet/> 如果沒有“冗餘系統”能力，SPARK觸發重啟後，會遭受巨大的命中、移動和侵入能力的懲罰。侵入降為0後將無法使用相關能力。<br/><Bullet/> 由於這些缺點，再加上SPARK在重啟時已經很低的外殼完整性，建議在可能的情況下將重啟的SPARK通過天際遊俠號撤離戰場。<br/><Bullet/> 多虧了複雜的冗餘裝甲、激活電路和單次充能的護盾投射器，SPARK可以為隊伍承擔一次打擊，並安心地知道它將活下來，以便在另一天繼續出擊。<br/>"
+LocLongDescription="該單位因受到嚴重破壞而被重啟，正在遭受以下負面影響：命中-30，移動力-3，侵入能力-100。"
+LocHelpText="如果該單位受到致命傷害，它的生命值將減少到1點，並且將在本回合的剩餘時間中被靜滯。"
 
 [RedundantSystems_LW X2AbilityTemplate]
 LocFriendlyName="冗餘系統"
@@ -1161,10 +1159,9 @@ LocPromotionPopupText="<Bullet/> <Ability:ClassName/>可以追蹤來襲的炮彈
 
 [TriangulationTrigger_LW X2AbilityTemplate]
 LocFriendlyName="三角定位"
-LocLongDescription="當<Ability:ClassName/>受到攻擊時，小隊在下一回合對攻擊者獲得+10命中。"
-LocHelpText="當<Ability:ClassName/>受到攻擊時，小隊在下一回合對攻擊者獲得+10命中。"
+LocLongDescription="此單位的敵人攻擊該單位時獲得額外+10命中。"
+LocHelpText="此單位的敵人攻擊該單位時獲得額外+10命中。"
 LocFlyOverText="三角定位"
-LocPromotionPopupText="<Bullet/> <Ability:ClassName/>可以追蹤來襲的炮彈到它們的原始所有者，並將這些信息上傳給隊伍的其他成員。<br/><Bullet/> 如果敵人攻擊<Ability:ClassName/>的隊友，三角定位不會觸發。<br/>"
 
 [BrawlerProtocol_LW X2AbilityTemplate]
 LocFriendlyName="反應打擊"
