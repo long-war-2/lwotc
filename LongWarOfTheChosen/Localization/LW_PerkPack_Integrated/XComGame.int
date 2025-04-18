@@ -1260,10 +1260,9 @@ LocPromotionPopupText="<Bullet/> The <Ability:ClassName/> can trace incoming ord
 
 [TriangulationTrigger_LW X2AbilityTemplate]
 LocFriendlyName="Triangulate"
-LocLongDescription="When the <Ability:ClassName/> is attacked, the squad gains +10 aim against that target on the following turn."
-LocHelpText="When the <Ability:ClassName/> is attacked, the squad gains +10 aim against that target on the following turn."
+LocLongDescription="All enemies of this unit gain extra Aim when firing at it."
+LocHelpText="All enemies of this unit gain extra Aim when firing at it."
 LocFlyOverText="Triangulate"
-LocPromotionPopupText="<Bullet/> The <Ability:ClassName/> can trace incoming ordnance back to their original owners, and upload that information to the rest of the team.<br/><Bullet/> Triangulate will not trigger if an enemy attacks one of the <Ability:ClassName/>'s squadmates.<br/>"
 
 [BrawlerProtocol_LW X2AbilityTemplate]
 LocFriendlyName="Counterstrike"

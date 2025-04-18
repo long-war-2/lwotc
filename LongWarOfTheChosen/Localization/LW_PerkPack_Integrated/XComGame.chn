@@ -1160,10 +1160,9 @@ LocPromotionPopupText="<Bullet/> <Ability:ClassName/>可以追踪来袭的炮弹
 
 [TriangulationTrigger_LW X2AbilityTemplate]
 LocFriendlyName="三角定位"
-LocLongDescription="当<Ability:ClassName/>受到攻击时，小队在下一回合对攻击者获得+10命中。"
-LocHelpText="当<Ability:ClassName/>受到攻击时，小队在下一回合对攻击者获得+10命中。"
+LocLongDescription="此单位的敌人攻击该单位时获得额外+10命中。"
+LocHelpText="此单位的敌人攻击该单位时获得额外+10命中。"
 LocFlyOverText="三角定位"
-LocPromotionPopupText="<Bullet/> <Ability:ClassName/>可以追踪来袭的炮弹到它们的原始所有者，并将这些信息上传给队伍的其他成员。<br/><Bullet/> 如果敌人攻击<Ability:ClassName/>的队友，三角定位不会触发。<br/>"
 
 [BrawlerProtocol_LW X2AbilityTemplate]
 LocFriendlyName="反应打击"

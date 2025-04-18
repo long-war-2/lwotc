@@ -2109,7 +2109,7 @@ static function X2AbilityTemplate TriangulationTrigger()
 	Effect.HitMod = default.TRIANGULATION_HITMOD;
 	Effect.EffectName='TriangulateTarget';
 	Effect.BuildPersistentEffect(1, false, false, false, eGameRule_PlayerTurnEnd);
-	Effect.SetDisplayInfo(ePerkBuff_Penalty, "Triangulated", "All enemies of this unit gain extra Aim when firing at it.", "img:///UILibrary_MW.UIPerk_triangulation", true);
+	Effect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyHelpText(), "img:///UILibrary_MW.UIPerk_triangulation", true);
 	Effect.bRemoveWhenTargetDies = true;
 	Effect.bUseSourcePlayerState = true;
 	Template.AddTargetEffect(Effect);
