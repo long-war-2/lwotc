@@ -4200,6 +4200,7 @@ static function X2AbilityTemplate AddFreeScanner()
 
 	ItemEffect = new class 'X2Effect_TemporaryItem';
 	ItemEffect.ItemName = 'ScoutScanner_LW';
+	ItemEffect.EffectName = 'FreeScanner_LWEffect';
 	ItemEffect.bIgnoreItemEquipRestrictions = true;
 	Template.AddTargetEffect (ItemEffect);
 

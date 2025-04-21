@@ -25,14 +25,22 @@ var name ExistingItemName;
 var bool bOverrideInventorySlot;
 var EInventorySlot InventorySlotOverride;
 
+var name UnitValueName;
+
+// Deprecated - now using OnEffectRemoved and UnitEndedTacticalPlay instead.
+/* 
 function RegisterForEvents(XComGameState_Effect EffectGameState)
 {
 	local Object EffectObj;
+	local XComGameState_Unit EffectTargetUnit;
 
 	EffectObj = EffectGameState;
 
-	`XEVENTMGR.RegisterForEvent(EffectObj, 'TacticalGameEnd', OnTacticalGameEnd, ELD_OnStateSubmitted,,,, EffectObj);
+	EffectTargetUnit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectGameState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+
+	//`XEVENTMGR.RegisterForEvent(EffectObj, 'TacticalGameEnd', OnTacticalGameEnd, ELD_OnStateSubmitted,,,, EffectTargetUnit);
 }
+*/
 
 simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffectParameters, XComGameState_BaseObject kNewTargetState, XComGameState NewGameState, XComGameState_Effect NewEffectState)
 {
@@ -135,8 +143,10 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 		}
 
 		EffectState.TemporaryItems.AddItem(NewItemState.GetReference());
+		//`LWTrace("Added TemporaryItem to EffectState:" @NewItemState @EffectState);
 	}
 
+	//`LWTrace("Temporary Items length:" @ EffectState.TemporaryItems.Length);
 	super.OnEffectAdded(ApplyEffectParameters, kNewTargetState, NewGameState, NewEffectState);
 }
 
@@ -172,6 +182,9 @@ simulated function XComGameState_Item AddNewItemToUnit(X2EquipmentTemplate Equip
 
 	UnitState.bIgnoreItemEquipRestrictions = bCachedIgnoredItemEquipRestrictions;
 
+	// Store it in a UnitValue too.
+	UnitState.SetUnitFloatValue(GetItemUnitValueName_Static(EffectName), ItemState.ObjectID, eCleanup_BeginTacticalChain);
+	
 	// At this point the item has been created and added to the unit's inventory, but any item (or additional) abilities have yet to be added
 	EquipmentAbilities = GatherAbilitiesForItem(EquipmentTemplate);
 
@@ -334,21 +347,33 @@ function array<X2AbilityTemplate> AddAbilityToUnit(name AbilityName, XComGameSta
 simulated function OnEffectRemoved(const out EffectAppliedData ApplyEffectParameters, XComGameState NewGameState, bool bCleansed, XComGameState_Effect RemovedEffectState)
 {
 	local XComGameState_Effect_TemporaryItem EffectState;
+	local XComGameState_Unit UnitState;
+
+	//`LWTrace("OnEffectRemoved called for TemporaryItems");
 
 	EffectState = XComGameState_Effect_TemporaryItem(RemovedEffectState);
-	ClearTemporaryItems(EffectState, NewGameState);
+	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+
+	ClearTemporaryItems(EffectState, NewGameState, UnitState);
 
 	super.OnEffectRemoved(ApplyEffectParameters, NewGameState, bCleansed, RemovedEffectState);
 }
 
+// Deprecated function
 static function EventListenerReturn OnTacticalGameEnd(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
 	local XComGameState				NewGameState;
 	local XComGameState_Effect_TemporaryItem EffectState;
+	local XComGameState_Unit UnitState;
+
+	//`LWTrace("OnTacticalGameEnd called for TemporaryItems");
 	
 	EffectState = XComGameState_Effect_TemporaryItem(CallbackData);
+	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(XComGameState_BaseObject(EventSource).ObjectID));
+	//`LWTrace("Effect State returned:" @EffectState);
+	//`LWTrace("Unit:" @UnitState.GetFullName());
 	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Temporary Item Cleanup");
-	ClearTemporaryItems(EffectState, NewGameState);
+	ClearTemporaryItems(EffectState, NewGameState, UnitState);
 
 	if( NewGameState.GetNumGameStateObjects() > 0 )
 		`GAMERULES.SubmitGameState(NewGameState);
@@ -363,38 +388,77 @@ function UnitEndedTacticalPlay(XComGameState_Effect EffectState, XComGameState_U
 {
 	local XComGameState NewGameState;
 	local XComGameState_Effect_TemporaryItem TemporaryEffectState;
+
+	//`LWTrace("UnitEndedTacticalPlay called on TemporaryItemEffect");
 	
 	TemporaryEffectState = XComGameState_Effect_TemporaryItem(EffectState);
 	NewGameState = UnitState.GetParentGameState();
 
 	if (TemporaryEffectState != none)
-		ClearTemporaryItems(TemporaryEffectState, NewGameState);
+	{
+		//`LWTrace("Effect state found, entering ClearTemporaryItems");
+		ClearTemporaryItems(TemporaryEffectState, NewGameState, UnitState);
+	}
+	else
+	{
+		`LWTrace("EffectState not found from UnitEndedTacticalPlay");
+	}
 }
 
 
-static function ClearTemporaryItems(XComGameState_Effect_TemporaryItem EffectState, XComGameState NewGameState)
+static function ClearTemporaryItems(XComGameState_Effect_TemporaryItem EffectState, XComGameState NewGameState, XComGameState_Unit OriginalUnitState)
 {
 	local XComGameStateHistory		History;
 	local StateObjectReference		ItemRef;
 	local XComGameState_Item		ItemState;
 	local XComGameState_Unit		UnitState;
+	local UnitValue					ItemUnitValue;
 
 	History = `XCOMHISTORY;
 
+	//`LWTrace("ClearTemporaryItems called, TemporaryItems length:" @ EffectState.TemporaryItems.length);
+
 	foreach EffectState.TemporaryItems(ItemRef)
 	{
+		//`LWTrace("Checking item" @ItemRef.ObjectId);
 		if (ItemRef.ObjectID > 0)
 		{
+			//`LWTrace("ItemRef Found");
 			ItemState = XComGameState_Item(History.GetGameStateForObjectID(ItemRef.ObjectID));
 			if (ItemState != none)
 			{
+				//`LWTrace("ItemState Found in History");
 				UnitState = XComGameState_Unit(History.GetGameStateForObjectID(ItemState.OwnerStateObject.ObjectID));
 				if (UnitState != none)
+				{
+					//`LWTrace("Unit owner found, removing");
 					UnitState.RemoveItemFromInventory(ItemState); // Remove the item from the unit's inventory
+				}
+				else
+				{
+					`LWTrace("TemporaryItem: Owner not found");
+				}
 		
 				// Remove the temporary item's gamestate object from history
 				NewGameState.RemoveStateObject(ItemRef.ObjectID);
 			}
+		}
+	}
+
+	// catch multi phase missions
+	if(EffectState.TemporaryItems.length == 0)
+	{
+		UnitState = XComGameState_Unit(History.GetGameStateForObjectID(OriginalUnitState.ObjectID));
+
+		UnitState.GetUnitValue(GetItemUnitValueName_Static(EffectState.GetX2Effect().EffectName), ItemUnitValue);
+
+		//`LWTrace("Item found from UnitValue:" @ItemUnitValue.fValue);
+
+		if(ItemUnitValue.fValue > 0)
+		{
+			ItemState = XComGameState_Item(History.GetGameStateForObjectID(ItemUnitValue.fValue));
+			UnitState.RemoveItemFromInventory(ItemState);
+			NewGameState.RemoveStateObject(ItemState.ObjectID);
 		}
 	}
 
@@ -423,8 +487,15 @@ static function bool SkipForDirectMissionTransfer(const out EffectAppliedData Ap
 	return true;
 }
 
+static function name GetItemUnitValueName_Static(name AbilityName)
+{
+	return name(AbilityName $ default.UnitValueName);
+}
+
 defaultProperties
 {
 	bInfiniteDuration = true;
 	GameStateEffectClass=class'XComGameState_Effect_TemporaryItem';
+	DuplicateResponse = eDupe_Ignore;
+	UnitValueName = "_LWTemporaryItemEffectUnitValue";
 }
