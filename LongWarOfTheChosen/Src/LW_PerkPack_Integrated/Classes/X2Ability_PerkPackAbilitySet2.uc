@@ -1449,7 +1449,7 @@ static function X2DataTemplate RebootTriggered()
 	
 	HackEffect = new class'X2Effect_PersistentStatChange';
 	HackEffect.BuildPersistentEffect(1, true, false);
-	HackEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, "This unit has been Rebooted from catastrophic damage and is suffering -30 aim, -3 mobility, and -100 hack.", Template.IconImage,,, Template.AbilitySourceName); 
+	HackEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName); 
 	HackEffect.AddPersistentStatChange(eStat_Hacking, default.REBOOT_HACK);
 	HackEffect.AddPersistentStatChange(eStat_Offense, default.REBOOT_AIM);
 	HackEffect.AddPersistentStatChange(eStat_Mobility, default.REBOOT_MOB);
@@ -2114,7 +2114,7 @@ static function X2AbilityTemplate TriangulationTrigger()
 	Effect.HitMod = default.TRIANGULATION_HITMOD;
 	Effect.EffectName='TriangulateTarget';
 	Effect.BuildPersistentEffect(1, false, false, false, eGameRule_PlayerTurnEnd);
-	Effect.SetDisplayInfo(ePerkBuff_Penalty, "Triangulated", "All enemies of this unit gain extra Aim when firing at it.", "img:///UILibrary_MW.UIPerk_triangulation", true);
+	Effect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyHelpText(), "img:///UILibrary_MW.UIPerk_triangulation", true);
 	Effect.bRemoveWhenTargetDies = true;
 	Effect.bUseSourcePlayerState = true;
 	Template.AddTargetEffect(Effect);
