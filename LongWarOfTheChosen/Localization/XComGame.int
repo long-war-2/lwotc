@@ -6177,17 +6177,17 @@ ActionPreNarrative="We've discovered where they've been dumping the corpses from
 ActionPostNarrative="Your team managed to collect some valuable enemy corpses from the raid."
 
 [CovertActionNarrative_IntenseTraining_Skirmishers X2CovertActionNarrativeTemplate]
-ActionName="Undertake Hard Training (Cost: 5 AP)"
+ActionName="Undertake Hard Training (Cost: 5 XCOM AP)"
 ActionPreNarrative="Time to put in some effort and improve yourself. Get training, soldier!"
 ActionPostNarrative="Your soldier is better now."
 
 [CovertActionNarrative_IntenseTraining_Reapers X2CovertActionNarrativeTemplate]
-ActionName="Undertake Hard Training (Cost: 5 AP)"
+ActionName="Undertake Hard Training (Cost: 5 XCOM AP)"
 ActionPreNarrative="Time to put in some effort and improve yourself. Get training, soldier!"
 ActionPostNarrative="Your soldier is better now."
 
 [CovertActionNarrative_IntenseTraining_Templars X2CovertActionNarrativeTemplate]
-ActionName="Undertake Hard Training (Cost: 5 AP)"
+ActionName="Undertake Hard Training (Cost: 5 XCOM AP)"
 ActionPreNarrative="Time to put in some effort and improve yourself. Get training, soldier!"
 ActionPostNarrative="Your soldier is better now."
 
