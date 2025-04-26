@@ -362,11 +362,11 @@ LocHelpText="Erhalte eine Aktion nach dem Sprinten."
 LocPromotionPopupText="<Bullet/> Sturm und Schuss ermöglicht einer Einheit, schnell nahe an ihr Ziel zu gelangen oder erleichtert das Einnehmen einer flankierenden Position.<br/><Bullet/> Sturm und Schuss hat eine Abklingzeit von <Ability:RUN_AND_GUN_COOLDOWN/> Runden.<br/>"
 
 [Suppression_LW X2AbilityTemplate]
-LocFriendlyName="Bereichsunterdrückung"
-LocFlyOverText="Bereichsunterdrückung"
-LocLongDescription="Feuert eine Salve ab, die mehrere Ziele innerhalb eines Radius von 4 Feldern niederhält. Löst einen Reflexschuss gegen jedes Ziel aus, das sich bewegt. Alle Ziele erhalten einen Malus von <Ability:SUPPRESSIONPENALTY/> auf Zielsicherheit, bis die Unterdrückung endet. Kann nicht aus der Verborgenheit heraus genutzt werden."
-LocHelpText="Unterdrückt mehrere Ziele innerhalb eines Wirkungsbereichs."
-LocPromotionPopupText="<Bullet/> Kann nicht eingesetzt werden, wenn der Soldat verborgen ist.<br/><Bullet/> Jede bewegte Einheit wird zum Ziel eines Reflexschusses, solange Munition vorhanden ist.<br/><Bullet/> Nicht verwendbar mit Schrotflinten oder Präzisionsgewehren.<br/><Bullet/> Kostet <Ability:SelfAmmoCost/> Munition plus 1 pro Reflexschuss. Keine Abklingzeit.<br/><Bullet/> Wird abgebrochen, wenn die unterdrückende Einheit Schaden erleidet.<br/><Bullet/> Mehrere Unterdrücker erhöhen den Malus nicht.<br/><Bullet/> Unterdrückung verhindert viele Fähigkeiten, z. B. Raketen oder Granaten.<br/>"
+LocFriendlyName="Unterstützungsfeuer"
+LocFlyOverText="Unterstützungsfeuer"
+LocLongDescription="Schießt eine Salve ab, die das Ziel niederhält und einen Reflexschuss ermöglicht, wenn es sich rührt. Die Zielsicherheit des Gegners ändert sich um <Ability:SUPPRESSIONPENALTY/> und viele Fähigkeiten werden blockiert. Kann nicht aus der Verborgenheit heraus genutzt werden."
+LocHelpText="Verringere die Zielsicherheit des Ziels und beschieße es, wenn es sich rührt."
+LocPromotionPopupText="<Bullet/> Unterstützungsfeuer kostet <Ability:SelfAmmoCost/> Munitionspunkte zum Benutzen, hat jedoch keine Abklingzeit.<br/><Bullet/> Unterstützungsfeuer wird abgebrochen, wenn die unterstützende Einheit Schaden erleidet.<br/><Bullet/> Wenn mehrere Einheiten Unterstützungsfeuer auf ein Ziel richten, wird die Zielsicherheitsstrafe gestapelt.<br/><Bullet/> Kann nicht mit Scharfschützengewehr oder Schrotflinte verwendet werden.<br/><Bullet/> Die Unterdrückung schränkt viele Fähigkeiten des Ziels ein, darunter die Verwendung von Raketen und Granaten.<br./>"
 
 [SuppressionShot_LW X2AbilityTemplate]
 LocFriendlyName="Unterstützungsfeuer"
