@@ -7,7 +7,7 @@ PauseOnRecruitMod="Bei Rekrutierung pausieren"
 PauseOnRecruitModTooltip="Weltkartenansicht anhalten, wenn ein Versteck einen neuen Soldaten oder Rebellen rekrutiert."
 
 [UIScreenListener_ShellDifficulty]
-strIncompatibleModsTitle="DOPPELTE MODIFIKATIONEN AKTIV"
+strIncompatibleModsTitle="DOPPELTE MODS AKTIV"
 strIncompatibleModsText="Doppelte Mods entdeckt:\n%modnames%\nDie betroffenen Mods wurden in diesen Mod integriert und sollten im Launcher deaktiviert werden. Wenn du fortfährst, kann dies das Spielerlebnis negativ beeinflussen und zu verminderter Leistung oder Instabilitäten führen. Du fährst auf eigenes Risiko fort."
 
 [UIMission_LWCustomMission]
@@ -151,6 +151,11 @@ ActivityName="TroopManeuversActivity"
 ActivityObjectives[0]="Feindstärke reduzieren"
 +MissionDescriptions=(MissionFamily="TroopManeuvers_LW", Description="ADVENT hat eine Kampfeinheit ungeschützt zurückgelassen. Unsere Truppen können sie angreifen.")
 
+[CovertOpsTroopManeuvers X2LWAlienActivityTemplate]
+ActivityName="CovertOpsTroopManeuversActivity"
+ActivityObjectives[0]="Eliminiere einen Spähtrupp"
++MissionDescriptions=(MissionFamily="CovertOpsTroopManeuvers_LW", Description="ADVENT hat uns eine Aufklärungseinheiten wie auf dem Präsentierteller hingestellt.")
+
 [HighValuePrisoner X2LWAlienActivityTemplate]
 ActivityName="HighValuePrisonerActivity"
 ActivityObjectives[0]="Befreie wichtigen Gefangenen"
@@ -161,6 +166,15 @@ ActivityObjectives[0]="Befreie wichtigen Gefangenen"
 ActivityName="PoliticalPrisonersActivity"
 ActivityObjectives[0]="Gefangene Rebellen befreien"
 +MissionDescriptions=(MissionFamily="Jailbreak_LW", Description="Eine Gruppe Widerstandsmitglieder wird in einer gesicherten Einrichtung festgehalten. Wir haben kurzzeitig die Chance zu ihrer Befreiung.", MissionIndex=0)
+
+[Logistics X2LWAlienActivityTemplate]
+ActivityObjectives[0]="Stiehl ADVENT-Militärgut"
++MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="Der Widerstand hat den Aufbewahrungsort von wichtigem Feindmaterial herausgefunden, das wir für unsere eigenen Zwecke beschaffen können.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="SupplyExtraction_LW", Description="Der Widerstand hat den Aufbewahrungsort von wichtigem Feindmaterial herausgefunden, das wir für unsere eigenen Zwecke beschaffen können.", MissionIndex=0)
+
+[BigSupplyExtraction_LW X2LWAlienActivityTemplate]
+ActivityObjectives[0]="Stiehl großes ADVENT-Militärgut"
++MissionDescriptions=(MissionFamily="BigSupplyExtraction_LW", Description="Der Widerstand hat den Aufbewahrungsort von wichtigem Feindmaterial herausgefunden, das wir für unsere eigenen Zwecke beschaffen können.", MissionIndex=0)
 
 [IntelRaid X2LWAlienActivityTemplate]
 ActivityName="IntelRaidActivity"
@@ -238,12 +252,28 @@ strDaysAndHours="<XGParam:IntValue0> Tage, <XGParam:IntValue1> Stunden"
 strMinusDaysAndHours="- <XGParam:IntValue0> Tage, <XGParam:IntValue1> Stunden"
 strPlusDaysAndHours="+ <XGParam:IntValue0> Tage, <XGParam:IntValue1> Stunden"
 strMissionIndefinite="Unbestimmte Dauer"
+strLiberationTitle="Befreiungsfortschrittsmodifikator:"
+strOverallInfilShort="Aktuell"
+strMissionInfoTitle="Aufklärung:"
 
 UpToText="Bis zu"
 ExpectedActivityTextStr="Erwartete Aktivität"
 BoostedActivityText="Erwartete Aktivität (Verbessert)"
 BoostTextPre="Mit"
 BoostTextPost="Verbesserung"
+
+strInfilPanelTitle="Einsatzübersicht"
+strActivityHeader="Feindaktivität"
+strModifierHeader="Infiltrationsmodifikatoren"
+strBaseInfilShort="Basis"
+strSquadSizeShort="Truppgröße"
+strAbilitiesShort="Fähigkeiten/Ausrüstung"
+strExpirationShort="Verfall"
+strExpectedShort="Erwartet"
+strBoostedShort="Verstärkt"
+strLiberationShort="Befreiung"
+strMaxInfilText="Maximale Infiltration"
+strMapTypeText="Kartentyp"
 
 [UIScreenListener_DropShipBriefing_MissionStart]
 strLaunchingInfiltration="KONTAKT STEHT BEVOR"
@@ -291,6 +321,7 @@ UnitInSquad="Einheit in einem Trupp"
 RankTooLow="Rang zu niedrig"
 CannotModifyOnMissionSoldierTooltip="Im Einsatz befindliche Soldaten können nicht modifiziert werden"
 ReasonClassAbilityPickedAtRank="Du hast bereits eine Fähigkeit für diesen Rang ausgewählt"
+ReasonPsiOperativePerkFromLab="Psi-Soldat"
 
 [X2Effect_LWHolotarget]
 HoloTargetEffectName="Holo-Ziel"
@@ -421,6 +452,7 @@ TooltipBarracks_SquadManagement="Dauerhafte Soldatentrupps verwalten"
 
 [UIStrategyMapItem_Mission_LW]
 strRecon="Infil."
+InfiltrationTooltipString="INFILTRATION"
 
 [UIMission_LWLaunchDelayedMission]
 m_strMission="INFILTRATION"
@@ -500,6 +532,8 @@ m_strThreatHigh="Hoch"
 m_strThreatVeryHigh="Ernst"
 m_strLiberated="Befreit"
 m_strResistanceManagementLevels="<XGParam:IntValue0> (W:<XGParam:IntValue1>)"
+ViewHavenStr="VERSTECK ANSEHEN"
+FlyToHavenStr="FLIEG ZUM VERSTECK"
 
 [UIOutpostManagement]
 m_strTitle="VERSTECKVERWALTUNG"
@@ -518,6 +552,10 @@ m_strCannotChangeLiaison="Der Berater kann derzeit aufgrund von laufenden Einsä
 ChangeJobStr="AUFGABE ÄNDERN"
 ChangeAllJobsStr="ALLE AUFGABEN ÄNDERN"
 PerksStr="FÄHIGKEITEN" 
+
+m_strIncomeIntel="Missionsdetektionsvermögen:"
+m_strIncomeSupply="Vorräte pro Tag:"
+m_strIncomeRecruit="Tage je Rekrut:"
 
 [UIScreenListener_TacticalHUD]
 strEvacRequestTitle="Evakuierung angefordert"
@@ -585,6 +623,8 @@ m_strRetributionEnded="Widerstandsmitglieder in <XGParam:StrValue0/> haben sich 
 
 [X2StrategyElement_DefaultAlienActivities]
 m_strInsufficientRebels="Es müssen mindestens <XGParam:IntValue0/> Rebellen im Versteck sein, um mit Nachbarn in Kontakt zu treten"
+VultureUnlockTitle = „Geier freigeschaltet“
+VultureUnlockDesc = „XCOM hat das Aufsammeln von Leichen verbessert und kann nun mehr Gegenstände aus Beuteabwürfen bergen.“
 
 [UIScreenListener_Alert]
 m_strInvasionTitle="ADVENT-INVASION"
@@ -593,13 +633,47 @@ m_strInvasionBody="Commander, ADVENT versucht, eine befreite Region zurückzuero
 m_strInvasionFlare="NOTFALLNACHRICHT"
 m_strInvasionConfirm="INVASIONSSTÄTTE"
 
-[UIUtilities_LW]
-m_strStripWeaponUpgrades=WAFFENMODULE VERFÜGBAR MACHEN
-m_strStripWeaponUpgradesLower=Waffenmodule Verfügbar Machen
-m_strStripWeaponUpgradesConfirm=WAFFENVERBESSERUNGEN VERFÜGBAR MACHEN?
-m_strStripWeaponUpgradesConfirmDesc=Hiermit werden alle Waffenverbesserungen von allen Primärwaffen entfernt, außer denen, die von Soldaten in dieser Mission getragen werden. Die entfernten Waffenmodule können sofort neu angebracht werden.
-m_strTooltipStripWeapons=Alle Waffenverbesserungen von Soldaten entfernen, die NICHT für die aktuelle Mission ausgewählt sind.
+[UIScreenListener_ShellDifficulty]
+.Credits=""
+.Credits=Design Lead
+.Credits=John "JohnnyLump" Lumpkin
+.Credits=""
+.Credits=Technical Lead
+.Credits=Rachel "Amineri" Norman
+.Credits=""
+.Credits=Programmers
+.Credits=Jonathan "tracktwo" Emmett
+.Credits=Chris "chrisb" Boertien
+.Credits=""
+.Credits=Artists
+.Credits=James "JCLewis" Karlson
+.Credits=Chris "CapnBubs" Mansell
+.Credits=Dana "lfish" Henderson
+.Credits=Robert "BazserMazser" Bakos
+.Credits=Alexander "XMarksTheSpot" Behne
+.Credits=Percy Parache
+.Credits=""
+.Credits=Quality Assurance Lead
+.Credits=Tim "Bilfdoffle" Evans
+.Credits=""
+.Credits=Quality Assurance and Design Advisers
+.Credits=Matt "WyMANderly" Price
+.Credits=Xavier Wynns
+.Credits=Stephen "JoINrbs" Flavall 
+.Credits=Tim "deaconivory" Douglas
+.Credits=Caitlin McDonald, Paul "Kordolius" Massip, Benedict Jacka "Saph"
+.Credits=Colin "Thrair" Hendershot, Paul "Plockets" Giles, Gimrah, Ronar
+.Credits=""
+.Credits="Special Thanks"
+.Credits="Garrett Bittner, Casey Coleman, Garth DeAngelis"
+.Credits="Brian Hess, Sajjad Majid, Ryan McFall"
+.Credits="Kevin Schultz, Jake Solomon, Brittany Steiner, Iain Willows"
+.Credits="McDenny's 09, The Community Highlander Project"
+.Credits="RoboJumper, Bountygiver, xylthixlm, Beaglerush"
+.Credits="Our herd of spot translators on the PI forums"
+.Credits=""
 
+[UIUtilities_LW]
 m_strInfiltrationMission="Infiltrationsmission"
 m_strQuickResponseMission="Schnelles Eingreifen"
 m_strFixedEvacLocation="Feste Evakuierungszone"
@@ -619,8 +693,17 @@ m_strTurnSingular="Runde"
 m_strTurnPlural="Runden"
 m_strMinimumInfiltration="Mindestens <XGParam:IntValue0>% Infiltration"
 m_strYellowAlert="Erhöhte Alarmbereitschaft"
-
 m_sAverageScatterText="± <XGParam:StrValue0/> Felder"
+m_strBullet="•"
+m_strExpectedInfiltration="Nach Verstärkung"
+m_strInfiltrationBoostCost="Kosten"
+
+m_StrStripUpgrade=MODULE ABLEGEN
+m_strStripWeaponUpgrades=WAFFENMODULE VERFÜGBAR MACHEN
+m_strStripWeaponUpgradesLower=Waffenmodule Verfügbar Machen
+m_strStripWeaponUpgradesConfirm=WAFFENVERBESSERUNGEN VERFÜGBAR MACHEN?
+m_strStripWeaponUpgradesConfirmDesc=Hiermit werden alle Waffenverbesserungen von allen Primärwaffen entfernt, außer denen, die von Soldaten in dieser Mission getragen werden. Die entfernten Waffenmodule können sofort neu angebracht werden.
+m_strTooltipStripWeapons=Alle Waffenverbesserungen von Soldaten entfernen, die NICHT für die aktuelle Mission ausgewählt sind.
 
 m_strAllHandsToHangar=JEDERMANN ZUM HANGAR
 m_strAllHandsToHangarConfirm=JEDERMANN ZUM HANGAR BESTÄTIGEN
@@ -631,12 +714,6 @@ m_strPrevHaven="VORIGES VERSTECK"
 m_strNextHaven="NÄCHSTES VERSTECK"
 
 m_strVIPCaptureReward="(bei Gefangennahme der VIP)"
-
-[Logistics X2LWAlienActivityTemplate]
-ActivityObjectives[0]="Stiehl ADVENT Militärgut"
-+MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="Der Widerstand hat den Aufbewahrungsort von wichtigem Feindmaterial herausgefunden, das wir für unsere eigenen Zwecke beschaffen können.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="SupplyExtraction_LW", Description="Der Widerstand hat den Aufbewahrungsort von wichtigem Feindmaterial herausgefunden, das wir für unsere eigenen Zwecke beschaffen können.", MissionIndex=0)
-
 
 [UICovertActionReport_LW]
 strCovertActionFailed="GESCHEITERT"
@@ -651,3 +728,22 @@ ScrollObjectiveDescriptionStr="ZIELBESCHREIBUNG DURCHSCROLLEN"
 
 [X2Effect_ChosenLoot]
 m_strChosenLoot="(<XGParam:IntValue0/>) <XGParam:StrValue0/!ItemName/> erhalten für das Töten eines Auserwählten."
+
+[UISL_Shell_LWoTCVersion]
+strMessage_Title = "Long War Of The Chosen"
+strMessage_Header = "Long War Of The Chosen wurde aktualisiert!"
+strMessage_Body = "Version 1.2.0 ist jetzt verfügbar und bringt zahlreiche neue Funktionen und Verbesserungen, darunter:<ul><li>Komplette Überarbeitung der SPARK-Einheit, neue Fähigkeitsbäume für Grenadier, Spezialist und Techniker</li><li>Überarbeitete XCOM-Reihen für alle Klassen sowie geringere FP-Kosten</li><li>Überarbeitetes Infiltrations-Interface in Einsatzauswahl und Weltkarte, inklusive neuer Schaltfläche zum Zugriff auf Berater aus der Einsatzauswahl</li><li>Zwei neue Missionsarten, weitere Kartenanpassungen und HQ-Angriffe im Stadtzentrum aktiviert</li><li>Überarbeitungen bei den Auserwählten: weniger Sabotage, angepasste Wissensverteilung, ausgewogenere Verteidigung der Avenger gegen Auserwählte</li><li>Psi-Operative verfügen nun über Pistolen-Reihen und XCOM-Decks</li><li>Viele Fehlerbehebungen, Komfortfunktionen, Balanceanpassungen und mehr</li></ul>Weitere Informationen findest du im Google-Dokument in den Steam-Änderungsnotizen oder im LWoTC-Discord. </br> Hinweis: Einige Änderungen sind nicht vollständig kampagnenkompatibel. Zwar funktioniert das Spiel weiterhin, aber z. B. die Wissensverteilung der Auserwählten ist nicht korrekt angepasst. Für ein optimales Erlebnis wird empfohlen, eine neue Kampagne zu starten oder zur Archiv-Version 1.1.0 im Workshop zu wechseln, um eine laufende Kampagne abzuschließen."
+strDismiss_Button = "OK"
+
+[UISL_Shell_BetaPatchNotes]
+strMessage_Title = "Long War Of The Chosen"
+strMessage_Header = "Aktuelle Beta-Änderungen:"
+strMessage_Body = "<ul><li>Weitere kleinere Anpassungen an den XCOM-Decks der Klassen, um mehr Vielfalt bei den Boni zu bieten und sie besser an die jeweiligen Klassen anzupassen.</li><li><b>Update für Psi-Operative: Der Konflikt mit den Instant-Avenger-Menüs wurde behoben, erfordert aber die Verwendung des BETA-Highlander.</b> Wenn du ein seltsames Beförderungsfenster für Psi-Operative siehst, ist das der Grund.</li><li>Jägers Zielverfolgungsschuss ignoriert nun das SPARK-Opfer, um eine Endlosschleife von Jägerschüssen zu verhindern.</li></ul>"
+strDismiss_Button = "OK"
+
+[UISL_PullAdvisors]
+m_strPullHavenAdvisors="BERATER ABZIEHEN"
+m_strPullHavenAdvisorsTooltip="Zieht verfügbare Berater aus den Verstecken ab. Sie müssen anschließend manuell neu zugewiesen werden."
+
+m_StrHavenManagement="VERSTECKE VERWALTEN"
+m_StrHavenManagementTooltip="Öffnet die Übersicht zur Widerstandsverwaltung."

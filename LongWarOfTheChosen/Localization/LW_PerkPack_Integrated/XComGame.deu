@@ -3,6 +3,7 @@ PsiRankNames[8]="Meister"
 PsiShortNames[8]="Mstr."
 
 [XComGame.UIArmory_Loadout]
+
 [UIArmory_Loadout]
 m_strNeedsSoldierClass="KANN NICHT AUSGERÜSTET WERDEN"
 m_strUnavailableToClass="NICHT VERFÜGBAR"
@@ -10,52 +11,52 @@ m_strUnavailableToClass="NICHT VERFÜGBAR"
 [DepthPerceptionPCS X2EquipmentTemplate]
 FriendlyName="PKS: Tiefenwahrnehmung"
 FriendlyNamePlural="PKS: Tiefenwahrnehmung"
-BriefSummary="Dieses kybernetische Implantat gewährt +5 Zielsicherheit und reduziert den Ausweichwert von Feinden um 25, wenn du dich dem Ziel gegenüber in erhöhter Position befindest."
+BriefSummary="Dieses kybernetische Implantat gewährt +<Ability:DP_AIM_BONUS> Zielsicherheit und reduziert den Ausweichwert von Feinden um <Ability:DP_ANTIDODGE_BONUS>, wenn du dich dem Ziel gegenüber in erhöhter Position befindest."
 
 [HyperReactivePupilsPCS X2EquipmentTemplate]
 FriendlyName="PKS: Hyperreaktive Pupillen"
 FriendlyNamePlural="PKS: Hyperreaktive Pupillen"
-BriefSummary="Dieses Implantat gewährt nach einem Fehlschuss +10 Zielsicherheit für deinen nächsten Schuss mit deiner Primärwaffe."
+BriefSummary="Dieses Implantat gewährt nach einem Fehlschuss +<Ability:HYPERREACTIVE_PUPILS_AIM_BONUS> Zielsicherheit für deinen nächsten Schuss mit deiner Primärwaffe."
 
 [CombatAwarenessPCS X2EquipmentTemplate]
 FriendlyName="PKS: Kampfscharfsinn"
 FriendlyNamePlural="PKS: Kampfscharfsinn"
-BriefSummary="Gewährt 15 Verteidigung und einen Rüstungspunkt, wenn Feuerschutz aktiv ist."
+BriefSummary="Gewährt <Ability:COMBAT_AWARENESS_BONUS_DEFENSE> Verteidigung und einen temporären Rüstungsbonus von <Ability:COMBAT_AWARENESS_BONUS_ARMOR>, wenn Feuerschutz aktiv ist."
 
 [CombatRushPCS X2EquipmentTemplate]
 FriendlyName="PKS: Kriegsrausch"
 FriendlyNamePlural="PKS: Kriegsrausch"
-BriefSummary="Wenn du einen Feind tötest, erhalten Verbündete innerhalb von 7 Geländefeldern kurzzeitige Boni auf Zielsicherheit, kritische Trefferchance und Mobilität. Abklingzeit von 5 Runden."
+BriefSummary="Wenn du einen Feind tötest, erhalten Verbündete innerhalb von <Ability:COMBAT_RUSH_RADIUS> Geländefeldern für <Ability:COMBAT_RUSH_DURATION> Runden +<Ability:COMBAT_RUSH_AIM_BONUS> Zielsicherheit, +<Ability:COMBAT_RUSH_CRIT_BONUS> kritische Trefferchance und +<Ability:COMBAT_RUSH_MOBILITY_BONUS> Mobilität. Abklingzeit von <Ability:COMBAT_RUSH_COOLDOWN> Runden."
 
 [DamageControlPCS X2EquipmentTemplate]
 FriendlyName="PKS: Schadenskontrolle"
 FriendlyNamePlural="PKS: Schadenskontrolle"
-BriefSummary="Dieses Implantat verstärkt deine Rüstung bei Feindbeschuss und gewährt zwei zusätzliche Rüstungspunkte, nachdem du Schaden erlitten hast."
+BriefSummary="Dieses Implantat verstärkt deine Rüstung bei Feindbeschuss und gewährt <Ability:DAMAGE_CONTROL_BONUS_ARMOR> Rüstungspunkt(e) für <Ability:DAMAGE_CONTROL_DURATION> Runde(n), nachdem du Schaden erlitten hast."
 
 [AbsorptionFieldsPCS X2EquipmentTemplate]
 FriendlyName="PKS: Abprallfelder"
 FriendlyNamePlural="PKS: Abprallfelder"
-BriefSummary="Dieses Schildprojektor-Implantat kann aktiviert werden, um den erlittenen Schaden zwei Runden lang um 33 % zu reduzieren."
+BriefSummary="Dieses Schildprojektor-Implantat kann als Aktion aktiviert werden, um eingehenden Schaden für <Ability:ABSORPTION_FIELDS_DURATION> Runde(n) um 33 % zu reduzieren. <Ability:ABSORPTION_FIELDS_COOLDOWN> Runden Abklingzeit."
 
 [BodyShieldPCS X2EquipmentTemplate]
 FriendlyName="PKS: Körperschutzschild"
 FriendlyNamePlural="PKS: Körperschutzschild"
-BriefSummary="Der anvisierte Feind erleidet Abzüge in Höhe von -20 auf Zielsicherheit und -50 auf kritische Trefferchance gegen den Soldaten."
+BriefSummary="Wähle einen Feind als freie Aktion, um ihm -<Ability:BODY_SHIELD_DEF_BONUS> Zielsicherheit und -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> kritische Trefferchance gegen dich für <Ability:BODY_SHIELD_DURATION> Runde(n) zuzufügen. <Ability:BODY_SHIELD_COOLDOWN> Runden Abklingzeit."
 
 [EmergencyLifeSupportPCS X2EquipmentTemplate]
 FriendlyName="PKS: Notfall-Lebenserhaltung"
 FriendlyNamePlural="PKS: Notfall-Lebenserhaltung"
-BriefSummary="Dieses Implantat stellt sicher, dass der erste tödliche Treffer in einem Einsatz nicht zum sofortigen Tod führt, und verlängert die Verblutungsdauer um zwei Runden."
+BriefSummary="Dieses Implantat erhöht deutlich die Schadensschwelle, ab der ein tödlicher Treffer direkt zum Tod führt. Die Verblutungsdauer wird um <Ability:EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS> Runde(n) verlängert."
 
 [IronSkinPCS X2EquipmentTemplate]
 FriendlyName="PKS: Stahlhaut"
 FriendlyNamePlural="PKS: Stahlhaut"
-BriefSummary="Erlittener Nahkampfschaden wird um 3 Punkte reduziert."
+BriefSummary="Eingehender Nahkampfschaden wird um <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION> reduziert. Der Nahkampfschaden der Auserwählten-Assassinin wird um 67 % dieses Wertes vermindert."
 
 [SmartMacrophagesPCS X2EquipmentTemplate]
 FriendlyName="PKS: Intelligente Makrophagen"
 FriendlyNamePlural="PKS: Intelligente Makrophagen"
-BriefSummary="Verkürzt die Wundgenesungsdauer und gewährt Immunität gegen Gift und Säure."
+BriefSummary="Verkürzt die Wundheilungsdauer um 1 TP und gewährt Immunität gegen Säure und Gift."
 
 [CenterMass X2AbilityTemplate]
 LocFriendlyName="Volltreffer"
@@ -77,6 +78,7 @@ LocFlyoverText="Schießen und Schlängeln"
 LocLongDescription="Du erhältst einmal pro Runde eine zusätzliche Bewegungsaktion, wenn du mit deiner Primärwaffe einen Standardschuss auf einen flankierten oder ungeschützten Feind abgibst."
 LocHelpText="Du erhältst einmal pro Runde eine zusätzliche Bewegungsaktion, wenn du mit deiner Primärwaffe einen Standardschuss auf einen flankierten oder ungeschützten Feind abgibst."
 LocPromotionPopupText="<Bullet/> Du erhältst einmal pro Runde eine zusätzliche Bewegungsaktion, wenn du mit deiner Primärwaffe einen Standardschuss auf einen flankierten oder ungeschützten Feind abgibst.<br/><Bullet/> Überfallangriff kann nicht genutzt werden, nachdem Sturm und Schuss aktiviert wurde.<br/><Bullet/> Uneingeschränkte Bonusaktionen durch 'Serie' oder 'Tod von oben' werden zuerst gewährt."
+LocFlyOverText="Zuschlagen und Kriechen"
 
 [HitandRun X2AbilityTemplate]
 LocFriendlyName="Überfallangriff"
@@ -88,16 +90,16 @@ LocPromotionPopupText="<Bullet/> Kann nicht in der selben Runde wie Sturm und Sc
 [CloseCombatSpecialist X2AbilityTemplate]
 LocFriendlyName="Nahkampfspezialist"
 LocFlyOverText="Nahkampfspezialist"
-LocLongDescription="Kostenlose Angriffe mit der Waffe \"<Ability:SecondaryWeaponName/>\" auf alle Feinde <Ability:BOUND_WEAPON_NAME/> auf jeden sichtbaren Feind ab, der sich innerhalb von vier Geländefeldern bewegt oder angreift."
-LocHelpText="Feuere einen kostenlosen Reflexschuss auf jeden sichtbaren Feind ab, der sich innerhalb von vier Geländefeldern bewegt oder angreift."
-LocPromotionPopupText="<Bullet/> Wird nicht ausgelöst, wenn der Soldat verborgen ist.<br/><Bullet/> Diese Fähigkeit kann einmal pro Zug gegen jeden Feind ausgelöst werden.<br/><Bullet/> Verbraucht 2 Munitionspunkte.<br/>""
+LocLongDescription="Feuere einen kostenlosen Reflexschuss mit deiner <Ability:BOUND_WEAPON_NAME/> auf jeden sichtbaren Feind ab, der sich innerhalb von <Ability:CCS_RANGE> Geländefeldern bewegt oder angreift."
+LocHelpText="Feuere einen kostenlosen Reflexschuss auf jeden sichtbaren Feind ab, der sich innerhalb von <Ability:CCS_RANGE> Geländefeldern bewegt oder angreift."
+LocPromotionPopupText="<Bullet/> Wird nicht ausgelöst, wenn der Soldat verborgen ist.<br/><Bullet/> Jeder Feind kann einmal pro Zug von dieser Fähigkeit getroffen werden.<br/><Bullet/> Jeder Schuss verbraucht <Ability:CCS_AMMO_PER_SHOT> Munition.<br/>"
 
 [CloseCombatSpecialistAttack X2AbilityTemplate]
 LocFriendlyName="Nahkampfspezialist"
 LocFlyOverText="Nahkampfspezialist"
-LocLongDescription="Schieße während feindlicher Runden einen kostenlosen Reflexschuss mit der Waffe <Ability:BOUND_WEAPON_NAME/> auf jeden sichtbaren Feind ab, der sich innerhalb von vier Geländefeldern bewegt oder angreift."
-LocHelpText="Schieße während feindlicher Runden einen kostenlosen Reflexschuss auf jeden sichtbaren Feind ab, der sich innerhalb von vier Geländefeldern bewegt oder angreift."
-LocPromotionPopupText="<Bullet/> Wird nicht ausgelöst, wenn der Soldat verborgen ist.<br/><Bullet/> Diese Fähigkeit kann einmal pro Zug gegen jeden Feind ausgelöst werden.<br/><Bullet/> Verbraucht 2 Munitionspunkte.<br/>""
+LocLongDescription="Feuere während feindlicher Runden einen kostenlosen Reflexschuss mit deiner <Ability:BOUND_WEAPON_NAME/> auf jeden sichtbaren Feind ab, der sich innerhalb von <Ability:CCS_RANGE> Geländefeldern bewegt oder angreift."
+LocHelpText="Feuere während feindlicher Runden einen kostenlosen Reflexschuss auf jeden sichtbaren Feind ab, der sich innerhalb von <Ability:CCS_RANGE> Geländefeldern bewegt oder angreift."
+LocPromotionPopupText="<Bullet/> Wird nicht ausgelöst, wenn der Soldat verborgen ist.<br/><Bullet/> Jeder Feind kann einmal pro Zug von dieser Fähigkeit getroffen werden.<br/><Bullet/> Jeder Schuss verbraucht <Ability:CCS_AMMO_PER_SHOT> Munition.<br/>"
 
 [CloseandPersonal X2AbilityTemplate]
 LocFriendlyName="Aus nächster Nähe"
@@ -116,16 +118,16 @@ LocPromotionPopupText="<Bullet/> Gewährt +10 Zielsicherheit und +10 Verteidigun
 [Executioner_LW X2AbilityTemplate]
 LocFriendlyName="Scharfrichter"
 LocFlyOverText="Scharfrichter"
-LocLongDescription="Gewährt dir +<Ability:EXECUTIONER_AIM_BONUS/> Zielsicherheit und +<Ability:EXECUTIONER_CRIT_BONUS/> kritische Trefferchance gegen Ziele mit der Hälfte oder noch weniger ihrer ursprünglichen Trefferpunkte."
-LocHelpText="Gewährt dir +<Ability:EXECUTIONER_AIM_BONUS/> Zielsicherheit und +<Ability:EXECUTIONER_CRIT_BONUS/> kritische Trefferchance gegen Ziele mit der Hälfte oder noch weniger ihrer ursprünglichen Trefferpunkte."
-LocPromotionPopupText="<Bullet/> Gewährt dir +<Ability:EXECUTIONER_AIM_BONUS/> Zielsicherheit und +<Ability:EXECUTIONER_CRIT_BONUS/> kritische Trefferchance gegen Ziele mit der Hälfte oder noch weniger ihrer ursprünglichen Trefferpunkte.<br/>"
+LocLongDescription="Gewährt +<Ability:EXECUTIONER_AIM_BONUS/> Zielsicherheit und +<Ability:EXECUTIONER_CRIT_BONUS/> kritische Trefferchance gegen Ziele mit der Hälfte oder weniger ihrer ursprünglichen TP."
+LocHelpText="Gewährt +<Ability:EXECUTIONER_AIM_BONUS/> Zielsicherheit und +<Ability:EXECUTIONER_CRIT_BONUS/> kritische Trefferchance gegen Ziele mit der Hälfte oder weniger ihrer ursprünglichen TP."
+LocPromotionPopupText="<Bullet/> Gewährt +<Ability:EXECUTIONER_AIM_BONUS/> Zielsicherheit und +<Ability:EXECUTIONER_CRIT_BONUS/> kritische Trefferchance gegen Ziele mit ≤50 % ihrer ursprünglichen TP.<br/>"
 
 [Resilience X2AbilityTemplate]
 LocFriendlyName="Widerstandskraft"
 LocFlyOverText="Widerstandskraft"
-LocLongDescription="Feindliche Angriffe auf dich erhalten einen Abzug in Höhe von -<ABILITY:NANOFIBER_CRITDEF_BONUS_LW/> auf die kritische Trefferchance."
-LocHelpText="Feindliche Angriffe auf dich erhalten einen Abzug in Höhe von -<ABILITY:NANOFIBER_CRITDEF_BONUS_LW/> auf die kritische Trefferchance."
-LocPromotionPopupText="<Bullet/> Feindliche Angriffe auf dich erhalten einen Abzug in Höhe von -<ABILITY:NANOFIBER_CRITDEF_BONUS_LW/> auf die kritische Trefferchance.<br/>"
+LocLongDescription="Feindliche Angriffe gegen dich erleiden einen Malus von -<Ability:RESILIENCE_BONUS_LW/> auf die kritische Trefferchance."
+LocHelpText="Feindliche Angriffe gegen dich erleiden einen Malus von -<Ability:RESILIENCE_BONUS_LW/> auf die kritische Trefferchance."
+LocPromotionPopupText="<Bullet/> Feindliche Angriffe gegen dich erleiden einen Malus von -<Ability:RESILIENCE_BONUS_LW/> auf die kritische Trefferchance.<br/>"
 
 [TacticalSense X2AbilityTemplate]
 LocFriendlyName="Taktisches Gespür"
@@ -151,9 +153,9 @@ LocPromotionPopupText="<Bullet/> "Kritische Treffer erhalten +1 Schaden für je 
 [HardTarget X2AbilityTemplate]
 LocFriendlyName="Schwieriges Ziel"
 LocFlyOverText="Schwieriges Ziel"
-LocLongDescription="Du erhältst für jeden sichtbaren Feind +5 Ausweichen (maximal +30)."
-LocHelpText="Du erhältst für jeden sichtbaren Feind +5 Ausweichen (maximal +30)."
-LocPromotionPopupText="<Bullet/> Du erhältst für jeden sichtbaren Feind +5 Ausweichen (maximal +30).<br/><Bullet/> Nur über Truppsicht sichtbare Feinde zählen nicht für den Bonus.<br/><Bullet/> Diese Fähigkeit bietet keinen Verteidigungsbonus, wenn die Einheit brennt, desorientiert, betäubt, in Panik verfallen oder anders beeinträchtigt ist."
+LocLongDescription="Du erhältst <Ability:HT_DODGE_BONUS_PER_ENEMY/> Ausweichen pro sichtbarem Feind, bis zu einem Maximum von <Ability:HT_MAX_DODGE_BONUS/>."
+LocHelpText="Du erhältst <Ability:HT_DODGE_BONUS_PER_ENEMY/> Ausweichen pro sichtbarem Feind, bis zu einem Maximum von <Ability:HT_MAX_DODGE_BONUS/>."
+LocPromotionPopupText="<Bullet/> Feinde, die nur über Truppsicht sichtbar sind, gewähren keinen Bonus.<br/><Bullet/> Kein Bonus, wenn die Einheit brennt, desorientiert, betäubt, in Panik ist oder anderweitig eingeschränkt.<br/>"
 
 [Infighter X2AbilityTemplate]
 LocFriendlyName="Nahkämpfer"
@@ -165,30 +167,30 @@ LocPromotionPopupText="<Bullet/> Du erhältst +<Ability:INFIGHTER_DODGE_BONUS/> 
 [DepthPerception X2AbilityTemplate]
 LocFriendlyName="Tiefenwahrnehmung"
 LocFlyOverText="Tiefenwahrnehmung"
-LocLongDescription="Du erhältst +5 Zielsicherheit und reduzierst den Ausweichwert von Feinden um 25, wenn du dich dem Ziel gegenüber in erhöhter Position befindest."
-LocHelpText="Du erhältst +5 Zielsicherheit und reduzierst den Ausweichwert von Feinden um 25, wenn du dich dem Ziel gegenüber in erhöhter Position befindest."
-LocPromotionPopupText="<Bullet/> Du erhältst +5 Zielsicherheit und reduzierst den Ausweichwert von Feinden um 25, wenn du dich dem Ziel gegenüber in erhöhter Position befindest.<br/>"
+LocLongDescription="Du erhältst <Ability:DP_AIM_BONUS> Zielsicherheit und reduzierst die Ausweichchance von Feinden um <Ability:DP_ANTIDODGE_BONUS>, wenn du dich in erhöhter Position befindest."
+LocHelpText="Du erhältst <Ability:DP_AIM_BONUS> Zielsicherheit und reduzierst die Ausweichchance von Feinden um <Ability:DP_ANTIDODGE_BONUS>, wenn du dich in erhöhter Position befindest."
+LocPromotionPopupText="<Bullet/> Du erhältst <Ability:DP_AIM_BONUS> Zielsicherheit und reduzierst die Ausweichchance von Feinden um <Ability:DP_ANTIDODGE_BONUS>, wenn du dich in erhöhter Position befindest."
 
 [WilltoSurvive X2AbilityTemplate]
 LocFriendlyName="Überlebenswille"
 LocFlyOverText="Überlebenswille"
-LocLongDescription="Der erlittene Schaden wird um 1 reduziert, wenn du dich in Deckung befindest und durch die Deckung angegriffen wirst. Gewährt zudem 5 Wille."
-LocHelpText="Der erlittene Schaden wird um 1 reduziert, wenn du dich in Deckung befindest und durch die Deckung angegriffen wirst."
-LocPromotionPopupText="<Bullet/> Der erlittene Schaden wird um 1 reduziert, wenn du dich in Deckung befindest und durch die Deckung angegriffen wirst.<br/><Bullet/> Deckung gegen Explosionen und andere indirekte Angriffe wird vom Ausgangsort der Explosion errechnet.<br/><Bullet/> Panzerbrechende Effekte negieren diesen Bonus nicht.<br/><Bullet/> Diese Einheit erhält zusätzlich dauerhaft 5 Wille.<br/><Bullet/> Diese Fähigkeit bietet keinen Verteidigungsbonus, wenn die Einheit brennt, desorientiert, betäubt, in Panik verfallen oder anders beeinträchtigt ist."
+LocLongDescription="Erlittener Schaden wird um 1 reduziert, wenn du dich in Deckung befindest und durch diese Deckung angegriffen wirst. Gewährt zusätzlich 5 Willenskraft."
+LocHelpText="Erlittener Schaden wird um 1 reduziert, wenn du dich in Deckung befindest und durch diese Deckung angegriffen wirst."
+LocPromotionPopupText="<Bullet/> Erlittener Schaden wird um 1 reduziert, wenn du dich in Deckung befindest und durch diese Deckung angegriffen wirst.<br/><Bullet/> Deckung gegen Explosionen und andere indirekte Angriffe wird vom Ursprung der Explosion berechnet.<br/><Bullet/> Panzerbrechende Effekte heben diesen Bonus nicht auf.<br/><Bullet/> Diese Einheit erhält dauerhaft +5 Willenskraft.<br/><Bullet/> Kein Bonus, wenn die Einheit brennt, desorientiert, betäubt, in Panik ist oder anderweitig eingeschränkt ist."
 
 [LightEmUp X2AbilityTemplate]
 LocFriendlyName="Leichtfüßig"
 LocFlyOverText="Leichtfüßig"
-LocLongDescription="Standardschüsse Schüsse mit deiner Primärwaffe beenden nicht automatisch die Runde."
-LocHelpText="Standardschüsse Schüsse mit deiner Primärwaffe beenden nicht automatisch die Runde."
-LocPromotionPopupText="<Bullet/> Standardschüsse beenden nicht die Runde, man kann sich also nach dem Schießen fortbewegen oder zweimal in einer Runde schießen.<br/>"
+LocLongDescription="Standardschüsse mit deiner Primärwaffe beenden nicht automatisch die Runde."
+LocHelpText="Standardschüsse mit deiner Primärwaffe beenden nicht automatisch die Runde."
+LocPromotionPopupText="<Bullet/> Standardschüsse beenden nicht die Runde – du kannst dich danach bewegen oder zweimal in einer Runde schießen.<br/>"
 
 [CloseEncounters X2AbilityTemplate]
 LocFriendlyName="Nahkampfbegegnungen"
 LocFlyOverText="Nahkampfbegegnungen"
-LocLongDescription="Du erhältst einmal pro Runde eine Bonusaktion, wenn du mit deiner Primärwaffe einen Standardschuss auf einen Feind innerhalb von <Ability:CLOSE_ENCOUNTERS_RANGE/> Feldern abgibst."
-LocHelpText="Du erhältst einmal pro Runde eine Bonusaktion, wenn du mit deiner Primärwaffe einen Standardschuss auf einen Feind innerhalb von <Ability:CLOSE_ENCOUNTERS_RANGE/> Feldern abgibst."
-LocPromotionPopupText="<Bullet/> Du erhältst einmal pro Runde eine Bonusaktion, wenn du mit deiner Primärwaffe einen Standardschuss auf einen Feind innerhalb von <Ability:CLOSE_ENCOUNTERS_RANGE/> Feldern abgibst.<br/><Bullet/> Nahkampfbegegnungen kann nicht genutzt werden, nachdem Sturm und Schuss aktiviert wurde.<br/><Bullet/> Ein roter Kreis zeigt die Reichweite dieser Fähigkeit an.<br/><Bullet/> Kann nicht in der selben Runde wie Sturm und Schuss verwendet werden.<br/>"
+LocLongDescription="Einmal pro Runde erhältst du eine Bonusaktion, wenn du mit deiner Primärwaffe einen Standardschuss auf einen Feind innerhalb von <Ability:CLOSE_ENCOUNTERS_RANGE/> Feldern abgibst. Kann nicht in derselben Runde wie Sturm und Schuss ausgelöst werden."
+LocHelpText="Einmal pro Runde erhältst du eine Bonusaktion, wenn du mit deiner Primärwaffe einen Standardschuss auf einen Feind innerhalb von <Ability:CLOSE_ENCOUNTERS_RANGE/> Feldern abgibst."
+LocPromotionPopupText="<Bullet/> Einmal pro Runde erhältst du eine Bonusaktion bei einem Standardschuss auf einen Feind innerhalb von <Ability:CLOSE_ENCOUNTERS_RANGE/> Feldern.<br/><Bullet/> Ein roter Kreis zeigt die Reichweite der Fähigkeit an.<br/><Bullet/> Kann nicht in derselben Runde wie Sturm und Schuss verwendet werden.<br/>"
 
 [LoneWolf X2AbilityTemplate]
 LocFriendlyName="Einzelgänger"
@@ -239,7 +241,6 @@ LocLongDescription="Du gibst einen Spezialschuss mit einem Bonus von +<Ability:P
 LocHelpText="Du gibst einen Spezialschuss mit einem Bonus von +<Ability:PRECISION_SHOT_CRIT_BONUS/> auf deine kritische Trefferchance und <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/> % kritischem Bonusschaden ab. Abklingzeit von <Ability:SelfCooldown_LW/> Runden."
 LocPromotionPopupText="<Bullet/> Du gibst einen Spezialschuss mit einem Bonus von +<Ability:PRECISION_SHOT_CRIT_BONUS/> auf deine kritische Trefferchance und <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/> % kritischem Bonusschaden ab.<br/><Bullet/> Hat eine Abklingzeit von <Ability:SelfCooldown_LW/> Runden.<br/>"
 
-
 [CyclicFire X2AbilityTemplate]
 LocFriendlyName="Zyklischer Beschuss"
 LocFlyOverText="Zyklischer Beschuss"
@@ -288,13 +289,14 @@ LocFlyOverText="Revolverheld"
 LocLongDescription="Führe mit deiner Pistole einen Reflexschuss auf jeden Feind aus, der sich innerhalb von <Ability:GUNSLINGER_TILES_RANGE/> Feldern bewegt oder angreift. Das Ziel wird garantiert kritisch getroffen."
 LocHelpText="Verbesserter Pistolen-Feuerschutz, der garantiert kritisch trifft."
 LocPromotionPopupText="<Bullet/> Die Reichweite beträgt <Ability:GUNSLINGER_TILES_RANGE/> Geländefelder.<br/><Bullet/> Kann nicht in Verborgenheit aktiviert werden.<br/><Bullet/> Revolverheld hat eine Abklingzeit von <Ability:SelfCooldown_LW/> Runden.<br/>"
+LocFriendlyNameWhenConcealed="Feuerschutz (Verborgen)"
 
 [HyperReactivePupils X2AbilityTemplate]
 LocFriendlyName="Hyperreaktive Pupillen"
 LocFlyOverText="Hyperreaktive Pupillen"
-LocLongDescription="Du erhältst nach einem Fehlschuss +10 Zielsicherheit für deinen nächsten Schuss mit deiner Primärwaffe."
-LocHelpText="Du erhältst nach einem Fehlschuss +10 Zielsicherheit für deinen nächsten Schuss mit deiner Primärwaffe."
-LocPromotionPopupText="<Bullet/> Der Bonus bleibt bis zu deinem nächsten Treffer oder bis zum Ende des Einsatzes bestehen.<br/><Bullet/> Flächenangriffe lösen den Bonus nicht aus.<br/>"
+LocLongDescription="Du erhältst nach einem Fehlschuss +<Ability:HYPERREACTIVE_PUPILS_AIM_BONUS> Zielsicherheit für deinen nächsten Schuss mit deiner Primärwaffe."
+LocHelpText="Du erhältst nach einem Fehlschuss +<Ability:HYPERREACTIVE_PUPILS_AIM_BONUS> Zielsicherheit für deinen nächsten Schuss mit deiner Primärwaffe."
+LocPromotionPopupText="<Bullet/> Der Bonus bleibt bestehen, bis du ein Ziel triffst oder der Einsatz endet.<br/><Bullet/> Flächeneffekte lösen den Bonus nicht aus.<br/>"
 
 [SteadyWeapon X2AbilityTemplate]
 LocFriendlyName="Waffe stabilisieren"
@@ -362,16 +364,9 @@ LocPromotionPopupText="<Bullet/> Sturm und Schuss ermöglicht einer Einheit, sch
 [Suppression_LW X2AbilityTemplate]
 LocFriendlyName="Unterstützungsfeuer"
 LocFlyOverText="Unterstützungsfeuer"
-LocLongDescription="Schießt eine Salve ab, die das Ziel niederhält, einen Reflexschuss ermöglicht, wenn es sich rührt, und den Einsatz vieler Fähigkeiten verhindert. Die Zielsicherheit des Gegners ändert sich um <Ability:SUPPRESSIONPENALTY/>."
+LocLongDescription="Schießt eine Salve ab, die das Ziel niederhält und einen Reflexschuss ermöglicht, wenn es sich rührt. Die Zielsicherheit des Gegners ändert sich um <Ability:SUPPRESSIONPENALTY/> und viele Fähigkeiten werden blockiert. Kann nicht aus der Verborgenheit heraus genutzt werden."
 LocHelpText="Verringere die Zielsicherheit des Ziels und beschieße es, wenn es sich rührt."
-LocPromotionPopupText="<Bullet/> Der Einsatz von Unterstützungsfeuer kostet <Ability:SelfAmmoCost/> Munitionspunkte, hat jedoch keine Abklingzeit.<br/><Bullet/> Unterstützungsfeuer wird beendet, wenn die unterstützende Einheit Schaden erleidet.<br/><Bullet/> Wenn mehrere Einheiten Unterstützungsfeuer auf ein Ziel leisten, wird die Zielsicherheitsstrafe nicht erhöht.<br/><Bullet/> Kann nicht mit Präzisionsgewehren oder Schrotflinten genutzt werden.<br/><Bullet/> Unterstützungsfeuer unterbindet viele Fähigkeiten des Ziels, einschließlich der Verwendung von Raketen und Granaten."
-
-[AreaSuppression X2AbilityTemplate]
-LocFriendlyName="Bereichsunterdrückung"
-LocFlyOverText="Bereichsunterdrückung"
-LocLongDescription="Schießt eine Salve ab, die mehrere Ziele innerhalb eines 4 Felder großen Radius niederhält und einen Reflexschuss gegen jedes Ziel ermöglicht, das sich rührt. Die Zielsicherheit aller Ziele ändert sich um <Ability:SUPPRESSIONPENALTY/>, bis die Unterdrückung aufgehoben wird. Kann nicht in Verborgenheit genutzt werden."
-LocHelpText="Unterdrückt mehrere Ziele innerhalb eines Wirkungsbereichs."
-LocPromotionPopupText="<Bullet/> Bereichsunterdrückung kann nicht eingesetzt werden, wenn der Soldat verborgen ist.<br/><Bullet/> Jede Einheit, die sich bewegt, wird zum Ziel eines Reflexschusses, solange die unterdrückende Einheit noch Munition hat.<br/><Bullet/> Funktioniert nicht mit Schrotflinten oder Präzisionsgewehren.<br/><Bullet/> Bereichsunterdrückung kostet <Ability:SelfAmmoCost/> Munitionspunkte zum Benutzen sowie einen zusätzlichen Munitionspunkt für jeden Reflexschuss. Hat keine Abklingzeit.<br/><Bullet/> Bereichsunterdrückung wird abgebrochen, wenn die unterdrückende Einheit Schaden erleidet.<br/><Bullet/> Wenn mehrere Einheiten ein Ziel unterdrücken, wird die Zielsicherheitsstrafe nicht erhöht.<br/><Bullet/> Unterstützungsfeuer unterbindet viele Fähigkeiten des Ziels, einschließlich der Verwendung von Raketen und Granaten."
+LocPromotionPopupText="<Bullet/> Unterstützungsfeuer kostet <Ability:SelfAmmoCost/> Munitionspunkte zum Benutzen, hat jedoch keine Abklingzeit.<br/><Bullet/> Unterstützungsfeuer wird abgebrochen, wenn die unterstützende Einheit Schaden erleidet.<br/><Bullet/> Wenn mehrere Einheiten Unterstützungsfeuer auf ein Ziel richten, wird die Zielsicherheitsstrafe gestapelt.<br/><Bullet/> Kann nicht mit Scharfschützengewehr oder Schrotflinte verwendet werden.<br/><Bullet/> Die Unterdrückung schränkt viele Fähigkeiten des Ziels ein, darunter die Verwendung von Raketen und Granaten.<br./>"
 
 [SuppressionShot_LW X2AbilityTemplate]
 LocFriendlyName="Unterstützungsfeuer"
@@ -380,58 +375,58 @@ LocFlyOverText="Unterstützungsfeuer"
 [DangerZone X2AbilityTemplate]
 LocFriendlyName="Gefahrenzone"
 LocFlyOverText="Gefahrenzone"
-LocLongDescription="Bereichsunterdrückung unterdrückt Feinde in einem Radius von 5 Geländefeldern."
-LocHelpText="Größere Bereichsunterdrückung"
-LocPromotionPopupText="<Bullet/> Bereichsunterdrückung unterdrückt Feinde in einem Radius von 5 Geländefeldern.<br/>"
+LocLongDescription="Erhöht den Radius von Bereichsunterdrückung auf <Ability:DANGER_ZONE_AREA_SUPPRESSION_RADIUS_TILES> Felder."
+LocHelpText="Erweiterte Bereichsunterdrückung."
+LocPromotionPopupText="<Bullet/> Bereichsunterdrückung deckt jetzt einen Radius von <Ability:DANGER_ZONE_AREA_SUPPRESSION_RADIUS_TILES> Feldern ab.<br/>"
 
 [Lockdown X2AbilityTemplate]
 LocFriendlyName="Abriegelung"
 LocFlyOverText="Abriegelung"
-LocLongDescription="Du erhältst +15 Trefferchance gegen Feinde, die sich während der Unterdrückung bewegen."
-LocHelpText="Gesteigerte Trefferchance und Bonusschaden gegen Feinde, die sich während der Unterdrückung bewegen."
-LocPromotionPopupText="<Bullet/> Du erhältst +15 Trefferchance gegen Feinde, die sich während der Unterdrückung bewegen.<br/><Bullet/> Dies lässt sich mit anderen Reflexschuss-Boni stapeln."
+LocLongDescription="Du erhältst +<Ability:LOCKDOWN_TOHIT_BONUS/> Trefferchance gegen unterdrückte Feinde, die sich bewegen."
+LocHelpText="Erhöhte Trefferchance und Schaden gegen unterdrückte Feinde in Bewegung."
+LocPromotionPopupText="<Bullet/> +<Ability:LOCKDOWN_TOHIT_BONUS/> Trefferchance gegen unterdrückte, sich bewegende Feinde.<br/><Bullet/> Stapelbar mit anderen Reflexschuss-Boni.<br/>"
 
-[Lockdown X2AbilityTemplate]
+[LockdownBonuses X2AbilityTemplate]
 LocFriendlyName="Abriegelung"
 LocFlyOverText="Abriegelung"
-LocLongDescription="Du erhältst +15 Trefferchance gegen Feinde, die sich während der Unterdrückung bewegen."
-LocHelpText="Gesteigerte Trefferchance und Bonusschaden gegen Feinde, die sich während der Unterdrückung bewegen."
-LocPromotionPopupText="<Bullet/> Du erhältst +15 Trefferchance gegen Feinde, die sich während der Unterdrückung bewegen.<br/><Bullet/> Dies lässt sich mit anderen Reflexschuss-Boni stapeln."
+LocLongDescription="Du erhältst +<Ability:LOCKDOWN_TOHIT_BONUS/> Trefferchance gegen unterdrückte Feinde, die sich bewegen."
+LocHelpText="Erhöhte Trefferchance und Schaden gegen unterdrückte Feinde in Bewegung."
+LocPromotionPopupText="<Bullet/> +<Ability:LOCKDOWN_TOHIT_BONUS/> Trefferchance gegen unterdrückte, sich bewegende Feinde.<br/><Bullet/> Stapelbar mit anderen Reflexschuss-Boni.<br/>"
 
 [Mayhem X2AbilityTemplate]
 LocFriendlyName="Durcheinander"
 LocFlyOverText="Durcheinander"
-LocLongDescription="Du erhältst 25 % Bonusschaden gegen Feinde, die sich während der Unterdrückung bewegen."
-LocHelpText="Bonusschaden gegen Feinde, die sich während der Unterdrückung bewegen."
-LocPromotionPopupText="<Bullet/> Du erhältst 25 % Bonusschaden gegen Feinde, die sich während der Unterdrückung bewegen.<br/>"
+LocLongDescription="Du verursachst <Ability:MAYHEM_DAMAGE_BONUS_PCT/> % Bonusschaden gegen unterdrückte Feinde, die sich bewegen."
+LocHelpText="Bonusschaden gegen unterdrückte, sich bewegende Feinde."
+LocPromotionPopupText="<Bullet/> <Ability:MAYHEM_DAMAGE_BONUS_PCT/> % Bonusschaden gegen unterdrückte, sich bewegende Feinde.<br/>"
 
 [MayhemBonuses X2AbilityTemplate]
 LocFriendlyName="Durcheinander"
 LocFlyOverText="Durcheinander"
-LocLongDescription="Du erhältst 20 % Bonusschaden gegen Feinde, die sich während der Unterdrückung bewegen."
-LocHelpText="Bonusschaden gegen Feinde, die sich während der Unterdrückung bewegen."
-LocPromotionPopupText="<Bullet/> Du erhältst 20 % Bonusschaden gegen Feinde, die sich während der Unterdrückung bewegen.<br/>"
+LocLongDescription="Du verursachst <Ability:MAYHEM_DAMAGE_BONUS_PCT/> % Bonusschaden gegen unterdrückte Feinde, die sich bewegen."
+LocHelpText="Bonusschaden gegen unterdrückte, sich bewegende Feinde."
+LocPromotionPopupText="<Bullet/> <Ability:MAYHEM_DAMAGE_BONUS_PCT/> % Bonusschaden gegen unterdrückte, sich bewegende Feinde.<br/>"
 
 [Interference X2AbilityTemplate]
 LocFriendlyName="Störung"
 LocFlyOverText="Störung"
-LocLongDescription="Der GREMLIN setzt den Feuerschutz der anvisierten Einheit außer Kraft. Kostet keine Aktion."
-LocHelpText="Setzt den Feuerschutz der anvisierten Einheit außer Kraft. Kostet keine Aktion."
-LocPromotionPopupText="<Bullet/> Setzt den Feuerschutz der anvisierten Einheit außer Kraft.<br/><Bullet/> Kostet keine Aktion.<br/><Bullet/> 3 Ladungen pro Einsatz, +2 Extraladungen für jede weitere GREMLIN-Technologiestufe<br/>"
+LocLongDescription="Der GREMLIN setzt den Feuerschutz der anvisierten Einheit außer Kraft."
+LocHelpText="Setzt den Feuerschutz der anvisierten Einheit außer Kraft."
+LocPromotionPopupText="<Bullet/> Hebt den Feuerschutz des Ziels auf.<br/><Bullet/> Ist eine freie Aktion.<br/><Bullet/> 3 Ladungen pro Einsatz, +2 pro verbesserter GREMLIN-Stufe.<br/>"
 
 [DamageControl X2AbilityTemplate]
 LocFriendlyName="Schadenskontrolle"
 LocFlyOverText="Schadenskontrolle"
-LocLongDescription="Wenn du Schaden nimmst, erhältst du bis zum Ende der nächsten Runde zwei zusätzliche Rüstungspunkte."
-LocHelpText="Wenn du Schaden nimmst, erhältst du bis zum Ende der nächsten Runde zwei zusätzliche Rüstungspunkte."
-LocPromotionPopupText="<Bullet/> Deine Rüstung versteift nach einem Treffer kurzzeitig. Wenn du Schaden nimmst, erhältst du bis zum Ende der nächsten Runde zwei zusätzliche Rüstungspunkte.<br/><Bullet/> Das Erleiden mehrerer Treffer in aufeinanderfolgenden Runden verlängert die Dauer.<br/>"
+LocLongDescription="Wenn du Schaden erleidest, erhältst du bis zum Ende der nächsten Runde <Ability:DAMAGE_CONTROL_BONUS_ARMOR> zusätzliche Rüstung."
+LocHelpText="Erhalte nach Schaden <Ability:DAMAGE_CONTROL_BONUS_ARMOR> Rüstung bis zum Ende der nächsten Runde."
+LocPromotionPopupText="<Bullet/> Deine Rüstung versteift sich nach einem Treffer vorübergehend. Du erhältst <Ability:DAMAGE_CONTROL_BONUS_ARMOR> zusätzliche Rüstung bis zum Ende der nächsten Runde.<br/><Bullet/> Mehrere Treffer in aufeinanderfolgenden Runden verlängern die Dauer.<br/>"
 
 [DamageControlPassive X2AbilityTemplate]
 LocFriendlyName="Schadenskontrolle"
 LocFlyOverText="Schadenskontrolle"
-LocLongDescription="Wenn du Schaden nimmst, erhältst du bis zum Ende der nächsten Runde zwei zusätzliche Rüstungspunkte."
-LocHelpText="Wenn du Schaden nimmst, erhältst du bis zum Ende der nächsten Runde zwei zusätzliche Rüstungspunkte."
-LocPromotionPopupText="<Bullet/> Wenn du Schaden nimmst, erhältst du bis zum Ende der nächsten Runde zwei zusätzliche Rüstungspunkte.<br/><Bullet/> Das Erleiden mehrerer Treffer in aufeinanderfolgenden Runden verlängert die Dauer.<br/>"
+LocLongDescription="Wenn du Schaden erleidest, erhältst du bis zum Ende der nächsten Runde <Ability:DAMAGE_CONTROL_BONUS_ARMOR> zusätzliche Rüstung."
+LocHelpText="Erhalte nach Schaden <Ability:DAMAGE_CONTROL_BONUS_ARMOR> Rüstung bis zum Ende der nächsten Runde."
+LocPromotionPopupText="<Bullet/> Deine Rüstung versteift sich nach einem Treffer vorübergehend. Du erhältst <Ability:DAMAGE_CONTROL_BONUS_ARMOR> zusätzliche Rüstung bis zum Ende der nächsten Runde.<br/><Bullet/> Mehrere Treffer in aufeinanderfolgenden Runden verlängern die Dauer.<br/>"
 
 [Evasive X2AbilityTemplate]
 LocFriendlyName="Ausweichmanöver"
@@ -450,9 +445,9 @@ LocPromotionPopupText="<Bullet/> Diese Fähigkeit verwandelt in der Regel den er
 [SnapShot X2AbilityTemplate]
 LocFriendlyName="Schnellschuss"
 LocFlyOverText="Schnellschuss"
-LocLongDescription="Du darfst Standardschüsse mit dem Präzisionsgewehr abgeben nachdem du dich bewegt hast, erleidest aber starke Einbußen auf die Zielsicherheit jenseits von 5 Feldern Truppsichtreichweite."
-LocHelpText="Schuss aufs Ziel."
-LocPromotionPopupText="<Bullet/> Der Soldat darf sein Präzisionsgewehr für Standardschüsse verwenden, nachdem er sich bewegt hat, aber er erleidet extreme Einbußen auf seine Zielsicherheit auf Ziele in mehr als 22 Feldern Entfernung bei diesen Schüssen.<br/><Bullet/> Der Soldat kann nicht in den Feuerschutz-Modus mit dem Präzisionsgewehr wechseln, nachdem er sich bewegt hat.<br/>
+LocLongDescription="Du darfst Standardschüsse mit dem Präzisionsgewehr abgeben, nachdem du dich bewegt hast. Allerdings erleidest du starke Reichweitenabzüge auf alle Schüsse jenseits von 5 Feldern Truppsichtreichweite."
+LocHelpText="Schießt auf das Ziel."
+LocPromotionPopupText="<Bullet/> Diese Fähigkeit verändert das Verhalten des Scharfschützen grundlegend: Du kannst Standardschüsse mit dem Präzisionsgewehr auch nach einer Bewegung ausführen, erleidest jedoch starke Zielsicherheitsabzüge auf Ziele mit mehr als 22 Feldern Entfernung – unabhängig davon, ob du dich bewegt hast.<br/><Bullet/> Funktioniert nur mit Präzisionsgewehren.<br/><Bullet/> Verringert Abzüge auf kurze Distanz um <Ability:WPN_HANDLING_MODIFIER/> im Vergleich zu normalen Präzisionsgewehren.<br/><Bullet/> Ab 5 Feldern Truppsichtentfernung erhältst du zusätzlich -20 Zielsicherheit pro Feld.<br/><Bullet/> Bestimmte Spezialschüsse und Langwache erfordern weiterhin beide Aktionen. Langwache erlaubt Truppsicht-Feuerschutz, aber Reichweitenabzüge gelten dennoch.<br/><Bullet/> Der Soldat führt
 
 [SnapShotOverwatch X2AbilityTemplate]
 LocFriendlyName="Feuerschutz"
@@ -498,9 +493,9 @@ LocPromotionPopupText="<Bullet/> Spezialschuss gegen Feinde mit weniger als voll
 [CombatAwareness X2AbilityTemplate]
 LocFriendlyName="Kampfscharfsinn"
 LocFlyOverText="Kampfscharfsinn"
-LocLongDescription="Gewährt 15 Verteidigung und einen Rüstungspunkt, wenn Feuerschutz aktiv ist."
-LocHelpText="Gewährt 15 Verteidigung und einen Rüstungspunkt, wenn Feuerschutz aktiv ist."
-LocPromotionPopupText="<Bullet/> Gewährt 15 Verteidigung und einen Rüstungspunkt, wenn Feuerschutz aktiv ist.<br/><Bullet/> Diese Fähigkeit bietet keinen Verteidigungsbonus, wenn die Einheit brennt, desorientiert, betäubt, in Panik verfallen oder anders beeinträchtigt ist."
+LocLongDescription="Gewährt <Ability:COMBAT_AWARENESS_BONUS_DEFENSE> Verteidigung und <Ability:COMBAT_AWARENESS_BONUS_ARMOR> Rüstung, wenn du im Feuerschutz oder bei Unterdrückung bist."
+LocHelpText="Gewährt <Ability:COMBAT_AWARENESS_BONUS_DEFENSE> Verteidigung und <Ability:COMBAT_AWARENESS_BONUS_ARMOR> Rüstung bei Feuerschutz oder Unterdrückung."
+LocPromotionPopupText="<Bullet/> Gewährt <Ability:COMBAT_AWARENESS_BONUS_DEFENSE> Verteidigung und <Ability:COMBAT_AWARENESS_BONUS_ARMOR> Rüstungspunkt(e), solange Feuerschutz aktiv ist oder du unterdrückst.<br/><Bullet/> Kein Bonus, wenn die Einheit brennt, desorientiert, betäubt, in Panik ist oder anderweitig beeinträchtigt.<br/>"
 
 [FieldSurgeon X2AbilityTemplate]
 LocFriendlyName="Feldsanitäter"
@@ -526,43 +521,55 @@ LocPromotionPopupText="<Bullet/> Fügt deinem Inventar 1 kostenlose Rauchgranate
 [Savior X2AbilityTemplate]
 LocFriendlyName="Erretter"
 LocFlyOverText="Erretter"
-LocLongDescription="Heilfähigkeiten stellen <Ability:SAVIOR_BONUS_HEAL/> zusätzliche Trefferpunkte wieder her."
-LocHelpText="Heilfähigkeiten stellen <Ability:SAVIOR_BONUS_HEAL/> zusätzliche Trefferpunkte wieder her."
-LocPromotionPopupText="<Bullet/> Effekt gilt für GREMLIN-Heilung, Medikits und Genesungs-Fähigkeiten.<br/>"
+LocLongDescription="Heilfähigkeiten stellen <Ability:SAVIOR_BONUS_HEAL/> zusätzliche TP wieder her."
+LocHelpText="Heilfähigkeiten stellen <Ability:SAVIOR_BONUS_HEAL/> zusätzliche TP wieder her."
+LocPromotionPopupText="<Bullet/> Gilt für GREMLIN-Heilung, Medikits und Genesung.<br/>"
 
 [DenseSmoke X2AbilityTemplate]
 LocFriendlyName="Dichter Rauch"
 LocFlyOverText="Dichter Rauch"
-LocLongDescription="Deine Rauchgranaten bieten 10 Verteidigung zusätzlich."
-LocHelpText="Deine Rauchgranaten bieten 10 Verteidigung zusätzlich."
-LocPromotionPopupText="<Bullet/> Deine Rauchgranaten bieten allen, die sich im Rauch aufhalten, 10 Verteidigung zusätzlich (maximal 30).<br/>"
+LocLongDescription="Deine Rauchgranaten bieten allen im Rauch zusätzlich +10 Verteidigung. Außerdem erhältst du eine kostenlose Rauchgranate."
+LocHelpText="Deine Rauchgranaten bieten +10 Verteidigung zusätzlich. Gewährt eine kostenlose Rauchgranate."
+LocPromotionPopupText="<Bullet/> Gewährt allen Einheiten im Rauch +10 zusätzliche Verteidigung (max. 30).<br/><Bullet/> Zusätzlich erhältst du eine kostenlose Rauchgranate.<br/>"
 
 [DenseSmokeGrenade X2GrenadeTemplate]
 FriendlyName="Schwere Rauchgranate"
 FriendlyNamePlural="Schwere Rauchgranaten"
-BriefSummary="Bietet allen Einheiten innerhalb des Rauchs einen gesteigerten defensiven Vorteil - Verbündeten und auch Feinden."
-TacticalText="<Bullet/> Rauch kann eingesetzt werden, um sofort die Verteidigung aller Einheiten in der Nähe zu steigern.<br/><Bullet/> Rauchgranaten können deutlich weiter geworfen oder abgefeuert werden als herkömmliche Granaten."
+BriefSummary="Bietet allen Einheiten im Rauch einen erhöhten Verteidigungsbonus – für Verbündete und Feinde."
+TacticalText="<Bullet/> Kann eingesetzt werden, um sofort die Verteidigung aller Einheiten in der Nähe zu erhöhen.<br/><Bullet/> Kann deutlich weiter geworfen oder abgefeuert werden als normale Granaten."
 ThrownAbilityName="Schwere Rauchgranate werfen"
-ThrownAbilityHelpText="Gewährt einen defensiven Vorteil für Einheiten innerhalb ihres Radius."
+ThrownAbilityHelpText="Gewährt einen defensiven Vorteil für Einheiten im Wirkungsbereich."
 LaunchedAbilityname="Schwere Rauchgranate abfeuern"
-LaunchedAbilityHelpText="Gewährt einen defensiven Vorteil für Einheiten innerhalb ihres Radius."
+LaunchedAbilityHelpText="Gewährt einen defensiven Vorteil für Einheiten im Wirkungsbereich."
 
 [DenseSmokeGrenadeMk2 X2GrenadeTemplate]
 FriendlyName="Schwere Rauchbombe"
 FriendlyNamePlural="Schwere Rauchbomben"
-BriefSummary="Die verbesserte Schwere Rauchbombe bietet allen Einheiten innerhalb des Rauchs einen starken defensiven Vorteil - Verbündeten und auch Feinden."
-TacticalText="<Bullet/> Schwere Rauchbomben sind eine deutliche Verbesserung im Vergleich zu unseren früheren Rauchgranaten und bieten einen größeren Verteidigungsbonus in einem größeren Bereich.<br/><Bullet/> Rauch kann eingesetzt werden, um sofort die Verteidigung aller Einheiten in der Nähe zu steigern.<br/><Bullet/> Rauchbomben können deutlich weiter geworfen oder abgefeuert werden als herkömmliche Granaten."
+BriefSummary="Verbesserte Version mit starkem Verteidigungsbonus für alle Einheiten im Rauch – Verbündete und Feinde."
+TacticalText="<Bullet/> Bietet größeren Bonus in größerem Radius als normale Rauchgranaten.<br/><Bullet/> Kann eingesetzt werden, um sofort die Verteidigung aller Einheiten in der Nähe zu erhöhen.<br/><Bullet/> Kann deutlich weiter geworfen oder abgefeuert werden als normale Granaten."
 ThrownAbilityName="Schwere Rauchbombe werfen"
-ThrownAbilityHelpText="Gewährt einen starken defensiven Vorteil für Einheiten innerhalb ihres Radius."
+ThrownAbilityHelpText="Gewährt einen starken defensiven Vorteil für Einheiten im Wirkungsbereich."
 LaunchedAbilityname="Schwere Rauchbombe abfeuern"
-LaunchedAbilityHelpText="Gewährt einen starken defensiven Vorteil für Einheiten innerhalb ihres Radius."
+LaunchedAbilityHelpText="Gewährt einen starken defensiven Vorteil für Einheiten im Wirkungsbereich."
 
 [StingGrenades X2AbilityTemplate]
 LocFriendlyName="Stachelgranaten"
 LocFlyOverText="Stachelgranaten"
-LocLongDescription="Deine Blendgranaten verfügen über eine Chance von 50%, Feinde im Wirkungsbereich für eine Runde lang betäuben."
-LocHelpText="Deine Blendgranaten verfügen über eine Chance von 50%, Feinde im Wirkungsbereich für eine Runde lang betäuben."
-LocPromotionPopupText="<Bullet/> Deine Blendgranaten verfügen über eine Chance von 50%, Feinde im Wirkungsbereich für eine Runde lang betäuben.<br/><Bullet/> Feinde, die normalerweise immun gegenüber Blendgranaten sind, können trotzdem betäubt werden.<br/>"
+LocLongDescription="Deine Blendgranaten haben eine Chance von 50 %, Feinde im Wirkungsbereich für 1 Runde zu betäuben."
+LocHelpText="Deine Blendgranaten haben eine Chance von 50 %, Feinde zu betäuben."
+LocPromotionPopupText="<Bullet/> Deine Blendgranaten haben eine 50 % Chance, Feinde für 1 Runde zu betäuben.<br/><Bullet/> Auch feindliche Einheiten mit natürlicher Blendresistenz können betroffen sein.<br/>"
+
+[Collateral_LW X2AbilityTemplate]
+LocFriendlyName="Kollateralschaden"
+LocFlyOverText="Kollateralschaden"
+LocLongDescription="Feuert eine Salve <Ability:WeaponName/>-Geschosse auf ein Gebiet ab, zerstört Deckung im Zielbereich und verursacht leichten Schaden an Feinden. 4 Runden Abklingzeit, kostet 2 Munition."
+LocHelpText="Zerstört Deckung im Zielbereich mit <Ability:WeaponName/>-Feuer."
+LocPromotionPopupText="<Bullet/> Feuert eine Salve <Ability:WeaponName/>-Geschosse ab und zerstört Deckung im Wirkungsbereich.<br/><Bullet/> Verursacht hohen Umweltschaden an Objekten im Zielgebiet.<br/><Bullet/> Verursacht 40 % des Basiswaffenschadens an Feinden im Wirkungsbereich.<br/><Bullet/> Benötigt 2 Munition, 4 Runden Abklingzeit.<br/>"
+
+[DedicatedSuppression_LW X2AbilityTemplate]
+LocFriendlyName="Gezieltes Sperrfeuer"
+LocLongDescription="Unterdrückung und Bereichsunterdrückung werden nicht mehr abgebrochen, wenn die Einheit Schaden erleidet."
+LocHelpText="Unterdrückung bleibt auch nach erlittenem Schaden aktiv."
 
 [X2Item_StingGrenade]
 DenseSmokeGrenadeEffectDisplayName="Stachelgranate"
@@ -588,22 +595,22 @@ LocPromotionPopupText="<Bullet/> Aktiviere diese Fähigkeit vor dem Werfen oder 
 [CombatRush X2AbilityTemplate]
 LocFriendlyName="Kriegsrausch"
 LocFlyOverText="Kriegsrausch"
-LocLongDescription="Wenn du einen Feind tötest, erhalten Verbündete in deiner Nähe kurzzeitige Boni auf Zielsicherheit, kritische Trefferchance und Mobilität. Abklingzeit von 5 Runden."
-LocHelpText="Wenn du einen Feind tötest, erhalten Verbündete in deiner Nähe kurzzeitige Boni auf Zielsicherheit, kritische Trefferchance und Mobilität."
-LocPromotionPopupText="<Bullet/> Kriegsrausch wird ausgelöst, wenn du eine feindliche Einheit ausschaltest, und gewährt allen Verbündeten innerhalb von sieben Feldern +10 Zielsicherheit, +10 kritische Trefferchance und +1 Mobilität.<br/><Bullet/> Dieser Effekt hält bis zum Ende der auf den Kill folgenden Runde an.<br/><Bullet/> Kann höchstens alle fünf Runden ausgelöst werden.<br/>"
+LocLongDescription="Wenn du einen Feind tötest, erhalten Verbündete im Umkreis von <Ability:COMBAT_RUSH_RADIUS> Feldern für <Ability:COMBAT_RUSH_DURATION> Runden +<Ability:COMBAT_RUSH_AIM_BONUS> Zielsicherheit, +<Ability:COMBAT_RUSH_CRIT_BONUS> kritische Trefferchance und +<Ability:COMBAT_RUSH_MOBILITY_BONUS> Mobilität. Abklingzeit: <Ability:COMBAT_RUSH_COOLDOWN> Runden."
+LocHelpText="Tötest du einen Feind, erhalten Verbündete in der Nähe kurzzeitig Boni auf Zielsicherheit, kritische Trefferchance und Mobilität."
+LocPromotionPopupText="<Bullet/> Wird ausgelöst, wenn du einen Feind tötest.<br/><Bullet/> Gewährt allen Verbündeten innerhalb von <Ability:COMBAT_RUSH_RADIUS> Feldern +<Ability:COMBAT_RUSH_AIM_BONUS> Zielsicherheit, +<Ability:COMBAT_RUSH_CRIT_BONUS> kritische Trefferchance und +<Ability:COMBAT_RUSH_MOBILITY_BONUS> Mobilität.<br/><Bullet/> Der Effekt hält <Ability:COMBAT_RUSH_DURATION> Runden an.<br/><Bullet/> Abklingzeit: <Ability:COMBAT_RUSH_COOLDOWN> Runden.<br/>"
 
 [BroadcastCombatRush X2AbilityTemplate]
 LocFriendlyName="Kriegsrausch"
 LocFlyOverText="Kriegsrausch"
-LocLongDescription="Ein Verbündeter in der Nähe gewährt dir zwei Runden lang +10 auf Zielsicherheit, +10 auf kritische Trefferchance und +1 auf Mobilität."
-LocHelpText="Ein Verbündeter in der Nähe gewährt dir zwei Runden lang +10 auf Zielsicherheit, +10 auf kritische Trefferchance und +1 auf Mobilität."
+LocLongDescription="Ein Verbündeter in der Nähe gewährt dir für <Ability:COMBAT_RUSH_DURATION> Runden +<Ability:COMBAT_RUSH_AIM_BONUS> Zielsicherheit, +<Ability:COMBAT_RUSH_CRIT_BONUS> kritische Trefferchance und +<Ability:COMBAT_RUSH_MOBILITY_BONUS> Mobilität."
+LocHelpText="Ein Verbündeter in der Nähe gewährt dir vorübergehend Boni auf Zielsicherheit, kritische Trefferchance und Mobilität."
 
 [GrazingFire X2AbilityTemplate]
 LocFriendlyName="Streifschüsse"
 LocFlyOverText="Streifschüsse"
-LocLongDescription="Fehlschüsse erhalten eine zusätzliche Chance, das Ziel zu streifen."
+LocLongDescription="Deine Fehlschüsse haben eine zusätzliche Chance, das Ziel doch noch mit einem Streifschuss zu treffen."
 LocHelpText="Fehlschüsse können zu Streifschüssen werden."
-LocPromotionPopupText="<Bullet/> Fehlschüsse des Soldaten haben generell eine <Ability:GRAZING_FIRE_SUCCESS_CHANCE> % Chance, ein Streifschuss zu werden.<br/><Bullet/> Dieser Effekt tritt erst nach der regulären Ermittlung von Treffern, Fehlschüssen und Streifschüssen ein.<br/><Bullet/> Ziele mit einem Ausweichswert ziehen diesen von den Erfolgschancen der Fähigkeit ab.<br/><Bullet/> Gilt für alle Waffangriffe, inklusive Messer und Schwerthiebe.<br/>"
+LocPromotionPopupText="<Bullet/> Deine Fehlschüsse haben eine Chance von <Ability:GRAZING_FIRE_SUCCESS_CHANCE> %, einen Streifschuss auszulösen.<br/><Bullet/> Dieser Effekt greift nach der normalen Treffer-/Fehlschuss-/Streifschuss-Wertung.<br/><Bullet/> Der Ausweichwert des Ziels reduziert die Erfolgswahrscheinlichkeit der Fähigkeit.<br/><Bullet/> Gilt für alle Waffenangriffe, auch Messer und Schwerter.<br/>"
 
 [HeavyFrags X2AbilityTemplate]
 LocFriendlyName="Verstärkte Kerne"
@@ -642,112 +649,111 @@ LocPromotionPopupText="<Bullet/> Gewährt +1 Ladung für jede Granate in einem A
 
 [Bastion X2AbilityTemplate]
 LocFriendlyName="Bastion"
+LocFlyOverText="Bastion"
 LocLongDescription="Bollwerk gewährt nun auch Truppmitgliedern in der Nähe Immunität."
 LocHelpText="Bollwerk gewährt nun auch Truppmitgliedern in der Nähe Immunität."
-LocFlyOverText="Bastion"
-LocPromotionPopupText="<Bullet/> Bastion hat einen Radius von 4 Geländefeldern.<br/><Bullet/> Die Bewegung neben betroffene Verbündete reinigt sie umgehend von negativen physischen Statuseffekten.<br/>"
+LocPromotionPopupText="<Bullet/> Bastion wirkt in einem Radius von <Ability:BASTION_RADIUS_TILES> Feldern.<br/><Bullet/> Bewegung neben betroffene Verbündete entfernt sofort physische Statuseffekte.<br/>"
 
 [BastionPassive X2AbilityTemplate]
 LocFriendlyName="Bastion"
 LocLongDescription="Bollwerk gewährt nun auch Truppmitgliedern in der Nähe Immunität."
 LocHelpText="Bollwerk gewährt nun auch Truppmitgliedern in der Nähe Immunität."
 LocFlyOverText="Bastion"
-LocPromotionPopupText="<Bullet/> Bastion hat einen Radius von 4 Geländefeldern.<br/><Bullet/> Die Bewegung neben betroffene Verbündete reinigt sie umgehend von negativen physischen Statuseffekten.<br/>"
+LocPromotionPopupText="<Bullet/> Bastion wirkt in einem Radius von <Ability:BASTION_RADIUS_TILES> Feldern.<br/><Bullet/> Bewegung neben betroffene Verbündete entfernt sofort physische Statuseffekte.<br/>"
 
 [BastionCleanse X2AbilityTemplate]
 LocFriendlyName="Bastion"
 LocLongDescription="Bollwerk gewährt nun auch Truppmitgliedern in der Nähe Immunität."
 LocHelpText="Bollwerk gewährt nun auch Truppmitgliedern in der Nähe Immunität."
 LocFlyOverText="Bastion"
-LocPromotionPopupText="<Bullet/> Bastion hat einen Radius von 4 Geländefeldern.<br/><Bullet/> Die Bewegung neben betroffene Verbündete reinigt sie umgehend von negativen physischen Statuseffekten.<br/>"
+LocPromotionPopupText="<Bullet/> Bastion wirkt in einem Radius von <Ability:BASTION_RADIUS_TILES> Feldern.<br/><Bullet/> Bewegung neben betroffene Verbündete entfernt sofort physische Statuseffekte.<br/>"
 
 [IronCurtain X2AbilityTemplate]
 LocFriendlyName="Eiserner Vorhang"
 LocFlyOverText="Eiserner Vorhang"
-LocLongDescription="Spezialschuss, der nur <Ability:IRON_CURTAIN_DAMAGE_MODIFIER/> % des normalen Schadens verursacht, dafür jedoch die Mobilität des Ziels für die nächsten <Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/> Runden reduziert. Kegelförmiger Angriff mit der Primärwaffe."
-LocHelpText="Spezialschuss, der nur wenig Schaden verursacht, dafür jedoch die Mobilität des Ziels für die nächsten <Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/> Runden reduziert."
-LocPromotionPopupText="<Bullet/> Dieser kegelförmige Angriff richtet bei einem Treffer nur <Ability:IRON_CURTAIN_DAMAGE_MODIFIER/> % des normalen Schadens an und reduziert die Mobilität von Zielen <Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/> Runden lang um -<Ability:IRON_CURTAIN_MOBILITY_DAMAGE>.<br/><Bullet/> Eiserner Vorhang verbraucht <Ability:IRON_CURTAIN_AMMO_COST> Munitionspunkte und hat eine Abklingzeit von <Ability:SelfCooldown_LW/> Runden.<br/><Bullet/> Kann nicht mit Schrotflinten oder Präzisionsgewehren genutzt werden.<br/><Bullet/> Verbündete innerhalb des Zielbereichs können von dieser Fähigkeit getroffen werden.<br/>"
+LocLongDescription="Spezialschuss, der <Ability:IRON_CURTAIN_DAMAGE_MODIFIER/> % des regulären Schadens verursacht, aber die Mobilität des Ziels um <Ability:IRON_CURTAIN_MOBILITY_DAMAGE> für <Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/> Runde(n) reduziert. Kegelförmiger Angriff mit der Primärwaffe. Die Mobilitätsstrafe wirkt auch bei Fehlschüssen."
+LocHelpText="Verursacht wenig Schaden, reduziert aber die Mobilität des Ziels für <Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/> Runde(n)."
+LocPromotionPopupText="<Bullet/> Verursacht <Ability:IRON_CURTAIN_DAMAGE_MODIFIER/> % Schaden und -<Ability:IRON_CURTAIN_MOBILITY_DAMAGE> Mobilität für <Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/> Runde(n).<br/><Bullet/> Abklingzeit: <Ability:SelfCooldown_LW/> Runden.<br/><Bullet/> Verbraucht <Ability:IRON_CURTAIN_AMMO_COST> Munition.<br/><Bullet/> Kann nach Bewegung eingesetzt werden.<br/><Bullet/> Funktioniert nicht mit Schrotflinten oder Präzisionsgewehren.<br/><Bullet/> Verbündete im Wirkungsbereich können betroffen sein.<br/><Bullet/> Mobilitätsstrafe gilt auch bei Fehlschuss.<br/>"
 
 [IronCurtainShot X2AbilityTemplate]
 LocFriendlyName="Eiserner Vorhang"
 LocFlyOverText="Eiserner Vorhang"
-LocLongDescription="Spezialschuss, der nur wenig Schaden verursacht, dafür jedoch die Mobilität des Ziels für die nächsten zwei Runden reduziert. Kegelförmiger Angriff mit der Primärwaffe."
-LocHelpText="Spezialschuss, der nur wenig Schaden verursacht, dafür jedoch die Mobilität des Ziels für die nächsten zwei Runden reduziert."
-LocPromotionPopupText="<Bullet/> Eiserner Vorhang richtet bei einem Treffer nur 25 % des regulären Schadens an und reduziert die Mobilität des Ziels zwei Runden lang um -4.<br/><Bullet/> Abklingzeit von 4 Runden.<br/><Bullet/> Verbraucht <Ability:SelfAmmoCost/> Munitionspunkte.<br/><Bullet/> Kann nach der Bewegung eingesetzt werden.<br/><Bullet/> Eiserner Vorhang kann nicht mit Schrotflinten oder Präzisionsgewehren genutzt werden.<br/>"
+LocLongDescription="Spezialschuss, der <Ability:IRON_CURTAIN_DAMAGE_MODIFIER/> % des Schadens verursacht und die Mobilität des Ziels um <Ability:IRON_CURTAIN_MOBILITY_DAMAGE> für <Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/> Runde(n) reduziert. Kegelförmiger Angriff mit der Primärwaffe. Die Mobilitätsstrafe wirkt auch bei Fehlschuss."
+LocHelpText="Verursacht wenig Schaden und reduziert die Mobilität des Ziels."
+LocPromotionPopupText="<Bullet/> Verursacht <Ability:IRON_CURTAIN_DAMAGE_MODIFIER/> % Schaden und -<Ability:IRON_CURTAIN_MOBILITY_DAMAGE> Mobilität für <Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/> Runde(n).<br/><Bullet/> Abklingzeit: <Ability:SelfCooldown_LW/> Runden.<br/><Bullet/> Verbraucht <Ability:IRON_CURTAIN_AMMO_COST> Munition.<br/><Bullet/> Kann nach Bewegung eingesetzt werden.<br/><Bullet/> Funktioniert nicht mit Schrotflinten oder Präzisionsgewehren.<br/><Bullet/> Verbündete im Wirkungsbereich können betroffen sein.<br/><Bullet/> Mobilitätsstrafe wirkt auch bei Fehlschuss.<br/>"
 str_IronCurtainEffect="Eiserner Vorhang"
 
 [Slash_LW X2AbilityTemplate]
 LocFriendlyName="Schwerthieb"
 LocFlyOverText="Schwerthieb"
-LocLongDescription="Du greifst ein benachbartes Ziel mit dem Schwert an. Verbraucht eine Aktion."
-LocHelpText="Du greifst ein benachbartes Ziel mit dem Schwert an. Verbraucht eine Aktion."
-LocPromotionPopupText="<Bullet/> Du greifst ein benachbartes Ziel mit dem Schwert an. Verbraucht eine Aktion.<br/><Bullet/> Verbraucht eine Aktion und beendet nicht automatisch deine Runde, sodass zwei Angriffe pro Runde möglich sind."
+LocLongDescription="Greift ein benachbartes Ziel mit dem Schwert an. Verbraucht eine Aktion."
+LocHelpText="Greift ein benachbartes Ziel mit dem Schwert an. Verbraucht eine Aktion."
+LocPromotionPopupText="<Bullet/> Verbraucht eine Aktion.<br/><Bullet/> Beendet nicht automatisch die Runde – zwei Angriffe pro Runde sind möglich.<br/>"
 
 [AbsorptionFields X2AbilityTemplate]
 LocFriendlyName="Abprallfelder"
 LocFlyOverText="Abprallfelder"
-LocLongDescription="Aktiviert ein Kraftfeld, das den erlittenen Schaden zwei Runden lang um 33 % reduziert. Abklingzeit von 6 Runden."
-LocHelpText="Aktiviert ein Kraftfeld, das den erlittenen Schaden zwei Runden lang um 33 % reduziert. Abklingzeit von 6 Runden."
-LocPromotionPopupText="<Bullet/> Aktiviert ein Kraftfeld, das den erlittenen Schaden zwei Runden lang um 33 % reduziert.<br/><Bullet/> Abklingzeit von 6 Runden (einschließlich der Runde, in der die Fähigkeit aktiviert wurde).<br/><Bullet/> Verbraucht eine Aktion und beendet nicht automatisch deine Runde.<br/><Bullet/> Panzerbrechende Waffen mindern diesen Effekt nicht.<br/>"
+LocLongDescription="Aktiviert ein Kraftfeld, das den erlittenen Schaden zwei Runden lang um 33 % reduziert. Abklingzeit: <Ability:ABSORPTION_FIELDS_COOLDOWN> Runden."
+LocHelpText="Reduziert Schaden zwei Runden lang um 33 %. Abklingzeit: <Ability:ABSORPTION_FIELDS_COOLDOWN> Runden."
+LocPromotionPopupText="<Bullet/> Aktiviert ein Kraftfeld, das eingehenden Schaden für <Ability:ABSORPTION_FIELDS_DURATION> Runde(n) um 33 % reduziert.<br/><Bullet/> Abklingzeit: <Ability:ABSORPTION_FIELDS_COOLDOWN> Runden.<br/><Bullet/> Verbraucht eine Aktion, beendet aber nicht automatisch die Runde.<br/><Bullet/> Panzerbrechende Waffen heben den Effekt nicht auf.<br/>"
 
 [BodyShield X2AbilityTemplate]
 LocFriendlyName="Körperschutzschild"
 LocFlyOverText="Körperschutzschild"
-LocLongDescription="Ein anvisierter Feind erleidet Abzüge in Höhe von -20 auf Zielsicherheit und -50 auf kritische Trefferchance gegen den Soldaten."
-LocHelpText="Der anvisierte Feind erleidet Abzüge in Höhe von -20 auf Zielsicherheit und -50 auf kritische Trefferchance gegen den Soldaten."
-LocPromotionPopupText="<Bullet/> Ein anvisierter Feind erleidet Abzüge in Höhe von -20 auf Zielsicherheit und -50 auf kritische Trefferchance gegen den Soldaten.<br/><Bullet/> Körperschutzschild kostet keine Aktion und hat eine Abklingzeit von <Ability:SelfCooldown_LW/> Runden.<br/>"
+LocLongDescription="Wähle einen Feind als freie Aktion, um ihm -<Ability:BODY_SHIELD_DEF_BONUS> Zielsicherheit und -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> kritische Trefferchance gegen dich für <Ability:BODY_SHIELD_DURATION> Runde(n) zuzufügen. Abklingzeit: <Ability:SelfCooldown_LW/> Runden."
+LocHelpText="Verringert Zielsicherheit und kritische Trefferchance des Ziels. Abklingzeit: <Ability:SelfCooldown_LW/> Runden."
+LocPromotionPopupText="<Bullet/> Ziel erhält -<Ability:BODY_SHIELD_DEF_BONUS> Zielsicherheit und -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> kritische Trefferchance gegen diese Einheit.<br/><Bullet/> Freie Aktion.<br/><Bullet/> Abklingzeit: <Ability:SelfCooldown_LW/> Runden.<br/>"
 
 [EmergencyLifeSupport X2AbilityTemplate]
 LocFriendlyName="Notfall-Lebenserhaltung"
 LocFlyOverText="Notfall-Lebenserhaltung"
-LocLongDescription="Notfall-Lebenserhaltung stellt sicher, dass der erste tödliche Treffer in einem Einsatz nicht zum sofortigen Tod führt. Sie verlängert zudem die Dauer des Verblutens bis zum endgültigen Tod um zwei Runden."
-LocHelpText="Stellt sicher, dass der erste tödliche Treffer in einem Einsatz nicht zum sofortigen Tod führt und verlängert die Verblutungsdauer."
-LocPromotionPopupText="<Bullet/> Notfall-Lebenserhaltung sorgt dafür, dass der erste Verbluten-Wurf jedes Einsatzes automatisch ein Erfolg wird.<br/><Bullet/> Verlängert die Verblutungsdauer um zwei Runden.<br/>"
+LocLongDescription="Dieses Implantat erhöht drastisch die Schwelle für tödlichen Schaden, der das Verbluten überspringen würde. Die Verblutungsdauer wird um <Ability:EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS> Runden verlängert."
+LocHelpText="Erhöht die Überlebenschance bei tödlichem Schaden. Verlängert die Verblutungsdauer."
+LocPromotionPopupText="<Bullet/> Erhöht drastisch die Schwelle für tödlichen Schaden, der das Verbluten überspringt.<br/><Bullet/> Verlängert die Verblutungsdauer um <Ability:EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS> Runden.<br/>"
 
 [IronSkin X2AbilityTemplate]
 LocFriendlyName="Stahlhaut"
 LocFlyOverText="Stahlhaut"
-LocLongDescription="Erlittener Nahkampfschaden wird um 3 Punkte reduziert."
-LocHelpText="Erlittener Nahkampfschaden wird um 3 Punkte reduziert."
-LocPromotionPopupText="<Bullet/> Erlittener Nahkampfschaden wird um 3 Punkte reduziert.<br/>"
+LocLongDescription="Erlittener Nahkampfschaden wird um <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION> reduziert. Angriffe der Auserwählten Assassine werden um 67 % dieses Werts reduziert."
+LocHelpText="Reduziert Nahkampfschaden. Reduziert Schaden durch die Assassine zusätzlich."
+LocPromotionPopupText="<Bullet/> Reduziert Nahkampfschaden um <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>.<br/><Bullet/> Angriffe der Auserwählten Assassine werden um 67 % dieses Werts reduziert.<br/>"
 
 [SmartMacrophages X2AbilityTemplate]
 LocFriendlyName="Intelligente Makrophagen"
 LocFlyOverText="Intelligente Makrophagen"
-LocLongDescription="Heilt im Kampf erlittene Verletzungen, verkürzt die Wundgenesungsdauer und gewährt Immunität gegen Gift und Säure."
-LocHelpText="Verkürzt die Wundgenesungsdauer und gewährt Immunität gegen Gift und Säure."
-LocPromotionPopupText="<Bullet/> Die Anzahl der im Einsatz verlorenen Trefferpunkte, die zur Berechnung der Wundgenesungsdauer verwendet wird, ist um 1 reduziert.<br/><Bullet/> Du bist außerdem immun gegen Gift und Säure.<br/>"
+LocLongDescription="Heilt kampfbedingte Verletzungen, verkürzt die Wundheilzeit und gewährt Immunität gegen Gift und Säure."
+LocHelpText="Verkürzt Wundheilzeit. Immun gegen Gift und Säure."
+LocPromotionPopupText="<Bullet/> Reduziert die zur Berechnung der Wundheilzeit gezählten verlorenen TP um 1.<br/><Bullet/> Immun gegen Gift und Säure.<br/>"
 
 [MindMerge X2AbilityTemplate]
 LocFriendlyName="Gedankenverschmelzung"
 LocFlyOverText="Gedankenverschmelzung"
-LocLongDescription="Gewährt einer verbündeten Einheit bis zum Beginn der nächsten Spielerrunde einen Willensbonus, erhöhte kritische Trefferchance und ablative Trefferpunkte."
-LocHelptext="Gewährt einer verbündeten Einheit vorübergehend einen Willensbonus, erhöhte kritische Trefferchance und ablative Trefferpunkte."
-LocPromotionPopupText="<Bullet/> Gewährt der gewählten verbündeten Einheit 1 ablativen Trefferpunkt (Schild) sowie je einen weiteren pro 20 Punkte Psi-Kraft des ausführenden Psi-Soldaten.<br/><Bullet/> Gewährt der gewählten verbündeten Einheit 1 Willenspunkt pro 5 Punkte Psi-Kraft des Psi-Soldaten.<br/><Bullet/> Gewährt darüber hinaus +1 kritische Trefferchance pro 7 Punkte Psi-Kraft.<br/><Bullet/> Der Effekt dauert bis zur nächsten Runde des Psi-Soldaten an.<br/><Bullet/> Gedankenverschmelzung hat eine Abklingzeit von <Ability:SelfCooldown_LW/> Runden.<br/><Bullet/> Kann nur auf Verbündete innerhalb des Sichtbereichs angewendet werden.<br/><Bullet/> Verbesserte Psi-Verstärker erhöhen die Boni entsprechend.<br/><Bullet/> Verbraucht eine Aktion und beendet nicht die Runde.<br/><Bullet/> Wenn der Psi-Soldat als Versteckberater eingesetzt wird, reduziert Gedankenverschmelzung die Chance, dass Gesichtslose das Versteck infiltrieren, um zusätzliche 40%.<br/>"
+LocLongDescription="Gewährt einer organischen Verbündeten Einheit bis zum Beginn deiner nächsten Runde Bonus auf Willen, kritische Trefferchance und ablativen Trefferpunkten."
+LocHelptext="Gewährt einer Verbündeten Einheit temporäre Boni."
+LocPromotionPopupText="<Bullet/> Gewährt dem Ziel +<Ability:MIND_MERGE_AMP_MG_TOTAL_SHIELDHP>/<Ability:MIND_MERGE_AMP_BM_TOTAL_SHIELDHP> ablativen TP je nach Psi-Verstärker-Stufe sowie +1 ablativen TP pro <Ability:MIND_MERGE_SHIELDHP_DIVISOR> Psi-Angriff.<br/><Bullet/> +<Ability:MIND_MERGE_AMP_MG_TOTAL_WILL>/<Ability:MIND_MERGE_AMP_BM_TOTAL_WILL> Willen je nach Verstärker, zusätzlich +1 Willen pro <Ability:MIND_MERGE_WILL_DIVISOR> Psi-Angriff.<br/><Bullet/> +<Ability:MIND_MERGE_AMP_MG_TOTAL_CRIT>/<Ability:MIND_MERGE_AMP_BM_TOTAL_CRIT> kritische Trefferchance sowie +1 % pro <Ability:MIND_MERGE_CRIT_DIVISOR> Psi-Angriff.<br/><Bullet/> Effekt hält bis zur nächsten Runde des Psi-Soldaten.<br/><Bullet/> Abklingzeit: <Ability:SelfCooldown_LW/> Runden.<br/><Bullet/> Verbraucht 1 Aktion, beendet aber nicht die Runde.<br/><Bullet/> Nur sichtbare Verbündete können ausgewählt werden.<br/><Bullet/> Verbesserte Psi-Verstärker erhöhen die Boni.<br/><Bullet/> Als Versteckberater senkt Gedankenverschmelzung die Chance auf Gesichtslose um 40 %.<br/>"
 
 [SoulMerge X2AbilityTemplate]
 LocFriendlyName="Seelenverschmelzung"
 LocFlyOverText="Seelenverschmelzung"
-LocLongDescription="Verstärkt die Effektivität der Gedankenverschmelzung durch größere Boni auf Willen, kritische Trefferchance und gewährte ablative Trefferpunkte. Reduziert zudem die Abklingzeit."
-LocHelpText="Verstärkt die Effektivität der Gedankenverschmelzung."
-LocPromotionPopupText="<Bullet/> Reduziert die Abklingzeit von Gedankenverschmelzung um 1 Runde.<br/><Bullet/> Das Ziel erhält zusätzlich 1 ablativen Rüstungspunkt pro 20 Punkte Psi-Kraft.<br/><Bullet/> Der zusätzliche Willensbonus beträgt 1 pro 5 Punkte Psi-Kraft.<br/><Bullet/> Der zusätzliche Bonus auf die kritische Trefferchance beträgt 1 % pro 5 Punkte Psi-Angriffskraft."
+LocLongDescription="Verstärkt die Gedankenverschmelzung durch stärkere Boni auf kritische Trefferchance, Willen und ablativen TP sowie verkürzte Abklingzeit."
+LocHelpText="Verbessert Gedankenverschmelzung."
+LocPromotionPopupText="<Bullet/> Verringert die Abklingzeit von Gedankenverschmelzung um 1 Runde.<br/><Bullet/> Ablative TP: 1 pro 20 Psi-Angriff.<br/><Bullet/> Willen: 1 pro 5 Psi-Angriff.<br/><Bullet/> Kritische Trefferchance: 1 % pro 5 Psi-Angriff.<br/>"
 
 [Shadowstrike_LW X2AbilityTemplate]
 LocFriendlyName="Schattenangriff"
-LocLongDescription="Verstärkt die Effektivität der Gedankenverschmelzung durch größere Willensboni, mehr kritische Trefferchance und mehr ablative Trefferpunkte, sowie verkürzte Abklingzeit."
-LocHelpText="Erhalte einen Bonus auf Zielsicherheit und kritische Trefferchance gegen Feinde."
-LocPromotionPopupText="<Bullet/> Schattenangriff-Boni kommen zur Anwendung, wenn die Einheit in einer Mission wieder in die Verborgenheit geht.<br/>"
+LocLongDescription="Solange du verborgen bist, erhältst du +<Ability:SHADOWSTRIKEAIM/> Zielsicherheit und +<Ability:SHADOWSTRIKECRIT/> kritische Trefferchance beim Angriff auf Feinde."
+LocHelpText="Verborgene Angriffe gewähren Zielsicherheits- und Krit-Bonus."
+LocPromotionPopupText="<Bullet/> Boni gelten auch, wenn die Einheit in einer Mission erneut in Verborgenheit gelangt.<br/>"
 
 [Formidable X2AbilityTemplate]
 LocFriendlyName="Formidabel"
-LocLongDescription="Deine Rüstung verfügt über zusätzliche Polsterschichten und Sprengpanzerung, die <Ability:FORMIDABLE_ABLATIVE_HP/> Bonuspunkte Ablativpanzerung und um <Ability:FORMIDABLE_EXPLOSIVES_DR/> % reduzierten Schaden durch Explosivangriffe gewähren."
-LocHelpText="Du erhältst zusätzliche Trefferpunkte und erleidest reduzierten Explosivschaden."
 LocFlyOverText="Formidabel"
-LocPromotionPopupText="<Bullet/> Formidabel reduziert Explosivschaden um <Ability:FORMIDABLE_EXPLOSIVES_DR/> %."
-
-; Updated perk loc
+LocLongDescription="Deine Ausrüstung verfügt über zusätzliche Polsterung und Sprengschutz. Gewährt <Ability:FORMIDABLE_ABLATIVE_HP/> ablative TP und <Ability:FORMIDABLE_EXPLOSIVES_DR/> % weniger Explosivschaden."
+LocHelpText="Erhalte ablative TP und reduzierten Explosivschaden."
+LocPromotionPopupText="<Bullet/> Reduziert Explosivschaden um <Ability:FORMIDABLE_EXPLOSIVES_DR/> % und gewährt <Ability:FORMIDABLE_ABLATIVE_HP/> ablative TP.<br/>"
 
 [XComGame.PistolStandardShot X2AbilityTemplate]
+
 [PistolStandardShot X2AbilityTemplate]
 LocFriendlyName="Pistole abfeuern"
 LocLongDescription="Du wurdest in der effektiven Nutzung der vollen Flexibilität einer Pistole als Ergänzung zu deiner Primärwaffe ausgebildet."
@@ -755,6 +761,7 @@ LocHelpText="Feuere deine Pistole auf ein Ziel ab."
 LocFlyOverText=""
 
 [XComGame.Killzone X2AbilityTemplate]
+
 [KillZone X2AbilityTemplate]
 LocFriendlyName="Abschusszone"
 LocLongDescription="Führe einen Reflexschuss gegen einen beliebigen Feind aus, der sich innerhalb deines Schussfeldes bewegt oder angreift."
@@ -764,6 +771,7 @@ LocPromotionPopupText="<Bullet/> Es gibt keine Einschränkung für die Menge an 
 LocFriendlyNameWhenConcealed="Abschusszone (verborgen)"
 
 [XComGame.DeathFromAbove X2AbilityTemplate]
+
 [DeathFromAbove X2AbilityTemplate]
 LocFriendlyName="Tod von oben"
 LocLongDescription="Das Ausschalten eines auf einer niedrigeren Position befindlichen Feindes mit '<Ability:WeaponName/>' erfordert nur eine Aktion und beendet die Runde nicht. Gewährt außerdem einen Zielgenauigkeitsbonus für Scharfschützengewehre auf große Entfernungen."
@@ -772,6 +780,7 @@ LocFlyOverText="Tod von oben"
 LocPromotionPopupText="<Bullet/> Tod von oben kann gut mit Pistolenfähigkeiten kombiniert werden oder auch einfach einen Soldaten mobiler machen.<br/><Bullet/> Gewährt außerdem einen Zielgenauigkeitsbonus für Scharfschützengewehre auf große Entfernungen."
 
 [XComGame.Implacable X2AbilityTemplate]
+
 [Implacable X2AbilityTemplate]
 LocFriendlyName="Unerbittlich"
 LocLongDescription="Wenn du einen oder mehr Kills in deiner Runde erzielst, erhältst du einen zusätzlichen Zug."
@@ -780,6 +789,7 @@ LocFlyOverText="Unerbittlich"
 LocPromotionPopupText="<Bullet/> Die Flèche-Fähigkeit der Einheit kann nicht eingesetzt werden, nachdem sie einen zusätzlichen Zug durch Unerbittlich erhalten hat.<br/>"
 
 [XComGame.VolatileMix X2AbilityTemplate]
+
 [VolatileMix X2AbilityTemplate]
 LocFriendlyName="Explosive Mischung"
 LocLongDescription="Der Wirkungsbereich deiner Granaten wird um ein Geländefeld vergrößert."
@@ -788,6 +798,7 @@ LocFlyOverText="Explosive Mischung"
 LocPromotionPopupText="<Bullet/> Deine Granaten richten innerhalb des vergrößerten Wirkungsbereichs regulären und Umgebungsschaden an und lösen dort auch etwaige Zusatzeffekte aus."
 
 [XComGame.Salvo X2AbilityTemplate]
+
 [Salvo X2AbilityTemplate]
 LocFriendlyName="Salve"
 LocLongDescription="Das Abfeuern oder Werfen von Granaten, der Einsatz schwerer Waffen oder des Handschuh-Raketenwerfers als erste Aktion beendet die Runde nicht."
@@ -796,6 +807,7 @@ LocFlyOverText="Salve"
 LocPromotionPopupText="<Bullet/> Soldaten mit der Salvenfähigkeit sind hervorragend dazu geeignet, schwere Rüstung zu tragen.<br/>"
 
 [XComGame.Quickdraw X2AbilityTemplate]
+
 [Quickdraw X2AbilityTemplate]
 LocFriendlyName="Schnellziehen"
 LocLongDescription="Das Abfeuern der Pistole als erste Aktion beendet nicht mehr länger deine Runde."
@@ -804,6 +816,7 @@ LocFlyOverText="Schnellziehen"
 LocPromotionPopupText="<Bullet/> Schnellziehen ermöglicht es dem Soldaten, sein Feuer in einer Runde auf unterschiedliche Ziele zu streuen.<br/>"
 
 [XComGame.SharpshooterAim X2AbilityTemplate]
+
 [SharpshooterAim X2AbilityTemplate]
 LocFriendlyName="Zielsicherheit"
 LocLongDescription="In Deckung gewährt dem ersten Schuss der nächsten Runde +<Ability:SHARPSHOOTERAIMBONUS/> Zielsicherheit und +<Ability:SHARPSHOOTERAIM_CRITBONUS/> auf die kritische Trefferchance."
@@ -812,6 +825,7 @@ LocFlyOverText="In Deckung – Zielverbesserung"
 LocPromotionPopupText="<Bullet/> Der durch Zielsicherheit gewährte Bonus kann auf Schüsse beliebiger Waffen angewendet werden.<br/>"
 
 [XComGame.LightningHands X2AbilityTemplate]
+
 [LightningHands X2AbilityTemplate]
 LocFriendlyName="Blitzschnelle Hände"
 LocLongDescription="Feuere deine Pistole auf ein Ziel. Dieser Angriff kostet keine Aktion."
@@ -820,6 +834,7 @@ LocFlyOverText="Blitzschnelle Hände"
 LocPromotionPopupText="<Bullet/> Blitzschnelle Hände kann gut mit Fähigkeiten kombiniert werden, die zwei Aktionen benötigen, da ihr Einsatz in derselben Runde nicht verhindert wird.<br/><Bullet/> Blitzschnelle Hände hat eine Abklingzeit von <Ability:SelfCooldown/> Runden.<br/>"
 
 [XComGame.IntrusionProtocol X2AbilityTemplate]
+
 [IntrusionProtocol X2AbilityTemplate]
 LocFriendlyName="Hacken"
 LocLongDescription="Versuche, das Sicherheitssystem eines Netzwerkzugangspunkts mit deinem GREMLIN aus der Ferne zu umgehen."
@@ -828,6 +843,7 @@ LocFlyOverText="Hacken"
 LocPromotionPopupText="<Bullet/> Objekte auf der Karte (Kisten, Workstations usw.) können mit dem GREMLIN aus der Ferne gehackt werden.<br/>"
 
 [XComGame.EverVigilant X2AbilityTemplate]
+
 [EverVigilant X2AbilityTemplate]
 LocFriendlyName="Wachsamkeit"
 LocLongDescription="Wenn du all deine Aktionen auf die Bewegung verwendest, erhältst du am Ende der Runde einen automatischen Feuerschutz-Schuss."
@@ -836,6 +852,7 @@ LocFlyOverText="Feuerschutz: Wachsamkeit"
 LocPromotionPopupText="<Bullet/> Wachsamkeit ermöglicht dem Soldaten einen extrem mobilen Spielstil.<br/><Bullet/> Jede andere Aktion als Fortbewegung setzt Wachsamkeit außer Kraft.<br/>"
 
 [XComGame.Phantom X2AbilityTemplate]
+
 [Phantom X2AbilityTemplate]
 LocFriendlyName="Phantom"
 LocLongDescription="Wenn der Trupp aufgedeckt wird, bleibt dieser Soldat verborgen."
@@ -844,6 +861,7 @@ LocFlyOverText="Phantom"
 LocPromotionPopupText="<Bullet/> Selbst wenn der Trupp einen Einsatz nicht verborgen beginnt, beginnen mit Phantom ausgestattete Soldaten den Einsatz dennoch verborgen.<br/><Bullet/> Phantom wird nicht angewendet, wenn der damit ausgestattete Soldat selbst die Verborgenheit des Trupps bricht.<br/>"
 
 [XComGame.Shadowstep X2AbilityTemplate]
+
 [Shadowstep X2AbilityTemplate]
 LocFriendlyName="Schattenschritt"
 LocLongDescription="Dieser Soldat löst weder Feuerschutz noch Reflexschüsse aus."
@@ -851,6 +869,7 @@ LocHelpText="Dieser Soldat löst weder Feuerschutz noch Reflexschüsse aus."
 LocPromotionPopupText="<Bullet/> Soldaten mit Schattenschritt lösen keine Feuerschutz-Schüsse oder Unterstützungsfeuer aus, sind dafür aber auch nicht in der Lage, Feuerschutz-Schüsse von ihren Truppmitgliedern abzulenken.<br/>"
 
 [XComGame.Bladestorm X2AbilityTemplate]
+
 [Bladestorm X2AbilityTemplate]
 LocFriendlyName="Klingensturm"
 LocLongDescription="Kostenlose Angriffe mit der Waffe \"<Ability:SecondaryWeaponName/>\" auf alle Feinde, die in Nahkampfreichweite kommen oder im Nahkampf angreifen."
@@ -859,6 +878,7 @@ LocFlyOverText="Klingensturm"
 LocPromotionPopupText="<Bullet/> Wenn ein Feind seine Runde auf einem benachbarten Feld beginnt, wird Klingensturm ausgelöst, falls der Feind versucht, den Soldaten anzugreifen.<br/><Bullet/> Wenn ein Feind die Runde nicht auf einem benachbarten Feld beginnt, wird Klingensturm ausgelöst, wenn der Feind in Nahkampfreichweite kommt.<br/>"
 
 [XComeGame.BladestormAttack X2AbilityTemplate]
+
 [BladestormAttack X2AbilityTemplate]
 LocFriendlyName="Klingensturm"
 LocLongDescription="Kostenlose Angriffe mit der Waffe \"<Ability:SecondaryWeaponName/>\" auf alle Feinde, die in Nahkampfreichweite kommen oder im Nahkampf angreifen."
@@ -867,6 +887,7 @@ LocFlyOverText="Klingensturm"
 LocPromotionPopupText="<Bullet/> Wenn ein Feind seine Runde auf einem benachbarten Feld beginnt, wird Klingensturm ausgelöst, falls der Feind versucht, den Soldaten anzugreifen.<br/><Bullet/> Wenn ein Feind die Runde nicht auf einem benachbarten Feld beginnt, wird Klingensturm ausgelöst, wenn der Feind in Nahkampfreichweite kommt.<br/>"
 
 [XComGame.Untouchable X2AbilityTemplate]
+
 [Untouchable X2AbilityTemplate]
 LocFriendlyName="Unantastbar"
 LocLongDescription="Wenn du in deiner Runde einen Kill erzielst, verfehlt dich der nächste gegen dich gerichtete Angriff in der Feindrunde."
@@ -875,6 +896,7 @@ LocFlyOverText="Unantastbar"
 LocPromotionPopupText="<Bullet/> Wenn 'Unantastbar' ausgelöst wird, ist der Soldat in der Feindrunde immun gegen den nächsten Angriff, der Schaden verursacht, auch gegen Flächenangriffe.<br/>"
 
 [XComGame.Stealth X2AbilityTemplate]
+
 [Stealth X2AbilityTemplate]
 LocFriendlyName="Verbergen"
 LocLongDescription="Du kannst dich einmal pro Runde direkt in Verborgenheit begeben."
@@ -883,13 +905,12 @@ LocFlyOverText="Verbergen"
 LocPromotionPopupText="<Bullet/> Verborgenheit ist an jedem Ort möglich, aber innerhalb des Erkennungsbereichs von Feinden in der Nähe fliegt der Ranger auf, wenn er flankiert wird.<br/><Bullet/> Benötigt eine Aktion und beendet die Runde des Soldaten.</b>"
 
 [XComGame.RevivalProtocol X2AbilityTemplate]
+
 [RevivalProtocol X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Revitalisierungsprotokoll kann eingesetzt werden, um bewusstlose Soldaten wiederherzustellen, auch solche, die nach dem Verbluten stabilisiert wurden.<br/><Bullet/> Revitalisierungsprotokoll beendet deine Runde nicht, wenn es als deine erste Aktion eingesetzt wird.<br/><Bullet/> Verfügt anfänglich über 2 Ladungen, Verbesserungen des GREMLINs können jedoch weitere gewähren.<br/>"
 
-
-; Gear loc updates for new classes
-
 [XComGame.Shotgun_MG X2WeaponTemplate]
+
 [Shotgun_MG X2WeaponTemplate]
 FriendlyName="Splitterkanone"
 FriendlyNamePlural="Splitterkanonen"
@@ -898,6 +919,7 @@ TacticalText="<Bullet/> Die Magnetwaffen-Technologie ermöglicht eine besonders 
 AbilityDescName="Schrotflinte"
 
 [XComGame.RangerSword X2WeaponTemplate]
+
 [RangerSword X2WeaponTemplate]
 FriendlyName="Schwert"
 FriendlyNamePlural="Schwerter"
@@ -905,6 +927,7 @@ BriefSummary="Einige unserer Soldaten sind in der Handhabung von Klingenwaffen g
 TacticalText="<Bullet/> Mit einem Schwert ausgestattete Soldaten können angrenzende Feinde auch dann angreifen, wenn sie zuvor beide Aktionen verbraucht haben, um sich bis zum Rand ihrer Bewegungsreichweite zu bewegen oder zu sprinten.\n<Bullet/> Den Feind im Nahkampf anzugreifen ist eine schwerwiegende Entscheidung, die wohl überlegt sein sollte.\n<Bullet/> Halte nach Gelegenheiten Ausschau, deine Klingenwaffen-Effektivität zu steigern. Der Feind hat möglicherweise Zugriff auf überlegene Technologie."
 
 [XComGame.Sword_CV X2WeaponTemplate]
+
 [Sword_CV X2WeaponTemplate]
 FriendlyName="Schwert"
 FriendlyNamePlural="Schwerter"
@@ -913,6 +936,7 @@ TacticalText="<Bullet/> Mit einem Schwert ausgestattete Soldaten können angrenz
 AbilityDescName="Schwert"
 
 [XComGame.Sword_BM X2WeaponTemplate]
+
 [Sword_BM X2WeaponTemplate]
 FriendlyName="Fusionsklinge"
 FriendlyNamePlural="Fusionsklingen"
@@ -921,6 +945,7 @@ TacticalText="<Bullet/> Dies ist die fortschrittlichste Version des Schwerts, di
 AbilityDescName="Schwert"
 
 [XComGame.Cannon_MG X2WeaponTemplate]
+
 [Cannon_MG X2WeaponTemplate]
 FriendlyName="Magnetkanone"
 FriendlyNamePlural="Magnetkanonen"
@@ -929,6 +954,7 @@ TacticalText="<Bullet/> Die Magnetkanone ist eine wesentlich stärkere und denno
 AbilityDescName="Kanone"
 
 [XComGame.Cannon_BM X2WeaponTemplate]
+
 [Cannon_BM X2WeaponTemplate]
 FriendlyName="Strahlenkanone"
 FriendlyNamePlural="Strahlenkanonen"
@@ -937,6 +963,7 @@ TacticalText="<Bullet/> Die Strahlenkanone ist die stärkste Unterstützungswaff
 AbilityDescName="Kanone"
 
 [XComGame.Pistol_CV X2WeaponTemplate]
+
 [Pistol_CV X2WeaponTemplate]
 FriendlyName="Pistole"
 FriendlyNamePlural="Pistolen"
@@ -944,6 +971,7 @@ BriefSummary="Manche XCOM-soldaten führen neben ihren Primärwaffen auch großk
 TacticalText="<Bullet/> In den Händen eines ausgebildeten Soldaten können Pistolen weit mehr als nur eine Zweitwaffe sein.\n<Bullet/> Pistolen können mit nur einer Aktion abgefeuert werden.\n<Bullet/> Manche Klassen können mehrere Fähigkeiten trainieren, um ihren Umgang mit Pistolen drastisch zu verbessern."
 
 [XComGame.Pistol_MG X2WeaponTemplate]
+
 [Pistol_MG X2WeaponTemplate]
 FriendlyName="Magnetpistole"
 FriendlyNamePlural="Magnetpistolen"
@@ -951,6 +979,7 @@ BriefSummary="Diese Pistole basiert auf den von uns erzielten Fortschritten im B
 TacticalText="<Bullet/> Magnetpistolen sind wesentlich effektiver als ihre konventionellen Vorgänger.\n<Bullet/> Pistolen können mit nur einer Aktion abgefeuert werden."
 
 [XComeGame.Pistol_BM X2WeaponTemplate]
+
 [Pistol_BM X2WeaponTemplate]
 FriendlyName="Strahlenpistole"
 FriendlyNamePlural="Strahlenpistolen"
@@ -958,6 +987,7 @@ BriefSummary="Diese Pistole ist die ultimative Zweitwaffe und nutzt die Strahlen
 TacticalText="<Bullet/> Strahlenpistolen sind die stärksten Handfeuerwaffen auf der Erde.\n<Bullet/> Pistolen können mit nur einer Aktion abgefeuert werden."
 
 [XComGame.AutopsyArchon X2TechTemplate]
+
 [AutopsyArchon X2TechTemplate]
 DisplayName="Archon-Autopsie"
 Summary="Ein auf ästhetische Weise beeindruckendes Exemplar. Die verborgenen Schrecken des Verschmelzens organischen Gewebes mit einer Maschine sind hier gut versteckt. Insbesondere die Waffensysteme sind für unsere eigenen Anwendungen interessant."
@@ -966,6 +996,7 @@ LongDescription="Kurzen Augenzeugenberichten zufolge, darunter auch einer von Ce
 AlertString="Archon"
 
 [XComGame.AutopsyAdventStunLancer X2TechTemplate]
+
 [AutopsyAdventStunLancer X2TechTemplate]
 DisplayName="ADVENT-Betäubungslanzenträger-Autopsie"
 Summary="Der ADVENT-Betäubungslanzenträger wird meist eingesetzt, um die Ordnung aufrechtzuerhalten und Aufstände zu unterdrücken. Seine einzigartige Betäubungslanze könnte in eine Waffe umgewandelt werden, deren Einsatz unsere Soldaten bereits trainieren."
@@ -974,26 +1005,31 @@ LongDescription="ADVENT-Betäubungslanzenträger sind den Soldaten, gegen die un
 AlertString="ADVENT-Betäubungslanzenträger"
 
 [XComGame.XGLocalizedData]
+
 [XGLocalizedData]
 GameplayTips_Tactical[1]="Wenn du einen mit einem Schwert ausgestatteten Soldaten kontrollierst, klicke mit der rechten Maustaste auf einen Feind, um deinen Sturmangriff auszuführen."
 GameplayTips_Tactical[10]="Soldaten mit der Phantom-Fähigkeit starten bei jeder Mission mit Tarnung, auch wenn der Trupp es nicht tut."
 
 [XComGame.HuntersInstinctUnlock X2SoldierAbilityUnlockTemplate]
+
 [HuntersInstinctUnlock X2SoldierAbilityUnlockTemplate]
 DisplayName="Ranger (nur Basisspiel-Klasse): Jagdinstinkt"
 Summary="Angriffe gegen flankierte Ziele verursachen +<Ability:HUNTERSINSTINCTDMG/> Schaden."
 
 [XComGame.HitWhereItHurtsUnlock X2SoldierAbilityUnlockTemplate]
+
 [HitWhereItHurtsUnlock X2SoldierAbilityUnlockTemplate]
 DisplayName="Scharfschütze (nur Basisspiel-Klasse): Tödlicher Schuss"
 Summary="Um <Ability:HITWHEREITHURTS/> % erhöhte kritische Trefferchance."
 
 [XComGame.CoolUnderPressureUnlock X2SoldierAbilityUnlockTemplate]
+
 [CoolUnderPressureUnlock X2SoldierAbilityUnlockTemplate]
 DisplayName="Spezialist (nur Basisspiel-Klasse): Druck standhalten"
 Summary="Gewährt bei Feuerschutz- und Reflexschüssen +10 Zielsicherheit und die Möglichkeit, kritische Treffer damit zu erzielen."
 
 [XComGame.BiggestBoomsUnlock X2SoldierAbilityUnlockTemplate]
+
 [BiggestBoomsUnlock X2SoldierAbilityUnlockTemplate]
 DisplayName="Grenadier (nur Basisspiel-Klasse): Megakracher"
 Summary="Sprengkörper können kritischen Schaden anrichten."
@@ -1026,12 +1062,189 @@ LocHelpText="Deine Explosivangriffe können kritischen Schaden anrichten."
 LocFlyOverText="Megakracher"
 LocPromotionPopupText="<Bullet/> Deine Explosivangriffe können kritischen Schaden anrichten (<Ability:BIGGESTBOOMSCHANCE/> % Chance auf +<Ability:BIGGESTBOOMSDAMAGE/> Schaden).<br/>"
 
-; New Class loc
+[RapidFire X2AbilityTemplate]
+LocFriendlyName="Schnellfeuer"
+LocLongDescription="Feuert zweimal in Folge auf einen Gegner. Jeder Schuss erleidet einen Abzug von <Ability:RAPIDFIREPENALTY/> auf die Zielsicherheit. Einmal pro Runde einsetzbar."
+LocHelpText="Feuert zweimal in Folge mit Malus auf die Zielsicherheit."
+LocFlyOverText="Schnellfeuer"
+LocPromotionPopupText="<Bullet/> Abklingzeit: <Ability:SelfCooldown_LW/> Runden.<br/><Bullet/> Kann nicht aus Truppsicht heraus verwendet werden.<br/>"
+
+[RapidFireSnapShot X2AbilityTemplate]
+LocFriendlyName="Schnellfeuer (Schnellschuss)"
+LocLongDescription="Feuert zweimal in Folge auf einen Gegner. Jeder Schuss erleidet einen Abzug von <Ability:RAPIDFIREPENALTY/> auf die Zielsicherheit. Einmal pro Runde einsetzbar."
+LocHelpText="Feuert zweimal in Folge mit Malus auf die Zielsicherheit."
+LocFlyOverText="Schnellfeuer"
+LocPromotionPopupText="<Bullet/> Abklingzeit: <Ability:SelfCooldown_LW/> Runden.<br/><Bullet/> Kann nicht aus Truppsicht heraus verwendet werden.<br/>"
+
+[RapidFireSnapShot2 X2AbilityTemplate]
+LocFriendlyName="Schnellfeuer"
+LocFlyOverText="Schnellfeuer"
+
+[RepairMW_LW X2AbilityTemplate]
+LocFriendlyName="Reparieren"
+LocLongDescription="Schicke den BIT zu einem beschädigten robotischen Verbündeten, um ihn zu heilen, Säure zu neutralisieren und alle zerschossenen Rüstungsteile zu reparieren."
+LocHelpText="Repariert einen beschädigten robotischen Verbündeten."
+LocFlyOverText="Reparieren"
+LocPromotionPopupText="<Bullet/> Der <Ability:ClassName/> kann „Reparieren“ einsetzen, um andere robotische Einheiten im Einsatz zu heilen – oder sich selbst im Fall von SPARKs.<br/><Bullet/> Stellt 4/6/8 TP wieder her, entfernt Säure und setzt die Rüstung des Ziels auf das Maximum zurück.<br/><Bullet/> Hat 1 Ladung pro Einsatz, +1 mit der Fähigkeit „Erweitertes Reparatursystem“.<br/><Bullet/> Wird Reparieren als erste Aktion genutzt, endet der Zug (außer mit „Schnellreparatur“).<br/><Bullet/> Abklingzeit: 1 Runde – kann nicht zweimal pro Runde eingesetzt werden.<br/>"
+
+[KineticStrike_LW X2AbilityTemplate]
+LocFriendlyName="Kinetischer Schlag"
+LocLongDescription="Greife einen beliebigen Gegner in Bewegungsreichweite mit einem wuchtigen Schlag an. Abklingzeit: 3 Runden. Schaden hängt vom ausgerüsteten Chassis ab."
+LocHelpText="Verpasst einem Ziel in Reichweite einen kräftigen Schlag."
+LocPromotionPopupText="<Bullet/> Kinetischer Schlag kann ausgelöst werden, indem der Bewegungscursor über einen Gegner gelegt wird.<br/><Bullet/> Der <Ability:ClassName/> kann mit einem Sprint angrenzen und dennoch zuschlagen.<br/><Bullet/> Verursacht 7/9,5/12 Schaden, je nach Chassis.<br/><Bullet/> Trefferchance basiert auf der Zielsicherheit des <Ability:ClassName/> +15.<br/><Bullet/> Die Fähigkeit „Sturmservos“ erhöht Schaden um +2 und Zielsicherheit um +10.<br/>"
+
+[Obliterator_LW X2AbilityTemplate]
+LocFriendlyName="Sturmservos"
+LocLongDescription="Erhöht den Schaden und die Zielsicherheit aller Kinetischen Schläge um +2 Schaden und +10 Zielsicherheit. Verleiht außerdem die Fähigkeit „Abrissbirne“."
+LocHelpText="Erhöht Schaden und Zielsicherheit von Kinetischen Schlägen."
+LocPromotionPopupText="<Bullet/> Verleiht +2 Schaden und +10 Zielsicherheit auf alle Kinetischen Schläge.<br/>"
+
+[RapidRepair_LW X2AbilityTemplate]
+LocFriendlyName="Schnellreparatur"
+LocLongDescription="Reparieren beendet nicht mehr automatisch den Zug. Der SPARK kann nach der Reparatur noch weitere Aktionen ausführen, z. B. Bewegung oder Angriff."
+LocHelpText="Reparieren beendet nicht mehr den Zug."
+LocFlyOverText="Schnellreparatur"
+LocPromotionPopupText="<Bullet/> Reparieren beendet nicht mehr den Zug des SPARK.<br/><Bullet/> Die Abklingzeit von 1 Runde bleibt bestehen – kein zweifacher Einsatz pro Runde.<br/><Bullet/> Erhöht die taktische Flexibilität erheblich, ohne auf Selbstheilung verzichten zu müssen.<br/>"
+
+[Reboot_LW X2AbilityTemplate]
+LocFriendlyName="Neustart"
+LocLongDescription="Wird der SPARK tödlich getroffen, bleibt er mit 1 TP funktionsfähig und erhält einen temporären Schild. Kann einmal pro Einsatz ausgelöst werden. Danach ist der SPARK stark eingeschränkt."
+LocHelpText="Neustart rettet den SPARK einmal pro Mission vor dem Tod."
+LocFlyOverText="Neustart"
+LocPromotionPopupText="<Bullet/> Der SPARK fällt beim ersten Mal auf 0 TP in eine Art Stasis und überlebt.<br/><Bullet/> Ohne „Redundante Systeme“ ist der SPARK nach dem Neustart stark eingeschränkt: massive Abzüge bei Zielsicherheit, Bewegung und Hacken.<br/><Bullet/> Aufgrund dieser Nachteile sollte ein SPARK nach dem Neustart möglichst evakuiert werden.<br/><Bullet/> Ermöglicht durch ein System aus redundanter Panzerung, Reaktivierungsschaltungen und einem Einzelschuss-Schildprojektor.<br/>"
+
+[RebootTriggered_LW X2AbilityTemplate]
+LocFriendlyName="Neustart"
+LocLongDescription="Wird der SPARK tödlich getroffen, bleibt er mit 1 TP funktionsfähig und erhält einen temporären Schild. Kann einmal pro Einsatz ausgelöst werden. Danach ist der SPARK stark eingeschränkt."
+LocHelpText="Neustart rettet den SPARK einmal pro Mission vor dem Tod."
+LocFlyOverText="Neustart"
+LocPromotionPopupText="<Bullet/> Der SPARK fällt beim ersten Mal auf 0 TP in eine Art Stasis und überlebt.<br/><Bullet/> Ohne „Redundante Systeme“ ist der SPARK nach dem Neustart stark eingeschränkt: massive Abzüge bei Zielsicherheit, Bewegung und Hacken.<br/><Bullet/> Aufgrund dieser Nachteile sollte ein SPARK nach dem Neustart möglichst evakuiert werden.<br/><Bullet/> Ermöglicht durch ein System aus redundanter Panzerung, Reaktivierungsschaltungen und einem Einzelschuss-Schildprojektor.<br/>"
+
+[RedundantSystems_LW X2AbilityTemplate]
+LocFriendlyName="Redundante Systeme"
+LocLongDescription="Der SPARK erleidet nach einem Neustart keine Maluswerte mehr."
+LocHelpText="Der SPARK erleidet nach einem Neustart keine Maluswerte mehr."
+LocFlyOverText="Redundante Systeme"
+LocPromotionPopupText="<Bullet/> Der SPARK erleidet keine Abzüge auf Zielsicherheit, Mobilität oder Hacken nach einem Neustart.<br/><Bullet/> Ohne diese Fähigkeit ist der SPARK nach einem Neustart stark eingeschränkt.<br/>"
+
+[RedunSysTriggered_LW X2AbilityTemplate]
+LocFriendlyName="Redundante Systeme"
+LocLongDescription="Wird der SPARK tödlich getroffen, bleibt er mit 1 TP funktionsfähig und erhält einen temporären Schild. Kann einmal pro Einsatz ausgelöst werden."
+LocHelpText="Der SPARK überlebt tödlichen Schaden einmal pro Mission mit 1 TP und Schild."
+LocFlyOverText="Redundante Systeme"
+LocPromotionPopupText="<Bullet/> Beim ersten Erreichen von 0 TP wird der SPARK in eine Schutzstasis versetzt.<br/><Bullet/> Durch redundante Plattierungen, Reaktivierungsschaltungen und ein einmaliges Schutzfeld kann der SPARK den Einsatz überleben und weiterkämpfen.<br/>"
+
+[HeavyRepair_LW X2AbilityTemplate]
+LocFriendlyName="Schwerlast-Reparatur"
+LocFlyOverText="Schwerlast-Reparatur"
+LocLongDescription="Reparieren heilt pro Einsatz 4 TP zusätzlich – die doppelte Wiederherstellung."
+LocHelpText="Reparieren heilt 4 TP zusätzlich."
+LocPromotionPopupText="<Bullet/> Reparieren stellt nun 8 TP wieder her statt 4 TP.<br/>"
+
+[ConcussiveStrike_LW X2AbilityTemplate]
+LocFriendlyName="Betäubungsschlag"
+LocLongDescription="Spezialangriff mit halbem Schaden, der das Ziel für zwei Aktionspunkte betäubt. Funktioniert nicht gegen mechanische Ziele. Abklingzeit: 4 Runden. Reduziert auch die Abklingzeit von Kinetischer Schlag um 1."
+LocHelpText="Halber Schaden, aber das Ziel wird betäubt."
+LocFlyOverText="Betäubungsschlag"
+LocPromotionPopupText="<Bullet/> Kann keine mechanischen Einheiten anvisieren.<br/><Bullet/> Verursacht 3/4/5 Schaden je nach Chassis, 4/5/6 mit „Sturmservos“.<br/><Bullet/> Reduziert die Abklingzeit von Kinetischer Schlag um 1 Runde.<br/>"
+
+[Neutralize_LW X2AbilityTemplate]
+LocFriendlyName="Neutralisierungsprotokoll"
+LocLongDescription="Schicke den BIT an einen Zielort, um Waffen in einem kleinen Radius zu deaktivieren und Gegner zum Nachladen zu zwingen. Verbraucht 1 Aktion und beendet den Zug nicht."
+LocHelpText="Deaktiviert feindliche Waffen in einem kleinen Radius. Verbraucht 1 Aktion."
+LocFlyOverText="Neutralisierungsprotokoll"
+LocPromotionPopupText="<Bullet/> Sendet ein kurzes Störsignal, das Waffen im Umkreis blockiert. Betroffene Feinde müssen ihre Hauptwaffe nachladen.<br/><Bullet/> Feinde können sich entscheiden, nur eingeschränkt zu agieren oder auf Sekundärwaffen auszuweichen.<br/><Bullet/> Verbraucht 1 Aktion. Abklingzeit: <Ability:NEUTRALIZE_COOLDOWN/> Runden.<br/>"
+
+[LayeredArmour_LW X2AbilityTemplate]
+LocFriendlyName="Verbundpanzerung"
+LocLongDescription="Kein einzelner Angriff kann mehr als 40 % der maximalen Trefferpunkte dieser Einheit auf einmal zerstören."
+LocHelpText="Schaden pro Angriff ist auf 40 % der maximalen TP begrenzt."
+LocFlyOverText="Verbundpanzerung"
+LocPromotionPopupText="<Bullet/> Durch dreischichtige Konstruktion wird der Schaden pro Angriff auf <Ability:ClassName/>'s max. TP × 0,4 begrenzt.<br/><Bullet/> Der Wert wird auf ganze Zahlen gerundet.<br/>"
+
+[Triangulation_LW X2AbilityTemplate]
+LocFriendlyName="Triangulation"
+LocLongDescription="Wird der <Ability:ClassName/> angegriffen, erhalten alle Truppmitglieder in der nächsten Runde +10 Zielsicherheit gegen diesen Angreifer."
+LocHelpText="Angriffe auf den <Ability:ClassName/> gewähren dem Trupp Bonus-Zielsicherheit gegen den Angreifer."
+LocFlyOverText="Triangulation"
+LocPromotionPopupText="<Bullet/> Der <Ability:ClassName/> verfolgt den Angreifer zurück zur Quelle und übermittelt die Daten an den Trupp.<br/><Bullet/> Wird ein anderes Truppmitglied angegriffen, wird Triangulation nicht ausgelöst.<br/>"
+
+[TriangulationTrigger_LW X2AbilityTemplate]
+LocFriendlyName="Triangulation"
+LocLongDescription="Wird der <Ability:ClassName/> angegriffen, erhalten alle Truppmitglieder in der nächsten Runde +10 Zielsicherheit gegen diesen Angreifer."
+LocHelpText="Angriffe auf den <Ability:ClassName/> gewähren dem Trupp Bonus-Zielsicherheit gegen den Angreifer."
+LocFlyOverText="Triangulation"
+LocPromotionPopupText="<Bullet/> Der <Ability:ClassName/> verfolgt den Angreifer zurück zur Quelle und übermittelt die Daten an den Trupp.<br/><Bullet/> Wird ein anderes Truppmitglied angegriffen, wird Triangulation nicht ausgelöst.<br/>"
+
+[BrawlerProtocol_LW X2AbilityTemplate]
+LocFriendlyName="Gegenschlag"
+LocLongDescription="Der <Ability:ClassName/> kann kostenlose Nahkampfangriffe mit halbem Schaden gegen Feinde ausführen, die in Nahkampfreichweite angreifen oder sich dorthin bewegen. Erfordert nicht die Fähigkeit 'Kinetischer Schlag'. Aktiviert sich nicht während des eigenen Zuges."
+LocHelpText="Kostenlose Nahkampfangriffe gegen Feinde in Nahkampfreichweite."
+LocFlyOverText="Gegenschlag"
+LocPromotionPopupText="<Bullet/> Beginnt ein Feind seinen Zug angrenzend, wird Gegenschlag ausgelöst, wenn dieser sich innerhalb der Nahkampfreichweite bewegt oder angreift.<br/><Bullet/> Bewegt sich ein Feind neu in Nahkampfreichweite, wird Gegenschlag ebenfalls ausgelöst.<br/><Bullet/> Rückzug aus Nahkampfreichweite löst Gegenschlag nicht aus.<br/><Bullet/> Verursacht halben Schaden im Vergleich zum regulären Kinetischen Schlag; +1 Schaden durch Sturmservos.<br/><Bullet/> Kann nicht im eigenen Zug ausgelöst werden.<br/>"
+
+[BrawlerTrigger_LW X2AbilityTemplate]
+LocFriendlyName="Gegenschlag"
+LocLongDescription="Der <Ability:ClassName/> kann kostenlose Nahkampfangriffe mit halbem Schaden gegen Feinde ausführen, die in Nahkampfreichweite angreifen oder sich dorthin bewegen. Erfordert nicht die Fähigkeit 'Kinetischer Schlag'. Aktiviert sich nicht während des eigenen Zuges."
+LocHelpText="Kostenlose Nahkampfangriffe gegen Feinde in Nahkampfreichweite."
+LocFlyOverText="Gegenschlag"
+LocPromotionPopupText="<Bullet/> Beginnt ein Feind seinen Zug angrenzend, wird Gegenschlag ausgelöst, wenn dieser sich innerhalb der Nahkampfreichweite bewegt oder angreift.<br/><Bullet/> Bewegt sich ein Feind neu in Nahkampfreichweite, wird Gegenschlag ebenfalls ausgelöst.<br/><Bullet/> Rückzug aus Nahkampfreichweite löst Gegenschlag nicht aus.<br/><Bullet/> Verursacht halben Schaden im Vergleich zum regulären Kinetischen Schlag; +1 Schaden durch Sturmservos.<br/><Bullet/> Kann nicht im eigenen Zug ausgelöst werden.<br/>"
+
+[EnhancedSystems_LW X2AbilityTemplate]
+LocFriendlyName="Erweiterte Reparatursysteme"
+LocLongDescription="Verleiht die Fähigkeiten 'Schnellreparatur' und 'Redundante Systeme': Reparieren beendet nicht mehr den Zug und der SPARK erhält nach Neustart keine Abzüge mehr. Außerdem wird beim Neustart automatisch Reparieren ausgelöst und die Ladungsanzahl erhöht."
+LocHelpText="Reparieren endet nicht den Zug. Kein Malus mehr nach Neustart. Automatischer Einsatz von Reparieren beim Neustart."
+LocPromotionPopupText="Verleiht 'Schnellreparatur' und 'Redundante Systeme'. Reparieren endet nicht mehr den Zug, der SPARK erleidet nach Neustart keine Maluswerte mehr. Zusätzlich wird beim Neustart automatisch Reparieren eingesetzt und es gibt eine zusätzliche Ladung für Reparieren."
+
+[ReactionSystems_LW X2AbilityTemplate]
+LocFriendlyName="Erweiterte Verteidigungssysteme"
+LocLongDescription="Verleiht die Fähigkeiten 'Opferbereitschaft' und 'Energiefeld': Leitet Angriffe von Verbündeten in der Nähe auf den SPARK um und erhöht seinen Schaden nach jedem erlittenen Angriff."
+LocHelpText="<Bullet/> +<Ability:Sacrifice_Defense/> Verteidigung und +<Ability:Sacrifice_Armor/> Rüstung während Opferbereitschaft aktiv ist.<br/><Bullet/> Abklingzeit für Opferbereitschaft: <Ability:SACRIFICE_COOLDOWN/> Runden.<br/><Bullet/> Jeder geladene Punkt im Energiefeld erhöht den nächsten <Ability:WeaponName/>-Angriff um +1 Schaden.<br/>"
+LocPromotionPopupText="<Bullet/> +<Ability:Sacrifice_Defense/> Verteidigung und +<Ability:Sacrifice_Armor/> Rüstung während Opferbereitschaft aktiv ist.<br/><Bullet/> Abklingzeit: <Ability:SACRIFICE_COOLDOWN/> Runden.<br/><Bullet/> Jeder Energiewert im Energiefeld erhöht den nächsten Angriff mit <Ability:WeaponName/> um 1 Schaden.<br/>"
+
+[AdvancedLogic_LW X2AbilityTemplate]
+LocFriendlyName="Erweiterte Logik"
+LocLongDescription="Erhöht den Hackwert des <Ability:ClassName/> um <Ability:ADVANCED_LOGIC_HACK_BONUS>."
+LocHelpText="Erhöht den Hackwert des <Ability:ClassName/> um <Ability:ADVANCED_LOGIC_HACK_BONUS>."
+LocPromotionPopupText="Erhöht den Hackwert des <Ability:ClassName/> um <Ability:ADVANCED_LOGIC_HACK_BONUS>."
+
+[HoloAACombo_LW X2AbilityTemplate]
+LocFriendlyName="Erweitertes Zielsystem"
+LocLongDescription="Verleiht die Fähigkeiten 'Adaptive Zielerfassung' und 'Holozielerfassung'. Erlaubt mehr Schüsse während 'Overdrive' und verbessert die Treffergenauigkeit des Teams auf vom SPARK anvisierte Ziele. Holozielerfassung wirkt bei allen Schüssen, nicht nur während Overdrive."
+LocHelpText="Verleiht 'Adaptive Zielerfassung' und 'Holozielerfassung'. Mehr Schüsse unter Overdrive, bessere Zielerfassung für das Team."
+LocPromotionPopupText="Verleiht die Fähigkeiten 'Adaptive Zielerfassung' und 'Holozielerfassung'. Erlaubt mehr Schüsse während Overdrive und verbessert die Zielerfassung des Teams gegen vom SPARK beschossene Gegner. Holozielerfassung gilt für alle Schüsse, nicht nur während Overdrive."
 
 [PsiOperative X2SoldierClassTemplate]
 RankNames[8]="Meister"
 ShortNames[8]="Mstr."
 RankIcons[8]="UILibrary_LW_PerkPack.psirank_Master"
+AbilityTreeTitles[3]="Pistolen"
 
-[X2Ability_PerkPackAbilitySet]
-LocCoveringFireMalus="Diese Einheit war das Ziel des Feuerschutz-Schusses einer Einheit mit der Deckungsfeuer-Fähigkeit und erhält -10 Zielsicherheit bis zum Ende der Runde."
+[XComGame.X2MPData_Shell]
+arrMPMapFriendlyNames[9]="Untergrund"
+arrMPMapFriendlyNames[10]="Untergrund"
+
+[AreaSuppression X2AbilityTemplate]
+LocFriendlyName="Bereichsunterdrückung"
+LocFlyOverText="Bereichsunterdrückung"
+LocLongDescription="Feuere eine Salve ab, die mehrere Ziele innerhalb eines Radius von <Ability:AREA_SUPPRESSION_RADIUS_TILES> Feldern unter Sperrfeuer setzt. Verleiht Reaktionsfeuer gegen jede Bewegung und verringert das Zielen aller betroffenen Ziele um <Ability:SUPPRESSIONPENALTY/>, bis das Sperrfeuer endet. Kann nicht im Tarnmodus verwendet werden."
+LocHelpText="Setzt mehrere Ziele innerhalb eines Bereichs unter Sperrfeuer."
+LocPromotionPopupText="<Bullet/> Bereichsunterdrückung kann nicht verwendet werden, solange der Soldat getarnt ist.<br/><Bullet/> Jede Einheit, die sich bewegt, wird unter Reaktionsfeuer genommen, solange der ausführende Soldat noch Munition hat.<br/><Bullet/> Funktioniert nicht mit Schrotflinten oder Scharfschützengewehren.<br/><Bullet/> Verbraucht <Ability:SelfAmmoCost/> Munition plus eine weitere pro Reaktionsschuss. Keine Abklingzeit.<br/><Bullet/> Wird abgebrochen, wenn der Sperrfeuer-Soldat Schaden erleidet.<br/><Bullet/> Der Zielabzug stapelt sich nicht, wenn mehrere Einheiten dasselbe Ziel unter Sperrfeuer setzen.<br/><Bullet/> Sperrfeuer verhindert viele Fähigkeiten des Ziels, z. B. den Einsatz von Raketen oder Granaten."
+
+[SwordSlice X2AbilityTemplate]
+LocFriendlyName="Schwerthieb"
+LocPromotionPopupText="<Bullet/> Du kannst 'Hieb' auslösen, indem du den Bewegungscursor über einen Gegner platzierst.<br/><Bullet/> Der <Ability:ClassName> kann eine \"Sprint\"-Bewegung durchführen und sich mit beiden Aktionen fortbewegen, dabei aber immer noch einen Hieb gegen einen Feind in der Nähe auslösen.<br/>"
+
+[NullLance X2AbilityTemplate]
+LocFriendlyName="Null-Lanze"
+LocLongDescription="Feuert einen Energiestrahl psionischer Macht ab, der allen Zielen in seiner Bahn Schaden zufügt. Durchschlägt mehrere Gegner und Hindernisse."
+LocHelpText="Feuert einen psionischen Energiestrahl ab, der allen Zielen in seiner Bahn Schaden zufügt."
+LocFlyOverText="Null-Lanze"
+LocPromotionPopupText="<Bullet/> 'Null-Lanze' hat eine Abklingzeit von <Ability:SelfCooldown_LW/> Runden.<br/><Bullet/> Der Schaden kann durch eine verbesserte PSI-Verstärkung erhöht werden.<br/>"
+
+[XComGame.ThreatAssessment X2AbilityTemplate]
+
+[ThreatAssessment X2AbilityTemplate]
+LocLongDescription="'Hilfsprotokoll' gewährt dem Ziel jetzt einen Deckungsfeuer-Feuerschutz-Schuss."
+LocPromotionPopupText="<Bullet/> 'Hilfsprotokoll' gewährt dem Ziel jetzt einen Deckungsfeuer-Feuerschutz-Schuss."
+
