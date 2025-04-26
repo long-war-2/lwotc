@@ -4848,6 +4848,7 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 	local XComGameState_Effect EffectState;
 	local XComGameState_Unit UnitState;
 	local X2AbilityTemplate AbilityTemplate;
+	local XComGameState NewGameState;
 	local int ImpactCompensationStacks;
 	local int k;
 
@@ -4857,21 +4858,42 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 	case 'SELFCOOLDOWN_LW':
 		OutString = "0";
 		AbilityTemplate = X2AbilityTemplate(ParseObj);
+		EffectState = XComGameState_Effect(ParseObj);
 		if (AbilityTemplate == none)
 		{
 			AbilityState = XComGameState_Ability(ParseObj);
 			if (AbilityState != none)
+			{
 				AbilityTemplate = AbilityState.GetMyTemplate();
+			}
+				
 		}
 		if (AbilityTemplate != none)
 		{
 			if (AbilityTemplate.AbilityCooldown != none)
 			{
 				// LW2 doesn't subtract 1 from cooldowns as a general rule, so to keep it consistent
+				
+				// Yes, I know that there's no NewGameState or EffectState anywhere here right now,
+				// but GetNumTurns requires them to be passed so we must pass empty ones.
+
+				OutString = string(AbilityTemplate.AbilityCooldown.GetNumTurns(AbilityState, EffectState, AbilityState.GetSourceWeapon(), NewGameState));
+			}
+		}
+		/* 
+		else
+		{
+			// Add a fallback
+			if(AbilityTemplate != none)
+			{
+				if (AbilityTemplate.AbilityCooldown != none)
+			{
+				// LW2 doesn't subtract 1 from cooldowns as a general rule, so to keep it consistent
 				// there is substitute tag
 				OutString = string(AbilityTemplate.AbilityCooldown.iNumTurns);
 			}
-		}
+			}
+		} */
 		return true;
 	case 'IMPACT_COMPENSATION_CURRENT_DR':
 		OutString = "0";
