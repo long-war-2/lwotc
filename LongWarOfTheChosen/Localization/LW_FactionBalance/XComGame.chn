@@ -22,7 +22,7 @@ LocPromotionPopupText="<Bullet/> 增加<Ability:DemolitionistExtraChargeCount/>�
 LocFriendlyName="致残打击"
 LocLongDescription="投掷一把飞刀，使目标致残1回合 (0移动力)。"
 LocHelpText="投掷一把飞刀，使目标致残1回合 (0移动力)。"
-LocPromotionPopupText="<Bullet/> 投掷飞刀不会打破暗影状态。<br/><Bullet/> 致残状态会将目标的移动性降低至0，使其无法移动。<br>"
+LocPromotionPopupText="<Bullet/> 投掷飞刀不会打破暗影状态。<br/><Bullet/> 致残状态会将目标的移动力降低至0，使其无法移动。<br/><Bullet/> 致残打击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
 ; End Translation
 
 ; LWOTC Needs Translation
@@ -90,7 +90,7 @@ LocFlyoverText="神化!"
 LocLongDescription="化身神，大幅增加你的闪避，伤害和移动力。至少需要3点专注并消耗所有专注点。"
 LocHelpText="化身神，大幅增加你的闪避，伤害和移动力。至少需要3点专注并消耗所有专注点。"
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> 使圣殿骑士在2回合内变得更加强大的自由动作。<br/><Bullet/> 高于2专注时每点专注增加<Ability:ApotheosisDamageMultiplier/>%所有伤害。<br/><Bullet/> 高于2专注时每点专注增加<Ability:ApotheosisDodgeBonus/>闪避。<br/><Bullet/> 高于2专注时每点专注提高<Ability:ApotheosisMobilityBonus/>移动力。<br/><Bullet/> 至少需要3点专注。<br/><Bullet/> 消耗所有专注点。<br/><Bullet/> 圣殿骑士可以在神化状态下获得专注。"
+LocPromotionPopupText="<Bullet/> 使圣殿骑士在2回合内变得更加强大的自由动作。<br/><Bullet/> 高于2专注时每点专注增加<Ability:ApotheosisDamageMultiplier/>%所有伤害。<br/><Bullet/> 高于2专注时每点专注增加<Ability:ApotheosisDodgeBonus/>闪避。<br/><Bullet/> 高于2专注时每点专注提高<Ability:ApotheosisMobilityBonus/>移动力。<br/><Bullet/> 至少需要3点专注。<br/><Bullet/> 消耗所有专注点。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 圣殿骑士可以在神化状态下获得专注。"
 ; End Translation (2)
 ; End Translation
 
