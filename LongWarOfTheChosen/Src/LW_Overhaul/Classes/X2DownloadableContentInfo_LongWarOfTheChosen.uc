@@ -4841,14 +4841,14 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 	}
 }
 
-static function bool AbilityTagExpandHandler_CH(string InString, out string OutString, Object ParseObj, Object StrategyParseOb, XComGameState GameState)
+static function bool AbilityTagExpandHandler_CH(string InString, out string OutString, Object ParseObj, Object StrategyParseObj, XComGameState GameState)
 {
 	local name Type;
 	local XComGameState_Ability AbilityState;
 	local XComGameState_Effect EffectState;
 	local XComGameState_Unit UnitState;
 	local X2AbilityTemplate AbilityTemplate;
-	local XComGameState NewGameState;
+	//local XComGameState NewGameState;
 	local int ImpactCompensationStacks;
 	local int k;
 
@@ -4858,32 +4858,32 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 	case 'SELFCOOLDOWN_LW':
 		OutString = "0";
 		AbilityTemplate = X2AbilityTemplate(ParseObj);
-		EffectState = XComGameState_Effect(ParseObj);
+
 		if (AbilityTemplate == none)
 		{
 			AbilityState = XComGameState_Ability(ParseObj);
 			if (AbilityState != none)
 			{
 				AbilityTemplate = AbilityState.GetMyTemplate();
+				UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(AbilityState.OwnerStateObject.ObjectID));
 			}
 				
 		}
-		if (AbilityTemplate != none)
+		if (StrategyParseObj != none)
+			UnitState = XComGameState_Unit(StrategyParseObj);
+
+		if (AbilityTemplate != none && UnitState != None)
 		{
 			if (AbilityTemplate.AbilityCooldown != none)
 			{
 				// LW2 doesn't subtract 1 from cooldowns as a general rule, so to keep it consistent
-				
-				// Yes, I know that there's no NewGameState or EffectState anywhere here right now,
-				// but GetNumTurns requires them to be passed so we must pass empty ones.
 
-				OutString = string(AbilityTemplate.AbilityCooldown.GetNumTurns(AbilityState, EffectState, AbilityState.GetSourceWeapon(), NewGameState));
+				OutString = string(AbilityTemplate.AbilityCooldown.GetNumTurns(AbilityState, UnitState, AbilityState.GetSourceWeapon(), GameState));
 			}
 		}
-		/* 
 		else
 		{
-			// Add a fallback
+			// Add a fallback to previous behavior if we can't get the unit
 			if(AbilityTemplate != none)
 			{
 				if (AbilityTemplate.AbilityCooldown != none)
@@ -4893,7 +4893,7 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 				OutString = string(AbilityTemplate.AbilityCooldown.iNumTurns);
 			}
 			}
-		} */
+		} 
 		return true;
 	case 'IMPACT_COMPENSATION_CURRENT_DR':
 		OutString = "0";
