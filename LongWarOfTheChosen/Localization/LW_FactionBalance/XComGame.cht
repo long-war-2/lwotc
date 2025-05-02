@@ -22,7 +22,7 @@ LocPromotionPopupText="<Bullet/> 增加 <Ability:DemolitionistExtraChargeCount/>
 LocFriendlyName="致殘打擊"
 LocLongDescription="投擲一把飛刀，使目標緻殘1回合 (0移動力)。"
 LocHelpText="投擲一把飛刀，使目標緻殘1回合 (0移動力)。"
-LocPromotionPopupText="<Bullet/> 投擲飛刀不會打破暗影狀態。<br/><Bullet/> 致殘狀態會將目標的移動性降低至0，使其無法移動。<br>"
+LocPromotionPopupText="<Bullet/> 投擲飛刀不會打破暗影狀態。<br/><Bullet/> 致殘狀態會將目標的移動力降低至0，使其無法移動。<br><Bullet/> 致殘打擊有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/>"
 ; End Translation
 
 ; LWOTC Needs Translation
@@ -90,7 +90,7 @@ LocFlyoverText="神化!"
 LocLongDescription="化身神，大幅增加你的閃避，傷害和移動力。至少需要3點專注並消耗所有專注點。"
 LocHelpText="化身神，大幅增加你的閃避，傷害和移動力。至少需要3點專注並消耗所有專注點。"
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> 使聖殿騎士在2回合內變得更加強大的自由動作。<br/><Bullet/> 高於2專注時每點專注增加<Ability:ApotheosisDamageMultiplier/>%所有傷害。<br/><Bullet/> 高於2專注時每點專注增加<Ability:ApotheosisDodgeBonus/>閃避。<br/><Bullet/> 高於2專注時每點專注提高<Ability:ApotheosisMobilityBonus/>移動力。<br/><Bullet/> 至少需要3點專注。<br/><Bullet/> 消耗所有專注點。<br/><Bullet/> 聖殿騎士可以在神化狀態下獲得專注。"
+LocPromotionPopupText="<Bullet/> 使聖殿騎士在2回合內變得更加強大的自由動作。<br/><Bullet/> 高於2專注時每點專注增加<Ability:ApotheosisDamageMultiplier/>%所有傷害。<br/><Bullet/> 高於2專注時每點專注增加<Ability:ApotheosisDodgeBonus/>閃避。<br/><Bullet/> 高於2專注時每點專注提高<Ability:ApotheosisMobilityBonus/>移動力。<br/><Bullet/> 至少需要3點專注。<br/><Bullet/> 消耗所有專注點。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/> 聖殿騎士可以在神化狀態下獲得專注。"
 ; End Translation (2)
 ; End Translation
 

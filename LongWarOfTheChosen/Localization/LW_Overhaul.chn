@@ -407,11 +407,11 @@ m_strInvasionConfirm="查看入侵地点"
 m_strRepeatResearch="重复研究"
 
 [UIScreenListener_ArmoryWeaponUpgrade_LW]
-strStripWeaponUpgradesButton="移除武器升级"
-StripAllWeaponUpgradesStr="移除未参战士兵武器升级"
-strStripWeaponUpgradesTooltip="移除所有升级和自定义，将武器送回至武器库"
-strStripWeaponUpgradeDialogueTitle="确认移除所有升级"
-strStripWeaponUpgradeDialogueText="你确定要移除该武器的所有升级并将其送回武器库？"
+strStripWeaponUpgradesButton="移除武器配件"
+StripAllWeaponUpgradesStr="移除未参战士兵武器配件"
+strStripWeaponUpgradesTooltip="移除所有配件和自定义，并将武器送回至武器库"
+strStripWeaponUpgradeDialogueTitle="确认移除所有配件"
+strStripWeaponUpgradeDialogueText="你确定要移除该武器的所有配件并将其送回武器库？"
 
 [UIPersonnel_SquadBarracks]
 strSquadBarrackTitle="小队：<XGParam:StrValue0>"
@@ -707,11 +707,12 @@ m_strBullet="•"
 m_strExpectedInfiltration="加强后"
 m_strInfiltrationBoostCost="花费"
 
-m_strStripWeaponUpgrades=移除所有武器升级
-m_strStripWeaponUpgradesLower=移除所有武器升级
-m_strStripWeaponUpgradesConfirm=确认移除所有武器升级
-m_strStripWeaponUpgradesConfirmDesc=确认移除所有未由出战当前任务士兵所装备的主武器上的升级配件。该配件可立刻供所有士兵装备。
-m_strTooltipStripWeapons=移除所有未出战当前任务的士兵的武器升级。
+m_StrStripUpgrade=移除配件
+m_strStripWeaponUpgrades=移除所有武器配件
+m_strStripWeaponUpgradesLower=移除所有武器配件
+m_strStripWeaponUpgradesConfirm=确认移除所有武器配件
+m_strStripWeaponUpgradesConfirmDesc=确认移除所有未出战当前任务士兵所装备的主武器上的配件。该配件可立刻供所有士兵装备。
+m_strTooltipStripWeapons=移除所有未出战当前任务的士兵的武器配件。
 
 m_strAllHandsToHangar=所有人员前往机库
 m_strAllHandsToHangarConfirm=确认所有人员前往机库

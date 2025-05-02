@@ -28,7 +28,7 @@ strChangePageTitle="額外能力"
 strChangePageDesc="查看其他你可以激活的能力。你也可以使用「x」鍵來查看額外能力。"
 
 [UIArmory_MainMenu_LW]
-m_strNoWeaponUpgradesTooltip="沒有可用的武器升級"
+m_strNoWeaponUpgradesTooltip="沒有可用的武器配件"
 
 [X2Ability_PerkPackAbilitySet2]
 TrojanVirus="特洛伊病毒"
