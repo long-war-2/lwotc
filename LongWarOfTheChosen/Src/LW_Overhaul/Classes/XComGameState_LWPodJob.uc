@@ -86,10 +86,12 @@ function static Vector AdjustLocation(Vector Loc, XComGameState_AIGroup Group)
 
 	WorldData = `XWORLD;
 
+   // `LWTrace("Adjusting location. Initial location:" @loc.x @loc.y @loc.z);
 	// Make sure the target location is on the map. Just because it's on the map
 	// doesn't mean we can path there, though...
 	Loc = `XWORLD.FindClosestValidLocation(Loc, false, false);
 
+   // `LWTrace("location after validation:" @loc.x @loc.y @loc.z);
 	// Lookup the leader
 	LeaderState = Group.GetGroupLeader();
 	Visualizer = XGUnit(`XCOMHISTORY.GetVisualizer(LeaderState.ObjectID));
@@ -99,11 +101,13 @@ function static Vector AdjustLocation(Vector Loc, XComGameState_AIGroup Group)
 		// Get the tile coordinates for this location
 		if (!WorldData.GetFloorTileForPosition(Loc, TileDest))
 		{
+           // `LWTrace("Tile wasn't found with GetFloorTileForPosition");
 			TileDest = WorldData.GetTileCoordinatesFromPosition(Loc);
 		}
 
 		TileDest = class'Helpers'.static.GetClosestValidTile(TileDest); // Ensure the tile isn't occupied before finding a path to it.
 
+        //`LWTrace("Converting to tile:" @ TileDest.x @ TileDest.y @ TileDest.z );
     /*
 		if (!class'Helpers'.static.GetFurthestReachableTileOnPathToDestination(TileDest, TileDest, LeaderState, false))
 		{
@@ -123,7 +127,7 @@ function static Vector AdjustLocation(Vector Loc, XComGameState_AIGroup Group)
 		 {
 		 	// Nope, find the cloest tile we can reach
 		 	TileDest = Visualizer.m_kReachableTilesCache.GetClosestReachableDestination(TileDest);
-
+            //`LWTrace("First try didn't find a path anywhere, trying again with visualizer cache");
 		 	// Can we find a path now?
 		 	if (!Visualizer.m_kReachableTilesCache.BuildPathToTile(TileDest, Path))
 		 	{
@@ -134,6 +138,7 @@ function static Vector AdjustLocation(Vector Loc, XComGameState_AIGroup Group)
 
 		// Set the location at the reachable tile.
 		Loc = WorldData.GetPositionFromTileCoordinates(TileDest);
+        //`LWTrace("Final location vector:" @Loc.x @Loc.y @Loc.z);
 	}
 
 	return Loc;
@@ -159,17 +164,26 @@ function Vector SetAlertAtLocation(Vector Location, XComGameState_AIGroup Group,
     AlertInfo.AlertUnitSourceID = 0;
     AlertInfo.AnalyzingHistoryIndex = History.GetCurrentHistoryIndex();
 
+   // `LWTrace("SetAlertAtLocation start"@ GetScriptTrace());
+
+   // `LWTrace("AlertCause:" @AlertCause);
+
     foreach Group.m_arrMembers(UnitRef)
     {
         Unit = XComGameState_Unit(History.GetGameStateForObjectID(UnitRef.ObjectID));
         AIUnitDataID = Unit.GetAIUnitDataID();
-
+        //`LWTrace("AIUnitId For test unit:" @AIUnitDataID);
         if (Unit.IsAlive() && AIUnitDataID > 0)
         {
-            AIData = XComGameState_AIUnitData(NewGameState.CreateStateObject(class'XComGameState_AIUnitData', AIUnitDataID));
+            AIData = XComGameState_AIUnitData(History.GetGameStateForObjectID(AIUnitDataID));
+
+            AIData = XComGameState_AIUnitData(NewGameState.ModifyStateObject(class'XComGameState_AIUnitData', AIData.ObjectID));
+
             if (AIData.AddAlertData(UnitRef.ObjectID, AlertCause, AlertInfo, NewGameState, AlertTag))
             {
-               NewGameState.AddStateObject(AIData);
+              //  `LWTrace("Added alert data to unit" @Unit.GetFullName());
+              //  `LWTrace("AIData Alert Length:" @ AIData.GetAlertCount());
+              //  `LWTrace("AIData History Frame:" @AIData.GetParentGameState().HistoryIndex);
             }
             else
             {

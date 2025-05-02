@@ -181,6 +181,7 @@ function TurnInit(XComGameState NewGameState)
 		++TurnCount;
 }
 
+// This function gets called all in 1 state, so can potentially cause multiple alert submissions for the same pod! be careful!
 function UpdatePod(XComGameState NewGameState, XComGameState_AIGroup GroupState)
 {
 	local XComGameState_LWPodJob ThePodJob;

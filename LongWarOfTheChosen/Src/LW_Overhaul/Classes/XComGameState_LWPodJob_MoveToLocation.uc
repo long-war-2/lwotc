@@ -18,6 +18,7 @@ function InitJob(LWPodJobTemplate JobTemplate, XComGameState_AIGroup Group, int 
     super.InitJob(JobTemplate, Group, JobID, Cause, Tag, NewGameState);
 
     Location = SetAlertAtLocation(Location, Group, NewGameState);
+   // `LWTrace("Move to location Job Init: Alert location set:" @Location.x @Location.Y @Location.Z);
 }
 
 function bool ProcessTurn(XComGameState_LWPodManager PodMgr, XComGameState NewGameState)
@@ -30,17 +31,25 @@ function bool ProcessTurn(XComGameState_LWPodManager PodMgr, XComGameState NewGa
     {
         return false;
     }
+   // `LWTrace("ProcessTurn for job happening");
 
     Template = GetMyTemplate();
 
     if (Template.GetNewDestination != none)
     {
-        NewDestination = Template.GetNewDestination(self, NewGameState);
+        Group = XComGameState_AIGroup(`XCOMHISTORY.GetGameStateForObjectID(GroupRef.ObjectID));
+        NewDestination = AdjustLocation(Template.GetNewDestination(self, NewGameState), Group);
 
+       // `LWTrace("New Destination value:" @NewDestination.x @NewDestination.Y @NewDestination.Z);
+       // `LWTrace("Existing Location Value:" @Location.X @Location.Y @Location.Z);
+        
         if (Location != NewDestination)
         {
-            Group = XComGameState_AIGroup(`XCOMHISTORY.GetGameStateForObjectID(GroupRef.ObjectID));
             Location = SetAlertAtLocation(NewDestination, Group, NewGameState);
+        }
+        else
+        {
+           // `LWTrace("No location update, not updating AI Group");
         }
     }
 
