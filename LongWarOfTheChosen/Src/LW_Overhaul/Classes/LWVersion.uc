@@ -47,8 +47,7 @@ function static int GetVersionNumber(optional out int Major, optional out int Mi
 defaultproperties
 {
     MajorVersion = 1;
-    MinorVersion = 2;
-    PatchVersion = 3;
-    Classifier = "Steam"
-
+    MinorVersion = 3;
+    PatchVersion = 0;
+    Classifier = "golden path chosen"
 }

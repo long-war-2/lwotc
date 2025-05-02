@@ -32,6 +32,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Rewards.AddItem(CreateDummyStatBoostRewardTemplate());
 	Rewards.AddItem(CreateSupplyMissionRewardTemplate());
 	Rewards.AddItem(CreateDetachmentMissionRewardTemplate());
+	Rewards.AddItem(CreateRevealChosenStrongholdRewardTemplate());
+	Rewards.AddItem(CreateFactionInfluence2RewardTemplate());
 	return Rewards;
 }
 
@@ -378,6 +380,57 @@ static function X2DataTemplate CreateFactionInfluenceRewardTemplate()
 	return Template;
 }
 
+static function X2DataTemplate CreateFactionInfluence2RewardTemplate()
+{
+	local X2RewardTemplate Template;
+
+	`CREATE_X2Reward_TEMPLATE(Template, 'Reward_FactionInfluence2_LW');
+
+	Template.IsRewardAvailableFn = IsFactionInfluence2RewardAvailable;
+	Template.GenerateRewardFn = GenerateFactionInfluence2Reward;
+	Template.GiveRewardFn = GiveFactionInfluence2Reward;
+	Template.GetRewardImageFn = GetFactionInfluenceRewardImage;
+	Template.GetRewardStringFn = GetFactionInfluenceRewardString;
+	Template.CleanUpRewardFn = CleanUpRewardWithoutRemoval;
+	Template.RewardPopupFn = FactionInfluenceRewardPopup;
+
+	return Template;
+}
+
+static function bool IsFactionInfluence2RewardAvailable(optional XComGameState NewGameState, optional StateObjectReference AuxRef)
+{
+	local XComGameState_ResistanceFaction FactionState;
+
+	FactionState = GetFactionState(NewGameState, AuxRef);
+	if (FactionState != none)
+	{
+		if (FactionState.bMetXCom && FactionState.GetInfluence() == eFactionInfluence_Respected)
+		{
+			return true;
+		}
+	}
+	else
+	{
+		`Redscreen("@jweinhoffer FactionInfluenceReward not available because FactionState was not found");
+	}
+
+	return false;
+}
+
+static function GiveFactionInfluence2Reward(XComGameState NewGameState, XComGameState_Reward RewardState, optional StateObjectReference AuxRef, optional bool bOrder = false, optional int OrderHours = -1)
+{
+	local XComGameState_CovertAction ActionState;
+	local XComGameState_ResistanceFaction FactionState;
+
+	ActionState = XComGameState_CovertAction(`XCOMHISTORY.GetGameStateForObjectID(RewardState.RewardObjectReference.ObjectID));
+	FactionState = XComGameState_ResistanceFaction(NewGameState.ModifyStateObject(class'XComGameState_ResistanceFaction', ActionState.Faction.ObjectID));
+	FactionState.IncreaseInfluenceLevel(NewGameState);
+}
+static function GenerateFactionInfluence2Reward(XComGameState_Reward RewardState, XComGameState NewGameState, optional float RewardScalar = 1.0, optional StateObjectReference ActionRef)
+{
+	RewardState.RewardObjectReference = ActionRef;
+}
+
 static function GenerateFactionInfluenceReward(XComGameState_Reward RewardState, XComGameState NewGameState, optional float RewardScalar = 1.0, optional StateObjectReference RegionRef)
 {
 	RewardState.RewardObjectReference = RegionRef;
@@ -460,6 +513,22 @@ static function X2DataTemplate CreateSupplyMissionRewardTemplate()
     return Template;
 }
 
+static function X2DataTemplate CreateRevealChosenStrongholdRewardTemplate()
+{
+	local X2RewardTemplate Template;
+
+	`CREATE_X2Reward_TEMPLATE(Template, 'Reward_LWRevealStronghold');
+
+	Template.IsRewardAvailableFn = AlwaysTrue;
+	Template.GenerateRewardFn = GenerateChosenStrongholdReward;
+	Template.GiveRewardFn = CreateRevealActivateStrongholdReward;
+	Template.GetRewardImageFn = GetUnlockStrongholdRewardImage;
+	Template.CleanUpRewardFn = CleanUpRewardWithoutRemoval;
+	Template.RewardPopupFn = FactionInfluenceRewardPopup;
+
+	return Template;
+}
+
 static function CreateSupplyMissionReward(XComGameState NewGameState, XComGameState_Reward RewardState, optional StateObjectReference AuxRef, optional bool bOrder = false, optional int OrderHours = -1)
 {
 	local XComGameState_LWAlienActivity NewActivityState;
@@ -508,4 +577,51 @@ static function CreateDetachmentMissionReward(XComGameState NewGameState, XComGa
 	NewActivityState = ActivityTemplate.CreateInstanceFromTemplate(ActionState.Region, NewGameState);
 	NewActivityState.bNeedsUpdateDiscovery = true;
 	NewGameState.AddStateObject(NewActivityState);
+}
+
+static function GenerateChosenStrongholdReward(XComGameState_Reward RewardState, XComGameState NewGameState, optional float RewardScalar = 1.0, optional StateObjectReference RegionRef)
+{
+	RewardState.RewardObjectReference = RegionRef;
+}
+
+static function FactionInfluenceRewardPopup(XComGameState_Reward RewardState)
+{
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_ResistanceFaction FactionState;
+
+	RegionState = XComGameState_WorldRegion(`XCOMHISTORY.GetGameStateForObjectID(RewardState.RewardObjectReference.ObjectID));	
+	FactionState = RegionState.GetControllingChosen().GetRivalFaction();
+	
+	`HQPRES.UIChosenFragmentRecovered(FactionState.GetRivalChosen().GetReference(), 3);
+}
+
+static function string GetUnlockStrongholdRewardImage(XComGameState_Reward RewardState)
+{
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_AdventChosen ChosenState;
+
+	RegionState = XComGameState_WorldRegion(`XCOMHISTORY.GetGameStateForObjectID(RewardState.RewardObjectReference.ObjectID));	
+
+	ChosenState = RegionState.GetControllingChosen();
+
+	return ChosenState.GetHuntChosenImage(2);
+}
+
+static function CreateRevealActivateStrongholdReward(XComGameState NewGameState, XComGameState_Reward RewardState, optional StateObjectReference AuxRef, optional bool bOrder = false, optional int OrderHours = -1)
+{
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_AdventChosen ChosenState;
+
+	RegionState = XComGameState_WorldRegion(`XCOMHISTORY.GetGameStateForObjectID(RewardState.RewardObjectReference.ObjectID));	
+
+	ChosenState = RegionState.GetControllingChosen();
+
+	ChosenState.MakeStrongholdMissionVisible(NewGameState);
+	ChosenState.MakeStrongholdMissionAvailable(NewGameState);
+
+}
+
+static function bool AlwaysTrue(optional XComGameState NewGameState, optional StateObjectReference AuxRef)
+{
+	return true;
 }
