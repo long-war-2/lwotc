@@ -54,7 +54,7 @@ BriefSummary="This implant drastically increases the threshold of overkill damag
 [IronSkinPCS X2EquipmentTemplate]
 FriendlyName="PCS: Iron Skin"
 FriendlyNamePlural="PCS: Iron Skin"
-BriefSummary="Incoming melee damage is reduced by <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>."
+BriefSummary="Incoming melee damage is reduced by <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>. The Chosen Assassin's melee attacks are reduced by 67% of this value."
 
 [SmartMacrophagesPCS X2EquipmentTemplate]
 FriendlyName="PCS: Smart Macrophages"
@@ -169,8 +169,8 @@ LocPromotionPopupText="<Bullet/> Units visible at squadsight ranges do confer bo
 [HardTarget X2AbilityTemplate]
 LocFriendlyName="Hard Target"
 LocFlyOverText="Hard Target"
-LocLongDescription="Gain 5 dodge per enemy you can see, up to a maximum of +30."
-LocHelpText="Gain 5 dodge per enemy you can see, up to a maximum of +30."
+LocLongDescription="Gain <Ability:HT_DODGE_BONUS_PER_ENEMY/> dodge per enemy you can see, up to a maximum of <Ability:HT_MAX_DODGE_BONUS/>."
+LocHelpText="Gain <Ability:HT_DODGE_BONUS_PER_ENEMY/> dodge per enemy you can see, up to a maximum of <Ability:HT_MAX_DODGE_BONUS/>."
 LocPromotionPopupText="<Bullet/> Units visible at squadsight ranges do not confer bonus.<br/><Bullet/> This ability does not provide defensive bonuses if the unit is disoriented, stunned, panicking, on fire or otherwise impaired."
 
 ; LWOTC Needs Translation (2)
@@ -812,9 +812,9 @@ LocPromotionPopupText="<Bullet/> Emergency Life Support drastically increases th
 [IronSkin X2AbilityTemplate]
 LocFriendlyName="Iron Skin"
 LocFlyOverText="Iron Skin"
-LocLongDescription="Incoming melee damage is reduced by <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>."
-LocHelpText="Incoming melee damage is reduced by <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>."
-LocPromotionPopupText="<Bullet/> Incoming melee damage is reduced by <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>.<br/>"
+LocLongDescription="Incoming melee damage is reduced by <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>. The Chosen Assassin's melee attacks are reduced by 67% of this value."
+LocHelpText="Incoming melee damage is reduced by <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>. The Chosen Assassin's melee attacks are reduced by 67% of this value."
+LocPromotionPopupText="<Bullet/> Incoming melee damage is reduced by <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>.<br/><Bullet/> The Chosen Assassin's melee attacks are reduced by 67% of this value."
 
 [SmartMacrophages X2AbilityTemplate]
 LocFriendlyName="Smart Macrophages"
@@ -883,8 +883,8 @@ LocFriendlyNameWhenConcealed="Kill Zone (Concealed)"
 [DeathFromAbove X2AbilityTemplate]
 LocFriendlyName="Death From Above"
 ; LWOTC Needs Translation
-LocLongDescription="Killing an enemy at a lower elevation with your <Ability:WeaponName/> refunds a single action, and does not end your turn. Also decreases the long range penalties for Sniper rifles and Vektor rifles by 50%."
-LocHelpText="Killing an enemy at a lower elevation with your <Ability:WeaponName/> refunds a single action, and does not end your turn."
+LocLongDescription="Once per turn, killing an enemy at a lower elevation with your <Ability:WeaponName/> refunds a single action, and does not end your turn. Also decreases the long range penalties for Sniper rifles and Vektor rifles by 50%."
+LocHelpText="Once per turn, killing an enemy at a lower elevation with your <Ability:WeaponName/> refunds a single action, and does not end your turn."
 ; End Translation
 LocFlyOverText="Death From Above"
 LocPromotionPopupText="<Bullet/> Death From Above can combo well with the Stock attachment or can simply make a soldier more mobile.<br/><Bullet/> Also decreases the long range penalties for Sniper rifles and Vektor rifles by 50%."
@@ -1206,10 +1206,8 @@ LocPromotionPopupText="<Bullet/> The SPARK will be put into Stasis the first tim
 
 [RebootTriggered_LW X2AbilityTemplate]
 LocFriendlyName="Reboot"
-LocLongDescription="If the SPARK takes enough damage to be killed, its health will be reduced to just 1 HP and it will be shielded for the rest of the turn. Can only trigger once every mission, and afterwards the SPARK is crippled."
-LocHelpText="The SPARK will be shielded for one turn if it takes enough damage to be killed."
-LocFlyOverText="Reboot"
-LocPromotionPopupText="<Bullet/> The SPARK will be put into Stasis the first time each mission that its health hits zero.<br/><Bullet/> Without the Redundant Systems ability, the SPARK is crippled after rebooting from catastrophic damage, suffering massive penatlies to aim, mobility, and hacking.<br/><Bullet/> Because of these drawbacks, in combination with the SPARK's already low hull integrity at the time of a Reboot, it is recommended rebooted SPARKs be withdrawn from the battlefield via Skyranger when possible.<br/><Bullet/> Thanks to a complex network of redundant plating, reactivation circuits, and a single-charge shield projector, the SPARK can take one for the team secure in the knowledge that it will live to punch another day.<br/>"
+LocLongDescription="This unit has been Rebooted from catastrophic damage and is suffering -30 aim, -3 mobility, and -100 hack."
+LocHelpText="The unit will be shielded for one turn if it takes enough damage to be killed."
 
 [RedundantSystems_LW X2AbilityTemplate]
 LocFriendlyName="Redundant Systems"
@@ -1262,10 +1260,9 @@ LocPromotionPopupText="<Bullet/> The <Ability:ClassName/> can trace incoming ord
 
 [TriangulationTrigger_LW X2AbilityTemplate]
 LocFriendlyName="Triangulate"
-LocLongDescription="When the <Ability:ClassName/> is attacked, the squad gains +10 aim against that target on the following turn."
-LocHelpText="When the <Ability:ClassName/> is attacked, the squad gains +10 aim against that target on the following turn."
+LocLongDescription="All enemies of this unit gain extra Aim when firing at it."
+LocHelpText="All enemies of this unit gain extra Aim when firing at it."
 LocFlyOverText="Triangulate"
-LocPromotionPopupText="<Bullet/> The <Ability:ClassName/> can trace incoming ordnance back to their original owners, and upload that information to the rest of the team.<br/><Bullet/> Triangulate will not trigger if an enemy attacks one of the <Ability:ClassName/>'s squadmates.<br/>"
 
 [BrawlerProtocol_LW X2AbilityTemplate]
 LocFriendlyName="Counterstrike"
@@ -1284,9 +1281,9 @@ LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent ti
 
 [EnhancedSystems_LW X2AbilityTemplate]
 LocFriendlyName="Enhanced Repair Systems"
-LocLongDescription="Grants the Rapid Repair and Redundant Systems abilities, making it no longer end the turn and removing the stat debuffs associated with Reboot. The SPARK will automatically use Repair when rebooting."
+LocLongDescription="Grants the Rapid Repair and Redundant Systems abilities, making it no longer end the turn and removing the stat debuffs associated with Reboot. The SPARK will automatically use Repair when rebooting. Additionally grant one additional charge to Repair."
 LocHelpText="Rapid Repair makes Repair non turn ending. Redundant Systems means the SPARK will not suffer any stat penalties after Rebooting. The SPARK will automatically use Repair when rebooting."
-LocPromotionPopupText="Rapid Repair makes Repair non turn ending. Redundant Systems means the SPARK will not suffer any stat penalties after Rebooting. The SPARK will automatically use Repair when rebooting."
+LocPromotionPopupText="Rapid Repair makes Repair non turn ending. Redundant Systems means the SPARK will not suffer any stat penalties after Rebooting. The SPARK will automatically use Repair when rebooting. Additionally grant one additional charge to Repair."
 
 [ReactionSystems_LW X2AbilityTemplate]
 LocFriendlyName="Enhanced Defensive Systems"
@@ -1302,9 +1299,9 @@ LocPromotionPopupText="Increases the <Ability:ClassName/>'s hack stat by <Abilit
 
 [HoloAACombo_LW X2AbilityTemplate]
 LocFriendlyName="Enhanced Targeting Systems"
-LocLongDescription="Grants the Adaptive Aim and Holo Targeting abilities, improving the SPARK's ability to take multiple shots while Overdrive is active and improving the squad's ability to hit targets the SPARK shoots."
-LocHelpText="Grants the Adaptive Aim and Holo Targeting abilities, improving the SPARK's ability to take multiple shots while Overdrive is active and improving the squad's ability to hit targets the SPARK shoots."
-LocPromotionPopupText="Grants the Adaptive Aim and Holo Targeting abilities, improving the SPARK's ability to take multiple shots while Overdrive is active and improving the squad's ability to hit targets the SPARK shoots."
+LocLongDescription="Grants the Adaptive Aim and Holo Targeting abilities, improving the SPARK's ability to take multiple shots while Overdrive is active and improving the squad's ability to hit targets the SPARK shoots. Holo Targeting applies to all shots, not just those taken while Overdrive is active."
+LocHelpText="Grants the Adaptive Aim and Holo Targeting abilities, improving the SPARK's ability to take multiple shots while Overdrive is active and improving the squad's ability to hit targets the SPARK shoots. Holo Targeting applies to all shots, not just those taken while Overdrive is active."
+LocPromotionPopupText="Grants the Adaptive Aim and Holo Targeting abilities, improving the SPARK's ability to take multiple shots while Overdrive is active and improving the squad's ability to hit targets the SPARK shoots. Holo Targeting applies to all shots, not just those taken while Overdrive is active."
 
 ; New Class loc
 

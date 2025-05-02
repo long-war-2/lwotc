@@ -7,7 +7,7 @@
 
 class LWDLCHelpers extends object config(LW_Overhaul);
 
-var const array<name> AlienRulerTags;
+var config array<name> AlienRulerTags;
 
 static function bool IsAlienHuntersNarrativeEnabled()
 {
@@ -261,7 +261,7 @@ static function XComGameState_Unit GetAlienRulerForTacticalTag(name RulerActiveT
 //
 // *WARNING* Do not call this function unless you have verified that the Alien Ruler
 // DLC is installed.
-static function PutRulerOnCurrentMission(XComGameState NewGameState, XComGameState_Unit UnitState, XComGameState_HeadquartersXCom XComHQ)
+static function PutRulerOnCurrentMission(XComGameState NewGameState, XComGameState_Unit UnitState, XComGameState_HeadquartersXCom XComHQ, optional XComGameState_MissionSite MissionState)
 {
 	local XComGameState_AlienRulerManager RulerMgr;
 	local int RulerIndex, idx, NumAppearances, MaxNumAppearances, MaxAppearanceIndex;
@@ -282,6 +282,13 @@ static function PutRulerOnCurrentMission(XComGameState NewGameState, XComGameSta
 	{
 		return;
 	}
+
+	if(MissionState != None)
+	AddRulerAdditionalTags(MissionState,XComHQ, class'XComGameState_AlienRulerManager'.default.AlienRulerTemplates[RulerIndex].ActiveTacticalTag);
+
+
+else
+	{
 
 	NumAppearances = class'X2Helpers_DLC_Day60'.static.GetRulerNumAppearances(UnitState) + 1;
 	MaxNumAppearances = 0;
@@ -305,6 +312,41 @@ static function PutRulerOnCurrentMission(XComGameState NewGameState, XComGameSta
 	if (NumAppearances >= MaxNumAppearances)
 	{
 		XComHQ.TacticalGameplayTags.AddItem(class'XComGameState_AlienRulerManager'.default.AlienRulerTemplates[RulerIndex].AdditionalTags[MaxAppearanceIndex].TacticalTag);
+	}
+}
+}
+
+static function AddRulerAdditionalTags(
+	XComGameState_MissionSite MissionState,
+	XComGameState_HeadquartersXCom XComHQ,
+	name RulerActiveTacticalTag)
+{
+	local int i, RulerIndex;
+
+	for (i = 0; i < class'XComGameState_AlienRulerManager'.default.AlienRulerTemplates.Length; i++)
+	{
+		if (class'XComGameState_AlienRulerManager'.default.AlienRulerTemplates[i].ActiveTacticalTag == RulerActiveTacticalTag)
+		{
+			RulerIndex = i;
+			break;
+		}
+	}
+
+	// Check the mission alert level against the thresholds for Alien Ruler
+	// pod size. If the alert level is below the first threshold, then we
+	// don't add any additional tags. Otherwise we pull the required additional
+	// tag from the Alien Ruler template config.
+	for (i = 0; i < class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.RULER_POD_SIZE_ALERT_THRESHOLDS.Length; i++)
+	{
+		if (MissionState.SelectedMissionData.AlertLevel < class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.RULER_POD_SIZE_ALERT_THRESHOLDS[i])
+		{
+			if (i > 0)
+			{
+				XComHQ.TacticalGameplayTags.AddItem(
+						class'XComGameState_AlienRulerManager'.default.AlienRulerTemplates[RulerIndex].AdditionalTags[i - 1].TacticalTag);
+			}
+			break;
+		}
 	}
 }
 
@@ -420,11 +462,4 @@ static function XComGameState_HeadquartersProjectHealSoldier GetHealProject(Stat
         }
     }
     return none;
-}
-
-defaultproperties
-{
-	AlienRulerTags[0] = "Ruler_ViperKingActive";
-	AlienRulerTags[1] = "Ruler_BerserkerQueenActive";
-	AlienRulerTags[2] = "Ruler_ArchonKingActive";
 }

@@ -5286,7 +5286,7 @@ LocHelpText="Zdetonuj ładunek wybuchowy, powodując, że zada on podwójne obra
 LocPromotionPopupText="<Bullet/> Upewnij się, że towarzysze z drużyny opuścili strefę wybuchu!<br/><Bullet/> Zdalne uruchomienie wymaga <Ability:SelfAmmoCost/> amunicji i wymaga <Ability:SelfCooldown_LW/> tur(y) odnowienia.<br/><Bullet/> Zdalne uruchamianie ma <Ability:RemoteStartCharges/> użycie(a) na misję.<br/>"
 
 [HomingMine X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Strzały w zaminowany cel gwarantują trafienie.<br/><Bullet/> Mina samonaprowadzająca ma 4 ładunki na misję.<br/><Bullet/> Mina samonaprowadzająca wymaga jednej akcji i nie kończy Twojej tury.<br/>"
+LocPromotionPopupText="<Bullet/> Strzały w zaminowany cel gwarantują trafienie.<br/><Bullet/> Mina samonaprowadzająca ma 3 ładunki na misję.<br/><Bullet/> Mina samonaprowadzająca wymaga jednej akcji i nie kończy Twojej tury.<br/>"
 
 [Hero_Tracking X2AbilityTemplate]
 LocFriendlyName="Śledzenie"
@@ -5946,9 +5946,9 @@ LocPromotionPopupText="<Bullet/> Mściciel nie zostanie aktywowany, jeśli ta je
 [Predator_LW X2AbilityTemplate]
 LocFriendlyName="Predator"
 LocFlyOverText="Predator"
-LocLongDescription="Twoje ataki dystansowe zyskują <Ability:PREDATOR_AIM_BONUS/> dodatkowej celności i <Ability:PREDATOR_CRIT_BONUS/> dodatkowej szansy na trafienie krytyczne przeciwko wrogom, którzy są oskrzydleni lub poza osłoną."
-LocHelpText="Twoje ataki dystansowe zyskują <Ability:PREDATOR_AIM_BONUS/> dodatkowej celności i <Ability:PREDATOR_CRIT_BONUS/> dodatkowej szansy na trafienie krytyczne przeciwko wrogom, którzy są oskrzydleni lub poza osłoną."
-LocPromotionPopupText="<Bullet/> Twoje ataki dystansowe zyskują <Ability:PREDATOR_AIM_BONUS/> dodatkowej celności i <Ability:PREDATOR_CRIT_BONUS/> dodatkowej szansy na trafienie krytyczne przeciwko wrogom, którzy są oskrzydleni lub poza osłoną.<br/>"
+LocLongDescription="Twoje ataki dystansowe zyskują <Ability:PREDATOR_AIM_BONUS_LW/> dodatkowej celności i <Ability:PREDATOR_CRIT_BONUS_LW/> dodatkowej szansy na trafienie krytyczne przeciwko wrogom, którzy są oskrzydleni lub poza osłoną."
+LocHelpText="Twoje ataki dystansowe zyskują <Ability:PREDATOR_AIM_BONUS_LW/> dodatkowej celności i <Ability:PREDATOR_CRIT_BONUS_LW/> dodatkowej szansy na trafienie krytyczne przeciwko wrogom, którzy są oskrzydleni lub poza osłoną."
+LocPromotionPopupText="<Bullet/> Twoje ataki dystansowe zyskują <Ability:PREDATOR_AIM_BONUS_LW/> dodatkowej celności i <Ability:PREDATOR_CRIT_BONUS_LW/> dodatkowej szansy na trafienie krytyczne przeciwko wrogom, którzy są oskrzydleni lub poza osłoną.<br/>"
 
 [Stiletto_LW X2AbilityTemplate]
 LocFriendlyName="Stiletto"
@@ -6242,8 +6242,8 @@ LocLongDescription="Czarnoksiężnik otwiera swój umysł na cel, zadając obra�
 
 [ChosenKidnap X2AbilityTemplate]
 LocFriendlyName="Porwanie"
-LocLongDescription="Porywa nieprzytomną lub wykrwawiającą się jednostkę. Kosztuje 2 akcje, 1 turę odnowienia."
-LocHelpText="Porywa nieprzytomną lub wykrwawiającą się jednostkę. Kosztuje 2 akcje, 1 turę odnowienia.n."
+LocLongDescription="Porywa nieprzytomną lub wykrwawiającą się jednostkę. Kosztuje 2 akcje, 2 turę odnowienia."
+LocHelpText="Porywa nieprzytomną lub wykrwawiającą się jednostkę. Kosztuje 2 akcje, 2 turę odnowienia.n."
 LocFlyOverText="Porwanie"
 
 [ChosenKeen X2AbilityTemplate]

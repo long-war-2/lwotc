@@ -18,6 +18,9 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 
 	SourceWeapon = AbilityState.GetSourceWeapon();
 
+	if (!class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult) || CurrentDamage == 0)
+		return 0;
+
 	if (SourceWeapon != none)
 	{
 		GrenadeTemplate = X2GrenadeTemplate(SourceWeapon.GetMyTemplate());

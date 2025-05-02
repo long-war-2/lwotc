@@ -60,7 +60,7 @@ static function EventListenerReturn PostEffectTickCheck(Object EventData, Object
 
 	`LWTrace("Trojan check: unit is mindcontrolled:" @OldTargetState.IsMindControlled() @". unit is stunned:" @OldTargetState.IsStunned());
 	// don't do anything if unit is still mind controlled or stunned
-	if(OldTargetState.IsMindControlled() || OldTargetState.IsStunned() || OldTargetState.AffectedByEffectNames.Find('FullOverride') != INDEX_NONE)
+	if(OldTargetState.IsMindControlled() || OldTargetState.IsStunned() || OldTargetState.AffectedByEffectNames.Find('FullOverrideMC') != INDEX_NONE)
 		return ELR_NoInterrupt;
 
 	//NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Apply Trojan Virus Effects");
@@ -136,7 +136,7 @@ static function EventListenerReturn OnMindControlLost(Object EventData, Object E
 	OldTargetState = XComGameState_Unit(History.GetGameStateForObjectID(EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
 	SourceState = XComGameState_Unit(History.GetGameStateForObjectID(EffectState.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
 
-	if(OldTargetState.IsStunned() || OldTargetState.AffectedByEffectNames.Find('FullOverride') != INDEX_NONE)
+	if(OldTargetState.IsStunned() || OldTargetState.AffectedByEffectNames.Find('FullOverrideMC') != INDEX_NONE)
 		return ELR_NoInterrupt;
 
 

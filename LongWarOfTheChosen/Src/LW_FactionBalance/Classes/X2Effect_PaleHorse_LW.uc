@@ -16,6 +16,9 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 
 	PaleHorseEffectState = XComGameState_Effect_PaleHorse(EffectState);
 
+	if (PaleHorseEffectState == None )
+		return;
+
 	// Match the source weapon if the ability is tied to a weapon slot, otherwise
 	// accept any weapon
 	if (AbilityState.SourceWeapon == PaleHorseEffectState.ApplyEffectParameters.ItemStateObjectRef ||

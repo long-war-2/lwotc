@@ -335,8 +335,8 @@ static function X2Effect_PersistentStatChange CreateRoboticDisorientedStatusEffe
 static function X2AbilityTemplate AddGhostGrenadeAbility()
 {
 	local X2AbilityTemplate			Template;
-	//local X2Effect_TemporaryItem	TemporaryItemEffect;
-	local XMBEffect_AddUtilityItem  GhostGrenadeEffect;
+	local X2Effect_TemporaryItem	TemporaryItemEffect;
+	//local XMBEffect_AddUtilityItem  GhostGrenadeEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'GhostGrenade');
 
@@ -350,11 +350,11 @@ static function X2AbilityTemplate AddGhostGrenadeAbility()
 	Template.bIsPassive = true;
 	Template.bCrossClassEligible = true;
 
-	/*
+	
 	TemporaryItemEffect = new class'X2Effect_TemporaryItem';
 	TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
 	TemporaryItemEffect.EffectName = 'GhostGrenadeEffect';
-	TemporaryItemEffect.ItemName = 'GhostGrenade';
+	TemporaryItemEffect.ItemName = 'GhostGrenade_LW';
 	TemporaryItemEffect.ForceCheckAbilities.AddItem('LaunchGrenade');
 	TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
 	TemporaryItemEffect.BuildPersistentEffect(1, true, false);
@@ -362,7 +362,7 @@ static function X2AbilityTemplate AddGhostGrenadeAbility()
 	TemporaryItemEffect.DuplicateResponse = eDupe_Ignore;
 	Template.AddTargetEffect(TemporaryItemEffect);
 
-	*/
+	/* 
 
 	GhostGrenadeEffect = new class'XMBEffect_AddUtilityItem';
 	GhostGrenadeEffect.DataName = 'GhostGrenade_LW';
@@ -372,7 +372,7 @@ static function X2AbilityTemplate AddGhostGrenadeAbility()
 	GhostGrenadeEffect.DuplicateResponse = eDupe_Ignore;
 	Template.AddTargetEffect(GhostGrenadeEffect);
 
-
+	*/
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 

@@ -63,7 +63,7 @@ static function EventListenerReturn PreAcquiredHackReward(Object EventData, Obje
 		{
 			OverrideHackRewardTuple.Data[0].b = true;
 			AbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.AbilityStateObjectRef.ObjectID));
-			`XEVENTMGR.TriggerEvent('FailsafeTriggered', AbilityState, Hacker, NewGameState);
+			`XEVENTMGR.TriggerEvent('FailsafeTriggered', AbilityState, Hacker);
 		}
 	}
 
@@ -74,6 +74,8 @@ static function EventListenerReturn FailsafeGiveAP(Object EventData, Object Even
 {
 	local XComGameState UpdatedGameState;
 	local XComGameState_Unit UnitState;
+	local UnitValue FailsafeCountThisTurn;
+	local int usesThisTurn;
 
 	UnitState = XComGameState_Unit(EventSource);
 
@@ -84,11 +86,22 @@ static function EventListenerReturn FailsafeGiveAP(Object EventData, Object Even
 		`LWTrace("No Unit");
 		return ELR_NoInterrupt;
 	}
+
+	// Only once per turn.
+	UnitState.GetUnitValue('FailsafeTriggeredThisTurn', FailsafeCountThisTurn);
+	usesThisTurn = int(FailsafeCountThisTurn.fvalue);
+
+	if (UsesThisTurn > 0)
+	{
+		return ELR_NoInterrupt;
+	}
+
 	if(GameState != none)
 	{
 		`LWTrace("NewGameState passed");
 		UnitState = XComGameState_Unit(GameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
 
+		UnitState.SetUnitFloatValue('FailsafeTriggeredThisTurn', 1.0, eCleanup_BeginTurn);
 		UnitState.ActionPoints.AddItem(class'X2CharacterTemplateManager'.default.StandardActionPoint);
 	}
 	else
@@ -98,14 +111,11 @@ static function EventListenerReturn FailsafeGiveAP(Object EventData, Object Even
 
 		UnitState = XComGameState_Unit(UpdatedGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
 
+		UnitState.SetUnitFloatValue('FailsafeTriggeredThisTurn', 1.0, eCleanup_BeginTurn);
 		UnitState.ActionPoints.AddItem(class'X2CharacterTemplateManager'.default.StandardActionPoint);
 
 		`TACTICALRULES.SubmitGameState(UpdatedGameState);
 	}
-
-	
-
-	
 
 	return ELR_NoInterrupt;
 }

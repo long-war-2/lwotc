@@ -251,7 +251,6 @@ static function X2AbilityTemplate AddCombatFitness()
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'CombatFitness');
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityExtraConditioning";
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
-	Template.Hostility = eHostility_Neutral;
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);

@@ -485,13 +485,18 @@ static function X2AbilityTemplate AddTrojanVirusAPDrain()
 // plays Trojan Virus flyover and message when the effect is removed (which is when the meaningful effects are triggered)
 static function TrojanVirusVisualizationRemoved(XComGameState VisualizeGameState, out VisualizationActionMetadata BuildTrack, const name EffectApplyResult)
 {
-	local XComGameState_Unit UnitState;
+	local XComGameState_Unit UnitState, OldState;
 	local X2Action_PlaySoundAndFlyOver SoundAndFlyOver;
 	local XGParamTag kTag;
 	local X2Action_PlayWorldMessage MessageAction;
 
 	UnitState = XComGameState_Unit(BuildTrack.StateObject_NewState);
-	if (UnitState == none)
+	OldState = XComGameState_Unit(BuildTrack.StateObject_OldState);
+	if (UnitState == none || OldState == none)
+		return;
+	
+	//Check if the Unit has died prior to this effect being removed
+	if (OldState.IsDead())
 		return;
 
 	SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, VisualizeGameState.GetContext(), false, BuildTrack.LastActionAdded));
@@ -1312,6 +1317,7 @@ static function X2AbilityTemplate CreateCollateralAbility()
 	local X2AbilityCooldown						Cooldown;
 	local X2AbilityTarget_Cursor				CursorTarget;
 	local X2AbilityMultiTarget_Radius			RadiusMultiTarget;
+	local X2Condition_UnitProperty         		UnitPropertyCondition;
 	local X2Effect_CollateralDamage				DamageEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Collateral_LW');
@@ -1344,6 +1350,13 @@ static function X2AbilityTemplate CreateCollateralAbility()
 
 	// Slightly modified from Rocket Launcher template to let it get over blocking cover better
 	Template.TargetingMethod = class'X2TargetingMethod_Collateral';
+
+	UnitPropertyCondition = new class'X2Condition_UnitProperty';
+	UnitPropertyCondition.ExcludeDead = false;
+	UnitPropertyCondition.ExcludeFriendlyToSource = false;
+	UnitPropertyCondition.ExcludeHostileToSource = false;
+	UnitPropertyCondition.FailOnNonUnits = false;
+	Template.AbilityMultiTargetConditions.AddItem(UnitPropertyCondition);
 		
 	// Give it a radius multi-target
 	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
@@ -1436,7 +1449,7 @@ static function X2DataTemplate RebootTriggered()
 	
 	HackEffect = new class'X2Effect_PersistentStatChange';
 	HackEffect.BuildPersistentEffect(1, true, false);
-	HackEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, "This unit has been Rebooted from catastrophic damage and is suffering -30 aim, -3 mobility, and -100 hack.", Template.IconImage,,, Template.AbilitySourceName); 
+	HackEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName); 
 	HackEffect.AddPersistentStatChange(eStat_Hacking, default.REBOOT_HACK);
 	HackEffect.AddPersistentStatChange(eStat_Offense, default.REBOOT_AIM);
 	HackEffect.AddPersistentStatChange(eStat_Mobility, default.REBOOT_MOB);
@@ -1749,8 +1762,8 @@ function bool GetStrikeDamagePreview(XComGameState_Ability AbilityState, StateOb
 
 	AbilityState.NormalDamagePreview(TargetRef, MinDamagePreview, MaxDamagePreview, AllowsShield);
 
-	`LWTrace("MinDamagePreview:" @MinDamagePreview.Damage);
-	`LWTrace("MaxDamagePreview:" @MaxDamagePreview.Damage);
+	//`LWTrace("MinDamagePreview:" @MinDamagePreview.Damage);
+	//`LWTrace("MaxDamagePreview:" @MaxDamagePreview.Damage);
 
 	History = `XCOMHISTORY;
 	AbilityOwner = XComGameState_Unit(History.GetGameStateForObjectID(AbilityState.OwnerStateObject.ObjectID));
@@ -1764,8 +1777,8 @@ function bool GetStrikeDamagePreview(XComGameState_Ability AbilityState, StateOb
 		MaxDamagePreview.Damage += class'X2Ability_RangerAbilitySet'.default.BLADEMASTER_DMG;
 	}
 
-	`LWTrace("MinDamagePreview after Blademaster check:" @MinDamagePreview.Damage);
-	`LWTrace("MaxDamagePreview after Blademaster check:" @MaxDamagePreview.Damage);
+	//`LWTrace("MinDamagePreview after Blademaster check:" @MinDamagePreview.Damage);
+	//`LWTrace("MaxDamagePreview after Blademaster check:" @MaxDamagePreview.Damage);
 
 	//AssaultServosRef = AbilityOwner.FindAbility('Obliterator_LW');
 	//AssaultServosAbility = XComGameState_Ability(History.GetGameStateForObjectID(AssaultServosRef.ObjectID));
@@ -1776,8 +1789,8 @@ function bool GetStrikeDamagePreview(XComGameState_Ability AbilityState, StateOb
 	//	MaxDamagePreview.Damage += default.OBLITERATOR_DMG;
 	//}
 
-	`LWTrace("MinDamagePreview after Assault Servos check:" @MinDamagePreview.Damage);
-	`LWTrace("MaxDamagePreview after Assault Servos check:" @MaxDamagePreview.Damage);
+	//`LWTrace("MinDamagePreview after Assault Servos check:" @MinDamagePreview.Damage);
+	//`LWTrace("MaxDamagePreview after Assault Servos check:" @MaxDamagePreview.Damage);
 
 	return true;
 }
@@ -1895,8 +1908,8 @@ function bool GetConcussiveStrikeDamagePreview(XComGameState_Ability AbilityStat
 	local XComGameStateHistory History;
 
 	AbilityState.NormalDamagePreview(TargetRef, MinDamagePreview, MaxDamagePreview, AllowsShield);
-	`LWTrace("MinDamagePreview:" @MinDamagePreview.Damage);
-	`LWTrace("MaxDamagePreview:" @MaxDamagePreview.Damage);
+	//`LWTrace("MinDamagePreview:" @MinDamagePreview.Damage);
+	//`LWTrace("MaxDamagePreview:" @MaxDamagePreview.Damage);
 
 	History = `XCOMHISTORY;
 	AbilityOwner = XComGameState_Unit(History.GetGameStateForObjectID(AbilityState.OwnerStateObject.ObjectID));
@@ -1909,8 +1922,8 @@ function bool GetConcussiveStrikeDamagePreview(XComGameState_Ability AbilityStat
 		MinDamagePreview.Damage += class'X2Ability_RangerAbilitySet'.default.BLADEMASTER_DMG;
 		MaxDamagePreview.Damage += class'X2Ability_RangerAbilitySet'.default.BLADEMASTER_DMG;
 	}
-	`LWTrace("MinDamagePreview after Blademaster check:" @MinDamagePreview.Damage);
-	`LWTrace("MaxDamagePreview after Blademaster check:" @MaxDamagePreview.Damage);
+	//`LWTrace("MinDamagePreview after Blademaster check:" @MinDamagePreview.Damage);
+	//`LWTrace("MaxDamagePreview after Blademaster check:" @MaxDamagePreview.Damage);
 
 	AssaultServosRef = AbilityOwner.FindAbility('Obliterator_LW');
 	AssaultServosAbility = XComGameState_Ability(History.GetGameStateForObjectID(AssaultServosRef.ObjectID));
@@ -1921,8 +1934,8 @@ function bool GetConcussiveStrikeDamagePreview(XComGameState_Ability AbilityStat
 		MaxDamagePreview.Damage += default.OBLITERATOR_DMG;
 	}
 
-	`LWTrace("MinDamagePreview after Assault Servos check:" @MinDamagePreview.Damage);
-	`LWTrace("MaxDamagePreview after Assault Servos check:" @MaxDamagePreview.Damage);
+	//`LWTrace("MinDamagePreview after Assault Servos check:" @MinDamagePreview.Damage);
+	//`LWTrace("MaxDamagePreview after Assault Servos check:" @MaxDamagePreview.Damage);
 
 	return true;
 }
@@ -2101,7 +2114,7 @@ static function X2AbilityTemplate TriangulationTrigger()
 	Effect.HitMod = default.TRIANGULATION_HITMOD;
 	Effect.EffectName='TriangulateTarget';
 	Effect.BuildPersistentEffect(1, false, false, false, eGameRule_PlayerTurnEnd);
-	Effect.SetDisplayInfo(ePerkBuff_Penalty, "Triangulated", "All enemies of this unit gain extra Aim when firing at it.", "img:///UILibrary_MW.UIPerk_triangulation", true);
+	Effect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyHelpText(), "img:///UILibrary_MW.UIPerk_triangulation", true);
 	Effect.bRemoveWhenTargetDies = true;
 	Effect.bUseSourcePlayerState = true;
 	Template.AddTargetEffect(Effect);
@@ -2432,6 +2445,7 @@ static function X2AbilityTemplate CreateHackBonusAbility()
 
 	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_intrusionprotocol";
 	Template.Hostility = eHostility_Neutral;
+	Template.bIsPassive = true;
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 
@@ -2445,6 +2459,8 @@ static function X2AbilityTemplate CreateHackBonusAbility()
 	HackBonusEffect.AddPersistentStatChange(eStat_Hacking, default.ADVANCED_LOGIC_HACK_BONUS);
 
 	Template.AddTargetEffect(HackBonusEffect);
+
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.TechBonusLabel, eStat_Hacking, default.ADVANCED_LOGIC_HACK_BONUS);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
@@ -2468,6 +2484,8 @@ static function X2AbilityTemplate CreateComboHoloAAAbility()
 
 	Template.AdditionalAbilities.AddItem('HoloTargeting');
 	Template.AdditionalAbilities.AddItem('AdaptiveAim');
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
 	return Template;
 }

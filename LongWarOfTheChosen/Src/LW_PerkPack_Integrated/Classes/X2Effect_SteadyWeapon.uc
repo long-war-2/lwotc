@@ -43,6 +43,11 @@ static function EventListenerReturn SteadyWeaponActionListener(Object EventData,
 	local X2AbilityCost Cost;
 	local bool CostlyAction;
 
+	if(GameState.GetContext().InterruptionStatus == eInterruptionStatus_Interrupt)
+	{
+		return ELR_NoInterrupt;
+	}
+
 	AbilityState = XComGameState_Ability(EventData);
 	EffectState = XComGameState_Effect(CallbackData);
 	if (AbilityState != none && EffectState != none)

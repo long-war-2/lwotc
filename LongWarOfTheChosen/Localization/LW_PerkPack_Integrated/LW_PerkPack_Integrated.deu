@@ -34,11 +34,26 @@ m_strNoWeaponUpgradesTooltip="KEINE WAFFENVERBESSERUNGEN VERFÜGBAR"
 TrojanVirus="Trojaner"
 TrojanVirusTriggered="<XGParam:StrValue0/!UnitName/> hat Trojaner ausgelöst."
 
+DenseSmokeGrenadeEffectDisplayName="Dichter Rauch"
+DenseSmokeGrenadeEffectDisplayDesc="Der dichte Rauch gewährt dieser Einheit einen zusätzlichen Verteidigungsbonus."
+
+ShellshockEffectDesc="Diese Einheit hat verringerte Zielgenauigkeit und kritische Trefferchance."
+ShellshockEffectName="Schockzustand"
+
+ShockwaveEffectName="Erschüttert"
+ShockwaveEffectDesc="Diese Einheit hat verringerte Verteidigung und Ausweichchance."
+
 [X2Effect_Savior]
 strSavior_WorldMessage="Erretter: Hat zusätzliche <XGParam:IntValue0/> Trefferpunkte geheilt."
 
 [X2Effect_LWHolotarget]
 HoloTargetEffectName="Holo-Zielmarkierung"
+
+[X2Effect_ApplyRepairHeal_LW]
+HealedMessage="+<Heal/> TP geheilt"
+
+[X2Effect_RepairArmor_LW]
+ArmorRepairedMessage="Zerstörte Rüstung repariert"
 
 [X2Item_DenseSmokeGrenade]
 DenseSmokeGrenadeEffectDisplayName="Dichter Rauch"
@@ -49,6 +64,9 @@ LocCoveringFire="Deckungsfeuer"
 LocCoveringFireMalus="Diese Einheit wurde von einer überwachenden Einheit mit der Fähigkeit Deckungsfeuer anvisiert, die für den Rest der Runde -10 auf Zielen verleiht."
 LocSoulStealBuff="Seelenraub-Schild"
 LocSoulStealBuffHelpText="Seelenraub gewährt ablative Trefferpunkte, wenn er überheilt."
+
+LocVampirismBuff="Vampirismus"
+LocVampirismBuffHelpText="Vampirismus gewährt ablative Trefferpunkte bei Überheilung"
 
 [X2Effect_RegenerationPCT]
 HealedMessage="+<Heal/> TP regeneriert"

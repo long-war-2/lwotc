@@ -5481,7 +5481,7 @@ LocPromotionPopupText="<Bullet/> Assurez-vous que vos coéquipiers soient à l'a
 
 ; LWOTC translated
 [HomingMine X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Les tirs contre l'unité piégée sont automatiquement réussis.<br/><Bullet/> Cette capacité dispose de 4 charges par mission.<br/><Bullet/> Coûte 1 action et ne met pas fin au tour.<br/>"
+LocPromotionPopupText="<Bullet/> Les tirs contre l'unité piégée sont automatiquement réussis.<br/><Bullet/> Cette capacité dispose de 3 charges par mission.<br/><Bullet/> Coûte 1 action et ne met pas fin au tour.<br/>"
 ; End translated
 
 [Hero_Tracking X2AbilityTemplate]
@@ -6569,8 +6569,8 @@ LocLongDescription="Le Sorcier projette des visions cauchemardesques dans l'espr
 
 [ChosenKidnap X2AbilityTemplate]
 LocFriendlyName="Kidnapping"
-LocLongDescription="Kidnappe une unité inconsciente ou souffrant d'hémorragie. Coûte 2 actions, temps de rechargement de 1 tour."
-LocHelpText="Kidnappe une unité inconsciente ou souffrant d'hémorragie. Coûte 2 actions, temps de rechargement de 1 tour."
+LocLongDescription="Kidnappe une unité inconsciente ou souffrant d'hémorragie. Coûte 2 actions, temps de rechargement de 2 tour."
+LocHelpText="Kidnappe une unité inconsciente ou souffrant d'hémorragie. Coûte 2 actions, temps de rechargement de 2 tour."
 LocFlyOverText="Kidnapping"
 
 [ChosenKeen X2AbilityTemplate]

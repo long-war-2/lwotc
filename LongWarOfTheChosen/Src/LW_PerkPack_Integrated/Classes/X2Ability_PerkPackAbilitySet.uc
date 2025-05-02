@@ -93,6 +93,7 @@ var config int BODY_SHIELD_ENEMY_CRIT_MALUS;
 var config int BODY_SHIELD_COOLDOWN;
 var config int BODY_SHIELD_DURATION;
 var config int IRON_SKIN_MELEE_DAMAGE_REDUCTION;
+var config float IRON_SKIN_ASSASSIN_MOD;
 var config int MIND_MERGE_MIN_ACTION_POINTS;
 var config int MIND_MERGE_DURATION;
 var config int MIND_MERGE_COOLDOWN;
@@ -1866,7 +1867,7 @@ static function X2AbilityTemplate SlugShotRangeEffect()
 	SlugShotEffect.BuildPersistentEffect (1, true, false);
 	SlugShotEffect.AccBonus = default.SLUG_SHOT_ACC_BONUS;
 	SlugShotEffect.Pierce = default.SLUG_SHOT_PIERCE;
-	//SlugShotEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	SlugShotEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
 	Template.AddTargetEffect(SlugShotEffect);
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	return Template;	
@@ -2452,7 +2453,7 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
 	local X2Effect_Suppression              SuppressionEffect;
 	local X2Effect_PersistentStatChange		StatChangeEffect;
 	local X2Condition_UnitInventoryExpanded         UnitInventoryCondition;
-	local name								WeaponCategory;
+	//local name								WeaponCategory;
 	local X2Condition_UnitEffects			SuppressedCondition;
 	local X2Condition_OwnerDoesNotHaveAbility	DoesNotHaveAbilityCondition;
 	local X2Condition_AbilityProperty AbilityCondition;
@@ -2539,6 +2540,7 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
 	StatChangeEffect = new class'X2Effect_PersistentStatChange';
 	StatChangeEffect.AddPersistentStatChange(eStat_Offense, -15, modOP_Addition);
 	StatChangeEffect.BuildPersistentEffect(2, false, true, false, eGameRule_PlayerTurnBegin);
+	StatChangeEffect.duplicateResponse = eDupe_Refresh;
 	//StatChangeEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage);
 	Template.AddTargetEffect(StatChangeEffect);
 
@@ -4028,7 +4030,7 @@ static function X2AbilityTemplate AddSlash_LWAbility()
 
 	// Target Conditions
 	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
-	Template.AbilityTargetConditions.AddItem(default.MeleeVisibilityCondition);
+	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
 	AdjacencyCondition = new class'X2Condition_UnitProperty';
 	AdjacencyCondition.RequireWithinRange = true;
 	AdjacencyCondition.WithinRange = 144; //1.5 tiles in Unreal units, allows attacks on the diag
@@ -4159,7 +4161,7 @@ static function X2AbilityTemplate AddBodyShieldAbility()
 	BodyShieldEffect.BodyShieldDefBonus = default.BODY_SHIELD_DEF_BONUS;
 	BodyShieldEffect.BodyShieldCritMalus = default.BODY_SHIELD_ENEMY_CRIT_MALUS;
 	BodyShieldEffect.BuildPersistentEffect(default.BODY_SHIELD_DURATION, false, true, false, eGameRule_PlayerTurnEnd);
-	BodyShieldEffect.SetDisplayInfo (ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
+	BodyShieldEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
 	BodyShieldEffect.EffectName='BodyShield';
 	Template.AddTargetEffect(BodyShieldEffect);
 	
@@ -4225,6 +4227,7 @@ static function X2AbilityTemplate AddIronSkinAbility()
 	IronSkinEffect.BuildPersistentEffect(1, true, false, true);
 	IronSkinEffect.SetDisplayInfo (ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
 	IronSkinEffect.DamageMod=-default.IRON_SKIN_MELEE_DAMAGE_REDUCTION;
+	IronSkinEffect.Assassin_Dmg_Mod=default.IRON_SKIN_ASSASSIN_MOD;
 	Template.AddTargetEffect(IronSkinEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -4252,6 +4255,7 @@ static function X2AbilityTemplate AddSmartMacrophagesAbility()
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;
 	Template.bShowActivation = false;
+	Template.bSkipFireAction = true;
 
 	MacrophagesEffect = new class'X2Effect_SmartMacrophages';
 	MacrophagesEffect.BuildPersistentEffect(1, true, false);

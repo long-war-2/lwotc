@@ -4,9 +4,9 @@
 //  PURPOSE: Initializes Toolbox mod settings on campaign start or when loading campaign without mod previously active
 //--------------------------------------------------------------------------------------- 
 
-class X2DownloadableContentInfo_LWToolbox extends X2DownloadableContentInfo config(LW_Toolbox);	
+class X2DownloadableContentInfo_LWToolbox extends X2DownloadableContentInfo;	
 
-//
+//switched the config file to the only variable, as it left this X2DLCI without a DLCIdentifier
 
 struct DefaultBaseDamageEntry
 {
@@ -15,7 +15,7 @@ struct DefaultBaseDamageEntry
 };
 var transient array<DefaultBaseDamageEntry> arrDefaultBaseDamage;
 
-var config bool bRandomizedInitialStatsEnabledAtStart;
+var config(LW_Toolbox) bool bRandomizedInitialStatsEnabledAtStart;
 
 static function X2DownloadableContentInfo_LWToolbox GetThisDLCInfo()
 {
@@ -94,12 +94,39 @@ static event OnLoadedSavedGameToStrategy()
 
 	ToolboxOptions.RegisterListeners();
 	ToolboxOptions.UpdateWeaponTemplates_RandomizedDamage();
-	ToolboxOptions.UpdateRewardSoldierTemplates();
 
 	PatchupMissingPCSStats();
 
 	if(ToolboxOptions.bRandomizedLevelupStatsEnabled)
 		`XCOMHISTORY.RegisterOnNewGameStateDelegate(ToolboxOptions.OnNewGameState_RankWatcher);
+}
+
+//Code copied over from the UITacticalHUD UISL
+//Now that this CHL hook exists it's possible to get rid of the UISL entirely
+static event OnLoadedSavedGameToTactical()
+{
+	local XComGameState_LWToolboxOptions ToolboxOptions;
+
+	//same setup as OnLoadedSavedGameToStrategy
+	ToolboxOptions = class'XComGameState_LWToolboxOptions'.static.GetToolboxOptions();
+	if (ToolboxOptions == none) { ToolboxOptions = XComGameState_LWToolboxOptions(class'XComGameState_LWToolboxOptions'.static.CreateModSettingsState_ExistingCampaign(class'XComGameState_LWToolboxOptions')); }
+
+	if (ToolboxOptions == none)
+	{
+		`REDSCREEN("Toolbox OnLoadedSavedGameToTactical : Unable to find or create ToolboxOptions");
+		return;
+	}
+
+	ToolboxOptions.RegisterListeners();
+	ToolboxOptions.UpdateWeaponTemplates_RandomizedDamage();
+	PatchupMissingPCSStats();
+
+	if(ToolboxOptions.bRandomizedLevelupStatsEnabled)
+		`XCOMHISTORY.RegisterOnNewGameStateDelegate(ToolboxOptions.OnNewGameState_RankWatcher);
+
+	//re-register the hit point observer if necessary
+	if(ToolboxOptions.bRedFogXComActive || ToolboxOptions.bRedFogAliensActive)
+		`XCOMHISTORY.RegisterOnNewGameStateDelegate(ToolboxOptions.OnNewGameState_HealthWatcher);
 }
 
 /// <summary>

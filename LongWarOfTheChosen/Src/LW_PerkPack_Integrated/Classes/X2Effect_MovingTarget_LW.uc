@@ -1,7 +1,7 @@
-class X2Effect_MovingTarget_LW extends X2Effect_Persistent config (LW_SoldierSkills);
+class X2Effect_MovingTarget_LW extends X2Effect_Persistent;
 
-var config int MT_DEFENSE;
-var config int MT_DODGE;
+var int MT_DEFENSE;
+var int MT_DODGE;
 
 function GetToHitAsTargetModifiers(XComGameState_Effect EffectState, XComGameState_Unit Attacker, XComGameState_Unit Target, XComGameState_Ability AbilityState, class<X2AbilityToHitCalc> ToHitType, bool bMelee, bool bFlanking, bool bIndirectFire, out array<ShotModifierInfo> ShotModifiers)
 {
@@ -17,12 +17,12 @@ function GetToHitAsTargetModifiers(XComGameState_Effect EffectState, XComGameSta
 
 			ShotInfo.ModType = eHit_Success;
 			ShotInfo.Reason = FriendlyName;
-			ShotInfo.Value = -default.MT_DEFENSE;
+			ShotInfo.Value = -MT_DEFENSE;
 			ShotModifiers.AddItem(ShotInfo);
 
             ShotInfo.ModType = eHit_Graze;
 			ShotInfo.Reason = FriendlyName;
-			ShotInfo.Value = default.MT_DODGE;
+			ShotInfo.Value = MT_DODGE;
 			ShotModifiers.AddItem(ShotInfo);
 		}
 	}

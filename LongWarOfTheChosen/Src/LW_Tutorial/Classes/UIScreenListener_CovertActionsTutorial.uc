@@ -31,6 +31,9 @@ event OnInit(UIScreen Screen)
 			Screen.Show();
 		}
 	}
+
+	//`LWTrace("LWCovertActionScreenOpened fired");
+	`XEVENTMGR.TriggerEvent('LWCovertActionScreenOpened');
 }
 
 defaultproperties

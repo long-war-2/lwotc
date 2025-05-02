@@ -30,6 +30,7 @@ var config array<string> RETALIATION_MISSION_TYPES;
 
 var config array<MissionEnemyCount> OverrideMissionEnemyCounts;
 var config array<MissionEnemyCountOffset> OverrideMissionEnemyCountOffsets;
+var config bool bDisableKillXPCap;
 
 const CA_FAILURE_RISK_MARKER = "CovertActionRisk_Failure";
 
@@ -735,6 +736,12 @@ static function bool KillXpIsCapped()
 
 	History = `XCOMHISTORY;
 
+	// If people want to abuse, might as well let them.
+	if(default.bDisableKillXPCap)
+	{
+		return false;
+	}
+
 	BattleState = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
 	if(BattleState == none)
 		return false;
@@ -792,18 +799,59 @@ static function int GetPreviousAlertLevel(XComGameState_Unit UnitState)
 {
 	local XComGameStateHistory History;
 	local float CurrentAlert;
+	local eTeam CurrentTurn, PreviousTeam;
 
 	History = `XCOMHISTORY;
 	CurrentAlert = UnitState.GetCurrentStat(eStat_AlertLevel);
+	CurrentTurn = WhoseTurnIsIt();
+
+	`LWTrace("Current Turn is" @ string(CurrentTurn));
+	
 
 	// Walk backwards through history for this unit until we find a state in which this unit wasn't in
 	// its current alert to see what the previous alert level was.
-	while (UnitState != none && UnitState.GetCurrentStat(eStat_AlertLevel) == CurrentAlert)
+	while (UnitState != none && (UnitState.GetCurrentStat(eStat_AlertLevel) == CurrentAlert || CurrentTurn == PreviousTeam))
 	{
 		UnitState = XComGameState_Unit(History.GetPreviousGameStateForObject(UnitState));
+		PreviousTeam = WhoseTurnIsIt(UnitState.GetParentGameState().HistoryIndex);
 	}
 
+	`LWTrace("GameState HistoryIndex after loop is" @ UnitState.GetParentGameState().HistoryIndex);
+	`LWTrace("Checking past state after loop, turn is " @ PreviousTeam);
+	`LWTrace("Unit Alert level:" @ UnitState.GetCurrentStat(eStat_AlertLevel));
+
 	return UnitState != none ? int(UnitState.GetCurrentStat(eStat_AlertLevel)) : -1;
+}
+
+/// <summary>
+/// Determines which team's turn it is at a given point in history. Unsubmitted game states are not considered. Code from SWFDelicious
+/// </summary>
+/// <param name="HistoryIndex">Which point in history to look at. If not provided, the most recent history state is used.</param>
+static function ETeam WhoseTurnIsIt(optional int HistoryIndex = -1)
+{
+    local XComGameStateHistory History;
+    local XComGameStateContext_TacticalGameRule Context;
+    local XComGameState_Player PlayerState;
+
+    History = `XCOMHISTORY;
+
+    // Iterate history looking for the most recent turn begin, within our history frame
+    foreach History.IterateContextsByClassType(class'XComGameStateContext_TacticalGameRule', Context, /* DesiredReturnType */, /* IterateIntoThePast */ true)
+    {
+        if (HistoryIndex >= 0 && Context.AssociatedState.HistoryIndex > HistoryIndex)
+        {
+            continue;
+        }
+
+        if (Context.GameRuleType == eGameRule_PlayerTurnBegin)
+        {
+            PlayerState = XComGameState_Player(History.GetGameStateForObjectID(Context.PlayerRef.ObjectId));
+            return PlayerState.TeamFlag;
+        }
+    }
+
+    // For completeness, but also in case this is called with an invalid history index
+    return eTeam_None;
 }
 
 static function float GetUnitValue(XComGameState_Unit UnitState, Name ValueName)

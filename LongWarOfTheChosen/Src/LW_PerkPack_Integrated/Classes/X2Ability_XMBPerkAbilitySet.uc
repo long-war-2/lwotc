@@ -144,6 +144,9 @@ var config int FocusedDefenseDefense, FocusedDefenseDodge;
 
 var config array<name> LICK_YOUR_WOUNDS_ALLOWED_ABILITIES;
 
+var config int ANATOMY_CRIT;
+var config int ANATOMY_ARMOR_PIERCE;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -297,6 +300,7 @@ static function X2AbilityTemplate ThatsCloseEnough()
 	local X2AbilityToHitCalc_StandardAim ToHit;
 	local X2Effect StunnedEffect;
 	local X2AbilityCooldown_Shared Cooldown;
+	local X2Condition_NotItsOwnTurn NotItsOwnTurnCondition;
 	// Create a stun effect that removes 2 actions and has a 100% chance of success if the attack hits.
 	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2, 100, false);
 
@@ -315,6 +319,9 @@ static function X2AbilityTemplate ThatsCloseEnough()
 
 	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitDisallowMindControlProperty);
 
+	NotItsOwnTurnCondition = new class'X2Condition_NotItsOwnTurn';
+	Template.AbilityShooterConditions.AddItem(NotItsOwnTurnCondition);
+
 	Cooldown = new class'X2AbilityCooldown_Shared';
 	Cooldown.iNumTurns = default.THATS_CLOSE_ENOUGH_COOLDOWN;
 	Cooldown.SharingCooldownsWith.AddItem('ArcThrowerStun'); //Now shares the cooldown with Arc thrower main ability
@@ -329,7 +336,8 @@ static function X2AbilityTemplate SawedOffOverwatch()
 	local X2AbilityToHitCalc_StandardAim 	ToHit;
 	local X2Effect_Persistent               NoneShallPassTargetEffect;
 	local X2Condition_UnitEffectsWithAbilitySource NoneShallPassTargetCondition;
-	local X2AbilityTrigger_EventListener	Trigger;
+	local X2Condition_UnitProperty          SourceNotConcealedCondition;
+	local X2AbilityTrigger_EventListener	Trigger, EventListener;
 	local X2Condition_UnitProperty			ExcludeSquadmatesCondition;
 	local X2Condition_NotItsOwnTurn NotItsOwnTurnCondition;
 
@@ -354,6 +362,22 @@ static function X2AbilityTemplate SawedOffOverwatch()
 	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalOverwatchListener;
 	Template.AbilityTriggers.AddItem(Trigger);
 
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.EventID = 'UnitConcealmentBroken';
+	EventListener.ListenerData.Filter = eFilter_Unit;
+	EventListener.ListenerData.EventFn = NoneShallPassConcealmentListener;
+	EventListener.ListenerData.Priority = 55;
+	Template.AbilityTriggers.AddItem(EventListener);
+
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.EventID = 'AbilityActivated';
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.Filter = eFilter_None;
+	EventListener.ListenerData.Priority = 85;
+	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalAttackListener;
+	Template.AbilityTriggers.AddItem(EventListener);
+
 	Template.AbilityTargetConditions.AddItem(TargetWithinTiles(default.NONE_SHALL_PASS_TILE_RANGE));
 	AddCooldown(Template, default.NONE_SHALL_PASS_COOLDOWN);
 
@@ -363,12 +387,20 @@ static function X2AbilityTemplate SawedOffOverwatch()
 	NoneShallPassTargetCondition.AddExcludeEffect('NoneShallPassTarget', 'AA_DuplicateEffectIgnored');
 	Template.AbilityTargetConditions.AddItem(NoneShallPassTargetCondition);
 
+	// Exclude non-units and mind control
+	Template.AbilityTargetConditions.RemoveItem(default.LivingHostileTargetProperty);
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitDisallowMindControlProperty);
+
 	ExcludeSquadmatesCondition = new class'X2Condition_UnitProperty';
 	ExcludeSquadmatesCondition.ExcludeSquadmates = true;
 	Template.AbilityTargetConditions.AddItem(ExcludeSquadmatesCondition);
 
 	NotItsOwnTurnCondition = new class'X2Condition_NotItsOwnTurn';
 	Template.AbilityShooterConditions.AddItem(NotItsOwnTurnCondition);
+
+	SourceNotConcealedCondition = new class'X2Condition_UnitProperty';
+	SourceNotConcealedCondition.ExcludeConcealed = true;
+	Template.AbilityShooterConditions.AddItem(SourceNotConcealedCondition);
 
 	NoneShallPassTargetEffect = new class'X2Effect_Persistent';
 	NoneShallPassTargetEffect.BuildPersistentEffect(1, false, true, true, eGameRule_PlayerTurnEnd);
@@ -377,6 +409,37 @@ static function X2AbilityTemplate SawedOffOverwatch()
 	Template.AddTargetEffect(NoneShallPassTargetEffect);
 
 	return Template;
+}
+
+static final function EventListenerReturn NoneShallPassConcealmentListener(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComGameStateContext_Ability AbilityContext;
+	local XComGameState_Unit ConcealmentBrokenUnit;
+	local StateObjectReference CloseCombatSpecialistRef;
+	local XComGameState_Ability CloseCombatSpecialistState;
+	local XComGameStateHistory History;
+
+	History = `XCOMHISTORY;
+
+	ConcealmentBrokenUnit = XComGameState_Unit(EventSource);	
+	if (ConcealmentBrokenUnit == None)
+		return ELR_NoInterrupt;
+
+	//Do not trigger if the CloseCombatSpecialist soldier himself moved to cause the concealment break - only when an enemy moved and caused it.
+	AbilityContext = XComGameStateContext_Ability(GameState.GetContext().GetFirstStateInEventChain().GetContext());
+	if (AbilityContext != None && AbilityContext.InputContext.SourceObject != ConcealmentBrokenUnit.ConcealmentBrokenByUnitRef)
+		return ELR_NoInterrupt;
+
+	CloseCombatSpecialistRef = ConcealmentBrokenUnit.FindAbility('NoneShallPass_LW');
+	if (CloseCombatSpecialistRef.ObjectID == 0)
+		return ELR_NoInterrupt;
+
+	CloseCombatSpecialistState = XComGameState_Ability(History.GetGameStateForObjectID(CloseCombatSpecialistRef.ObjectID));
+	if (CloseCombatSpecialistState == None)
+		return ELR_NoInterrupt;
+	
+	CloseCombatSpecialistState.AbilityTriggerAgainstSingleTarget(ConcealmentBrokenUnit.ConcealmentBrokenByUnitRef, false);
+	return ELR_NoInterrupt;
 }
 
 static function X2AbilityTemplate Hipfire()
@@ -700,9 +763,9 @@ static function EventListenerReturn LTTListener(Object EventData, Object EventSo
 	local XComGameState_Unit TargetUnit;
 	local XComGameStateContext_Ability AbilityContext;
 	local XComGameState_Ability AbilityState;
-	local XComGameStateHistory History;
+	//local XComGameStateHistory History;
 
-	History = `XCOMHISTORY;
+	//History = `XCOMHISTORY;
 	TargetUnit = XComGameState_Unit(EventData);
 	AbilityContext = XComGameStateContext_Ability(GameState.GetContext());
 
@@ -1703,7 +1766,9 @@ static function X2AbilityTemplate WatchThemRun()
     local X2Effect_AddOverwatchActionPoints   Effect;
     local X2Condition_UnitValue ValueCondition;
     local X2Effect_IncrementUnitValue IncrementEffect;
-	
+	local X2Effect_CoveringFire CoveringFireEffect;
+	local X2Condition_AbilityProperty CoveringFireCondition;
+
     // Effect granting an overwatch shot
 	Effect = new class'X2Effect_AddOverwatchActionPoints';
     
@@ -1738,6 +1803,14 @@ static function X2AbilityTemplate WatchThemRun()
 	IncrementEffect.NewValueToSet = 1; // This means increment by one -- stupid property name
 	IncrementEffect.CleanupType = eCleanup_BeginTurn;
     Template.AddTargetEffect(IncrementEffect);
+
+	CoveringFireEffect = new class'X2Effect_CoveringFire';
+	CoveringFireEffect.AbilityToActivate = 'OverwatchShot';
+	CoveringFireEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
+	CoveringFireCondition = new class'X2Condition_AbilityProperty';
+	CoveringFireCondition.OwnerHasSoldierAbilities.AddItem('CoveringFire');
+	CoveringFireEffect.TargetConditions.AddItem(CoveringFireCondition);
+	Template.AddTargetEffect(CoveringFireEffect);
 	
 	// Trigger abilities don't appear as passives. Add a passive ability icon.
 	AddIconPassive(Template);
@@ -3301,9 +3374,6 @@ static function X2AbilityTemplate OverbearingSuperiority()
 	// Require that the activated ability get a critical hit
 	SuperiorityEffect.AbilityTargetConditions.AddItem(default.CritCondition);
 
-	// The effect lasts until the end of the turn
-	SuperiorityEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnEnd);
-
 	// Create the template for an activated ability using a helper function.
 	Template = Passive('OverbearingSuperiority_LW', "img:///UILibrary_XPerkIconPack.UIPerk_enemy_crit_chevron_x3", true, SuperiorityEffect);
 
@@ -3901,6 +3971,8 @@ static function X2AbilityTemplate MovingTarget()
 
 	// Create a conditional bonus
 	Effect = new class'X2Effect_MovingTarget_LW';
+	Effect.MT_DEFENSE = default.MOVING_TARGET_DEFENSE;
+	Effect.MT_DODGE = default.MOVING_TARGET_DODGE;
 
 	// Create the template using a helper function
 	return Passive('MovingTarget_LW', "img:///UILibrary_PerkIcons.UIPerk_lightningreflexes", false, Effect);
@@ -4081,7 +4153,7 @@ static function X2AbilityTemplate CreateBonusChargesAbility()
 static function X2AbilityTemplate AddAnatomyAbility()
 {
 	local X2AbilityTemplate					Template;
-	local X2Effect_PersistentStatChange		AnatomyEffect;
+	local X2Effect_Anatomy					Effect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Anatomy_LW');	
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
@@ -4095,12 +4167,12 @@ static function X2AbilityTemplate AddAnatomyAbility()
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;
 
-	AnatomyEffect = new class'X2Effect_PersistentStatChange';
-	AnatomyEffect.BuildPersistentEffect(1,true,false);
-	AnatomyEffect.SetDisplayInfo (ePerkBuff_Passive,Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName); 
-	AnatomyEffect.AddPersistentStatChange(eStat_CritChance, 15);
-	AnatomyEffect.AddPersistentStatChange(eStat_ArmorPiercing, 2);
-	Template.AddTargetEffect(AnatomyEffect);
+	Effect = new class'X2Effect_Anatomy';
+	Effect.CritBonus = default.ANATOMY_CRIT;
+	Effect.PierceBonus = default.ANATOMY_ARMOR_PIERCE;
+	Effect.BuildPersistentEffect(1, true, false);
+	Effect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocHelpText, Template.IconImage,,, Template.AbilitySourceName);
+	Template.AddTargetEffect(Effect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
@@ -4128,6 +4200,7 @@ static function X2AbilityTemplate AddFreeScanner()
 
 	ItemEffect = new class 'X2Effect_TemporaryItem';
 	ItemEffect.ItemName = 'ScoutScanner_LW';
+	ItemEffect.EffectName = 'FreeScanner_LWEffect';
 	ItemEffect.bIgnoreItemEquipRestrictions = true;
 	Template.AddTargetEffect (ItemEffect);
 

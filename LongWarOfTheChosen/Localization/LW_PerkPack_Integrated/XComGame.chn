@@ -10,7 +10,7 @@ m_strUnavailableToClass="不可用"
 [DepthPerceptionPCS X2EquipmentTemplate]
 FriendlyName="个人战斗芯片：深度感知"
 FriendlyNamePlural="个人战斗芯片：深度感知"
-BriefSummary="当你处于比目标敌人更高的地形时，该芯片为你增加<Ability:DP_AIM_BONUS>命中，并减少敌人<Ability:DP_ANTIDODGE_BONUS>闪避。"
+BriefSummary="当你处于比目标敌人更高的地形时，该芯片为你增加<Ability:DP_AIM_BONUS>命中，并无视敌人<Ability:DP_ANTIDODGE_BONUS>闪避。"
 
 [HyperReactivePupilsPCS X2EquipmentTemplate]
 FriendlyName="个人战斗芯片：超高反应瞳孔"
@@ -50,7 +50,7 @@ BriefSummary="该芯片大幅提高了绕过失血所需的过度杀伤伤害阈
 [IronSkinPCS X2EquipmentTemplate]
 FriendlyName="个人战斗芯片：铜皮铁甲"
 FriendlyNamePlural="个人战斗芯片：铜皮铁甲"
-BriefSummary="受到的近战伤害减少<Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>点。"
+BriefSummary="受到的近战伤害减少<Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>点。受到刺客的近战攻击时只能获得67%的效果。"
 
 [SmartMacrophagesPCS X2EquipmentTemplate]
 FriendlyName="个人战斗芯片：智能巨噬细胞"
@@ -151,9 +151,9 @@ LocPromotionPopupText="<Bullet/> 你视野内的每2个敌人都使你获得+1�
 [HardTarget X2AbilityTemplate]
 LocFriendlyName="高难目标"
 LocFlyOverText="高难目标"
-LocLongDescription="你视野内的每个敌人使你获得5点闪避，最多+30。"
-LocHelpText="你视野内的每个敌人使你获得5点闪避，最多+30。"
-LocPromotionPopupText="<Bullet/> 你视野内的每个敌人使你获得5点闪避，最多+30。<br/><Bullet/> 不包括小队视野范围内的单位。<br/><Bullet/> 此项能力在单位处于混乱、眩晕、恐慌、着火或其他受损状态中时将不提供防御加成。"
+LocLongDescription="你视野内的每个敌人使你获得<Ability:HT_DODGE_BONUS_PER_ENEMY/>点闪避，最多+<Ability:HT_MAX_DODGE_BONUS/>。"
+LocHelpText="你视野内的每个敌人使你获得<Ability:HT_DODGE_BONUS_PER_ENEMY/>点闪避，最多+<Ability:HT_MAX_DODGE_BONUS/>。"
+LocPromotionPopupText="<Bullet/> 不包括小队视野范围内的单位。<br/><Bullet/> 此项能力在单位处于混乱、眩晕、恐慌、着火或其他受损状态中时将不提供防御加成。"
 
 [Infighter X2AbilityTemplate]
 LocFriendlyName="近身斗士"
@@ -416,8 +416,8 @@ LocPromotionPopupText="<Bullet/> 对被压制时试图移动的敌人造成额�
 [Interference X2AbilityTemplate]
 LocFriendlyName="干扰"
 LocFlyOverText="干扰"
-LocLongDescription="小精灵可以取消目标单位的监视。"
-LocHelpText="取消目标单位的监视。"
+LocLongDescription="小精灵可以取消目标单位的监视，无法取消压制，群体压制。不会触发掩护火力"
+LocHelpText="小精灵可以取消目标单位的监视，无法取消压制，群体压制。不会触发掩护火力"
 LocPromotionPopupText="<Bullet/> 取消目标单位的监视。<br/><Bullet/> 自由行动。<br/><Bullet/> 每次战斗可使用3次。使用更高层级的小精灵可获得额外2充能。<br/><Bullet/> 不会触发掩护火力。<br/>"
 
 [DamageControl X2AbilityTemplate]
@@ -437,7 +437,7 @@ LocPromotionPopupText="<Bullet/> 在受到伤害后，到下回合结束前获�
 [Evasive X2AbilityTemplate]
 LocFriendlyName="灵活闪避"
 LocFlyOverText="灵活闪避：+100闪避"
-LocLongDescription="每次任务开始都获得100的闪避加成。在首次受到伤害后该加成会移除。"
+LocLongDescription="每次任务开始都获得100的闪避加成。在首次受到伤害后（包括护盾）该加成会移除。"
 LocHelpText="在你受到伤害前，获得100的闪避。"
 LocPromotionPopupText="<Bullet/> 该能力会让首次对士兵的命中变为擦伤，但被无法闪避的攻击命中会在没有加成的情况下直接移除该效果。"
 
@@ -782,7 +782,7 @@ LocFriendlyName="杀戮地带"
 LocLongDescription="监视指定的锥形区域，对在范围内移动或攻击的每个敌人进行一次反应射击。"
 LocHelpText="加强的锥形射程监视。"
 LocFlyOverText="杀戮地带"
-LocPromotionPopupText="<Bullet/> 士兵不会在隐匿状态下触发反应射击。<br/><Bullet/> 士兵发动杀戮地带没有弹药限制。<br/><Bullet/> 杀戮地带可以利用小队视野，即便士兵没有守望能力。<br/><Bullet/> 杀戮地带有<Ability:SelfCooldown/>回合冷却时间。<br/>"
+LocPromotionPopupText="<Bullet/> 士兵不会在隐匿状态下触发反应射击。<br/><Bullet/> 士兵发动杀戮地带没有弹药限制。<br/><Bullet/> 杀戮地带有<Ability:SelfCooldown/>回合冷却时间。<br/>"
 LocFriendlyNameWhenConcealed="杀戮地带（隐蔽）"
 
 [XComGame.DeathFromAbove X2AbilityTemplate]
@@ -1102,14 +1102,12 @@ LocFriendlyName="重启"
 LocLongDescription="如果SPARK受到致命伤害，它的生命值将减少到1点，并且将在回合的剩余时间中被静滞。每次任务只能触发一次，之后SPARK就会陷入破损状态（降低命中、移动和侵入能力）。"
 LocHelpText="如果SPARK受到致命伤害，它的生命值将减少到1点，并且将在回合的剩余时间中被静滞。"
 LocFlyOverText="重启"
-LocPromotionPopupText="<Bullet/> 每次任务中，当SPARK的生命值首次降到零时，它将被置于静滞状态。<br/><Bullet/> 如果没有“冗余系统”能力，SPARK触发重启后，会遭受巨大的命中、移动和侵入能力的惩罚。<br/><Bullet/> 由于这些缺点，再加上SPARK在重启时已经很低的外壳完整性，建议在可能的情况下将重启的SPARK通过天际游侠号撤离战场。<br/><Bullet/> 多亏了复杂的冗余装甲、激活电路和单次充能的护盾投射器，SPARK可以为队伍承担一次打击，并安心地知道它将活下来，以便在另一天继续出击。<br/>"
+LocPromotionPopupText="<Bullet/> 每次任务中，当SPARK的生命值首次降到零时，它将被置于静滞状态。<br/><Bullet/> 如果没有“冗余系统”能力，SPARK触发重启后，会遭受巨大的命中、移动和侵入能力的惩罚。侵入降为0后将无法使用相关能力。<br/><Bullet/> 由于这些缺点，再加上SPARK在重启时已经很低的外壳完整性，建议在可能的情况下将重启的SPARK通过天际游侠号撤离战场。<br/><Bullet/> 多亏了复杂的冗余装甲、激活电路和单次充能的护盾投射器，SPARK可以为队伍承担一次打击，并安心地知道它将活下来，以便在另一天继续出击。<br/>"
 
 [RebootTriggered_LW X2AbilityTemplate]
 LocFriendlyName="重启"
-LocLongDescription="如果SPARK受到致命伤害，它的生命值将减少到1点，并且将在回合的剩余时间中被静滞。每次任务只能触发一次，之后SPARK就会陷入破损状态（降低命中、移动和侵入能力）。"
-LocHelpText="如果SPARK受到致命伤害，它的生命值将减少到1点，并且将在回合的剩余时间中被静滞。"
-LocFlyOverText="重启"
-LocPromotionPopupText="<Bullet/> 每次任务中，当SPARK的生命值首次降到零时，它将被置于静滞状态。<br/><Bullet/> 如果没有“冗余系统”能力，SPARK触发重启后，会遭受巨大的命中、移动和侵入能力的惩罚。<br/><Bullet/> 由于这些缺点，再加上SPARK在重启时已经很低的外壳完整性，建议在可能的情况下将重启的SPARK通过天际游侠号撤离战场。<br/><Bullet/> 多亏了复杂的冗余装甲、激活电路和单次充能的护盾投射器，SPARK可以为队伍承担一次打击，并安心地知道它将活下来，以便在另一天继续出击。<br/>"
+LocLongDescription="该单位因受到严重破坏而被重启，正在遭受以下负面影响：命中-30，移动力-3，侵入能力-100。"
+LocHelpText="如果该单位受到致命伤害，它的生命值将减少到1点，并且将在本回合的剩余时间中被静滞。"
 
 [RedundantSystems_LW X2AbilityTemplate]
 LocFriendlyName="冗余系统"
@@ -1162,10 +1160,9 @@ LocPromotionPopupText="<Bullet/> <Ability:ClassName/>可以追踪来袭的炮弹
 
 [TriangulationTrigger_LW X2AbilityTemplate]
 LocFriendlyName="三角定位"
-LocLongDescription="当<Ability:ClassName/>受到攻击时，小队在下一回合对攻击者获得+10命中。"
-LocHelpText="当<Ability:ClassName/>受到攻击时，小队在下一回合对攻击者获得+10命中。"
+LocLongDescription="此单位的敌人攻击该单位时获得额外+10命中。"
+LocHelpText="此单位的敌人攻击该单位时获得额外+10命中。"
 LocFlyOverText="三角定位"
-LocPromotionPopupText="<Bullet/> <Ability:ClassName/>可以追踪来袭的炮弹到它们的原始所有者，并将这些信息上传给队伍的其他成员。<br/><Bullet/> 如果敌人攻击<Ability:ClassName/>的队友，三角定位不会触发。<br/>"
 
 [BrawlerProtocol_LW X2AbilityTemplate]
 LocFriendlyName="反应打击"
@@ -1184,9 +1181,9 @@ LocPromotionPopupText="<Bullet/> 如果一名敌人在相邻格中开始他们�
 
 [EnhancedSystems_LW X2AbilityTemplate]
 LocFriendlyName="强化维修系统"
-LocLongDescription="授予「快速维修」和「冗余系统」技能，维修不再结束回合，移除与重启相关的属性减益。重启时，SPARK将自动使用维修。"
+LocLongDescription="授予「快速维修」和「冗余系统」技能，维修不再结束回合，移除与重启相关的属性减益。重启时，SPARK将自动使用维修。此外，额外获得一次维修使用次数。"
 LocHelpText="授予「快速维修」和「冗余系统」技能，维修不再结束回合，移除与重启相关的属性减益。重启时，SPARK将自动使用维修。"
-LocPromotionPopupText="快速维修使得维修不再结束回合。冗余系统意味着SPARK在重启后不会受到任何属性惩罚。SPARK在重启时将自动使用维修。"
+LocPromotionPopupText="快速维修使得维修不再结束回合。冗余系统意味着SPARK在重启后不会受到任何属性惩罚。SPARK在重启时将自动使用维修。此外，额外获得一次维修使用次数。"
 
 [ReactionSystems_LW X2AbilityTemplate]
 LocFriendlyName="强化防御系统"

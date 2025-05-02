@@ -156,7 +156,7 @@ simulated function UpdateAIJobs()
 			else if (JobMgr.MissionJobs[MissionIdx].Job[JobIdx] == 'Observer')
 			{
 				`APTRACE("Replacing Observer job in Mission " $ JobMgr.MissionJobs[MissionIdx].MissionType $ ", index=" $ JobIdx);
-				JobMgr.MissionJobs[MissionIdx].Job[JobIdx] = 'Observer';
+				JobMgr.MissionJobs[MissionIdx].Job[JobIdx] = 'Soldier';
 			}
 		}
 	}

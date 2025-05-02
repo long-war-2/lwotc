@@ -380,10 +380,11 @@ static function name PickSpecialSitRep(XComGameState_MissionSite MissionState, o
 
 	foreach SpecialSitreps(SitRepWithChance)
 	{
-		`LWTrace(" Special Sitreps: evaluating Sitrep" @SitrepWithChance.SitRepName);
+		//`LWTrace(" Special Sitreps: evaluating Sitrep" @SitrepWithChance.SitRepName);
 		if (IsSitRepValidForMission(SitRepWithChance.SitRepName, MissionState) &&
 				`SYNC_FRAND_STATIC() < SitRepWithChance.Chance)
 		{
+			//`LWTrace("Succeeded. Adding" @ SitRepWithChance.SitRepName @"to mission");
 			SpecialSitreps.RemoveItem(SitRepWithChance);
 			return SitRepWithChance.SitRepName;
 		}
@@ -466,11 +467,13 @@ static function bool SitRepMeetsAdditionalRequirements(X2SitRepTemplate SitRepTe
 	local string MissionType;
 	local int idx;
 
+	//`LWTrace("SitRepMeetsAdditionalRequirements");
+
 	// Handle Alien Ruler sit reps separately, particularly as we need to handle the situation
 	// where the player may not have the DLC installed.
 	if (default.AlienRulerSitRepNames.Find(SitRepTemplate.DataName) != INDEX_NONE)
 	{
-		return class'XComGameState_AlienRulerManager' != none ? IsAlienRulerSitRepValid(SitRepTemplate.DataName, MissionState) : false;
+		return class'Helpers_LW'.default.bDLC2Active ? IsAlienRulerSitRepValid(SitRepTemplate.DataName, MissionState) : false;
 	}
 
 	// Check whether the mission type has any sit rep exclusions and if so, whether the
@@ -501,6 +504,7 @@ static function bool IsAlienRulerSitRepValid(name SitRepName, XComGameState_Miss
 	local X2SitRepTemplateManager SitRepMgr;
 	local name RulerActiveTacticalTag;
 
+	//`LWTrace("IsAlienRulersSitrepValid called");
 	// Lock Alien Rulers behind the Alien Nest if that mission is enabled
 	if (class'LWDLCHelpers'.static.IsAlienHuntersNarrativeEnabled() &&
 			!class'XComGameState_HeadquartersXCom'.static.IsObjectiveCompleted('DLC_AlienNestMissionComplete'))
@@ -527,6 +531,7 @@ static function bool IsAlienRulerSitRepValid(name SitRepName, XComGameState_Miss
 		if (MissionStateIter.ObjectID != MissionState.ObjectID &&
 				MissionStateIter.GeneratedMission.SitReps.Find(SitRepName) != INDEX_NONE)
 		{
+			//`LWTrace("Ruler already on another mission");
 			return false;
 		}
 	}
@@ -536,6 +541,7 @@ static function bool IsAlienRulerSitRepValid(name SitRepName, XComGameState_Miss
 		if (MissionStateIter.ObjectID != MissionState.ObjectID &&
 				MissionStateIter.GeneratedMission.SitReps.Find(SitRepName) != INDEX_NONE)
 		{
+			//`LWTrace("Ruler already on another mission");
 			return false;
 		}
 	}

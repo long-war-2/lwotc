@@ -1795,6 +1795,7 @@ static function OnRegionalAvatarResearchUpdate(XComGameState_LWAlienActivity Act
 		if (!RegionalAI.bLiberated)
 		{
 			AliensHaveOneRegion = true;
+			break;
 		}
 	}
 

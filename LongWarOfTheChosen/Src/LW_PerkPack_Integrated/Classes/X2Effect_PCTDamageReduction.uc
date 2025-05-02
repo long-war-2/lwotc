@@ -16,6 +16,10 @@ function float GetPostDefaultDefendingDamageModifier_CH(
 	X2Effect_ApplyWeaponDamage WeaponDamageEffect,
 	XComGameState NewGameState)
 {
+
+	if (!class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult) || CurrentDamage == 0)
+		return 0;
+
 	return -CurrentDamage * PCTDamage_Reduction;
 }
 

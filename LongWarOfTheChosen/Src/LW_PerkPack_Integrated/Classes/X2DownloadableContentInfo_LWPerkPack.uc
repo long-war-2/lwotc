@@ -270,6 +270,12 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'LICKYOURWOUNDS_MAXHEALAMOUNT':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.LICKYOURWOUNDS_MAXHEALAMOUNT);
 			return true;
+		case 'ANATOMY_CRIT_TAG':
+			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.ANATOMY_CRIT);
+			return true;
+		case 'ANATOMY_PIERCE_TAG':
+			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.ANATOMY_ARMOR_PIERCE);
+			return true;	
 		case 'PRESERVATION_DEFENSE_BONUS':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.PRESERVATION_DEFENSE_BONUS);
 			return true;
@@ -291,10 +297,10 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'APEX_PREDATOR_BASE_PANIC_CHANCE':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.APEX_PREDATOR_BASE_PANIC_CHANCE + class'X2AbilityToHitCalc_PanicCheck'.default.BaseValue);
 			return true;
-		case 'PREDATOR_AIM_BONUS':
+		case 'PREDATOR_AIM_BONUS_LW':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.PREDATOR_AIM_BONUS);
 			return true;
-		case 'PREDATOR_CRIT_BONUS':
+		case 'PREDATOR_CRIT_BONUS_LW':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.PREDATOR_CRIT_BONUS);
 			return true;
 		case 'SAVIOR_BONUS_HEAL':
@@ -651,6 +657,15 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 			return true;
 		case 'SHOCKWAVE_TURNS':
 			Outstring = string(class'X2Ability_PerkPackAbilitySet2'.default.SHOCKWAVE_TURNS);
+			return true;
+		case 'DEMO_HIT_BONUS':
+			Outstring = string(class'X2Ability_GrenadierAbilitySet'.default.DEMO_HIT_BONUS);
+			return true;
+		case 'HT_DODGE_BONUS_PER_ENEMY':
+			Outstring = string(class'X2Effect_HardTarget'.default.HT_DODGE_BONUS_PER_ENEMY);
+			return true;
+		case 'HT_MAX_DODGE_BONUS':
+			Outstring = string(class'X2Effect_HardTarget'.default.HT_MAX_DODGE_BONUS);
 			return true;
 				
         default:

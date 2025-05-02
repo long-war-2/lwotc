@@ -118,9 +118,9 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(RemoveGrenadeWeightAbility()); // does not work
 
 	Templates.AddItem(CreateSedateAbility());
-	Templates.AddItem(CreateBonusShredAbility('CoilgunBonusShredAbility', default.BONUS_COILGUN_SHRED));
+	//Templates.AddItem(CreateBonusShredAbility('CoilgunBonusShredAbility', default.BONUS_COILGUN_SHRED));
 
-	Templates.AddItem(CreateBluescreenRoundsDisorient());
+	//Templates.AddItem(CreateBluescreenRoundsDisorient());
 	//Templates.AddItem(CreateConsumeWhenActivatedAbility ('ConsumeShapedCharge', 'ShapedChargeUsed'));
 
 	Templates.AddItem(SparkPlatedHeavyArmorStats());
@@ -846,6 +846,8 @@ static function X2AbilityTemplate CreateBonusShredAbility(name AbilityName, int 
 	return Template;
 }
 
+// This does nothing.
+/* 
 static function X2AbilityTemplate CreateBluescreenRoundsDisorient()
 {
 	local X2AbilityTemplate Template;
@@ -883,7 +885,7 @@ static function X2AbilityTemplate CreateBluescreenRoundsDisorient()
 
 	return Template;
 }
-	
+	*/
 
 static function X2AbilityTemplate SparkPlatedHeavyArmorStats()
 {

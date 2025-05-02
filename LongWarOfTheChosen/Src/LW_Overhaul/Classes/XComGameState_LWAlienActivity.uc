@@ -589,7 +589,7 @@ function bool SpawnMission(XComGameState NewGameState)
 	else
 		SecondsUntilActivityComplete = class'X2StrategyGameRulesetDataStructures'.static.DifferenceInSeconds(DateTimeActivityComplete, class'XComGameState_GeoscapeEntity'.static.GetCurrentTime());
 	DesiredSecondsOfMissionDuration = 3600.0 * (arrDuration_Hours[CurrentMissionLevel] > 0 ? arrDuration_Hours[CurrentMissionLevel] : 500000.0);
-	`LWTrace("SecondsUntilActivityComplete =" @SecondsUntilActivityComplete);
+	//`LWTrace("SecondsUntilActivityComplete =" @SecondsUntilActivityComplete);
 	MissionState.TimeUntilDespawn = FMin(SecondsUntilActivityComplete, DesiredSecondsOfMissionDuration);
 	MissionState.ExpirationDateTime = class'XComGameState_GeoscapeEntity'.static.GetCurrentTime();
 	class'X2StrategyGameRulesetDataStructures'.static.AddTime(MissionState.ExpirationDateTime, MissionState.TimeUntilDespawn);
@@ -629,7 +629,7 @@ function name GetNextMissionFamily(XComGameState NewGameState)
 	local array<int> ExistingMissionFamilyCounts, SelectArray;
 	local XComGameState_MissionSite MissionSite;
 	local int idx, i, j, FamilyIdx;
-	local name MissionFamily;
+	//local name MissionFamily;
 
 	ActivityTemplate = GetMyTemplate();
 	if (CurrentMissionLevel >= ActivityTemplate.MissionTree.Length)
@@ -637,11 +637,12 @@ function name GetNextMissionFamily(XComGameState NewGameState)
 
 	PossibleMissionFamilies = ActivityTemplate.MissionTree[CurrentMissionLevel].MissionFamilies;
 
-	`LWTrace("Possible Mission Families:");
-	foreach PossibleMIssionFamilies (MissionFamily)
-	{
-		`LWTrace(MissionFamily);
-	}
+	//`LWTrace("Possible Mission Families:");
+	
+	//foreach PossibleMIssionFamilies (MissionFamily)
+	//{
+	//	`LWTrace(MissionFamily);
+	//}
 
 	if(PossibleMissionFamilies.Length > 0)
 	{
@@ -778,7 +779,7 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 	}
 	// End LWOTC additions
 
-	`LWTrace("Mission Creation choosing quest item");
+	//`LWTrace("Mission Creation choosing quest item");
 
 	MissionState.GeneratedMission.MissionQuestItemTemplate = MissionMgr.ChooseQuestItemTemplate(MissionState.Source, MissionReward, MissionState.GeneratedMission.Mission, (MissionState.DarkEvent.ObjectID > 0));
 
@@ -787,7 +788,7 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 		`Redscreen("GetMissionDefinitionForFamily() failed to generate a mission with: \n"
 						$ " Family: " $ MissionFamily);
 	}
-	`LWTrace("Mission Generation choosing plot and biome");
+	//`LWTrace("Mission Generation choosing plot and biome");
 
 	// find a plot that supports the biome and the mission
 	SelectBiomeAndPlotDefinition(MissionState, Biome, SelectedPlotDef, SitrepsToRemove, SitRepNames);
@@ -803,7 +804,7 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 	PlotTypeDef = ParcelMgr.GetPlotTypeDefinition(MissionState.GeneratedMission.Plot.strType);
 
 	// Clear invalid sitreps
-	`LWTrace("SitrepsToRemove length:" @SitrepsToRemove.Length);
+	//`LWTrace("SitrepsToRemove length:" @SitrepsToRemove.Length);
 	if(SitrepsToRemove.Length > 0)
 	{
 		foreach SitrepsToRemove (SitrepNameToRemove)
@@ -949,7 +950,7 @@ static function MaybeAddChosenToMission(XComGameState_MissionSite MissionState)
 	}
 
 	// Don't allow Chosen on the mission if there is already a Ruler
-	if (class'XComGameState_AlienRulerManager' != none && class'LWDLCHelpers'.static.IsAlienRulerOnMission(MissionState))
+	if (class'Helpers_LW'.default.bDLC2Active && class'LWDLCHelpers'.static.IsAlienRulerOnMission(MissionState))
 	{
 		return;
 	}

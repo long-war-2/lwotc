@@ -10,7 +10,7 @@ TacticalText="<Bullet/> Das Abfeuern der Primärwaffe beendet die Runde eines So
 AbilityDescName="MP"
 
 [SMG_MG X2WeaponTemplate]
-FriendlyName="Stottergewehre"
+FriendlyName="Stottergewehr"
 FriendlyNamePlural="Stottergewehre"
 BriefSummary="Das Stottergewehr ist eine leichtere Version des Magnetgewehrs und erfüllt eine ähnliche Rolle wie die MP, indem es Feuerkraft, Munition und Präzision auf Entfernung gegen gesteigerte Soldatenmobilität und -verborgenheit tauscht."
 TacticalText="<Bullet/> Das Abfeuern der Primärwaffe beendet die Runde eines Soldaten ohne Spezialausbildung.\n<Bullet/> Benutze von ADVENT-Gegnern erbeutete Verbesserungen, um die taktische Effektivität des Stottergewehres zu verbessern.\n<Bullet/> MP-artige Waffen bieten im Vergleich zu Sturmgewehren gesteigerte Mobilität, Nahkampfpräzision und Verborgenheit, verursachen dafür jedoch weniger Schaden, verfügen über weniger Munition und erleiden Präzisionsabzüge auf große Entfernungen."
@@ -19,6 +19,6 @@ AbilityDescName="MP"
 [SMG_BM X2WeaponTemplate]
 FriendlyName="Störkanone"
 FriendlyNamePlural="Störkanonen"
-BriefSummary="Die Störkanone ist wie die MP und das Stuttermag eine kleinere Primärwaffe, die Mobilitäts- und Verborgenheitsboni gewährt, jedoch weniger Schaden verursacht und auf längere Entfernungen Präzisionsabzüge erleidet. Sie ist dennoch eine persönliche Waffe mit beträchtlicher Feuerkraft."
+BriefSummary="Die Störkanone ist wie die MP und das Stottergewehr eine kleinere Primärwaffe, die Mobilitäts- und Verborgenheitsboni gewährt, jedoch weniger Schaden verursacht und auf längere Entfernungen Präzisionsabzüge erleidet. Sie ist dennoch eine persönliche Waffe mit beträchtlicher Feuerkraft."
 TacticalText="<Bullet/> Das Abfeuern der Primärwaffe beendet die Runde eines Soldaten ohne Spezialausbildung.\n<Bullet/> Benutze von ADVENT-Gegnern erbeutete Verbesserungen, um die taktische Effektivität der Störkanone zu verbessern.\n<Bullet/> MP-artige Waffen bieten im Vergleich zu Sturmgewehren gesteigerte Mobilität, Nahkampfpräzision und Verborgenheit, verursachen dafür jedoch weniger Schaden, verfügen über weniger Munition und erleiden Präzisionsabzüge auf große Entfernungen.<br/><Bullet/> Angriffe mit Plasmawaffen bewirken, dass getroffene Ziele 1 Punkt zusätzlichen Schaden bei jedem nachfolgenden Treffer erhalten."
 AbilityDescName="MP"

@@ -44,6 +44,7 @@ var config array<name> GrenadeLauncherCats;
 
 var array<AbilityBonusAmmo> AbilityForBonusAmmo;
 var int MaxCharges;
+var name UnitValueName;
 
 ////////////////////
 // Implementation //
@@ -158,6 +159,8 @@ simulated function AddUtilityItem(XComGameState_Unit NewUnit, X2ItemTemplate Ite
 	NewUnit.AddItemToInventory(ItemState, InvSlotEnum, NewGameState);
 	NewUnit.bIgnoreItemEquipRestrictions = false;
 
+	NewUnit.SetUnitFloatValue(GetUnitValueName(EffectName), ItemState.ObjectID, eCleanup_BeginTacticalChain);
+
 	// Update the unit's visualizer to include the new item
 	// Note: Normally this should be done in an X2Action, but since this effect is normally used in
 	// a PostBeginPlay trigger, we just apply the change immediately.
@@ -252,18 +255,54 @@ simulated function InitAbility(X2AbilityTemplate AbilityTemplate, XComGameState_
 
 simulated function OnEffectRemoved(const out EffectAppliedData ApplyEffectParameters, XComGameState NewGameState, bool bCleansed, XComGameState_Effect RemovedEffectState)
 {
+	local UnitValue ItemUnitValue;
+	local XComGameState_Unit UnitState;
+	local XComGameState_Item ItemState;
+
 	if (RemovedEffectState.CreatedObjectReference.ObjectID > 0)
 		NewGameState.RemoveStateObject(RemovedEffectState.CreatedObjectReference.ObjectID);
+	else
+	{
+		UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+		UnitState.GetUnitValue(GetUnitValueName(EffectName), ItemUnitValue);
+
+		if(ItemUnitValue.fValue > 0)
+		{
+			ItemState = XComGameState_Item(`XCOMHISTORY.GetGameStateForObjectID(ItemUnitValue.fValue));
+			UnitState.RemoveItemFromInventory(ItemState);
+			NewGameState.RemoveStateObject(ItemState.ObjectID);
+		}
+	}
+
 }
 
 function UnitEndedTacticalPlay(XComGameState_Effect EffectState, XComGameState_Unit UnitState)
 {
 	local XComGameState NewGameState;
+	local UnitValue ItemUnitValue;
+	local XComGameState_Item ItemState;
 
 	NewGameState = UnitState.GetParentGameState();
 
 	if (EffectState.CreatedObjectReference.ObjectID > 0)
 		NewGameState.RemoveStateObject(EffectState.CreatedObjectReference.ObjectID);
+	else
+	{
+		UnitState.GetUnitValue(GetUnitValueName(EffectName), ItemUnitValue);
+
+		if(ItemUnitValue.fValue > 0)
+		{
+			ItemState = XComGameState_Item(`XCOMHISTORY.GetGameStateForObjectID(ItemUnitValue.fValue));
+			UnitState.RemoveItemFromInventory(ItemState);
+			NewGameState.RemoveStateObject(ItemState.ObjectID);
+		}
+	}
+	
+}
+
+static function name GetUnitValueName(name ThisEffectName)
+{
+	return name(ThisEffectName $ default.UnitValueName);
 }
 
 defaultproperties
@@ -271,4 +310,5 @@ defaultproperties
 	BaseCharges = 1
 	bUseHighestAvailableUpgrade = true
 	InvSlotEnum = eInvSlot_Utility
+	UnitValueName = "_XMBItemEffectUnitValue";
 }

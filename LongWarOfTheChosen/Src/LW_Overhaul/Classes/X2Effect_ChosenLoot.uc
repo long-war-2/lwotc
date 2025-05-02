@@ -22,21 +22,29 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
 static function EventListenerReturn ScavengerAutoLoot(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
 	local XComGameState NewGameState;
-	local XComGameState_Effect_EffectCounter EffectState;
+	local XComGameState_Effect EffectState;
 	local XComGameState_Unit DeadUnit;
+
+	//`LWTrace("ChosenLoot Event Listener Fired");
 
 	DeadUnit = XComGameState_Unit (EventData);
 	if (DeadUnit == none)
 	{
-		`RedScreen("Chosen Loot Check: no dead unit");
+		`LWTrace("Chosen Loot Check: no dead unit");
 		return ELR_NoInterrupt;
 	}
 
-    
     if(DeadUnit.IsChosen())	
     {
+		EffectState = XComGameState_Effect(CallbackData);
+		if (EffectState == none)
+		{
+			`LWTrace("Chosen Loot Check: no effect game state");
+			return ELR_NoInterrupt;
+		}
+
         NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState(string(GetFuncName()));
-        EffectState = XComGameState_Effect_EffectCounter(NewGameState.ModifyStateObject(EffectState.Class, EffectState.ObjectID));
+        EffectState = XComGameState_Effect(NewGameState.ModifyStateObject(EffectState.Class, EffectState.ObjectID));
         PutChosenLoot(NewGameState, EffectState, DeadUnit);
         `TACTICALRULES.SubmitGameState(NewGameState);
     }
@@ -44,7 +52,7 @@ static function EventListenerReturn ScavengerAutoLoot(Object EventData, Object E
         return ELR_NoInterrupt;
     }
 
-static function bool PutChosenLoot(XComGameState NewGameState, XComGameState_Effect_EffectCounter EffectState, XComGameState_Unit DeadUnit)
+static function bool PutChosenLoot(XComGameState NewGameState, XComGameState_Effect EffectState, XComGameState_Unit DeadUnit)
 {
 	local X2LootTableManager LootManager;
 	local int LootIndex;
@@ -57,6 +65,8 @@ static function bool PutChosenLoot(XComGameState NewGameState, XComGameState_Eff
 	local XComGameState_HeadquartersXCom XComHQ;
 	local XComGameStateHistory History;
 	local X2ItemTemplateManager ItemTemplateManager;
+
+	//`LWTrace("PutChosenLoot Called");
 
 	NewGameState.GetContext().PostBuildVisualizationFn.AddItem(VisualizeChosenLoot);
 
@@ -84,9 +94,12 @@ static function bool PutChosenLoot(XComGameState NewGameState, XComGameState_Eff
 			NewGameState.AddStateObject(Item);
 			XComHQ.PutItemInInventory(NewGameState, Item, true);
 			BattleData.CarriedOutLootBucket.AddItem(LootName);
+			//`LWTrace("Chosen Loot Added and put in inventory");
 		}
 
 	}
+
+	EffectState.RemoveEffect(NewGameState, NewGameState);
 
 	return true;
 }

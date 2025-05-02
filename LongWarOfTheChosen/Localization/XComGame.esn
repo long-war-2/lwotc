@@ -232,8 +232,8 @@ LocPromotionPopupText="<Bullet/> Actívala para que tu próximo uso del lanzalla
 [Firestorm X2AbilityTemplate]
 LocFriendlyName="Tormenta de fuego"
 LocFlyOverText="Tormenta de fuego"
-LocLongDescription="Una vez por combate, ataca a todas las unidades en un círculo completo en torno a la posición del soldado. También concede inmunidad al daño por fuego."
-LocHelpText="Lanza fuego en un círculo completo en torno a tu posición."
+LocLongDescription="Una vez por combate, corre a una posición dentro del rango de movimiento y ataca a todas las unidades en un círculo completo en torno a la posición del soldado. También concede inmunidad al daño por fuego."
+LocHelpText="Corre y lanza fuego en un círculo completo en torno a tu nueva posición."
 LocPromotionPopupText="<Bullet/> Esto encenderá fuegos e infligirá daño por fuego a todos los enemigos en un círculo en torno a la posición del soldado, infligiendo un +<ABILITY:FIRESTORM_DAMAGE_BONUS_LW> de daño adicional en los ataques normales con el lanzallamas.<br/><Bullet/> Tormenta de fuego también concede inmunidad al daño por fuego.<br/><Bullet/> Requiere un turno completo y termina el turno del soldado después de usarlo.<br/><Bullet/> Se puede usar una vez por combate.<br/><Bullet/> No se recomienda que el soldado use Tormenta de fuego en las azoteas."
 
 
@@ -1439,14 +1439,14 @@ LootTooltip="Al instalar esta mejora de arma, obtienes arma estable."
 [MissDamageUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Culata avanzada"
 FriendlyNamePlural="Culatas avanzadas"
-BriefSummary="Otorga la habilidad arma estable que confiere +<Ability:STOCK_BSC_SW_AIM_BONUS/> de puntería y +<Ability:STOCK_BSC_SW_AIM_BONUS/> a la probabilidad crítica."
+BriefSummary="Otorga la habilidad arma estable que confiere +<Ability:STOCK_ADV_SW_AIM_BONUS/> de puntería y +<Ability:STOCK_ADV_SW_AIM_BONUS/> a la probabilidad crítica."
 TinySummary="Gana la habilidad arma estable."
 LootTooltip="Al instalar esta mejora de arma, obtienes arma estable."
 
 [MissDamageUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Culata de élite"
 FriendlyNamePlural="Culatas de élite"
-BriefSummary="Otorga la habilidad arma estable que confiere +<Ability:STOCK_BSC_SW_AIM_BONUS/> de puntería y +<Ability:STOCK_BSC_SW_AIM_BONUS/> a la probabilidad crítica."
+BriefSummary="Otorga la habilidad arma estable que confiere +<Ability:STOCK_SUP_SW_AIM_BONUS/> de puntería y +<Ability:STOCK_SUP_SW_AIM_BONUS/> a la probabilidad crítica."
 TinySummary="Gana la habilidad arma estable."
 LootTooltip="Al instalar esta mejora de arma, obtienes arma estable."
 ; End translated
@@ -5736,7 +5736,7 @@ LocPromotionPopupText="<Bullet/> ¡Asegúrate de que tus compañeros no se encue
 
 ; LWOTC translated
 [HomingMine X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Se garantiza que los disparos contra el objetivo minado acertarán.<br/><Bullet/> Mina buscadora tiene 4 cargas por misión.<br/><Bullet/> Requiere una acción y no termina tu turno.<br/>"
+LocPromotionPopupText="<Bullet/> Se garantiza que los disparos contra el objetivo minado acertarán.<br/><Bullet/> Mina buscadora tiene 3 cargas por misión.<br/><Bullet/> Requiere una acción y no termina tu turno.<br/>"
 ; End translated
 
 [Hero_Tracking X2AbilityTemplate]
@@ -6574,9 +6574,9 @@ LocPromotionPopupText="<Bullet/> Avenger no se activará si recibes un disparo e
 LocFriendlyName="Depredador"
 LocFlyOverText="Depredador"
 ; LWOTC translated
-LocLongDescription="Tus ataques a distancia adquieren <Ability:PREDATOR_AIM_BONUS/> de bonus de acierto y <Ability:PREDATOR_CRIT_BONUS/> de bonus a la probabilidad crítica contra enemigos flanqueados o fuera de cobertura."
-LocHelpText="Tus ataques a distancia adquieren <Ability:PREDATOR_AIM_BONUS/> de bonus de acierto y <Ability:PREDATOR_CRIT_BONUS/> de bonus a la probabilidad crítica contra enemigos flanqueados o fuera de cobertura."
-LocPromotionPopupText="<Bullet/> Tus ataques a distancia adquieren <Ability:PREDATOR_AIM_BONUS/> de bonus de acierto y <Ability:PREDATOR_CRIT_BONUS/> de bonus a la probabilidad crítica contra enemigos flanqueados o fuera de cobertura.<br/>"
+LocLongDescription="Tus ataques a distancia adquieren <Ability:PREDATOR_AIM_BONUS_LW/> de bonus de acierto y <Ability:PREDATOR_CRIT_BONUS_LW/> de bonus a la probabilidad crítica contra enemigos flanqueados o fuera de cobertura."
+LocHelpText="Tus ataques a distancia adquieren <Ability:PREDATOR_AIM_BONUS_LW/> de bonus de acierto y <Ability:PREDATOR_CRIT_BONUS_LW/> de bonus a la probabilidad crítica contra enemigos flanqueados o fuera de cobertura."
+LocPromotionPopupText="<Bullet/> Tus ataques a distancia adquieren <Ability:PREDATOR_AIM_BONUS_LW/> de bonus de acierto y <Ability:PREDATOR_CRIT_BONUS_LW/> de bonus a la probabilidad crítica contra enemigos flanqueados o fuera de cobertura.<br/>"
 ; End translated
 
 [Stiletto_LW X2AbilityTemplate]
@@ -6923,8 +6923,8 @@ LocLongDescription="El Brujo abre su mente hacia el objetivo, dañándolo y quem
 
 [ChosenKidnap X2AbilityTemplate]
 LocFriendlyName="Secuestrar"
-LocLongDescription="Secuestra a un soldado inconsciente o desangrado. Cuesta 2 acciones; 1 turno de enfriamiento."
-LocHelpText="Secuestra a un soldado inconsciente o desangrado. Cuesta 2 acciones; 1 turno de enfriamiento."
+LocLongDescription="Secuestra a un soldado inconsciente o desangrado. Cuesta 2 acciones; 2 turno de enfriamiento."
+LocHelpText="Secuestra a un soldado inconsciente o desangrado. Cuesta 2 acciones; 2 turno de enfriamiento."
 LocFlyOverText="Secuestrar"
 
 [ChosenKeen X2AbilityTemplate]

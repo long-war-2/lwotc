@@ -1038,7 +1038,7 @@ function bool IsEligibleForRandomStats(XComGameState_Unit Unit)
 {
 	// Note: This specifically looks for 'Soldier' and not Unit.IsSoldier() to exclude sparks. Additional character types can
 	// be re-added via the ExtraCharacterTemplatesToRandomize array.
-	return Unit.GetMyTemplateName() == 'Soldier' || ExtraCharacterTemplatesToRandomize.Find(Unit.GetMyTemplateName()) >= 0;
+	return Unit.GetMyTemplateName() == 'Soldier' || default.ExtraCharacterTemplatesToRandomize.Find(Unit.GetMyTemplateName()) >= 0;
 }
 
 function UpdateAllSoldiers_RandomizedInitialStats(XComGameState GameState)
@@ -1574,9 +1574,12 @@ static function UpdateRewardSoldierTemplates()
 	local X2RewardTemplate Template;
 
 	TemplateMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+	
+
+	//Tedster - Use this one since this gets loaded if you load a tactical save.
 
 	Template = X2RewardTemplate(TemplateMgr.FindStrategyElementTemplate('Reward_Soldier'));  
-	Template.GenerateRewardFn = class'X2StrategyElement_RandomizedSoldierRewards'.static.GeneratePersonnelReward;
+	Template.GenerateRewardFn = class'X2StrategyElement_RandomizedSoldierRewards'.static.GenerateRandomSoldierReward;
 	TemplateMgr.AddStrategyElementTemplate(Template, true);
 
 	Template = X2RewardTemplate(TemplateMgr.FindStrategyElementTemplate('Reward_Rookie')); 
@@ -1586,7 +1589,7 @@ static function UpdateRewardSoldierTemplates()
 	Template = X2RewardTemplate(TemplateMgr.FindStrategyElementTemplate('Reward_SoldierCaptured')); 
 	Template.GenerateRewardFn = class'X2StrategyElement_RandomizedSoldierRewards'.static.GenerateCouncilSoldierReward;
 	Template.GiveRewardFn = GiveCouncilSoldierReward;
-	Template.CleanUpRewardFn = class'X2StrategyElement_DefaultRewards'.static.CleanUpRewardWithoutRemoval;
+	Template.CleanUpRewardFn = class'X2StrategyElement_RandomizedSoldierRewards'.static.CleanUpUnitRewardIfDead;
 	TemplateMgr.AddStrategyElementTemplate(Template, true);
 }
 

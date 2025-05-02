@@ -56,6 +56,7 @@ static function CHEventListenerTemplate CreateXComArmoryListeners()
 	local CHEventListenerTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'XComArmoryListeners');
+	Template.AddCHEvent('UIArmory_WeaponUpgrade_SlotsUpdated', WeaponUpgrade_SlotsUpdated, ELD_Immediate, 91); // This one needs to run first
 	Template.AddCHEvent('UIArmory_WeaponUpgrade_NavHelpUpdated', OnWeaponUpgradeNavHelpUpdated, ELD_Immediate, GetListenerPriority());
 
 	Template.RegisterInStrategy = true;
@@ -75,6 +76,7 @@ static function CHEventListenerTemplate CreateCovertActionListeners()
 	Template.AddCHEvent('CovertAction_OverrideRewardScalar', CAOverrideRewardScalar, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('CovertActionCompleted', CAProcessCompletion, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('StaffUpdated', CARecalculateRisksForUI, ELD_OnStateSubmitted, GetListenerPriority());
+	Template.AddCHEvent('LWCovertActionScreenOpened', CARecalculateRisksForUI, ELD_Immediate, GetListenerPriority());
 
 	Template.RegisterInStrategy = true;
 
@@ -97,6 +99,44 @@ static protected function int GetListenerPriority()
 {
 	return default.LISTENER_PRIORITY != -1 ? default.LISTENER_PRIORITY : class'XComGameState_LWListenerManager'.default.DEFAULT_LISTENER_PRIORITY;
 }
+
+// Tedster - borrowed from Prototype Armory code
+
+static protected function EventListenerReturn WeaponUpgrade_SlotsUpdated (Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local UIDropWeaponUpgradeButton DropButton;
+	local UIArmory_WeaponUpgradeItem Slot;
+	local UIList SlotsList;
+	local UIPanel Panel;
+
+	// Only if we can reuse upgrades
+	if (!`XCOMHQ.bReuseUpgrades) return ELR_NoInterrupt;
+
+	if (`ISCONTROLLERACTIVE)
+	{
+		// We add the button only if using mouse
+		return ELR_NoInterrupt;
+	}
+
+	SlotsList = UIList(EventData);
+	if (SlotsList == none)
+	{
+		`RedScreen("Recived UIArmory_WeaponUpgrade_SlotsUpdated but data isn't UIList");
+		return ELR_NoInterrupt;
+	}
+
+	foreach SlotsList.ItemContainer.ChildPanels(Panel)
+	{
+		Slot = UIArmory_WeaponUpgradeItem(Panel);
+		if (Slot == none || Slot.UpgradeTemplate == none || Slot.bIsDisabled) continue;
+
+		DropButton = Slot.Spawn(class'UIDropWeaponUpgradeButton', Slot);
+		DropButton.InitDropButton();
+	}
+
+	return ELR_NoInterrupt;
+}
+
 
 // KDM : Listen for navigation help updates within UIArmory_WeaponUpgrade
 static function EventListenerReturn OnWeaponUpgradeNavHelpUpdated(
@@ -560,6 +600,8 @@ static function EventListenerReturn CARecalculateRisksForUI(
 	local UICovertActions CAScreen;
 	local XComGameState_CovertAction CAState;
 
+	//`LWTrace(" CARecalculateRisksForUI called");
+
 	CAScreen = UICovertActions(`SCREENSTACK.GetFirstInstanceOf(class'UICovertActions'));
 	if (CAScreen == none)
 	{
@@ -570,6 +612,9 @@ static function EventListenerReturn CARecalculateRisksForUI(
 
 	CAState = CAScreen.GetAction();
 	CAState.RecalculateRiskChanceToOccurModifiers();
+
+	// Refresh the Risks page to show the updated numbers.
+	CAScreen.RefreshRisksPanel();
 
 	return ELR_NoInterrupt;
 }

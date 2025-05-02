@@ -1,0 +1,19 @@
+[PlatedSparkHeavyArmor_LW X2SparkArmorTemplate_DLC_3]
+FriendlyName="Verstärkte schwere SPARK-Rüstung"
+BriefSummary="Eine modifizierte Version der verstärkten SPARK-Rüstung. Diese Variante tauscht Beweglichkeit gegen höhere Widerstandsfähigkeit und Feuerkraft und bietet einen Munitionsslot."
+TacticalText="<Bullet/> Erhöht Rüstung und Trefferpunkte auf Kosten von Beweglichkeit und Verteidigung.<br/><Bullet/> Verleiht der Einheit einen Munitionsslot."
+
+[PlatedSparkLightArmor_LW X2SparkArmorTemplate_DLC_3]
+FriendlyName="Verstärkte leichte SPARK-Rüstung"
+BriefSummary="Eine modifizierte Version der verstärkten SPARK-Rüstung. Diese Variante tauscht Widerstandsfähigkeit gegen höhere Beweglichkeit und gewährt die Fähigkeit 'Einsatzbereitschaft'."
+TacticalText="<Bullet/> Erhöht Beweglichkeit und Verteidigung auf Kosten von Rüstung und Trefferpunkten. Gewährt die Fähigkeit 'Einsatzbereitschaft'."
+
+[PoweredSparkHeavyArmor_LW X2SparkArmorTemplate_DLC_3]
+FriendlyName="Energiebasierte schwere SPARK-Rüstung"
+BriefSummary="Eine modifizierte Version der energiebasierten SPARK-Rüstung. Diese Variante tauscht Beweglichkeit gegen höhere Widerstandsfähigkeit und Feuerkraft und bietet einen Munitionsslot."
+TacticalText="<Bullet/> Erhöht Rüstung und Trefferpunkte auf Kosten von Beweglichkeit und Verteidigung.<Bullet/> Verleiht der Einheit einen Munitionsslot."
+
+[PoweredSparkLightArmor_LW X2SparkArmorTemplate_DLC_3]
+FriendlyName="Energiebasierte leichte SPARK-Rüstung"
+BriefSummary="Eine modifizierte Version der energiebasierten SPARK-Rüstung. Diese Variante tauscht Widerstandsfähigkeit gegen höhere Beweglichkeit und gewährt die Fähigkeit 'Einsatzbereitschaft'."
+TacticalText="<Bullet/> Erhöht Beweglichkeit und Verteidigung auf Kosten von Rüstung und Trefferpunkten. Gewährt die Fähigkeit 'Einsatzbereitschaft'."

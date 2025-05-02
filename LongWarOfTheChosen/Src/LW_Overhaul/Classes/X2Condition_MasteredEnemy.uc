@@ -16,7 +16,7 @@ event name CallMeetsCondition(XComGameState_BaseObject kTarget)
 		return 'AA_NotAUnit';
 
 	// If this unit is not mind-controlled, or is affected by permanent override we're good.
-	if (UnitState.AffectedByEffectNames.Find('FullOverride') == -1 ||
+	if (UnitState.AffectedByEffectNames.Find('FullOverrideMC') == -1 ||
 		UnitState.AffectedByEffectNames.Find(class'X2Effect_TransferMecToOutpost'.default.EffectName) != -1)
 	{
 		return 'AA_Success';

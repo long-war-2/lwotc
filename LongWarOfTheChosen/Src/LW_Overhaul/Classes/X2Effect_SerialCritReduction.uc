@@ -16,7 +16,7 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 	AimReduction = AimReductionPerKill * UnitVal.fValue;
 
     SourceWeapon = AbilityState.GetSourceWeapon();
-    if(SourceWeapon != none)
+    if(SourceWeapon != none && SourceWeapon.ObjectId == Attacker.GetPrimaryWeapon().ObjectID)
     {
         ModInfo.ModType = eHit_Crit;
         ModInfo.Reason = FriendlyName;
@@ -35,7 +35,9 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 {
 	local UnitValue UnitVal;
 
-	Attacker.GetUnitValue ('SerialKills', UnitVal);
+    // Short circuit if no hit
+    if (!class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult) || CurrentDamage == 0)
+		return 0;
 
     // Only apply to primary weapon
     if (AbilityState.SourceWeapon.ObjectID != Attacker.GetPrimaryWeapon().ObjectID)
@@ -43,7 +45,8 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 
 	if (Damage_Falloff)
 	{
-		return -int(UnitVal.fValue);
+        Attacker.GetUnitValue ('SerialKills', UnitVal);
+        return max(-int(UnitVal.fValue), (-CurrentDamage + 1));
 	}
 	return 0;
 }

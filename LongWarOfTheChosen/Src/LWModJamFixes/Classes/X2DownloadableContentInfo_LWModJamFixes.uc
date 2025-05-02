@@ -20,6 +20,7 @@ static event OnPostTemplatesCreated()
     FixAssaultMecCCS(AbilityTemplateManager.FindAbilityTemplate('AssaultMecCCS'));
     FixPrototypeKineticDrivers(AbilityTemplateManager.FindAbilityTemplate('PrototypeKineticDrivers'));
     FixIronCurtain(AbilityTemplateManager.FindAbilityTemplate('IronCurtain'));
+    PatchLTTCooldown(AbilityTemplateManager.FindAbilityTemplate('LeadTheTarget_LW'));
 }
 
 static function PatchSolaceBack(X2AbilityTemplate Template)
@@ -119,7 +120,7 @@ static function FixPrototypeKineticDrivers(X2AbilityTemplate Template)
     }
 }
 
-// Swap their targeting to LW's more forgiving targeting
+// Kiruka added a cost to something she shouldn't have one (a hidden damage modifier passive), so let's nuke it.
 static function FixIronCurtain(X2AbilityTemplate Template)
 {
     if(Template != none)
@@ -128,3 +129,10 @@ static function FixIronCurtain(X2AbilityTemplate Template)
     }
 }
 
+static function PatchLTTCooldown(X2AbilityTemplate Template)
+{
+    if(Template != none)
+    {
+        Template.AbilityCooldown.inumTurns = class'X2Ability_XMBPerkAbilitySet'.default.LEAD_TARGET_COOLDOWN;
+    }
+}

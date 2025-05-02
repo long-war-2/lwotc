@@ -24,6 +24,9 @@ var localized string CRIT_CHANCE_MSG;
 var localized string DODGE_CHANCE_MSG;
 var localized string MISS_CHANCE_MSG;
 
+var config(SniperDefense) bool EnableMissedShotAlert;
+var config(SniperDefense) float MissShotAlertChance;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -75,6 +78,7 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	Template.AddCHEvent('OverrideR3Button', BindR3ToPlaceDelayedEvacZone, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('OverrideDamageRemovesReserveActionPoints', OnOverrideDamageRemovesReserveActionPoints, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('ShouldUnitPatrolUnderway', OnShouldUnitPatrol, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('AbilityActivated', OnSniperAbilityActivated, ELD_OnStateSubmitted);
 	// This seems to be causing stutter in the game, so commenting out for now.
 	// if (XCom_Perfect_Information_UIScreenListener.default.ENABLE_PERFECT_INFORMATION)
 	// {
@@ -623,7 +627,7 @@ static function EventListenerReturn OnCleanupTacticalMission(Object EventData, O
 	// transferred to a haven.
 	AwardWrecks = BattleData.AllTacticalObjectivesCompleted();
 
-    if (AwardWrecks)
+    if (AwardWrecks && !class'Helpers_LW'.default.bDudeWheresMyLootActive)
     {
         // If we have completed the tactical objectives (e.g. sweep) we are collecting corpses.
         // Generate wrecks for each of the turrets left on the map that XCOM didn't kill before
@@ -635,7 +639,9 @@ static function EventListenerReturn OnCleanupTacticalMission(Object EventData, O
                 // We can't call the RollForAutoLoot() function here because we have a pending
                 // gamestate with a modified BattleData already. Just add a corpse to the list
                 // of pending auto loot.
-                BattleData.AutoLootBucket.AddItem('CorpseAdventTurret');
+
+				// The above lies apparently per Zelfana and this works
+                Unit.RollForAutoLoot(NewGameState);
             }
         }
     }
@@ -709,7 +715,7 @@ static function EventListenerReturn OnCleanupTacticalMission(Object EventData, O
 					X2Effect_GreaterPadding(EffectState.GetX2Effect()).ApplyGreaterPadding(EffectState, Unit, NewGameState);
 				}
 					
-				else if (EffectState.GetX2Effect().EffectName == 'FullOverride' && AwardWrecks)
+				else if (!class'Helpers_LW'.default.bDudeWheresMyLootActive && EffectState.GetX2Effect().EffectName == class'X2Effect_MindControl'.default.EffectName && AwardWrecks)
 				{
 					Unit.RollForAutoLoot(NewGameState);
 
@@ -901,58 +907,74 @@ static function EventListenerReturn OnAbilityActivated(Object EventData, Object 
 	local float DetectionRadius;
 	local int Modifier;
 
+
+	if(GameState.GetContext().InterruptionStatus == eInterruptionStatus_Interrupt)
+	{
+		return ELR_NoInterrupt;
+	}
 	//ActivatedAbilityStateContext = XComGameStateContext_Ability(GameState.GetContext());
 	ActivatedAbilityState = XComGameState_Ability(EventData);
 	UnitState = XComGameState_Unit(EventSource);
 	if (ActivatedAbilityState.GetMyTemplate().DataName == 'RedAlert')
 	{
-		`LWTrace("Max detection radius for " $ UnitState.GetMyTemplateName() $ " = " $UnitState.GetMaxStat(eStat_DetectionRadius));
-		`LWTrace("Current detection radius for " $ UnitState.GetMyTemplateName() $ " = " $UnitState.GetCurrentStat(eStat_DetectionRadius));
-		DetectionRadius = UnitState.GetBaseStat(eStat_DetectionRadius);
-
-		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("On Red Alert Activated");
-		UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
-
-		Modifier = default.RED_ALERT_DETECTION_DIFFICULTY_MODIFIER[`TACTICALDIFFICULTYSETTING];
-		if (class'Utilities_LW'.static.GetPreviousAlertLevel(UnitState) == `ALERT_LEVEL_YELLOW)
+		// Check to make sure we haven't already increased this unit's detection because of Red Alert
+		if(class'Utilities_LW'.static.GetUnitValue(UnitState, 'LWRedAlertDetectionIncreased') < 1.0)
 		{
-			// If the unit was previously in yellow alert, then its detection radius
-			// already has that modifier applied, so don't apply it twice!
-			Modifier -= default.YELLOW_ALERT_DETECTION_DIFFICULTY_MODIFIER[`TACTICALDIFFICULTYSETTING];
+			`LWTrace("Max detection radius for " $ UnitState.GetMyTemplateName() $ " = " $UnitState.GetMaxStat(eStat_DetectionRadius));
+			`LWTrace("Current detection radius for " $ UnitState.GetMyTemplateName() $ " = " $UnitState.GetCurrentStat(eStat_DetectionRadius));
+			DetectionRadius = UnitState.GetBaseStat(eStat_DetectionRadius);
+
+			NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("On Red Alert Activated");
+			UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
+
+			Modifier = default.RED_ALERT_DETECTION_DIFFICULTY_MODIFIER[`TACTICALDIFFICULTYSETTING];
+			if (class'Utilities_LW'.static.GetPreviousAlertLevel(UnitState) == `ALERT_LEVEL_YELLOW)
+			{
+				// If the unit was previously in yellow alert, then its detection radius
+				// already has that modifier applied, so don't apply it twice!
+				Modifier -= default.YELLOW_ALERT_DETECTION_DIFFICULTY_MODIFIER[`TACTICALDIFFICULTYSETTING];
+			}
+
+			`LWTrace("[Red Alert] Modifying detection radius for " $ UnitState.GetMyTemplateName() $ " to " $ int(DetectionRadius + Modifier));
+			UnitState.SetBaseMaxStat(eStat_DetectionRadius, int(DetectionRadius + Modifier));
+
+			UnitState.SetUnitFloatValue('LWRedAlertDetectionIncreased', 1.0, eCleanup_BeginTactical);
+
+			Reinforcements = XComGameState_LWReinforcements(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_LWReinforcements', true));
+			if (Reinforcements != none && !Reinforcements.RedAlertTriggered)
+			{
+				Reinforcements = XComGameState_LWReinforcements(NewGameState.ModifyStateObject(class'XComGameState_LWReinforcements', Reinforcements.ObjectID));
+				Reinforcements.RedAlertTriggered = true;
+			}
+
+			// Clear the stat restoration effect that gets applied when units enter
+			// red or yellow alert, since it overrides the sight radius changes applied
+			// by the Low Visibility sit rep.
+			RemoveSightRadiusRestorationEffect(UnitState, NewGameState);
 		}
-
-		`LWTrace("[Red Alert] Modifying detection radius for " $ UnitState.GetMyTemplateName() $ " to " $ int(DetectionRadius + Modifier));
-		UnitState.SetBaseMaxStat(eStat_DetectionRadius, int(DetectionRadius + Modifier));
-
-		Reinforcements = XComGameState_LWReinforcements(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_LWReinforcements', true));
-		if (Reinforcements != none && !Reinforcements.RedAlertTriggered)
-		{
-			Reinforcements = XComGameState_LWReinforcements(NewGameState.ModifyStateObject(class'XComGameState_LWReinforcements', Reinforcements.ObjectID));
-			Reinforcements.RedAlertTriggered = true;
-		}
-
-		// Clear the stat restoration effect that gets applied when units enter
-		// red or yellow alert, since it overrides the sight radius changes applied
-		// by the Low Visibility sit rep.
-		RemoveSightRadiusRestorationEffect(UnitState, NewGameState);
 
 		`TACTICALRULES.SubmitGameState(NewGameState);
 	}
 	else if (ActivatedAbilityState.GetMyTemplate().DataName == 'YellowAlert')
 	{
-		DetectionRadius = UnitState.GetBaseStat(eStat_DetectionRadius);
+		// Check to see if we've already increased this unit's detection because of Yellow Alert
+		if(class'Utilities_LW'.static.GetUnitValue(UnitState, 'LWYellowAlertDetectionIncreased') < 1.0)
+		{
+			DetectionRadius = UnitState.GetBaseStat(eStat_DetectionRadius);
 
-		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("On Yellow Alert Activated");
-		UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
+			NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("On Yellow Alert Activated");
+			UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
 
-		`LWTrace("[Yellow Alert] Modifying detection radius for " $ UnitState.GetMyTemplateName() $
-			" to " $ int(DetectionRadius + default.YELLOW_ALERT_DETECTION_DIFFICULTY_MODIFIER[`TACTICALDIFFICULTYSETTING]));
-		UnitState.SetBaseMaxStat(eStat_DetectionRadius, int(DetectionRadius + default.YELLOW_ALERT_DETECTION_DIFFICULTY_MODIFIER[`TACTICALDIFFICULTYSETTING]));
-
-		// Clear the stat restoration effect that gets applied when units enter
-		// red or yellow alert, since it overrides the sight radius changes applied
-		// by the Low Visibility sit rep.
-		RemoveSightRadiusRestorationEffect(UnitState, NewGameState);
+			`LWTrace("[Yellow Alert] Modifying detection radius for " $ UnitState.GetMyTemplateName() $
+				" to " $ int(DetectionRadius + default.YELLOW_ALERT_DETECTION_DIFFICULTY_MODIFIER[`TACTICALDIFFICULTYSETTING]));
+			UnitState.SetBaseMaxStat(eStat_DetectionRadius, int(DetectionRadius + default.YELLOW_ALERT_DETECTION_DIFFICULTY_MODIFIER[`TACTICALDIFFICULTYSETTING]));
+		
+			UnitState.SetUnitFloatValue('LWYellowAlertDetectionIncreased', 1.0, eCleanup_BeginTactical);
+			// Clear the stat restoration effect that gets applied when units enter
+			// red or yellow alert, since it overrides the sight radius changes applied
+			// by the Low Visibility sit rep.
+			RemoveSightRadiusRestorationEffect(UnitState, NewGameState);
+		}
 
 		`TACTICALRULES.SubmitGameState(NewGameState);
 	}
@@ -1322,6 +1344,61 @@ static function EventListenerReturn OnShouldUnitPatrol(Object EventData, Object 
 			{
 				`LWTrace("overriding patrol behavior.");
 				OverrideTuple.Data[0].b = true;
+			}
+		}
+	}
+	return ELR_NoInterrupt;
+}
+
+//Turns missed shots from abilities that target enemy units into a UnitAGainsKnowledgeOfUnitB alert for the targeted unit. 
+//This is primarily to alert enemy units that they are being shot at by a unit from squad sight range.
+static function EventListenerReturn OnSniperAbilityActivated(Object EventData, Object EventSource, XComGameState GameState, Name Event, Object CallbackData)
+{
+	local XComGameState_Ability ActivatedAbilityState;
+	local XComGameStateContext_Ability ActivatedAbilityStateContext;
+	local XComGameState_Unit SourceUnitState, TargetedUnitState;
+	local XComGameState_Item WeaponState;
+	local int SoundRange, nEnemiesVisible;
+	local XComGameStateHistory History;
+	local XComGameState_Unit ThisUnitState;
+	local float Roll;
+
+	ActivatedAbilityStateContext = XComGameStateContext_Ability(GameState.GetContext());
+
+	// do not process concealment breaks or AI alerts during interrupt processing or if this option is disabled in the sniper defense config
+	if(!default.EnableMissedShotAlert || ActivatedAbilityStateContext.InterruptionStatus == eInterruptionStatus_Interrupt)
+	{
+		return ELR_NoInterrupt;
+	}
+
+	History = `XCOMHISTORY;
+	ThisUnitState = XComGameState_Unit(EventSource);
+	ActivatedAbilityState = XComGameState_Ability(EventData);
+
+	if(ActivatedAbilityState.DoesAbilityCauseSound())
+	{
+		if(ActivatedAbilityStateContext != None && ActivatedAbilityStateContext.InputContext.ItemObject.ObjectID > 0)
+		{
+			SourceUnitState = XComGameState_Unit(History.GetGameStateForObjectID(ActivatedAbilityStateContext.InputContext.SourceObject.ObjectID));
+			WeaponState = XComGameState_Item(GameState.GetGameStateForObjectID(ActivatedAbilityStateContext.InputContext.ItemObject.ObjectID));
+			TargetedUnitState = XComGameState_Unit(History.GetGameStateForObjectID(ActivatedAbilityStateContext.InputContext.PrimaryTarget.ObjectID));
+            SoundRange = WeaponState.GetItemSoundRange();
+
+            if(SoundRange > 0 && TargetedUnitState.ObjectID > 0 && WeaponState.SoundOriginatesFromOwnerLocation() && !SourceUnitState.ControllingPlayerIsAI())//There is a valid target and the Unit firing is player controlled
+			{			
+				`Log(SourceUnitState.GetSoldierClassTemplateName() @ "Weapon sound generated by XCom:" @ ActivatedAbilityState.GetMyTemplateName());
+				nEnemiesVisible = TargetedUnitState.GetNumVisibleEnemyUnits(true, true,,,,, false);
+				if(nEnemiesVisible == 0) //No visible enemies than this is a concealed spotter/sniper shot 
+				{
+					Roll = `SYNC_FRAND_STATIC();	
+					`Log("Roll to alert unit " @TargetedUnitState.ObjectID@ " taking sniper fire from " @ SourceUnitState.ObjectID @ "using sniper defense: " @ Roll @ " < "@ default.MissShotAlertChance);
+					if(Roll < default.MissShotAlertChance)
+					{
+						// No New Gamestate is needed here because UnitAGainsKnowldegeOfUnitB calls UpdateAlertData on the unit which actually handles submitting the gamestate.
+						ThisUnitState.UnitAGainsKnowledgeOfUnitB(TargetedUnitState, SourceUnitState, GameState, eAC_TakingFire, false);
+					}
+				}
+
 			}
 		}
 	}

@@ -47,7 +47,8 @@
         "Obj_ChosenShowdown_LW",
         "UMS_MissionCore_LW",
         "UMS_MissionCore_LW_LW",
-        "Obj_CompoundRescueOperative_LW"
+        "Obj_CompoundRescueOperative_LW",
+        "XComShell_Wilderness_PsiGate_LW"
     ],
     "sfStandalone": [
         "AdvGrenadeLauncher",

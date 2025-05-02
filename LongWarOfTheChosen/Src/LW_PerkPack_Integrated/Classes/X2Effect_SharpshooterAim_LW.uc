@@ -35,6 +35,25 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 	}
 }
 
+static function X2Effect_SharpshooterAim_LW SharpshooterAimEffect()
+{
+    local X2Effect_SharpshooterAim_LW   AimEffect;
+    local X2Condition_AbilityProperty   AbilityCondition;
+
+    AimEffect = new class'X2Effect_SharpshooterAim_LW';
+    AimEffect.BuildPersistentEffect(2, false, true, false, eGameRule_PlayerTurnEnd);
+    AimEffect.SetDisplayInfo(ePerkBuff_Bonus,
+        class'X2Ability_SharpshooterAbilitySet'.default.SharpshooterAimBonusName,
+        class'X2Ability_SharpshooterAbilitySet'.default.SharpshooterAimBonusDesc,
+        "img:///UILibrary_PerkIcons.UIPerk_aim");
+
+    AbilityCondition = new class'X2Condition_AbilityProperty';
+    AbilityCondition.OwnerHasSoldierAbilities.AddItem('SharpshooterAim');
+    AimEffect.TargetConditions.AddItem(AbilityCondition);
+
+    return AimEffect;
+}
+
 DefaultProperties
 {
 	DuplicateResponse = eDupe_Refresh           //  if you keep using hunker down, just extend the lifetime of the effect

@@ -1,3 +1,12 @@
 [Firebrand_Arrived_01 SoundNodeWave]
 SpokenText="这里是红恶魔，该走了。"
 
+[ResCard_Scavengers X2StrategyCardTemplate]
++DisplayName="一丝不落"
++SummaryText="从扫描节点获得的资源奖励翻倍。"
++QuoteText="有时候我们的大收获都来自旧城区的扫描节点。"
++QuoteTextAuthor="沃尔克"
+
+[UIAlert]
++m_strPOITitle="反抗军发现的扫描节点"
+

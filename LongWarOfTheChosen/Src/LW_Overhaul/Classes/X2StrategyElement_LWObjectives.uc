@@ -163,7 +163,20 @@ static function X2DataTemplate CreateLW_T2_M0_S5_CompleteActivityTemplate()
 	Template.NextObjectives.AddItem('LW_T2_M1_N2_RevealAvatarProject');
 	Template.CompletionEvent = 'RegionLiberatedFlagSet';
 	Template.InProgressFn = AnyProtectRegion3ActivityVisible;
+	Template.CompleteObjectiveFn = TriggerStartAvatarProject;
 	return Template;
+}
+
+static function TriggerStartAvatarProject(XComGameState NewGameState, XComGameState_Objective ObjectiveState)
+{
+	local XComGameState_HeadquartersAlien AlienHQ;
+	`LWTrace("Trigger start avatar project reveal from region lib.");
+
+	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
+
+	class'XComGameState_Objective'.static.StartObjectiveByName(NewGameState, 'LW_T2_M1_N2_RevealAvatarProject');
+	`XEVENTMGR.TriggerEvent('StartAvatarProjectReveal', , ,NewGameState);
 }
 
 function bool AnyProtectRegion3ActivityVisible()

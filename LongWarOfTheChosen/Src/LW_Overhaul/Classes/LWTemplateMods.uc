@@ -234,6 +234,7 @@ var config bool SERIAL_DAMAGE_FALLOFF;
 var config int FUSION_SWORD_FIRE_CHANCE;
 var config int KILLZONE_CONE_LENGTH;
 var config int KILLZONE_CONE_WIDTH;
+var config int BLUESCREEN_DISORIENT_CHANCE;
 
 var config int WORKSHOP_ENG_BONUS;
 
@@ -317,6 +318,8 @@ var config WeaponDamageValue WARLOCKPSIM4_BASEDAMAGE;
 var config WeaponDamageValue WARLOCKPSIM5_BASEDAMAGE;
 
 var config array<name> AbilitiesToFixStun;
+
+var config array<Name> SparkRelatedItems;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -472,9 +475,9 @@ function GenerateRandomSoldierReward(XComGameState_Reward RewardState, XComGameS
 	local XComGameStateHistory History;
 	local XComGameState_Unit NewUnitState;
 	local XComGameState_WorldRegion RegionState;
-	local int idx, NewRank;
-	local name nmCountry, SelectedClass;
-	local array<name> arrActiveTemplates;
+	local int idx, i, NewRank;
+	local name nmCountry, SelectedClass, NeededClass;
+	local array<name> arrActiveTemplates, NeededClasses;
 	local X2SoldierClassTemplateManager ClassMgr;
 	local array<X2SoldierClassTemplate> arrClassTemplates;
 	local X2SoldierClassTemplate ClassTemplate;
@@ -483,6 +486,8 @@ function GenerateRandomSoldierReward(XComGameState_Reward RewardState, XComGameS
 	History = `XCOMHISTORY;
 	nmCountry = '';
 	RegionState = XComGameState_WorldRegion(History.GetGameStateForObjectID(RegionRef.ObjectID));
+
+	`LWTrace("LW GenerateRandomSoldierReward firing");
 
 	if(RegionState != none)
 	{
@@ -508,9 +513,28 @@ function GenerateRandomSoldierReward(XComGameState_Reward RewardState, XComGameS
 	{
 		if (ClassTemplate.NuminDeck > 0)
 		{
-			arrActiveTemplates.AddItem(ClassTemplate.DataName);
+			for(i = 0; i < ClassTemplate.NumInDeck; ++i)
+			{
+				arrActiveTemplates.AddItem(ClassTemplate.DataName);
+			}
 		}
 	}
+	// weight towards needed ones by adding to deck.
+	NeededClasses = `XCOMHQ.GetNeededSoldierClasses();
+
+	foreach NeededClasses (NeededClass)
+	{
+		ClassTemplate = ClassMgr.FindSoldierClassTemplate(NeededClass);
+
+		if (ClassTemplate.NuminDeck > 0)
+		{
+			for(i = 0; i < ClassTemplate.NumInDeck; ++i)
+			{
+				arrActiveTemplates.AddItem(ClassTemplate.DataName);
+			}
+		}
+	}
+
 	if (arrActiveTemplates.length > 0)
 	{
 		SelectedClass = arrActiveTemplates[`SYNC_RAND(arrActiveTemplates.length)];
@@ -549,6 +573,11 @@ function GenerateRandomSoldierReward(XComGameState_Reward RewardState, XComGameS
 			NewUnitState.RankUpSoldier(NewGameState, NewUnitState.GetSoldierClassTemplate().DataName);
 		}
 	}   
+
+	`XEVENTMGR.TriggerEvent('RewardUnitGenerated', NewUnitState, NewUnitState);
+
+	`LWTrace("RewardUnitGenerated fired");
+
 	RewardState.RewardObjectReference = NewUnitState.GetReference();
 }
 
@@ -579,6 +608,7 @@ function UpdateRewardTemplate(X2StrategyElementTemplate Template, int Difficulty
 		case 'Reward_RescueSoldier':
 			RewardTemplate.IsRewardAvailableFn = IsRescueSoldierRewardAvailableFixed;
 			RewardTemplate.GenerateRewardFn = GenerateRescueSoldierRewardFixed;
+			RewardTemplate.CleanupRewardFn = class'X2StrategyElement_RandomizedSoldierRewards'.static.CleanUpUnitRewardIfDead;
 			break;
 		default:
 			break;
@@ -604,6 +634,8 @@ static function bool IsFacilityLeadRewardAvailableUpdated(
 	local XComGameStateHistory History;
 	local XComGameState_MissionSite MissionState;
 	local int numActivities;
+	local XComGameState_LWAlienActivity ActivityState;
+	local array<XComGameState_LWAlienActivity> ActivityStates;
 
 	History = `XCOMHISTORY;
 	foreach History.IterateByClassType(class'XComGameState_MissionSite', MissionState)
@@ -613,6 +645,21 @@ static function bool IsFacilityLeadRewardAvailableUpdated(
 			numActivities++;
 		}
 	}
+
+	// Check for existing LW activities
+
+	ActivityStates = class'XComGameState_LWAlienActivityManager'.static.GetAllActivities(NewGameState);
+	foreach ActivityStates(ActivityState)
+	{
+		if(ActivityState.GetMyTemplateName() == class'X2StrategyElement_DefaultAlienActivities'.default.ProtectResearchName)
+		{
+			numActivities--;
+		}
+	}
+
+	// Remove facility leads that XCOM already has
+
+	numActivities -= `XCOMHQ.GetNumItemInInventory('FacilityLeadItem');
 
 	return (numActivities > 0);
 }
@@ -971,7 +1018,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	local X2Condition_AbilityProperty		AbilityCondition;
 	local X2Effect_RemoveEffectsByDamageType RemoveEffects;
 	local name 								HealType, AbilityName;
-	local X2Effect_SharpshooterAim_LW   	AimEffect;
+	//local X2Effect_SharpshooterAim_LW   	AimEffect;
 	local X2AbilityCooldown_Shared			CooldownShared;
 	local X2AbilityMultiTarget_Cone			ConeMultiTarget;
 	local X2AbilityCooldown_AllInstances 	AllInstancesCooldown;
@@ -1228,9 +1275,11 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			ActionPointCost = X2AbilityCost_ActionPoints(Template.AbilityCosts[k]);
 			if (ActionPointCost != none)
 			{
-				X2AbilityCost_ActionPoints(Template.AbilityCosts[k]).iNumPoints = default.CONCEAL_ACTION_POINTS;
-				X2AbilityCost_ActionPoints(Template.AbilityCosts[k]).bConsumeAllPoints = default.CONCEAL_ENDS_TURN;
-				X2AbilityCost_ActionPoints(Template.AbilityCosts[k]).bFreeCost = false;
+				ActionPointCost = new class'X2AbilityCost_ActionPoints'(ActionPointCost);
+				ActionPointCost.iNumPoints = default.CONCEAL_ACTION_POINTS;
+				ActionPointCost.bConsumeAllPoints = default.CONCEAL_ENDS_TURN;
+				ActionPointCost.bFreeCost = false;
+				Template.AbilityCosts[k] = ActionPointCost;
 			}
 		}
 	}
@@ -1726,7 +1775,18 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 
 	if (Template.DataName == 'HunkerDown')
 	{
-		Template.AbilityTargetEffects.length = 0;
+		for (k = Template.AbilityTargetEffects.Length - 1; k >= 0; k--)
+        {
+            if (ClassIsChildOf(Template.AbilityTargetEffects[k].Class, class'X2Effect_PersistentStatChange') && X2Effect_Persistent(Template.AbilityTargetEffects[k]).EffectName == 'HunkerDown')
+            {
+                Template.AbilityTargetEffects.Remove(k, 1);
+            }
+			else if(ClassIsChildOf(Template.AbilityTargetEffects[k].Class, class'X2Effect_RemoveEffects'))
+			{
+                Template.AbilityTargetEffects.Remove(k, 1);
+            }
+        }
+		
 		HunkerDownEffect = new class 'X2Effect_HunkerDown_LW';
 		HunkerDownEffect.EffectName = 'HunkerDown';
 		HunkerDownEffect.DuplicateResponse = eDupe_Refresh;
@@ -1734,16 +1794,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		HunkerDownEffect.SetDisplayInfo (ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage);
 		Template.AddTargetEffect(HunkerDownEffect);
 
-		//Replace the Aim effect with a LW one
-		AimEffect = new class'X2Effect_SharpshooterAim_LW';
-		AimEffect.BuildPersistentEffect(2, false, true, false, eGameRule_PlayerTurnEnd);
-		AimEffect.SetDisplayInfo(ePerkBuff_Bonus, class'X2Ability_SharpshooterAbilitySet'.default.SharpshooterAimBonusName, class'X2Ability_SharpshooterAbilitySet'.default.SharpshooterAimBonusDesc, "img:///UILibrary_PerkIcons.UIPerk_aim");
-	
-		AbilityCondition = new class'X2Condition_AbilityProperty';
-		AbilityCondition.OwnerHasSoldierAbilities.AddItem('SharpshooterAim');
-		AimEffect.TargetConditions.AddItem(AbilityCondition);
-
-		Template.AddTargetEffect(AimEffect);
+		// Aim effect moved to OPTC_SharpshooterAim
 	}
 
 	if (Template.DataName == 'Fuse' && default.FUSE_COOLDOWN > 0)
@@ -2611,6 +2662,8 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 	local X2GremlinTemplate GremlinTemplate;
 	local delegate<X2StrategyGameRulesetDataStructures.SpecialRequirementsDelegate> SpecialRequirement;
 	local X2Effect_Persistent Effect;
+	local X2Condition_UnitProperty Condition_UnitProperty;
+	local X2Effect_PersistentStatChange DisorientEffect;
 	local UIStatMarkup Markup;
 	// Reconfig Weapons and Weapon Schematics
 	WeaponTemplate = X2WeaponTemplate(Template);
@@ -3018,7 +3071,27 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		{
 			if (EquipmentTemplate.Abilities.Find('Bluescreen_Rounds_Ability_PP') == -1)
 			{
-				EquipmentTemplate.Abilities.AddItem('BluescreenRoundsDisorient');
+				DisorientEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect(,,false);
+
+				for (k = 0; k < DisorientEffect.TargetConditions.Length; k++)
+   				{
+        			// Modify the existing condition the helper creates, which applies only to organics
+        			Condition_UnitProperty = X2Condition_UnitProperty(DisorientEffect.TargetConditions[k]);
+        			if (Condition_UnitProperty != none)
+        			{
+            			Condition_UnitProperty.ExcludeOrganic = true;
+            			Condition_UnitProperty.ExcludeRobotic = false;
+            			Condition_UnitProperty.IncludeWeakAgainstTechLikeRobot = true;
+						Condition_UnitProperty.TreatMindControlledSquadmateAsHostile = true;
+   						Condition_UnitProperty.FailOnNonUnits = true;
+            			break;
+        			}
+    			}
+				// Disorient chance here
+				DisorientEffect.ApplyChance = default.BLUESCREEN_DISORIENT_CHANCE;
+
+				X2AmmoTemplate(EquipmentTemplate).TargetEffects.AddItem(DisorientEffect);
+
 				EquipmentTemplate.Abilities.AddItem('Bluescreen_Rounds_Ability_PP');
 			}
 		}
@@ -3310,23 +3383,18 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 					}
 				}
 
-				switch (EquipmentTemplate.DataName)
-				{
-					//special handling for SLG DLC items
-					case 'SparkRifle_MG':
-					case 'SparkRifle_BM':
-					case 'PlatedSparkArmor':
-					case 'PoweredSparkArmor':
-					case 'SparkBit_MG':
-					case 'SparkBit_BM':
-						AltReq.SpecialRequirementsFn = class'LWDLCHelpers'.static.IsLostTowersNarrativeContentComplete;
-						if (ItemTable[i].RequiredTech1 != '')
-							AltReq.RequiredTechs.AddItem(ItemTable[i].RequiredTech1);
-						Template.AlternateRequirements.AddItem(AltReq);
-						break;
+				// Improved SPARK item handling. In ItemTable, make sure MechanizedWarfare is in RequiredTech2
 
-					default:
-						break;
+				if(default.SparkRelatedItems.Find(EquipmentTemplate.DataName) != INDEX_NONE)
+				{
+					AltReq.SpecialRequirementsFn = class'LWDLCHelpers'.static.IsLostTowersNarrativeContentComplete;
+					if (ItemTable[i].RequiredTech1 != '')
+					{
+						AltReq.RequiredTechs.AddItem(ItemTable[i].RequiredTech1);
+					}
+
+					`LWTrace("Adding Alt Lost Towers Narrative Requirement to" @EquipmentTemplate.DataName);
+					Template.AlternateRequirements.AddItem(AltReq);
 				}
 
 				// Bit abilities:
@@ -3901,7 +3969,7 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 			{
 				FacilityTemplate.SoldierUnlockTemplates.AddItem('VultureUnlock');
 			}
-			//FacilityTemplate.SoldierUnlockTemplates.AddItem('VengeanceUnlock');
+			FacilityTemplate.SoldierUnlockTemplates.AddItem('VengeanceUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('WetWorkUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('LightningStrikeUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('IntegratedWarfareUnlock');

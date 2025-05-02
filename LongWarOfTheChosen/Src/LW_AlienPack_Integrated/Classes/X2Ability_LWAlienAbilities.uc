@@ -574,7 +574,7 @@ static function X2AbilityTemplate AddDroneMeleeStun()
 
 	// Target Conditions
 	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitOnlyProperty); // changed to disallow environmental objects, since nothing will happen
-	Template.AbilityTargetConditions.AddItem(default.MeleeVisibilityCondition);
+	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
 	AdjacencyCondition = new class'X2Condition_UnitProperty';
 	AdjacencyCondition.RequireWithinRange = true;
 	AdjacencyCondition.ExcludeStunned = true;
@@ -1063,18 +1063,20 @@ simulated function ReadyForAnything_BuildVisualization(XComGameState VisualizeGa
 	local X2Action_PlaySoundAndFlyOver	SoundAndFlyOver;
 	local StateObjectReference			InteractingUnitRef;
 	local XComGameState_Ability			Ability;
+	local XComGameState_Unit			UnitState;
 
 	History = `XCOMHISTORY;
 	context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
 	InteractingUnitRef = Context.InputContext.SourceObject;
 	Ability = XComGameState_Ability(History.GetGameStateForObjectID(context.InputContext.AbilityRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
+	UnitState = XComGameState_Unit(History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference));
 	BuildTrack = EmptyTrack;
 	BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
 	BuildTrack.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
 	BuildTrack.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
-
+	
 	SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
-	SoundAndFlyOver.SetSoundAndFlyOverParameters(SoundCue'SoundUI.OverWatchCue', Ability.GetMyTemplate().LocFlyOverText, '', eColor_Alien, "img:///UILibrary_PerkIcons.UIPerk_overwatch");
+	SoundAndFlyOver.SetSoundAndFlyOverParameters(SoundCue'SoundUI.OverWatchCue', Ability.GetMyTemplate().LocFlyOverText, '', (UnitState.GetTeam() == eTeam_XCom)? eColor_Good : eColor_Alien, "img:///UILibrary_PerkIcons.UIPerk_overwatch");
 }
 
 static function X2AbilityTemplate CreateChryssalidSoldierSlashAbility()

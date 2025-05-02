@@ -28,6 +28,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	return AIComponents;
 }
 
+// This function isn't actually used anywhere and wasn't used anywhere, and not adding it because current avatar balance is fine.
 static function ModifyAddFortressDoomTemplate()
 {
 	local X2StrategyElementTemplateManager TemplateMgr;
@@ -70,7 +71,7 @@ static function AddFortressDoom()
 
 	if(MissionState.Doom >= 2)
 	{
-		`LWTrace("Triggering Avatar Project reveal...");
+		`LWTrace("LW Doom counter triggering Avatar Project reveal...");
 		class'XComGameState_Objective'.static.StartObjectiveByName(NewGameState, 'LW_T2_M1_N2_RevealAvatarProject');
 		`XEVENTMGR.TriggerEvent('StartAvatarProjectReveal');
 	}

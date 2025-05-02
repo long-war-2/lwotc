@@ -11,13 +11,16 @@ var config int BLOODTHIRST_T3_DMG;
 var config int BLOODTHIRST_T4_DMG;
 var config int BLOODTHIRST_T5_DMG;
 
-function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, optional XComGameState NewGameState)
+function float GetPreDefaultAttackingDamageModifier_CH(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, float CurrentDamage, X2Effect_ApplyWeaponDamage WeaponDamageEffect, XComGameState NewGameState)
 {
 	local XComGameState_Unit TargetUnit;
 	local XComGameState_Item SourceWeapon;
 	local XComGameStateHistory History;
  
 	History = `XCOMHISTORY;
+
+	if (!class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult) || CurrentDamage == 0)
+		return 0;
 
 	if (AbilityState.SourceWeapon == EffectState.ApplyEffectParameters.ItemStateObjectRef)
 	{

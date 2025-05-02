@@ -32,7 +32,7 @@ function float GetPostDefaultDefendingDamageModifier_CH(
 		bIsMeleeDamage = true;
 
 	// Exclude DOT effects and anything else that ignores base weapon damage
-	if (WeaponDamageEffect != none && WeaponDamageEffect.bIgnoreBaseDamage)
+	if (WeaponDamageEffect != none && WeaponDamageEffect.bIgnoreBaseDamage || !class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult))
 	{
 		return 0;
 	}

@@ -195,6 +195,7 @@ static event InstallNewCampaign(XComGameState StartState)
 	class'XComGameState_LWAlienActivityManager'.static.CreateAlienActivityManager(StartState);
 	class'XComGameState_WorldRegion_LWStrategyAI'.static.InitializeRegionalAIs(StartState);
 	class'XComGameState_LWOverhaulOptions'.static.CreateModSettingsState_NewCampaign(class'XComGameState_LWOverhaulOptions', StartState);
+	class'XComGameState_CovertActionTracker'.static.CreateOrGetCovertActionTracker(StartState);
 
 	// Save the second wave options, but only if we've actually started a new
 	// campaign (hence the check for UIShellDifficulty being open).
@@ -258,6 +259,7 @@ static event OnPostTemplatesCreated()
 	`Log(">>>> LW_Overhaul OnPostTemplates");
 	class'LWTemplateMods_Utilities'.static.UpdateTemplates();
 	UpdateWeaponAttachmentsForCoilgun();
+	PatchUIWeaponUpgradeItem();
 	UpdateFirstMissionTemplate();
 	AddObjectivesToParcels();
 	UpdateChosenActivities();
@@ -272,6 +274,20 @@ static event OnPostTemplatesCreated()
 	EditModdedRocketAbilities();
 	UpdateSkulljackAllShooterEffectExclusions();
 	class'X2Ability_PerkPackAbilitySet2'.static.AddEffectsToGrenades();
+	class'XComGameState_LWToolboxOptions'.static.UpdateRewardSoldierTemplates();
+}
+
+// Borrowed from Xynamek / Prototype Armory code
+static protected function PatchUIWeaponUpgradeItem()
+{
+    local UIArmory_WeaponUpgradeItem ItemCDO;
+
+    ItemCDO = UIArmory_WeaponUpgradeItem(class'XComEngine'.static.GetClassDefaultObject(class'UIArmory_WeaponUpgradeItem'));
+    ItemCDO.bProcessesMouseEvents = false;
+
+     // UIArmory_WeaponUpgradeItem doesn't need to process input - the BG does it
+     // However, if that flag is set then we don't get mouse events for children
+     // which breaks the "drop item" button
 }
 
 static function ModCompatibilityConfig()
@@ -987,7 +1003,7 @@ static function bool UpdateMissionSpawningInfo(StateObjectReference MissionRef)
 	// In this case, it clears all the alien ruler gameplay tags from XComHQ, just
 	// before the schedules are picked (which rely on those tags). And of course it
 	// may apply the ruler tags itself when we don't want them. Bleh.
-	if (class'XComGameState_AlienRulerManager' != none)
+	if (class'Helpers_LW'.default.bDLC2Active)
 	{
 		bUpdated = FixAlienRulerTags(MissionRef);
 	}
@@ -1184,7 +1200,7 @@ static event OnPreMission(XComGameState StartGameState, XComGameState_MissionSit
 	OverrideConcealmentAtStart(MissionState);
 	OverrideDestructibleHealths(StartGameState);
 	MaybeAddChosenToMission(StartGameState, MissionState);
-	if (class'XComGameState_AlienRulerManager' != none)
+	if (class'Helpers_LW'.default.bDLC2Active)
 	{
 		OverrideAlienRulerSpawning(StartGameState, MissionState);
 	}
@@ -1243,6 +1259,39 @@ static event OnPreMission(XComGameState StartGameState, XComGameState_MissionSit
 	`LWTRACE("     AlienHQ ForceLevel  : " $ AlienHQ.GetForceLevel());
 	`LWTRACE("     Required ForceLevel : 4");
 	`LWTRACE("===============================================================");
+}
+
+// Tactical to tactical mission stuff:
+static event ModifyTacticalTransferStartState(XComGameState TransferStartState)
+{
+	local XComGameState_BattleData BattleData;
+	local XComGameState_MissionSite MissionState;
+
+	// re-init the pod manager for subsequent parts
+	InitializePodManager(TransferStartState);
+
+	// Reset Evac (if you ever need to evac from one of these missions)
+	ResetDelayedEvac(TransferStartState);
+
+	// Experimental yeeting of mission stuff to try to spoof spawning a new mission.
+
+	// Get the BattleData from the existing state.
+	// XComPlayerController already adds it and edits it before calling this DLCInfo Hook
+	foreach TransferStartState.IterateByClassType(class'XComGameState_BattleData', BattleData)
+	{
+		break;
+	}
+
+	// Get the Mission state object from History since that is not edited yet.
+	MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(BattleData.m_iMissionID));
+
+	// Edit it (TransferStartState is already created)
+	MissionState = XComGameState_MissionSite(TransferStartState.ModifyStateObject(class'XComGameState_MissionSite', BattleData.m_iMissionID));
+
+	// Clear the data.
+	MissionState.GeneratedMission.Mission = BattleData.MapData.ActiveMission;
+	MissionState.SelectedMissionData.SelectedMissionScheduleName = '';
+	MissionState.SelectedMissionData.SelectedEncounters.Length = 0;
 }
 
 /// <summary>
@@ -1428,6 +1477,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		return;
 	}
 
+
 	// Ignore chryssy pods
 	if (Instr(EncounterName, "Chryssalids") != INDEX_NONE)
 	{
@@ -1494,6 +1544,13 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	}
 	// override native insisting every mission have a codex while certain tactical options are active
 
+	// Ignore rulers
+	if (class'LWDLCHelpers'.static.IsAlienRuler(LeaderCharacterTemplate.DataName, LeaderCharacterTemplate.bDontClearRemovedFromPlay))
+	{
+		`LWDiversityTrace("Ruler Pod detected, aborting shuffle.");
+		return;
+	}
+
 	// Swap out forced Codices on regular encounters
 	if (SpawnInfo.SelectedCharacterTemplateNames[0] == 'Cyberus' && InStr (EncounterName,"PROTECTED") == INDEX_NONE && EncounterName != 'LoneCodex' && EncounterName != 'GP_PsiGate_CodexGuards')
 	{
@@ -1517,7 +1574,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 			switch (EncounterName)
 			{
 				case 'LoneAvatar' :
-				case 'GP_Fortress_AvatarGroup_First_LW' :
+				case 'GP_Fortress_AvatarGroup_First_LW_PROTECTED' :
 				case 'GP_Fortress_AvatarGroup_First' :
 					break;
 				default:
@@ -1720,11 +1777,6 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 
 				SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList, bIsRNF);
 				`LWDiversityTrace("Selected new follower for position" @idx @":" @ SpawnInfo.SelectedCharacterTemplateNames[idx]);
-				if(CurrentCharacterTemplate == none)
-				{
-					`LWDiversityTrace("Rerolling nonexistant Character Template.");
-					continue;
-				}
 
 				if(default.bNerfFrostLegion 
 					&& (InStr(CAPS(SpawnInfo.SelectedCharacterTemplateNames[k]), "FROST") != INDEX_NONE || InStr(CAPS(SpawnInfo.SelectedCharacterTemplateNames[k]), "CRYO") != INDEX_NONE))
@@ -1835,15 +1887,16 @@ static function GetSpawnDistributionList(
 	out array<name> GoodUnits,
 	out array<name> BadUnits)
 {
-	local SpawnDistributionList CurrentList;
+	//local SpawnDistributionList CurrentList;
 	local SpawnDistributionListEntry CurrentListEntry;
 	local XComTacticalMissionManager MissionManager;
-	local name SpawnListID, SitrepName;
+	local name SpawnListID, SitrepName, CurrentSpawnList, SitrepEncounterList;
 	local array<name> SitrepListNames;
 	local int idx, index;
 	local XComGameState_HeadquartersXCom XComHQ;
 	local X2CharacterTemplateManager TemplateManager;
 	local X2CharacterTemplate CharacterTemplate;
+	local array<name> SpawnListsToCheck;
 
 	
 	TemplateManager = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
@@ -1886,6 +1939,7 @@ static function GetSpawnDistributionList(
 
 	SitRepListNames = GetSitRepListNames(MissionState);
 
+	SpawnListsToCheck.AddItem(SpawnListID);
 
 	`LWDiversityTrace("Using spawn distribution list " $ SpawnListID);
 
@@ -1893,18 +1947,31 @@ static function GetSpawnDistributionList(
 	{
 		`LWDiversityTrace("Adding Sitrep Spawn List" @SitrepName);
 	}
+
+	foreach SitRepListNames (SitrepEncounterList)
+	{
+		SpawnListsToCheck.AddItem(SitrepEncounterList);
+	}
+	
+
 	
 	// Build a merged list of all spawn distribution list entries that satisfy the selected
 	// list ID and force level.
-	foreach MissionManager.SpawnDistributionLists(CurrentList)
+	foreach SpawnListsToCheck(CurrentSpawnList)
 	{
-		if (CurrentList.ListID == SpawnListID || SitrepListNames.Find(CurrentList.ListID) != INDEX_NONE)
+		index = MissionManager.SpawnDistributionLists.Find('ListID', CurrentSpawnList);
+
+		`LWDiversityTrace("Checking list:"@MissionManager.SpawnDistributionLists[index].ListID);
+
+		if ((MissionManager.SpawnDistributionLists[index].ListID == SpawnListID || SitrepListNames.Find(MissionManager.SpawnDistributionLists[index].ListID) != INDEX_NONE))
 		{
-			foreach CurrentList.SpawnDistribution(CurrentListEntry)
+			`LWDiversityTrace("List Match:" @MissionManager.SpawnDistributionLists[index].ListID);
+			foreach MissionManager.SpawnDistributionLists[index].SpawnDistribution(CurrentListEntry)
 			{
+				`LWDiversityTrace("Checking entry:" @CurrentListEntry.Template @CurrentListEntry.MinForceLevel @ CurrentListEntry.MaxForceLevel @CurrentListEntry.MaxCharactersPerGroup @CurrentListEntry.SpawnWeight);
 				if (ForceLevel >= CurrentListEntry.MinForceLevel && ForceLevel <= CurrentListEntry.MaxForceLevel)
 				{
-					
+					`LWDiversityTrace("Force Level Match. Current FL:" @ForceLevel $"Min FL of entry:" @CurrentListEntry.MinForceLevel @" Max FL of current entry:" @CurrentListEntry.MaxForceLevel);
 					if(GoodUnits.Find(CurrentListEntry.Template) == INDEX_NONE)
 					{
 						if(BadUnits.Find(CurrentListEntry.Template) == INDEX_NONE)
@@ -1916,7 +1983,7 @@ static function GetSpawnDistributionList(
 									// Add check for tech requirements
 								if(XComHQ.MeetsObjectiveRequirements(CharacterTemplate.SpawnRequirements.RequiredObjectives) == true && XCOMHQ.MeetsTechRequirements(CharacterTemplate.SpawnRequirements.RequiredTechs))
 								{
-									//`LWDiversityTrace("Adding " $ CurrentListEntry.Template $ " to the merged spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
+									`LWDiversityTrace("Adding " $ CurrentListEntry.Template $ " to known good units and spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
 									SpawnList.AddItem(CurrentListEntry);
 									GoodUnits.AddItem(CurrentListEntry.Template);
 								}
@@ -1933,25 +2000,30 @@ static function GetSpawnDistributionList(
 					}
 					else
 					{
-						//`LWDiversityTrace("Adding " $ CurrentListEntry.Template $ " to the merged spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
+						
 
 						// check if unit already present  - duplicate combination
 						index = SpawnList.find('Template', CurrentListEntry.Template);
 
+						`LWDiversityTrace("Index value:" @index);
+
 						while(index != INDEX_NONE)
 						{
+							`LWDiversityTrace("Current List with entry: " $MissionManager.SpawnDistributionLists[index].ListID);
+							`LWDiversityTrace("Combining entries for " $ CurrentListEntry.Template);
 							CurrentListEntry.SpawnWeight += SpawnList[index].SpawnWeight;
 							SpawnList.remove(index, 1);
 							index = SpawnList.find('Template', CurrentListEntry.Template);
 
 						}
-
+						`LWDiversityTrace("Adding " $ CurrentListEntry.Template $ " to the merged spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
 						SpawnList.AddItem(CurrentListEntry);
 					}
 				}
 			}
 		}
 	}
+	`LWDiversityTrace("Final Spawnlist length:" @Spawnlist.Length);
 }
 
 // Returns true if the pod is undersized
@@ -2322,7 +2394,7 @@ static final function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnIn
 			continue;
 
 		// if entry out of force level range.
-		if (ForceLevel < SpawnEntry.MinForceLevel && ForceLevel > SpawnEntry.MaxForceLevel)
+		if (ForceLevel < SpawnEntry.MinForceLevel || ForceLevel > SpawnEntry.MaxForceLevel)
 		{
 			continue;
 		}
@@ -2985,7 +3057,7 @@ static function OverrideAlienRulerSpawning(XComGameState StartState, XComGameSta
 	if (class'LWDLCHelpers'.static.IsAlienRulerOnMission(MissionState))
 	{
 		RulerState = class'LWDLCHelpers'.static.GetAlienRulerForMission(MissionState);
-		class'LWDLCHelpers'.static.PutRulerOnCurrentMission(StartState, RulerState, XComHQ);
+		class'LWDLCHelpers'.static.PutRulerOnCurrentMission(StartState, RulerState, XComHQ, MissionState);
 	}
 }
 
@@ -3019,7 +3091,7 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 	}
 
 	// Don't allow Chosen on the mission if there is already a Ruler
-	if (class'XComGameState_AlienRulerManager' != none && class'LWDLCHelpers'.static.IsAlienRulerOnMission(MissionState))
+	if (class'Helpers_LW'.default.bDLC2Active && class'LWDLCHelpers'.static.IsAlienRulerOnMission(MissionState))
 	{
 		HasRulerOnMission = true;
 	}
@@ -4769,13 +4841,14 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 	}
 }
 
-static function bool AbilityTagExpandHandler_CH(string InString, out string OutString, Object ParseObj, Object StrategyParseOb, XComGameState GameState)
+static function bool AbilityTagExpandHandler_CH(string InString, out string OutString, Object ParseObj, Object StrategyParseObj, XComGameState GameState)
 {
 	local name Type;
 	local XComGameState_Ability AbilityState;
 	local XComGameState_Effect EffectState;
 	local XComGameState_Unit UnitState;
 	local X2AbilityTemplate AbilityTemplate;
+	//local XComGameState NewGameState;
 	local int ImpactCompensationStacks;
 	local int k;
 
@@ -4785,21 +4858,42 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 	case 'SELFCOOLDOWN_LW':
 		OutString = "0";
 		AbilityTemplate = X2AbilityTemplate(ParseObj);
+
 		if (AbilityTemplate == none)
 		{
 			AbilityState = XComGameState_Ability(ParseObj);
 			if (AbilityState != none)
+			{
 				AbilityTemplate = AbilityState.GetMyTemplate();
+				UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(AbilityState.OwnerStateObject.ObjectID));
+			}
+				
 		}
-		if (AbilityTemplate != none)
+		if (StrategyParseObj != none)
+			UnitState = XComGameState_Unit(StrategyParseObj);
+
+		if (AbilityTemplate != none && UnitState != None)
 		{
 			if (AbilityTemplate.AbilityCooldown != none)
+			{
+				// LW2 doesn't subtract 1 from cooldowns as a general rule, so to keep it consistent
+
+				OutString = string(AbilityTemplate.AbilityCooldown.GetNumTurns(AbilityState, UnitState, AbilityState.GetSourceWeapon(), GameState));
+			}
+		}
+		else
+		{
+			// Add a fallback to previous behavior if we can't get the unit
+			if(AbilityTemplate != none)
+			{
+				if (AbilityTemplate.AbilityCooldown != none)
 			{
 				// LW2 doesn't subtract 1 from cooldowns as a general rule, so to keep it consistent
 				// there is substitute tag
 				OutString = string(AbilityTemplate.AbilityCooldown.iNumTurns);
 			}
-		}
+			}
+		} 
 		return true;
 	case 'IMPACT_COMPENSATION_CURRENT_DR':
 		OutString = "0";
@@ -4866,6 +4960,11 @@ static function bool ShouldUpdateMissionSpawningInfo(StateObjectReference Missio
 	local XComGameState_MissionSite MissionState;
 
 	MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(MissionRef.ObjectID));
+
+	if (class'Helpers_LW'.default.bDLC2Active)
+	{
+		return true;
+	}
 
 	// Waterworld hardcode here
 	if(MissionState.GetMissionSource().DataName == 'MissionSource_Final' || MissionState.GetMissionSource().DataName == 'MissionSource_PsiGate')
@@ -5973,7 +6072,7 @@ static function RespecSoldier(XComGameState_Unit UnitState, optional bool bReset
 	local XComGameState						NewGameState;
 	local XComGameState_HeadquartersXCom	XComHQ;
 	local name								ClassName;
-	local int								i, NumRanks, iXP;
+	local int								i, NumRanks, iXP, HPDelta, WillDelta;
 	local array<XComGameState_Item>			EquippedImplants;
 
 	History = `XCOMHISTORY;
@@ -5983,6 +6082,9 @@ static function RespecSoldier(XComGameState_Unit UnitState, optional bool bReset
 
 	iXP = UnitState.GetXPValue();
 	iXP -= class'X2ExperienceConfig'.static.GetRequiredXp(NumRanks);
+
+	HPDelta = UnitState.GetMaxStat(eStat_HP) - UnitState.GetCurrentStat(eStat_HP);
+	WillDelta = UnitState.GetMaxStat(eStat_Will) - UnitState.GetCurrentStat(eStat_Will);
 
 	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Respec Soldier");
 	XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
@@ -6035,6 +6137,10 @@ static function RespecSoldier(XComGameState_Unit UnitState, optional bool bReset
 	{
 		UnitState.AddItemToInventory(EquippedImplants[i], eInvSlot_CombatSim, NewGameState);
 	}
+
+	// Restore missing hit and will points
+	UnitState.ModifyCurrentStat(eStat_HP, -HPDelta);
+	UnitState.ModifyCurrentStat(eStat_Will, -WillDelta);
 
 	if (NewGameState.GetNumGameStateObjects() > 0)
 	{
@@ -6250,6 +6356,8 @@ static function CacheInstalledMods()
 	class'Helpers_LW'.default.bDABFLActive = class'Helpers_LW'.static.IsModInstalled("DiverseAliensByForceLevelWOTC");
 	class'Helpers_LW'.default.bKirukaSparkActive = class'Helpers_LW'.static.IsModInstalled("KirukasSparkLWOTC_M2");
 	class'Helpers_LW'.default.bDSLReduxActive = class'Helpers_LW'.static.IsModInstalled("WOTC_DSL_Rusty");
+	class'Helpers_LW'.default.bDudeWheresMyLootActive = class'Helpers_LW'.static.IsModInstalled("DudeWheresMyLoot");
+	class'Helpers_LW'.default.bDLC2Active = class'Helpers_LW'.static.IsModInstalled("DLC_2");
 
 	`LWTrace("cached bSmokeStopsFlanksActive: " @ class'Helpers_LW'.default.bSmokeStopsFlanksActive );
 	`LWTrace("cached bImprovedSmokeDefenseActive: " @class'Helpers_LW'.default.bImprovedSmokeDefenseActive);
@@ -6262,6 +6370,8 @@ static function CacheInstalledMods()
 	`LWTrace("cached bDABFLActive: " @class'Helpers_LW'.default.bDABFLActive);
 	`LWTrace("cached bKirukaSparkActive: " @class'Helpers_LW'.default.bKirukaSparkActive);
 	`LWTrace("cached bDSLReduxActive: " @class'Helpers_LW'.default.bDSLReduxActive);
+	`LWTrace("Cached bDudeWheresMyLoot: "@class'Helpers_LW'.default.bDudeWheresMyLootActive);
+	`LWTrace("Cached bDLC2Active: " @class'Helpers_LW'.default.bDLC2Active);
 }
 
 exec function LWOTC_SetSelectedUnitActive()

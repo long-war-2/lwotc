@@ -18,5 +18,8 @@ function float GetPostDefaultDefendingDamageModifier_CH(
 	X2Effect_ApplyWeaponDamage WeaponDamageEffect,
 	XComGameState NewGameState)
 {
-	return -CurrentDamage * default.ABSORPTION_FIELDS_DAMAGE_REDUCTION_PCT / 100.0;
+	if(class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult))
+		return -CurrentDamage * default.ABSORPTION_FIELDS_DAMAGE_REDUCTION_PCT / 100.0;
+
+	return 0;
 }

@@ -238,8 +238,8 @@ LocPromotionPopupText="<Bullet/> Activate so your next use of the flamethrower w
 [Firestorm X2AbilityTemplate]
 LocFriendlyName="Firestorm"
 LocFlyOverText="Firestorm"
-LocLongDescription="Once per battle, attack all units in a complete circle around the soldier's position. Also grants immunity to fire damage."
-LocHelpText="Spray fire in a complete circle around your position."
+LocLongDescription="Once per battle, dash to a position within movement and attack all units in a complete circle around the soldier's position. Also grants immunity to fire."
+LocHelpText="Dash and spray fire in a complete circle around your new position."
 LocPromotionPopupText="<Bullet/> This will light fires and deal fire damage to all enemies in a circle around the soldier's position.<br/><Bullet/> Firestorm deals +<ABILITY:FIRESTORM_DAMAGE_BONUS_LW> bonus damage over regular Flamethrower attacks.<br/><Bullet/> Requires two action points and will end the soldier's turn when used.<br/><Bullet/> Usable once per battle.<br/><Bullet/> Firestorm also grants immunity to fire damage.<br/><Bullet/> It is not recommended the soldier uses Firestorm on rooftops."
 
 [Firestorm2 X2AbilityTemplate]
@@ -383,10 +383,10 @@ LocPromotionPopupText="<Bullet/> This soldier has significantly reduced infiltra
 
 [Failsafe X2AbilityTemplate]
 LocFriendlyName="Failsafe"
-LocLongDescription="If you fail a hack, you prevent any negative effects from occurring and gain 1 AP back."
-LocHelpText="If you fail a hack, you prevent any negative effects from occurring and gain 1 AP back."
+LocLongDescription="If you fail a hack, you prevent any negative effects from occurring and once per turn, gain 1 AP back after a failed hack."
+LocHelpText="If you fail a hack, you prevent any negative effects from occurring and once per turn, gain 1 AP back after a failed hack."
 LocFlyOverText="Failsafe"
-LocPromotionPopupText="<Bullet/> Negative effects prevented by Failsafe include losing squad concealment."
+LocPromotionPopupText="<Bullet/> Negative effects prevented by Failsafe include losing squad concealment.<br/><Bullet/> The 1 AP refund can occur once per turn."
 
 [FullOverride X2AbilityTemplate]
 LocFriendlyName="Full Override"
@@ -428,6 +428,9 @@ Description="Take control of this unit for rest of the mission and gain stat bon
 LocLongDescription="The GREMLIN can trigger an instant scan of the area, increasing the <Ability:ClassName>'s sight radius substantially for one turn, and revealing any hidden or disguised enemies in view. Free Action."
 LocPromotionPopupText="<Bullet/> Scanning Protocol has <ABILITY:SCANNING_PROTOCOL_INITIAL_CHARGES_LW/> initial charges.<br/><Bullet/> Scanning Protocol gains bonus charges with improved GREMLINs.<br/><Bullet/> In addition to hidden and disguised enemies, enemies blocked from line of sight by walls or obstructions will also be revealed by Scanning Protocol.<br/><Bullet/> Scanning Protocol is a free action.<br/><Bullet/> If the Specialist is employed as Haven Adviser Scanning Protocol will reduce the chance of recruiting Faceless rebels by 40% (stacking cumulatively with other similar abilities).<br/>"
 ; End Translation (3)
+
+[CapacitorDischarge X2AbilityTemplate]
+LocLongDescription="Send the GREMLIN to a location where it emits a substantial electric discharge, damaging and disorienting non-robotic units. Robotic units take more damage."
 
 ; End translation
 
@@ -542,7 +545,7 @@ LocLongDescription="Your grenades and standard rockets can inflict critical dama
 LocHelpText="Your grenades, standard rockets and micromissiles can inflict critical damage."
 LocFlyOverText="Biggest Booms"
 ; LWOTC Needs Translation
-LocPromotionPopupText="<Bullet/> Grenades, standard rockets, and MEC micromissiles can inflict critical damage (<Ability:BIGGESTBOOMSCHANCE/>% chance for +<Ability:BIGGESTBOOMSDAMAGE/> damage).<br/><Bullet/> <Ability:BIGGESTBOOMSCHANCE/>% chance for critical damage is not affected by other critical chance modifiers.<br/><Bullet/> Does not apply to non-damaging grenades or the concussion rocket or Bunker Buster abilities.<br/><Bullet/> Grenade crits will grant +1 damage to ongoing damaging effects such as fire."
+LocPromotionPopupText="<Bullet/> Grenades, standard rockets, MEC micromissiles, and anything that benefits from Javelin Rockets can inflict critical damage (<Ability:BIGGESTBOOMSCHANCE/>% chance for +<Ability:BIGGESTBOOMSDAMAGE/> damage).<br/><Bullet/> <Ability:BIGGESTBOOMSCHANCE/>% chance for critical damage is not affected by other critical chance modifiers.<br/><Bullet/> Does not apply to non-damaging grenades.<br/><Bullet/> Grenade crits will grant +1 damage to ongoing damaging effects such as fire."
 ; End Translation
 
 [Shellshock_LW X2AbilityTemplate]
@@ -738,7 +741,7 @@ LocPromotionPopupText="<Bullet/> The Arc Thrower is effective anywhere in the so
 ; LWOTC Needs Translation (2)
 [EMPulser X2AbilityTemplate]
 LocFriendlyName="Arc Pulser"
-LocLongDescription="Fire your Arc Thrower to incapacitate a target and damage mechanical enemies."
+LocLongDescription="Your Arc Thrower can now damage mechanical enemies and reduce their hack defense."
 LocHelpText="Fire your Arc Pulser."
 LocFlyOverText="Arc Pulser"
 LocPromotionPopupText="<Bullet/> The Arc Thrower is effective anywhere in the soldier's sight range.<br/><Bullet/> Requires one action and ends the soldier's turn when fired.<br/><Bullet/> Can use every other turn.<br/><Bullet/> Damage to mechanical units increases as arc thrower technology improves.<br/><Bullet/> Reduces enemy hack defense by <Ability:EMPULSER_HACK_DEFENSE_CHANGE_LW/>.<br/>"
@@ -1029,6 +1032,7 @@ TacticalText="<Bullet/> Pistols can be much more than a sidearm in the hands of 
 FriendlyName="Laser Pistol"
 FriendlyNamePlural="Laser Pistols"
 UnknownUtilityCategory="Pistol"
+AbilityDescName="pistol"
 BriefSummary="Based on the advances in beam weapons tech we've achieved, this new pistol boasts a substantial improvement in power over our conventional pistol."
 TacticalText="<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Laser pistols are substantially more effective and accurate than their conventional precursors.\n<Bullet/> Pistols can be fired with a single action.\n<Bullet/> Soldiers can train several abilities that dramatically enhance their use of pistols.\n<Bullet/> Pistols lose accuracy at long ranges."
 
@@ -1284,21 +1288,21 @@ AbilityDescName="Heavy Chaingun"
 [SparkRifle_LS X2WeaponTemplate]
 FriendlyName="Spitfire Pulsecannon"
 FriendlyNamePlural="Spitfire Pulsecannons"
-BriefSummary="The Spitfire Pulsecannon is the largest portable automatic laser weapon in our arsenal. Using the rotating barrel assembly solves the overheating problem, and the fragile barrel parts are protected by individual retractable cowls."
-TacticalText="The Spitfire Pulsecannon is the largest portable automatic laser weapon in our arsenal. Using the rotating barrel assembly solves the overheating problem, and the fragile barrel parts are protected by individual retractable cowls.\n<Bullet/> Firing the primary weapon always ends the soldier's turn, in the absence of special training.\n<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Spitfire Pulsecannon is the laser equivalent of the Autocannon."
+BriefSummary="This autocannon design fires the largest bursts of high-energy lasers Shen has been able to concoct. Using the rotating barrel assembly solves the overheating problem, and the fragile barrel parts are protected by individual retractable cowls."
+TacticalText="<Bullet/> Firing the primary weapon always ends the soldier's turn, in the absence of special training.\n<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Spitfire Pulsecannon is the laser equivalent of the Autocannon."
 AbilityDescName="autocannon"
 
 [SparkRifle_CG X2WeaponTemplate]
 FriendlyName="Rush-Nano Gausscannon"
 FriendlyNamePlural="Rush-Nano Gausscannons"
-BriefSummary="Introduction of new Elerium-based rush capacitors with separation distance of mere nanometers has allowed us to develop a new kind of autocannon, where capacitors are overloaded and discharged one by one during firing, which keeps the damage output consistently high during a volley."
-TacticalText="Introduction of new Elerium-based rush capacitors with separation distance of mere nanometers has allowed us to develop a new kind of autocannon, where capacitors are overloaded and discharged one by one during firing, which keeps the damage output consistently high during a volley.\n<Bullet/> Firing the primary weapon always ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades looted from enemies to improve the Rush-Nano Gausscannon's tactical effectiveness.\n<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> Rush-Nano Gausscannon is the Coil equivalent of the Autocannon."
+BriefSummary="The invention of this coil autocannon was enabled by new Elerium-based rush capacitors. Their separation is mere nanometers, allowing capacitors to overload and discharge one by one during firing."
+TacticalText="<Bullet/> Firing the primary weapon always ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades looted from enemies to improve the Rush-Nano Gausscannon's tactical effectiveness.\n<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> Rush-Nano Gausscannon is the Coil equivalent of the Autocannon."
 AbilityDescName="autocannon"
 
 [PrototypePlasmaBlaster X2WeaponTemplate]
 FriendlyName="Prototype Plasma Blaster"
 FriendlyNamePlural="Prototype Plasma Blasters"
-BriefSummary="Using technology salaved from the original invasion, we've devised a means of releasing a massive, focused pulse of plasma energy that will devastate targets in a fixed path. Has enough energy for two activations."
+BriefSummary="Using technology salaved from the original invasion, we've devised a means of releasing a massive, focused pulse of plasma energy that will devastate targets in a fixed path."
 TacticalText="<Bullet/> The Plasma Blaster releases a beam of devastating energy in a straight line, capable of damaging multiple targets\n<Bullet/> Its ammo is limited, so use it only when it will be decisive."
 
 [PlasmaBlaster X2WeaponTemplate]
@@ -1528,7 +1532,7 @@ TacticalText="<Bullet/> Grants a <ABILITY:NANOFIBER_HEALTH_BONUS_LW/> hit point 
 [PlatedVest X2EquipmentTemplate]
 FriendlyName="Tactical Vest"
 FriendlyNamePlural="Tactical Vests"
-BriefSummary="Shen has improved the traditional Nanoscale Vest with armored plating, providing reduced damage from armor protection against enemy attacks."
+BriefSummary="Shen has improved the traditional Nanoscale Vest with armored plating, providing reduced damage against enemy attacks."
 TacticalText="<Bullet/> Grants 3 hit points to the soldier.\n<Bullet/> Provides 1 armor.\n<Bullet/> Enemies have a penalty of -<Ability:PLATED_CRITDEF_BONUS> critical chance against the soldier.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [HazmatVest X2EquipmentTemplate]
@@ -2320,10 +2324,10 @@ RewardDetails="You'll get a Resistance MEC to guard one of your Havens."
 DisplayName="New Resources"
 
 [Reward_POI_LW X2RewardTemplate]
-DisplayName="Intel Package"
+DisplayName="Point of Interest"
 
 [Reward_Dummy_POI X2RewardTemplate]
-DisplayName="Intel Package"
+DisplayName="Point of Interest"
 
 [Reward_Dummy_Materiel X2RewardTemplate]
 DisplayName="Enemy Materiel"
@@ -2335,7 +2339,7 @@ DisplayName="Unknown"
 DisplayName="Unhindered Operations"
 
 [Reward_FacilityLead X2RewardTemplate]
-DisplayName="Intel Package"
+DisplayName="Facility Lead"
 
 [Reward_Dummy_RegionalTower X2RewardTemplate]
 DisplayName="Location of ADVENT Regional HQ"
@@ -5436,6 +5440,9 @@ LocLongDescription="Overwatch now trigger on any hostile action, not just moveme
 ;LocPromotionPopupText="<Bullet/> If triggered by an enemy action, Covering Fire will trigger before the enemy action completes.<br/><Bullet/> In addition, having the Covering Fire ability confers a penalty of -<Ability:COVERING_FIRE_OFFENSE_MALUS> aim upon any units you take a reaction shot at, regardless of whether it was a covering fire shot or not."
 LocPromotionPopupText="<Bullet/> If triggered by an enemy action, Covering Fire will trigger before the enemy action completes.<br/><Bullet/> In addition, having the Covering Fire ability allows the owner to ignore 2/3 of cover bonuses with reaction fire."
 
+[Demolition X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> Demolition requires <Ability:SelfAmmoCost/> ammo points and has a <Ability:SelfCooldown/> turn cooldown.<br/><Bullet/> Demolition does increased environmental damage, and will destroy most cover objects.<br/><Bullet/> Demolition chance is based on the soldier's base aim with a bonus of +<Ability:DEMO_HIT_BONUS>.<br/>"
+
 [GrenadeLauncher_MG X2GrenadeLauncherTemplate]
 BriefSummary="Our Advanced Grenade Launcher uses magnetic technology to propel grenades further than our conventional launcher and provides an additional grenade to grenade only slots."
 TacticalText="<Bullet/> The Advanced Grenade Launcher has an increased range over the standard Grenade Launcher and will give a bonus grenade item to grenades equipped in the grenade-only slot.\n."
@@ -5631,7 +5638,9 @@ FocusLevelDescriptions[4]="Rend Damage +<Ability:FOCUS4RENDDAMAGE/>\nMobility +<
 
 ; LWOTC Needs Translation (2)
 [TemplarFocus X2AbilityTemplate]
+LocLongDescription="Gain Focus during missions which can be spent on powerful abilities"
 LocPromotionPopupText="<Bullet/> Templars begin missions weaker than other soldiers, but can become extremely powerful at higher Focus levels.<br/><Bullet/> Focus is gained by attacking enemies with Rend (even misses count).<br/>"
+
 
 ; LWOTC Needs Translation (3)
 [Rend_LW X2AbilityTemplate]
@@ -5731,7 +5740,7 @@ LocPromotionPopupText="<Bullet/> Make sure squadmates are clear of the blast zon
 
 ; LWOTC Needs Translation
 [HomingMine X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Shots against the mined target are guaranteed to hit.<br/><Bullet/> Homing Mine has 4 charges per mission.<br/><Bullet/> Homing Mine requires one action and does not end your turn.<br/>"
+LocPromotionPopupText="<Bullet/> Shots against the mined target are guaranteed to hit.<br/><Bullet/> Homing Mine has 3 charges per mission.<br/><Bullet/> Homing Mine requires one action and does not end your turn.<br/>"
 ; End Translation
 
 [Hero_Tracking X2AbilityTemplate]
@@ -6174,17 +6183,17 @@ ActionPreNarrative="We've discovered where they've been dumping the corpses from
 ActionPostNarrative="Your team managed to collect some valuable enemy corpses from the raid."
 
 [CovertActionNarrative_IntenseTraining_Skirmishers X2CovertActionNarrativeTemplate]
-ActionName="Undertake Hard Training (Cost: 5 AP)"
+ActionName="Undertake Hard Training (Cost: 5 XCOM AP)"
 ActionPreNarrative="Time to put in some effort and improve yourself. Get training, soldier!"
 ActionPostNarrative="Your soldier is better now."
 
 [CovertActionNarrative_IntenseTraining_Reapers X2CovertActionNarrativeTemplate]
-ActionName="Undertake Hard Training (Cost: 5 AP)"
+ActionName="Undertake Hard Training (Cost: 5 XCOM AP)"
 ActionPreNarrative="Time to put in some effort and improve yourself. Get training, soldier!"
 ActionPostNarrative="Your soldier is better now."
 
 [CovertActionNarrative_IntenseTraining_Templars X2CovertActionNarrativeTemplate]
-ActionName="Undertake Hard Training (Cost: 5 AP)"
+ActionName="Undertake Hard Training (Cost: 5 XCOM AP)"
 ActionPreNarrative="Time to put in some effort and improve yourself. Get training, soldier!"
 ActionPostNarrative="Your soldier is better now."
 
@@ -6551,9 +6560,9 @@ LocPromotionPopupText="<Bullet/> Avenger will not activate if this unit is shot 
 LocFriendlyName="Predator"
 LocFlyOverText="Predator"
 ; LWOTC Needs Translation (2)
-LocLongDescription="Your ranged attacks gain <Ability:PREDATOR_AIM_BONUS/> bonus aim and <Ability:PREDATOR_CRIT_BONUS/> bonus critical chance against enemies that are flanked or out of cover."
-LocHelpText="Your ranged attacks gain <Ability:PREDATOR_AIM_BONUS/> bonus aim and <Ability:PREDATOR_CRIT_BONUS/> bonus critical chance against enemies that are flanked or out of cover."
-LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:PREDATOR_AIM_BONUS/> bonus aim and <Ability:PREDATOR_CRIT_BONUS/> bonus critical chance against enemies that are flanked or out of cover.<br/>"
+LocLongDescription="Your ranged attacks gain <Ability:PREDATOR_AIM_BONUS_LW/> bonus aim and <Ability:PREDATOR_CRIT_BONUS_LW/> bonus critical chance against enemies that are flanked or out of cover."
+LocHelpText="Your ranged attacks gain <Ability:PREDATOR_AIM_BONUS_LW/> bonus aim and <Ability:PREDATOR_CRIT_BONUS_LW/> bonus critical chance against enemies that are flanked or out of cover."
+LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:PREDATOR_AIM_BONUS_LW/> bonus aim and <Ability:PREDATOR_CRIT_BONUS_LW/> bonus critical chance against enemies that are flanked or out of cover.<br/>"
 ; End Translation (2)
 
 [Stiletto_LW X2AbilityTemplate]
@@ -6899,8 +6908,8 @@ LocLongDescription="The Warlock opens their mind to the target, damaging and bur
 
 [ChosenKidnap X2AbilityTemplate]
 LocFriendlyName="Kidnap"
-LocLongDescription="Kidnap an unconcious or bleeding out unit. Costs 2 actions, 1 turn cooldown."
-LocHelpText="Kidnap an unconcious or bleeding out unit. Costs 2 actions, 1 turn cooldown."
+LocLongDescription="Kidnap an unconcious or bleeding out unit. Costs 2 actions, 2 turn cooldown."
+LocHelpText="Kidnap an unconcious or bleeding out unit. Costs 2 actions, 2 turn cooldown."
 LocFlyOverText="Kidnap"
 
 [ChosenKeen X2AbilityTemplate]
@@ -7387,7 +7396,7 @@ LocPromotionPopupText="You get an additional +<Ability:MOVING_TARGET_DEFENSE> De
 [ChainingJolt_LW X2AbilityTemplate]
 LocFriendlyName="Chaining Jolt"
 LocHelpText="Send the GREMLIN to an enemy to jolt them. Attack chains to nearby enemies. This ability replaces Combat Protocol."
-LocLongDescription="The <Ability:ClassName/> sends the GREMLIN to an enemy to jolt them. Attack chains to nearby enemies. Damage is increased against robotic enemies."
+LocLongDescription="The <Ability:ClassName/> sends the GREMLIN to an enemy to jolt them. Attack chains to up to 2 nearby enemies. Damage is increased against robotic enemies. This ability replaces Combat Protocol."
 LocFlyOverText="Chaining Jolt"
 LocPromotionPopupText="<Bullet/> Deals electrical damage that pierces armour.<br/><Bullet/>Chaining Jolt does the same damage as Combat Protocol and replaces it for the soldier.<br/><Bullet/> Can only chain to units friendly to the targeted unit and within <Ability:CHAIN_LIGHTNING_CHAIN_RANGE_TILES> tiles of each other.<br/><Bullet/> Has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
@@ -7826,11 +7835,11 @@ LocHelpText="Gain bonus mobility, mental immunity, and take less damage for the 
 LocLongDescription="A soldier taking Overdrive Serum receives bonus mobility, mental immunity, and takes less damage for the next <Ability:COMBATSTIMSDURATION/> turns. This does not cost an action to activate."
 LocFlyOverText="Overdrive Serum"
 
-[CombatStims X2AbilityTemplate]
-LocFriendlyName="Overdrive Serum"
-LocHelpText="Gain bonus mobility, mental immunity, and take less damage for the next <Ability:COMBATSTIMSDURATION/> turns. Does not cost an action to activate."
-LocLongDescription="A soldier taking Overdrive Serum receives bonus mobility, mental immunity, and takes less damage for the next <Ability:COMBATSTIMSDURATION/> turns. This does not cost an action to activate."
-LocFlyOverText="Overdrive Serum"
+[CombatStims X2WeaponTemplate]
+FriendlyName="Overdrive Serum"
+FriendlyNamePlural="Overdrive Serums"
+BriefSummary="Overdrive Serum, derived from the adrenal glands of a Berserker alien, boosts a soldier's nervous system, resulting in greater mobility and significant damage Resistance for multiple turns. Overdrive Serum can only be used in combat once per mission."
+TacticalText="<Bullet/> Overdrive Serum grants a significant boost to mobility, and a soldier on Overdrive Serum takes significantly less damage.\n<Bullet/> Overdrive Serum also makes the soldier temporarily immune to negative mental effects like panic and mind control."
 
 [X2MPData_Shell]
 arrMPMapFriendlyNames[9]="Underground"
@@ -7972,9 +7981,9 @@ LocPromotionPopupText=""
 [Anatomy_LW X2AbilityTemplate]
 LocFriendlyName="Anatomy"
 LocFlyOverText="Anatomy"
-LocLongDescription="You know exactly where to strike to cause the most damage. You gain +15% Critical Chance and 2 Armor Pierce on all attacks."
-LocHelpText="You gain bonuses to Critical Chance and Armor Pierce."
-LocPromotionPopupText="<Bullet/> This is an unconditional passive bonus.\n<Bullet/> The Armor Pierce bonus will not show on attack previews, but it will function when the attack lands."
+LocLongDescription="Gain +<Ability:ANATOMY_CRIT_TAG> critical chance and +<Ability:ANATOMY_PIERCE_TAG> armor piercing."
+LocHelpText="Gain +<Ability:ANATOMY_CRIT_TAG> critical chance and +<Ability:ANATOMY_PIERCE_TAG> armor piercing."
+LocPromotionPopupText="<Bullet> Applies to all attacks.<br><Bullet> Passive."
 
 [ScoutScanner_LW X2AbilityTemplate]
 LocFriendlyName="Reconnoiter"
@@ -7997,8 +8006,8 @@ LocPromotionPopupText="<Bullet/> If multiple enemies are equally distant, you ge
 
 [SensorOverlays_LW X2AbilityTemplate]
 LocFriendlyName="Sensor Overlays"
-LocLongDescription="All squad members get <Ability:+Crit> Crit chance against enemies you can see."
-LocHelpText="All squad members get <Ability:+Crit> Crit chance against enemies you can see."
+LocLongDescription="All squad members get <Ability:+Crit/> Crit chance against enemies you can see."
+LocHelpText="All squad members get <Ability:+Crit/> Crit chance against enemies you can see."
 LocFlyOverText="Sensor Overlays"
 LocPromotionPopupText="<Bullet/> This doesn't count enemies only visible through squadsight.<br/>"
 

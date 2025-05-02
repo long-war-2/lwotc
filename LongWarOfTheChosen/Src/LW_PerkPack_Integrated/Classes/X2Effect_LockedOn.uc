@@ -16,7 +16,7 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
 
 	EventMgr = `XEVENTMGR;
 	EffectObj = EffectGameState;
-	EventMgr.RegisterForEvent(EffectObj, 'AbilityActivated', LockedOnListener, ELD_OnStateSubmitted,,,, EffectObj);
+	EventMgr.RegisterForEvent(EffectObj, 'AbilityActivated', LockedOnListener, ELD_OnStateSubmitted, 99,,, EffectObj);
 }
 
 function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit Attacker, XComGameState_Unit Target, XComGameState_Ability AbilityState, class<X2AbilityToHitCalc> ToHitType, bool bMelee, bool bFlanking, bool bIndirectFire, out array<ShotModifierInfo> ShotModifiers)

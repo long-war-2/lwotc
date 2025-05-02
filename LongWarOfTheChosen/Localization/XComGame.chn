@@ -40,7 +40,7 @@ m_strLowEngineersList[2]="一名工程师可能在黑市上被雇佣，并且可
 ;LWOTC needs translation
 m_strRetributionAlertTitle="天选者惩罚"
 m_strRetributionAlertDescription="一名天选者在该地区压制了抵抗活动，降低了该地区的活动效率。" 
-m_strRetributionAlertIncomeDecreasedTitle="港口被破坏"
+m_strRetributionAlertIncomeDecreasedTitle="避难所被破坏"
 m_strRetributionAlertIncomeDescription="补给、情报和招募效率降低了20%。"
 m_strInfirmaryIntroBody=在医务室部署一名科学家将会减少人员伤病的恢复时间。士兵可在医务室消除在战斗中获得的负面特质。
 ;LWOTC end translation
@@ -139,7 +139,7 @@ LocPromotionPopupText="<Bullet/> 雷霆之手可以很好的与其他<Ability:Cl
 
 [MedicalProtocol X2AbilityTemplate]
 LocFriendlyName="医疗协议"
-LocLongDescription="小精灵可以远程执行治疗行动：小精灵治疗和小精灵稳定。默认只有1充能。如果装备了医疗包，小精灵将获得额外3次充能。"
+LocLongDescription="小精灵可以远程执行治疗行动：小精灵治疗和小精灵稳定。无医疗包只有1充能。如果装备医疗包，小精灵将获得额外3次充能。"
 LocHelpText="现在小精灵可以执行治疗行动：小精灵治疗和小精灵稳定"
 LocFlyOverText="医疗协议"
 LocPromotionPopupText="<Bullet/> 升级小精灵来让每次使用时恢复的生命值增加。<br/><Bullet/> 作为第一个行动使用时，小精灵治疗或小精灵稳定不会结束回合。<br/>"
@@ -231,9 +231,9 @@ LocPromotionPopupText="<Bullet/> 激活后你下一次的火焰喷射器使用�
 [Firestorm X2AbilityTemplate]
 LocFriendlyName="烈焰风暴"
 LocFlyOverText="烈焰风暴"
-LocLongDescription="以自己为中心喷射圆形的火焰，攻击范围内的所有单位。同样也会获得对火焰伤害的免疫。每场战斗可使用1次。"
-LocHelpText="以自己为中心喷射圆形的火焰，攻击范围内的所有单位。"
-LocPromotionPopupText="<Bullet/> 该士兵对周围圆圈内的所有单位造成火焰伤害，比一般的火焰喷射器造成+<ABILITY:FIRESTORM_DAMAGE_BONUS_LW>的额外伤害。<br/><Bullet/> 烈焰风暴同样也能让你对火焰伤害免疫。<br/><Bullet/> 需要2个行动点并且会结束士兵的回合。<br/><Bullet/> 可执行冲刺并触发烈焰风暴。<br/><Bullet/> 每场战斗可使用1次。<br/><Bullet/> 不建议士兵在屋顶使用烈焰风暴。<br/><Bullet/> 不适用于速燃。"
+LocLongDescription="冲刺到移动范围内的指定位置，以自己为中心喷射圆形的火焰，攻击范围内的所有单位。同时会获得对火焰伤害的免疫。每场战斗可使用1次。"
+LocHelpText="冲刺到新位置并以自己为中心喷射圆形的火焰，攻击范围内的所有单位。"
+LocPromotionPopupText="<Bullet/> 该士兵对周围圆圈内的所有单位造成火焰伤害，比一般的火焰喷射器造成+<ABILITY:FIRESTORM_DAMAGE_BONUS_LW>的额外伤害。<br/><Bullet/> 烈焰风暴同样也能让你暂时对火焰伤害免疫。<br/><Bullet/> 需要2个行动点并且会结束士兵的回合。<br/><Bullet/> 可执行冲刺并触发烈焰风暴。<br/><Bullet/> 每场战斗可使用1次。<br/><Bullet/> 不建议士兵在屋顶使用烈焰风暴。<br/><Bullet/> 不适用于速燃。"
 
 [Firestorm2 X2AbilityTemplate]
 LocFriendlyName="Test Firestorm"
@@ -331,17 +331,17 @@ LocPromotionPopupText="<Bullet/> 用你的臂套造成的攻击以及臂套武�
 [ConcussionRocket X2AbilityTemplate]
 LocFriendlyName="震荡火箭"
 LocFlyOverText="震荡火箭"
-LocLongDescription="发射一枚特殊的火箭，对敌方造成的伤害有限，但必定使范围内的有机单位混乱并有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使其眩晕。"
-LocHelpText="发射一枚特殊的火箭，对敌方造成的伤害有限，但必定使范围内的有机单位混乱并有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使其眩晕。<Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> 每次任务1充能。<br/><Bullet/> 根据臂套等级造成2/3/4点伤害。<br/><Bullet/> 必定使有机单位混乱，无视混乱抵抗（但不会无视免疫）。<br/><Bullet/> 有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使有机单位眩晕。<br/><Bullet/> 消耗1个行动点并结束士兵的回合。<br/><Bullet/> 精英原典和灵能僵尸免疫此技能的所有效果，包括伤害。<br/><Bullet/> 盟友不会受到这次攻击的伤害，但无法免疫其混乱和眩晕效果。<br/>"
+LocLongDescription="发射一枚特殊的火箭，对敌方造成的伤害有限，但必定使范围内的有机单位混乱并有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使单位眩晕。"
+LocHelpText="发射一枚特殊的火箭，对敌方造成的伤害有限，但必定使范围内的有机单位混乱并有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使单位其眩晕。<Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> 每次任务1充能。<br/><Bullet/> 根据臂套等级造成2/3/4点伤害。<br/><Bullet/> 必定使有机单位混乱，无视闪光抗性。<br/><Bullet/> 有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使单位眩晕。<br/><Bullet/> 消耗1个行动点并结束士兵的回合。<br/>"
 ; End Translated
 
 [BlasterConcussionRocket X2AbilityTemplate]
 LocFriendlyName="震荡火箭"
 LocFlyOverText="震荡火箭"
-LocLongDescription="发射一枚特殊的火箭，对敌方造成的伤害有限，但必定使范围内的有机单位混乱并有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使其眩晕。"
-LocHelpText="发射一枚特殊的火箭，对敌方造成的伤害有限，但必定使范围内的有机单位混乱并有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%概率使其眩晕。<Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> 每次任务1充能。<br/><Bullet/> 根据臂套等级造成2/3/4点伤害。<br/><Bullet/> 必定使有机单位混乱，无视混乱抵抗（但不会无视免疫）。<br/><Bullet/> 有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使有机单位眩晕。<br/><Bullet/> 消耗1个行动点并结束士兵的回合。<br/><Bullet/> 精英原典和灵能僵尸免疫此技能的所有效果，包括伤害。<br/><Bullet/> 盟友不会受到这次攻击的伤害，但无法免疫其混乱和眩晕效果。<br/>"
+LocLongDescription="发射一枚特殊的火箭，对敌方造成的伤害有限，但必定使范围内的有机单位混乱并有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使单位眩晕。"
+LocHelpText="发射一枚特殊的火箭，对敌方造成的伤害有限，但必定使范围内的有机单位混乱并有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%概率使单位眩晕。<Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> 每次任务1充能。<br/><Bullet/> 根据臂套等级造成2/3/4点伤害。<br/><Bullet/> 必定使有机单位混乱，无视闪光抗性。<br/><Bullet/> 有<Ability:CONCUSSION_ROCKET_STUN_CHANCE>%的概率使单位眩晕。<br/><Bullet/> 消耗1个行动点并结束士兵的回合。<br/>"
 ; End Translation (4)
 
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
@@ -371,10 +371,10 @@ LocPromotionPopupText="<Bullet/> 减少该士兵在任务中的潜入时间。<b
 
 [Failsafe X2AbilityTemplate]
 LocFriendlyName="故障保护"
-LocLongDescription="如果你侵入失败，你能够阻止任何负面效果发生并获得1行动点返还。"
-LocHelpText="如果你侵入失败，你能够阻止任何负面效果发生并获得1行动点返还。"
+LocLongDescription="如果你侵入失败，你能够阻止任何负面效果发生并获得1行动点返还。行动点返还效果每回合只能触发一次。"
+LocHelpText="如果你侵入失败，你能够阻止任何负面效果发生并获得1行动点返还。行动点返还效果每回合只能触发一次。"
 LocFlyOverText="故障保护"
-LocPromotionPopupText="<Bullet/> 如果你侵入失败，你能够阻止任何负面效果(包括暴露)发生。"
+LocPromotionPopupText="<Bullet/> 如果你侵入失败，你能够阻止任何负面效果(包括暴露)发生。<br/><Bullet/> 行动点返还效果每回合只能触发一次。"
 
 [FullOverride X2AbilityTemplate]
 LocFriendlyName="完全破解"
@@ -467,7 +467,7 @@ LocFriendlyName="刺针榴弹"
 LocLongDescription="你的爆炸物击杀敌人时不会破坏战利品且对无护甲的敌人造成<ABILITY:NEEDLE_BONUS_UNARMORED_DMG_LW/>额外伤害。"
 LocHelpText="你的爆炸物击杀敌人时不会破坏战利品且对无护甲的敌人造成<ABILITY:NEEDLE_BONUS_UNARMORED_DMG_LW/>额外伤害。"
 LocFlyOverText="刺针榴弹"
-LocPromotionPopupText="<Bullet/> 你受过额外的训练，能让你使用能够发射出特殊裂片的爆炸性榴弹，使战利品完好无损，撕碎未加固的材料。<br/><Bullet/> 被该士兵的任何其他爆炸物（如重武器）击杀的敌人的战利品和尸体，也会被保留下来。<br/><Bullet/> 刺针榴弹对臂套火箭和火焰喷射器都有效。"
+LocPromotionPopupText="<Bullet/> 你受过额外的训练，能让你使用能够发射出特殊裂片的爆炸性榴弹，使战利品完好无损，撕碎未加固的材料。<br/><Bullet/> 被该士兵的任何其他爆炸物（如重武器）击杀的敌人的战利品和尸体，也会被保留下来。<br/><Bullet/> 不破坏战利品效果对臂套火箭和火焰喷射器都有效。"
 
 [HEATWarheads X2AbilityTemplate]
 LocFriendlyName="高热弹头"
@@ -556,8 +556,8 @@ LocPromotionPopupText="<Bullet/> 你将格挡任何擦伤或未命中的近战�
 
 [Flush X2AbilityTemplate]
 LocFriendlyName="冲散"
-LocLongDescription="一种特殊射击，增加<Ability:FLUSH_AIM_BONUS>命中，但减少<Ability:FLUSH_DAMAGE_PENALTY>%的伤害。如果命中，目标将失去<Ability:FLUSH_DEFENSE_REDUCTION>防御和<Ability:FLUSH_DODGE_REDUCTION>闪避，并且强迫目标移动。"
-LocHelpText="一种特殊射击，增加<Ability:FLUSH_AIM_BONUS>命中，但减少<Ability:FLUSH_DAMAGE_PENALTY>%的伤害。如果命中，目标将失去<Ability:FLUSH_DEFENSE_REDUCTION>防御和<Ability:FLUSH_DODGE_REDUCTION>闪避，并且强迫目标移动。"
+LocLongDescription="一种特殊射击，增加<Ability:FLUSH_AIM_BONUS>命中，但减少<Ability:FLUSH_DAMAGE_PENALTY>%的伤害。被命中的目标将失去<Ability:FLUSH_DEFENSE_REDUCTION>防御和<Ability:FLUSH_DODGE_REDUCTION>闪避，并强迫其进行移动。"
+LocHelpText="一种特殊射击，增加<Ability:FLUSH_AIM_BONUS>命中，但减少<Ability:FLUSH_DAMAGE_PENALTY>%的伤害。被命中的目标将失去<Ability:FLUSH_DEFENSE_REDUCTION>防御和<Ability:FLUSH_DODGE_REDUCTION>闪避，并强迫其进行移动。"
 LocFlyOverText="冲散"
 LocPromotionPopupText="<Bullet/> 消耗<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷却。<br/><Bullet/> 隐蔽状态时无法使用。<br/><Bullet/> 无法暴击或施加额外弹药效果。<br/><Bullet/> 降低防御和闪避的效果持续<Ability:FLUSH_STATEFFECT_DURATION>回合。"
 str_FlushEffect="冲散"
@@ -874,8 +874,8 @@ LocHelpText="你的武器造成+1伤害且有<Ability:DRAGON_ROUNDS_APPLY_CHANCE
 [Bluescreen_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="蓝屏弹"
 LocFlyOverText="蓝屏弹"
-LocLongDescription="你的武器对机械敌人造成+<Ability:BLUESCREEN_DMGMOD>的伤害并移除防御型护盾。"
-LocHelpText="你的武器对机械敌人造成+<Ability:BLUESCREEN_DMGMOD>的伤害并移除防御型护盾。"
+LocLongDescription="你的武器命中将移除目标单位护盾，对机械敌人造成+<Ability:BLUESCREEN_DMGMOD>的伤害，并有<Ability:BLUESCREEN_DISORIENT_CHANCE>%概率混乱机械敌人。"
+LocHelpText="你的武器命中将移除目标单位护盾，对机械敌人造成+<Ability:BLUESCREEN_DMGMOD>的伤害，并有<Ability:BLUESCREEN_DISORIENT_CHANCE>%概率混乱机械敌人。"
 
 [Venom_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="毒液弹"
@@ -962,6 +962,7 @@ TacticalText="<Bullet/>要是由训练有素的士兵使用，手枪可就不仅
 FriendlyName="激光手枪"
 FriendlyNamePlural="激光手枪"
 UnknownUtilityCategory="手枪"
+AbilityDescName="手枪"
 BriefSummary="基于先进的激光武器技术，我们发明了这把新手枪。值得称道的是，它在威力方面和传统手枪相比有非常显著的飞跃。"
 TacticalText="<Bullet/>激光手枪在整体上要比普通的手枪威力更大，命中率更高。\n<Bullet/>激光可以提高命中率。\n<Bullet/>手枪射击只需要一个行动点。\n<Bullet/>士兵们可以通过训练特定的技能来大幅度增加手枪的威力。\n<Bullet/>在远距离射击时手枪的命中率会降低。"
 
@@ -1221,14 +1222,14 @@ AbilityDescName="激光轨道炮"
 [SparkRifle_CG X2WeaponTemplate]
 FriendlyName="高斯投射炮"
 FriendlyNamePlural="高斯投射炮"
-BriefSummary="使用多个加速线圈来制造聚焦的带电粒子束，这些粒子在任何范围内均保持有效，能为SPARK提供强大的火力。" 
+BriefSummary="这种线圈自动炮的发明得益于全新的以超铀为基础的极速电容器。其电容间距仅为纳米级，使其在射击时能够逐个过载并依次放电，能为SPARK提供强大的火力。" 
 TacticalText="<Bullet/> 线圈武器会穿透1点敌方护甲。<br/><Bullet/> 高斯投射炮是线圈版本的自动加农炮。"
 AbilityDescName="高斯投射炮"
 
 [PrototypePlasmaBlaster X2WeaponTemplate]
 FriendlyName="原型电浆毁灭炮"
 FriendlyNamePlural="原型电浆毁灭炮"
-BriefSummary="利用从第一次入侵中回收的技术，我们设计了一种可以发射大量集中电浆能量脉冲的方法，可以摧毁固定路径上的目标。其能量足以激活两次。"
+BriefSummary="利用从第一次入侵中回收的技术，我们设计了一种可以发射大量集中电浆能量脉冲的方法，可以摧毁固定路径上的目标。"
 TacticalText="<Bullet/> 电浆毁灭炮射出一道直线式的毁灭性能量光束，可以伤害多个目标。\n<Bullet/> 它的弹药有限，尽量在必要时使用。"
 
 [PlasmaBlaster X2WeaponTemplate]
@@ -1429,7 +1430,7 @@ FriendlyNamePlural="精英自动装填器"
 [CombatStims X2WeaponTemplate]
 FriendlyName="超能血清"
 FriendlyNamePlural="超能血清"
-BriefSummary="超能血清提取自狂战士外星人的肾上腺，通过刺激使用者的神经系统在数回合内提高其机动性和伤害抗性。"
+BriefSummary="超能血清提取自狂战士外星人的肾上腺，通过刺激使用者的神经系统在数回合内提高其机动性和伤害抗性。超能血清每次任务只能使用一次。"
 TacticalText="<Bullet/>超能血清能显著提升机动性并显著减少士兵受到的伤害。\n<Bullet/>超能血清还能使士兵暂时免疫恐慌和心灵控制等负面精神效果。"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;; GEAR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -2235,10 +2236,10 @@ RewardDetails="你会获取一台反抗军MEC来守卫你的避难所。"
 DisplayName="新资源"
 
 [Reward_POI_LW X2RewardTemplate]
-DisplayName="情报包"
+DisplayName="扫描节点"
 
 [Reward_Dummy_POI X2RewardTemplate]
-DisplayName="情报包"
+DisplayName="扫描节点"
 
 [Reward_Dummy_Materiel X2RewardTemplate]
 DisplayName="敌方物资"
@@ -2247,10 +2248,10 @@ DisplayName="敌方物资"
 DisplayName="未知"
 
 [Reward_Dummy_Unhindered X2RewardTemplate]
-DisplayName="无阻碍的行动"
+DisplayName="反抗军工作不被封锁"
 
 [Reward_FacilityLead X2RewardTemplate]
-DisplayName="情报包"
+DisplayName="设施线索"
 
 [Reward_Dummy_RegionalTower X2RewardTemplate]
 DisplayName="变种人地区总部位置"
@@ -3863,15 +3864,15 @@ DisplayName="精英枪托"
 Summary="允许精英枪托的批量生产，它们可以使稳定武器能力发挥出巨大威力。"
 
 [BasicClipSizeProject X2TechTemplate]
-DisplayName="大容量弹匣"
+DisplayName="扩展弹匣"
 Summary="允许大量生产士兵主武器使用的更大的弹匣。"
  
 [AdvancedClipSizeProject X2TechTemplate]
-DisplayName="高级大容量弹匣"
+DisplayName="高级扩展弹匣"
 Summary="允许工程部大量生产士兵主武器使用的更大的弹匣。"
 
 [SuperiorClipSizeProject X2TechTemplate]
-DisplayName="精英高容量弹匣"
+DisplayName="精英扩展弹匣"
 Summary="解锁这种我们能使用的最大的弹匣的生产。"
 
 [BasicHairTriggerProject X2TechTemplate]
@@ -4796,17 +4797,17 @@ LocFriendlyName="黑暗事件：战术升级（战术素养）"
 LocLongDescription="一些敌军单位获得战术素养能力，给他们提供额外的防御力。"
 
 [DarkEvent_Aggression X2DarkEventTemplate]
-DisplayName="永久性：穷兵黩武"
-SummaryText="一些敌军单位获得穷兵黩武能力，给他们提供额外的暴击率。"
+DisplayName="永久性：高侵略性"
+SummaryText="一些敌军单位获得高侵略性能力，给他们提供额外的暴击率。"
 QuoteText="\"我觉得我们让他们变得疯狂了。\""
 QuoteTextAuthor="- 匿名的上等兵"
-PreMissionText="为一些敌军单位提供穷兵黩武能力。"
-PostMissionSuccessText="已阻止黑暗事件：战术升级（穷兵黩武）"
-PostMissionFailureText="反击黑暗事件失败：战术升级（穷兵黩武）"
+PreMissionText="为一些敌军单位提供高侵略性能力。"
+PostMissionSuccessText="已阻止黑暗事件：战术升级（高侵略性）"
+PostMissionFailureText="反击黑暗事件失败：战术升级（高侵略性）"
 
 [DarkEventAbility_Aggression X2AbilityTemplate]
-LocFriendlyName="黑暗事件：战术升级（穷兵黩武）"
-LocLongDescription="一些敌军单位获得穷兵黩武能力，给他们提供额外的暴击率。"
+LocFriendlyName="黑暗事件：战术升级（高侵略性）"
+LocLongDescription="一些敌军单位获得高侵略性能力，给他们提供额外的暴击率。"
 
 [DarkEvent_Resilience X2DarkEventTemplate]
 DisplayName="永久性：韧性"
@@ -4850,7 +4851,7 @@ LocLongDescription="一些变种人机器人和其他一些单位获得了伤害
 [DarkEvent_HardTarget X2DarkEventTemplate]
 DisplayName="永久性：高难目标"
 SummaryText="一些外星人单位获得高难目标能力，获得额外闪避。"
-QuoteText="\"。\""
+QuoteText="\"外星人的反应能力在我们的环境中变得越来越敏捷。我们应该投资于瞄准镜，并确保出任务时都配备了瞄准镜。\""
 QuoteTextAuthor="- 沈总工程师"
 PreMissionText="一些外星人单位获得高难目标能力。"
 PostMissionSuccessText="已阻止黑暗事件：战术升级（高难目标）"
@@ -5457,9 +5458,9 @@ LocPromotionPopupText="<Bullet/> 圣殿骑士在开始任务时比其他士兵�
 
 [Rend_LW X2AbilityTemplate]
 LocFriendlyName="撕裂"
-LocLongDescription="近战攻击有几率使目标眩晕或混乱。触发气势，产生专注。"
-LocHelpText="近战攻击有几率使目标眩晕或混乱。触发气势，产生专注。"
-LocPromotionPopupText="<Bullet/> 使用撕裂是圣殿骑士产生专注的主要方法。<br/><Bullet/> 施展撕裂后，圣殿骑士将获得气势，允许他们进行一次移动动作。攻击后撤回掩体。<br/><Bullet/> 撕裂每1点专注有<Ability:RENDSTUNCHANCE/>%几率眩晕。眩晕的目标也会被击退。<br/><Bullet/> 撕裂每1点专注有<Ability:RENDDISORIENTCHANCE/>%几率混乱。<br/>"
+LocLongDescription="近战攻击。触发气势，产生专注。有几率使目标眩晕或混乱。"
+LocHelpText="近战攻击。触发气势，产生专注。有几率使目标眩晕或混乱。"
+LocPromotionPopupText="<Bullet/> 使用撕裂是圣殿骑士产生专注的主要方法。<br/><Bullet/> 施展撕裂后，圣殿骑士将获得气势，允许攻击后开启护盾或移动以撤回掩体。<br/><Bullet/> 每1点专注使撕裂获得<Ability:RENDSTUNCHANCE/>%眩晕几率。眩晕的目标也会被击退。<br/><Bullet/> 每1点专注使撕裂获得<Ability:RENDDISORIENTCHANCE/>%混乱几率。<br/>"
 
 [Whiplash X2AbilityTemplate]
 LocLongDescription="用电击鞭攻击敌人。对机器人造成额外伤害。<Ability:SelfCooldown_LW/>回合冷却时间。"
@@ -5569,7 +5570,7 @@ LocPromotionPopupText="<Bullet/> 爪钩让散兵具有更好的侦察优势，�
 [FullThrottle X2AbilityTemplate]
 LocLongDescription="回合内每次击杀移动力+<Ability:FULLTHROTTLEMOBILITY/>。持续<Ability:FULL_THROTTLE_DURATION/>回合，包括当前回合。"
 LocHelpText="回合内每次击杀移动力+<Ability:FULLTHROTTLEMOBILITY/>。持续<Ability:FULL_THROTTLE_DURATION/>回合，包括当前回合。"
-LocPromotionPopupText="<Bullet/> 在回合开始时确保击杀，以充分利用开足马力。<br/><Bullet/> 只有散兵的击杀才能触发开足马力。<br/>"
+LocPromotionPopupText="<Bullet/> 在回合开始时确保击杀，以充分利用开足马力。<br/>"
 
 [Judgment X2AbilityTemplate]
 LocFriendlyName="审判"
@@ -6213,8 +6214,8 @@ LocPromotionPopupText="<Bullet/> 如果一名敌人在相邻格开始他们的�
 
 ; LWOTC Needs Translation
 [Concentration_LW X2AbilityTemplate]
-LocFriendlyName="专注"
-LocFlyOverText="专注"
+LocFriendlyName="凝神"
+LocFlyOverText="凝神"
 ; LWOTC Needs Translation (2)
 LocLongDescription="你的擦伤攻击会自动升级为正常命中。"
 LocHelpText="你的擦伤攻击会自动升级为正常命中。"
@@ -6336,9 +6337,9 @@ LocPromotionPopupText="<Bullet/> 本单位被射击时复仇者不会触发。<b
 LocFriendlyName="捕食者"
 LocFlyOverText="捕食者"
 ; LWOTC Needs Translation (2)
-LocLongDescription="对侧翼敌人的远程攻击获得<Ability:PREDATOR_AIM_BONUS/>命中以及<Ability:PREDATOR_CRIT_BONUS/>暴击率加成。"
-LocHelpText="对侧翼敌人的远程攻击获得<Ability:PREDATOR_AIM_BONUS/>命中以及<Ability:PREDATOR_CRIT_BONUS/>暴击率加成。"
-LocPromotionPopupText="<Bullet/> 对侧翼敌人的远程攻击获得<Ability:PREDATOR_AIM_BONUS/>命中以及<Ability:PREDATOR_CRIT_BONUS/>暴击率加成。<br/>"
+LocLongDescription="对侧翼敌人的远程攻击获得<Ability:PREDATOR_AIM_BONUS_LW/>命中以及<Ability:PREDATOR_CRIT_BONUS_LW/>暴击率加成。"
+LocHelpText="对侧翼敌人的远程攻击获得<Ability:PREDATOR_AIM_BONUS_LW/>命中以及<Ability:PREDATOR_CRIT_BONUS_LW/>暴击率加成。"
+LocPromotionPopupText="<Bullet/> 对侧翼敌人的远程攻击获得<Ability:PREDATOR_AIM_BONUS_LW/>命中以及<Ability:PREDATOR_CRIT_BONUS_LW/>暴击率加成。<br/>"
 ; End Translation (2)
 
 [Stiletto_LW X2AbilityTemplate]
@@ -6544,7 +6545,7 @@ LocFriendlyName="闪电裂斩"
 LocLongDescription="使用<Ability:BOUND_WEAPON_NAME/>攻击蓝色移动范围内的任何敌人，不会结束回合。"
 LocHelpText="使用<Ability:BOUND_WEAPON_NAME/>攻击蓝色移动范围内的任何敌人，不会结束回合。"
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> 使用<Ability:BOUND_WEAPON_NAME/>攻击蓝色移动范围内的任何敌人。<br/><Bullet/> 这次攻击不会结束回合。<br/><Bullet/> 闪电裂斩有<Ability:LIGHTNINGSLASH_COOLDOWN/>回合冷却时间。<br/>"
+LocPromotionPopupText="<Bullet/> 使用<Ability:BOUND_WEAPON_NAME/>攻击蓝色移动范围内的任何敌人。<br/><Bullet/> 这次攻击不会结束回合。<br/><Bullet/> 闪电裂斩有<Ability:LIGHTNINGSLASH_COOLDOWN/>回合冷却时间。<br/><Bullet/>无法触发圣殿骑士的气势和近战士兵的死神 <br/>"
 ; End Translation (2)
 
 [LightningSlashLastAction_LW X2AbilityTemplate]
@@ -6552,7 +6553,7 @@ LocFriendlyName="闪电裂斩"
 ; LWOTC Needs Translation (3)
 LocLongDescription="使用<Ability:BOUND_WEAPON_NAME/>攻击蓝色移动范围内的任何敌人，不会结束回合。"
 LocHelpText="使用<Ability:BOUND_WEAPON_NAME/>攻击蓝色移动范围内的任何敌人，不会结束回合。"
-LocPromotionPopupText="<Bullet/> 使用<Ability:BOUND_WEAPON_NAME/>攻击蓝色移动范围内的任何敌人。<br/><Bullet/> 这次攻击不会结束回合。<br/><Bullet/> 闪电裂斩有<Ability:LIGHTNINGSLASH_COOLDOWN/>回合冷却时间。<br/>"
+LocPromotionPopupText="<Bullet/> 使用<Ability:BOUND_WEAPON_NAME/>攻击蓝色移动范围内的任何敌人。<br/><Bullet/> 这次攻击不会结束回合。<br/><Bullet/> 闪电裂斩有<Ability:LIGHTNINGSLASH_COOLDOWN/>回合冷却时间。<br/><Bullet/>无法触发圣殿骑士的气势和近战士兵的死神 <br/>"
 ; End Translation (3)
 
 [InspireAgility_LW X2AbilityTemplate]
@@ -6678,8 +6679,8 @@ LocLongDescription="术士向目标敞开心扉，对目标造成伤害，<Abili
 
 [ChosenKidnap X2AbilityTemplate]
 LocFriendlyName="劫持"
-LocLongDescription="劫持一个失去意识或失血的单位。消耗2行动点，1回合冷却时间。"
-LocHelpText="劫持一个失去意识或失血的单位。消耗2行动点，1回合冷却时间。"
+LocLongDescription="劫持一个失去意识或失血的单位。消耗2行动点，2回合冷却时间。"
+LocHelpText="劫持一个失去意识或失血的单位。消耗2行动点，2回合冷却时间。"
 LocFlyOverText="劫持"
 
 [ChosenKeen X2AbilityTemplate]
@@ -7028,11 +7029,11 @@ LocFlyOverText="装填"
 
 [XcomGame.X2StrategyGameRulesetDataStructures]
 [X2StrategyGameRulesetDataStructures]
-ComIntLabels[eComInt_Standard]="一般"
-ComIntLabels[eComInt_AboveAverage]="高于平均"
-ComIntLabels[eComInt_Gifted]="有天赋"
-ComIntLabels[eComInt_Genius]="天才"
-ComIntLabels[eComInt_Savant]="学者"
+ComIntLabels[eComInt_Standard]="最低"
+ComIntLabels[eComInt_AboveAverage]="低"
+ComIntLabels[eComInt_Gifted]="中"
+ComIntLabels[eComInt_Genius]="高"
+ComIntLabels[eComInt_Savant]="最高"
 ; End Translation
 
 ; LWOTC Needs Translation
@@ -7379,11 +7380,14 @@ LocHelpText="用灵能透镜标记一名目标，该目标在未来持续3次受
 LocHitMessage="标记"
 LocPromotionPopupText="<Bullet/> 标记持续3次伤害。<br/><Bullet/> 标记是自由行动。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷却。<br/>"
 
+[X2Effect_Amplify]
+AmplifyCountdown="标记剩余数：%d"
+
 [CrusaderRage_LW X2AbilityTemplate]
 LocFriendlyName="圣殿之怒"
 LocHelpText="每损失25%生命值给予25%伤害提升，最多50%伤害提升。使该士兵的伤口恢复时间减少<Ability:CRUSADER_RAGE_HEAL>HP。"
 LocLongDescription="每损失25%生命值给予25%伤害提升，最多50%伤害提升。使该士兵的伤口恢复时间减少<Ability:CRUSADER_RAGE_HEAL>HP。"
-LocPromotionPopupText="<Bullet/> 如果士兵在执行任务期间进入失血状态，则伤口恢复不起作用。<br/>"
+LocPromotionPopupText="<Bullet/> 如果士兵在执行任务期间进入失血过多状态，则无法减少伤口恢复时间。<br/>"
 LocFlyOverText="圣殿之怒"
 
 [Sidearm_CV X2WeaponTemplate]
@@ -7459,7 +7463,7 @@ LocPromotionPopupText="<Bullet/> 使用撕裂是圣殿骑士生成专注的主�
 LocFriendlyName="电弧波"
 LocLongDescription="撕裂会在攻击方向产生一个心灵能量波。伤害随碎片拳刃层级增加。"
 LocHelpText="撕裂会在攻击方向产生一个心灵能量波。"
-LocPromotionPopupText="<Bullet/> 电弧波不会影响原始撕裂攻击的目标。<br/><Bullet/> 电弧波随着碎片拳刃层级造成的伤害为 4/7/10 。<br/><Bullet/> 电弧波在环境物体中传播。<br/>"
+LocPromotionPopupText="<Bullet/> 电弧波不会影响原始撕裂攻击的目标。<br/><Bullet/> 电弧波随着碎片拳刃层级造成的伤害为4/7/10 。<br/><Bullet/> 电弧波在环境物体中传播。<br/>"
 
 [IonicStorm X2AbilityTemplate]
 LocFriendlyName="离子风暴"
@@ -7525,7 +7529,7 @@ LocLongDescription="使穿戴者对负面精神状况免疫，如混乱、恐慌
 [Sustain X2AbilityTemplate]
 LocLongDescription="该单位的伤口恢复时间减少<Ability:SUSTAIN_WOUND_HP_REDUCTTION/>HP，并在受到足以致命的伤害后会立刻进入静滞状态，持续1回合，且生命值维持在1点。此能力每次任务发动一次。"
 LocHelpText="该单位受到足以致命的伤害后会立刻进入静滞状态，持续1回合，且生命值维持在1点。此能力每次任务发动一次。"
-LocPromotionPopupText="<Bullet/> 注意，单位从静滞状态恢复时依然会受到状态效果（如毒素或燃烧）的伤害。<br/><Bullet/> 注意，单位如果处于眩晕状态，则不会触发静滞。<br/><Bullet/> 注意，受到的致命伤害每溢出1HP，根据祭司的级别，其触发静滞的概率会降低25%/17%/10%。"
+LocPromotionPopupText="<Bullet/> 注意，单位从静滞状态恢复时依然会受到状态效果（如毒素或燃烧）的伤害。<br/><Bullet/> 注意，单位如果处于眩晕状态，则不会触发静滞。<br/><Bullet/> 如果士兵在执行任务期间进入失血过多状态，则无法减少伤口恢复时间。"
 
 [SustainTriggered X2AbilityTemplate]
 LocLongDescription="该单位逃过一次致死攻击，并进入静滞状态1回合。本次战斗中仅触发一次。"
@@ -7553,13 +7557,13 @@ LocLongDescription="维生领域是一种会在士兵濒死时自动发动的紧
 [RefractionField X2WeaponTemplate]
 FriendlyName="折射力场"
 FriendlyNamePlural="折射力场"
-BriefSummary="运用从外星人幽灵的残骸中回收来的材料，折射力场技术能让装备了该力场的士兵立刻进入隐蔽状态。"
-TacticalText="<Bullet/> 折射力场能让士兵进入隐蔽状态。\n<Bullet/> 死神则会进入暗影隐蔽状态。"
+BriefSummary="运用从外星人幽灵的残骸中回收来的材料，折射力场技术能让装备了该力场的士兵立刻进入隐蔽状态，死神也只会进入隐蔽状态(非暗影)。"
+TacticalText="<Bullet/> 折射力场能让士兵进入隐蔽状态。\n<Bullet/> 死神也只会进入隐蔽状态(非暗影)。"
 
 [RefractionFieldAbility X2AbilityTemplate]
 LocFriendlyName="折射力场"
 LocHelpText="立刻进入隐蔽状态。"
-LocLongDescription="运用从外星人幽灵的残骸中回收来的材料，折射力场技术能让装备了该力场的士兵立刻进入隐蔽状态。"
+LocLongDescription="运用从外星人幽灵的残骸中回收来的材料，折射力场技术能让装备了该力场的士兵立刻进入隐蔽状态，死神也只会进入隐蔽状态(非暗影)。"
 
 [CombatStims X2AbilityTemplate]
 LocFriendlyName="超能血清"
@@ -7628,10 +7632,10 @@ LocPromotionPopupText="<Bullet/> 维修会恢复<Ability:Repair_HealHP/>生命�
 
 [AbsorptionField X2AbilityTemplate]
 LocFriendlyName="引导力场"
-LocLongDescription="每次你成为攻击目标时，一部分的能量会引导至你的<Ability:WeaponName>。该能量会在你下一发标准射击时释放。"
-LocHelpText="在成为攻击目标时将能量引导至你的<Ability:WeaponName>，并用你下一发标准射击释放能量。"
+LocLongDescription="每次你成为攻击目标时，一部分的能量会引导至你的<Ability:WeaponName>。该能量会在你下一次攻击时释放。"
+LocHelpText="在成为攻击目标时将能量引导至你的<Ability:WeaponName>，会在你下一次攻击时释放能量。"
 LocFlyOverText="已引导的能量：+1"
-LocPromotionPopupText="<Bullet/>被引导力场引导的每一点能量都会提升1点<Ability:WeaponName>的下一次攻击的伤害。<br/><Bullet/>引导力场中储存的能量即便是在下一发射击未命中也会消耗。<br/>"
+LocPromotionPopupText="<Bullet/>被引导力场引导的每一点能量都会提升1点<Ability:WeaponName>的下一次攻击的伤害。<br/><Bullet/>引导力场中储存的能量即便是在下一次攻击未命中也会消耗。<br/>"
 
 [Sacrifice X2AbilityTemplate]
 LocFriendlyName="牺牲"
@@ -7721,13 +7725,13 @@ LocHelpText="所有攻击获得额外的暴击率和护甲穿透。"
 LocPromotionPopupText="<Bullet/> 这是一个无条件的被动加成。\n<Bullet/> 护甲穿透加成不会显示在攻击预览中，但在攻击命中时会生效。"
 
 [ScoutScanner_LW X2AbilityTemplate]
-LocFriendlyName="侦查"
+LocFriendlyName="自由侦查"
 LocHelpText="每4回合，作为一个自由动作，你可以使用战场扫描器。"
 LocLongDescription="每4回合，作为一个自由动作，你可以使用战场扫描器。这不需要或消耗任何实际装备的战场扫描器。"
 LocPromotionPopupText="<Bullet/> 侦查赋予的战场扫描器可以无限使用，只受冷却时间限制。\n<Bullet/> 侦查赋予的战场扫描器与由战场扫描器物品赋予的不同。"
 
 [FreeScanner_LW X2AbilityTemplate]
-LocFriendlyName="侦查"
+LocFriendlyName="自由侦查"
 LocHelpText="每4回合，作为一个自由动作，你可以使用战场扫描器。"
 LocLongDescription="每4回合，作为一个自由动作，你可以使用战场扫描器。这不需要或消耗任何实际装备的战场扫描器。"
 LocPromotionPopupText="<Bullet/> 侦查赋予的战场扫描器可以无限使用，只受冷却时间限制。\n<Bullet/> 侦查赋予的场扫描器与由战场扫描器物品赋予的不同。"
@@ -7744,7 +7748,7 @@ LocFriendlyName="感知共享"
 LocLongDescription="小队所有成员对你视野内可见的敌人获得<Ability:+Crit>暴击率。"
 LocHelpText="小队所有成员对你视野内可见的敌人获得<Ability:+Crit>暴击率。"
 LocFlyOverText="感知共享"
-LocPromotionPopupText="<Bullet/> 这不包括仅通过小队视野可见的敌人。<br/>"
+LocPromotionPopupText="<Bullet/> 习得此技能的单位如果是通过小队视野看见敌人则不会为盟友提供加成。<br/>"
 
 [FocusedDefense_LW X2AbilityTemplate]
 LocFriendlyName="重点防御"

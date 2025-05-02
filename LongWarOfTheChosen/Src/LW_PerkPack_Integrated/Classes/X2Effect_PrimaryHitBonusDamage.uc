@@ -4,20 +4,31 @@ var int BonusDmg;
 var bool includepistols;
 var bool includesos;
 
-function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, optional XComGameState NewGameState)
+function float GetPreDefaultAttackingDamageModifier_CH(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, float CurrentDamage, X2Effect_ApplyWeaponDamage WeaponDamageEffect, XComGameState NewGameState)
 {
 	local X2WeaponTemplate WeaponTemplate;
     local X2AbilityToHitCalc_StandardAim StandardHit;
-	local X2Effect_ApplyWeaponDamage WeaponDamageEffect;
+	local X2Effect_ApplyWeaponDamage WeaponDamageEffectFromHistory;
 
 	if (class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult) && CurrentDamage > 0)
 	{ 
-		WeaponDamageEffect = X2Effect_ApplyWeaponDamage(class'X2Effect'.static.GetX2Effect(AppliedData.EffectRef));
+		WeaponDamageEffectFromHistory = X2Effect_ApplyWeaponDamage(class'X2Effect'.static.GetX2Effect(AppliedData.EffectRef));
 		if (WeaponDamageEffect != none)
 		{			
 			if (WeaponDamageEffect.bIgnoreBaseDamage)
 			{	
 				return 0;		
+			}
+		}
+		else
+		{
+			WeaponDamageEffectFromHistory = X2Effect_ApplyWeaponDamage(class'X2Effect'.static.GetX2Effect(AppliedData.EffectRef));
+			if (WeaponDamageEffectFromHistory != none)
+			{			
+				if (WeaponDamageEffectFromHistory.bIgnoreBaseDamage)
+				{	
+					return 0;		
+				}
 			}
 		}
 		WeaponTemplate = X2WeaponTemplate(AbilityState.GetSourceWeapon().GetMyTemplate());

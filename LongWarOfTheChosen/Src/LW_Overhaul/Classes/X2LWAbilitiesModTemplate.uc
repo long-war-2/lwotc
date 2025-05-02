@@ -110,6 +110,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'AdvPurifierFlamethrower':
 			UpdatePurifierFlamethrower(Template);
+			MakeAbilityHostile(Template);
 			break;
 		case 'Fuse':
 			//class'Helpers_LW'.static.MakeFreeAction(Template);
@@ -143,7 +144,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'RevivalProtocol':
 			RemoveRevivalProtocolNonMentalCleanse(Template);
-			AllowRevivalProtocolToRemoveStunned(Template);
+			//AllowRevivalProtocolToRemoveStunned(Template);
 			break;
 		case 'DeadeyeDamage':
 			UseNewDeadeyeEffect(Template);
@@ -275,6 +276,10 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			RemoveItemCost(Template);
 			Add1ChargeAndCost(Template);
 			break;
+		case 'DarkEventAbility_Shredder':
+		case 'Shredder':
+			AddShredPassive(Template);
+			break;
 		default:
 			break;
 
@@ -304,6 +309,16 @@ function int FieldMedic_BonusWeaponAmmo(XComGameState_Unit UnitState, XComGameSt
 		return class'X2Ability_SpecialistAbilitySet'.default.FIELD_MEDIC_BONUS;
 
 	return 0;
+}
+
+static function AddShredPassive(X2AbilityTemplate Template)
+{
+	local X2Effect_PassiveShredder_LW ShredEffect;
+
+	ShredEffect = new class'X2Effect_PassiveShredder_LW';
+	ShredEffect.BuildPersistentEffect(1, true, false);
+
+	Template.AddTargetEffect(ShredEffect);
 }
 
 static function ReworkAbsorptionField(X2AbilityTemplate Template)
@@ -987,6 +1002,7 @@ static function RemoveRevivalProtocolNonMentalCleanse(X2AbilityTemplate Template
 	}
 }
 
+// No longer used as CHL 1.29 integrated this.
 static function AllowRevivalProtocolToRemoveStunned(X2AbilityTemplate Template)
 {
 	local X2Effect_RestoreActionPoints RestoreAPEffect;
@@ -1309,7 +1325,7 @@ static function BuffTeleportAlly(X2AbilityTemplate Template)
 static function AddGrappledThisTurnEffect(X2AbilityTemplate Template)
 {
 	local AdditionalCooldownInfo CooldownInfo;
-	CooldownInfo.AbilityName = 'TrackingShotMark';
+	CooldownInfo.AbilityName = 'TrackingShot_LW';
 	CooldownInfo.NumTurns = 1;
 
 	Template.AbilityCooldown.AditionalAbilityCooldowns.AddItem(CooldownInfo);
@@ -1520,7 +1536,7 @@ static function PatchFullerOverride(X2AbilityTemplate Template)
 		MindControlEffect = X2Effect_MindControl(Effect);
 		if(MindControlEffect != none)
 		{
-			MindControlEffect.EffectName = 'FullOverride';
+			MindControlEffect.EffectName = 'FullOverrideMC';
 			MindControlEffect.EffectTickedVisualizationFn = none;
 		}
 	}

@@ -50,17 +50,30 @@ static function EventListenerReturn SetPodManagerAlert(Object EventData, Object 
 			GameState != none && 
 			XComGameStateContext_Ability(GameState.GetContext()).ResultContext.InterruptionStep <= 0)
 	{
-		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("PodManager: RedAlert");
-		NewPodManager = XComGameState_LWPodManager(NewGameState.ModifyStateObject(class'XComGameState_LWPodManager', `LWPODMGR.ObjectID));
-		NewGameState.AddStateObject(NewPodManager);
-		NewPodManager.AlertLevel = (Ability.GetMyTemplateName() == 'RedAlert') ? `ALERT_LEVEL_RED : `ALERT_LEVEL_YELLOW;
-		`TACTICALRULES.SubmitGameState(NewGameState);
+		if(`LWPODMGR.AlertLevel != `ALERT_LEVEL_RED && Ability.GetMyTemplateName() == 'RedAlert')
+		{
+			NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("PodManager: RedAlert");
+			NewPodManager = XComGameState_LWPodManager(NewGameState.ModifyStateObject(class'XComGameState_LWPodManager', `LWPODMGR.ObjectID));
+			NewGameState.AddStateObject(NewPodManager);
+			NewPodManager.AlertLevel = `ALERT_LEVEL_RED;
+			`TACTICALRULES.SubmitGameState(NewGameState);
+		}
+
+		else if(`LWPODMGR.AlertLevel == `ALERT_LEVEL_GREEN && Ability.GetMyTemplateName() == 'YellowAlert')
+		{
+			NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("PodManager: YellowAlert");
+			NewPodManager = XComGameState_LWPodManager(NewGameState.ModifyStateObject(class'XComGameState_LWPodManager', `LWPODMGR.ObjectID));
+			NewGameState.AddStateObject(NewPodManager);
+			NewPodManager.AlertLevel = `ALERT_LEVEL_YELLOW;
+			`TACTICALRULES.SubmitGameState(NewGameState);
+		}
+
 	}
 
 	return ELR_NoInterrupt;
 }
 
-// Tedster - converted to ELD_Immediate instead of ELD_OnStateSubmitted
+// Tedster - Tried converting this to ELD_Immediate instead of ELD_OnStateSubmitted, broke things, there's probably other stuff I need to handle
 static function EventListenerReturn OnAlienTurnBegin(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
 	local XComGameState NewGameState;
@@ -82,6 +95,8 @@ static function EventListenerReturn OnAlienTurnBegin(Object EventData, Object Ev
 
 	// If we're still concealed, don't take any actions yet.
 	// XComPlayer = class'Utilities_LW'.static.FindPlayer(eTeam_XCom);
+
+	//`LWTrace("Alien PlayerTurnBegin History Index:" @`XCOMHISTORY.GetCurrentHistoryIndex());
 
 	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Preparing Pod Jobs");
 
@@ -113,7 +128,7 @@ static function EventListenerReturn OnAlienTurnBegin(Object EventData, Object Ev
 
 	return ELR_NoInterrupt;
 }
-// Converted from ELD_OSS to ELD_Immediate
+// Converted from ELD_OSS to ELD_Immediate (and back because things broke)
 static function EventListenerReturn OnUnitGroupTurnBegun(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
 	local XComGameState NewGameState;
@@ -126,6 +141,8 @@ static function EventListenerReturn OnUnitGroupTurnBegun(Object EventData, Objec
 		`REDSCREEN("XCGS_AIGroup not passed as event source for 'UnitGroupTurnBegun'");
 		return ELR_NoInterrupt;
 	}
+
+	//`LWTrace("History frame before pod manager submission:" @`XCOMHISTORY.GetCurrentHistoryIndex());
 
 	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Updating Pod Job");
 	NewPodManager = XComGameState_LWPodManager(NewGameState.ModifyStateObject(class'XComGameState_LWPodManager', `LWPODMGR.ObjectID));
@@ -141,6 +158,8 @@ static function EventListenerReturn OnUnitGroupTurnBegun(Object EventData, Objec
 	{
 		`XCOMHISTORY.CleanupPendingGameState(NewGameState);
 	}
+
+	//`LWTrace("Current history frame after gamestate submission:" @`XCOMHISTORY.GetCurrentHistoryIndex());
  	
 	return ELR_NoInterrupt;
 }

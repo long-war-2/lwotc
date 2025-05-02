@@ -39,7 +39,6 @@ LocLongDescription="Betäube Feinde mit einem präzisen Schuss. Kritische Treffe
 LocHelpText="Betäube Feinde mit einem präzisen Schuss. Kritische Treffer erhöhen die Betäubungsdauer, aber nicht  den Schaden."
 LocPromotionPopupText="<Bullet/> Betäubt Feinde für <Ability:DisablingShotStunActions/> Aktionen, falls der Schuss trifft (einschließlich Streifschüsse).<br/><Bullet/> Betäubt für zusätzlich <Ability:DisablingShotCritStunActions/> Aktionen im Falle eines kritischen Treffers, verursacht jedoch keinen kritischen Schaden.<br/><Bullet/> Entkräftender Schuss verbraucht <Ability:SelfAmmoCost/> Munitionspunkt(e) und hat eine Abklingzeit von <Ability:SelfCooldown_LW/> Runde(n).<br/><Bullet/> Avatare und Psi-Zombies können nicht betäubt werden."
 
-
 [Meditation X2AbilityTemplate]
 LocFriendlyName="Meditation"
 LocLongDescription="Erhöht den Fokus des Templers um bis zu <Ability:MeditationFocusRecovery/>."
@@ -132,7 +131,6 @@ LocLongDescription="Erhalte einmal pro Runde eine Bonusaktion, nacheem du ein Me
 LocHelpText="Erhalte einmal pro Runde eine Bonusaktion, nacheem du ein Messer auf ein Ziel innerhalb von <Ability:CLOSE_ENCOUNTERS_RANGE/> Geländefeldern wirfst. Kann nicht in derselben Runde ausgelöst werden wie Fieser Trick."
 LocPromotionPopupText="<Bullet/> Erhalte einmal pro Runde eine Bonusaktion, nacheem du ein Messer auf ein Ziel innerhalb von <Ability:CLOSE_ENCOUNTERS_RANGE/> Geländefeldern wirfst. <br/><Bullet/> Ein roter Ring zeigt die Reichweite dieser Fähigkeit an.<br/><Bullet/> 'Messerbegegnungen' kann nicht in derselben Runde ausgelöst werden wie Sturm und Schuss oder Fieser Trick.<br/>"
 
-
 [ImpersonalEdge X2AbilityTemplate]
 LocFriendlyName="Nichts Persönliches"
 LocFlyOverText="Nichts Persönliches"
@@ -151,7 +149,6 @@ LocPromotionPopupText="<Bullet/> Wenn du einen Feind mit einem Wurfmesser tötes
 LocFriendlyName="Bluescreen-Messer"
 LocHelpText="Wurfmesser gewähren +<Ability:BLUESCREEN_KNIVES_PIERCE/> Rüstungspenetration und desorientieren robotische Einheiten."
 LocLongDescription="Wurfmesser gewähren +<Ability:BLUESCREEN_KNIVES_PIERCE/> Rüstungspenetration und desorientieren robotische Einheiten."
-; LWOTC Needs Translation (2)
 LocPromotionPopupText="<Bullet/> Wurfmesser gewähren +<Ability:BLUESCREEN_KNIVES_PIERCE/> Rüstungspenetration und desorientieren robotische Einheiten."
 
 [BattlefieldAwareness X2AbilityTemplate]
@@ -160,7 +157,6 @@ LocLongDescription="Wenn du in deiner Runde einen Kill erzielst, verfehlt dich d
 LocHelpText="Wenn du in deiner Runde einen Kill erzielst, verfehlt dich der nächste gegen dich gerichtete Angriff in der Feindrunde. Kann alle <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/> Runden ausgelöst werden."
 LocFlyOverText="Schlachtfeld-Bewusstsein"
 LocPromotionPopupText="<Bullet/> Wenn du in deiner Runde einen Kill erzielst, verfehlt dich der nächste gegen dich gerichtete Angriff in der Feindrunde.<br/><Bullet/> Dies betrifft jeglichen Schaden inklusive Schaden durch Flächenangriffe. <br/><Bullet/> Nach dem Auslösen kann die Fähigkeit erst nach <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/> Runde(n) erneut ausgelöst werden.<br/>"
-
 
 [BattlefieldAwarenessPassive X2AbilityTemplate]
 LocFriendlyName="Schlachtfeld-Bewusstsein"
@@ -179,6 +175,24 @@ LocPromotionPopupText="<Bullet/> Kampfpräsenz kann verwendet werden, um Truppmi
 [CheapShot X2AbilityTemplate]
 LocFriendlyName="Fieser Trick"
 LocFlyOverText="Fieser Trick"
-LocLongDescription= "Erhalte einmal pro Runde eine Bewegungsaktion, nachdem du mit deiner Primärwaffe auf eine Einheit geschossen hast, die in dieser Runde verwundet wurde. Kann nicht im selben Zug wie Messerbegegnungen ausgelöst werden."
+LocLongDescription="Erhalte einmal pro Runde eine Bewegungsaktion, nachdem du mit deiner Primärwaffe auf eine Einheit geschossen hast, die in dieser Runde verwundet wurde. Kann nicht im selben Zug wie Messerbegegnungen ausgelöst werden."
 LocHelpText="Erhalte einmal pro Runde eine Bewegungsaktion, nachdem du mit deiner Primärwaffe auf eine Einheit geschossen hast, die in dieser Runde verwundet wurde. Kann nicht im selben Zug wie Messerbegegnungen ausgelöst werden"
 LocPromotionPopupText="<Bullet/> Gewährt eine Bewegungsaktion, wenn du auf ein Ziel schießt, das in dieser oder der letzten Feindrunde verwundet wurde.<br/><Bullet/> Gilt für Standardschüsse und einige Spezialschüsse.<br/><Bullet/> Die Bewegungsaktion kann verwendet werden, um Schatten zu aktivieren.<br/><Bullet/> 'Fieser Trick' kann nicht im selben Zug wie Messerbegegnungen ausgelöst werden."
+
+[TheBanisher_LW X2AbilityTemplate]
+LocFriendlyName="Wahrer Jäger"
+LocLongDescription="Verringert den Zielmalus pro Schuss von 'Verbannen' um <Ability:THEBANISHER_HIT_BUFF> und reduziert seine Abklingzeit um 1 Runde. Erhöht die Reichweite von 'Messerbegegnungen' auf <Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/> Felder. Todeshändler verdoppelt jetzt den Kritischen Schadenbonus deiner Waffe gegen nicht flankierbare Ziele."
+LocHelpText="Verringert den Zielmalus pro Schuss von 'Verbannen' um <Ability:THEBANISHER_HIT_BUFF> und reduziert seine Abklingzeit um 1 Runde. Erhöht die Reichweite von 'Messerbegegnungen' auf <Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/> Felder. 'Todbringer' verdoppelt jetzt den kritischen Schadenbonus deiner Waffe gegen nicht flankierbare Ziele."
+
+[SwiftThrow_LW X2AbilityTemplate]
+LocFriendlyName="Instinktiver Wurf"
+LocHelpText="Wirft ein Messer als freie Aktion. 4 Runden Abklingzeit."
+LocLongDescription="Wirft ein Messer als freie Aktion. 4 Runden Abklingzeit."
+LocPromotionPopupText="<Bullet/> Wirft ein Messer als freie Aktion. 4 Runden Abklingzeit."
+
+[TacticalRetreat_LW X2AbilityTemplate]
+LocFriendlyName="Messerscharfer Rückzug"
+LocHelpText="Messerscharfer Rückzug"
+LocLongDescription="Gewährt nach einem Messerwurf eine reine Bewegungsaktion. Kann einmal pro Runde ausgelöst werden."
+LocPromotionPopupText="<Bullet/> Gewährt nach einem Messerwurf eine reine Bewegungsaktion. Kann einmal pro Runde ausgelöst werden."
+

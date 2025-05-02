@@ -21,3 +21,7 @@ Description="Mehrgleisige Ausbildung: XCOM-Soldaten können mehrere Klassenfähi
 [BabyChosen SecondWaveOptionObject]
 Tooltip="Deaktiviere die Blitzreaktionen der Auserwählten, sodass sie deutlich einfacher zu bekämpfen sind."
 Description="Kindliche Auserwählte: Deaktiviert Blitzreaktionen der Auserwählten."
+
+[HybridDifficulty_LW SecondWaveOptionObject]
+Tooltip="Erhöht den taktischen Schwierigkeitsgrad um eine Stufe über dem strategischen Schwierigkeitsgrad. Für Spieler, die eine härtere taktische, aber leichtere strategische Ebene wollen. Hinweis: Noch in der Testphase. Hat keine Wirkung auf Legendär, und ein Wechsel des Schwierigkeitsgrads während der Kampagne bricht diese Funktion. Der Effekt gilt derzeit nicht für Gatecrasher."
+Description="[Beta] Hybrider Schwierigkeitsgrad: Erhöht den taktischen Schwierigkeitsgrad"

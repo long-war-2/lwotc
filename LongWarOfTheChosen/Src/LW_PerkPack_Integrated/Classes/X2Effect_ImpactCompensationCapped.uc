@@ -10,6 +10,9 @@ function float GetPostDefaultDefendingDamageModifier_CH(XComGameState_Effect Eff
     local float DamageModifierFinal;
     local UnitValue UnitVal;
 
+    if (!class'XComGameStateContext_Ability'.static.IsHitResultHit(ApplyEffectParameters.AbilityResultContext.HitResult) || WeaponDamage == 0)
+		return 0;
+
     WeaponDamageEffect.GetEffectDamageTypes(NewGameState, ApplyEffectParameters, IncomingTypes);
     MaxHP = TargetUnit.GetMaxStat(eStat_HP);
 
