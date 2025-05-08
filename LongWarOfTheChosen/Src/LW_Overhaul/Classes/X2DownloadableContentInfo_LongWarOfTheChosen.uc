@@ -168,6 +168,7 @@ static event OnLoadedSavedGame()
 	//class'X2DownloadableContentInfo_LWOfficerPack'.static.OnLoadedSavedGame();
 //
 	//UpdateUtilityItemSlotsForAllSoldiers();
+
 }
 
 /// <summary>
@@ -510,6 +511,147 @@ static function ModifyYellAbility()
 			arrTemplate[i].AbilityMultiTargetEffects.AddItem(YellowAlertStatus);
 		}
     }
+}
+
+static event OnLoadedSavedGameToTactical()
+{
+	//OverrideDestructibleHealths();
+	UpdateUnitFlagsForDestructibles();
+}
+
+
+
+static function OnLoadedSavedGameWithDLCExisting()
+{
+	OverrideDestructibleHealths();
+}
+
+
+// Force a refresh of actor objects after updating the archetype healths.
+static function UpdateUnitFlagsForDestructibles()
+{
+	local XComGameState NewGameState;
+	local XComGameStateHistory History;
+	local XComGameState_Destructible DestructibleState;
+	local XComDestructibleActor DestructibleActor;
+	local ArchetypeToHealth DestructibleActorConfig;
+	local Actor BaseActor;
+	local int CurrentDifficulty;
+	local String TestArchetypeName;
+
+	History = `XCOMHISTORY;
+
+	CurrentDifficulty = `TacticalDifficultySetting;
+	`LWTrace("Current difficulty:" @CurrentDifficulty);
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState( "Update destructible actor base toughness" );
+
+	foreach History.IterateByClassType(class'XComGameState_Destructible', DestructibleState)
+	{
+		`LWTrace("Destructible State:" @DestructibleState @"archetype" @DestructibleState.SpawnedDestructibleArchetype);
+		DestructibleActor = XComDestructibleActor(DestructibleState.GetVisualizer());
+
+		if(DestructibleActor == none)
+		{
+			`LWTrace("First method did not get the actor");
+			 class'Actor'.static.FindActorByIdentifier(DestructibleState.ActorId,BaseActor);
+			 DestructibleActor = XComDestructibleActor(BaseActor);
+		}
+		if(DestructibleActor == none)
+		{
+			`LWTrace("Second method didn't get the actor");
+			DestructibleActor = XComDestructibleActor(History.GetVisualizer(DestructibleState.ObjectId));
+		}
+		if(DestructibleActor != none)
+		{
+			`LWTrace("Destructible Actor:" @DestructibleActor @"archetype" @PathName(DestructibleActor.ObjectArchetype));
+
+			TestArchetypeName = PathName(DestructibleActor.ObjectArchetype);
+			
+			foreach default.DestructibleActorHealthOverride(DestructibleActorConfig)
+			{
+				if(TestArchetypeName == DestructibleActorConfig.ArchetypeName && (DestructibleActorConfig.Difficulty == CurrentDifficulty || DestructibleActorConfig.Difficulty == -1))
+				{
+					`LWTrace("Updating DestructibleActor" @ DestructibleState.SpawnedDestructibleArchetype @"Max HP to" @DestructibleActorConfig.Health);
+					DestructibleState = XComGameState_Destructible(NewGameState.ModifyStateObject(class'XComGameState_Destructible', DestructibleState.ObjectID));
+					DestructibleActor.TotalHealth = DestructibleActorConfig.Health;
+				}
+			} 
+		}
+	}
+
+	if(NewGameState.GetNumGameStateObjects() > 0)
+	{
+		// Submit a new gamestate to trigger a unit flag update
+		`GAMERULES.SubmitGameState(NewGameState);
+	}
+	else
+	{
+		History.CleanupPendingGameState(NewGameState);
+	}
+	
+}
+
+exec function Ted_UpdateUnitFlagsForDestructibles()
+{
+	local XComGameState NewGameState;
+	local XComGameStateHistory History;
+	local XComGameState_Destructible DestructibleState;
+	local XComDestructibleActor DestructibleActor;
+	local ArchetypeToHealth DestructibleActorConfig;
+	local Actor BaseActor;
+	local int CurrentDifficulty;
+	local String TestArchetypeName;
+
+	History = `XCOMHISTORY;
+
+	CurrentDifficulty = `TacticalDifficultySetting;
+	`LWTrace("Current difficulty:" @CurrentDifficulty);
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState( "Update destructible actor base toughness" );
+
+	foreach History.IterateByClassType(class'XComGameState_Destructible', DestructibleState)
+	{
+		`LWTrace("Destructible State:" @DestructibleState @"archetype" @DestructibleState.SpawnedDestructibleArchetype);
+		DestructibleActor = XComDestructibleActor(DestructibleState.GetVisualizer());
+
+		if(DestructibleActor == none)
+		{
+			`LWTrace("First method did not get the actor");
+			 class'Actor'.static.FindActorByIdentifier(DestructibleState.ActorId,BaseActor);
+			 DestructibleActor = XComDestructibleActor(BaseActor);
+		}
+		if(DestructibleActor == none)
+		{
+			`LWTrace("Second method didn't get the actor");
+			DestructibleActor = XComDestructibleActor(History.GetVisualizer(DestructibleState.ObjectId));
+		}
+		if(DestructibleActor != none)
+		{
+			`LWTrace("Destructible Actor:" @DestructibleActor @"archetype" @PathName(DestructibleActor.ObjectArchetype));
+
+			TestArchetypeName = PathName(DestructibleActor.ObjectArchetype);
+			
+			foreach default.DestructibleActorHealthOverride(DestructibleActorConfig)
+			{
+				if(TestArchetypeName == DestructibleActorConfig.ArchetypeName && (DestructibleActorConfig.Difficulty == CurrentDifficulty || DestructibleActorConfig.Difficulty == -1))
+				{
+					`LWTrace("Updating DestructibleActor" @ DestructibleState.SpawnedDestructibleArchetype @"Max HP to" @DestructibleActorConfig.Health);
+					DestructibleState = XComGameState_Destructible(NewGameState.ModifyStateObject(class'XComGameState_Destructible', DestructibleState.ObjectID));
+					DestructibleActor.TotalHealth = DestructibleActorConfig.Health;
+				}
+			} 
+		}
+	}
+
+	if(NewGameState.GetNumGameStateObjects() > 0)
+	{
+		// Submit a new gamestate to trigger a unit flag update
+		`GAMERULES.SubmitGameState(NewGameState);
+	}
+	else
+	{
+		History.CleanupPendingGameState(NewGameState);
+	}
+	
 }
 
 /// <summary>
@@ -2998,10 +3140,12 @@ static function OverrideConcealmentAtStart(XComGameState_MissionSite MissionStat
 	}
 }
 
-static function OverrideDestructibleHealths(XComGameState StartGameState)
+
+static function OverrideDestructibleHealths(optional XComGameState StartGameState)
 {
 	local XComContentManager ContentMgr;
 	local ArchetypeToHealth DestructibleActorConfig;
+	local XComDestructibleActor Destructible;
 	local XComDestructibleActor_Toughness Toughness;
 	local int CurrentDifficulty;
 
@@ -3009,6 +3153,18 @@ static function OverrideDestructibleHealths(XComGameState StartGameState)
 	CurrentDifficulty = `TacticalDifficultySetting;
 	foreach default.DestructibleActorHealthOverride(DestructibleActorConfig)
 	{
+		Destructible = none;
+		Toughness = none;
+
+		Destructible = XComDestructibleActor(ContentMgr.RequestGameArchetype(DestructibleActorConfig.ArchetypeName));
+		
+		if (Destructible != None && (DestructibleActorConfig.Difficulty == CurrentDifficulty || DestructibleActorConfig.Difficulty == -1))
+		{
+			`LWTrace("Updating" @ DestructibleActorConfig.ArchetypeName @ "max health to" @ DestructibleActorConfig.Health);
+			Destructible.TotalHealth = DestructibleActorConfig.Health;
+			Destructible.Health = DestructibleActorConfig.Health;
+		}
+
 		Toughness = XComDestructibleActor_Toughness(ContentMgr.RequestGameArchetype(DestructibleActorConfig.ArchetypeName));
 		if (Toughness != none && (DestructibleActorConfig.Difficulty == CurrentDifficulty || DestructibleActorConfig.Difficulty == -1))
 		{
