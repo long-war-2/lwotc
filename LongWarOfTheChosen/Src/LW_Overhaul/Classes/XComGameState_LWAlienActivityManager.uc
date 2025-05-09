@@ -14,6 +14,7 @@ var array<ActivityCooldownTimer> GlobalCooldowns;
 var config int AVATAR_DELAY_HOURS_PER_NET_GLOBAL_VIG;
 var config float INFILTRATION_TO_DISABLE_SIT_REPS;
 var config int CHOSEN_APPEARANCE_ALERT_MOD;
+var config int GlobalAlertModifier;
 
 var config array<name> INFILTRATION_SIT_REPS;
 var config array<string> INFILTRATION_SIT_REP_MISSION_FAMILIES;
@@ -401,6 +402,9 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 	AlertLevel = GetMissionAlertLevel(MissionSite);
 
 	//modifiers
+
+	AlertLevel += default.GlobalAlertModifier;
+
 	if (InfiltratingSquad != none && !MissionSite.GetMissionSource().bGoldenPath)
 	{
 		
