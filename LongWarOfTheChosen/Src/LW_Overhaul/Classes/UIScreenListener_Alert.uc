@@ -84,6 +84,14 @@ event OnInit(UIScreen Screen)
 			// Add an additional button to allow repeating the current research if it is a render project, and possible to repeat
 			AddRepeatResearchButton(Alert);
 			break;
+		case 'eAlert_ResistanceOrdersIntro':
+		case 'eAlert_StrategyCardReceived':
+			if(!class'Helpers_LW'.static.AreResistanceOrdersEnabled())
+			{
+				`LWTrace("Resistance cards disabled, closing alert");
+				Alert.CloseScreen();
+			}
+			break;
         default:
             break;
     }
