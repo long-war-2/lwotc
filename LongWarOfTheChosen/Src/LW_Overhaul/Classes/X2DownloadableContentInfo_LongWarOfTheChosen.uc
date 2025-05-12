@@ -1483,9 +1483,9 @@ static function PostSitRepCreation(out GeneratedMissionData GeneratedMission, op
 		GeneratedMission.SitReps.RemoveItem('TheHorde');
 		}
 	}
-	// If we don't have a region, also disable it so you don't get them on CAD.
 	else
 	{
+		// If we don't have a region, also disable it so you don't get them on CAD.
 		GeneratedMission.SitReps.RemoveItem('TheLost');
 		GeneratedMission.SitReps.RemoveItem('TheHorde');
 	}
