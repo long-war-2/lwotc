@@ -86,7 +86,7 @@ function static Vector AdjustLocation(Vector Loc, XComGameState_AIGroup Group)
 
 	WorldData = `XWORLD;
 
-   // `LWTrace("Adjusting location. Initial location:" @loc.x @loc.y @loc.z);
+    //`LWTrace("Adjusting location. Initial location:" @loc.x @loc.y @loc.z);
 	// Make sure the target location is on the map. Just because it's on the map
 	// doesn't mean we can path there, though...
 	Loc = `XWORLD.FindClosestValidLocation(Loc, false, false);
@@ -164,7 +164,7 @@ function Vector SetAlertAtLocation(Vector Location, XComGameState_AIGroup Group,
     AlertInfo.AlertUnitSourceID = 0;
     AlertInfo.AnalyzingHistoryIndex = History.GetCurrentHistoryIndex();
 
-   // `LWTrace("SetAlertAtLocation start"@ GetScriptTrace());
+    //`LWTrace("SetAlertAtLocation start"@ GetScriptTrace());
 
    // `LWTrace("AlertCause:" @AlertCause);
 
@@ -181,12 +181,13 @@ function Vector SetAlertAtLocation(Vector Location, XComGameState_AIGroup Group,
 
             if (AIData.AddAlertData(UnitRef.ObjectID, AlertCause, AlertInfo, NewGameState, AlertTag))
             {
-              //  `LWTrace("Added alert data to unit" @Unit.GetFullName());
+                `LWTrace("Added alert data to unit" @Unit.GetFullName());
               //  `LWTrace("AIData Alert Length:" @ AIData.GetAlertCount());
               //  `LWTrace("AIData History Frame:" @AIData.GetParentGameState().HistoryIndex);
             }
             else
             {
+                `LWTrace("Alert data call failed, removing from gamestate -" @Unit.GetFullName());
                 NewGameState.PurgeGameStateForObjectID(AIData.ObjectID);
             }
         }

@@ -92,6 +92,7 @@ function InitJob(LWPodJobTemplate JobTemplate, XComGameState_AIGroup Group, int 
 {
     Location = GetFlankingLocation(Group);
     super.InitJob(JobTemplate, Group, JobID, Cause, Tag, NewGameState);
+    Location = SetAlertAtLocation(Location, Group, NewGameState);
 }
 
 function bool ProcessTurn(XComGameState_LWPodManager PodMgr, XComGameState NewGameState)

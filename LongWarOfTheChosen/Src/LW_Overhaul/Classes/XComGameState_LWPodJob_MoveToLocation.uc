@@ -17,8 +17,12 @@ function InitJob(LWPodJobTemplate JobTemplate, XComGameState_AIGroup Group, int 
 {
     super.InitJob(JobTemplate, Group, JobID, Cause, Tag, NewGameState);
 
-    Location = SetAlertAtLocation(Location, Group, NewGameState);
-   // `LWTrace("Move to location Job Init: Alert location set:" @Location.x @Location.Y @Location.Z);
+    // Tedster - disabling this here so the initial location is set during ProcessTurn which is called in the same gamestate frame as InitJob.
+    // Otherwise, if 2 different locations get set, the pod will freeze because SetAlertAtLocation will yeet it from the state.
+    // The only other call that might matter is the PodJob_Flank, so I've added it there.
+
+    //Location = SetAlertAtLocation(Location, Group, NewGameState);
+    //`LWTrace("Move to location Job Init: Alert location set:" @Location.x @Location.Y @Location.Z);
 }
 
 function bool ProcessTurn(XComGameState_LWPodManager PodMgr, XComGameState NewGameState)
@@ -40,8 +44,8 @@ function bool ProcessTurn(XComGameState_LWPodManager PodMgr, XComGameState NewGa
         Group = XComGameState_AIGroup(`XCOMHISTORY.GetGameStateForObjectID(GroupRef.ObjectID));
         NewDestination = AdjustLocation(Template.GetNewDestination(self, NewGameState), Group);
 
-       // `LWTrace("New Destination value:" @NewDestination.x @NewDestination.Y @NewDestination.Z);
-       // `LWTrace("Existing Location Value:" @Location.X @Location.Y @Location.Z);
+        //`LWTrace("New Destination value:" @NewDestination.x @NewDestination.Y @NewDestination.Z);
+        //`LWTrace("Existing Location Value:" @Location.X @Location.Y @Location.Z);
         
         if (Location != NewDestination)
         {
@@ -49,7 +53,7 @@ function bool ProcessTurn(XComGameState_LWPodManager PodMgr, XComGameState NewGa
         }
         else
         {
-           // `LWTrace("No location update, not updating AI Group");
+            //`LWTrace("No location update, not updating AI Group");
         }
     }
 
