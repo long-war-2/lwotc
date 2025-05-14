@@ -1677,10 +1677,6 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			break;
 	}
 
-	if(Template.DataName == 'LongWatch')
-	{
-		Template.OverrideAbilities.Length = 0;
-	}
 
 	if (Template.DataName == 'Shadowfall')
 	{
@@ -1754,6 +1750,23 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		// Make sure the pistol abilities can't have duplicate sources
 		Template.bUniqueSource = true;
 		break;
+	}
+
+	if(Template.DataName == 'LongWatch')
+	{
+		Template.OverrideAbilities.Length = 0;
+		AddLongWatchEffect(Template);
+	}
+
+	if(Template.DataName == 'LongWatchShot')
+	{
+		Template.OverrideAbilities.Length = 0;
+		AddLongWatchCondition(Template);
+	}
+
+	if(Template.DataName == 'OverwatchShot')
+	{
+		AddNoLongWatchCondition(Template);
 	}
 
 	if (Template.DataName == 'Faceoff')
@@ -4414,6 +4427,56 @@ static function AddOneTurnCooldown(X2AbilityTemplate Template)
 
 		Template.AbilityCooldown = Cooldown;
 	}
+}
+
+// Only add this to Long Watch stuff!
+static function AddLongWatchEffect(X2AbilityTemplate Template)
+{
+	local X2Effect_SetUnitValue LongWatchValue;
+	local X2Effect_CoveringFire CoveringFireEffect;
+	local X2Condition_AbilityProperty CoveringFireCondition;
+	local X2Effect TargetEffect;
+
+	LongWatchValue = new class'X2Effect_SetUnitValue';
+	LongWatchValue.UnitName = 'LWLongWatchActivated';
+	LongWatchValue.NewValueToSet = 1;
+	LongWatchValue.CleanupType = eCleanup_BeginTurn;
+	LongWatchValue.bApplyOnHit = true;
+	LongWatchValue.bApplyOnMiss = true;
+
+	Template.AddShooterEffect(LongWatchValue);
+
+
+	// Duplicate covering fire effect for the opposite part so it works at squadsight.
+	// the UnitValue condition added to the shots should handle only allowing
+	// one of them to activate.
+	
+	CoveringFireEffect = new class'X2Effect_CoveringFire';
+	CoveringFireEffect.AbilityToActivate = 'LongWatchShot';
+	CoveringFireEffect.EffectName = 'LongWatchCoveringFireEffect';
+	CoveringFireEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
+	CoveringFireCondition = new class'X2Condition_AbilityProperty';
+	CoveringFireCondition.OwnerHasSoldierAbilities.AddItem('CoveringFire');
+	CoveringFireEffect.TargetConditions.AddItem(CoveringFireCondition);
+	Template.AddTargetEffect(CoveringFireEffect);
+}
+
+static function AddLongWatchCondition(X2AbilityTemplate Template)
+{
+	local X2Condition_UnitValue ValueCondition;
+
+	ValueCondition = new class'X2Condition_UnitValue';
+	ValueCondition.AddCheckValue('LWLongWatchActivated', 1, eCheck_GreaterThanOrEqual);
+	Template.AbilityShooterConditions.AddItem(ValueCondition);
+}
+
+static function AddNoLongWatchCondition(X2AbilityTemplate Template)
+{
+	local X2Condition_UnitValue ValueCondition;
+
+	ValueCondition = new class'X2Condition_UnitValue';
+	ValueCondition.AddCheckValue('LWLongWatchActivated', 1, eCheck_LessThan);
+	Template.AbilityShooterConditions.AddItem(ValueCondition);
 }
 
 static function FixStandardMove(X2AbilityTemplate Template)
