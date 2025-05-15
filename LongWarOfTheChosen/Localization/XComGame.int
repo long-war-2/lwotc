@@ -571,6 +571,11 @@ LocHelpText="Attack an adjacent enemy with your knife."
 LocFlyOverText="Knife Fighter"
 LocPromotionPopupText="<Bullet/> Knife attacks use one action and do not end your turn."
 
+[CenterMass X2AbilityTemplate]
+LocLongDescription="You do one additional point of base damage when using your primary weapon, pistols, or a sawn-off shotgun."
+LocHelpText="You do one additional point of base damage when using your primary weapon, pistols, or a sawn-off shotgun."
+LocPromotionPopupText="<Bullet/> Bonus damage applies to all guns and primary weapons, including Templar gauntlets."
+
 [Combatives X2AbilityTemplate]
 LocFriendlyName="Combatives"
 LocLongDescription="Automatically parry melee attacks that grazes or miss against you, and counterattack with your <Ability:BOUND_WEAPON_NAME>. Also gain +<ABILITY:COMBATIVES_DODGE_LW/> dodge."
