@@ -84,6 +84,7 @@ static function EmptyOutpostLiaison(XComGameState NewGameState, StateObjectRefer
     if (Unit != none && Unit.IsSoldier())
     {
         Unit.SetStatus(eStatus_Active);
+        class'X2StrategyElement_XPackStaffSlots'.static.CheckToUpgradeItems(NewGameState, Unit);
     }
 }
 
