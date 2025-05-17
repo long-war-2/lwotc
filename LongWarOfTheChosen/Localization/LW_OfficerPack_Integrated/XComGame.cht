@@ -46,10 +46,10 @@ LocPromotionPopupText="<Bullet/>在軍官指揮範圍內的所有友軍，掩體
 ;displayed both on officer and in debuff on target
 [FocusFire X2AbilityTemplate]
 LocFriendlyName="集中火力"
-LocLongDescription="花費一個行動點指定一個視野內的目標，在回合剩餘時間攻擊該目標時，為你的小隊提供<ABILITY:FOCUS_FIRE_ARMORPIERCING/>護甲穿透和累加的命中加成。"
-LocHelpText="指定一個目標，讓你的小隊對其獲得護甲穿透和累加的命中加成。"
+LocLongDescription="花費一個行動點指定一個視野內的敵方目標，在回合剩餘時間攻擊該目標時，為你的小隊提供<ABILITY:FOCUS_FIRE_ARMORPIERCING/>護甲穿透和累加的命中加成。"
+LocHelpText="指定一個敵方目標，讓你的小隊對其獲得護甲穿透和累加的命中加成。"
 LocFlyOverText="集中火力"
-LocPromotionPopupText="<Bullet/>花費一個行動點指定一個目標，在回合剩餘時間攻擊該目標時，為你的小隊提供<ABILITY:FOCUS_FIRE_ARMORPIERCING/>護甲穿透和累加的命中加成。<br/><Bullet/>每次對該目標成功的武器命中都能在相同回合內提供額外+<ABILITY:FOCUS_FIRE_AIM_BONUS/>的命中加成。<br/><Bullet/><ABILITY:FOCUS_FIRE_COOLDOWN/>回合冷卻。<br/>"
+LocPromotionPopupText="<Bullet/>花費一個行動點指定一個敵方目標，在回合剩餘時間攻擊該目標時，為你的小隊提供<ABILITY:FOCUS_FIRE_ARMORPIERCING/>護甲穿透和累加的命中加成。<br/><Bullet/>每次對該目標成功的武器命中都能在相同回合內提供額外+<ABILITY:FOCUS_FIRE_AIM_BONUS/>的命中加成。<br/><Bullet/><ABILITY:FOCUS_FIRE_COOLDOWN/>回合冷卻。<br/>"
 
 ;displayed both on officer and on soldiers receiving effect
 [FallBack X2AbilityTemplate]

@@ -60,11 +60,11 @@ LocLongDescription="修理附近的任一機械單位。"
 LocPromotionPopupText="<Bullet/>修理附近的任一機械單位。"
 
 [LWDroneMeleeStun X2AbilityTemplate]
-LocFriendlyName="眩暈"
+LocFriendlyName="無人機眩暈"
 LocFlyOverText="眩暈"
-LocHelpText="嘗試眩暈近戰範圍內的任一敵人。"
-LocLongDescription="嘗試眩暈近戰範圍內的任一敵人。"
-LocPromotionPopupText="<Bullet/>嘗試眩暈近戰範圍內的任一敵人。"
+LocHelpText="嘗試眩暈/癱瘓近戰範圍內的指定敵人2回合。"
+LocLongDescription="嘗試眩暈/癱瘓近戰範圍內的指定敵人2回合。"
+LocPromotionPopupText="<Bullet/> 嘗試眩暈/癱瘓近戰範圍內的指定敵人2回合。<br/><Bullet/> 3回合冷卻。"
 LocMissMessage="未命中！"
 
 [PersonalShield X2AbilityTemplate]

@@ -197,7 +197,7 @@ LocFriendlyName="火焰驅逐"
 LocFlyOverText="火焰驅逐"
 LocLongDescription="特殊的火焰噴射器攻擊，造成有限的傷害，但是能降低敵人的防禦和移動力並迫使其移動位置。"
 LocHelpText="特殊的火焰噴射器攻擊，造成有限的傷害，但是能降低敵人的防禦和移動力並迫使其移動位置。"
-LocPromotionPopupText="<Bullet/>造成<Ability:ROUST_DAMAGE_PENALTY>%的傷害，有<Ability:ROUST_DIRECT_APPLY_CHANCE>%的幾率使區域內的敵人著火。<br/><Bullet/>範圍中的目標移動力減少<Ability:ROUST_MOB_REDUCTION>，防禦減少<Ability:ROUST_DEF_REDUCTION>，持續<Ability:ROUST_STATEFFECT_DURATION>回合。<br/><Bullet/>狹窄的火焰噴射對環境影響較小。<br/><Bullet/>被擊中的單位將被迫移動，會觸發反應射擊。<br/><Bullet/>每個任務可用一次，但是能夠通過更高級的裝備來獲得額外的使用次數。<br/><Bullet/> 隱蔽狀態時不能使用。"
+LocPromotionPopupText="<Bullet/>造成<Ability:ROUST_DAMAGE_PENALTY>%的傷害，有<Ability:ROUST_DIRECT_APPLY_CHANCE>%的幾率使區域內的敵人著火。<br/><Bullet/>範圍中的目標移動力減少<Ability:ROUST_MOB_REDUCTION>，防禦減少<Ability:ROUST_DEF_REDUCTION>，持續<Ability:ROUST_STATEFFECT_DURATION>回合。<br/><Bullet/>該技能的作用範圍相比標準火焰噴射器寬度減少50%、長度增加50%。<br/><Bullet/>狹窄的火焰噴射對環境影響較小。<br/><Bullet/>被擊中的單位將被迫移動，會觸發反應射擊。<br/><Bullet/>每個任務可用一次，但是能夠通過更高級的裝備來獲得額外的使用次數。<br/><Bullet/> 隱蔽狀態時不能使用。"
 
 ; LWOTC Needs Translation (2)
 [Burnout X2AbilityTemplate]
@@ -233,7 +233,7 @@ LocFriendlyName="烈焰風暴"
 LocFlyOverText="烈焰風暴"
 LocLongDescription="衝刺到移動範圍內的指定位置，以自己為中心噴射圓形的火焰，攻擊範圍內的所有單位。同時會獲得對火焰傷害的免疫。每場戰鬥可使用1次。"
 LocHelpText="衝刺到新位置並以自己為中心噴射圓形的火焰，攻擊範圍內的所有單位。"
-LocPromotionPopupText="<Bullet/> 該士兵對周圍圓圈內的所有單位造成火焰傷害，比一般的火焰噴射器造成+<ABILITY:FIRESTORM_DAMAGE_BONUS_LW>的額外傷害。<br/><Bullet/> 烈焰風暴同樣也能讓你暫時對火焰傷害免疫。<br/><Bullet/> 需要2個行動點並且會結束士兵的回合。<br/><Bullet/> 可執行衝刺並觸發烈焰風暴。<br/><Bullet/> 每場戰鬥可使用1次。<br/><Bullet/> 不建議士兵在屋頂使用烈焰風暴。<br/><Bullet/> 不適用於速燃。"
+LocPromotionPopupText="<Bullet/> 比一般的火焰噴射造成+<ABILITY:FIRESTORM_DAMAGE_BONUS_LW>的額外傷害。<br/><Bullet/> 烈焰風暴同樣也能讓你暫時對火焰傷害免疫。<br/><Bullet/> 需要2個行動點並且會結束士兵的回合。<br/><Bullet/> 可執行衝刺並施放烈焰風暴。<br/><Bullet/> 每場戰鬥可使用1次。<br/><Bullet/> 不建議士兵在屋頂使用烈焰風暴。<br/><Bullet/> 不適用於速燃。"
 
 [TechnicalFireImmunity X2AbilityTemplate]
 LocFriendlyName="火焰免疫"
@@ -354,9 +354,9 @@ LocPromotionPopupText="<Bullet/> 致命一擊對眩暈、恐慌的敵人提供+5
 [Tradecraft X2AbilityTemplate]
 LocFriendlyName="諜報技術"
 LocFlyOverText="諜報技術"
-LocLongDescription="減少該士兵在任務中的潛入時間。"
-LocHelpText="減少該士兵在任務中的潛入時間。"
-LocPromotionPopupText="<Bullet/>減少該士兵在任務中的潛入時間。<br/>"
+LocLongDescription="略微減少該士兵在任務中的潛入時間。"
+LocHelpText="略微減少該士兵在任務中的潛入時間。"
+LocPromotionPopupText="<Bullet/>略微減少該士兵在任務中的潛入時間。<br/>"
 
 ;;;;;;;;;;;;;;;;;;;;  SPECIALIST ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -393,6 +393,10 @@ FriendlyName="超級充能"
 Description="失敗的侵入將會增加該目標的命中和防禦。"
 
 [ShutdownRobot X2HackRewardTemplate]
+FriendlyName="關閉"
+Description="暫時使該單位癱瘓。"
+
+[ShutdownTurret X2HackRewardTemplate]
 FriendlyName="關閉"
 Description="暫時使該單位癱瘓。"
 
@@ -438,6 +442,9 @@ LocLongDescription="在榴彈專用槽中的榴彈可以額外使用一次。"
 LocHelpText="在榴彈專用槽中的榴彈可以額外使用一次。"
 LocPromotionPopupText="<Bullet/>所有榴彈都適用於重型軍火，即便是非傷害性的榴彈，例如戰場掃描器和煙霧榴彈。<br/>"
 
+[HoloTargeting X2AbilityTemplate]
+LocFriendlyName="全息射击"
+
 [Sapper X2AbilityTemplate]
 LocFriendlyName="工兵"
 LocLongDescription="你的爆炸物可以摧毀多數掩體。"
@@ -454,8 +461,8 @@ LocPromotionPopupText="<Bullet/> 戰鬥工程師比工兵更為強力，它更�
 
 [NeedleGrenades X2AbilityTemplate]
 LocFriendlyName="刺針榴彈"
-LocLongDescription="你的爆炸物擊殺敵人時不會破壞戰利品且對無護甲的敵人造成<ABILITY:NEEDLE_BONUS_UNARMORED_DMG_LW/>額外傷害。"
-LocHelpText="你的爆炸物擊殺敵人時不會破壞戰利品且對無護甲的敵人造成<ABILITY:NEEDLE_BONUS_UNARMORED_DMG_LW/>額外傷害。"
+LocLongDescription="你的爆炸物擊殺敵人時不會破壞戰利品且對無護甲的敵人造成<ABILITY:NEEDLE_BONUS_UNARMORED_DMG_LW/>點額外傷害。"
+LocHelpText="你的爆炸物擊殺敵人時不會破壞戰利品且對無護甲的敵人造成<ABILITY:NEEDLE_BONUS_UNARMORED_DMG_LW/>點額外傷害。"
 LocFlyOverText="刺針榴彈"
 LocPromotionPopupText="<Bullet/> 你受過額外的訓練，能讓你使用能夠發射出特殊裂片的爆炸性榴彈，使戰利品完好無損，撕碎未加固的材料。<br/><Bullet/> 被該士兵的任何其他爆炸物（如重武器）擊殺的敵人的戰利品和屍體，也會被保留下來。<br/><Bullet/> 不破壞戰利品效果對臂套火箭和火焰噴射器都有效。"
 
@@ -500,7 +507,7 @@ LocPromotionPopupText="<Bullet/>你的榴彈、火箭和重武器對其範圍內
 LocFriendlyName="鬼影榴彈"
 LocLongDescription="一種特殊的煙霧榴彈，能讓目標友軍進入隱蔽狀態。"
 LocHelpText="讓1名XCOM友軍進入隱蔽狀態。"
-LocPromotionPopupText="<Bullet/> 該能力僅影響1名目標友軍；其他在煙霧中的目標不會隱蔽，但會受到防禦加成。<br/><Bullet/> 消耗1個行動點並會結束你的回合。<br/><Bullet/> 每個任務使用1次；增加榴彈數目的能力不會提供加成。<br/><Bullet/> 僅對XCOM士兵有效，因為平民沒有接受隱蔽技術的訓練。<br/><Bullet/> 小型煙霧提供20的防禦；濃密煙霧的加成不適用。<br/><Bullet/> 它不適用於標準XCOM榴彈發射器，必須對可見友軍投擲。<br/><Bullet/> <Ability:ClassName/>無法在隱蔽時使用該能力。"
+LocPromotionPopupText="<Bullet/> 該能力僅影響1名目標友軍；其他在煙霧中的目標不會隱蔽，但會受到防禦加成。<br/><Bullet/> 消耗1個行動點並會結束你的回合。<br/><Bullet/> 每個任務可使用1次；增加榴彈數量的能力不會提供加成。<br/><Bullet/> 僅對XCOM士兵有效，因為平民沒有接受隱蔽技術的訓練。<br/><Bullet/> 小型煙霧提供20的防禦；濃密煙霧的加成不適用。<br/><Bullet/> 它不適用於標準XCOM榴彈發射器，必須對可見友軍投擲。<br/><Bullet/> <Ability:ClassName/>無法在隱蔽時使用該能力。"
 
 [VanishingAct X2AbilityTemplate]
 LocFriendlyName="鬼影榴彈"
@@ -549,7 +556,7 @@ LocFriendlyName="衝散"
 LocLongDescription="一種特殊射擊，增加<Ability:FLUSH_AIM_BONUS>命中，但減少<Ability:FLUSH_DAMAGE_PENALTY>%的傷害。被命中的目標將失去<Ability:FLUSH_DEFENSE_REDUCTION>防禦和<Ability:FLUSH_DODGE_REDUCTION>閃避，並強迫其進行移動。"
 LocHelpText="一種特殊射擊，增加<Ability:FLUSH_AIM_BONUS>命中，但減少<Ability:FLUSH_DAMAGE_PENALTY>%的傷害。被命中的目標將失去<Ability:FLUSH_DEFENSE_REDUCTION>防禦和<Ability:FLUSH_DODGE_REDUCTION>閃避，並強迫其進行移動。"
 LocFlyOverText="衝散"
-LocPromotionPopupText="<Bullet/>消耗<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/><Ability:SelfCooldown_LW/>回合冷卻。<br/><Bullet/> 隱蔽狀態時無法使用。<br/><Bullet/> 無法暴擊或施加額外彈藥效果。<br/><Bullet/>降低防禦和閃避的效果持續<Ability:FLUSH_STATEFFECT_DURATION>回合。"
+LocPromotionPopupText="<Bullet/>消耗<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/><Ability:SelfCooldown_LW/>回合冷卻。<br/><Bullet/> 隱蔽狀態時無法使用。<br/><Bullet/> 無法暴擊或施加額外彈藥效果。<br/><Bullet/>降低防禦和閃避的效果持續<Ability:FLUSH_STATEFFECT_DURATION>回合且可疊加。"
 str_FlushEffect="衝散"
 
 ;LWOTC needs translation
@@ -620,17 +627,17 @@ LocPromotionPopupText="<Bullet/>只要你裝備有手槍（任何科技水平）
 
 [Holotarget X2AbilityTemplate]
 LocFriendlyName="全息瞄準"
-LocLongDescription="對敵人使用全息瞄準後，你和隊友對該目標的所有攻擊獲得命中加成，持續到你下一回合開始。"
-LocHelpText="全息瞄準一個敵人，為對該目標的攻擊提供加成。"
+LocLongDescription="全息瞄準一個敵人，使你和隊友對該目標的所有攻擊獲得命中加成，持續到你的下一回合開始。"
+LocHelpText="全息瞄準一個敵人，為你和隊友對該目標的攻擊提供加成。"
 LocFlyOverText="全息瞄準"
-LocPromotionPopupText="<Bullet/> 全息瞄準消耗1個行動點。<br/><Bullet/> 全息瞄準效果持續到你下一回合開始。<br/><Bullet/> 多個全息瞄準的效果不可以互相疊加。<br/><Bullet/> 基礎全息瞄準器的命中加成是+<Ability:HOLO_CV_AIM_BONUS_LW/>，更高等級的全息瞄準器能提升至+<Ability:HOLO_MG_AIM_BONUS_LW/>和+<Ability:HOLO_BM_AIM_BONUS_LW/>。<br/><Bullet/> 全息瞄準不會打破你或你小隊的隱蔽狀態。"
+LocPromotionPopupText="<Bullet/> 全息瞄準消耗1個行動點。<br/><Bullet/> 全息瞄準效果持續到你的下一回合開始。<br/><Bullet/> 多個全息瞄準的效果不可以互相疊加。<br/><Bullet/> 基礎全息瞄準器的命中加成是+<Ability:HOLO_CV_AIM_BONUS_LW/>，更高等級的全息瞄準器能提升至+<Ability:HOLO_MG_AIM_BONUS_LW/>和+<Ability:HOLO_BM_AIM_BONUS_LW/>。<br/><Bullet/> 全息瞄準不會打破你或你小隊的隱蔽狀態。"
 
 [RapidTargeting X2AbilityTemplate]
 LocFriendlyName="快速瞄準"
-LocLongDescription="你可以不花費行動點對一名敵人使用一次全息瞄準，冷卻時間<Ability:RAPID_TARGETING_COOLDOWN_LW/>回合。另外，全息瞄準不再結束回合。"
+LocLongDescription="不花費行動點對一名敵人使用一次全息瞄準，冷卻時間<Ability:RAPID_TARGETING_COOLDOWN_LW/>回合。另外，全息瞄準不再結束回合。"
 LocHelpText="不花費行動點對一名敵人使用全息瞄準。"
 LocFlyOverText="全息瞄準"
-LocPromotionPopupText="<Bullet/>使用全息瞄準不再結束回合。<br/><Bullet/>另外，快速瞄準可以讓你不花費行動點對一名敵人使用一次全息瞄準。<br/><Bullet/>同樣適用於高清全息，獨立跟蹤和要害瞄準。<br/><Bullet/>不能與多重瞄準疊加。<br/><Bullet/>此技能有<Ability:RAPID_TARGETING_COOLDOWN_LW/>回合的冷卻時間。<br/><Bullet/>全息瞄準不會暴露小隊的隱蔽狀態。"
+LocPromotionPopupText="<Bullet/>使用全息瞄準不再結束回合。<br/><Bullet/>另外，快速瞄準可以讓你不花費行動點對一名敵人使用一次全息瞄準。<br/><Bullet/>同樣適用於高清全息、獨立追蹤和要害瞄準。<br/><Bullet/>不能與多重瞄準疊加。<br/><Bullet/>此技能有<Ability:RAPID_TARGETING_COOLDOWN_LW/>回合的冷卻時間。<br/><Bullet/>全息瞄準不會打破小隊的隱蔽狀態。"
 
 [RapidTargeting_Passive X2AbilityTemplate]
 LocFriendlyName="快速瞄準"
@@ -645,10 +652,10 @@ LocPromotionPopupText="<Bullet/> 基礎全息瞄準器+<Ability:HDHOLO_CV_CRIT_B
 
 [IndependentTracking X2AbilityTemplate]
 LocFriendlyName="獨立追蹤"
-LocLongDescription="在<Ability:INDEPENDENT_TRACKING_BONUS_TURNS_LW/>個額外回合內，被全息瞄準的敵人將保持被瞄準的狀態。"
-LocHelpText="在<Ability:INDEPENDENT_TRACKING_BONUS_TURNS_LW/>個額外回合內，被全息瞄準的敵人將保持被瞄準的狀態。"
+LocLongDescription="對敵人施加的全息瞄準效果將額外持續<Ability:INDEPENDENT_TRACKING_BONUS_TURNS_LW/>回合。"
+LocHelpText="對敵人施加的全息瞄準效果將額外持續<Ability:INDEPENDENT_TRACKING_BONUS_TURNS_LW/>回合。"
 LocFlyOverText="獨立追蹤"
-LocPromotionPopupText="<Bullet/> 在<Ability:INDEPENDENT_TRACKING_BONUS_TURNS_LW/>個額外回合內，被全息瞄準的敵人將保持被瞄準的狀態。<br/><Bullet/> 對相同目標額外使用全息瞄準的效果不會疊加。<br/>"
+LocPromotionPopupText="<Bullet/> 對同一目標多次使用全息瞄準不會疊加效果。<br/>"
 
 [VitalPointTargeting X2AbilityTemplate]
 LocFriendlyName="要害瞄準"
@@ -659,10 +666,10 @@ LocPromotionPopupText="<Bullet/>基礎的全息瞄準器的要害瞄準傷害加
 
 [Multitargeting X2AbilityTemplate]
 LocFriendlyName="多重瞄準"
-LocLongDescription="你可以對多個敵人進行全息瞄準，冷卻時間<Ability:MULTI_TARGETING_COOLDOWN_LW/>回合。"
-LocHelpText="瞄準一個區域內的多個敵人。"
+LocLongDescription="對一個區域內的所有可見敵人施加全息瞄準，冷卻時間<Ability:MULTI_TARGETING_COOLDOWN_LW/>回合。"
+LocHelpText="對一個區域內的所有可見敵人施加全息瞄準。"
 LocFlyOverText="多重瞄準"
-LocPromotionPopupText="<Bullet/>高清全息，獨立跟蹤和要害瞄準可應用於所有目標。<br/><Bullet/>基礎的範圍是<Ability:MULTI_HOLO_CV_RADIUS_LW/>格，升級後可以提高至<Ability:MULTI_HOLO_MG_RADIUS_LW/>和<Ability:MULTI_HOLO_BM_RADIUS_LW/>格。<br/><Bullet/>該技能有<Ability:MULTI_TARGETING_COOLDOWN_LW/>回合冷卻時間。<br/><Bullet/>全息瞄準不會暴露小隊的隱蔽狀態。"
+LocPromotionPopupText="<Bullet/>高清全息、獨立追蹤和要害瞄準可應用於所有目標。<br/><Bullet/>基礎的範圍是<Ability:MULTI_HOLO_CV_RADIUS_LW/>格，升級後可以提高至<Ability:MULTI_HOLO_MG_RADIUS_LW/>和<Ability:MULTI_HOLO_BM_RADIUS_LW/>格。<br/><Bullet/>該技能有<Ability:MULTI_TARGETING_COOLDOWN_LW/>回合冷卻時間。<br/><Bullet/>全息瞄準不會打破小隊的隱蔽狀態。"
 
 [AlphaMikeFoxtrot X2AbilityTemplate]
 LocFriendlyName="終極武器"
@@ -4367,7 +4374,7 @@ DisplayName="永久性: 毒蛇彈"
 SummaryText="變種人將蛇毒混入到他們的武器當中，為一些變種人士兵裝配了毒性子彈。"
 
 [DarkEvent_RapidResponse X2DarkEventTemplate]
-SummaryText="外星人改進了他們的威脅反應進程，提升了一些任務的增援率。"
+SummaryText="外星人改進了他們的威脅反應進程，提升了一些任務的增援速度。"
 PreMissionText="許多任務擁有更快速的增援。"
 
 [DarkEvent_ResistanceInformant X2DarkEventTemplate]
@@ -4375,10 +4382,10 @@ SummaryText="外星人在反抗軍中找到了一名間諜，使得待定的報�
 PreMissionText="使得報復行動更難以監測。"
 
 [DarkEvent_MinorBreakthrough X2DarkEventTemplate]
-PreMissionText="為化身計劃增加<XGParam:StrValue0/!Quantity/>的進度"
+PreMissionText="為化身計劃增加<XGParam:StrValue0/!Quantity/>格進度"
 
 [DarkEvent_MajorBreakthrough X2DarkEventTemplate]
-PreMissionText="為化身計劃增加<XGParam:StrValue0/!Quantity/>的進度"
+PreMissionText="為化身計劃增加<XGParam:StrValue0/!Quantity/>格進度"
 
 [DarkEvent_HavenInfiltration X2DarkEventTemplate]
 DisplayName="避難所滲透者"
@@ -4515,7 +4522,7 @@ Description="一些敵人獲得1點生命值。"
 
 [DarkEvent_AlienConditioning1 X2DarkEventTemplate]
 DisplayName="永久性：外星調整"
-SummaryText="外星人戰場上的戰鬥單位將更強大，擁有額外1點生命值。"
+SummaryText="戰場上的外星人戰鬥單位將更強大，擁有額外1點生命值。"
 QuoteText="\"外星人在其克隆技術中一定是擁有了新的改進公式。\""
 QuoteTextAuthor="- 沈總工程師"
 PreMissionText="給一些敵人提供1點額外生命值。"
@@ -4532,7 +4539,7 @@ Description="一些敵人獲得1點生命值。"
 
 [DarkEvent_AlienConditioning2 X2DarkEventTemplate]
 DisplayName="永久性：外星適應性"
-SummaryText="外星人戰場上的戰鬥單位將更強大，擁有額外1點生命值。"
+SummaryText="戰場上的外星人戰鬥單位將更強大，擁有額外1點生命值。"
 QuoteText="\"在二十年的研究後，外星人可能已經部署了更適應地球環境的單位了。\""
 QuoteTextAuthor="- 泰根博士"
 PreMissionText="給一些敵人提供1點額外生命值。"
@@ -4549,7 +4556,7 @@ Description="一些敵人獲得1點生命值。"
 
 [DarkEvent_AlienConditioning3 X2DarkEventTemplate]
 DisplayName="永久性：外星生存力"
-SummaryText="外星人戰場上的戰鬥單位將更強大，擁有額外1點生命值。"
+SummaryText="戰場上的外星人戰鬥單位將更強大，擁有額外1點生命值。"
 QuoteText="\"我們並不是唯一一個能在戰鬥中進步的對象。\""
 QuoteTextAuthor="- 軍事中心長官布拉德福德"
 PreMissionText="給一些敵人提供1點額外生命值。"
@@ -4704,7 +4711,7 @@ LocLongDescription="一些敵人獲得粉碎彈能力，使他們的武器能夠
 ; HI
 [DarkEvent_HuntersInstinct X2DarkEventTemplate]
 DisplayName="永久性：獵人本能"
-SummaryText="許多毒蛇怪以及相關的物種獲得了獵人本能能力，在夾擊敵人時獲得額外傷害。"
+SummaryText="許多毒蛇怪以及相關的物種獲得了獵人本能能力，在側襲敵人時獲得額外傷害。"
 QuoteText="\"巨大的持槍、吐毒的智慧毒蛇？這是我參軍要對付的敵人？\""
 QuoteTextAuthor="- 匿名的下士"
 PreMissionText="讓許多蛇形敵人獲得獵人本能能力。"
@@ -4713,12 +4720,12 @@ PostMissionFailureText="反擊黑暗事件失敗：戰術升級（獵人本能�
 
 [DarkEventAbility_HuntersInstinct X2AbilityTemplate]
 LocFriendlyName="黑暗事件：戰術升級（獵人本能）"
-LocLongDescription="許多蛇類敵人獲得了獵人本能能力，在夾擊敵人時獲得額外傷害。"
+LocLongDescription="許多蛇類敵人獲得了獵人本能能力，在側襲敵人時獲得額外傷害。"
 
 ; LR
 [DarkEvent_LightningReflexes_LW X2DarkEventTemplate]
 DisplayName="永久性：閃電反射"
-SummaryText="為一些強襲槍兵和其他敵人提供閃電反射能力，獲得躲避反應射擊的加成。"
+SummaryText="為一些強襲槍兵和其他敵人提供閃電反射能力，獲得躲避反應攻擊的加成。"
 QuoteText="\"我真的、真的憎恨那些傢伙。\""
 QuoteTextAuthor="- 匿名的槍炮軍士"
 PreMissionText="為一些強襲槍兵和其他敵人提供閃電反射能力。"
@@ -4727,7 +4734,7 @@ PostMissionFailureText="反擊黑暗事件失敗：戰術升級（閃電反射�
 
 [DarkEventAbility_LightningReflexes_LW X2AbilityTemplate]
 LocFriendlyName="黑暗事件：戰術升級（閃電反射）"
-LocLongDescription="為一些強襲槍兵和其他敵人提供閃電反射能力，獲得躲避反應射擊的加成。"
+LocLongDescription="為一些強襲槍兵和其他敵人提供閃電反射能力，獲得躲避反應攻擊的加成。"
 
 ; CCS
 [DarkEvent_CloseCombatSpecialist X2DarkEventTemplate]
@@ -4745,7 +4752,7 @@ LocLongDescription="執政官獲得近戰專家能力，讓他們對任何4個�
 
 [DarkEvent_GrazingFire X2DarkEventTemplate]
 DisplayName="永久性：低伸火力"
-SummaryText="一些敵人獲得了低伸火力能力，能有更高的幾率將未命中變為擦傷。"
+SummaryText="一些敵人獲得了低伸火力能力，有幾率將未命中變為擦傷。"
 QuoteText="\"我們不被射中的最好方法就是一下也別被打到。\""
 QuoteTextAuthor="- 匿名的二等兵"
 PreMissionText="一些敵人獲得低伸火力能力。"
@@ -4754,7 +4761,7 @@ PostMissionFailureText="反擊黑暗事件失敗：戰術升級（低伸火力�
 
 [DarkEventAbility_GrazingFire X2AbilityTemplate]
 LocFriendlyName="黑暗事件：戰術升級（低伸火力）"
-LocLongDescription="一些敵人獲得了低伸火力能力，能有更高的幾率將未命中變為擦傷。"
+LocLongDescription="一些敵人獲得了低伸火力能力，有幾率將未命中變為擦傷。"
 
 [DarkEvent_Cutthroat X2DarkEventTemplate]
 DisplayName="永久性：割喉"
@@ -4823,7 +4830,7 @@ LocLongDescription="一些敵軍單位獲得高侵略性能力，給他們提供
 
 [DarkEvent_Resilience X2DarkEventTemplate]
 DisplayName="永久性：見切之技"
-SummaryText="原典單位獲得見切之技能力，減少對他們造成的暴擊率。"
+SummaryText="原典單位獲得見切之技能力，減少對他們造成暴擊的概率。"
 QuoteText="\"我們甚至還不知道這些東西怎麼在我們的世界生存的，更別說我們的武器是怎麼傷害他們的了。\""
 QuoteTextAuthor="- 沈總工程師"
 PreMissionText="給原典單位提供見切之技能力。"
@@ -4832,11 +4839,11 @@ PostMissionFailureText="反擊黑暗事件失敗：戰術升級（見切之技�
 
 [DarkEventAbility_Resilience X2AbilityTemplate]
 LocFriendlyName="黑暗事件：戰術升級（見切之技）"
-LocLongDescription="原典單位獲得見切之技能力，減少對他們造成的暴擊率。"
+LocLongDescription="原典單位獲得見切之技能力，減少對他們造成暴擊的概率。"
 
 [DarkEvent_Shadowstep X2DarkEventTemplate]
 DisplayName="永久性：暗影步"
-SummaryText="原典獲得暗影步能力且無法成為反應射擊的目標。"
+SummaryText="原典獲得暗影步能力，無法成為反應攻擊的目標。"
 QuoteText="\"外星人好像在用它們的原典單位實驗短距離傳送。\""
 QuoteTextAuthor="- 泰根博士"
 PreMissionText="給原典單位提供暗影步能力。"
@@ -4845,7 +4852,7 @@ PostMissionFailureText="反擊黑暗事件失敗：戰術升級（暗影步）"
 
 [DarkEventAbility_Shadowstep X2AbilityTemplate]
 LocFriendlyName="黑暗事件：戰術升級（暗影步）"
-LocLongDescription="原典獲得暗影步能力且無法成為反應射擊的目標。"
+LocLongDescription="原典獲得暗影步能力，無法成為反應攻擊的目標。"
 
 [DarkEvent_DamageControl X2DarkEventTemplate]
 DisplayName="永久性：傷害控制"
@@ -5172,7 +5179,7 @@ DisplayName="成功的變種人突襲："
 ; just fix typo
 [Insanity X2AbilityTemplate]
 ; LWOTC Needs Translation
-LocPromotionPopupText="<Bullet/>精神錯亂有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/> 精神錯亂需要靈能士兵的靈能威力與目標的意志進行較量。<br/><Bullet/> 如果成功，精神錯亂會使目標混亂、恐慌或被操控。<br/><Bullet/> 機械敵人完全不受精神錯亂的影響。<br/><Bullet/> 精神錯亂只需要一個行動點，不會結束回合。<br/>"
+LocPromotionPopupText="<Bullet/>錯亂有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/> 錯亂需要靈能士兵的靈能威力與目標的意志進行較量。<br/><Bullet/> 如果成功，會使目標混亂、恐慌或被心靈控制。<br/><Bullet/> 機械敵人完全不受錯亂的影響。<br/><Bullet/> 錯亂只需要一個行動點，不會結束回合。<br/>"
 ; End Translation
 
 [XComGame.UIEndGameStats]
@@ -5198,7 +5205,7 @@ LocFlyOverText="已平靜"
 LocFriendlyName="粉碎彈"
 LocLongDescription="你的主武器攻擊撕碎護甲。"
 LocHelpText="你的主武器攻擊撕碎護甲。"
-LocPromotionPopupText="<Bullet/> 常規武器成功射擊將從目標身上撕碎1點護甲。<br/><Bullet/> 更先進的武器會從目標身上撕裂更多的護甲。<br/>"
+LocPromotionPopupText="<Bullet/> 常規武器成功命中將從目標身上撕碎1點護甲。<br/><Bullet/> 更先進的武器會從目標身上撕裂更多的護甲。<br/>"
 
 [Interact_SmashNGrab X2AbilityTemplate]
 LocFriendlyName="打開/關閉箱子"
@@ -5224,7 +5231,7 @@ TimerDefendSubtitle="敵人增援到達前的回合數"
 
 [InTheZone X2AbilityTemplate]
 LocLongDescription="強力的連環殺戮模式。每次用<Ability:WeaponName/>擊殺敵人，都會返還行動點。"
-LocPromotionPopupText="<Bullet/> 連環殺戮是指在一次行動中連續擊殺多名敵人，每一次擊殺都會返還行動點。<br/><Bullet/> 然而每擊殺一名敵人，暴擊率和傷害就會減少一些。<br/><Bullet/> 連環殺戮有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/>"
+LocPromotionPopupText="<Bullet/> 連環殺戮旨在一次行動中連續擊殺多名敵人，因為每次擊殺都會返還行動點。<br/><Bullet/> 然而每擊殺一名敵人，暴擊率和傷害就會減少一些。<br/><Bullet/> 連環殺戮有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/>"
 
 ;LWOTC needs translation
 [Fuse X2AbilityTemplate]
@@ -5234,10 +5241,11 @@ LocPromotionPopupText="<Bullet/> 導火線有<Ability:SelfCooldown_LW/>回合冷
 ;End translation
 
 [BulletShred X2AbilityTemplate]
+LocFriendlyName="撕裂射擊"
 LocLongDescription="一次傷口撕裂的射擊提供額外+<Ability:RUPTURE_CRIT_BONUS_LW/>%暴擊率，並使目標未來遭受的所有攻擊受到額外+<Ability:RuptureAmount/>傷害。"
 LocHelpText="一次傷口撕裂的射擊提供額外+<Ability:RUPTURE_CRIT_BONUS_LW/>%暴擊率，並使目標未來遭受的所有攻擊受到額外+<Ability:RuptureAmount/>傷害。"
 ; LWOTC needs translation
-LocPromotionPopupText="<Bullet/> 撕裂需要<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/> 撕裂有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/> 被撕裂目標每次遭受攻擊受到<Ability:RuptureAmount/>額外傷害。<br/>"
+LocPromotionPopupText="<Bullet/> 撕裂射擊需要<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/> 撕裂射擊有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/> 被撕裂的目標每次遭受攻擊會額外承受<Ability:RuptureAmount/>點傷害。<br/>"
 ; End translation
 
 [Faceoff X2AbilityTemplate]
@@ -5270,7 +5278,7 @@ LocPromotionPopupText="<Bullet/> 心靈控制需要靈能士兵的靈能威力�
 ; LWOTC Needs Translation
 [VoidRift X2AbilityTemplate]
 LocLongDescription="產生一個心靈能量的爆炸場，立即傷害裡面的一切。有機敵人有50%幾率遭受錯亂。"
-LocPromotionPopupText="<Bullet/> 虛空裂痕使目標受到1傷口撕裂效果。傷口撕裂量隨靈能增幅器層級而提高。<br/><Bullet/> 虛空裂痕有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/>"
+LocPromotionPopupText="<Bullet/> 虛空裂痕使目標受到1傷口撕裂效果。傷口撕裂量隨靈能增幅器層級而提高。<br/><Bullet/> 虛空裂痕無視護甲。<br/><Bullet/> 虛空裂痕有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/>"
 ; End Translation
 
 [CoveringFire X2AbilityTemplate]
@@ -5301,8 +5309,8 @@ LaunchedAbilityHelpText="讓爆炸區域內敵人產生混亂效果。"
 
 [Whirlwind2 X2AbilityTemplate]
 LocFriendlyName="旋風斬"
-LocLongDescription="在你的回合用近戰攻擊成功命中後獲得一個額外的移動點。每回合只觸發一次。"
-LocHelpText="近戰攻擊成功命中後獲得一個額外的移動點。每回合只觸發一次。"
+LocLongDescription="在你的回合用近戰攻擊成功命中後獲得一個額外的移動點。每回合只能觸發一次。"
+LocHelpText="近戰攻擊成功命中後獲得一個額外的移動點。每回合只能觸發一次。"
 LocFlyOverText="旋風斬"
 LocPromotionPopupText=""
 ; End Translation
@@ -5471,9 +5479,9 @@ LocPromotionPopupText="<Bullet/> 聖殿騎士在開始任務時比其他士兵�
 
 [Rend_LW X2AbilityTemplate]
 LocFriendlyName="撕裂"
-LocLongDescription="近戰攻擊。觸發氣勢，產生專注。有幾率使目標眩暈或混亂。"
-LocHelpText="近戰攻擊。觸發氣勢，產生專注。有幾率使目標眩暈或混亂。"
-LocPromotionPopupText="<Bullet/> 使用撕裂是聖殿騎士產生專注的主要方法。<br/><Bullet/> 施展撕裂後，聖殿騎士將獲得氣勢，允許攻擊後開啟護盾或移動以撤回掩體。<br/><Bullet/> 每1點專注使撕裂獲得<Ability:RENDSTUNCHANCE/>%眩暈幾率。眩暈的目標也會被擊退。<br/><Bullet/> 每1點專注使撕裂獲得<Ability:RENDDISORIENTCHANCE/>%混亂幾率。<br/>"
+LocLongDescription="近戰攻擊。觸發氣勢，產生專注。有幾率使目標眩暈/癱瘓或混亂。"
+LocHelpText="近戰攻擊。觸發氣勢，產生專注。有幾率使目標眩暈/癱瘓或混亂。"
+LocPromotionPopupText="<Bullet/> 使用撕裂是聖殿騎士產生專注的主要方法。<br/><Bullet/> 施展撕裂後，聖殿騎士將獲得氣勢，允許攻擊後開啟護盾或移動以撤回掩體。<br/><Bullet/> 每點專注使撕裂獲得<Ability:RENDSTUNCHANCE/>%眩暈/癱瘓幾率。眩暈/癱瘓的目標也會被擊退。<br/><Bullet/> 每點專注使撕裂獲得<Ability:RENDDISORIENTCHANCE/>%混亂幾率。<br/>"
 
 [Whiplash X2AbilityTemplate]
 LocLongDescription="用電擊鞭攻擊敵人。對機器人造成額外傷害。<Ability:SelfCooldown_LW/>回合冷卻時間。"
@@ -5496,7 +5504,7 @@ LocPromotionPopupText="<Bullet/> 當被聖殿騎士召喚時，支柱將持續�
 [StunStrike X2AbilityTemplate]
 LocLongDescription="用強大的靈能力量眩暈/癱瘓敵人，消耗1專注。"
 LocHelpText="用強大的靈能力量眩暈/癱瘓敵人，消耗1專注。"
-LocPromotionPopupText="<Bullet/> 眩暈衝擊有 <Ability:STUNSTRIKEHITCHANCE/>%幾率命中, 每點專注增加 <Ability:STUNSTRIKEFOCUSHITCHANCE/>% 。<br/><Bullet/> 眩暈衝擊有 <Ability:STUNSTRIKE_STUN_CHANCE/>%幾率擊暈/癱瘓目標。<br/><Bullet/> 眩暈衝擊不會結束聖殿騎士的回合。<br/><Bullet/> 眩暈衝擊有<Ability:SelfCooldown_LW/>回合冷卻時間<br/>"
+LocPromotionPopupText="<Bullet/> 眩暈衝擊有<Ability:STUNSTRIKEHITCHANCE/>%的基礎命中幾率, 每點專注額外增加<Ability:STUNSTRIKEFOCUSHITCHANCE/>%命中率。<br/><Bullet/> 如果命中，眩暈衝擊有<Ability:STUNSTRIKE_STUN_CHANCE/>%幾率擊暈/癱瘓目標。<br/><Bullet/> 眩暈衝擊不會結束聖殿騎士的回合。<br/><Bullet/> 眩暈衝擊有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/>"
 
 [BondmateTeamwork X2AbilityTemplate]
 LocHelpText="給予搭檔額外1移動點。羈絆之間共享1點充能。"
@@ -5586,8 +5594,8 @@ LocPromotionPopupText="<Bullet/> 在回合開始時確保擊殺，以充分利�
 
 [Judgment X2AbilityTemplate]
 LocFriendlyName="審判"
-LocLongDescription="當成為攻擊目標時，有幾率使敵人恐慌。本單位的意志越高，恐慌的幾率就越高。"
-LocHelpText="當成為攻擊目標時，有幾率使敵人恐慌。本單位的意志越高，恐慌的幾率就越高。"
+LocLongDescription="當受到敵方單位的指向性攻擊時，有幾率使攻擊者恐慌。本單位的意志越高，恐慌的幾率就越高。"
+LocHelpText="當受到敵方單位的指向性攻擊時，有幾率使攻擊者恐慌。本單位的意志越高，恐慌的幾率就越高。"
 LocFlyOverText="審判"
 LocPromotionPopupText="<Bullet/>近戰與範圍攻擊都可觸發審判。<br/><Bullet/> 監視射擊無法觸發審判。<br/><Bullet/> 恐慌的基礎幾率為<Ability:JUDGEMENT_LW_APPLYCHANCE/>%，同時受到進攻單位的意志力和目標單位的意志力的影響。<br/><Bullet/> 意志力高的單位使用審判最有效。<br/>"
 
@@ -5595,7 +5603,7 @@ LocPromotionPopupText="<Bullet/>近戰與範圍攻擊都可觸發審判。<br/><
 LocFriendlyName="手動超載"
 LocLongDescription="降低一名隊友的所有技能回合冷卻時間<Ability:OVERRIDE_REDUCTION/>回合。"
 LocHelpText="降低一名隊友的所有技能回合冷卻時間<Ability:OVERRIDE_REDUCTION/>回合。"
-LocPromotionPopupText="<Bullet/> 儘早並經常使用隊友的能力來充分利用手動超載。<br/><Bullet/> 消耗1點行動點。<br/><Bullet/> 手動超載有 <Ability:SelfCooldown_LW/> 回合冷卻時間。<br/>"
+LocPromotionPopupText="<Bullet/> 儘早並經常使用隊友的能力來充分利用手動超載。<br/><Bullet/> 消耗1點行動點且不結束回合。<br/><Bullet/> 手動超載有 <Ability:SelfCooldown_LW/> 回合冷卻時間。<br/>"
 
 [Battlelord X2AbilityTemplate]
 LocLongDescription="視野範圍內的每名敵人完成其回合後，可立即採取一項行動。此期間返還行動點的技能將無法生效。"
@@ -6103,7 +6111,7 @@ LocLongDescription="召喚靈魂風暴，在以你為中心<Ability:SOULSTORM_CA
 LocHelpText="召喚靈魂風暴，在以你為中心<Ability:SOULSTORM_CAST_RADIUS_TILES>格半徑範圍內對所有目標造成傷害，並摧毀他們的掩體。"
 LocFlyOverText="靈魂風暴"
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet> 靈魂風暴的影響範圍以釋放者為中心。<br/><Bullet> 不能破壞地板或天花板。<br/><Bullet/> 靈魂風暴需要一個行動點並結束你的回合。<br/><Bullet/> 靈魂風暴有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/> 靈魂風暴也會對範圍內的友軍造成傷害。<br/>"
+LocPromotionPopupText="<Bullet> 靈魂風暴的影響範圍以釋放者為中心。<br/><Bullet> 不會破壞地板或天花板。<br/><Bullet/> 靈魂風暴需要一個行動點並結束你的回合。<br/><Bullet/> 靈魂風暴有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/> 靈魂風暴也會對範圍內的友軍造成傷害。<br/>"
 ; End Translation (2)
 
 [Stasis X2AbilityTemplate]
@@ -6539,7 +6547,7 @@ LocFriendlyName="閃電裂斬"
 LocLongDescription="使用<Ability:BOUND_WEAPON_NAME/>攻擊藍色移動範圍內的任何敵人，不會結束回合。"
 LocHelpText="使用<Ability:BOUND_WEAPON_NAME/>攻擊藍色移動範圍內的任何敵人，不會結束回合。"
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> 使用<Ability:BOUND_WEAPON_NAME/>攻擊藍色移動範圍內的任何敵人。<br/><Bullet/> 這次攻擊不會結束回合。<br/><Bullet/> 閃電裂斬有<Ability:LIGHTNINGSLASH_COOLDOWN/>回合冷卻時間。<br/>"
+LocPromotionPopupText="<Bullet/> 使用<Ability:BOUND_WEAPON_NAME/>攻擊藍色移動範圍內的任何敵人。<br/><Bullet/> 這次攻擊不會結束回合。<br/><Bullet/> 閃電裂斬有<Ability:LIGHTNINGSLASH_COOLDOWN/>回合冷卻時間。<br/><Bullet/> 無法觸發聖殿騎士的氣勢以及電弧波。<br/>"
 ; End Translation (2)
 
 [LightningSlashLastAction_LW X2AbilityTemplate]
@@ -6547,7 +6555,7 @@ LocFriendlyName="閃電裂斬"
 ; LWOTC Needs Translation (3)
 LocLongDescription="使用<Ability:BOUND_WEAPON_NAME/>攻擊藍色移動範圍內的任何敵人，不會結束回合。"
 LocHelpText="使用<Ability:BOUND_WEAPON_NAME/>攻擊藍色移動範圍內的任何敵人，不會結束回合。"
-LocPromotionPopupText="<Bullet/> 使用<Ability:BOUND_WEAPON_NAME/>攻擊藍色移動範圍內的任何敵人。<br/><Bullet/> 這次攻擊不會結束回合。<br/><Bullet/> 閃電裂斬有<Ability:LIGHTNINGSLASH_COOLDOWN/>回合冷卻時間。<br/>"
+LocPromotionPopupText="<Bullet/> 使用<Ability:BOUND_WEAPON_NAME/>攻擊藍色移動範圍內的任何敵人。<br/><Bullet/> 這次攻擊不會結束回合。<br/><Bullet/> 閃電裂斬有<Ability:LIGHTNINGSLASH_COOLDOWN/>回合冷卻時間。<br/><Bullet/> 無法觸發聖殿騎士的氣勢以及電弧波。<br/>"
 ; End Translation (3)
 
 [InspireAgility_LW X2AbilityTemplate]
@@ -6587,17 +6595,17 @@ LocPromotionPopupText="<Bullet/> 每回合只會觸發一次。<br/><Bullet/> �
 LocFriendlyName="致命射擊 (急射)"
 LocLongDescription="以降低<Ability:DeadEyeAim/>%整體命中為代價提升<Ability:DeadEyeDmg/>%的基礎射擊傷害。可以與急射配合使用。"
 LocHelpText="以降低<Ability:DeadEyeAim/>%整體命中為代價提升<Ability:DeadEyeDmg/>%的基礎射擊傷害。可以與急射配合使用。"
-LocPromotionPopupText="<Bullet/> 致命射擊降低<Ability:DeadEyeAim/>%命中率，但是增加<Ability:DeadEyeDmg/>%基礎傷害 。<br/><Bullet/> 致命射擊有 <Ability:SelfCooldown_LW/> 回合冷卻時間。<br/>"
+LocPromotionPopupText="<Bullet/> 致命射擊降低<Ability:DeadEyeAim/>%命中率，但是增加<Ability:DeadEyeDmg/>%基礎傷害。<br/><Bullet/> 致命射擊有 <Ability:SelfCooldown_LW/> 回合冷卻時間。<br/>"
 
 [DeadeyeDamage_SnapShot X2AbilityTemplate]
 LocFriendlyName="致命射擊 (急射)"
 LocLongDescription="以降低<Ability:DeadEyeAim/>%整體命中為代價提升<Ability:DeadEyeDmg/>%的基礎射擊傷害。可以與急射配合使用。"
 LocHelpText="以降低<Ability:DeadEyeAim/>%整體命中為代價提升<Ability:DeadEyeDmg/>%的基礎射擊傷害。可以與急射配合使用。"
-LocPromotionPopupText="<Bullet/> 致命射擊降低<Ability:DeadEyeAim/>%命中率，但是增加<Ability:DeadEyeDmg/>%基礎傷害 。<br/><Bullet/> 致命射擊有 <Ability:SelfCooldown_LW/> 回合冷卻時間。<br/>"
+LocPromotionPopupText="<Bullet/> 致命射擊降低<Ability:DeadEyeAim/>%命中率，但是增加<Ability:DeadEyeDmg/>%基礎傷害。<br/><Bullet/> 致命射擊有 <Ability:SelfCooldown_LW/> 回合冷卻時間。<br/>"
 
 [Deadeye X2AbilityTemplate]
 LocFriendlyName="致命射擊"
-LocPromotionPopupText="<Bullet/> 致命射擊降低<Ability:DeadEyeAim/>%命中率，但是增加<Ability:DeadEyeDmg/>%基礎傷害 。<br/><Bullet/> 致命射擊有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/> 可以與急射配合使用。<br/>"
+LocPromotionPopupText="<Bullet/> 致命射擊降低<Ability:DeadEyeAim/>%命中率，但是增加<Ability:DeadEyeDmg/>%基礎傷害。<br/><Bullet/> 致命射擊有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/> 可以與急射配合使用。<br/>"
 
 ; AdvPriest Abilities
 [HolyWarriorM1 X2AbilityTemplate]
@@ -6960,14 +6968,14 @@ AbilityDescName="手槍"
 
 [XCOMBloodThirst_LW X2AbilityTemplate]
 LocFriendlyName="嗜血"
-LocLongDescription="每次用近戰武器攻擊且命中時，獲得可疊加的+<Ability:BLOODTHIRST_T1_DMG/>近戰傷害提升。持續5回合。"
-LocHelpText="每次用近戰武器攻擊且命中時，獲得可疊加的+<Ability:BLOODTHIRST_T1_DMG/>近戰傷害提升。持續5回合。"
+LocLongDescription="每次使用近戰武器攻擊時，都會獲得一層可疊加的+<Ability:BLOODTHIRST_T1_DMG/>近戰傷害提升。持續5回合。"
+LocHelpText="每次使用近戰武器攻擊時，都會獲得一層可疊加的+<Ability:BLOODTHIRST_T1_DMG/>近戰傷害提升。持續5回合。"
 LocFlyOverText="嗜血"
 
 [XCOMBloodThirstPassive_LW X2AbilityTemplate]
 LocFriendlyName="嗜血"
-LocLongDescription="每次用近戰武器攻擊且命中時，獲得可疊加的+<Ability:BLOODTHIRST_T1_DMG/>近戰傷害提升。持續5回合。"
-LocHelpText="每次用近戰武器攻擊且命中時，獲得可疊加的+<Ability:BLOODTHIRST_T1_DMG/>近戰傷害提升。持續5回合。"
+LocLongDescription="每次使用近戰武器攻擊時，都會獲得一層可疊加的+<Ability:BLOODTHIRST_T1_DMG/>近戰傷害提升。持續5回合。"
+LocHelpText="每次使用近戰武器攻擊時，都會獲得一層可疊加的+<Ability:BLOODTHIRST_T1_DMG/>近戰傷害提升。持續5回合。"
 LocFlyOverText="嗜血"
 
 [OverbearingSuperiority_LW X2AbilityTemplate]
@@ -7290,7 +7298,7 @@ LocFlyOverText="盾牌猛擊"
 LocFriendlyName="反轉"
 LocLongDescription="與一名隊友或敵方單位互換位置。消耗1專注。"
 LocHelpText="與一名隊友或敵方單位互換位置。消耗1專注。"
-LocPromotionPopupText="<Bullet/> 反轉冷卻時間為<Ability:SelfCooldown/>回合，且不會結束聖殿騎士的回合。<br/><Bullet/> 既可以對隊友也可以對敵人施放。<br/><Bullet/> 不能以天選者為目標。<br/>"
+LocPromotionPopupText="<Bullet/> 消耗1行動點，不會結束回合。<br/><Bullet/> 反轉的冷卻時間為<Ability:SelfCooldown/>回合。<br/><Bullet/> 既可以對隊友也可以對敵人施放。<br/><Bullet/> 不能以天選者為目標。<br/>"
 
 [OneForAll X2AbilityTemplate]
 LocFriendlyName="捨我其誰"
@@ -7322,8 +7330,8 @@ LocPromotionPopupText="<Bullet/> 高級襯墊將士兵在戰鬥中受傷後必�
 
 [IRI_SoulShot X2AbilityTemplate]
 LocFriendlyName="靈魂射擊"
-LocLongDescription="一種強大的基於命中的遠程攻擊，可以暴擊，且不會結束回合。消耗1點專注。"
-LocHelpText="一種強大的基於命中的遠程攻擊，可以暴擊，且不會結束回合。消耗1點專注。"
+LocLongDescription="一種強大的基於命中的遠程攻擊，可以暴擊。消耗1行動點且不會結束回合。消耗1點專注。"
+LocHelpText="一種強大的基於命中的遠程攻擊，可以暴擊。消耗1行動點且不會結束回合。消耗1點專注。"
 LocPromotionPopupText="<Bullet/> 靈魂射擊有+20的命中加成。<br/><Bullet/> 靈魂射擊沒有冷卻時間。<br/><Bullet/> 傷害隨着拳刃等級的提升而增加。"
 
 [IRI_TemplarShield X2AbilityTemplate]
@@ -7429,14 +7437,14 @@ LocPromotionPopupText="<Bullet/> 放逐中的每一次射擊都有單獨的命�
 LocFriendlyName="全面戰鬥"
 LocLongDescription="獲得+1移動力和+5命中，投擲榴彈或使用物品不會結束回合且榴彈不再有冷卻時間。此外，榴彈投擲的距離增加3格，爆炸半徑增加1格。授予榴彈專用槽。"
 LocHelpText="獲得+1移動力和+5命中，投擲榴彈或使用物品不會結束回合且榴彈不再有冷卻時間。此外，榴彈投擲的距離增加3格，爆炸半徑增加1格。授予榴彈專用槽。"
-LocPromotionPopupText="<Bullet/> 全面戰鬥讓<Ability:ClassName/>的戰術更為多樣化，能夠在需要的時候採取精準的行動。<br/><Bullet/> 消除榴彈的冷卻時間。<br/><Bullet/> 授予「爆炸揮發」技能，因此它不會與該技能疊加。"
+LocPromotionPopupText="<Bullet/> 全面戰鬥讓<Ability:ClassName/>的戰術更為多樣化，能夠在需要的時候採取精準的行動。<br/><Bullet/> 消除榴彈的冷卻時間。<br/><Bullet/> 授予「轟炸者」和「爆炸揮發」技能，因此無法與其中任一技能疊加。"
 
 [PackMaster_LW X2AbilityTemplate]
 LocFriendlyName="背包大師"
 LocFlyOverText="背包大師"
 LocLongDescription="對裝備的每件通用物品和榴彈額外增加1充能。"
 LocHelpText="對裝備的每件通用物品和榴彈額外增加1充能。"
-LocPromotionPopupText="<Bullet/> 對裝備的每件通用物品和榴彈額外增加1充能。<br/><Bullet/> 適用於榴彈槽以及標準通用槽，但不適用於其他插槽。<br/><Bullet/> 煙霧榴彈和閃光榴彈技能提供的額外榴彈不會額外充能。<br/>"
+LocPromotionPopupText="<Bullet/> 對裝備的每件通用物品和榴彈額外增加1充能。<br/><Bullet/> 適用於榴彈槽以及標準通用槽，但不適用於其他插槽。<br/><Bullet/> 煙霧彈手和閃光彈手技能提供的額外榴彈不會額外充能。<br/>"
 
 [SkirmisherInterrupt_LW X2AbilityTemplate]
 LocFriendlyName="阻斷"
@@ -7446,9 +7454,9 @@ LocPromotionPopupText="<Bullet/> 自由行動。<br/><Bullet/> 某些操作在�
 
 [ArcWave_LW X2AbilityTemplate]
 LocFriendlyName="撕裂"
-LocLongDescription="近戰攻擊，有一定幾率使目標眩暈或混亂。觸發氣勢，並生成專注。"
-LocHelpText="近戰攻擊，有一定幾率使目標眩暈或混亂。觸發氣勢，並生成專注。"
-LocPromotionPopupText="<Bullet/> 使用撕裂是聖殿騎士生成專注的主要方法。<br/><Bullet/>  施放撕裂後，聖殿騎士將獲得氣勢點數，允許其進行一次移動動作，以便在攻擊後撤回掩體。<br/><Bullet/> 撕裂每點專注有<Ability:RENDSTUNCHANCE/>%的幾率使目標眩暈。眩暈的目標也會被擊退。<br/><Bullet/> 撕裂每點專注有<Ability:RENDSTUNCHANCE/>%的幾率使目標混亂。<br/>"
+LocLongDescription="近戰攻擊，觸發氣勢，生成專注。有一定幾率使目標眩暈/癱瘓或混亂。"
+LocHelpText="近戰攻擊，觸發氣勢，生成專注。有一定幾率使目標眩暈/癱瘓或混亂。"
+LocPromotionPopupText="<Bullet/> 使用撕裂是聖殿騎士生成專注的主要方法。<br/><Bullet/>  施放撕裂後，聖殿騎士將獲得氣勢點數，允許攻擊後開啟護盾或移動以撤回掩體。<br/><Bullet/> 每點專注使撕裂獲得<Ability:RENDSTUNCHANCE/>%眩暈/癱瘓幾率。眩暈/癱瘓的目標也會被擊退。<br/><Bullet/> 每點專注使撕裂獲得<Ability:RENDSTUNCHANCE/>%混亂幾率。<br/>"
 
 [ArcWavePassive_LW X2AbilityTemplate]
 LocFriendlyName="電弧波"
@@ -7518,8 +7526,8 @@ LocHelpText="當該單位處於隱蔽或暗影狀態時，變種人安保哨塔�
 LocLongDescription="使穿戴者對負面精神狀況免疫，如混亂、恐慌、心靈控制和眩暈。"
 
 [Sustain X2AbilityTemplate]
-LocLongDescription="該單位的傷口恢復時間減少<Ability:SUSTAIN_WOUND_HP_REDUCTTION/>HP，並在受到足以致命的傷害後會立刻進入靜滯狀態，持續1回合，且生命值維持在1點。此能力每次任務發動一次。"
-LocHelpText="該單位受到足以致命的傷害後會立刻進入靜滯狀態，持續1回合，且生命值維持在1點。此能力每次任務發動一次。"
+LocLongDescription="該單位的傷口恢復時間減少<Ability:SUSTAIN_WOUND_HP_REDUCTTION/>HP，並在受到足以致命的傷害後會立刻進入靜滯狀態，持續1回合，且生命值維持在1點。此能力每次任務只能觸發一次。"
+LocHelpText="該單位受到足以致命的傷害後會立刻進入靜滯狀態，持續1回合，且生命值維持在1點。此能力每次任務只能觸發一次。"
 LocPromotionPopupText="<Bullet/>注意，單位從靜滯狀態恢復時依然會受到狀態效果（如毒素或燃燒）的傷害。<br/><Bullet/>注意，單位如果處於眩暈狀態，則不會觸發靜滯。<br/><Bullet/> 如果士兵在執行任務期間進入失血過多狀態，則無法減少傷口恢復時間。"
 
 [SustainTriggered X2AbilityTemplate]
@@ -7579,7 +7587,7 @@ arrMPMapFriendlyNames[10]="下水道"
 LocFriendlyName="極限超載"
 LocLongDescription="本回合獲得3個行動點，使用該技能不會結束回合。多次標準射擊會受到少量後座力懲罰。"
 LocHelpText="本回合獲得3個行動點，使用該技能不會結束回合。多次標準射擊會受到少量後座力懲罰。"
-LocPromotionPopupText="<Bullet/>當「超載」啟動時，每次標準射擊後都會附加<Ability:Overdrive_RecoilPenalty/>%對瞄準的後座力懲罰。<br/><Bullet/>超載啟動無需行動點，但有<Ability:SelfCooldown_LW/>回合的冷卻時間。<br/>"
+LocPromotionPopupText="<Bullet/>當「超載」啟動時，每次標準射擊後都會附加<Ability:Overdrive_RecoilPenalty/>%瞄準的後座力懲罰。<br/><Bullet/>超載啟動無需行動點，但有<Ability:SelfCooldown_LW/>回合的冷卻時間。<br/>"
 
 [Bulwark X2AbilityTemplate]
 LocFriendlyName="壁壘"
@@ -7601,15 +7609,15 @@ LocPromotionPopupText="<Bullet/>喚雨者讓所有重裝武器+<Ability:Rainmake
 
 [Intimidate X2AbilityTemplate]
 LocFriendlyName="恐嚇"
-LocLongDescription="當成為攻擊目標時，有機率使敵人恐慌。"
-LocHelpText="當成為攻擊目標時，有機率使敵人恐慌。"
+LocLongDescription="受到敵方單位的指向性攻擊時，有幾率使攻擊者恐慌。"
+LocHelpText="受到敵方單位的指向性攻擊時，有幾率使攻擊者恐慌。"
 LocFlyOverText="恐嚇"
-LocPromotionPopupText="<Bullet/>恐嚇有機率讓攻擊者恐慌，更高階的SPARK裝甲則有更高的機率。<br/><Bullet/>恐嚇可以被任何近戰或範圍攻擊觸發。<br/><Bullet/>恐嚇不會在目標被監視射擊時觸發。<br/>"
+LocPromotionPopupText="<Bullet/>恐嚇有幾率讓攻擊者恐慌，更高階的SPARK裝甲有更高的幾率。<br/><Bullet/>恐嚇可以被近戰或遠程攻擊觸發。<br/><Bullet/>恐嚇不會在目標被監視射擊時觸發。<br/>"
 
 [IntimidateTrigger X2AbilityTemplate]
 LocFriendlyName="恐嚇"
-LocLongDescription="當被作為攻擊目標時，有機率使所有可見的敵人恐慌。"
-LocHelpText="當被作為攻擊目標時，有機率使所有可見的敵人恐慌。"
+LocLongDescription="受到敵方單位的指向性攻擊時，有幾率使攻擊者恐慌。"
+LocHelpText="受到敵方單位的指向性攻擊時，有幾率使攻擊者恐慌。"
 LocFlyOverText="恐嚇"
 LocPromotionPopupText=""
 LocMissMessage="恐嚇失敗"
@@ -7623,8 +7631,8 @@ LocPromotionPopupText="<Bullet/>維修會恢復<Ability:Repair_HealHP/>點生命
 
 [AbsorptionField X2AbilityTemplate]
 LocFriendlyName="引導力場"
-LocLongDescription="每次你成為攻擊目標時，一部分的能量會引導至你的<Ability:WeaponName>。該能量會在你下一次<Ability:WeaponName>攻擊時釋放。"
-LocHelpText="在成為攻擊目標時將能量引導至你的<Ability:WeaponName>，會在你下一次<Ability:WeaponName>攻擊時釋放能量。"
+LocLongDescription="每次受到敵方單位的指向性攻擊時，一部分的能量會引導至你的<Ability:WeaponName>。該能量會在你下一次<Ability:WeaponName>攻擊時釋放。"
+LocHelpText="受到敵方單位的指向性攻擊時，一部分的能量會引導至你的<Ability:WeaponName>，該能量會在你下一次<Ability:WeaponName>攻擊時釋放。"
 LocFlyOverText="已引導的能量：+1"
 LocPromotionPopupText="<Bullet/>被引導力場引導的每一點能量都會提升1點<Ability:WeaponName>的下一次攻擊的傷害。<br/><Bullet/><Ability:WeaponName>攻擊未命中時不會消耗存儲的能量。<br/>"
 
@@ -7649,9 +7657,9 @@ LocPromotionPopupText="<Bullet/>將移動光標指向敵人以發動突襲拳擊
 
 [WreckingBall X2AbilityTemplate]
 LocFriendlyName="破壞球"
-LocLongDescription="當發動「過載」技能時，能夠在移動過程中衝破牆壁和掩體。"
-LocHelpText="當發動「過載」技能時，能夠在移動過程中衝破牆壁和掩體。"
-LocPromotionPopupText="<Bullet/>破壞球能夠用於將敵人暴露在夾擊之中。.<br/><Bullet/>使用移動路徑點指引SPARK前往合適的路徑以摧毀掩體和環境物體。</br>"
+LocLongDescription="當發動「極限超載」技能時，能夠在移動過程中衝破牆壁和掩體。"
+LocHelpText="當發動「極限超載」技能時，能夠在移動過程中衝破牆壁和掩體。"
+LocPromotionPopupText="<Bullet/>破壞球可用於摧毀掩體，從而使敵人暴露側翼。<br/><Bullet/>使用移動路徑點指引SPARK前往合適的路徑以摧毀掩體和環境物體。</br>"
 
 [Bombard X2AbilityTemplate]
 LocFriendlyName="密集轟炸"
@@ -7669,7 +7677,7 @@ LocPromotionPopupText="<Bullet/>獵手協議讓SPARK成為探索戰爭迷霧的�
 LocFriendlyName="新星"
 LocLongDescription="釋放一波能量，傷害附近的所有單位。此攻擊不消耗行動點數且不需要冷卻時間，但持續的新星會對SPARK造成傷害。"
 LocHelpText="衝擊附近所有單位。持續的新星將會對SPARK造成傷害。"
-LocPromotionPopupText="<Bullet/>新星無需行動點和冷卻時間。<br/><Bullet/>每個任務首次新星攻擊會對SPARK造成0點傷害。<br/><Bullet/>SPARK首次新星攻擊後的每次新星攻擊都會對SPARK造成一個疊加的<Ability:Nova_Damage/>點傷害。<br/>"
+LocPromotionPopupText="<Bullet/>新星無需行動點和冷卻時間。<br/><Bullet/>對敵方造成無視護甲的6點傷害。<br/><Bullet/>每個任務首次新星攻擊會對SPARK造成0點傷害。<br/><Bullet/>SPARK首次新星攻擊後的每次新星攻擊都會對SPARK造成一個疊加的<Ability:Nova_Damage/>點傷害。<br/>"
 
 [CombatProtocol X2AbilityTemplate]
 LocFriendlyName="戰爭協議"
