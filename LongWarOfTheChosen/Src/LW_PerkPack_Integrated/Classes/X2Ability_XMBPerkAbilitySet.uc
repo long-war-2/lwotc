@@ -1261,10 +1261,12 @@ static function X2AbilityTemplate AddZoCCleanse()
 
 	ZOCEffect = new class'XMBEffect_ConditionalStatChange';
 	ZOCEffect.EffectName = 'ZoneOfControl_LWEffect';
+	ZOCEffect.BuildPersistentEffect(1,true,true);
+	// The effect gets yeeted when this ability gets re-applied, so it should be fine to leave it as perma
 	ZOCEffect.AddPersistentStatChange(eStat_Mobility, default.ZONE_CONTROL_MOBILITY_PENALTY);
 	ZOCEffect.AddPersistentStatChange(eStat_Offense, default.ZONE_CONTROL_AIM_PENALTY);
 	ZOCEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.LocHelpText, Template.IconImage, true,,Template.AbilitySourceName);
-	ZOCEffect.DuplicateResponse = eDupe_Refresh;
+	ZOCEffect.DuplicateResponse = eDupe_ignore;
 	ZOCEffect.bRemoveWhenSourceDies = true;
 	ZOCEffect.Conditions.AddItem(DistanceCondition);
 	Template.AddTargetEffect(ZOCEffect);
