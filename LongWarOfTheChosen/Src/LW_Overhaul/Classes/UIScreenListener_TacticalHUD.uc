@@ -155,6 +155,7 @@ function EventListenerReturn OnTileDataChanged(Object EventData, Object EventSou
 	CenterTile = EvacState.GetCenterTile();
 	if (!class'X2TargetingMethod_EvacZone'.static.ValidateEvacArea(CenterTile, false))
 	{
+		`LWTrace("Evac was invalidated for some reason! it needs throwing @Tedster");
 		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Invalidating Delayed Evac Zone");
 
 		// update the cooldown on the player
