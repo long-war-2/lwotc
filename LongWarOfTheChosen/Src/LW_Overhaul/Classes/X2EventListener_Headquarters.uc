@@ -752,17 +752,31 @@ static function EventListenerReturn CAProcessCompletion(
 		`GAMERULES.SubmitGameState(NewGameState);
 	}
 
-	// Handle respawning golden path covert action if it failed
+	// Failed CA cleanup stuff:
+
 	//Grab the previous covert action template.
 	ActionTemplate = PrevCAState.GetMyTemplate();
-	if(class'Utilities_LW'.static.DidCovertActionFail(PrevCAState) && ActionTemplate.bGoldenPath)
+
+	if(class'Utilities_LW'.static.DidCovertActionFail(PrevCAState))
 	{
-		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Respawn golden path covert action");
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Uncomplete Covert Action");
+
 		FactionState = PrevCAState.GetFaction();
 		FactionState = XComGameState_ResistanceFaction(NewGameState.ModifyStateObject(class'XComGameState_ResistanceFaction', FactionState.ObjectID));
-		FactionState.GoldenPathActions.AddItem(FactionState.CreateCovertAction(NewGameState, ActionTemplate, ActionTemplate.RequiredFactionInfluence));
 
+		FactionState.CompletedCovertActions.RemoveItem(PrevCAState.GetMyTemplateName());
 		`GAMERULES.SubmitGameState(NewGameState);
+
+		// Handle respawning golden path covert action if it failed
+		if(ActionTemplate.bGoldenPath)
+		{	
+			NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Respawn golden path covert action");
+			FactionState = PrevCAState.GetFaction();
+			FactionState = XComGameState_ResistanceFaction(NewGameState.ModifyStateObject(class'XComGameState_ResistanceFaction', FactionState.ObjectID));
+			FactionState.GoldenPathActions.AddItem(FactionState.CreateCovertAction(NewGameState, ActionTemplate, ActionTemplate.RequiredFactionInfluence));
+
+			`GAMERULES.SubmitGameState(NewGameState);
+		}
 	}
 
 	// Spawn depot mission if was successful.
