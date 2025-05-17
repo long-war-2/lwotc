@@ -77,7 +77,7 @@ LocPromotionPopupText="<Bullet/> 當敵人觸發時，給聖殿騎士增加1點�
 ; End Translation (2)
 
 [TemplarTerror X2AbilityTemplate]
-LocFriendlyName="恐嚇"
+LocFriendlyName="靈能恐嚇"
 LocLongDescription="靈能閃電增加恐慌敵人效果。"
 LocHelpText="靈能閃電增加恐慌敵人效果。"
 LocPromotionPopupText="<Bullet/> 靈能閃電現在可以使敵人恐慌。<br/><Bullet/> 恐慌幾率為<Ability:TERROR_STAT_CHECK_BASE_VALUE/>%同時受到聖殿騎士和目標意志力的影響。"

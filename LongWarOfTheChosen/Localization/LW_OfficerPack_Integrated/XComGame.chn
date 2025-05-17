@@ -21,10 +21,10 @@ LocPromotionPopupText="<Bullet/> 只要军官在健康状态下，小队杀死�
 ;This effect is unused.
 [CollectorPassive X2AbilityTemplate]
 LocFriendlyName="收藏家"
-LocLongDescription="只要军官在健康状态下，小队杀死任何非人形敌人都有<ABILITY:COLLECTOR_BONUS_CHANCE/>%的几率获得1个情报点数(不包括平民，VIP)"
+LocLongDescription="只要军官在健康状态下，小队杀死任何非人形敌人都有<ABILITY:COLLECTOR_BONUS_CHANCE/>%的几率获得1个情报点数。"
 LocHelpText="小队的击杀有概率获得额外情报。"
 LocFlyOverText="收藏家"
-LocPromotionPopupText="<Bullet/> 只要军官在健康状态下，小队杀死任何非人形敌人都有<ABILITY:COLLECTOR_BONUS_CHANCE/>%的几率获得1个情报点数(不包括平民，VIP)"
+LocPromotionPopupText="<Bullet/> 只要军官在健康状态下，小队杀死任何非人形敌人都有<ABILITY:COLLECTOR_BONUS_CHANCE/>%的几率获得1个情报点数。"
 
 ;displayed on other soldier that receive the effect
 [Defilade X2AbilityTemplate]
@@ -46,10 +46,10 @@ LocPromotionPopupText="<Bullet/> 在军官指挥范围内的所有友军，掩�
 ;displayed both on officer and in debuff on target
 [FocusFire X2AbilityTemplate]
 LocFriendlyName="集中火力"
-LocLongDescription="花费一个行动点指定一个视野内的目标，在回合剩余时间攻击该目标时，为你的小队提供<ABILITY:FOCUS_FIRE_ARMORPIERCING/>护甲穿透和累加的命中加成。"
-LocHelpText="指定一个目标，让你的小队对其获得护甲穿透和累加的命中加成。"
+LocLongDescription="花费一个行动点指定一个视野内的敌方目标，在回合剩余时间攻击该目标时，为你的小队提供<ABILITY:FOCUS_FIRE_ARMORPIERCING/>护甲穿透和累加的命中加成。"
+LocHelpText="指定一个敌方目标，让你的小队对其获得护甲穿透和累加的命中加成。"
 LocFlyOverText="集中火力"
-LocPromotionPopupText="<Bullet/> 花费一个行动点指定一个目标，在回合剩余时间攻击该目标时，为你的小队提供<ABILITY:FOCUS_FIRE_ARMORPIERCING/>护甲穿透和累加的命中加成。<br/><Bullet/> 每次对该目标成功的武器命中都能在相同回合内提供额外+<ABILITY:FOCUS_FIRE_AIM_BONUS/>的命中加成。<br/><Bullet/> <ABILITY:FOCUS_FIRE_COOLDOWN/>回合冷却。<br/>"
+LocPromotionPopupText="<Bullet/> 花费一个行动点指定一个敌方目标，在回合剩余时间攻击该目标时，为你的小队提供<ABILITY:FOCUS_FIRE_ARMORPIERCING/>护甲穿透和累加的命中加成。<br/><Bullet/> 每次对该目标成功的武器命中都能在相同回合内提供额外+<ABILITY:FOCUS_FIRE_AIM_BONUS/>的命中加成。<br/><Bullet/> <ABILITY:FOCUS_FIRE_COOLDOWN/>回合冷却。<br/>"
 
 ;displayed both on officer and on soldiers receiving effect
 [FallBack X2AbilityTemplate]

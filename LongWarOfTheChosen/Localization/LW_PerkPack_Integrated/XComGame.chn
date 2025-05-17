@@ -62,14 +62,14 @@ LocFriendlyName="中心质量"
 LocFlyOverText="中心质量"
 LocLongDescription="你使用主武器、手枪或短管霰弹枪时会造成1点额外基础伤害。"
 LocHelpText="你使用主武器、手枪或短管霰弹枪时会造成1点额外基础伤害。"
-LocPromotionPopupText="<Bullet/> 你的主武器、手枪或短管霰弹枪会造成1点额外基础伤害。"
+LocPromotionPopupText="<Bullet/> 你的主武器（包括圣殿骑士拳刃的近战攻击）、手枪或短管霰弹枪会造成1点额外基础伤害。"
 
 [Lethal X2AbilityTemplate]
 LocFriendlyName="致命武器"
 LocFlyOverText="致命武器"
 LocLongDescription="你的主武器造成额外<Ability:LETHAL_DAMAGE_LW/>基础伤害和额外<Ability:LETHAL_CRIT_DAMAGE_LW/>暴击伤害。"
 LocHelpText="你的主武器造成额外<Ability:LETHAL_DAMAGE_LW/>基础伤害和额外<Ability:LETHAL_CRIT_DAMAGE_LW/>暴击伤害。"
-LocPromotionPopupText="<Bullet/> 你的主武器造成额外<Ability:LETHAL_DAMAGE_LW/>基础伤害和额外<Ability:LETHAL_CRIT_DAMAGE_LW/>暴击伤害。"
+LocPromotionPopupText="<Bullet/> 你的主武器（包括圣殿骑士拳刃的近战攻击）造成额外<Ability:LETHAL_DAMAGE_LW/>基础伤害和额外<Ability:LETHAL_CRIT_DAMAGE_LW/>暴击伤害。"
 
 [HitandSlither X2AbilityTemplate]
 LocFriendlyName="打完就溜"
@@ -165,9 +165,9 @@ LocPromotionPopupText="<Bullet/> 对4格以内受到的攻击获得<Ability:INFI
 [DepthPerception X2AbilityTemplate]
 LocFriendlyName="深度感知"
 LocFlyOverText="深度感知"
-LocLongDescription="当相比于目标处于更高的地形时，获得<Ability:DP_AIM_BONUS>命中并减少敌人<Ability:DP_ANTIDODGE_BONUS>闪避。"
-LocHelpText="当相比于目标处于更高的地形时，获得<Ability:DP_AIM_BONUS>命中并减少敌人<Ability:DP_ANTIDODGE_BONUS>闪避。"
-LocPromotionPopupText="<Bullet/> 当相比于目标处于更高的地形时，获得<Ability:DP_AIM_BONUS>命中并减少敌人<Ability:DP_ANTIDODGE_BONUS>闪避。<br/>"
+LocLongDescription="当相比于目标处于更高的地形时，获得<Ability:DP_AIM_BONUS>命中并无视敌人<Ability:DP_ANTIDODGE_BONUS>闪避。"
+LocHelpText="当相比于目标处于更高的地形时，获得<Ability:DP_AIM_BONUS>命中并无视敌人<Ability:DP_ANTIDODGE_BONUS>闪避。"
+LocPromotionPopupText="<Bullet/> 当相比于目标处于更高的地形时，获得<Ability:DP_AIM_BONUS>命中并无视敌人<Ability:DP_ANTIDODGE_BONUS>闪避。<br/>"
 
 [WilltoSurvive X2AbilityTemplate]
 LocFriendlyName="求生意志"
@@ -219,8 +219,8 @@ LocHelpText="如果首次行动是用主武器进行标准射击，那你还能�
 LocPromotionPopupText="<Bullet/> 如果首次行动是用主武器进行标准射击，那你还能再进行一次非移动的行动。<br/>"
 
 [WalkFire X2AbilityTemplate]
-LocFriendlyName="游走射击"
-LocFlyOverText="游走射击"
+LocFriendlyName="修正射击"
+LocFlyOverText="修正射击"
 LocLongDescription="进行一次高精度射击，+<Ability:WALK_FIRE_AIM_BONUS>命中但是<Ability:WALK_FIRE_DMG>%伤害并且-<Ability:WALK_FIRE_CRIT_MALUS>暴击率。消耗<Ability:SelfAmmoCost/>弹药。"
 LocHelpText="进行一次高精度射击，+<Ability:WALK_FIRE_AIM_BONUS>命中但是<Ability:WALK_FIRE_DMG>%伤害并且-<Ability:WALK_FIRE_CRIT_MALUS>暴击率。消耗<Ability:SelfAmmoCost/>弹药。"
 LocPromotionPopupText="<Bullet/> 这是士兵在使用自动武器时调整准星而进行的特殊射击，+<Ability:WALK_FIRE_AIM_BONUS>命中但是<Ability:WALK_FIRE_DMG>%伤害并且-<Ability:WALK_FIRE_CRIT_MALUS>暴击率。<br/><Bullet/> 消耗<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 需要连发武器；主武器为霰弹枪或狙击步枪时不适用。"
@@ -278,9 +278,9 @@ LocPromotionPopupText="<Bullet/> 对被敌人心灵控制的友军进行手枪�
 [ClutchShot X2AbilityTemplate]
 LocFriendlyName="制胜一击"
 LocFlyOverText="制胜一击"
-LocLongDescription="发射1记必中的手枪射击，每次任务可使用1次。"
-LocHelpText="发射1记必中的手枪射击，每次任务可使用1次。"
-LocPromotionPopupText="<Bullet/> 发射1记必中的手枪射击，每次任务可使用1次。<br/>"
+LocLongDescription="发射一记必中的手枪射击，每次任务可使用1次。"
+LocHelpText="发射一记必中的手枪射击，每次任务可使用1次。"
+LocPromotionPopupText="<Bullet/> 发射一记必中的手枪射击，每次任务可使用1次。<br/>"
 
 [Gunslinger X2AbilityTemplate]
 LocFriendlyName="枪神"
@@ -358,13 +358,13 @@ LocFriendlyName="奔袭战术"
 LocFlyOverText="奔袭战术"
 LocLongDescription="冲刺后行动。"
 LocHelpText="冲刺后行动。"
-LocPromotionPopupText="<Bullet/> 奔袭战术可以让士兵快速接近目标，或者轻松绕到侧翼位置。<br/><Bullet/> 奔袭战术有<Ability:RUN_AND_GUN_COOLDOWN/>回合的冷却时间。<br/>"
+LocPromotionPopupText="<Bullet/> 奔袭战术可以让士兵快速接近目标，或者轻松绕到侧翼位置。<br/><Bullet/> 无法与短兵相接、游击战术在同一回合触发。<br/><Bullet/> 奔袭战术有<Ability:RUN_AND_GUN_COOLDOWN/>回合的冷却时间。<br/>"
 
 [Suppression_LW X2AbilityTemplate]
 LocFriendlyName="压制"
 LocFlyOverText="压制"
-LocLongDescription="对目标进行火力压制，如果目标移动，则向其发动反应射击，限制其许多能力的使用，并使其命中降低<Ability:SUPPRESSIONPENALTY/>。此外，还会在本回合额外降低目标15点命中，这个减益效果不会因为压制解除而消失。"
-LocHelpText="降低敌人命中，并在他们移动时开火。"
+LocLongDescription="对目标进行火力压制，限制其许多能力的使用，并使其命中降低<Ability:SUPPRESSIONPENALTY/>，如果目标移动，则向其发动反应射击。此外，还会在本回合额外降低目标15点命中，这个减益效果不会因为压制解除而消失。"
+LocHelpText="降低敌人命中，并在他们移动时进行反应射击。"
 LocPromotionPopupText="<Bullet/> 压制消耗<Ability:SelfAmmoCost/>弹药，但无冷却时间。<br/><Bullet/> 进行压制的单位若受到伤害就会中止压制。<br/><Bullet/> 如果多个单位压制同一个目标，命中惩罚不会叠加。<br/><Bullet/> 装备狙击步枪或霰弹枪类别的武器时无法使用压制。<br/><Bullet/> 压制限制了目标许多能力的使用，包括火箭和榴弹。<br/><Bullet/> 同时会在本回合额外降低目标15点命中，这个减益效果不会因为压制解除而消失。"
 
 [AreaSuppression X2AbilityTemplate]
@@ -416,9 +416,9 @@ LocPromotionPopupText="<Bullet/> 对被压制时试图移动的敌人造成额�
 [Interference X2AbilityTemplate]
 LocFriendlyName="干扰"
 LocFlyOverText="干扰"
-LocLongDescription="小精灵可以取消目标单位的监视，无法取消压制，群体压制。不会触发掩护火力"
-LocHelpText="小精灵可以取消目标单位的监视，无法取消压制，群体压制。不会触发掩护火力"
-LocPromotionPopupText="<Bullet/> 取消目标单位的监视。<br/><Bullet/> 自由行动。<br/><Bullet/> 每次战斗可使用3次。使用更高层级的小精灵可获得额外2充能。<br/><Bullet/> 不会触发掩护火力。<br/>"
+LocLongDescription="指挥小精灵取消目标敌人的监视，无法取消压制和群体压制。不会触发掩护火力"
+LocHelpText="指挥小精灵取消目标敌人的监视，无法取消压制和群体压制。不会触发掩护火力"
+LocPromotionPopupText="<Bullet/> 取消目标单位的监视。<br/><Bullet/> 自由行动。<br/><Bullet/> 每场战斗可使用3次。更高层级的小精灵可获得额外2充能。<br/><Bullet/> 不会触发掩护火力。<br/>"
 
 [DamageControl X2AbilityTemplate]
 LocFriendlyName="伤害控制"
@@ -653,7 +653,7 @@ LocFriendlyName="全副武装"
 LocFlyOverText="全副武装"
 LocLongDescription="在装备栏中为每颗榴弹+1使用次数。"
 LocHelpText="在装备栏中为每颗榴弹+1使用次数。"
-LocPromotionPopupText="<Bullet/> 通用槽的每颗榴弹+1使用次数。<br/><Bullet/> 适用于爆破型和辅助型榴弹，以及战场扫描器。<br/><Bullet/> 烟雾榴弹和闪光榴弹技能提供的额外榴弹不会额外充能。<br/>"
+LocPromotionPopupText="<Bullet/> 通用槽的每颗榴弹+1使用次数。<br/><Bullet/> 适用于爆破型和辅助型榴弹，以及战场扫描器。<br/><Bullet/> 烟雾弹手和闪光弹手技能提供的额外榴弹不会额外充能。<br/>"
 
 [Bastion X2AbilityTemplate]
 LocFriendlyName="堡垒"
@@ -681,7 +681,7 @@ LocFriendlyName="铁幕"
 LocFlyOverText="铁幕"
 LocLongDescription="使用主武器进行的锥形射击。只造成<Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>%伤害，但会在<Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/>回合内减少目标的移动力。移动力减少效果即使未命中也会生效。"
 LocHelpText="使用主武器进行的锥形射击。只造成<Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>%伤害，但会在<Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/>回合内减少目标的移动力。移动力减少效果即使未命中也会生效。"
-LocPromotionPopupText="<Bullet/> 铁幕造成<Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>%伤害并在<Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/>回合内使敌人的移动力-<Ability:IRON_CURTAIN_MOBILITY_DAMAGE>。<br/><Bullet/> 冷却时间<Ability:SelfCooldown_LW/>回合。<br/><Bullet/> 使用<Ability:IRON_CURTAIN_AMMO_COST>弹药。<br/><Bullet/> 可在移动后使用。<br/><Bullet/> 铁幕不适用于霰弹枪和狙击步枪。<br/><Bullet/> 在锥形区域内的友军也会被此能力击中。<br/><Bullet/> 移动力减少效果即使未命中也会生效。<br/>"
+LocPromotionPopupText="<Bullet/> 铁幕造成<Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>%伤害并在<Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/>回合内使敌人的移动力-<Ability:IRON_CURTAIN_MOBILITY_DAMAGE>。<br/><Bullet/> 冷却时间3回合。<br/><Bullet/> 消耗<Ability:IRON_CURTAIN_AMMO_COST>弹药。<br/><Bullet/> 可在移动后使用。<br/><Bullet/> 铁幕不适用于霰弹枪和狙击步枪。<br/><Bullet/> 在锥形区域内的友军也会被此能力击中。<br/><Bullet/> 移动力减少效果即使未命中也会生效。<br/>"
 
 [IronCurtainShot X2AbilityTemplate]
 LocFriendlyName="铁幕"
@@ -703,7 +703,7 @@ LocFriendlyName="冲击力场"
 LocFlyOverText="冲击力场"
 LocLongDescription="激活一个力场，能够在<Ability:ABSORPTION_FIELDS_DURATION>回合内减少33%受到的伤害。<Ability:ABSORPTION_FIELDS_COOLDOWN>回合冷却。"
 LocHelpText="激活一个力场，能够在<Ability:ABSORPTION_FIELDS_DURATION>回合内减少33%受到的伤害。<Ability:ABSORPTION_FIELDS_COOLDOWN>回合冷却。"
-LocPromotionPopupText="<Bullet/> 激活一个力场，能够在<Ability:ABSORPTION_FIELDS_DURATION>回合内减少33%受到的伤害。<br/><Bullet/> <Ability:ABSORPTION_FIELDS_COOLDOWN>回合冷却（包括激活的回合）<br/><Bullet/> 使用1个行动点不会自动结束你的回合。<br/><Bullet/> 穿甲武器不会使该效果减弱。<br/>"
+LocPromotionPopupText="<Bullet/> 激活一个力场，能够在<Ability:ABSORPTION_FIELDS_DURATION>回合内减少33%受到的伤害。<br/><Bullet/> <Ability:ABSORPTION_FIELDS_COOLDOWN>回合冷却（包括激活的回合）。<br/><Bullet/> 消耗1个行动点，不会自动结束你的回合。<br/><Bullet/> 穿甲武器不会使该效果减弱。<br/>"
 
 [BodyShield X2AbilityTemplate]
 LocFriendlyName="全身防护"
@@ -722,15 +722,15 @@ LocPromotionPopupText="<Bullet/> 应急生命保障大幅提高了绕过失血�
 [IronSkin X2AbilityTemplate]
 LocFriendlyName="铜皮铁甲"
 LocFlyOverText="铜皮铁甲"
-LocLongDescription="受到的近战伤害减少<Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>点。"
-LocHelpText="受到的近战伤害减少<Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>点。"
-LocPromotionPopupText="<Bullet/> 受到的近战伤害减少<Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>点。<br/>"
+LocLongDescription="受到的近战伤害减少<Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>点。受到刺客的近战攻击时只能获得67%的效果。"
+LocHelpText="受到的近战伤害减少<Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>点。受到刺客的近战攻击时只能获得67%的效果。"
+LocPromotionPopupText="<Bullet/> 受到的近战伤害减少<Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>点。受到刺客的近战攻击时只能获得67%的效果。<br/>"
 
 [SmartMacrophages X2AbilityTemplate]
 LocFriendlyName="智能巨噬细胞"
 LocFlyOverText="智能巨噬细胞"
-LocLongDescription="战斗后治疗伤口，降低受伤恢复时间，并获得对毒和酸的免疫。"
-LocHelpText="降低受伤恢复时间，并获得对毒和酸的免疫。"
+LocLongDescription="减少1HP受伤恢复时间，并获得对毒和酸的免疫。"
+LocHelpText="减少1HP受伤恢复时间，并获得对毒和酸的免疫。"
 LocPromotionPopupText="<Bullet/> 战斗中损失的生命值（用于计算受伤恢复时间）减少1点。<br/><Bullet/> 获得对毒和酸的免疫。<br/>"
 
 [MindMerge X2AbilityTemplate]
@@ -752,7 +752,7 @@ LocFriendlyName="虚无之矛"
 LocLongDescription="释放一道蕴含可怕力量的灵能光束，对路径上的每个目标造成伤害。此攻击可以穿透多个敌人和障碍物。"
 LocHelpText="释放一道灵能光束，对路径上的每个目标造成伤害。"
 LocFlyOverText="虚无之矛"
-LocPromotionPopupText="<Bullet/> 虚无之矛有<Ability:SelfCooldown_LW/>回合冷却。<br/><Bullet/> 通过升级灵能兵的灵能增幅器，可以增加虚无之矛的伤害。<br/>"
+LocPromotionPopupText="<Bullet/> 虚无之矛有<Ability:SelfCooldown_LW/>回合冷却。<br/><Bullet/> 虚无之矛无视护甲。<br/><Bullet/> 通过升级灵能兵的灵能增幅器，可以增加虚无之矛的伤害。<br/>"
 
 [Shadowstrike_LW X2AbilityTemplate]
 LocFriendlyName="暗影打击"
@@ -895,6 +895,13 @@ LocLongDescription="如果你完成一次击杀，敌方回合对你的下一次
 LocHelpText="如果你完成一次击杀，敌方回合对你的下一次攻击将会无效。"
 LocFlyOverText="不可触碰"
 LocPromotionPopupText="<Bullet/> 不可触碰激活时，士兵在敌方回合免疫下一次攻击伤害，范围攻击也不例外。<br/>"
+
+[Reaper X2AbilityTemplate]
+LocFriendlyName="死神"
+LocLongDescription="强力的连环近战攻击模式，近战攻击每杀死一名敌人都将赐予你一次额外的行动，但威力会递减。首次近战攻击必定命中（依然可能擦伤）。"
+LocHelpText="强力的连环近战攻击模式，近战攻击每杀死一名敌人都将赐予你一次额外的行动，但威力会递减。首次近战攻击必定命中（依然可能擦伤）。"
+LocFlyOverText="死神"
+LocPromotionPopupText="<Bullet/>死神有<Ability:SelfCooldown/>回合冷却。<br/><Bullet/>死神技能不能和奔袭战术结合使用。<br/><Bullet/>每杀死一名敌人伤害减3。<br/><Bullet/>慎重选择攻击目标的先后顺序，以确保获得最佳的连续攻击效果。<br/>"
 
 [XComGame.Stealth X2AbilityTemplate]
 [Stealth X2AbilityTemplate]
@@ -1081,7 +1088,7 @@ LocFriendlyName="维修"
 LocLongDescription="指挥BIT对受损的机器人盟友进行治疗，中和酸，修复所有被撕碎的护甲。"
 LocHelpText="指挥BIT对受损的机器人盟友进行治疗。"
 LocFlyOverText="维修"
-LocPromotionPopupText="<Bullet/> <Ability:ClassName/>可以使用维修在战斗中治疗其他机器人盟友（或自身，如果是SPARK）。<br/><Bullet/> 恢复4/6/8HP，中和酸液，并将目标的护甲重置为最大值。<br/><Bullet/> 初始1充能，升级你的BIT来获得额外的维修次数。<br/><Bullet/> 如果没有学习快速维修，维修将结束你的回合。<br/><Bullet/> 维修有1回合冷却时间（每回合不能多次使用）。<br/>"
+LocPromotionPopupText="<Bullet/> <Ability:ClassName/>可以使用维修在战斗中治疗其他机器人盟友（或自身，如果是SPARK）。<br/><Bullet/> 恢复4/6/8HP，中和酸液，并将目标的护甲重置为最大值。<br/><Bullet/> 初始1充能，可以通过学习强化维修系统来获得额外的维修次数。<br/><Bullet/> 如果没有学习快速维修，维修将结束你的回合。<br/><Bullet/> 维修有1回合冷却时间（每回合不能多次使用）。<br/>"
 
 [KineticStrike_LW X2AbilityTemplate]
 LocFriendlyName="动能打击"
@@ -1107,7 +1114,7 @@ LocFriendlyName="重启"
 LocLongDescription="如果SPARK受到致命伤害，它的生命值将减少到1点，并且将在回合的剩余时间中被静滞。每次任务只能触发一次，之后SPARK就会陷入破损状态（降低命中、移动和侵入能力）。"
 LocHelpText="如果SPARK受到致命伤害，它的生命值将减少到1点，并且将在回合的剩余时间中被静滞。"
 LocFlyOverText="重启"
-LocPromotionPopupText="<Bullet/> 每次任务中，当SPARK的生命值首次降到零时，它将被置于静滞状态。<br/><Bullet/> 如果没有“冗余系统”能力，SPARK触发重启后，会遭受巨大的命中、移动和侵入能力的惩罚。侵入降为0后将无法使用相关能力。<br/><Bullet/> 由于这些缺点，再加上SPARK在重启时已经很低的外壳完整性，建议在可能的情况下将重启的SPARK通过天际游侠号撤离战场。<br/><Bullet/> 多亏了复杂的冗余装甲、激活电路和单次充能的护盾投射器，SPARK可以为队伍承担一次打击，并安心地知道它将活下来，以便在另一天继续出击。<br/>"
+LocPromotionPopupText="<Bullet/> 每次任务中，当SPARK的生命值首次降到零时，它将被置于静滞状态。<br/><Bullet/> 如果没有“冗余系统”能力，SPARK触发重启后，会遭受巨大的命中、移动和侵入能力的惩罚。侵入降为0后将无法使用相关能力。<br/><Bullet/> 由于这些缺点，再加上SPARK在重启时已经很低的外壳完整性，建议在可能的情况下将重启的SPARK通过天际游侠号撤离战场。<br/><Bullet/> 注意，单位如果处于瘫痪状态，则不会触发静滞。<br/>"
 
 [RebootTriggered_LW X2AbilityTemplate]
 LocFriendlyName="重启"
@@ -1159,15 +1166,15 @@ LocPromotionPopupText="<Bullet/> 多亏了沈设计的一种新技术，这名�
 
 [Triangulation_LW X2AbilityTemplate]
 LocFriendlyName="三角定位"
-LocLongDescription="当<Ability:ClassName/>受到攻击时，小队在下一回合对攻击者获得+10命中。"
-LocHelpText="当<Ability:ClassName/>受到攻击时，小队在下一回合对攻击者获得+10命中。"
+LocLongDescription="当<Ability:ClassName/>受到敌方单位的指向性攻击时，小队在下一回合对攻击者获得+10命中。"
+LocHelpText="当<Ability:ClassName/>受到敌方单位的指向性攻击时，小队在下一回合对攻击者获得+10命中。"
 LocFlyOverText="三角定位"
 LocPromotionPopupText="<Bullet/> <Ability:ClassName/>可以追踪来袭的炮弹到它们的原始所有者，并将这些信息上传给队伍的其他成员。<br/><Bullet/> 如果敌人攻击<Ability:ClassName/>的队友，三角定位不会触发。<br/>"
 
 [TriangulationTrigger_LW X2AbilityTemplate]
 LocFriendlyName="三角定位"
-LocLongDescription="此单位的敌人攻击该单位时获得额外+10命中。"
-LocHelpText="此单位的敌人攻击该单位时获得额外+10命中。"
+LocLongDescription="此单位被三角定位，攻击该单位时获得额外+10命中。"
+LocHelpText="此单位被三角定位，攻击该单位时获得额外+10命中。"
 LocFlyOverText="三角定位"
 
 [BrawlerProtocol_LW X2AbilityTemplate]
@@ -1187,15 +1194,15 @@ LocPromotionPopupText="<Bullet/> 如果一名敌人在相邻格中开始他们�
 
 [EnhancedSystems_LW X2AbilityTemplate]
 LocFriendlyName="强化维修系统"
-LocLongDescription="授予「快速维修」和「冗余系统」技能，维修不再结束回合，移除与重启相关的属性减益。重启时，SPARK将自动使用维修。此外，额外获得一次维修使用次数。"
-LocHelpText="授予「快速维修」和「冗余系统」技能，维修不再结束回合，移除与重启相关的属性减益。重启时，SPARK将自动使用维修。"
+LocLongDescription="授予「快速维修」技能，维修不再结束回合。授予「冗余系统」技能，移除与重启相关的属性减益。重启时，SPARK将自动使用维修。此外，额外获得一次维修使用次数。"
+LocHelpText="授予「快速维修」技能，维修不再结束回合。授予「冗余系统」技能，移除与重启相关的属性减益。重启时，SPARK将自动使用维修。"
 LocPromotionPopupText="快速维修使得维修不再结束回合。冗余系统意味着SPARK在重启后不会受到任何属性惩罚。SPARK在重启时将自动使用维修。此外，额外获得一次维修使用次数。"
 
 [ReactionSystems_LW X2AbilityTemplate]
 LocFriendlyName="强化防御系统"
-LocLongDescription="授予「牺牲」和「引导力场」技能。成为攻击目标后SPARK会获得暂时的主武器增伤效果。允许SPARK将4X4格范围内队友受到的伤害引导至自身，并获得额外的防御和护甲。"
-LocHelpText="<Bullet/> 当牺牲开启时，SPARK获得+<Ability:Sacrifice_Defense/>防御和+<Ability:Sacrifice_Armor/>护甲。<br/><Bullet/> 牺牲有<Ability:SACRIFICE_COOLDOWN/>回合冷却。<br/><Bullet/> 每引导一点能量，下一次攻击<Ability:WeaponName>伤害+1。<br/>"
-LocPromotionPopupText="<Bullet/> 当牺牲开启时，SPARK获得+<Ability:Sacrifice_Defense/>防御和+<Ability:Sacrifice_Armor/>护甲。<br/><Bullet/> 牺牲有<Ability:SACRIFICE_COOLDOWN/>回合冷却。<br/><Bullet/> 每引导一点能量，下一次攻击<Ability:WeaponName>伤害+1。<br/>"
+LocLongDescription="授予「引导力场」技能，受到敌方单位的指向性攻击后SPARK会获得暂时的主武器增伤效果。授予「牺牲」技能，允许SPARK将4X4格范围内队友受到的伤害引导至自身，并获得额外的防御和护甲。"
+LocHelpText="授予「引导力场」技能，受到敌方单位的指向性攻击后SPARK会获得暂时的主武器增伤效果。授予「牺牲」技能，允许SPARK将4X4格范围内队友受到的伤害引导至自身，并获得额外的防御和护甲。"
+LocPromotionPopupText="<Bullet/> 当牺牲开启时，SPARK获得+<Ability:Sacrifice_Defense/>防御和+<Ability:Sacrifice_Armor/>护甲。<br/><Bullet/> 牺牲有<Ability:SACRIFICE_COOLDOWN/>回合冷却。<br/><Bullet/> 每引导一点能量，下一次<Ability:WeaponName>攻击伤害+1。<br/><Bullet/> 攻击未命中时不会消耗存储的引导能量。<br/>"
 
 [AdvancedLogic_LW X2AbilityTemplate]
 LocFriendlyName="进阶逻辑"
@@ -1205,9 +1212,9 @@ LocPromotionPopupText="增加<Ability:ClassName/>的侵入属性<Ability:ADVANCE
 
 [HoloAACombo_LW X2AbilityTemplate]
 LocFriendlyName="强化定位系统"
-LocLongDescription="授予「自适应瞄准」和「全息瞄准」能力，超载不再有命中惩罚，射击敌人后，对敌人施加全息标记。"
-LocHelpText="授予「自适应瞄准」和「全息瞄准」能力，超载不再有命中惩罚，射击敌人后，对敌人施加全息标记。"
-LocPromotionPopupText="授予「自适应瞄准」和「全息瞄准」能力，提高SPARK在超载状态下连续射击的能力，并提高小队命中SPARK射击的目标的能力。"
+LocLongDescription="授予「自适应瞄准」能力，超载不再有命中惩罚。授予「全息射击」能力，射击敌人后，对敌人施加全息标记。"
+LocHelpText="授予「自适应瞄准」能力，超载不再有命中惩罚。授予「全息射击」能力，射击敌人后，对敌人施加全息标记。"
+LocPromotionPopupText="授予「自适应瞄准」和「全息射击」能力，提高SPARK在超载状态下连续射击的能力，并提高小队命中SPARK射击的目标的能力。"
 
 ; New Class loc
 
