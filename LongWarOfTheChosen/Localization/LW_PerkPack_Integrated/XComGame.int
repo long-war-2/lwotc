@@ -66,9 +66,9 @@ BriefSummary="Reduces wound recovery time by 1 HP and grants immunity to acid an
 ; perk name appearing centered. Thanks to bountygiver for the suggestion.
 LocFriendlyName="Centеr Mass"
 LocFlyOverText="Centеr Mass"
-LocLongDescription="You do one additional point of base damage when using guns."
-LocHelpText="You do one additional point of base damage when using guns."
-LocPromotionPopupText="<Bullet/> This applies to your primary weapon, pistols and sawed-off shotgun."
+LocLongDescription="You do one additional point of base damage when using your primary weapon, pistols, or a sawn-off shotgun."
+LocHelpText="You do one additional point of base damage when using your primary weapon, pistols, or a sawn-off shotgun."
+LocPromotionPopupText="<Bullet/> Bonus damage applies to all guns and primary weapons, including Templar gauntlets."
 
 [Lethal X2AbilityTemplate]
 LocFriendlyName="Lethal"
