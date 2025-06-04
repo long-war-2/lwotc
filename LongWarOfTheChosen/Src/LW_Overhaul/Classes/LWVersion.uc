@@ -49,6 +49,6 @@ defaultproperties
     MajorVersion = 1;
     MinorVersion = 2;
     PatchVersion = 3;
-    Classifier = "Steam"
+    Classifier = "Experimental"
 
 }
