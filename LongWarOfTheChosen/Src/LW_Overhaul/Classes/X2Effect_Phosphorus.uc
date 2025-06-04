@@ -2,6 +2,8 @@
 
 class X2Effect_Phosphorus extends X2Effect_Persistent config(LW_SoldierSkills);
 
+var config array<name> PhosphorusShredAbilities;
+
 var config int BONUS_CV_SHRED;
 var config int BONUS_MG_SHRED;
 var config int BONUS_BM_SHRED;
@@ -23,7 +25,7 @@ function int GetExtraShredValue(XComGameState_Effect EffectState, XComGameState_
     if (Attacker.HasSoldierAbility('PhosphorusPassive'))
     {
         AbilityName = AbilityState.GetMyTemplateName();
-        if (class'OPTC_Phosphorus'.default.PhosphorusAbilities.Find(AbilityName) != INDEX_NONE)
+        if (default.PhosphorusShredAbilities.Find(AbilityName) != INDEX_NONE)
         {
             bShouldApply = true;
         }
@@ -47,16 +49,16 @@ function int GetExtraShredValue(XComGameState_Effect EffectState, XComGameState_
             switch(X2WeaponTemplate(SourceWeapon.GetMyTemplate()).WeaponTech)
             {
                 case 'conventional':
-				case 'laser_lw':
-					return default.BONUS_CV_SHRED;
+                case 'laser_lw':
+                    return default.BONUS_CV_SHRED;
                 case 'magnetic':
-				case 'coilgun_lw':
-					return default.BONUS_MG_SHRED;
+                case 'coilgun_lw':
+                    return default.BONUS_MG_SHRED;
                 case 'beam':
-					return default.BONUS_BM_SHRED;
+                    return default.BONUS_BM_SHRED;
                 default:
-					return default.BONUS_CV_SHRED;
-					break;
+                    return default.BONUS_CV_SHRED;
+                    break;
             }
         }
     }
