@@ -24,9 +24,24 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 	local XComGameState_Item SourceWeapon;
 	local ShotModifierInfo ShotMod;
 	local UnitValue ShotsValue, TargetValue;
+	local bool bValidWeapon;
 
 	SourceWeapon = AbilityState.GetSourceWeapon();
-	if (SourceWeapon != none && !bIndirectFire && SourceWeapon.InventorySlot == eInvSlot_PrimaryWeapon)
+
+	if (SourceWeapon != none)
+	{
+		if (EffectState.ApplyEffectParameters.ItemStateObjectRef.ObjectID != 0)
+		{
+			if (AbilityState.SourceWeapon.ObjectID == EffectState.ApplyEffectParameters.ItemStateObjectRef.ObjectID)
+				bValidWeapon = true;
+		}
+		else if (SourceWeapon.InventorySlot == eInvSlot_PrimaryWeapon)
+		{
+			bValidWeapon = true;
+		}
+	}
+
+	if (!bIndirectFire && bValidWeapon)
 	{
 		Attacker.GetUnitValue('LockedOnShots', ShotsValue);
 		Attacker.GetUnitValue('LockedOnTarget', TargetValue);
@@ -55,6 +70,7 @@ static function EventListenerReturn LockedOnListener(Object EventData, Object Ev
 	local XComGameState_Unit LockedOnOwnerUnitState;
 	local XComGameState_Item SourceWeapon;
 	local XComGameState_Effect EffectGameState;
+	local bool bValidWeapon;
 
 	AbilityContext = XComGameStateContext_Ability(GameState.GetContext());
 	`assert(AbilityContext != none);
@@ -78,21 +94,36 @@ static function EventListenerReturn LockedOnListener(Object EventData, Object Ev
 	if (AbilityState.IsAbilityInputTriggered())
 	{
 		SourceWeapon = AbilityState.GetSourceWeapon();
-		if (AbilityState.GetMyTemplate().Hostility == eHostility_Offensive && SourceWeapon != none && SourceWeapon.InventorySlot == eInvSlot_PrimaryWeapon)
-		{
-			NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("LockedOn");
-			UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(UnitState.Class, UnitState.ObjectID));
-			UnitState.SetUnitFloatValue('LockedOnShots', 1, eCleanup_BeginTactical);
-			UnitState.SetUnitFloatValue('LockedOnTarget', AbilityContext.InputContext.PrimaryTarget.ObjectID, eCleanup_BeginTactical);
 
-			if (UnitState.ActionPoints.Length > 0)
+		if (SourceWeapon != none)
+		{
+			if (EffectState.ApplyEffectParameters.ItemStateObjectRef.ObjectID != 0)
 			{
-				//	show flyover for boost, but only if they have actions left to potentially use them
-				NewGameState.ModifyStateObject(class'XComGameState_Ability', EffectGameState.ApplyEffectParameters.AbilityStateObjectRef.ObjectID);		//	create this for the vis function
-				XComGameStateContext_ChangeContainer(NewGameState.GetContext()).BuildVisualizationFn = EffectGameState.TriggerAbilityFlyoverVisualizationFn;
+				if (AbilityState.SourceWeapon.ObjectID == EffectState.ApplyEffectParameters.ItemStateObjectRef.ObjectID)
+					bValidWeapon = true;
 			}
-			`TACTICALRULES.SubmitGameState(NewGameState);
+			else if (SourceWeapon.InventorySlot == eInvSlot_PrimaryWeapon)
+			{
+				bValidWeapon = true;
+			}
+
+			if (AbilityState.GetMyTemplate().Hostility == eHostility_Offensive && bValidWeapon)
+			{
+				NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("LockedOn");
+				UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(UnitState.Class, UnitState.ObjectID));
+				UnitState.SetUnitFloatValue('LockedOnShots', 1, eCleanup_BeginTactical);
+				UnitState.SetUnitFloatValue('LockedOnTarget', AbilityContext.InputContext.PrimaryTarget.ObjectID, eCleanup_BeginTactical);
+
+				if (UnitState.ActionPoints.Length > 0)
+				{
+					//	show flyover for boost, but only if they have actions left to potentially use them
+					NewGameState.ModifyStateObject(class'XComGameState_Ability', EffectGameState.ApplyEffectParameters.AbilityStateObjectRef.ObjectID);		//	create this for the vis function
+					XComGameStateContext_ChangeContainer(NewGameState.GetContext()).BuildVisualizationFn = EffectGameState.TriggerAbilityFlyoverVisualizationFn;
+				}
+				`TACTICALRULES.SubmitGameState(NewGameState);
+			}
 		}
+
 	}
 	return ELR_NoInterrupt;
 }
