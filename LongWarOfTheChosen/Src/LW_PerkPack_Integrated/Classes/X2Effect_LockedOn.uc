@@ -97,9 +97,9 @@ static function EventListenerReturn LockedOnListener(Object EventData, Object Ev
 
 		if (SourceWeapon != none)
 		{
-			if (EffectState.ApplyEffectParameters.ItemStateObjectRef.ObjectID != 0)
+			if (EffectGameState.ApplyEffectParameters.ItemStateObjectRef.ObjectID != 0)
 			{
-				if (AbilityState.SourceWeapon.ObjectID == EffectState.ApplyEffectParameters.ItemStateObjectRef.ObjectID)
+				if (AbilityState.SourceWeapon.ObjectID == EffectGameState.ApplyEffectParameters.ItemStateObjectRef.ObjectID)
 					bValidWeapon = true;
 			}
 			else if (SourceWeapon.InventorySlot == eInvSlot_PrimaryWeapon)
