@@ -900,14 +900,6 @@ LocLongDescription="Este soldado no activa guardia ni disparos de reacción."
 LocHelpText="Este soldado no activa guardia ni disparos de reacción."
 LocPromotionPopupText="<Bullet/> Un soldado Sigiloso no activará los disparos en guardia o el fuego de contención, pero no podrá atraer disparos en guardia para alejarlos de sus compañeros.<br/>"
 
-[XComGame.Bladestorm X2AbilityTemplate]
-[Bladestorm X2AbilityTemplate]
-LocFriendlyName="Tormenta de espadas"
-LocLongDescription="Ataques de <Ability:SecondaryWeaponName/> adicionales contra los enemigos que entren o ataquen en distancia cuerpo a cuerpo."
-LocHelpText="Ataques de <Ability:SecondaryWeaponName/> adicionales contra los enemigos que entren o ataquen en distancia cuerpo a cuerpo."
-LocFlyOverText="Tormenta de espadas"
-LocPromotionPopupText="<Bullet/> Si un enemigo empieza su turno en una casilla adyacente, Tormenta de espadas se activará si dicho enemigo intenta atacar al soldado.<br/><Bullet/> Si un enemigo no empieza su turno en una casilla adyacente, Tormenta de espadas se activará cuando dicho enemigo se ponga a distancia cuerpo a cuerpo.<br/>"
-
 [XComeGame.BladestormAttack X2AbilityTemplate]
 [BladestormAttack X2AbilityTemplate]
 LocFriendlyName="Tormenta de espadas"

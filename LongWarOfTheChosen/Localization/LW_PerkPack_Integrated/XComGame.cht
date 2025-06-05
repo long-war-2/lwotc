@@ -871,14 +871,6 @@ LocLongDescription="這名士兵不會觸發監視或者反應攻擊。"
 LocHelpText="這名士兵不會觸發監視或者反應攻擊。"
 LocPromotionPopupText="<Bullet/>擁有暗影步能力的士兵不會觸發敵人的監視射擊或壓制射擊，但也無法替隊友吸引反應攻擊的火力。<br/>"
 
-[XComGame.Bladestorm X2AbilityTemplate]
-[Bladestorm X2AbilityTemplate]
-LocFriendlyName="劍刃風暴"
-LocLongDescription="對所有進入、離開或從近戰範圍內發起攻擊的敵人使用<Ability:SecondaryWeaponName/>進行反應攻擊，僅在非玩家回合觸發。"
-LocHelpText="對所有進入、離開或從近戰範圍內發起攻擊的敵人使用<Ability:SecondaryWeaponName/>進行反應攻擊，僅在非玩家回合觸發。"
-LocFlyOverText="劍刃風暴"
-LocPromotionPopupText="<Bullet/>敵人在相鄰位置開始回合且打算離開或攻擊士兵時會觸發劍刃風暴。<br/><Bullet/>如果敵人不在相鄰位置，則劍刃風暴在敵人進入近戰範圍後觸發。<br/>"
-
 [XComeGame.BladestormAttack X2AbilityTemplate]
 [BladestormAttack X2AbilityTemplate]
 LocFriendlyName="劍刃風暴"

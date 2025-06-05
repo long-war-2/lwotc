@@ -5796,8 +5796,8 @@ LocPromotionPopupText="<Bullet/> Jeśli wróg rozpocznie swoją turę na sąsied
 
 [Bladestorm X2AbilityTemplate]
 LocFriendlyName="Burza ostrzy"
-LocLongDescription="Darmowe <Ability:SecondaryWeaponName/> ataki na wrogów, którzy wchodzą, wychodzą lub atakują z zasięgu walki wręcz w turach wroga."
-LocHelpText="Darmowe <Ability:SecondaryWeaponName/> ataki na wrogów, którzy wchodzą, wychodzą lub atakują z zasięgu walki wręcz w turach wroga."
+LocLongDescription="Darmowe <Ability:WeaponName/> ataki na wrogów, którzy wchodzą, wychodzą lub atakują z zasięgu walki wręcz w turach wroga."
+LocHelpText="Darmowe <Ability:WeaponName/> ataki na wrogów, którzy wchodzą, wychodzą lub atakują z zasięgu walki wręcz w turach wroga."
 LocFlyOverText="Burza ostrzy"
 LocPromotionPopupText="<Bullet/> Jeśli wróg rozpocznie swoją turę na sąsiednim kafelku, Burza Ostrzy zostanie aktywowana, jeśli ten wróg spróbuje zaatakować <Ability:ClassName/>.<br/><Bullet/> Jeśli wróg nie rozpocznie swojej tury na sąsiednim kafelku, wówczas Burza Ostrzy uruchomi się, gdy wróg znajdzie się w zasięgu walki wręcz.<br/><Bullet/> Burza Ostrzy nie aktywuje się w twojej turze.<br/>"
 

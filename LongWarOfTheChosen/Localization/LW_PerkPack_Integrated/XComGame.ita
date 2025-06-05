@@ -854,14 +854,6 @@ LocLongDescription="Questo soldato non attiva la Guardia o gli attacchi di reazi
 LocHelpText="Questo soldato non attiva la Guardia o gli attacchi di reazione."
 LocPromotionPopupText="<Bullet/> Un soldato con Passo dell'ombra non attiva i colpi di Guardia e il fuoco di Soppressione, ma non può attirare il fuoco di Guardia lontano dai suoi compagni.<br/>"
 
-[XComGame.Bladestorm X2AbilityTemplate]
-[Bladestorm X2AbilityTemplate]
-LocFriendlyName="Tempesta di lame"
-LocLongDescription="Attacchi con <Ability:SecondaryWeaponName/> gratis ai nemici che entrano o attaccano a portata di mischia."
-LocHelpText="Attacchi con <Ability:SecondaryWeaponName/> gratis ai nemici che entrano o attaccano a portata di mischia."
-LocFlyOverText="Tempesta di lame"
-LocPromotionPopupText="<Bullet/> Se un nemico inizia il turno in una casella adiacente, Tempesta di lame si attiva nel caso cerchi di attaccare il soldato.<br/><Bullet/> Se il nemico non inizia il turno in una casella adiacente, Tempesta di lame si attiva se entra a portata di mischia.<br/>"
-
 [XComeGame.BladestormAttack X2AbilityTemplate]
 [BladestormAttack X2AbilityTemplate]
 LocFriendlyName="Tempesta di lame"

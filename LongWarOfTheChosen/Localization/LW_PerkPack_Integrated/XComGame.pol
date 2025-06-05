@@ -845,14 +845,6 @@ LocLongDescription="Żołnierz nie powoduje aktywacji warty i strzałów reakcji
 LocHelpText="Żołnierz nie powoduje aktywacji warty i strzałów reakcji."
 LocPromotionPopupText="<Bullet/> Żołnierz ze zdolnością kroku cienia nie wywołuje strzałów wroga w trybie warty i przygwożdżenia, ale nie może też ściągnąć na siebie ostrzału trybu warty skierowanego na kolegów z drużyny.<br/>"
 
-[XComGame.Bladestorm X2AbilityTemplate]
-[Bladestorm X2AbilityTemplate]
-LocFriendlyName="Huragan stali"
-LocLongDescription="Ataki na przeciwników, którzy wchodzą w zasięg walki wręcz lub z niego atakują, będą darmowe przy użyciu broni typu: <Ability:SecondaryWeaponName/>."
-LocHelpText="Ataki na przeciwników, którzy wchodzą w zasięg walki wręcz lub z niego atakują, będą darmowe przy użyciu broni typu: <Ability:SecondaryWeaponName/>."
-LocFlyOverText="Huragan stali"
-LocPromotionPopupText="<Bullet/> Jeżeli wróg zacznie swoją turę na sąsiednim polu i spróbuje zaatakować żołnierza, zadziała huragan stali.<br/><Bullet/> Jeśli przeciwnik nie zaczyna tury na sąsiednim polu, to huragan stali zadziała, gdy wejdzie on w zasięg walki wręcz.<br/>"
-
 [XComeGame.BladestormAttack X2AbilityTemplate]
 [BladestormAttack X2AbilityTemplate]
 LocFriendlyName="Huragan stali"

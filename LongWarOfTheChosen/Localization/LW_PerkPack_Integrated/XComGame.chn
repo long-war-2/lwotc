@@ -872,14 +872,6 @@ LocLongDescription="这名士兵不会触发监视或者反应攻击。"
 LocHelpText="这名士兵不会触发监视或者反应攻击。"
 LocPromotionPopupText="<Bullet/> 拥有暗影步能力的士兵不会触发敌人的监视射击或压制射击，但也无法替队友吸引反应攻击的火力。<br/>"
 
-[XComGame.Bladestorm X2AbilityTemplate]
-[Bladestorm X2AbilityTemplate]
-LocFriendlyName="剑刃风暴"
-LocLongDescription="对所有进入、离开或从近战范围内发起攻击的敌人使用<Ability:SecondaryWeaponName/>进行反应攻击，仅在非玩家回合触发。"
-LocHelpText="对所有进入、离开或从近战范围内发起攻击的敌人使用<Ability:SecondaryWeaponName/>进行反应攻击，仅在非玩家回合触发。"
-LocFlyOverText="剑刃风暴"
-LocPromotionPopupText="<Bullet/> 敌人在相邻位置开始回合且打算离开或攻击士兵时会触发剑刃风暴。<br/><Bullet/> 如果敌人不在相邻位置，则剑刃风暴在敌人进入近战范围后触发。<br/>"
-
 [XComeGame.BladestormAttack X2AbilityTemplate]
 [BladestormAttack X2AbilityTemplate]
 LocFriendlyName="剑刃风暴"

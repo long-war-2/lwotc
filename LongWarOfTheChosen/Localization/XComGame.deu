@@ -5412,8 +5412,8 @@ LocPromotionPopupText="<Bullet/> Wenn ein Feind seine Runde auf einem benachbart
 
 [Bladestorm X2AbilityTemplate]
 LocFriendlyName="Klingensturm"
-LocLongDescription="Kostenlose Angriffe mit der Waffe \"<Ability:SecondaryWeaponName/>\" auf alle Feinde, die sich in Nahkampfreichweite bewegen oder im Nahkampf angreifen."
-LocHelpText="Kostenlose Angriffe mit der Waffe \"<Ability:SecondaryWeaponName/>\" auf alle Feinde, die sich in Nahkampfreichweite bewegen oder im Nahkampf angreifen."
+LocLongDescription="Kostenlose Angriffe mit der Waffe \"<Ability:WeaponName/>\" auf alle Feinde, die sich in Nahkampfreichweite bewegen oder im Nahkampf angreifen."
+LocHelpText="Kostenlose Angriffe mit der Waffe \"<Ability:WeaponName/>\" auf alle Feinde, die sich in Nahkampfreichweite bewegen oder im Nahkampf angreifen."
 LocFlyOverText="Klingensturm"
 LocPromotionPopupText="<Bullet/> Wenn ein Feind seine Runde auf einem benachbarten Feld beginnt, wird Klingensturm ausgelöst, wenn dieser Feind versucht, den <Ability:ClassName/> anzugreifen.<br/><Bullet/> Wenn ein Feind seine Runde nicht in einem benachbarten Feld beginnt, wird Klingensturm ausgelöst, sobald sich dieser Feind in Nahkampfreichweite bewegt.<br/><Bullet/> Klingensturm wird nicht während der eigenen Runde ausgelöst.<br/>"
 

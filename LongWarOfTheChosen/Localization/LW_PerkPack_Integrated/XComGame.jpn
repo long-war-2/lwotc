@@ -856,8 +856,8 @@ LocPromotionPopupText="<Bullet/>忍び足を有する兵士は監視射撃や抑
 [XComGame.Bladestorm X2AbilityTemplate]
 [Bladestorm X2AbilityTemplate]
 LocFriendlyName="ブレイドストーム"
-LocLongDescription="近接攻撃の範囲に入った敵や範囲内から攻撃してくる敵にノーコストで<Ability:SecondaryWeaponName/>による攻撃を行う。"
-LocHelpText="近接攻撃の範囲に入った敵や範囲内から攻撃してくる敵にノーコストで<Ability:SecondaryWeaponName/>による攻撃を行う。"
+LocLongDescription="近接攻撃の範囲に入った敵や範囲内から攻撃してくる敵にノーコストで<<Ability:WeaponName/>による攻撃を行う。"
+LocHelpText="近接攻撃の範囲に入った敵や範囲内から攻撃してくる敵にノーコストで<Ability:WeaponName/>による攻撃を行う。"
 LocFlyOverText="ブレイドストーム"
 LocPromotionPopupText="<Bullet/>敵がターン開始時に隣接タイルにいて、かつその敵が兵士を攻撃しようとした場合にブレイドストームが発動する。<br/><Bullet/>敵がターン開始時に隣接タイルにいない場合、その敵が近接攻撃範囲内に移動してきたときにブレイドストームが発動する。<br/>"
 

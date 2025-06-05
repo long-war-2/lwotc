@@ -868,15 +868,6 @@ LocLongDescription="Dieser Soldat löst weder Feuerschutz noch Reflexschüsse au
 LocHelpText="Dieser Soldat löst weder Feuerschutz noch Reflexschüsse aus."
 LocPromotionPopupText="<Bullet/> Soldaten mit Schattenschritt lösen keine Feuerschutz-Schüsse oder Unterstützungsfeuer aus, sind dafür aber auch nicht in der Lage, Feuerschutz-Schüsse von ihren Truppmitgliedern abzulenken.<br/>"
 
-[XComGame.Bladestorm X2AbilityTemplate]
-
-[Bladestorm X2AbilityTemplate]
-LocFriendlyName="Klingensturm"
-LocLongDescription="Kostenlose Angriffe mit der Waffe \"<Ability:SecondaryWeaponName/>\" auf alle Feinde, die in Nahkampfreichweite kommen oder im Nahkampf angreifen."
-LocHelpText="Kostenlose Angriffe mit der Waffe \"<Ability:SecondaryWeaponName/>\" auf alle Feinde, die in Nahkampfreichweite kommen oder im Nahkampf angreifen."
-LocFlyOverText="Klingensturm"
-LocPromotionPopupText="<Bullet/> Wenn ein Feind seine Runde auf einem benachbarten Feld beginnt, wird Klingensturm ausgelöst, falls der Feind versucht, den Soldaten anzugreifen.<br/><Bullet/> Wenn ein Feind die Runde nicht auf einem benachbarten Feld beginnt, wird Klingensturm ausgelöst, wenn der Feind in Nahkampfreichweite kommt.<br/>"
-
 [XComeGame.BladestormAttack X2AbilityTemplate]
 
 [BladestormAttack X2AbilityTemplate]

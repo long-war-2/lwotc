@@ -851,14 +851,6 @@ LocLongDescription="Этот солдат не вызывает срабатыв
 LocHelpText="Этот солдат не вызывает срабатывания \"наблюдения\" или ответного огня."
 LocPromotionPopupText="<Bullet/> Солдат со способностью \"Легкий шаг\" не может попасть под обстрел из режима \"наблюдения\" или подавления огнем, но и, как следствие, не может целенаправленно принять на себя подобный выстрел.<br/>"
 
-[XComGame.Bladestorm X2AbilityTemplate]
-[Bladestorm X2AbilityTemplate]
-LocFriendlyName="Мясорубка"
-LocLongDescription="Свободные атаки по любым врагам, находящимся рядом или нападающим с близкого расстояния, при использовании следующего оружия: <Ability:SecondaryWeaponName/>"
-LocHelpText="Свободные атаки по любым врагам, находящимся рядом или нападающим с близкого расстояния, при использовании следующего оружия: <Ability:SecondaryWeaponName/>"
-LocFlyOverText="Мясорубка"
-LocPromotionPopupText="<Bullet/> Если противник начинает ход в соседней клетке, способность \"Мясорубка\" активируется, когда он попытается атаковать солдата.<br/><Bullet/> Если противник начинает ход не на соседней клетке, \"Мясорубка\" активируется, когда он подойдет на дистанцию удара.<br/>"
-
 [XComeGame.BladestormAttack X2AbilityTemplate]
 [BladestormAttack X2AbilityTemplate]
 LocFriendlyName="Мясорубка"

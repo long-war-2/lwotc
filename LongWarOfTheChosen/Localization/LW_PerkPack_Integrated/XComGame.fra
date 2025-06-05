@@ -931,14 +931,6 @@ LocLongDescription="Ce soldat ne déclenche pas les tirs en mode Vigilance ou le
 LocHelpText="Ce soldat ne déclenche pas les tirs en mode Vigilance ou les tirs réflexes."
 LocPromotionPopupText="<Bullet/> Un soldat doté de la capacité Marche furtive ne déclenche pas de tirs de vigilance ou de suppression, et ne peut donc pas attirer les tirs de vigilance ennemis loin de ses équipiers.<br/>"
 
-[XComGame.Bladestorm X2AbilityTemplate]
-[Bladestorm X2AbilityTemplate]
-LocFriendlyName="Escrimeur"
-LocLongDescription="Attaques gratuites avec votre <Ability:SecondaryWeaponName/> sur les ennemis qui approchent ou attaquent au corps à corps."
-LocHelpText="Attaques gratuites avec votre <Ability:SecondaryWeaponName/> sur les ennemis qui approchent ou attaquent au corps à corps."
-LocFlyOverText="Escrimeur"
-LocPromotionPopupText="<Bullet/> Si un ennemi termine son tour sur une case adjacente et tente d'attaquer le soldat, la capacité Escrimeur se déclenche.<br/><Bullet/> Si l'ennemi ne termine pas son tour sur une case adjacente, la capacité Escrimeur se déclenche quand cet ennemi est à portée d'attaque au corps à corps.<br/>"
-
 [XComeGame.BladestormAttack X2AbilityTemplate]
 [BladestormAttack X2AbilityTemplate]
 LocFriendlyName="Escrimeur"

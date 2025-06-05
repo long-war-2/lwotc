@@ -853,8 +853,8 @@ LocPromotionPopupText="<Bullet/> 섀도 스텝을 배운 병사는 경계 사격
 [XComGame.Bladestorm X2AbilityTemplate]
 [Bladestorm X2AbilityTemplate]
 LocFriendlyName="블레이드 스톰"
-LocLongDescription="근거리에 들어오거나 근거리에서 공격해 오는 적에게 행동력 소모 없이 <Ability:SecondaryWeaponName/> 공격을 가합니다."
-LocHelpText="근거리에 들어오거나 근거리에서 공격해 오는 적에게 행동력 소모 없이 <Ability:SecondaryWeaponName/> 공격을 가합니다."
+LocLongDescription="근거리에 들어오거나 근거리에서 공격해 오는 적에게 행동력 소모 없이 <Ability:WeaponName/> 공격을 가합니다."
+LocHelpText="근거리에 들어오거나 근거리에서 공격해 오는 적에게 행동력 소모 없이 <Ability:WeaponName/> 공격을 가합니다."
 LocFlyOverText="블레이드 스톰"
 LocPromotionPopupText="<Bullet/> 적이 인접한 타일에서 그의 턴을 시작할 경우, 블레이드 스톰은 적이 병사를 공격하려고 할 때 발동됩니다.<br/><Bullet/> 적이 인접한 타일에서 그의 턴을 시작하지 않을 경우, 블레이드 스톰은 적이 근접 범위로 이동할 때 발동됩니다.<br/>"
 

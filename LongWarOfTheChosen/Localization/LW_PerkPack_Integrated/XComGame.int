@@ -970,14 +970,6 @@ LocLongDescription="This soldier does not trigger overwatch or reaction fire."
 LocHelpText="This soldier does not trigger overwatch or reaction fire."
 LocPromotionPopupText="<Bullet/> A soldier with Shadowstep will not trigger Overwatch shots or Suppression fire, but they will be unable to draw Overwatch fire away from their teammates.<br/>"
 
-[XComGame.Bladestorm X2AbilityTemplate]
-[Bladestorm X2AbilityTemplate]
-LocFriendlyName="Bladestorm"
-LocLongDescription="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range."
-LocHelpText="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range."
-LocFlyOverText="Bladestorm"
-LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Bladestorm will trigger if that enemy tries to attack the soldier.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Bladestorm will trigger when that enemy moves into melee range.<br/>"
-
 [XComeGame.BladestormAttack X2AbilityTemplate]
 [BladestormAttack X2AbilityTemplate]
 LocFriendlyName="Bladestorm"

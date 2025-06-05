@@ -6057,8 +6057,8 @@ LocPromotionPopupText="<Bullet/> Cette capacité se déclenche si un ennemi comm
 
 [Bladestorm X2AbilityTemplate]
 LocFriendlyName="Escrimeur"
-LocLongDescription="Obtenez des attaques gratuites avec votre <Ability:SecondaryWeaponName/> sur les ennemis qui s'approchent, s'éloignent ou attaquent au corps à corps. Cette capacité ne se déclenche pas pendant votre tour."
-LocHelpText="Obtenez des attaques gratuites avec votre <Ability:SecondaryWeaponName/> sur les ennemis qui s'approchent, s'éloignent ou attaquent au corps à corps. Cette capacité ne se déclenche pas pendant votre tour."
+LocLongDescription="Obtenez des attaques gratuites avec votre <Ability:WeaponName/> sur les ennemis qui s'approchent, s'éloignent ou attaquent au corps à corps. Cette capacité ne se déclenche pas pendant votre tour."
+LocHelpText="Obtenez des attaques gratuites avec votre <Ability:WeaponName/> sur les ennemis qui s'approchent, s'éloignent ou attaquent au corps à corps. Cette capacité ne se déclenche pas pendant votre tour."
 LocFlyOverText="Escrimeur"
 LocPromotionPopupText="<Bullet/> Si un ennemi termine son tour sur une case adjacente et tente d'attaquer le <Ability:ClassName/>, la capacité Escrimeur se déclenche.<br/><Bullet/> Si l'ennemi ne termine pas son tour sur une case adjacente, la capacité Escrimeur se déclenche quand cet ennemi est à portée d'attaque au corps à corps.<br/><Bullet/> Cette capacité ne se déclenche pas pendant votre tour (uniquement pendant le tour adverse).<br/>"
 

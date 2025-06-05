@@ -6201,8 +6201,8 @@ LocPromotionPopupText="<Bullet/> 如果一名敵人在相鄰格開始他們的�
 
 [Bladestorm X2AbilityTemplate]
 LocFriendlyName="劍刃風暴"
-LocLongDescription="使用<Ability:SecondaryWeaponName/>自由攻擊進入、離開或從近戰範圍內發起攻擊的敵人。"
-LocHelpText="使用<Ability:SecondaryWeaponName/>自由攻擊進入、離開或從近戰範圍內發起攻擊的敵人。"
+LocLongDescription="使用<Ability:WeaponName/>自由攻擊進入、離開或從近戰範圍內發起攻擊的敵人。"
+LocHelpText="使用<Ability:WeaponName/>自由攻擊進入、離開或從近戰範圍內發起攻擊的敵人。"
 LocFlyOverText="劍刃風暴"
 LocPromotionPopupText="<Bullet/> 如果一名敵人在相鄰格開始他們的回合，該敵人試圖離開或攻擊<Ability:ClassName/>將觸發劍刃風暴。<br/><Bullet/> 如果敵人不在相鄰位置，那麼當敵人進入近戰範圍時將觸發劍刃風暴。<br/><Bullet/> 劍刃風暴不會在你自己的回合觸發。<br/>"
 

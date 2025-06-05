@@ -6398,8 +6398,8 @@ LocPromotionPopupText="<Bullet/> Si un enemigo comienza su turno en una casilla 
 
 [Bladestorm X2AbilityTemplate]
 LocFriendlyName="Tormenta de espadas"
-LocLongDescription="Ataques gratuitos en repetidas ocasiones de <Ability:SecondaryWeaponName/> contra los enemigos que entren, salgan o ataquen en distancia cuerpo a cuerpo."
-LocHelpText="Ataques gratuitos en repetidas ocasiones de <Ability:SecondaryWeaponName/> contra los enemigos que entren, salgan o ataquen en distancia cuerpo a cuerpo."
+LocLongDescription="Ataques gratuitos en repetidas ocasiones de <Ability:WeaponName/> contra los enemigos que entren, salgan o ataquen en distancia cuerpo a cuerpo."
+LocHelpText="Ataques gratuitos en repetidas ocasiones de <Ability:WeaponName/> contra los enemigos que entren, salgan o ataquen en distancia cuerpo a cuerpo."
 LocFlyOverText="Tormenta de espadas"
 LocPromotionPopupText="<Bullet/> Si un enemigo empieza su turno en una casilla adyacente, Tormenta de espadas se activará si dicho enemigo intenta atacar al <Ability:ClassName/>.<br/><Bullet/> Si un enemigo no empieza su turno en una casilla adyacente, Tormenta de espadas se activará cuando dicho enemigo se ponga a distancia cuerpo a cuerpo.<br/><Bullet/> Tormenta de espadas no se efectuará en tu propio turno.<br/>"
 
