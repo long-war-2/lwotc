@@ -239,7 +239,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	AlienActivities.AddItem(CreateScheduledOffworldReinforcementsTemplate());
 	AlienActivities.AddItem(CreateEmergencyOffworldReinforcementsTemplate());
 	AlienActivities.AddItem(CreateSuperEmergencyOffworldReinforcementsTemplate());
-	AlienActivities.AddItem(CreateRepressionTemplate());
+	//AlienActivities.AddItem(CreateRepressionTemplate());
 	AlienActivities.AddItem(CreateInvasionTemplate());
 	AlienActivities.AddItem(CreatePropagandaTemplate());
 	AlienActivities.AddItem(CreateProtectResearchTemplate());
