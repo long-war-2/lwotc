@@ -379,8 +379,8 @@ LocPromotionPopupText="<Bullet/> Reaction fire shots against you have a signific
 LocFriendlyName="Cutthroat"
 LocFlyOverText="Cutthroat"
 ; LWOTC Needs Translation
-LocLongDescription="Your melee attacks against biological enemies ignore their armor, have a +<Ability:CUTTHROAT_BONUS_CRIT_CHANCE/> critical chance, and do +<Ability:CUTTHROAT_BONUS_CRIT_DAMAGE/> critical damage."
-LocHelpText="Your melee attacks against biological enemies ignore their armor, have a +<Ability:CUTTHROAT_BONUS_CRIT_CHANCE/> critical chance, and do +<Ability:CUTTHROAT_BONUS_CRIT_DAMAGE/> critical damage."
+LocLongDescription="Your melee attacks against biological enemies ignore their armor, have +<Ability:CUTTHROAT_BONUS_CRIT_CHANCE/> critical chance, and do +<Ability:CUTTHROAT_BONUS_CRIT_DAMAGE/> critical damage."
+LocHelpText="Your melee attacks against biological enemies ignore their armor, have +<Ability:CUTTHROAT_BONUS_CRIT_CHANCE/> critical chance, and do +<Ability:CUTTHROAT_BONUS_CRIT_DAMAGE/> critical damage."
 LocPromotionPopupText=""
 ; End translation
 
