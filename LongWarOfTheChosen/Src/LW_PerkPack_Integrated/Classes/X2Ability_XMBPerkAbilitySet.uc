@@ -1457,13 +1457,13 @@ static function EventListenerReturn AbilityTriggerEventListener_AuraUpdate(Objec
         // If the unit that's moved is not the source, just update the effect
         if (EventUnit.ObjectID != AbilityState.OwnerStateObject.ObjectID)
         {
-            `LOG("Unit is not the source. Single target update.", true, 'MeristAuraUpdateListener');
+            //`LOG("Unit is not the source. Single target update.", true, 'MeristAuraUpdateListener');
             AbilityState.AbilityTriggerAgainstSingleTarget(EventUnit.GetReference(), false);
         }
         // If the unit that's moved is the source, we have to do a Solace update
         else
         {
-            `LOG("Unit is the source. Update all units.", true, 'MeristAuraUpdateListener');
+            //`LOG("Unit is the source. Update all units.", true, 'MeristAuraUpdateListener');
             foreach `XCOMHISTORY.IterateByClassType(class'XComGameState_Unit', TargetUnit, , , GameState.HistoryIndex)
             {
                 AbilityState.AbilityTriggerAgainstSingleTarget(TargetUnit.GetReference(), false);
