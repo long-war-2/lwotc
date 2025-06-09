@@ -5628,7 +5628,7 @@ LocHelpText="Alle Feinde innerhalb von <Ability:ZONE_CONTROL_RADIUS/> Feldern um
 LocLongDescription="Alle Feinde innerhalb von <Ability:ZONE_CONTROL_RADIUS/> Feldern um den <Ability:ClassName/> herum erhalten <Ability:ZONE_CONTROL_AIM_PENALTY/> % Zielgenauigkeit und <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> Mobilität."
 LocPromotionPopupText="<Bullet/> Alle Feinde innerhalb von <Ability:ZONE_CONTROL_RADIUS/> Feldern um den <Ability:ClassName/> herum erhalten <Ability:ZONE_CONTROL_AIM_PENALTY/> % Zielgenauigkeit und <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> Mobilität.<br/>"
 
-[ZoCPassive X2AbilityTemplate]
+[ZOC_LW_Update X2AbilityTemplate]
 LocFriendlyName="Kontrollzone"
 LocHelpText="Alle Feinde innerhalb von <Ability:ZONE_CONTROL_RADIUS/> Feldern um den <Ability:ClassName/> herum erhalten <Ability:ZONE_CONTROL_AIM_PENALTY/> % Zielgenauigkeit und <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> Mobilität.."
 LocLongDescription="Alle Feinde innerhalb von <Ability:ZONE_CONTROL_RADIUS/> Feldern um den <Ability:ClassName/> herum erhalten <Ability:ZONE_CONTROL_AIM_PENALTY/> % Zielgenauigkeit und <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> Mobilität."

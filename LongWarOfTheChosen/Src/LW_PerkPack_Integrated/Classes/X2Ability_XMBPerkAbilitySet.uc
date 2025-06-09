@@ -166,7 +166,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(ApexPredatorPanic_LW());
 	Templates.AddItem(NeutralizingAgents());
 	Templates.AddItem(ZoneOfControl_LW());
-	Templates.AddItem(AddZoCPassive());
+	Templates.AddItem(AddZOC_LW_Update());
 	Templates.AddItem(AddZoCCleanse());
 
 	Templates.AddItem(Concentration());
@@ -1177,6 +1177,9 @@ static function X2AbilityTemplate ZoneOfControl_LW()
 }
 
 */
+
+// Old ZOC implementation:
+/* 
 static function X2AbilityTemplate ZoneOfControl_LW()
 {
 	local X2AbilityTemplate             Template;
@@ -1268,6 +1271,7 @@ static function X2AbilityTemplate AddZoCCleanse()
 	ZOCEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.LocHelpText, Template.IconImage, true,,Template.AbilitySourceName);
 	ZOCEffect.DuplicateResponse = eDupe_ignore;
 	ZOCEffect.bRemoveWhenSourceDies = true;
+	ZOCEffect.bRemoveWhenTargetDies = true;
 	ZOCEffect.Conditions.AddItem(DistanceCondition);
 	Template.AddTargetEffect(ZOCEffect);
 
@@ -1280,6 +1284,221 @@ static function X2AbilityTemplate AddZoCCleanse()
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 
 	return Template;
+}
+
+*/
+
+// Updated ZOC implementation:
+
+
+static function X2AbilityTemplate ZoneOfControl_LW()
+{
+    local X2AbilityTemplate             Template;
+    local X2Effect_Persistent           PersistentEffect;
+
+    `CREATE_X2ABILITY_TEMPLATE(Template, 'ZoneOfControl_LW');
+
+    Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_ZoneOfControl";
+    Template.AbilitySourceName = 'eAbilitySource_Perk';
+    Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+    Template.Hostility = eHostility_Neutral;
+    Template.bIsPassive = true;
+    Template.bUniqueSource = true;
+
+    Template.AbilityToHitCalc = default.DeadEye;
+    Template.AbilityTargetStyle = default.SelfTarget;
+    Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+    PersistentEffect = new class'X2Effect_Persistent';
+    PersistentEffect.EffectName = 'ZoneOfControl_LW_Passive';
+    PersistentEffect.BuildPersistentEffect(1, true, false);
+    PersistentEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage,,, Template.AbilitySourceName);
+    Template.AddTargetEffect(PersistentEffect);
+    
+
+    Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+    Template.bCrossClassEligible = false;
+
+	Template.AdditionalAbilities.AddItem('ZoCCleanse');
+    Template.AdditionalAbilities.AddItem('ZOC_LW_Update');
+
+    return Template;
+}
+
+static function X2AbilityTemplate AddZoCCleanse()
+{
+    local X2AbilityTemplate                 Template;
+    local X2Condition_ValidateAura          AuraCondition;
+    local X2Condition_UnitProperty          UnitPropertyCondition;
+    local X2Effect_RemoveEffectsWithSource  RemoveEffect;
+    local X2AbilityTrigger_EventListener    Trigger;
+    
+    Template = SelfTargetTrigger_LW('ZoCCleanse', "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_ZoneOfControl");
+
+    Template.AbilityTargetStyle = default.SimpleSingleTarget;
+
+    Trigger = new class'X2AbilityTrigger_EventListener';
+    Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+    Trigger.ListenerData.EventID = 'OnUnitBeginPlay';
+    Trigger.ListenerData.Filter = eFilter_Unit;
+    Trigger.ListenerData.EventFn = AbilityTriggerEventListener_AuraUpdate;
+    Trigger.ListenerData.Priority = 49; // Priorities!
+    Template.AbilityTriggers.AddItem(Trigger);
+
+    Trigger = new class'X2AbilityTrigger_EventListener';
+    Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+    Trigger.ListenerData.EventID = 'UnitMoveFinished';
+    Trigger.ListenerData.Filter = eFilter_None;
+    Trigger.ListenerData.EventFn = AbilityTriggerEventListener_AuraUpdate;
+    Trigger.ListenerData.Priority = 50; // Priorities!
+    Template.AbilityTriggers.AddItem(Trigger);
+
+    // We don't want to cleanse the effect of it would be reapplied after that
+    //   because there can be additional effects tied to the main one whenever it is removed
+    //   i.e. the target takes damage
+
+    // Fails if the ability that would reapply the effect can be triggered against the target
+    // Prevents cleansomg the effect that would be instantly reapplied
+    AuraCondition = new class'X2Condition_ValidateAura';
+    AuraCondition.UpdateAbilityName = 'ZOC_LW_Update';
+    Template.AbilityTargetConditions.AddItem(AuraCondition);
+
+    UnitPropertyCondition = new class'X2Condition_UnitProperty';
+    UnitPropertyCondition.ExcludeDead = true;
+    UnitPropertyCondition.ExcludeFriendlyToSource = false;
+    UnitPropertyCondition.ExcludeCosmetic = true;
+    UnitPropertyCondition.ExcludeInStasis = false;
+    UnitPropertyCondition.FailOnNonUnits = true;
+    Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
+
+    // Only the source unit can remove the effect
+    // Necessary to prevent other units with the ability from cleansing the effect
+    //   and making the source reapply it
+    RemoveEffect = new class'X2Effect_RemoveEffectsWithSource';
+    RemoveEffect.EffectNamesToRemove.AddItem('ZOC_LW_Debuff_Effect');
+    RemoveEffect.bDoNotVisualize = true;    // Set to false if OnEffectRemoved visualization is needed
+    RemoveEffect.bCleanse = true;           // Set to false if the effect wasn't removed "safely"
+                                            // Relevant for effects with additional effects on removal
+    Template.AddTargetEffect(RemoveEffect);
+
+    Template.ConcealmentRule = eConceal_AlwaysEvenWithObjective;
+
+    return Template;
+}
+
+static function X2AbilityTemplate AddZOC_LW_Update()
+{
+    local X2AbilityTemplate                 Template;
+    local X2AbilityTrigger_EventListener    Trigger;
+    local X2Condition_UnitProperty          UnitPropertyCondition;
+    local X2Effect_PersistentStatChange       Effect;
+    
+    Template = SelfTargetTrigger_LW('ZOC_LW_Update', "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_ZoneOfControl");
+
+    Template.AbilityTargetStyle = default.SimpleSingleTarget;
+
+    Trigger = new class'X2AbilityTrigger_EventListener';
+    Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+    Trigger.ListenerData.EventID = 'OnUnitBeginPlay';
+    Trigger.ListenerData.Filter = eFilter_Unit;
+    Trigger.ListenerData.EventFn = AbilityTriggerEventListener_AuraUpdate;
+    Trigger.ListenerData.Priority = 50; // Priorities!
+    Template.AbilityTriggers.AddItem(Trigger);
+
+    Trigger = new class'X2AbilityTrigger_EventListener';
+    Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+    Trigger.ListenerData.EventID = 'UnitMoveFinished';
+    Trigger.ListenerData.Filter = eFilter_None;
+    Trigger.ListenerData.EventFn = AbilityTriggerEventListener_AuraUpdate;
+    Trigger.ListenerData.Priority = 49; // Priorities!
+    Template.AbilityTriggers.AddItem(Trigger);
+
+    UnitPropertyCondition = new class'X2Condition_UnitProperty';
+    UnitPropertyCondition.FailOnNonUnits = true;    // IMPORTANT! Range condition cannot be applied to objects
+    UnitPropertyCondition.ExcludeInStasis = false;  // IMPORTANT! If the unit is in stasis, we want to make sure they are affected by the aura
+    // Normal conditions for the ability:
+    UnitPropertyCondition.ExcludeFriendlyToSource = true;
+    UnitPropertyCondition.ExcludeHostileToSource = false;
+    UnitPropertyCondition.RequireWithinRange = true;
+    UnitPropertyCondition.WithinRange = Sqrt(default.ZONE_CONTROL_RADIUS_SQ) * class'XComWorldData'.const.WORLD_StepSize;
+
+    Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
+
+    Effect = new class'X2Effect_PersistentStatChange';
+    Effect.DuplicateResponse = eDupe_Refresh; // Relevant if the effect doesn't have infinite duration
+    Effect.BuildPersistentEffect(1, true, true); // Infinite duration, remove when the SOURCE dies
+	Effect.EffectName = 'ZOC_LW_Debuff_Effect';
+	Effect.AddPersistentStatChange(eStat_Mobility, default.ZONE_CONTROL_MOBILITY_PENALTY);
+	Effect.AddPersistentStatChange(eStat_Offense, default.ZONE_CONTROL_AIM_PENALTY);
+    Effect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.LocHelpText, Template.IconImage, true,,Template.AbilitySourceName);
+    Template.AddTargetEffect(Effect);
+
+    Template.ConcealmentRule = eConceal_AlwaysEvenWithObjective;
+
+    return Template;
+}
+
+static function EventListenerReturn AbilityTriggerEventListener_AuraUpdate(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+    local XComGameState_Unit                EventUnit;
+    local XComGameState_Ability             AbilityState;
+    local XComGameState_Unit                TargetUnit;
+
+    AbilityState = XComGameState_Ability(CallbackData);
+    EventUnit = XComGameState_Unit(EventSource);
+
+    // TODO: does this need an InterruptionStatus check?
+
+    if (AbilityState != none && EventUnit != none)
+    {
+        `LOG(EventUnit.GetMyTemplateName() $ " moved. Updating aura. Ability: " $ AbilityState.GetMyTemplateName(), true, 'MeristAuraUpdateListener');
+        // If the unit that's moved is not the source, just update the effect
+        if (EventUnit.ObjectID != AbilityState.OwnerStateObject.ObjectID)
+        {
+            `LOG("Unit is not the source. Single target update.", true, 'MeristAuraUpdateListener');
+            AbilityState.AbilityTriggerAgainstSingleTarget(EventUnit.GetReference(), false);
+        }
+        // If the unit that's moved is the source, we have to do a Solace update
+        else
+        {
+            `LOG("Unit is the source. Update all units.", true, 'MeristAuraUpdateListener');
+            foreach `XCOMHISTORY.IterateByClassType(class'XComGameState_Unit', TargetUnit, , , GameState.HistoryIndex)
+            {
+                AbilityState.AbilityTriggerAgainstSingleTarget(TargetUnit.GetReference(), false);
+            }
+        }
+    }
+
+    return ELR_NoInterrupt;
+}
+
+static function X2AbilityTemplate SelfTargetTrigger_LW(name TemplateName, string IconImage)
+{
+    local X2AbilityTemplate     Template;
+
+    `CREATE_X2ABILITY_TEMPLATE(Template, TemplateName);
+
+    Template.IconImage = IconImage;
+    Template.AbilitySourceName = 'eAbilitySource_Perk';
+    Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+    Template.Hostility = eHostility_Neutral;
+    Template.bUniqueSource = true;
+
+    Template.AbilityToHitCalc = default.DeadEye;
+    Template.AbilityTargetStyle = default.SelfTarget;
+
+    Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+    Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+    Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+    Template.bSkipFireAction = true;
+
+    Template.bCrossClassEligible = false;
+
+    return Template;
 }
 
 

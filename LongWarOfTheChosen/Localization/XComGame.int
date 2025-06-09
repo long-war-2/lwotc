@@ -6636,7 +6636,7 @@ LocLongDescription = "All enemies within the <Ability:ClassName/>'s <Ability:ZON
 LocPromotionPopupText = "<Bullet/> All enemies within the <Ability:ClassName/>'s <Ability:ZONE_CONTROL_RADIUS/> tile radius suffer penalties of <Ability:ZONE_CONTROL_AIM_PENALTY/> Aim and <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> Mobility.<br/>"
 ; End Translation (2)
 
-[ZoCPassive X2AbilityTemplate]
+[ZOC_LW_Update X2AbilityTemplate]
 LocFriendlyName = "Zone of Control"
 LocHelpText = "All enemies within the <Ability:ClassName/>'s <Ability:ZONE_CONTROL_RADIUS/> tile radius suffer penalties of <Ability:ZONE_CONTROL_AIM_PENALTY/> Aim and <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> Mobility."
 LocLongDescription = "All enemies within the <Ability:ClassName/>'s <Ability:ZONE_CONTROL_RADIUS/> tile radius suffer penalties to Aim and Mobility."

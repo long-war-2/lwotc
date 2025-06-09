@@ -6656,7 +6656,7 @@ LocLongDescription = "Todos los enemigos que se posicionen dentro del aura del <
 LocPromotionPopupText = "<Bullet/> Todos los enemigos que se encuentren dentro del aura del <Ability:ClassName/> en un radio de <Ability:ZONE_CONTROL_RADIUS/> casillas sufren penalizaciones de <Ability:ZONE_CONTROL_AIM_PENALTY/> de puntería y <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> de movilidad.<br/>"
 ; End translated
 
-[ZoCPassive X2AbilityTemplate]
+[ZOC_LW_Update X2AbilityTemplate]
 LocFriendlyName = "Zona de control"
 LocHelpText = "Todos los enemigos que se posicionen dentro del aura del <Ability:ClassName/> en un radio de <Ability:ZONE_CONTROL_RADIUS/> casillas sufren penalizaciones de <Ability:ZONE_CONTROL_AIM_PENALTY/> de puntería y <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> de movilidad."
 LocLongDescription = "Todos los enemigos que se posicionen dentro del aura del <Ability:ClassName/> en un radio de <Ability:ZONE_CONTROL_RADIUS/> casillas sufren penalizaciones a apuntado y movilidad."

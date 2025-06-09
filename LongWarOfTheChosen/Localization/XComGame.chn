@@ -6467,7 +6467,7 @@ LocLongDescription = "所有进入<Ability:ClassName/><Ability:ZONE_CONTROL_RADI
 LocPromotionPopupText = "<Bullet/> 所有进入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半径范围内的敌人将受到<Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移动力惩罚。<br/>"
 ; End Translation (2)
 
-[ZoCPassive X2AbilityTemplate]
+[ZOC_LW_Update   X2AbilityTemplate]
 LocFriendlyName = "控制区域"
 LocHelpText = "所有进入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半径范围内的敌人将受到<Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移动力惩罚。"
 LocLongDescription = "所有进入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半径范围内的敌人将受到<Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移动力惩罚。"

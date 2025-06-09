@@ -3376,7 +3376,7 @@ LocLongDescription =  "Все враги в радиусе <Ability:ZONE_CONTROL
 LocPromotionPopupText = "<Bullet/>Все враги в радиусе <Ability:ZONE_CONTROL_RADIUS/> клеток от бойца получают штрафы <Ability:ZONE_CONTROL_AIM_PENALTY/> к меткости и <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> к мобильности."<br/>"
 ; End Translation (2)
 
-[ZoCPassive X2AbilityTemplate]
+[ZOC_LW_Update X2AbilityTemplate]
 LocFriendlyName = "Зона контроля"
 LocHelpText = "Все враги в радиусе <Ability:ZONE_CONTROL_RADIUS/> клеток от бойца получают штрафы <Ability:ZONE_CONTROL_AIM_PENALTY/> к меткости и <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> к мобильности."
 LocLongDescription =  "Все враги в радиусе <Ability:ZONE_CONTROL_RADIUS/> клеток от бойца получают штрафы <Ability:ZONE_CONTROL_AIM_PENALTY/> к меткости и <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> к мобильности."

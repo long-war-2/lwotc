@@ -6013,7 +6013,7 @@ LocHelpText = "Wszyscy wrogowie <Ability:ClassName/> w promieniu <Ability:ZONE_C
 LocLongDescription = "Wszyscy wrogowie <Ability:ClassName/> w promieniu <Ability:ZONE_CONTROL_RADIUS/> pól otrzymują kary w wysokości <Ability:ZONE_CONTROL_RADIUS/> do celowania i <Ability:ZONE_CONTROL_RADIUS/> mobilności."
 LocPromotionPopupText = "<Bullet/> Wszyscy wrogowie <Ability:ClassName/> w promieniu <Ability:ZONE_CONTROL_RADIUS/> pól otrzymują kary w wysokości <Ability:ZONE_CONTROL_RADIUS/> do celowania i <Ability:ZONE_CONTROL_RADIUS/> mobilności.<br/>"
 
-[ZoCPassive X2AbilityTemplate]
+[ZOC_LW_Update X2AbilityTemplate]
 LocFriendlyName = "Strefa kontroli"
 LocHelpText = "Wszyscy wrogowie <Ability:ClassName/> w promieniu <Ability:ZONE_CONTROL_RADIUS/> pól otrzymują kary w wysokości <Ability:ZONE_CONTROL_RADIUS/> do celowania i <Ability:ZONE_CONTROL_RADIUS/> mobilności."
 LocLongDescription = "Wszyscy wrogowie <Ability:ClassName/> w promieniu <Ability:ZONE_CONTROL_RADIUS/> pól otrzymują kary w wysokości <Ability:ZONE_CONTROL_RADIUS/> do celowania i <Ability:ZONE_CONTROL_RADIUS/> mobilności."
