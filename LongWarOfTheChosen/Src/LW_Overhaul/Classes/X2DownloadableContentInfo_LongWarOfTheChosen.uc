@@ -151,6 +151,8 @@ var config array<Name> ROCKET_ABILITIES_TO_UPDATE;
 
 var config bool bUpdateWaterworldLW;
 
+var config bool bTacticalLootCleanup;
+
 // End data and data structures
 //-----------------------------
 
@@ -804,6 +806,11 @@ static event OnLoadedSavedGameToStrategy()
 	CacheInfiltration_Static();
 	//PatchTemplarShieldsIfNeeded();
 	RespecTemplarsIfNeeded();
+
+	if(default.bTacticalLootCleanup)
+	{
+		Ted_TacticalLootCleaner();
+	}
 }
 
 static function RespecTemplarsIfNeeded()
@@ -2883,6 +2890,11 @@ static event OnExitPostMissionSequence()
 {
 	CleanupObsoleteTacticalGamestate();
 	RespecTemplarsIfNeeded();
+
+	if(default.bTacticalLootCleanup)
+	{
+		Ted_TacticalLootCleaner();
+	}
 }
 
 static function CleanupObsoleteTacticalGamestate()
@@ -5879,6 +5891,7 @@ exec function LWForceEvac()
 	if (Spawner == none || Spawner.GetCountdown() <= 0)
 	{
 		`Log("No spawner");
+		`XCOMHISTORY.CleanupPendingGameState(NewGameState);
 		return;
 	}
 	Spawner = XComGameState_LWEvacSpawner(NewGameState.CreateStateObject(class'XComGameState_LWEvacSpawner', Spawner.ObjectID));
@@ -7448,4 +7461,169 @@ exec function Ted_CheckWeaponDamageValues(name ItemName)
 		}
 
 	}
+}
+
+// EXPERIMENTAL: cleans up outdated item states, equivalent of Tactical State Cleaner but for items! may delete stuff it shouldn't, be warned.
+static exec function Ted_TacticalLootCleaner()
+{
+	local XComGameStateHistory History;
+	local XComGameState NewGameState;
+	//local XComGameState ArchiveState;
+	//local int LastArchiveStateIndex;
+	local int RemovedCount;
+	local array<int> ItemsInUse;
+
+	local XComGameState_Item ItemState;
+
+	History = `XCOMHISTORY;
+
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("test remove old item gamestates");
+
+	//LastArchiveStateIndex = History.FindStartStateIndex() - 1;
+	//ArchiveState = History.GetGameStateFromHistory(LastArchiveStateIndex, eReturnType_Copy, false);
+
+	CacheAllInUseItems(ItemsInUse);
+
+	foreach History.IterateByClassType(class'XComGameState_Item', ItemState)
+	{
+		if(!IsItemInUse_Improved (ItemState, ItemsInUse))
+		{
+			NewGameState.RemoveStateObject(ItemState.ObjectID);
+			RemovedCount++;
+		}
+
+	}
+
+	History.AddGameStateToHistory(NewGameState);
+
+	class'Helpers'.static.OutputMsg(RemovedCount @"Items removed from history");
+
+}
+
+
+static function CacheAllInUseItems(out array<int> ItemsInUse)
+{
+	local StateObjectReference ItemRef;
+	local XComGameState_Unit UnitState;
+	local XComGameState_Reward RewardState;
+
+	// Grab everything in HQ inventory
+	forEach `XCOMHQ.Inventory (ItemRef)
+	{
+		ItemsInUse.AddItem(ItemRef.ObjectID);
+	}
+
+	// Grab items in rewards
+	foreach `XCOMHISTORY.IterateByClassType(class'XComGameState_Reward',RewardState)
+	{
+		if(RewardState.RewardObjectReference.ObjectID > 0)
+		{
+			ItemsInUse.AddItem(RewardState.RewardObjectReference.ObjectID);
+		}
+	}
+
+	// Items on units
+	foreach `XCOMHISTORY.IterateByClassType(class'XComGameState_Unit', UnitState)
+	{
+		foreach UnitState.InventoryItems (ItemRef)
+		{
+			if(ItemsInUse.Find(ItemRef.ObjectID) == INDEX_NONE)
+				ItemsInUse.AddItem(ItemRef.ObjectID);
+		}
+	}
+
+}
+
+static function CacheAllInUseItems_Archive(out array<int> ItemsInUse, XComGameState ArchiveState)
+{
+	local StateObjectReference ItemRef;
+	local XComGameState_Unit UnitState;
+	local XComGameState_Reward RewardState;
+	local XComGameState_HeadquartersXCOM XComHQ;
+
+	// Grab the old HQ
+	foreach ArchiveState.IterateByClassType(class'XComGameState_HeadquartersXCom', XComHQ)
+	{
+		break;
+	}
+
+	// Grab everything in HQ inventory
+	forEach XComHQ.Inventory (ItemRef)
+	{
+		ItemsInUse.AddItem(ItemRef.ObjectID);
+	}
+
+	// Grab items in rewards
+	foreach ArchiveState.IterateByClassType(class'XComGameState_Reward',RewardState)
+	{
+		if(RewardState.RewardObjectReference.ObjectID > 0)
+		{
+			ItemsInUse.AddItem(RewardState.RewardObjectReference.ObjectID);
+		}
+	}
+
+	// Items on units
+	foreach ArchiveState.IterateByClassType(class'XComGameState_Unit', UnitState)
+	{
+		foreach UnitState.InventoryItems (ItemRef)
+		{
+			if(ItemsInUse.Find(ItemRef.ObjectID) == INDEX_NONE)
+				ItemsInUse.AddItem(ItemRef.ObjectID);
+		}
+	}
+
+}
+
+static function bool IsItemInUse_Improved(XComGameState_Item ItemState, array<int> ItemsInUse)
+{
+	return ItemsInUse.Find(ItemState.ObjectID) != INDEX_NONE;
+}
+
+// Older / deprecated / experimental
+static function bool IsItemInUse (XComGameState_Item ItemState, XComGameState ArchiveState)
+{
+	local XComGameState_Unit UnitState;
+	local XComGameState_Reward RewardState;
+	
+
+
+	// Implement here
+
+	
+	// Some immediate "gotcha" checks that will 100% validate something
+
+
+	if(`XCOMHQ.Inventory.Find('ObjectID', ItemState.ObjectID) != INDEX_NONE)
+		return true;
+	else
+	{
+		// This should remove only Resource items that aren't in HQ inventory or rewards
+		if(ItemState.GetMyTemplate().ItemCat == 'resource')
+		{
+			foreach ArchiveState.IterateByClassType(class'XComGameState_Reward',RewardState)
+			{
+				// Catch resource rewards that haven't been rewarded yet
+				if(RewardState.RewardObjectReference.ObjectID == RewardState.ObjectID)
+					return true;
+			}
+			return false;
+		}
+	}
+
+	// If it's referencing something else, don't remove it
+	if(ItemState.LinkedEntity.ObjectID > 0)
+		return true;
+	
+	if(ItemState.TechRef.ObjectID > 0)
+		return true;
+
+	// If it's on any unit, don't remove it
+	foreach ArchiveState.IterateByClassType(class'XComGameState_Unit', UnitState)
+	{
+		if(UnitState.InventoryItems.Find('ObjectID', ItemState.ObjectID) != INDEX_NONE)
+			return true;
+	}
+
+	// failsafe, don't delete things we can't conclusively prove are needed
+	return true;
 }
