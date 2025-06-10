@@ -60,9 +60,12 @@ function Update(float DeltaTime)
 		EvacZoneTarget.SetRotation( rot(0,0,1) );
 		CachedTargetLocation = NewTargetLocation;
 
+		`LWTrace("Testing target tile" @CursorTile.X @CursorTile.Y @CursorTile.Z);
+
 		EnoughTilesValid = ValidateEvacArea( CursorTile, EvacDelay == 0);
 		if (EnoughTilesValid)
 		{
+			`LWTrace("Valid evac tile in targeting");
 			EvacZoneTarget.ShowGoodMesh( );
 		}
 		else
@@ -97,3 +100,61 @@ function Committed()
 }
 
 static function bool UseGrenadePath() { return true; }
+
+static function bool ValidateEvacArea( const out TTile EvacCenterLoc, bool IncludeSoldiers )
+{
+	local TTile EvacMin, EvacMax, TestTile;
+	local int NumTiles, NumValidTiles;
+	local int IsOnFloor;
+	local bool bIsValid;
+
+	`LWTrace("Evac Center tile:" @EvacCenterLoc.X @EvacCenterLoc.Y @EvacCenterLoc.Z);
+
+	class'XComGameState_EvacZone'.static.GetEvacMinMax2D( EvacCenterLoc, EvacMin, EvacMax );
+
+	if( IncludeSoldiers && class'X2TargetingMethod_EvacZone'.static.EvacZoneContainsXComUnit(EvacMin, EvacMax) )
+	{
+		return false;
+	}
+
+	NumTiles = (EvacMax.X - EvacMin.X + 1) * (EvacMax.Y - EvacMin.Y + 1);
+
+	NumValidTiles = 0;
+	IsOnFloor = 1;
+
+	TestTile = EvacMin;
+	while (TestTile.X <= EvacMax.X)
+	{
+		while (TestTile.Y <= EvacMax.Y)
+		{
+			//`LWTrace("Testing tile " @ TestTile.X @ " " @ TestTile.Y @ " " @ TestTile.Z);
+			bIsValid = class'X2TargetingMethod_EvacZone'.static.ValidateEvacTile(TestTile, IsOnFloor);
+			//`LWTrace("ValidateEvacTile returns " @ bIsValid @ ", IsOnFloor=" @ IsOnFloor);
+
+			if (bIsValid)
+			{
+ 			   NumValidTiles++;
+			}
+			else if (IsOnFloor == 0)
+			{
+ 			   `LWTrace("Evac Tile not on floor, returning false");
+			    return false;
+			}
+
+			TestTile.Y++;
+		}
+
+		TestTile.Y = EvacMin.Y;
+		TestTile.X++;
+	}
+	
+	if((NumValidTiles / float( NumTiles )) >= class'X2TargetingMethod_EvacZone'.default.NeededValidTileCoverage)
+	{
+		return true;
+	}
+	else
+	{
+		`LWTrace("Evac point doesn't have enough valid tiles @Tedster");
+		return false;
+	}
+}

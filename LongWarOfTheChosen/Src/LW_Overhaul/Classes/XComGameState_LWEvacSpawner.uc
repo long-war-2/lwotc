@@ -126,6 +126,7 @@ function BuildVisualizationForFlareDestroyed(XComGameState VisualizeState)
 {
     local X2Action_PlayEffect EvacSpawnerEffectAction;
     local VisualizationActionMetadata BuildTrack;
+    local X2Action_PlayNarrative NarrativeAction;
 
     EvacSpawnerEffectAction = X2Action_PlayEffect(class'X2Action_PlayEffect'.static.AddToVisualizationTree(BuildTrack, VisualizeState.GetContext(), false, BuildTrack.LastActionAdded));
     EvacSpawnerEffectAction.EffectName = FlareEffectPathName;
@@ -133,6 +134,10 @@ function BuildVisualizationForFlareDestroyed(XComGameState VisualizeState)
     EvacSpawnerEffectAction.bStopEffect = true;
     EvacSpawnerEffectAction.bWaitForCompletion = false;
     EvacSpawnerEffectAction.bWaitForCameraCompletion = false;
+
+    // Add in an Evac Destroyed bradford alert
+    NarrativeAction = X2Action_PlayNarrative(class'X2Action_PlayNarrative'.static.AddToVisualizationTree(BuildTrack, VisualizeState.GetContext(), false, BuildTrack.LastActionAdded));
+    NarrativeAction.Moment = XComNarrativeMoment(DynamicLoadObject("X2NarrativeMoments.TACTICAL.RescueVIP.Central_Rescue_VIP_EvacDestroyed", class'XComNarrativeMoment'));
     
     BuildTrack.StateObject_OldState = self;
     BuildTrack.StateObject_NewState = self;
@@ -286,7 +291,18 @@ function ResetCountdown()
 
 function TTile GetCenterTile()
 {
-	return `XWORLD.GetTileCoordinatesFromPosition(SpawnLocation);
+    local TTile CenterTile;
+
+    if(`XWORLD.GetFloorTileForPosition(SpawnLocation, CenterTile))
+    {
+        return CenterTile;
+    }
+    else
+    {
+        // Fallback in case getting the floor tile doesn't work. will probably invalidate the evac zone but it probably should if it's not on the floor
+    	return `XWORLD.GetTileCoordinatesFromPosition(SpawnLocation);
+    }
+
 }
 
 function static RemoveExistingEvacZone(XComGameState NewGameState)
