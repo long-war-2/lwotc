@@ -18,7 +18,7 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
     // if ((SourceWeapon != none) && (Target != none))
     if ((Target != none))
     {
-        if (Target.GetCurrentStat(eStat_HP) <= (Target.GetMaxStat(eStat_HP) / 2))
+        if (Target.GetCurrentStat(eStat_HP) * 2 <= Target.GetMaxStat(eStat_HP))
         {
             ShotInfo.ModType = eHit_Success;
             ShotInfo.Reason = FriendlyName;
