@@ -766,6 +766,7 @@ static function ReplaceWithDamageReductionMelee(X2AbilityTemplate Template)
 	DamageMod = new class'X2Effect_MeleeDamageResistance';
 	DamageMod.PercentDR = default.MELEE_DAMAGE_REDUCTION;
 	DamageMod.bApplyToMovingMelee = true;
+	DamageMod.bApplyToStandardMelee = false;
 	DamageMod.BuildPersistentEffect(1, true, false, true);
 	DamageMod.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
 	Template.AddTargetEffect(DamageMod);
