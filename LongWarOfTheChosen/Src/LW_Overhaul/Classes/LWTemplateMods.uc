@@ -2630,6 +2630,11 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		}
 	}
 
+	if(Template.DataName == 'AdvPsiWitchM3')
+	{
+		Template.Abilities.AddItem('AvatarBindBreak_LW');
+	}
+
 	Template.Abilities.AddItem('MindControlCleanse');
 	Template.Abilities.AddItem('SmokeFlankingCritProtection');
 

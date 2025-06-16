@@ -7988,3 +7988,9 @@ LocFlyOverText="Grapple Expert"
 LocLongDescription="Standard shots with your primary weapon are not turn-ending."
 LocHelpText="Standard shots with your primary weapon are not turn-ending."
 LocPromotionPopupText=""
+
+[AvatarDamagedTeleport X2AbilityTemplate]
+LocFriendlyName="Teleport Escape"
+LocLongDescription="When damaged, bound, or restrained by Void Conduit, the Avatar can teleport away to a new location."
+LocHelpText="When damaged, bound, or restrained by Void Conduit, the Avatar can teleport away to a new location."
+LocFlyOverText="Teleport"

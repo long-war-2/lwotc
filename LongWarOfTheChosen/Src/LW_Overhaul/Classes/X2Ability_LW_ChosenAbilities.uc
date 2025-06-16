@@ -45,6 +45,14 @@ var config float HUNTER_MOBILITY_DEBUFF;
 var config int HUNTER_MOB_PER_ATTACK;
 
 var config int UNSTOPPABLE_MIN_MOB;
+
+var config int PathingTeleport_Min_Radius;
+var config int PathingTeleport_Max_Radius;
+var config int AvatarBoundTeleport_Min_Radius;
+var config int AvatarBoundTeleport_Max_Radius;
+
+var config array<name> VoidConduitEffect_Names;
+
 var const string ChosenSummonContextDesc;
 
 var private name ExtractKnowledgeMarkSourceEffectName, ExtractKnowledgeMarkTargetEffectName;
@@ -121,6 +129,9 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateWarlockMobilityAbility2());
 	Templates.AddItem(CreateHunterMobilityAbility());
 	Templates.AddItem(CreateHunterMobilityBoostAbility());
+
+	Templates.AddItem(CreateAvatarBreakBindAbility());
+	Templates.AddItem(CreateTriggerDamagedTeleportLWAbility());
 	
 	return Templates;
 }
@@ -2427,7 +2438,7 @@ static function X2AbilityTemplate CreateTriggerDamagedTeleportAbility_LW()
 	Template.AddShooterEffectExclusions(SkipExclusions);
 
 	Template.bSkipFireAction = true;
-	Template.ModifyNewContextFn = class'X2Ability_PsiWitch'.static.TriggerDamagedTeleport_ModifyActivatedAbilityContext;
+	Template.ModifyNewContextFn = ChosenTriggerDamagedTeleport_ModifyActivatedAbilityContext;
 	Template.BuildNewGameStateFn = class'X2Ability_PsiWitch'.static.TriggerDamagedTeleport_BuildGameState;
 	Template.BuildVisualizationFn = class'X2Ability_PsiWitch'.static.TriggerDamagedTeleport_BuildVisualization;
 	Template.CinescriptCameraType = "Avatar_TriggerDamagedTeleport";
@@ -2437,6 +2448,60 @@ static function X2AbilityTemplate CreateTriggerDamagedTeleportAbility_LW()
 
 	return Template;
 }
+
+simulated function ChosenTriggerDamagedTeleport_ModifyActivatedAbilityContext(XComGameStateContext Context)
+{
+	local XComGameState_Unit UnitState;
+	local XComGameStateContext_Ability AbilityContext;
+	local XComGameStateHistory History;
+	local PathPoint NextPoint, EmptyPoint;
+	local XGUnit UnitVisualizer;
+	local PathingInputData InputData;
+	local XComCoverPoint CoverPoint;
+	local XComWorldData World;
+	local TTile TempTile;
+	local bool bCoverPointFound;
+
+	History = `XCOMHISTORY;
+	World = `XWORLD;
+
+	AbilityContext = XComGameStateContext_Ability(Context);
+	
+	UnitState = XComGameState_Unit(History.GetGameStateForObjectID(AbilityContext.InputContext.SourceObject.ObjectID));
+
+	// Build the MovementData for the path
+	UnitVisualizer = XGUnit(UnitState.GetVisualizer());
+
+	// First posiiton is the current location
+	NextPoint.Position = UnitVisualizer.GetFootLocation();
+	NextPoint.Traversal = eTraversal_Teleport;
+	NextPoint.PathTileIndex = 0;
+	InputData.MovementData.AddItem(NextPoint);
+
+	TempTile = World.GetTileCoordinatesFromPosition(NextPoint.Position);
+	InputData.MovementTiles.AddItem(TempTile);
+
+	bCoverPointFound = UnitVisualizer.m_kBehavior.PickRandomCoverLocation(NextPoint.Position, default.PathingTeleport_Min_Radius, default.PathingTeleport_Max_Radius);
+	TempTile = World.GetTileCoordinatesFromPosition(NextPoint.Position);
+
+	if( !bCoverPointFound )
+	{
+		CoverPoint.TileLocation = World.FindClosestValidLocation(NextPoint.Position, false, false, false);
+		TempTile = World.GetTileCoordinatesFromPosition(CoverPoint.TileLocation);
+	}
+
+	NextPoint = EmptyPoint;
+	World.GetFloorPositionForTile(TempTile, NextPoint.Position);
+	NextPoint.Traversal = eTraversal_Landing;
+	NextPoint.PathTileIndex = 1;
+	InputData.MovementData.AddItem(NextPoint);
+	InputData.MovementTiles.AddItem(TempTile);
+
+	//Now add the path to the input context
+	InputData.MovingUnitRef = UnitState.GetReference();
+	AbilityContext.InputContext.MovementPaths.AddItem(InputData);
+}
+
 
 static function X2AbilityTemplate CreateWarlockMobilityAbility()
 {
@@ -2598,6 +2663,534 @@ static function X2AbilityTemplate CreateHunterMobilityBoostAbility()
 	Template.bSkipFireAction = true;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	return Template;
+}
+
+static function X2AbilityTemplate CreateAvatarBreakBindAbility()
+{
+	local X2AbilityTemplate Template;
+	local X2AbilityTrigger_EventListener Trigger;
+	local X2Effect_RunBehaviorTree DamageTeleportBehaviorEffect;
+	local X2Effect_ClearUnitValue NewEffect;
+	local X2Effect_RemoveEffects            RemoveEffects;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'AvatarBindBreak_LW');
+
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_combatstims";
+	Template.AbilitySourceName = 'eAbilitySource_Standard';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.bShowActivation = false;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+
+	// Void Conduit / Bind trigger
+
+	Trigger = new class'X2AbilityTrigger_EventListener';
+	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	Trigger.ListenerData.EventID = 'PersistentEffectAdded';
+	Trigger.ListenerData.EventFn = VoidConduitListener;
+	Trigger.ListenerData.Filter = eFilter_Unit;
+	Trigger.ListenerData.Priority = 49;
+	Template.AbilityTriggers.AddItem(Trigger);
+
+
+
+	NewEffect = new class'X2Effect_ClearUnitValue';
+	NewEffect.UnitValueName = class'X2Ability_DefaultAbilitySet'.default.ImmobilizedValueName;
+	NewEffect.bApplyOnMiss = true;
+	Template.AddTargetEffect(NewEffect);
+
+	NewEffect = new class'X2Effect_ClearUnitValue';
+	NewEffect.UnitValueName = class'X2Effect_PersistentVoidConduit'.default.VoidConduitActionsLeft;
+	NewEffect.bApplyOnMiss = true;
+	Template.AddTargetEffect(NewEffect);
+
+	DamageTeleportBehaviorEffect = new class'X2Effect_RunBehaviorTree';
+	DamageTeleportBehaviorEffect.BehaviorTreeName = 'TryTriggerDamagedTeleportLW';
+	Template.AddTargetEffect(DamageTeleportBehaviorEffect);
+
+	RemoveEffects = new class'X2Effect_RemoveEffects';
+	RemoveEffects.EffectNamesToRemove = default.VoidConduitEffect_Names;
+	RemoveEffects.bCleanse = true;
+	Template.AddTargetEffect(RemoveEffects);
+
+
+	Template.bSkipFireAction = true;
+	//Template.AssociatedPlayTiming = SPT_AfterParallel;
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = BreakBind_BuildVisualization;
+
+	//Template.AdditionalAbilities.AddItem('ClearBind_LW');
+	Template.AdditionalAbilities.AddItem('TriggerDamagedTeleportLW');
+	//Template.PostActivationEvents.AddItem('ClearBind_LWEvent');
+
+	return Template;
+}
+
+
+simulated function BreakBind_BuildVisualization(XComGameState VisualizeGameState)
+{
+	local XComGameStateHistory			History;
+	local XComGameStateContext_Ability  Context;
+	local StateObjectReference          InteractingUnitRef;
+	local XComGameState_Effect			BindEffectState;
+	local XComGameState_Unit			TargetState;
+	local StateObjectReference			EffectRef;
+	
+
+	local VisualizationActionMetadata        EmptyTrack;
+	local VisualizationActionMetadata        ActionMetadata;
+
+	TypicalAbility_BuildVisualization(VisualizeGameState);
+
+	History = `XCOMHISTORY;
+
+	Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
+
+	ActionMetadata = EmptyTrack;
+	InteractingUnitRef = Context.InputContext.SourceObject;
+	TargetState = XComGameState_Unit(History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
+
+	foreach TargetState.AffectedByEffects (EffectRef)
+	{
+		BindEffectState = XComGameState_Effect(History.GetGameStateForObjectID(EffectRef.ObjectID));
+		if (BindEffectState != none)
+		{
+			`LWTrace("Checking Effect" @BindEffectState.GetX2Effect().EffectName);
+
+			if(BindEffectState.GetX2Effect().EffectName==class'X2Ability_Viper'.default.BindSustainedEffectName)
+			{
+				// Void conduit doesn't have an effect on the source, so this should only get the Bind effect.
+				// Get the old and new states + actor for the source unit to use with the visualization stuff.
+				ActionMetadata.VisualizeActor = History.GetVisualizer(BindEffectState.ApplyEffectParameters.SourceStateObjectRef.ObjectID);
+				ActionMetadata.StateObject_OldState = History.GetGameStateForObjectID(BindEffectState.ApplyEffectParameters.SourceStateObjectRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+				ActionMetadata.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(BindEffectState.ApplyEffectParameters.SourceStateObjectRef.ObjectID);
+
+				BindEndSource_BuildVisualization(VisualizeGameState, ActionMetadata, 'AA_Success');
+			}
+
+		}
+	}
+
+}
+
+// Taken directly from X2Ability_Viper
+
+simulated function BindEndSource_BuildVisualization(XComGameState VisualizeGameState, out VisualizationActionMetadata ActionMetadata, const name EffectApplyResult)
+{
+	local XComGameStateHistory			History;
+	local XComGameState_Effect          BindSustainedEffectState;
+	local XComGameState_Unit            OldUnitState, BindTarget;
+	local X2Action_ViperBindEnd         BindEnd;
+	local XComGameStateContext			Context;
+
+	History = `XCOMHISTORY;
+
+	if (ActionMetadata.VisualizeActor != None)
+	{
+		Context = VisualizeGameState.GetContext( );
+
+		OldUnitState = XComGameState_Unit(ActionMetadata.StateObject_OldState);
+		BindSustainedEffectState = OldUnitState.GetUnitApplyingEffectState(class'X2Ability_Viper'.default.BindSustainedEffectName);
+		`assert(BindSustainedEffectState != none);
+		BindTarget = XComGameState_Unit(History.GetGameStateForObjectID(BindSustainedEffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+		`assert(BindTarget != none);
+
+		if( BindTarget.IsDead() ||
+			BindTarget.IsBleedingOut() ||
+			BindTarget.IsUnconscious() )
+		{
+			// The target is dead, wait for it to die and inform the source
+			class'X2Action_WaitForAbilityEffect'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded);
+		}
+		else
+		{
+
+			BindEnd = X2Action_ViperBindEnd(class'X2Action_ViperBindEnd'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded));
+			BindEnd.PartnerUnitRef = BindSustainedEffectState.ApplyEffectParameters.TargetStateObjectRef;
+		}
+	}
+}
+
+static function EventListenerReturn VoidConduitListener(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComGameState_Ability AbilityState;
+	local XComGameState_Effect EffectState;
+
+	`LWTrace("Void Conduit Listener firing");
+
+	AbilityState = XComGameState_Ability(CallbackData);
+	EffectState = XComGameState_Effect(EventData);
+
+	if(EffectState == none || AbilityState == NONE)
+		return ELR_NoInterrupt;
+
+	`LWTrace("VCL 2");
+
+	`LWTrace("EffectName:" @EffectState.GetX2Effect().EffectName);
+	`LWTrace("effect unit ID:" @EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID @"Ability unit ID:" @AbilityState.OwnerStateObject.ObjectID);
+
+	// Valid effect name and the Target is the same as that of the target of the ability we're starting to look at
+	if(default.VoidConduitEffect_Names.Find(EffectState.GetX2Effect().EffectName)!= INDEX_NONE 
+			&& EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID == AbilityState.OwnerStateObject.ObjectID)
+	{
+		`LWTrace("VCL 3");
+		AbilityState.AbilityTriggerEventListener_Self(EventData, EventSource, GameState, EventID, CallbackData);
+	} 
+
+	return ELR_NoInterrupt;
+}
+
+static function X2AbilityTemplate CreateTriggerDamagedTeleportLWAbility()
+{
+	local X2AbilityTemplate Template;
+	local X2Condition_UnitProperty UnitPropertyCondition;
+	
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'TriggerDamagedTeleportLW');
+
+	Template.AbilitySourceName = 'eAbilitySource_Standard';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_codex_teleport";
+
+	Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_Placeholder');
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+
+	// The unit must be alive and not stunned
+	UnitPropertyCondition = new class'X2Condition_UnitProperty';
+	UnitPropertyCondition.ExcludeDead = true;
+	UnitPropertyCondition.ExcludeAlive = false;
+	UnitPropertyCondition.ExcludeStunned = true;
+	Template.AbilityShooterConditions.AddItem(UnitPropertyCondition);
+
+
+	Template.bSkipFireAction = true;
+	Template.ModifyNewContextFn = AvatarBoundTeleport_ModifyActivatedAbilityContext;
+	Template.BuildNewGameStateFn = TriggerDamagedTeleport_BuildGameState;
+	Template.BuildVisualizationFn = TriggerDamagedTeleport_BuildVisualization;
+	Template.MergeVisualizationFn = TriggerDamagedTeleport_MergeVisualization;
+	Template.CinescriptCameraType = "Avatar_TriggerDamagedTeleport";
+//BEGIN AUTOGENERATED CODE: Template Overrides 'TriggerDamagedTeleport'
+	Template.bFrameEvenWhenUnitIsHidden = true;
+//END AUTOGENERATED CODE: Template Overrides 'TriggerDamagedTeleport'
+
+	/// HL-Docs: ref:Bugfixes; issue:1391
+	/// Make Avatar's teleport-on-damage ability not offensive.
+	Template.Hostility = eHostility_Neutral;
+
+	return Template;
+}
+
+simulated function AvatarBoundTeleport_ModifyActivatedAbilityContext(XComGameStateContext Context)
+{
+	local XComGameState_Unit UnitState;
+	local XComGameStateContext_Ability AbilityContext;
+	local XComGameStateHistory History;
+	local PathPoint NextPoint, EmptyPoint;
+	local XGUnit UnitVisualizer;
+	local PathingInputData InputData;
+	local XComCoverPoint CoverPoint;
+	local XComWorldData World;
+	local TTile TempTile;
+	local bool bCoverPointFound;
+
+	History = `XCOMHISTORY;
+	World = `XWORLD;
+
+	AbilityContext = XComGameStateContext_Ability(Context);
+	
+	UnitState = XComGameState_Unit(History.GetGameStateForObjectID(AbilityContext.InputContext.SourceObject.ObjectID));
+
+	// Build the MovementData for the path
+	UnitVisualizer = XGUnit(UnitState.GetVisualizer());
+
+	// First posiiton is the current location
+	NextPoint.Position = UnitVisualizer.GetFootLocation();
+	NextPoint.Traversal = eTraversal_Teleport;
+	NextPoint.PathTileIndex = 0;
+	InputData.MovementData.AddItem(NextPoint);
+
+	TempTile = World.GetTileCoordinatesFromPosition(NextPoint.Position);
+	InputData.MovementTiles.AddItem(TempTile);
+
+	bCoverPointFound = UnitVisualizer.m_kBehavior.PickRandomCoverLocation(NextPoint.Position, default.AvatarBoundTeleport_Min_Radius, default.AvatarBoundTeleport_Max_Radius);
+	TempTile = World.GetTileCoordinatesFromPosition(NextPoint.Position);
+
+	if( !bCoverPointFound )
+	{
+		CoverPoint.TileLocation = World.FindClosestValidLocation(NextPoint.Position, false, false, false);
+		TempTile = World.GetTileCoordinatesFromPosition(CoverPoint.TileLocation);
+	}
+
+	NextPoint = EmptyPoint;
+	World.GetFloorPositionForTile(TempTile, NextPoint.Position);
+	NextPoint.Traversal = eTraversal_Landing;
+	NextPoint.PathTileIndex = 1;
+	InputData.MovementData.AddItem(NextPoint);
+	InputData.MovementTiles.AddItem(TempTile);
+
+	//Now add the path to the input context
+	InputData.MovingUnitRef = UnitState.GetReference();
+	AbilityContext.InputContext.MovementPaths.AddItem(InputData);
+}
+
+simulated function XComGameState TriggerDamagedTeleport_BuildGameState(XComGameStateContext Context)
+{
+	local XComGameState NewGameState;
+	local XComGameState_Unit OldUnitState, UnitState;
+	local XComGameStateContext_Ability AbilityContext;
+	local vector NewLocation;
+	local TTile NewTileLocation;
+	local XComWorldData World;
+	local X2EventManager EventManager;
+	local int LastElementIndex;
+
+	World = `XWORLD;
+	EventManager = `XEVENTMGR;
+
+	//Build the new game state frame
+	NewGameState = TypicalAbility_BuildGameState(Context);
+
+	AbilityContext = XComGameStateContext_Ability(NewGameState.GetContext());
+	UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', AbilityContext.InputContext.SourceObject.ObjectID));
+	OldUnitState = UnitState;
+	
+	if( OldUnitState != none )
+	{
+		// Do TriggerDamagedTeleport
+		LastElementIndex = AbilityContext.InputContext.MovementPaths[0].MovementData.Length - 1;
+
+		// Set the unit's new location
+		// The last position in MovementData will be the end location
+		`assert(LastElementIndex > 0);
+		NewLocation = AbilityContext.InputContext.MovementPaths[0].MovementData[LastElementIndex].Position;
+		NewTileLocation = World.GetTileCoordinatesFromPosition(NewLocation);
+		UnitState.SetVisibilityLocation(NewTileLocation);
+
+		AbilityContext.ResultContext.bPathCausesDestruction = MoveAbility_StepCausesDestruction(UnitState, AbilityContext.InputContext, 0, LastElementIndex);
+		MoveAbility_AddTileStateObjects(NewGameState, UnitState, AbilityContext.InputContext, 0, LastElementIndex);
+
+		EventManager.TriggerEvent('ObjectMoved', UnitState, UnitState, NewGameState);
+		EventManager.TriggerEvent('UnitMoveFinished', UnitState, UnitState, NewGameState);
+	}
+
+	//Return the game state we have created
+	return NewGameState;
+}
+
+simulated function TriggerDamagedTeleport_BuildVisualization(XComGameState VisualizeGameState)
+{
+	local XComGameStateHistory History;
+	local XComGameStateContext_Ability  AbilityContext;
+	local StateObjectReference InteractingUnitRef;
+	local X2AbilityTemplate AbilityTemplate;
+	local VisualizationActionMetadata EmptyTrack, ActionMetadata;
+	local X2Action_PlaySoundAndFlyOver SoundAndFlyover;
+	local X2Action_MoveTurn MoveTurnAction;
+	local int LastElementIndex;
+	
+	History = `XCOMHISTORY;
+
+	AbilityContext = XComGameStateContext_Ability(VisualizeGameState.GetContext());
+	InteractingUnitRef = AbilityContext.InputContext.SourceObject;
+
+	AbilityTemplate = class'XComGameState_Ability'.static.GetMyTemplateManager().FindAbilityTemplate(AbilityContext.InputContext.AbilityTemplateName);
+
+	//****************************************************************************************
+	//Configure the visualization track for the source
+	//****************************************************************************************
+	ActionMetadata = EmptyTrack;
+	ActionMetadata.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+	ActionMetadata.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
+	ActionMetadata.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
+
+	SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyover'.static.AddToVisualizationTree(ActionMetadata, AbilityContext));
+	SoundAndFlyOver.SetSoundAndFlyOverParameters(None, AbilityTemplate.LocFlyOverText, '', eColor_Bad);
+
+	// Turn to face the target action. The target location is the center of the ability's radius, stored in the 0 index of the TargetLocations
+	MoveTurnAction = X2Action_MoveTurn(class'X2Action_MoveTurn'.static.AddToVisualizationTree(ActionMetadata, AbilityContext));
+	LastElementIndex = AbilityContext.InputContext.MovementPaths[0].MovementData.Length - 1;
+	MoveTurnAction.m_vFacePoint = AbilityContext.InputContext.MovementPaths[0].MovementData[LastElementIndex].Position;
+
+	// move action
+	class'X2VisualizerHelpers'.static.ParsePath(AbilityContext, ActionMetadata);
+
+}
+
+/*
+function TriggerDamagedTeleport_MergeVisualization(X2Action BuildTree, out X2Action VisualizationTree)
+{
+	local XComGameStateVisualizationMgr		VisMgr;
+	local array<X2Action>					arrActions;
+	local X2Action_MarkerTreeInsertBegin	MarkerStart;
+	local X2Action_MarkerTreeInsertEnd		MarkerEnd;
+	local X2Action							WaitAction;
+	local X2Action_MarkerNamed				MarkerAction;
+	local XComGameStateContext_Ability		AbilityContext;
+	local VisualizationActionMetadata		ActionMetadata;
+	local bool bFoundHistoryIndex;
+	local int i;
+
+
+	VisMgr = `XCOMVISUALIZATIONMGR;
+	
+	// Find the start of the teleport's Vis Tree
+	MarkerStart = X2Action_MarkerTreeInsertBegin(VisMgr.GetNodeOfType(BuildTree, class'X2Action_MarkerTreeInsertBegin'));
+	AbilityContext = XComGameStateContext_Ability(MarkerStart.StateChangeContext);
+
+	//	Find all Bind End Actions in the Triggering Shot's Vis Tree
+	VisMgr.GetNodesOfType(VisualizationTree, class'X2Action_ViperBindEnd', arrActions);
+
+	//	Cycle through all of them to find the Fire Action we need, which will have the same History Index as specified in Singe's Context, which gets set in the Event Listener
+	for (i = 0; i < arrActions.Length; i++)
+	{
+		if (arrActions[i].StateChangeContext.AssociatedState.HistoryIndex == AbilityContext.DesiredVisualizationBlockIndex)
+		{
+			bFoundHistoryIndex = true;
+			break;
+		}
+	}
+	//	If we didn't find the correct action, we call the failsafe Merge Vis Function, which will make both Singe's Target Effects apply seperately after the ability finishes.
+	//	Looks bad, but at least nothing is broken.
+	if (!bFoundHistoryIndex)
+	{
+		AbilityContext.SuperMergeIntoVisualizationTree(BuildTree, VisualizationTree);
+		return;
+	}
+
+	//`LOG("Num of Fire Actions: " @ arrActions.Length,, 'IRISINGE');
+
+	//	Add a Wait For Effect Action after the Triggering Shot's Fire Action. This will allow Singe's Effects to visualize the moment the Triggering Shot connects with the target.
+	AbilityContext = XComGameStateContext_Ability(arrActions[i].StateChangeContext);
+	ActionMetaData = arrActions[i].Metadata;
+	//WaitAction = class'X2Action_WaitForAbilityEffect'.static.AddToVisualizationTree(ActionMetaData, AbilityContext,, arrActions[i]);
+
+	//	Insert the Singe's Vis Tree right after the Wait For Effect Action
+	VisMgr.ConnectAction(MarkerStart, VisualizationTree,, arrActions[i]);
+
+	
+	//	Main part of Merge Vis is done, now we just tidy up the ending part. As I understood from MrNice, this is necessary to make sure Vis will look fine if Fire Action ends before Singe finishes visualizing
+	//	which tbh sounds like a super edge case, but okay
+	//	Find all marker actions in the Triggering Shot Vis Tree.
+	VisMgr.GetNodesOfType(VisualizationTree, class'X2Action_MarkerNamed', arrActions);
+
+	//	Cycle through them and find the 'Join' Marker that comes after the Triggering Shot's Fire Action.
+	for (i = 0; i < arrActions.Length; i++)
+	{
+		MarkerAction = X2Action_MarkerNamed(arrActions[i]);
+
+		if (MarkerAction.MarkerName == 'Join' && MarkerAction.StateChangeContext.AssociatedState.HistoryIndex == AbilityContext.DesiredVisualizationBlockIndex)
+		{
+			//	Grab the last Action in the Singe Vis Tree
+			MarkerEnd = X2Action_MarkerTreeInsertEnd(VisMgr.GetNodeOfType(BuildTree, class'X2Action_MarkerTreeInsertEnd'));
+
+			//	TBH can't imagine circumstances where MarkerEnd wouldn't exist, but okay
+			if (MarkerEnd != none)
+			{
+				//	"tie the shoelaces". Vis Tree won't move forward until both Singe Vis Tree and Triggering Shot's Fire action are not fully visualized.
+				VisMgr.ConnectAction(MarkerEnd, VisualizationTree,,, MarkerAction.ParentActions);
+				VisMgr.ConnectAction(MarkerAction, BuildTree,, MarkerEnd);
+			}
+			else
+			{
+				//	not sure what this does
+				VisMgr.GetAllLeafNodes(BuildTree, arrActions);
+				VisMgr.ConnectAction(MarkerAction, BuildTree,,, arrActions);
+			}
+
+			//VisMgr.ConnectAction(MarkerAction, VisualizationTree,, MarkerEnd);
+			break;
+		}
+	} 
+}
+ */
+
+simulated function TriggerDamagedTeleport_MergeVisualization(X2Action BuildTree, out X2Action VisualizationTree)
+{
+    local XComGameStateVisualizationMgr VisualizationMgr;
+    local X2Action_MarkerTreeInsertBegin MarkerStart;
+    local XComGameStateContext_Ability AbilityContext;
+    local array<X2Action> arrActions;
+    local X2Action_ViperBindEnd BindEndAction;
+    local X2Action_MoveTurn TurnAction;
+    local X2Action_PlayAnimation AnimAction;
+	local X2Action_MoveVisibleTeleport TeleportAction;
+    local X2Action ChildAction;
+
+    local int i;
+
+    `LWTrace("teleport merge vis fired");
+    VisualizationMgr = `XCOMVISUALIZATIONMGR;
+
+    MarkerStart = X2Action_MarkerTreeInsertBegin(VisualizationMgr.GetNodeOfType(BuildTree, class'X2Action_MarkerTreeInsertBegin'));
+
+    AbilityContext = XComGameStateContext_Ability(MarkerStart.StateChangeContext);
+
+    BindEndAction = X2Action_ViperBindEnd(VisualizationMgr.GetNodeOfType(VisualizationTree, class'X2Action_ViperBindEnd'));
+    TurnAction = X2Action_MoveTurn(VisualizationMgr.GetNodeOfType(BuildTree, class'X2Action_MoveTurn'));
+	TeleportAction = X2Action_MoveVisibleTeleport(VisualizationMgr.GetNodeOfType(BuildTree, class'X2Action_MoveVisibleTeleport'));
+
+    VisualizationMgr.GetNodesOfType(VisualizationTree, class'X2Action_PlayAnimation', arrActions);
+
+    for (i = 0; i < arrActions.Length; i++)
+    {
+        if(X2Action_PlayAnimation(arrActions[i]).Params.animName == 'HL_VoidConduitTarget_End')
+        {
+            AnimAction = X2Action_PlayAnimation(arrActions[i]);
+            break;
+        }
+    }
+
+    if(BindEndAction != None && XComGameStateContext_Ability(BindEndAction.StateChangeContext).InputContext.PrimaryTarget == AbilityContext.InputContext.PrimaryTarget)
+    {
+		VisualizationMgr.DisconnectAction(MarkerStart);
+        VisualizationMgr.ConnectAction(MarkerStart, BuildTree, false,, BindEndAction.ParentActions);
+
+		if(TeleportAction != None)
+		{
+			VisualizationMgr.DisconnectAction(BindEndAction);
+			VisualizationMgr.ConnectAction(BindEndAction, BuildTree, false,, TeleportAction.ParentActions);
+		}
+
+        if(TurnAction != None)
+        {
+            for(i = TurnAction.ChildActions.Length - 1; i >= 0; i--)
+            {
+                ChildAction = TurnAction.ChildActions[i];
+                VisualizationMgr.DisconnectAction(ChildAction);
+                VisualizationMgr.ConnectAction(ChildAction, BuildTree, false,, TurnAction.ParentActions);
+            }
+
+            VisualizationMgr.DisconnectAction(TurnAction);
+        }
+
+    }
+    else if(AnimAction != none)
+    {
+        `LWTrace("Found void conduit anim");
+
+		VisualizationMgr.DisconnectAction(MarkerStart);
+        VisualizationMgr.ConnectAction(MarkerStart, BuildTree, false,, AnimAction.ParentActions);
+
+        if(TurnAction != None)
+        {
+            for(i = TurnAction.ChildActions.Length - 1; i >= 0; i--)
+            {
+                ChildAction = TurnAction.ChildActions[i];
+                VisualizationMgr.DisconnectAction(ChildAction);
+                VisualizationMgr.ConnectAction(ChildAction, BuildTree, false,, TurnAction.ParentActions);
+            }
+
+            VisualizationMgr.DisconnectAction(TurnAction);
+        }
+    }
+    else
+    {
+        `LWTrace("bind end action not found");
+        AbilityContext.SuperMergeIntoVisualizationTree(BuildTree, VisualizationTree);
+    }
+
 }
 
 defaultproperties
