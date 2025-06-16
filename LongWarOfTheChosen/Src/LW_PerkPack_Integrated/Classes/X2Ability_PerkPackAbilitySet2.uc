@@ -2300,7 +2300,8 @@ simulated function Brawler_BuildVisualization(XComGameState VisualizeGameState)
 static function X2AbilityTemplate LayeredArmour()
 {
 	local X2AbilityTemplate						Template;
-	local X2Effect_LayeredArmour_LW				ArmourEffect;
+	//local X2Effect_LayeredArmour_LW				ArmourEffect;
+	local X2Effect_MeristLayeredArmor			ArmourEffect;
 	local X2AbilityTrigger_UnitPostBeginPlay	StartTrigger;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'LayeredArmour_LW');
@@ -2316,9 +2317,12 @@ static function X2AbilityTemplate LayeredArmour()
 	StartTrigger.Priority = 0; // Must start after other damage reduction abilities.
 	Template.AbilityTriggers.AddItem(StartTrigger);
 
-	ArmourEffect = new class'X2Effect_LayeredArmour_LW';
-	ArmourEffect.MaxDamage = default.LAYERED_MULT;
+	ArmourEffect = new class'X2Effect_MeristLayeredArmor';
+	ArmourEffect.PrcDamageCap = default.LAYERED_MULT;
+	ArmourEffect.bCapBurstFire = true;
 	ArmourEffect.BuildPersistentEffect(1, true, true, true);
+	ArmourEffect.strFlyoverMessage=Template.LocFriendlyName;
+	ArmourEffect.strFlyoverIcon=Template.IconImage;
 	ArmourEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, , , Template.AbilitySourceName);
 	Template.AddTargetEffect(ArmourEffect);
 

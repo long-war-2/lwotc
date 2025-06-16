@@ -7328,19 +7328,19 @@ LocHelpText="After taking damage, gain a stacking <Ability:IMPACT_COMPENSATION_P
 [ImpactCompensationV2_LW X2AbilityTemplate]
 LocFriendlyName="Enhanced Layered Armor"
 LocFlyOverText="Enhanced Layered Armor"
-LocLongDescription="This unit can only take <Ability:IMPACT_V2_DAMAGE_CAP>% of their max HP per turn. Damage per turn above this limit is reduced by <Ability:IMPACT_V2_PCT_DR>%."
+LocLongDescription="This unit can only take <Ability:IMPACT_V2_DAMAGE_CAP>% of their max HP from any single attack. Damage per turn above this limit is reduced by <Ability:IMPACT_V2_PCT_DR>%."
 LocHelpText="The damage cap resets at the start of each turn."
 
 [ImpactCompensationV2XCOM_LW X2AbilityTemplate]
 LocFriendlyName="Enhanced Layered Armor"
 LocFlyOverText="Enhanced Layered Armor"
-LocLongDescription="This unit can only take <Ability:IMPACT_V2XCOM_DAMAGE_CAP>% of their max HP per turn. Damage per turn above this limit is reduced by <Ability:IMPACT_V2XCOM_PCT_DR>%."
+LocLongDescription="This unit can only take <Ability:IMPACT_V2XCOM_DAMAGE_CAP>% of their max HP from any single attack, and damage from subsequent attacks is reduced by <Ability:IMPACT_V2XCOM_PCT_DR>% once the unit has taken this amount of damage during the turn."
 LocHelpText="The damage cap resets at the start of each turn."
 
 [ImpactCompensationPassiveV2_LW X2AbilityTemplate]
 LocFriendlyName="Enhanced Layered Armor"
 LocFlyOverText="Enhanced Layered Armor"
-LocLongDescription="This unit can only take <Ability:IMPACT_V2_DAMAGE_CAP>% of their max HP per turn. Damage per turn above this limit is reduced by <Ability:IMPACT_V2_PCT_DR>%."
+LocLongDescription="This unit can only take <Ability:IMPACT_V2_DAMAGE_CAP>% of their max HP from any single attack,and damage from subsequent attacks is reduced by <Ability:IMPACT_V2XCOM_PCT_DR>% once the unit has taken this amount of damage during the turn."
 LocHelpText="The damage cap resets at the start of each turn."
 
 

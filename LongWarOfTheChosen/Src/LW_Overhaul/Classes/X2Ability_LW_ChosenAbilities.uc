@@ -2118,7 +2118,10 @@ static function X2AbilityTemplate ImpactCompensation()
 static function X2AbilityTemplate ImpactCompensationV2()
 {
 	local X2AbilityTemplate					Template;
-	local X2Effect_ImpactCompensationCapped		ImpactEffect;
+	//local X2Effect_ImpactCompensationCapped		ImpactEffect;
+	local X2Effect_MeristLayeredArmorV2 Effect2;
+	local X2Effect_MeristLayeredArmor	Effect1;
+
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ImpactCompensationV2_LW');
 	Template.IconImage = "img:///UILibrary_MW.UIPerk_intimidate";
@@ -2133,6 +2136,7 @@ static function X2AbilityTemplate ImpactCompensationV2()
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 
+	/*
 	ImpactEffect = new class'X2Effect_ImpactCompensationCapped';
 	ImpactEffect.DamageModifier = default.IMPACT_V2_PCT_DR;
 	ImpactEffect.MaxCap = default.IMPACT_V2_DAMAGE_CAP;
@@ -2141,6 +2145,28 @@ static function X2AbilityTemplate ImpactCompensationV2()
 
 	ImpactEffect.DuplicateResponse = eDupe_Ignore;
 	Template.AddTargetEffect(ImpactEffect);
+	*/
+
+	Effect2 = new class'X2Effect_MeristLayeredArmorV2';
+    Effect2.EffectName = 'EnhancedLayeredArmorEffect';
+	Effect2.bUseDifficulySettings = true;
+    Effect2.FinalPrcDamageModifierDifficulty = default.IMPACT_V2_PCT_DR;
+    Effect2.PrcDamageCapDifficulty = default.IMPACT_V2_DAMAGE_CAP;
+    Effect2.bCapBurstFire = true;
+	Effect2.AddAdditionalDamageCapInfo('Impenetrable_LW', -10, false);
+    Effect2.BuildPersistentEffect(1, true, false);
+    Effect2.SetDisplayInfo(ePerkBuff_Bonus, Template.locFriendlyName, Template.LocLongDescription, Template.IconImage, true,, Template.AbilitySourceName);
+	Effect2.DuplicateResponse = eDupe_Ignore;
+    Template.AddTargetEffect(Effect2);
+
+    Effect1 = new class'X2Effect_MeristLayeredArmor';
+    Effect1.EffectName = 'LayeredArmorEffect';
+    Effect1.PrcDamageCap = 40;
+    Effect1.strFlyoverMessage = "Layered Armor";
+    Effect1.BuildPersistentEffect(1, true, false);
+    //Effect1.SetDisplayInfo(ePerkBuff_Bonus, "Layered Armor", "", Template.IconImage, true,, Template.AbilitySourceName);
+	Effect1.DuplicateResponse = eDupe_Ignore;
+    Template.AddTargetEffect(Effect1);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
@@ -2169,7 +2195,9 @@ static function X2AbilityTemplate ImpactCompensationPassiveV2()
 static function X2AbilityTemplate ImpactCompensationV2XCOM()
 {
 	local X2AbilityTemplate					Template;
-	local X2Effect_ImpactCompensationCapped		ImpactEffect;
+	//local X2Effect_ImpactCompensationCapped		ImpactEffect;
+	local X2Effect_MeristLayeredArmorV2 Effect2;
+	local X2Effect_MeristLayeredArmor	Effect1;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ImpactCompensationV2XCOM_LW');
 	Template.IconImage = "img:///UILibrary_MW.UIPerk_intimidate";
@@ -2183,7 +2211,7 @@ static function X2AbilityTemplate ImpactCompensationV2XCOM()
 
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
-
+	/*
 	ImpactEffect = new class'X2Effect_ImpactCompensationCapped';
 	ImpactEffect.DamageModifier = default.IMPACT_V2XCOM_PCT_DR;
 	ImpactEffect.MaxCap = default.IMPACT_V2XCOM_DAMAGE_CAP;
@@ -2192,6 +2220,27 @@ static function X2AbilityTemplate ImpactCompensationV2XCOM()
 
 	ImpactEffect.DuplicateResponse = eDupe_Ignore;
 	Template.AddTargetEffect(ImpactEffect);
+ 	*/
+	Effect2 = new class'X2Effect_MeristLayeredArmorV2';
+    Effect2.EffectName = 'EnhancedLayeredArmorEffect';
+	Effect2.bUseDifficulySettings = true;
+    Effect2.FinalPrcDamageModifierDifficulty = default.IMPACT_V2XCOM_PCT_DR;
+    Effect2.PrcDamageCapDifficulty = default.IMPACT_V2XCOM_DAMAGE_CAP;
+    Effect2.bCapBurstFire = true;
+    Effect2.BuildPersistentEffect(1, true, false);
+    Effect2.SetDisplayInfo(ePerkBuff_Bonus, Template.locFriendlyName, Template.LocLongDescription, Template.IconImage, true,, Template.AbilitySourceName);
+	Effect2.DuplicateResponse = eDupe_Ignore;
+    Template.AddTargetEffect(Effect2);
+
+    Effect1 = new class'X2Effect_MeristLayeredArmor';
+    Effect1.EffectName = 'LayeredArmorEffect';
+    Effect1.PrcDamageCap = 40;
+    Effect1.strFlyoverMessage = "Layered Armor";
+    Effect1.BuildPersistentEffect(1, true, false);
+    //Effect1.SetDisplayInfo(ePerkBuff_Bonus, "Layered Armor", "", Template.IconImage, true,, Template.AbilitySourceName);
+	Effect1.DuplicateResponse = eDupe_Ignore;
+    Template.AddTargetEffect(Effect1);
+
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
