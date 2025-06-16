@@ -714,9 +714,9 @@ LocPromotionPopupText="<Bullet/> Erhöht drastisch die Schwelle für tödlichen 
 [IronSkin X2AbilityTemplate]
 LocFriendlyName="Stahlhaut"
 LocFlyOverText="Stahlhaut"
-LocLongDescription="Erlittener Nahkampfschaden wird um <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION> reduziert. Angriffe der Auserwählten Assassine werden um 67 % dieses Werts reduziert."
+LocLongDescription="Erlittener Nahkampfschaden wird um <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION> reduziert."
 LocHelpText="Reduziert Nahkampfschaden. Reduziert Schaden durch die Assassine zusätzlich."
-LocPromotionPopupText="<Bullet/> Reduziert Nahkampfschaden um <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>.<br/><Bullet/> Angriffe der Auserwählten Assassine werden um 67 % dieses Werts reduziert.<br/>"
+LocPromotionPopupText="<Bullet/> Reduziert Nahkampfschaden um <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>.<br/>"
 
 [SmartMacrophages X2AbilityTemplate]
 LocFriendlyName="Intelligente Makrophagen"

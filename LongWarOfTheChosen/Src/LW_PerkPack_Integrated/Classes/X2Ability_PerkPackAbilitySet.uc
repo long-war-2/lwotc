@@ -93,7 +93,7 @@ var config int BODY_SHIELD_ENEMY_CRIT_MALUS;
 var config int BODY_SHIELD_COOLDOWN;
 var config int BODY_SHIELD_DURATION;
 var config int IRON_SKIN_MELEE_DAMAGE_REDUCTION;
-var config float IRON_SKIN_ASSASSIN_MOD;
+//var config float IRON_SKIN_ASSASSIN_MOD;
 var config int MIND_MERGE_MIN_ACTION_POINTS;
 var config int MIND_MERGE_DURATION;
 var config int MIND_MERGE_COOLDOWN;
@@ -4204,7 +4204,8 @@ static function X2AbilityTemplate AddEmergencyLifeSupportAbility()
 static function X2AbilityTemplate AddIronSkinAbility()
 {
 	local X2AbilityTemplate					Template;
-	local X2Effect_MeleeDamageAdjust_LW		IronSkinEffect;
+	//local X2Effect_MeleeDamageAdjust_LW		IronSkinEffect;
+	local X2Effect_MeleeDamageResistance	IronSkinEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'IronSkin');
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityIronSkin";
@@ -4223,11 +4224,15 @@ static function X2AbilityTemplate AddIronSkinAbility()
 	Template.bSkipFireAction = true;
 	Template.DisplayTargetHitChance = false;
 	
-	IronSkinEffect = new class'X2Effect_MeleeDamageAdjust_LW';
+	IronSkinEffect = new class'X2Effect_MeleeDamageResistance';
 	IronSkinEffect.BuildPersistentEffect(1, true, false, true);
 	IronSkinEffect.SetDisplayInfo (ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
-	IronSkinEffect.DamageMod=-default.IRON_SKIN_MELEE_DAMAGE_REDUCTION;
-	IronSkinEffect.Assassin_Dmg_Mod=default.IRON_SKIN_ASSASSIN_MOD;
+	IronSkinEffect.WhitelistedAbilities.AddItem('AssassinSlash_LW');
+	IronSkinEffect.WhitelistedAbilities.AddItem('PartingSilk');
+	IronSkinEffect.bApplyToStandardMelee=true;
+	IronSkinEffect.bApplyToMovingMelee=true;
+	IronSkinEffect.FlatDR=-default.IRON_SKIN_MELEE_DAMAGE_REDUCTION;
+	//IronSkinEffect.Assassin_Dmg_Mod=default.IRON_SKIN_ASSASSIN_MOD;
 	Template.AddTargetEffect(IronSkinEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;

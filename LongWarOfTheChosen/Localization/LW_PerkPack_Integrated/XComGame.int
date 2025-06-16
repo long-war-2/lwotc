@@ -812,9 +812,9 @@ LocPromotionPopupText="<Bullet/> Emergency Life Support drastically increases th
 [IronSkin X2AbilityTemplate]
 LocFriendlyName="Iron Skin"
 LocFlyOverText="Iron Skin"
-LocLongDescription="Incoming melee damage is reduced by <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>. The Chosen Assassin's melee attacks are reduced by 67% of this value."
-LocHelpText="Incoming melee damage is reduced by <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>. The Chosen Assassin's melee attacks are reduced by 67% of this value."
-LocPromotionPopupText="<Bullet/> Incoming melee damage is reduced by <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>.<br/><Bullet/> The Chosen Assassin's melee attacks are reduced by 67% of this value."
+LocLongDescription="Incoming melee damage is reduced by <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>."
+LocHelpText="Incoming melee damage is reduced by <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>."
+LocPromotionPopupText="<Bullet/> Incoming melee damage is reduced by <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>.<br/><Bullet/> This ability cannot reduce incoming damage to 0."
 
 [SmartMacrophages X2AbilityTemplate]
 LocFriendlyName="Smart Macrophages"

@@ -758,13 +758,14 @@ static function ReplaceWithDamageReductionExplosive(X2AbilityTemplate Template)
 
 static function ReplaceWithDamageReductionMelee(X2AbilityTemplate Template)
 {
-	local X2Effect_DefendingMeleeDamageModifier DamageMod;
+	//local X2Effect_DefendingMeleeDamageModifier DamageMod;
+	local X2Effect_MeleeDamageResistance		DamageMod;
 
 	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_DamageImmunity');
 
-	DamageMod = new class'X2Effect_DefendingMeleeDamageModifier';
-	DamageMod.DamageMod = default.MELEE_DAMAGE_REDUCTION;
-	DamageMod.OnlyForDashingAttacks = true;
+	DamageMod = new class'X2Effect_MeleeDamageResistance';
+	DamageMod.PercentDR = default.MELEE_DAMAGE_REDUCTION;
+	DamageMod.bApplyToMovingMelee = true;
 	DamageMod.BuildPersistentEffect(1, true, false, true);
 	DamageMod.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
 	Template.AddTargetEffect(DamageMod);
