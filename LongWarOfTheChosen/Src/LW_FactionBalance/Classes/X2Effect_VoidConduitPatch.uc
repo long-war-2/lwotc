@@ -72,5 +72,6 @@ simulated function AddX2ActionsForVisualization_Removed(XComGameState VisualizeG
 
 defaultProperties
 {
+	EffectName = VoidConduitPatch
 	EffectTickedFn = TickVoidConduit
 }
