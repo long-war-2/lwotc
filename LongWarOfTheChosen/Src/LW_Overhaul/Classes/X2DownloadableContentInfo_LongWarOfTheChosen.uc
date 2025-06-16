@@ -1408,6 +1408,48 @@ static event OnPreMission(XComGameState StartGameState, XComGameState_MissionSit
 	`LWTRACE("     AlienHQ ForceLevel  : " $ AlienHQ.GetForceLevel());
 	`LWTRACE("     Required ForceLevel : 4");
 	`LWTRACE("===============================================================");
+
+	CleanUpOldMissionsOnXComHQ(StartGameState);
+}
+
+static function CleanUpOldMissionsOnXComHQ(XComGameState StartGameState)
+{
+	local XComGameState_HeadquartersXCOM XComHQ;
+	local GeneratedMissionData MissionData;
+	local int i, Count;
+	local array<int> MissionIds;
+	local XComGameState_MissionSite MissionState;
+
+
+	foreach StartGameState.IterateByClassType(class'XComGameState_HeadquartersXCom', XComHQ)
+	{
+		break;
+	}
+
+	foreach `XCOMHISTORY.IterateByClassType(class'XComGameState_MissionSite', MissionState)
+	{
+		MissionIds.AddItem(MissionState.ObjectID);
+	}
+
+	if(XComHQ == NONE)
+	{
+		`LWTrace("StartState doesn't have XComHQ, pulling from History");
+		XComHQ = `XCOMHQ;
+	}
+
+	Count = 0;
+	for (i = XComHQ.arrGeneratedMissionData.length-1; i>=0; i--)
+	{
+		MissionData = XComHQ.arrGeneratedMissionData[i];
+
+		if (MissionIds.Find(MissionData.MissionID) == INDEX_NONE)
+		{
+			XComHQ.arrGeneratedMissionData.Remove(i, 1);
+			`LWTrace("Removing stale mission ID" @MissionData.MissionId @ MissionData.Mission.MissionName);
+			Count++;
+		}
+	}
+	`LWTrace("Removed" @Count @"Stale mission infos from XComHQ");
 }
 
 // Tactical to tactical mission stuff:
