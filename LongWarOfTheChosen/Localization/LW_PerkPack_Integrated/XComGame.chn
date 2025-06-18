@@ -18,9 +18,9 @@ FriendlyNamePlural="个人战斗芯片：超高反应瞳孔"
 BriefSummary="当你未命中目标时，该芯片能让你下一次的主武器射击+<Ability:HYPERREACTIVE_PUPILS_AIM_BONUS>命中。"
 
 [CombatAwarenessPCS X2EquipmentTemplate]
-FriendlyName="个人战斗芯片：战斗警觉"
-FriendlyNamePlural="个人战斗芯片：战斗警觉"
-BriefSummary="在监视时获得<Ability:COMBAT_AWARENESS_BONUS_DEFENSE>点防御和<Ability:COMBAT_AWARENESS_BONUS_ARMOR>点护甲。受到伤害不再取消压制和区域压制。"
+FriendlyName="个人战斗芯片：坚定姿态"
+FriendlyNamePlural="个人战斗芯片：坚定姿态"
+BriefSummary="授予「战斗警觉」与「坚韧压制」：在监视或压制时获得<Ability:COMBAT_AWARENESS_BONUS_DEFENSE>点防御和<Ability:COMBAT_AWARENESS_BONUS_ARMOR>点护甲。受到伤害不再取消压制和区域压制。"
 
 [CombatRushPCS X2EquipmentTemplate]
 FriendlyName="个人战斗芯片：战斗冲锋"
@@ -81,9 +81,9 @@ LocPromotionPopupText="<Bullet/> 每回合一次，用主武器对一名侧翼�
 [HitandRun X2AbilityTemplate]
 LocFriendlyName="游击战术"
 LocFlyOverText="游击战术"
-LocLongDescription="用主武器对一名侧翼敌人进行标准射击后，获得一个额外的行动点。每回合一次。不能在同一回合触发短兵相接。"
-LocHelpText="用主武器对一名侧翼敌人进行标准射击后，获得一个额外的行动点。每回合一次。不能在同一回合触发短兵相接。"
-LocPromotionPopupText="<Bullet/> 不能在同一回合使用奔袭战术。<br/><Bullet/> 连环杀戮和死神天降的奖励将会优先获得。"
+LocLongDescription="用主武器对一名侧翼敌人进行标准射击后，获得一个额外的行动点。每回合一次。无法在同一回合触发短兵相接。"
+LocHelpText="用主武器对一名侧翼敌人进行标准射击后，获得一个额外的行动点。每回合一次。无法在同一回合触发短兵相接。"
+LocPromotionPopupText="<Bullet/> 无法在同一回合使用奔袭战术。<br/><Bullet/> 连环杀戮和死神天降的奖励将会优先获得。"
 
 [CloseCombatSpecialist X2AbilityTemplate]
 LocFriendlyName="近战专家"
@@ -139,7 +139,7 @@ LocFriendlyName="高侵略性"
 LocFlyOverText="高侵略性"
 LocLongDescription="你视野内的每个敌人会为你+5暴击率，最多30。"
 LocHelpText="你视野内的每个敌人会为你+5暴击率，最多30。"
-LocPromotionPopupText="<Bullet/> 你视野内的每个敌人会为你+5暴击率，最多30。<br/><Bullet/> 在小队视野中可见的单位也会产生此效果。<br/>"
+LocPromotionPopupText="<Bullet/> 你视野内的每个敌人会为你+5暴击率，最多30。<br/><Bullet/> 如果该单位拥有小队视野，则其小队视野中可见的敌人也会产生此效果。<br/>"
 
 [BringEmOn X2AbilityTemplate]
 LocFriendlyName="背水一战"
@@ -219,8 +219,8 @@ LocHelpText="如果首次行动是用主武器进行标准射击，那你还能�
 LocPromotionPopupText="<Bullet/> 如果首次行动是用主武器进行标准射击，那你还能再进行一次非移动的行动。<br/>"
 
 [WalkFire X2AbilityTemplate]
-LocFriendlyName="修正射击"
-LocFlyOverText="修正射击"
+LocFriendlyName="游走射击"
+LocFlyOverText="游走射击"
 LocLongDescription="进行一次高精度射击，+<Ability:WALK_FIRE_AIM_BONUS>命中但是<Ability:WALK_FIRE_DMG>%伤害并且-<Ability:WALK_FIRE_CRIT_MALUS>暴击率。消耗<Ability:SelfAmmoCost/>弹药。"
 LocHelpText="进行一次高精度射击，+<Ability:WALK_FIRE_AIM_BONUS>命中但是<Ability:WALK_FIRE_DMG>%伤害并且-<Ability:WALK_FIRE_CRIT_MALUS>暴击率。消耗<Ability:SelfAmmoCost/>弹药。"
 LocPromotionPopupText="<Bullet/> 这是士兵在使用自动武器时调整准星而进行的特殊射击，+<Ability:WALK_FIRE_AIM_BONUS>命中但是<Ability:WALK_FIRE_DMG>%伤害并且-<Ability:WALK_FIRE_CRIT_MALUS>暴击率。<br/><Bullet/> 消耗<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 需要连发武器；主武器为霰弹枪或狙击步枪时不适用。"
@@ -722,9 +722,9 @@ LocPromotionPopupText="<Bullet/> 应急生命保障大幅提高了绕过失血�
 [IronSkin X2AbilityTemplate]
 LocFriendlyName="铜皮铁甲"
 LocFlyOverText="铜皮铁甲"
-LocLongDescription="受到的近战伤害减少<Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>点。受到刺客的近战攻击时只能获得67%的效果。"
-LocHelpText="受到的近战伤害减少<Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>点。受到刺客的近战攻击时只能获得67%的效果。"
-LocPromotionPopupText="<Bullet/> 受到的近战伤害减少<Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>点。受到刺客的近战攻击时只能获得67%的效果。<br/>"
+LocLongDescription="受到的近战伤害减少<Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>点。"
+LocHelpText="受到的近战伤害减少<Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>点。"
+LocPromotionPopupText="<Bullet/> 受到的近战伤害减少<Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>点。<br/>"
 
 [SmartMacrophages X2AbilityTemplate]
 LocFriendlyName="智能巨噬细胞"

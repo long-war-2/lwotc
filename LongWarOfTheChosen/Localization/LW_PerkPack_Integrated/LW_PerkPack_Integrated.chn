@@ -47,7 +47,7 @@ ShockwaveEffectDesc="这个单位的防御和闪避降低了。"
 strSavior_WorldMessage="妙手回春：已回复额外<XGParam:IntValue0/>生命值。"
 
 [X2Effect_LWHolotarget]
-HoloTargetEffectName="全息瞄准"
+HoloTargetEffectName="被全息瞄准"
 
 [X2Effect_ApplyRepairHeal_LW]
 HealedMessage="已回复 +<Heal/> HP"
