@@ -365,7 +365,7 @@ LocFriendlyName="故障保護"
 LocLongDescription="如果你侵入失敗，你能夠阻止任何負面效果發生並獲得1行動點返還。行動點返還效果每回合只能觸發一次。"
 LocHelpText="如果你侵入失敗，你能夠阻止任何負面效果發生並獲得1行動點返還。行動點返還效果每回合只能觸發一次。"
 LocFlyOverText="故障保護"
-LocPromotionPopupText="<Bullet/> 如果你侵入失敗，你能夠阻止任何負面效果(包括暴露)發生。<br/><Bullet/> 行動點返還效果每回合只能觸發一次。"
+LocPromotionPopupText="<Bullet/> 如果你侵入失敗，你能夠阻止任何負面效果(包括暴露)發生。<br/><Bullet/> 行動點返還效果每回合只能觸發一次。<br/><Bullet/> 該行動點返還是在結束回合判定之後，所以如果是第一個行動點侵入失敗，還是會只剩1個行動點。"
 
 [FullOverride X2AbilityTemplate]
 LocFriendlyName="完全破解"
@@ -7770,3 +7770,9 @@ LocFlyOverText="鈎爪專家"
 LocLongDescription="使用主武器進行標準射擊不再結束回合。"
 LocHelpText="使用主武器進行標準射擊不再結束回合。"
 LocPromotionPopupText=""
+
+[AvatarDamagedTeleport X2AbilityTemplate]
+LocFriendlyName="傳送撤離"
+LocLongDescription="當受到傷害、被束縛或被虛空導管限制時，化身可以傳送到一個新位置。"
+LocHelpText="當受到傷害、被束縛或被虛空導管限制時，化身可以傳送到一個新位置。"
+LocFlyOverText="傳送撤離"

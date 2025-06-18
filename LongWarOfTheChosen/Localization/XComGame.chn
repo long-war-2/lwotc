@@ -374,7 +374,7 @@ LocFriendlyName="故障保护"
 LocLongDescription="如果你侵入失败，你能够阻止任何负面效果发生并获得1行动点返还。行动点返还效果每回合只能触发一次。"
 LocHelpText="如果你侵入失败，你能够阻止任何负面效果发生并获得1行动点返还。行动点返还效果每回合只能触发一次。"
 LocFlyOverText="故障保护"
-LocPromotionPopupText="<Bullet/> 如果你侵入失败，你能够阻止任何负面效果(包括暴露)发生。<br/><Bullet/> 行动点返还效果每回合只能触发一次。"
+LocPromotionPopupText="<Bullet/> 如果你侵入失败，你能够阻止任何负面效果(包括暴露)发生。<br/><Bullet/> 行动点返还效果每回合只能触发一次。<br/><Bullet/> 该行动点返还是在结束回合判定之后，所以如果是第一个行动点侵入失败，还是会只剩1个行动点。"
 
 [FullOverride X2AbilityTemplate]
 LocFriendlyName="完全破解"
@@ -6467,7 +6467,7 @@ LocLongDescription = "所有进入<Ability:ClassName/><Ability:ZONE_CONTROL_RADI
 LocPromotionPopupText = "<Bullet/> 所有进入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半径范围内的敌人将受到<Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移动力惩罚。<br/>"
 ; End Translation (2)
 
-[ZOC_LW_Update   X2AbilityTemplate]
+[ZOC_LW_Update X2AbilityTemplate]
 LocFriendlyName = "控制区域"
 LocHelpText = "所有进入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半径范围内的敌人将受到<Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移动力惩罚。"
 LocLongDescription = "所有进入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半径范围内的敌人将受到<Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移动力惩罚。"
@@ -7785,3 +7785,9 @@ LocFlyOverText="钩爪专家"
 LocLongDescription="使用主武器进行标准射击不再结束回合。"
 LocHelpText="使用主武器进行标准射击不再结束回合。"
 LocPromotionPopupText=""
+
+[AvatarDamagedTeleport X2AbilityTemplate]
+LocFriendlyName="传送撤离"
+LocLongDescription="当受到伤害、被束缚或被虚空导管限制时，化身可以传送到一个新位置。"
+LocHelpText="当受到伤害、被束缚或被虚空导管限制时，化身可以传送到一个新位置。"
+LocFlyOverText="传送撤离"
