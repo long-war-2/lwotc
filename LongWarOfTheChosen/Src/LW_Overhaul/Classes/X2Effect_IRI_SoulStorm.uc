@@ -32,6 +32,9 @@ simulated function ApplyDirectionalDamageToTarget(XComGameState_Unit SourceUnit,
 	if (SourceUnit == None || TargetUnit == None)
 		return;
 
+	if (SourceUnit.ObjectID == TargetUnit.ObjectID)
+		return;
+
 	AbilityContext = XComGameStateContext_Ability(NewGameState.GetContext());
 	if (AbilityContext != none)
 	{
