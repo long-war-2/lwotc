@@ -1802,6 +1802,9 @@ RightAbilityTreeTitle="Pyrotech"
 +RandomNickNames_Female="Duchess"
 ;ALPHABETICAL ORDER
 
+[Specialist X2SoldierClassTemplate]
+DisplayName="Specialist (Unused)"
+
 [LWS_Specialist X2SoldierClassTemplate]
 DisplayName="Specialist"
 ClassSummary="Operating some of our most advanced equipment, Specialists deploy robotic drones on the battlefield that can be outfitted for combat or field medic duty."
@@ -1885,6 +1888,8 @@ RightAbilityTreeTitle="Hacker"
 +RandomNickNames_Female="Duchess"
 ;ALPHABETICAL ORDER
 
+[Grenadier X2SoldierClassTemplate]
+DisplayName="Grenadier (Unused)"
 
 [LWS_Grenadier X2SoldierClassTemplate]
 DisplayName="Grenadier"
@@ -2030,6 +2035,8 @@ RightAbilityTreeTitle="Oppressor"
 +RandomNickNames_Female="Mango"
 +RandomNickNames_Female="Pepper"
 
+[Ranger X2SoldierClassTemplate]
+DisplayName="Ranger (Unused)"
 
 [LWS_Ranger X2SoldierClassTemplate]
 DisplayName="Ranger"
@@ -2081,6 +2088,9 @@ RightAbilityTreeTitle="Defender"
 +RandomNickNames_Female="Medusa"
 +RandomNickNames_Female="Sugar"
 ;ALPHABETICAL ORDER
+
+[Sharpshooter X2SoldierClassTemplate]
+DisplayName="Sharpshooter (Unused)"
 
 [LWS_Sharpshooter X2SoldierClassTemplate]
 DisplayName="Sharpshooter"
