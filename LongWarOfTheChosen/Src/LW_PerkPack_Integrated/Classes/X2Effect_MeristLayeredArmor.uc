@@ -142,19 +142,6 @@ function float GetPostDefaultDefendingDamageModifier_CH(
     return 0;
 }
 
-simulated function AddX2ActionsForVisualization(XComGameState VisualizeGameState, out VisualizationActionMetadata ActionMetadata, const name EffectApplyResult)
-{
-    local X2Action_PlaySoundAndFlyOver SoundAndFlyOver;
-
-    SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, VisualizeGameState.GetContext(), false, ActionMetadata.LastActionAdded));
-    SoundAndFlyOver.SetSoundAndFlyOverParameters(None, strFlyoverMessage, '', eColor_Xcom, strFlyoverIcon);
-}
-
-simulated function AddX2ActionsForVisualization_Tick(XComGameState VisualizeGameState, out VisualizationActionMetadata ActionMetadata, const int TickIndex, XComGameState_Effect EffectState)
-{
-    AddX2ActionsForVisualization(VisualizeGameState, ActionMetadata, 'AA_Success');
-}
-
 defaultproperties
 {
     DuplicateResponse = eDupe_Refresh

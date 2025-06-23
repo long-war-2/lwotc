@@ -2163,6 +2163,7 @@ static function X2AbilityTemplate ImpactCompensationV2()
     Effect1.EffectName = 'LayeredArmorEffect';
     Effect1.PrcDamageCap = 40;
     Effect1.strFlyoverMessage = "Layered Armor";
+	Effect1.bDisplayInSpecialDamageMessageUI = true;
     Effect1.BuildPersistentEffect(1, true, false);
     //Effect1.SetDisplayInfo(ePerkBuff_Bonus, "Layered Armor", "", Template.IconImage, true,, Template.AbilitySourceName);
 	Effect1.DuplicateResponse = eDupe_Ignore;
@@ -2228,6 +2229,7 @@ static function X2AbilityTemplate ImpactCompensationV2XCOM()
     Effect2.PrcDamageCapDifficulty = default.IMPACT_V2XCOM_DAMAGE_CAP;
     Effect2.bCapBurstFire = true;
     Effect2.BuildPersistentEffect(1, true, false);
+	Effect2.bDisplayInSpecialDamageMessageUI = true;
     Effect2.SetDisplayInfo(ePerkBuff_Bonus, Template.locFriendlyName, Template.LocLongDescription, Template.IconImage, true,, Template.AbilitySourceName);
 	Effect2.DuplicateResponse = eDupe_Ignore;
     Template.AddTargetEffect(Effect2);
