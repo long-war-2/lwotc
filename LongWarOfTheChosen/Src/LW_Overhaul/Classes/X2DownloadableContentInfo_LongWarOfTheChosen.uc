@@ -249,7 +249,7 @@ static function MarkAllChosenDefeated(XComGameState StartState)
 
 static function OnPreCreateTemplates()
 {
-	`Log("Long War of the Chosen (LWOTC) version: " $ class'LWVersion'.static.GetVersionString());
+	`Log("Long War of the Chosen (LWOTC) version: " $ class'LWVersion'.static.GetVersionString() @ "Built June 23, 2025");
 	PatchModClassOverrides();
 	CacheInstalledMods();
 }
