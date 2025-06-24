@@ -48,7 +48,16 @@
         "UMS_MissionCore_LW",
         "UMS_MissionCore_LW_LW",
         "Obj_CompoundRescueOperative_LW",
-        "XComShell_Wilderness_PsiGate_LW"
+        "XComShell_Wilderness_PsiGate_LW",
+        "plot_WLD_AvDef_Flood_EMM_01",
+        "plot_WLD_AvDef_Mount_EMM_01",
+        "Plot_WLD_LgObj_Wetlands_EMM_01",
+        "plot_CTY_MdObj_Pier_EMM_01",
+        "plot_CTY_MdObj_Bridge_EMM_01",
+        "plot_WLD_LgObj_Mount_EMM_01",
+        "plot_CTY_MdObj_Trench_EMM_01",
+        "plot_TWN_SmObj_SplitHouse_EMM_01",
+        "plot_TWN_LgObj_WarehouseParking_EMM_01"
     ],
     "sfStandalone": [
         "AdvGrenadeLauncher",
