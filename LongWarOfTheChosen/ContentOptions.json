@@ -58,7 +58,11 @@
         "plot_CTY_MdObj_Trench_EMM_01",
         "plot_TWN_SmObj_SplitHouse_EMM_01",
         "plot_TWN_LgObj_WarehouseParking_EMM_01",
-        "Plot_SLM_Overpass_LgObj_10_LW"
+        "Plot_SLM_Overpass_LgObj_10_LW",
+        "Lg_AdventCathedral_LW",
+        "md_ChosenArtillery_01_LW",
+        "sm_ChosenBulwark_01_LW",
+        "sm_ChosenBulwark_02_LW"
     ],
     "sfStandalone": [
         "AdvGrenadeLauncher",
