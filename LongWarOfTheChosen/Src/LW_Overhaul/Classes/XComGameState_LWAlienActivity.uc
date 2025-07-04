@@ -791,7 +791,7 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 	//`LWTrace("Mission Generation choosing plot and biome");
 
 	// find a plot that supports the biome and the mission
-	SelectBiomeAndPlotDefinition(MissionState, Biome, SelectedPlotDef, SitrepsToRemove, SitRepNames);
+	SelectBiomeAndPlotDefinition(MissionState, Biome, SelectedPlotDef, SitrepsToRemove, SitRepNames, NewGameState);
 
 	// do a weighted selection of our plot
 	MissionState.GeneratedMission.Plot = SelectedPlotDef;
@@ -1028,7 +1028,7 @@ static function bool WillChosenAppearOnMission(XComGameState_AdventChosen Chosen
 //---------------------------------------------------------------------------------------
 // Code (next 3 functions) copied from XComGameState_MissionSite
 //
-function SelectBiomeAndPlotDefinition(XComGameState_MissionSite MissionState, out string Biome, out PlotDefinition SelectedDef, out array<name>SitrepsToRemove,  optional array<name> SitRepNames)
+function SelectBiomeAndPlotDefinition(XComGameState_MissionSite MissionState, out string Biome, out PlotDefinition SelectedDef, out array<name>SitrepsToRemove,  optional array<name> SitRepNames, optional XComGameState NewGameState)
 {
 	local MissionDefinition MissionDef;
 	local array<string> ExcludeBiomes;
@@ -1040,7 +1040,7 @@ function SelectBiomeAndPlotDefinition(XComGameState_MissionSite MissionState, ou
 
 	`LWTrace("Selected biome:" @Biome);
 
-	while(!SelectPlotDefinition(MissionDef, Biome, SelectedDef, ExcludeBiomes, SitRepNames))
+	while(!SelectPlotDefinition(MissionDef, Biome, SelectedDef, ExcludeBiomes, SitRepNames, NewGameState))
 	{
 		Biome = SelectBiome(MissionState, ExcludeBiomes);
 
@@ -1131,19 +1131,80 @@ function string SelectBiome(XComGameState_MissionSite MissionState, out array<st
 }
 
 //---------------------------------------------------------------------------------------
-function bool SelectPlotDefinition(MissionDefinition MissionDef, string Biome, out PlotDefinition SelectedDef, out array<string> ExcludeBiomes, optional out array<name> SitRepNames)
+function bool SelectPlotDefinition(MissionDefinition MissionDef, string Biome, out PlotDefinition SelectedDef, out array<string> ExcludeBiomes, optional out array<name> SitRepNames, Optional XComGameState NewGameState)
 {
 	local XComParcelManager ParcelMgr;
-	local array<PlotDefinition> ValidPlots;
+	local array<PlotDefinition> ValidPlots, ValidPlotsCached;
 	local X2SitRepTemplateManager SitRepMgr;
 	local name SitRepName;
 	local X2SitRepTemplate SitRep;
-	local int AllowPlot;  // int so it can be used as an `out` parameter
+	local int AllowPlot, i;  // int so it can be used as an `out` parameter
+	local array<string> PlotsInUse;
+
+	//local int NumPlotsToRemove, i, MaxPlotsToRemove, MinPlotsToActivateRemovalSystem;
+
+
 
 	ParcelMgr = `PARCELMGR;
 	ParcelMgr.GetValidPlotsForMission(ValidPlots, MissionDef, Biome);
 	SitRepMgr = class'X2SitRepTemplateManager'.static.GetSitRepTemplateManager();
-	`LWDebug("Plot selection: Valid Plots length:" @ValidPlots.Length);
+	`LWTrace("Plot selection: Valid Plots length:" @ValidPlots.Length);
+
+	// Since plots aren't marked used until the player actually loads into a mission, multiple missions generated at once
+	// Can lead to the same map being selected for all of them since it is not marked used yet for the parcel manager.
+	// This loops over existing missions on the geoscape, grabs the maps they currently have, and then removes them from the valid list.
+	// Cache this for later if needed.
+	ValidPlotsCached = ValidPlots;
+
+	// Only do this if we have enough plots for variety
+	if(ValidPlots.Length >= 4)
+	{
+		// Cache the plots that are currently on the board already
+		GetInUsePlots(PlotsInUse, NewGameState);
+
+		// Check for duplicates, remove it from the list if a mission is already using it on the board.
+		for(i = ValidPlots.Length-1; i >= 0; i--)
+		{
+			if(PlotsInUse.Find(ValidPlots[i].MapName) != INDEX_NONE)
+			{
+				`LWTrace("Removing plot" @ValidPlots[i].MapName @ "because it is present on a mission already");
+				ValidPlots.Remove(i,1);
+			}
+		}
+		`LWTrace("Final valid plots length:" @ValidPlots.Length);
+	}
+
+	// If we removed everything, just restore the original list as is
+	if(ValidPlots.Length == 0)
+	{
+		ValidPlots = ValidPlotsCached;
+	}
+
+	// older experimental implementation below.
+	/* 
+	// To partially alleviate this, we'll remove a random number from the top of the list if there are enough left.
+
+	MinPlotsToActivateRemovalSystem = 4;
+
+	// Only do it if there's 4 or more plots in the list initially.
+	if(ValidPlots.Length >= MinPlotsToActivateRemovalSystem)
+	{
+		// Set the max we want to remove from the deck, needs to be less than the min number of valid plots
+		MaxPlotsToRemove = MinPlotsToActivateRemovalSystem - 1;
+
+		// Randomlly roll a number of plots to remove (rand returns a max of Value-1 so we add 1)
+		// But cap it to ensure there are at least 2 valid plots in the list
+		// 0 is a valid return value so we do use the list as is
+		NumPlotsToRemove = min(`SYNC_RAND(MaxPlotsToRemove+1), ValidPlots.Length - 2);
+
+		// Actually remove the plots
+		for (i = 0; i < NumPlotsToRemove; i++)
+		{
+			ValidPlots.Remove(0,1);
+		}
+	}
+
+	*/
 
 	// pull the first one that isn't excluded from strategy, they are already in order by weight
 	foreach ValidPlots(SelectedDef)
@@ -1174,6 +1235,28 @@ function bool SelectPlotDefinition(MissionDefinition MissionDef, string Biome, o
 	return false;
 }
 // End copied code
+
+// Retrives a list of all plotnames that are present in missions on the board.
+static function GetInUsePlots(out array<string> InUsePlots, optional XComGameState NewGameState)
+{
+	local XComGameStateHistory History;
+	local XComGameState_MissionSite MissionState;
+
+	History = `XCOMHISTORY;
+
+	foreach History.IterateByClassType(class'XComGameState_MissionSite', MissionState)
+	{
+		InUsePlots.AddItem(MissionState.GeneratedMission.Plot.MapName);
+	}
+
+	if (NewGameState != none)
+	{
+		foreach NewGameState.IterateByClassType(class'XComGameState_MissionSite', MissionState)
+		{
+			InUsePlots.AddItem(MissionState.GeneratedMission.Plot.MapName);
+		}
+	}
+}
 
 static function SelectAlternatePlotDef(MissionDefinition MissionDef, string Biome, out PlotDefinition SelectedDef, out array<string> ExcludeBiomes, out array<name> SitrepsToRemove, optional array<name> SitRepNames)
 {
