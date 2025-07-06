@@ -32,7 +32,7 @@ ActivityObjectives[0]="Liberation: Rescue a Defector"
 [ProtectRegion X2LWAlienActivityTemplate]
 ActivityName="ProtectRegion3Activity"
 ActivityObjectives[0]="Liberation: Hinder ADVENT operations"
-ActivityObjectives[1]="Liberation: Destroy Network Tower"
+ActivityObjectives[1]="Liberation: Assault Network Tower"
 ActivityObjectives[2]="Liberation: Assault ADVENT Base"
 
 +MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="We have learned of an ADVENT device that is interfering with the Resistance communications network. We must destroy it.", MissionIndex=0)
