@@ -110,6 +110,7 @@ function bool IsValidSwap(StatSwap Swap, XComGameState_Unit Unit)
 {
 	local StatCaps Cap;
 	local int i;
+	local bool bMinPassed, bMaxPassed;
 
 	if(Swap.DoesNotApplyToFirstMissionSoldiers && bIsFirstMissionSoldier)
 		return false;
@@ -121,26 +122,47 @@ function bool IsValidSwap(StatSwap Swap, XComGameState_Unit Unit)
         return false;
     }
 
+	i = default.TemplateSpecificStatCaps.Find('TemplateName', Unit.GetMyTemplateName());
+	bMaxPassed = false;
+	bMinPassed = false;
 	// Unit has a Template-Specific Stat Cap
-	if (default.TemplateSpecificStatCaps.Find('TemplateName', Unit.GetMyTemplateName()) != INDEX_NONE)
+	if (i != INDEX_NONE)
 	{
-		i = default.TemplateSpecificStatCaps.Find('TemplateName', Unit.GetMyTemplateName());
-		foreach TemplateSpecificStatCaps[i].Stat_Caps(Cap)
+		foreach default.TemplateSpecificStatCaps[i].Stat_Caps(Cap)
 		{
-			if ((Cap.Stat == Swap.StatUp) && (CharacterInitialStats_Deltas[Swap.StatUp] + Swap.StatUp_Amount > Cap.Max))
-				return false;
-			if ((Cap.Stat == Swap.StatDown) && (CharacterInitialStats_Deltas[Swap.StatDown] - Swap.StatDown_Amount < Cap.Min))
-				return false;
+			if (Cap.Stat == Swap.StatUp || Cap.Stat == Swap.StatDown)
+			{
+				if(Cap.Stat == Swap.StatUp)
+				{
+					if (CharacterInitialStats_Deltas[Swap.StatUp] + Swap.StatUp_Amount > Cap.Max)
+						return false;
+					bMaxPassed = true;
+				}
+
+				if(Cap.Stat == Swap.StatDown)
+				{
+					if (CharacterInitialStats_Deltas[Swap.StatDown] - Swap.StatDown_Amount < Cap.Min)
+						return false;
+					bMinPassed = true;
+				}
+				
+			}
 		}
+
+		//If both overrides got checked, full-send it
+		if (bMinPassed && bMaxPassed)
+			return true;
 	}
 
 	foreach default.STAT_CAPS(Cap)
 	{
-		if((Cap.Stat == Swap.StatUp)  && (CharacterInitialStats_Deltas[Swap.StatUp] + Swap.StatUp_Amount > Cap.Max))
+		//Add extra checks to ensure the results weren't overriden by Template-Specific caps
+		if((Cap.Stat == Swap.StatUp)  && (CharacterInitialStats_Deltas[Swap.StatUp] + Swap.StatUp_Amount > Cap.Max) && !bMaxPassed)
 			return false;
-		if((Cap.Stat == Swap.StatDown) && (CharacterInitialStats_Deltas[Swap.StatDown] - Swap.StatDown_Amount < Cap.Min))
+		if((Cap.Stat == Swap.StatDown) && (CharacterInitialStats_Deltas[Swap.StatDown] - Swap.StatDown_Amount < Cap.Min) && !bMinPassed)
 			return false;
 	}
+	
 	return true;
 }
 
