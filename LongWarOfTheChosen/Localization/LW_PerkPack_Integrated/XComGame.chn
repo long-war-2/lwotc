@@ -50,7 +50,7 @@ BriefSummary="该芯片大幅提高了绕过失血所需的过度杀伤伤害阈
 [IronSkinPCS X2EquipmentTemplate]
 FriendlyName="个人战斗芯片：铜皮铁甲"
 FriendlyNamePlural="个人战斗芯片：铜皮铁甲"
-BriefSummary="受到的近战伤害减少<Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>点。受到刺客的近战攻击时只能获得67%的效果。"
+BriefSummary="受到的近战伤害减少<Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>点。"
 
 [SmartMacrophagesPCS X2EquipmentTemplate]
 FriendlyName="个人战斗芯片：智能巨噬细胞"

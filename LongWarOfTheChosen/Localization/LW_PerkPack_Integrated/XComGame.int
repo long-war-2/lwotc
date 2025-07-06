@@ -54,7 +54,7 @@ BriefSummary="This implant drastically increases the threshold of overkill damag
 [IronSkinPCS X2EquipmentTemplate]
 FriendlyName="PCS: Iron Skin"
 FriendlyNamePlural="PCS: Iron Skin"
-BriefSummary="Incoming melee damage is reduced by <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>. The Chosen Assassin's melee attacks are reduced by 67% of this value."
+BriefSummary="Incoming melee damage is reduced by <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>."
 
 [SmartMacrophagesPCS X2EquipmentTemplate]
 FriendlyName="PCS: Smart Macrophages"

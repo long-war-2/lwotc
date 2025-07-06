@@ -51,7 +51,7 @@ BriefSummary="Dieses Implantat erhöht deutlich die Schadensschwelle, ab der ein
 [IronSkinPCS X2EquipmentTemplate]
 FriendlyName="PKS: Stahlhaut"
 FriendlyNamePlural="PKS: Stahlhaut"
-BriefSummary="Eingehender Nahkampfschaden wird um <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION> reduziert. Der Nahkampfschaden der Auserwählten-Assassinin wird um 67 % dieses Wertes vermindert."
+BriefSummary="Eingehender Nahkampfschaden wird um <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION> reduziert."
 
 [SmartMacrophagesPCS X2EquipmentTemplate]
 FriendlyName="PKS: Intelligente Makrophagen"
