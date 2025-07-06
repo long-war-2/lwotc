@@ -1314,7 +1314,8 @@ static function X2AbilityTemplate ZoneOfControl_LW()
     PersistentEffect.BuildPersistentEffect(1, true, false);
     PersistentEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage,,, Template.AbilitySourceName);
     Template.AddTargetEffect(PersistentEffect);
-    
+	
+	Template.bFrameEvenWhenUnitIsHidden = false;
 
     Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
@@ -1383,6 +1384,8 @@ static function X2AbilityTemplate AddZoCCleanse()
                                             // Relevant for effects with additional effects on removal
     Template.AddTargetEffect(RemoveEffect);
 
+	Template.bFrameEvenWhenUnitIsHidden = false;
+
     Template.ConcealmentRule = eConceal_AlwaysEvenWithObjective;
 
     return Template;
@@ -1434,6 +1437,8 @@ static function X2AbilityTemplate AddZOC_LW_Update()
 	Effect.AddPersistentStatChange(eStat_Offense, default.ZONE_CONTROL_AIM_PENALTY);
     Effect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.LocHelpText, Template.IconImage, true,,Template.AbilitySourceName);
     Template.AddTargetEffect(Effect);
+
+	Template.bFrameEvenWhenUnitIsHidden = false;
 
     Template.ConcealmentRule = eConceal_AlwaysEvenWithObjective;
 
