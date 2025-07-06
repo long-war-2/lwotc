@@ -121,6 +121,7 @@ var config array<name> SecondaryWeaponAbilities;
 
 // Configurable list of parcels to remove from the game.
 var config array<String> ParcelsToRemove;
+var config array<String> PCPsToRemove;
 var bool bDebugPodJobs;
 
 // Minimum force level that needs to be reached before The Lost
@@ -3070,6 +3071,17 @@ static function AddObjectivesToParcels()
 			{
 				`LWTrace("Removing parcel definition " $ default.ParcelsToRemove[i]);
 				ParcelMgr.arrAllParcelDefinitions.Remove(j, 1);
+			}
+		}
+
+		// Remove bad PCPs too:
+		for (i = 0; i < default.PCPsToRemove.Length; ++i)
+		{
+			j = class'XComPlotCoverParcelManager'.default.arrAllPCPDefs.Find('MapName', default.PCPsToRemove[i]);
+			if (j >= 0)
+			{
+				`LWTrace("Removing PCP definition " $ default.PCPsToRemove[i]);
+				class'XComPlotCoverParcelManager'.default.arrAllPCPDefs.Remove(j, 1);
 			}
 		}
 		
