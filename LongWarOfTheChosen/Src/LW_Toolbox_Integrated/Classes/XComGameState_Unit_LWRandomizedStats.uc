@@ -27,6 +27,12 @@ struct StatCaps
 	var float Max;
 };
 
+struct StatCapsByTemplateName
+{
+	var name TemplateName;
+	var array<StatCaps> Stat_Caps;
+};
+
 var bool bIsFirstMissionSoldier;
 
 //initial randomized stats
@@ -37,6 +43,7 @@ var float CharacterInitialStats_Deltas[ECharStatType.EnumCount];
 var config array<int> NUM_STAT_SWAPS;  // defines dice that are rolled to determine number of stat swaps applied
 var config array<StatSwap> STAT_SWAPS;
 var config array<Statcaps> STAT_CAPS;
+var config array<StatCapsByTemplateName> TemplateSpecificStatCaps;
 
 //level-up randomized stats
 var bool bRandomLevelUpActive;
@@ -102,6 +109,7 @@ function RandomizeInitialStats(XComGameState_Unit Unit)
 function bool IsValidSwap(StatSwap Swap, XComGameState_Unit Unit)
 {
 	local StatCaps Cap;
+	local int i;
 
 	if(Swap.DoesNotApplyToFirstMissionSoldiers && bIsFirstMissionSoldier)
 		return false;
@@ -112,6 +120,19 @@ function bool IsValidSwap(StatSwap Swap, XComGameState_Unit Unit)
     {
         return false;
     }
+
+	// Unit has a Template-Specific Stat Cap
+	if (default.TemplateSpecificStatCaps.Find('TemplateName', Unit.GetMyTemplateName()) != INDEX_NONE)
+	{
+		i = default.TemplateSpecificStatCaps.Find('TemplateName', Unit.GetMyTemplateName());
+		foreach TemplateSpecificStatCaps[i].Stat_Caps(Cap)
+		{
+			if ((Cap.Stat == Swap.StatUp) && (CharacterInitialStats_Deltas[Swap.StatUp] + Swap.StatUp_Amount > Cap.Max))
+				return false;
+			if ((Cap.Stat == Swap.StatDown) && (CharacterInitialStats_Deltas[Swap.StatDown] - Swap.StatDown_Amount < Cap.Min))
+				return false;
+		}
+	}
 
 	foreach default.STAT_CAPS(Cap)
 	{
