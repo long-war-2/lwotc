@@ -71,6 +71,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 	case 'TemplarFocus':
 		SupportSupremeFocusInTemplarFocus(Template);
 		Template.AdditionalAbilities.RemoveItem('FocusKillTracker'); //commented out because Rend is already removed from the list of focus kill counter activities.  - welp, need a better fix so re-adding
+		Template.FrameAbilityCameraType = eCameraFraming_Never; 
 		break;
 	case 'VoidConduit':
 		FixVoidConduit(Template);

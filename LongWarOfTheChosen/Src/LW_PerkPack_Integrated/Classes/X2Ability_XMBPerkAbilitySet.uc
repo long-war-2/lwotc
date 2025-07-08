@@ -1302,6 +1302,7 @@ static function X2AbilityTemplate ZoneOfControl_LW()
     Template.AbilitySourceName = 'eAbilitySource_Perk';
     Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
     Template.Hostility = eHostility_Neutral;
+	Template.FrameAbilityCameraType = eCameraFraming_Never; 
     Template.bIsPassive = true;
     Template.bUniqueSource = true;
 
@@ -1458,7 +1459,7 @@ static function EventListenerReturn AbilityTriggerEventListener_AuraUpdate(Objec
 
     if (AbilityState != none && EventUnit != none)
     {
-        `LOG(EventUnit.GetMyTemplateName() $ " moved. Updating aura. Ability: " $ AbilityState.GetMyTemplateName(), true, 'MeristAuraUpdateListener');
+        //`LOG(EventUnit.GetMyTemplateName() $ " moved. Updating aura. Ability: " $ AbilityState.GetMyTemplateName(), true, 'MeristAuraUpdateListener');
         // If the unit that's moved is not the source, just update the effect
         if (EventUnit.ObjectID != AbilityState.OwnerStateObject.ObjectID)
         {
