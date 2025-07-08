@@ -2935,7 +2935,7 @@ static function int GetNumAimRolls(XComGameState_Unit Unit)
 	if(Unit.ActionPoints.Length <= 1)
 		NumAimRolls += default.MOVEMENT_SCATTER_TILE_MODIFIER;
 
-	return NumAimRolls;
+	return max(NumAimRolls, 0); // Clamp the value to avoid negative scatter possibilities in case people mess with stuff
 }
 
 static function int TileDistanceBetween(XComGameState_Unit Unit, vector TargetLoc)
