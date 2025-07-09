@@ -7,8 +7,26 @@
 
 class UIScreenListener_Shell extends UIScreenListener config(AI);
 
+struct LWBehaviorTreeNodeReplacement
+{
+    var BehaviorTreeNode UpdatedBehavior;
+	var string ModName;
+    var int Priority;
+
+	structdefaultproperties
+	{
+		Priority=50
+	}
+};
+
 var config array<name> BehaviorRemovals;
 var config array<BehaviorTreeNode> NewBehaviors;
+
+// New Override behaviors array for mod compatibility. If there are entries in here, it WILL override NewBehaviors.
+// higher priority number will be used to break ties if multiple entries in OverrideBehaviors go for the same behavior tree.
+
+var config array<LWBehaviorTreeNodeReplacement> OverrideBehaviors;
+
 
 var private bool HasInited;
 
@@ -41,9 +59,11 @@ event OnInit(UIScreen Screen)
 static function UpdateAIBehaviors()
 {
 	local X2AIBTBehaviorTree BehaviorTree;
+	local LWBehaviorTreeNodeReplacement OverrideTree, CurrentReplacementTree;
 	local name BehaviorName;
 	local BehaviorTreeNode NewBehavior;
-	local int idx;
+	local array<LWBehaviorTreeNodeReplacement> NewOverrideBehaviors;
+	local int idx, j;
 
 	BehaviorTree = `BEHAVIORTREEMGR;
 
@@ -60,6 +80,55 @@ static function UpdateAIBehaviors()
 	{
 		BehaviorTree.Behaviors.AddItem(NewBehavior);
 	}
+
+	// New handling for Override Behaviors:
+
+	foreach default.OverrideBehaviors(OverrideTree)
+	{
+		idx = BehaviorTree.Behaviors.Find('BehaviorName', OverrideTree.UpdatedBehavior.BehaviorName);
+		if (idx >= 0)
+		{
+			BehaviorTree.Behaviors.Remove(idx, 1);
+		}
+	}
+
+	foreach default.OverrideBehaviors (CurrentReplacementTree)
+	{
+		BehaviorName = CurrentReplacementTree.UpdatedBehavior.BehaviorName;
+
+		// mod installed check:
+
+		if(!class'Helpers_LW'.static.IsModInstalled(CurrentReplacementTree.ModName))
+		{
+			continue;
+		}
+		
+		idx = INDEX_NONE;
+
+		for(j = 0; j < NewOverrideBehaviors.Length; j++)
+		{
+			if(NewOverrideBehaviors[j].UpdatedBehavior.BehaviorName == BehaviorName)
+			{
+				idx = j;
+				break;
+			}
+		}
+
+		if (idx == INDEX_NONE)
+		{
+			NewOverrideBehaviors.AddItem(CurrentReplacementTree);
+		}
+		else if(NewOverrideBehaviors[idx].Priority < CurrentReplacementTree.Priority)
+		{
+			NewOverrideBehaviors[idx] = CurrentReplacementTree;
+		}
+	}
+
+	foreach NewOverrideBehaviors (CurrentReplacementTree)
+	{
+		BehaviorTree.Behaviors.AddItem(CurrentReplacementTree.UpdatedBehavior);
+	}
+
 
 	BehaviorTree.InitBehaviors();
 }
