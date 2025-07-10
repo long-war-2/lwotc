@@ -28,7 +28,7 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 {
 	local XComGameState_Ability					AbilityState;
 	local XComGameState_Unit					TargetUnit;
-	local UnitValue								CEUsesThisTurn, HnRUsesThisTurn, CheapShotUsesThisTurn;
+	local UnitValue								CEUsesThisTurn, HnRUsesThisTurn, CheapShotUsesThisTurn, RunAndGunUsed;
 	local int									iUsesThisTurn;
 	
 	if (SourceUnit.IsUnitAffectedByEffectName(class'X2Effect_Serial'.default.EffectName))
@@ -37,7 +37,10 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 	if (SourceUnit.IsUnitAffectedByEffectName(class'X2Effect_DeathfromAbove'.default.EffectName))
 		return false;
 
-	if (PreCostActionPoints.Find('RunAndGun') != -1)
+	SourceUnit.GetUnitValue('RunAndGun_SuperKillCheck', RunAndGunUsed);
+	iUsesThisTurn = int(RunAndGunUsed.fValue);
+
+	if (iUsesThisTurn >= 1)
 		return false;
 
 	// Don't proc on a Skirmisher interrupt turn (for example with Battle Lord)

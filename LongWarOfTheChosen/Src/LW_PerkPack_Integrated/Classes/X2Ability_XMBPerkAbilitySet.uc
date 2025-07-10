@@ -1312,7 +1312,7 @@ static function X2AbilityTemplate ZoneOfControl_LW()
 
     PersistentEffect = new class'X2Effect_Persistent';
     PersistentEffect.EffectName = 'ZoneOfControl_LW_Passive';
-    PersistentEffect.BuildPersistentEffect(1, true, false);
+    PersistentEffect.BuildPersistentEffect(1, true, true);
     PersistentEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage,,, Template.AbilitySourceName);
     Template.AddTargetEffect(PersistentEffect);
 	
@@ -3588,11 +3588,20 @@ static function X2AbilityTemplate OverbearingSuperiority()
 	local X2AbilityTemplate Template;
 	local XMBEffect_AbilityCostRefund SuperiorityEffect;
 	local X2Effect_ToHitModifier	ToHitModifier;
+	local X2Condition_UnitValue ValueCondition;
 
 	// Create an effect that refunds the action point cost of abilities
 	SuperiorityEffect = new class'XMBEffect_AbilityCostRefund';
 	SuperiorityEffect.EffectName = 'OverbearingSuperiority';
 	SuperiorityEffect.TriggeredEvent = 'OverbearingSuperiority';
+
+	// Don't allow it to work with Serial/Reaper
+	ValueCondition = new class'X2Condition_UnitValue';
+	ValueCondition.AddCheckValue('RunAndGun_SuperKillCheck', 0, eCheck_Exact,,,'AA_RunAndGunUsed');
+	ValueCondition.AddCheckValue('Reaper_SuperKillCheck', 0, eCheck_Exact,,,'AA_ReaperUsed');
+	ValueCondition.AddCheckValue('Serial_SuperKillCheck', 0, eCheck_Exact,,,'AA_SerialUsed');
+
+	SuperiorityEffect.AbilityTargetConditions.AddItem(ValueCondition);
 
 	// Require that the activated ability use the weapon associated with this ability
 	SuperiorityEffect.AbilityTargetConditions.AddItem(default.MatchingWeaponCondition);
@@ -3611,8 +3620,13 @@ static function X2AbilityTemplate OverbearingSuperiority()
 
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;
+	// This doesn't work the way we want to
 	// Don't allow multiple ability-refunding abilities to be used in the same turn (e.g. Slam Fire and Serial)
-	class'X2Ability_RangerAbilitySet'.static.SuperKillRestrictions(Template, 'Serial_SuperKillCheck');
+	//class'X2Ability_RangerAbilitySet'.static.SuperKillRestrictions(Template, 'Serial_SuperKillCheck');
+
+		
+
+
 
 	return Template;
 }

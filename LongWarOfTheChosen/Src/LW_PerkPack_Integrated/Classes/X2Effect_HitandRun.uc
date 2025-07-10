@@ -30,13 +30,16 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 	local XComGameState_Ability					AbilityState;
 	local GameRulesCache_VisibilityInfo			VisInfo;
 	local int									iUsesThisTurn;
-	local UnitValue								HnRUsesThisTurn, CEUsesThisTurn;
+	local UnitValue								HnRUsesThisTurn, CEUsesThisTurn, RunAndGunUsed;
 
 	//  if under the effect of Serial, let that handle restoring the full action cost - will this work?
 	if (SourceUnit.IsUnitAffectedByEffectName(class'X2Effect_Serial'.default.EffectName))
 		return false;
 
-	if (PreCostActionPoints.Find('RunAndGun') != -1)
+	SourceUnit.GetUnitValue('RunAndGun_SuperKillCheck', RunAndGunUsed);
+	iUsesThisTurn = int(RunAndGunUsed.fValue);
+
+	if (iUsesThisTurn >= 1)
 		return false;
 
 	// Don't proc on a Skirmisher interrupt turn (for example with Battle Lord)
