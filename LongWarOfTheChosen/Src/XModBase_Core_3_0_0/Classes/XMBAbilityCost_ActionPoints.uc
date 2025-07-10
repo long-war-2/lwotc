@@ -38,7 +38,7 @@ simulated function int GetPointCost(XComGameState_Ability AbilityState, XComGame
 			if (XModBaseEffect.GetExtValue(Tuple))
 			{
 				ChangeResult = Tuple.Data[3].i;
-				`log("Effect" @ EffectState.GetX2Effect().FriendlyName @ "changing action point cost of" @ AbilityState.GetMyTemplateName() $ ":" @ ChangeResult);
+				//`log("Effect" @ EffectState.GetX2Effect().FriendlyName @ "changing action point cost of" @ AbilityState.GetMyTemplateName() $ ":" @ ChangeResult);
 				Result = ChangeResult;
 			}
 		}
@@ -82,7 +82,7 @@ simulated function bool ConsumeAllPoints(XComGameState_Ability AbilityState, XCo
 			if (XModBaseEffect.GetExtValue(Tuple))
 			{
 				ChangeResult = bool(Tuple.Data[3].i);
-				`log("Effect" @ EffectState.GetX2Effect().FriendlyName @ "changing turn-endingness of" @ AbilityState.GetMyTemplateName()  $ ":" @ ChangeResult);
+				//`log("Effect" @ EffectState.GetX2Effect().FriendlyName @ "changing turn-endingness of" @ AbilityState.GetMyTemplateName()  $ ":" @ ChangeResult);
 				Result = ChangeResult;
 			}
 		}
