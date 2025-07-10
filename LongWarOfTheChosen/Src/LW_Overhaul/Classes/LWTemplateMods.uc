@@ -3822,42 +3822,24 @@ function RewireTechTree(X2StrategyElementTemplate Template, int Difficulty)
 					}
 					if (TechTable[i].ReqItemTemplateName3 != '' && TechTable[i].ReqItemCost3 > 0)
 					{
-						if (TechTable[i].ReqItemTemplateName3 == 'Instant')
+
+						Resources.ItemTemplateName = TechTable[i].ReqItemTemplateName3;
+						Resources.Quantity = TechTable[i].ReqItemCost3;
+						TechTemplate.Cost.ArtifactCosts.AddItem(Resources);
+						if (!TechTemplate.bProvingGround)
 						{
-							Resources.ItemTemplateName = TechTable[i].ReqItemTemplateName1;
-							Resources.Quantity = TechTable[i].ReqItemCost1 * TechTable[i].ReqItemCost3;
-							TechTemplate.InstantRequirements.RequiredItemQuantities.AddItem(Resources);
-							TechTemplate.bCheckForceInstant = true;
-						}
-						else
-						{
-							Resources.ItemTemplateName = TechTable[i].ReqItemTemplateName3;
-							Resources.Quantity = TechTable[i].ReqItemCost3;
-							TechTemplate.Cost.ArtifactCosts.AddItem(Resources);
-							if (!TechTemplate.bProvingGround)
-							{
-								TechTemplate.Requirements.RequiredItems.AddItem(TechTable[i].ReqItemTemplateName3);
-							}
+							TechTemplate.Requirements.RequiredItems.AddItem(TechTable[i].ReqItemTemplateName3);
 						}
 					}
 					if (TechTable[i].ReqItemTemplateName4 != '' && TechTable[i].ReqItemCost4 > 0)
 					{
-						if (TechTable[i].ReqItemTemplateName4 == 'Instant')
+
+						Resources.ItemTemplateName = TechTable[i].ReqItemTemplateName4;
+						Resources.Quantity = TechTable[i].ReqItemCost4;
+						TechTemplate.Cost.ArtifactCosts.AddItem(Resources);
+						if (!TechTemplate.bProvingGround)
 						{
-							Resources.ItemTemplateName = TechTable[i].ReqItemTemplateName1;
-							Resources.Quantity = TechTable[i].ReqItemCost1 * TechTable[i].ReqItemCost4;
-							TechTemplate.InstantRequirements.RequiredItemQuantities.AddItem(Resources);
-							TechTemplate.bCheckForceInstant = true;
-						}
-						else
-						{
-							Resources.ItemTemplateName = TechTable[i].ReqItemTemplateName4;
-							Resources.Quantity = TechTable[i].ReqItemCost4;
-							TechTemplate.Cost.ArtifactCosts.AddItem(Resources);
-							if (!TechTemplate.bProvingGround)
-							{
-								TechTemplate.Requirements.RequiredItems.AddItem(TechTable[i].ReqItemTemplateName4);
-							}
+							TechTemplate.Requirements.RequiredItems.AddItem(TechTable[i].ReqItemTemplateName4);
 						}
 					}
 					TechTemplate.Requirements.RequiredTechs.Length = 0;
