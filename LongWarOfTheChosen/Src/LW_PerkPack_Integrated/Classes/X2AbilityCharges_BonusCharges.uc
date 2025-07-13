@@ -8,10 +8,7 @@ function int GetInitialCharges(XComGameState_Ability Ability, XComGameState_Unit
 {
     local int Charges;
 
-	// Get base ability bonuses for other compatibility
-	Charges = super.GetInitialCharges(Ability, Unit);
-
-	// Handle LW ones for legacy compatibility
+    Charges = InitialCharges;
 	if (Unit.HasAbilityFromAnySource(BonusAbility))
 	{
 		Charges += BonusChargesCount;
