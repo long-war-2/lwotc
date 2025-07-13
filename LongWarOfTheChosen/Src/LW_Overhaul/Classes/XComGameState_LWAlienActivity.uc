@@ -138,7 +138,7 @@ function bool Update(XComGameState NewGameState)
 	local bool bUpdated;
 	local X2LWAlienActivityTemplate ActivityTemplate;
 	local XComGameState_MissionSite MissionState;
-	local TDateTime TempUpdateDateTime, ExpiryDateTime;
+	local TDateTime TempUpdateDateTime, ExpiryDateTime, DetectionWindowDateTime;
 	local XComGameState_LWPersistentSquad CurrentSquad;
 
 	History = `XCOMHISTORY;
@@ -266,7 +266,12 @@ function bool Update(XComGameState NewGameState)
 		(bNeedsUpdateDiscovery || (!bDiscovered && class'X2StrategyGameRulesetDataStructures'.static.LessThan(DateTimeNextDiscoveryUpdate, class'XComGameState_GeoscapeEntity'.static.GetCurrentTime()))))
 	{
 		bUpdated = true;
-		if(bNeedsUpdateDiscovery || (ActivityTemplate.DetectionCalc != none && ActivityTemplate.DetectionCalc.CanBeDetected(self, NewGameState)))
+		// At this point, ensure the activity isn't near its expiration date, to avoid spawning missions that may result in crashes.
+		// Activity-completion Date must be beyond the DetectionWindow, otherwise just let it expire silently
+		DetectionWindowDateTime = class'XComGameState_GeoscapeEntity'.static.GetCurrentTime();
+		class'X2StrategyGameRulesetDataStructures'.static.AddHours(DetectionWindowDateTime, class'X2LWAlienActivityTemplate'.default.HOURS_BETWEEN_ALIEN_ACTIVITY_DETECTION_UPDATES / 2);
+		if((bNeedsUpdateDiscovery || (ActivityTemplate.DetectionCalc != none && ActivityTemplate.DetectionCalc.CanBeDetected(self, NewGameState)))
+			&& !class'X2StrategyGameRulesetDataStructures'.static.LessThan(DateTimeActivityComplete, DetectionWindowDateTime))
 		{
 			if (ActivityTemplate.MissionTree[CurrentMissionLevel].AdvanceMissionOnDetection)
 			{
