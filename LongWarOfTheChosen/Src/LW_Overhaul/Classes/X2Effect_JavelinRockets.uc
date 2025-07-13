@@ -26,7 +26,7 @@ static function EventListenerReturn OnGetItemRange(Object EventData, Object Even
 	local XComGameState_Ability		Ability;
 	local name						AbilityName;
 	local XComGameState_Item		SourceWeapon;
-	local X2MultiWeaponTemplate		WeaponTemplate;
+	local X2WeaponTemplate		WeaponTemplate;
 
 	OverrideTuple = XComLWTuple(EventData);
 	if(OverrideTuple == none)
@@ -57,7 +57,7 @@ static function EventListenerReturn OnGetItemRange(Object EventData, Object Even
 
 	//get the source weapon and weapon template
 	SourceWeapon = Ability.GetSourceWeapon();
-	WeaponTemplate = X2MultiWeaponTemplate(SourceWeapon.GetMyTemplate());
+	WeaponTemplate = X2WeaponTemplate(SourceWeapon.GetMyTemplate());
 	
 	if(WeaponTemplate == none)
 		return ELR_NoInterrupt;
