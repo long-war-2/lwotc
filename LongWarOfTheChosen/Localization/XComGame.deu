@@ -5532,9 +5532,9 @@ LocPromotionPopupText="<Bullet/> Deine Fernkampfangriffe erhalten +<Ability:PRED
 [Stiletto_LW X2AbilityTemplate]
 LocFriendlyName="Stiletto"
 LocFlyOverText="Stiletto"
-LocLongDescription="Schüsse mit der Waffe \"<Ability:BOUND_WEAPON_NAME/>\" erhalten +<Ability:STILETTO_ARMOR_PIERCING/> Rüstungspenetration."
-LocHelpText="Schüsse mit der Waffe \"<Ability:BOUND_WEAPON_NAME/>\" erhalten +<Ability:STILETTO_ARMOR_PIERCING/> Rüstungspenetration."
-LocPromotionPopupText="<Bullet/> Schüsse mit der Waffe \"<Ability:BOUND_WEAPON_NAME/>\" erhalten +<Ability:STILETTO_ARMOR_PIERCING/> Rüstungspenetration.<br/>"
+LocLongDescription="Schüsse mit der Waffe \"<Ability:BOUND_WEAPON_NAME/>\" erhalten +<Ability:STILETTO_ARMOR_PIERCING_LW/> Rüstungspenetration."
+LocHelpText="Schüsse mit der Waffe \"<Ability:BOUND_WEAPON_NAME/>\" erhalten +<Ability:STILETTO_ARMOR_PIERCING_LW/> Rüstungspenetration."
+LocPromotionPopupText="<Bullet/> Schüsse mit der Waffe \"<Ability:BOUND_WEAPON_NAME/>\" erhalten +<Ability:STILETTO_ARMOR_PIERCING_LW/> Rüstungspenetration.<br/>"
 
 [Reposition_LW X2AbilityTemplate]
 LocFriendlyName="Neupositionierung"

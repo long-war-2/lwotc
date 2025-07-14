@@ -6547,9 +6547,9 @@ LocPromotionPopupText="<Bullet/> Tus ataques a distancia adquieren <Ability:PRED
 LocFriendlyName="Estilete"
 LocFlyOverText="Estilete"
 ; LWOTC translated
-LocLongDescription= "Los disparos realizados con tu <Ability:BOUND_WEAPON_NAME/> ignoran <Ability:STILETTO_ARMOR_PIERCING/> de armadura."
-LocHelpText="Los disparos realizados con tu <Ability:BOUND_WEAPON_NAME/> perforan <Ability:STILETTO_ARMOR_PIERCING/> de armadura."
-LocPromotionPopupText="<Bullet/> Los disparos realizados con tu <Ability:BOUND_WEAPON_NAME/> perforan <Ability:STILETTO_ARMOR_PIERCING/> de armadura.<br/>"
+LocLongDescription= "Los disparos realizados con tu <Ability:BOUND_WEAPON_NAME/> ignoran <Ability:STILETTO_ARMOR_PIERCING_LW/> de armadura."
+LocHelpText="Los disparos realizados con tu <Ability:BOUND_WEAPON_NAME/> perforan <Ability:STILETTO_ARMOR_PIERCING_LW/> de armadura."
+LocPromotionPopupText="<Bullet/> Los disparos realizados con tu <Ability:BOUND_WEAPON_NAME/> perforan <Ability:STILETTO_ARMOR_PIERCING_LW/> de armadura.<br/>"
 ; End translated
 
 [Reposition_LW X2AbilityTemplate]

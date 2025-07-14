@@ -5917,9 +5917,9 @@ LocPromotionPopupText="<Bullet/> Twoje ataki dystansowe zyskują <Ability:PREDAT
 [Stiletto_LW X2AbilityTemplate]
 LocFriendlyName="Stiletto"
 LocFlyOverText="Stiletto"
-LocLongDescription= "Strzały z <Ability:BOUND_WEAPON_NAME/> przebijają <Ability:STILETTO_ARMOR_PIERCING/> pancerz."
-LocHelpText="Strzały z <Ability:BOUND_WEAPON_NAME/> przebijają <Ability:STILETTO_ARMOR_PIERCING/> pancerz."
-LocPromotionPopupText="<Bullet/> Strzały z <Ability:BOUND_WEAPON_NAME/> przebijają <Ability:STILETTO_ARMOR_PIERCING/> pancerz.<br/>"
+LocLongDescription= "Strzały z <Ability:BOUND_WEAPON_NAME/> przebijają <Ability:STILETTO_ARMOR_PIERCING_LW/> pancerz."
+LocHelpText="Strzały z <Ability:BOUND_WEAPON_NAME/> przebijają <Ability:STILETTO_ARMOR_PIERCING_LW/> pancerz."
+LocPromotionPopupText="<Bullet/> Strzały z <Ability:BOUND_WEAPON_NAME/> przebijają <Ability:STILETTO_ARMOR_PIERCING_LW/> pancerz.<br/>"
 
 [Reposition_LW X2AbilityTemplate]
 LocFriendlyName="Zmień położenie"

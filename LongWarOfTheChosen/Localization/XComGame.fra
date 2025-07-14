@@ -6206,9 +6206,9 @@ LocPromotionPopupText="<Bullet/> Vos attaques à distance gagnent +<Ability:PRED
 LocFriendlyName="Stylet"
 LocFlyOverText="Stylet"
 ; LWOTC translated (3)
-LocLongDescription= "Les tirs effectués avec votre <Ability:BOUND_WEAPON_NAME/> ignorent <Ability:STILETTO_ARMOR_PIERCING/> point(s) d'armure."
-LocHelpText="Les tirs effectués avec votre <Ability:BOUND_WEAPON_NAME/> ignorent <Ability:STILETTO_ARMOR_PIERCING/> point(s) d'armure."
-LocPromotionPopupText="<Bullet/> Les tirs effectués avec votre <Ability:BOUND_WEAPON_NAME/> ignorent <Ability:STILETTO_ARMOR_PIERCING/> point(s) d'armure.<br/>"
+LocLongDescription= "Les tirs effectués avec votre <Ability:BOUND_WEAPON_NAME/> ignorent <Ability:STILETTO_ARMOR_PIERCING_LW/> point(s) d'armure."
+LocHelpText="Les tirs effectués avec votre <Ability:BOUND_WEAPON_NAME/> ignorent <Ability:STILETTO_ARMOR_PIERCING_LW/> point(s) d'armure."
+LocPromotionPopupText="<Bullet/> Les tirs effectués avec votre <Ability:BOUND_WEAPON_NAME/> ignorent <Ability:STILETTO_ARMOR_PIERCING_LW/> point(s) d'armure.<br/>"
 ; End translated (3)
 
 [Reposition_LW X2AbilityTemplate]

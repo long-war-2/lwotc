@@ -6360,9 +6360,9 @@ LocPromotionPopupText="<Bullet/> 对侧翼敌人的远程攻击获得<Ability:PR
 LocFriendlyName="穿孔"
 LocFlyOverText="穿孔"
 ; LWOTC Needs Translation (2)
-LocLongDescription= "使用<Ability:WeaponName/>攻击穿透<Ability:STILETTO_ARMOR_PIERCING/>点护甲。"
-LocHelpText="使用<Ability:WeaponName/>攻击穿透<Ability:STILETTO_ARMOR_PIERCING/>点护甲"
-LocPromotionPopupText="<Bullet/> 使用<Ability:WeaponName/>攻击穿透<Ability:STILETTO_ARMOR_PIERCING/>点护甲<br/>"
+LocLongDescription= "使用<Ability:WeaponName/>攻击穿透<Ability:STILETTO_ARMOR_PIERCING_LW/>点护甲。"
+LocHelpText="使用<Ability:WeaponName/>攻击穿透<Ability:STILETTO_ARMOR_PIERCING_LW/>点护甲"
+LocPromotionPopupText="<Bullet/> 使用<Ability:WeaponName/>攻击穿透<Ability:STILETTO_ARMOR_PIERCING_LW/>点护甲<br/>"
 ; End Translation (2)
 
 [Reposition_LW X2AbilityTemplate]

@@ -3276,9 +3276,9 @@ LocPromotionPopupText="<Bullet/>Выстрелы по врагу получаю�
 [Stiletto_LW X2AbilityTemplate]
 LocFriendlyName="Стилет"
 LocFlyOverText="Стилет"
-LocLongDescription= "Выстрелы из основного оружия пробивают <Ability:STILETTO_ARMOR_PIERCING/> брони."
-LocHelpText="Выстрелы из основного оружия пробивают <Ability:STILETTO_ARMOR_PIERCING/> брони."
-LocPromotionPopupText="<Bullet/>Выстрелы из основного оружия пробивают <Ability:STILETTO_ARMOR_PIERCING/> брони<br/>"
+LocLongDescription= "Выстрелы из основного оружия пробивают <Ability:STILETTO_ARMOR_PIERCING_LW/> брони."
+LocHelpText="Выстрелы из основного оружия пробивают <Ability:STILETTO_ARMOR_PIERCING_LW/> брони."
+LocPromotionPopupText="<Bullet/>Выстрелы из основного оружия пробивают <Ability:STILETTO_ARMOR_PIERCING_LW/> брони<br/>"
 
 [Reposition_LW X2AbilityTemplate]
 LocFriendlyName="Перебежка"

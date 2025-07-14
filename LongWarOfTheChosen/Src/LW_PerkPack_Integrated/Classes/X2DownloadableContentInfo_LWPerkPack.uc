@@ -306,7 +306,7 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'SAVIOR_BONUS_HEAL':
 			OutString = string(class'X2Ability_PerkPackAbilitySet2'.default.SAVIOR_BONUS_HEAL);
 			return true;
-		case 'STILETTO_ARMOR_PIERCING':
+		case 'STILETTO_ARMOR_PIERCING_LW':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.STILETTO_ARMOR_PIERCING);
 			return true;
 		case 'THATS_CLOSE_ENOUGH_TILE_RANGE':

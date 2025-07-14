@@ -6537,9 +6537,9 @@ LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:PREDATOR_AIM_
 LocFriendlyName="Stiletto"
 LocFlyOverText="Stiletto"
 ; LWOTC Needs Translation (3)
-LocLongDescription= "Shots fired with your <Ability:BOUND_WEAPON_NAME/> pierce <Ability:STILETTO_ARMOR_PIERCING/> armor."
-LocHelpText="Shots fired with your <Ability:BOUND_WEAPON_NAME/> pierce <Ability:STILETTO_ARMOR_PIERCING/> armor."
-LocPromotionPopupText="<Bullet/> Shots fired with your <Ability:BOUND_WEAPON_NAME/> pierce <Ability:STILETTO_ARMOR_PIERCING/> armor.<br/>"
+LocLongDescription= "Shots fired with your <Ability:BOUND_WEAPON_NAME/> pierce <Ability:STILETTO_ARMOR_PIERCING_LW/> armor."
+LocHelpText="Shots fired with your <Ability:BOUND_WEAPON_NAME/> pierce <Ability:STILETTO_ARMOR_PIERCING_LW/> armor."
+LocPromotionPopupText="<Bullet/> Shots fired with your <Ability:BOUND_WEAPON_NAME/> pierce <Ability:STILETTO_ARMOR_PIERCING_LW/> armor.<br/>"
 ; End Translation (3)
 
 [Reposition_LW X2AbilityTemplate]
