@@ -53,6 +53,7 @@ var config array<name> PISTOL_ABILITY_WEAPON_CATS;
 var config int PLATED_CRITDEF_BONUS;
 
 var config int COMBAT_PROTOCOL_COOLDOWN;
+var config int CapacitorDischarge_Range;
 
 // Data structure for multi-shot abilities that need patching
 struct MultiShotAbility
@@ -280,6 +281,8 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'Shredder':
 			AddShredPassive(Template);
 			break;
+		case 'CapacitorDischarge':
+			X2AbilityTarget_Cursor(Template.AbilityTargetStyle).FixedAbilityRange = default.CapacitorDischarge_Range;
 		default:
 			break;
 
