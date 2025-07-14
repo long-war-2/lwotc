@@ -50,7 +50,7 @@ BriefSummary="該芯片大幅提高了繞過失血所需的過度殺傷傷害閾
 [IronSkinPCS X2EquipmentTemplate]
 FriendlyName="個人戰鬥晶片：銅皮鐵甲"
 FriendlyNamePlural="個人戰鬥晶片：銅皮鐵甲"
-BriefSummary="受到的近戰傷害減少<Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>點。受到刺客的近戰攻擊時只能獲得67%的效果。"
+BriefSummary="受到的近戰傷害減少<Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>點。"
 
 [SmartMacrophagesPCS X2EquipmentTemplate]
 FriendlyName="個人戰鬥晶片：智能巨噬細胞"
