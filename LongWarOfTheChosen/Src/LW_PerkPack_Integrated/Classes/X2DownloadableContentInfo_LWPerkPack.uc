@@ -252,7 +252,7 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'IMPULSE_CRIT_BONUS':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.IMPULSE_CRIT_BONUS);
 			return true;
-		case 'MAIM_AMMO_COST':
+		case 'MAIM_AMMO_COST_LW':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.MAIM_AMMO_COST);
 			return true;
 		case 'MAIM_COOLDOWN':

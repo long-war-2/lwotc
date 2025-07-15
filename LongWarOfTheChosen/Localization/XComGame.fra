@@ -6101,10 +6101,10 @@ LocPromotionPopupText="<Bullet/> Lorsque la capacité Course et tir est activée
 [Maim_LW X2AbilityTemplate]
 LocFriendlyName="Mutilation"
 LocFlyOverText="Mutilation"
-LocLongDescription="Tir spécial avec votre arme principale qui infliges des dégâts normaux et immobilise la cible jusqu'à la fin de son prochain tour. Consomme <Ability:MAIM_AMMO_COST/> munition(s). Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
-LocHelpText="Tir spécial avec votre arme principale qui infliges des dégâts normaux et immobilise la cible jusqu'à la fin de son prochain tour. Consomme <Ability:MAIM_AMMO_COST/> munition(s). Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+LocLongDescription="Tir spécial avec votre arme principale qui infliges des dégâts normaux et immobilise la cible jusqu'à la fin de son prochain tour. Consomme <Ability:MAIM_AMMO_COST_LW/> munition(s). Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+LocHelpText="Tir spécial avec votre arme principale qui infliges des dégâts normaux et immobilise la cible jusqu'à la fin de son prochain tour. Consomme <Ability:MAIM_AMMO_COST_LW/> munition(s). Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
 ; LWOTC translated (2)
-LocPromotionPopupText="<Bullet/> Tir spécial avec votre arme principale qui infliges des dégâts normaux et immobilise la cible jusqu'à la fin de son prochain tour. Consomme <Ability:MAIM_AMMO_COST/> munition(s). Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Très utile pour isoler une cible lors d'une embuscade.<br/>"
+LocPromotionPopupText="<Bullet/> Tir spécial avec votre arme principale qui infliges des dégâts normaux et immobilise la cible jusqu'à la fin de son prochain tour. Consomme <Ability:MAIM_AMMO_COST_LW/> munition(s). Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Très utile pour isoler une cible lors d'une embuscade.<br/>"
 ; End translated (2)
 
 [Preservation_LW X2AbilityTemplate]

@@ -5448,9 +5448,9 @@ LocPromotionPopupText="<Bullet/> Wird Sturm und Schuss aktiviert, wird die Abkli
 [Maim_LW X2AbilityTemplate]
 LocFriendlyName="Verstümmeln"
 LocFlyOverText="Verstümmeln"
-LocLongDescription="Feuere einen Schuss mit deiner Primärwaffe ab, der das Ziel bis zum Ende der nächsten Runde immobilisiert. Verbraucht <Ability:MAIM_AMMO_COST/> Munitionspunkte. Abklingzeit von <Ability:SelfCooldown_LW/> Runden."
-LocHelpText="Feuere einen Schuss mit deiner Primärwaffe ab, der das Ziel bis zum Ende der nächsten Runde immobilisiert. Verbraucht <Ability:MAIM_AMMO_COST/> Munitionspunkte. Abklingzeit von <Ability:SelfCooldown_LW/> Runden"
-LocPromotionPopupText="<Bullet/> Feuere einen Schuss mit deiner Primärwaffe ab, der das Ziel bis zum Ende seiner nächsten Runde immobilisiert.<br/><Bullet/> Nützlich, um wertvolle oder gefährliche Ziele während eines Hinterhalts zu isolieren.<br/><Bullet/> Verstümmeln verbraucht <Ability:MAIM_AMMO_COST/> Munitionspunkt(e) und hat eine Abklingzeit von <Ability:SelfCooldown_LW/> Runde(n).<br/>"
+LocLongDescription="Feuere einen Schuss mit deiner Primärwaffe ab, der das Ziel bis zum Ende der nächsten Runde immobilisiert. Verbraucht <Ability:MAIM_AMMO_COST_LW/> Munitionspunkte. Abklingzeit von <Ability:SelfCooldown_LW/> Runden."
+LocHelpText="Feuere einen Schuss mit deiner Primärwaffe ab, der das Ziel bis zum Ende der nächsten Runde immobilisiert. Verbraucht <Ability:MAIM_AMMO_COST_LW/> Munitionspunkte. Abklingzeit von <Ability:SelfCooldown_LW/> Runden"
+LocPromotionPopupText="<Bullet/> Feuere einen Schuss mit deiner Primärwaffe ab, der das Ziel bis zum Ende seiner nächsten Runde immobilisiert.<br/><Bullet/> Nützlich, um wertvolle oder gefährliche Ziele während eines Hinterhalts zu isolieren.<br/><Bullet/> Verstümmeln verbraucht <Ability:MAIM_AMMO_COST_LW/> Munitionspunkt(e) und hat eine Abklingzeit von <Ability:SelfCooldown_LW/> Runde(n).<br/>"
 
 [Preservation_LW X2AbilityTemplate]
 LocFriendlyName="Bewahrung"

@@ -6442,10 +6442,10 @@ LocPromotionPopupText="<Bullet/> Cuando se activa Correr y disparar el tiempo de
 [Maim_LW X2AbilityTemplate]
 LocFriendlyName="Mutilar"
 LocFlyOverText="Mutilar"
-LocLongDescription="Dispara una bala especial con tu arma principal que inmoviliza al objetivo hasta el final de su siguiente turno. Utiliza <Ability:MAIM_AMMO_COST/> de munición. Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos."
-LocHelpText="Dispara una bala especial con tu arma principal que inmoviliza al objetivo hasta el final de su siguiente turno. Utiliza <Ability:MAIM_AMMO_COST/> de munición. Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos."
+LocLongDescription="Dispara una bala especial con tu arma principal que inmoviliza al objetivo hasta el final de su siguiente turno. Utiliza <Ability:MAIM_AMMO_COST_LW/> de munición. Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos."
+LocHelpText="Dispara una bala especial con tu arma principal que inmoviliza al objetivo hasta el final de su siguiente turno. Utiliza <Ability:MAIM_AMMO_COST_LW/> de munición. Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos."
 ; LWOTC translated
-LocPromotionPopupText="<Bullet/> Dispara una bala especial con tu arma principal que inmoviliza al objetivo hasta el final de su siguiente turno.<br/><Bullet/> Habilidad apropiada para emplear durante el encuentro con un enemigo de gran nivel.<br/><Bullet/> Utiliza <Ability:MAIM_AMMO_COST/> de munición.<br/><Bullet/> Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos.<br/>"
+LocPromotionPopupText="<Bullet/> Dispara una bala especial con tu arma principal que inmoviliza al objetivo hasta el final de su siguiente turno.<br/><Bullet/> Habilidad apropiada para emplear durante el encuentro con un enemigo de gran nivel.<br/><Bullet/> Utiliza <Ability:MAIM_AMMO_COST_LW/> de munición.<br/><Bullet/> Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos.<br/>"
 ; End translated
 
 [Preservation_LW X2AbilityTemplate]

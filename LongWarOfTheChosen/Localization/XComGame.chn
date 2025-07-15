@@ -6257,9 +6257,9 @@ LocPromotionPopupText="<Bullet/> 当激活奔袭战术后，你的电弧发射�
 [Maim_LW X2AbilityTemplate]
 LocFriendlyName="致残"
 LocFlyOverText="致残"
-LocLongDescription="用你的主武器射击，使目标在下一回合结束前无法移动。消耗<Ability:MAIM_AMMO_COST/>弹药。<Ability:SelfCooldown_LW/>回合冷却。"
-LocHelpText="用你的主武器射击，使目标在下一回合结束前无法移动。消耗<Ability:MAIM_AMMO_COST/>弹药。<Ability:SelfCooldown_LW/>回合冷却。"
-LocPromotionPopupText="<Bullet/> 用你的主武器射击，使目标在下一回合结束前无法移动。<br/><Bullet/> 有助于在埋伏期间隔离高威胁目标。<br/><Bullet/> 消耗<Ability:MAIM_AMMO_COST/>弹药。<br/><Bullet/> 致残有<Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
+LocLongDescription="用你的主武器射击，使目标在下一回合结束前无法移动。消耗<Ability:MAIM_AMMO_COST_LW/>弹药。<Ability:SelfCooldown_LW/>回合冷却。"
+LocHelpText="用你的主武器射击，使目标在下一回合结束前无法移动。消耗<Ability:MAIM_AMMO_COST_LW/>弹药。<Ability:SelfCooldown_LW/>回合冷却。"
+LocPromotionPopupText="<Bullet/> 用你的主武器射击，使目标在下一回合结束前无法移动。<br/><Bullet/> 有助于在埋伏期间隔离高威胁目标。<br/><Bullet/> 消耗<Ability:MAIM_AMMO_COST_LW/>弹药。<br/><Bullet/> 致残有<Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
 
 [Preservation_LW X2AbilityTemplate]
 LocFriendlyName="保持"

@@ -5833,9 +5833,9 @@ LocPromotionPopupText="<Bullet/> Kiedy aktywujesz Strzał w biegu, czas odnowien
 [Maim_LW X2AbilityTemplate]
 LocFriendlyName="Okaleczenie"
 LocFlyOverText="Okaleczenie"
-LocLongDescription="Oddaj strzał ze swojej broni głównej, który unieruchamia cel do końca jego następnej tury. Używa <Ability:MAIM_AMMO_COST/> amunicji . Wymaga <Ability:SelfCooldown_LW/> tur(y) odnowienia."
-LocHelpText="Oddaj strzał ze swojej broni głównej, który unieruchamia cel do końca jego następnej tury. Używa <Ability:MAIM_AMMO_COST/> amunicji . Wymaga <Ability:SelfCooldown_LW/> tur(y) odnowienia."
-LocPromotionPopupText="<Bullet/> Oddaj strzał ze swojej broni podstawowej, który zadaje normalne obrażenia i unieruchamia cel do końca jego następnej tury.<br/><Bullet/> Przydatny do izolowania ważnego celu podczas zasadzki.<br/><Bullet/> Używa <Ability:MAIM_AMMO_COST/> amunicji . Wymaga <Ability:SelfCooldown_LW/> tur(y) odnowienia."
+LocLongDescription="Oddaj strzał ze swojej broni głównej, który unieruchamia cel do końca jego następnej tury. Używa <Ability:MAIM_AMMO_COST_LW/> amunicji . Wymaga <Ability:SelfCooldown_LW/> tur(y) odnowienia."
+LocHelpText="Oddaj strzał ze swojej broni głównej, który unieruchamia cel do końca jego następnej tury. Używa <Ability:MAIM_AMMO_COST_LW/> amunicji . Wymaga <Ability:SelfCooldown_LW/> tur(y) odnowienia."
+LocPromotionPopupText="<Bullet/> Oddaj strzał ze swojej broni podstawowej, który zadaje normalne obrażenia i unieruchamia cel do końca jego następnej tury.<br/><Bullet/> Przydatny do izolowania ważnego celu podczas zasadzki.<br/><Bullet/> Używa <Ability:MAIM_AMMO_COST_LW/> amunicji . Wymaga <Ability:SelfCooldown_LW/> tur(y) odnowienia."
 
 [Preservation_LW X2AbilityTemplate]
 LocFriendlyName="Ochrona"
