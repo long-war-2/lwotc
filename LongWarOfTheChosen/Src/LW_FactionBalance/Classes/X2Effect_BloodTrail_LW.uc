@@ -49,7 +49,7 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 
 	if (ShouldApplyBonuses(EffectState, Target, AbilityState))
 	{
-		DodgeReduction = Min(DodgeReductionBonus, Target.GetCurrentStat(eStat_Dodge));
+		DodgeReduction = clamp(Min(DodgeReductionBonus, Target.GetCurrentStat(eStat_Dodge)), 0, 100);
 
 		ShotInfo.ModType = eHit_Graze;
 		ShotInfo.Reason = FriendlyName;

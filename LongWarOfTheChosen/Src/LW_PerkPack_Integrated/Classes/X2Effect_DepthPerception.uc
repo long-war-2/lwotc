@@ -15,7 +15,7 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
     local ShotModifierInfo ShotInfo1, ShotInfo2;
 	local int DodgeReduction;
 
-    SourceWeapon = AbilityState.GetSourceWeapon();    
+    SourceWeapon = AbilityState.GetSourceWeapon();
     if(SourceWeapon != none)
     {
 		if (Attacker.HasHeightAdvantageOver(Target, true))
@@ -25,7 +25,7 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 			ShotInfo1.Value = default.DP_AIM_BONUS;
             ShotModifiers.AddItem(ShotInfo1);
 
-			DodgeReduction = Min (default.DP_ANTIDODGE_BONUS, Target.GetCurrentStat(eStat_Dodge));
+			DodgeReduction = clamp(Min (default.DP_ANTIDODGE_BONUS, Target.GetCurrentStat(eStat_Dodge)), 0, 100);
 
 			ShotInfo2.ModType = eHit_Graze;
 			ShotInfo2.Reason = FriendlyName;
@@ -40,6 +40,3 @@ defaultproperties
     DuplicateResponse=eDupe_Ignore
     EffectName="DepthPerception"
 }
-
-
-
