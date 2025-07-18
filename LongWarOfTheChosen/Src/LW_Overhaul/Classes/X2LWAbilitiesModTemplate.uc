@@ -1618,6 +1618,7 @@ static function PatchMultiShotFirstShot(X2AbilityTemplate Template)
 		NewEffect.UnitName = GetMultiShotContinueUnitValueName(Template.DataName);
 		NewEffect.NewValueToSet = 1.0f;
 		NewEffect.CleanupType = eCleanup_BeginTurn;
+		NewEffect.bCanBeRedirected = false;
 		NewEffect.bApplyOnMiss = true;
 		Template.AddShooterEffect(NewEffect);
 	}
