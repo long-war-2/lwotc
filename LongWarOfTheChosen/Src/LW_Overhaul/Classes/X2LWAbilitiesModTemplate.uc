@@ -283,6 +283,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'CapacitorDischarge':
 			X2AbilityTarget_Cursor(Template.AbilityTargetStyle).FixedAbilityRange = default.CapacitorDischarge_Range;
+		case 'Sacrifice':
+			AdjustSacrifice(Template);
+			break;
 		default:
 			break;
 
@@ -304,6 +307,24 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 	// Handle multi-shot abilities
 	UpdateMultiShotAbility(Template);
 	UpdateMeleeAbilityForBloodThirst(Template);
+}
+
+static function AdjustSacrifice(X2AbilityTemplate Template)
+{
+	local X2Effect							Effect;
+	local X2Effect_DLC_3SacrificeShield 	SacrificeEffect;
+
+	foreach Template.AbilityMultiTargetEffects (Effect)
+	{
+		SacrificeEffect = X2Effect_DLC_3SacrificeShield(Effect);
+
+		if(SacrificeEffect != none)
+		{
+			SacrificeEffect.DuplicateResponse = eDupe_Refresh;
+			SacrificeEffect.EffectRank = 99; // Make this one win
+			break;
+		}
+	}
 }
 
 function int FieldMedic_BonusWeaponAmmo(XComGameState_Unit UnitState, XComGameState_Item ItemState)
