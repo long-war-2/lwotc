@@ -872,11 +872,10 @@ function XComGameState InterventionAbility_BuildGameState( XComGameStateContext 
 	AbilityContext = XComGameStateContext_Ability(NewGameState.GetContext());
 	AbilityState = XComGameState_Ability(History.GetGameStateForObjectID(AbilityContext.InputContext.AbilityRef.ObjectID, eReturnType_Reference));
 	AbilityTemplate = AbilityState.GetMyTemplate();
-	UnitState = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', AbilityContext.InputContext.SourceObject.ObjectID));
+	UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', AbilityContext.InputContext.SourceObject.ObjectID));
 
 	//Apply the cost of the ability
 	AbilityTemplate.ApplyCost(AbilityContext, AbilityState, UnitState, none, NewGameState);
-	NewGameState.AddStateObject(UnitState);
 
 	//update the mission timer, if there is one
 	UiTimer = XComGameState_UITimer(History.GetSingleGameStateObjectForClass(class 'XComGameState_UITimer', true));
@@ -885,8 +884,7 @@ function XComGameState InterventionAbility_BuildGameState( XComGameStateContext 
 		//This functionality is being added to the SeqAct and kismet separately, so it will update from the XCGS_UITimer
 		//AddToMissionTimerVariable(default.INTERVENTION_EXTRA_TURNS);
 
-		UpdatedUiTimer = XComGameState_UITimer(NewGameState.CreateStateObject(class 'XComGameState_UITimer', UiTimer.ObjectID));
-		NewGameState.AddStateObject(UpdatedUiTimer);
+		UpdatedUiTimer = XComGameState_UITimer(NewGameState.ModifyStateObject(class 'XComGameState_UITimer', UiTimer.ObjectID));
 
 		UpdatedUiTimer.TimerValue += default.INTERVENTION_EXTRA_TURNS;
 		if(UpdatedUiTimer.TimerValue > 3) // the 3 value is hard-coded into the kismet mission maps, so we hard-code it here as well
@@ -1256,15 +1254,13 @@ function XComGameState JammerAbility_BuildGameState( XComGameStateContext Contex
 	AbilityTemplate = AbilityState.GetMyTemplate();
 	AbilityState = XComGameState_Ability(NewGameState.ModifyStateObject(AbilityState.Class, AbilityState.ObjectID));
 
-	UnitState = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', AbilityContext.InputContext.SourceObject.ObjectID));
+	UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', AbilityContext.InputContext.SourceObject.ObjectID));
 	//Apply the cost of the ability
 	AbilityTemplate.ApplyCost(AbilityContext, AbilityState, UnitState, none, NewGameState);
-	NewGameState.AddStateObject(UnitState);
 
 	foreach History.IterateByClassType(class'XComGameState_AIReinforcementSpawner', ReinforcementSpawner)
 	{
-		UpdatedSpawner = XComGameState_AIReinforcementSpawner(NewGamestate.CreateStateObject(class'XComGameState_AIReinforcementSpawner', ReinforcementSpawner.ObjectID));
-		NewGameState.AddStateObject(UpdatedSpawner);
+		UpdatedSpawner = XComGameState_AIReinforcementSpawner(NewGamestate.ModifyStateObject(class'XComGameState_AIReinforcementSpawner', ReinforcementSpawner.ObjectID));
 		UpdatedSpawner.CountDown += 1;
 	}
 

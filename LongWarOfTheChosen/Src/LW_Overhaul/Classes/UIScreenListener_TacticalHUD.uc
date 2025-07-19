@@ -113,9 +113,8 @@ function EventListenerReturn OnTurnBegun(Object EventData, Object EventSource, X
 	{
 		// Decrement the counter if necessary
 		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("UpdateEvacCountdown");
-		EvacState = XComGameState_LWEvacSpawner(NewGameState.CreateStateObject(class'XComGameState_LWEvacSpawner', EvacState.ObjectID));
+		EvacState = XComGameState_LWEvacSpawner(NewGameState.ModifyStateObject(class'XComGameState_LWEvacSpawner', EvacState.ObjectID));
 		EvacState.SetCountdown(EvacState.GetCountdown() - 1);
-		NewGameState.AddStateObject(EvacState);
 		`TACTICALRULES.SubmitGameState(NewGameState);
 
 		// We've hit zero: time to spawn the evac zone!
@@ -162,17 +161,15 @@ function EventListenerReturn OnTileDataChanged(Object EventData, Object EventSou
 		NewPlayerState = class'Utilities_LW'.static.FindPlayer(eTeam_XCom);
 		if (NewPlayerState.GetCooldown('PlaceDelayedEvacZone') > 0)
 		{
-			NewPlayerState = XComGameState_Player(NewGameState.CreateStateObject(class'XComGameState_Player', NewPlayerState.ObjectID));
+			NewPlayerState = XComGameState_Player(NewGameState.ModifyStateObject(class'XComGameState_Player', NewPlayerState.ObjectID));
 			NewPlayerState.SetCooldown('PlaceDelayedEvacZone', 0);
-			NewGameState.AddStateObject(NewPlayerState);
 		}
 
 		// update the evac zone
-		EvacState = XComGameState_LWEvacSpawner(NewGameState.CreateStateObject(class'XComGameState_LWEvacSpawner', EvacState.ObjectID));
+		EvacState = XComGameState_LWEvacSpawner(NewGameState.ModifyStateObject(class'XComGameState_LWEvacSpawner', EvacState.ObjectID));
 		EvacState.ResetCountdown();
 		XComGameStateContext_ChangeContainer(NewGameState.GetContext()).BuildVisualizationFn = EvacState.BuildVisualizationForFlareDestroyed;
 
-		NewGameState.AddStateObject(EvacState);
 		`XEVENTMGR.TriggerEvent('EvacSpawnerDestroyed', EvacState, EvacState);
 		SpecialMissionHUD = `PRES.GetSpecialMissionHUD();
 		SpecialMissionHUD.m_kTurnCounter2.Hide();

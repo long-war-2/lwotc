@@ -46,8 +46,7 @@ function XComGameState_LWPodJob CreateGuardJob(XComGameState NewGameState)
     History = `XCOMHISTORY;
     BattleData = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
 
-    Job = XComGameState_LWPodJob_MoveToLocation(NewGameState.CreateStateObject(class'XComGameState_LWPodJob_MoveToLocation'));
-    NewGameState.AddStateObject(Job);
+    Job = XComGameState_LWPodJob_MoveToLocation(NewGameState.CreateNewStateObject(class'XComGameState_LWPodJob_MoveToLocation'));
     Job.Location = BattleData.MapData.ObjectiveLocation;
     // This job never needs a location update
     return Job;
@@ -63,8 +62,7 @@ function XComGameState_LWPodJob CreateDefendJob(XComGameState NewGameState)
     History = `XCOMHISTORY;
     BattleData = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
 
-    Job = XComGameState_LWPodJob_MoveToLocation(NewGameState.CreateStateObject(class'XComGameState_LWPodJob_MoveToLocation'));
-    NewGameState.AddStateObject(Job);
+    Job = XComGameState_LWPodJob_MoveToLocation(NewGameState.CreateNewStateObject(class'XComGameState_LWPodJob_MoveToLocation'));
     Job.Location = BattleData.MapData.ObjectiveLocation;
     Job.KeepJobAfterReachingDestination = true;
     return Job;
@@ -133,8 +131,7 @@ function XComGameState_LWPodJob CreateInterceptJob(XComGameState NewGameState)
 
     Location = InterceptLocationCallback(none, NewGameState);
 
-    Job = XComGameState_LWPodJob_MoveToLocation(NewGameState.CreateStateObject(class'XComGameState_LWPodJob_MoveToLocation'));
-    NewGameState.AddStateObject(Job);
+    Job = XComGameState_LWPodJob_MoveToLocation(NewGameState.CreateNewStateObject(class'XComGameState_LWPodJob_MoveToLocation'));
     Job.Location = Location;
     return Job;
 }
@@ -157,8 +154,7 @@ function XComGameState_LWPodJob CreateBlockJob(XComGameState NewGameState)
 {
     local XComGameState_LWPodJob_MoveToLocation Job;
 
-    Job = XComGameState_LWPodJob_MoveToLocation(NewGameState.CreateStateObject(class'XComGameState_LWPodJob_MoveToLocation'));
-    NewGameState.AddStateObject(Job);
+    Job = XComGameState_LWPodJob_MoveToLocation(NewGameState.CreateNewStateObject(class'XComGameState_LWPodJob_MoveToLocation'));
     Job.Location = BlockLocationCallback(none, NewGameState);
     return Job;
 }
@@ -190,8 +186,7 @@ function XComGameState_LWPodJob CreateFlankJob(XComGameState NewGameState)
 {
     local XComGameState_LWPodJob_Flank Job;
 
-    Job = XComGameState_LWPodJob_Flank(NewGameState.CreateStateObject(class'XComGameState_LWPodJob_Flank'));
-    NewGameState.AddStateObject(Job);
+    Job = XComGameState_LWPodJob_Flank(NewGameState.CreateNewStateObject(class'XComGameState_LWPodJob_Flank'));
     // Flank class handles location setup and update internally.
     return Job;
 }

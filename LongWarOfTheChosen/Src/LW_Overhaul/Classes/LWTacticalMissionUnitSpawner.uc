@@ -618,9 +618,8 @@ static function GiveEvacAbilityToRebels()
 	{
 		if (Unit.GetMyTemplateName() == 'RebelSoldierProxy' || Unit.GetMyTemplateName() == 'RebelSoldierProxyM2' || Unit.GetMyTemplateName() == 'RebelSoldierProxyM3')
 		{
-			NewUnit = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', Unit.ObjectID));
+			NewUnit = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', Unit.ObjectID));
 			NewUnit.EnableGlobalAbilityForUnit('Evac');
-			NewGameState.AddStateObject(NewUnit);
 		}
 	}
 

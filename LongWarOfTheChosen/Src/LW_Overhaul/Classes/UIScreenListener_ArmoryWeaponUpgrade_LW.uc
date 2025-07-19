@@ -476,13 +476,11 @@ simulated function ConfirmStripWeaponUpgradesCallback(Name eAction)
 		}
 		
 		XComHQ = class'UIUtilities_Strategy'.static.GetXComHQ();
-		XComHQ = XComGameState_HeadquartersXCom(UpgradeScreen.CustomizationState.CreateStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
-		UpgradeScreen.CustomizationState.AddStateObject(XComHQ);
+		XComHQ = XComGameState_HeadquartersXCom(UpgradeScreen.CustomizationState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
 		UpgradeTemplates = ItemState.GetMyWeaponUpgradeTemplates();
 		for (k = 0; k < UpgradeTemplates.length; k++)
 		{
 			UpgradeItemState = UpgradeTemplates[k].CreateInstanceFromTemplate(UpgradeScreen.CustomizationState);
-			UpgradeScreen.CustomizationState.AddStateObject(UpgradeItemState);
 			XComHQ.PutItemInInventory(UpgradeScreen.CustomizationState, UpgradeItemState);
 		}
 

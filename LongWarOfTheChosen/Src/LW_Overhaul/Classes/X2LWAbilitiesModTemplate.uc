@@ -1668,6 +1668,7 @@ static function PatchMultiShotFinalShot(X2AbilityTemplate Template, name FirstSh
 		NewEffect = new class'X2Effect_ClearUnitValue';
 		NewEffect.UnitValueName = UnitValueName;
 		NewEffect.bApplyOnMiss = true;
+		NewEffect.bCanBeRedirected = false;
 		Template.AddShooterEffect(NewEffect);
 	}
 }

@@ -492,9 +492,8 @@ simulated public function OnLaunchClicked(UIButton button)
 	// update the XComHQ mission ref first, so that it is available when setting the squad
 	XComHQ = `XCOMHQ;
 	UpdateState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Update XComHQ for current mission being started");
-	XComHQ = XComGameState_HeadquartersXCom(UpdateState.CreateStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
+	XComHQ = XComGameState_HeadquartersXCom(UpdateState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
 	XComHQ.MissionRef = InfiltratingSquad.CurrentMission;
-	UpdateState.AddStateObject(XComHQ);
 	`GAMERULES.SubmitGameState(UpdateState);
 
 	InfiltratingSquad.SetSquadCrew();
@@ -549,8 +548,7 @@ simulated function ConfirmBoostInfiltrationCallback(Name Action)
 		History = `XCOMHISTORY;
 		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Adding Boost Infiltration");
 		Squad = GetInfiltratingSquad();
-		UpdatedSquad = XComGameState_LWPersistentSquad(NewGameState.CreateStateObject(class'XComGameState_LWPersistentSquad', Squad.ObjectID));
-		NewGameState.AddStateObject(UpdatedSquad);
+		UpdatedSquad = XComGameState_LWPersistentSquad(NewGameState.ModifyStateObject(class'XComGameState_LWPersistentSquad', Squad.ObjectID));
 		UpdatedSquad.bHasBoostedInfiltration = true;
 		UpdatedSquad.SpendBoostResource(NewGameState);
 
@@ -630,9 +628,8 @@ simulated public function OnAbortClicked(UIButton button)
 		XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
 
 		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Set Squad As On Board");
-		SkyrangerState = XComGameState_Skyranger(NewGameState.CreateStateObject(class'XComGameState_Skyranger', XComHQ.SkyrangerRef.ObjectID));
+		SkyrangerState = XComGameState_Skyranger(NewGameState.ModifyStateObject(class'XComGameState_Skyranger', XComHQ.SkyrangerRef.ObjectID));
 		SkyrangerState.SquadOnBoard = true;
-		NewGameState.AddStateObject(SkyrangerState);
 		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
 
 		if (Mission.Region == XComHQ.Region || Mission.Region.ObjectID == 0)
@@ -644,8 +641,7 @@ simulated public function OnAbortClicked(UIButton button)
 		else
 		{
 			NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Store cross continent mission reference");
-			XComHQ = XComGameState_HeadquartersXCom(NewGameState.CreateStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
-			NewGameState.AddStateObject(XComHQ);
+			XComHQ = XComGameState_HeadquartersXCom(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
 			XComHQ.CrossContinentMission = MissionRef;
 			`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
 
@@ -660,8 +656,7 @@ simulated public function OnAbortClicked(UIButton button)
 			if (Squad != none)
 			{
 				NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Mark Squad Abort Status");
-				Squad = XComGameState_LWPersistentSquad(NewGameState.CreateStateObject(class'XComGameState_LWPersistentSquad', Squad.ObjectID));
-				NewGameState.AddStateObject(Squad);
+				Squad = XComGameState_LWPersistentSquad(NewGameState.ModifyStateObject(class'XComGameState_LWPersistentSquad', Squad.ObjectID));
 				Squad.bCannotCancelAbort = true;
 				`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
 			}

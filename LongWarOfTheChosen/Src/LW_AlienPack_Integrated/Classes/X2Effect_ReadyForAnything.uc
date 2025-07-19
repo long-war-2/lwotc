@@ -42,7 +42,6 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 				if (PrimaryWeapon.Ammo > 1)
 				{
 					SourceUnit.ReserveActionPoints.AddItem(class'X2CharacterTemplateManager'.default.OverwatchReserveActionPoint);
-					NewGameState.AddStateObject(SourceUnit);
 					`XEVENTMGR.TriggerEvent('ReadyForAnythingTriggered', AbilityState, SourceUnit, NewGameState);
 				}
 			}

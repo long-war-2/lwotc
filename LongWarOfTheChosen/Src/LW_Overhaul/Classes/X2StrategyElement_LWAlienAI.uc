@@ -59,7 +59,6 @@ static function AddFortressDoom()
 	{
 		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("AIAction: AddFortressDoom");
 		AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
-		NewGameState.AddStateObject(AlienHQ);
 	
 
 	OnFortressDoomTimerComplete(AlienHQ, NewGameState);

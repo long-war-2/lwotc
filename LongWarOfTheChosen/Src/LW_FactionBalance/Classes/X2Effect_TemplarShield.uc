@@ -42,9 +42,8 @@ simulated function OnEffectRemoved(const out EffectAppliedData ApplyEffectParame
 	if (ShieldHPDamage > 0 && PreTemplarShieldHP > 0 && ShieldHPDamage < FullyShieldedHP)
 	{
 		NewShieldHP = Clamp(PreTemplarShieldHP + TemplarGrantedShieldHP - ShieldHPDamage, 0, PreTemplarShieldHP);
-		UnitState = XComGameState_Unit(NewGameState.CreateStateObject(UnitState.Class, UnitState.ObjectID));
+		UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(UnitState.Class, UnitState.ObjectID));
 		UnitState.SetCurrentStat(estat_ShieldHP, NewShieldHP);
-		NewGameState.AddStateObject(UnitState);
 	}
 }
 

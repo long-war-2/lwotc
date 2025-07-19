@@ -418,12 +418,10 @@ static final function GCandValidationChecks()
 				if(UnitState.bRemoved)
 				{
 					`LOG("LWOfficerUtilities: Owning Unit was removed, Removing and unlinking OfficerState");
-					UpdatedUnit = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', UnitState.ObjectID));
-					UpdatedOfficer = XComGameState_Unit_LWOfficer(NewGameState.CreateStateObject(class'XComGameState_Unit_LWOfficer', OfficerState.ObjectID));
+					UpdatedUnit = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
+					UpdatedOfficer = XComGameState_Unit_LWOfficer(NewGameState.ModifyStateObject(class'XComGameState_Unit_LWOfficer', OfficerState.ObjectID));
 					NewGameState.RemoveStateObject(UpdatedOfficer.ObjectID);
 					UpdatedUnit.RemoveComponentObject(UpdatedOfficer);
-					NewGameState.AddStateObject(UpdatedOfficer);
-					NewGameState.AddStateObject(UpdatedUnit);
 				}
 			}
 		}

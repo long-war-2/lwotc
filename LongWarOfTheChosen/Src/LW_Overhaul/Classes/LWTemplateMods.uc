@@ -497,13 +497,11 @@ function GenerateRandomSoldierReward(XComGameState_Reward RewardState, XComGameS
 	//Use the character pool's creation method to retrieve a unit
 	NewUnitState = `CHARACTERPOOLMGR.CreateCharacter(NewGameState, `XPROFILESETTINGS.Data.m_eCharPoolUsage, RewardState.GetMyTemplate().rewardObjectTemplateName, nmCountry);
 	NewUnitState.RandomizeStats();
-	NewGameState.AddStateObject(NewUnitState);
 
 	ResistanceHQ = XComGameState_HeadquartersResistance(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersResistance'));
 	if(!NewGameState.GetContext().IsStartState())
 	{
-		ResistanceHQ = XComGameState_HeadquartersResistance(NewGameState.CreateStateObject(class'XComGameState_HeadquartersResistance', ResistanceHQ.ObjectID));
-		NewGameState.AddStateObject(ResistanceHQ);
+		ResistanceHQ = XComGameState_HeadquartersResistance(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersResistance', ResistanceHQ.ObjectID));
 	}
 	
 	// Pick a random class
@@ -2053,9 +2051,8 @@ static function XComGameState SkullOuch_BuildGameState (XComGameStateContext con
 
 	NewGameState = class'X2Ability'.static.TypicalAbility_BuildGameState(context);
 	AbilityContext = XComGameStateContext_Ability(NewGameState.GetContext()); // or should it be just context
-	UnitState = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', AbilityContext.InputContext.SourceObject.ObjectID));
+	UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', AbilityContext.InputContext.SourceObject.ObjectID));
 	UnitState.Abilities.RemoveItem(AbilityContext.InputContext.AbilityRef);
-	NewGameState.AddStateObject(UnitState);
 	return NewGameState;
 }
 

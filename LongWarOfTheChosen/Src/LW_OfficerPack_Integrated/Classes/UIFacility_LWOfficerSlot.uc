@@ -78,8 +78,7 @@ simulated function OnOfficerTrainSelected()
 	if (!Settings.bSuppressFirstTimeNarrative && XComHQ.SeenClassMovies.Find(FlagName) == INDEX_NONE)
 	{
 		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState ("Update Officer Training Warning Flag");
-		XComHQ = XComGameState_HeadquartersXCom (NewGameState.CreateStateObject (class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
-		NewGameState.AddStateObject (XComHQ);
+		XComHQ = XComGameState_HeadquartersXCom (NewGameState.ModifyStateObject (class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
 		XComHQ.SeenClassMovies.AddItem(FlagName);
 		`GAMERULES.SubmitGameState (NewGameState);
 

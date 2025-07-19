@@ -670,6 +670,8 @@ static function AddDoomToFortress(XComGameState NewGameState, int DoomToAdd, opt
 	local int DoomDiff;
 
 	AlienHQ = GetAlienHQ(NewGameState);
+
+	`LWTrace("AddDoomToFortress called with DoomToAdd" @DoomToAdd);
 	if (AlienHQ == none)
 		return;
 
@@ -761,8 +763,7 @@ static function AddDoomToFacility(XComGameState_LWAlienActivity ActivityState, X
 		MissionState = XComGameState_MissionSite(NewGameState.GetGameStateForObjectID(ActivityState.CurrentMissionRef.ObjectID));
 		if (MissionState == none)
 		{
-			MissionState = XComGameState_MissionSite(NewGameState.CreateStateObject(class'XComGameState_MissionSite', ActivityState.CurrentMissionRef.ObjectID));
-			NewGameState.AddStateObject(MissionState);
+			MissionState = XComGameState_MissionSite(NewGameState.ModifyStateObject(class'XComGameState_MissionSite', ActivityState.CurrentMissionRef.ObjectID));
 		}
 	}
 	if(MissionState != none)
@@ -808,8 +809,7 @@ static function XComGameState_HeadquartersAlien GetAlienHQ(XComGameState NewGame
 	UpdateAlienHQ = XComGameState_HeadquartersAlien(NewGameState.GetGameStateForObjectID(AlienHQ.ObjectID));
 	if(UpdateAlienHQ == none)
 	{
-		UpdateAlienHQ = XComGameState_HeadquartersAlien(NewGameState.CreateStateObject(AlienHQ.Class, AlienHQ.ObjectID));
-		NewGameState.AddStateObject(UpdateAlienHQ);
+		UpdateAlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(AlienHQ.Class, AlienHQ.ObjectID));
 	}
 	return UpdateAlienHQ;
 }

@@ -1005,7 +1005,7 @@ function SaveOutpost()
 	History = `XCOMHISTORY;
 	Outpost = XComGameState_LWOutpost(History.GetGameStateForObjectID(OutpostRef.ObjectID));
 	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Saving Outpost Changes");
-	Outpost = XComGameState_LWOutpost(NewGameState.CreateStateObject(class'XComGameState_LWOutpost', Outpost.ObjectID));
+	Outpost = XComGameState_LWOutpost(NewGameState.ModifyStateObject(class'XComGameState_LWOutpost', Outpost.ObjectID));
 
 	for (I = 0; I < CachedRebels.Length; ++I)
 	{
@@ -1016,7 +1016,6 @@ function SaveOutpost()
 	// This should be redundant because liaison changes are saved immediately.
 	SaveLiaison();
 
-	NewGameState.AddStateObject(Outpost);
 	`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
 	`HQPRES.m_kAvengerHUD.UpdateResources();
 }
