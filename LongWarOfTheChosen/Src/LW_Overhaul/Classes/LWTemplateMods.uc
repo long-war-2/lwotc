@@ -1165,6 +1165,12 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			{
 				X2Effect_RemoveEffects(Template.AbilityTargetEffects[k]).MinStatContestResult = 25;
 			}
+			
+			// Make Schism ignore weapon damage in case people give the psi amp / gauntlet weapon damage
+			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_ApplyWeaponDamage'))
+			{
+				X2Effect_ApplyWeaponDamage(Template.AbilityTargetEffects[k]).bIgnoreBaseDamage = true;
+			}
 	
 			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_Panicked'))
 			{
