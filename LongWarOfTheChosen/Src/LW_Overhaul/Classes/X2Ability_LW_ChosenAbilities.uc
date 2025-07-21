@@ -1029,8 +1029,14 @@ static function X2AbilityTemplate CreateTrackingShotLW()
 
 	Template.AbilityTargetStyle = default.SimpleSingleTarget;
 	
+	// No Grapple
 	UnitValueCheck = new class'X2Condition_UnitValue';
 	UnitValueCheck.AddCheckValue('GrappledThisTurn', 1, eCheck_LessThan);
+	Template.AbilityShooterConditions.AddItem(UnitValueCheck);
+
+	// No moving
+	UnitValueCheck = new class'X2Condition_UnitValue';
+	UnitValueCheck.AddCheckValue('MovesThisTurn', 1, eCheck_LessThan);
 	Template.AbilityShooterConditions.AddItem(UnitValueCheck);
 	
 	Template.AbilityTargetConditions.AddItem(default.FlankedCondition);
