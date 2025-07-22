@@ -59,7 +59,7 @@ event OnInit(UIScreen Screen)
 static function UpdateAIBehaviors()
 {
 	local X2AIBTBehaviorTree BehaviorTree;
-	local LWBehaviorTreeNodeReplacement OverrideTree, CurrentReplacementTree;
+	local LWBehaviorTreeNodeReplacement CurrentReplacementTree;
 	local name BehaviorName;
 	local BehaviorTreeNode NewBehavior;
 	local array<LWBehaviorTreeNodeReplacement> NewOverrideBehaviors;
@@ -83,14 +83,6 @@ static function UpdateAIBehaviors()
 
 	// New handling for Override Behaviors:
 
-	foreach default.OverrideBehaviors(OverrideTree)
-	{
-		idx = BehaviorTree.Behaviors.Find('BehaviorName', OverrideTree.UpdatedBehavior.BehaviorName);
-		if (idx >= 0)
-		{
-			BehaviorTree.Behaviors.Remove(idx, 1);
-		}
-	}
 
 	foreach default.OverrideBehaviors (CurrentReplacementTree)
 	{
@@ -102,11 +94,25 @@ static function UpdateAIBehaviors()
 		{
 			continue;
 		}
+
+		idx = INDEX_NONE;
+
+		idx = BehaviorTree.Behaviors.Find('BehaviorName', BehaviorName);
+		if (idx >= 0)
+		{
+			BehaviorTree.Behaviors.Remove(idx, 1);
+			`LWTrace("Removed behavior:" @BehaviorName);
+		}
 		
 		idx = INDEX_NONE;
 
 		for(j = 0; j < NewOverrideBehaviors.Length; j++)
 		{
+			if(!class'Helpers_LW'.static.IsModInstalled(NewOverrideBehaviors[j].ModName))
+			{
+				continue;
+			}
+			
 			if(NewOverrideBehaviors[j].UpdatedBehavior.BehaviorName == BehaviorName)
 			{
 				idx = j;
@@ -127,6 +133,7 @@ static function UpdateAIBehaviors()
 	foreach NewOverrideBehaviors (CurrentReplacementTree)
 	{
 		BehaviorTree.Behaviors.AddItem(CurrentReplacementTree.UpdatedBehavior);
+		`LWTrace("Added NewOverrideBehavior" @CurrentReplacementTree.UpdatedBehavior.BehaviorName @ "from mod" @CurrentReplacementTree.ModName);
 	}
 
 
