@@ -83,6 +83,7 @@ static function UpdateAIBehaviors()
 
 	// New handling for Override Behaviors:
 
+	NewOverrideBehaviors.Length = 0;
 
 	foreach default.OverrideBehaviors (CurrentReplacementTree)
 	{
