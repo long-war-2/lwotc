@@ -4231,7 +4231,7 @@ static function X2AbilityTemplate AddIronSkinAbility()
 	IronSkinEffect.WhitelistedAbilities.AddItem('PartingSilk');
 	IronSkinEffect.bApplyToStandardMelee=true;
 	IronSkinEffect.bApplyToMovingMelee=true;
-	IronSkinEffect.FlatDR=-default.IRON_SKIN_MELEE_DAMAGE_REDUCTION;
+	IronSkinEffect.FlatDR=default.IRON_SKIN_MELEE_DAMAGE_REDUCTION;
 	//IronSkinEffect.Assassin_Dmg_Mod=default.IRON_SKIN_ASSASSIN_MOD;
 	Template.AddTargetEffect(IronSkinEffect);
 
