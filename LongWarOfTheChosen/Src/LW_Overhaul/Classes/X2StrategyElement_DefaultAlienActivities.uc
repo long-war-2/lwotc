@@ -722,6 +722,12 @@ static function RemoveOrAdjustExistingActivitiesFromRegion(XComGameState_WorldRe
 			ActivitiesToDelete.AddItem(ActivityState);
 		else
 			InfiltratedActivities.AddItem(ActivityState);
+
+		// If the activity has a dark event being prepped, cancel it.
+		if(ActivityState.DarkEvent.ObjectID > 0)
+		{
+			CancelActivityDarkEvent(ActivityState, NewGameState);
+		}
 	}
 
 	foreach ActivitiesToDelete(ActivityState)
