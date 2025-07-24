@@ -232,6 +232,7 @@ var config int SERIAL_CRIT_MALUS_PER_KILL;
 var config int SERIAL_AIM_MALUS_PER_KILL;
 var config bool SERIAL_DAMAGE_FALLOFF;
 var config int FUSION_SWORD_FIRE_CHANCE;
+var config int BEAM_AXE_FIRE_CHANCE;
 var config int KILLZONE_CONE_LENGTH;
 var config int KILLZONE_CONE_WIDTH;
 var config int BLUESCREEN_DISORIENT_CHANCE;
@@ -2910,7 +2911,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 				break;
 		}
 
-		if (WeaponTemplate.DataName == 'Sword_BM' || WeaponTemplate.DataName == 'WristBlade_BM' || WeaponTemplate.DataName =='WristBladeLeft_BM' || WeaponTemplate.DataName == 'AlienHunterAxe_Beam' || WeaponTemplate.DataName == 'AlienHunterAxeThrown_Beam')
+		if (WeaponTemplate.DataName == 'Sword_BM' || WeaponTemplate.DataName == 'WristBlade_BM' || WeaponTemplate.DataName =='WristBladeLeft_BM')
 		{
 			for (k = 0; k < WeaponTemplate.BonusWeaponEffects.length; k++)
 			{
@@ -2921,6 +2922,22 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 					{
 						`LWTrace("!!!!! UPDATING FUSION SWORD CHANCE !!!!");
 						Effect.ApplyChance = default.FUSION_SWORD_FIRE_CHANCE;
+					}
+				}
+			}
+		}
+
+		if (WeaponTemplate.DataName == 'AlienHunterAxe_BM' || WeaponTemplate.DataName == 'AlienHunterAxeThrown_BM')
+		{
+			for (k = 0; k < WeaponTemplate.BonusWeaponEffects.length; k++)
+			{
+				Effect = X2Effect_Persistent(WeaponTemplate.BonusWeaponEffects[k]);
+				if (Effect != none)
+				{
+					if (Effect.EffectName == class'X2StatusEffects'.default.BurningName)
+					{
+						`LWTrace("!!!!! UPDATING FUSION SWORD CHANCE !!!!");
+						Effect.ApplyChance = default.BEAM_AXE_FIRE_CHANCE;
 					}
 				}
 			}
