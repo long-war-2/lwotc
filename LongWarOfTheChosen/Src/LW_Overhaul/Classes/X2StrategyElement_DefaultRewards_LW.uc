@@ -343,8 +343,14 @@ function GiveRadioRelayReward(XComGameState NewGameState, XComGameState_Reward R
     local XComGameStateHistory History;
     local XComGameState_WorldRegion Region;
 
-	History = `XCOMHISTORY;
-    Region = XComGameState_WorldRegion(History.GetGameStateForObjectID(AuxRef.ObjectID));
+	Region = XComGameState_WorldRegion(NewGameState.GetGameStateForObjectID(AuxRef.ObjectID));
+
+	if(Region == NONE)
+	{
+		History = `XCOMHISTORY;
+    	Region = XComGameState_WorldRegion(History.GetGameStateForObjectID(AuxRef.ObjectID));
+	}
+
 	Region.SetResistanceLevel(NewGameState, eResLevel_Outpost);
 }
 
