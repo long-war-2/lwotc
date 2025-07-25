@@ -24,7 +24,12 @@ function WeaponDamageValue GetBonusEffectDamageValue(XComGameState_Ability Abili
 	//  if under the effect of Obliterator, halve the damage from that
 	if (SourceUnit.IsUnitAffectedByEffectName('Obliterator_LW'))
 	{
-		DamageValue.Damage = DamageValue.Damage - 1;
+		DamageValue.Damage = DamageValue.Damage + 1;
+	}
+
+	if (SourceUnit.IsUnitAffectedByEffectName('Obliterator_LW_PrepForWar'))
+	{
+		DamageValue.Damage = DamageValue.Damage + 1;
 	}
 	
 	return DamageValue;

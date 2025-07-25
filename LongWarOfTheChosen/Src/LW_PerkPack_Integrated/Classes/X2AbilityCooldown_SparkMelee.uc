@@ -19,11 +19,16 @@ simulated function int GetNumTurns(XComGameState_Ability kAbility, XComGameState
 
 	if (XComGameState_Unit(AffectState).HasAbilityFromAnySource('PoweredSparkLightArmorStats_LW') ||XComGameState_Unit(AffectState).HasAbilityFromAnySource('PlatedSparkLightArmorStats_LW') )
 	{
-		// If yes, set the ability's cooldown to three minus one (two, for people who failed kindergarten)
+		Cooldown = Cooldown - 1;
+	}
+
+	// This is now Prep For War
+	if (XComGameState_Unit(AffectState).HasAbilityFromAnySource('BonusBombard_LW'))
+	{
 		Cooldown = Cooldown - 1;
 	}
 
 
-	// If no, set the ability's cooldown to three
-	return Cooldown;
+	// return the final result (and make sure we don't go below 0)
+	return max(Cooldown, 0);
 }

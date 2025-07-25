@@ -7100,10 +7100,6 @@ LocLongDescription="Infliges +<Ability:HERO_SLAYER_DMG/>% de daño contra las cl
 LocFlyOverText="Cazador de caza mayor"
 
 [BonusBombard_LW X2AbilityTemplate]
-LocFriendlyName="Reservas extendidas"
-LocLongDescription="Dispondrás de una ampliación en el armamento equipado de armas pesadas y Bombardear."
-LocHelpText="Dispondrás de una ampliación en el armamento equipado de armas pesadas y Bombardear. El uso extra del BIT solo está garantizado si se escogió la habilidad Bombardear."
-LocPromotionPopupText="Dispondrás de una ampliación en el armamento equipado de armas pesadas y Bombardear. El uso extra del BIT solo está garantizado si se escogió la habilidad Bombardear."
 
 [Impenetrable_LW X2AbilityTemplate]
 LocFriendlyName="Impenetrable"

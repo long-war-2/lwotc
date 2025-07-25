@@ -147,6 +147,8 @@ var config array<name> LICK_YOUR_WOUNDS_ALLOWED_ABILITIES;
 var config int ANATOMY_CRIT;
 var config int ANATOMY_ARMOR_PIERCE;
 
+var config int PREPFORWAR_MELEE_DMG;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -4370,10 +4372,14 @@ static function X2AbilityTemplate HeroSlayer_LW()
 	return Template;
 }
 
+// This is now Prep For War
 static function X2AbilityTemplate CreateBonusChargesAbility()
 {
 	local X2AbilityTemplate Template;
 	local XMBEffect_AddItemCharges Effect;
+	local X2Effect_MeleeBonusDamage            DamageEffect;
+	local X2Effect_PersistentStatChange                HitModEffect;
+	local X2Condition_AbilityProperty			HasAbilityCondition;
 
 	Template = Passive('BonusBombard_LW', "img:///UILibrary_XPerkIconPack.UIPerk_rocket_bullet_x2", true);
 
@@ -4385,6 +4391,30 @@ static function X2AbilityTemplate CreateBonusChargesAbility()
 	// Bonus Bombard charges is handled in OPTC of Bombard.
 
 	AddSecondaryEffect(Template, Effect);
+
+	// Melee buff
+	HasAbilityCondition = new class'X2Condition_AbilityProperty';
+	HasAbilityCondition.OwnerHasSoldierAbilities.AddItem('Obliterator_LW');
+
+	DamageEffect = new class'X2Effect_MeleeBonusDamage';
+	DamageEffect.BonusDamageFlat = default.PREPFORWAR_MELEE_DMG;
+	DamageEffect.BuildPersistentEffect(1, true, false, false);
+	DamageEffect.EffectName = 'Obliterator_LW_PrepForWar';
+	DamageEffect.TargetConditions.AddItem(HasAbilityCondition);
+
+	// Shooting tree buff:
+
+	HasAbilityCondition = new class'X2Condition_AbilityProperty';
+	HasAbilityCondition.OwnerHasSoldierAbilities.AddItem('HoloAACombo_LW');
+
+	HitModEffect = new class'X2Effect_PersistentStatChange';
+	HitModEffect.AddPersistentStatChange(estat_Offense, 10);
+	HitModEffect.BuildPersistentEffect(1, true, false, false);
+	HitModEffect.EffectName = 'PrepForWar_LWAim';
+	HitModEffect.TargetConditions.AddItem(HasAbilityCondition);
+	Template.AddTargetEffect(HitModEffect);
+
+	Template.AddTargetEffect(DamageEffect);
 
 	return Template;
 }

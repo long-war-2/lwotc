@@ -123,6 +123,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(PurePassive('Shellshock_LW', "img:///UILibrary_LWOTC.UIPerk_shellshock"));
 	Templates.AddItem(PurePassive('Shockwave_LW', "img:///UILibrary_LWOTC.UIPerk_shockwave"));
 	Templates.AddItem(ChainingJolt());
+	Templates.AddItem(SalvoRainmaker());
 
 	return Templates;
 }
@@ -1903,8 +1904,8 @@ function bool GetConcussiveStrikeDamagePreview(XComGameState_Ability AbilityStat
 	local XComGameState_Unit AbilityOwner;
 	local StateObjectReference BladeMasterRef;
 	local XComGameState_Ability BladeMasterAbility;
-	local StateObjectReference AssaultServosRef;
-	local XComGameState_Ability AssaultServosAbility;
+	local StateObjectReference AssaultServosRef, PrepForWarRef;
+	local XComGameState_Ability AssaultServosAbility, PrepForWarAbility;
 	local XComGameStateHistory History;
 
 	AbilityState.NormalDamagePreview(TargetRef, MinDamagePreview, MaxDamagePreview, AllowsShield);
@@ -1933,6 +1934,16 @@ function bool GetConcussiveStrikeDamagePreview(XComGameState_Ability AbilityStat
 		MinDamagePreview.Damage += default.OBLITERATOR_DMG;
 		MaxDamagePreview.Damage += default.OBLITERATOR_DMG;
 	}
+
+	PrepForWarRef = AbilityOwner.FindAbility('BonusBombard_LW');
+	PrepForWarAbility = XComGameState_Ability(History.GetGameStateForObjectID(PrepForWarRef.ObjectID));
+
+	if(AssaultServosAbility != none && PrepForWarAbility != none)
+	{
+		MinDamagePreview.Damage += class'X2Ability_XMBPerkAbilitySet'.default.PREPFORWAR_MELEE_DMG;
+		MaxDamagePreview.Damage += class'X2Ability_XMBPerkAbilitySet'.default.PREPFORWAR_MELEE_DMG;
+	}
+
 
 	//`LWTrace("MinDamagePreview after Assault Servos check:" @MinDamagePreview.Damage);
 	//`LWTrace("MaxDamagePreview after Assault Servos check:" @MaxDamagePreview.Damage);
@@ -1966,7 +1977,7 @@ static function X2AbilityTemplate Obliterator()
 	Template.AddTargetEffect(DamageEffect);
 
 	HitModEffect = new class'X2Effect_ToHitModifier';
-	HitModEffect.AddEffectHitModifier(eHit_Success, 10, Template.LocFriendlyName, , true, false, true, true);
+	HitModEffect.AddEffectHitModifier(eHit_Success, 20, Template.LocFriendlyName, , true, false, true, true);
 	HitModEffect.BuildPersistentEffect(1, true, false, false);
 	HitModEffect.EffectName = 'ObliteratorAim_LW';
 	Template.AddTargetEffect(HitModEffect);
@@ -3064,4 +3075,16 @@ simulated function ChainingJolt_BuildVisualization(XComGameState VisualizeGameSt
 		TargetCameraAction.CameraTag = 'TargetFocusCamera';
 		TargetCameraAction.bRemoveTaggedCamera = true;
 	}
+}
+
+
+static function X2AbilityTemplate SalvoRainmaker()
+{
+	local X2AbilityTemplate                 Template;
+
+	Template = PurePassive('SalvoRainmaker_LW', "img:///UILibrary_DLC3Images.UIPerk_spark_rainmaker", false, 'eAbilitySource_Perk', false);
+	Template.AdditionalAbilities.AddItem('Rainmaker');
+	Template.AdditionalAbilities.AddItem('Salvo');
+
+	return Template;
 }

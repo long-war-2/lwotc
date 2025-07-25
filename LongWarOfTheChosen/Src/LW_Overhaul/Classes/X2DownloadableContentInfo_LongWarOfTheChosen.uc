@@ -3000,6 +3000,22 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 			}
 		}
 	}
+	
+	// Grant Avenger to SPARKs if they have Prep For War + Enhanced Targeting Systems.
+
+	if(UnitState.HasAbilityFromAnySource('BonusBombard_LW') && UnitState.HasAbilityFromAnySource('HoloAACombo_LW'))
+	{
+		AbilityTemplate = AbilityTemplateMan.FindAbilityTemplate('Avenger_LW');
+
+		if(AbilityTemplate != none)
+		{
+			Data = EmptyData;
+			Data.TemplateName = 'Avenger_LW';
+			Data.Template = AbilityTemplate;
+			Data.SourceWeaponRef = UnitState.GetPrimaryWeapon().GetReference();
+			SetupData.AddItem(Data);  
+		}
+	}
 
 	// New Rocket stuff
 

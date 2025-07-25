@@ -6900,10 +6900,6 @@ LocLongDescription="你对英雄职业造成+<Ability:HERO_SLAYER_DMG/>%伤害�
 LocFlyOverText="英雄杀手"
 
 [BonusBombard_LW X2AbilityTemplate]
-LocFriendlyName="重装储备"
-LocLongDescription="获得额外的重型武器和密集轰炸使用次数。"
-LocHelpText="获得额外的重型武器和密集轰炸使用次数，仅在学习了密集轰炸的情况下才会额外获得一次密集轰炸的使用机会。"
-LocPromotionPopupText="获得额外的重型武器和密集轰炸使用次数，仅在学习了密集轰炸的情况下才会额外获得一次密集轰炸的使用机会。"
 
 [BloodBath_LW X2AbilityTemplate]
 LocFriendlyName="鲜血浴"
