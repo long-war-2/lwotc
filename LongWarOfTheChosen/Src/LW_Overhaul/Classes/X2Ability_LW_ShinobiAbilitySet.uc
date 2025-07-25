@@ -17,6 +17,7 @@ var config int TARGET_DAMAGE_CHANCE_MULTIPLIER;
 var config int COUP_DE_GRACE_2_HIT_BONUS;
 var config int COUP_DE_GRACE_2_CRIT_BONUS;
 var config int COUP_DE_GRACE_2_DAMAGE_BONUS;
+var config float COUP_DE_GRACE_2_DISORIENTED_MODIFIER;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -35,32 +36,33 @@ static function array<X2DataTemplate> CreateTemplates()
 
 static function X2AbilityTemplate AddCoupDeGrace2Ability()
 {
-	local X2AbilityTemplate                 Template;
-	local X2Effect_CoupdeGrace2				CoupDeGraceEffect;
+    local X2AbilityTemplate                 Template;
+    local X2Effect_CoupdeGrace2             CoupDeGraceEffect;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'CoupDeGrace2');
-	Template.AbilitySourceName = 'eAbilitySource_Perk';
-	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityCoupDeGrace";
-	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
-	Template.Hostility = eHostility_Neutral;
-	Template.AbilityToHitCalc = default.DeadEye;
-	Template.AbilityTargetStyle = default.SelfTarget;
-	Template.bDisplayInUITooltip = true;
+    `CREATE_X2ABILITY_TEMPLATE(Template, 'CoupDeGrace2');
+    Template.AbilitySourceName = 'eAbilitySource_Perk';
+    Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityCoupDeGrace";
+    Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+    Template.Hostility = eHostility_Neutral;
+    Template.AbilityToHitCalc = default.DeadEye;
+    Template.AbilityTargetStyle = default.SelfTarget;
+    Template.bDisplayInUITooltip = true;
     Template.bDisplayInUITacticalText = true;
-	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+    Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 
-	CoupDeGraceEffect = new class'X2Effect_CoupDeGrace2';
-	CoupDeGraceEffect.To_Hit_Modifier=default.COUP_DE_GRACE_2_HIT_BONUS;
-	CoupDeGraceEffect.Crit_Modifier=default.COUP_DE_GRACE_2_CRIT_BONUS;
-	CoupDeGraceEffect.Damage_Bonus=default.COUP_DE_GRACE_2_DAMAGE_BONUS;
-	CoupDeGraceEffect.Half_for_Disoriented=true;
-	CoupDeGraceEffect.BuildPersistentEffect (1, true, false);
-	CoupDeGraceEffect.SetDisplayInfo (ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
-	Template.AddTargetEffect(CoupDeGraceEffect);
+    CoupDeGraceEffect = new class'X2Effect_CoupDeGrace2';
+    CoupDeGraceEffect.AimBonus = default.COUP_DE_GRACE_2_HIT_BONUS;
+    CoupDeGraceEffect.CritBonus = default.COUP_DE_GRACE_2_CRIT_BONUS;
+    CoupDeGraceEffect.DamageBonus = default.COUP_DE_GRACE_2_DAMAGE_BONUS;
+    CoupDeGraceEffect.fDisorientedModifier = default.COUP_DE_GRACE_2_DISORIENTED_MODIFIER;
+    
+    CoupDeGraceEffect.BuildPersistentEffect(1, true, false);
+    CoupDeGraceEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+    Template.AddTargetEffect(CoupDeGraceEffect);
 
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+    Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
-	return Template;
+    return Template;
 }
 
 //based on Slash_LW and Kubikuri
