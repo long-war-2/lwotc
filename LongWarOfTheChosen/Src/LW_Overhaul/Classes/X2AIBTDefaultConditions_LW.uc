@@ -22,7 +22,6 @@ function bt_status LWNoVisibleEnemiesToTeam()
     local XComGameState_AIGroup AIGroup;
     local array<XComGameState_Unit> GroupUnitStates;
     local array<int> UnitIDs;
-    local XGPlayer AIPlayer;
     local int VisibleEnemiesCount;
 
     // Get the unit we're interested in

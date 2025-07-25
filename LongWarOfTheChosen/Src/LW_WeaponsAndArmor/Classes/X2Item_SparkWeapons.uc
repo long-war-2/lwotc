@@ -287,6 +287,8 @@ static function X2DataTemplate CreatePlatedSparkHeavyArmor()
 	Template.TradingPostValue = 20;
 	Template.PointsToComplete = 0;
 	Template.Abilities.AddItem('PlatedSparkHeavyArmorStats_LW');
+	Template.Abilities.AddItem('SPARK_Heavy_Plated_Plating_Ability');
+	Template.Abilities.AddItem('GreaterPadding_MG');
 	Template.ArmorTechCat = 'plated';
 	Template.ArmorCat = 'spark';
 	Template.Tier = 1;
@@ -319,6 +321,7 @@ static function X2DataTemplate CreatePlatedSparkLightArmor()
 	Template.TradingPostValue = 20;
 	Template.PointsToComplete = 0;
 	Template.Abilities.AddItem('PlatedSparkLightArmorStats_LW');
+	Template.Abilities.AddItem('SPARK_Light_Plated_Plating_Ability');
 	Template.Abilities.AddItem('Dedication_LW');
 	Template.ArmorTechCat = 'plated';
 	Template.ArmorCat = 'spark';
@@ -351,6 +354,8 @@ static function X2DataTemplate CreatePoweredSparkHeavyArmor()
 	Template.TradingPostValue = 60;
 	Template.PointsToComplete = 0;
 	Template.Abilities.AddItem('PoweredSparkHeavyArmorStats_LW');
+	Template.Abilities.AddItem('SPARK_Heavy_Powered_Plating_Ability');
+	Template.Abilities.AddItem('GreaterPadding_BM');
 	Template.ArmorTechCat = 'powered';
 	Template.ArmorCat = 'spark';
 	Template.Tier = 3;
@@ -383,6 +388,7 @@ static function X2DataTemplate CreatePoweredSparkLightArmor()
 	Template.TradingPostValue = 60;
 	Template.PointsToComplete = 0;
 	Template.Abilities.AddItem('PoweredSparkLightArmorStats_LW');
+	Template.Abilities.AddItem('SPARK_Light_Powered_Plating_Ability');
 	Template.Abilities.AddItem('Dedication_LW');
 	Template.ArmorTechCat = 'powered';
 	Template.ArmorCat = 'spark';

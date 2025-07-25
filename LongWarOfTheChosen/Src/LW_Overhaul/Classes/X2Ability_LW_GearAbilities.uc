@@ -33,6 +33,10 @@ var config int CHITIN_PLATING_HP;
 var config int SPARK_KEVLAR_PLATING_HP;
 var config int SPARK_PLATED_PLATING_HP;
 var config int SPARK_POWERED_PLATING_HP;
+var config int SPARK_PLATED_HEAVY_PLATING_HP;
+var config int SPARK_PLATED_LIGHT_PLATING_HP;
+var config int SPARK_POWERED_HEAVY_PLATING_HP;
+var config int SPARK_POWERED_LIGHT_PLATING_HP;
 
 var config int PLATED_BIT_CRIT_REDUCE;
 var config int POWERED_BIT_CRIT_REDUCE;
@@ -85,6 +89,12 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateAblativeHPAbility('SPARK_Kevlar_Plating_Ability', default.SPARK_KEVLAR_PLATING_HP));
 	Templates.AddItem(CreateAblativeHPAbility('SPARK_Plated_Plating_Ability', default.SPARK_PLATED_PLATING_HP));
 	Templates.AddItem(CreateAblativeHPAbility('SPARK_Powered_Plating_Ability', default.SPARK_POWERED_PLATING_HP));
+	Templates.AddItem(CreateAblativeHPAbility('SPARK_Heavy_Plated_Plating_Ability', default.SPARK_PLATED_HEAVY_PLATING_HP));
+	Templates.AddItem(CreateAblativeHPAbility('SPARK_Light_Plated_Plating_Ability', default.SPARK_PLATED_LIGHT_PLATING_HP));
+	Templates.AddItem(CreateAblativeHPAbility('SPARK_Heavy_Powered_Plating_Ability', default.SPARK_POWERED_HEAVY_PLATING_HP));
+	Templates.AddItem(CreateAblativeHPAbility('SPARK_Light_Powered_Plating_Ability', default.SPARK_POWERED_LIGHT_PLATING_HP));
+
+
 
 	Templates.AddItem(CreateBonusDodgeAbility('Plated_BIT_Bonus_Dodge',default.PLATED_BIT_DODGE_BONUS));
 	Templates.AddItem(CreateBonusDodgeAbility('Powered_BIT_Bonus_Dodge',default.POWERED_BIT_DODGE_BONUS));

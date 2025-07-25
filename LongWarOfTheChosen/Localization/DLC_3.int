@@ -1,21 +1,33 @@
 ; Spark armor localization here
 
 [PlatedSparkHeavyArmor_LW X2SparkArmorTemplate_DLC_3]
-FriendlyName="Plated Heavy SPARK Armor"
-BriefSummary="A modification of our Plated SPARK Armor, this variation sacrifices mobility for improved durability and firepower, featuring an Ammo slot."
-TacticalText="<Bullet/> Provides increased armor and hit points, at the expense of mobility and defense.<br/><Bullet/> Grants the unit an Ammo slot."
+FriendlyName="Shielded Armor Frame"
+BriefSummary="A modification of our Plated SPARK Armor, this variation sacrifices mobility for improved durability, featuring heavier plating and additional reactive armor to negate incoming damage."
+TacticalText="<Bullet/> Provides increased armor and hit points, at the expense of mobility and defense. Also reduces wound recovery times by 2 HP."
 
 [PlatedSparkLightArmor_LW X2SparkArmorTemplate_DLC_3]
-FriendlyName="Plated Light SPARK Armor"
-BriefSummary="A modification of our Plated SPARK Armor, this variation sacrifices durability for improved mobility and grants the Dedication ability."
-TacticalText="<Bullet/> Provides increased mobility and defense, at the expense of armor and hit points. Grants the Dedication ability."
+FriendlyName="Enhanced Mobility Frame"
+BriefSummary="A modification of our Plated SPARK Armor, this variation sacrifices durability for improved mobility and additional arm control capacitors, granting the Dedication ability and allowing the SPARK to use its Kinetic Strike ability more often."
+TacticalText="<Bullet/> Provides increased mobility and defense, at the expense of armor and hit points. Grants the Dedication ability and decreases the cooldown of the Kinetic Strike ability by 1 turn."
 
 [PoweredSparkHeavyArmor_LW X2SparkArmorTemplate_DLC_3]
-FriendlyName="Powered Heavy SPARK Armor"
-BriefSummary="A modification of our Powered SPARK Armor, this variation sacrifices mobility for improved durability and firepower, featuring an Ammo slot."
-TacticalText="<Bullet/> Provides increased armor and hit points, at the expense of mobility and defense.<Bullet/> Grants the unit an Ammo slot."
+FriendlyName="Anodized Shielded Chassis"
+BriefSummary="A modification of our Powered SPARK Armor, this variation sacrifices mobility for improved durability, featuring heavier plating and additional reactive armor to negate incoming damage."
+TacticalText="<Bullet/> Provides increased armor and hit points, at the expense of mobility and defense. Also reduces wound recovery times by 4 HP."
 
 [PoweredSparkLightArmor_LW X2SparkArmorTemplate_DLC_3]
-FriendlyName="Powered Light SPARK Armor"
-BriefSummary="A modification of our Powered SPARK Armor, this variation sacrifices durability for improved mobility and grants the Dedication ability."
-TacticalText="<Bullet/> Provides increased mobility and defense, at the expense of armor and hit points. Grants the Dedication ability."
+FriendlyName="Upgraded Mobility chassis"
+BriefSummary="A modification of our Powered SPARK Armor, this variation sacrifices durability for improved mobility and additional arm control capacitors, granting the Dedication ability and allowing the SPARK to use its Kinetic Strike ability more often."
+TacticalText="<Bullet/> Provides increased mobility and defense, at the expense of armor and hit points. Grants the Dedication ability and decreases the cooldown of the Kinetic Strike ability by 1 turn."
+
+[PlatedSparkArmor X2SparkArmorTemplate_DLC_3]
+FriendlyName="Reinforced Frame"
+FriendlyNamePlural="Reinforced Frames"
+BriefSummary="Additional reinforcement to weaknesses identified during XCOM field deployments should further improve SPARK unit survivability and combat effectiveness, allowing the SPARK to equip Ammo items."
+TacticalText="<Bullet/> By reinforcing the SPARK's traditional armor plating, they are able to withstand additional attacks. Also grants the SPARK an Ammo slot."
+
+[PoweredSparkArmor X2SparkArmorTemplate_DLC_3]
+FriendlyName="Anodized Chassis"
+FriendlyNamePlural="Anodized Chassis"
+BriefSummary="The anodizing process provides the already-extensive SPARK armor systems with an additional protective layer creating an even more resilient robotic unit while maintaining the additional capacity for exotic ammunition from the Reinforced Frame."
+TacticalText="<Bullet/> The Anodized Chassis fully encloses the SPARK in a highly resilient shell, offering them the best protection on the battlefield. Also grants the SPARK an Ammo slot."

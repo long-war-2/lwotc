@@ -3171,22 +3171,33 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 
 				case 'SparkArmor':
 					ArmorTemplate.Abilities.AddItem('SPARK_Kevlar_Plating_Ability');
+					ArmorTemplate.SetUIStatMarkup(class'X2Ability_LW_GearAbilities'.default.AblativeHPLabel, eStat_ShieldHP, class'X2Ability_LW_GearAbilities'.default.SPARK_KEVLAR_PLATING_HP);
 					break;
 				case 'PlatedSparkArmor':
 					ArmorTemplate.Abilities.AddItem('SPARK_Plated_Plating_Ability');
 					ArmorTemplate.Abilities.AddItem('SPARK_Plated_Armor_Def');
+					//ArmorTemplate.Abilities.AddItem('GreaterPadding_MG');
 					ArmorTemplate.SetUIStatMarkup(class'XLocalizedData'.default.DefenseLabel, eStat_Defense, class'X2Ability_LW_GearAbilities'.default.SPARK_PLATED_ARMOR_DEF);
+					ArmorTemplate.SetUIStatMarkup(class'X2Ability_LW_GearAbilities'.default.AblativeHPLabel, eStat_ShieldHP, class'X2Ability_LW_GearAbilities'.default.SPARK_PLATED_PLATING_HP);
 					break;
 				case 'PoweredSparkArmor':
 					ArmorTemplate.Abilities.AddItem('SPARK_Powered_Plating_Ability');
 					ArmorTemplate.Abilities.AddItem('SPARK_Powered_Armor_Def');
+					//ArmorTemplate.Abilities.AddItem('GreaterPadding_BM');
 					ArmorTemplate.SetUIStatMarkup(class'XLocalizedData'.default.DefenseLabel, eStat_Defense, class'X2Ability_LW_GearAbilities'.default.SPARK_POWERED_ARMOR_DEF);
+					ArmorTemplate.SetUIStatMarkup(class'X2Ability_LW_GearAbilities'.default.AblativeHPLabel, eStat_ShieldHP, class'X2Ability_LW_GearAbilities'.default.SPARK_POWERED_PLATING_HP);
 					break;
-
 				case 'PlatedSparkHeavyArmor_LW':
+					ArmorTemplate.SetUIStatMarkup(class'X2Ability_LW_GearAbilities'.default.AblativeHPLabel, eStat_ShieldHP, class'X2Ability_LW_GearAbilities'.default.SPARK_PLATED_HEAVY_PLATING_HP);
+					break;
 				case 'PlatedSparkLightArmor_LW':
+					ArmorTemplate.SetUIStatMarkup(class'X2Ability_LW_GearAbilities'.default.AblativeHPLabel, eStat_ShieldHP, class'X2Ability_LW_GearAbilities'.default.SPARK_PLATED_LIGHT_PLATING_HP);
+					break;
 				case 'PoweredSparkHeavyArmor_LW':
+					ArmorTemplate.SetUIStatMarkup(class'X2Ability_LW_GearAbilities'.default.AblativeHPLabel, eStat_ShieldHP, class'X2Ability_LW_GearAbilities'.default.SPARK_POWERED_HEAVY_PLATING_HP);
+					break;
 				case 'PoweredSparkLightArmor_LW':
+					ArmorTemplate.SetUIStatMarkup(class'X2Ability_LW_GearAbilities'.default.AblativeHPLabel, eStat_ShieldHP, class'X2Ability_LW_GearAbilities'.default.SPARK_POWERED_LIGHT_PLATING_HP);
 					break;
 
 				default:
