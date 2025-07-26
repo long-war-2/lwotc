@@ -3292,6 +3292,11 @@ DisplayName="醫務室"
 CompletedSummary="在不受傷的情況下完成多次戰術任務後，士兵現在有機會從負面特質中恢復過來。\n新員工槽可用-提高士兵的治癒率\n新員工槽可用-移除所有負面特徵"
 Summary="可以在醫務室配備一名科學家，以減少我們的士兵從受傷中恢復所需的時間。可以在這裡安置士兵，以消除戰鬥中獲得的負面特徵。活力模塊升級允許在任何一次戰鬥部署期間暫時無視士兵的健康狀況。"
 
+[Laboratory X2FacilityTemplate]
+DisplayName="實驗室"
+CompletedSummary="新員工槽可用 - 減少研究時間"
+Summary="科學家可以被分配到實驗室為泰根博士提供額外協助，這會進一步減少所有研究項目的時間。"
+
 [OfficerTrainingSchool X2FacilityTemplate]
 DisplayName="游擊戰術學校"
 CompletedSummary="新的戰術和小隊升級已經可以購買了！ \n新員工槽可用 - 訓練新兵成為指定兵種"
@@ -4382,10 +4387,10 @@ SummaryText="外星人在反抗軍中找到了一名間諜，使得待定的報�
 PreMissionText="使得報復行動更難以監測。"
 
 [DarkEvent_MinorBreakthrough X2DarkEventTemplate]
-PreMissionText="為化身計劃增加<XGParam:StrValue0/!Quantity/>格進度"
+PreMissionText="為化身計劃增加<XGParam:StrValue0/!Quantity/>進度"
 
 [DarkEvent_MajorBreakthrough X2DarkEventTemplate]
-PreMissionText="為化身計劃增加<XGParam:StrValue0/!Quantity/>格進度"
+PreMissionText="為化身計劃增加<XGParam:StrValue0/!Quantity/>進度"
 
 [DarkEvent_HavenInfiltration X2DarkEventTemplate]
 DisplayName="避難所滲透者"
@@ -7581,9 +7586,9 @@ arrMPMapFriendlyNames[10]="下水道"
 
 [Overdrive X2AbilityTemplate]
 LocFriendlyName="極限超載"
-LocLongDescription="本回合獲得3個行動點，使用該技能不會結束回合。多次標準射擊會受到少量後座力懲罰。"
-LocHelpText="本回合獲得3個行動點，使用該技能不會結束回合。多次標準射擊會受到少量後座力懲罰。"
-LocPromotionPopupText="<Bullet/>當「超載」啟動時，每次標準射擊後都會附加<Ability:Overdrive_RecoilPenalty/>%瞄準的後座力懲罰。<br/><Bullet/>超載啟動無需行動點，但有<Ability:SelfCooldown_LW/>回合的冷卻時間。<br/>"
+LocLongDescription="本回合獲得1個額外行動點，並且所有行動不再結束回合。注意未習得自適應瞄準前多次標準射擊會獲得少量的后座力減益。"
+LocHelpText="本回合獲得1個額外行動點，並且所有行動不再結束回合。注意未習得自適應瞄準前多次標準射擊會獲得少量的后座力減益。"
+LocPromotionPopupText="<Bullet/>當過載激活時，每次標準射擊後都會附加<Ability:Overdrive_RecoilPenalty/>%命中的后座力減益。<br/><Bullet/>過載激活無需行動點，但有<Ability:SelfCooldown_LW/>回合冷卻。<br/>"
 
 [Bulwark X2AbilityTemplate]
 LocFriendlyName="壁壘"
@@ -7772,3 +7777,6 @@ LocFriendlyName="傳送撤離"
 LocLongDescription="當受到傷害、被束縛或被虛空導管限制時，化身可以傳送到一個新位置。"
 LocHelpText="當受到傷害、被束縛或被虛空導管限制時，化身可以傳送到一個新位置。"
 LocFlyOverText="傳送撤離"
+
+[UICovertActions]
+CovertActions_WarningAmbush="警告！\n該任務有遭伏擊的風險。我們應該確保士兵們攜帶了相應的裝備。"

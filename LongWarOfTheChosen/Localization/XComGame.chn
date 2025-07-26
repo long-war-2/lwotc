@@ -3301,6 +3301,11 @@ DisplayName="医务室"
 CompletedSummary="在不受伤的情况下完成多次战术任务后，士兵现在有机会从负面特质中恢复过来。\n新员工槽可用-提高士兵的治愈率\n新员工槽可用-移除所有负面特征"
 Summary="可以在医务室配备一名科学家，以减少我们的士兵从受伤中恢复所需的时间。可以在这里安置士兵，以消除战斗中获得的负面特征。活力模块升级允许在任何一次战斗部署期间暂时无视士兵的健康状况。"
 
+[Laboratory X2FacilityTemplate]
+DisplayName="实验室"
+CompletedSummary="新员工槽可用 - 减少研究时间"
+Summary="科学家可以被分配到实验室为泰根博士提供额外协助，这会进一步减少所有研究项目的时间。"
+
 [OfficerTrainingSchool X2FacilityTemplate]
 DisplayName="游击战术学校"
 CompletedSummary="新的战术和小队升级已经可以购买了！ \n新员工槽可用 - 训练新兵成为指定兵种"
@@ -3525,7 +3530,7 @@ DisplayName="炼化超铀核心"
 Summary="这些极其珍贵的设备里面有为许多外星人的关键科技提供动力的微融合反应。我们可以用它们来做很多事，但你可以选择让我的团队把它拆解来获得8个可以用在研究和建造上的超铀水晶，"
 CodeName="麦高芬"
 LongDescription="超铀核心是一种奇妙的硬件，是一种可以用在武器、动力护甲和多种外星器械上的模块化的微融合反应堆。它的核心由超铀水晶组成，对我们来说有许多用途。理查德·泰根。"
-UnlockedDescription="从超铀核心中回收：<XGParam:StrValue0/!Quantity/>超铀核心"
+UnlockedDescription="从超铀核心中回收：<XGParam:StrValue0/!Quantity/>超铀水晶"
 
 [RenderSectoidCorpse X2TechTemplate]
 DisplayName="炼化灰人尸体"
@@ -4393,10 +4398,10 @@ SummaryText="外星人在反抗军中找到了一名间谍，使得待定的报�
 PreMissionText="使得报复行动更难以监测。"
 
 [DarkEvent_MinorBreakthrough X2DarkEventTemplate]
-PreMissionText="为化身计划增加<XGParam:StrValue0/!Quantity/>格进度"
+PreMissionText="为化身计划增加<XGParam:StrValue0/!Quantity/>进度"
 
 [DarkEvent_MajorBreakthrough X2DarkEventTemplate]
-PreMissionText="为化身计划增加<XGParam:StrValue0/!Quantity/>格进度"
+PreMissionText="为化身计划增加<XGParam:StrValue0/!Quantity/>进度"
 
 [DarkEvent_HavenInfiltration X2DarkEventTemplate]
 DisplayName="避难所渗透者"
@@ -7596,8 +7601,8 @@ arrMPMapFriendlyNames[10]="下水道"
 
 [Overdrive X2AbilityTemplate]
 LocFriendlyName="极限超载"
-LocLongDescription="本回合获得3个行动点数，使用该能力不会结束回合。多次标准射击会获得少量的后座力减益。"
-LocHelpText="本回合获得3个行动点数，使用该能力不会结束回合。多次标准射击会获得少量的后座力减益。"
+LocLongDescription="本回合获得1个额外行动点，并且所有行动不再结束回合。注意未习得自适应瞄准前多次标准射击会获得少量的后座力减益。"
+LocHelpText="本回合获得1个额外行动点，并且所有行动不再结束回合。注意未习得自适应瞄准前多次标准射击会获得少量的后座力减益。"
 LocPromotionPopupText="<Bullet/>当过载激活时，每次标准射击后都会附加<Ability:Overdrive_RecoilPenalty/>%命中的后座力减益。<br/><Bullet/>过载激活无需行动点，但有<Ability:SelfCooldown_LW/>回合冷却。<br/>"
 
 [Bulwark X2AbilityTemplate]
@@ -7787,3 +7792,6 @@ LocFriendlyName="传送撤离"
 LocLongDescription="当受到伤害、被束缚或被虚空导管限制时，化身可以传送到一个新位置。"
 LocHelpText="当受到伤害、被束缚或被虚空导管限制时，化身可以传送到一个新位置。"
 LocFlyOverText="传送撤离"
+
+[UICovertActions]
+CovertActions_WarningAmbush="警告！\n该任务有遭伏击的风险。我们应该确保士兵们携带了相应的装备。"

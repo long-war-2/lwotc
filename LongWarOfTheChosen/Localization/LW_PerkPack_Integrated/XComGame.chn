@@ -807,7 +807,7 @@ LocFriendlyName="爆炸挥发"
 LocLongDescription="榴弹的范围效果提升1格。"
 LocHelpText="榴弹将覆盖更巨大的区域。"
 LocFlyOverText="爆炸挥发"
-LocPromotionPopupText="<Bullet/> 榴弹会在扩大的效果范围内造成常规和环境的伤害，并在扩大的效果范围内施加额外的效果。"
+LocPromotionPopupText="<Bullet/> 榴弹会在更大的范围内造成常规伤害和环境伤害，也会在更大的范围内施加额外的效果（中毒、燃烧、冰冻等）。"
 
 [XComGame.Salvo X2AbilityTemplate]
 [Salvo X2AbilityTemplate]
