@@ -5,7 +5,7 @@ CampaignStartBody="LWOTC是对XCOM 2 WOTC的一次彻底检修，使这次战役
 
 [X2EventListener_Tutorial]
 DroneSightedTitle="新敌人: 无人机"
-DroneSightedBody="变种人无人机是坚固的机器人侦察兵，拥有较大的侦测范围和控制性武器。它们通常单独巡逻，可以出现在建筑物内和屋顶上。"
+DroneSightedBody="变种人无人机是坚固的机器人侦察兵，拥有控制性武器和较大的侦测范围。它们通常单独巡逻，可以出现在建筑物内和屋顶上。"
 RainbowTrooperSightedTitle="新敌人: 变种人步兵"
 RainbowTrooperSightedBody="变种人现在除了基本的士兵外，还部署了多种步兵单位：<ul><li>哨兵（蓝色）专攻监视守望</li><li>炮手（绿色）操作具有压制能力的高伤害加农炮</li><li>工兵（红色）使用榴弹发射器控制人群并造成伤害</li><li>火箭兵（橘色）发射高精度火箭</li></ul>"
 HavenHighlightTitle="检查避难所"
@@ -13,7 +13,7 @@ HavenHighlightBody="避难所对你的战役至关重要，因为它们被用来
 FirstMissionDiscoveredTitle="发现第一个任务"
 FirstMissionDiscoveredBody="你已经侦测到你的第一个任务！下一步是分配一个小队进行渗透潜入。<br/><br/>大多数任务都有一个到期时间，而渗透潜入需要时间。通过安排更多的反抗军从事情报工作，可以更好地发现任务，让你有更高的概率侦测出到期时间充足的任务。在避难所使用复仇者号进行扫描，相当于额外增加4名反抗军的情报产出。"
 FirstRetaliationTitle="变种人报复"
-FirstRetaliationBody="变种人正在报复！这些是你不应该忽略的快速反应任务。<br/><br/>这是一次全面的报复，如果被忽视或丢失，则会摧毁避难所，以及针对具体工作的报复，如果忽视这些报复，从事这项工作的反抗军将会被杀死。你的避难所顾问会和一些反抗军一起执行任务。"
+FirstRetaliationBody="变种人正在发起报复！这些是你不应该忽视的快速反应任务。<br/><br/>报复有两种，一种是全面报复，如果被忽略或失败，则会摧毁避难所；另一种是针对特定工作的小报复，如果忽略这类报复，从事这项工作的反抗军将会被杀死。你的避难所顾问和一些反抗军将会出现在任务中。"
 CommandersQuartersEnteredTitle="LWOTC帮助"
 CommandersQuartersEnteredBody="LWOTC添加了一些条目到XCOM档案中，以更详细地解释其一些核心概念，例如潜入和避难所管理。<br/><br/>还可以通过反抗军管理菜单从一个界面查看所有避难所。"
 
