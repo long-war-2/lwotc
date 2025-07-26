@@ -30,7 +30,7 @@ ActivityObjectives[0]="解放2：营救一名叛逃者"
 [ProtectRegion X2LWAlienActivityTemplate]
 ActivityName="ProtectRegion3Activity"
 ActivityObjectives[0]="解放3：阻击变种人行动"
-ActivityObjectives[1]="解放4：摧毁网络塔"
+ActivityObjectives[1]="解放4：突袭网络塔"
 ActivityObjectives[2]="解放5：突袭变种人基地"
 
 +MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="我们得知有变种人的装置在干扰反抗军通讯网络。我们必须摧毁它。", MissionIndex=0)
@@ -286,7 +286,7 @@ m_strHelp="帮助"
 
 [X2Ability_LW_GearAbilities]
 strWeight="小型物品重量"
-AblativeHPLabel="额外HP"
+AblativeHPLabel="护盾"
 
 [X2Ability_LW_TechnicalAbilitySet]
 strMaxScatter="\n最大散布（格）："
@@ -746,6 +746,12 @@ m_strChosenLoot="(<XGParam:IntValue0/>) <XGParam:StrValue0/!ItemName/> 击杀天
 strMessage_Title = "Long War Of The Chosen"
 strMessage_Header = "Long War Of The Chosen现已更新！
 strMessage_Body = "1.2.0版本现已更新，内含许多新的功能和改进，包括:<ul><li>全面重制SPARK，并重新设计了榴弹兵、专家以及技术兵的技能树。</li><li>所有职业的XCOM随机技能调整，并且稍微降低了它们的技能点数消耗。</li><li>在小队选择界面和大地图上重做了渗透潜入界面，并在小队选择界面中新增了访问地区顾问的按钮。</li><li>新增两种新任务类型: 正面对决天选者和安保中心解救VIP。</li><li>对天选者进行了更新，包括减少破坏行动，重新平衡知识机制，并调整了“天选者复仇战”任务的平衡性。</li><li>灵能兵技能的前后置关系调整，新增手枪技能行和XCOM随机技能。</li><li>大量bug修复，便利程度提升，必要的平衡调整等更多改动。</li></ul>更多详情，请查看Steam更新说明中的Google文档链接，或访问LWoTC Discord（作为中文玩家，你可以加入QQ群909123879参与讨论）! </br>注意: 某些更改对正在进行的战役并不完全兼容，虽然游戏仍然可以继续，但平衡性可能会受到影响，例如“天选者知识机制”的更改。如果需要，建议您开始新的战役，或者切换到创意工坊中的1.1.0存档版本来完成当前的战役。"
+strDismiss_Button = "好的"
+
+[UISL_Shell_BetaPatchNotes]
+strMessage_Title = "Long War Of The Chosen"
+strMessage_Header = "Beta版本最新改动: "
+strMessage_Body = "<ul><li>SPARK单位调整第二轮：技能树修改、护甲升级调整、护盾回归，但SPARK单位受伤时无法再出战。此次调整目标是丰富构筑方式、降低新兵阶段的初始战斗力，并削弱纯SPARK小队的效果，但不会让它们变成负担。</li></ul>"
 strDismiss_Button = "好的"
 
 [UISL_PullAdvisors]

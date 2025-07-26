@@ -1,12 +1,33 @@
 ; Spark armor localization here
 
 [PlatedSparkHeavyArmor_LW X2SparkArmorTemplate_DLC_3]
-
+FriendlyName="重型SPARK骨架"
+BriefSummary="这是对我们的SPARK加固骨架的改装版本，牺牲机动性以换取更强的耐久度，采用更厚的装甲板并增加了反应装甲以抵消部分伤害。"
+TacticalText="<Bullet/> 提供更高的护甲和生命值，但牺牲了机动性和防御。同时将受伤恢复时间缩短2HP。"
 
 [PlatedSparkLightArmor_LW X2SparkArmorTemplate_DLC_3]
-
+FriendlyName="轻型SPARK骨架"
+BriefSummary="这是对我们的SPARK加固骨架的改装版本，牺牲耐久性以提升机动性，并增加了手臂控制电容器，授予「奉献精神」，并能更频繁地使用「动能打击」。"
+TacticalText="<Bullet/> 提供更高的机动性和防御，但牺牲了护甲和生命值。授予「奉献精神」，并使「动能打击」的冷却时间减少1回合。"
 
 [PoweredSparkHeavyArmor_LW X2SparkArmorTemplate_DLC_3]
-
+FriendlyName="重型SPARK机身"
+BriefSummary="这是对我们的SPARK阳极氧化机身的改装版本，牺牲机动性以换取更强的耐久度，采用更厚的装甲板并增加了反应装甲以抵消部分伤害。"
+TacticalText="<Bullet/> 提供更高的护甲和生命值，但牺牲了机动性和防御。同时将受伤恢复时间缩短4HP。"
 
 [PoweredSparkLightArmor_LW X2SparkArmorTemplate_DLC_3]
+FriendlyName="轻型SPARK机身"
+BriefSummary="这是对我们的SPARK阳极氧化机身的改装版本，牺牲耐久性以提升机动性，并增加了手臂控制电容器，授予「奉献精神」，并能更频繁地使用「动能打击」。"
+TacticalText="<Bullet/> 提供更高的机动性和防御，但牺牲了护甲和生命值。授予「奉献精神」，并使「动能打击」的冷却时间减少1回合。"
+
+[PlatedSparkArmor X2SparkArmorTemplate_DLC_3]
+FriendlyName="加固骨架"
+FriendlyNamePlural="加固骨架"
+BriefSummary="针对XCOM实战部署中发现的薄弱环节进行额外加固，应该能进一步提升SPARK单位的生存能力与作战效能，并允许SPARK携带弹药类物品。"
+TacticalText="<Bullet/> 通过加固SPARK的传统装甲板，使其能承受更多攻击。同时为SPARK提供一个弹药槽位。"
+
+[PoweredSparkArmor X2SparkArmorTemplate_DLC_3]
+FriendlyName="阳极氧化机身"
+FriendlyNamePlural="阳极氧化机身"
+BriefSummary="阳极氧化工序为本已坚固的SPARK装甲系统提供了额外的防护层，使其更加坚韧，同时保留了来自加固骨架的弹药携带能力。"
+TacticalText="<Bullet/> 阳极氧化机身将SPARK完全包裹在高强度外壳中，为其在战场上提供最强防护。同时为SPARK提供一个弹药槽位。"

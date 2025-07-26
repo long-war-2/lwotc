@@ -5,7 +5,7 @@ CampaignStartBody="LWOTC是對XCOM 2 WOTC的一次徹底檢修，使這次戰役
 
 [X2EventListener_Tutorial]
 DroneSightedTitle="新敵人: 無人機"
-DroneSightedBody="變種人無人機是堅固的機器人偵察兵，擁有較大的偵測範圍和控制性武器。它們通常單獨巡邏，可以出現在建築物內和屋頂上。"
+DroneSightedBody="變種人無人機是堅固的機器人偵察兵，擁有控制性武器和較大的偵測範圍。它們通常單獨巡邏，可以出現在建築物內和屋頂上。"
 RainbowTrooperSightedTitle="新敵人: 變種人步兵"
 RainbowTrooperSightedBody="變種人現在除了基本的士兵外，還部署了多種步兵單位：<ul><li>哨兵（藍色）專攻監視守望</li><li>炮手（綠色）操作具有壓制能力的高傷害加農炮</li><li>工兵（紅色）使用榴彈發射器控制人群並造成傷害</li><li>火箭兵（橘色）發射高精度火箭</li></ul>"
 HavenHighlightTitle="檢查避難所"
@@ -13,7 +13,7 @@ HavenHighlightBody="避難所對你的戰役至關重要，因為它們被用來
 FirstMissionDiscoveredTitle="發現第一個任務"
 FirstMissionDiscoveredBody="你已經偵測到你的第一個任務！下一步是分配一個小隊進行潛入。<br/><br/>大多數任務都有一個到期時間，而滲透潛入需要時間。通過安排更多的反抗軍從事情報工作，可以更好地發現任務，讓你有更高的概率偵測出到期時間充足的任務。在避難所使用復仇者號進行掃描，相當於額外增加4名反抗軍的情報產出。"
 FirstRetaliationTitle="變種人報復"
-FirstRetaliationBody="變種人正在報復！這些是你不應該忽略的快速反應任務。<br/><br/>這是一次全面的報復，如果被忽視或丟失，則會摧毀避難所，以及針對具體工作的報復，如果忽視這些報復，從事這項工作的反抗軍將會被殺死。你的避難所顧問會和一些反抗軍一起執行任務。"
+FirstRetaliationBody="變種人正在發起報復！這些是你不應該忽視的快速反應任務。<br/><br/>報復有兩種，一種是全面報復，如果被忽略或失敗，則會摧毀避難所；另一種是針對特定工作的小報復，如果忽略這類報復，從事這項工作的反抗軍將會被殺死。你的避難所顧問和一些反抗軍將會出現在任務中。"
 CommandersQuartersEnteredTitle="LWOTC幫助"
 CommandersQuartersEnteredBody="LWOTC添加了一些條目到XCOM檔案中，以更詳細地解釋其一些核心概念，例如潛入和避難所管理。<br/><br/>還可以通過反抗軍管理菜單從一個介面查看所有避難所。"
 
