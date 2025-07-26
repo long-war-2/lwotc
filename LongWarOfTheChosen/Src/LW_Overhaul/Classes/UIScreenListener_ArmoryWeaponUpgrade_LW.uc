@@ -276,7 +276,8 @@ simulated function OnStripUpgradesDialogCallback(Name eAction)
 	local int idx;
 	local StateObjectReference ItemRef;
 	local XComGameState_Item ItemState;
-	local X2EquipmentTemplate EquipmentTemplate;
+	//local X2EquipmentTemplate EquipmentTemplate;
+	local X2WeaponTemplate WeaponTemplate;
 	local TWeaponUpgradeAvailabilityData WeaponUpgradeAvailabilityData;
 	local XComGameState_Unit OwningUnitState;
 	local UIArmory_Loadout LoadoutScreen;
@@ -299,8 +300,8 @@ simulated function OnStripUpgradesDialogCallback(Name eAction)
 				OwningUnitState = XComGameState_Unit(History.GetGameStateForObjectID(ItemState.OwnerStateObject.ObjectID));
 				if (OwningUnitState == none) // only if the item isn't owned by a unit
 				{
-					EquipmentTemplate = X2EquipmentTemplate(ItemState.GetMyTemplate());
-					if(EquipmentTemplate != none && EquipmentTemplate.InventorySlot == eInvSlot_PrimaryWeapon && ItemState.HasBeenModified()) // primary weapon that has been modified
+					WeaponTemplate = X2WeaponTemplate(ItemState.GetMyTemplate());
+					if(WeaponTemplate != none && ItemState.GetNumUpgradeSlots() > 0 && ItemState.GetMyWeaponUpgradeCount()) // weapon that has been modified
 					{
 						UpdateState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Strip Unequipped Upgrades");
 						XComHQ = XComGameState_HeadquartersXCom(UpdateState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
