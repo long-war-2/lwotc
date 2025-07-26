@@ -1,94 +1,75 @@
 class X2Effect_CoupDeGrace2 extends X2Effect_Persistent;
 
-var int To_Hit_Modifier;
-var int Crit_Modifier;
-var int Damage_Bonus;
-var bool Half_for_Disoriented;
+var int AimBonus;
+var int CritBonus;
+var int DamageBonus;
+var float fDisorientedModifier;
 
 function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, optional XComGameState NewGameState)
 {
-	local XComGameState_Unit				Target;
-	local XComGameState_Item				SourceWeapon;
-	local X2Effect_ApplyWeaponDamage		WeaponDamageEffect;
-	
-	WeaponDamageEffect = X2Effect_ApplyWeaponDamage(class'X2Effect'.static.GetX2Effect(AppliedData.EffectRef));
-	if (WeaponDamageEffect != none)
-	{
-		if (WeaponDamageEffect.bIgnoreBaseDamage)
-		{
-			return 0;
-		}
-	}
+    local XComGameState_Unit Target;
+    
+    if (EffectState.ApplyEffectParameters.EffectRef.ApplyOnTickIndex != INDEX_NONE)
+        return 0;
 
-	SourceWeapon = AbilityState.GetSourceWeapon();
-	if(SourceWeapon != none && SourceWeapon.ObjectID == EffectState.ApplyEffectParameters.ItemStateObjectRef.ObjectID)
-	{
-		Target = XComGameState_Unit(TargetDamageable);
-		if (Target.IsStunned() || Target.IsPanicked() || Target.IsUnconscious())
-		{
-			return Damage_Bonus;
-		}
-		if (Target.IsDisoriented())
-		{
-			if (Half_For_Disoriented) {
-				return Max (Damage_Bonus / 2, 1);
-			}
-			else
-			{
-				return Damage_Bonus;
-			}
-		}
-	}
-	return 0;
+    if (AbilityState.SourceWeapon.ObjectID != EffectState.ApplyEffectParameters.ItemStateObjectRef.ObjectID)
+        return 0;
+    
+    if (class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult))
+    {
+        if (CurrentDamage > 0)
+        {
+            Target = XComGameState_Unit(TargetDamageable);
+            
+            if (Target != none)
+            {
+                if (Target.IsStunned() || Target.IsPanicked() || Target.IsUnconscious())
+                    return DamageBonus;
+
+                if (Target.IsDisoriented())
+                    return Round(bDisorientedModifier * DamageBonus);
+            }
+        }
+    }
+    
+    return 0;
 }
 
 function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit Attacker, XComGameState_Unit Target, XComGameState_Ability AbilityState, class<X2AbilityToHitCalc> ToHitType, bool bMelee, bool bFlanking, bool bIndirectFire, out array<ShotModifierInfo> ShotModifiers)
 {
-	local XComGameState_Item				SourceWeapon;
-    local ShotModifierInfo					ShotInfo;
-	local X2AbilityToHitCalc_StandardAim	StandardToHit;
-
-	SourceWeapon = AbilityState.GetSourceWeapon();
-	if(SourceWeapon != none && SourceWeapon.ObjectID == EffectState.ApplyEffectParameters.ItemStateObjectRef.ObjectID)
-	{
-        StandardToHit = X2AbilityToHitCalc_StandardAim(AbilityState.GetMyTemplate().AbilityToHitCalc);
-		if (StandardToHit != none && (Target.IsStunned() || Target.IsPanicked() || Target.IsUnconscious()))
-		{
-			ShotInfo.ModType = eHit_Success;
-			ShotInfo.Reason = FriendlyName;
-			ShotInfo.Value = To_Hit_Modifier;
-			ShotModifiers.AddItem(ShotInfo);
-			ShotInfo.ModType = eHit_Crit;
-			ShotInfo.Reason = FriendlyName;
-			ShotInfo.Value = Crit_Modifier;
-			ShotModifiers.AddItem(ShotInfo);
-		}	
-		else if (StandardToHit != none && Target.IsDisoriented())
-		{
-			ShotInfo.ModType = eHit_Success;
-			ShotInfo.Reason = FriendlyName;
-			if (Half_For_Disoriented)
-			{
-				ShotInfo.Value = To_Hit_Modifier / 2;
-			}
-			else
-			{
-				ShotInfo.Value = To_Hit_Modifier;
-			}
-			ShotModifiers.AddItem(ShotInfo);
-			ShotInfo.ModType = eHit_Crit;
-			ShotInfo.Reason = FriendlyName;
-			if (Half_For_Disoriented)
-			{
-				ShotInfo.Value = Crit_Modifier / 2;
-			}
-			else
-			{
-				ShotInfo.Value = Crit_Modifier;
-			}
-			ShotModifiers.AddItem(ShotInfo);
-		}
-	}
+    local ShotModifierInfo AimInfo;
+    local ShotModifierInfo CritInfo;
+    
+    if (AbilityState.SourceWeapon.ObjectID != EffectState.ApplyEffectParameters.ItemStateObjectRef.ObjectID)
+        return;
+    
+    if (Target.IsStunned() || Target.IsPanicked() || Target.IsUnconscious())
+    {
+        AimInfo.ModType = eHit_Success;
+        AimInfo.Reason = FriendlyName;
+        AimInfo.Value = AimBonus;
+        ShotModifiers.AddItem(AimInfo);
+        
+        CritInfo.ModType = eHit_Crit;
+        CritInfo.Reason = FriendlyName;
+        CritInfo.Value = CritBonus;
+        ShotModifiers.AddItem(CritInfo);
+    }	
+    else if (Target.IsDisoriented())
+    {
+        AimInfo.ModType = eHit_Success;
+        AimInfo.Reason = FriendlyName;
+        AimInfo.Value = Round(bDisorientedModifier * AimBonus);
+        ShotModifiers.AddItem(AimInfo);
+        
+        CritInfo.ModType = eHit_Crit;
+        CritInfo.Reason = FriendlyName;
+        CritInfo.Value = Round(bDisorientedModifier * CritBonus);
+        ShotModifiers.AddItem(CritInfo);
+    }
 }
 
-
+defaultproperties
+{
+    bDisorientedModifier = 1.0f
+}
