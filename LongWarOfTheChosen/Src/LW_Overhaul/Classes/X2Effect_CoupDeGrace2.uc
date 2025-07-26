@@ -27,7 +27,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
                     return DamageBonus;
 
                 if (Target.IsDisoriented())
-                    return Round(bDisorientedModifier * DamageBonus);
+                    return Round(fDisorientedModifier * DamageBonus);
             }
         }
     }
@@ -59,17 +59,17 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
     {
         AimInfo.ModType = eHit_Success;
         AimInfo.Reason = FriendlyName;
-        AimInfo.Value = Round(bDisorientedModifier * AimBonus);
+        AimInfo.Value = Round(fDisorientedModifier * AimBonus);
         ShotModifiers.AddItem(AimInfo);
         
         CritInfo.ModType = eHit_Crit;
         CritInfo.Reason = FriendlyName;
-        CritInfo.Value = Round(bDisorientedModifier * CritBonus);
+        CritInfo.Value = Round(fDisorientedModifier * CritBonus);
         ShotModifiers.AddItem(CritInfo);
     }
 }
 
 defaultproperties
 {
-    bDisorientedModifier = 1.0f
+    fDisorientedModifier = 1.0f
 }
