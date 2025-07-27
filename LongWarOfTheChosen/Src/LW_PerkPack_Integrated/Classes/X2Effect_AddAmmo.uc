@@ -18,9 +18,8 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 		WeaponState = TargetUnit.GetItemInSlot(eInvSlot_SecondaryWeapon, NewGameState);
 		if (WeaponState != none)
 		{
-			NewWeaponState = XComGameState_Item(NewGameState.CreateStateObject(WeaponState.Class, WeaponState.ObjectID));
+			NewWeaponState = XComGameState_Item(NewGameState.ModifyStateObject(WeaponState.Class, WeaponState.ObjectID));
 			NewWeaponState.Ammo += ExtraAmmoAmount;
-			NewGameState.AddStateObject(NewWeaponState);
 		}
 	}
 }
