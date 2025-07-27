@@ -27,6 +27,8 @@ function bt_status LWNoVisibleEnemiesToTeam()
     // Get the unit we're interested in
     UnitState = m_kBehavior.m_kUnit.GetVisualizedGameState();
 
+    `LWTrace("No visible enemies to pod condition called");
+
     VisibleEnemiesCount = 0;
 
     // Get the AI group
@@ -39,15 +41,18 @@ function bt_status LWNoVisibleEnemiesToTeam()
             // Check the members of the group
             foreach GroupUnitStates (TestUnit)
             {
+                `LWTrace("Testing group unit" @TestUnit.GetFullName());
                 VisibleEnemiesCount += XGUnit(TestUnit.GetVisualizer()).m_kBehavior.BT_GetVisibleEnemyCount(true, false, false);
 
                 if(VisibleEnemiesCount > 0)
                 {
+                    `LWTrace("We spotted an enemy, fail");
                     return BTS_Failure;
                 }
             }
         }
         // If we're here, VisibleEnemiesCount should be 0
+        `LWTrace("Yes! no visible enemies.");
         return BTS_Success;
     }
 

@@ -6041,6 +6041,7 @@ exec function LWDumpHavenIncome(optional Name RegionName)
 exec function LWDebugPodJobs()
 {
 	bDebugPodJobs = !bDebugPodJobs;
+	class'Helpers'.static.OutputMsg("Pod Jobs debug:" @bDebugPodJobs);
 }
 
 exec function LWActivatePodJobs()
