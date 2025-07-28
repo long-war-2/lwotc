@@ -35,13 +35,9 @@ static function EventListenerReturn OnDrawDebugLabels(Object EventData, Object E
 	local X2DownloadableContentInfo_LongWarOfTheChosen LWDLCInfo;
 	local Canvas kCanvas;
 	
-	`LWTrace("DrawDebugLabels hit");
 	kCanvas = Canvas(EventData);
 	if (kCanvas == none)
 		return ELR_NoInterrupt;
-
-	`LWTrace("DrawDebugLabels - canvas found.");
-	
 
 	// if (LWDLCInfo == none)
 	// {
