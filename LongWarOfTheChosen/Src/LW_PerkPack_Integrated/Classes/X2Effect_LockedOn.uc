@@ -72,7 +72,7 @@ static function EventListenerReturn LockedOnListener(Object EventData, Object Ev
 	local XComGameState_Effect EffectGameState;
 	local bool bValidWeapon;
 
-	`LWTrace("Locked on listener firing");
+	//`LWTrace("Locked on listener firing");
 
 	AbilityContext = XComGameStateContext_Ability(GameState.GetContext());
 
