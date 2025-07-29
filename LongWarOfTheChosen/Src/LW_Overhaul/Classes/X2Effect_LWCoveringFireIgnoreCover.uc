@@ -13,10 +13,12 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 	local ShotModifierInfo				ModInfo;
 	local GameRulesCache_VisibilityInfo VisInfo;
 
-	if (AllowedAbilities.Find(AbilityState.GetMyTemplateName()) == INDEX_NONE)
+	// If the attack already ignores cover, rdon't add more
+	if (X2AbilityToHitCalc_StandardAim(AbilityState.GetMyTemplate().AbilityToHitCalc).bIgnoreCoverBonus)
 		return;
 
-	if (Target.CanTakeCover() && `TACTICALRULES.VisibilityMgr.GetVisibilityInfo(Attacker.ObjectID, Target.ObjectID, VisInfo))
+	// is reaction fire check here instead of Allowed Abilities check
+	if (X2AbilityToHitCalc_StandardAim(AbilityState.GetMyTemplate().AbilityToHitCalc).bReactionFire || Target.CanTakeCover() && `TACTICALRULES.VisibilityMgr.GetVisibilityInfo(Attacker.ObjectID, Target.ObjectID, VisInfo))
 	{
 		switch (VisInfo.TargetCover)
 		{
