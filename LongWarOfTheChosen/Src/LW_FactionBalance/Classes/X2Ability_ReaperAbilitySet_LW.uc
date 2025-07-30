@@ -497,14 +497,14 @@ static function X2AbilityTemplate AddDisablingShot()
 	VisibilityCondition.bAllowSquadsight = true;
 	Template.AbilityTargetConditions.AddItem(VisibilityCondition);
 
+	StunEffect = CreateDisablingShotStunnedEffect(default.DisablingShotBaseStunActions);
+	StunEffect.BonusStunActionsOnCrit = default.DisablingShotCritStunActions;
+	Template.AddTargetEffect(StunEffect);
+
 	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
 	Template.AssociatedPassives.AddItem('HoloTargeting');
 	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
 	Template.bAllowAmmoEffects = true;
-
-	StunEffect = CreateDisablingShotStunnedEffect(default.DisablingShotBaseStunActions);
-	StunEffect.BonusStunActionsOnCrit = default.DisablingShotCritStunActions;
-	Template.AddTargetEffect(StunEffect);
 
 	ActionPointCost = new class 'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = 0;
@@ -592,14 +592,14 @@ static function X2AbilityTemplate AddDisablingShotSnapShot()
 	VisibilityCondition.bAllowSquadsight = true;
 	Template.AbilityTargetConditions.AddItem(VisibilityCondition);
 
+	StunEffect = CreateDisablingShotStunnedEffect(default.DisablingShotBaseStunActions);
+	StunEffect.BonusStunActionsOnCrit = default.DisablingShotCritStunActions;
+	Template.AddTargetEffect(StunEffect);
+
 	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
 	Template.AssociatedPassives.AddItem('HoloTargeting');
 	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
 	Template.bAllowAmmoEffects = true;
-
-	StunEffect = CreateDisablingShotStunnedEffect(default.DisablingShotBaseStunActions);
-	StunEffect.BonusStunActionsOnCrit = default.DisablingShotCritStunActions;
-	Template.AddTargetEffect(StunEffect);
 
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = 1;
