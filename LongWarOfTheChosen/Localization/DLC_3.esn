@@ -1,13 +1,33 @@
 ; Spark armor localization here
 
 [PlatedSparkHeavyArmor_LW X2SparkArmorTemplate_DLC_3]
+FriendlyName="Exoesqueleto con escudo reforzado"
+BriefSummary="Una modificación de nuestra armadura reforzada SPARK estándar; esta variación sacrifica la movilidad para mejorar la durabilidad, presentando un revestimiento más pesado y una armadura reactiva adicional para contrarrestar el daño entrante."
+TacticalText="<Bullet/> Proporciona mayor armadura y puntos de vida, a expensas de la movilidad y la defensa.<br/><Bullet/> También reduce el tiempo de recuperación de heridas en 2 PS."										  
 
 [PlatedSparkLightArmor_LW X2SparkArmorTemplate_DLC_3]
+FriendlyName="Exoesqueleto con movilidad reforzada"
+BriefSummary="Una modificación de nuestra armadura reforzada SPARK estándar; esta variación sacrifica la durabilidad para mejorar la movilidad y otorga condensadores de control de brazo adicionales, lo que desbloquea la habilidad Dedicación y permite que el SPARK use su habilidad Golpe cinético con más frecuencia."
+TacticalText="<Bullet/> Concede mayor movilidad y defensa, a expensas de la armadura y los puntos de vida.<br/><Bullet/> Agrega la habilidad Dedicación y disminuye el tiempo de reutilización de Golpe cinético en 1 turno."
 
 [PoweredSparkHeavyArmor_LW X2SparkArmorTemplate_DLC_3]
+FriendlyName="Chasis anodizado con escudo"
+BriefSummary="Una modificación de nuestra armadura SPARK potenciada estándar; esta variación sacrifica la movilidad, presentando un revestimiento más pesado y una armadura reactiva adicional para contrarrestar el daño entrante."
+TacticalText="<Bullet/> Proporciona mayor armadura y puntos de vida, a expensas de la movilidad y la defensa.<br/><Bullet/> También reduce el tiempo de recuperación de heridas en 4 PS."										 
 
 [PoweredSparkLightArmor_LW X2SparkArmorTemplate_DLC_3]
+FriendlyName="Chasis anodizado movible"
+BriefSummary="Una modificación de nuestra armadura SPARK potenciada estándar; esta variación sacrifica la durabilidad para mejorar la movilidad, y otorga condensadores de control de brazo adicionales, lo que desbloquea la habilidad Dedicación y permite que el SPARK use su habilidad Golpe cinético con más frecuencia."
+TacticalText="<Bullet/> Concede mayor movilidad y defensa, a expensas de la armadura y los puntos de vida.<br/><Bullet/> Agrega la habilidad Dedicación y disminuye el tiempo de reutilización de Golpe cinético en 1 turno."																																																  
 
 [PlatedSparkArmor X2SparkArmorTemplate_DLC_3]
+FriendlyName="Exoesqueleto reforzado"
+FriendlyNamePlural="Exoesqueletos reforzados"
+BriefSummary="El refuerzo adicional de las debilidades identificadas durante los despliegues de XCOM en el campo de batalla debería mejorar aun más la capacidad de supervivencia de las unidades SPARK, permitiendo que equipe elementos de munición."
+TacticalText="<Bullet/> Al reforzar las placas del blindaje tradicional del SPARK, pueden resistir más ataques. También le otorga al SPARK un espacio para munición."																																										 
 
 [PoweredSparkArmor X2SparkArmorTemplate_DLC_3]
+FriendlyName="Chasis anodizado"
+FriendlyNamePlural="Chasis anodizados"
+BriefSummary="El proceso de anodizado del armazón proporciona una capa de protección adicional al ya extenso sistema de blindaje del SPARK, lo que lo convierte en una unidad robótica aún más resistente, al tiempo que mantiene la capacidad extra para municiones exóticas del exoesqueleto reforzado."
+TacticalText="<Bullet/> El chasis anodizado encierra el SPARK por completo en un caparazón altamente resistente que ofrece la mejor protección en el campo de batalla. También le otorga al SPARK un espacio para munición."																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																													   
