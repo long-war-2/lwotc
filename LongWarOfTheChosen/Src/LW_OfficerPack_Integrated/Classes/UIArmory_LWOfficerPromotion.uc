@@ -51,7 +51,7 @@ simulated function InitPromotion(StateObjectReference UnitRef, optional bool bIn
 	// KDM : Make the Leadership button a hotlink when using a controller.
 	LeadershipButton.InitButton(, strLeadershipButton, ViewLeadershipStats, eUIButtonStyle_HOTLINK_BUTTON);
 	// KDM : Add the gamepad icon, right stick click, when a controller is in use.
-	LeadershipButton.SetGamepadIcon(class'UIUtilities_Input'.const.ICON_RSCLICK_R3);
+	LeadershipButton.SetGamepadIcon(class'UIUtilities_Input'.static.GetGamepadIconPrefix() $ class'UIUtilities_Input'.const.ICON_RSCLICK_R3);
 	LeadershipButton.SetPosition(58, 971);
 
 	// KDM : Set up the navigator; ClassRowItem is not used for officers, so we can safely ignore it.

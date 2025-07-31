@@ -570,7 +570,7 @@ function PostMissionRevertSoldierStatus(XComGameState NewGameState, XComGameStat
 	//History = `XCOMHISTORY;
 	XComHQ = `XCOMHQ;
 
-	XComHQ = XComGameState_HeadquartersXCom(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectId));
+	XComHQ = XComGameState_HeadquartersXCom(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
 
 	foreach SquadSoldiersOnMission(UnitRef)
 	{

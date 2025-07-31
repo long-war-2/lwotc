@@ -785,7 +785,7 @@ static function EventListenerReturn OnPsiProjectCompleted(
 
 	Tries = 0;
 	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Granting Bonus Psi Starter abilities");
-	UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectId));
+	UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
 	while (BonusAbilitiesGranted < default.PSI_SQUADDIE_BONUS_ABILITIES)
 	{
 		BonusAbilityRank = `SYNC_RAND_STATIC(1 + (default.PSI_SQUADDIE_BONUS_ABILITIES / 2));

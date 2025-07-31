@@ -562,7 +562,7 @@ static function UpdateUnitFlagsForDestructibles()
 		if(DestructibleActor == none)
 		{
 			`LWTrace("Second method didn't get the actor");
-			DestructibleActor = XComDestructibleActor(History.GetVisualizer(DestructibleState.ObjectId));
+			DestructibleActor = XComDestructibleActor(History.GetVisualizer(DestructibleState.ObjectID));
 		}
 		if(DestructibleActor != none)
 		{
@@ -625,7 +625,7 @@ exec function Ted_UpdateUnitFlagsForDestructibles()
 		if(DestructibleActor == none)
 		{
 			`LWTrace("Second method didn't get the actor");
-			DestructibleActor = XComDestructibleActor(History.GetVisualizer(DestructibleState.ObjectId));
+			DestructibleActor = XComDestructibleActor(History.GetVisualizer(DestructibleState.ObjectID));
 		}
 		if(DestructibleActor != none)
 		{
