@@ -18,9 +18,6 @@ event OnInit(UIScreen Screen)
 	local XComGameState_LWPersistentSquad Squad;
 	local UISkyrangerArrives SkyrangerArrives;
 
-
-	if(!Screen.IsA('UISkyrangerArrives')) return;
-
 	SkyrangerArrives = UISkyrangerArrives(Screen);
 	if(SkyrangerArrives == none) return;
 
@@ -264,6 +261,5 @@ function bool ChangeEnterBehavior(int iInput, int ActionMask)
 
 defaultproperties
 {
-	// Leaving this assigned to none will cause every screen to trigger its signals on this class
-	ScreenClass = UISkyrangerArrives;
+	ScreenClass = none;
 }
