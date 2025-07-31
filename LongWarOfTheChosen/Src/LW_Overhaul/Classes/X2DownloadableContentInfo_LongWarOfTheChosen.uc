@@ -149,6 +149,7 @@ var config array<string> MapsToDisable;
 var config array<Name> EncountersToExclude;
 
 var config array<Name> ROCKET_ABILITIES_TO_UPDATE;
+var config array<Name> ROCKET_ABILITIES_TO_UPDATE_NOSCATTER;
 
 var config bool bUpdateWaterworldLW;
 
@@ -250,7 +251,7 @@ static function MarkAllChosenDefeated(XComGameState StartState)
 
 static function OnPreCreateTemplates()
 {
-	`Log("Long War of the Chosen (LWOTC) version: " $ class'LWVersion'.static.GetVersionString() @ "Built July 23, 2025");
+	`Log("Long War of the Chosen (LWOTC) version: " $ class'LWVersion'.static.GetVersionString() @ "Built July 31, 2025");
 	PatchModClassOverrides();
 	CacheInstalledMods();
 }
@@ -328,6 +329,17 @@ static function EditModdedRocketAbilities()
 		{
 			`LWTrace("Patching Rocket launcher ability" @AbilityTemplate.DataName);
 			AbilityTemplate.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher';
+		}
+	}
+
+	foreach default.ROCKET_ABILITIES_TO_UPDATE_NOSCATTER(AbilityName)
+	{
+		AbilityTemplate = AbilityManager.FindAbilityTemplate(AbilityName);
+
+		if(AbilityTemplate != none)
+		{
+			`LWTrace("Patching Rocket launcher ability" @AbilityTemplate.DataName);
+			AbilityTemplate.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher_NoScatter';
 		}
 	}
 }
