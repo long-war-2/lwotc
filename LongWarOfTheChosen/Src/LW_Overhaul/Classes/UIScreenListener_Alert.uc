@@ -31,7 +31,7 @@ event OnInit(UIScreen Screen)
 	local TAlertHelpInfo Info;
 	local XComGameState_MissionSite MissionState;
 
-
+	
     Alert = UIAlert(Screen);
 	if (Alert == none) { return; } // this allows the class to handle child UIAlert classes from DLC
 
@@ -41,8 +41,9 @@ event OnInit(UIScreen Screen)
         // supply drop complete dialogs.
         case 'eAlert_ScanComplete':
         case 'eAlert_ResourceCacheComplete':
-            Alert.Button2.Hide();
-            Alert.Button1.SetText(class'UIAlert'.default.m_strAccept);
+            Alert.Button1.Hide();
+            Alert.Button2.SetText(class'UIAlert'.default.m_strAccept);
+			//Alert.Button1.OnClickedDelegate = OnAcceptClickedDoNothing;
             break;
 
         // New staff dialogs may need to be updated to show info about rebel
@@ -112,6 +113,7 @@ event OnInit(UIScreen Screen)
 			// }
 		// }
 	}
+	Screen.Movie.Stack.SubscribeToOnInputForScreen(Screen, OnParentScreenInput);
 }
 
 simulated function DLC2ExtendedCB(Name eAction, out DynamicPropertySet AlertData, optional bool bInstant = false)
@@ -211,7 +213,17 @@ simulated function AddRepeatResearchButton(UIAlert Alert)
 		RepeatResearchButton.bAnimateOnInit = false;
 		RepeatResearchButton.OnSizeRealized = OnButtonSizeRealized;
 		RepeatResearchButton.OnInitDelegates.AddItem (OnButtonInit);
-		RepeatResearchButton.InitButton('RepeatResearchButton_LW', m_strRepeatResearch, OnRepeatResearch).SetPosition(RepeatButtonX, RepeatButtonY-RepeatButtonAnimateY).SetWidth(190);
+
+		if(!`ISCONTROLLERACTIVE)
+		{
+			
+			RepeatResearchButton.InitButton('RepeatResearchButton_LW', m_strRepeatResearch, OnRepeatResearch).SetPosition(RepeatButtonX, RepeatButtonY-RepeatButtonAnimateY).SetWidth(190);
+		}
+		else
+		{
+			RepeatResearchButton.InitButton('RepeatResearchButton_LW', m_strRepeatResearch, OnRepeatResearch, eUIButtonStyle_HOTLINK_WHEN_SANS_MOUSE).SetPosition(RepeatButtonX, RepeatButtonY-RepeatButtonAnimateY).SetWidth(190);
+			RepeatResearchButton.SetGamepadIcon(class'UIUtilities_Input'.static.GetGamepadIconPrefix() $ class'UIUtilities_Input'.const.ICON_RSCLICK_R3);
+		}
 	}
 }
 
@@ -250,6 +262,16 @@ function OnRepeatResearch(UIButton Button)
 	Alert.CloseScreen();
 }
 
+function OnAcceptClickedDoNothing(UIButton Button)
+{
+	local UIAlert Alert;
+
+	Alert = UIAlert(GetScreenOrChild('UIAlert'));
+	if (Alert == none) { return; }
+
+	Alert.CloseScreen();
+}
+
 static function UIScreen GetScreenOrChild(name ScreenType)
 {
 	local UIScreenStack ScreenStack;
@@ -262,6 +284,40 @@ static function UIScreen GetScreenOrChild(name ScreenType)
 	}
 	return none; 
 }
+
+simulated protected function bool OnParentScreenInput(UIScreen Screen, int iInput, int ActionMask)
+{
+	local UiButton Button;
+	if (!Screen.CheckInputIsReleaseOrDirectionRepeat(iInput, ActionMask))
+	{
+		return false;
+	}
+
+	switch (iInput)
+	{
+		case class'UIUtilities_Input'.const.FXS_BUTTON_R3:
+			Button = UIButton(Screen.GetChildByName('RepeatResearchButton_LW', false));
+
+			if (Button != none && !Button.IsDisabled)
+			{
+				OnRepeatResearch(Button);
+				return true;
+			}
+	}
+
+	return false;
+}
+
+// for future reference from Rusty the god
+
+//THIS WAS FUCKING HARD TO FIND BUTTONS THAT WASNT USED ...
+/*
+    A = ENTER, B = BACK, Y = GEOSCAPE , X = FLIP TOGGLE SORT
+    BUMPERS = CHANGE TAB
+    D-PAD LR = CHANGE SORT COLUMN
+    D-PAD UD = SCROLL LIST
+    L3 = LEGEND, R3 = TOGGLE DETAILS
+*/
 
 defaultproperties
 {
