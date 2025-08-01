@@ -59,17 +59,35 @@ event OnInit(UIScreen Screen)
 
 event OnReceiveFocus(UIScreen Screen)
 {
-	InstallInputHandler();
+	local UISkyrangerArrives SkyrangerArrives;
+	
+	SkyrangerArrives = UISkyrangerArrives(Screen);
+	if (SkyrangerArrives != none)
+	{
+		InstallInputHandler();
+	}
 }
 
 event OnLoseFocus(UIScreen Screen)
 {
-	`SCREENSTACK.UnsubscribeFromOnInput(ChangeEnterBehavior);
+	local UISkyrangerArrives SkyrangerArrives;
+	
+	SkyrangerArrives = UISkyrangerArrives(Screen);
+	if (SkyrangerArrives != none)
+	{
+		`SCREENSTACK.UnsubscribeFromOnInput(ChangeEnterBehavior);
+	}
 }
 
 event OnRemoved(UIScreen Screen)
 {
-	`SCREENSTACK.UnsubscribeFromOnInput(ChangeEnterBehavior);
+	local UISkyrangerArrives SkyrangerArrives;
+	
+	SkyrangerArrives = UISkyrangerArrives(Screen);
+	if (SkyrangerArrives != none)
+	{
+		`SCREENSTACK.UnsubscribeFromOnInput(ChangeEnterBehavior);
+	}
 }
 
 // LWOTC: Override SkyrangerArrives screen's input handler so that
