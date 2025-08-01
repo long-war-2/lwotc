@@ -479,7 +479,7 @@ LocPromotionPopupText="<Bullet/>被失控協議侵入的敵方單位在侵入效
 LocFriendlyName="隱秘"
 LocFlyOverText="隱秘"
 LocLongDescription="敵人對你的偵查範圍減少<Ability:COVERT_DETECTION_RANGE_REDUCTION/>%。"
-LocHelpText="敵人對你的偵查範圍減少。"
+LocHelpText="敵人對你的偵查範圍減少<Ability:COVERT_DETECTION_RANGE_REDUCTION/>%。"
 LocPromotionPopupText="<Bullet/>敵人對你的偵查範圍減少<Ability:COVERT_DETECTION_RANGE_REDUCTION/>%，偵查範圍由敵人周圍的紅色格子標識。<br/><Bullet/>該能力也會略微減少士兵的潛入時間。<br/><Bullet/>對變種人安保塔沒有效果。"
 
 [Ghostwalker X2AbilityTemplate]
@@ -848,6 +848,10 @@ LocHelpText="你可以遙控<Ability:BOUND_WEAPON_NAME/>來侵入目標。"
 LocFlyOverText="侵入"
 LocPromotionPopupText="<Bullet/>使用<Ability:BOUND_WEAPON_NAME/>可以在一定距離內侵入地圖物品（箱子、工作站等）。<br/>"
 
+[XComGame.IntrusionProtocolPassive X2AbilityTemplate]
+[IntrusionProtocolPassive X2AbilityTemplate]
+LocFriendlyName="遠程侵入"
+
 [XComGame.EverVigilant X2AbilityTemplate]
 [EverVigilant X2AbilityTemplate]
 LocFriendlyName="時刻警惕"
@@ -1029,10 +1033,10 @@ Summary="炸藥能夠造成暴擊傷害。"
 
 [HuntersInstinct X2AbilityTemplate]
 LocFriendlyName="獵人本能"
-LocLongDescription="於側翼中遠距離攻擊敵人時+<Ability:HUNTERSINSTINCTDMG/>傷害。"
-LocHelpText="於側翼中遠距離攻擊敵人時+<Ability:HUNTERSINSTINCTDMG/>傷害。"
+LocLongDescription="於側翼對敵人進行遠程攻擊時額外造成+<Ability:HUNTERSINSTINCTDMG/>傷害。"
+LocHelpText="於側翼對敵人進行遠程攻擊時額外造成+<Ability:HUNTERSINSTINCTDMG/>傷害。"
 LocFlyOverText="獵人本能"
-LocPromotionPopupText="<Bullet/>於側翼中遠距離攻擊敵人時+<Ability:HUNTERSINSTINCTDMG/>傷害。"
+LocPromotionPopupText="<Bullet/>於側翼對敵人進行遠程攻擊時額外造成+<Ability:HUNTERSINSTINCTDMG/>傷害。"
 
 [HitWhereItHurts X2AbilityTemplate]
 LocFriendlyName="致命一擊"
@@ -1083,15 +1087,15 @@ LocPromotionPopupText="<Bullet/> <Ability:ClassName/>可以使用維修在戰鬥
 
 [KineticStrike_LW X2AbilityTemplate]
 LocFriendlyName="動能打擊"
-LocLongDescription="用毀滅性的一拳攻擊移動範圍內的任何敵人。3回合冷卻時間。傷害取決於裝甲等級。"
-LocHelpText="用毀滅性的一拳攻擊移動範圍內的任何敵人。"
-LocPromotionPopupText="<Bullet/> 你可以通過將移動光標放在敵人身上來觸發動能打擊。<br/><Bullet/> <Ability:ClassName/>可以執行“衝刺”移動，使用2個行動點來移動並對敵人觸發動能打擊<br/><Bullet/> 動能打擊將造成7/9.5/12點傷害，取決於所裝備的底盤。<br/><Bullet/> 動能打擊的命中幾率基於<Ability:ClassName/>的命中，並額外獲得+15命中。<br/><Bullet/> 學習“突襲模塊”技能將為所有打擊攻擊提供+2點傷害和額外的+10命中。<br/>"
+LocLongDescription="用毀滅性的一拳攻擊移動範圍內的任意敵人。3回合冷卻時間。傷害取決於裝甲等級。"
+LocHelpText="用毀滅性的一拳攻擊移動範圍內的任意敵人。"
+LocPromotionPopupText="<Bullet/> 你可以通過將移動光標放在敵人身上來觸發動能打擊。<br/><Bullet/> <Ability:ClassName/>可以執行“衝刺”移動，使用2個行動點來移動並對敵人觸發動能打擊。<br/><Bullet/> 動能打擊造成的傷害根據裝甲等級分別為7/9-10/12。<br/><Bullet/> 動能打擊的命中幾率基於<Ability:ClassName/>的命中，並額外獲得+15命中。<br/><Bullet/> 學習「突襲模塊」技能後，所有打擊攻擊額外獲得+2傷害和+20命中。<br/>"
 
 [Obliterator_LW X2AbilityTemplate]
 LocFriendlyName="突襲模塊"
-LocLongDescription="所有打擊攻擊獲得+2傷害和+10命中，授予「橫衝直撞」能力，當過載激活時，能夠在移動時撞穿牆壁和掩體。"
-LocHelpText="所有打擊攻擊獲得+2傷害和+10命中。"
-LocPromotionPopupText="<Bullet/> 學習突襲模塊技能將為所有動能打擊攻擊提供+2點傷害和額外的+10命中。"
+LocLongDescription="所有打擊攻擊額外獲得+2傷害和+20命中，授予「橫衝直撞」能力，當過載激活時，能夠在移動時撞穿牆壁和掩體。"
+LocHelpText="所有打擊攻擊額外獲得+2傷害和+20命中。"
+LocPromotionPopupText="<Bullet/> 學習突襲模塊技能將為所有打擊攻擊額外提供+2傷害和+20命中。"
 
 [RapidRepair_LW X2AbilityTemplate]
 LocFriendlyName="快速維修"
