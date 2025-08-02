@@ -77,6 +77,7 @@ static function EventListenerReturn LockedOnListener(Object EventData, Object Ev
 	AbilityContext = XComGameStateContext_Ability(GameState.GetContext());
 
 	if(AbilityContext == none)
+		return ELR_NoInterrupt;
 
 	if (AbilityContext.InterruptionStatus == eInterruptionStatus_Interrupt)
 		return ELR_NoInterrupt;
