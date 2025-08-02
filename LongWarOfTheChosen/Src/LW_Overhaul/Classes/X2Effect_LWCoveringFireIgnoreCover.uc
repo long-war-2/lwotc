@@ -51,8 +51,7 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 
 	// Special handle Pistol Return Fire, which is triggered by Threat Assessment applied to Sharpshooters
 	// We don't want PistolReturnFire in AllowedAbilities, because PistolReturnFire is already set to ignore cover defense elsewhere.
-	if (X2AbilityToHitCalc_StandardAim(kAbility.GetMyTemplate().AbilityToHitCalc).bIgnoreCoverBonus || (X2AbilityToHitCalc_StandardAim(kAbility.GetMyTemplate().AbilityToHitCalc).bReactionFire && 
-		AbilityContext.InputContext.AbilityTemplateName != 'PistolReturnFire') )
+	if (X2AbilityToHitCalc_StandardAim(kAbility.GetMyTemplate().AbilityToHitCalc).bIgnoreCoverBonus || !(X2AbilityToHitCalc_StandardAim(kAbility.GetMyTemplate().AbilityToHitCalc).bReactionFire))
 		return false;
 
 	// don't remove it if we still have more Overwatch to do.
