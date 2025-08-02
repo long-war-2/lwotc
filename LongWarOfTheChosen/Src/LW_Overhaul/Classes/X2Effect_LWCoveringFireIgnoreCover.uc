@@ -17,7 +17,7 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 		return;
 
 	// is reaction fire check here instead of Allowed Abilities check
-	if (X2AbilityToHitCalc_StandardAim(AbilityState.GetMyTemplate().AbilityToHitCalc).bReactionFire || Target.CanTakeCover() && `TACTICALRULES.VisibilityMgr.GetVisibilityInfo(Attacker.ObjectID, Target.ObjectID, VisInfo))
+	if (X2AbilityToHitCalc_StandardAim(AbilityState.GetMyTemplate().AbilityToHitCalc).bReactionFire && Target.CanTakeCover() && `TACTICALRULES.VisibilityMgr.GetVisibilityInfo(Attacker.ObjectID, Target.ObjectID, VisInfo))
 	{
 		switch (VisInfo.TargetCover)
 		{
@@ -90,5 +90,5 @@ function bool UniqueToHitModifiers()
 defaultproperties
 {
 	DuplicateResponse = eDupe_Ignore
-	EffectName = "IRI_X2Effect_SP_CoveringFireIgnoreCover_Effect"
+	EffectName = "IRI_X2Effect_SP_CoveringFireIgnoreCover_Effect_LW"
 }
