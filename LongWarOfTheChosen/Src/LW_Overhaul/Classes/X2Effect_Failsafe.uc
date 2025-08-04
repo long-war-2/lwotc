@@ -18,8 +18,8 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
 
 	// allows activation/deactivation of effect
 	EventMgr.RegisterForEvent(EffectObj, 'PreAcquiredHackReward', PreAcquiredHackReward,,,, true, EffectObj);
-	EventMgr.RegisterForEvent(EffectObj, 'FailsafeTriggered', EffectGameState.TriggerAbilityFlyover, ELD_OnStateSubmitted,, UnitState);
-	EventMgr.RegisterForEvent(EffectObj, 'FailsafeTriggered', FailsafeGiveAP, ELD_OnStateSubmitted,, UnitState);
+	EventMgr.RegisterForEvent(EffectObj, 'FailsafeTriggered', EffectGameState.TriggerAbilityFlyover, ELD_OnStateSubmitted, 48, UnitState);
+	EventMgr.RegisterForEvent(EffectObj, 'FailsafeTriggered', FailsafeGiveAP, ELD_OnStateSubmitted, 60, UnitState);
 }
 
 // this is triggered just before acquiring a hack reward, giving a chance to skip adding the negative one
@@ -73,13 +73,17 @@ static function EventListenerReturn PreAcquiredHackReward(Object EventData, Obje
 static function EventListenerReturn FailsafeGiveAP(Object EventData, Object EventSource, XComGameState GameState, Name Event, Object CallbackData)
 {
 	local XComGameState UpdatedGameState;
-	local XComGameState_Unit UnitState;
+	local XComGameState_Unit UnitState, OldUnitState;
 	local UnitValue FailsafeCountThisTurn;
 	local int usesThisTurn;
 
-	UnitState = XComGameState_Unit(EventSource);
-
 	`LWTrace("FailsafeGiveAP firing");
+	// I know we're passing the unit through, let's get the most recent one from history because there's apparently a stale gamestate being sent here sometimes.
+	OldUnitState = XComGameState_Unit(EventSource);
+	`LWTrace("UnitState ID:"@ XComGameState_Unit(EventSource).ObjectID);
+
+	// Grab the latest state from history since we are listening to this with ELD_OSS
+	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(OldUnitState.ObjectID));
 
 	if (UnitState == none)
 	{
@@ -96,17 +100,18 @@ static function EventListenerReturn FailsafeGiveAP(Object EventData, Object Even
 		return ELR_NoInterrupt;
 	}
 
-	if(GameState != none)
+	if(GameState != none && !Gamestate.bReadOnly)
 	{
-		`LWTrace("NewGameState passed");
+		`LWTrace("NewGameState passed: Context:" @GameState.GetContext().SummaryString());
+
+		/*
 		UnitState = XComGameState_Unit(GameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
 
 		UnitState.SetUnitFloatValue('FailsafeTriggeredThisTurn', 1.0, eCleanup_BeginTurn);
 		UnitState.ActionPoints.AddItem(class'X2CharacterTemplateManager'.default.StandardActionPoint);
+		*/
 	}
-	else
-	{
-		`LWTrace("No Gamestate passed");
+
 		UpdatedGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Adding FailSafe AP");
 
 		UnitState = XComGameState_Unit(UpdatedGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
@@ -115,7 +120,6 @@ static function EventListenerReturn FailsafeGiveAP(Object EventData, Object Even
 		UnitState.ActionPoints.AddItem(class'X2CharacterTemplateManager'.default.StandardActionPoint);
 
 		`TACTICALRULES.SubmitGameState(UpdatedGameState);
-	}
 
 	return ELR_NoInterrupt;
 }

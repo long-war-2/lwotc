@@ -254,7 +254,7 @@ simulated state Executing
 		local ETeam TargetUnitTeam;
 		local EWidgetColor SuccessfulAttackColor, UnsuccessfulAttackColor;
 
-		if(!class'X2TacticalVisibilityHelpers'.static.IsUnitVisibleToLocalPlayer(UnitState.ObjectId, CurrentHistoryIndex))
+		if(!class'X2TacticalVisibilityHelpers'.static.IsUnitVisibleToLocalPlayer(UnitState.ObjectID, CurrentHistoryIndex))
 			return;
 
 		TargetUnitTeam = UnitState.GetTeam();

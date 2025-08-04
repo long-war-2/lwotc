@@ -71,9 +71,9 @@ BriefSummary="Reduce el tiempo de recuperación de las heridas en 1 HP y confier
 [CenterMass X2AbilityTemplate]
 LocFriendlyName="Centro de masas"
 LocFlyOverText="Centro de masas"
-LocLongDescription="Infliges un punto adicional de daño básico con tu armas."
-LocHelpText="Infliges un punto adicional de daño básico con tus armas."
-LocPromotionPopupText="<Bullet/> Se aplica a tu arma principal, pistola y escopeta recortada."
+LocLongDescription="Infliges un punto adicional de daño básico con tu arma principal, pistolas o escopeta de corredera."
+LocHelpText="Infliges un punto adicional de daño básico con tu arma principal, pistolas o escopeta de corredera."
+LocPromotionPopupText="<Bullet/> El daño adicional se aplica a todas las pistolas y armas principales, incluidos los guanteletes templarios."
 
 [Lethal X2AbilityTemplate]
 LocFriendlyName="Letal"
@@ -163,8 +163,8 @@ LocPromotionPopupText="<Bullet/> Las unidades al alcance de la vista del pelotó
 [HardTarget X2AbilityTemplate]
 LocFriendlyName="Objetivo difícil"
 LocFlyOverText="Objetivo difícil"
-LocLongDescription="Obtienes 5 de capacidad de esquivar por cada enemigo que puedas ver, hasta un máximo de +30."
-LocHelpText="Obtienes 5 de capacidad de esquivar por cada enemigo que puedas ver, hasta un máximo de +30."
+LocLongDescription="Obtienes <Ability:HT_DODGE_BONUS_PER_ENEMY/> de capacidad de esquivar por cada enemigo que puedas ver, hasta un máximo de <Ability:HT_DODGE_BONUS_PER_ENEMY/>."
+LocHelpText="Obtienes <Ability:HT_DODGE_BONUS_PER_ENEMY/> de capacidad de esquivar por cada enemigo que puedas ver, hasta un máximo de <Ability:HT_DODGE_BONUS_PER_ENEMY/>."
 LocPromotionPopupText="<Bullet/> Las unidades al alcance de la vista del pelotón no confieren bonificaciones.<br/><Bullet/> Esta habilidad no provee ventajas defensivas si la unidad está desorientada, aturdida, en pánico, en llamas or de alguna otra manera desabilitada."
 
 [Infighter X2AbilityTemplate]
@@ -750,7 +750,7 @@ LocFriendlyName="Piel de hierro"
 LocFlyOverText="Piel de hierro"
 LocLongDescription="El daño cuerpo a cuerpo recibido se reduce en <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>."
 LocHelpText="El daño cuerpo a cuerpo recibido se reduce en <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>."
-LocPromotionPopupText="<Bullet/> El daño cuerpo a cuerpo recibido se reduce en <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>.<br/>"
+LocPromotionPopupText="<Bullet/> El daño cuerpo a cuerpo recibido se reduce en <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>.<br/><Bullet/> Esta habilidad no puede reducir el daño entrante a 0."
 
 [SmartMacrophages X2AbilityTemplate]
 LocFriendlyName="Macrófagos inteligentes"
@@ -815,8 +815,8 @@ LocFriendlyNameWhenConcealed="Zona de eliminación (oculto)"
 [XComGame.DeathFromAbove X2AbilityTemplate]
 [DeathFromAbove X2AbilityTemplate]
 LocFriendlyName="Muerte desde las alturas"
-LocLongDescription="Matar a un enemigo en una elevación inferior con tu <Ability:WeaponName/> cuesta una sola acción y no termina el turno. También reduce las penalizaciones de largo alcance en un 50% para rifles de francotirador y rifles Vektor ."
-LocHelpText="Matar a un enemigo en una elevación inferior con tu <Ability:WeaponName/> cuesta una sola acción y no termina el turno."
+LocLongDescription="Una vez por turno, matar a un enemigo en una elevación inferior con tu <Ability:WeaponName/> cuesta una sola acción y no termina el turno. También reduce las penalizaciones de largo alcance en un 50% para rifles de francotirador y rifles Vektor ."
+LocHelpText="Una vez por turno, matar a un enemigo en una elevación inferior con tu <Ability:WeaponName/> cuesta una sola acción y no termina el turno."
 LocFlyOverText="Muerte desde las alturas"
 LocPromotionPopupText="<Bullet/> Muerte desde las alturas se combina bien con el mod de arma culata, o simplemente puede volver más móvil a un soldado.<br/><Bullet/> También reduce las penalizaciones de largo alcance en un 50% para rifles de francotirador y rifles Vektor."
 
@@ -1098,13 +1098,13 @@ LocPromotionPopupText="<Bullet/> El <Ability:ClassName/> puede usar Reparar para
 LocFriendlyName="Golpe cinético"
 LocLongDescription="Ataca a cualquier enemigo dentro del rango de movimiento con un puñetazo devastador. Enfriamiento de 3 turnos. El daño depende del chasis equipado."
 LocHelpText="Ataca a cualquier enemigo dentro del rango de movimiento con un puñetazo devastador."
-LocPromotionPopupText="<Bullet/> Puedes activar la habilidad Golpe cinético colocando el cursor de movimiento sobre un enemigo.<br/><Bullet/> El <Ability:ClassName/> puede realizar un movimiento de \"correr\", usando ambas acciones para moverse, y además activar un ataque contra un enemigo adyacente.<br/><Bullet/> Golpe cinético hará 7/9.5/12 de daño, dependiendo del chasis equipado.<br/><Bullet/> La probabilidad de impactar de Golpe cinético se basa en la puntería del <Ability:ClassName/>, más un incremento del +15.<br/><Bullet/> Aprender la habilidad Servoarmaduras de asalto beneficiará con +2 de daño y +10 de puntería adicional a todos los ataques de Golpe cinético.<br/>"
+LocPromotionPopupText="<Bullet/> Puedes activar la habilidad Golpe cinético colocando el cursor de movimiento sobre un enemigo.<br/><Bullet/> El <Ability:ClassName/> puede realizar un movimiento de \"correr\", usando ambas acciones para moverse, y además activar un ataque contra un enemigo adyacente.<br/><Bullet/> Golpe cinético hará 7/9.5/12 de daño, dependiendo del chasis equipado.<br/><Bullet/> La probabilidad de impactar de Golpe cinético se basa en la puntería del <Ability:ClassName/>, más un incremento del +15.<br/><Bullet/> Aprender la habilidad Servoarmaduras de asalto beneficiará con +2 de daño y +20 de puntería adicional a todos los ataques de Golpe cinético.<br/>"
 
 [Obliterator_LW X2AbilityTemplate]
 LocFriendlyName="Servoarmaduras de asalto"
-LocLongDescription="Otorga +2 de daño y +10 de puntería a todos los ataques de golpe. También desbloquea la habilidad Bola de demolición."
-LocHelpText="Obtienes +2 de daño y +10 de puntería a todos los ataques de Golpe cinético."
-LocPromotionPopupText="<Bullet/> Aprendiendo la habilidad Servoarmaduras de asalto, conseguirás +2 de daño y un extra de +10 de puntería para todos los ataques de Golpe cinético."
+LocLongDescription="Otorga +2 de daño y +20 de puntería a todos los ataques de golpe. También desbloquea la habilidad Bola de demolición."
+LocHelpText="Obtienes +2 de daño y +20 de puntería a todos los ataques de Golpe cinético."
+LocPromotionPopupText="<Bullet/> Aprendiendo la habilidad Servoarmaduras de asalto, conseguirás +2 de daño y un extra de +20 de puntería para todos los ataques de Golpe cinético."
 
 [RapidRepair_LW X2AbilityTemplate]
 LocFriendlyName="Reparación rápida"
@@ -1115,10 +1115,12 @@ LocPromotionPopupText="<Bullet/> La habilidad del SPARK Reparar no finaliza el t
 
 [Reboot_LW X2AbilityTemplate]
 LocFriendlyName="Reinicio crítico"
-LocLongDescription="Si el SPARK recibe suficiente daño como para morir, su salud se reducirá a 1 y estará protegido por el resto del turno. Solo se puede activar una vez en cada misión; después de ello, el SPARK será utilizable pero quedará muy perjudicado."
-LocHelpText="El SPARK estará protegido durante un turno si sufre suficiente daño como para morir."
+LocLongDescription="Esta unidad ha sido reiniciada debido a un daño catastrófico y sufre -30 de puntería, -3 de movilidad y -100 de pirateo."
+LocHelpText="La unidad estará protegida durante un turno si sufre suficiente daño como para morir."
 LocFlyOverText="Reinicio crítico"
 LocPromotionPopupText="<Bullet/> El SPARK entrará en Estasis la primera vez que su salud llegue a cero (máximo una vez por misión).<br/><Bullet/> Sin la habilidad de Sistemas redundantes, el SPARK queda paralizado después de reiniciarse, a consecuencia del daño grave, sufriendo enormes penalizaciones en la puntería, movilidad y pirateo.<br/><Bullet/> Debido a estos inconvenientes, y en combinación con la ya baja integridad de la coraza del SPARK en el momento de un reinicio, se recomienda que dichos SPARKs se retiren del campo de batalla en cuanto sea posible, a través del Skyranger.<br/><Bullet/> Gracias a una compleja red de placas redundantes, circuitos de reactivación y un proyector de escudo de carga única, el SPARK podrá recuperarse para el equipo con la seguridad de saber que vivirá para golpear otro día.<br/>"
+
+
 
 [RebootTriggered_LW X2AbilityTemplate]
 LocFriendlyName="Reinicio crítico"
@@ -1160,7 +1162,7 @@ LocFriendlyName="Protocolo de neutralización"
 LocLongDescription="Lanza el BIT a una ubicación, a fin de desactivar (el radio de acción es pequeño) las armas enemigas y obligándolas a recargar. Cuesta 1 acción y no finaliza el turno."
 LocHelpText="Lanza el BIT a una ubicación, a fin de desactivar (el radio de acción es pequeño) las armas enemigas y obligándolas a recargar. Cuesta 1 acción y no finaliza el turno."
 LocFlyOverText="Protocolo de neutralización"
-LocPromotionPopupText="<Bullet/> Envía el BIT para liberar un pulso de interferencia de corto alcance que sobrecarga los sistemas de armas.<br/><Bullet/> Obliga a los objetivos a recargar su arma principal.<br/><Bullet/> Dichos enemigos pueden usar recargar en su turno, optando por arreglárselas con un solo punto de acción de movimiento y disparo, o renunciar a ello y recurrir a sistemas de armas secundarios.<br/><Bullet/> Protocolo de neutralización cuesta una acción y tiene <Ability:NEUTRALIZE_COOLDOWN/> turnos de reuso.<br/>"
+LocPromotionPopupText="<Bullet/> Envía el BIT para liberar un pulso de interferencia de corto alcance que sobrecarga los sistemas de armas.<br/><Bullet/> Obliga a los objetivos a recargar su arma principal.<br/><Bullet/> Dichos enemigos pueden usar recargar en su turno, optando por arreglárselas con un solo punto de acción de movimiento y disparo, o renunciar a ello y recurrir a sistemas de armas secundarios.<br/><Bullet/> Protocolo de neutralización cuesta una acción y tiene <Ability:NEUTRALIZE_COOLDOWN/> turnos de reúso.<br/>"
 
 [LayeredArmour_LW X2AbilityTemplate]
 LocFriendlyName="Armadura de capas"
@@ -1171,10 +1173,10 @@ LocPromotionPopupText="<Bullet/> Gracias a una nueva técnica de diseño ideada 
 
 [Triangulation_LW X2AbilityTemplate]
 LocFriendlyName="Triangular"
-LocLongDescription="Cuando el <Ability:ClassName/> es atacado, el escuadrón gana +10 de puntería contra ese objetivo en el siguiente turno."
-LocHelpText="Cuando el <Ability:ClassName/> es atacado, el escuadrón gana +10 de puntería contra ese objetivo en el siguiente turno."
+LocLongDescription="Todos los enemigos de esta unidad obtienen puntería adicional al dispararle."
+LocHelpText="Todos los enemigos de esta unidad obtienen puntería adicional al dispararle."
 LocFlyOverText="Triangular"
-LocPromotionPopupText="<Bullet/> El <Ability:ClassName/> puede rastrear la balística lanzada por un objetivo y cargar esa información al resto del equipo.<br/><Bullet/> Triangular no se activará si un enemigo ataca a uno de los compañeros del <Ability:ClassName/>.<br/>"
+
 
 [TriangulationTrigger_LW X2AbilityTemplate]
 LocFriendlyName="Triangular"

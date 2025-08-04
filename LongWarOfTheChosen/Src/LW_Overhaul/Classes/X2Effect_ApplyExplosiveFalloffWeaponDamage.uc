@@ -150,7 +150,7 @@ simulated function bool ShouldApplyUnitDamageFalloff(XComGameState_Unit SourceUn
 			return false;
 
 		//additional check for aliens, checking character 
-		if(SourceUnit.FindAbility(AbilityExclusion).ObjectId > 0)
+		if(SourceUnit.FindAbility(AbilityExclusion).ObjectID > 0)
 			return false;
 	}
 	return true;
@@ -453,7 +453,7 @@ simulated function bool ShouldApplyEnvironmentDamageFalloff(XComGameState_Unit S
 			return false;
 
 		//additional check for aliens, checking character 
-		if(SourceUnit.FindAbility(AbilityExclusion).ObjectId > 0)
+		if(SourceUnit.FindAbility(AbilityExclusion).ObjectID > 0)
 			return false;
 	}
 	return true;

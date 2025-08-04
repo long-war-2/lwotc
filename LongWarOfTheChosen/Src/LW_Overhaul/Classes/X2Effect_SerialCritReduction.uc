@@ -16,7 +16,7 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 	AimReduction = AimReductionPerKill * UnitVal.fValue;
 
     SourceWeapon = AbilityState.GetSourceWeapon();
-    if(SourceWeapon != none && SourceWeapon.ObjectId == Attacker.GetPrimaryWeapon().ObjectID)
+    if(SourceWeapon != none && SourceWeapon.ObjectID == Attacker.GetPrimaryWeapon().ObjectID)
     {
         ModInfo.ModType = eHit_Crit;
         ModInfo.Reason = FriendlyName;

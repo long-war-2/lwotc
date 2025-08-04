@@ -318,7 +318,7 @@ LocFriendlyName="掩体克星"
 LocFlyOverText="掩体克星"
 LocHelpText="发射一枚特殊的火箭，能够摧毁环境中的建筑物和其他物体。"
 LocLongDescription="发射一枚特殊的火箭，能够摧毁环境中的建筑物和其他物体。"
-LocPromotionPopupText="<Bullet/> 有着大范围的效果，对敌人造成的伤害一般，但对建筑物、载具和环境中其他物体造成巨大伤害。<br/><Bullet/> 需要2个行动点，每次任务仅可使用1次。<br/><Bullet/> 无法触发齐射。<br/>"
+LocPromotionPopupText="<Bullet/> 有着大范围的效果，对敌人造成的伤害一般，但对建筑物、载具和环境中其他物体造成巨大伤害。<br/><Bullet/> 需要2个行动点，每次任务仅可使用1次。<br/><Bullet/> 不适用于齐射。<br/>"
 
 [FireandSteel X2AbilityTemplate]
 LocFriendlyName="火与钢"
@@ -669,8 +669,8 @@ LocPromotionPopupText="<Bullet/> 对同一目标多次使用全息瞄准不会�
 
 [VitalPointTargeting X2AbilityTemplate]
 LocFriendlyName="要害瞄准"
-LocLongDescription="对你的全息瞄准目标的攻击会造成更多伤害。"
-LocHelpText="对你的全息瞄准目标的攻击会造成更多伤害。"
+LocLongDescription="被全息瞄准的敌人在受到攻击时会承受额外的伤害。"
+LocHelpText="被全息瞄准的敌人在受到攻击时会承受额外的伤害。"
 LocFlyOverText="要害瞄准"
 LocPromotionPopupText="<Bullet/> 基础的全息瞄准器的要害瞄准伤害加成为+<Ability:VITAL_POINT_CV_BONUS_DMG_LW/>，全息瞄准器科技升级后可增加至+<Ability:VITAL_POINT_BM_BONUS_DMG_LW/>。<br/><Bullet/> 伤害加成应用于近战和直接（非范围效果）弹道攻击。"
 
@@ -3045,7 +3045,7 @@ ObjectiveTextPools[0]="消灭所有目标敌人"
 ObjectiveTextPools[0]="消灭所有目标敌人"
 ObjectiveTextPools[1]="撤离所有XCOM士兵"
 ObjectiveTextPools[2]="突袭变种人总部"
-ObjectiveTextPools[3]="随着这片区域的变种人部队与指挥失去联系，我们现在可以去突袭他们的本地军事总部了。这里的胜利将会从变种人的控制中解放这片区域，让人类能再次领导自己。"
+ObjectiveTextPools[3]="随着这片区域的变种人部队与上级指挥失去联系，我们现在可以去突袭他们的地方军事总部了。此战如果获胜将会从变种人的控制中解放这片区域，让人类能再次领导自己。"
 
 [Jailbreak_LW X2MissionTemplate]
 DisplayName="营救反抗军联络人"
@@ -3061,7 +3061,7 @@ ObjectiveTextPools[1]="营救至少1名反抗军联络人"
 ObjectiveTextPools[2]="营救额外反抗军联络人（可选）"
 ObjectiveTextPools[3]="撤离所有XCOM士兵"
 ObjectiveTextPools[4]="越狱"
-ObjectiveTextPools[5]="在一次变种人肃清行动中有一组反抗军联络人被包围了，并且被关押在了该区域的牢房之中。变种人准备用载具将这些囚犯转移到一个未知的地点，因此我们突入并营救这些人的时间将很有限。如果我们能安全地营救他们，这将对反抗军在这片地区的行动有很大的帮助。"
+ObjectiveTextPools[5]="一群反抗军联络人在一次变种人的清剿行动中被抓捕，目前被关押在该区域的牢房之中。变种人的运输车辆正赶来，准备将这些反抗军转移到未知地点，我们必须在有限的时间内突入并将他们解救出来。如果能够安全撤离这些人，他们将成为该地区抵抗组织的重要助力。"
 
 [SupplyExtraction_LW X2MissionTemplate]
 DisplayName="空运补给拦截"
@@ -3116,7 +3116,7 @@ ObjectiveTextPools[1]="转移变种人资源"
 ObjectiveTextPools[2]="找到额外的变种人资源(可选)"
 ObjectiveTextPools[3]="撤离所有XCOM士兵"
 ObjectiveTextPools[4]="补给突袭"
-ObjectiveTextPools[5]="反抗军找到一个含有各种资源的变种人补给站。突袭补给站，尽可能多的带走这些资源，在敌人增员赶来之前撤离。该任务将会有多个补给目标, 但是一名士兵只能带走一个补给箱。"
+ObjectiveTextPools[5]="反抗军找到一个含有各种资源的变种人补给站。突袭补给站，尽可能多的带走这些资源，并在敌人增员赶来之前撤离。该任务将会有多个补给目标, 但是一名士兵只能带走一个补给箱。"
 
 [DefaultBigSmashNGrab_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="找到变种人资源"
@@ -3124,7 +3124,7 @@ ObjectiveTextPools[1]="转移变种人资源"
 ObjectiveTextPools[2]="找到额外的变种人资源(可选)"
 ObjectiveTextPools[3]="撤离所有XCOM士兵"
 ObjectiveTextPools[4]="补给突袭"
-ObjectiveTextPools[5]="反抗军找到一个含有各种资源的变种人补给站。突袭补给站，尽可能多的带走这些资源，在敌人增员赶来之前撤离。该任务将会有多个补给目标, 但是一名士兵只能带走一个补给箱。"
+ObjectiveTextPools[5]="反抗军找到一个含有各种资源的变种人补给站。突袭补给站，尽可能多的带走这些资源，并在敌人增员赶来之前撤离。该任务将会有多个补给目标, 但是一名士兵只能带走一个补给箱。"
 
 
 [TroopManeuvers_LW X2MissionTemplate]
@@ -3138,7 +3138,7 @@ ObjectiveTextPools[0]="消灭所有目标敌人"
 ObjectiveTextPools[0]="消灭所有目标敌人"
 ObjectiveTextPools[1]="撤离所有XCOM士兵"
 ObjectiveTextPools[2]="伏击敌方军队"
-ObjectiveTextPools[3]="变种人通常以大群体的形式转移他们的军队，但是我们还是找到了较小的容易攻击的单位。一次时机恰当的突袭将会挫败变种人在这片地区的势力，并为我们提供将敌人尸体带回研究的宝贵机会。"
+ObjectiveTextPools[3]="变种人通常以大群体的形式转移他们的军队，但我们还是发现了一支单独行动且防御薄弱的小股部队。一次时机恰当的突袭不仅能打击变种人在这片地区的势力，还能让我们获得将敌人尸体带回进行研究的宝贵机会。"
 ; LWOTC Needs Translation
 ObjectiveTextPools[4]="LWOTC不速之客"
 ObjectiveTextPools[5]="欢迎来到LWOTC的第一个任务！<br/><br/>目标很简单：击杀所有的敌人。<br/><br/>请注意，这是为数不多可以获得敌人尸体的任务之一，这些尸体是研究和建设许多项目所需要的。在LWOTC，未经特殊训练前用爆炸物击杀敌人会摧毁尸体！"
@@ -3155,7 +3155,7 @@ ObjectiveTextPools[0]="消灭所有目标敌人"
 ObjectiveTextPools[0]="消灭所有目标敌人"
 ObjectiveTextPools[1]="撤离所有XCOM士兵"
 ObjectiveTextPools[2]="伏击敌方军队"
-ObjectiveTextPools[3]="变种人通常以大群体的形式转移他们的军队，但是我们还是找到了较小的容易攻击的单位。一次时机恰当的突袭将会挫败变种人在这片地区的势力，并为我们提供将敌人尸体带回研究的宝贵机会。"
+ObjectiveTextPools[3]="变种人通常以大群体的形式转移他们的军队，但我们还是发现了一支单独行动且防御薄弱的小股部队。一次时机恰当的突袭不仅能打击变种人在这片地区的势力，还能让我们获得将敌人尸体带回进行研究的宝贵机会。"
 ; LWOTC Needs Translation
 ObjectiveTextPools[4]="LWOTC不速之客"
 ObjectiveTextPools[5]="欢迎来到LWOTC的第一个任务！<br/><br/>目标很简单：击杀所有的敌人。<br/><br/>请注意，这是为数不多可以获得敌人尸体的任务之一，这些尸体是研究和建设许多项目所需要的。在LWOTC，未经特殊训练前用爆炸物击杀敌人会摧毁尸体！"
@@ -3173,7 +3173,7 @@ ObjectiveTextPools[0]="消灭所有目标敌人"
 ObjectiveTextPools[0]="消灭所有目标敌人"
 ObjectiveTextPools[1]="撤离所有的XCOM和反抗军人员"
 ObjectiveTextPools[2]="锄奸：集结点"
-ObjectiveTextPools[3]="变种人间谍被发现在一个敌人军队的会面点。由于干扰此会议以及消灭间谍和他们管理者的时间紧迫，我们没有时间让复仇者号派来常规XCOM军力。少数的反抗军成员自愿拿起武器与避难所顾问一起前去消除威胁。建议：天际游侠号到达进行紧急撤离的时间要比往常长很多。"
+ObjectiveTextPools[3]="变种人间谍被发现在一个与敌方部队会面的地点。由于只有极短的时间来打断这次会面并消灭间谍及其联络人，复仇者号已来不及派遣常规的XCOM部队。一小队反抗军成员自愿拿起武器与避难所顾问一起前去消除威胁。注意：天际游侠号到达进行紧急撤离的时间要比往常长很多。"
 
 [Defend_LW X2MissionTemplate]
 DisplayName="大报复：迎击空投"
@@ -3189,7 +3189,7 @@ ObjectiveTextPools[1]="撤离至少1名反抗军成员"
 ObjectiveTextPools[2]="撤离所有XCOM士兵"
 ObjectiveTextPools[3]="撤离额外的反抗军成员（可选）"
 ObjectiveTextPools[4]="大报复：迎击空投"
-ObjectiveTextPools[5]="变种人发起了对这片区域反抗军避难所的全面突击。传感器显示了有涌入的军队运输载具，在外星人网络的不寻常活动表明变种人意图一劳永逸地摧毁这座避难所。坚守反抗军成员，直到红恶魔能够摆脱追踪它的敌人干扰器并返回进行撤离。然后让尽可能多的反抗军成员撤离，让我们可以在一个新的避难所安置他们。在该任务的任何时候，通过移动士兵靠近反抗军的人员以控制他们。一旦撤离点出现，就将他们移动到那里以逃离；任何留下的成员都会被击杀。"
+ObjectiveTextPools[5]="变种人正在对该地区的反抗军避难所发动全面进攻。传感器显示有军队运输载具正在逼近，而外星网络上的异常活动也表明，变种人打算彻底摧毁这个避难所。坚守阵地，保护反抗军成员，直到红恶魔摆脱追击它的敌方拦截机并返回进行撤离。然后尽可能多的撤离反抗军成员，让我们可以在一个新的避难所安置他们。在该任务的任何时候，你都可以通过移动士兵靠近反抗军成员来控制他们。一旦撤离点出现，就将他们移动到那里以逃离；任何留下的成员都会被击杀。"
 
 [IntelRaid_LW X2MissionTemplate]
 DisplayName="小报复：情报突袭"
@@ -3203,7 +3203,7 @@ ObjectiveTextPools[0]="保护反抗军数据点"
 ObjectiveTextPools[1]="消灭所有目标敌人"
 ObjectiveTextPools[2]="撤离所有的XCOM和反抗军成员"
 ObjectiveTextPools[3]="小报复：情报突袭"
-ObjectiveTextPools[4]="我们在该地区的情报收集行动没有逃脱变种人的注意。反抗军成员已经在敌方领地建立了监听点，并获得了该地区有关敌人行动的关键情报。不幸的是，他们的数据点已被发现，变种人也在接近那里准备摧毁它并干掉他们。在变种人摧毁数据前消灭突击部队，并让我们在变种人重整部队之前撤离相关设备。失败将让我们在一段时间内无法在该地区进行情报收集工作。"
+ObjectiveTextPools[4]="我们在该地区的情报收集工作没有逃脱变种人的注意。反抗军成员在敌占区建立了监听点，并获得了敌方行动的重要情报。不幸的是，他们的数据点已被发现，变种人正在接近那里以摧毁它并干掉反抗军。在变种人破坏数据监听设备前消灭这支突击部队，让我们能在变种人重整部队之前取回相关设备。若任务失败，我们将在相当一段时间内无法在该地区开展情报收集工作。"
 
 [RecruitRaid_LW X2MissionTemplate]
 DisplayName="小报复：招募中断"
@@ -3232,7 +3232,7 @@ ObjectiveTextPools[0]="保护补给"
 ObjectiveTextPools[1]="消灭所有目标敌人"
 ObjectiveTextPools[2]="撤离所有的XCOM和反抗军人员"
 ObjectiveTextPools[3]="小报复：补给防卫"
-ObjectiveTextPools[4]="在这片地区收集补给的队伍已经被变种人注意到了。敌人的部队已经包围了一支正在运输补给返回反抗军的队伍！他们已经派出了运输载具意图击杀所有他们发现的人并且摧毁一切有用的物资。我们的目标是保护人员和重要物资。在他们造成额外伤害前击杀所有敌方部队，让我们的运输队在变种人空袭到来之前逃离这片区域。失败将让我们在一段时间内无法在该地区进行补给收集工作。"
+ObjectiveTextPools[4]="在这片地区收集补给的队伍已经引起了变种人的注意。敌军截停了一支正将补给运回避难所的车队！变种人已经派出了运输部队，意图消灭所有目标，并摧毁一切有价值的物资。我们的目标是保护车队中的人员和关键物资。在变种人的空袭抵达前，击杀所有敌方部队，阻止他们造成进一步破坏。任务失败将导致我们在一段时间内无法在该地区进行补给收集工作。"
 
 [MissionSource_LWSGenericMissionSource X2MissionSourceTemplate]
 MissionPinLabel="LWS检修一般任务"
@@ -3300,6 +3300,11 @@ MissionDifficultyLabels[19]="开什么玩笑"
 DisplayName="医务室"
 CompletedSummary="在不受伤的情况下完成多次战术任务后，士兵现在有机会从负面特质中恢复过来。\n新员工槽可用-提高士兵的治愈率\n新员工槽可用-移除所有负面特征"
 Summary="可以在医务室配备一名科学家，以减少我们的士兵从受伤中恢复所需的时间。可以在这里安置士兵，以消除战斗中获得的负面特征。活力模块升级允许在任何一次战斗部署期间暂时无视士兵的健康状况。"
+
+[Laboratory X2FacilityTemplate]
+DisplayName="实验室"
+CompletedSummary="新员工槽可用 - 减少研究时间"
+Summary="科学家可以被分配到实验室为泰根博士提供额外协助，这会进一步减少所有研究项目的时间。"
 
 [OfficerTrainingSchool X2FacilityTemplate]
 DisplayName="游击战术学校"
@@ -3525,7 +3530,7 @@ DisplayName="炼化超铀核心"
 Summary="这些极其珍贵的设备里面有为许多外星人的关键科技提供动力的微融合反应。我们可以用它们来做很多事，但你可以选择让我的团队把它拆解来获得8个可以用在研究和建造上的超铀水晶，"
 CodeName="麦高芬"
 LongDescription="超铀核心是一种奇妙的硬件，是一种可以用在武器、动力护甲和多种外星器械上的模块化的微融合反应堆。它的核心由超铀水晶组成，对我们来说有许多用途。理查德·泰根。"
-UnlockedDescription="从超铀核心中回收：<XGParam:StrValue0/!Quantity/>超铀核心"
+UnlockedDescription="从超铀核心中回收：<XGParam:StrValue0/!Quantity/>超铀水晶"
 
 [RenderSectoidCorpse X2TechTemplate]
 DisplayName="炼化灰人尸体"
@@ -4393,10 +4398,10 @@ SummaryText="外星人在反抗军中找到了一名间谍，使得待定的报�
 PreMissionText="使得报复行动更难以监测。"
 
 [DarkEvent_MinorBreakthrough X2DarkEventTemplate]
-PreMissionText="为化身计划增加<XGParam:StrValue0/!Quantity/>格进度"
+PreMissionText="为化身计划增加<XGParam:StrValue0/!Quantity/>进度"
 
 [DarkEvent_MajorBreakthrough X2DarkEventTemplate]
-PreMissionText="为化身计划增加<XGParam:StrValue0/!Quantity/>格进度"
+PreMissionText="为化身计划增加<XGParam:StrValue0/!Quantity/>进度"
 
 [DarkEvent_HavenInfiltration X2DarkEventTemplate]
 DisplayName="避难所渗透者"
@@ -5293,7 +5298,7 @@ LocPromotionPopupText="<Bullet/> 虚空裂痕使目标受到1伤口撕裂效果�
 ; End Translation
 
 [CoveringFire X2AbilityTemplate]
-LocLongDescription="监视射击现在会在任何敌对行动完成前触发，而不仅仅是在移动时才触发。监视射击现在会忽略目标3分之2的掩体加成。"
+LocLongDescription="监视射击现在会在任何敌对行动完成前触发，而不仅仅是在移动时才触发。反应射击现在会忽略目标3分之2的掩体加成。"
 LocPromotionPopupText="<Bullet/> 如果由敌人的动作触发，掩护火力将在敌人动作完成前触发。<br/><Bullet/> 掩护火力会让被你监视的单位获得-<Ability:COVERING_FIRE_OFFENSE_MALUS>的命中惩罚，不论是掩护火力，还是普通的监视。<br/>"
 
 [CapacitorDischarge X2AbilityTemplate]
@@ -5655,7 +5660,7 @@ LocPromotionPopupText="<Bullet/> 幽魂开始时的专注度等于圣殿骑士�
 LocFriendlyName="虚空导管"
 LocLongDescription="用灵能监狱束缚一个人形敌人，使其无法行动，持续2个行动点并将其生命值转移至圣殿骑士。消耗1专注。"
 LocHelpText="用灵能监狱束缚一个人形敌人，使其无法行动，持续2个行动点并将其生命值转移至圣殿骑士。消耗1专注。"
-LocPromotionPopupText="<Bullet/> 虚空导管首先会造成<Ability:VOIDCONDUITDMG/>伤害，随后每个敌方行动点吸取敌人<Ability:VOIDCONDUITACTIONDMG/>点生命值。<br/><Bullet/> 虚空导管持续2个行动点。<br/><Bullet/> 虚空导管冷却时间为<Ability:SelfCooldown_LW/>回合。<br/><Bullet/> 被虚空导管困住的敌人无法行动或闪避。<br/>"
+LocPromotionPopupText="<Bullet/> 虚空导管首先会造成<Ability:VOIDCONDUITDMG/>伤害，随后每个敌方行动点吸取敌人<Ability:VOIDCONDUITACTIONDMG/>点生命值。<br/><Bullet/> 虚空导管持续2个行动点。<br/><Bullet/> 虚空导管冷却时间为<Ability:SelfCooldown_LW/>回合。<br/><Bullet/> 被虚空导管困住的敌人无法行动或闪避。<br/><Bullet/> 无法对天选者使用。<br/><Bullet/> 束缚效果无法对化身起作用，会触发其传送（但传送距离远低于受伤后的普通传送）。<br/>"
 ; End Translation (2)
 
 ; LWOTC Needs Translation (3)
@@ -6488,8 +6493,8 @@ LocPromotionPopupText = "<Bullet/> 使用主武器暴击有几率使目标及目
 LocFriendlyName = "致盲协议"
 LocFlyOverText = "致盲协议"
 ; LWOTC Needs Translation (2)
-LocHelpText = "派遣小精灵向敌方目标投掷一个小型闪光弹，使小半径范围内的所有敌方单位混乱 (减少<Ability:DISORIENTED_AIM_ADJUST/>命中以及<Ability:DISORIENTED_MOBILITY_ADJUST/>移动力)。"
-LocLongDescription = "派遣小精灵向敌方目标投掷一个小型闪光弹，使小半径范围内的所有敌方单位混乱 (减少<Ability:DISORIENTED_AIM_ADJUST/>命中以及<Ability:DISORIENTED_MOBILITY_ADJUST/>移动力)。"
+LocHelpText = "派遣小精灵向敌方目标投掷一颗小型闪光弹，使小半径范围内的所有敌方单位混乱 (减少<Ability:DISORIENTED_AIM_ADJUST/>命中以及<Ability:DISORIENTED_MOBILITY_ADJUST/>移动力)。"
+LocLongDescription = "派遣小精灵向敌方目标投掷一颗小型闪光弹，使小半径范围内的所有敌方单位混乱 (减少<Ability:DISORIENTED_AIM_ADJUST/>命中以及<Ability:DISORIENTED_MOBILITY_ADJUST/>移动力)。"
 ; End translation (2)
 ; LWOTC Needs Translation (2)
 LocPromotionPopupText = "<Bullet/> 适用于小队视野。<br/><Bullet/> 无视闪光抗性。<br/><Bullet/> 致盲协议有<Ability:SelfCooldown_LW/>回合冷却时间并结束回合。<br/>"
@@ -6901,9 +6906,15 @@ LocFlyOverText="英雄杀手"
 
 [BonusBombard_LW X2AbilityTemplate]
 LocFriendlyName="重装储备"
-LocLongDescription="获得额外的重型武器和密集轰炸使用次数。"
-LocHelpText="获得额外的重型武器和密集轰炸使用次数，仅在学习了密集轰炸的情况下才会额外获得一次密集轰炸的使用机会。"
-LocPromotionPopupText="获得额外的重型武器和密集轰炸使用次数，仅在学习了密集轰炸的情况下才会额外获得一次密集轰炸的使用机会。"
+LocLongDescription="获得额外的「重型武器」和「密集轰炸」使用次数。如果学习了「突袭模块」，则打击攻击额外造成+2伤害，并使「动能打击」的冷却时间减少1回合。如果学习了「强化定位系统」，则获得+10命中和「复仇者」能力。"
+LocHelpText="获得额外的重型武器和密集轰炸使用次数，仅在学习了密集轰炸的情况下才会额外获得一次密集轰炸的使用机会。如果学习了「突袭模块」，则打击攻击额外造成+2伤害，并使「动能打击」的冷却时间减少1回合。如果学习了「强化定位系统」，则获得+10命中和「复仇者」能力。+10命中适用于所有攻击，包括近战攻击。"
+LocPromotionPopupText="<Bullet/> 获得额外的重型武器和密集轰炸使用次数，仅在学习了密集轰炸的情况下才会额外获得一次密集轰炸的使用机会。<br/><Bullet/> 如果学习了「突袭模块」，则打击攻击额外造成+2伤害，并使「动能打击」的冷却时间减少1回合。<br/><Bullet/> 如果学习了「强化定位系统」，则获得+10命中和「复仇者」能力。+10命中适用于所有攻击，包括近战攻击。"
+
+[SalvoRainmaker_LW X2AbilityTemplate]
+LocFriendlyName="爆破大师"
+LocHelpText="授予「唤雨者」技能：提高重型武器的伤害和作用范围。授予「齐射」技能：第一个行动点发射或投掷榴弹，使用重武器或臂套火箭发射器不会结束回合。"
+LocLongDescription="授予「唤雨者」技能：提高重型武器的伤害和作用范围。授予「齐射」技能：第一个行动点发射或投掷榴弹，使用重武器或臂套火箭发射器不会结束回合。"
+LocPromotionPopupText="<Bullet/> 授予「唤雨者」技能：提高重型武器的伤害和作用范围。<br/><Bullet/> 授予「齐射」技能：第一个行动点发射或投掷榴弹，使用重武器或臂套火箭发射器不会结束回合。"
 
 [BloodBath_LW X2AbilityTemplate]
 LocFriendlyName="鲜血浴"
@@ -7389,8 +7400,8 @@ LocPromotionPopupText="<Bullet/> 灵能闪电无冷却时间，但消耗1专注�
 
 [Amplify X2AbilityTemplate]
 LocFriendlyName="标记"
-LocLongDescription="用灵能透镜标记一名目标，使其接下来3次受到的单体攻击承受额外<Ability:AmplifyDamageMult/>%的伤害。消耗1专注。自由行动。"
-LocHelpText="用灵能透镜标记一名目标，使其接下来3次受到的单体攻击承受额外<Ability:AmplifyDamageMult/>%的伤害。消耗1专注。自由行动。"
+LocLongDescription="用灵能透镜标记一名目标，使其接下来3次受到的指向性攻击承受额外<Ability:AmplifyDamageMult/>%的伤害。消耗1专注。自由行动。"
+LocHelpText="用灵能透镜标记一名目标，使其接下来3次受到的指向性攻击承受额外<Ability:AmplifyDamageMult/>%的伤害。消耗1专注。自由行动。"
 LocHitMessage="标记"
 LocPromotionPopupText="<Bullet/> 标记持续3次伤害。<br/><Bullet/> 标记是自由行动。<br/><Bullet/> 范围攻击不适用，但依然会消耗次数。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷却。<br/>"
 
@@ -7600,8 +7611,8 @@ arrMPMapFriendlyNames[10]="下水道"
 
 [Overdrive X2AbilityTemplate]
 LocFriendlyName="极限超载"
-LocLongDescription="本回合获得3个行动点数，使用该能力不会结束回合。多次标准射击会获得少量的后座力减益。"
-LocHelpText="本回合获得3个行动点数，使用该能力不会结束回合。多次标准射击会获得少量的后座力减益。"
+LocLongDescription="本回合获得1个额外行动点，并且所有行动不再结束回合。注意未习得自适应瞄准前多次标准射击会获得少量的后座力减益。"
+LocHelpText="本回合获得1个额外行动点，并且所有行动不再结束回合。注意未习得自适应瞄准前多次标准射击会获得少量的后座力减益。"
 LocPromotionPopupText="<Bullet/>当过载激活时，每次标准射击后都会附加<Ability:Overdrive_RecoilPenalty/>%命中的后座力减益。<br/><Bullet/>过载激活无需行动点，但有<Ability:SelfCooldown_LW/>回合冷却。<br/>"
 
 [Bulwark X2AbilityTemplate]
@@ -7614,7 +7625,7 @@ LocPromotionPopupText="<Bullet/>壁垒增加1点护甲值。<br/><Bullet/>邻近
 LocFriendlyName="兵工厂"
 LocLongDescription="BIT可以装备并使用重武器。"
 LocHelpText="BIT可以装备并使用重武器。"
-LocPromotionPopupText="<Bullet/>兵工厂能允许SPARK在其装备中携带重型武器。<br/>"
+LocPromotionPopupText="<Bullet/>兵工厂为SPARK提供一个重型武器槽位，以允许SPARK在其装备中携带重型武器。<br/>"
 
 [Rainmaker X2AbilityTemplate]
 LocFriendlyName="唤雨者"
@@ -7696,8 +7707,8 @@ LocPromotionPopupText="<Bullet/>新星无需行动点和冷却。<br/><Bullet/>�
 
 [CombatProtocol X2AbilityTemplate]
 LocFriendlyName="战争协议"
-LocLongDescription="用小精灵去攻击敌人，可以造成可观的伤害，对机器人有伤害加成。需要有目标视野。"
-LocHelpText="用小精灵去攻击敌人，可以造成可观的伤害，对机器人有伤害加成。需要有目标视野。"
+LocLongDescription="指挥小精灵去电击敌人，造成必定命中的伤害，对机器敌人有伤害加成。需要有目标视野。"
+LocHelpText="指挥小精灵去电击敌人，造成必定命中的伤害，对机器敌人有伤害加成。需要有目标视野。"
 LocFlyOverText="战争协议"
 LocPromotionPopupText="<Bullet/> 战争协议有3回合冷却。<br/><Bullet/> 升级小精灵可以增加伤害。<br/>"
 
@@ -7791,3 +7802,6 @@ LocFriendlyName="传送撤离"
 LocLongDescription="当受到伤害、被束缚或被虚空导管限制时，化身可以传送到一个新位置。"
 LocHelpText="当受到伤害、被束缚或被虚空导管限制时，化身可以传送到一个新位置。"
 LocFlyOverText="传送撤离"
+
+[UICovertActions]
+CovertActions_WarningAmbush="警告！\n该任务有遭伏击的风险。我们应该确保士兵们携带了相应的装备。"

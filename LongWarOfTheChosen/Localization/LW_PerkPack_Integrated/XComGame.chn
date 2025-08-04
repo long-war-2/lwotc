@@ -479,7 +479,7 @@ LocPromotionPopupText="<Bullet/> 被失控协议侵入的敌方单位在侵入�
 LocFriendlyName="隐秘"
 LocFlyOverText="隐秘"
 LocLongDescription="敌人对你的侦查范围减少<Ability:COVERT_DETECTION_RANGE_REDUCTION/>%。"
-LocHelpText="敌人对你的侦查范围减少。"
+LocHelpText="敌人对你的侦查范围减少<Ability:COVERT_DETECTION_RANGE_REDUCTION/>%。"
 LocPromotionPopupText="<Bullet/> 敌人对你的侦查范围减少<Ability:COVERT_DETECTION_RANGE_REDUCTION/>%，侦查范围由敌人周围的红色格子标识。<br/><Bullet/> 该能力也会略微减少士兵的潜入时间。<br/><Bullet/> 对变种人安保塔没有效果。"
 
 [Ghostwalker X2AbilityTemplate]
@@ -807,7 +807,7 @@ LocFriendlyName="爆炸挥发"
 LocLongDescription="榴弹的范围效果提升1格。"
 LocHelpText="榴弹将覆盖更巨大的区域。"
 LocFlyOverText="爆炸挥发"
-LocPromotionPopupText="<Bullet/> 榴弹会在扩大的效果范围内造成常规和环境的伤害，并在扩大的效果范围内施加额外的效果。"
+LocPromotionPopupText="<Bullet/> 榴弹会在更大的范围内造成常规伤害和环境伤害，也会在更大的范围内施加额外的效果（中毒、燃烧、冰冻等）。"
 
 [XComGame.Salvo X2AbilityTemplate]
 [Salvo X2AbilityTemplate]
@@ -848,6 +848,10 @@ LocLongDescription="尝试遥控<Ability:BOUND_WEAPON_NAME/>侵入附近的网�
 LocHelpText="你可以遥控<Ability:BOUND_WEAPON_NAME/>来侵入目标。"
 LocFlyOverText="侵入"
 LocPromotionPopupText="<Bullet/> 使用<Ability:BOUND_WEAPON_NAME/>可以在一定距离内侵入地图物品（箱子、工作站等）。<br/>"
+
+[XComGame.IntrusionProtocolPassive X2AbilityTemplate]
+[IntrusionProtocolPassive X2AbilityTemplate]
+LocFriendlyName="远程侵入"
 
 [XComGame.EverVigilant X2AbilityTemplate]
 [EverVigilant X2AbilityTemplate]
@@ -1030,10 +1034,10 @@ Summary="炸药能够造成暴击伤害。"
 
 [HuntersInstinct X2AbilityTemplate]
 LocFriendlyName="猎人本能"
-LocLongDescription="于侧翼中远距离攻击敌人时+<Ability:HUNTERSINSTINCTDMG/>伤害。"
-LocHelpText="于侧翼中远距离攻击敌人时+<Ability:HUNTERSINSTINCTDMG/>伤害。"
+LocLongDescription="于侧翼对敌人进行远程攻击时额外造成+<Ability:HUNTERSINSTINCTDMG/>伤害。"
+LocHelpText="于侧翼对敌人进行远程攻击时额外造成+<Ability:HUNTERSINSTINCTDMG/>伤害。"
 LocFlyOverText="猎人本能"
-LocPromotionPopupText="<Bullet/> 于侧翼中远距离攻击敌人时+<Ability:HUNTERSINSTINCTDMG/>伤害。"
+LocPromotionPopupText="<Bullet/> 于侧翼对敌人进行远程攻击时额外造成+<Ability:HUNTERSINSTINCTDMG/>伤害。"
 
 [HitWhereItHurts X2AbilityTemplate]
 LocFriendlyName="致命一击"
@@ -1084,15 +1088,15 @@ LocPromotionPopupText="<Bullet/> <Ability:ClassName/>可以使用维修在战斗
 
 [KineticStrike_LW X2AbilityTemplate]
 LocFriendlyName="动能打击"
-LocLongDescription="用毁灭性的一拳攻击移动范围内的任何敌人。3回合冷却时间。伤害取决于装甲等级。"
-LocHelpText="用毁灭性的一拳攻击移动范围内的任何敌人。"
-LocPromotionPopupText="<Bullet/> 你可以通过将移动光标放在敌人身上来触发动能打击。<br/><Bullet/> <Ability:ClassName/>可以执行“冲刺”移动，使用2个行动点来移动并对敌人触发动能打击<br/><Bullet/> 动能打击将造成7/9.5/12点伤害，取决于所装备的底盘。<br/><Bullet/> 动能打击的命中几率基于<Ability:ClassName/>的命中，并额外获得+15命中。<br/><Bullet/> 学习“突袭模块”技能将为所有打击攻击提供+2点伤害和额外的+10命中。<br/>"
+LocLongDescription="用毁灭性的一拳攻击移动范围内的任意敌人。3回合冷却时间。伤害取决于装甲等级。"
+LocHelpText="用毁灭性的一拳攻击移动范围内的任意敌人。"
+LocPromotionPopupText="<Bullet/> 你可以通过将移动光标放在敌人身上来触发动能打击。<br/><Bullet/> <Ability:ClassName/>可以执行“冲刺”移动，使用2个行动点来移动并对敌人触发动能打击。<br/><Bullet/> 动能打击造成的伤害根据装甲等级分别为7/9-10/12。<br/><Bullet/> 动能打击的命中几率基于<Ability:ClassName/>的命中，并额外获得+15命中。<br/><Bullet/> 学习「突袭模块」技能后，所有打击攻击额外获得+2伤害和+20命中。<br/>"
 
 [Obliterator_LW X2AbilityTemplate]
 LocFriendlyName="突袭模块"
-LocLongDescription="所有打击攻击获得+2伤害和+10命中，授予「横冲直撞」能力，当过载激活时，能够在移动时撞穿墙壁和掩体。"
-LocHelpText="所有打击攻击获得+2伤害和+10命中。"
-LocPromotionPopupText="<Bullet/> 学习突袭模块技能将为所有动能打击攻击提供+2点伤害和额外的+10命中。"
+LocLongDescription="所有打击攻击额外获得+2伤害和+20命中，授予「横冲直撞」能力，当过载激活时，能够在移动时撞穿墙壁和掩体。"
+LocHelpText="所有打击攻击额外获得+2伤害和+20命中。"
+LocPromotionPopupText="<Bullet/> 学习突袭模块技能将为所有打击攻击额外提供+2伤害和+20命中。"
 
 [RapidRepair_LW X2AbilityTemplate]
 LocFriendlyName="快速维修"
