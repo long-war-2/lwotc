@@ -963,7 +963,7 @@ static function X2AbilityTemplate AddFleche()
 	FlecheBonusDamageEffect.MaxBonusDamage = default.MAX_SLICE_FLECHE_DAMAGE;
 	FlecheBonusDamageEffect.AbilityNames.AddItem('SwordSlice');
 	FlecheBonusDamageEffect.AbilityNames.AddItem('SwordSlice_LW');
-	//FlecheBonusDamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	FlecheBonusDamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
 	FlecheBonusDamageEffect.BuildPersistentEffect (1, true, false);
 	Template.AddTargetEffect (FlecheBonusDamageEffect);
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
