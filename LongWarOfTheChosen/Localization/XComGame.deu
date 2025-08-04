@@ -6697,10 +6697,6 @@ LocLongDescription="Du verursachst +<Ability:HERO_SLAYER_DMG/> % Schaden gegen H
 LocFlyOverText="Eliteschlächter"
 
 [BonusBombard_LW X2AbilityTemplate]
-LocFriendlyName="Erweiterte Reserven"
-LocLongDescription="Du erhältst eine zusätzliche Verwendung ausgerüsteter Schwerer Waffen und Bombardierung."
-LocHelpText="Du erhältst eine zusätzliche Verwendung ausgerüsteter Schwerer Waffen und Bombardierung. Die zusätzliche Bombardierung gilt nur, wenn die Fähigkeit auch gewählt wurde."
-LocPromotionPopupText="Du erhältst eine zusätzliche Verwendung ausgerüsteter Schwerer Waffen und Bombardierung. Die zusätzliche Bombardierung gilt nur, wenn die Fähigkeit auch gewählt wurde."
 
 [BloodBath_LW X2AbilityTemplate]
 LocFriendlyName="Blutbad"

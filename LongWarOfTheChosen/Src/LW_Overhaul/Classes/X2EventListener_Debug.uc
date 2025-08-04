@@ -19,8 +19,9 @@ static function CHEventListenerTemplate CreateDebugListeners()
 {
 	local CHEventListenerTemplate Template;
 
-	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'DebugListeners');
+	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'LWDebugListeners');
 	Template.AddCHEvent('DrawDebugLabels', OnDrawDebugLabels, ELD_Immediate);
+	`LWTrace("Creating debug listeners");
 
 	Template.RegisterInTactical = true;
 
@@ -37,8 +38,7 @@ static function EventListenerReturn OnDrawDebugLabels(Object EventData, Object E
 	kCanvas = Canvas(EventData);
 	if (kCanvas == none)
 		return ELR_NoInterrupt;
-	
-`if(`notdefined(FINAL_RELEASE))
+
 	// if (LWDLCInfo == none)
 	// {
 		//retrieve all active DLCs
@@ -55,8 +55,9 @@ static function EventListenerReturn OnDrawDebugLabels(Object EventData, Object E
 
 	if (LWDLCInfo.bDebugPodJobs)
 	{
+		`LWTrace("Drawing debug labels");
 		`LWPODMGR.DrawDebugLabel(kCanvas);
 	}
-`endif
+
 	return ELR_NoInterrupt;
 }

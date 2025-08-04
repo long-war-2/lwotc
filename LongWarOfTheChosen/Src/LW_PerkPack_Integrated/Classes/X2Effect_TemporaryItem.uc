@@ -215,7 +215,7 @@ simulated function XComGameState_Item AddNewItemToUnit(X2EquipmentTemplate Equip
 		{
 			AbilityState = XComGameState_Ability(History.GetGameStateForObjectID(AbilityRef.ObjectID));
 			`PPTRACE("TempItem :" @ AbilityName @ "found, adding for new ammo type.");
-			if(AbilityState.SourceWeapon.ObjectId > 0)
+			if(AbilityState.SourceWeapon.ObjectID > 0)
 			{
 				TempItem = XComGameState_Item(History.GetGameStateForObjectID(AbilityState.SourceWeapon.ObjectID));
 				`PPTRACE("TempItem : Adding" @ ItemState.GetMyTemplate().GetItemFriendlyName() @ "as ammo to" @ TempItem.GetMyTemplate().GetItemFriendlyName());

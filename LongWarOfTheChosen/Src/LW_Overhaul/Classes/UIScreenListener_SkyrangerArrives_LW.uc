@@ -18,9 +18,6 @@ event OnInit(UIScreen Screen)
 	local XComGameState_LWPersistentSquad Squad;
 	local UISkyrangerArrives SkyrangerArrives;
 
-
-	if(!Screen.IsA('UISkyrangerArrives')) return;
-
 	SkyrangerArrives = UISkyrangerArrives(Screen);
 	if(SkyrangerArrives == none) return;
 
@@ -62,17 +59,35 @@ event OnInit(UIScreen Screen)
 
 event OnReceiveFocus(UIScreen Screen)
 {
-	InstallInputHandler();
+	local UISkyrangerArrives SkyrangerArrives;
+	
+	SkyrangerArrives = UISkyrangerArrives(Screen);
+	if (SkyrangerArrives != none)
+	{
+		InstallInputHandler();
+	}
 }
 
 event OnLoseFocus(UIScreen Screen)
 {
-	`SCREENSTACK.UnsubscribeFromOnInput(ChangeEnterBehavior);
+	local UISkyrangerArrives SkyrangerArrives;
+	
+	SkyrangerArrives = UISkyrangerArrives(Screen);
+	if (SkyrangerArrives != none)
+	{
+		`SCREENSTACK.UnsubscribeFromOnInput(ChangeEnterBehavior);
+	}
 }
 
 event OnRemoved(UIScreen Screen)
 {
-	`SCREENSTACK.UnsubscribeFromOnInput(ChangeEnterBehavior);
+	local UISkyrangerArrives SkyrangerArrives;
+	
+	SkyrangerArrives = UISkyrangerArrives(Screen);
+	if (SkyrangerArrives != none)
+	{
+		`SCREENSTACK.UnsubscribeFromOnInput(ChangeEnterBehavior);
+	}
 }
 
 // LWOTC: Override SkyrangerArrives screen's input handler so that
@@ -264,6 +279,5 @@ function bool ChangeEnterBehavior(int iInput, int ActionMask)
 
 defaultproperties
 {
-	// Leaving this assigned to none will cause every screen to trigger its signals on this class
-	ScreenClass = UISkyrangerArrives;
+	ScreenClass = none;
 }

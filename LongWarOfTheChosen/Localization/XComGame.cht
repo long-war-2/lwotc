@@ -310,7 +310,7 @@ LocFriendlyName="掩體剋星"
 LocFlyOverText="掩體剋星"
 LocHelpText="發射一枚特殊的火箭，能夠摧毀環境中的建築物和其他物體。"
 LocLongDescription="發射一枚特殊的火箭，能夠摧毀環境中的建築物和其他物體。"
-LocPromotionPopupText="<Bullet/> 有著大範圍的效果，對敵人造成的傷害一般，但對建築物、載具和環境中其他物體造成巨大傷害。<br/><Bullet/> 需要2個行動點，每次任務僅可使用1次。<br/><Bullet/> 無法觸發齊射。<br/>"
+LocPromotionPopupText="<Bullet/> 有著大範圍的效果，對敵人造成的傷害一般，但對建築物、載具和環境中其他物體造成巨大傷害。<br/><Bullet/> 需要2個行動點，每次任務僅可使用1次。<br/><Bullet/> 不適用於齊射。<br/>"
 
 [FireandSteel X2AbilityTemplate]
 LocFriendlyName="火與鋼"
@@ -659,8 +659,8 @@ LocPromotionPopupText="<Bullet/> 對同一目標多次使用全息瞄準不會�
 
 [VitalPointTargeting X2AbilityTemplate]
 LocFriendlyName="要害瞄準"
-LocLongDescription="對你的全息瞄準目標的攻擊會造成更多傷害。"
-LocHelpText="對你的全息瞄準目標的攻擊會造成更多傷害。"
+LocLongDescription="被全息瞄準的敵人在受到攻擊時會承受額外的傷害。"
+LocHelpText="被全息瞄準的敵人在受到攻擊時會承受額外的傷害。"
 LocFlyOverText="要害瞄準"
 LocPromotionPopupText="<Bullet/>基礎的全息瞄準器的要害瞄準傷害加成為+<Ability:VITAL_POINT_CV_BONUS_DMG_LW/>，全息瞄準器科技升級後可增加至+<Ability:VITAL_POINT_BM_BONUS_DMG_LW/>。<br/><Bullet/> 傷害加成應用於近戰和直接（非範圍效果）彈道攻擊。"
 
@@ -3038,7 +3038,7 @@ ObjectiveTextPools[0]="消滅所有目標敵人"
 ObjectiveTextPools[0]="消滅所有目標敵人"
 ObjectiveTextPools[1]="撤離所有XCOM士兵"
 ObjectiveTextPools[2]="突襲變種人總部"
-ObjectiveTextPools[3]="隨著這片區域的變種人部隊與指揮失去聯繫，我們現在可以去突襲他們的本地軍事總部了。這裡的勝利將會從變種人的控制中解放這片區域，讓人類能再次領導自己。"
+ObjectiveTextPools[3]="隨着這片區域的變種人部隊與上級指揮失去聯繫，我們現在可以去突襲他們的地方軍事總部了。此戰如果獲勝將會從變種人的控制中解放這片區域，讓人類能再次領導自己。"
 
 [Jailbreak_LW X2MissionTemplate]
 DisplayName="營救反抗軍聯絡人"
@@ -3054,7 +3054,7 @@ ObjectiveTextPools[1]="營救至少1名反抗軍聯絡人"
 ObjectiveTextPools[2]="營救額外反抗軍聯絡人（可選）"
 ObjectiveTextPools[3]="撤離所有XCOM士兵"
 ObjectiveTextPools[4]="越獄"
-ObjectiveTextPools[5]="在一次變種人肅清行動中有一組反抗軍聯絡人被包圍了，並且被關押在了該區域的牢房之中。變種人準備用載具將這些囚犯轉移到一個未知的地點，因此我們突入並營救這些人的時間將很有限。如果我們能安全地營救他們，這將對反抗軍在這片地區的行動有很大的幫助。"
+ObjectiveTextPools[5]="一群反抗軍聯絡人在一次變種人的清剿行動中被抓捕，目前被關押在該區域的牢房之中。變種人的運輸車輛正趕來，準備將這些反抗軍轉移到未知地點，我們必須在有限的時間內突入並將他們解救出來。如果能夠安全撤離這些人，他們將成為該地區抵抗組織的重要助力。"
 
 [SupplyExtraction_LW X2MissionTemplate]
 DisplayName="空運補給攔截"
@@ -3109,7 +3109,7 @@ ObjectiveTextPools[1]="轉移變種人資源"
 ObjectiveTextPools[2]="找到額外的變種人資源(可選)"
 ObjectiveTextPools[3]="撤離所有XCOM士兵"
 ObjectiveTextPools[4]="補給突襲"
-ObjectiveTextPools[5]="反抗軍找到一個含有各種資源的變種人補給站。突襲補給站，儘可能多的帶走這些資源，在敵人增員趕來之前撤離。該任務將會有多個補給目標, 但是一名士兵只能帶走一個補給箱。"
+ObjectiveTextPools[5]="反抗軍找到一個含有各種資源的變種人補給站。突襲補給站，儘可能多的帶走這些資源，並在敵人增員趕來之前撤離。該任務將會有多個補給目標, 但是一名士兵只能帶走一個補給箱。"
 
 [DefaultBigSmashNGrab_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="找到變種人資源"
@@ -3117,7 +3117,7 @@ ObjectiveTextPools[1]="轉移變種人資源"
 ObjectiveTextPools[2]="找到額外的變種人資源(可選)"
 ObjectiveTextPools[3]="撤離所有XCOM士兵"
 ObjectiveTextPools[4]="補給突襲"
-ObjectiveTextPools[5]="反抗軍找到一個含有各種資源的變種人補給站。突襲補給站，儘可能多的帶走這些資源，在敵人增員趕來之前撤離。該任務將會有多個補給目標, 但是一名士兵只能帶走一個補給箱。"
+ObjectiveTextPools[5]="反抗軍找到一個含有各種資源的變種人補給站。突襲補給站，儘可能多的帶走這些資源，並在敵人增員趕來之前撤離。該任務將會有多個補給目標, 但是一名士兵只能帶走一個補給箱。"
 
 
 [TroopManeuvers_LW X2MissionTemplate]
@@ -3131,7 +3131,7 @@ ObjectiveTextPools[0]="消滅所有目標敵人"
 ObjectiveTextPools[0]="消滅所有目標敵人"
 ObjectiveTextPools[1]="撤離所有XCOM士兵"
 ObjectiveTextPools[2]="伏擊敵方軍隊"
-ObjectiveTextPools[3]="變種人通常以大群體的形式轉移他們的軍隊，但是我們還是找到了較小的容易攻擊的單位。一次時機恰當的突襲將會挫敗變種人在這片地區的勢力，並為我們提供將敵人屍體帶回研究的寶貴機會。"
+ObjectiveTextPools[3]="變種人通常以大群體的形式轉移他們的軍隊，但我們還是發現了一支單獨行動且防禦薄弱的小股部隊。一次時機恰當的突襲不僅能打擊變種人在這片地區的勢力，還能讓我們獲得將敵人屍體帶回進行研究的寶貴機會。"
 ; LWOTC Needs Translation
 ObjectiveTextPools[4]="LWOTC不速之客"
 ObjectiveTextPools[5]="歡迎來到LWOTC的第一個任務！<br/><br/>目標很簡單：擊殺所有的敵人。<br/><br/>請注意，這是為數不多可以獲得敵人屍體的任務之一，這些屍體是研究和建設許多項目所需要的。在LWOTC，未經特殊訓練前用爆炸物擊殺敵人會摧毀屍體！"
@@ -3148,7 +3148,7 @@ ObjectiveTextPools[0]="消滅所有目標敵人"
 ObjectiveTextPools[0]="消滅所有目標敵人"
 ObjectiveTextPools[1]="撤離所有XCOM士兵"
 ObjectiveTextPools[2]="伏擊敵方軍隊"
-ObjectiveTextPools[3]="變種人通常以大群體的形式轉移他們的軍隊，但是我們還是找到了較小的容易攻擊的單位。一次時機恰當的突襲將會挫敗變種人在這片地區的勢力，並為我們提供將敵人屍體帶回研究的寶貴機會。"
+ObjectiveTextPools[3]="變種人通常以大群體的形式轉移他們的軍隊，但我們還是發現了一支單獨行動且防禦薄弱的小股部隊。一次時機恰當的突襲不僅能打擊變種人在這片地區的勢力，還能讓我們獲得將敵人屍體帶回進行研究的寶貴機會。"
 ; LWOTC Needs Translation
 ObjectiveTextPools[4]="LWOTC不速之客"
 ObjectiveTextPools[5]="歡迎來到LWOTC的第一個任務！<br/><br/>目標很簡單：擊殺所有的敵人。<br/><br/>請注意，這是為數不多可以獲得敵人屍體的任務之一，這些屍體是研究和建設許多項目所需要的。在LWOTC，未經特殊訓練前用爆炸物擊殺敵人會摧毀屍體！"
@@ -3165,7 +3165,7 @@ ObjectiveTextPools[0]="消滅所有目標敵人"
 ObjectiveTextPools[0]="消滅所有目標敵人"
 ObjectiveTextPools[1]="撤離所有的XCOM和反抗軍人員"
 ObjectiveTextPools[2]="集結點"
-ObjectiveTextPools[3]="變種人間諜被發現在一個敵人軍隊的會面點。由於干擾此會議以及消滅間諜和他們管理者的時間緊迫，我們沒有時間讓復仇者號派來常規XCOM軍力。少數的反抗軍成員自願拿起武器與避難所顧問一起前去消除威脅。建議：天際遊俠號到達進行緊急撤離的時間要比往常長很多。"
+ObjectiveTextPools[3]="變種人間諜被發現在一個與敵方部隊會面的地點。由於只有極短的時間來打斷這次會面並消滅間諜及其聯絡人，復仇者號已來不及派遣常規的XCOM部隊。一小隊反抗軍成員自願拿起武器與避難所顧問一起前去消除威脅。注意：天際遊俠號到達進行緊急撤離的時間要比往常長很多。"
 
 [Defend_LW X2MissionTemplate]
 DisplayName="避難所防禦"
@@ -3181,7 +3181,7 @@ ObjectiveTextPools[1]="撤離至少1名反抗軍成員"
 ObjectiveTextPools[2]="撤離所有XCOM士兵"
 ObjectiveTextPools[3]="撤離額外的反抗軍成員（可選）"
 ObjectiveTextPools[4]="防禦避難所"
-ObjectiveTextPools[5]="變種人發起了對這片區域反抗軍避難所的全面突擊。傳感器顯示了有湧入的軍隊運輸載具，在外星人網絡的不尋常活動表明變種人意圖一勞永逸地摧毀這座避難所。堅守反抗軍成員，直到紅惡魔能夠擺脫追蹤它的敵人干擾器並返回進行撤離。然後讓儘可能多的反抗軍成員撤離，讓我們可以在一個新的避難所安置他們。在該任務的任何時候，通過移動士兵靠近反抗軍的人員以控制他們。一旦撤離點出現，就將他們移動到那裡以逃離；任何留下的成員都會被擊殺。"
+ObjectiveTextPools[5]="變種人正在對該地區的反抗軍避難所發動全面進攻。傳感器顯示有軍隊運輸載具正在逼近，而外星網絡上的異常活動也表明，變種人打算徹底摧毀這個避難所。堅守陣地，保護反抗軍成員，直到紅惡魔擺脫追擊它的敵方攔截機並返回進行撤離。然後儘可能多的撤離反抗軍成員，讓我們可以在一個新的避難所安置他們。在該任務的任何時候，你都可以通過移動士兵靠近反抗軍成員來控制他們。一旦撤離點出現，就將他們移動到那裡以逃離；任何留下的成員都會被擊殺。"
 
 [IntelRaid_LW X2MissionTemplate]
 DisplayName="保護數據點"
@@ -3195,7 +3195,7 @@ ObjectiveTextPools[0]="保護反抗軍數據點"
 ObjectiveTextPools[1]="消滅所有目標敵人"
 ObjectiveTextPools[2]="撤離所有的XCOM和反抗軍成員"
 ObjectiveTextPools[3]="情報突襲"
-ObjectiveTextPools[4]="我們在該地區的情報收集行動沒有逃脫變種人的注意。反抗軍成員已經在敵方領地建立了監聽點，並獲得了該地區有關敵人行動的關鍵情報。不幸的是，他們的數據點已被發現，變種人也在接近那裡準備摧毀它並幹掉他們。在變種人摧毀數據前消滅突擊部隊，並讓我們在變種人重整部隊之前撤離相關設備。失敗將讓我們在一段時間內無法在該地區進行情報收集工作。"
+ObjectiveTextPools[4]="我們在該地區的情報收集工作沒有逃脫變種人的注意。反抗軍成員在敵占區建立了監聽點，並獲得了敵方行動的重要情報。不幸的是，他們的數據點已被發現，變種人正在接近那裡以摧毀它並幹掉反抗軍。在變種人破壞數據監聽設備前消滅這支突擊部隊，讓我們能在變種人重整部隊之前取回相關設備。若任務失敗，我們將在相當一段時間內無法在該地區開展情報收集工作。"
 
 [RecruitRaid_LW X2MissionTemplate]
 DisplayName="撤離反抗軍招募者"
@@ -3224,7 +3224,7 @@ ObjectiveTextPools[0]="保護補給"
 ObjectiveTextPools[1]="消滅所有目標敵人"
 ObjectiveTextPools[2]="撤離所有的XCOM和反抗軍人員"
 ObjectiveTextPools[3]="補給車隊"
-ObjectiveTextPools[4]="在這片地區收集補給的隊伍已經被變種人注意到了。敵人的部隊已經包圍了一支正在運輸補給返回反抗軍的隊伍！他們已經派出了運輸載具意圖擊殺所有他們發現的人並且摧毀一切有用的物資。我們的目標是保護人員和重要物資。在他們造成額外傷害前擊殺所有敵方部隊，讓我們的運輸隊在變種人空襲到來之前逃離這片區域。失敗將讓我們在一段時間內無法在該地區進行補給收集工作。"
+ObjectiveTextPools[4]="在這片地區收集補給的隊伍已經引起了變種人的注意。敵軍截停了一支正將補給運迴避難所的車隊！變種人已經派出了運輸部隊，意圖消滅所有目標，並摧毀一切有價值的物資。我們的目標是保護車隊中的人員和關鍵物資。在變種人的空襲抵達前，擊殺所有敵方部隊，阻止他們造成進一步破壞。任務失敗將導致我們在一段時間內無法在該地區進行補給收集工作。"
 
 [MissionSource_LWSGenericMissionSource X2MissionSourceTemplate]
 MissionPinLabel="LWS檢修一般任務"
@@ -3291,6 +3291,11 @@ MissionDifficultyLabels[19]="開什麼玩笑"
 DisplayName="醫務室"
 CompletedSummary="在不受傷的情況下完成多次戰術任務後，士兵現在有機會從負面特質中恢復過來。\n新員工槽可用-提高士兵的治癒率\n新員工槽可用-移除所有負面特徵"
 Summary="可以在醫務室配備一名科學家，以減少我們的士兵從受傷中恢復所需的時間。可以在這裡安置士兵，以消除戰鬥中獲得的負面特徵。活力模塊升級允許在任何一次戰鬥部署期間暫時無視士兵的健康狀況。"
+
+[Laboratory X2FacilityTemplate]
+DisplayName="實驗室"
+CompletedSummary="新員工槽可用 - 減少研究時間"
+Summary="科學家可以被分配到實驗室為泰根博士提供額外協助，這會進一步減少所有研究項目的時間。"
 
 [OfficerTrainingSchool X2FacilityTemplate]
 DisplayName="游擊戰術學校"
@@ -4382,10 +4387,10 @@ SummaryText="外星人在反抗軍中找到了一名間諜，使得待定的報�
 PreMissionText="使得報復行動更難以監測。"
 
 [DarkEvent_MinorBreakthrough X2DarkEventTemplate]
-PreMissionText="為化身計劃增加<XGParam:StrValue0/!Quantity/>格進度"
+PreMissionText="為化身計劃增加<XGParam:StrValue0/!Quantity/>進度"
 
 [DarkEvent_MajorBreakthrough X2DarkEventTemplate]
-PreMissionText="為化身計劃增加<XGParam:StrValue0/!Quantity/>格進度"
+PreMissionText="為化身計劃增加<XGParam:StrValue0/!Quantity/>進度"
 
 [DarkEvent_HavenInfiltration X2DarkEventTemplate]
 DisplayName="避難所滲透者"
@@ -5282,7 +5287,7 @@ LocPromotionPopupText="<Bullet/> 虛空裂痕使目標受到1傷口撕裂效果�
 ; End Translation
 
 [CoveringFire X2AbilityTemplate]
-LocLongDescription="監視射擊現在會在任何敵對行動完成前觸發，而不僅僅是在移動時才觸發。監視射擊現在會忽略目標3分之2的掩體加成。"
+LocLongDescription="監視射擊現在會在任何敵對行動完成前觸發，而不僅僅是在移動時才觸發。反應射擊現在會忽略目標3分之2的掩體加成。"
 LocPromotionPopupText="<Bullet/> 如果由敵人動作觸發，掩護射擊將在敵人動作完成前觸發。<br/><Bullet/> 掩護火力會讓被你監視的單位獲得-<Ability:COVERING_FIRE_OFFENSE_MALUS>的命中懲罰，不論是掩護火力，還是普通的監視。<br/>"
 
 [CapacitorDischarge X2AbilityTemplate]
@@ -5643,7 +5648,7 @@ LocPromotionPopupText="<Bullet/> 幽魂開始時的專注度等於聖殿騎士�
 LocFriendlyName="虛空導管"
 LocLongDescription="用靈能監獄束縛一個人形敵人，使其無法行動，持續2個行動點並將其生命值轉移至聖殿騎士。消耗1專注。"
 LocHelpText="用靈能監獄束縛一個人形敵人，使其無法行動，持續2個行動點並將其生命值轉移至聖殿騎士。消耗1專注。"
-LocPromotionPopupText="<Bullet/> 虛空導管首先會造成<Ability:VOIDCONDUITDMG/>傷害，隨後每個敵方行動點吸取敵人<Ability:VOIDCONDUITACTIONDMG/>點生命值。<br/><Bullet/> 虛空導管持續2個行動點。<br/><Bullet/> 虛空導管冷卻時間為<Ability:SelfCooldown_LW/>回合。<br/><Bullet/> 被虛空導管困住的敵人無法行動或閃避。<br/>"
+LocPromotionPopupText="<Bullet/> 虛空導管首先會造成<Ability:VOIDCONDUITDMG/>傷害，隨後每個敵方行動點吸取敵人<Ability:VOIDCONDUITACTIONDMG/>點生命值。<br/><Bullet/> 虛空導管持續2個行動點。<br/><Bullet/> 虛空導管冷卻時間為<Ability:SelfCooldown_LW/>回合。<br/><Bullet/> 被虛空導管困住的敵人無法行動或閃避。<br/><Bullet/> 無法對天選者使用。<br/><Bullet/> 束縛效果無法對化身起作用，會觸發其傳送（但傳送距離遠低於受傷後的普通傳送）。<br/>"
 ; End Translation (2)
 
 ; LWOTC Needs Translation #2 - Shard and Caster gauntlet tactical text and the brief
@@ -6476,8 +6481,8 @@ LocPromotionPopupText = "<Bullet/> 使用主武器暴擊有幾率使目標及目
 LocFriendlyName = "致盲協議"
 LocFlyOverText = "致盲協議"
 ; LWOTC Needs Translation (2)
-LocHelpText = "派遣小精靈向敵方目標投擲一個小型閃光彈，使小半徑範圍內的所有敵方單位混亂 (減少<Ability:DISORIENTED_AIM_ADJUST/>命中以及<Ability:DISORIENTED_MOBILITY_ADJUST/>移動力)。"
-LocLongDescription = "派遣小精靈向敵方目標投擲一個小型閃光彈，使小半徑範圍內的所有敵方單位混亂 (減少<Ability:DISORIENTED_AIM_ADJUST/>命中以及<Ability:DISORIENTED_MOBILITY_ADJUST/>移動力)。"
+LocHelpText = "派遣小精靈向敵方目標投擲一顆小型閃光彈，使小半徑範圍內的所有敵方單位混亂 (減少<Ability:DISORIENTED_AIM_ADJUST/>命中以及<Ability:DISORIENTED_MOBILITY_ADJUST/>移動力)。"
+LocLongDescription = "派遣小精靈向敵方目標投擲一顆小型閃光彈，使小半徑範圍內的所有敵方單位混亂 (減少<Ability:DISORIENTED_AIM_ADJUST/>命中以及<Ability:DISORIENTED_MOBILITY_ADJUST/>移動力)。"
 ; End translation (2)
 ; LWOTC Needs Translation (2)
 LocPromotionPopupText = "<Bullet/> 適用於小隊視野。<br/><Bullet/> 無視閃光抗性。<br/><Bullet/> 致盲協議有<Ability:SelfCooldown_LW/>回合冷卻時間並結束回合。<br/>"
@@ -6889,9 +6894,15 @@ LocFlyOverText="英雄殺手"
 
 [BonusBombard_LW X2AbilityTemplate]
 LocFriendlyName="重裝儲備"
-LocLongDescription="獲得額外的重型武器和密集轟炸使用次數。"
-LocHelpText="獲得額外的重型武器和密集轟炸使用次數，僅在學習了密集轟炸的情況下才會額外獲得一次密集轟炸的使用機會。"
-LocPromotionPopupText="獲得額外的重型武器和密集轟炸使用次數，僅在學習了密集轟炸的情況下才會額外獲得一次密集轟炸的使用機會。"
+LocLongDescription="獲得額外的「重型武器」和「密集轟炸」使用次數。如果學習了「突襲模塊」，則打擊攻擊額外造成+2傷害，並使「動能打擊」的冷卻時間減少1回合。如果學習了「強化定位系統」，則獲得+10命中和「復仇者」能力。"
+LocHelpText="獲得額外的重型武器和密集轟炸使用次數，僅在學習了密集轟炸的情況下才會額外獲得一次密集轟炸的使用機會。如果學習了「突襲模塊」，則打擊攻擊額外造成+2傷害，並使「動能打擊」的冷卻時間減少1回合。如果學習了「強化定位系統」，則獲得+10命中和「復仇者」能力。+10命中適用於所有攻擊，包括近戰攻擊。"
+LocPromotionPopupText="<Bullet/> 獲得額外的重型武器和密集轟炸使用次數，僅在學習了密集轟炸的情況下才會額外獲得一次密集轟炸的使用機會。<br/><Bullet/> 如果學習了「突襲模塊」，則打擊攻擊額外造成+2傷害，並使「動能打擊」的冷卻時間減少1回合。<br/><Bullet/> 如果學習了「強化定位系統」，則獲得+10命中和「復仇者」能力。+10命中適用於所有攻擊，包括近戰攻擊。"
+
+[SalvoRainmaker_LW X2AbilityTemplate]
+LocFriendlyName="爆破大師"
+LocHelpText="授予「喚雨者」技能：提高重型武器的傷害和作用範圍。授予「齊射」技能：第一個行動點發射或投擲榴彈，使用重武器或臂套火箭發射器不會結束回合。"
+LocLongDescription="授予「喚雨者」技能：提高重型武器的傷害和作用範圍。授予「齊射」技能：第一個行動點發射或投擲榴彈，使用重武器或臂套火箭發射器不會結束回合。"
+LocPromotionPopupText="<Bullet/> 授予「喚雨者」技能：提高重型武器的傷害和作用範圍。<br/><Bullet/> 授予「齊射」技能：第一個行動點發射或投擲榴彈，使用重武器或臂套火箭發射器不會結束回合。"
 
 [BloodBath_LW X2AbilityTemplate]
 LocFriendlyName="鮮血浴"
@@ -7374,8 +7385,8 @@ LocPromotionPopupText="<Bullet/> 靈能閃電無冷卻時間，但消耗1專注�
 
 [Amplify X2AbilityTemplate]
 LocFriendlyName="標記"
-LocLongDescription="用灵能透镜标记一名目标，使其接下来3次受到的单体攻击承受额外<Ability:AmplifyDamageMult/>%的傷害。消耗1專注。自由行動。"
-LocHelpText="用灵能透镜标记一名目标，使其接下来3次受到的单体攻击承受额外<Ability:AmplifyDamageMult/>%的傷害。消耗1專注。自由行動。"
+LocLongDescription="用灵能透镜标记一名目标，使其接下来3次受到的指向性攻击承受额外<Ability:AmplifyDamageMult/>%的傷害。消耗1專注。自由行動。"
+LocHelpText="用灵能透镜标记一名目标，使其接下来3次受到的指向性攻击承受额外<Ability:AmplifyDamageMult/>%的傷害。消耗1專注。自由行動。"
 LocHitMessage="標記"
 LocPromotionPopupText="<Bullet/> 標記持續3次傷害。<br/><Bullet/> 標記是自由行動。<br/><Bullet/> 範圍攻擊不適用，但依然會消耗次數。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷卻。<br/>"
 
@@ -7585,9 +7596,9 @@ arrMPMapFriendlyNames[10]="下水道"
 
 [Overdrive X2AbilityTemplate]
 LocFriendlyName="極限超載"
-LocLongDescription="本回合獲得3個行動點，使用該技能不會結束回合。多次標準射擊會受到少量後座力懲罰。"
-LocHelpText="本回合獲得3個行動點，使用該技能不會結束回合。多次標準射擊會受到少量後座力懲罰。"
-LocPromotionPopupText="<Bullet/>當「超載」啟動時，每次標準射擊後都會附加<Ability:Overdrive_RecoilPenalty/>%瞄準的後座力懲罰。<br/><Bullet/>超載啟動無需行動點，但有<Ability:SelfCooldown_LW/>回合的冷卻時間。<br/>"
+LocLongDescription="本回合獲得1個額外行動點，並且所有行動不再結束回合。注意未習得自適應瞄準前多次標準射擊會獲得少量的后座力減益。"
+LocHelpText="本回合獲得1個額外行動點，並且所有行動不再結束回合。注意未習得自適應瞄準前多次標準射擊會獲得少量的后座力減益。"
+LocPromotionPopupText="<Bullet/>當過載激活時，每次標準射擊後都會附加<Ability:Overdrive_RecoilPenalty/>%命中的后座力減益。<br/><Bullet/>過載激活無需行動點，但有<Ability:SelfCooldown_LW/>回合冷卻。<br/>"
 
 [Bulwark X2AbilityTemplate]
 LocFriendlyName="壁壘"
@@ -7599,7 +7610,7 @@ LocPromotionPopupText="<Bullet/>壁壘增加1點護甲值。<br/><Bullet/>鄰近
 LocFriendlyName="兵工廠"
 LocLongDescription="BIT可以裝備並使用重武器。"
 LocHelpText="BIT可以裝備並使用重武器。"
-LocPromotionPopupText="<Bullet/>兵工廠能允許SPARK在其裝備中攜帶重型武器。<br/>"
+LocPromotionPopupText="<Bullet/>兵工廠為SPARK提供一個重型武器槽位，以允許SPARK在其裝備中攜帶重型武器。<br/>"
 
 [Rainmaker X2AbilityTemplate]
 LocFriendlyName="喚雨者"
@@ -7681,8 +7692,8 @@ LocPromotionPopupText="<Bullet/>新星無需行動點和冷卻時間。<br/><Bul
 
 [CombatProtocol X2AbilityTemplate]
 LocFriendlyName="戰爭協議"
-LocLongDescription="用小精靈去攻擊敵人，可以造成可觀的傷害，對機器人有傷害加成。需要有目標視野。"
-LocHelpText="用小精靈去攻擊敵人，可以造成可觀的傷害，對機器人有傷害加成。需要有目標視野。"
+LocLongDescription="指揮小精靈去電擊敵人，造成必定命中的傷害，對機器敵人有傷害加成。需要有目標視野。"
+LocHelpText="指揮小精靈去電擊敵人，造成必定命中的傷害，對機器敵人有傷害加成。需要有目標視野。"
 LocFlyOverText="戰爭協議"
 LocPromotionPopupText="<Bullet/> 戰爭協議有3回合冷卻。<br/><Bullet/> 升級小精靈可以增加傷害。<br/>"
 
@@ -7776,3 +7787,6 @@ LocFriendlyName="傳送撤離"
 LocLongDescription="當受到傷害、被束縛或被虛空導管限制時，化身可以傳送到一個新位置。"
 LocHelpText="當受到傷害、被束縛或被虛空導管限制時，化身可以傳送到一個新位置。"
 LocFlyOverText="傳送撤離"
+
+[UICovertActions]
+CovertActions_WarningAmbush="警告！\n該任務有遭伏擊的風險。我們應該確保士兵們攜帶了相應的裝備。"

@@ -40,9 +40,9 @@ static function ActivateChosenReinforce(XComGameState NewGameState, StateObjectR
 
 	`LWTrace("Activity Template found:" @ActivityTemplate);
 	// For future reference, this 3rd parameter here gets the State Object for InRef, grabs the object for a StateObjectReference on InRef, which is the ChosenState.
-	ActivityTemplate.ActivityCreation.InitActivityCreation(ActivityTemplate, NewGameState, XComGameState_AdventChosen(NewGameState.GetGameStateForObjectID(XComGameState_ChosenAction(NewGameState.GetGameStateForObjectID(InRef.ObjectId)).ChosenRef.ObjectId)));
-	ActivityTemplate.ActivityCreation.GetNumActivitiesToCreate(NewGameState, XComGameState_AdventChosen(NewGameState.GetGameStateForObjectID(XComGameState_ChosenAction(NewGameState.GetGameStateForObjectID(InRef.ObjectId)).ChosenRef.ObjectId)));
-	PrimaryRegionRef = ActivityTemplate.ActivityCreation.GetBestPrimaryRegion(NewGameState, XComGameState_AdventChosen(NewGameState.GetGameStateForObjectID(XComGameState_ChosenAction(NewGameState.GetGameStateForObjectID(InRef.ObjectId)).ChosenRef.ObjectId)));
+	ActivityTemplate.ActivityCreation.InitActivityCreation(ActivityTemplate, NewGameState, XComGameState_AdventChosen(NewGameState.GetGameStateForObjectID(XComGameState_ChosenAction(NewGameState.GetGameStateForObjectID(InRef.ObjectID)).ChosenRef.ObjectID)));
+	ActivityTemplate.ActivityCreation.GetNumActivitiesToCreate(NewGameState, XComGameState_AdventChosen(NewGameState.GetGameStateForObjectID(XComGameState_ChosenAction(NewGameState.GetGameStateForObjectID(InRef.ObjectID)).ChosenRef.ObjectID)));
+	PrimaryRegionRef = ActivityTemplate.ActivityCreation.GetBestPrimaryRegion(NewGameState, XComGameState_AdventChosen(NewGameState.GetGameStateForObjectID(XComGameState_ChosenAction(NewGameState.GetGameStateForObjectID(InRef.ObjectID)).ChosenRef.ObjectID)));
 
 	`LWTrace("PrimaryRegionRef:" @PrimaryRegionRef.ObjectID);
 	if(PrimaryRegionRef.ObjectID > 0)

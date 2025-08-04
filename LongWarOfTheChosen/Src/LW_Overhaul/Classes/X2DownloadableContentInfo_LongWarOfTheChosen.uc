@@ -149,6 +149,7 @@ var config array<string> MapsToDisable;
 var config array<Name> EncountersToExclude;
 
 var config array<Name> ROCKET_ABILITIES_TO_UPDATE;
+var config array<Name> ROCKET_ABILITIES_TO_UPDATE_NOSCATTER;
 
 var config bool bUpdateWaterworldLW;
 
@@ -250,7 +251,7 @@ static function MarkAllChosenDefeated(XComGameState StartState)
 
 static function OnPreCreateTemplates()
 {
-	`Log("Long War of the Chosen (LWOTC) version: " $ class'LWVersion'.static.GetVersionString() @ "Built July 23, 2025");
+	`Log("Long War of the Chosen (LWOTC) version: " $ class'LWVersion'.static.GetVersionString() @ "Built July 31, 2025");
 	PatchModClassOverrides();
 	CacheInstalledMods();
 }
@@ -328,6 +329,17 @@ static function EditModdedRocketAbilities()
 		{
 			`LWTrace("Patching Rocket launcher ability" @AbilityTemplate.DataName);
 			AbilityTemplate.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher';
+		}
+	}
+
+	foreach default.ROCKET_ABILITIES_TO_UPDATE_NOSCATTER(AbilityName)
+	{
+		AbilityTemplate = AbilityManager.FindAbilityTemplate(AbilityName);
+
+		if(AbilityTemplate != none)
+		{
+			`LWTrace("Patching Rocket launcher ability" @AbilityTemplate.DataName);
+			AbilityTemplate.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher_NoScatter';
 		}
 	}
 }
@@ -520,6 +532,7 @@ static event OnLoadedSavedGameToTactical()
 {
 	//OverrideDestructibleHealths();
 	UpdateUnitFlagsForDestructibles();
+	UpdateEvacSpawnerVisualizer();
 }
 
 
@@ -562,7 +575,7 @@ static function UpdateUnitFlagsForDestructibles()
 		if(DestructibleActor == none)
 		{
 			`LWTrace("Second method didn't get the actor");
-			DestructibleActor = XComDestructibleActor(History.GetVisualizer(DestructibleState.ObjectId));
+			DestructibleActor = XComDestructibleActor(History.GetVisualizer(DestructibleState.ObjectID));
 		}
 		if(DestructibleActor != none)
 		{
@@ -593,6 +606,52 @@ static function UpdateUnitFlagsForDestructibles()
 	}
 	
 }
+
+static function UpdateEvacSpawnerVisualizer()
+{
+	local XComGameState_LWEvacSpawner EvacSpawnerState;
+	local XComGameState NewGameState;
+
+
+	EvacSpawnerState = class'XComGameState_LWEvacSpawner'.static.GetPendingEvacZone();
+
+	if(EvacSpawnerState != none)
+	{
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState(string(GetFuncName()));
+		EvacSpawnerState = XComGameState_LWEvacSpawner(NewGameState.ModifyStateObject(class'XComGameState_LWEvacSpawner', EvacSpawnerState.ObjectID));
+
+		XComGameStateContext_ChangeContainer(NewGameState.GetContext()).BuildVisualizationFn = BuildVisualizationForSpawnerUpdate;
+
+		`GAMERULES.SubmitGameState(NewGameState);
+	}
+
+}
+
+// Copied from XCGS_LWEvacSpawner and tweaked to remove narrative
+function BuildVisualizationForSpawnerUpdate(XComGameState VisualizeGameState)
+{
+    local VisualizationActionMetadata BuildTrack;
+    local XComGameStateHistory History;
+    local XComGameState_LWEvacSpawner EvacSpawnerState;
+    local X2Action_PlayEffect EvacSpawnerEffectAction;
+
+    History = `XCOMHISTORY;
+    EvacSpawnerState = XComGameState_LWEvacSpawner(History.GetSingleGameStateObjectForClass(class'XComGameState_LWEvacSpawner', true));
+
+    // Temporary flare effect is the advent reinforce flare. Replace this.
+    EvacSpawnerEffectAction = X2Action_PlayEffect(class'X2Action_PlayEffect'.static.AddToVisualizationTree(BuildTrack, VisualizeGameState.GetContext(), false, BuildTrack.LastActionAdded));
+    EvacSpawnerEffectAction.EffectName = class'XComGameState_LWEvacSpawner'.default.FlareEffectPathName;
+    EvacSpawnerEffectAction.EffectLocation = EvacSpawnerState.SpawnLocation;
+
+    // Don't take control of the camera, the player knows where they put the zone.
+    EvacSpawnerEffectAction.CenterCameraOnEffectDuration = 0; //ContentManager.LookAtCamDuration;
+    EvacSpawnerEffectAction.bStopEffect = false;
+
+    BuildTrack.StateObject_OldState = EvacSpawnerState;
+    BuildTrack.StateObject_NewState = EvacSpawnerState;
+
+}
+
 
 exec function Ted_UpdateUnitFlagsForDestructibles()
 {
@@ -625,7 +684,7 @@ exec function Ted_UpdateUnitFlagsForDestructibles()
 		if(DestructibleActor == none)
 		{
 			`LWTrace("Second method didn't get the actor");
-			DestructibleActor = XComDestructibleActor(History.GetVisualizer(DestructibleState.ObjectId));
+			DestructibleActor = XComDestructibleActor(History.GetVisualizer(DestructibleState.ObjectID));
 		}
 		if(DestructibleActor != none)
 		{
@@ -2998,6 +3057,22 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 				Data.SourceWeaponRef = UnitState.GetSecondaryWeapon().GetReference();
 				SetupData[index]=(Data);  // swap the ability
 			}
+		}
+	}
+	
+	// Grant Avenger to SPARKs if they have Prep For War + Enhanced Targeting Systems.
+
+	if(UnitState.HasAbilityFromAnySource('BonusBombard_LW') && UnitState.HasAbilityFromAnySource('HoloAACombo_LW'))
+	{
+		AbilityTemplate = AbilityTemplateMan.FindAbilityTemplate('Avenger_LW');
+
+		if(AbilityTemplate != none)
+		{
+			Data = EmptyData;
+			Data.TemplateName = 'Avenger_LW';
+			Data.Template = AbilityTemplate;
+			Data.SourceWeaponRef = UnitState.GetPrimaryWeapon().GetReference();
+			SetupData.AddItem(Data);  
 		}
 	}
 
@@ -6025,6 +6100,7 @@ exec function LWDumpHavenIncome(optional Name RegionName)
 exec function LWDebugPodJobs()
 {
 	bDebugPodJobs = !bDebugPodJobs;
+	class'Helpers'.static.OutputMsg("Pod Jobs debug:" @bDebugPodJobs);
 }
 
 exec function LWActivatePodJobs()

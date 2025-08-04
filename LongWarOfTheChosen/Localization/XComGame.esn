@@ -366,10 +366,10 @@ LocPromotionPopupText="<Bullet/> Este soldado tiene unos tiempos de infiltració
 
 [Failsafe X2AbilityTemplate]
 LocFriendlyName="Salvaguardia"
-LocLongDescription="Si fallas el pirateo, evitas que ocurran efectos negativos y se te devolverá un punto de acción."
-LocHelpText="Si fallas el pirateo, evitas que ocurran efectos negativos y se te devolverá un punto de acción."
+LocLongDescription="Si fallas el pirateo, evitas que ocurran efectos negativos durante un turno y se te devolverá un punto de acción."
+LocHelpText="Si fallas el pirateo, evitas que ocurran efectos negativos durante un turno y se te devolverá un punto de acción."
 LocFlyOverText="Salvaguardia"
-LocPromotionPopupText="<Bullet/> Los efectos negativos que evita Salvaguardia incluyen la pérdida de ocultación del escuadrón."
+LocPromotionPopupText="<Bullet/> Los efectos negativos que evita Salvaguardia incluyen la pérdida de ocultación del escuadrón.<br/><Bullet/> El punto de acción reembolsado puede ocurrir una vez por tuno."
 
 [FullOverride X2AbilityTemplate]
 LocFriendlyName="Anulación completa"
@@ -1283,7 +1283,7 @@ AbilityDescName="Cañón automático"
 [PrototypePlasmaBlaster X2WeaponTemplate]
 FriendlyName="Prototipo de Cañón de plasma"
 FriendlyNamePlural="Prototipo de Cañones de plasma"
-BriefSummary="Utilizando tecnología recuperada de la invasión original, hemos ideado un medio para liberar un pulso masivo y enfocado de energía de plasma que devastará objetivos en una zona marcada. Posee suficiente energía para dos activaciones."
+BriefSummary="Utilizando tecnología recuperada de la invasión original, hemos ideado un medio para liberar un pulso masivo y enfocado de energía de plasma que devastará objetivos en una zona marcada."
 TacticalText="<Bullet/> El Prototipo de Cañón de plasma libera un rayo de energía devastadora en línea recta, capaz de dañar múltiples objetivos.\n<Bullet/> Su munición es limitada, así que úsala solo cuando sea decisiva."
 
 [PlasmaBlaster X2WeaponTemplate]
@@ -1776,6 +1776,9 @@ RightAbilityTreeTitle="Pirotécnico"
 +RandomNickNames_Female="Duquesa"
 ;ALPHABETICAL ORDER
 
+[Specialist X2SoldierClassTemplate]
+DisplayName="Especialista (Sin usar)"
+
 [LWS_Specialist X2SoldierClassTemplate]
 DisplayName="Especialista"
 ClassSummary="Los especialistas manejan algunos de nuestros equipos más avanzados y despliegan drones robóticos en el campo de batalla que se pueden usar para el combate y la atención médica sobre el terreno."
@@ -1859,6 +1862,8 @@ RightAbilityTreeTitle="Hacker"
 +RandomNickNames_Female="Duquesa"
 ;ALPHABETICAL ORDER
 
+[Grenadier X2SoldierClassTemplate]
+DisplayName="Granadero (Sin usar)"
 
 [LWS_Grenadier X2SoldierClassTemplate]
 DisplayName="Granadero"
@@ -2005,6 +2010,8 @@ RightAbilityTreeTitle="Ametrallador"
 +RandomNickNames_Female="Mango"
 +RandomNickNames_Female="Pimienta"
 
+[Ranger X2SoldierClassTemplate]
+DisplayName="Comando (Sin usar)"
 
 [LWS_Ranger X2SoldierClassTemplate]
 DisplayName="Comando"
@@ -2056,6 +2063,9 @@ RightAbilityTreeTitle="Defensor"
 +RandomNickNames_Female="Medusa"
 +RandomNickNames_Female="Azúcar"
 ;ALPHABETICAL ORDER
+
+[Sharpshooter X2SoldierClassTemplate]
+DisplayName="Tirador (Sin usar)"
 
 [LWS_Sharpshooter X2SoldierClassTemplate]
 DisplayName="Tirador"
@@ -2303,10 +2313,11 @@ RewardDetails="Conseguiste un CEM para proteger uno de tus Refugios. ¡De puta m
 DisplayName="Nuevos recursos"
 
 [Reward_POI_LW X2RewardTemplate]
-DisplayName="Paquete de datos"
+DisplayName="Punto de interés"
 
 [Reward_Dummy_POI X2RewardTemplate]
-DisplayName="Paquete de datos"
+DisplayName="Punto de interés"
+
 
 [Reward_Dummy_Materiel X2RewardTemplate]
 DisplayName="Material enemigo"
@@ -2318,7 +2329,7 @@ DisplayName="Se desconoce"
 DisplayName="Operaciones sin obstáculos"
 
 [Reward_FacilityLead X2RewardTemplate]
-DisplayName="Paquete de datos"
+DisplayName="Encontrar una pista de instalación"
 
 [Reward_Dummy_RegionalTower X2RewardTemplate]
 DisplayName="Ubicación del cuartel general regional de ADVENT"
@@ -5782,7 +5793,7 @@ LocPromotionPopupText="<Bullet/> Utiliza las cualidades del Guerrillero al comie
 ; End translated
 
 [Battlelord X2AbilityTemplate]
-LocLongDescription="Después de que cada enemigo en la visual acabe un turno, realiza una acción inmediata. No se podrán emplear la acciones extra de habilidades especiales (como con Dispara y huye)."
+LocLongDescription="Después de que cada enemigo en la visual acabe un turno, realiza una acción inmediata. No se podrán emplear las acciones extra de habilidades especiales (como con Dispara y huye)."
 LocHelpText="Después de que cada enemigo en la visual acabe un turno, realiza una acción inmediata. No se podrán emplear las acciones extra de habilidades especiales (como con Dispara y huye)."
 LocPromotionPopupText="<Bullet/> Maestro del combate permite al Guerrillero vencer en las circunstancias más terribles.<br/><Bullet/> Maestro del combate tiene <Ability:SelfCooldown/> turnos de enfriamiento.<br/><Bullet/> Los turnos de los Perdidos y las emboscadas de escuadrones ADVENT no interfieren en la acción inmediata.<br/><Bullet/> Habilidades que permiten una acción adicional, como Implacable y Dispara y huye, no funcionarán durante Maestro del combate."
 
@@ -6195,17 +6206,17 @@ ActionPreNarrative="Descubrimos dónde han estado arrojando los cadáveres que p
 ActionPostNarrative="Su equipo logró recolectar algunos valiosos cadáveres enemigos de la redada."
 
 [CovertActionNarrative_IntenseTraining_Skirmishers X2CovertActionNarrativeTemplate]
-ActionName="Emprende un entrenamiento intensivo (Coste: 5 PH)"
+ActionName="Emprende un entrenamiento intensivo (Coste: 5 de PH de XCOM)"
 ActionPreNarrative="Es hora de esforzarse un poco y mejorar. ¡Entrena soldado!"
 ActionPostNarrative="Tu soldado está ahora más capacitado."
 
 [CovertActionNarrative_IntenseTraining_Reapers X2CovertActionNarrativeTemplate]
-ActionName="Emprende un entrenamiento intensivo (Coste: 5 PH)"
+ActionName="Emprende un entrenamiento intensivo (Coste: 5 de PH de XCOM)"
 ActionPreNarrative="Es hora de esforzarse un poco y mejorar. ¡Entrena soldado!"
 ActionPostNarrative="Tu soldado está ahora más capacitado."
 
 [CovertActionNarrative_IntenseTraining_Templars X2CovertActionNarrativeTemplate]
-ActionName="Emprende un entrenamiento intensivo (Coste: 5 PH)"
+ActionName="Emprende un entrenamiento intensivo (Coste: 5 de PH de XCOM)"
 ActionPreNarrative="Es hora de esforzarse un poco y mejorar. ¡Entrena soldado!"
 ActionPostNarrative="Tu soldado está ahora más capacitado."
 
@@ -7100,10 +7111,29 @@ LocLongDescription="Infliges +<Ability:HERO_SLAYER_DMG/>% de daño contra las cl
 LocFlyOverText="Cazador de caza mayor"
 
 [BonusBombard_LW X2AbilityTemplate]
-LocFriendlyName="Reservas extendidas"
-LocLongDescription="Dispondrás de una ampliación en el armamento equipado de armas pesadas y Bombardear."
-LocHelpText="Dispondrás de una ampliación en el armamento equipado de armas pesadas y Bombardear. El uso extra del BIT solo está garantizado si se escogió la habilidad Bombardear."
-LocPromotionPopupText="Dispondrás de una ampliación en el armamento equipado de armas pesadas y Bombardear. El uso extra del BIT solo está garantizado si se escogió la habilidad Bombardear."
+LocFriendlyName="Fraguado para la Guerra"
+LocLongDescription="Obtiene un uso adicional de las armas pesadas equipadas y Bombardear. Si el SPARK ha aprendido Servoarmaduras de Asalto, proporciona +2 de daño adicional a los ataques de Golpe y reduce el tiempo de reutilización de Golpe Cinético en 1. Además, si se mejora el soldado robótico con Sistemas de focus mejorados, obtiene +10 de puntería y la habilidad Avenger."
+LocHelpText="Dispondrás de una ampliación en el armamento equipado de armas pesadas y Bombardear. El uso extra del BIT solo está garantizado si se escogió la habilidad Bombardear. Si el SPARK ha aprendido Servoarmaduras de Asalto, proporciona +2 de daño adicional a los ataques de Golpe y reduce el tiempo de reutilización de Golpe Cinético en 1. Si se selecciona el talento Sistemas de focus mejorados, obtiene +10 de puntería y la habilidad Avenger. El +10 de puntería se aplica a todos los ataques, incluyendo los cuerpo a cuerpo."
+LocPromotionPopupText="Dispondrás de una ampliación en el armamento equipado de armas pesadas y Bombardear. El uso extra del BIT solo está garantizado si se escogió la habilidad Bombardear. Si el SPARK ha aprendido Servoarmaduras de Asalto, proporciona +2 de daño adicional a los ataques de Golpe y reduce el tiempo de reutilización de Golpe Cinético en 1. Si se selecciona el talento Sistemas de focus mejorados, obtiene +10 de puntería y la habilidad Avenger. El +10 de puntería se aplica a todos los ataques, incluyendo los cuerpo a cuerpo."
+
+[SalvoRainmaker_LW X2AbilityTemplate]
+LocFriendlyName="Maestro en explosivos"
+LocHelpText="Logras las habilidades Hacedor de lluvia y Andanada, aumentando el daño de las armas pesadas, el área de efecto y permitiendo que se utilicen sin finalizar el turno."
+LocLongDescription="Logras las habilidades Hacedor de lluvia y Andanada, aumentando el daño de las armas pesadas, el área de efecto y permitiendo que se utilicen sin finalizar el turno."
+LocPromotionPopupText="Logras las habilidades Hacedor de lluvia y Andanada, aumentando el daño de las armas pesadas, el área de efecto y permitiendo que se utilicen sin finalizar el turno."
+
+[BloodBath_LW X2AbilityTemplate]
+LocFriendlyName="Baño de sangre"
+LocHelpText="El cono de Maremoto es 2 casillas más ancho y cada enemigo golpeado por él otorga una acumulación de sed de sangre."
+LocLongDescription="El cono de Maremoto es 2 casillas más ancho y cada enemigo golpeado por él otorga una acumulación de sed de sangre."
+LocFlyOverText="Baño de sangre"
+
+[MistyMadness_LW X2AbilityTemplate]
+LocFriendlyName="Niebla de montaña intensa"
+LocHelpText="El radio de tu granada de niebla aumenta en 2."
+LocLongDescription="El radio de tu granada de niebla aumenta en 2."
+LocFlyOverText="Niebla de montaña intensa"
+
 
 [Impenetrable_LW X2AbilityTemplate]
 LocFriendlyName="Impenetrable"
@@ -7340,19 +7370,19 @@ LocHelpText="Después de recibir daño, benefíciate de un <Ability:IMPACT_COMPE
 [ImpactCompensationV2_LW X2AbilityTemplate]
 LocFriendlyName="Armadura de capas robusta"
 LocFlyOverText="Armadura de capas robusta"
-LocLongDescription="Esta unidad solo puede recibir en un turno un <Ability:IMPACT_V2_DAMAGE_CAP>% de sus puntos de vida máximos. El daño por ronda por encima de este límite se reduce en un <Ability:IMPACT_V2_PCT_DR>%."
+LocLongDescription="Esta unidad solo puede recibir en un turno un <Ability:IMPACT_V2_DAMAGE_CAP>% de sus puntos de vida máximos de un ataque único. El daño por ronda por encima de este límite se reduce en un <Ability:IMPACT_V2_PCT_DR>%."
 LocHelpText="El límite de daño se reinicia al comienzo de cada turno."
 
 [ImpactCompensationV2XCOM_LW X2AbilityTemplate]
 LocFriendlyName="Armadura de capas robusta"
 LocFlyOverText="Armadura de capas robusta"
-LocLongDescription="Esta unidad solo puede recibir en un turno un <Ability:IMPACT_V2_DAMAGE_CAP>% de sus puntos de vida máximos. El daño por ronda por encima de este límite se reduce en un <Ability:IMPACT_V2_PCT_DR>%."
+LocLongDescription="Esta unidad solo puede recibir en un turno un <Ability:IMPACT_V2_DAMAGE_CAP>% de sus puntos de vida máximos de un ataque único, y los daños de ataques posteriores se reducen en un <Ability:IMPACT_V2XCOM_PCT_DR>%, una vez que la unidad haya recibido esa cantidad durante el turno."
 LocHelpText="El límite de daño se reinicia al comienzo de cada turno."
 
 [ImpactCompensationPassiveV2_LW X2AbilityTemplate]
 LocFriendlyName="Armadura de capas robusta"
 LocFlyOverText="Armadura de capas robusta"
-LocLongDescription="Esta unidad solo puede recibir en un turno un <Ability:IMPACT_V2_DAMAGE_CAP>% de sus puntos de vida máximos. El daño por ronda por encima de este límite se reduce en un <Ability:IMPACT_V2_PCT_DR>%."
+LocLongDescription="Esta unidad solo puede recibir en un turno un <Ability:IMPACT_V2_DAMAGE_CAP>% de sus puntos de vida máximos de un ataque único, y los daños de ataques posteriores se reducen en un <Ability:IMPACT_V2XCOM_PCT_DR>%, una vez que la unidad haya recibido esa cantidad durante el turno."
 LocHelpText="El límite de daño se reinicia al comienzo de cada turno."
 
 [ChainingJolt_LW X2AbilityTemplate]
@@ -7833,7 +7863,7 @@ LocPromotionPopupText="<Bullet/> Baluarte añade un punto de blindaje.<br/><Bull
 LocFriendlyName="Arsenal"
 LocLongDescription="BIT puede equipar y disparar armas pesadas."
 LocHelpText="BIT puede equipar y disparar armas pesadas."
-LocPromotionPopupText="<Bullet/> Arsenal permite que los SPARK equipen armamento pesado en su equipamiento.<br/>"
+LocPromotionPopupText="<Bullet/> Arsenal permite que los SPARK carguen armamento pesado en su equipamiento. También concede un hueco extra de munición pesada.<br/>"
 
 [Rainmaker X2AbilityTemplate]
 LocFriendlyName="Hacedor de lluvia"
@@ -8000,3 +8030,10 @@ LocFlyOverText="Avezado en el gancho"
 LocLongDescription="Efectuar un disparo estándar con tu arma principal como primera acción ya no termina tu turno."
 LocHelpText="Efectuar un disparo estándar con tu arma principal como primera acción ya no termina tu turno."
 LocPromotionPopupText="<Bullet/> Efectuar un disparo estándar con tu arma principal como primera acción ya no termina tu turno.<br/>"
+
+
+[AvatarDamagedTeleport X2AbilityTemplate]
+LocFriendlyName="Huida de teletransporte"
+LocLongDescription="Cuando está dañado, atado o restringido por el Conducto del vacío, el Avatar puede teletransportarse a una nueva ubicación."
+LocHelpText="Cuando está dañado, atado o restringido por el Conducto del Vacío, el Avatar puede teletransportarse a una nueva ubicación."
+LocFlyOverText="Teletransporte"

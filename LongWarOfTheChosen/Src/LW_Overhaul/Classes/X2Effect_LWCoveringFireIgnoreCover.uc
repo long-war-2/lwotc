@@ -5,7 +5,6 @@ class X2Effect_LWCoveringFireIgnoreCover extends X2Effect_Persistent config(LW_S
 var config int LOW_COVER_AIM_MOD;
 var config int HIGH_COVER_AIM_MOD;
 
-var config array<name> AllowedAbilities;
 var bool bForThreatAssessment;
 
 function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit Attacker, XComGameState_Unit Target, XComGameState_Ability AbilityState, class<X2AbilityToHitCalc> ToHitType, bool bMelee, bool bFlanking, bool bIndirectFire, out array<ShotModifierInfo> ShotModifiers)
@@ -13,10 +12,12 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 	local ShotModifierInfo				ModInfo;
 	local GameRulesCache_VisibilityInfo VisInfo;
 
-	if (AllowedAbilities.Find(AbilityState.GetMyTemplateName()) == INDEX_NONE)
+	// If the attack already ignores cover, rdon't add more
+	if (X2AbilityToHitCalc_StandardAim(AbilityState.GetMyTemplate().AbilityToHitCalc).bIgnoreCoverBonus)
 		return;
 
-	if (Target.CanTakeCover() && `TACTICALRULES.VisibilityMgr.GetVisibilityInfo(Attacker.ObjectID, Target.ObjectID, VisInfo))
+	// is reaction fire check here instead of Allowed Abilities check
+	if (X2AbilityToHitCalc_StandardAim(AbilityState.GetMyTemplate().AbilityToHitCalc).bReactionFire && Target.CanTakeCover() && `TACTICALRULES.VisibilityMgr.GetVisibilityInfo(Attacker.ObjectID, Target.ObjectID, VisInfo))
 	{
 		switch (VisInfo.TargetCover)
 		{
@@ -50,8 +51,7 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 
 	// Special handle Pistol Return Fire, which is triggered by Threat Assessment applied to Sharpshooters
 	// We don't want PistolReturnFire in AllowedAbilities, because PistolReturnFire is already set to ignore cover defense elsewhere.
-	if (AllowedAbilities.Find(AbilityContext.InputContext.AbilityTemplateName) == INDEX_NONE && 
-		AbilityContext.InputContext.AbilityTemplateName != 'PistolReturnFire') 
+	if (X2AbilityToHitCalc_StandardAim(kAbility.GetMyTemplate().AbilityToHitCalc).bIgnoreCoverBonus || !(X2AbilityToHitCalc_StandardAim(kAbility.GetMyTemplate().AbilityToHitCalc).bReactionFire))
 		return false;
 
 	// don't remove it if we still have more Overwatch to do.
@@ -89,5 +89,5 @@ function bool UniqueToHitModifiers()
 defaultproperties
 {
 	DuplicateResponse = eDupe_Ignore
-	EffectName = "IRI_X2Effect_SP_CoveringFireIgnoreCover_Effect"
+	EffectName = "IRI_X2Effect_SP_CoveringFireIgnoreCover_Effect_LW"
 }

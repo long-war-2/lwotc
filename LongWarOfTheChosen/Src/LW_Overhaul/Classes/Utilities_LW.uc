@@ -845,7 +845,7 @@ static function ETeam WhoseTurnIsIt(optional int HistoryIndex = -1)
 
         if (Context.GameRuleType == eGameRule_PlayerTurnBegin)
         {
-            PlayerState = XComGameState_Player(History.GetGameStateForObjectID(Context.PlayerRef.ObjectId));
+            PlayerState = XComGameState_Player(History.GetGameStateForObjectID(Context.PlayerRef.ObjectID));
             return PlayerState.TeamFlag;
         }
     }
