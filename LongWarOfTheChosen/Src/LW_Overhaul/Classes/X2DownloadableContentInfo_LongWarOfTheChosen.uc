@@ -532,6 +532,7 @@ static event OnLoadedSavedGameToTactical()
 {
 	//OverrideDestructibleHealths();
 	UpdateUnitFlagsForDestructibles();
+	UpdateEvacSpawnerVisualizer();
 }
 
 
@@ -605,6 +606,52 @@ static function UpdateUnitFlagsForDestructibles()
 	}
 	
 }
+
+static function UpdateEvacSpawnerVisualizer()
+{
+	local XComGameState_LWEvacSpawner EvacSpawnerState;
+	local XComGameState NewGameState;
+
+
+	EvacSpawnerState = class'XComGameState_LWEvacSpawner'.static.GetPendingEvacZone();
+
+	if(EvacSpawnerState != none)
+	{
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState(string(GetFuncName()));
+		EvacSpawnerState = XComGameState_LWEvacSpawner(NewGameState.ModifyStateObject(class'XComGameState_LWEvacSpawner', EvacSpawnerState.ObjectID));
+
+		XComGameStateContext_ChangeContainer(NewGameState.GetContext()).BuildVisualizationFn = BuildVisualizationForSpawnerUpdate;
+
+		`GAMERULES.SubmitGameState(NewGameState);
+	}
+
+}
+
+// Copied from XCGS_LWEvacSpawner and tweaked to remove narrative
+function BuildVisualizationForSpawnerUpdate(XComGameState VisualizeGameState)
+{
+    local VisualizationActionMetadata BuildTrack;
+    local XComGameStateHistory History;
+    local XComGameState_LWEvacSpawner EvacSpawnerState;
+    local X2Action_PlayEffect EvacSpawnerEffectAction;
+
+    History = `XCOMHISTORY;
+    EvacSpawnerState = XComGameState_LWEvacSpawner(History.GetSingleGameStateObjectForClass(class'XComGameState_LWEvacSpawner', true));
+
+    // Temporary flare effect is the advent reinforce flare. Replace this.
+    EvacSpawnerEffectAction = X2Action_PlayEffect(class'X2Action_PlayEffect'.static.AddToVisualizationTree(BuildTrack, VisualizeGameState.GetContext(), false, BuildTrack.LastActionAdded));
+    EvacSpawnerEffectAction.EffectName = class'XComGameState_LWEvacSpawner'.default.FlareEffectPathName;
+    EvacSpawnerEffectAction.EffectLocation = EvacSpawnerState.SpawnLocation;
+
+    // Don't take control of the camera, the player knows where they put the zone.
+    EvacSpawnerEffectAction.CenterCameraOnEffectDuration = 0; //ContentManager.LookAtCamDuration;
+    EvacSpawnerEffectAction.bStopEffect = false;
+
+    BuildTrack.StateObject_OldState = EvacSpawnerState;
+    BuildTrack.StateObject_NewState = EvacSpawnerState;
+
+}
+
 
 exec function Ted_UpdateUnitFlagsForDestructibles()
 {
