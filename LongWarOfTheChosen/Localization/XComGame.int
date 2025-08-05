@@ -1075,12 +1075,14 @@ FriendlyName="Sawed-Off Shotgun"
 FriendlyNamePlural="Sawed-Off Shotguns"
 BriefSummary="A powerful, if short-ranged, secondary weapon."
 TacticalText="<Bullet/> Adaptation of concealable pre-invasion weaponry.<br/><Bullet/> Two shots per mission without upgrades."
+AbilityDescName="sawed-off shotgun"
 
 [SawedOffShotgun_MG X2WeaponTemplate]
 FriendlyName="Mag Shorty"
 FriendlyNamePlural="Mag Shorties"
 BriefSummary="An upgraded version of the sawed-off shotgun that incorporates magnetic accelerator technologies to boost its damage."
 TacticalText="<Bullet/> An upgraded version of the sawed-off shotgun that incorporates magnetic accelerator technologies to boost its damage.<br/><Bullet/> Two shots per mission without upgrades.<br/>"
+AbilityDescName="sawed-off shotgun"
 
 ;LWOTC needs translation
 [SawedOffShotgun_BM X2WeaponTemplate]
@@ -1088,6 +1090,7 @@ FriendlyName="Plasma Shorty"
 FriendlyNamePlural="Plasma Shorties"
 BriefSummary="An advanced version of the sawed-off shotgun that incorporates plasma heating elements to boost its damage."
 TacticalText="<Bullet/> An advanced version of the sawed-off shotgun that incorporates plasma heating elements to boost its damage.<br/><Bullet/> Two shots per mission without upgrades.<br/>"
+AbilityDescName="sawed-off shotgun"
 ;end translation
 
 [ArcThrower_CV X2WeaponTemplate]
