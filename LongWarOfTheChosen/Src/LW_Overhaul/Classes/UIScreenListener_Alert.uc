@@ -40,12 +40,14 @@ event OnInit(UIScreen Screen)
         // Hide the "Return to Resistance HQ" button on POI complete and
         // supply drop complete dialogs.
         case 'eAlert_ScanComplete':
+			Alert.Button1.Show();
+			Alert.Button1.SetText(class'UIAlert'.default.m_strAccept);
+			break;
         case 'eAlert_ResourceCacheComplete':
             Alert.Button1.Hide();
             Alert.Button2.SetText(class'UIAlert'.default.m_strAccept);
 			//Alert.Button1.OnClickedDelegate = OnAcceptClickedDoNothing;
             break;
-
         // New staff dialogs may need to be updated to show info about rebel
         // units.
         case 'eAlert_NewStaffAvailableSmall':
