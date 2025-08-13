@@ -201,6 +201,7 @@ static function X2AbilityTemplate AddTemplarFleche()
 	FlecheBonusDamageEffect.MaxBonusDamage = default.MAX_REND_FLECHE_DAMAGE;
 	FlecheBonusDamageEffect.AbilityNames.AddItem('Rend_LW');
 	FlecheBonusDamageEffect.AbilityNames.AddItem('ArcWave_LW');
+	FlecheBonusDamageEffect.bExcludeNonBaseDamage = false; // For arc wave
 	FlecheBonusDamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
 	FlecheBonusDamageEffect.BuildPersistentEffect (1, true, false);
 	Template.AddTargetEffect (FlecheBonusDamageEffect);
