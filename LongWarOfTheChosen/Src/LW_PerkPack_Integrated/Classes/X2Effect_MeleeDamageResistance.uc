@@ -3,6 +3,11 @@ class X2Effect_MeleeDamageResistance extends X2Effect_Persistent;
 var bool bApplyToStandardMelee;
 var bool bApplyToMovingMelee;
 
+var bool bAllowImpaired;
+var bool bAllowPanicked;
+var bool bAllowBurning;
+var bool bAllowFrozen;
+
 var float PercentDR;
 var int FlatDR;
 
@@ -23,7 +28,7 @@ function int GetDefendingDamageModifier(
         return 0;
 
     if (ValidateAttack(EffectState, Attacker, XComGameState_Unit(TargetDamageable), AbilityState, AppliedData, WeaponDamageEffect))
-        return -1 * Min(CurrentDamage-1, FlatDR);
+        return -1 * Min(CurrentDamage - 1, FlatDR);
     
     return 0;
 }
@@ -39,7 +44,7 @@ function float GetPostDefaultDefendingDamageModifier_CH(
     XComGameState NewGameState)
 {
     if (ValidateAttack(EffectState, SourceUnit, TargetUnit, AbilityState, ApplyEffectParameters, WeaponDamageEffect))
-        return -1 * Min(WeaponDamage-1, WeaponDamage * PercentDR / 100);
+        return -1 * Min(WeaponDamage - 1, WeaponDamage * PercentDR / 100);
 
     return 0;
 }
@@ -56,6 +61,12 @@ private function bool ValidateAttack(
     local bool bIsMovingMelee;
 
     if (EffectState.ApplyEffectParameters.EffectRef.ApplyOnTickIndex != INDEX_NONE)
+        return false;
+
+    if (!bAllowImpaired && TargetUnit.IsImpaired()
+        || !bAllowPanicked && TargetUnit.IsPanicked()
+        || !bAllowBurning && TargetUnit.IsBurning()
+        || !bAllowFrozen && TargetUnit.AffectedByEffectNames.Find('Frozen') != INDEX_NONE)
         return false;
 
     if (WhitelistedAbilities.Find(AbilityState.GetMyTemplateName()) != INDEX_NONE)
@@ -82,6 +93,11 @@ defaultproperties
 {
     bApplyToStandardMelee = true
     bApplyToMovingMelee = true
+
+    bAllowImpaired = true
+    bAllowPanicked = true
+    bAllowBurning = true
+    bAllowFrozen = true
 
     WhitelistedAbilities[0] = PartingSilk
     WhitelistedAbilities[1] = AssassinSlash_LW

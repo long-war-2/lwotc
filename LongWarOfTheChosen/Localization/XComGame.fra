@@ -5647,8 +5647,8 @@ LocFlyOverText="Contrôle mental"
 
 [ChosenImmuneMelee X2AbilityTemplate]
 LocFriendlyName="Anticipation"
-LocLongDescription="Les attaques au corps à corps qui nécessitent de sprinter infligent 50% de dégâts en moins."
-LocHelpText="Les attaques au corps à corps qui nécessitent de sprinter infligent 50% de dégâts en moins."
+LocLongDescription="Les attaques au corps à corps qui nécessitent de sprinter infligent <Ability:ANTICIPATION_MELEE_DAMAGE_REDUCTION>% de dégâts en moins."
+LocHelpText="Les attaques au corps à corps qui nécessitent de sprinter infligent <Ability:ANTICIPATION_MELEE_DAMAGE_REDUCTION>% de dégâts en moins."
 
 [BlastShield X2AbilityTemplate]
 LocFriendlyName="Pare-explosion"

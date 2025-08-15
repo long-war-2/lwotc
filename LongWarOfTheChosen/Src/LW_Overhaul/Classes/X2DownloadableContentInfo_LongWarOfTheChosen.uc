@@ -5276,6 +5276,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'CRUSADER_RAGE_HEAL':
 			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.CRUSADER_WOUND_HP_REDUCTTION);
 			return true;
+		case 'ANTICIPATION_MELEE_DAMAGE_REDUCTION':
+			Outstring = string(int(class'X2LWAbilitiesModTemplate'.default.MELEE_DAMAGE_REDUCTION));
+			return true;
 		default:
 			return false;
 	}
