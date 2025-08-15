@@ -4997,8 +4997,8 @@ LocFlyOverText="Gedankenkontrolle"
 
 [ChosenImmuneMelee X2AbilityTemplate]
 LocFriendlyName="Antizipation"
-LocLongDescription="Erleidet 50 % weniger Schaden durch Springt-Nahkampfangriffe."
-LocHelpText="Erleidet 50 % weniger Schaden durch Springt-Nahkampfangriffe."
+LocLongDescription="Erleidet <Ability:ANTICIPATION_MELEE_DAMAGE_REDUCTION> % weniger Schaden durch Springt-Nahkampfangriffe."
+LocHelpText="Erleidet <Ability:ANTICIPATION_MELEE_DAMAGE_REDUCTION> % weniger Schaden durch Springt-Nahkampfangriffe."
 
 [BlastShield X2AbilityTemplate]
 LocFriendlyName="Explosionsschild"

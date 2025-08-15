@@ -5733,8 +5733,8 @@ LocFlyOverText="精神控制"
 
 [ChosenImmuneMelee X2AbilityTemplate]
 LocFriendlyName="嚴陣以待"
-LocLongDescription="受到的衝刺近戰傷害減少50%。"
-LocHelpText="受到的衝刺近戰傷害減少50%。"
+LocLongDescription="受到的衝刺近戰傷害減少<Ability:ANTICIPATION_MELEE_DAMAGE_REDUCTION>%。"
+LocHelpText="受到的衝刺近戰傷害減少<Ability:ANTICIPATION_MELEE_DAMAGE_REDUCTION>%。"
 
 [BlastShield X2AbilityTemplate]
 LocFriendlyName="防爆護盾"

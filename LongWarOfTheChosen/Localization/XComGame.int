@@ -5929,8 +5929,8 @@ LocFlyOverText="Mind Control"
 
 [ChosenImmuneMelee X2AbilityTemplate]
 LocFriendlyName="Anticipation"
-LocLongDescription="Takes 50% less damage from dashing melee attacks."
-LocHelpText="Takes 50% less damage from dashing melee attacks."
+LocLongDescription="Takes <Ability:ANTICIPATION_MELEE_DAMAGE_REDUCTION>% less damage from dashing melee attacks."
+LocHelpText="Takes <Ability:ANTICIPATION_MELEE_DAMAGE_REDUCTION>% less damage from dashing melee attacks."
 
 [BlastShield X2AbilityTemplate]
 LocFriendlyName="Blast Shield"

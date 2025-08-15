@@ -5423,8 +5423,8 @@ LocFlyOverText="Kontrola umysłu"
 
 [ChosenImmuneMelee X2AbilityTemplate]
 LocFriendlyName="Oczekiwanie"
-LocLongDescription="Otrzymuje o 50% mniej obrażeń od gwałtownych ataków wręcz."
-LocHelpText="Otrzymuje o 50% mniej obrażeń od gwałtownych ataków wręcz."
+LocLongDescription="Otrzymuje o <Ability:ANTICIPATION_MELEE_DAMAGE_REDUCTION>% mniej obrażeń od gwałtownych ataków wręcz."
+LocHelpText="Otrzymuje o <Ability:ANTICIPATION_MELEE_DAMAGE_REDUCTION>% mniej obrażeń od gwałtownych ataków wręcz."
 
 [BlastShield X2AbilityTemplate]
 LocFriendlyName="Osłona uderzeniowa"

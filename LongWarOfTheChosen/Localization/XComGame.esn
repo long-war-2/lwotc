@@ -5941,8 +5941,8 @@ LocFlyOverText="Abrasar escudo mental"
 
 [ChosenImmuneMelee X2AbilityTemplate]
 LocFriendlyName="Anticipación"
-LocLongDescription="Recibe un 50% menos de daño cuerpo a cuerpo."
-LocHelpText="Recibe un 50% menos de daño cuerpo a cuerpo."
+LocLongDescription="Recibe un <Ability:ANTICIPATION_MELEE_DAMAGE_REDUCTION>% menos de daño cuerpo a cuerpo."
+LocHelpText="Recibe un <Ability:ANTICIPATION_MELEE_DAMAGE_REDUCTION>% menos de daño cuerpo a cuerpo."
 
 ; LWOTC translated
 [BlastShield X2AbilityTemplate]
