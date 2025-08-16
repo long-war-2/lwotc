@@ -2682,6 +2682,7 @@ static function X2AbilityTemplate PrimaryReturnFireShot()
 	local array<name>                       SkipExclusions;
 	local X2Condition_Visibility            TargetVisibilityCondition;
 	local X2AbilityCost_Ammo				AmmoCost;
+	local X2Condition_NotItsOwnTurn NotItsOwnTurnCondition;
 
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'PrimaryReturnFireShot');
@@ -2723,6 +2724,9 @@ static function X2AbilityTemplate PrimaryReturnFireShot()
 
 	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
 	Template.AddShooterEffectExclusions(SkipExclusions);
+
+	NotItsOwnTurnCondition = new class'X2Condition_NotItsOwnTurn';
+	Template.AbilityShooterConditions.AddItem(NotItsOwnTurnCondition);
 	
 	SingleTarget = new class'X2AbilityTarget_Single';
 	SingleTarget.OnlyIncludeTargetsInsideWeaponRange = true;
