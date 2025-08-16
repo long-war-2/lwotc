@@ -1617,6 +1617,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	local array<SpawnDistributionListEntry>	LeaderSpawnList;
 	local array<SpawnDistributionListEntry>	FollowerSpawnList;
 	local PodSizeConversion PodConversion;
+	local PodSpawnInfo TestSpawnInfo;
 	local array<name> GoodUnits;
 	local array<name> BadUnits;
 	local array<name> SitrepLeaderUnitNames, SitrepLeaderListNames;
@@ -2028,16 +2029,23 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		
 		While (!Satisfactory && Tries < 16)
 		{
+			// Set up dummy test pod to fill each one manually
+			// WARNING: This pod doesn't have any of the other info set. DO NOT write it back to SpawnInfo (this is the Output)
+			TestSpawnInfo.SelectedCharacterTemplateNames.Length = 0;
+			TestSpawnInfo.SelectedCharacterTemplateNames[0] = SpawnInfo.SelectedCharacterTemplateNames[0];
+			TestSpawnInfo.SelectedCharacterTemplateNames[1] = SpawnInfo.SelectedCharacterTemplateNames[1];
+
 			foreach SpawnInfo.SelectedCharacterTemplateNames(CharacterTemplateName, idx)
 			{
 				`LWDiversityTrace("Rerolling Position" @idx);
 				CurrentCharacterTemplate = TemplateManager.FindCharacterTemplate(SpawnInfo.SelectedCharacterTemplateNames[idx]);
 				//`LWTrace("Looking at" @CurrentCharacterTemplate.DataName);
-				//Tedster - add none check here as well:
+				//Tedster - add none check here as well (potentially redundent but just to be safe):
 				if(CurrentCharacterTemplate == none)
 				{
 					`LWDiversityTrace("Rerolling nonexistant Character Template.");
-					SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList, bIsRNF);
+					SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(TestSpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList, bIsRNF);
+					TestSpawnInfo.SelectedCharacterTemplateNames[idx] = SpawnInfo.SelectedCharacterTemplateNames[idx];
 				}
 
 				//BAIL CONDITIONS, Tedster - fix off by one error 2 -> 1
@@ -2048,7 +2056,8 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 					continue;
 				}
 
-				SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList, bIsRNF);
+				SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(TestSpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList, bIsRNF);
+				TestSpawnInfo.SelectedCharacterTemplateNames[idx] = SpawnInfo.SelectedCharacterTemplateNames[idx];
 				`LWDiversityTrace("Selected new follower for position" @idx @":" @ SpawnInfo.SelectedCharacterTemplateNames[idx]);
 
 				if(default.bNerfFrostLegion 
@@ -2062,7 +2071,9 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 						numAttempts = 0;
 						while (numAttempts < 12 && bKeepTrying)
 						{
-							SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList, bIsRNF);
+							TestSpawnInfo.SelectedCharacterTemplateNames[idx] = '';
+							SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(TestSpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList, bIsRNF);
+							TestSpawnInfo.SelectedCharacterTemplateNames[idx] = SpawnInfo.SelectedCharacterTemplateNames[idx];
 
 							if((InStr(CAPS(SpawnInfo.SelectedCharacterTemplateNames[k]), "FROST") != INDEX_NONE || InStr(CAPS(SpawnInfo.SelectedCharacterTemplateNames[k]), "CRYO") != INDEX_NONE))
 							{
@@ -2128,6 +2139,26 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 
 		//FINALLY LOG THE RESULTS
 		`LWTrace("Attempted to edit Encounter to add more enemy diversity! Satisfactory:" @ satisfactory);
+
+		// Failsafe - redo it and ignore max characters per group to at least get themed pods.
+		// Simplified logic, at this point everything should have passed the various safety checks.
+		if(!Satisfactory)
+		{
+			`LWTrace("One last round ignoring Max characters per group setting. Somebody add more followers to the pod leader to fix this");
+			foreach SpawnInfo.SelectedCharacterTemplateNames(CharacterTemplateName, idx)
+			{
+				if (idx <= 1
+					|| (SpawnInfo.SelectedCharacterTemplateNames[idx] != FirstFollowerName)
+					|| CurrentCharacterTemplate.bIsTurret)
+				{
+					continue;
+				}
+
+				SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(TestSpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList, bIsRNF, true);
+
+			}
+		}
+
 		foreach SpawnInfo.SelectedCharacterTemplateNames (CharacterTemplateName, idx)
 		{
 			`LWTrace("Character[" $ idx $ "] = " $ CharacterTemplateName);
@@ -2742,7 +2773,7 @@ static function name SelectRandomPodFollower(PodSpawnInfo SpawnInfo, array<name>
 }
 
 // improved version that doesn't have nested loops
-static final function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnInfo, array<name> SupportedFollowers, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList, optional bool bReinforcement)
+static final function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnInfo, array<name> SupportedFollowers, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList, optional bool bReinforcement, optional bool bIgnoreMaxPerGroup = false)
 {
 //	local X2CharacterTemplateManager CharacterTemplateMgr;
 //	local X2CharacterTemplate CharacterTemplate;
@@ -2809,7 +2840,7 @@ static final function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnIn
 
 		
 		// if too many of the unit already exist
-		if (CountMembers(SpawnEntry.Template, SpawnInfo.SelectedCharacterTemplateNames) >= SpawnEntry.MaxCharactersPerGroup)
+		if (!bIgnoreMaxPerGroup && CountMembers(SpawnEntry.Template, SpawnInfo.SelectedCharacterTemplateNames) >= SpawnEntry.MaxCharactersPerGroup)
 		{
 			continue;
 		}
