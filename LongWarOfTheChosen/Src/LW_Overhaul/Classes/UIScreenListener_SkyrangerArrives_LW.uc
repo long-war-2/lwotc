@@ -156,7 +156,7 @@ simulated function OnAbortInfiltration(UIButton Button)
 	`LWSQUADMGR.UpdateSquadPostMission(SelectedDestinationMission.GetReference());
 	SelectedDestinationMission.InteractionComplete(true);
 
-	SkyrangerArrives = UISkyrangerArrives(Button.GetParent(class'UISkyrangerArrives'));
+	SkyrangerArrives = UISkyrangerArrives(Button.Screen);
 	if (SkyrangerArrives != none)
 	{
 		SkyrangerArrives.CloseScreen();
@@ -180,7 +180,7 @@ simulated function OnContinueInfiltration(UIButton Button)
 	}
 	SelectedDestinationMission.InteractionComplete(true);
 
-	SkyrangerArrives = UISkyrangerArrives(Button.GetParent(class'UISkyrangerArrives'));
+	SkyrangerArrives = UISkyrangerArrives(Button.Screen);
 	if (SkyrangerArrives != none)
 	{
 		SkyrangerArrives.CloseScreen();
@@ -223,7 +223,7 @@ simulated function OnLaunchInfiltration(UIButton Button)
 	}
 
 	// skyranger flies back to avenger after dropping off to start infiltration
-	SkyrangerArrives = UISkyrangerArrives(Button.GetParent(class'UISkyrangerArrives'));
+	SkyrangerArrives = UISkyrangerArrives(Button.Screen);
 	if (SkyrangerArrives != none)
 		SkyrangerArrives.GetMission().InteractionComplete(true);
 
