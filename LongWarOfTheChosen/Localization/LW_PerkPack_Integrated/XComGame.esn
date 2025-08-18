@@ -551,9 +551,9 @@ LocPromotionPopupText="<Bullet/> El efecto se aplica a la curación con GREMLIN,
 [DenseSmoke X2AbilityTemplate]
 LocFriendlyName="Humo denso"
 LocFlyOverText="Humo denso"
-LocLongDescription="Tus granadas de humo confieren 10 de defensa adicional. También otorga una granada de humo gratis."
-LocHelpText="Tus granadas de humo confieren 10 de defensa adicional. También otorga una granada de humo gratis."
-LocPromotionPopupText="<Bullet/> Tus granadas de humo confieren 10 de defensa adicional a aquellos dentro del humo, para un total de 30. También otorga una granada de humo gratis.<br/>"
+LocLongDescription="Tus granadas de humo confieren <Ability:DenseSmoke_DefenseBonus_LW> de defensa adicional. También otorga una granada de humo gratis."
+LocHelpText="Tus granadas de humo confieren <Ability:DenseSmoke_DefenseBonus_LW> de defensa adicional. También otorga una granada de humo gratis."
+LocPromotionPopupText="<Bullet/> Tus granadas de humo confieren <Ability:DenseSmoke_DefenseBonus_LW> de defensa adicional a aquellos dentro del humo, para un total de <Ability:DenseSmoke_DefenseTotal_LW>. También otorga una granada de humo gratis.<br/>"
 
 [Collateral_LW X2AbilityTemplate]
 LocFriendlyName="Daños colaterales"

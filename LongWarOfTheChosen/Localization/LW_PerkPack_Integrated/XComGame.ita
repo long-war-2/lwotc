@@ -536,9 +536,9 @@ LocPromotionPopupText="<Bullet/> L'effetto si applica a Cura con GREMLIN, ai med
 [DenseSmoke X2AbilityTemplate]
 LocFriendlyName="Fumo impenetrabile"
 LocFlyOverText="Fumo impenetrabile"
-LocLongDescription="Le granate fumogene conferiscono 10 di Difesa in più."
-LocHelpText="Le granate fumogene conferiscono 10 di Difesa in più."
-LocPromotionPopupText="<Bullet/> Le granate fumogene conferiscono 10 di Difesa in più alle unità all'interno del fumo, per un totale di 30.<br/>"
+LocLongDescription="Le granate fumogene conferiscono <Ability:DenseSmoke_DefenseBonus_LW> di Difesa in più."
+LocHelpText="Le granate fumogene conferiscono <Ability:DenseSmoke_DefenseBonus_LW> di Difesa in più."
+LocPromotionPopupText="<Bullet/> Le granate fumogene conferiscono <Ability:DenseSmoke_DefenseBonus_LW> di Difesa in più alle unità all'interno del fumo, per un totale di <Ability:DenseSmoke_DefenseTotal_LW>.<br/>"
 
 [DenseSmokeGrenade X2GrenadeTemplate]
 FriendlyName="Granata fumogena impenetrabile"

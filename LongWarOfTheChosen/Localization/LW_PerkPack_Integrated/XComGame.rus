@@ -534,9 +534,9 @@ LocPromotionPopupText="<Bullet/> Эффект добавляется к лече
 [DenseSmoke X2AbilityTemplate]
 LocFriendlyName="Густой дым"
 LocFlyOverText="Густой дым"
-LocLongDescription="Ваши дымовые гранаты дают дополнительно +10 к Защите."
-LocHelpText="Ваши дымовые гранаты дают дополнительно +10 к Защите."
-LocPromotionPopupText="<Bullet/> Ваши дымовые гранаты дают дополнительно +10 ед. к Защите солдатам, находящимся в дыму (суммарно +30).<br/>"
+LocLongDescription="Ваши дымовые гранаты дают дополнительно +<Ability:DenseSmoke_DefenseBonus_LW> к Защите."
+LocHelpText="Ваши дымовые гранаты дают дополнительно +<Ability:DenseSmoke_DefenseBonus_LW> к Защите."
+LocPromotionPopupText="<Bullet/> Ваши дымовые гранаты дают дополнительно +<Ability:DenseSmoke_DefenseBonus_LW> ед. к Защите солдатам, находящимся в дыму (суммарно +<Ability:DenseSmoke_DefenseTotal_LW>).<br/>"
 
 [DenseSmokeGrenade X2GrenadeTemplate]
 FriendlyName="Граната с густым дымом"

@@ -586,9 +586,9 @@ LocPromotionPopupText="<Bullet/> L'effet s'applique aux soins du GREMLIN, aux m�
 [DenseSmoke X2AbilityTemplate]
 LocFriendlyName="Fumée dense"
 LocFlyOverText="Fumée dense"
-LocLongDescription="Vos grenades fumigènes octroient 10 points de défense supplémentaires."
-LocHelpText="Vos grenades fumigènes octroient 10 points de défense supplémentaires."
-LocPromotionPopupText="<Bullet/> Vos grenades fumigènes octroient 10 points de défense supplémentaires aux unités se trouvant dans la fumée, pour un total de 30.<br/>"
+LocLongDescription="Vos grenades fumigènes octroient <Ability:DenseSmoke_DefenseBonus_LW> points de défense supplémentaires."
+LocHelpText="Vos grenades fumigènes octroient <Ability:DenseSmoke_DefenseBonus_LW> points de défense supplémentaires."
+LocPromotionPopupText="<Bullet/> Vos grenades fumigènes octroient <Ability:DenseSmoke_DefenseBonus_LW> points de défense supplémentaires aux unités se trouvant dans la fumée, pour un total de <Ability:DenseSmoke_DefenseTotal_LW>.<br/>"
 
 [DenseSmokeGrenade X2GrenadeTemplate]
 FriendlyName="Grenade fumigène dense"

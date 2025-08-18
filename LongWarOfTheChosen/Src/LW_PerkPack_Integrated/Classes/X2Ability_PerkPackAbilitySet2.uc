@@ -8,8 +8,9 @@ class X2Ability_PerkPackAbilitySet2 extends X2Ability config (LW_SoldierSkills) 
 
 var localized string TrojanVirus;
 var localized string TrojanVirusTriggered;
-var localized string DenseSmokeGrenadeEffectDisplayName;
-var localized string DenseSmokeGrenadeEffectDisplayDesc;
+// DEPRECATED
+// var localized string DenseSmokeGrenadeEffectDisplayName;
+// var localized string DenseSmokeGrenadeEffectDisplayDesc;
 var localized string ShellshockEffectName, ShellshockEffectDesc, ShockwaveEffectName, ShockwaveEffectDesc;
 
 var config int NUM_AIRDROP_CHARGES;
@@ -25,8 +26,8 @@ var config int COLLATERAL_AMMO;
 var config int COLLATERAL_RADIUS;
 var config int COLLATERAL_ENVDMG;
 
-
-var config int DENSESMOKEGRENADE_HITMOD;
+// DEPRECATED
+// var config int DENSESMOKEGRENADE_HITMOD;
 var config array<name> SMOKE_GRENADES_FOR_DENSE_SMOKE;
 
 var config int STING_GRENADE_STUN_CHANCE;
@@ -85,6 +86,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddSmokeGrenade());
 	Templates.AddItem(AddSavior());
 	Templates.AddItem(AddDenseSmoke());
+	Templates.AddItem(AddCombatStims());
+	Templates.AddItem(AddRegenSmoke());
 	Templates.AddItem(AddRapidDeployment());
 	Templates.AddItem(AddAirdrop());
 	Templates.AddItem(AddSwordSlice_LWAbility());
@@ -631,61 +634,13 @@ static function X2AbilityTemplate AddSavior()
 	return Template;
 }
 
-//this increases the defense bonus of smoke grenades and smoke bombs used by the unit
-// accomplished by swapping out existing smoke grenade/bomb for a dense smoke version
-//ALTERATION: Just going to make this a passive and just apply the effect to traditional smoke grenades
-//MANY DEPERECATIONS INBOUND LOL
 static function X2AbilityTemplate AddDenseSmoke()
 {
 	local X2AbilityTemplate						Template;
 	local X2Effect_TemporaryItem				TemporaryItemEffect;
 	local ResearchConditional					Conditional;
-	//local X2AbilityTrigger_UnitPostBeginPlay	Trigger;
 
 	Template = PurePassive('DenseSmoke', "img:///UILibrary_LW_PerkPack.LW_AbilityDenseSmoke");
-	//`CREATE_X2ABILITY_TEMPLATE(Template, 'DenseSmoke');
-
-	//MEGA DELETE. We don't need any of this. Also got rid of a duplicate return.
-	/*Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityDenseSmoke";
-	Template.AbilitySourceName = 'eAbilitySource_Perk';
-	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
-	Template.Hostility = eHostility_Neutral;
-	Template.AbilityToHitCalc = default.DeadEye;
-	Template.AbilityTargetStyle = default.SelfTarget;
-	Template.bIsPassive = true;
-	Template.bCrossClassEligible = true;
-
-	Trigger = new class'X2AbilityTrigger_UnitPostBeginPlay';
-	Trigger.Priority -= 40; // delayed so that any other abilities that add items happen first
-	Template.AbilityTriggers.AddItem(Trigger);
-
-	TemporaryItemEffect = new class'X2Effect_TemporaryItem';
-	TemporaryItemEffect.EffectName = 'DenseSmokeGrenadeEffect';
-	TemporaryItemEffect.ItemName = 'DenseSmokeGrenade';
-	TemporaryItemEffect.bReplaceExistingItemOnly = true;
-	TemporaryItemEffect.ExistingItemName = 'SmokeGrenade';
-	TemporaryItemEffect.ForceCheckAbilities.AddItem('LaunchGrenade');
-	TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
-	TemporaryItemEffect.BuildPersistentEffect(1, true, false);
-	TemporaryItemEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
-	TemporaryItemEffect.DuplicateResponse = eDupe_Ignore;
-	Template.AddTargetEffect(TemporaryItemEffect);
-
-	TemporaryItemEffect = new class'X2Effect_TemporaryItem';
-	TemporaryItemEffect.EffectName = 'DenseSmokeBombEffect';
-	TemporaryItemEffect.ItemName = 'DenseSmokeGrenadeMk2';
-	TemporaryItemEffect.bReplaceExistingItemOnly = true;
-	TemporaryItemEffect.ExistingItemName = 'SmokeGrenadeMk2';
-	TemporaryItemEffect.ForceCheckAbilities.AddItem('LaunchGrenade');
-	TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
-	TemporaryItemEffect.BuildPersistentEffect(1, true, false);
-	//TemporaryItemEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
-	TemporaryItemEffect.DuplicateResponse = eDupe_Ignore;
-	Template.AddTargetEffect(TemporaryItemEffect);
-
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-
-	return Template;*/
 
 	Conditional.ResearchProjectName = 'AdvancedGrenades';
 	Conditional.ItemName = 'SmokeGrenadeMk2';
@@ -695,7 +650,7 @@ static function X2AbilityTemplate AddDenseSmoke()
 	TemporaryItemEffect.ItemName = 'SmokeGrenade';
 	TemporaryItemEffect.ResearchOptionalItems.AddItem(Conditional);
 
-	//POTENTIALLY DEPERECATED
+	// POTENTIALLY DEPERECATED
 	TemporaryItemEffect.AlternativeItemNames.AddItem('DenseSmokeGrenade');
 	TemporaryItemEffect.AlternativeItemNames.AddItem('DenseSmokeGrenadeMk2');
 
@@ -712,21 +667,37 @@ static function X2AbilityTemplate AddDenseSmoke()
 	return Template;
 }
 
-static function X2Effect DenseSmokeEffect()
+// DEPRECATED
+// static function X2Effect DenseSmokeEffect()
+// {
+	// local X2Effect_DenseSmokeEffect		Effect;
+	// local X2Condition_AbilityProperty	AbilityCondition;
+
+	// Effect = new class'X2Effect_DenseSmokeEffect';
+	// Effect.BuildPersistentEffect(class'X2Effect_ApplySmokeGrenadeToWorld'.default.Duration + 1, false, false, false, eGameRule_PlayerTurnBegin);
+	// Effect.SetDisplayInfo(ePerkBuff_Bonus, default.DenseSmokeGrenadeEffectDisplayName, default.DenseSmokeGrenadeEffectDisplayDesc, "img:///UILibrary_LW_PerkPack.LW_AbilityDenseSmoke", true,,'eAbilitySource_Perk');
+	// Effect.Defense = default.DENSESMOKEGRENADE_HITMOD;
+
+	// AbilityCondition = new class'X2Condition_AbilityProperty';
+	// AbilityCondition.OwnerHasSoldierAbilities.AddItem('DenseSmoke');
+	// Effect.TargetConditions.AddItem(AbilityCondition);
+	
+	// return Effect;
+// }
+
+static function X2AbilityTemplate AddCombatStims()
 {
-	local X2Effect_DenseSmokeEffect Effect;
-	local X2Condition_AbilityProperty	AbilityCondition;
+	return PurePassive('CombatStims_LW', "img:///UILibrary_XPerkIconPack.UIPerk_smoke_shot_2");
+}
 
-	Effect = new class'X2Effect_DenseSmokeEffect';
-	Effect.BuildPersistentEffect(class'X2Effect_ApplySmokeGrenadeToWorld'.default.Duration + 1, false, false, false, eGameRule_PlayerTurnBegin);
-	Effect.SetDisplayInfo(ePerkBuff_Bonus, default.DenseSmokeGrenadeEffectDisplayName, default.DenseSmokeGrenadeEffectDisplayDesc, "img:///UILibrary_LW_PerkPack.LW_AbilityDenseSmoke", true,,'eAbilitySource_Perk');
-	Effect.Defense = default.DENSESMOKEGRENADE_HITMOD;
+static function X2AbilityTemplate AddRegenSmoke()
+{
+	return PurePassive('RegenSmoke_LW', "img:///UILibrary_XPerkIconPack.UIPerk_smoke_medkit");
+}
 
-	AbilityCondition = new class'X2Condition_AbilityProperty';
-    AbilityCondition.OwnerHasSoldierAbilities.AddItem('DenseSmoke');
-    Effect.TargetConditions.AddItem(AbilityCondition);
-
-	return Effect;
+static function X2AbilityTemplate AddBastionPassive()
+{
+	return PurePassive('BastionPassive', "img:///UILibrary_LW_PerkPack.LW_AbilityBastion", , 'eAbilitySource_Psionic');
 }
 
 //this ability allows the next use (this turn) of smoke grenade or flashbang to be free
@@ -2726,7 +2697,6 @@ static function AddEffectsToGrenades()
 
 	ItemManager.GetTemplateNames(TemplateNames);
 
-	// All grenades
 	foreach TemplateNames(TemplateName)
 	{
 		ItemManager.FindDataTemplateAllDifficulties(TemplateName, TemplateAllDifficulties);
@@ -2737,37 +2707,47 @@ static function AddEffectsToGrenades()
 			GrenadeTemplate = X2GrenadeTemplate(Template);
 			if (GrenadeTemplate != none)
 			{
+				// Damaging Grenades + Flashbang
 				if ( (GrenadeTemplate.BaseDamage.Damage > 0  && (GrenadeTemplate.ThrownGrenadeEffects.Length > 0 || GrenadeTemplate.LaunchedGrenadeEffects.Length > 0)) || default.ATTACK_GRENADES.find(TemplateName) != INDEX_NONE)
 				{
 					GrenadeTemplate.ThrownGrenadeEffects.AddItem(ShellShockEffect);
 					GrenadeTemplate.LaunchedGrenadeEffects.AddItem(ShellShockEffect);
 				}
-			}
-		}
-	}
-	
-	// Damaging Grenades
-
-	ItemManager.GetTemplateNames(TemplateNames);
-	foreach TemplateNames(TemplateName)
-	{
-		ItemManager.FindDataTemplateAllDifficulties(TemplateName, TemplateAllDifficulties);
-		// Iterate over all variants
-		
-		foreach TemplateAllDifficulties(Template)
-		{
-			GrenadeTemplate = X2GrenadeTemplate(Template);
-			if (GrenadeTemplate != none)
-			{
+				// Damaging Grenades
 				if ( (GrenadeTemplate.BaseDamage.Damage > 0  && (GrenadeTemplate.ThrownGrenadeEffects.Length > 0 || GrenadeTemplate.LaunchedGrenadeEffects.Length > 0)))
 				{
 					GrenadeTemplate.ThrownGrenadeEffects.AddItem(ShockwaveEffect);
 					GrenadeTemplate.LaunchedGrenadeEffects.AddItem(ShockwaveEffect);
 				}
+				// Flashbangs Grenades
+				if (default.FLASHBANGS_FOR_STING_GRENADES.Find(GrenadeTemplate.DataName) != INDEX_NONE)
+				{
+					// Sting Grenades
+					GrenadeTemplate.ThrownGrenadeEffects.AddItem(StingGrenadeEffect());
+					GrenadeTemplate.LaunchedGrenadeEffects.AddItem(StingGrenadeEffect());
+				}
+				// Smoke Grenades
+				if (default.SMOKE_GRENADES_FOR_DENSE_SMOKE.Find(GrenadeTemplate.DataName) != INDEX_NONE)
+				{
+					// Combat Stimulants
+					GrenadeTemplate.ThrownGrenadeEffects.AddItem(class'X2Effect_LWApplyCombatStimsToWorld'.static.CombatStimsWorldEffect());
+					GrenadeTemplate.ThrownGrenadeEffects.AddItem(class'X2Effect_LWCombatStims'.static.CombatStimsEffect());
+					GrenadeTemplate.LaunchedGrenadeEffects.AddItem(class'X2Effect_LWApplyCombatStimsToWorld'.static.CombatStimsWorldEffect());
+					GrenadeTemplate.LaunchedGrenadeEffects.AddItem(class'X2Effect_LWCombatStims'.static.CombatStimsEffect());
+					// Dense Smoke
+					GrenadeTemplate.ThrownGrenadeEffects.AddItem(class'X2Effect_LWApplyDenseSmokeToWorld'.static.DenseSmokeWorldEffect());
+					GrenadeTemplate.ThrownGrenadeEffects.AddItem(class'X2Effect_LWDenseSmoke'.static.DenseSmokeEffect());
+					GrenadeTemplate.LaunchedGrenadeEffects.AddItem(class'X2Effect_LWApplyDenseSmokeToWorld'.static.DenseSmokeWorldEffect());
+					GrenadeTemplate.LaunchedGrenadeEffects.AddItem(class'X2Effect_LWDenseSmoke'.static.DenseSmokeEffect());
+					// Regenerative Mist
+					GrenadeTemplate.ThrownGrenadeEffects.AddItem(class'X2Effect_LWApplyRegenSmokeToWorld'.static.RegenSmokeWorldEffect());
+					GrenadeTemplate.ThrownGrenadeEffects.AddItem(class'X2Effect_LWRegenSmoke'.static.RegenSmokeEffect());
+					GrenadeTemplate.LaunchedGrenadeEffects.AddItem(class'X2Effect_LWApplyRegenSmokeToWorld'.static.RegenSmokeWorldEffect());
+					GrenadeTemplate.LaunchedGrenadeEffects.AddItem(class'X2Effect_LWRegenSmoke'.static.RegenSmokeEffect());
+				}
 			}
 		}
 	}
-
 }
 
 

@@ -534,9 +534,9 @@ LocPromotionPopupText="<Bullet/> 效果适用于小精灵治疗，急救包和�
 [DenseSmoke X2AbilityTemplate]
 LocFriendlyName="浓密烟雾"
 LocFlyOverText="浓密烟雾"
-LocLongDescription="你的烟雾榴弹提供额外10点防御。同时额外获得一颗免费的烟雾榴弹。"
-LocHelpText="你的烟雾榴弹提供额外10点防御。同时额外获得一颗免费的烟雾榴弹。"
-LocPromotionPopupText="<Bullet/> 你的烟雾榴弹对处于烟雾中的单位提供额外10点防御，最高30。同时额外获得一颗免费的烟雾榴弹。<br/>"
+LocLongDescription="你的烟雾榴弹提供额外<Ability:DenseSmoke_DefenseBonus_LW>点防御。同时额外获得一颗免费的烟雾榴弹。"
+LocHelpText="你的烟雾榴弹提供额外<Ability:DenseSmoke_DefenseBonus_LW>点防御。同时额外获得一颗免费的烟雾榴弹。"
+LocPromotionPopupText="<Bullet/> 你的烟雾榴弹对处于烟雾中的单位提供额外<Ability:DenseSmoke_DefenseBonus_LW>点防御，最高<Ability:DenseSmoke_DefenseTotal_LW>。同时额外获得一颗免费的烟雾榴弹。<br/>"
 
 
 [Collateral_LW X2AbilityTemplate]

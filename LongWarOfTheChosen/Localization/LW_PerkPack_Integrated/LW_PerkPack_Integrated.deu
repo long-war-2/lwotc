@@ -34,14 +34,15 @@ m_strNoWeaponUpgradesTooltip="KEINE WAFFENVERBESSERUNGEN VERFÜGBAR"
 TrojanVirus="Trojaner"
 TrojanVirusTriggered="<XGParam:StrValue0/!UnitName/> hat Trojaner ausgelöst."
 
-DenseSmokeGrenadeEffectDisplayName="Dichter Rauch"
-DenseSmokeGrenadeEffectDisplayDesc="Der dichte Rauch gewährt dieser Einheit einen zusätzlichen Verteidigungsbonus."
-
 ShellshockEffectDesc="Diese Einheit hat verringerte Zielgenauigkeit und kritische Trefferchance."
 ShellshockEffectName="Schockzustand"
 
 ShockwaveEffectName="Erschüttert"
 ShockwaveEffectDesc="Diese Einheit hat verringerte Verteidigung und Ausweichchance."
+
+[X2Effect_LWDenseSmoke]
+strEffectBonusName = "Dichter Rauch"
+strEffectBonusDesc = "Der dichte Rauch gewährt dieser Einheit einen zusätzlichen Verteidigungsbonus."
 
 [X2Effect_Savior]
 strSavior_WorldMessage="Erretter: Hat zusätzliche <XGParam:IntValue0/> Trefferpunkte geheilt."
