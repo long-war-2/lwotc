@@ -6,6 +6,20 @@
 //---------------------------------------------------------------------------------------
 class X2Effect_LWApplyAdditionalSmokeEffectToWorld extends X2Effect_World abstract;
 
+var privatewrite name RelevantAbilityName;
+
+simulated function ApplyEffectToWorld(const out EffectAppliedData ApplyEffectParameters, XComGameState NewGameState)
+{
+    local XComGameState_Unit SourceStateObject;
+
+    SourceStateObject = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.SourceStateObjectRef.ObjectID));
+
+    if (SourceStateObject != none && SourceStateObject.HasSoldierAbility(default.RelevantAbilityName, true))
+    {
+        super.ApplyEffectToWorld(ApplyEffectParameters, NewGameState);
+    }
+}
+
 simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffectParameters, XComGameState_BaseObject kNewTargetState, XComGameState NewGameState, XComGameState_Effect NewEffectState)
 {
 }
@@ -22,7 +36,7 @@ simulated function AddX2ActionsForVisualization_Tick(XComGameState VisualizeGame
 {
 }
 
-static simulated function bool FillRequiresLOSToTargetLocation( )
+static simulated function bool FillRequiresLOSToTargetLocation()
 {
     return !class'CHHelpers'.default.DisableExtraLOSCheckForSmoke; 
 }

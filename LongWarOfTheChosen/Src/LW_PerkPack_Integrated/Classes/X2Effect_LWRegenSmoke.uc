@@ -101,7 +101,7 @@ static function X2Effect RegenSmokeEffect(optional bool bSkipAbilityCheck)
 
     UnitPropertyCondition = new class'X2Condition_UnitProperty';
     UnitPropertyCondition.ExcludeDead = false;
-    UnitPropertyCondition.ExcludeHostileToSource = true;
+    UnitPropertyCondition.ExcludeHostileToSource = false;
     UnitPropertyCondition.ExcludeFriendlyToSource = false;
     UnitPropertyCondition.ExcludeRobotic = true;
     UnitPropertyCondition.ExcludeTurret = true;
@@ -115,7 +115,7 @@ static function X2Effect RegenSmokeEffect(optional bool bSkipAbilityCheck)
     if (!bSkipAbilityCheck)
     {
         AbilityCondition = new class'X2Condition_AbilityProperty';
-        AbilityCondition.OwnerHasSoldierAbilities.AddItem(default.RelevantAbilityName);
+        AbilityCondition.OwnerHasSoldierAbilities.AddItem(class'X2Effect_LWApplyRegenSmokeToWorld'.default.RelevantAbilityName);
         Effect.TargetConditions.AddItem(AbilityCondition);
     }
 
@@ -128,6 +128,5 @@ defaultproperties
     EffectTickedFn = RegenerationTicked
 
     EffectName = RegenSmoke_LW
-    RelevantAbilityName = RegenSmoke_LW
     WorldEffectClass = class'X2Effect_LWApplyRegenSmokeToWorld'
 }

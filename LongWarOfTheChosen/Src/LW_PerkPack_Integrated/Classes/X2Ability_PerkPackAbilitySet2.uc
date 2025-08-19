@@ -2730,19 +2730,19 @@ static function AddEffectsToGrenades()
 				if (default.SMOKE_GRENADES_FOR_DENSE_SMOKE.Find(GrenadeTemplate.DataName) != INDEX_NONE)
 				{
 					// Combat Stimulants
-					GrenadeTemplate.ThrownGrenadeEffects.AddItem(class'X2Effect_LWApplyCombatStimsToWorld'.static.CombatStimsWorldEffect());
+					GrenadeTemplate.ThrownGrenadeEffects.AddItem(new class'X2Effect_LWApplyCombatStimsToWorld');
 					GrenadeTemplate.ThrownGrenadeEffects.AddItem(class'X2Effect_LWCombatStims'.static.CombatStimsEffect());
-					GrenadeTemplate.LaunchedGrenadeEffects.AddItem(class'X2Effect_LWApplyCombatStimsToWorld'.static.CombatStimsWorldEffect());
+					GrenadeTemplate.LaunchedGrenadeEffects.AddItem(new class'X2Effect_LWApplyCombatStimsToWorld');
 					GrenadeTemplate.LaunchedGrenadeEffects.AddItem(class'X2Effect_LWCombatStims'.static.CombatStimsEffect());
 					// Dense Smoke
-					GrenadeTemplate.ThrownGrenadeEffects.AddItem(class'X2Effect_LWApplyDenseSmokeToWorld'.static.DenseSmokeWorldEffect());
+					GrenadeTemplate.ThrownGrenadeEffects.AddItem(new class'X2Effect_LWApplyDenseSmokeToWorld');
 					GrenadeTemplate.ThrownGrenadeEffects.AddItem(class'X2Effect_LWDenseSmoke'.static.DenseSmokeEffect());
-					GrenadeTemplate.LaunchedGrenadeEffects.AddItem(class'X2Effect_LWApplyDenseSmokeToWorld'.static.DenseSmokeWorldEffect());
+					GrenadeTemplate.LaunchedGrenadeEffects.AddItem(new class'X2Effect_LWApplyDenseSmokeToWorld');
 					GrenadeTemplate.LaunchedGrenadeEffects.AddItem(class'X2Effect_LWDenseSmoke'.static.DenseSmokeEffect());
 					// Regenerative Mist
-					GrenadeTemplate.ThrownGrenadeEffects.AddItem(class'X2Effect_LWApplyRegenSmokeToWorld'.static.RegenSmokeWorldEffect());
+					GrenadeTemplate.ThrownGrenadeEffects.AddItem(new class'X2Effect_LWApplyRegenSmokeToWorld');
 					GrenadeTemplate.ThrownGrenadeEffects.AddItem(class'X2Effect_LWRegenSmoke'.static.RegenSmokeEffect());
-					GrenadeTemplate.LaunchedGrenadeEffects.AddItem(class'X2Effect_LWApplyRegenSmokeToWorld'.static.RegenSmokeWorldEffect());
+					GrenadeTemplate.LaunchedGrenadeEffects.AddItem(new class'X2Effect_LWApplyRegenSmokeToWorld');
 					GrenadeTemplate.LaunchedGrenadeEffects.AddItem(class'X2Effect_LWRegenSmoke'.static.RegenSmokeEffect());
 				}
 			}

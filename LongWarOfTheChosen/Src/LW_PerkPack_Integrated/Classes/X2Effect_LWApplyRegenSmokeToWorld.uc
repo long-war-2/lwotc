@@ -9,15 +9,7 @@ event array<X2Effect> GetTileEnteredEffects()
     return TileEnteredEffects;
 }
 
-static function X2Effect_LWApplyAdditionalSmokeEffectToWorld RegenSmokeWorldEffect()
+defaultproperties
 {
-    local X2Effect_LWApplyAdditionalSmokeEffectToWorld  Effect;
-    local X2Condition_AbilityProperty                   AbilityCondition;
-
-    Effect = new class'X2Effect_LWApplyRegenSmokeToWorld';
-    AbilityCondition = new class'X2Condition_AbilityProperty';
-    AbilityCondition.OwnerHasSoldierAbilities.AddItem(class'X2Effect_LWRegenSmoke'.default.RelevantAbilityName);
-    Effect.TargetConditions.AddItem(AbilityCondition);
-
-    return Effect;
+    RelevantAbilityName = RegenSmoke_LW
 }

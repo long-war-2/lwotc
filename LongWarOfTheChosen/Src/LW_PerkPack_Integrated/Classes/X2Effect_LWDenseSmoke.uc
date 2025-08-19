@@ -19,6 +19,7 @@ static function X2Effect DenseSmokeEffect(optional bool bSkipAbilityCheck)
 {
     local X2Effect_LWDenseSmoke         Effect;
     local X2Condition_AbilityProperty   AbilityCondition;
+    local X2Condition_UnitProperty      UnitPropertyCondition;
 
     Effect = new class'X2Effect_LWDenseSmoke';
     Effect.BuildPersistentEffect(class'X2Effect_ApplySmokeGrenadeToWorld'.default.Duration + 1, false, false, false, eGameRule_PlayerTurnBegin);
@@ -28,10 +29,17 @@ static function X2Effect DenseSmokeEffect(optional bool bSkipAbilityCheck)
         "img:///UILibrary_LW_PerkPack.LW_AbilityDenseSmoke",
         true,,'eAbilitySource_Perk');
 
+    UnitPropertyCondition = new class'X2Condition_UnitProperty';
+    UnitPropertyCondition.ExcludeDead = false;
+    UnitPropertyCondition.ExcludeHostileToSource = false;
+    UnitPropertyCondition.ExcludeFriendlyToSource = false;
+    UnitPropertyCondition.FailOnNonUnits = true;
+    Effect.TargetConditions.AddItem(UnitPropertyCondition);
+
     if (!bSkipAbilityCheck)
     {
         AbilityCondition = new class'X2Condition_AbilityProperty';
-        AbilityCondition.OwnerHasSoldierAbilities.AddItem(default.RelevantAbilityName);
+        AbilityCondition.OwnerHasSoldierAbilities.AddItem(class'X2Effect_LWApplyDenseSmokeToWorld'.default.RelevantAbilityName);
         Effect.TargetConditions.AddItem(AbilityCondition);
     }
 
@@ -41,6 +49,5 @@ static function X2Effect DenseSmokeEffect(optional bool bSkipAbilityCheck)
 defaultproperties
 {
     EffectName = DenseSmoke
-    RelevantAbilityName = DenseSmoke
     WorldEffectClass = class'X2Effect_LWApplyDenseSmokeToWorld'
 }

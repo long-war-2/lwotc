@@ -6,7 +6,6 @@
 //---------------------------------------------------------------------------------------
 class X2Effect_LWAdditionalSmokeEffect extends X2Effect_Persistent config(LW_SoldierSkills) abstract;
 
-var protectedwrite name RelevantAbilityName;
 var class<X2Effect_LWApplyAdditionalSmokeEffectToWorld> WorldEffectClass;
 
 var localized string strEffectBonusName;
@@ -17,14 +16,14 @@ function bool IsEffectCurrentlyRelevant(XComGameState_Effect EffectGameState, XC
     return TargetUnit.IsInWorldEffectTile(default.WorldEffectClass.Name);
 }
 
-static function SmokeGrenadeVisualizationTickedOrRemoved(XComGameState VisualizeGameState, out VisualizationActionMetadata ActionMetadata, const name EffectApplyResult)
-{
-    local X2Action_UpdateUI UpdateUIAction;
+// static function SmokeGrenadeVisualizationTickedOrRemoved(XComGameState VisualizeGameState, out VisualizationActionMetadata ActionMetadata, const name EffectApplyResult)
+// {
+//     local X2Action_UpdateUI UpdateUIAction;
 
-    UpdateUIAction = X2Action_UpdateUI(class'X2Action_UpdateUI'.static.AddToVisualizationTree(ActionMetadata, VisualizeGameState.GetContext(), false, ActionMetadata.LastActionAdded));
-    UpdateUIAction.SpecificID = ActionMetadata.StateObject_NewState.ObjectID;
-    UpdateUIAction.UpdateType = EUIUT_UnitFlag_Buffs;
-}
+//     UpdateUIAction = X2Action_UpdateUI(class'X2Action_UpdateUI'.static.AddToVisualizationTree(ActionMetadata, VisualizeGameState.GetContext(), false, ActionMetadata.LastActionAdded));
+//     UpdateUIAction.SpecificID = ActionMetadata.StateObject_NewState.ObjectID;
+//     UpdateUIAction.UpdateType = EUIUT_UnitFlag_Buffs;
+// }
 
 defaultproperties
 {
