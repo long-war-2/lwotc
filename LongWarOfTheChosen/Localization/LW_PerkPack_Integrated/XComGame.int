@@ -608,7 +608,7 @@ LocFriendlyName="Combat Stimulants"
 LocFlyOverText="Combat Stimulants"
 LocLongDescription="Your smoke grenades confer +<Ability:CombatStims_AimBonus_LW> aim and +<Ability:CombatStims_CritBonus_LW> critical chance to units in the smoke cloud."
 LocHelpText="Your smoke grenades confer +<Ability:CombatStims_AimBonus_LW> aim and +<Ability:CombatStims_CritBonus_LW> critical chance to units in the smoke cloud."
-LocPromotionPopupText="<Bullet> The effect persists for as long as the unit remains in the smoke.<br><Bullet> The effect will be applied if the unit enters the smoke after it's deployed.<br><Bullet> Applies to both living and mechanical units.<br><Bullet> Applies to enemy units."
+LocPromotionPopupText="<Bullet> The effect persists for as long as the unit remains in the smoke.<br><Bullet> The effect will be applied if the unit enters the smoke after it's deployed.<br><Bullet> Doesn't apply to mechanical units.<br><Bullet> Applies to enemy units."
 
 [RegenSmoke_LW X2AbilityTemplate]
 LocFriendlyName="Regenerative Mist"

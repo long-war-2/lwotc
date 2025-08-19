@@ -40,6 +40,8 @@ static function X2Effect CombatStimsEffect(optional bool bSkipAbilityCheck)
     UnitPropertyCondition.ExcludeDead = false;
     UnitPropertyCondition.ExcludeHostileToSource = false;
     UnitPropertyCondition.ExcludeFriendlyToSource = false;
+    UnitPropertyCondition.ExcludeRobotic = true;
+    UnitPropertyCondition.ExcludeTurret = true;
     UnitPropertyCondition.FailOnNonUnits = true;
     Effect.TargetConditions.AddItem(UnitPropertyCondition);
 
