@@ -40,9 +40,17 @@ ShellshockEffectName="被弹震"
 ShockwaveEffectName="被冲击"
 ShockwaveEffectDesc="这个单位的防御和闪避降低了。"
 
+[X2Effect_LWCombatStims]
+strEffectBonusName = "战斗兴奋剂"
+strEffectBonusDesc = "该单位受战斗兴奋剂影响，命中率和暴击率提高。"
+
 [X2Effect_LWDenseSmoke]
 strEffectBonusName = "浓密烟雾"
 strEffectBonusDesc = "浓密烟雾赋予该单位额外的防御加成。"
+
+[X2Effect_LWRegenSmoke]
+strEffectBonusName = "治愈之雾"
+strEffectBonusDesc = "该单位受治愈之雾影响，每回合开始时会恢复生命值。"
 
 [X2Effect_Savior]
 strSavior_WorldMessage="妙手回春：已回复额外<XGParam:IntValue0/>生命值。"
