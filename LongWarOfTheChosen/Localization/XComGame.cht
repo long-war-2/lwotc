@@ -5733,8 +5733,8 @@ LocFlyOverText="精神控制"
 
 [ChosenImmuneMelee X2AbilityTemplate]
 LocFriendlyName="嚴陣以待"
-LocLongDescription="受到的衝刺近戰傷害減少<Ability:ANTICIPATION_MELEE_DAMAGE_REDUCTION>%。"
-LocHelpText="受到的衝刺近戰傷害減少<Ability:ANTICIPATION_MELEE_DAMAGE_REDUCTION>%。"
+LocLongDescription="受到的衝刺近戰傷害減少50%。"
+LocHelpText="受到的衝刺近戰傷害減少50%。"
 
 [BlastShield X2AbilityTemplate]
 LocFriendlyName="防爆護盾"
@@ -6206,15 +6206,15 @@ LocPromotionPopupText="<Bullet/> 如果一名敵人在相鄰格開始他們的�
 
 [Bladestorm X2AbilityTemplate]
 LocFriendlyName="劍刃風暴"
-LocLongDescription="使用<Ability:WeaponName/>自由攻擊進入、離開或從近戰範圍內發起攻擊的敵人。"
-LocHelpText="使用<Ability:WeaponName/>自由攻擊進入、離開或從近戰範圍內發起攻擊的敵人。"
+LocLongDescription="使用<Ability:BOUND_WEAPON_NAME/>自由攻擊進入、離開或從近戰範圍內發起攻擊的敵人。"
+LocHelpText="使用<Ability:BOUND_WEAPON_NAME/>自由攻擊進入、離開或從近戰範圍內發起攻擊的敵人。"
 LocFlyOverText="劍刃風暴"
 LocPromotionPopupText="<Bullet/> 如果一名敵人在相鄰格開始他們的回合，該敵人試圖離開或攻擊<Ability:ClassName/>將觸發劍刃風暴。<br/><Bullet/> 如果敵人不在相鄰位置，那麼當敵人進入近戰範圍時將觸發劍刃風暴。<br/><Bullet/> 劍刃風暴不會在你自己的回合觸發。<br/>"
 
 [TemplarBladestorm X2AbilityTemplate]
 LocFriendlyName="劍刃風暴"
-LocLongDescription="使用<Ability:WeaponName/>自由攻擊進入、離開或從近戰範圍內發起攻擊的敵人。"
-LocHelpText="使用<Ability:WeaponName/>自由攻擊進入、離開或從近戰範圍內發起攻擊的敵人。"
+LocLongDescription="使用<Ability:BOUND_WEAPON_NAME/>自由攻擊進入、離開或從近戰範圍內發起攻擊的敵人。"
+LocHelpText="使用<Ability:BOUND_WEAPON_NAME/>自由攻擊進入、離開或從近戰範圍內發起攻擊的敵人。"
 LocFlyOverText="劍刃風暴"
 LocPromotionPopupText="<Bullet/> 如果一名敵人在相鄰格開始他們的回合，該敵人試圖離開或攻擊<Ability:ClassName/>將觸發劍刃風暴 。<br/><Bullet/> 如果敵人不在相鄰位置，那麼當敵人進入近戰範圍時將觸發劍刃風暴。<br/><Bullet/> 劍刃風暴不會在你自己的回合觸發。<br/>"
 ; End Translation
@@ -6446,26 +6446,26 @@ LocPromotionPopupText="<Bullet/> 通過巧妙地結合殘暴和無情的效果�
 
 [ZoneOfControl_LW X2AbilityTemplate]
 LocFriendlyName = "控制區域"
-LocHelpText = "所有進入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半徑範圍內的敵人將受到 <Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移動力懲罰。"
-LocLongDescription = "所有進入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半徑範圍內的敵人將受到 <Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移動力懲罰。"
+LocHelpText = "所有進入該單位<Ability:ZONE_CONTROL_RADIUS/>格半徑範圍內的敵人將受到 <Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移動力的懲罰。"
+LocLongDescription = "所有進入該單位<Ability:ZONE_CONTROL_RADIUS/>格半徑範圍內的敵人將受到 <Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移動力的懲罰。"
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText = "<Bullet/> 所有進入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半徑範圍內的敵人將受到 <Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移動力懲罰。<br/>"
+LocPromotionPopupText = "<Bullet/> 所有進入該單位<Ability:ZONE_CONTROL_RADIUS/>格半徑範圍內的敵人將受到 <Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移動力的懲罰。<br/>"
 ; End Translation (2)
 
 [ZoCCleanse X2AbilityTemplate]
 LocFriendlyName = "控制區域"
-LocHelpText = "所有進入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半徑範圍內的敵人將受到 <Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移動力懲罰。"
-LocLongDescription = "所有進入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半徑範圍內的敵人將受到 <Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移動力懲罰。"
+LocHelpText = "所有進入該單位<Ability:ZONE_CONTROL_RADIUS/>格半徑範圍內的敵人將受到 <Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移動力的懲罰。"
+LocLongDescription = "所有進入該單位<Ability:ZONE_CONTROL_RADIUS/>格半徑範圍內的敵人將受到 <Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移動力的懲罰。"
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText = "<Bullet/> 所有進入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半徑範圍內的敵人將受到 <Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移動力懲罰。<br/>"
+LocPromotionPopupText = "<Bullet/> 所有進入該單位<Ability:ZONE_CONTROL_RADIUS/>格半徑範圍內的敵人將受到 <Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移動力的懲罰。<br/>"
 ; End Translation (2)
 
 [ZOC_LW_Update X2AbilityTemplate]
 LocFriendlyName = "控制區域"
-LocHelpText = "所有進入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半徑範圍內的敵人將受到 <Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移動力懲罰。"
-LocLongDescription = "所有進入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半徑範圍內的敵人將受到 <Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移動力懲罰。"
+LocHelpText = "所有進入該單位<Ability:ZONE_CONTROL_RADIUS/>格半徑範圍內的敵人將受到 <Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移動力的懲罰。"
+LocLongDescription = "所有進入該單位<Ability:ZONE_CONTROL_RADIUS/>格半徑範圍內的敵人將受到 <Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移動力的懲罰。"
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText = "<Bullet/> 所有進入<Ability:ClassName/><Ability:ZONE_CONTROL_RADIUS/>格半徑範圍內的敵人將受到 <Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移動力懲罰。<br/>"
+LocPromotionPopupText = "<Bullet/> 所有進入該單位<Ability:ZONE_CONTROL_RADIUS/>格半徑範圍內的敵人將受到 <Ability:ZONE_CONTROL_AIM_PENALTY/>命中以及<Ability:ZONE_CONTROL_MOBILITY_PENALTY/>移動力的懲罰。<br/>"
 ; End Translation (2)
 
 [ApexPredator_LW X2AbilityTemplate]
@@ -6574,15 +6574,15 @@ LocPromotionPopupText="<Bullet/> 不適用於小隊視野。<br/><Bullet/> 初�
 
 [PrimaryReturnFire X2AbilityTemplate]
 LocFriendlyName="還擊"
-LocHelpText="當被敵人攻擊時, 自動使用<Ability:WeaponName/>每回合還擊一次。本次還擊無視掩體加成。"
-LocLongDescription="當被敵人攻擊時, 自動使用<Ability:WeaponName/>每回合還擊一次。本次還擊無視掩體加成。"
-LocPromotionPopupText="<Bullet/> 還擊每回合只觸發一次。<br/><Bullet/> 還擊可以由近戰攻擊或範圍攻擊觸發。<br/><Bullet/> 當被監視射擊時，不會觸發還擊。<br/>"
+LocHelpText="當被敵人攻擊時, 自動使用<Ability:WeaponName/>進行一次反應還擊。本次還擊無視掩體加成。每回合只能觸發一次。"
+LocLongDescription="當被敵人攻擊時, 自動使用<Ability:WeaponName/>進行一次反應還擊。本次還擊無視掩體加成。每回合只能觸發一次。"
+LocPromotionPopupText="<Bullet/> 還擊每回合只能觸發一次。<br/><Bullet/> 還擊可以由近戰攻擊或範圍攻擊觸發。<br/><Bullet/> 當被監視射擊時，不會觸發還擊。<br/>"
 
 [PrimaryReturnFireShot X2AbilityTemplate]
 LocFriendlyName="還擊"
-LocHelpText="當被敵人攻擊時, 自動使用<Ability:WeaponName/>每回合還擊一次。本次還擊無視掩體加成。"
-LocLongDescription="當被敵人攻擊時, 自動使用<Ability:WeaponName/>每回合還擊一次。本次還擊無視掩體加成。"
-LocPromotionPopupText="<Bullet/> 還擊每回合只觸發一次。<br/><Bullet/> 還擊可以由近戰攻擊或範圍攻擊觸發。<br/><Bullet/> 當被監視射擊時，不會觸發還擊。<br/>"
+LocHelpText="當被敵人攻擊時, 自動使用<Ability:WeaponName/>進行一次反應還擊。本次還擊無視掩體加成。每回合只能觸發一次。"
+LocLongDescription="當被敵人攻擊時, 自動使用<Ability:WeaponName/>進行一次反應還擊。本次還擊無視掩體加成。每回合只能觸發一次。"
+LocPromotionPopupText="<Bullet/> 還擊每回合只能觸發一次。<br/><Bullet/> 還擊可以由近戰攻擊或範圍攻擊觸發。<br/><Bullet/> 當被監視射擊時，不會觸發還擊。<br/>"
 
 [TriggerBot X2AbilityTemplate]
 LocFriendlyName="扳機機器人"
@@ -7596,8 +7596,8 @@ arrMPMapFriendlyNames[10]="下水道"
 
 [Overdrive X2AbilityTemplate]
 LocFriendlyName="極限超載"
-LocLongDescription="本回合獲得1個額外行動點，並且所有行動不再結束回合。注意未習得自適應瞄準前多次標準射擊會獲得少量的后座力減益。"
-LocHelpText="本回合獲得1個額外行動點，並且所有行動不再結束回合。注意未習得自適應瞄準前多次標準射擊會獲得少量的后座力減益。"
+LocLongDescription="本回合獲得1個額外行動點，並且所有行動不再結束回合。未習得自適應瞄準前多次標準射擊會獲得少量的后座力減益。"
+LocHelpText="本回合獲得1個額外行動點，並且所有行動不再結束回合。未習得自適應瞄準前多次標準射擊會獲得少量的后座力減益。"
 LocPromotionPopupText="<Bullet/>當過載激活時，每次標準射擊後都會附加<Ability:Overdrive_RecoilPenalty/>%命中的后座力減益。<br/><Bullet/>過載激活無需行動點，但有<Ability:SelfCooldown_LW/>回合冷卻。<br/>"
 
 [Bulwark X2AbilityTemplate]

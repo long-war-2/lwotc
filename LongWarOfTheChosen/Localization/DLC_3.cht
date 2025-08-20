@@ -31,3 +31,7 @@ FriendlyName="陽極氧化機身"
 FriendlyNamePlural="陽極氧化機身"
 BriefSummary="陽極氧化工序為本已堅固的SPARK裝甲系統提供了額外的防護層，使其更加堅韌，同時保留了來自加固骨架的彈藥攜帶能力。"
 TacticalText="<Bullet/> 陽極氧化機身將SPARK完全包裹在高強度外殼中，為其在戰場上提供最強防護。同時為SPARK提供一個彈藥槽位。"
+
+[UIAlert_DLC_Day90]
+m_strSparkSquadSelectInfoTitle="SPARK已準備參戰"
+m_strSparkSquadSelectInfoBody="指揮官，SPARK裝甲提供了強大的防護，並且能夠在極短的時間內更換。 但如果其關鍵系統受損，SPARK單位將無法出戰，必須進行修復。 升級後的SPARK裝甲擁有更強的防護能力。"
