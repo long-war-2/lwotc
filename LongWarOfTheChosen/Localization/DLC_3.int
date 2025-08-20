@@ -31,3 +31,7 @@ FriendlyName="Anodized Chassis"
 FriendlyNamePlural="Anodized Chassis"
 BriefSummary="The anodizing process provides the already-extensive SPARK armor systems with an additional protective layer creating an even more resilient robotic unit while maintaining the additional capacity for exotic ammunition from the Reinforced Frame."
 TacticalText="<Bullet/> The Anodized Chassis fully encloses the SPARK in a highly resilient shell, offering them the best protection on the battlefield. Also grants the SPARK an Ammo slot."
+
+[UIAlert_DLC_Day90]
+m_strSparkSquadSelectInfoTitle="SPARK READY FOR COMBAT"
+m_strSparkSquadSelectInfoBody="Commander, SPARK armors provide significant shielding that can be easily replaced with minimal downtime. However, SPARK units can not be sent on missions if critical systems are damaged underneath and they will need to be repaired. Upgraded SPARK armors have increased protective capabilities."
