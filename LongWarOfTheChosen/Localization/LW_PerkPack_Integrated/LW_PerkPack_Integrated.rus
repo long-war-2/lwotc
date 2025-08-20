@@ -34,6 +34,10 @@ m_strNoWeaponUpgradesTooltip="УЛУЧШЕНИЕ ОРУЖИЯ НЕДОСТУПН
 TrojanVirus="Троян"
 TrojanVirusTriggered="<XGParam:StrValue0/!UnitName/> активирует троян."
 
+[X2Effect_LWDenseSmoke]
+strEffectBonusName = "Густой дым"
+strEffectBonusDesc = "Густой дым дополнительно увеличивает защиту этого солдата."
+
 [X2Effect_Savior]
 strSavior_WorldMessage="Спаситель: восстанавливается дополнительно <XGParam:IntValue0/> здоровья."
 

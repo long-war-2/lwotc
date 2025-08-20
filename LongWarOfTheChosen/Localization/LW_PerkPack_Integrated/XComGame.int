@@ -598,10 +598,25 @@ LocPromotionPopupText="<Bullet/> Effect applies to GREMLIN heal, Medikits and Re
 [DenseSmoke X2AbilityTemplate]
 LocFriendlyName="Dense Smoke"
 LocFlyOverText="Dense Smoke"
-LocLongDescription="Your smoke grenades confer an additional 10 defense. Also grants one free Smoke Grenade."
-LocHelpText="Your smoke grenades confer an additional 10 defense. Also grants one free Smoke Grenade."
-LocPromotionPopupText="<Bullet/> Your smoke grenades confer an additional 10 defense to those within the smoke, for a total of 30. Also grants one free Smoke Grenade.<br/>"
+LocLongDescription="Your smoke grenades confer an additional <Ability:DenseSmoke_DefenseBonus_LW> defense. Also grants one free Smoke Grenade."
+LocHelpText="Your smoke grenades confer an additional <Ability:DenseSmoke_DefenseBonus_LW> defense. Also grants one free Smoke Grenade."
+LocPromotionPopupText="<Bullet/> Your smoke grenades confer an additional <Ability:DenseSmoke_DefenseBonus_LW> defense to those within the smoke, for a total of <Ability:DenseSmoke_DefenseTotal_LW>.<br><Bullet> Grants one free Smoke Grenade.<br><Bullet> The effect will be applied if the unit enters the smoke after it's deployed.<br><Bullet> Applies to enemy units."
 
+; LWOTC Needs Translation
+[CombatStims_LW X2AbilityTemplate]
+LocFriendlyName="Combat Stimulants"
+LocFlyOverText="Combat Stimulants"
+LocLongDescription="Your smoke grenades confer +<Ability:CombatStims_AimBonus_LW> aim and +<Ability:CombatStims_CritBonus_LW> critical chance to units in the smoke cloud."
+LocHelpText="Your smoke grenades confer +<Ability:CombatStims_AimBonus_LW> aim and +<Ability:CombatStims_CritBonus_LW> critical chance to units in the smoke cloud."
+LocPromotionPopupText="<Bullet> The effect persists for as long as the unit remains in the smoke.<br><Bullet> The effect will be applied if the unit enters the smoke after it's deployed.<br><Bullet> Doesn't apply to mechanical units.<br><Bullet> Applies to enemy units."
+
+[RegenSmoke_LW X2AbilityTemplate]
+LocFriendlyName="Regenerative Mist"
+LocFlyOverText="Regenerative Mist"
+LocLongDescription="Your smoke grenades heal units in the smoke cloud for <Ability:RegenSmoke_HealAmount_LW> HP at the start of each turn, up to a maximum of <Ability:RegenSmoke_MaxHealAmount_LW> HP per mission."
+LocHelpText="Your smoke grenades heal units in the smoke cloud at the start of each turn."
+LocPromotionPopupText="<Bullet> The effect will be applied if the unit enters the smoke after it's deployed.<br><Bullet> Doesn't apply to mechanical units.<br><Bullet> Applies to enemy units."
+; End Translation
 
 [Collateral_LW X2AbilityTemplate]
 LocFriendlyName="Collateral Damage"

@@ -34,6 +34,10 @@ m_strNoWeaponUpgradesTooltip="AUCUNE AMÉLIORATION D'ARME DISPONIBLE"
 TrojanVirus="Cheval de Troie"
 TrojanVirusTriggered="<XGParam:StrValue0/!UnitName/> a déclenché un cheval de Troie."
 
+[X2Effect_LWDenseSmoke]
+strEffectBonusName = "Fumée dense"
+strEffectBonusDesc = "Cette épaisse fumée octroie à cette unité un bonus de défense supplémentaire."
+
 [X2Effect_Savior]
 strSavior_WorldMessage="Sauveur: +<XGParam:IntValue0/> PV régénérés en plus."
 

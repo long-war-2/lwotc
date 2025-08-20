@@ -36,9 +36,6 @@ TrojanVirusTriggered="<XGParam:StrValue0/!UnitName/> ha activado el virus troyan
 
 ; LWOTC translated
 
-DenseSmokeGrenadeEffectDisplayName="Humo denso"
-DenseSmokeGrenadeEffectDisplayDesc="El humo denso concede una bonificación defensiva adicional a esta unidad."
-
 ShellshockEffectDesc="Esta unidad tiene reducida su puntería y probabilidad de golpe crítico."
 ShellshockEffectName="Conmocionado"
 
@@ -46,6 +43,10 @@ ShockwaveEffectName="Estremecido"
 ShockwaveEffectDesc="Esta unidad tiene defensa y esquiva reducidas."
 
 ; End translated
+
+[X2Effect_LWDenseSmoke]
+strEffectBonusName = "Humo denso"
+strEffectBonusDesc = "El humo denso concede una bonificación defensiva adicional a esta unidad."
 
 [X2Effect_Savior]
 strSavior_WorldMessage="Salvador: curación de <XGParam:IntValue0/> de salud adicional."

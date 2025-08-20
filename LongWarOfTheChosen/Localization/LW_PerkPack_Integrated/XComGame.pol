@@ -528,9 +528,9 @@ LocPromotionPopupText="<Bullet/> Efekt dotyczy leczenia przez gremlina, apteczki
 [DenseSmoke X2AbilityTemplate]
 LocFriendlyName="Gęsty dym"
 LocFlyOverText="Gęsty dym"
-LocLongDescription="Twoje granaty dymne zapewniają dodatkowe 10 pkt. do obrony."
-LocHelpText="Twoje granaty dymne zapewniają dodatkowe 10 pkt. do obrony."
-LocPromotionPopupText="<Bullet/> Twoje granaty dymne zapewniają dodatkowe 10 pkt. do obrony, łącznie 30, jednostkom znajdującym się w obrębie dymu.<br/>"
+LocLongDescription="Twoje granaty dymne zapewniają dodatkowe <Ability:DenseSmoke_DefenseBonus_LW> pkt. do obrony."
+LocHelpText="Twoje granaty dymne zapewniają dodatkowe <Ability:DenseSmoke_DefenseBonus_LW> pkt. do obrony."
+LocPromotionPopupText="<Bullet/> Twoje granaty dymne zapewniają dodatkowe <Ability:DenseSmoke_DefenseBonus_LW> pkt. do obrony, łącznie <Ability:DenseSmoke_DefenseTotal_LW>, jednostkom znajdującym się w obrębie dymu.<br/>"
 
 [DenseSmokeGrenade X2GrenadeTemplate]
 FriendlyName="Granat z gęstym dymem"

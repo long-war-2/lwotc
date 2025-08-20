@@ -533,9 +533,9 @@ LocPromotionPopupText="<Bullet/> 이 효과는 그렘린 치료, 메디킷, 레�
 [DenseSmoke X2AbilityTemplate]
 LocFriendlyName="짙은 연막"
 LocFlyOverText="짙은 연막"
-LocLongDescription="연막 수류탄이 10의 추가 방어력을 부여합니다."
-LocHelpText="연막 수류탄이 10의 추가 방어력을 부여합니다."
-LocPromotionPopupText="<Bullet/> 연막 수류탄의 연막 내에 들어온 유닛에게 10의 추가 방어력을 부여할 수 있습니다. 최고는 30입니다.<br/>"
+LocLongDescription="연막 수류탄이 <Ability:DenseSmoke_DefenseBonus_LW>의 추가 방어력을 부여합니다."
+LocHelpText="연막 수류탄이 <Ability:DenseSmoke_DefenseBonus_LW>의 추가 방어력을 부여합니다."
+LocPromotionPopupText="<Bullet/> 연막 수류탄의 연막 내에 들어온 유닛에게 <Ability:DenseSmoke_DefenseBonus_LW>의 추가 방어력을 부여할 수 있습니다. 최고는 <Ability:DenseSmoke_DefenseTotal_LW>입니다.<br/>"
 
 [DenseSmokeGrenade X2GrenadeTemplate]
 FriendlyName="짙은 연막 수류탄"

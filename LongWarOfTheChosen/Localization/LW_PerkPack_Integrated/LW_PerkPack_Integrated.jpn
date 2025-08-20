@@ -34,6 +34,10 @@ m_strNoWeaponUpgradesTooltip="利用可能な武装アップグレードがあ�
 TrojanVirus="トロイウイルス"
 TrojanVirusTriggered="<XGParam:StrValue0/!UnitName/>がトロイウイルスを発動した。"
 
+[X2Effect_LWDenseSmoke]
+strEffectBonusName = "高密度スモーク"
+strEffectBonusDesc = "高密度の煙幕がこのユニットに追加の防御ボーナスをもたらしてくれる。"
+
 [X2Effect_Savior]
 strSavior_WorldMessage="救世主：体力回復量<XGParam:IntValue0/>増加"
 

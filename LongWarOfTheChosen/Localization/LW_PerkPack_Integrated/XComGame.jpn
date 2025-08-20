@@ -536,9 +536,9 @@ LocPromotionPopupText="<Bullet/>対象は、グレムリン・ヒール、治療
 [DenseSmoke X2AbilityTemplate]
 LocFriendlyName="高密度スモーク"
 LocFlyOverText="高密度スモーク"
-LocLongDescription="スモークグレネードによる防御力+10。"
-LocHelpText="スモークグレネードによる防御力+10。"
-LocPromotionPopupText="<Bullet/>スモークグレネードの煙幕の中にいるユニットが得る防御力+10。合計30。<br/>"
+LocLongDescription="スモークグレネードによる防御力+<Ability:DenseSmoke_DefenseBonus_LW>。"
+LocHelpText="スモークグレネードによる防御力+<Ability:DenseSmoke_DefenseBonus_LW>。"
+LocPromotionPopupText="<Bullet/>スモークグレネードの煙幕の中にいるユニットが得る防御力+<Ability:DenseSmoke_DefenseBonus_LW>。合計<Ability:DenseSmoke_DefenseTotal_LW>。<br/>"
 
 [DenseSmokeGrenade X2GrenadeTemplate]
 FriendlyName="高密度スモークグレネード"

@@ -528,9 +528,9 @@ LocPromotionPopupText="<Bullet/> Gilt für GREMLIN-Heilung, Medikits und Genesun
 [DenseSmoke X2AbilityTemplate]
 LocFriendlyName="Dichter Rauch"
 LocFlyOverText="Dichter Rauch"
-LocLongDescription="Deine Rauchgranaten bieten allen im Rauch zusätzlich +10 Verteidigung. Außerdem erhältst du eine kostenlose Rauchgranate."
-LocHelpText="Deine Rauchgranaten bieten +10 Verteidigung zusätzlich. Gewährt eine kostenlose Rauchgranate."
-LocPromotionPopupText="<Bullet/> Gewährt allen Einheiten im Rauch +10 zusätzliche Verteidigung (max. 30).<br/><Bullet/> Zusätzlich erhältst du eine kostenlose Rauchgranate.<br/>"
+LocLongDescription="Deine Rauchgranaten bieten allen im Rauch zusätzlich +<Ability:DenseSmoke_DefenseBonus_LW> Verteidigung. Außerdem erhältst du eine kostenlose Rauchgranate."
+LocHelpText="Deine Rauchgranaten bieten +<Ability:DenseSmoke_DefenseBonus_LW> Verteidigung zusätzlich. Gewährt eine kostenlose Rauchgranate."
+LocPromotionPopupText="<Bullet/> Gewährt allen Einheiten im Rauch +<Ability:DenseSmoke_DefenseBonus_LW> zusätzliche Verteidigung (max. <Ability:DenseSmoke_DefenseTotal_LW>).<br/><Bullet/> Zusätzlich erhältst du eine kostenlose Rauchgranate.<br/>"
 
 [DenseSmokeGrenade X2GrenadeTemplate]
 FriendlyName="Schwere Rauchgranate"

@@ -34,6 +34,10 @@ m_strNoWeaponUpgradesTooltip="NESSUN POTENZIAMENTO DISPONIBILE"
 TrojanVirus="Virus Trojan"
 TrojanVirusTriggered="<XGParam:StrValue0/!UnitName/> ha attivato un virus Trojan."
 
+[X2Effect_LWDenseSmoke]
+strEffectBonusName = "Fumo impenetrabile"
+strEffectBonusDesc = "Il fumo denso conferisce un ulteriore bonus difensivo a questa unità."
+
 [X2Effect_Savior]
 strSavior_WorldMessage="Salvatore: ha curato <XGParam:IntValue0/> punti salute in più."
 

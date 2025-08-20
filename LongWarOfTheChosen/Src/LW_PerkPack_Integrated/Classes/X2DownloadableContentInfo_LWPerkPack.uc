@@ -47,55 +47,7 @@ static event OnPostTemplatesCreated()
 
 	UpdateBaseGameOverwatchShot();
 	UpdateBaseGameThrowGrenade();
-	/*
-		Might not be the right place to be adding this. I recall that lwotc does something unique in place
-		of a lot of OPTC shenanigans.
-	*/
-	PatchItemsForDenseSmoke(ItemManager);
-	PatchItemsForStingGrenades(ItemManager);
 	//UpdateBaseGameAidProtocol();
-}
-
-static function PatchItemsForStingGrenades(X2ItemTemplateManager ItemManager)
-{
-	local X2GrenadeTemplate					Template;
-	local name								ItemName;
-
-	foreach class'LW_PerkPack_Integrated.X2Ability_PerkPackAbilitySet2'.default.FLASHBANGS_FOR_STING_GRENADES(ItemName)
-	{
-		Template = X2GrenadeTemplate(ItemManager.FindItemTemplate(ItemName));
-		if(Template != none)
-		{
-			UpdateForStingGrenades(Template);
-		}
-	}
-}
-
-static function UpdateForStingGrenades(X2GrenadeTemplate Template)
-{
-	Template.ThrownGrenadeEffects.AddItem(class'LW_PerkPack_Integrated.X2Ability_PerkPackAbilitySet2'.static.StingGrenadeEffect());
-	Template.LaunchedGrenadeEffects.AddItem(class'LW_PerkPack_Integrated.X2Ability_PerkPackAbilitySet2'.static.StingGrenadeEffect());
-}
-
-static function PatchItemsForDenseSmoke(X2ItemTemplateManager ItemManager)
-{
-	local X2GrenadeTemplate					Template;
-	local name								ItemName;
-
-	foreach class'LW_PerkPack_Integrated.X2Ability_PerkPackAbilitySet2'.default.SMOKE_GRENADES_FOR_DENSE_SMOKE(ItemName)
-	{
-		Template = X2GrenadeTemplate(ItemManager.FindItemTemplate(ItemName));
-		if(Template != none)
-		{
-			UpdateForDenseSmoke(Template);
-		}
-	}
-}
-
-static function UpdateForDenseSmoke(X2GrenadeTemplate Template)
-{
-	Template.ThrownGrenadeEffects.AddItem(class'LW_PerkPack_Integrated.X2Ability_PerkPackAbilitySet2'.static.DenseSmokeEffect());
-	Template.LaunchedGrenadeEffects.AddItem(class'LW_PerkPack_Integrated.X2Ability_PerkPackAbilitySet2'.static.DenseSmokeEffect());
 }
 
 //Restores VM's ability to modify radius
@@ -667,11 +619,28 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'HT_MAX_DODGE_BONUS':
 			Outstring = string(class'X2Effect_HardTarget'.default.HT_MAX_DODGE_BONUS);
 			return true;
-				
-        default:
-            return false;
-    }
-    return false;
+		case 'CombatStims_AimBonus_LW':
+			OutString = string(class'X2Effect_LWCombatStims'.default.AimBonus);
+			return true;
+		case 'CombatStims_CritBonus_LW':
+			OutString = string(class'X2Effect_LWCombatStims'.default.CritBonus);
+			return true;
+		case 'DenseSmoke_DefenseBonus_LW':
+			OutString = string(class'X2Effect_LWDenseSmoke'.default.DefenseBonus);
+			return true;
+		case 'DenseSmoke_DefenseTotal_LW':
+			OutString = string(class'X2Effect_LWDenseSmoke'.default.DefenseBonus + class'X2Item_DefaultGrenades'.default.SMOKEGRENADE_HITMOD);
+			return true;
+		case 'RegenSmoke_HealAmount_LW':
+			OutString = string(class'X2Effect_LWRegenSmoke'.default.HealAmount);
+			return true;
+		case 'RegenSmoke_MaxHealAmount_LW':
+			OutString = string(class'X2Effect_LWRegenSmoke'.default.MaxHealAmount);
+			return true;
+		default:
+			return false;
+	}
+	return false;
 }
 
 static function X2ItemTemplate GetItemBoundToAbilityFromUnit(XComGameState_Unit UnitState, name AbilityName, XComGameState GameState)

@@ -534,9 +534,9 @@ LocPromotionPopupText="<Bullet/>效果適用於小精靈治療，急救包和恢
 [DenseSmoke X2AbilityTemplate]
 LocFriendlyName="濃密煙霧"
 LocFlyOverText="濃密煙霧"
-LocLongDescription="你的煙霧榴彈提供額外10點防禦。同時額外獲得一顆免費的煙霧榴彈。"
-LocHelpText="你的煙霧榴彈提供額外10點防禦。同時額外獲得一顆免費的煙霧榴彈。"
-LocPromotionPopupText="<Bullet/>你的煙霧榴彈對處於煙霧中的單位提供額外10點防禦，最高30。同時額外獲得一顆免費的煙霧榴彈。<br/>"
+LocLongDescription="你的煙霧榴彈提供額外<Ability:DenseSmoke_DefenseBonus_LW>點防禦。同時額外獲得一顆免費的煙霧榴彈。"
+LocHelpText="你的煙霧榴彈提供額外<Ability:DenseSmoke_DefenseBonus_LW>點防禦。同時額外獲得一顆免費的煙霧榴彈。"
+LocPromotionPopupText="<Bullet/>你的煙霧榴彈對處於煙霧中的單位提供額外<Ability:DenseSmoke_DefenseBonus_LW>點防禦，最高<Ability:DenseSmoke_DefenseTotal_LW>。同時額外獲得一顆免費的煙霧榴彈。<br/>"
 
 
 [Collateral_LW X2AbilityTemplate]

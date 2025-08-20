@@ -34,6 +34,10 @@ m_strNoWeaponUpgradesTooltip="BRAK DOSTĘPNYCH ULEPSZEŃ BRONI"
 TrojanVirus="Wirus typu trojan"
 TrojanVirusTriggered="<XGParam:StrValue0/!UnitName/> uruchamia wirus typu trojan."
 
+[X2Effect_LWDenseSmoke]
+strEffectBonusName = "Gęsty dym"
+strEffectBonusDesc = "Gęsty dym daje tej jednostce premię do obrony."
+
 [X2Effect_Savior]
 strSavior_WorldMessage="Zbawca: leczenie dodatkowych <XGParam:IntValue0/> pkt. zdrowia."
 
