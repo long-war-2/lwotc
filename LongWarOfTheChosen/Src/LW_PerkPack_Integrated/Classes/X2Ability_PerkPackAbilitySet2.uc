@@ -695,11 +695,6 @@ static function X2AbilityTemplate AddRegenSmoke()
 	return PurePassive('RegenSmoke_LW', "img:///UILibrary_XPerkIconPack.UIPerk_smoke_medkit");
 }
 
-static function X2AbilityTemplate AddBastionPassive()
-{
-	return PurePassive('BastionPassive', "img:///UILibrary_LW_PerkPack.LW_AbilityBastion", , 'eAbilitySource_Psionic');
-}
-
 //this ability allows the next use (this turn) of smoke grenade or flashbang to be free
 static function X2AbilityTemplate AddRapidDeployment()
 {
