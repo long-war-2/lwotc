@@ -335,9 +335,9 @@ LocPromotionPopupText="<Bullet/> 大幅减少敌人对你的反应攻击的命�
 [Cutthroat X2AbilityTemplate]
 LocFriendlyName="割喉"
 LocFlyOverText="割喉"
-LocLongDescription="你的近战攻击无视生物敌人的护甲，提供+<Ability:CUTTHROAT_BONUS_CRIT_CHANCE/>暴击率，+<Ability:CUTTHROAT_BONUS_CRIT_DAMAGE/>暴击伤害。"
-LocHelpText="你的近战攻击无视生物敌人的护甲，提供+<Ability:CUTTHROAT_BONUS_CRIT_CHANCE/>暴击率，+<Ability:CUTTHROAT_BONUS_CRIT_DAMAGE/>暴击伤害。"
-LocPromotionPopupText="<Bullet/> 你的近战攻击无视生物敌人的护甲，提供+<Ability:CUTTHROAT_BONUS_CRIT_CHANCE/>暴击率，+<Ability:CUTTHROAT_BONUS_CRIT_DAMAGE/>暴击伤害。"
+LocLongDescription="你的近战攻击无视生物敌人的护甲，并获得额外+<Ability:CUTTHROAT_BONUS_CRIT_CHANCE/>暴击率，+<Ability:CUTTHROAT_BONUS_CRIT_DAMAGE/>暴击伤害。"
+LocHelpText="你的近战攻击无视生物敌人的护甲，并获得额外+<Ability:CUTTHROAT_BONUS_CRIT_CHANCE/>暴击率，+<Ability:CUTTHROAT_BONUS_CRIT_DAMAGE/>暴击伤害。"
+LocPromotionPopupText="<Bullet/> 你的近战攻击无视生物敌人的护甲，并获得额外+<Ability:CUTTHROAT_BONUS_CRIT_CHANCE/>暴击率，+<Ability:CUTTHROAT_BONUS_CRIT_DAMAGE/>暴击伤害。"
 
 [KillerInstinct X2AbilityTemplate]
 LocFriendlyName="杀手本能"
@@ -527,8 +527,8 @@ LocPromotionPopupText="<Bullet/> 给你的物品栏添加一颗免费的烟雾�
 [Savior X2AbilityTemplate]
 LocFriendlyName="妙手回春"
 LocFlyOverText="妙手回春"
-LocLongDescription="治疗能力回复额外<Ability:SAVIOR_BONUS_HEAL/>点生命值。"
-LocHelpText="治疗能力回复额外<Ability:SAVIOR_BONUS_HEAL/>点生命值。"
+LocLongDescription="治疗能力恢复额外<Ability:SAVIOR_BONUS_HEAL/>点生命值。"
+LocHelpText="治疗能力恢复额外<Ability:SAVIOR_BONUS_HEAL/>点生命值。"
 LocPromotionPopupText="<Bullet/> 效果适用于小精灵治疗，急救包和恢复能力。<br/>"
 
 [DenseSmoke X2AbilityTemplate]
@@ -536,8 +536,21 @@ LocFriendlyName="浓密烟雾"
 LocFlyOverText="浓密烟雾"
 LocLongDescription="你的烟雾榴弹提供额外<Ability:DenseSmoke_DefenseBonus_LW>点防御。同时额外获得一颗免费的烟雾榴弹。"
 LocHelpText="你的烟雾榴弹提供额外<Ability:DenseSmoke_DefenseBonus_LW>点防御。同时额外获得一颗免费的烟雾榴弹。"
-LocPromotionPopupText="<Bullet/> 你的烟雾榴弹对处于烟雾中的单位提供额外<Ability:DenseSmoke_DefenseBonus_LW>点防御，最高<Ability:DenseSmoke_DefenseTotal_LW>。同时额外获得一颗免费的烟雾榴弹。<br/>"
+LocPromotionPopupText="<Bullet/> 你的烟雾榴弹对处于烟雾中的单位提供额外<Ability:DenseSmoke_DefenseBonus_LW>点防御，最高<Ability:DenseSmoke_DefenseTotal_LW>。同时额外获得一颗免费的烟雾榴弹。<br/><Bullet/> 单位在烟雾释放后进入烟雾范围，也会获得效果。<br><Bullet/> 敌方单位也会受到影响。"
 
+[CombatStims_LW X2AbilityTemplate]
+LocFriendlyName="战斗兴奋剂"
+LocFlyOverText="战斗兴奋剂"
+LocLongDescription="你的烟雾榴弹会为烟雾范围内的单位额外提供<Ability:CombatStims_AimBonus_LW>命中和<Ability:CombatStims_CritBonus_LW>暴击。"
+LocHelpText="烟雾榴弹会为范围内的单位额外提供<Ability:CombatStims_AimBonus_LW>命中和<Ability:CombatStims_CritBonus_LW>暴击。"
+LocPromotionPopupText="<Bullet> 效果在单位停留在烟雾中时持续生效。<br><Bullet> 单位在烟雾释放后进入烟雾范围，也会获得效果。<br><Bullet> 对机械单位无效。<br><Bullet> 敌方单位也会受到影响。"
+
+[RegenSmoke_LW X2AbilityTemplate]
+LocFriendlyName="治愈之雾"
+LocFlyOverText="治愈之雾"
+LocLongDescription="你的烟雾榴弹会在每回合开始时为烟雾范围内的单位恢复<Ability:RegenSmoke_HealAmount_LW>点生命值，每次任务最多可恢复<Ability:RegenSmoke_MaxHealAmount_LW>点。"
+LocHelpText="你的烟雾榴弹会在每回合开始时为烟雾范围内的单位恢复生命值。"
+LocPromotionPopupText="<Bullet> 单位在烟雾释放后进入烟雾范围，也会获得效果。<br><Bullet> 对机械单位无效。<br><Bullet> 敌方单位也会受到影响。"
 
 [Collateral_LW X2AbilityTemplate]
 LocFriendlyName="附带损害"
@@ -1114,7 +1127,7 @@ LocPromotionPopupText="<Bullet/> 每次任务中，当SPARK的生命值首次降
 
 [RebootTriggered_LW X2AbilityTemplate]
 LocFriendlyName="重启"
-LocLongDescription="该单位因受到严重破坏而被重启，正在遭受以下负面影响：命中-30，移动力-3，侵入能力-100。"
+LocLongDescription="该单位因受到严重破坏而触发重启，正在遭受以下负面影响：命中-30，移动力-1，侵入能力-50。"
 LocHelpText="如果该单位受到致命伤害，它的生命值将减少到1点，并且将在本回合的剩余时间中被静滞。"
 LocFlyOverText="重启"
 
