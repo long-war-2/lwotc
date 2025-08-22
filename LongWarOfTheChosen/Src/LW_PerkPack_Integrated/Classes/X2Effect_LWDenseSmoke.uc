@@ -1,6 +1,6 @@
 class X2Effect_LWDenseSmoke extends X2Effect_LWAdditionalSmokeEffect;
 
-var config int DefenseBonus;
+var config int DefenseBonus; // Keep this positive
 
 function GetToHitAsTargetModifiers(XComGameState_Effect EffectState, XComGameState_Unit Attacker, XComGameState_Unit Target, XComGameState_Ability AbilityState, class<X2AbilityToHitCalc> ToHitType, bool bMelee, bool bFlanking, bool bIndirectFire, out array<ShotModifierInfo> ShotModifiers)
 {
@@ -9,7 +9,7 @@ function GetToHitAsTargetModifiers(XComGameState_Effect EffectState, XComGameSta
     if (Target.IsInWorldEffectTile(default.WorldEffectClass.Name))
     {
         ShotMod.ModType = eHit_Success;
-        ShotMod.Value = default.DefenseBonus;
+        ShotMod.Value = -1 * default.DefenseBonus; // negative
         ShotMod.Reason = FriendlyName;
         ShotModifiers.AddItem(ShotMod);
     }
