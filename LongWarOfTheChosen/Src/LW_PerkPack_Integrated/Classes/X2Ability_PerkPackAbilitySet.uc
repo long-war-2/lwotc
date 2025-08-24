@@ -3123,6 +3123,7 @@ static function X2AbilityTemplate AddInterferenceAbility()
 	local X2Condition_Visibility                VisCondition;
 	local X2Effect_Interference					ActionPointsEffect;
 	local X2Condition_UnitActionPoints			ValidTargetCondition;
+	local X2AbilityCooldown                     Cooldown;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Interference');
 
@@ -3156,6 +3157,11 @@ static function X2AbilityTemplate AddInterferenceAbility()
 	ActionPointCost.bFreeCost = true;
 	ActionPointCost.bConsumeAllPoints = false;
 	Template.AbilityCosts.AddItem(ActionPointCost);
+
+
+	Cooldown = new class'X2AbilityCooldown';
+    Cooldown.iNumTurns = 1;
+    Template.AbilityCooldown = Cooldown;
 
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	Template.AddShooterEffectExclusions();
