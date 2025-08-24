@@ -6582,6 +6582,7 @@ static function RespecSoldier(XComGameState_Unit UnitState, optional bool bReset
 	UnitState.AbilityPoints = 0; // Reset Ability Points
 	UnitState.SpentAbilityPoints = 0; // And reset the spent AP tracker
 	UnitState.ResetSoldierRank(); // Clear their rank
+	UnitState.ComInt = eComInt_Gifted; // Set this back to "Average" (base game gifted renamed)
 	ApplyRandomizedInitialStats(UnitState, NewGameState);
 	UnitState.ResetSoldierAbilities(); // Clear their current abilities
 	UnitState.ClearUnitValue('LWOTC_AbilityCostModifier'); // Reset the ability cost multiplier
