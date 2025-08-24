@@ -37,6 +37,7 @@ static function X2AbilityTemplate CreateInteractSmashNGrabAbility()
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_ShowIfAvailable;
 	Template.ConcealmentRule = eConceal_Never;
 
+	Template.AbilityCosts.Length = 0;
 	
 	`Log("TRACE: Adding a condition");
 	ItemCondition = new class'X2Condition_UnitDoesNotHaveItem';
