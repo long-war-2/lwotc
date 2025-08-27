@@ -49,7 +49,7 @@ HavenAdvisersBody="Click on the box labeled (1) on the left to assign an adviser
 ; LWOTC Needs Translation
 [UIScreenListener_PromotionScreenTutorial]
 PistolAbilitiesTutorialTitle="Pistol Abilities"
-PistolAbilitiesTutorialBody="Pistol abilities are available to all your soldiers once you have built the Training Center, except for SPARKs and Psi Operatives. They work with pistols and autopistols.\n\nScroll down on this screen to see them!"
+PistolAbilitiesTutorialBody="Pistol abilities are available to all your soldiers once you have built the Training Center, except for SPARKs. They work with pistols and autopistols.\n\nScroll down on this screen to see them!"
 ; End Translation
 
 ; LWOTC Needs Translation
