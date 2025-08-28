@@ -24,9 +24,7 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 {
 }
 
-event array<ParticleSystem> GetParticleSystem_Fill()
-{
-}
+static simulated function bool HasFillEffects() { return false; }
 
 simulated function AddX2ActionsForVisualization(XComGameState VisualizeGameState, out VisualizationActionMetadata ActionMetadata, name EffectApplyResult)
 {
