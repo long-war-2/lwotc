@@ -1304,7 +1304,7 @@ static function X2AbilityTemplate ZoneOfControl_LW()
     Template.AbilitySourceName = 'eAbilitySource_Perk';
     Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
     Template.Hostility = eHostility_Neutral;
-	Template.FrameAbilityCameraType = eCameraFraming_Never; 
+    Template.FrameAbilityCameraType = eCameraFraming_Never; 
     Template.bIsPassive = true;
     Template.bUniqueSource = true;
 
@@ -1317,15 +1317,15 @@ static function X2AbilityTemplate ZoneOfControl_LW()
     PersistentEffect.BuildPersistentEffect(1, true, true);
     PersistentEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage,,, Template.AbilitySourceName);
     Template.AddTargetEffect(PersistentEffect);
-	
-	Template.bFrameEvenWhenUnitIsHidden = false;
+    
+    Template.bFrameEvenWhenUnitIsHidden = false;
 
     Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+    Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 
     Template.bCrossClassEligible = false;
 
-	Template.AdditionalAbilities.AddItem('ZoCCleanse');
+    Template.AdditionalAbilities.AddItem('ZoCCleanse');
     Template.AdditionalAbilities.AddItem('ZOC_LW_Update');
 
     return Template;
@@ -1348,7 +1348,7 @@ static function X2AbilityTemplate AddZoCCleanse()
     Trigger.ListenerData.EventID = 'OnUnitBeginPlay';
     Trigger.ListenerData.Filter = eFilter_Unit;
     Trigger.ListenerData.EventFn = AbilityTriggerEventListener_AuraUpdate;
-    Trigger.ListenerData.Priority = 49; // Priorities!
+    Trigger.ListenerData.Priority = 50; // Priorities!
     Template.AbilityTriggers.AddItem(Trigger);
 
     Trigger = new class'X2AbilityTrigger_EventListener';
@@ -1358,7 +1358,23 @@ static function X2AbilityTemplate AddZoCCleanse()
     Trigger.ListenerData.EventFn = AbilityTriggerEventListener_AuraUpdate;
     Trigger.ListenerData.Priority = 50; // Priorities!
     Template.AbilityTriggers.AddItem(Trigger);
-
+    
+    Trigger = new class'X2AbilityTrigger_EventListener';
+    Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+    Trigger.ListenerData.EventID = 'MindControlled';
+    Trigger.ListenerData.Filter = eFilter_None;
+    Trigger.ListenerData.EventFn = AbilityTriggerEventListener_AuraUpdate;
+    Trigger.ListenerData.Priority = 50; // Priorities!
+    Template.AbilityTriggers.AddItem(Trigger);
+    
+    Trigger = new class'X2AbilityTrigger_EventListener';
+    Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+    Trigger.ListenerData.EventID = 'ZoneOfControl_LW_Update';
+    Trigger.ListenerData.Filter = eFilter_None;
+    Trigger.ListenerData.EventFn = AbilityTriggerEventListener_AuraUpdate;
+    Trigger.ListenerData.Priority = 50; // Priorities!
+    Template.AbilityTriggers.AddItem(Trigger);
+    
     // We don't want to cleanse the effect of it would be reapplied after that
     //   because there can be additional effects tied to the main one whenever it is removed
     //   i.e. the target takes damage
@@ -1387,7 +1403,7 @@ static function X2AbilityTemplate AddZoCCleanse()
                                             // Relevant for effects with additional effects on removal
     Template.AddTargetEffect(RemoveEffect);
 
-	Template.bFrameEvenWhenUnitIsHidden = false;
+    Template.bFrameEvenWhenUnitIsHidden = false;
 
     Template.ConcealmentRule = eConceal_AlwaysEvenWithObjective;
 
@@ -1410,12 +1426,28 @@ static function X2AbilityTemplate AddZOC_LW_Update()
     Trigger.ListenerData.EventID = 'OnUnitBeginPlay';
     Trigger.ListenerData.Filter = eFilter_Unit;
     Trigger.ListenerData.EventFn = AbilityTriggerEventListener_AuraUpdate;
-    Trigger.ListenerData.Priority = 50; // Priorities!
+    Trigger.ListenerData.Priority = 49; // Priorities!
     Template.AbilityTriggers.AddItem(Trigger);
 
     Trigger = new class'X2AbilityTrigger_EventListener';
     Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
     Trigger.ListenerData.EventID = 'UnitMoveFinished';
+    Trigger.ListenerData.Filter = eFilter_None;
+    Trigger.ListenerData.EventFn = AbilityTriggerEventListener_AuraUpdate;
+    Trigger.ListenerData.Priority = 49; // Priorities!
+    Template.AbilityTriggers.AddItem(Trigger);
+    
+    Trigger = new class'X2AbilityTrigger_EventListener';
+    Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+    Trigger.ListenerData.EventID = 'MindControlled';
+    Trigger.ListenerData.Filter = eFilter_None;
+    Trigger.ListenerData.EventFn = AbilityTriggerEventListener_AuraUpdate;
+    Trigger.ListenerData.Priority = 49; // Priorities!
+    Template.AbilityTriggers.AddItem(Trigger);
+    
+    Trigger = new class'X2AbilityTrigger_EventListener';
+    Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+    Trigger.ListenerData.EventID = 'ZoneOfControl_LW_Update';
     Trigger.ListenerData.Filter = eFilter_None;
     Trigger.ListenerData.EventFn = AbilityTriggerEventListener_AuraUpdate;
     Trigger.ListenerData.Priority = 49; // Priorities!
@@ -1427,25 +1459,43 @@ static function X2AbilityTemplate AddZOC_LW_Update()
     // Normal conditions for the ability:
     UnitPropertyCondition.ExcludeFriendlyToSource = true;
     UnitPropertyCondition.ExcludeHostileToSource = false;
+    UnitPropertyCondition.TreatMindControlledSquadmateAsHostile = true;
     UnitPropertyCondition.RequireWithinRange = true;
     UnitPropertyCondition.WithinRange = Sqrt(default.ZONE_CONTROL_RADIUS_SQ) * class'XComWorldData'.const.WORLD_StepSize;
 
     Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
 
     Effect = new class'X2Effect_PersistentStatChange';
+    Effect.EffectRemovedFn = ZoneOfControl_EffectRemoved;
     Effect.DuplicateResponse = eDupe_Refresh; // Relevant if the effect doesn't have infinite duration
     Effect.BuildPersistentEffect(1, true, true); // Infinite duration, remove when the SOURCE dies
-	Effect.EffectName = 'ZOC_LW_Debuff_Effect';
-	Effect.AddPersistentStatChange(eStat_Mobility, default.ZONE_CONTROL_MOBILITY_PENALTY);
-	Effect.AddPersistentStatChange(eStat_Offense, default.ZONE_CONTROL_AIM_PENALTY);
+    Effect.EffectName = 'ZOC_LW_Debuff_Effect';
+    Effect.AddPersistentStatChange(eStat_Mobility, default.ZONE_CONTROL_MOBILITY_PENALTY);
+    Effect.AddPersistentStatChange(eStat_Offense, default.ZONE_CONTROL_AIM_PENALTY);
     Effect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.LocHelpText, Template.IconImage, true,,Template.AbilitySourceName);
     Template.AddTargetEffect(Effect);
 
-	Template.bFrameEvenWhenUnitIsHidden = false;
+    Template.bFrameEvenWhenUnitIsHidden = false;
 
     Template.ConcealmentRule = eConceal_AlwaysEvenWithObjective;
 
     return Template;
+}
+
+// If the effect is removed due to the source's death, trigger an event that would
+// cause other sources of Zone of Control to try and reapply it
+static function ZoneOfControl_EffectRemoved(X2Effect_Persistent PersistentEffect, const out EffectAppliedData ApplyEffectParameters, XComGameState NewGameState, bool bCleansed)
+{
+    local XComGameState_Unit SourceUnit;
+    local XComGameState_Unit TargetUnit;
+
+    SourceUnit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.SourceStateObjectRef.ObjectID));
+    TargetUnit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+    
+    if (SourceUnit != none && TargetUnit != none && SourceUnit.IsDead())
+    {
+        `XEVENTMGR.TriggerEvent('ZoneOfControl_LW_Update', TargetUnit, TargetUnit, NewGameState);
+    }
 }
 
 static function EventListenerReturn AbilityTriggerEventListener_AuraUpdate(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
