@@ -1367,6 +1367,14 @@ static function X2AbilityTemplate AddZoCCleanse()
     Trigger.ListenerData.Priority = 50; // Priorities!
     Template.AbilityTriggers.AddItem(Trigger);
     
+    Trigger = new class'X2AbilityTrigger_EventListener';
+    Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+    Trigger.ListenerData.EventID = 'ZoneOfControl_LW_Update';
+    Trigger.ListenerData.Filter = eFilter_None;
+    Trigger.ListenerData.EventFn = AbilityTriggerEventListener_AuraUpdate;
+    Trigger.ListenerData.Priority = 50; // Priorities!
+    Template.AbilityTriggers.AddItem(Trigger);
+    
     // We don't want to cleanse the effect of it would be reapplied after that
     //   because there can be additional effects tied to the main one whenever it is removed
     //   i.e. the target takes damage
