@@ -123,8 +123,9 @@ static function String GetDifficultyString(XComGameState_MissionSite MissionStat
 			if(class'Helpers_LW'.default.bDLC2Active && class'LWDLCHelpers'.static.IsAlienRulerOnMission(DummyMissionSite))
 			{
 				// Add the ruler tags to XCOMHQ if there is one so they show up when we cache the mission data.
+				DummyMissionSite.SelectedMissionData.AlertLevel = max(1, MissionState.SelectedMissionData.AlertLevel + AlertModifier);
 				RulerMgr = XComGameState_AlienRulerManager(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_AlienRulerManager'));
-				class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.FixAlienRulerTags(DummyMissionSite.GetReference());
+				class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.FixALienRulerTagsUINoState(DummyMissionSite);
 			}
 
 			DummyMissionSite.CacheSelectedMissionData(MissionState.SelectedMissionData.ForceLevel, max(1, MissionState.SelectedMissionData.AlertLevel + AlertModifier));
