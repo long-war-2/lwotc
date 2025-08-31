@@ -364,6 +364,7 @@ static function X2AbilityTemplate SawedOffOverwatch()
 	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalOverwatchListener;
 	Template.AbilityTriggers.AddItem(Trigger);
 
+
 	EventListener = new class'X2AbilityTrigger_EventListener';
 	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
 	EventListener.ListenerData.EventID = 'UnitConcealmentBroken';
@@ -384,6 +385,8 @@ static function X2AbilityTemplate SawedOffOverwatch()
 	AddCooldown(Template, default.NONE_SHALL_PASS_COOLDOWN);
 
 	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitDisallowMindControlProperty);
+
+		Template.AbilityTargetConditions.AddItem(class'X2Ability_DefaultAbilitySet'.static.OverwatchTargetEffectsCondition());
 
 	NoneShallPassTargetCondition = new class'X2Condition_UnitEffectsWithAbilitySource';
 	NoneShallPassTargetCondition.AddExcludeEffect('NoneShallPassTarget', 'AA_DuplicateEffectIgnored');
