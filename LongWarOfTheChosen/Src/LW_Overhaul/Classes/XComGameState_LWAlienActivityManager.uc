@@ -426,12 +426,22 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 
 	`LWTRACE("Updating Mission Difficulty: ForceLevel=" $ ForceLevel $ ", AlertLevel=" $ AlertLevel);
 
+	
+	
 	// Set the alert level into the Mission site so that other things can grab it (such as UpdateMissionSpawningInfo)
-	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Set Initial Alert");
-	MissionSite = XComGameState_MissionSite(NewGameState.ModifyStateObject(class'XComGameState_MissionSite', MissionSite.ObjectID));
 
-	MissionSite.SelectedMissionData.AlertLevel = AlertLevel;
-	`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+	// Tedster - we can't call this always here because it breaks infiltration lol
+	// so we use a hacky check to see if it's been initialized already and abort if it isn't.
+	// If alert goes to 0 again, something is very wrong anyways.
+	// Calling CacheSelectedMissionData below will set the alert level and force level so this shouldn't be hit again
+	if(MissionSite.SelectedMissionData.AlertLevel == 0 && MissionSite.SelectedMissionData.ForceLevel == 0)
+	{
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Set Initial Alert");
+		MissionSite = XComGameState_MissionSite(NewGameState.ModifyStateObject(class'XComGameState_MissionSite', MissionSite.ObjectID));
+
+		MissionSite.SelectedMissionData.AlertLevel = AlertLevel;
+		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+	}
 
 	// add explicit hook so that DLCs can update (e.g. AlienHunters to add Rulers) -- these are assumed to submit their own gamestate updates
 	DLCInfos = `ONLINEEVENTMGR.GetDLCInfos(false);
