@@ -356,23 +356,26 @@ static function int FindShotHUDPriority(name AbilityName)
 	AllTemplates = SoldierClassManager.GetAllSoldierClassTemplates();
 	foreach AllTemplates(Template)
 	{
-		for (rank = 0; rank < Template.GetMaxConfiguredRank(); rank++)
+		if(Template != none)
 		{
-			if (rank <= HighestLevel)
-				continue;
-
-			bFound = false;
-			AbilitySlots = Template.GetAbilitySlots(rank);
-			for (i = 0; i < AbilitySlots.Length; i++)
+			for (rank = 0; rank < Template.GetMaxConfiguredRank(); rank++)
 			{
-				if (AbilitySlots[i].AbilityType.AbilityName == AbilityName)
+				if (rank <= HighestLevel)
+					continue;
+
+				bFound = false;
+				AbilitySlots = Template.GetAbilitySlots(rank);
+				for (i = 0; i < AbilitySlots.Length; i++)
 				{
-					bFound = true;
-					break;
+					if (AbilitySlots[i].AbilityType.AbilityName == AbilityName)
+					{
+						bFound = true;
+						break;
+					}
 				}
+				if (bFound)
+					HighestLevel = rank;
 			}
-			if (bFound)
-				HighestLevel = rank;
 		}
 	}
 
