@@ -1723,21 +1723,22 @@ static function UpdateSpectralStunLance(X2AbilityTemplate Template)
 
 static function UpdateCombatProtocol(X2AbilityTemplate Template)
 {
-	local X2AbilityCost_ActionPoints        ActionPointCost;
-	local X2AbilityCooldown					Cooldown;
+	local int i;
+    local X2AbilityCooldown                    Cooldown;
 
-	Template.AbilityCosts.Length = 0;
-	Template.AbilityCharges = none;
+    for (i = Template.AbilityCosts.Length-1; i >= 0; i--)
+    {
+        if(ClassIsChildOf(Template.AbilityCosts[i].Class, class'X2AbilityCost_Charges'))
+        {
+            Template.AbilityCosts.Remove(i,1);
+        }
+    }
 
-	ActionPointCost = new class'X2AbilityCost_ActionPoints';
-	ActionPointCost.iNumPoints = 1;
-	ActionPointCost.bFreeCost = false;
-	ActionPointCost.bConsumeAllPoints = true;
-	Template.AbilityCosts.AddItem(ActionPointCost);
+    Template.AbilityCharges = none;
 
-	Cooldown = new class'X2AbilityCooldown';
-	Cooldown.iNumTurns = default.COMBAT_PROTOCOL_COOLDOWN;
-	Template.AbilityCooldown = Cooldown;
+    Cooldown = new class'X2AbilityCooldown';
+    Cooldown.iNumTurns = default.COMBAT_PROTOCOL_COOLDOWN;
+    Template.AbilityCooldown = Cooldown;
 
 }
 
