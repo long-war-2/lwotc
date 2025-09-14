@@ -386,7 +386,7 @@ static function X2AbilityTemplate SawedOffOverwatch()
 
 	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitDisallowMindControlProperty);
 
-		Template.AbilityTargetConditions.AddItem(class'X2Ability_DefaultAbilitySet'.static.OverwatchTargetEffectsCondition());
+	Template.AbilityTargetConditions.AddItem(class'X2Ability_DefaultAbilitySet'.static.OverwatchTargetEffectsCondition());
 
 	NoneShallPassTargetCondition = new class'X2Condition_UnitEffectsWithAbilitySource';
 	NoneShallPassTargetCondition.AddExcludeEffect('NoneShallPassTarget', 'AA_DuplicateEffectIgnored');

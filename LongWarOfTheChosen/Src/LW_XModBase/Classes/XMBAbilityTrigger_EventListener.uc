@@ -44,6 +44,7 @@ class XMBAbilityTrigger_EventListener extends X2AbilityTrigger_EventListener;
 
 var bool bSelfTarget;
 var bool bAsTarget;
+var bool bDebugLogging;
 
 //////////////////////////
 // Condition properties //
@@ -108,17 +109,20 @@ static function EventListenerReturn OnEvent(Object EventData, Object EventSource
 			{
 				AvailableCode = EventListener.ValidateAttack(SourceAbilityState, SourceUnit, TargetUnit, AbilityState);
 
-				if (AbilityState != none)
+				if(bDebugLogging)
 				{
-				`Log(SourceAbilityState.GetMyTemplate().DataName @ "event" @ EventID @ "(" $ AbilityState.GetMyTemplate().DataName $ ") =" @ AvailableCode);
-				}
-				else if (TargetUnit != none)
-				{
-				`Log(SourceAbilityState.GetMyTemplate().DataName @ "event" @ EventID @ "(" $ TargetUnit $ ") =" @ AvailableCode);
-				}
-				else
-				{
-				`Log(SourceAbilityState.GetMyTemplate().DataName @ "event" @ EventID @ "=" @ AvailableCode);
+					if (AbilityState != none)
+					{
+					`Log(SourceAbilityState.GetMyTemplate().DataName @ "event" @ EventID @ "(" $ AbilityState.GetMyTemplate().DataName $ ") =" @ AvailableCode);
+					}
+					else if (TargetUnit != none)
+					{
+					`Log(SourceAbilityState.GetMyTemplate().DataName @ "event" @ EventID @ "(" $ TargetUnit $ ") =" @ AvailableCode);
+					}
+					else
+					{
+					`Log(SourceAbilityState.GetMyTemplate().DataName @ "event" @ EventID @ "=" @ AvailableCode);
+					}
 				}
 
 				if (AvailableCode == 'AA_Success')
