@@ -62,7 +62,8 @@
         "Lg_AdventCathedral_LW",
         "md_ChosenArtillery_01_LW",
         "sm_ChosenBulwark_01_LW",
-        "sm_ChosenBulwark_02_LW"
+        "sm_ChosenBulwark_02_LW",
+        "plot_WLD_LgObj_WeighStation_EMM_01"
     ],
     "sfStandalone": [
         "AdvGrenadeLauncher",
