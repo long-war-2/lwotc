@@ -67,6 +67,10 @@ function LoadRebels()
                 class'Utilities_LW'.static.AddRebelToMission(RebelRef, OutpostState.GetReference(), 'Rebel', Tile);
             }
         } 
+        else
+        {
+            `LWTrace("RebelRaid: Failed to span Rebel" @i@ "due to no valid Spawn Tiles!");
+        }
     }
 }
 

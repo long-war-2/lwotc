@@ -271,7 +271,7 @@ function static bool GetSpawnTileNearTile(out TTile Tile, int FirstRange, int Se
     }
 
     // Still no good!
-    `LWDebug("*** Failed to find a valid position for unit");
+    `LWTrace("*** GetSpawnNearTile: Failed to find a valid position for unit");
     return false;
 }
 
