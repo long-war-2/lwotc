@@ -21,6 +21,14 @@ var config bool DISABLE_STARTING_REGION_CHECKS;
 var config int MIN_STARTING_REGION_LINKS;
 var config int MAX_STARTING_REGION_LINKS;
 
+var config array<name> PERMAMENT_RESISTANCE_ORDERS;
+
+var config int SHADY_SCAVENGERS_ALLOY_AMOUNT;
+var config int SHADY_SCAVENGERS_ALLOY_COST;
+
+var config int SHADY_SCAVENGERS_ELERIUM_AMOUNT;
+var config int SHADY_SCAVENGERS_ELERIUM_COST;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -47,6 +55,7 @@ static function CHEventListenerTemplate CreateMissionSiteListeners()
 	Template.AddCHEvent('MissionIconSetMissionSite', CustomizeMissionSiteIcon, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('OverrideMissionSiteIconImage', CustomizeMissionSiteIconImage, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('OnSkyrangerArrives', OnSkyrangerArrives, ELD_OnStateSubmitted, GetListenerPriority());
+	Template.AddCHEvent('PreEndOfMonth', HandleResistanceOrders, ELD_Immediate, 99);
 
 	Template.RegisterInStrategy = true;
 
@@ -713,8 +722,78 @@ static function EventListenerReturn OnBlackMarketGoodsReset(Object EventData, Ob
 		}
 	}
 
+	if (class'Helpers_LW'.static.IsResistanceOrderActive('ResCard_ShadyScavengers_LW')){
+		AddItemToBlackMarket('AlienAlloy', default.SHADY_SCAVENGERS_ALLOY_AMOUNT, default.SHADY_SCAVENGERS_ALLOY_COST, EventData, EventSource, NewGameState, EventID, CallbackData);
+		AddItemToBlackMarket('EleriumDust', default.SHADY_SCAVENGERS_ELERIUM_AMOUNT, default.SHADY_SCAVENGERS_ELERIUM_COST, EventData, EventSource, NewGameState, EventID, CallbackData);
+	}
+
 	return ELR_NoInterrupt;
 }
+
+
+static function AddItemToBlackMarket(
+		name ItemToAdd, int NumToAdd, int Price,
+		Object EventData, Object EventSource, XComGameState NewGameState, Name Event, Object CallbackData){
+	local X2StrategyElementTemplateManager StratMgr;
+	local X2ItemTemplateManager ItemTemplateMgr;
+	local XComGameState_BlackMarket MarketState;
+	local XComGameState_Reward RewardState;
+	local X2RewardTemplate RewardTemplate;
+	local XComGameState_Item ItemState;
+	local X2ItemTemplate ItemTemplate;
+	local Commodity ForSaleItem;
+
+	StratMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+	MarketState = XComGameState_BlackMarket(EventData);
+	
+	if (MarketState == none) return;
+
+	// Get the latest pending state
+	MarketState = XComGameState_BlackMarket(NewGameState.ModifyStateObject(class'XComGameState_BlackMarket', MarketState.ObjectID));
+
+	// Create the item
+	ItemTemplateMgr = class'X2ItemTemplateManager'.static.GetItemTemplateManager();
+	ItemTemplate = ItemTemplateMgr.FindItemTemplate(ItemToAdd);
+	ItemState = ItemTemplate.CreateInstanceFromTemplate(NewGameState);
+	ItemState.Quantity = NumToAdd;
+	
+	// Create the reward
+	StratMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+	RewardTemplate = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_Item'));
+	RewardState = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
+	
+	RewardState.SetReward(ItemState.GetReference());
+	
+
+	// Fill out the commodity (default)
+	ForSaleItem.RewardRef = RewardState.GetReference();
+	ForSaleItem.Image = RewardState.GetRewardImage();
+	ForSaleItem.CostScalars = MarketState.GoodsCostScalars;
+	ForSaleItem.DiscountPercent = MarketState.GoodsCostPercentDiscount;
+
+	// Fill out the commodity (custom)
+	ForSaleItem.Title = string(NumToAdd) $ " " $ ItemTemplate.GetItemFriendlyName();
+	ForSaleItem.Desc = "Not generally available via the black market, but for a resourceful commander, such things are possible."; //todo: figure out localization
+	ForSaleItem.Cost = GetForSaleItemCost(Price); 
+
+	// Add to sale
+	MarketState.ForSaleItems.AddItem(ForSaleItem);
+	// We are done
+	return;
+}
+
+static function StrategyCost GetForSaleItemCost(int SupplyAmount)
+{
+	local StrategyCost Cost;
+	local ArtifactCost ResourceCost;
+	
+	ResourceCost.ItemTemplateName = 'Supplies';
+	ResourceCost.Quantity = SupplyAmount;
+	Cost.ResourceCosts.AddItem(ResourceCost);
+
+	return Cost;
+}
+
 
 // Pre end-of month processing. The HQ object responsible for triggering end of month gets ticked before our outposts, so
 // we haven't yet run the update routine for the last day of the month. Run it now.
@@ -1249,6 +1328,73 @@ static function EventListenerReturn OnUFOSetInterceptionTime(Object EventData, O
 static function EventListenerReturn PauseGeoscapeOnSquadSelect(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
 	`HQPRES.StrategyMap2D.SetUIState(eSMS_Flight);
+
+	return ELR_NoInterrupt;
+}
+
+
+
+//Disable and return all consumable cards
+static function EventListenerReturn HandleResistanceOrders(Object EventData, Object EventSource, XComGameState NewGameState, Name EventID, Object CallbackData)
+{
+	local XComGameState_StrategyCard CardState;
+	local XComGameState_HeadquartersResistance ResHQ;
+	local StateObjectReference WildCardRef, FactionRef;
+	local int i;
+	local XComGameState_ResistanceFaction FactionState;
+	local array<StateObjectReference> RemovedWildCards;
+
+	
+	ResHQ = class'UIUtilities_Strategy'.static.GetResistanceHQ();
+	ResHQ = XComGameState_HeadquartersResistance(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersResistance', ResHQ.ObjectID));
+
+
+	for(i=0; i< ResHQ.WildCardSlots.Length; i++)
+	{
+		if(ResHQ.WildCardSlots[i].ObjectID != 0)
+		{
+			CardState = XComGameState_StrategyCard(NewGameState.ModifyStateObject(class'XComGameState_StrategyCard', ResHQ.WildCardSlots[i].ObjectID));
+
+			if(default.PERMAMENT_RESISTANCE_ORDERS.Find(CardState.GetMyTemplateName()) != INDEX_NONE){
+
+				RemovedWildCards.AddItem(ResHQ.WildCardSlots[i]);
+				ResHQ.RemoveCardFromSlot(i);
+				CardState.bDrawn = false;
+			}
+		}
+	}
+
+
+	foreach ResHq.Factions(FactionRef)
+	{
+		FactionState = XComGameState_ResistanceFaction(NewGameState.ModifyStateObject(class'XComGameState_ResistanceFaction', FactionRef.ObjectID));
+		for(i=0; i< FactionState.CardSlots.Length; i++) 
+		{
+			if(FactionState.CardSlots[i].ObjectID != 0)
+			{
+				CardState = XComGameState_StrategyCard(NewGameState.ModifyStateObject(class'XComGameState_StrategyCard', ResHQ.WildCardSlots[i].ObjectID));
+
+				if(default.PERMAMENT_RESISTANCE_ORDERS.Find(CardState.GetMyTemplateName()) != INDEX_NONE)
+				{
+					FactionState.RemoveCardFromSlot(i);
+					CardState.bDrawn = false;
+				}
+			}
+		}
+		// All "Available" card data is saved in faction states, so to remove wild cards properly we need to find them there
+		foreach RemovedWildCards(WildCardRef)
+		{
+			for (i = FactionState.PlayableCards.Length -1; i >= 0; i--)
+			{
+				if(FactionState.PlayableCards[i].ObjectID == WildCardRef.ObjectID)
+				{
+					FactionState.PlayableCards.RemoveItem(FactionState.PlayableCards[i]);
+				}
+			}
+		}
+	}
+
+	//ResHQ.DeactivateRemovedCards(NewGameState);
 
 	return ELR_NoInterrupt;
 }

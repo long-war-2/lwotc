@@ -8014,3 +8014,118 @@ LocFriendlyName="Teleport Escape"
 LocLongDescription="When damaged, bound, or restrained by Void Conduit, the Avatar can teleport away to a new location."
 LocHelpText="When damaged, bound, or restrained by Void Conduit, the Avatar can teleport away to a new location."
 LocFlyOverText="Teleport"
+
+
+
+;;New Resistance Orders
+[ResCard_NeedlepointForSidearms X2StrategyCardTemplate]
+DisplayName="Hollow Point Rounds"
+SummaryText="Pistols, Autopistols and sawed-offs shots will cause their targets to bleed."
+QuoteText="I don't recall aliens signing the Geneva Convention."
+QuoteTextAuthor="Volk"
+
+[ResCard_LiveFireTraining_LW X2StrategyCardTemplate]
+DisplayName="Live Fire Training"
+SummaryText="Whenever you send a soldier on their first ever combat mission, they get a PERMANENT +5 aim."
+QuoteText="Eh, They'll learn quickly. They'll have to."
+QuoteTextAuthor="Volk"
+
+[ResCard_VeryIncandescentPersons_LW X2StrategyCardTemplate]
+DisplayName="Very Incandescent Persons"
+SummaryText="Aligned VIPs gain an assortment of grenades depending on your tech level, and grenadier."
+QuoteText="I wouldn't quite call her a 'non-combatant', no."
+QuoteTextAuthor="Volk"
+
+[ResCard_PracticalOccultism_LW X2StrategyCardTemplate]
+DisplayName="Practical Occultism"
+SummaryText="Your Reapers can teleport to anywhere within squadsight, with an HP cost."
+QuoteText="I hate it when Geist and Volk talk to each other.  It always ends up someplace... weird."
+QuoteTextAuthor="Bradford"
+
+[ResCard_Secticide_LW X2StrategyCardTemplate]
+DisplayName="Secticide"
+SummaryText="Enemies have 25 less will and 50 less psi offense."
+QuoteText="Ayylmao? More like, Die, Lmao."
+QuoteTextAuthor="Shen"
+
+[ResCard_HigherZealotry_LW X2StrategyCardTemplate]
+DisplayName="Higher Zealotry"
+SummaryText="Decreases psi training time by 35%."
+QuoteText="My people can show your people how it's done."
+QuoteTextAuthor="Geist"
+
+[ResCard_EfficiencyManual_LW X2StrategyCardTemplate]
+DisplayName="Efficiency Manual"
+SummaryText="Decreases Proving Ground project costs by 35%."
+QuoteText="What the hell do you guys even need Ayyphones for?"
+QuoteTextAuthor="Shen"
+
+[ResCard_ZealousDeployment_LW X2StrategyCardTemplate]
+DisplayName="Zealous Deployment"
+SummaryText="Guerilla ops grant Additional 50 intel rewards, but they have a project miranda sitrep (all biological units have -3 mobility)"
+QuoteText="We will go to the every end of the world to get what we're looking for."
+QuoteTextAuthor="Geist"
+
+[ResCard_GrantRookiesPermaHp_LW X2StrategyCardTemplate]
+DisplayName="The Only School That Matters"
+SummaryText="Whenever you send a soldier on their first ever combat mission, they get a PERMANENT +2 max HP."
+QuoteText="No proposition Euclid wrote / no formulae the text-books know / will turn the bullet from your coat / or ward the Lancer's downward blow"
+QuoteTextAuthor="Avenger restroom wall."
+
+[ResCard_RemoteSuperchargers_LW X2StrategyCardTemplate]
+DisplayName="Remote Power Transmitters"
+SummaryText="Costs 4 avenger power; only functions when not at power deficit. All soldiers' electric abilities deal 2 extra damage"
+QuoteText="Congratulations, you've been discharged."
+QuoteTextAuthor="Sgt. Jane Kelly"
+
+[ResCard_XenobiologicalFieldResearch_LW X2StrategyCardTemplate]
+DisplayName="Xenobiological Field Research"
+SummaryText="Gain +30% research speed. ALL missions now have additional chryssalids, and (when appropriate) faceless"
+QuoteText="...and when we add this compound into the Chryssalid nest, they get even more aggressive.  If only Vahlen could see us now!"
+QuoteTextAuthor="Tygan"
+
+[ResCard_RadioFreeLily_LW X2StrategyCardTemplate]
+DisplayName="Radio Free Lily"
+SummaryText="Gain +3 resistance contacts. Retaliations have 3 more enemies."
+QuoteText="She says it's a good way of blowing off steam.  I won't lie, most of it would have been totally unprintable even before ADVENT censorship."
+QuoteTextAuthor="Bradford"
+
+[ResCard_ShadyScavengers_LW X2StrategyCardTemplate]
+DisplayName="Shady Scavengers"
+SummaryText="Black market has additional alloys and elerium for sale."
+QuoteText="When there's demand, there's supply."
+QuoteTextAuthor="Bradford"
+
+;[ResCard_DenseSmoke_LW X2StrategyCardTemplate]
+;DisplayName="Dense Smoke"
+;SummaryText="Soldiers equipped with the grenade launcher gain the Dense smoke perk, causing their smoke grenades to have +10 defense."
+;QuoteText="This is military equipment soldier, you do not get to \"420 blaze it\"."
+;QuoteTextAuthor="Bradford"
+
+[ResCard_ExperimentalExperimentation_LW X2StrategyCardTemplate]
+DisplayName="Experimental Experimentation"
+SummaryText="Decreases the proving ground project's time by 35%"
+QuoteText="Hey, You never know what might happen."
+QuoteTextAuthor="Shen"
+
+[ResCard_DesperateReserves_LW X2StrategyCardTemplate]
+DisplayName="Desperate Reserves"
+SummaryText="Gain a resistance mec if you're fielding 4 or fewer soldiers (3 or fewer on covert ambushes)."
+QuoteText="Since you seem to be severely understaffed, we can provide an alternative."
+QuoteTextAuthor="Betos"
+
+[ResCard_BasiliskDoctrine_LW X2StrategyCardTemplate]
+DisplayName="Basilisk Doctrine"
+SummaryText="Skirmisher armor grants the Take Under perk, which is a guaranteed melee dash attack against any target under three health that executes the target and doesn't end the turn."
+QuoteText="Oh, hey, are we getting video feed of the new Skirmisher tech?  I wanna see!"
+QuoteTextAuthor="[REDACTED], immediately preceding an urgent janitorial visit."
+
+[POI_ResistanceCard X2PointOfInterestTemplate]
+DisplayNames[0]="Ayy Lmao"
+DisplayNames[1]="Ayy Lmao 2"
+
+CompletedSummaries[0]="PLACEHOLDER FLAVOR TEXT."
+CompletedSummaries[1]="PLACEHOLDER FLAVOR TEXT 2."
+
+POIImages[0]="img:///UILibrary_StrategyImages.X2StrategyMap.POI_RadioTower"
+POIImages[1]="img:///UILibrary_StrategyImages.X2StrategyMap.POI_DeadAdvent"

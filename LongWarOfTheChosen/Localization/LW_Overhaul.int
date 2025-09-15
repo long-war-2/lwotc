@@ -770,3 +770,6 @@ m_strPullHavenAdvisorsTooltip="Removes available Haven advisors from havens. The
 
 m_StrHavenManagement="MANAGE HAVENS"
 m_StrHavenManagementTooltip="Opens the Resistance Management screen."
+
+[X2DownloadableContentInfo_LongWarOfTheChosen]
+PermamentText="[PERMAMENT] "

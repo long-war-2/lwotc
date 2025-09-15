@@ -71,6 +71,8 @@ var config array<string> SKIP_CHOSEN_OVERRIDE_MISSION_TYPES;
 
 var config array<MinimumInfilForConcealEntry> MINIMUM_INFIL_FOR_CONCEAL;
 
+var localized string PermamentText;
+
 struct ArchetypeToHealth
 {
 	var string ArchetypeName;
@@ -280,6 +282,8 @@ static event OnPostTemplatesCreated()
 	UpdateSkulljackAllShooterEffectExclusions();
 	class'X2Ability_PerkPackAbilitySet2'.static.AddEffectsToGrenades();
 	class'XComGameState_LWToolboxOptions'.static.UpdateRewardSoldierTemplates();
+	UpdateResOrderDescriptions();
+
 }
 
 // Borrowed from Xynamek / Prototype Armory code
@@ -7984,4 +7988,90 @@ static function bool IsItemInUse (XComGameState_Item ItemState, XComGameState Ar
 
 	// failsafe, don't delete things we can't conclusively prove are needed
 	return true;
+}
+
+static function UpdateResOrderDescriptions()
+{
+	local X2StrategyElementTemplateManager		StrategyTemplateMgr;
+	local X2StrategyCardTemplate CardTemplate;
+	local array<Name> TemplateNames;
+	local Name TemplateName;
+	local array<X2DataTemplate> DataTemplates;
+	local X2DataTemplate DataTemplate;
+
+	`LOG("Updating res order descriptions");
+
+	StrategyTemplateMgr	= class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+
+	StrategyTemplateMgr.GetTemplateNames(TemplateNames);
+
+	foreach TemplateNames(TemplateName)
+	{
+ 		StrategyTemplateMgr.FindDataTemplateAllDifficulties(TemplateName, DataTemplates);
+		foreach DataTemplates(DataTemplate)
+		{
+			CardTemplate = X2StrategyCardTemplate(DataTemplate);
+
+			if(CardTemplate != none 
+			// chosen actions are a subclass of card templates, so we need to check for that
+			&& X2ChosenActionTemplate(DataTemplate) == none)
+			{
+				CardTemplate.GetSummaryTextFn = GetSummaryTextExpanded;
+			}
+		}
+	}
+}
+
+static function string GetSummaryTextExpanded(StateObjectReference InRef)
+{
+	local XComGameState_StrategyCard CardState;
+	local X2StrategyCardTemplate CardTemplate;
+	local XGParamTag ParamTag;
+	local X2AbilityTag AbilityTag;
+	local string ConsumableString;
+	local array<ResistanceCardConfigValues> Configs;
+	local ResistanceCardConfigValues CurrentConfig;
+	Configs = class'ILB_Utils'.static.GetResistanceCardConfigs();
+
+	CardState = GetCardState(InRef);
+
+	if(CardState == none)
+	{
+		return "Error in GetSummaryText function";
+	}
+
+	CardTemplate = CardState.GetMyTemplate();
+	CurrentConfig=class'ILB_Utils'.static.GetResistanceCardConfigsForResCard(CardTemplate.DataName, Configs);
+	if (CurrentConfig.ResCardName != ''){
+		`Log("Observed config for res card: " $ CurrentConfig.ResCardName $ " : " $ CurrentConfig.StringValue0 $ " :  " $ CurrentConfig.StringValue1);
+		ParamTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
+		ParamTag.StrValue0 = CurrentConfig.StringValue0;
+		ParamTag.StrValue1 = CurrentConfig.StringValue1;
+		ParamTag.IntValue0 = CurrentConfig.IntValue0;
+		ParamTag.IntValue1 = CurrentConfig.IntValue1;
+	}
+
+    if(CardTemplate.GetMutatorValueFn != none)
+	{
+		ParamTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
+		ParamTag.IntValue0 = CardTemplate.GetMutatorValueFn();
+	}
+
+
+	AbilityTag = X2AbilityTag(`XEXPANDCONTEXT.FindTag("Ability"));
+	AbilityTag.ParseObj = CardState;
+
+	ConsumableString = "";
+	if (class'X2EventListener_Strategy'.default.PERMAMENT_RESISTANCE_ORDERS.Find(CardState.GetMyTemplateName()) != INDEX_NONE)
+	{
+		ConsumableString = default.PermamentText;
+	}
+
+
+	return `XEXPAND.ExpandString(ConsumableString $ CardTemplate.SummaryText);
+}
+
+static function XComGameState_StrategyCard GetCardState(StateObjectReference CardRef)
+{
+	return XComGameState_StrategyCard(`XCOMHISTORY.GetGameStateForObjectID(CardRef.ObjectID));
 }

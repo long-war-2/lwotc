@@ -149,6 +149,12 @@ var config int ANATOMY_ARMOR_PIERCE;
 
 var config int PREPFORWAR_MELEE_DMG;
 
+var config int ROOKIE_COMBAT_HP_BONUS;
+var config int ROOKIE_COMBAT_AIM_BONUS;
+
+var config int SECTICIDE_WILL_REDUCTION;
+var config int SECTICIDE_PSIOFFENSE_REDUCTION;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -4712,6 +4718,68 @@ static function X2AbilityTemplate TacticalRetreat()
 	AddTriggerTargetCondition(Template, NameCondition);
 
     return Template;
+}
+
+
+
+static function X2AbilityTemplate PermaRookieHpBuff()
+{
+	local XMBEffect_PermanentStatChange Effect;
+	local X2AbilityTemplate Template;
+
+	Effect = new class'XMBEffect_PermanentStatChange';
+	Effect.AddStatChange(eStat_HP, default.ROOKIE_COMBAT_HP_BONUS);
+
+	// Create a triggered ability that activates whenever the unit gets a kill
+	
+	Template = Passive('RookieHpBuff_LW', "img:///UILibrary_PerkIcons.UIPerk_fieldmedic", true, Effect);
+
+	return Template;
+}
+
+static function X2AbilityTemplate PermaRookieAimBuff()
+{
+	local XMBEffect_PermanentStatChange Effect;
+	local X2AbilityTemplate Template;
+
+	Effect = new class'XMBEffect_PermanentStatChange';
+	Effect.AddStatChange(eStat_Offense, default.ROOKIE_COMBAT_AIM_BONUS);
+
+	// Create a triggered ability that activates whenever the unit gets a kill
+	
+	Template = Passive('RookieAimBuff_LW', "img:///UILibrary_PerkIcons.UIPerk_fieldmedic", true, Effect);
+
+	return Template;
+}
+
+
+static function X2AbilityTemplate AddSecticide()
+{
+	local X2AbilityTemplate						Template;
+	local X2Effect_PersistentStatChange			StatEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Secticide_LW');
+	Template.IconImage = "img:///'LW_BstarsPerkPack_Icons.UIPerk_Ruthless";
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bIsPassive = true;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+
+	StatEffect = new class'X2Effect_PersistentStatChange';
+	StatEffect.AddPersistentStatChange(eStat_Will, float(default.SECTICIDE_WILL_REDUCTION));
+	StatEffect.AddPersistentStatChange(eStat_PsiOffense, float(default.SECTICIDE_PSIOFFENSE_REDUCTION));
+	StatEffect.BuildPersistentEffect(1, true, false, false);
+	StatEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Template.AddTargetEffect(StatEffect);
+	Template.bCrossClassEligible = true;
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
 }
 
 
