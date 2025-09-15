@@ -1325,6 +1325,7 @@ static function X2AbilityTemplate ZoneOfControl_LW()
 
     Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
     Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.bSkipFireAction = true;
 
     Template.bCrossClassEligible = false;
 
