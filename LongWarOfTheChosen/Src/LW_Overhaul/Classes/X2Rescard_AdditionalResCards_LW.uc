@@ -27,6 +27,7 @@ var config int EXPERIMENTAL_EXPERIMENTATION_WORK_BONUS;
 
 		 Techs.AddItem(CreateBlankResistanceOrder('Rescard_ShadyScavengers_LW'));
 		 Techs.AddItem(CreateExperimentalExperimentation_LW());
+		 Techs.AddItem(GrantResistanceMecAtCombatStartIfRetaliation());
 		 //Techs.AddItem(CreateBasiliskDoctrine_LW());
 
 		return Techs;
@@ -189,19 +190,19 @@ static function RunCheckForMecUnitIfFewerThanFive(XComGameState StartState)
 	{
 		if (NumSoldiersControlledByPlayer(StartState) < 4)
 		{
-			GrantResistanceMecAtCombatStart(StartState, BattleData);
+			GrantResistanceMecAtCombatStart(StartState);
 		}
 	}
 	else if (NumSoldiersControlledByPlayer(StartState) < 5)
 	{
-		GrantResistanceMecAtCombatStart(StartState, BattleData);
+		GrantResistanceMecAtCombatStart(StartState);
 	}
 
 
 }
 
 
-static function GrantResistanceMecAtCombatStart(XComGameState StartState, XComGameState_BattleData BattleData)
+static function GrantResistanceMecAtCombatStart(XComGameState StartState)
 {
 
 	if (IsSplitMission( StartState ))
@@ -657,4 +658,52 @@ static function GrantBasiliskDoctrine(XComGameState_Unit UnitState, out array<na
 	//	AbilitiesToGrant.AddItem( 'Shredder' );
 		AbilitiesToGrant.AddItem( 'TakeUnder' );
 	}
+}
+
+
+static function X2DataTemplate GrantResistanceMecAtCombatStartIfRetaliation(){		
+	local X2StrategyCardTemplate Template;
+	
+	`CREATE_X2TEMPLATE(class'X2StrategyCardTemplate', Template, 'ResCard_ResMecIfRetaliation');
+	Template.Category = "ResistanceCard";
+	Template.ModifyTacticalStartStateFn = RunCheckForResistanceMecIfRetaliation;
+
+	return Template; 
+}
+
+
+
+static function RunCheckForResistanceMecIfRetaliation(XComGameState StartState){
+`LOG("Mission started; mission type is " $ GetMissionData(StartState).GeneratedMission.Mission.MissionFamily);
+if (IsRetaliationMission(StartState)){
+	`Log("Retaliation mission detected; granting resistance order");
+	GrantResistanceMecAtCombatStart(StartState);
+}
+}
+
+
+static function bool IsRetaliationMission(XComGameState StartState){
+local GeneratedMissionData Mission;
+Mission = GetMissionData(StartState).GeneratedMission;
+
+return Mission.Mission.MissionFamily == "Defend_LW"
+		|| Mission.Mission.MissionFamily == "RecruitRaid_LW"
+		|| Mission.Mission.MissionFamily == "IntelRaid_LW"
+		|| Mission.Mission.MissionFamily == "SupplyConvoy_LW"
+		|| Mission.Mission.MissionFamily == "Rendezvous_LW"
+		|| Mission.Mission.MissionFamily == "Terror_LW";
+}
+static function XComGameState_MissionSite GetMissionData(XComGameState StartState)
+{
+	local XComGameState_MissionSite MissionState;
+	MissionState = GetMission(StartState);
+	return MissionState;
+}
+
+simulated static function XComGameState_MissionSite GetMission(XComGameState StartState)
+{
+	local XComGameState_HeadquartersXCom XComHQ;
+	foreach StartState.IterateByClassType( class'XComGameState_HeadquartersXCom', XComHQ )
+		break;
+	return XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(XComHQ.MissionRef.ObjectID));
 }

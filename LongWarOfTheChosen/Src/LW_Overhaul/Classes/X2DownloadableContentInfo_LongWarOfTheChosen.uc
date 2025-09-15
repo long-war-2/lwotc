@@ -14,6 +14,33 @@ class X2DownloadableContentInfo_LongWarOfTheChosen extends X2DownloadableContent
 // the base class or not.
 var config array<ModClassOverrideEntry> ModClassOverrides;
 
+
+    struct ResistanceCardRewardMod{
+		var name ApplicableMissionFamilyIfAny;
+		var name ApplicableMissionSourceIfAny; //
+        var name RewardApplied; //Reward_Supplies
+        var int	RewardQuantity;
+        var int	RewardVariance;
+    };
+    struct ResistanceCardSitrepMod{
+		var name ApplicableMissionFamilyIfAny;
+		var name ApplicableMissionSourceIfAny; //
+        var name SitrepApplied;
+    };
+    struct ResistanceCardConfigValues{
+        var name ResCardName;
+        var string StringValue0;
+        var string StringValue1;
+
+        var int IntValue0; // magic integer
+        var int IntValue1; // magic integer
+        var int Priority; // default is 0; highest priority wins
+        var array<ResistanceCardRewardMod> RewardMods;
+        var array<ResistanceCardSitrepMod> SitrepMods;
+    };
+
+    var config array<ResistanceCardConfigValues> ResistanceCardFlexibleConfigs;
+
 //----------------------------------------------------------------
 // A random selection of data and data structures from LW Overhaul
 struct MinimumInfilForConcealEntry
@@ -8024,52 +8051,107 @@ static function UpdateResOrderDescriptions()
 
 static function string GetSummaryTextExpanded(StateObjectReference InRef)
 {
-	local XComGameState_StrategyCard CardState;
-	local X2StrategyCardTemplate CardTemplate;
-	local XGParamTag ParamTag;
-	local X2AbilityTag AbilityTag;
-	local string ConsumableString;
-	local array<ResistanceCardConfigValues> Configs;
-	local ResistanceCardConfigValues CurrentConfig;
-	Configs = class'ILB_Utils'.static.GetResistanceCardConfigs();
+	 local XComGameState_StrategyCard CardState;
+	 local X2StrategyCardTemplate CardTemplate;
+	// local XGParamTag ParamTag;
+	// local X2AbilityTag AbilityTag;
+	 local string PermamentString;
+	// local array<ResistanceCardConfigValues> Configs;
+	// local ResistanceCardConfigValues CurrentConfig;
+	// Configs = class'ILB_Utils'.static.GetResistanceCardConfigs();
 
-	CardState = GetCardState(InRef);
+	 CardState = GetCardState(InRef);
 
 	if(CardState == none)
 	{
 		return "Error in GetSummaryText function";
 	}
 
-	CardTemplate = CardState.GetMyTemplate();
-	CurrentConfig=class'ILB_Utils'.static.GetResistanceCardConfigsForResCard(CardTemplate.DataName, Configs);
-	if (CurrentConfig.ResCardName != ''){
-		`Log("Observed config for res card: " $ CurrentConfig.ResCardName $ " : " $ CurrentConfig.StringValue0 $ " :  " $ CurrentConfig.StringValue1);
-		ParamTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
-		ParamTag.StrValue0 = CurrentConfig.StringValue0;
-		ParamTag.StrValue1 = CurrentConfig.StringValue1;
-		ParamTag.IntValue0 = CurrentConfig.IntValue0;
-		ParamTag.IntValue1 = CurrentConfig.IntValue1;
-	}
+	 CardTemplate = CardState.GetMyTemplate();
+	// CurrentConfig=class'ILB_Utils'.static.GetResistanceCardConfigsForResCard(CardTemplate.DataName, Configs);
+	// if (CurrentConfig.ResCardName != ''){
+	// 	`Log("Observed config for res card: " $ CurrentConfig.ResCardName $ " : " $ CurrentConfig.StringValue0 $ " :  " $ CurrentConfig.StringValue1);
+	// 	ParamTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
+	// 	ParamTag.StrValue0 = CurrentConfig.StringValue0;
+	// 	ParamTag.StrValue1 = CurrentConfig.StringValue1;
+	// 	ParamTag.IntValue0 = CurrentConfig.IntValue0;
+	// 	ParamTag.IntValue1 = CurrentConfig.IntValue1;
+	// }
 
-    if(CardTemplate.GetMutatorValueFn != none)
+    // if(CardTemplate.GetMutatorValueFn != none)
+	// {
+	// 	ParamTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
+	// 	ParamTag.IntValue0 = CardTemplate.GetMutatorValueFn();
+	// }
+
+
+	// AbilityTag = X2AbilityTag(`XEXPANDCONTEXT.FindTag("Ability"));
+	// AbilityTag.ParseObj = CardState;
+
+	PermamentString = "";
+	if (class'X2EventListener_StrategyMap'.default.PERMAMENT_RESISTANCE_ORDERS.Find(CardState.GetMyTemplateName()) != INDEX_NONE)
 	{
-		ParamTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
-		ParamTag.IntValue0 = CardTemplate.GetMutatorValueFn();
+		PermamentString = default.PermamentText;
 	}
 
 
-	AbilityTag = X2AbilityTag(`XEXPANDCONTEXT.FindTag("Ability"));
-	AbilityTag.ParseObj = CardState;
-
-	ConsumableString = "";
-	if (class'X2EventListener_Strategy'.default.PERMAMENT_RESISTANCE_ORDERS.Find(CardState.GetMyTemplateName()) != INDEX_NONE)
-	{
-		ConsumableString = default.PermamentText;
-	}
-
-
-	return `XEXPAND.ExpandString(ConsumableString $ CardTemplate.SummaryText);
+	return `XEXPAND.ExpandString(PermamentString $ CardTemplate.SummaryText);
 }
+
+
+
+
+static function SetupContinentBonuses(XComGameState StartState)
+{
+	local XComGameState_Continent ContinentState;
+
+	local XComGameState_StrategyCard CardState;
+
+	foreach StartState.IterateByClassType(class'XComGameState_Continent', ContinentState)
+	{
+		foreach StartState.IterateByClassType(class'XComGameState_StrategyCard', CardState)
+		{
+			if (ContinentState.GetMyTemplateName() == 'Continent_NorthAmerica' && CardState.GetMyTemplateName() == 'ResCard_InsideJobI')
+			{
+				ContinentState.ContinentBonusCard = CardState.GetReference();
+				CardState.bDrawn = true;
+			}
+			else if (ContinentState.GetMyTemplateName() == 'Continent_SouthAmerica' && CardState.GetMyTemplateName() == 'ResCard_UnderTheTableI')
+			{
+				ContinentState.ContinentBonusCard = CardState.GetReference();
+				CardState.bDrawn = true;
+			}
+			else if (ContinentState.GetMyTemplateName() == 'Continent_Africa' && CardState.GetMyTemplateName() == 'ResCard_HiddenReservesI')
+			{
+				ContinentState.ContinentBonusCard = CardState.GetReference();
+				CardState.bDrawn = true;
+			}
+			else if (ContinentState.GetMyTemplateName() == 'Continent_Asia' && CardState.GetMyTemplateName() == 'ResCard_PursuitOfKnowledge')
+			{
+				ContinentState.ContinentBonusCard = CardState.GetReference();
+				CardState.bDrawn = true;
+			}
+			else if (ContinentState.GetMyTemplateName() == 'Continent_Oceania' && CardState.GetMyTemplateName() == 'ResCard_ResUnitIfRetaliation')
+			{
+				ContinentState.ContinentBonusCard = CardState.GetReference();
+				CardState.bDrawn = true;
+			}
+			else if (ContinentState.GetMyTemplateName() == 'Continent_Europe' && CardState.GetMyTemplateName() == 'ResCard_MassivePopularity')
+			{
+				ContinentState.ContinentBonusCard = CardState.GetReference();
+				CardState.bDrawn = true;
+			}
+// Continents=Continent_NorthAmerica
+// Continents=Continent_SouthAmerica
+// Continents=Continent_Europe
+// Continents=Continent_Asia
+// Continents=Continent_Africa
+// Continents=Continent_Oceania
+
+		}
+	}
+}
+
 
 static function XComGameState_StrategyCard GetCardState(StateObjectReference CardRef)
 {

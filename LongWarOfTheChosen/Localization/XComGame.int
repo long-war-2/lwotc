@@ -8086,9 +8086,22 @@ QuoteTextAuthor="Tygan"
 
 [ResCard_RadioFreeLily_LW X2StrategyCardTemplate]
 DisplayName="Radio Free Lily"
-SummaryText="Gain +3 resistance contacts. Retaliations have 3 more enemies."
+SummaryText="Gain +1 resistance contact. Retaliations have 3 more enemies."
 QuoteText="She says it's a good way of blowing off steam.  I won't lie, most of it would have been totally unprintable even before ADVENT censorship."
 QuoteTextAuthor="Bradford"
+
+[ResCard_ResMecIfRetaliation X2StrategyCardTemplate]
+DisplayName="Haven Defense Drills"
+SummaryText="Gain a bonus Resistance Mec at the beginning of each Retaliation mission, or a rendezvous mission."
+QuoteText="How they used to complain about the randomized 5:00 AM crackdown drills.  Well who's complaining now?"
+QuoteTextAuthor="Bradford"
+
+[ResCard_Vengeance X2StrategyCardTemplate]
+DisplayName="Vengeance"
+SummaryText="When a squadmate dies or is critically wounded, the entire squad receives massive bonuses for two turns, depending on the squadmate's rank."
+QuoteText="It would be harder to deny our people their chance at vengeance, than it will be to facilitate their just retribution." 
+QuoteTextAuthor="Geist"
+
 
 [ResCard_ShadyScavengers_LW X2StrategyCardTemplate]
 DisplayName="Shady Scavengers"
@@ -8123,9 +8136,23 @@ QuoteTextAuthor="[REDACTED], immediately preceding an urgent janitorial visit."
 [POI_ResistanceCard X2PointOfInterestTemplate]
 DisplayNames[0]="Ayy Lmao"
 DisplayNames[1]="Ayy Lmao 2"
+DisplayNames[2]="Ayy Lmao 3"
+DisplayNames[3]="Ayy Lmao 4"
+DisplayNames[4]="Ayy Lmao 5"
 
 CompletedSummaries[0]="PLACEHOLDER FLAVOR TEXT."
 CompletedSummaries[1]="PLACEHOLDER FLAVOR TEXT 2."
+CompletedSummaries[2]="PLACEHOLDER FLAVOR TEXT 3."
+CompletedSummaries[3]="PLACEHOLDER FLAVOR TEXT 4."
+CompletedSummaries[4]="PLACEHOLDER FLAVOR TEXT 5."
 
 POIImages[0]="img:///UILibrary_StrategyImages.X2StrategyMap.POI_RadioTower"
 POIImages[1]="img:///UILibrary_StrategyImages.X2StrategyMap.POI_DeadAdvent"
+POIImages[2]="img:///UILibrary_StrategyImages.X2StrategyMap.POI_DeadAdvent"
+POIImages[3]="img:///UILibrary_StrategyImages.X2StrategyMap.POI_DeadAdvent"
+POIImages[4]="img:///UILibrary_StrategyImages.X2StrategyMap.POI_DeadAdvent"
+POIImages[5]="img:///UILibrary_StrategyImages.X2StrategyMap.POI_DeadAdvent"
+
+[Reward_ResistanceCard_POI X2RewardTemplate]
+DisplayName="Resistance Card"
+RewardDetails="You'll get a Resistance Order."

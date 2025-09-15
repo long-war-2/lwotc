@@ -49,7 +49,7 @@ static function bool CanResistanceCardPOIAppear(XComGameState_PointOfInterest PO
 	local XComGameState_HeadquartersResistance ResHQ;
 
 	ResHQ = class'UIUtilities_Strategy'.static.GetResistanceHQ();
-	if (ResHQ.GetHandCards().Length <= default.RESCARD_POI_MAX_CARDS_IN_HAND && `SecondWaveEnabled('DisableResistanceOrders'))
+	if (ResHQ.GetHandCards().Length <= default.RESCARD_POI_MAX_CARDS_IN_HAND && `SecondWaveEnabled('EnableResistanceOrders'))
 	{
 		return false;
 	}

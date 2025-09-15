@@ -1210,6 +1210,91 @@ static function bool GeoscapeReadyForUpdate()
 		StrategyMap.Movie.Pres.ScreenStack.GetCurrentScreen() == StrategyMap;
 }
 
+
+static function bool IsResistanceOrderActive(name ResistanceOrderName){
+	local XComGameState_StrategyCard CardState;
+	local StateObjectReference CardRef;
+	//local bool bCardPlayed;
+	local XComGameStateHistory History;
+	local XComGameState_ResistanceFaction FactionState;
+//	local array<Name> ExclusionList;
+//	local int NumActionsToAdd;
+	local XComGameState_Continent ContinentState;
+	
+	local XComGameState_HeadquartersResistance ResHQ;
+	History = `XCOMHISTORY;
+	//`Log("Checking over every single resistance order to see if it's the one we want; looking for: " $ ResistanceOrderName);
+	// go over each card active for each faction
+	
+	ResHQ = class'UIUtilities_Strategy'.static.GetResistanceHQ();
+
+	// First, going over faction-agnostic card slots
+	foreach ResHQ.WildCardSlots(CardRef)
+	{
+		if(CardRef.ObjectID != 0)
+		{
+			CardState = XComGameState_StrategyCard(History.GetGameStateForObjectID(CardRef.ObjectID));
+			if (CardState.GetMyTemplateName() == ResistanceOrderName)
+			{
+				`Log("This card IS the card I want: " $ CardState.GetMyTemplateName() );
+				return true;
+			}
+			else
+			{
+				//`Log("This faction order is NOT the one I want: " $ CardState.GetMyTemplateName());
+			}
+		}
+	}
+
+	foreach History.IterateByClassType(class'XComGameState_ResistanceFaction', FactionState)
+	{
+		//`Log("Checking over every single order in this faction to see if it's the one we want: " $ FactionState.GetMyTemplateName());
+
+		// for each faction checking each card slot in turn
+		foreach FactionState.CardSlots(CardRef)
+		{
+			if(CardRef.ObjectID != 0)
+			{
+				CardState = XComGameState_StrategyCard(History.GetGameStateForObjectID(CardRef.ObjectID));
+				if (CardState.GetMyTemplateName() == ResistanceOrderName)
+				{
+					`Log("This card IS the card I want: " $ CardState.GetMyTemplateName() );
+					return true;
+				}
+				else
+				{
+					//`Log("This faction order is NOT the one I want: " $ FactionState.GetMyTemplateName());
+
+				}
+			}
+		}
+	}
+
+	`LOG("Going over continent bonuses.");
+
+	// go over continent bonuses
+	foreach History.IterateByClassType(class'XComGameState_Continent', ContinentState){
+		CardState = XComGameState_StrategyCard(History.GetGameStateForObjectID(ContinentState.ContinentBonusCard.ObjectID));
+		if (CardState == none){
+			`LOG("Couldn't find continent bonus for object id!");
+		}
+        `LOG("observed possible continent bonus: " $ CardState.GetMyTemplateName());
+
+		if (CardState.GetMyTemplateName() == ResistanceOrderName){
+			if (ContinentState.bContinentBonusActive){
+				`LOG("successfully found targeted card as ACTIVE continent bonus: " $ ResistanceOrderName);
+				return true;
+			} else {
+				`LOG("observed targeted card as INACTIVE continent bonus: " $ ResistanceOrderName);
+			}
+		}
+	}
+
+	
+	return false;
+}
+
+
 defaultproperties
 {
 	CHOSEN_SPAWN_TAG_SUFFIX="_LWOTC_ChosenTag"

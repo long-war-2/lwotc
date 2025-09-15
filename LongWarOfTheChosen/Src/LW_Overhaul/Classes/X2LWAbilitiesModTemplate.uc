@@ -286,6 +286,8 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'Sacrifice':
 			AdjustSacrifice(Template);
 			break;
+		case 'vengeance':
+			AdjustVengeance(Template);
 		default:
 			break;
 
@@ -326,6 +328,33 @@ static function AdjustSacrifice(X2AbilityTemplate Template)
 		}
 	}
 }
+
+
+static function AdjustVengeance(X2AbilityTemplate Template)
+{
+	local X2Effect							Effect;
+	local X2Effect_Vengeance 	VengeanceEffect;
+	local X2AbilityTrigger_EventListener Listener;
+
+	foreach Template.AbilityMultiTargetEffects (Effect)
+	{
+		VengeanceEffect = X2Effect_Vengeance(Effect);
+
+		if(VengeanceEffect != none)
+		{
+			VengeanceEffect.DuplicateResponse = eDupe_Allow;
+			break;
+		}
+	}
+
+	Listener = new class'X2AbilityTrigger_EventListener';
+	Listener.ListenerData.Filter = eFilter_Unit;
+	Listener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	Listener.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	Listener.ListenerData.EventID = 'UnitBleedingOut';
+	Template.AbilityTriggers.AddItem(Listener);
+}
+
 
 function int FieldMedic_BonusWeaponAmmo(XComGameState_Unit UnitState, XComGameState_Item ItemState)
 {
