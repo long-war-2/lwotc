@@ -30,25 +30,26 @@ LocHelpText="Кидает нож в каждую цель в радиусе. О�
 LocPromotionPopupText="<Bullet/> Уникальный заряд. Не расходует обычные ножи.<br/><Bullet/> Рекомендуется использовать против множества врагов без укрытия.<br/>"
 ; End Translated (2)
 
+;LWOTC Translated
 [ThrowingKnife_CV_Secondary X2WeaponTemplate]
 FriendlyName="Нож"
 FriendlyNamePlural="Нож"
 BriefSummary="Метательные ножи сделаны из отличных сплавов."
-TacticalText="<Bullet/> Бросок ножа не снимает Тень."
+TacticalText="<Bullet/> Бросок ножа не снимает Тень, но снимает обычную маскировку.<br/><Bullet/> Шанс <Ability:THROWING_KNIFE_CV_BLEED_CHANCE/>% наложить кровотечение, которое наносит <Ability:THROWING_KNIFE_CV_BLEED_DAMAGE/> урона каждый ход в течение <Ability:THROWING_KNIFE_CV_BLEED_DURATION/> ходов."
 AbilityDescName="метательный нож"
 
 [ThrowingKnife_MG_Secondary X2WeaponTemplate]
 FriendlyName="Нож из сплавов"
 FriendlyNamePlural="Ножи из сплавов"
 BriefSummary="Метательные ножи, сделанные из инопланетных сплавов."
-TacticalText="<Bullet/> Бросок ножа не снимает Тень."
+TacticalText="<Bullet/> Бросок ножа не снимает Тень, но снимает обычную маскировку.<br/><Bullet/> Шанс <Ability:THROWING_KNIFE_MG_BLEED_CHANCE/>% наложить кровотечение, которое наносит <Ability:THROWING_KNIFE_MG_BLEED_DAMAGE/> урона каждый ход в течение <Ability:THROWING_KNIFE_MG_BLEED_DURATION/> ходов."
 AbilityDescName="метательный нож"
 
 [ThrowingKnife_BM_Secondary X2WeaponTemplate]
 FriendlyName="Теневой нож"
 FriendlyNamePlural="Теневые ножи"
 BriefSummary="Ножи с плазменным лезвием рассекают броню словно масло."
-TacticalText="<Bullet/> Бросок ножа не снимает Тень."
+TacticalText="<Bullet/> Бросок ножа не снимает Тень, но снимает обычную маскировку.<br/><Bullet/> Шанс <Ability:THROWING_KNIFE_BM_BLEED_CHANCE/>% наложить кровотечение, которое наносит <Ability:THROWING_KNIFE_BM_BLEED_DAMAGE/> урона каждый ход в течение <Ability:THROWING_KNIFE_BM_BLEED_DURATION/> ходов."
 AbilityDescName="метательный нож"
 
 ; End Translated

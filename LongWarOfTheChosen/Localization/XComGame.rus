@@ -6394,6 +6394,26 @@ LocHelpText="Бонус к урону в 50% при здоровье ниже 35
 LocLongDescription="Бонус к урону в 50% при здоровье ниже 35%."
 LocFlyOverText="Ярость крови"
 
+;LWOTC Translated
+[BloodBath_LW X2AbilityTemplate]
+LocFriendlyName="Кровавая банья"
+LocHelpText="Волна становится шире на 2 клетки и каждый задетый враг даёт 1 стак жажды крови."
+LocLongDescription="Волна становится шире на 2 клетки и каждый задетый враг даёт 1 стак жажды крови."
+LocFlyOverText="Кровавая баня"
+
+[MistyMadness_LW X2AbilityTemplate]
+LocFriendlyName="Занавес"
+LocHelpText="Радиус гранаты слепоты увеличен на 2."
+LocLongDescription="Радиус гранаты слепоты увеличен на 2."
+LocFlyOverText="Занавес"
+
+[Impenetrable_LW X2AbilityTemplate]
+LocFriendlyName="Стойкость"
+LocHelpText="Стак сопротивления урону увеличен на 1, и максимальный урон уменьшен на 10%."
+LocLongDescription="Стак сопротивления урону увеличен на 1, и максимальный урон уменьшен на 10%."
+LocFlyOverText="Стойкость"
+;End Translated
+
 [YouCannotHide_LW X2AbilityTemplate]
 LocFriendlyName="Тебе не скрыться"
 LocHelpText="Бонус +30% к меткости основного оружия."
@@ -7035,3 +7055,95 @@ LocPromotionPopupText="<Bullet/> \"Нова\" не требует действи
 LocLongDescription="Стандартный выстрел из основного оружия в качестве первого действия не заканчивает ход."
 LocHelpText="Стандартный выстрел из основного оружия в качестве первого действия не заканчивает ход."
 LocPromotionPopupText=""
+
+;LWOTC Translated
+[AvatarDamagedTeleport X2AbilityTemplate]
+LocFriendlyName="Телепорт"
+LocLongDescription="При получении урона, связывания, или схватывания Аватар может переместиться в новое место."
+LocHelpText="При получении урона, связывания, или схватывания Аватар может переместиться в новое место."
+LocFlyOverText="Телепорт"
+;End Translated
+
+;LWOTC Translated
+[GrappleExpert_LW X2AbilityTemplate]
+LocFriendlyName="Меткий крюк"
+LocLongDescription="Правосудие, Хлыст и Гнев имеют +15 к точности."
+LocHelpText="Правосудие, Хлыст и Гнев имеют +15 к точности."
+LocFlyOverText="Grapple Expert"
+;End Translated
+
+;LWOTC Translated
+[FocusedDefense_LW X2AbilityTemplate]
+LocFriendlyName="Адаптивная защита"
+LocLongDescription="Дополнительная защита <Ability:+Defense/> и дополнительное уклонение <Ability:+Dodge/> против ближайшего видимого врага. Не работает без укрытия, когда вас флангуют."
+LocHelpText="Дополнительная защита <Ability:+Defense/> и дополнительное уклонение <Ability:+Dodge/> против ближайшего видимого врага. Не работает без укрытия, когда вас флангуют."
+LocFlyOverText="Адаптивная защита"
+LocPromotionPopupText="<Bullet/> Бонус не применяется против атак ближнего боя.<br/><Bullet/> Если врагов несколько на одинаковой дистанции, бонус защиты работает против всех них.<br/>"
+;End Translated
+
+;LWOTC Translated
+[SensorOverlays_LW X2AbilityTemplate]
+LocFriendlyName="Наводчик уязвимости"
+LocLongDescription="Все бойцы отряда получают get <Ability:+Crit/> шанс крита против врагов которых вы видите."
+LocHelpText="Все бойцы отряда получают get <Ability:+Crit/> шанс крита против врагов которых вы видите."
+LocFlyOverText="Наводчик уязвимости""
+LocPromotionPopupText="<Bullet/> Не работает с общим видом.<br/>"
+;End Translated
+
+;LWOTC Translated
+[LineEmUp_LW X2AbilityTemplate]
+LocFriendlyName="Цель №1"
+LocLongDescription="Бонус <Ability:+ToHit/> точности и <Ability:+Crit/> крит шанса на дистанционные атаки против ближайшего видимого врага."
+LocHelpText="Бонус <Ability:+ToHit/> точности и <Ability:+Crit/> крит шанса на дистанционные атаки против ближайшего видимого врага."
+LocFlyOverText="Цель №1"
+LocPromotionPopupText="<Bullet/> Если несколько противников на одинаковой дистанции, бонус будет работать против них всех.<br/><Bullet/> Не работает на атаки ближнего боя.<br/>"
+;End Translated
+
+;LWOTC Translated
+[FreeScanner_LW X2AbilityTemplate]
+LocFriendlyName="Разведчик"
+LocHelpText="Раз в 4 хода можно кинуть боевой сканер свободным действием."
+LocLongDescription="Раз в 4 хода можно кинуть боевой сканер свободным действием. Не требует и не расходует экипированный боевой сканер."
+LocPromotionPopupText="<Bullet/> Боевые сканеры у это способности неограничены числом, только временем перезарядки способности.\n<Bullet/> Боевой сканер этой способности не связан с экипированным, или предостостовляемым другой способностью сканером."
+;End Translated
+
+;LWOTC Translated
+LocFriendlyName="Анатом"
+LocFlyOverText="Анатом"
+LocLongDescription="Получает +<Ability:ANATOMY_CRIT_TAG> крит шанс и +<Ability:ANATOMY_PIERCE_TAG> пробивания брони."
+LocHelpText="Получает +<Ability:ANATOMY_CRIT_TAG> крит шанс и +<Ability:ANATOMY_PIERCE_TAG> пробивания брони."
+LocPromotionPopupText="<Bullet> Применяется ко всем атакам.<br><Bullet> Пассивно."
+;End Translated
+
+;LWOTC Translated
+[SpectralZombieImmunitiesPassive X2AbilityTemplate]
+LocFriendlyName="Иммунитет призрачного зомби"
+LocFlyOverText="Иммунитет призрачного зомби"
+LocLongDescription="Призрачные зомби имунны к пси-воздействию, огню, яду и кислоте."
+LocHelpText=Призрачные зомби имунны к пси-воздействию, огню, яду и кислоте."
+LocPromotionPopupText=""
+
+[PsiZombieImmunitiesPassive X2AbilityTemplate]
+LocFriendlyName="Иммунитет пси зомби"
+LocFlyOverText="Иммунитет пси зомби"
+LocLongDescription="Пси зомби имунны к пси воздействиям и яду."
+LocHelpText="Пси зомби имунны к пси воздействиям и яду."
+LocPromotionPopupText=""
+
+[LostImmunitiesPassive X2AbilityTemplate]
+LocFriendlyName="Иммунитет странника"
+LocFlyOverText="Иммунитет странника"
+LocLongDescription="Странники имунны к пси воздействию яду и кислоте."
+LocHelpText="Странники имунны к пси воздействию яду и кислоте."
+LocPromotionPopupText=""
+
+[UIStrategyMapItem_Region]
+m_strLockedTT=Мы не можем установить контакт с сопротивлением в этом регионе. Мы должны сперва установить контакт с соседним регионом. 
+m_strUnlockedTT=Сопротивление <XGParam:StrValue0/!WorldRegionName/> присоединится если мы установим контакт с ними!
+m_strContactTT=Сопротивление <XGParam:StrValue0/!WorldRegionName/> производит доход <XGParam:StrValue1/!Quantity/> материалов.
+m_strOutpostTT=Мы установили радиоретранслятор! Это увеличит эффективность работ сопротивления и снизит стоимость контакта с соседними регионами.
+
+[ResCard_LiveFireTraining X2StrategyCardTemplate]
+SummaryText="Любой новобранец прошедший обучение в партизанской школе получит звание Капрала."
+
+;End Translated
