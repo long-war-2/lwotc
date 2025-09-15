@@ -1372,7 +1372,7 @@ static function EventListenerReturn HandleResistanceOrders(Object EventData, Obj
 		{
 			if(FactionState.CardSlots[i].ObjectID != 0)
 			{
-				CardState = XComGameState_StrategyCard(NewGameState.ModifyStateObject(class'XComGameState_StrategyCard', ResHQ.WildCardSlots[i].ObjectID));
+				CardState = XComGameState_StrategyCard(NewGameState.ModifyStateObject(class'XComGameState_StrategyCard', FactionState.CardSlots[i].ObjectID));
 
 				if(default.PERMAMENT_RESISTANCE_ORDERS.Find(CardState.GetMyTemplateName()) != INDEX_NONE)
 				{
