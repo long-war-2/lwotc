@@ -32,6 +32,9 @@ static function array<X2DataTemplate> CreateTemplates()
 	Rewards.AddItem(CreateDummyStatBoostRewardTemplate());
 	Rewards.AddItem(CreateSupplyMissionRewardTemplate());
 	Rewards.AddItem(CreateDetachmentMissionRewardTemplate());
+	Rewards.AddItem(CreateResistanceCardRewardTemplate_LW());
+
+	
 	return Rewards;
 }
 

@@ -1355,7 +1355,7 @@ static function EventListenerReturn HandleResistanceOrders(Object EventData, Obj
 		{
 			CardState = XComGameState_StrategyCard(NewGameState.ModifyStateObject(class'XComGameState_StrategyCard', ResHQ.WildCardSlots[i].ObjectID));
 
-			if(default.PERMAMENT_RESISTANCE_ORDERS.Find(CardState.GetMyTemplateName()) != INDEX_NONE){
+			if(default.PERMAMENT_RESISTANCE_ORDERS.Find(CardState.GetMyTemplateName()) == INDEX_NONE){
 
 				RemovedWildCards.AddItem(ResHQ.WildCardSlots[i]);
 				ResHQ.RemoveCardFromSlot(i);
@@ -1374,7 +1374,7 @@ static function EventListenerReturn HandleResistanceOrders(Object EventData, Obj
 			{
 				CardState = XComGameState_StrategyCard(NewGameState.ModifyStateObject(class'XComGameState_StrategyCard', FactionState.CardSlots[i].ObjectID));
 
-				if(default.PERMAMENT_RESISTANCE_ORDERS.Find(CardState.GetMyTemplateName()) != INDEX_NONE)
+				if(default.PERMAMENT_RESISTANCE_ORDERS.Find(CardState.GetMyTemplateName()) == INDEX_NONE)
 				{
 					FactionState.RemoveCardFromSlot(i);
 					CardState.bDrawn = false;

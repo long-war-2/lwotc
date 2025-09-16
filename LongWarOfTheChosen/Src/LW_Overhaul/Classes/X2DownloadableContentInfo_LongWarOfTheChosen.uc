@@ -8053,7 +8053,7 @@ static function string GetSummaryTextExpanded(StateObjectReference InRef)
 {
 	 local XComGameState_StrategyCard CardState;
 	 local X2StrategyCardTemplate CardTemplate;
-	// local XGParamTag ParamTag;
+	 local XGParamTag ParamTag;
 	// local X2AbilityTag AbilityTag;
 	 local string PermamentString;
 	// local array<ResistanceCardConfigValues> Configs;
@@ -8078,11 +8078,11 @@ static function string GetSummaryTextExpanded(StateObjectReference InRef)
 	// 	ParamTag.IntValue1 = CurrentConfig.IntValue1;
 	// }
 
-    // if(CardTemplate.GetMutatorValueFn != none)
-	// {
-	// 	ParamTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
-	// 	ParamTag.IntValue0 = CardTemplate.GetMutatorValueFn();
-	// }
+    if(CardTemplate.GetMutatorValueFn != none)
+	{
+		ParamTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
+		ParamTag.IntValue0 = CardTemplate.GetMutatorValueFn();
+	}
 
 
 	// AbilityTag = X2AbilityTag(`XEXPANDCONTEXT.FindTag("Ability"));

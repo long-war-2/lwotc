@@ -3408,9 +3408,6 @@ SkirmisherTutorialText="The Skirmisher is a mobile unit that can fire their Bull
 
 ; End Translation
 
-[ContinentBonus_QuidProQuo X2GameplayMutatorTemplate]
-SummaryText="Black Market items cost %VALUE% less Supplies."
-
 [ContinentBonus_Wired X2GameplayMutatorTemplate]
 DisplayName="Wired"
 SummaryText="You may remove PCS units from your soldiers without destroying the items, enabling them to be swapped to other soldiers."
@@ -8151,7 +8148,6 @@ POIImages[1]="img:///UILibrary_StrategyImages.X2StrategyMap.POI_DeadAdvent"
 POIImages[2]="img:///UILibrary_StrategyImages.X2StrategyMap.POI_DeadAdvent"
 POIImages[3]="img:///UILibrary_StrategyImages.X2StrategyMap.POI_DeadAdvent"
 POIImages[4]="img:///UILibrary_StrategyImages.X2StrategyMap.POI_DeadAdvent"
-POIImages[5]="img:///UILibrary_StrategyImages.X2StrategyMap.POI_DeadAdvent"
 
 [Reward_ResistanceCard_POI X2RewardTemplate]
 DisplayName="Resistance Card"
