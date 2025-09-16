@@ -85,17 +85,14 @@ LocPromotionPopupText="<Bullet/> Reanimate all nearby dead organics, turning the
 LocFriendlyName="Ready For Anything"
 LocFlyOverText="Overwatch: Ready For Anything"
 ; LWOTC Needs Translation
-LocHelpText="Enter overwatch after firing a turn-ending standard shot with your primary weapon."
-LocLongDescription="Enter overwatch after firing a turn-ending standard shot with your primary weapon."
-LocPromotionPopupText="<Bullet/> Enter overwatch after firing a turn-ending standard shot with your primary weapon."
+LocHelpText="Once per turn, enter overwatch after taking a standard shot with your <Ability:BOUND_WEAPON_NAME>."
+LocLongDescription="Enter overwatch after firing a turn-ending standard shot with your <Ability:BOUND_WEAPON_NAME>."
+LocPromotionPopupText="<Bullet> Standard shot abilities also include Standard Sniper Shot, Light 'Em Up and Pistol Shot."
 ; End Translation
 
-[ReadyForAnythingFlyover X2AbilityTemplate]
+[ReadyForAnythingTrigger X2AbilityTemplate]
 LocFriendlyName="Ready For Anything"
-LocFlyOverText="Overwatch: Ready For Anything"
-LocHelpText="Enter Overwatch after firing a standard shot with your primary weapon."
-LocLongDescription="Enter Overwatch after firing a standard shot with your primary weapon."
-LocPromotionPopupText="<Bullet/> Enter Overwatch after firing a standard shot with your primary weapon."
+LocFlyOverText="Ready For Anything"
 
 [RepairServos X2AbilityTemplate]
 LocFriendlyName="Damage Control"
