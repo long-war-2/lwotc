@@ -126,6 +126,8 @@ static function String GetDifficultyString(XComGameState_MissionSite MissionStat
 				DummyMissionSite.SelectedMissionData.AlertLevel = max(1, MissionState.SelectedMissionData.AlertLevel + AlertModifier);
 				RulerMgr = XComGameState_AlienRulerManager(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_AlienRulerManager'));
 				class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.FixALienRulerTagsUINoState(DummyMissionSite);
+				// Force a cache miss so that the next CacheSelectedMissionData call actually updates the dummy mission.
+				DummyMissionSite.SelectedMissionData.ForceLevel = 0; 
 			}
 
 			DummyMissionSite.CacheSelectedMissionData(MissionState.SelectedMissionData.ForceLevel, max(1, MissionState.SelectedMissionData.AlertLevel + AlertModifier));
@@ -143,7 +145,7 @@ static function String GetDifficultyString(XComGameState_MissionSite MissionStat
 
 			if(class'LWDLCHelpers'.static.IsAlienRulerOnMission(DummyMissionSite))
 			{
-				// Clear the ruler tags afterwards again.
+				// Clear the ruler tags from XComHQ if we added them for mission testing.
 				NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Remove ruler tags again");
 				XComHQ = `XCOMHQ;
 				XComHQ = XComGameState_HeadquartersXCom(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
