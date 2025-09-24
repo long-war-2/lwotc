@@ -12,14 +12,16 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 {
 	
 	local XComGameState_Unit SourceUnit;
+	local XComGameState_Ability AbilityState;
     
 	super.OnEffectAdded(ApplyEffectParameters, kNewTargetState, NewGameState, NewEffectState);
 
 	SourceUnit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.SourceStateObjectRef.ObjectID));
+	AbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.AbilityStateObjectRef.ObjectID));
 
 	if(SourceUnit.HasSoldierAbility('BloodBath_LW'))
 	{
-		`XEVENTMGR.TriggerEvent('HarborWaveDealtDamage', SourceUnit, SourceUnit, NewGameState);
+		`XEVENTMGR.TriggerEvent('HarborWaveDealtDamage', AbilityState, SourceUnit, NewGameState);
 	}
 	
 }
