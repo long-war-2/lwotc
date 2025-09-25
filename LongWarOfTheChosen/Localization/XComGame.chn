@@ -6343,6 +6343,15 @@ LocHelpText="投掷或发射榴弹后，将自动进入监视状态。"
 LocPromotionPopupText="<Bullet/> 投掷或发射榴弹后，将自动进入监视状态。<br/>"
 ; End Translation (2)
 
+[WatchThemRun_LW_Passive X2AbilityTemplate]
+LocFriendlyName="未雨绸缪"
+LocFlyOverText="未雨绸缪"
+; LWOTC Needs Translation (2)
+LocLongDescription="投掷或发射榴弹后，将自动进入监视状态。"
+LocHelpText="投掷或发射榴弹后，将自动进入监视状态。"
+LocPromotionPopupText="<Bullet/> 投掷或发射榴弹后，将自动进入监视状态。<br/>"
+; End Translation (2)
+
 ; LWOTC Needs Translation (2)
 [Avenger_LW X2AbilityTemplate]
 LocFriendlyName="复仇者"

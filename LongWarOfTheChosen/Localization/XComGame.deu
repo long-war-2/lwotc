@@ -5515,6 +5515,13 @@ LocLongDescription="Nachdem du eine Granate geworfen hast, gehst du automatisch 
 LocHelpText="Nachdem du eine Granate geworfen hast, gehst du automatisch in Feuerschutz."
 LocPromotionPopupText="<Bullet/> Nachdem du eine Granate geworfen hast, gehst du automatisch in Feuerschutz.<br/>"
 
+[WatchThemRun_LW_Passive X2AbilityTemplate]
+LocFriendlyName="Seht sie rennen!"
+LocFlyOverText="Seht sie rennen!"
+LocLongDescription="Nachdem du eine Granate geworfen hast, gehst du automatisch in Feuerschutz."
+LocHelpText="Nachdem du eine Granate geworfen hast, gehst du automatisch in Feuerschutz."
+LocPromotionPopupText="<Bullet/> Nachdem du eine Granate geworfen hast, gehst du automatisch in Feuerschutz.<br/>"
+
 [Avenger_LW X2AbilityTemplate]
 LocFriendlyName="Rächer"
 LocFlyOverText="Rächer"
