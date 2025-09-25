@@ -2167,11 +2167,6 @@ static function EventListenerReturn AbilityTriggerEventListener_WatchThemRun(Obj
     {
         if (EventAbilityState != none && CallbackAbilityState != none)
         {
-            // if (/* bMatchSourceWeapon */ && CallbackAbilityState.SourceWeapon.ObjectID != 0 && CallbackAbilityState.SourceWeapon.ObjectID != AbilityContext.InputContext.ItemObject.ObjectID)
-            // {
-            //     return ELR_NoInterrupt;
-            // }
-
             if (default.WATCHTHEMRUN_TRIGGERS.Find(EventAbilityState.GetMyTemplateName()) != INDEX_NONE)
             {
                 return CallbackAbilityState.AbilityTriggerEventListener_Self(EventData, EventSource, GameState, EventID, CallbackData);
