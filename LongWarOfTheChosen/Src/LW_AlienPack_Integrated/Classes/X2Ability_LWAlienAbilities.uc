@@ -1005,6 +1005,8 @@ static function X2AbilityTemplate ReadyForAnything()
     Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
     Template.bCrossClassEligible = true;
+    
+    Template.DefaultSourceItemSlot = eInvSlot_PrimaryWeapon;
 
     Template.AdditionalAbilities.AddItem('ReadyForAnythingTrigger');
 
@@ -1013,14 +1015,13 @@ static function X2AbilityTemplate ReadyForAnything()
 
 static function X2AbilityTemplate ReadyForAnythingTrigger()
 {
-    local X2AbilityTemplate                 Template;
-    local X2AbilityTrigger_EventListener    Trigger;
-    local X2Condition_UnitEffects           SuppressedCondition;
-    local X2Effect_LWReserveOverwatchPoints ReserveEffect;
-    local X2Effect_CoveringFire             CoveringFireEffect;
-    local X2Condition_AbilityProperty       CoveringFireCondition;
-    local X2Condition_UnitValue             ValueCondition;
-    local X2Effect_IncrementUnitValue       UnitValueEffect;
+    local X2AbilityTemplate                     Template;
+    local X2AbilityTrigger_EventListener        Trigger;
+    local X2Condition_UnitEffects               SuppressedCondition;
+    local X2AbilityCost_Ammo                    AmmoCost;
+    local X2Effect_LWReserveOverwatchPoints     ReserveEffect;
+    local X2Condition_UnitValue                 ValueCondition;
+    local X2Effect_IncrementUnitValue           UnitValueEffect;
 
     `CREATE_X2ABILITY_TEMPLATE(Template, 'ReadyForAnythingTrigger');
 
@@ -1050,31 +1051,33 @@ static function X2AbilityTemplate ReadyForAnythingTrigger()
     SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
     Template.AbilityShooterConditions.AddItem(SuppressedCondition);
 
+    if (class'X2Effect_ReadyForAnything'.default.bMatchSourceWeapon)
+    {
+        AmmoCost = new class'X2AbilityCost_Ammo';
+        AmmoCost.iAmmo = 1;
+        AmmoCost.bFreeCost = true;
+        Template.AbilityCosts.AddItem(AmmoCost);
+    }
+
     ReserveEffect = new class'X2Effect_LWReserveOverwatchPoints';
     ReserveEffect.bMatchSourceWeapon = class'X2Effect_ReadyForAnything'.default.bMatchSourceWeapon;
     Template.AddTargetEffect(ReserveEffect);
     
-    CoveringFireEffect = new class'X2Effect_CoveringFire';
-    CoveringFireEffect.AbilityToActivate = 'OverwatchShot';
-    CoveringFireEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
-    CoveringFireCondition = new class'X2Condition_AbilityProperty';
-    CoveringFireCondition.OwnerHasSoldierAbilities.AddItem('CoveringFire');
-    CoveringFireEffect.TargetConditions.AddItem(CoveringFireCondition);
-    Template.AddTargetEffect(CoveringFireEffect);
+    Template.AddTargetEffect(class'X2Effect_LWCoveringFire'.static.CreateCoveringFireEffect(class'X2Effect_ReadyForAnything'.default.bMatchSourceWeapon));
 
     if (class'X2Effect_ReadyForAnything'.default.RFA_ACTIVATIONS_PER_TURN > 0)
     {
         ValueCondition = new class'X2Condition_UnitValue';
         ValueCondition.AddCheckValue(class'X2Effect_ReadyForAnything'.default.CounterName, class'X2Effect_ReadyForAnything'.default.RFA_ACTIVATIONS_PER_TURN, eCheck_LessThan);
         Template.AbilityShooterConditions.AddItem(ValueCondition);
-
-        UnitValueEffect = new class'X2Effect_IncrementUnitValue';
-        UnitValueEffect.UnitName = class'X2Effect_ReadyForAnything'.default.CounterName;
-        UnitValueEffect.NewValueToSet = 1;
-        UnitValueEffect.CleanupType = eCleanup_BeginTurn;
-        UnitValueEffect.bApplyOnMiss = true;
-        Template.AddShooterEffect(UnitValueEffect);
     }
+
+    UnitValueEffect = new class'X2Effect_IncrementUnitValue';
+    UnitValueEffect.UnitName = class'X2Effect_ReadyForAnything'.default.CounterName;
+    UnitValueEffect.NewValueToSet = 1;
+    UnitValueEffect.CleanupType = eCleanup_BeginTurn;
+    UnitValueEffect.bApplyOnMiss = true;
+    Template.AddShooterEffect(UnitValueEffect);
 
     Template.bSkipFireAction = true;
 
