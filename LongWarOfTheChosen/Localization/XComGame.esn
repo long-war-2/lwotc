@@ -6536,6 +6536,15 @@ LocHelpText="Después de lanzar o tirar una granada entrarás automáticamente e
 LocPromotionPopupText="<Bullet/> Después de lanzar o tirar una granada entrarás automáticamente en guardia.<br/>"
 ; End translated
 
+[WatchThemRun_LW_Passive X2AbilityTemplate]
+LocFriendlyName="Míralos correr"
+LocFlyOverText="Míralos correr"
+; LWOTC translated
+LocLongDescription="Después de lanzar o tirar una granada entrarás automáticamente en guardia."
+LocHelpText="Después de lanzar o tirar una granada entrarás automáticamente en guardia."
+LocPromotionPopupText="<Bullet/> Después de lanzar o tirar una granada entrarás automáticamente en guardia.<br/>"
+; End translated
+
 ; LWOTC Needs Translation (2)
 [Avenger_LW X2AbilityTemplate]
 LocFriendlyName="Avenger"

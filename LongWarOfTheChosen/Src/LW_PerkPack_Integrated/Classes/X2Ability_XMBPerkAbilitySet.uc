@@ -179,10 +179,11 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(TrenchWarfare());
 	Templates.AddItem(Dedication());
 	Templates.AddItem(WatchThemRun());
-    Templates.AddItem(Avenger());
+	Templates.AddItem(WatchThemRunPassive());
+	Templates.AddItem(Avenger());
 	Templates.AddItem(Predator());
 	Templates.AddItem(Stiletto());
-    Templates.AddItem(OpenFire());
+	Templates.AddItem(OpenFire());
 	Templates.AddItem(Impulse());
 	Templates.AddItem(Maim());
 	Templates.AddItem(SurvivalInstinct());
@@ -2041,69 +2042,141 @@ static function X2AbilityTemplate Corpsman()
 
     return Template;
 }
-static function X2AbilityTemplate WatchThemRun()
+
+static function X2AbilityTemplate WatchThemRun(optional bool bMatchSourceWeapon = true)
 {
-	local X2AbilityTemplate                 Template;
-	local X2Condition_PrimaryWeapon   AmmoCondition;
-	local XMBCondition_AbilityName   NameCondition;
-    local X2Effect_AddOverwatchActionPoints   Effect;
-    local X2Condition_UnitValue ValueCondition;
-    local X2Effect_IncrementUnitValue IncrementEffect;
-	local X2Effect_CoveringFire CoveringFireEffect;
-	local X2Condition_AbilityProperty CoveringFireCondition;
+    local X2AbilityTemplate                     Template;
+    local X2AbilityTrigger_EventListener        Trigger;
+    local X2Condition_UnitEffects               SuppressedCondition;
+    local X2AbilityCost_Ammo                    AmmoCost;
+    local X2Effect_LWReserveOverwatchPoints     ReserveEffect;
+    local X2Condition_UnitValue                 ValueCondition;
+    local X2Effect_IncrementUnitValue           UnitValueEffect;
 
-    // Effect granting an overwatch shot
-	Effect = new class'X2Effect_AddOverwatchActionPoints';
+    `CREATE_X2ABILITY_TEMPLATE(Template, 'WatchThemRun_LW');
+
+    Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_overwatch_grenade";
+    Template.AbilitySourceName = 'eAbilitySource_Perk';
+    Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+    Template.Hostility = eHostility_Neutral;
+
+    Template.bCrossClassEligible = true;
+
+    Template.AbilityToHitCalc = default.DeadEye;
+    Template.AbilityTargetStyle = default.SelfTarget;
+
+    Trigger = new class'X2AbilityTrigger_EventListener';
+    Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+    Trigger.ListenerData.EventID = 'AbilityActivated';
+    Trigger.ListenerData.Filter = eFilter_Unit;
+    Trigger.ListenerData.EventFn = AbilityTriggerEventListener_WatchThemRun;
+    Trigger.ListenerData.Priority = 30;
+    Template.AbilityTriggers.AddItem(Trigger);
+
+    Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+    Template.AddShooterEffectExclusions();
+
+    SuppressedCondition = new class'X2Condition_UnitEffects';
+    SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
+    SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
+    Template.AbilityShooterConditions.AddItem(SuppressedCondition);
+
+    if (bMatchSourceWeapon)
+    {
+        AmmoCost = new class'X2AbilityCost_Ammo';
+        AmmoCost.iAmmo = 1;
+        AmmoCost.bFreeCost = true;
+        Template.AbilityCosts.AddItem(AmmoCost);
+    }
+
+    ReserveEffect = new class'X2Effect_LWReserveOverwatchPoints';
+    ReserveEffect.bMatchSourceWeapon = bMatchSourceWeapon;
+    Template.AddTargetEffect(ReserveEffect);
     
-	Template = SelfTargetTrigger('WatchThemRun_LW', "img:///UILibrary_XPerkIconPack.UIPerk_overwatch_grenade", true, Effect, 'AbilityActivated');
-    Template.bShowActivation = true;
+    Template.AddTargetEffect(class'X2Effect_LWCoveringFire'.static.CreateCoveringFireEffect(bMatchSourceWeapon));
 
-	// Only when Throw/Launch Grenade abilities are used
-    NameCondition = new class'XMBCondition_AbilityName';
-    NameCondition.IncludeAbilityNames = default.WATCHTHEMRUN_TRIGGERS; 
-    NameCondition.IncludeAbilityNames.AddItem('ThrowGrenade');
-    NameCondition.IncludeAbilityNames.AddItem('LaunchGrenade');
-    class'XMBAbility'.static.AddTriggerTargetCondition(Template, NameCondition);
-    AddTriggerTargetCondition(Template, NameCondition);
+    if (default.WATCHTHEMRUN_ACTIVATIONS_PER_TURN > 0)
+    {
+        ValueCondition = new class'X2Condition_UnitValue';
+        ValueCondition.AddCheckValue('WatchThemRun_LW_Activations', default.WATCHTHEMRUN_ACTIVATIONS_PER_TURN, eCheck_LessThan);
+        Template.AbilityShooterConditions.AddItem(ValueCondition);
+    }
 
-    // Require that the user has ammo left
-	AmmoCondition = new class'X2Condition_PrimaryWeapon';
-	AmmoCondition.AddAmmoCheck(0, eCheck_GreaterThan);
-	AddTriggerTargetCondition(Template, AmmoCondition);
+    UnitValueEffect = new class'X2Effect_IncrementUnitValue';
+    UnitValueEffect.UnitName = 'WatchThemRun_LW_Activations';
+    UnitValueEffect.NewValueToSet = 1;
+    UnitValueEffect.CleanupType = eCleanup_BeginTurn;
+    UnitValueEffect.bApplyOnMiss = true;
+    Template.AddShooterEffect(UnitValueEffect);
+
+    Template.bSkipFireAction = true;
+
+    Template.AbilityConfirmSound = "Unreal2DSounds_OverWatch";
+    Template.CinescriptCameraType = "Overwatch";
+
+    Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+    Template.BuildVisualizationFn = class'X2Ability_LWAlienAbilities'.static.ReadyForAnything_BuildVisualization;
     
-	// Limit activations
-	if (default.WATCHTHEMRUN_ACTIVATIONS_PER_TURN > 0)
-	{
-		// Limit activations
-    	ValueCondition = new class'X2Condition_UnitValue';
-    	ValueCondition.AddCheckValue('WatchThemRun_LW_Activations', default.WATCHTHEMRUN_ACTIVATIONS_PER_TURN, eCheck_LessThan);
-    	Template.AbilityTargetConditions.AddItem(ValueCondition);
-	}
+    Template.DefaultSourceItemSlot = eInvSlot_PrimaryWeapon;
+    
+    Template.AdditionalAbilities.AddItem('WatchThemRun_LW_Passive');
+    
+    return Template;
+}
 
-    // Create an effect that will increment the unit value
-	IncrementEffect = new class'X2Effect_IncrementUnitValue';
-	IncrementEffect.UnitName = 'WatchThemRun_LW_Activations';
-	IncrementEffect.NewValueToSet = 1; // This means increment by one -- stupid property name
-	IncrementEffect.CleanupType = eCleanup_BeginTurn;
-    Template.AddTargetEffect(IncrementEffect);
+static function X2AbilityTemplate WatchThemRunPassive()
+{
+    local X2AbilityTemplate     Template;
+    local X2Effect_Persistent   PersistentEffect;
 
-	CoveringFireEffect = new class'X2Effect_CoveringFire';
-	CoveringFireEffect.AbilityToActivate = 'OverwatchShot';
-	CoveringFireEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
-	CoveringFireCondition = new class'X2Condition_AbilityProperty';
-	CoveringFireCondition.OwnerHasSoldierAbilities.AddItem('CoveringFire');
-	CoveringFireEffect.TargetConditions.AddItem(CoveringFireCondition);
-	Template.AddTargetEffect(CoveringFireEffect);
-	
-	// Trigger abilities don't appear as passives. Add a passive ability icon.
-	AddIconPassive(Template);
+    `CREATE_X2ABILITY_TEMPLATE(Template, 'WatchThemRun_LW_Passive');
 
-	// If this ability is set up as a cross class ability, but it's not directly assigned to any classes, this is the weapon slot it will use
-	Template.DefaultSourceItemSlot = eInvSlot_PrimaryWeapon;
+    Template.IconImage = "img:///UILibrary_LWAlienPack.LW_AbilityReadyForAnything";
+    Template.AbilitySourceName = 'eAbilitySource_Perk';
+    Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+    Template.Hostility = eHostility_Neutral;
+    Template.bIsPassive = true;
+
+    Template.AbilityToHitCalc = default.DeadEye;
+    Template.AbilityTargetStyle = default.SelfTarget;
+    Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+    PersistentEffect = new class'X2Effect_Persistent';
+    PersistentEffect.EffectName = 'WatchThemRun_LW_Passive';
+    PersistentEffect.BuildPersistentEffect(1, true, false);
+    PersistentEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
+    Template.AddTargetEffect(PersistentEffect);
+
+    Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+    Template.bCrossClassEligible = false;
 
     return Template;
 }
 
+static function EventListenerReturn AbilityTriggerEventListener_WatchThemRun(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+    local XComGameState_Ability             EventAbilityState;
+    local XComGameState_Ability             CallbackAbilityState;
+    local XComGameStateContext_Ability      AbilityContext;
+
+    EventAbilityState = XComGameState_Ability(EventData);
+    CallbackAbilityState = XComGameState_Ability(CallbackData);
+    AbilityContext = XComGameStateContext_Ability(GameState.GetContext());
+
+    if (AbilityContext != none && AbilityContext.InterruptionStatus != eInterruptionStatus_Interrupt)
+    {
+        if (EventAbilityState != none && CallbackAbilityState != none)
+        {
+            if (default.WATCHTHEMRUN_TRIGGERS.Find(EventAbilityState.GetMyTemplateName()) != INDEX_NONE)
+            {
+                return CallbackAbilityState.AbilityTriggerEventListener_Self(EventData, EventSource, GameState, EventID, CallbackData);
+            }
+        }
+    }
+
+    return ELR_NoInterrupt;
+}
 
 static function X2AbilityTemplate Avenger()
 {
