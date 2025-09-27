@@ -1359,7 +1359,7 @@ static function X2AbilityTemplate CreateCollateralAbility()
 static function X2AbilityTemplate Reboot()
 {
 	local X2AbilityTemplate             Template;
-	local X2Effect_Sustain              SustainEffect;
+	local X2Effect_Sustain_LW              SustainEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Reboot_LW');
 
@@ -1373,8 +1373,8 @@ static function X2AbilityTemplate Reboot()
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 
-	SustainEffect = new class'X2Effect_Sustain';
-	SustainEffect.BuildPersistentEffect(1, true, true);
+	SustainEffect = new class'X2Effect_Sustain_LW';
+	SustainEffect.BuildPersistentEffect(1, true, false);
 	SustainEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
 	Template.AddTargetEffect(SustainEffect);
 
@@ -2297,7 +2297,7 @@ static function X2AbilityTemplate LayeredArmour()
 	ArmourEffect = new class'X2Effect_MeristLayeredArmor';
 	ArmourEffect.PrcDamageCap = default.LAYERED_MULT;
 	ArmourEffect.bCapBurstFire = true;
-	ArmourEffect.BuildPersistentEffect(1, true, true, true);
+	ArmourEffect.BuildPersistentEffect(1, true, false, true);
 	ArmourEffect.strFlyoverMessage=Template.LocFriendlyName;
 	ArmourEffect.strFlyoverIcon=Template.IconImage;
 	ArmourEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, , , Template.AbilitySourceName);

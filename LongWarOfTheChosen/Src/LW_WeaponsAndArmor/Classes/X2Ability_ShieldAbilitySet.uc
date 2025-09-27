@@ -170,7 +170,7 @@ static function X2AbilityTemplate BallisticShield_GenerateCover()
 
 
 	AntiFlankEffect = new class'X2Effect_ShieldGuard';
-	AntiFlankEffect.BuildPersistentEffect(1, true, true, false, eGameRule_PlayerTurnBegin);
+	AntiFlankEffect.BuildPersistentEffect(1, true, false, false, eGameRule_PlayerTurnBegin);
 	Template.AddShooterEffect(AntiFlankEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;

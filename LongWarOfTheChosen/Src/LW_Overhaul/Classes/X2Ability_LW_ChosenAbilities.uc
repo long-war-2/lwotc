@@ -1983,7 +1983,7 @@ static function X2DataTemplate FreeGrenades()
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 
 	GrenadeEffect = new class'X2Effect_FreeGrenades';
-	GrenadeEffect.BuildPersistentEffect(1, true, true);
+	GrenadeEffect.BuildPersistentEffect(1, true, false);
 
 	Template.AddTargetEffect(GrenadeEffect);
 
@@ -2345,7 +2345,7 @@ static function X2AbilityTemplate CreateDisabler()
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 
 	ChosenLootEffect = new class'X2Effect_ChosenLoot';
-	ChosenLootEffect.BuildPersistentEffect(1, true, true, true);
+	ChosenLootEffect.BuildPersistentEffect(1, true, false, true);
 	Template.AddShooterEffect(ChosenLootEffect);
 
 	Template.bSkipFireAction = true;
@@ -2404,7 +2404,7 @@ static function X2AbilityTemplate CreateUnstoppable()
 
 
 	UnstoppableEffect = new class'X2Effect_Unstoppable';
-	UnstoppableEffect.BuildPersistentEffect(1, true, true,, eGameRule_PlayerTurnBegin);
+	UnstoppableEffect.BuildPersistentEffect(1, true, false,, eGameRule_PlayerTurnBegin);
 	UnstoppableEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
 	UnstoppableEffect.AddStatCap(eStat_Mobility,default.UNSTOPPABLE_MIN_MOB,true);
 	Template.AddTargetEffect(UnstoppableEffect);
@@ -2456,7 +2456,7 @@ static function X2AbilityTemplate CreaterRuptureImmunity()
 
 
 	RuptureImmunityEffect = new class'X2Effect_RuptureImmunity';
-	RuptureImmunityEffect.BuildPersistentEffect(1, true, true,, eGameRule_PlayerTurnBegin);
+	RuptureImmunityEffect.BuildPersistentEffect(1, true, false,, eGameRule_PlayerTurnBegin);
 	RuptureImmunityEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
 	Template.AddTargetEffect(RuptureImmunityEffect);
 

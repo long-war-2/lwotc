@@ -1318,7 +1318,7 @@ static function X2AbilityTemplate ZoneOfControl_LW()
 
     PersistentEffect = new class'X2Effect_Persistent';
     PersistentEffect.EffectName = 'ZoneOfControl_LW_Passive';
-    PersistentEffect.BuildPersistentEffect(1, true, true);
+    PersistentEffect.BuildPersistentEffect(1, true, false);
     PersistentEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage,,, Template.AbilitySourceName);
     Template.AddTargetEffect(PersistentEffect);
     
@@ -3747,7 +3747,7 @@ static function X2AbilityTemplate OverbearingSuperiority()
 	Template = Passive('OverbearingSuperiority_LW', "img:///UILibrary_XPerkIconPack.UIPerk_enemy_crit_chevron_x3", true, SuperiorityEffect);
 
 	ToHitModifier = new class'X2Effect_ToHitModifier';
-	ToHitModifier.BuildPersistentEffect(1, true, true, true);
+	ToHitModifier.BuildPersistentEffect(1, true, false, true);
 	ToHitModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
 	ToHitModifier.AddEffectHitModifier(eHit_Crit, default.OVERBEARING_SUPERIORITY_CRIT, Template.LocFriendlyName,,,,,,,,true);
 	Template.AddTargetEffect(ToHitModifier);
