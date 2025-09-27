@@ -1359,7 +1359,7 @@ static function X2AbilityTemplate CreateCollateralAbility()
 static function X2AbilityTemplate Reboot()
 {
 	local X2AbilityTemplate             Template;
-	local X2Effect_Sustain_LW              SustainEffect;
+	local X2Effect_Sustain              SustainEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Reboot_LW');
 
@@ -1373,7 +1373,7 @@ static function X2AbilityTemplate Reboot()
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 
-	SustainEffect = new class'X2Effect_Sustain_LW';
+	SustainEffect = new class'X2Effect_Sustain';
 	SustainEffect.BuildPersistentEffect(1, true, false);
 	SustainEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
 	Template.AddTargetEffect(SustainEffect);

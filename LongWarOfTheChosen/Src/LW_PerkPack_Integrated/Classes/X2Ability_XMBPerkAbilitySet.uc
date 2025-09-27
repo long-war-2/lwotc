@@ -2115,7 +2115,7 @@ static function X2AbilityTemplate WatchThemRun(optional bool bMatchSourceWeapon 
     Template.CinescriptCameraType = "Overwatch";
 
     Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-    Template.BuildVisualizationFn = class'X2Ability_LWAlienAbilities'.static.ReadyForAnything_BuildVisualization;
+    Template.BuildVisualizationFn = WatchTemRun_BuildVisualization;
     
     Template.DefaultSourceItemSlot = eInvSlot_PrimaryWeapon;
     
@@ -2123,6 +2123,70 @@ static function X2AbilityTemplate WatchThemRun(optional bool bMatchSourceWeapon 
     
     return Template;
 }
+
+static simulated function WatchTemRun_BuildVisualization(XComGameState VisualizeGameState)
+{
+    local XComGameStateHistory              History;
+    local XComGameStateContext_Ability      Context;
+    local StateObjectReference              InteractingUnitRef;
+
+    local VisualizationActionMetadata       EmptyTrack;
+    local VisualizationActionMetadata       ActionMetadata;
+
+    local X2Action_CameraFrameAbility       FrameAction;
+    local X2Action_PlaySoundAndFlyOver      SoundAndFlyOver;
+    local X2Action_CameraRemove             RemoveCameraAction;
+    local XComGameState_Unit                UnitState;
+    local X2AbilityTemplate                 AbilityTemplate;
+    local string                            FlyOverText, FlyOverImage;
+    local XGUnit                            UnitVisualizer;
+
+    History = `XCOMHISTORY;
+
+    Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
+    InteractingUnitRef = Context.InputContext.SourceObject;
+
+    ActionMetadata = EmptyTrack;
+    ActionMetadata.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+    ActionMetadata.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
+    ActionMetadata.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
+
+    UnitState = XComGameState_Unit(ActionMetadata.StateObject_NewState);
+
+    FrameAction = X2Action_CameraFrameAbility(class'X2Action_CameraFrameAbility'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded));
+    FrameAction.AbilitiesToFrame.AddItem(Context);
+    FrameAction.CameraTag = 'OverwatchCamera';
+
+    AbilityTemplate = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager().FindAbilityTemplate(Context.InputContext.AbilityTemplateName);
+    FlyOverText = AbilityTemplate.LocFlyOverText;
+    FlyOverImage = AbilityTemplate.IconImage;
+    if (UnitState != none && UnitState.HasSoldierAbility('CoveringFire'))
+    {
+        AbilityTemplate = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager().FindAbilityTemplate('CoveringFire');
+        FlyOverText = FlyOverText $ ": " $ AbilityTemplate.LocFriendlyName;
+    }
+    SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded));
+
+    if (UnitState != none)
+    {
+        UnitVisualizer = XGUnit(UnitState.GetVisualizer());
+        if ((UnitVisualizer != none) && !UnitVisualizer.IsMine())
+        {
+            SoundAndFlyOver.SetSoundAndFlyOverParameters(SoundCue'SoundUI.OverwatchCue', FlyOverText, '', eColor_Bad, FlyOverImage);
+        }
+        else
+        {
+            SoundAndFlyOver.SetSoundAndFlyOverParameters(none, FlyOverText, '', eColor_Good, FlyOverImage);
+        }
+    }
+
+    if (FrameAction != none)
+    {
+        RemoveCameraAction = X2Action_CameraRemove(class'X2Action_CameraRemove'.static.AddToVisualizationTree(ActionMetaData, Context));
+        RemoveCameraAction.CameraTagToRemove = 'OverwatchCamera';
+    }
+}
+
 
 static function X2AbilityTemplate WatchThemRunPassive()
 {
