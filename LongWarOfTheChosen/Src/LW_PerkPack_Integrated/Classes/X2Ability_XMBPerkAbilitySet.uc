@@ -2195,7 +2195,7 @@ static function X2AbilityTemplate WatchThemRunPassive()
 
     `CREATE_X2ABILITY_TEMPLATE(Template, 'WatchThemRun_LW_Passive');
 
-    Template.IconImage = "img:///UILibrary_LWAlienPack.LW_AbilityReadyForAnything";
+    Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_overwatch_grenade";
     Template.AbilitySourceName = 'eAbilitySource_Perk';
     Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
     Template.Hostility = eHostility_Neutral;
