@@ -116,6 +116,13 @@ LocFriendlyName="Глухая оборона"
 LocHelpText="Увеличивает Защиту на <Ability:HUNKERDEFENSEBONUS/> и Уклонение на <Ability:HUNKERDODGEBONUS/>. Действует только в укрытии (не убирает горение)."
 LocFlyOverText="Глухая оборона (не убирает горение)"
 
+[MedicalProtocol X2AbilityTemplate]
+LocFriendlyName="Протокол лечения
+LocLongDescription="Гремлин способен удаленно применять способности "Лечение" и "Стабилизация". У Гремлина есть один заряд. При наличии аптечки Грремлин получает дополнительно 3 заряда.
+LocHelpText="Новые способности "Гремлин: Лечение"" и "Гремлин: Стабилизация"."
+LocFlyOverText="Протокол лечения"
+LocPromotionPopupText="<Bullet/> Улучшение грумлина позволяет восстанавливать больше ОЗ за раз.<br/><Bullet/>"Гремлин: Лечение"" и "Гремлин: Стабилизация" не заканчивают ход если используются первым действием.<br/>"
+
 ;;;;;;;;;;;;;;;;;;;;  TECHNICAL ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
 [HeavyArmaments X2AbilityTemplate]
