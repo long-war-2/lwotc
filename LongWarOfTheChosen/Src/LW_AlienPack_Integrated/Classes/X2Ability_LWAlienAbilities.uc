@@ -71,8 +71,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateMassMindSpinAbility());
 	Templates.AddItem(CreatePersonalShieldAbility());
 	Templates.AddItem(CreateMassReanimateAbility());
-	Templates.AddItem(CreateReadyForAnythingAbility());
-	Templates.AddItem(ReadyForAnythingFlyover());
+	Templates.AddItem(ReadyForAnything());
+	Templates.AddItem(ReadyForAnythingTrigger());
 	Templates.AddItem(CreateChryssalidSoldierSlashAbility());
 	Templates.AddItem(CreateHiveQueenSlashAbility());
 	Templates.AddItem(AddRepairServosAbility());
@@ -979,104 +979,178 @@ static function X2DataTemplate CreatePersonalShieldAbility()
 	return Template;
 }
 
-
-static function X2DataTemplate CreateReadyForAnythingAbility()
+static function X2AbilityTemplate ReadyForAnything()
 {
-	local X2AbilityTemplate							Template;
-	local X2Effect_ReadyForAnything					ActionPointEffect;
+    local X2AbilityTemplate     Template;
+    local X2Effect_Persistent   PersistentEffect;
 
-	`CREATE_X2ABILITY_TEMPLATE (Template, 'ReadyForAnything');
+    `CREATE_X2ABILITY_TEMPLATE(Template, 'ReadyForAnything');
 
-	Template.IconImage = "img:///UILibrary_LWAlienPack.LW_AbilityReadyForAnything";
+    Template.IconImage = "img:///UILibrary_LWAlienPack.LW_AbilityReadyForAnything";
+    Template.AbilitySourceName = 'eAbilitySource_Perk';
+    Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+    Template.Hostility = eHostility_Neutral;
+    Template.bIsPassive = true;
 
-	Template.AbilitySourceName = 'eAbilitySource_Perk';
-	Template.Hostility = eHostility_Neutral;
-	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
-	Template.AbilityToHitCalc = default.DeadEye;
-	Template.AbilityTargetStyle = default.SelfTarget;
-	Template.bShowActivation = false;
-	Template.bIsPassive = true;
-	Template.bDisplayInUITooltip = true;
-	Template.bDisplayInUITacticalText = true;
-	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+    Template.AbilityToHitCalc = default.DeadEye;
+    Template.AbilityTargetStyle = default.SelfTarget;
+    Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 
-	ActionPointEffect = new class'X2Effect_ReadyForAnything';
-	ActionPointEffect.BuildPersistentEffect (1, true, false);
-	ActionPointEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
-	Template.AddTargetEffect(ActionPointEffect);
+    PersistentEffect = new class'X2Effect_Persistent';
+    PersistentEffect.EffectName = 'ReadyForAnything_Passive';
+    PersistentEffect.BuildPersistentEffect(1, true, false);
+    PersistentEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
+    Template.AddTargetEffect(PersistentEffect);
 
-	Template.AdditionalAbilities.AddItem('ReadyForAnythingFlyover');
+    Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+    Template.bCrossClassEligible = true;
+    
+    Template.DefaultSourceItemSlot = eInvSlot_PrimaryWeapon;
 
+    Template.AdditionalAbilities.AddItem('ReadyForAnythingTrigger');
 
-	return Template;
+    return Template;
 }
 
-static function X2DataTemplate ReadyForAnythingFlyover()
+static function X2AbilityTemplate ReadyForAnythingTrigger()
 {
-	local X2AbilityTemplate					Template;
-	local X2AbilityTrigger_EventListener	EventListener;
-	local X2Effect_CoveringFire             CoveringFireEffect;
-	local X2Condition_AbilityProperty       CoveringFireCondition;
+    local X2AbilityTemplate                     Template;
+    local X2AbilityTrigger_EventListener        Trigger;
+    local X2Condition_UnitEffects               SuppressedCondition;
+    local X2AbilityCost_Ammo                    AmmoCost;
+    local X2Effect_LWReserveOverwatchPoints     ReserveEffect;
+    local X2Condition_UnitValue                 ValueCondition;
+    local X2Effect_IncrementUnitValue           UnitValueEffect;
 
-	`CREATE_X2ABILITY_TEMPLATE (Template, 'ReadyForAnythingFlyover');
+    `CREATE_X2ABILITY_TEMPLATE(Template, 'ReadyForAnythingTrigger');
 
-	Template.Hostility = eHostility_Neutral;
-	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
-	Template.AbilityToHitCalc = default.DeadEye;
-	Template.AbilityTargetStyle = default.SelfTarget;
-	Template.bShowActivation = true;
-	Template.bSkipFireAction = true;
-	Template.bDontDisplayInAbilitySummary = true;
+    Template.IconImage = "img:///UILibrary_LWAlienPack.LW_AbilityReadyForAnything";
+    Template.AbilitySourceName = 'eAbilitySource_Perk';
+    Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+    Template.Hostility = eHostility_Neutral;
 
-	EventListener = new class'X2AbilityTrigger_EventListener';
-	EventListener.ListenerData.EventID = 'ReadyForAnythingTriggered';
-	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
-	EventListener.ListenerData.Filter = eFilter_Unit;
-	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
-	Template.AbilityTriggers.AddItem(EventListener);
+    Template.bCrossClassEligible = true;
 
-	// Tedster - apply Covering Fire effect here since this is fired by RFA.
-	CoveringFireEffect = new class'X2Effect_CoveringFire';
-	CoveringFireEffect.AbilityToActivate = 'OverwatchShot';
-	CoveringFireEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
-	CoveringFireCondition = new class'X2Condition_AbilityProperty';
-	CoveringFireCondition.OwnerHasSoldierAbilities.AddItem('CoveringFire');
-	CoveringFireEffect.TargetConditions.AddItem(CoveringFireCondition);
-	Template.AddTargetEffect(CoveringFireEffect);
+    Template.AbilityToHitCalc = default.DeadEye;
+    Template.AbilityTargetStyle = default.SelfTarget;
 
-	Template.CinescriptCameraType = "Overwatch";
+    Trigger = new class'X2AbilityTrigger_EventListener';
+    Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+    Trigger.ListenerData.EventID = 'AbilityActivated';
+    Trigger.ListenerData.Filter = eFilter_Unit;
+    Trigger.ListenerData.EventFn = class'X2Effect_ReadyForAnything'.static.AbilityTriggerEventListener_ReadyForAnything;
+    Trigger.ListenerData.Priority = 30;
+    Template.AbilityTriggers.AddItem(Trigger);
 
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	Template.BuildVisualizationFn = ReadyforAnything_BuildVisualization;
+    Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+    Template.AddShooterEffectExclusions();
 
-	return Template;
+    SuppressedCondition = new class'X2Condition_UnitEffects';
+    SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
+    SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
+    Template.AbilityShooterConditions.AddItem(SuppressedCondition);
+
+    if (class'X2Effect_ReadyForAnything'.default.bMatchSourceWeapon)
+    {
+        AmmoCost = new class'X2AbilityCost_Ammo';
+        AmmoCost.iAmmo = 1;
+        AmmoCost.bFreeCost = true;
+        Template.AbilityCosts.AddItem(AmmoCost);
+    }
+
+    ReserveEffect = new class'X2Effect_LWReserveOverwatchPoints';
+    ReserveEffect.bMatchSourceWeapon = class'X2Effect_ReadyForAnything'.default.bMatchSourceWeapon;
+    Template.AddTargetEffect(ReserveEffect);
+    
+    Template.AddTargetEffect(class'X2Effect_LWCoveringFire'.static.CreateCoveringFireEffect(class'X2Effect_ReadyForAnything'.default.bMatchSourceWeapon));
+
+    if (class'X2Effect_ReadyForAnything'.default.RFA_ACTIVATIONS_PER_TURN > 0)
+    {
+        ValueCondition = new class'X2Condition_UnitValue';
+        ValueCondition.AddCheckValue(class'X2Effect_ReadyForAnything'.default.CounterName, class'X2Effect_ReadyForAnything'.default.RFA_ACTIVATIONS_PER_TURN, eCheck_LessThan);
+        Template.AbilityShooterConditions.AddItem(ValueCondition);
+    }
+
+    UnitValueEffect = new class'X2Effect_IncrementUnitValue';
+    UnitValueEffect.UnitName = class'X2Effect_ReadyForAnything'.default.CounterName;
+    UnitValueEffect.NewValueToSet = 1;
+    UnitValueEffect.CleanupType = eCleanup_BeginTurn;
+    UnitValueEffect.bApplyOnMiss = true;
+    Template.AddShooterEffect(UnitValueEffect);
+
+    Template.bSkipFireAction = true;
+
+    Template.AbilityConfirmSound = "Unreal2DSounds_OverWatch";
+    Template.CinescriptCameraType = "Overwatch";
+
+    Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+    Template.BuildVisualizationFn = ReadyForAnything_BuildVisualization;
+
+    return Template;
 }
 
-simulated function ReadyForAnything_BuildVisualization(XComGameState VisualizeGameState)
+static simulated function ReadyForAnything_BuildVisualization(XComGameState VisualizeGameState)
 {
-	local XComGameStateHistory			History;
-	local XComGameStateContext_Ability	Context;
-	local VisualizationActionMetadata	EmptyTrack;
-	local VisualizationActionMetadata	BuildTrack;
-	local X2Action_PlaySoundAndFlyOver	SoundAndFlyOver;
-	local StateObjectReference			InteractingUnitRef;
-	local XComGameState_Ability			Ability;
-	local XComGameState_Unit			UnitState;
+    local XComGameStateHistory              History;
+    local XComGameStateContext_Ability      Context;
+    local StateObjectReference              InteractingUnitRef;
 
-	History = `XCOMHISTORY;
-	context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
-	InteractingUnitRef = Context.InputContext.SourceObject;
-	Ability = XComGameState_Ability(History.GetGameStateForObjectID(context.InputContext.AbilityRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
-	UnitState = XComGameState_Unit(History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference));
-	BuildTrack = EmptyTrack;
-	BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
-	BuildTrack.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
-	BuildTrack.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
-	
-	SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
-	SoundAndFlyOver.SetSoundAndFlyOverParameters(SoundCue'SoundUI.OverWatchCue', Ability.GetMyTemplate().LocFlyOverText, '', (UnitState.GetTeam() == eTeam_XCom)? eColor_Good : eColor_Alien, "img:///UILibrary_PerkIcons.UIPerk_overwatch");
+    local VisualizationActionMetadata       EmptyTrack;
+    local VisualizationActionMetadata       ActionMetadata;
+
+    local X2Action_CameraFrameAbility       FrameAction;
+    local X2Action_PlaySoundAndFlyOver      SoundAndFlyOver;
+    local X2Action_CameraRemove             RemoveCameraAction;
+    local XComGameState_Unit                UnitState;
+    local X2AbilityTemplate                 AbilityTemplate;
+    local string                            FlyOverText, FlyOverImage;
+    local XGUnit                            UnitVisualizer;
+
+    History = `XCOMHISTORY;
+
+    Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
+    InteractingUnitRef = Context.InputContext.SourceObject;
+
+    ActionMetadata = EmptyTrack;
+    ActionMetadata.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+    ActionMetadata.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
+    ActionMetadata.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
+
+    UnitState = XComGameState_Unit(ActionMetadata.StateObject_NewState);
+
+    FrameAction = X2Action_CameraFrameAbility(class'X2Action_CameraFrameAbility'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded));
+    FrameAction.AbilitiesToFrame.AddItem(Context);
+    FrameAction.CameraTag = 'OverwatchCamera';
+
+    AbilityTemplate = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager().FindAbilityTemplate(Context.InputContext.AbilityTemplateName);
+    FlyOverText = AbilityTemplate.LocFlyOverText;
+    FlyOverImage = AbilityTemplate.IconImage;
+    if (UnitState != none && UnitState.HasSoldierAbility('CoveringFire'))
+    {
+        AbilityTemplate = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager().FindAbilityTemplate('CoveringFire');
+        FlyOverText = FlyOverText $ ": " $ AbilityTemplate.LocFriendlyName;
+    }
+    SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded));
+
+    if (UnitState != none)
+    {
+        UnitVisualizer = XGUnit(UnitState.GetVisualizer());
+        if ((UnitVisualizer != none) && !UnitVisualizer.IsMine())
+        {
+            SoundAndFlyOver.SetSoundAndFlyOverParameters(SoundCue'SoundUI.OverwatchCue', FlyOverText, '', eColor_Bad, FlyOverImage);
+        }
+        else
+        {
+            SoundAndFlyOver.SetSoundAndFlyOverParameters(none, FlyOverText, '', eColor_Good, FlyOverImage);
+        }
+    }
+
+    if (FrameAction != none)
+    {
+        RemoveCameraAction = X2Action_CameraRemove(class'X2Action_CameraRemove'.static.AddToVisualizationTree(ActionMetaData, Context));
+        RemoveCameraAction.CameraTagToRemove = 'OverwatchCamera';
+    }
 }
 
 static function X2AbilityTemplate CreateChryssalidSoldierSlashAbility()

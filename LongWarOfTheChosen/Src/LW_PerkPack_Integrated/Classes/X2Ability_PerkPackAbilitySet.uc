@@ -581,7 +581,7 @@ static function X2AbilityTemplate AddDamnGoodGroundAbility()
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 	Template.bIsPassive = true;
 	AimandDefModifiers = new class 'X2Effect_DamnGoodGround';
-	AimandDefModifiers.BuildPersistentEffect (1, true, true);
+	AimandDefModifiers.BuildPersistentEffect (1, true, false);
 	AimandDefModifiers.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	Template.AddTargetEffect (AimandDefModifiers);
 	Template.bCrossClassEligible = true;
@@ -1965,7 +1965,7 @@ static function X2AbilityTemplate AddCommissarAbility()
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 	Template.bIsPassive = true;
 	DamageModifier = new class 'X2Effect_Commissar';
-	DamageModifier.BuildPersistentEffect (1, true, true);
+	DamageModifier.BuildPersistentEffect (1, true, false);
 	DamageModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	Template.AddTargetEffect (DamageModifier);
 	Template.bCrossClassEligible = false;
@@ -3275,7 +3275,7 @@ static function X2AbilityTemplate AddEvasiveAbility()
 	Template.bSkipFireAction = true;
 
 	DodgeBonus = new class'X2Effect_PersistentStatChange';
-	DodgeBonus.BuildPersistentEffect(1,true,true,false);
+	DodgeBonus.BuildPersistentEffect(1,true,false,false);
 	DodgeBonus.SetDisplayInfo (ePerkBuff_Passive,Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName); 
 	DodgeBonus.AddPersistentStatChange (eStat_Dodge, float (100));
 	DodgeBonus.EffectName='EvasiveEffect';

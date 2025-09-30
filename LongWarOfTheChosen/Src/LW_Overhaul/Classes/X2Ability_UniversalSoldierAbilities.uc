@@ -273,7 +273,7 @@ static function X2AbilityTemplate AddCantBreakWallsAbility()
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 
 	TraversalChangeEffect = new class'X2Effect_PersistentTraversalChange';
-	TraversalChangeEffect.BuildPersistentEffect(1, true, true);
+	TraversalChangeEffect.BuildPersistentEffect(1, true, false);
 	TraversalChangeEffect.AddTraversalChange(eTraversal_BreakWall, false);
 	TraversalChangeEffect.EffectName = 'NoWallBreakingInGreenAlert';
 	Template.AddTargetEffect(TraversalChangeEffect);

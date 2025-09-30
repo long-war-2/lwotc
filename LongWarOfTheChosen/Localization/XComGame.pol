@@ -5900,6 +5900,13 @@ LocLongDescription="Po rzuceniu lub wystrzeleniu granatu automatycznie przejdzie
 LocHelpText="Po rzuceniu lub wystrzeleniu granatu automatycznie przejdziesz do w tryb Warty."
 LocPromotionPopupText="<Bullet/> Po rzuceniu lub wystrzeleniu granatu automatycznie przejdziesz do w tryb Warty.<br/>"
 
+[WatchThemRun_LW_Passive X2AbilityTemplate]
+LocFriendlyName="Patrz jak uciekają"
+LocFlyOverText="Patrz jak uciekają"
+LocLongDescription="Po rzuceniu lub wystrzeleniu granatu automatycznie przejdziesz do w tryb Warty."
+LocHelpText="Po rzuceniu lub wystrzeleniu granatu automatycznie przejdziesz do w tryb Warty."
+LocPromotionPopupText="<Bullet/> Po rzuceniu lub wystrzeleniu granatu automatycznie przejdziesz do w tryb Warty.<br/>"
+
 [Avenger_LW X2AbilityTemplate]
 LocFriendlyName="Mściciel"
 LocFlyOverText="Mściciel"

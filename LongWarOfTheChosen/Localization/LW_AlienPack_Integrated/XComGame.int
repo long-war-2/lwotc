@@ -82,20 +82,17 @@ LocLongDescription="Reanimate all nearby dead organics, turning them into zombie
 LocPromotionPopupText="<Bullet/> Reanimate all nearby dead organics, turning them into zombies."
 
 [ReadyForAnything X2AbilityTemplate]
-LocFriendlyName="Ready For Anything"
-LocFlyOverText="Overwatch: Ready For Anything"
+LocFriendlyName="Ready for Anything"
+LocFlyOverText="Ready for Anything"
 ; LWOTC Needs Translation
-LocHelpText="Enter overwatch after firing a turn-ending standard shot with your primary weapon."
-LocLongDescription="Enter overwatch after firing a turn-ending standard shot with your primary weapon."
-LocPromotionPopupText="<Bullet/> Enter overwatch after firing a turn-ending standard shot with your primary weapon."
+LocHelpText="Once per turn, enter overwatch after taking a standard shot with your <Ability:BOUND_WEAPON_NAME>."
+LocLongDescription="Enter overwatch after firing a turn-ending standard shot with your <Ability:BOUND_WEAPON_NAME>."
+LocPromotionPopupText="<Bullet> Standard shot abilities also include Standard Sniper Shot and Pistol Shot.<br><Bullet> Ready for Anything will not activate the <Ability:ClassName> is disoriented, stunned, panicking, on fire or otherwise impaired.<br><Bullet> Ready for Anything will not activate if the <Ability:ClassName> doesn't have enough ammo for overwatch."
 ; End Translation
 
-[ReadyForAnythingFlyover X2AbilityTemplate]
-LocFriendlyName="Ready For Anything"
-LocFlyOverText="Overwatch: Ready For Anything"
-LocHelpText="Enter Overwatch after firing a standard shot with your primary weapon."
-LocLongDescription="Enter Overwatch after firing a standard shot with your primary weapon."
-LocPromotionPopupText="<Bullet/> Enter Overwatch after firing a standard shot with your primary weapon."
+[ReadyForAnythingTrigger X2AbilityTemplate]
+LocFriendlyName="Ready for Anything"
+LocFlyOverText="Ready for Anything"
 
 [RepairServos X2AbilityTemplate]
 LocFriendlyName="Damage Control"

@@ -109,7 +109,7 @@ static function EventListenerReturn OnEvent(Object EventData, Object EventSource
 			{
 				AvailableCode = EventListener.ValidateAttack(SourceAbilityState, SourceUnit, TargetUnit, AbilityState);
 
-				if(bDebugLogging)
+				if(default.bDebugLogging)
 				{
 					if (AbilityState != none)
 					{

@@ -3257,6 +3257,13 @@ LocLongDescription="После броска или запуска гранаты
 LocHelpText="После броска или запуска гранаты вы автоматически перейдёте в режим наблюдения."
 LocPromotionPopupText="<Bullet/> После броска или запуска гранаты вы автоматически перейдёте в режим наблюдения.<br/>"
 
+[WatchThemRun_LW_Passive X2AbilityTemplate]
+LocFriendlyName="Смотри как бегут"
+LocFlyOverText="Смотри как бегут"
+LocLongDescription="После броска или запуска гранаты вы автоматически перейдёте в режим наблюдения."
+LocHelpText="После броска или запуска гранаты вы автоматически перейдёте в режим наблюдения."
+LocPromotionPopupText="<Bullet/> После броска или запуска гранаты вы автоматически перейдёте в режим наблюдения.<br/>"
+
 ; LWOTC Needs Translation (2)
 [Avenger_LW X2AbilityTemplate]
 LocFriendlyName="Мститель"
