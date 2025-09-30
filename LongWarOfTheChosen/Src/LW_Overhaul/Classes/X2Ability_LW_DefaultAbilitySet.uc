@@ -147,7 +147,7 @@ static function X2AbilityTemplate CreateReflexShotModifier()
 	//prevents grazes and crits
 	`Log("TRACE: Adding the target effect");
 	ReflexEffect = new class'X2Effect_ReflexShotModifier';
-	ReflexEffect.BuildPersistentEffect(1, true);
+	ReflexEffect.BuildPersistentEffect(1, true, false);
 	Template.AddTargetEffect(ReflexEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -215,7 +215,7 @@ static function X2AbilityTemplate CreateReactionFireAgainstCoverBonus()
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 
 	AntiCoverEffect = new class'X2Effect_ReactionFireAntiCover';
-	AntiCoverEffect.BuildPersistentEffect(1, true);
+	AntiCoverEffect.BuildPersistentEffect(1, true, false);
 	AntiCoverEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, false);
 	AntiCoverEffect.AimBonus = default.REACTION_FIRE_ANTI_COVER_BONUS;
 	Template.AddTargetEffect(AntiCoverEffect);
@@ -243,7 +243,7 @@ static function X2AbilityTemplate CreateSmokeFlankingCritProtection()
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 
 	SmokeAntiCritEffect = new class'X2Effect_SmokeFlankingCritProtection';
-	SmokeAntiCritEffect.BuildPersistentEffect(1, true);
+	SmokeAntiCritEffect.BuildPersistentEffect(1, true, false);
 	SmokeAntiCritEffect.bSmokeStopsFlanks = class'Helpers_LW'.default.bSmokeStopsFlanksActive;
 	SmokeAntiCritEffect.bImprovedDefensiveSmoke = class'Helpers_LW'.default.bImprovedSmokeDefenseActive;
 	SmokeAntiCritEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, false);

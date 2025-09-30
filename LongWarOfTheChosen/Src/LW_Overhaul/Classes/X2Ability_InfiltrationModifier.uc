@@ -37,7 +37,7 @@ static function X2AbilityTemplate CreateInfiltrationModifierAbility()
 	Template.Hostility = eHostility_Neutral;
 	
 	InfiltrationModifierEffect = new class'X2Effect_InfiltrationModifier';
-	InfiltrationModifierEffect.BuildPersistentEffect(1, true, true, false); 
+	InfiltrationModifierEffect.BuildPersistentEffect(1, true, false, false); 
 	InfiltrationModifierEffect.SetDisplayInfo	(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), "", false);
 	Template.AddTargetEffect(InfiltrationModifierEffect);
 

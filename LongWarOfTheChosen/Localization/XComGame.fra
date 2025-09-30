@@ -6184,6 +6184,15 @@ LocHelpText="Après avoir lancé ou tiré une grenade, vous passez automatiqueme
 LocPromotionPopupText="<Bullet/> Après avoir lancé ou tiré une grenade, vous passez automatiquement en vigilance.<br/>"
 ; End translated (2)
 
+[WatchThemRun_LW_Passive X2AbilityTemplate]
+LocFriendlyName="Tir aux pigeons"
+LocFlyOverText="Tir aux pigeons"
+; LWOTC translated (2)
+LocLongDescription="Après avoir lancé ou tiré une grenade, vous passez automatiquement en vigilance."
+LocHelpText="Après avoir lancé ou tiré une grenade, vous passez automatiquement en vigilance."
+LocPromotionPopupText="<Bullet/> Après avoir lancé ou tiré une grenade, vous passez automatiquement en vigilance.<br/>"
+; End translated (2)
+
 ; LWOTC translated (2)
 [Avenger_LW X2AbilityTemplate]
 LocFriendlyName="Vengeur"

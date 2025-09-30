@@ -58,7 +58,7 @@ static function X2AbilityTemplate CreateLethargyTemplate()
 	Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
 
 	PersistentStatChangeEffect = new class'X2Effect_PersistentStatChange';
-	PersistentStatChangeEffect.BuildPersistentEffect(1, true, true);
+	PersistentStatChangeEffect.BuildPersistentEffect(1, true, false);
 	PersistentStatChangeEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
 	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Offense, default.LETHARGY_AIM_PENALTY, MODOP_Addition);
 	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Mobility, default.LETHARGY_MOBILITY_PENALTY, MODOP_Addition);

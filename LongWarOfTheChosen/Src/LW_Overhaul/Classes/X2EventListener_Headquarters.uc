@@ -743,11 +743,13 @@ static function EventListenerReturn CAProcessCompletion(
 			CATracker = class'XComGameState_CovertActionTracker'.static.CreateOrGetCovertActionTracker(NewGameState);
 			CATracker = XComGameState_CovertActionTracker(NewGameState.ModifyStateObject(class'XComGameState_CovertActionTracker', CATracker.ObjectID));
 			CATracker.ActionsCompletedWithoutAmbush++;
+			`GAMERULES.SubmitGameState(NewGameState);
 		}
 
 		// We need to force ambush risk values to be updated for all currently
 		// available covert actions, otherwise they will remain as they were
 		// before this covert action completed.
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Update CA risks post-ambush update");
 		RecalculateCovertActionRisks(NewGameState);
 		`GAMERULES.SubmitGameState(NewGameState);
 	}

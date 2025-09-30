@@ -336,6 +336,7 @@ static function UpdateReflex(X2AbilityTemplate Template)
 	CritDefEffect = new class'X2Effect_Resilience';
 	CritDefEffect.CritDef_Bonus = default.REFLEX_CRIT_DEF;
 	CritDefEffect.BuildPersistentEffect (1, true, false, false);
+	CritDefEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, false);
 	Template.AddTargetEffect(CritDefEffect);
 }
 

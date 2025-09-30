@@ -39,7 +39,15 @@ static event OnLoadedSavedGameToStrategy()
 }
 static event OnPostTemplatesCreated()
 {
-	UpdateSparkBitUI();
+
+	if( !class'Helpers_LW'.static.IsModInstalled("WOTCMoreSparkWeapons") && 
+		!class'Helpers_LW'.static.IsModInstalled("SparkBuff") &&
+		!class'Helpers_LW'.static.IsModInstalled("SPARKsRebalanced") &&
+		!class'Helpers_LW'.static.IsModInstalled("MechatronicWarfare"))
+	{
+		UpdateSparkBitUI();
+	}
+	
 	UpdateWeaponAttachmentsForGuns();
 	UpdateNewHeavyWeapon();
 }
@@ -544,24 +552,63 @@ static function UpdateSparkBitUI()
 {
 	local X2ItemTemplateManager ItemMgr;
 	local X2GremlinTemplate SparkBitTemplate;
+	local array<X2DataTemplate> DataTemplates;
+	local X2DataTemplate DataTemplate;
 
 	ItemMgr = class'X2ItemTemplateManager'.static.GetItemTemplateManager();
 
-	SparkBitTemplate = X2GremlinTemplate(ItemMgr.FindItemTemplate('SparkBit_CV'));
-	if (SparkBitTemplate != none)
+	ItemMgr.FindDataTemplateAllDifficulties('SparkBit_CV', DataTemplates);
+
+	foreach DataTemplates (DataTemplate)
 	{
-		SparkBitTemplate.SetUIStatMarkup(class'XLocalizedData'.default.TechBonusLabel, eStat_Hacking, SparkBitTemplate.HackingAttemptBonus);
+		SparkBitTemplate = X2GremlinTemplate(DataTemplate);
+		if (SparkBitTemplate != none)
+		{
+			if(CheckHackmarkup(SparkBitTemplate))
+				SparkBitTemplate.SetUIStatMarkup(class'XLocalizedData'.default.TechBonusLabel, eStat_Hacking, SparkBitTemplate.HackingAttemptBonus);
+		}
 	}
 
-	SparkBitTemplate = X2GremlinTemplate(ItemMgr.FindItemTemplate('SparkBit_MG'));
-	if (SparkBitTemplate != none)
+	ItemMgr.FindDataTemplateAllDifficulties('SparkBit_MG', DataTemplates);
+
+	foreach DataTemplates (DataTemplate)
 	{
-		SparkBitTemplate.SetUIStatMarkup(class'XLocalizedData'.default.TechBonusLabel, eStat_Hacking, SparkBitTemplate.HackingAttemptBonus);
+		SparkBitTemplate = X2GremlinTemplate(DataTemplate);
+
+		if (SparkBitTemplate != none)
+		{
+			if(CheckHackmarkup(SparkBitTemplate))
+				SparkBitTemplate.SetUIStatMarkup(class'XLocalizedData'.default.TechBonusLabel, eStat_Hacking, SparkBitTemplate.HackingAttemptBonus);
+		}
 	}
 
-	SparkBitTemplate = X2GremlinTemplate(ItemMgr.FindItemTemplate('SparkBit_BM'));
-	if (SparkBitTemplate != none)
+	ItemMgr.FindDataTemplateAllDifficulties('SparkBit_BM', DataTemplates);
+	
+	foreach DataTemplates (DataTemplate)
 	{
-		SparkBitTemplate.SetUIStatMarkup(class'XLocalizedData'.default.TechBonusLabel, eStat_Hacking, SparkBitTemplate.HackingAttemptBonus);
+		SparkBitTemplate = X2GremlinTemplate(DataTemplate);
+
+		if (SparkBitTemplate != none)
+		{
+			if(CheckHackmarkup(SparkBitTemplate))
+				SparkBitTemplate.SetUIStatMarkup(class'XLocalizedData'.default.TechBonusLabel, eStat_Hacking, SparkBitTemplate.HackingAttemptBonus);
+		}
 	}
+}
+
+static function bool CheckHackmarkup(x2GremlinTemplate Template)
+{
+	local int i;
+	// none check in the main function
+	 for (i = Template.UIStatMarkups.Length - 1; i >= 0; i--)
+    {
+        if (Template.UIStatMarkups[i].StatType == eStat_Hacking)
+        {
+			// Hack markup is already added
+			return false;
+		}
+	}
+	// if we're here, we need to add the markup
+
+	return true;
 }

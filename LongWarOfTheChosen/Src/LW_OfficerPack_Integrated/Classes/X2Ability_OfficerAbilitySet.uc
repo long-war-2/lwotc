@@ -1286,7 +1286,7 @@ static function X2AbilityTemplate AddAirControllerAbility()
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 
 	AirControllerEffect = new class'X2Effect_AirController';
-	AirControllerEffect.BuildPersistentEffect(1, true, true);
+	AirControllerEffect.BuildPersistentEffect(1, true, false);
 	AirControllerEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,,Template.AbilitySourceName);
 	Template.AddTargetEffect(AirControllerEffect);
 

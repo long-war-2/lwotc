@@ -45,7 +45,7 @@ static function X2AbilityTemplate CreateRedFogAbility()
 	Template.Hostility = eHostility_Neutral;
 	
 	RedFogEffect = new class'X2Effect_RedFog_LW';
-	RedFogEffect.BuildPersistentEffect(1, true, true, true, eGameRule_PlayerTurnBegin); 
+	RedFogEffect.BuildPersistentEffect(1, true, false, true, eGameRule_PlayerTurnBegin); 
 	//RedFogEffect.SetDisplayInfo	(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,, "img:///UILibrary_LWToolbox.Status_RedFog", Template.AbilitySourceName);
 	RedFogEffect.SetDisplayInfo	(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,, "", Template.AbilitySourceName);
 	RedFogEffect.bCanTickEveryAction = true;

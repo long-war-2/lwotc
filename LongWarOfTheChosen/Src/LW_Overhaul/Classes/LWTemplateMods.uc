@@ -1424,7 +1424,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	if(Template.DataName == 'CoveringFire')
 	{
 		CoveringFireEffect = new class'X2Effect_LWCoveringFireIgnoreCover';
-		CoveringFireEffect.BuildPersistentEffect(1, true, true);
+		CoveringFireEffect.BuildPersistentEffect(1, true, false);
 		CoveringFireEffect.bForThreatAssessment = false;
 		Template.AddTargetEffect(CoveringFireEffect);
 	}

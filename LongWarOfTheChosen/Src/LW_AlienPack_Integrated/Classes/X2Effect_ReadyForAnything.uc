@@ -1,51 +1,41 @@
 class X2Effect_ReadyForAnything extends X2Effect_Persistent config(LW_AlienPack);
 
-var config array <name> RFA_VALID_ABILITIES;
+var config array<name> RFA_VALID_ABILITIES;
+var config int RFA_ACTIVATIONS_PER_TURN;
+var privatewrite bool bMatchSourceWeapon;
+var privatewrite name CounterName;
 
-function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStateContext_Ability AbilityContext, XComGameState_Ability kAbility, XComGameState_Unit SourceUnit, XComGameState_Item AffectWeapon, XComGameState NewGameState, const array<name> PreCostActionPoints, const array<name> PreCostReservePoints)
+static function EventListenerReturn AbilityTriggerEventListener_ReadyForAnything(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
-	local XComGameState_Ability					AbilityState;
-	local XComGameState_Item					PrimaryWeapon;
+    local XComGameState_Ability             EventAbilityState;
+    local XComGameState_Ability             CallbackAbilityState;
+    local XComGameStateContext_Ability      AbilityContext;
 
-	if (XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.AbilityStateObjectRef.ObjectID)) == none)
-		return false;
+    EventAbilityState = XComGameState_Ability(EventData);
+    CallbackAbilityState = XComGameState_Ability(CallbackData);
+    AbilityContext = XComGameStateContext_Ability(GameState.GetContext());
 
-	if (SourceUnit.AffectedByEffectNames.Find(class'X2Effect_Suppression'.default.EffectName) != -1)
-		return false;
+    if (AbilityContext != none && AbilityContext.InterruptionStatus != eInterruptionStatus_Interrupt)
+    {
+        if (EventAbilityState != none && CallbackAbilityState != none)
+        {
+            if (default.bMatchSourceWeapon && CallbackAbilityState.SourceWeapon.ObjectID != 0 && CallbackAbilityState.SourceWeapon.ObjectID != AbilityContext.InputContext.ItemObject.ObjectID)
+            {
+                return ELR_NoInterrupt;
+            }
 
-	if (SourceUnit.AffectedByEffectNames.Find(class'X2Effect_AreaSuppression'.default.EffectName) != -1)
-		return false;
+            if (default.RFA_VALID_ABILITIES.Find(EventAbilityState.GetMyTemplateName()) != INDEX_NONE)
+            {
+                return CallbackAbilityState.AbilityTriggerEventListener_Self(EventData, EventSource, GameState, EventID, CallbackData);
+            }
+        }
+    }
 
-	if (SourceUnit.AffectedByEffectNames.Find(class'X2AbilityTemplateManager'.default.DisorientedName) != -1)
-		return false;
+    return ELR_NoInterrupt;
+}
 
-	if (SourceUnit.IsPanicked())
-		return false;
-
-	if (SourceUnit.IsImpaired(false))
-		return false;
-
-	if (SourceUnit.IsDead())
-		return false;
-
-	if (SourceUnit.IsIncapacitated())
-		return false;
-
-	AbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.AbilityStateObjectRef.ObjectID));
-	if (AbilityState != none)
-	{
-		if (default.RFA_VALID_ABILITIES.Find(kAbility.GetMyTemplateName()) != INDEX_NONE)
-		{
-			if (SourceUnit.NumActionPoints() == 0)
-			{
-				PrimaryWeapon = SourceUnit.GetItemInSlot(eInvSlot_PrimaryWeapon);
-				if (PrimaryWeapon.Ammo > 1)
-				{
-					SourceUnit.ReserveActionPoints.AddItem(class'X2CharacterTemplateManager'.default.OverwatchReserveActionPoint);
-					`XEVENTMGR.TriggerEvent('ReadyForAnythingTriggered', AbilityState, SourceUnit, NewGameState);
-				}
-			}
-		}
-	}
-	return false;
+defaultproperties
+{
+    bMatchSourceWeapon = true
+    CounterName = ReadyForAnything_LW_Counter
 }

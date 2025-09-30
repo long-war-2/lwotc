@@ -81,7 +81,7 @@ static function X2AbilityTemplate GreaterFacelessAbility()
 	Template.bCrossClassEligible = false;
 
 	StatEffect = new class'X2Effect_PersistentStatChange';
-	StatEffect.BuildPersistentEffect (1, true);
+	StatEffect.BuildPersistentEffect (1, true, false);
 	StatEffect.AddPersistentStatChange(eStat_HP, float(default.GREATER_FACELESS_HP_BONUS));
 	StatEffect.AddPersistentStatChange(eStat_Mobility, float(default.GREATER_FACELESS_MOBILITY_BONUS));
 	StatEffect.AddPersistentStatChange(eStat_Offense, float(default.GREATER_FACELESS_OFFENSE_BONUS));

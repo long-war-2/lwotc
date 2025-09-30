@@ -14,3 +14,8 @@ var name VarName;
 
 // The numerical value to add to the variable (may be negative)
 var float Delta;
+
+defaultproperties
+{
+    bTacticalTransient=true
+}

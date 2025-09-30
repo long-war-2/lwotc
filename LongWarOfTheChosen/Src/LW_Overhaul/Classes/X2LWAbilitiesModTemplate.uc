@@ -978,7 +978,7 @@ static function UpdateSustainEffect(X2AbilityTemplate Template)
 	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_Sustain');
 
 	SustainEffect = new class'X2Effect_Sustain_LW';
-	SustainEffect.BuildPersistentEffect(1, true, true);
+	SustainEffect.BuildPersistentEffect(1, true, false);
 	SustainEffect.EffectName='Sustain';
 	SustainEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
 	Template.AddTargetEffect(SustainEffect);
