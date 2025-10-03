@@ -71,5 +71,5 @@ defaultproperties
 {
 	DuplicateResponse = eDupe_Ignore
 	EffectName = "BloodTrail"
-	bDisplayInSpecialDamageMessageUI = false
+	bDisplayInSpecialDamageMessageUI = true
 }
