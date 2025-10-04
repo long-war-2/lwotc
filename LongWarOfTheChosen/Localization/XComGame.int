@@ -6512,6 +6512,11 @@ LocPromotionPopupText=""
 [WatchThemRun_LW X2AbilityTemplate]
 LocFriendlyName="Watch Them Run"
 LocFlyOverText="Watch Them Run"
+; LWOTC Needs Translation (2)
+LocLongDescription="Once per turn, enter overwatch after throwing or launching a grenade."
+LocHelpText="Once per turn, enter overwatch after throwing or launching a grenade."
+LocPromotionPopupText="<Bullet> Watch Them Run will not activate the <Ability:ClassName> is disoriented, stunned, panicking, on fire or otherwise impaired.<br><Bullet> Watch Them Run will not activate if the <Ability:ClassName> doesn't have enough ammo for overwatch."
+; End Translation (2)
 
 [WatchThemRun_LW_Passive X2AbilityTemplate]
 LocFriendlyName="Watch Them Run"

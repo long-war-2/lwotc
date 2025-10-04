@@ -71,5 +71,5 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 DefaultProperties
 {
 	DuplicateResponse = eDupe_Ignore
-	bDisplayInSpecialDamageMessageUI = true
+	bDisplayInSpecialDamageMessageUI = false
 }
