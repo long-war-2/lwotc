@@ -532,7 +532,7 @@ LocHelpText="Allows standard shots with sniper rifles after moving."
 LocFriendlyName="Trojan"
 LocFlyOverText="Trojan"
 LocLongDescription="Enemy units that are hacked take damage and lose their actions on the turn the hack effect ends. Trojan will never break squads concealment even if it fails to destroy its target."
-LocHelpText="Hacked units suffer damage and action loss when hack effect ends. This ability lets our Specialists destroy Advent Drones without breaking concealment. Even if the victim survives the Trojan attack, concealment will not be broken."
+LocHelpText="Hacked units suffer damage and action loss when hack effect ends. This ability lets our Specialists destroy ADVENT Drones without breaking concealment. Even if the victim survives the Trojan attack, concealment will not be broken."
 LocPromotionPopupText="<Bullet/> Enemy units hacked by Haywire Protocol take 0 to 8 damage and lose their actions on the turn the hack effect ends.<br/><Bullet/> Applies to units stunned or taken over by Haywire Protocol.<br/><Bullet/> Damage calculated based on Hacking Stat vs. target's Hack Defense.<br/>"
 
 [Covert X2AbilityTemplate]
