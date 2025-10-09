@@ -47,7 +47,7 @@ LocPromotionPopupText="<Bullet/> Оглушает врагов на <Ability:Dis
 
 [Meditation X2AbilityTemplate]
 LocFriendlyName="Медитация"
-LocLongDescription="Увеличивает концентрацию Храмовника на <Ability:MeditationFocusRecovery/>."
+LocLongDescription="Увеличивает на <Ability:MeditationFocusRecovery/> концентрацию Храмовника. Зарядов вначале 0, получает заряд за каждое убийство Храмовником."
 LocHelpText="Увеличивает концентрацию Храмовника на <Ability:MeditationFocusRecovery/>."
 LocPromotionPopupText="<Bullet/> Добавляет <Ability:MeditationFocusRecovery/> ед. концентрации Храмовнику.<br/><Bullet/> Заканчивает ход.<br/><Bullet/> Ходов до перезарядки: <Ability:SelfCooldown/>."
 
