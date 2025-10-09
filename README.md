@@ -8,14 +8,16 @@ expansion and update it for WOTC's new features.
 
 Long War of the Chosen is primarily distributed through Steam Workshop, in a few varieties:
 
-### Main release
-[The main release](https://steamcommunity.com/sharedfiles/filedetails/?id=2683996590) stays unchanging for longer periods of time, mostly receiving bugfixes and localization updates. More experimental changes enter this item only after they've been adequately tested. This version is recommended if you're just starting or are otherwise unsure about which to choose.
+### Stable release
+[The stable release](https://steamcommunity.com/sharedfiles/filedetails/?id=2683996590) stays unchanging for longer periods of time, mostly receiving bugfixes and localization updates. More experimental changes enter this item only after they've been adequately tested. This version is recommended if you're just starting or are otherwise unsure about which to choose. Mind that you can usually switch an ongoing campaign from stable to experimental, but not the other way around.
 
-### Beta release
-[The beta release](https://steamcommunity.com/sharedfiles/filedetails/?id=2663990965) receives more rapid and experimental updates, to be evaluated by the community. This version is recommended if you want to actively provide feedback or otherwise want the most cutting edge changes. However, note that this version can introduce more frequent and more serious bugs than the main.
+### Experimental release
+[The experimental release](https://steamcommunity.com/sharedfiles/filedetails/?id=2663990965) receives more rapid and experimental updates, to be evaluated by the community. This version is recommended if you want to actively provide feedback or otherwise want the most cutting edge changes. However, note that this version can introduce more frequent and more serious bugs than the stable.
 
-### 1.0 archive release
-[The 1.0 archive release](https://steamcommunity.com/sharedfiles/filedetails/?id=3114647033) is only recommended if you have a campaign started before the release of 1.1 and are worried that its changes cause instability or imbalance.
+### Archive releases
+The archive releases are only recommended if you have a campaign started on a specific version and are worried that upcoming changes cause instability or imbalance.
+* [1.0.5.5 archive release](https://steamcommunity.com/sharedfiles/filedetails/?id=3114647033)
+* [1.1.0 archive release](https://steamcommunity.com/sharedfiles/filedetails/?id=3337324898)
 
 ## Contributing translations
 
@@ -43,19 +45,15 @@ Note that you need to own the Shen's Last Gift DLC to build (and play) this vers
  1. [Fork this repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
     and then clone your fork locally, which you can do via [Git for Windows](https://gitforwindows.org/)
     (a command-line tool), [GitHub Desktop](https://desktop.github.com/), or some other
-    Git client tool. This is also a good time to switch to the `beta` branch (e.g. `git switch beta`).
-
- 1. Once you have cloned the repository, you may need to pull the code for the embedded
-    highlander. If the *X2WOTCCommunityHighlander* directory is empty, then use the
-    command line from the project's root directory (the one containing this README.md):
-    ```
-        > git submodule update --init
-    ```
-    or whatever is the equivalent with the Git client tool you are using.
+    Git client tool.
 
  1. Download the LWOTC media assets (video, graphics and sound) from
-    [this Google Drive link](https://drive.google.com/file/d/1ll6xOAQH71By8HRdt-apCTizcS0aU8h9/view?usp=sharing)
-    and unpack the resulting zip file into this project's *LongWarOfTheChosen* directory. It should merge the contents of the *Content* and *ContentForCook* directories.
+    [this Google Drive link](https://drive.google.com/file/d/1P2njxwOIVeNDlox_21S5aQ2H_HqkMcvF/view?usp=sharing)
+    and unpack the resulting zip file into this project's `LongWarOfTheChosen` directory. It should merge the contents of the `Content` and `ContentForCook` directories. If it replaces any version controlled files, `git checkout` them to restore their latest version.
+
+ 1. Build against [X2WOTCCommunityHighlander](https://steamcommunity.com/sharedfiles/filedetails/?id=1134256495): You should already be subscribed to it, since it's required by LWOTC. Locate it in your Workshop mods folder, typically `&lt;path to Steam&gt;\steamapps\workshop\content\268500\1134256495`. Under `Src`, there are folders `Core`, `Engine`, `X2WOTCCommunityHighlander`, and `XComGame`. Copy them under your SDK's `SrcOrig` (so that you overwrite `SrcOrig\Core`, etc. and add `SrcOrig\X2WOTCCommunityHighlander`).
+
+ 1. Build against [[WOTC] Community Promotion Screen](https://steamcommunity.com/sharedfiles/filedetails/?id=2550561145): You should already be subscribed to it, since it's required by LWOTC. Locate it in your Workshop mods folder, typically `&lt;path to Steam&gt;\steamapps\workshop\content\268500\2550561145`. Under `Src`, there is a folder `NewPromotionScreenbyDefault`. Copy it under your SDK's `SrcOrig` (so that you have `SrcOrig\NewPromotionScreenbyDefault`).
 
  1. Modify some files in your WOTC SDK's `SrcOrig`:
     * In `X2SitRepEffect_ModifyKismetVariable.uc`, modify line 27
@@ -76,7 +74,14 @@ Note that you need to own the Shen's Last Gift DLC to build (and play) this vers
     var config array<PCPDefinition> arrAllPCPDefs;
     ```
 
- 1. Copy `NewPromotionScreenByDefault` to your `SrcOrig`. You should already be subscribed to the mod [[WOTC] Community Promotion Screen](https://steamcommunity.com/sharedfiles/filedetails/?id=2550561145) (it's a required mod for LWOTC). Locate it in your Workshop mods folder, typically &lt;path to Steam&gt;\steamapps\workshop\content\268500\2550561145. Under `Src`, there is a folder `NewPromotionScreenbyDefault`. Copy it under your SDK's `SrcOrig` (so that you have `Src\NewPromotionScreenbyDefault`).
+    * In `SeqAct_SpawnAdditionalObjective.uc`, modify line 34
+    ```
+    var private XComGameState_InteractiveObject SpawnedObjective;
+    ```
+    to
+    ```
+    var XComGameState_InteractiveObject SpawnedObjective;
+    ```
 
  1. Run the following from the LWOTC project directory:
     ```
