@@ -1153,7 +1153,7 @@ LocFriendlyName="Триангуляция"
 LocLongDescription="Когда атакован, <Ability:ClassName/> дает бонус 10 точности для отряда по атаковавшему на следующий ход."
 LocHelpText="Когда атакован, <Ability:ClassName/> дает бонус 10 точности для отряда по атаковавшему на следующий ход."
 LocFlyOverText="Триангуляция"
-LocPromotionPopupText="<Bullet/> <Ability:ClassName/> может дать информацию о цели для отряда, отследя траекторию атаки, которая была него направлена.<br/><Bullet/> Триангуляция не работает, если атаковали союзника.<br/>"
+LocPromotionPopupText="<Bullet/> <Ability:ClassName/> может дать информацию о цели для отряда, отследя траекторию атаки, которая была на него направлена.<br/><Bullet/> Триангуляция не работает, если атаковали союзника.<br/>"
 
 [TriangulationTrigger_LW X2AbilityTemplate]
 LocFriendlyName="Триангуляция"
