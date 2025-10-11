@@ -5,6 +5,8 @@
 //--------------------------------------------------------------------------------------- 
 class X2Effect_ApplyExplosiveFalloffWeaponDamage extends X2Effect_ApplyWeaponDamage dependson(LWTemplateMods) config(LW_SoldierSkills);
 
+var array<ExplosiveFalloffBonusInfo> ExplosiveFalloffBonuses;
+
 var array<name> UnitDamageAbilityExclusions; // if has any of these abilities, skip any falloff
 var array<name> EnvironmentDamageAbilityExclusions; // if has any of these abilities, skip any falloff
 
@@ -143,6 +145,20 @@ simulated function float GetUnitDamageRatio(float DistanceRatio)
 simulated function bool ShouldApplyUnitDamageFalloff(XComGameState_Unit SourceUnit)
 {
 	local name AbilityExclusion;
+	local ExplosiveFalloffBonusInfo BonusInfo;
+
+	foreach ExplosiveFalloffBonuses(BonusInfo)
+	{
+		if (BonusInfo.bDisableUnitFalloff)
+		{
+			if(SourceUnit.HasSoldierAbility(BonusInfo.AbilityName))
+				return false;
+			
+			//additional check for aliens, checking character 
+			if(SourceUnit.FindAbility(BonusInfo.AbilityName).ObjectID > 0)
+				return false;
+		}
+	}
 
 	foreach UnitDamageAbilityExclusions(AbilityExclusion)
 	{
@@ -180,9 +196,9 @@ simulated function ApplyEffectToWorld(const out EffectAppliedData ApplyEffectPar
 	local UnitPeekSide OutPeekSide;
 	local int OutRequiresLean;
 	local int bOutCanSeeFromDefault;
-	local X2AbilityTemplate AbilityTemplate;	
-	local XComGameState_Item LoadedAmmo, SourceAmmo;	
-	local Vector HitLocation;	
+	local X2AbilityTemplate AbilityTemplate;
+	local XComGameState_Item LoadedAmmo, SourceAmmo;
+	local Vector HitLocation;
 	local int i, HitLocationCount, HitLocationIndex, RandRoll;
 	local float DamageChange;
 	local array<vector> HitLocationsArray;
@@ -281,6 +297,13 @@ simulated function ApplyEffectToWorld(const out EffectAppliedData ApplyEffectPar
 					DamageAmount += default.IMPROVED_WARHEADS_ENV_DMG_BONUS;
 			if(SourceStateObject.HasAbilityFromAnySource('ConcussionWarheads_LW') && DamageAmount > 0 && default.CONCUSSION_WARHEADS_AFFECT_ABILITIES.find(AbilityTemplate.DataName) != INDEX_NONE)
 					DamageAmount += default.CONCUSSION_WARHEADS_ENV_DMG_BONUS;
+			
+			i = ExplosiveFalloffBonuses.Find('AbilityName', AbilityTemplate.DataName);
+			
+			if (i != INDEX_NONE && DamageAmount > 0)
+			{
+				DamageAmount += ExplosiveFalloffBonuses[i].EnvDamageBonus;
+			}
 
 			// Randomize damage
 			if (!bLinearDamage && AbilityRadius > 0.0f && DamageAmount > 0)
@@ -446,6 +469,20 @@ simulated function FilterTilesByStep(int StepIdx, vector SourceLocation, float A
 simulated function bool ShouldApplyEnvironmentDamageFalloff(XComGameState_Unit SourceUnit)
 {
 	local name AbilityExclusion;
+	local ExplosiveFalloffBonusInfo BonusInfo;
+
+	foreach ExplosiveFalloffBonuses(BonusInfo)
+	{
+		if (BonusInfo.bDisableEnvFalloff)
+		{
+			if(SourceUnit.HasSoldierAbility(BonusInfo.AbilityName))
+				return false;
+			
+			//additional check for aliens, checking character 
+			if(SourceUnit.FindAbility(BonusInfo.AbilityName).ObjectID > 0)
+				return false;
+		}
+	}
 
 	foreach EnvironmentDamageAbilityExclusions(AbilityExclusion)
 	{
