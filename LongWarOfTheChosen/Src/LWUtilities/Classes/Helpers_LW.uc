@@ -739,7 +739,7 @@ static final function bool IsRescueMissionAvailableForSoldier(StateObjectReferen
 			RewardState = XComGameState_Reward(History.GetGameStateForObjectID(StateRef.ObjectID));
 			if (RewardState.RewardObjectReference.ObjectID == CapturedSoldierRef.ObjectID)
 			{
-				`LWTrace("[RescueSoldier] Found existing mission for captured soldier " $ CapturedSoldierRef.ObjectID);
+				`LWTrace("[RescueSoldier] Found existing mission in region" @XComGameState_WorldRegion(History.GetGameStateForObjectID(MissionState.Region.ObjectID)).GetMyTemplateName() @ "for captured soldier " $ CapturedSoldierRef.ObjectID);
 				return true;
 			}
 		}

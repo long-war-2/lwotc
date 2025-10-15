@@ -559,8 +559,23 @@ simulated function Update(array<StateObjectReference> Soldiers)
 
 	if (class'XComGameState_LWPersistentSquad'.default.MissionsAffectedByLiberationStatus.Find (MissionState.GeneratedMission.Mission.MissionName) == -1)
 	{
-		LiberationText.Hide();
-		LiberationValue.Hide();
+		// If infiltration mission in liberated region
+		if(bLiberatedRegion)
+		{
+			if(default.USE_NEW_VERSION)
+			{
+					LiberationValue.SetNewInfoValue(default.strLiberationShort, GetDaysAndHoursString(Abs(BaseTotalInfiltrationHours - (BaseTotalInfiltrationHours * (InfiltrationBonusOnLiberation))), default.strMinusDaysAndHours), GetColorForHours(LiberationHours));
+			}
+			else
+			{
+					LiberationValue.SetInfoValue(GetDaysAndHoursString(Abs(BaseTotalInfiltrationHours - (BaseTotalInfiltrationHours * (InfiltrationBonusOnLiberation))), default.strMinusDaysAndHours), GetColorForHours(LiberationHours));
+			}
+		}
+		else
+		{
+			LiberationText.Hide();
+			LiberationValue.Hide();
+		}
 	}
 	else
 	{

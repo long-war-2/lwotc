@@ -538,6 +538,31 @@ LocLongDescription="Ваши дымовые гранаты дают дополн
 LocHelpText="Ваши дымовые гранаты дают дополнительно +<Ability:DenseSmoke_DefenseBonus_LW> к Защите."
 LocPromotionPopupText="<Bullet/> Ваши дымовые гранаты дают дополнительно +<Ability:DenseSmoke_DefenseBonus_LW> ед. к Защите солдатам, находящимся в дыму (суммарно +<Ability:DenseSmoke_DefenseTotal_LW>).<br/>"
 
+; LWOTC Translated
+[CombatStims_LW X2AbilityTemplate]
+LocFriendlyName="Стимпак добавка"
+LocFlyOverText="Стимпак добавка"
+LocLongDescription="Дымовые гранаты дают бонус +<Ability:CombatStims_AimBonus_LW> точности и +<Ability:CombatStims_CritBonus_LW> крит.шанус юнитам в облаке дыма."
+LocHelpText="Дымовые гранаты дают бонус +<Ability:CombatStims_AimBonus_LW> точности и +<Ability:CombatStims_CritBonus_LW> крит.шанус юнитам в облаке дыма."
+LocPromotionPopupText="<Bullet> Эффект длится до тех пор, пока юнит находится в дыму.<br><Bullet> Эффект применяется когда юнит перемещается в дым.<br><Bullet> Не работает на механических юнитов.<br><Bullet> Работает на врагов."
+
+[RegenSmoke_LW X2AbilityTemplate]
+LocFriendlyName="Био частицы"
+LocFlyOverText="Био частицы"
+LocLongDescription="Дымовые гранаты лечат юнитов на <Ability:RegenSmoke_HealAmount_LW> ОЗ вначале каждого хода. Максимальное лечение ОЗ на каждую миссию: <Ability:RegenSmoke_MaxHealAmount_LW>."
+LocHelpText="Дымовые гранаты лечат юнитов  вначале каждого хода."
+LocPromotionPopupText="<Bullet>"Эффект применяется когда юнит заходит в дым.<br><Bullet> Не работает на механических юнитов.<br><Bullet> Работает на вргов."
+
+
+[Collateral_LW X2AbilityTemplate]
+LocFriendlyName="Заградительный огонь"
+LocLongDescription="Стреляет серию из оружия <Ability:WeaponName/> по местности, повреждая укрытия. Наносит незначительный урон врагам. Перезарядка 4 хода, требует 2 ед. боекомплекта."
+LocHelpText="Стреляет серию из оружия <Ability:WeaponName/> по местности, разрушая укрытия."
+LocFlyOverText="Заградительный огонь"
+LocPromotionPopupText="<Bullet/> "Стреляет серию из оружия <Ability:WeaponName/> по местности, повреждая укрытия.<br/><Bullet/> Наносит высокий урон по укрытиям в области.<br/><Bullet/> Заградительный огонь наносит 40% от базового урона оружия врагам в зоне действия способности.<br/><Bullet/> Требует 2ед. боекомплекта и перезаряжается 4 хода.<br/>"
+
+; End Translated
+
 [DenseSmokeGrenade X2GrenadeTemplate]
 FriendlyName="Граната с густым дымом"
 FriendlyNamePlural="Гранаты с густым дымом"
@@ -1124,11 +1149,11 @@ LocFlyOverText="Многослойная защита"
 LocPromotionPopupText="<Bullet/> Благодаря новым разработкам Шэнь теперь броня разделена на 3 слоя. Урон по одному слою не вредит другому.<br/><Bullet/> <Ability:ClassName/> за раз получит не больше 40% повреждений от своего хп. Округление к целому числу.<br/>"
 
 [Triangulation_LW X2AbilityTemplate]
-LocFriendlyName="Triangulate"
-LocLongDescription="When the <Ability:ClassName/> is attacked, the squad gains +10 aim against that target on the following turn."
-LocHelpText="When the <Ability:ClassName/> is attacked, the squad gains +10 aim against that target on the following turn."
-LocFlyOverText="Triangulate"
-LocPromotionPopupText="<Bullet/> The <Ability:ClassName/> can trace incoming ordnance back to their original owners, and upload that information to the rest of the team.<br/><Bullet/> Triangulate will not trigger if an enemy attacks one of the <Ability:ClassName/>'s squadmates.<br/>"
+LocFriendlyName="Триангуляция"
+LocLongDescription="Когда атакован, <Ability:ClassName/> дает бонус 10 точности для отряда по атаковавшему на следующий ход."
+LocHelpText="Когда атакован, <Ability:ClassName/> дает бонус 10 точности для отряда по атаковавшему на следующий ход."
+LocFlyOverText="Триангуляция"
+LocPromotionPopupText="<Bullet/> <Ability:ClassName/> может дать информацию о цели для отряда, отследя траекторию атаки, которая была на него направлена.<br/><Bullet/> Триангуляция не работает, если атаковали союзника.<br/>"
 
 [TriangulationTrigger_LW X2AbilityTemplate]
 LocFriendlyName="Триангуляция"
