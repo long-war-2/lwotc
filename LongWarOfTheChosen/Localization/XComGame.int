@@ -8023,3 +8023,9 @@ LocFriendlyName="Teleport Escape"
 LocLongDescription="When damaged, bound, or restrained by Void Conduit, the Avatar can teleport away to a new location."
 LocHelpText="When damaged, bound, or restrained by Void Conduit, the Avatar can teleport away to a new location."
 LocFlyOverText="Teleport"
+
+[MediumAlienArmor X2ArmorTemplate]
+FriendlyName="Icarus Armor"
+FriendlyNamePlural="Icarus Armors"
+BriefSummary="The flight components recovered from the Archon King, when combined with our standard-issue armor systems, result in an armored suit with high damage resistance and improved mobility. The built-in propulsion system allows temporary flight, enabling the wearer to rapidly change locations."
+TacticalText="<Bullet/> The Icarus Armor allows a soldier to instantly leap to a new location.\n<Bullet/> Wearing this armor has a chance to panic Archons encountered in combat."
