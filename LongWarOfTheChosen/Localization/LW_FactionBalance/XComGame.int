@@ -1,21 +1,21 @@
 ; LWOTC Needs Translation
 [LingeringShadow X2AbilityTemplate]
 LocFriendlyName="Lingering Shadow"
-LocLongDescription="Provides +<Ability:LingeringShadowDefenseBonus/> Defense and +<Ability:LingeringShadowDodgeBonus/> Dodge for one turn when the Reaper loses Shadow."
-LocHelpText="Provides +<Ability:LingeringShadowDefenseBonus/> Defense and +<Ability:LingeringShadowDodgeBonus/> Dodge for one turn when the Reaper loses Shadow."
-LocPromotionPopupText="<Bullet/> Provides +<Ability:LingeringShadowDefenseBonus/> Defense and +<Ability:LingeringShadowDodgeBonus/> Dodge as soon as the Reaper loses Shadow, either because they break concealment or Shadow expires.<br/><Bullet/> Lasts until the start of XCOM's next turn."
+LocLongDescription="Provides +<Ability:LingeringShadowDefenseBonus/> Defense and +<Ability:LingeringShadowDodgeBonus/> Dodge for one turn when the <Ability:ClassName> loses Shadow."
+LocHelpText="Provides +<Ability:LingeringShadowDefenseBonus/> Defense and +<Ability:LingeringShadowDodgeBonus/> Dodge for one turn when the <Ability:ClassName> loses Shadow."
+LocPromotionPopupText="<Bullet/> Provides +<Ability:LingeringShadowDefenseBonus/> Defense and +<Ability:LingeringShadowDodgeBonus/> Dodge as soon as the <Ability:ClassName> loses Shadow, either because they break concealment or Shadow expires.<br/><Bullet/> Lasts until the start of XCOM's next turn."
 
 ; LWOTC Needs Translation (2)
 [LingeringShadowTrigger X2AbilityTemplate]
 LocFriendlyName="Lingering Shadow"
-LocLongDescription="Provides +<Ability:LingeringShadowDefenseBonus/> Defense and +<Ability:LingeringShadowDodgeBonus/> Dodge for one turn when the Reaper loses Shadow."
-LocHelpText="Provides +<Ability:LingeringShadowDefenseBonus/> Defense and +<Ability:LingeringShadowDodgeBonus/> Dodge for one turn when the Reaper loses Shadow."
+LocLongDescription="Provides +<Ability:LingeringShadowDefenseBonus/> Defense and +<Ability:LingeringShadowDodgeBonus/> Dodge for one turn when the <Ability:ClassName> loses Shadow."
+LocHelpText="Provides +<Ability:LingeringShadowDefenseBonus/> Defense and +<Ability:LingeringShadowDodgeBonus/> Dodge for one turn when the <Ability:ClassName> loses Shadow."
 ; End Translation (2)
 
 [Demolitionist X2AbilityTemplate]
 LocFriendlyName="Demolitionist"
-LocLongDescription="The Reaper gains +<Ability:DemolitionistExtraChargeCount/> charge for Remote Start and for Homing Mine."
-LocHelpText="The Reaper gains +<Ability:DemolitionistExtraChargeCount/> charge for Remote Start and for Homing Mine."
+LocLongDescription="The <Ability:ClassName> gains +<Ability:DemolitionistExtraChargeCount/> charge for Remote Start and for Homing Mine."
+LocHelpText="The <Ability:ClassName> gains +<Ability:DemolitionistExtraChargeCount/> charge for Remote Start and for Homing Mine."
 LocPromotionPopupText="<Bullet/> Adds <Ability:DemolitionistExtraChargeCount/> extra charge to Remote Start and for Homing Mine.<br/>"
 
 [CripplingStrike X2AbilityTemplate]
@@ -50,14 +50,14 @@ LocPromotionPopupText="<Bullet/> Stuns the target for <Ability:DisablingShotStun
 
 [Meditation X2AbilityTemplate]
 LocFriendlyName="Meditation"
-LocLongDescription="Adds up to <Ability:MeditationFocusRecovery/> focus to the Templar. Starts with 0 charges, and gains one charge per kill the Templar gets."
-LocHelpText="Adds up to <Ability:MeditationFocusRecovery/> focus to the Templar. Starts with 0 charges, and gains one charge per kill the Templar gets."
-LocPromotionPopupText="<Bullet/> Adds <Ability:MeditationFocusRecovery/> points of focus to the Templar.<br/><Bullet/> Ends the turn.<br/><Bullet/> Has a <Ability:SelfCooldown/>-turn cooldown."
+LocLongDescription="Adds up to <Ability:MeditationFocusRecovery/> focus to the <Ability:ClassName>. Starts with 0 charges, and gains one charge per kill the <Ability:ClassName> gets."
+LocHelpText="Adds up to <Ability:MeditationFocusRecovery/> focus to the <Ability:ClassName>. Starts with 0 charges, and gains one charge per kill the <Ability:ClassName> gets."
+LocPromotionPopupText="<Bullet/> Adds <Ability:MeditationFocusRecovery/> points of focus to the <Ability:ClassName>.<br/><Bullet/> Ends the turn.<br/><Bullet/> Has a <Ability:SelfCooldown/>-turn cooldown."
 
 [Overcharge_LW X2AbilityTemplate]
 LocFriendlyName="Overcharge"
-LocLongDescription="Gain bonus aim and crit chance on melee attacks for each point of focus the Templar has."
-LocHelpText="Gain bonus aim and crit chance on melee attacks for each point of focus the Templar has."
+LocLongDescription="Gain bonus aim and crit chance on melee attacks for each point of focus the <Ability:ClassName> has."
+LocHelpText="Gain bonus aim and crit chance on melee attacks for each point of focus the <Ability:ClassName> has."
 LocPromotionPopupText="<Bullet/> Each point of focus provides +<Ability:OverchargeAimBonus/> aim and +<Ability:OverchargeCritBonus/> crit chance.<br/><Bullet/> Based on the current focus, not max focus."
 
 [VoltDangerZone X2AbilityTemplate]
@@ -73,7 +73,7 @@ LocFriendlyName="Vigilance"
 LocLongDescription="Gain 1 focus whenever your squad activates an enemy pod of size 3 or more."
 LocHelpText="Gain 1 focus whenever your squad activates an enemy pod of size 3 or more."
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> Adds 1 focus to the Templar when an enemy pod scampers.<br/><Bullet/> Only triggers if the pod has at least 3 units in it.<br/><Bullet/> If you are already at max focus, the focus gain is wasted."
+LocPromotionPopupText="<Bullet/> Adds 1 focus to the <Ability:ClassName> when an enemy pod scampers.<br/><Bullet/> Only triggers if the pod has at least 3 units in it.<br/><Bullet/> If you are already at max focus, the focus gain is wasted."
 ; End Translation (2)
 
 [TemplarTerror X2AbilityTemplate]
@@ -81,7 +81,7 @@ LocFriendlyName="Terrorize"
 LocLongDescription="Gain <Ability:VoltDangerZoneBonus/>-tile bonus radius for Volt. Adds a chance to panic enemies hit by Volt."
 LocHelpText="Gain <Ability:VoltDangerZoneBonus/>-tile bonus radius for Volt. Adds a chance to panic enemies hit by Volt."
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> Volt can now panic the enemy.<br/><Bullet/> The chance to panic is <Ability:TERROR_STAT_CHECK_BASE_VALUE/>% and is affected by both the Templar's Will and the target's Will."
+LocPromotionPopupText="<Bullet/> Volt can now panic the enemy.<br/><Bullet/> The chance to panic is <Ability:TERROR_STAT_CHECK_BASE_VALUE/>% and is affected by both the <Ability:ClassName>'s Will and the target's Will."
 ; End Translation (2)
 
 [Apotheosis X2AbilityTemplate]
@@ -94,7 +94,7 @@ LocLongDescription="Become a god, massively increasing your dodge, damage and mo
 LocHelpText="Become a god, massively increasing your dodge, damage and mobility. Requires a minimum of 3 focus and consumes it all."
 ; End Translation (2)
 ; LWOTC Needs Translation (3)
-LocPromotionPopupText="<Bullet/> A free action that makes the Templar substantially more powerful for two turns.<br/><Bullet/> Increases all damage by <Ability:ApotheosisDamageMultiplier/>% for each point of focus above 2.<br/><Bullet/> Increases Dodge by <Ability:ApotheosisDodgeBonus/> for each point of focus above 2.<br/><Bullet/> Increases mobility by <Ability:ApotheosisMobilityBonus/> for each point of focus above 2.<br/><Bullet/> Requires a minimum of 3 focus.<br/><Bullet/> Consumes all focus.<br/><Bullet/> The Templar can gain focus while under the effect of Apotheosis."
+LocPromotionPopupText="<Bullet/> A free action that makes the <Ability:ClassName> substantially more powerful for two turns.<br/><Bullet/> Increases all damage by <Ability:ApotheosisDamageMultiplier/>% for each point of focus above 2.<br/><Bullet/> Increases Dodge by <Ability:ApotheosisDodgeBonus/> for each point of focus above 2.<br/><Bullet/> Increases mobility by <Ability:ApotheosisMobilityBonus/> for each point of focus above 2.<br/><Bullet/> Requires a minimum of 3 focus.<br/><Bullet/> Consumes all focus.<br/><Bullet/> The <Ability:ClassName> can gain focus while under the effect of Apotheosis."
 ; End Translation (3)
 ; End Translation
 
@@ -130,9 +130,9 @@ LocFlyoverText="Shadow: +1 Turn"
 ; LWOTC Needs Translation
 [Parkour_LW X2AbilityTemplate]
 LocFriendlyName="Parkour"
-LocHelpText="The cooldown for the Skirmisher's Grapple is reduced by one turn."
-LocLongDescription="The cooldown for the Skirmisher's Grapple is reduced by one turn."
-LocPromotionPopupText="<Bullet/> Improves the Skirmisher's mobility around the map.<br/>"
+LocHelpText="The cooldown for the <Ability:ClassName>'s Grapple is reduced by one turn."
+LocLongDescription="The cooldown for the <Ability:ClassName>'s Grapple is reduced by one turn."
+LocPromotionPopupText="<Bullet/> Improves the <Ability:ClassName>'s mobility around the map.<br/>"
 ; End Translation
 
 ; LWOTC Needs Translation

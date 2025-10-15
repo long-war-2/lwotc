@@ -513,7 +513,7 @@ LocHelpText="Shoot the target."
 ;LocPromotionPopupText="<Bullet/> The soldier may now use the sniper rifle for standard shots after moving, but suffers extreme aim penalties at targets beyond 22 tiles range on those shots.<br/><Bullet/> The soldier may not enter overwatch with the sniper rifle after moving.<br/>
 
 LocLongDescription="You may take standard shots with your sniper rifle after moving, but you suffer severe range penalties beyond 5 tiles of squadsight range on all shots."
-LocPromotionPopupText="<Bullet/> This ability significantly alters the way the Sharpshooter operates: The soldier may now use the sniper rifle for standard shots after moving, but suffers extreme aim penalties at targets beyond 22 tiles range on all shots, regardless of whether the soldier has moved or not.<br/><Bullet/> Only works with Sniper Rifles.<br/><Bullet/> Reduces close range penalties by <Ability:WPN_HANDLING_MODIFIER/> relative to normal sniper rifles.<br/><Bullet/> After 5 tiles of squadsight, suffer an additional -20 aim per tile.<br/><Bullet/> Certain special shots and Long Watch still require both actions to use. Long Watch enables squadsight overwatch fire, but the range penalties still apply.<br/><Bullet/> The solder will not take an overwatch or Kill Zone shot without at least a 1% chance to hit."
+LocPromotionPopupText="<Bullet/> This ability significantly alters the way the <Ability:ClassName> operates: The soldier may now use the sniper rifle for standard shots after moving, but suffers extreme aim penalties at targets beyond 22 tiles range on all shots, regardless of whether the soldier has moved or not.<br/><Bullet/> Only works with Sniper Rifles.<br/><Bullet/> Reduces close range penalties by <Ability:WPN_HANDLING_MODIFIER/> relative to normal sniper rifles.<br/><Bullet/> After 5 tiles of squadsight, suffer an additional -20 aim per tile.<br/><Bullet/> Certain special shots and Long Watch still require both actions to use. Long Watch enables squadsight overwatch fire, but the range penalties still apply.<br/><Bullet/> The solder will not take an overwatch or Kill Zone shot without at least a 1% chance to hit."
 
 [SnapShotOverwatch X2AbilityTemplate]
 LocFriendlyName="Overwatch"
@@ -532,7 +532,7 @@ LocHelpText="Allows standard shots with sniper rifles after moving."
 LocFriendlyName="Trojan"
 LocFlyOverText="Trojan"
 LocLongDescription="Enemy units that are hacked take damage and lose their actions on the turn the hack effect ends. Trojan will never break squads concealment even if it fails to destroy its target."
-LocHelpText="Hacked units suffer damage and action loss when hack effect ends. This ability lets our Specialists destroy ADVENT Drones without breaking concealment. Even if the victim survives the Trojan attack, concealment will not be broken."
+LocHelpText="Hacked units suffer damage and action loss when hack effect ends. This ability lets tje <Ability:ClassName> destroy ADVENT Drones without breaking concealment. Even if the victim survives the Trojan attack, concealment will not be broken."
 LocPromotionPopupText="<Bullet/> Enemy units hacked by Haywire Protocol take 0 to 8 damage and lose their actions on the turn the hack effect ends.<br/><Bullet/> Applies to units stunned or taken over by Haywire Protocol.<br/><Bullet/> Damage calculated based on Hacking Stat vs. target's Hack Defense.<br/>"
 
 [Covert X2AbilityTemplate]
@@ -844,7 +844,7 @@ LocFlyOverText="Mind Merge"
 LocLongDescription="Grants bonus will, critical chance and ablative hit points to an organic ally until the beginning of the player's next turn."
 LocHelptext="Temporarily grants bonus will, critical chance and ablative hit points to an organic ally."
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> Grants the targeted ally +1/+<Ability:MIND_MERGE_AMP_MG_TOTAL_SHIELDHP>/+<Ability:MIND_MERGE_AMP_BM_TOTAL_SHIELDHP> ablative hit points depending on Psi Amp tier, and +1 ablative hit points per <Ability:MIND_MERGE_SHIELDHP_DIVISOR> Psi offense score of the Psi Operative using Mind Merge.<br/><Bullet/> Grants the targeted ally +0/+<Ability:MIND_MERGE_AMP_MG_TOTAL_WILL>/+<Ability:MIND_MERGE_AMP_BM_TOTAL_WILL> will depending on Psi Amp tier, and +1 will per <Ability:MIND_MERGE_WILL_DIVISOR> per Psi Offense score of the Psi Operative.<br/><Bullet/> Grants the targeted ally +0/+<Ability:MIND_MERGE_AMP_MG_TOTAL_CRIT>/+<Ability:MIND_MERGE_AMP_BM_TOTAL_CRIT> crit depending on Psi Amp tier, and +1 crit per <Ability:MIND_MERGE_CRIT_DIVISOR> per Psi Offense score of the Psi Operative.<br/><Bullet/> Effect lasts until the Psi Operative's next turn.<br/><Bullet/> Mind Merge has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Mind Merge requires one action and does not end your turn.<br/><Bullet/> Only visible allies may be targeted.<br/><Bullet/> Improved Psi Amps grant additional bonuses to these effects.<br/><Bullet/> If the Psi Operative is employed as Haven Adviser, Mind Merge will reduce the chance of recruiting Faceless rebels by 40% (stacking cumulatively with other similar abilities).<br/>"
+LocPromotionPopupText="<Bullet/> Grants the targeted ally +1/+<Ability:MIND_MERGE_AMP_MG_TOTAL_SHIELDHP>/+<Ability:MIND_MERGE_AMP_BM_TOTAL_SHIELDHP> ablative hit points depending on Psi Amp tier, and +1 ablative hit points per <Ability:MIND_MERGE_SHIELDHP_DIVISOR> Psi offense score of the <Ability:ClassName> using Mind Merge.<br/><Bullet/> Grants the targeted ally +0/+<Ability:MIND_MERGE_AMP_MG_TOTAL_WILL>/+<Ability:MIND_MERGE_AMP_BM_TOTAL_WILL> will depending on Psi Amp tier, and +1 will per <Ability:MIND_MERGE_WILL_DIVISOR> per Psi Offense score of the <Ability:ClassName>.<br/><Bullet/> Grants the targeted ally +0/+<Ability:MIND_MERGE_AMP_MG_TOTAL_CRIT>/+<Ability:MIND_MERGE_AMP_BM_TOTAL_CRIT> crit depending on Psi Amp tier, and +1 crit per <Ability:MIND_MERGE_CRIT_DIVISOR> per Psi Offense score of the <Ability:ClassName>.<br/><Bullet/> Effect lasts until the <Ability:ClassName>'s next turn.<br/><Bullet/> Mind Merge has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Mind Merge requires one action and does not end your turn.<br/><Bullet/> Only visible allies may be targeted.<br/><Bullet/> Improved Psi Amps grant additional bonuses to these effects.<br/><Bullet/> If the <Ability:ClassName> is employed as Haven Adviser, Mind Merge will reduce the chance of recruiting Faceless rebels by 40% (stacking cumulatively with other similar abilities).<br/>"
 ; End Translation (2)
 
 [SoulMerge X2AbilityTemplate]
@@ -859,7 +859,7 @@ LocFriendlyName="Null Lance"
 LocLongDescription="Project a beam of terrible power that damages every target it passes through. This attack can penetrate multiple enemies and obstacles."
 LocHelpText="Project a beam of Psionic energy that damages every target it passes through."
 LocFlyOverText="Null Lance"
-LocPromotionPopupText="<Bullet/> Null Lance has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Null Lance damage can be increased by improving the Psi Operative's Psi Amp.<br/>"
+LocPromotionPopupText="<Bullet/> Null Lance has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Null Lance damage can be increased by improving the <Ability:ClassName>'s Psi Amp.<br/>"
 
 [Shadowstrike_LW X2AbilityTemplate]
 LocFriendlyName="Shadowstrike"
@@ -942,7 +942,7 @@ LocPromotionPopupText="<Bullet/> Quickdraw allows the soldier to spread their fi
 LocFriendlyName="Aim"
 LocLongDescription="Hunker Down now confers +<Ability:SHARPSHOOTERAIMBONUS/> Aim and +<Ability:SHARPSHOOTERAIM_CRITBONUS/> Crit to the first shot on the following turn."
 LocHelpText="Hunker Down now confers +<Ability:SHARPSHOOTERAIMBONUS/> Aim and +<Ability:SHARPSHOOTERAIM_CRITBONUS/> Crit to the first shot on the following turn."
-LocFlyOverText="HunkerDown - Aim"
+LocFlyOverText="Hunker Down - Aim"
 LocPromotionPopupText="<Bullet/> The bonus granted by Aim can apply to any weapon shot.<br/>"
 ; End Translation (2)
 
@@ -1183,7 +1183,7 @@ LocFriendlyName="Repair"
 LocLongDescription="Send the BIT to a damaged robotic ally and heal it, neutralize acid, and repair all shredded armor."
 LocHelpText="Send the BIT to repair a damaged robotic ally."
 LocFlyOverText="Repair"
-LocPromotionPopupText="<Bullet/> The <Ability:ClassName/> can use Repair to heal other robotic allies during battle (or itself, in the case of SPARKs).<br/><Bullet/> Repair will restore 4/6/8HP, remove any acid, and reset the target's armor to maximum.<br/><Bullet/> Repair has 1 charge per mission and gains an additional charge with the Enhanced Repair Systems ability.<br/><Bullet/> Using Repair as your first action will end your turn without the Rapid Repair ability.<br/><Bullet/> Repair has a 1-turn cooldown (cannot be used multiple times per turn).<br/>"
+LocPromotionPopupText="<Bullet/> The <Ability:ClassName/> can use Repair to heal robotic squad members during battle.<br/><Bullet/> Repair will restore 4/6/8HP, remove any acid, and reset the target's armor to maximum.<br/><Bullet/> Repair has 1 charge per mission and gains an additional charge with the Enhanced Repair Systems ability.<br/><Bullet/> Using Repair as your first action will end your turn without the Rapid Repair ability.<br/><Bullet/> Repair has a 1-turn cooldown (cannot be used multiple times per turn).<br/>"
 
 [KineticStrike_LW X2AbilityTemplate]
 LocFriendlyName="Kinetic Strike"
@@ -1199,17 +1199,17 @@ LocPromotionPopupText="<Bullet/> Learning the Assault Servos ability will grant 
 
 [RapidRepair_LW X2AbilityTemplate]
 LocFriendlyName="Rapid Repair"
-LocLongDescription="Repair no longer ends the turn, allowing the SPARK to repair and take a different action such as moving or shooting."
-LocHelpText="Repair no longer ends the SPARK's turn."
+LocLongDescription="Repair no longer ends the turn, allowing the <Ability:ClassName> to repair and take a different action such as moving or shooting."
+LocHelpText="Repair no longer ends the <Ability:ClassName>'s turn."
 LocFlyOverText="Rapid Repair"
-LocPromotionPopupText="<Bullet/> The SPARK's Repair ability no longer ends the turn.<br/><Bullet/> Repair still has a 1-turn cooldown, preventing it from being used twice in one turn.<br/><Bullet/> This allows the SPARK to be much more flexible on the battlefield while also keeping its health and armor high.<br/>"
+LocPromotionPopupText="<Bullet/> The <Ability:ClassName>'s Repair ability no longer ends the turn.<br/><Bullet/> Repair still has a 1-turn cooldown, preventing it from being used twice in one turn.<br/><Bullet/> This allows the <Ability:ClassName> to be much more flexible on the battlefield while also keeping its health and armor high.<br/>"
 
 [Reboot_LW X2AbilityTemplate]
 LocFriendlyName="Reboot"
-LocLongDescription="If the SPARK takes enough damage to be killed, its health will be reduced to just 1 HP and it will be shielded for the rest of the turn. Can only trigger once every mission, and afterwards the SPARK is crippled."
-LocHelpText="The SPARK will be shielded for one turn if it takes enough damage to be killed."
+LocLongDescription="If the <Ability:ClassName> takes enough damage to be killed, its health will be reduced to just 1 HP and it will be shielded for the rest of the turn. Can only trigger once every mission, and afterwards the <Ability:ClassName> is crippled."
+LocHelpText="The <Ability:ClassName> will be shielded for one turn if it takes enough damage to be killed."
 LocFlyOverText="Reboot"
-LocPromotionPopupText="<Bullet/> The SPARK will be put into Stasis the first time each mission that its health hits zero.<br/><Bullet/> Without the Redundant Systems ability, the SPARK is crippled after rebooting from catastrophic damage, suffering massive penatlies to aim, mobility, and hacking.<br/><Bullet/> Because of these drawbacks, in combination with the SPARK's already low hull integrity at the time of a Reboot, it is recommended rebooted SPARKs be withdrawn from the battlefield via Skyranger when possible.<br/><Bullet/> Thanks to a complex network of redundant plating, reactivation circuits, and a single-charge shield projector, the SPARK can take one for the team secure in the knowledge that it will live to punch another day.<br/>"
+LocPromotionPopupText="<Bullet/> The <Ability:ClassName> will be put into Stasis the first time each mission that its health hits zero.<br/><Bullet/> Without the Redundant Systems ability, the <Ability:ClassName> is crippled after rebooting from catastrophic damage, suffering massive penatlies to aim, mobility, and hacking.<br/><Bullet/> Because of these drawbacks, in combination with the <Ability:ClassName>'s already low hull integrity at the time of a Reboot, it is recommended that the rebooted <Ability:ClassName> be withdrawn from the battlefield via Skyranger when possible.<br/><Bullet/> Thanks to a complex network of redundant plating, reactivation circuits, and a single-charge shield projector, the <Ability:ClassName> can take one for the team secure in the knowledge that it will live to punch another day.<br/>"
 
 [RebootTriggered_LW X2AbilityTemplate]
 LocFriendlyName="Reboot"
@@ -1218,31 +1218,31 @@ LocHelpText="The unit will be shielded for one turn if it takes enough damage to
 
 [RedundantSystems_LW X2AbilityTemplate]
 LocFriendlyName="Redundant Systems"
-LocLongDescription="The SPARK no longer suffers any stat penalties from Reboot."
-LocHelpText="The SPARK no longer suffers any stat penalties from Reboot."
+LocLongDescription="The <Ability:ClassName> no longer suffers any stat penalties from Reboot."
+LocHelpText="The <Ability:ClassName> no longer suffers any stat penalties from Reboot."
 LocFlyOverText="Redundant Systems"
-LocPromotionPopupText="<Bullet/> The SPARK no longer suffers any stat penalties from Reboot.<br/><Bullet/> Without Redundant Systems, the SPARK is crippled after rebooting from catastrophic damage.<br/>"
+LocPromotionPopupText="<Bullet/> The <Ability:ClassName> no longer suffers any stat penalties from Reboot.<br/><Bullet/> Without Redundant Systems, the <Ability:ClassName> is crippled after rebooting from catastrophic damage.<br/>"
 
 [RedunSysTriggered_LW X2AbilityTemplate]
 LocFriendlyName="Redundant Systems"
-LocLongDescription="If the SPARK takes enough damage to be killed, its health will be reduced to just 1 HP and it will be shielded for the rest of the turn. Can only trigger once every mission."
-LocHelpText="The SPARK will be shielded for one turn if it takes enough damage to be killed."
+LocLongDescription="If the <Ability:ClassName> takes enough damage to be killed, its health will be reduced to just 1 HP and it will be shielded for the rest of the turn. Can only trigger once every mission."
+LocHelpText="The <Ability:ClassName> will be shielded for one turn if it takes enough damage to be killed."
 LocFlyOverText="Redundant Systems"
-LocPromotionPopupText="<Bullet/> The SPARK will be put into Stasis the first time each mission that its health hits zero.<br/><Bullet/> Thanks to a complex network of redundant plating, reactivation circuits, and a single-charge shield projector, the SPARK can take one for the team secure in the knowledge that it will live to punch another day.<br/>"
+LocPromotionPopupText="<Bullet/> The <Ability:ClassName> will be put into Stasis the first time each mission that its health hits zero.<br/><Bullet/> Thanks to a complex network of redundant plating, reactivation circuits, and a single-charge shield projector, the <Ability:ClassName> can take one for the team secure in the knowledge that it will live to punch another day.<br/>"
 
 [HeavyRepair_LW X2AbilityTemplate]
 LocFriendlyName="Heavyduty Repair"
 LocFlyOverText="Heavyduty Repair"
 LocLongDescription="Repair heals four extra HP each use, doubling its recovery potential."
 LocHelpText="Repair heals four extra HP each use."
-LocPromotionPopupText="<Bullet/> The SPARK's repair ability will now heal 8 HP per use instead of 4 HP.<br/>"
+LocPromotionPopupText="<Bullet/> The <Ability:ClassName>'s repair ability will now heal 8 HP per use instead of 4 HP.<br/>"
 
 [ConcussiveStrike_LW X2AbilityTemplate]
 LocFriendlyName="Concussive Strike"
 LocLongDescription="A special Strike attack that does half damage but stuns the target for two action points. Cannot target robotic units. 4-turn cooldown. Also reduces the cooldown of Kinetic Strike by 1."
 LocHelpText="A special Strike attack that does half damage but stuns the target for two action points."
 LocFlyOverText="Concussive Strike"
-LocPromotionPopupText="<Bullet/> Concussive Strike cannot target robotic units, as their processing centers aren't as squishy as brains.<br/><Bullet/> The damage of Concussive Strike without Assault Servos is 3/4/5 depending on equipped chassis.<br/><Bullet/> The damage of Concussive Strike with Assault Servos is 4/5/6 depending on equipped chassis.<br/><Bullet/> The SPARK's improved melee abilities also reduce the cooldown of the main Kinetic Strike ability by 1."
+LocPromotionPopupText="<Bullet/> Concussive Strike cannot target robotic units, as their processing centers aren't as squishy as brains.<br/><Bullet/> The damage of Concussive Strike without Assault Servos is 3/4/5 depending on equipped chassis.<br/><Bullet/> The damage of Concussive Strike with Assault Servos is 4/5/6 depending on equipped chassis.<br/><Bullet/> The <Ability:ClassName>'s improved melee abilities also reduce the cooldown of the main Kinetic Strike ability by 1."
 
 [Neutralize_LW X2AbilityTemplate]
 LocFriendlyName="Neutralize Protocol"
@@ -1288,15 +1288,15 @@ LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent ti
 
 [EnhancedSystems_LW X2AbilityTemplate]
 LocFriendlyName="Enhanced Repair Systems"
-LocLongDescription="Grants the Rapid Repair and Redundant Systems abilities, making it no longer end the turn and removing the stat debuffs associated with Reboot. The SPARK will automatically use Repair when rebooting. Additionally grant one additional charge to Repair."
-LocHelpText="Rapid Repair makes Repair non turn ending. Redundant Systems means the SPARK will not suffer any stat penalties after Rebooting. The SPARK will automatically use Repair when rebooting."
-LocPromotionPopupText="Rapid Repair makes Repair non turn ending. Redundant Systems means the SPARK will not suffer any stat penalties after Rebooting. The SPARK will automatically use Repair when rebooting. Additionally grant one additional charge to Repair."
+LocLongDescription="Grants the Rapid Repair and Redundant Systems abilities, making it no longer end the turn and removing the stat debuffs associated with Reboot. The <Ability:ClassName> will automatically use Repair when rebooting. Additionally grant one additional charge to Repair."
+LocHelpText="Rapid Repair makes Repair non turn ending. Redundant Systems means the <Ability:ClassName> will not suffer any stat penalties after Rebooting. The <Ability:ClassName> will automatically use Repair when rebooting."
+LocPromotionPopupText="Rapid Repair makes Repair non turn ending. Redundant Systems means the <Ability:ClassName> will not suffer any stat penalties after Rebooting. The <Ability:ClassName> will automatically use Repair when rebooting. Additionally grant one additional charge to Repair."
 
 [ReactionSystems_LW X2AbilityTemplate]
 LocFriendlyName="Enhanced Defensive Systems"
-LocLongDescription="Grants the Sacrifice and Channeling Field abilities, allowing the SPARK to redirect attacks from nearby allies towards itself, and increasing the SPARK's damage after being targeted by any attack."
-LocHelpText="<Bullet/> The SPARK gains +<Ability:Sacrifice_Defense/> defense and +<Ability:Sacrifice_Armor/> armor while Sacrifice is active.<br/><Bullet/> Sacrifice has a <Ability:SACRIFICE_COOLDOWN/> turn cooldown.<br/><Bullet/> Each point of energy channeled by Channeling Field increases the damage of the next <Ability:WeaponName> attack by 1.<br/>"
-LocPromotionPopupText="<Bullet/> The SPARK gains +<Ability:Sacrifice_Defense/> defense and +<Ability:Sacrifice_Armor/> armor while Sacrifice is active.<br/><Bullet/> Sacrifice has a <Ability:SACRIFICE_COOLDOWN/> turn cooldown.<br/><Bullet/> Each point of energy channeled by Channeling Field increases the damage of the next <Ability:WeaponName> attack by 1.<br/>"
+LocLongDescription="Grants the Sacrifice and Channeling Field abilities, allowing the <Ability:ClassName> to redirect attacks from nearby allies towards itself, and increasing the <Ability:ClassName>'s damage after being targeted by any attack."
+LocHelpText="<Bullet/> The <Ability:ClassName> gains +<Ability:Sacrifice_Defense/> defense and +<Ability:Sacrifice_Armor/> armor while Sacrifice is active.<br/><Bullet/> Sacrifice has a <Ability:SACRIFICE_COOLDOWN/> turn cooldown.<br/><Bullet/> Each point of energy channeled by Channeling Field increases the damage of the next <Ability:WeaponName> attack by 1.<br/>"
+LocPromotionPopupText="<Bullet/> The <Ability:ClassName> gains +<Ability:Sacrifice_Defense/> defense and +<Ability:Sacrifice_Armor/> armor while Sacrifice is active.<br/><Bullet/> Sacrifice has a <Ability:SACRIFICE_COOLDOWN/> turn cooldown.<br/><Bullet/> Each point of energy channeled by Channeling Field increases the damage of the next <Ability:WeaponName> attack by 1.<br/>"
 
 [AdvancedLogic_LW X2AbilityTemplate]
 LocFriendlyName="Advanced Logic"
@@ -1306,9 +1306,9 @@ LocPromotionPopupText="Increases the <Ability:ClassName/>'s hack stat by <Abilit
 
 [HoloAACombo_LW X2AbilityTemplate]
 LocFriendlyName="Enhanced Targeting Systems"
-LocLongDescription="Grants the Adaptive Aim and Holo Targeting abilities, improving the SPARK's ability to take multiple shots while Overdrive is active and improving the squad's ability to hit targets the SPARK shoots. Holo Targeting applies to all shots, not just those taken while Overdrive is active."
-LocHelpText="Grants the Adaptive Aim and Holo Targeting abilities, improving the SPARK's ability to take multiple shots while Overdrive is active and improving the squad's ability to hit targets the SPARK shoots. Holo Targeting applies to all shots, not just those taken while Overdrive is active."
-LocPromotionPopupText="Grants the Adaptive Aim and Holo Targeting abilities, improving the SPARK's ability to take multiple shots while Overdrive is active and improving the squad's ability to hit targets the SPARK shoots. Holo Targeting applies to all shots, not just those taken while Overdrive is active."
+LocLongDescription="Grants the Adaptive Aim and Holo Targeting abilities, improving the <Ability:ClassName>'s ability to take multiple shots while Overdrive is active and improving the squad's ability to hit targets the <Ability:ClassName> shoots. Holo Targeting applies to all shots, not just those taken while Overdrive is active."
+LocHelpText="Grants the Adaptive Aim and Holo Targeting abilities, improving the <Ability:ClassName>'s ability to take multiple shots while Overdrive is active and improving the squad's ability to hit targets the <Ability:ClassName> shoots. Holo Targeting applies to all shots, not just those taken while Overdrive is active."
+LocPromotionPopupText="Grants the Adaptive Aim and Holo Targeting abilities, improving the <Ability:ClassName>'s ability to take multiple shots while Overdrive is active and improving the squad's ability to hit targets the <Ability:ClassName> shoots. Holo Targeting applies to all shots, not just those taken while Overdrive is active."
 
 ; New Class loc
 
