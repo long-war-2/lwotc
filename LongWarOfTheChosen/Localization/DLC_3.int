@@ -2,22 +2,26 @@
 
 [PlatedSparkHeavyArmor_LW X2SparkArmorTemplate_DLC_3]
 FriendlyName="Reinforced Shield Frame"
-BriefSummary="A modification of our Plated SPARK Armor, this variation sacrifices mobility for improved durability, featuring heavier plating and additional reactive armor to negate incoming damage."
+FriendlyNamePlural="Reinforced Shield Frames"
+BriefSummary="A modification of our Plated SPARK Armor, this variation sacrifices mobility for improved durability. It features heavier plating and additional reactive armor to negate incoming damage."
 TacticalText="<Bullet/> Provides increased armor and hit points, at the expense of mobility and defense. Also reduces wound recovery times by 2 HP."
 
 [PlatedSparkLightArmor_LW X2SparkArmorTemplate_DLC_3]
 FriendlyName="Reinforced Mobility Frame"
-BriefSummary="A modification of our Plated SPARK Armor, this variation sacrifices durability for improved mobility and additional arm control capacitors, granting the Dedication ability and allowing the SPARK to use its Kinetic Strike ability more often."
+FriendlyNamePlural="Reinforced Mobility Frames"
+BriefSummary="A modification of our Plated SPARK Armor, this variation sacrifices durability for improved mobility and additional arm control capacitors. It grants the Dedication ability and allows the SPARK to use its Kinetic Strike more often."
 TacticalText="<Bullet/> Provides increased mobility and defense, at the expense of armor and hit points. Grants the Dedication ability and decreases the cooldown of the Kinetic Strike ability by 1 turn."
 
 [PoweredSparkHeavyArmor_LW X2SparkArmorTemplate_DLC_3]
 FriendlyName="Anodized Shield Chassis"
-BriefSummary="A modification of our Powered SPARK Armor, this variation sacrifices mobility for improved durability, featuring heavier plating and additional reactive armor to negate incoming damage."
+FriendlyNamePlural="Anodized Shield Chassis"
+BriefSummary="A modification of our Powered SPARK Armor, this variation sacrifices mobility for improved durability. It features heavier plating and additional reactive armor to negate incoming damage."
 TacticalText="<Bullet/> Provides increased armor and hit points, at the expense of mobility and defense. Also reduces wound recovery times by 4 HP."
 
 [PoweredSparkLightArmor_LW X2SparkArmorTemplate_DLC_3]
-FriendlyName="Anodized Mobility chassis"
-BriefSummary="A modification of our Powered SPARK Armor, this variation sacrifices durability for improved mobility and additional arm control capacitors, granting the Dedication ability and allowing the SPARK to use its Kinetic Strike ability more often."
+FriendlyName="Anodized Mobility Chassis"
+FriendlyNamePlural="Anodized Mobility Chassis"
+BriefSummary="A modification of our Powered SPARK Armor, this variation sacrifices durability for improved mobility and additional arm control capacitors. It grants the Dedication ability and allows the SPARK to use its Kinetic Strike more often."
 TacticalText="<Bullet/> Provides increased mobility and defense, at the expense of armor and hit points. Grants the Dedication ability and decreases the cooldown of the Kinetic Strike ability by 1 turn."
 
 [PlatedSparkArmor X2SparkArmorTemplate_DLC_3]
