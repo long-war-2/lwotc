@@ -54,8 +54,6 @@ static function XComGameState_Unit AddStrategyUnitToBoardAtLocation(XComGameStat
 	local XComGameState_Player PlayerState;
 	local StateObjectReference ItemReference;
 	local XComGameState_Item ItemState;
-	local array<XComGameState_Item> Items;
-	local XComGameState_Item Item, UpdatedItem;
 	local XComGameState_Unit UpdatedUnit;
 
 	if(Unit == none)
@@ -64,8 +62,9 @@ static function XComGameState_Unit AddStrategyUnitToBoardAtLocation(XComGameStat
 	}
 
 	// create the history frame with the new tactical unit state
+	// create the history frame with the new tactical unit state
 	NewGameStateContext = class'XComGameStateContext_TacticalGameRule'.static.BuildContextFromGameRule(eGameRule_UnitAdded);
-	NewGameState = History.CreateNewGameState(true, NewGameStateContext);
+	NewGameState = NewGameStateContext.ContextBuildGameState( );
 	Unit = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', Unit.ObjectID));
 	Unit.SetVisibilityLocationFromVector(SpawnLocation);
 	Unit.BeginTacticalPlay(NewGameState);
@@ -102,6 +101,7 @@ static function XComGameState_Unit AddStrategyUnitToBoardAtLocation(XComGameStat
 	}
 
 	Rules = `TACTICALRULES;
+
 	// submit it
 	XComGameStateContext_TacticalGameRule(NewGameState.GetContext()).UnitRef = Unit.GetReference();
 	Rules.SubmitGameState(NewGameState);
@@ -109,32 +109,10 @@ static function XComGameState_Unit AddStrategyUnitToBoardAtLocation(XComGameStat
 	// make sure the visualizer has been created so self-applied abilities have a target in the world
 	Unit.FindOrCreateVisualizer(NewGameState);
 
-	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("LWS: Ammo Merging");
-	UpdatedUnit = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', Unit.ObjectID));
-	NewGameState.AddStateObject(UpdatedUnit);
-	// Must add items to gamestate to do ammo merging properly.
-	Items = UpdatedUnit.GetAllInventoryItems(NewGameState);
-	foreach Items(Item)
-	{
-		UpdatedItem = XComGameState_Item(NewGameState.CreateStateObject(class'XComGameState_Item', Item.ObjectID));
-		NewGameState.AddStateObject(UpdatedItem);
-	}
-	// call GatherUnitAbilitiesForInit in order to merge ammo and submit to history, since InitializeUnitAbilities needs those in the History to function properly
-	UpdatedUnit.GatherUnitAbilitiesForInit(NewGameState, PlayerState);
-	Rules.SubmitGameState(NewGameState);
-
-	// add abilities
-	// Must happen after unit is submitted and ammo merged, or it gets confused about when the unit is in play or not, and it can pull stale item info
+	// Add abilities
+	// Tedster - refactor this to match the base game function from SeqAct_SpawnUnitFromAvenger + CHL fixes
 	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("LWS: Initializing Abilities");
-	UpdatedUnit = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', UpdatedUnit.ObjectID));
-	NewGameState.AddStateObject(UpdatedUnit);
-	Items = UpdatedUnit.GetAllInventoryItems(NewGameState);
-	foreach Items(Item)
-	{
-		UpdatedItem = XComGameState_Item(NewGameState.ModifyStateObject(class'XComGameState_Item', Item.ObjectID));
-		//Issue #159, this is needed now for loading units from avenger to properly update gamestate.
-		ItemState.BeginTacticalPlay(NewGameState);
-	}
+	UpdatedUnit = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', Unit.ObjectID));
 
 	Rules.InitializeUnitAbilities(NewGameState, UpdatedUnit);
 
