@@ -12,6 +12,8 @@ var config array<float> LIAISON_MISSION_INCOME_PER_RANK_PSI;
 
 var config array<float> LIAISON_MISSION_INCOME_BONUS_PER_RANK_OFFICER;
 
+var config float REDUCTION_ABILITIES_BONUS_MULTI;
+
 function bool CanBeDetected(XComGameState_LWAlienActivity ActivityState, XComGameState NewGameState)
 {
     local XComGameState_Unit Liaison;
@@ -45,7 +47,9 @@ function float GetMissionIncomeForUpdate(XComGameState_LWOutpost OutpostState)
 	local float NewIncome;
     local XComGameState_Unit Liaison;
     local StateObjectReference LiaisonRef;
-	local int Rank;
+	local int Rank, AbilityCount;
+    local array<name> FacelessChanceReductionAbilities;
+	local name FacelessReductionAbilityName;
 
     LiaisonRef = OutpostState.GetLiaison();
     Liaison = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(LiaisonRef.ObjectID));
@@ -85,6 +89,26 @@ function float GetMissionIncomeForUpdate(XComGameState_LWOutpost OutpostState)
 		NewIncome += LIAISON_MISSION_INCOME_BONUS_PER_RANK_OFFICER[Rank];
 	}
 
+    // Allow other modifiers to affect rendezvous income
+    // Sync this with the recruitment chance modifiers from XCGS_LWOutpost
+
+    if (class'XComGameState_LWOutpost'.default.FACELESS_CHANCE_REDUCTION_ABILITIES.Length > 0)
+		FacelessChanceReductionAbilities = class'XComGameState_LWOutpost'.default.FACELESS_CHANCE_REDUCTION_ABILITIES;
+	else
+		FacelessChanceReductionAbilities = class'XComGameState_LWOutpost'.default.DEFAULT_FACELESS_REDUCTION_CHANCE_ABILITIES;
+
+    AbilityCount = 0;
+    foreach FacelessChanceReductionAbilities(FacelessReductionAbilityName)
+	{
+		if (Liaison.HasAbilityFromAnySource(FacelessReductionAbilityName))
+		{
+			AbilityCount += 1;
+		}
+	}
+
+    NewIncome *= 1.0 + (AbilityCount * default.REDUCTION_ABILITIES_BONUS_MULTI);
+
+    // Adjust for the geoscape tick rate
 	NewIncome *= float(class'X2LWAlienActivityTemplate'.default.HOURS_BETWEEN_ALIEN_ACTIVITY_DETECTION_UPDATES) / 24.0;
 
 	return NewIncome;
