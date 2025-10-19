@@ -78,6 +78,9 @@ var const config float DEFAULT_FACELESS_CHANCE;
 // reduction, 0.0 = no chance to recruit faceless)
 var config float FACELESS_CHANCE_MULTIPLIER;
 
+// Multiplier value for the Haven Infiltrators dark event
+var config float HAVEN_INFILTRATORS_MULTIPLIER;
+
 // Lower limit of the faceless chance multiplier
 var config float FACELESS_CHANCE_MULTIPLIER_LIMIT;
 
@@ -256,6 +259,7 @@ function StateObjectReference CreateRebel(XComGameState NewGameState, XComGameSt
 	local array<X2StrategyElementTemplate> PersonalityTemplates;
 	local StateObjectReference NewUnitRef;
 	local float FacelessChance;
+	local int AbilityCount;
 	local float FacelessChanceModifier;
 	local array<name> FacelessChanceReductionAbilities;
 	local name FacelessReductionAbilityName;
@@ -267,7 +271,7 @@ function StateObjectReference CreateRebel(XComGameState NewGameState, XComGameSt
 
 	if (IsDarkEventActive ('DarkEvent_HavenInfiltration'))
 	{
-		FacelessChance *= 2;
+		FacelessChance *= default.HAVEN_INFILTRATORS_MULTIPLIER;
 	}
 	
 	if (HasLiaison())
@@ -276,13 +280,13 @@ function StateObjectReference CreateRebel(XComGameState NewGameState, XComGameSt
 		if (Unit.IsSoldier())
 		{
 			// Apply reductions to faceless recruitment chance based on the abilities
-			// of the soldier liaison, with rapidly diminishing returns for each ability
+			// of the soldier liaison, with diminishing returns for each ability
 			// beyond the first.
 			//
-			// Algorithm: total reduction = lowest possible multiplier + (base multiplier - lowest)^n
+			// Algorithm: total reduction = 1 / (multiplier * n + 1)
 			//
-			// If n (number of abilities) = 1, reduction = base multiplier
-			// If n = infinity, reduction = lowest possible multiplier
+			// If n (number of abilities) = 1, reduction ~= base multiplier
+			// Diminishing returns, will hit the current cap value at around N = 4
 			//
 			if (default.FACELESS_CHANCE_REDUCTION_ABILITIES.Length > 0)
 				FacelessChanceReductionAbilities = default.FACELESS_CHANCE_REDUCTION_ABILITIES;
@@ -290,14 +294,23 @@ function StateObjectReference CreateRebel(XComGameState NewGameState, XComGameSt
 				FacelessChanceReductionAbilities = default.DEFAULT_FACELESS_REDUCTION_CHANCE_ABILITIES;
 
 			FacelessChanceModifier = 1.0;
+
+			// Count the number of reduction abilities the advisor has
 			foreach FacelessChanceReductionAbilities(FacelessReductionAbilityName)
 			{
 				if (Unit.HasAbilityFromAnySource(FacelessReductionAbilityName))
 				{
-					FacelessChanceModifier *= (default.FACELESS_CHANCE_MULTIPLIER - default.FACELESS_CHANCE_MULTIPLIER_LIMIT);
+					AbilityCount += 1;
 				}
 			}
-			FacelessChance *= (default.FACELESS_CHANCE_MULTIPLIER_LIMIT + FacelessChanceModifier);
+
+			// Actually adjust the value of the modifier
+			FacelessChanceModifier *= (1 / ((default.FACELESS_CHANCE_MULTIPLIER* AbilityCount) + 1));
+
+			// Clamp the value to the minimum, and ensure it can't go above 1.0
+			FacelessChanceModifier = fclamp(FacelessChanceModifier, default.FACELESS_CHANCE_MULTIPLIER_LIMIT, 1.0);
+
+			FacelessChance *= (FacelessChanceModifier);
 		}
 	}
  
