@@ -111,6 +111,8 @@ var bool RedAlertTriggered;
 var bool ExternallyTriggered;
 var bool Disabled;
 var bool bBetaStrike;
+var bool bJammerUsedThisTurn;
+var bool bJammerUsedThisMission;
 var Mission_Reinforcements_Modifiers_Struct_LW ReinfRules;
 
 function Reset()
@@ -191,6 +193,9 @@ function Initialize()
 		ReinfRules.CavalryAbsoluteTurn *=2;
 		ReinfRules.ForcedReinforcementsTurn *=2;
 	}
+
+	bJammerUsedThisTurn = false;
+	bJammerUsedThisMission = false;
 
     IsInitialized = true;
 }

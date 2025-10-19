@@ -50,6 +50,12 @@ event Activated()
 	{
 		Reinforcements.DisableReinforcements();
 	}
+	else if (Reinforcements.bJammerUsedThisTurn)
+	{
+		// Unset the Jammer flag
+		Reinforcements.bJammerUsedThisTurn = false;
+		// grouped with the below if statement to skip this if Jammer was used that turn.
+	}
 	else
 	{
 		// Check if we should call reinforcements, or if we have a forced reinforcement.
