@@ -55,6 +55,7 @@ event Activated()
 		// Unset the Jammer flag
 		Reinforcements.bJammerUsedThisTurn = false;
 		// grouped with the below if statement to skip this if Jammer was used that turn.
+		`LWTrace("Jammer ability used, skipping this turn's reinforcement check");
 	}
 	else
 	{
