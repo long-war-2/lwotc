@@ -11,7 +11,6 @@ var config int RECRUIT_FONT_SIZE_CTRL;
 var config int RECRUIT_Y_OFFSET_CTRL;
 var config int RECRUIT_FONT_SIZE_MK;
 var config int RECRUIT_Y_OFFSET_MK;
-var config string RECRUIT_SHOW_PSI_TECH;
 
 simulated function InitRecruitItem(XComGameState_Unit Recruit)
 {
@@ -80,27 +79,12 @@ function UpdateExistingUI()
 
 function AddIcons(XComGameState_Unit Recruit)
 {
-	local bool PsiStatIsVisible;
 	local float XLoc, YLoc, XDelta;
-
-	if (RECRUIT_SHOW_PSI_TECH == "")
-	{
-		PsiStatIsVisible = true;
-	}
-	else
-	{
-		PsiStatIsVisible = `XCOMHQ.IsTechResearched(name(RECRUIT_SHOW_PSI_TECH));
-	}
 
 	// KDM : Stat icons, and their associated stat values, have to be manually placed.
 	XLoc = 97;
 	YLoc = 34.5f;
-	XDelta = 65.0f;
-
-	if (PsiStatIsVisible)
-	{
-		XDelta -= 10.0f;
-	}
+	XDelta = 55.0f;
 
 	InitIconValuePair(Recruit, eStat_Offense, "Aim", "UILibrary_LWToolbox.StatIcons.Image_Aim", XLoc, YLoc);
 	XLoc += XDelta;
@@ -115,12 +99,8 @@ function AddIcons(XComGameState_Unit Recruit)
 	InitIconValuePair(Recruit, eStat_Hacking, "Hacking", "UILibrary_LWToolbox.StatIcons.Image_Hacking", XLoc, YLoc);
 	XLoc += XDelta;
 	InitIconValuePair(Recruit, eStat_Dodge, "Dodge", "UILibrary_LWToolbox.StatIcons.Image_Dodge", XLoc, YLoc);
-	
-	if (PsiStatIsVisible)
-	{
-		XLoc += XDelta;
-		InitIconValuePair(Recruit, eStat_PsiOffense, "Psi", "gfxXComIcons.promote_psi", XLoc, YLoc);
-	}
+	XLoc += XDelta;
+	InitIconValuePair(Recruit, eStat_PsiOffense, "Psi", "gfxXComIcons.promote_psi", XLoc, YLoc);
 }
 
 function InitIconValuePair(XComGameState_Unit Recruit, ECharStatType StatType, string MCRoot, string ImagePath, float XLoc, float YLoc)

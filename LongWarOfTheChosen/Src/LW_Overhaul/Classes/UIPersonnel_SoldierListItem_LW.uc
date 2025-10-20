@@ -251,7 +251,7 @@ function AddNameColumnIcons(XComGameState_Unit Unit)
 
 	IconXPos += IconXDeltaSmallValue;
 
-	if (!IsPsiUnit(Unit))
+	if (!Unit.IsPsiOperative())
 	{
 		if (HackIcon == none)
 		{
@@ -551,12 +551,7 @@ static function string GetWillString(XComGameState_Unit Unit)
 
 static function bool ShouldShowPsi(XComGameState_Unit Unit)
 {
-	return (IsPsiUnit(Unit) || ((Unit.GetRank() == 0) && (!Unit.CanRankUpSoldier()) && `XCOMHQ.IsTechResearched('AutopsySectoid')));
-}
-
-static function bool IsPsiUnit(XComGameState_Unit Unit)
-{
-	return (Unit.IsPsiOperative() || (Unit.GetSoldierClassTemplateName() == 'Templar'));
+	return (Unit.IsPsiOperative() || ((Unit.GetRank() == 0) && (!Unit.CanRankUpSoldier())));
 }
 
 defaultproperties
