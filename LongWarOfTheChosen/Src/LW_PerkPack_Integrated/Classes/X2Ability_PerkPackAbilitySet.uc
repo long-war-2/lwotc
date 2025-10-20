@@ -1349,10 +1349,10 @@ static function X2AbilityTemplate AddPrecisionShotAbility()
 	local X2AbilityTemplate					Template;
 	local X2AbilityCost_ActionPoints		ActionPointCost;
 	local X2AbilityCost_Ammo				AmmoCost;
-	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
-	local X2AbilityCooldown_Shared			Cooldown;	
+	local X2AbilityToHitCalc_StandardAim	ToHitCalc;
+	local X2AbilityCooldown_Shared			Cooldown;
 	local X2Effect_Knockback				KnockbackEffect;
-	local X2Condition_Visibility            VisibilityCondition;
+	local X2Condition_Visibility			VisibilityCondition;
 	local X2Condition_UnitEffects			SuppressedCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'PrecisionShot');
@@ -1384,9 +1384,9 @@ static function X2AbilityTemplate AddPrecisionShotAbility()
 	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
 
 	Cooldown = new class'X2AbilityCooldown_Shared';
-    Cooldown.iNumTurns = default.PRECISION_SHOT_COOLDOWN;
+	Cooldown.iNumTurns = default.PRECISION_SHOT_COOLDOWN;
 	Cooldown.SharingCooldownsWith.AddItem('PrecisionShotSnapShot');
-    Template.AbilityCooldown = Cooldown;
+	Template.AbilityCooldown = Cooldown;
 
 	AmmoCost = new class'X2AbilityCost_Ammo';
 	AmmoCost.iAmmo = default.PRECISION_SHOT_AMMO_COST;
@@ -1417,8 +1417,8 @@ static function X2AbilityTemplate AddPrecisionShotAbility()
 	Template.AddTargetEffect(KnockbackEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-    Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
-    Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
 	
 	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
@@ -1432,16 +1432,16 @@ static function X2AbilityTemplate AddPrecisionShotAbility()
 
 static function X2AbilityTemplate AddPrecisionShotSnapShotAbility()
 {
-	local X2AbilityTemplate					Template;
-	local X2AbilityCost_ActionPoints		ActionPointCost;
-	local X2AbilityCost_Ammo				AmmoCost;
+	local X2AbilityTemplate                 Template;
+	local X2AbilityCost_ActionPoints        ActionPointCost;
+	local X2AbilityCost_Ammo                AmmoCost;
 	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
-	local X2AbilityCooldown_Shared					Cooldown;	
-	local X2Effect_Knockback				KnockbackEffect;
+	local X2AbilityCooldown_Shared          Cooldown;
+	local X2Effect_Knockback                KnockbackEffect;
 	local X2Condition_Visibility            VisibilityCondition;
-	local X2Condition_UnitEffects			SuppressedCondition;
-	local X2Condition_AbilityProperty   	AbilityCondition;
-	local X2Condition_UnitActionPoints		ActionPointCondition;
+	local X2Condition_UnitEffects           SuppressedCondition;
+	local X2Condition_AbilityProperty       AbilityCondition;
+	local X2Condition_SnapShotAction        SnapShotActionCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'PrecisionShotSnapShot');
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityPrecisionShot";
@@ -1470,9 +1470,9 @@ static function X2AbilityTemplate AddPrecisionShotSnapShotAbility()
 	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
 
 	Cooldown = new class'X2AbilityCooldown_Shared';
-    Cooldown.iNumTurns = default.PRECISION_SHOT_COOLDOWN;
+	Cooldown.iNumTurns = default.PRECISION_SHOT_COOLDOWN;
 	Cooldown.SharingCooldownsWith.AddItem('PrecisionShot');
-    Template.AbilityCooldown = Cooldown;
+	Template.AbilityCooldown = Cooldown;
 
 	AmmoCost = new class'X2AbilityCost_Ammo';
 	AmmoCost.iAmmo = default.PRECISION_SHOT_AMMO_COST;
@@ -1505,47 +1505,42 @@ static function X2AbilityTemplate AddPrecisionShotSnapShotAbility()
 	AbilityCondition = new class'X2Condition_AbilityProperty';
 	AbilityCondition.OwnerHasSoldierAbilities.AddItem('SnapShot');
 	Template.AbilityShooterConditions.Additem(AbilityCondition);
+	
+	SnapShotActionCondition = new class'X2Condition_SnapShotAction';
+	SnapShotActionCondition.StandardAbilityName = 'PrecisionShot';
+	Template.AbilityShooterConditions.Additem(SnapShotActionCondition);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-    Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
-    Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
 	
 	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
-
-	//Template.AdditionalAbilities.AddItem('PrecisionShotCritDamage');
-
-	ActionPointCondition = new class'X2Condition_UnitActionPoints';
-	ActionPointCondition.AddActionPointCheck(1,class'X2CharacterTemplateManager'.default.StandardActionPoint,false,eCheck_LessThanOrEqual);
-	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
-	ActionPointCondition = new class'X2Condition_UnitActionPoints';
-	ActionPointCondition.AddActionPointCheck(1,class'X2CharacterTemplateManager'.default.RunAndGunActionPoint,false,eCheck_LessThanOrEqual);
-	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
 
 	return Template;
 }
 
 static function X2AbilityTemplate PrecisionShotCritDamage()
 {
-    local X2AbilityTemplate Template;
-    local X2Effect_PrecisionShotCritDamage CritEffect;
+	local X2AbilityTemplate Template;
+	local X2Effect_PrecisionShotCritDamage CritEffect;
 
-    `CREATE_X2ABILITY_TEMPLATE (Template, 'PrecisionShotCritDamage');
-    Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_momentum";
-    Template.AbilitySourceName = 'eAbilitySource_Perk';
-    Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
-    Template.Hostility = eHostility_Neutral;
-    Template.AbilityToHitCalc = default.DeadEye;
-    Template.AbilityTargetStyle = default.SelfTarget;
-    Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
-    CritEffect = new class'X2Effect_PrecisionShotCritDamage';
-    CritEffect.BuildPersistentEffect(1, true, false, false);
+	`CREATE_X2ABILITY_TEMPLATE (Template, 'PrecisionShotCritDamage');
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_momentum";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	CritEffect = new class'X2Effect_PrecisionShotCritDamage';
+	CritEffect.BuildPersistentEffect(1, true, false, false);
 	CritEffect.DuplicateResponse = eDupe_Refresh;
-    CritEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,, Template.AbilitySourceName);
-    Template.AddTargetEffect(CritEffect);
-    Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-    return Template;
+	CritEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,, Template.AbilitySourceName);
+	Template.AddTargetEffect(CritEffect);
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	return Template;
 }
 
 static function X2AbilityTemplate AddCyclicFireAbility()
