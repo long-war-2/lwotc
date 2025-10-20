@@ -8023,3 +8023,8 @@ LocFriendlyName="Teleport Escape"
 LocLongDescription="When damaged, bound, or restrained by Void Conduit, the Avatar can teleport away to a new location."
 LocHelpText="When damaged, bound, or restrained by Void Conduit, the Avatar can teleport away to a new location."
 LocFlyOverText="Teleport"
+
+[Laboratory X2FacilityTemplate]
+DisplayName="Laboratory"
+CompletedSummary="New Staff Slot Available - Decreases Research Time"
+Summary="Scientists can be staffed in the laboratory to provide additional assistance to Dr. Tygan, further decreasing the time of all research projects."
