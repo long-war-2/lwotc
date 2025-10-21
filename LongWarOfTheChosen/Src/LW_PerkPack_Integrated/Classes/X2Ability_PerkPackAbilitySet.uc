@@ -1774,15 +1774,16 @@ static function X2AbilityTemplate CyclicFire3()
 
 static function X2AbilityTemplate AddSlugShotAbility()
 {
-	local X2AbilityTemplate                 Template;	
-	local X2AbilityCost_Ammo                AmmoCost;
-	local X2AbilityCost_ActionPoints        ActionPointCost;
-	local X2AbilityCooldown                 Cooldown;
-	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
-	local X2Condition_UnitInventoryExpanded			InventoryCondition;
+	local X2AbilityTemplate					Template;
+	local X2AbilityCost_Ammo				AmmoCost;
+	local X2AbilityCost_ActionPoints		ActionPointCost;
+	local X2Condition_UnitEffects			SuppressedCondition;
+	local X2AbilityCooldown					Cooldown;
+	local X2AbilityToHitCalc_StandardAim	ToHitCalc;
+	local X2Condition_UnitInventoryExpanded	InventoryCondition;
 	local X2Condition_Visibility			VisibilityCondition;
 	local X2Effect_Knockback				KnockbackEffect;
-	
+
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'SlugShot');
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilitySlugShot";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
@@ -1816,13 +1817,18 @@ static function X2AbilityTemplate AddSlugShotAbility()
 	ActionPointCost.bConsumeAllPoints = true;
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
+	SuppressedCondition = new class'X2Condition_UnitEffects';
+	SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
+	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
+	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
+
 	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
 	Template.AbilityToHitCalc = ToHitCalc;
 	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
 
 	Cooldown = new class'X2AbilityCooldown';
-    Cooldown.iNumTurns = default.SLUG_SHOT_COOLDOWN;
-    Template.AbilityCooldown = Cooldown;
+	Cooldown.iNumTurns = default.SLUG_SHOT_COOLDOWN;
+	Template.AbilityCooldown = Cooldown;
 
 	AmmoCost = new class'X2AbilityCost_Ammo';
 	AmmoCost.iAmmo = default.SLUG_SHOT_AMMO_COST;
@@ -1832,7 +1838,7 @@ static function X2AbilityTemplate AddSlugShotAbility()
 	InventoryCondition.RelevantSlot=eInvSlot_PrimaryWeapon;
 	InventoryCondition.RequireWeaponCategory = default.SHOTGUN_WEAPONCATS;
 	Template.AbilityShooterConditions.AddItem(InventoryCondition);
-	
+
 	KnockbackEffect = new class'X2Effect_Knockback';
 	KnockbackEffect.KnockbackDistance = 2;
 	Template.AddTargetEffect(KnockbackEffect);
@@ -1840,13 +1846,13 @@ static function X2AbilityTemplate AddSlugShotAbility()
 	Template.AdditionalAbilities.AddItem('SlugShotRangeEffect');
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;		
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
-	
+
 	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
-	
+
 	return Template;
 }
 
