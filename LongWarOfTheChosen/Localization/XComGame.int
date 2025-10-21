@@ -7002,39 +7002,129 @@ strAcquiredText="The Hunter is the master of long range combat, constantly kitin
 ;end translation
 
 ;LWOTC needs translation
-[ChosenShotgun_T5 X2WeaponTemplate]
-FriendlyName="Chosen Ultra Shotgun"
-FriendlyNamePlural="Chosen Ultra Shotguns"
-BriefSummary="The Storm Gun fires a concentrated set of beam pulses, piercing and melting the target across a substantial surface area."
-TacticalText="<Bullet/> This is the most advanced shotgun-style weapon available in the XCOM arsenal.\n<Bullet/> Shotgun-style weapons are very effective at close range, but their accuracy drops off quickly at longer range.\n<Bullet/> Use upgrades looted from enemies to improve the Storm Gun's tactical effectiveness."
+[ChosenShotgun_CV X2WeaponTemplate]
+FriendlyName="Arashi M1"
+FriendlyNamePlural="Arashi M1s"
 AbilityDescName="shotgun"
 
-[ChosenSword_T5 X2WeaponTemplate]
-FriendlyName="Chosen Ultra Sword"
-FriendlyNamePlural="Chosen Ultra Swords"
-BriefSummary="The Fusion Blade encases a plasma-heated metallic core in a micro-thin magnetic field, enabling devastating melee attacks that are capable of setting enemies aflame."
-TacticalText="<Bullet/> This is the most advanced version of the Ranger's sword, dealing maximum damage with a chance to burn enemy targets."
+[ChosenShotgun_MG X2WeaponTemplate]
+FriendlyName="Arashi M2"
+FriendlyNamePlural="Arashi M2"
+AbilityDescName="shotgun"
+
+[ChosenShotgun_BM X2WeaponTemplate]
+FriendlyName="Arashi M3"
+FriendlyNamePlural="Arashi M3"
+AbilityDescName="shotgun"
+
+[ChosenShotgun_T4 X2WeaponTemplate]
+FriendlyName="Arashi M4"
+FriendlyNamePlural="Arashi M4"
+AbilityDescName="shotgun"
+
+[ChosenShotgun_T5 X2WeaponTemplate]
+FriendlyName="Arashi M5"
+FriendlyNamePlural="Arashi M5"
+AbilityDescName="shotgun"
+
+[ChosenSword_CV X2WeaponTemplate]
+FriendlyName="Katana M1"
+FriendlyNamePlural="Katana M1s"
 AbilityDescName="sword"
 
-[ChosenSniperRifle_T5 X2WeaponTemplate]
-FriendlyName="Chosen Ultra Sniper Rifle"
-FriendlyNamePlural="Chosen Ultra Sniper Rifles"
-BriefSummary="The aliens' focused beam technology has obvious applications for improving sniper rifles. The Plasma Lance is an unmatched sniper rifle."
-TacticalText="<Bullet/> This is the apex of sniper rifle technology.\n<Bullet/> Sniper rifles always require both actions to fire.\n<Bullet/> They are less accurate at close range, but deadly at a distance.\n<Bullet/> Use upgrades looted from enemies to improve the plasma sniper rifle's tactical effectiveness."
+[ChosenSword_MG X2WeaponTemplate]
+FriendlyName="Katana M2"
+FriendlyNamePlural="Katana M2s"
+AbilityDescName="sword"
+
+[ChosenSword_BM X2WeaponTemplate]
+FriendlyName="Katana M3"
+FriendlyNamePlural="Katana M3s"
+AbilityDescName="sword"
+
+[ChosenSword_T4 X2WeaponTemplate]
+FriendlyName="Katana M4"
+FriendlyNamePlural="Katana M4s"
+AbilityDescName="sword"
+
+[ChosenSword_T5 X2WeaponTemplate]
+FriendlyName="Katana M5"
+FriendlyNamePlural="Katana M5s"
+AbilityDescName="sword"
+
+[ChosenSniperRifle_CV X2WeaponTemplate]
+FriendlyName="Darklance M1"
+FriendlyNamePlural="Darklance M1s"
 AbilityDescName="sniper rifle"
 
+[ChosenSniperRifle_MG X2WeaponTemplate]
+FriendlyName="Darklance M2"
+FriendlyNamePlural="Darklance M2s"
+AbilityDescName="sniper rifle"
+
+[ChosenSniperRifle_BM X2WeaponTemplate]
+FriendlyName="Darklance M3"
+FriendlyNamePlural="Darklance M3s"
+AbilityDescName="sniper rifle"
+
+[ChosenSniperRifle_T4 X2WeaponTemplate]
+FriendlyName="Darklance M4"
+FriendlyNamePlural="Darklance M4s"
+AbilityDescName="sniper rifle"
+
+[ChosenSniperRifle_T5 X2WeaponTemplate]
+FriendlyName="Darklance M5"
+FriendlyNamePlural="Darklance M5s"
+AbilityDescName="sniper rifle"
+
+[ChosenSniperPistol_CV X2WeaponTemplate]
+FriendlyName="Darkclaw M1"
+FriendlyNamePlural="Darkclaw M1s"
+AbilityDescName="pistol"
+
+[ChosenSniperPistol_MG X2WeaponTemplate]
+FriendlyName="Darkclaw M2"
+FriendlyNamePlural="Darkclaw M2s"
+AbilityDescName="pistol"
+
+[ChosenSniperPistol_BM X2WeaponTemplate]
+FriendlyName="Darkclaw M3"
+FriendlyNamePlural="Darkclaw M3s"
+AbilityDescName="pistol"
+
+[ChosenSniperPistol_T4 X2WeaponTemplate]
+FriendlyName="Darkclaw M4"
+FriendlyNamePlural="Darkclaw M4s"
+AbilityDescName="pistol"
 
 [ChosenSniperPistol_T5 X2WeaponTemplate]
-FriendlyName="Chosen Ultra Pistol"
-FriendlyNamePlural="Chosen Ultra Pistols"
-BriefSummary="The ultimate sidearm, this pistol integrates the aliens' beam weapons technology to powerful effect."
-TacticalText="<Bullet/> Beam pistols are the most powerful handguns on Earth.\n<Bullet/> Unlike the sniper rifle, pistols can be fired with a single action."
+FriendlyName="Darkclaw M5"
+FriendlyNamePlural="Darkclaw M5s"
+AbilityDescName="pistol"
+
+[ChosenRifle_CV X2WeaponTemplate]
+FriendlyName="Disruptor Rifle M1"
+FriendlyNamePlural="Disruptor Rifle M1"
+AbilityDescName="assault rifle"
+
+[ChosenRifle_MG X2WeaponTemplate]
+FriendlyName="Disruptor Rifle M2"
+FriendlyNamePlural="Disruptor Rifle M2s"
+AbilityDescName="assault rifle"
+
+[ChosenRifle_BM X2WeaponTemplate]
+FriendlyName="Disruptor Rifle M3"
+FriendlyNamePlural="Disruptor Rifle M3s"
+AbilityDescName="assault rifle"
+
+[ChosenRifle_T4 X2WeaponTemplate]
+FriendlyName="Disruptor Rifle M4"
+FriendlyNamePlural="Disruptor Rifle M4s"
+AbilityDescName="assault rifle"
 
 [ChosenRifle_T5 X2WeaponTemplate]
-FriendlyName="Chosen Ultra Rifle"
-FriendlyNamePlural="Chosen Ultra Rifle"
-BriefSummary="Now that we've finally deciphered the aliens' devastating weapon technology and can develop beam weapons of our own, we can build rifles that will be the match of any enemy our soldiers encounter in the field."
-TacticalText="<Bullet/> The Plasma Rifle is a general purpose, supremely powerful primary infantry weapons system.\n<Bullet/> Firing the primary weapon always ends the soldier's turn.\n<Bullet/> Use upgrades looted from enemies to improve the Plasma Rifle's tactical effectiveness."
+FriendlyName="Disruptor Rifle M5"
+FriendlyNamePlural="Disruptor Rifle M5s"
 AbilityDescName="assault rifle"
 ;end translation
 
@@ -7476,17 +7566,17 @@ LocPromotionPopupText="<Bullet/> Solace has a 4 tile radius.<br/><Bullet/> Movin
 ; LWOTC Needs Translation
 [AssassinBladestorm X2AbilityTemplate]
 LocFriendlyName="Bladestorm"
-LocLongDescription="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range."
-LocHelpText="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range."
+LocLongDescription="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter, exit or attack from melee range on enemy turns."
+LocHelpText="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter, exit or attack from melee range on enemy turns."
 LocFlyOverText="Bladestorm"
-LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Bladestorm will trigger if that enemy tries to attack the <Ability:ClassName/>.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Bladestorm will trigger when that enemy moves into melee range.<br/>"
+LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Bladestorm will trigger if that enemy tries to attack the Assassin.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Bladestorm will trigger when that enemy moves into melee range.<br/><Bullet/> Bladestorm does not trigger on your own turn.<br/>"
 
 [AssassinBladestormAttack X2AbilityTemplate]
 LocFriendlyName="Bladestorm"
-LocLongDescription="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range."
-LocHelpText="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range."
+LocLongDescription="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter, exit or attack from melee range on enemy turns."
+LocHelpText="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter, exit or attack from melee range on enemy turns."
 LocFlyOverText="Bladestorm"
-LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Bladestorm will trigger if that enemy tries to attack the <Ability:ClassName/>.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Bladestorm will trigger when that enemy moves into melee range.<br/>"
+LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Bladestorm will trigger if that enemy tries to attack the Assassin.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Bladestorm will trigger when that enemy moves into melee range.<br/><Bullet/> Bladestorm does not trigger on your own turn.<br/>"
 
 [TemplarBallisticShield_CV X2WeaponTemplate]
 FriendlyName="Templar Shield MK1"
