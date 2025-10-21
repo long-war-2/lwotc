@@ -474,6 +474,7 @@ static function X2DataTemplate CreateDroneRepairAbility()
 	local X2Condition_Visibility					TargetVisibilityCondition;
 	local X2AbilityTarget_Single					SingleTarget;
 	local X2AbilityCooldown							Cooldown;
+	local name										HealType;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'LWDroneRepair');
 	Template.IconImage = "img:///UILibrary_LWAlienPack.LW_AbilityDroneRepair"; //from old EW Repair Servos icon
@@ -522,8 +523,10 @@ static function X2DataTemplate CreateDroneRepairAbility()
 	Template.AddTargetEffect(RepairEffect);
 
 	RemoveEffects = new class'X2Effect_RemoveEffectsByDamageType';
-	RemoveEffects.DamageTypesToRemove.AddItem('Fire');
-	RemoveEffects.DamageTypesToRemove.AddItem('Acid');
+	foreach class'X2Ability_DefaultAbilitySet'.default.MedikitHealEffectTypes(HealType)
+	{
+		RemoveEffects.DamageTypesToRemove.AddItem(HealType);
+	}
 	Template.AddTargetEffect(RemoveEffects);
 
 	Template.CustomFireAnim = 'NO_Repair';

@@ -200,7 +200,7 @@ simulated function UpdateStaticData(bool ControllerActive)
 	SetMugShot(Unit.GetReference());
 
 	// KDM : Rebel name
-	strRebelName = Unit.GetFullName();
+	strRebelName = Unit.GetName(eNameType_FullNick);
 	if (OutpostUI.ShowFaceless && OutpostUI.CachedRebels[ListItemIndex].IsFaceless)
 	{
 		strRebelName = "*" @ strRebelName;

@@ -76,6 +76,13 @@ function bool PreDeathCheck(XComGameState NewGameState, XComGameState_Unit UnitS
 			return false;
 		}
 	}
+	// Shadowbound spawn units can't bleed out!!!
+	// (This is for the clone units that get spawned, since they get the benefit of this too apparently)
+	if(UnitState.IsUnitAffectedByEffectName(class'X2Ability_Spectre'.default.ShadowboundLinkName))
+	{
+		return false;
+	}
+
 	`PPDEBUG("EmergencyLifeSupport: Triggered, setting unit value.");
 	UnitState.SetUnitFloatValue(default.ELSDeathUsed, 1, eCleanup_BeginTactical);
 	if (ApplyBleedingOut(UnitState, NewGameState ))

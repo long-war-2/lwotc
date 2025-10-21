@@ -71,7 +71,6 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(AddInfiltratorAbility());
 	Templates.AddItem(AddAirControllerAbility());
-	Templates.AddItem(AddJammerAbility());
 	Templates.AddItem(AddCommandAbility());
 	Templates.AddItem(AddIncomingAbility());
 	Templates.AddItem(AddInterventionAbility());
@@ -1161,112 +1160,8 @@ static function X2AbilityTemplate AddIncomingAbility()
 	return Template;
 }
 
+// Jammer moved to LW_Overhaul package because dependencies are pain. Config left here for compatibility.
 
-static function X2AbilityTemplate AddJammerAbility()
-{
-	local X2AbilityTemplate                 Template;
-	local X2AbilityCharges					Charges;
-	local X2AbilityCost_Charges				ChargeCost;
-	local X2AbilityCost_ActionPoints		ActionPointCost;
-
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'Jammer');
-
-	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityJammer";
-	Template.AbilitySourceName = default.OfficerSourceName;
-	Template.Hostility = eHostility_Neutral;
-	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
-	Template.ShotHUDPriority = 316;
-
-	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
-	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
-	Template.AbilityToHitCalc = default.DeadEye;
-	Template.AbilityTargetStyle = default.SelfTarget;
-	Template.AddShooterEffectExclusions();
-
-	ActionPointCost = new class'X2AbilityCost_ActionPoints';
-	ActionPointCost.iNumPoints = default.JAMMER_ACTION_POINTS;
-	ActionPointCost.bfreeCost = false;
-	ActionPointCost.bConsumeAllPoints = true;
-	Template.AbilityCosts.AddItem(ActionPointCost);
-
-	Charges = new class'X2AbilityCharges';
-    Charges.InitialCharges = default.JAMMER_CHARGES;
-    Template.AbilityCharges = Charges;
-
-	ChargeCost = new class'X2AbilityCost_Charges';
-    ChargeCost.NumCharges = 1;
-    Template.AbilityCosts.AddItem(ChargeCost);
-
-	Template.bSkipFireAction = true;
-	Template.bShowActivation = true;
-	//Template.AbilityConfirmSound = "Unreal2DSounds_TargetLock";
-	//Template.CustomFireAnim = 'HL_SignalBark';
-	//Template.ActivationSpeech = 'Inspire';
-
-	Template.BuildVisualizationFn = JammerAbility_BuildVisualization;
-	Template.BuildNewGameStateFn = JammerAbility_BuildGameState;
-
-	return Template;
-}
-
-function JammerAbility_BuildVisualization(XComGameState VisualizeGameState)
-{
-	local XComGameStateHistory			History;
-	local XComGameState_Unit			SourceState;
-	local XComGameStateContext_Ability  Context;
-	local VisualizationActionMetadata	BuildTrack;
-	local X2Action_PlaySoundAndFlyOver	SoundAndFlyOver;
-	local SoundCue						ChatterCue;
-
-	TypicalAbility_BuildVisualization(VisualizeGameState);
-
-	// Use an SoundAndFlyover to play a SoundCue
-	History = `XCOMHISTORY;
-	Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
-	SourceState = XComGameState_Unit(History.GetGameStateForObjectID(Context.InputContext.SourceObject.ObjectID));
-
-	BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(SourceState.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
-	BuildTrack.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(SourceState.ObjectID);
-	BuildTrack.VisualizeActor = History.GetVisualizer(SourceState.ObjectID);
-
-	SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
-
-	ChatterCue = SoundCue(DynamicLoadObject("LW_Overhaul_SoundFX.AbilitySounds.ExaltChatter_Cue", class'SoundCue'));
-	SoundAndFlyOver.SetSoundAndFlyOverParameters(ChatterCue, "", '', eColor_Good);
-}
-
-function XComGameState JammerAbility_BuildGameState( XComGameStateContext Context )
-{
-	local XComGameState NewGameState;
-	local XComGameState_Unit UnitState;
-	local XComGameState_Ability AbilityState;
-	local XComGameStateContext_Ability AbilityContext;
-	local X2AbilityTemplate AbilityTemplate;
-	local XComGameStateHistory History;
-	local XComGameState_AIReinforcementSpawner ReinforcementSpawner, UpdatedSpawner;
-
-	History = `XCOMHISTORY;
-	//Build the new game state frame
-	NewGameState = History.CreateNewGameState(true, Context);
-
-	AbilityContext = XComGameStateContext_Ability(NewGameState.GetContext());
-	AbilityState = XComGameState_Ability(History.GetGameStateForObjectID(AbilityContext.InputContext.AbilityRef.ObjectID, eReturnType_Reference));
-	AbilityTemplate = AbilityState.GetMyTemplate();
-	AbilityState = XComGameState_Ability(NewGameState.ModifyStateObject(AbilityState.Class, AbilityState.ObjectID));
-
-	UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', AbilityContext.InputContext.SourceObject.ObjectID));
-	//Apply the cost of the ability
-	AbilityTemplate.ApplyCost(AbilityContext, AbilityState, UnitState, none, NewGameState);
-
-	foreach History.IterateByClassType(class'XComGameState_AIReinforcementSpawner', ReinforcementSpawner)
-	{
-		UpdatedSpawner = XComGameState_AIReinforcementSpawner(NewGamestate.ModifyStateObject(class'XComGameState_AIReinforcementSpawner', ReinforcementSpawner.ObjectID));
-		UpdatedSpawner.CountDown += 1;
-	}
-
-	//Return the game state we have created
-	return NewGameState;
-}
 
 static function X2AbilityTemplate AddAirControllerAbility()
 {
