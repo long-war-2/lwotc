@@ -48,7 +48,7 @@ BriefSummary="Target an enemy as a free action to confer it -<Ability:BODY_SHIEL
 [EmergencyLifeSupportPCS X2EquipmentTemplate]
 FriendlyName="PCS: Emergency Life Support"
 FriendlyNamePlural="PCS: Emergency Life Support"
-BriefSummary="This implant drastically increases the threshold of overkill damage needed to bypass bleedout, making it less likely that your soldier dies when fatally shot. Bleedout timer is extended by <Ability:EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS> turns."
+BriefSummary="Once per mission, when this unit is reduced to 0 HP, they always enter bleedout (unless they are suffering from an effect that prevents bleedout). Bleedout timer is extended by <Ability:EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS> turns."
 ; End Translation
 
 [IronSkinPCS X2EquipmentTemplate]
@@ -821,8 +821,8 @@ LocPromotionPopupText="<Bullet/> A targeted enemy receives -<Ability:BODY_SHIELD
 [EmergencyLifeSupport X2AbilityTemplate]
 LocFriendlyName="Emergency Life Support"
 LocFlyOverText="Emergency Life Support"
-LocLongDescription="This implant drastically increases the threshold of overkill damage needed to bypass bleedout, making it less likely that your soldier dies when fatally shot. Bleedout timer is extended by <Ability:EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS> turns."
-LocPromotionPopupText="<Bullet/> Emergency Life Support drastically increases the threshold of overkill damage needed to bypass bleedout.<br/><Bullet/> Adds <Ability:EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS> turns to the bleedout timer.<br/>"
+LocLongDescription="Once per mission, when this unit is reduced to 0 HP, they always enter bleedout (unless they are suffering from an effect that prevents bleedout). Bleedout timer is extended by <Ability:EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS> turns."
+LocPromotionPopupText="<Bullet/> "Once per mission, when this unit is reduced to 0 HP, they always enter bleedout (unless they are suffering from an effect that prevents bleedout).<br/><Bullet/> Adds <Ability:EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS> turns to the bleedout timer.<br/>"
 
 [IronSkin X2AbilityTemplate]
 LocFriendlyName="Iron Skin"
