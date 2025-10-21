@@ -394,7 +394,7 @@ LocFriendlyName="Full Override"
 LocLongDescription="Take permanent control of a robotic unit and potentially acquire ADVENT MECs for the Resistance."
 LocHelpText="Take permanent control of a robotic unit and potentially acquire ADVENT MECs for the Resistance."
 LocFlyOverText="Full Override"
-LocPromotionPopupText="<Bullet/> Full Override is a special hack action usable against enemy robotic units.<br/><Bullet/> It has one charge that is only expended if a successful override occurs.<br/><Bullet/> Requires one action and ends the soldier's turn.<br/><Bullet/> The first hack option, Greater Shutdown, will disable (stun) the unit for 3 turns.<br/><Bullet/> The second hack option, Master Enemy, will grant control of the unit for rest of the mission with a stat bonus for all robots, and will permanently transfer any MEC units to the Resistance.<br/><Bullet/> If the Master Enemy hack succeeds, and the MEC and the specialist both survive the mission, the MEC will follow new programming and make its way to a Resistance base, where it will serve the Resistance. It does not need to be evacuated when the mission ends."
+LocPromotionPopupText="<Bullet/> Full Override is a special hack action usable against enemy robotic units.<br/><Bullet/> It has one charge that is only expended if a successful override occurs.<br/><Bullet/> Requires one action and ends the soldier's turn.<br/><Bullet/> The first hack option, Greater Shutdown, will disable (stun) the unit for 3 turns.<br/><Bullet/> The second hack option, Master Enemy, will grant control of the unit for rest of the mission with a stat bonus for all robots, and will permanently transfer any MEC units to the Resistance.<br/><Bullet/> If the Master Enemy hack succeeds, and the MEC and the <Ability:ClassName> both survive the mission, the MEC will follow new programming and make its way to a Resistance base, where it will serve the Resistance. It does not need to be evacuated when the mission ends."
 ; End translation
 
 [BuffEnemy_FullOverride X2HackRewardTemplate]
@@ -426,7 +426,7 @@ Description="Take control of this unit for rest of the mission and gain stat bon
 ; LWOTC Needs Translation (3)
 [ScanningProtocol X2AbilityTemplate]
 LocLongDescription="The GREMLIN can trigger an instant scan of the area, increasing the <Ability:ClassName>'s sight radius substantially for one turn, and revealing any hidden or disguised enemies in view. Free Action."
-LocPromotionPopupText="<Bullet/> Scanning Protocol has <ABILITY:SCANNING_PROTOCOL_INITIAL_CHARGES_LW/> initial charges.<br/><Bullet/> Scanning Protocol gains bonus charges with improved GREMLINs.<br/><Bullet/> In addition to hidden and disguised enemies, enemies blocked from line of sight by walls or obstructions will also be revealed by Scanning Protocol.<br/><Bullet/> Scanning Protocol is a free action.<br/><Bullet/> If the Specialist is employed as Haven Adviser Scanning Protocol will reduce the chance of recruiting Faceless rebels by 40% (stacking cumulatively with other similar abilities).<br/>"
+LocPromotionPopupText="<Bullet/> Scanning Protocol has <ABILITY:SCANNING_PROTOCOL_INITIAL_CHARGES_LW/> initial charges.<br/><Bullet/> Scanning Protocol gains bonus charges with improved GREMLINs.<br/><Bullet/> In addition to hidden and disguised enemies, enemies blocked from line of sight by walls or obstructions will also be revealed by Scanning Protocol.<br/><Bullet/> Scanning Protocol is a free action.<br/><Bullet/> If the <Ability:ClassName> is employed as Haven Adviser Scanning Protocol will reduce the chance of recruiting Faceless rebels by 40% (stacking cumulatively with other similar abilities).<br/>"
 ; End Translation (3)
 
 [CapacitorDischarge X2AbilityTemplate]
@@ -5340,7 +5340,7 @@ DisplayName="Successful ADVENT Raids:"
 ; just fix typo
 [Insanity X2AbilityTemplate]
 ; LWOTC Needs Translation
-LocPromotionPopupText="<Bullet/> Insanity has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Insanity requires a contest between the Psi Operative's Psi Strength stat, and the target's will.<br/><Bullet/> Insanity can disorient, panic, or mind control the target if it succeeds.<br/><Bullet/> Mechanical enemies are completely immune to Insanity.<br/><Bullet/> Insanity requires one action and does not end your turn."
+LocPromotionPopupText="<Bullet/> Insanity has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Insanity requires a contest between the <Ability:ClassName>'s Psi Strength stat, and the target's will.<br/><Bullet/> Insanity can disorient, panic, or mind control the target if it succeeds.<br/><Bullet/> Mechanical enemies are completely immune to Insanity.<br/><Bullet/> Insanity requires one action and does not end your turn."
 ; End Translation
 
 [XComGame.UIEndGameStats]
@@ -5397,8 +5397,8 @@ LocPromotionPopupText="<Bullet/> Serial is meant to chain enemy kills in a singl
 
 ;LWOTC needs translation (2)
 [Fuse X2AbilityTemplate]
-LocLongDescription="If an enemy is carrying explosives, they can be remotely detonated by the Psi Operative."
-LocHelpText="If an enemy is carrying explosives, they can be remotely detonated by the Psi Operative."
+LocLongDescription="If an enemy is carrying explosives, they can be remotely detonated by the <Ability:ClassName>."
+LocHelpText="If an enemy is carrying explosives, they can be remotely detonated by the <Ability:ClassName>."
 LocPromotionPopupText="<Bullet/> Fuse has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Fuse costs 1 action and does not end your turn.<br/>"
 ;End translation (2)
 
@@ -5422,18 +5422,18 @@ LocFriendlyName="Soulfire"
 LocLongDescription="Deal guaranteed Psionic damage to an organic enemy. Ignores cover and armor."
 LocHelpText="Deal guaranteed Psionic damage to an organic enemy. Ignores cover and armor."
 LocFlyOverText="Soulfire"
-LocPromotionPopupText="<Bullet/> Soulfire has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> The damage done by the Soulfire ability can be increased by upgrading the Psi Operative's Psi Amp.<br/><Bullet/> Robotic enemies cannot be targetd by Soulfire."
+LocPromotionPopupText="<Bullet/> Soulfire has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> The damage done by the Soulfire ability can be increased by upgrading the <Ability:ClassName>'s Psi Amp.<br/><Bullet/> Robotic enemies cannot be targeted by Soulfire."
 
 ; LWOTC Needs Translation (2)
 [SoulSteal X2AbilityTemplate]
-LocLongDescription="Soulfire transfers the damage done back to the Psi Operative as health and grants an ablative HP for 3 turns."
+LocLongDescription="Soulfire transfers the damage done back to the <Ability:ClassName> as health and grants an ablative HP for 3 turns."
 LocHelpText="Soulfire heals a wounded operative and grants ablative HP."
 LocPromotionPopupText="<Bullet/> Soul Steal will replenish lost health for a wounded operative and provide 3/4/6 ablative hit points for 3 turns.<br/><Bullet/> An operative may increase to no more than 15 ablative HP when using Soul Steal."
 ; End Translation (2)
 
 ; LWOTC Needs Translation
 [Domination X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Domination requires a contest of the Psi Operative's Psi Strength stat versus the Will of the target.<br/><Bullet/> If an attempted Domination fails, there is a <Ability:SelfCooldown_LW> turn cooldown before another Domination can be attempted.<br/><Bullet/> If the Psi Operative dies or leaves the battlefield, the Domination is broken.<br/>"
+LocPromotionPopupText="<Bullet/> Domination requires a contest of the <Ability:ClassName>'s Psi Strength stat versus the Will of the target.<br/><Bullet/> If an attempted Domination fails, there is a <Ability:SelfCooldown_LW> turn cooldown before another Domination can be attempted.<br/><Bullet/> If the <Ability:ClassName> dies or leaves the battlefield, the Domination is broken.<br/>"
 ; End Translation
 
 ; LWOTC Needs Translation
@@ -5586,14 +5586,14 @@ LocFriendlyName="Retribution"
 LocLongDescription="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter, exit or attack from melee range on enemy turns."
 LocHelpText="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter, exit or attack from melee range on enemy turns."
 LocFlyOverText="Retribution"
-LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Retribution will trigger if that enemy tries to attack the Skirmisher.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Retribution will trigger when that enemy moves into melee range.<br/><Bullet/> Retribution does not trigger on your own turn.<br/>"
+LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Retribution will trigger if that enemy tries to attack the <Ability:ClassName>.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Retribution will trigger when that enemy moves into melee range.<br/><Bullet/> Retribution does not trigger on your own turn.<br/>"
 
 [RetributionAttack X2AbilityTemplate]
 LocFriendlyName="Retribution"
 LocLongDescription="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range. aka Bladestorm."
 LocHelpText="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range. aka Bladestorm."
 LocFlyOverText="Retribution"
-LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Retribution will trigger if that enemy tries to attack the Skirmisher.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Retribution will trigger when that enemy moves into melee range.<br/>"
+LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Retribution will trigger if that enemy tries to attack the <Ability:ClassName>.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Retribution will trigger when that enemy moves into melee range.<br/>"
 
 ; End Translation (2)
 ; LWOTC Needs Translation
@@ -5604,21 +5604,21 @@ LocHelpText="Skirmishers are elite soldiers, due to their past as ADVENT, granti
 LocPromotionPopupText="<Bullet/> An additional grenade can be equipped in a unique grenade-only slot.<br/>"
 
 [SkirmisherGrapple X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Grapple allows the Skirmisher to get into position without using an action.<br/><Bullet/> Grapple has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocPromotionPopupText="<Bullet/> Grapple allows the <Ability:ClassName> to get into position without using an action.<br/><Bullet/> Grapple has a <Ability:SelfCooldown_LW/> turn cooldown."
 
 [Reckoning_LW X2AbilityTemplate]
 LocFriendlyName="Reckoning"
 LocLongDescription="Unlocks the <Ability:SecondaryWeaponName/> Charge."
 LocHelpText="Unlocks the <Ability:SecondaryWeaponName/> Charge."
 LocFlyOverText="Reckoning"
-LocPromotionPopupText="<Bullet/> You can trigger the Charge ability by placing the movement cursor over an enemy and right-clicking (as with Fleche on Shinobis).<br/><Bullet/> Charge costs 1 action point, is not turn ending, and has a <Ability:RECKONING_LW_COOLDOWN/> turn cooldown.<br/><Bullet/> A Skirmisher can perform a dash move with the Charge attack and it will still only cost 1 action point.<br/>"
+LocPromotionPopupText="<Bullet/> You can trigger the Charge ability by placing the movement cursor over an enemy and right-clicking.<br/><Bullet/> Charge costs 1 action point, is not turn ending, and has a <Ability:RECKONING_LW_COOLDOWN/> turn cooldown.<br/><Bullet/> The <Ability:ClassName> can perform a dash move with the Charge attack and it will still only cost 1 action point.<br/>"
 
 ; LWOTC Needs Translation (2)
 [SkirmisherFleche X2AbilityTemplate]
 LocFriendlyName="Charge"
 LocLongDescription="Attack any enemy within movement range with your <Ability:SecondaryWeaponName/>."
 LocHelpText="Attack an enemy within movement range with your <Ability:SecondaryWeaponName/>."
-LocPromotionPopupText="<Bullet/> You can trigger the Charge ability by placing the movement cursor over an enemy and right-clicking (as with Fleche on Shinobis).<br/><Bullet/> Charge costs 1 action point and is not turn ending. <br/><Bullet/> Charge has a <Ability:RECKONING_LW_COOLDOWN/> turn cooldown.<br/><Bullet/> A Skirmisher can perform a dash move with the Charge attack and it will still only cost 1 action point.<br/>"
+LocPromotionPopupText="<Bullet/> You can trigger the Charge ability by placing the movement cursor over an enemy and right-clicking.<br/><Bullet/> Charge costs 1 action point, is not turn ending, and has a <Ability:RECKONING_LW_COOLDOWN/> turn cooldown.<br/><Bullet/> The <Ability:ClassName> can perform a dash move with the Charge attack and it will still only cost 1 action point.<br/>"
 ; End Translation (2)
 
 ; LWOTC Needs Translation (3)
@@ -5645,8 +5645,8 @@ FocusLevelDescriptions[4]="Rend Damage +<Ability:FOCUS4RENDDAMAGE/>\nMobility +<
 
 ; LWOTC Needs Translation (2)
 [TemplarFocus X2AbilityTemplate]
-LocLongDescription="Gain Focus during missions which can be spent on powerful abilities"
-LocPromotionPopupText="<Bullet/> Templars begin missions weaker than other soldiers, but can become extremely powerful at higher Focus levels.<br/><Bullet/> Focus is gained by attacking enemies with Rend (even misses count).<br/>"
+LocLongDescription="Gain Focus during missions which can be spent on powerful abilities."
+LocPromotionPopupText="<Bullet/> Focus is gained by attacking enemies with Rend. Even misses generate Focus.<br/>"
 
 
 ; LWOTC Needs Translation (3)
@@ -5654,7 +5654,7 @@ LocPromotionPopupText="<Bullet/> Templars begin missions weaker than other soldi
 LocFriendlyName="Rend"
 LocLongDescription="Melee attack with a chance to stun or disorient the target. Triggers Momentum, and generates Focus on attacks."
 LocHelpText="Melee attack with a chance to stun or disorient the target. Triggers Momentum, and generates Focus on attacks."
-LocPromotionPopupText="<Bullet/> Using Rend is the Templar's primary method for generating Focus.<br/><Bullet/> After casting Rend, the Templar will gain Momentum, allowing them one movement action. Use this to return to cover after attacking.<br/><Bullet/> Rend has a <Ability:RENDSTUNCHANCE/>% chance to Stun per Focus. Stunned targets will also be knocked back.<br/><Bullet/> Rend has a <Ability:RENDDISORIENTCHANCE/>% chance to Disorient per Focus.<br/>"
+LocPromotionPopupText="<Bullet/> Using Rend is the <Ability:ClassName>'s primary method for generating Focus.<br/><Bullet/> After casting Rend, the <Ability:ClassName> will gain Momentum, allowing them one movement action. Use this to return to cover after attacking.<br/><Bullet/> Rend has a <Ability:RENDSTUNCHANCE/>% chance to Stun per Focus. Stunned targets will also be knocked back.<br/><Bullet/> Rend has a <Ability:RENDDISORIENTCHANCE/>% chance to Disorient per Focus.<br/>"
 ; End Translation (3)
 
 [Whiplash X2AbilityTemplate]
@@ -5674,13 +5674,13 @@ LocPromotionPopupText="<Bullet/> This is a free action.<br/><Bullet/> Some actio
 ; LWOTC Needs Translation (2)
 LocLongDescription="Summon a pillar of Psionic energy to act as a high cover point. Free action, does not cost focus."
 LocHelpText="Summon high cover at a target location. Free action, does not cost focus."
-LocPromotionPopupText="<Bullet/> The pillar will last for a number of turns equal to the Templar's Focus level when summoned.<br/><Bullet/> Pillar is a free action.<br/><Bullet/> Can be used after Rend.<br/><Bullet/> Pillar has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> The pillar will last for a number of turns equal to the <Ability:ClassName>'s Focus level when summoned.<br/><Bullet/> Pillar is a free action.<br/><Bullet/> Can be used with only a Momentum action remaining.<br/><Bullet/> Pillar has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 ; End Translation (2)
 
 [StunStrike X2AbilityTemplate]
 LocLongDescription="Strike an enemy with Psionic force, stunning them. Costs 1 Focus."
 LocHelpText="Strike an enemy with Psionic force, stunning them. Costs 1 Focus."
-LocPromotionPopupText="<Bullet/> Stun Strike has a <Ability:STUNSTRIKEHITCHANCE/>% chance to hit, increased by <Ability:STUNSTRIKEFOCUSHITCHANCE/>% for each Focus level.<br/><Bullet/> Stun Strike has a <Ability:STUNSTRIKE_STUN_CHANCE/>% chance to stun the target if successful.<br/><Bullet/> Stun Strike costs one action and does not end the Templar's turn.<br/><Bullet/> Stun Strike has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Stun Strike cannot be used against targets that take more space than 1 tile."
+LocPromotionPopupText="<Bullet/> Stun Strike has a <Ability:STUNSTRIKEHITCHANCE/>% chance to hit, increased by <Ability:STUNSTRIKEFOCUSHITCHANCE/>% for each Focus level.<br/><Bullet/> Stun Strike has a <Ability:STUNSTRIKE_STUN_CHANCE/>% chance to stun the target if successful.<br/><Bullet/> Stun Strike costs one action and does not end the <Ability:ClassName>'s turn.<br/><Bullet/> Stun Strike has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Stun Strike cannot be used against targets that take more space than 1 tile."
 
 [BondmateTeamwork X2AbilityTemplate]
 LocHelpText="Grant an additional movement point to a bondmate. Has a single charge shared between bondmates."
@@ -5696,7 +5696,7 @@ LocLongDescription="Grant an additional action point to a bondmate. Has one or t
 LocLongDescription="Grants the soldier Shadow, an advanced form of concealment that lasts for 2 turns."
 LocHelpText="Soldier enters Shadow, an advanced form of concealment, for 2 turns."
 ; LWOTC Needs Translation (3)
-LocPromotionPopupText="<Bullet/> Shadow reduces detection ranges to just a few tiles at most.<br/><Bullet/> Reaper has increased mobility while in Shadow.<br/><Bullet/> Entering Shadow is a free action and has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Shadow prevents detection by ADVENT towers.<br/>"
+LocPromotionPopupText="<Bullet/> Shadow reduces detection ranges to just a few tiles at most.<br/><Bullet/> The <Ability:ClassName> has increased mobility while in Shadow.<br/><Bullet/> Entering Shadow is a free action and has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Shadow prevents detection by ADVENT towers.<br/>"
 ; End Translation (3)
 
 ; LWOTC Needs Translation (2)
@@ -5734,13 +5734,13 @@ LocPromotionPopupText="<Bullet/> Bonus crit chance applies to both primary and s
 LocFriendlyName="Sting"
 LocLongDescription="Fire a shot while in Shadow that holotargets for +<Ability:HOLOTARGETAIMBONUS/> Aim and ruptures for <Ability:STING_RUPTURE/>. Guaranteed to remain in Shadow."
 LocHelpText="Fire a shot while in Shadow. Guaranteed to remain in Shadow."
-LocPromotionPopupText="<Bullet/> Sting allows for the Reaper to attack in situations where they absolutely do not want to be revealed.<br/><Bullet/> Sting has <Ability:StingCharges/> charge(s) per mission, requires <Ability:SelfAmmoCost/> ammo points, and has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Sting allows for the <Ability:ClassName> to attack in situations where they absolutely do not want to be revealed.<br/><Bullet/> Sting has <Ability:StingCharges/> charge(s) per mission, requires <Ability:SelfAmmoCost/> ammo points, and has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 ; End Translation (3)
 
 [RemoteStart X2AbilityTemplate]
 LocFriendlyName="Remote Start"
-LocLongDescription="Detonate an environmental explosive, causing it to deal double damage within twice its normal radius. Does not reveal the Reaper."
-LocHelpText="Detonate an environmental explosive, causing it to deal double damage within twice its normal radius. Does not reveal the Reaper."
+LocLongDescription="Detonate an environmental explosive, causing it to deal double damage within twice its normal radius. Does not reveal the <Ability:ClassName>."
+LocHelpText="Detonate an environmental explosive, causing it to deal double damage within twice its normal radius. Does not reveal the <Ability:ClassName>."
 ; LWOTC Needs Translation
 LocPromotionPopupText="<Bullet/> Make sure squadmates are clear of the blast zone!<br/><Bullet/> Remote Start requires <Ability:SelfAmmoCost/> ammo point, and has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Remote Start has <Ability:RemoteStartCharges/> charge(s) per mission.<br/>"
 ; End Translation
@@ -5765,14 +5765,14 @@ LocFlyOverText="Tracking"
 [SkirmisherReflex X2AbilityTemplate]
 LocLongDescription="When fired upon, gain one extra action on the next turn. Triggers no more than once per turn. Attacks against you suffer a -<Ability:REFLEX_CRIT_DEF/> penalty to critical hit chances."
 LocHelpText="When fired upon, gain one extra action on the next turn. Triggers no more than once per turn. Attacks against you suffer a -<Ability:REFLEX_CRIT_DEF/> penalty to critical hit chances."
-LocPromotionPopupText="<Bullet/> The Grapple makes the Skirmisher a great advance scout, and Reflex rewards their aggressive positioning.<br/><Bullet/> Reflex can only be triggered once per turn.<br/>"
+LocPromotionPopupText="<Bullet/> The Grapple makes the <Ability:ClassName> a great advance scout, and Reflex rewards their aggressive positioning.<br/><Bullet/> Reflex can only be triggered once per turn.<br/>"
 ; End Translation (2)
 
 [FullThrottle X2AbilityTemplate]
 LocLongDescription="Gain +<Ability:FULLTHROTTLEMOBILITY/> mobility with every kill this turn. Lasts <Ability:FULL_THROTTLE_DURATION/> turns, including the current one."
 LocHelpText="Gain +<Ability:FULLTHROTTLEMOBILITY/> mobility with every kill this turn. Lasts <Ability:FULL_THROTTLE_DURATION/> turns, including the current one."
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> Secure kills at the beginning of turns to take advantage of Full Throttle.<br/><Bullet/> Only kills by the Skirmisher count towards Full Throttle.<br/>"
+LocPromotionPopupText="<Bullet/> Secure kills at the beginning of turns to take advantage of Full Throttle.<br/><Bullet/> Only kills by the <Ability:ClassName> count towards Full Throttle.<br/>"
 ; End Translation (2)
 
 [Judgment X2AbilityTemplate]
@@ -5796,7 +5796,7 @@ LocPromotionPopupText="<Bullet/> Use the allies' abilities early and often to ta
 [Battlelord X2AbilityTemplate]
 LocLongDescription="After each enemy in line of sight takes a turn, take an immediate action. No action points will be refunded (e.g. from Hit and Run)."
 LocHelpText="After each enemy in line of sight takes a turn, take an immediate action. No action points will be refunded (e.g. from Hit and Run)."
-LocPromotionPopupText="<Bullet/> Battlelord can allow the Skirmisher to prevail in the most dire of circumstances.<br/><Bullet/> Battlelord has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Turns from the Lost and enemy pod reveals do not grant the immediate action.<br/><Bullet/> Abilities that refund action points, like Implacable and Hit and Run, will not work during Battlelord."
+LocPromotionPopupText="<Bullet/> Battlelord can allow the <Ability:ClassName> to prevail in the most dire of circumstances.<br/><Bullet/> Battlelord has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Turns from the Lost and enemy pod reveals do not grant the immediate action.<br/><Bullet/> Abilities that refund action points, like Implacable and Hit and Run, will not work during Battlelord."
 
 [TemplarGrazingFire X2AbilityTemplate]
 LocFriendlyName="Grazing Fire"
@@ -5815,22 +5815,22 @@ LocPromotionPopupText="<Bullet/> You can trigger the Fleche ability by placing t
 [TemplarSolace X2AbilityTemplate]
 LocFriendlyName="Solace"
 LocFlyOverText="Solace"
-LocLongDescription="The Templar may immediately extinguish mental impairments for a squadmate."
-LocHelpText="The Templar may immediately extinguish mental impairments for a squadmate."
+LocLongDescription="The <Ability:ClassName> may immediately extinguish mental impairments for a squadmate."
+LocHelpText="The <Ability:ClassName> may immediately extinguish mental impairments for a squadmate."
 ; LWOTC Needs Translation (2)
 LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, mind control, panic and stun effects.<br/><Bullet/> Solace requires one action and does not end your turn.<br/><Bullet/> Solace has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 ; End Translation (2)
 
 ; LWOTC Needs Translation (2)
 [Ghost X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Ghosts start with Focus equal to the Templar's Focus level when created minus 1.<br/><Bullet/> Ghosts cannot gain Focus, and disappear when all Focus is spent, or their health reaches 0.<br/><Bullet/> Rend costs 1 Focus when used by Ghosts.<br/><Bullet/> Ghost must be cast on the corpse of a humanoid enemy, and cannot be cast on the same corpse twice.<br/><Bullet/> Ghost has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Ghosts cannot gain following abilities: Volt, Shield bash, Shield abilities, Deflect, Reflect, Solace, Void Conduit, Bladestorm, Apotheosis, Superior Aptitude, Ionic Storm and Sustain. <br/>"
+LocPromotionPopupText="<Bullet/> Ghosts start with Focus equal to the <Ability:ClassName>'s Focus level when created minus 1.<br/><Bullet/> Ghosts cannot gain Focus, and disappear when all Focus is spent, or their health reaches 0.<br/><Bullet/> Rend costs 1 Focus when used by Ghosts.<br/><Bullet/> Ghost must be cast on the corpse of a humanoid enemy, and cannot be cast on the same corpse twice.<br/><Bullet/> Ghost has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Ghosts cannot gain following abilities: Volt, Shield bash, Shield abilities, Deflect, Reflect, Solace, Void Conduit, Bladestorm, Apotheosis, Superior Aptitude, Ionic Storm and Sustain. <br/>"
 ; End Translation (2)
 
 ; LWOTC Needs Translation (2)
 [VoidConduit X2AbilityTemplate]
 LocFriendlyName="Void Conduit"
-LocLongDescription="Trap a humanoid in a Psionic prison, immobilizing them for 2 actions and transferring their health to the Templar. Costs 1 Focus."
-LocHelpText="Immobilize a humanoid for 2 actions, and transfer their health to the Templar. Costs 1 Focus."
+LocLongDescription="Trap a humanoid in a Psionic prison, immobilizing them for 2 actions and transferring their health to the <Ability:ClassName>. Costs 1 Focus."
+LocHelpText="Immobilize a humanoid for 2 actions, and transfer their health to the <Ability:ClassName>. Costs 1 Focus."
 LocPromotionPopupText="<Bullet/> Void Conduit will deal <Ability:VOIDCONDUITDMG/> damage initially, then drain <Ability:VOIDCONDUITACTIONDMG/> health per enemy action.<br/><Bullet/> Void Conduit lasts for 2 enemy actions.<br/><Bullet/> Void Conduit has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Targets trapped by Void Conduit cannot take actions or dodge, but can be targeted by other attacks.<br/>"
 ; End Translation (2)
 
@@ -7101,9 +7101,9 @@ LocFlyOverText="Big Game Hunter"
 
 [BonusBombard_LW X2AbilityTemplate]
 LocFriendlyName="Prep For War"
-LocLongDescription="Gain an additional use of equipped Heavy Weapons and Bombard. If the SPARK has learned Assault Servos, provides an additional +2 damage to Strike attacks and decreases Kinetic Strike cooldown by 1. If Enhanced Targeting Systems is taken, the SPARK gains +10 aim and the Avenger ability."
-LocHelpText="Gain an additional use of equipped Heavy Weapons and Bombard. The extra use of Bombard is only granted if the Bombard ability is taken. If the SPARK has learned Assault Servos, provides an additional +2 damage to Strike attacks and decreases Kinetic Strike cooldown by 1. If Enhanced Targeting Systems is taken, the SPARK gains +10 aim and the Avenger ability. The +10 aim applies to all attacks, including melee."
-LocPromotionPopupText="Gain an additional use of equipped Heavy Weapons and Bombard. The extra use of Bombard is only granted if the Bombard ability is taken. If the SPARK has learned Assault Servos, provides an additional +2 damage to Strike attacks and decreases Kinetic Strike cooldown by 1. If Enhanced Targeting Systems is taken, the SPARK gains +10 aim and the Avenger ability. The +10 aim applies to all attacks, including melee."
+LocLongDescription="Gain an additional use of equipped Heavy Weapons and Bombard. If the <Ability:ClassName> has learned Assault Servos, provides an additional +2 damage to Strike attacks and decreases Kinetic Strike cooldown by 1. If Enhanced Targeting Systems is taken, the <Ability:ClassName> gains +10 aim and the Avenger ability."
+LocHelpText="Gain an additional use of equipped Heavy Weapons and Bombard. The extra use of Bombard is only granted if the Bombard ability is taken. If the <Ability:ClassName> has learned Assault Servos, provides an additional +2 damage to Strike attacks and decreases Kinetic Strike cooldown by 1. If Enhanced Targeting Systems is taken, the <Ability:ClassName> gains +10 aim and the Avenger ability. The +10 aim applies to all attacks, including melee."
+LocPromotionPopupText="Gain an additional use of equipped Heavy Weapons and Bombard. The extra use of Bombard is only granted if the Bombard ability is taken. If the <Ability:ClassName> has learned Assault Servos, provides an additional +2 damage to Strike attacks and decreases Kinetic Strike cooldown by 1. If Enhanced Targeting Systems is taken, the <Ability:ClassName> gains +10 aim and the Avenger ability. The +10 aim applies to all attacks, including melee."
 
 [SalvoRainmaker_LW X2AbilityTemplate]
 LocFriendlyName="Blastmaster"
@@ -7543,7 +7543,7 @@ LocFlyOverText="Shield Bash"
 LocFriendlyName="Invert"
 LocLongDescription="Switch locations with a unit. Costs 1 Focus."
 LocHelpText="Switch locations with a unit. Costs 1 Focus."
-LocPromotionPopupText="<Bullet/> Invert has a <Ability:SelfCooldown/> turn cooldown, and does not end the Templar's turn.<br/><Bullet/> Can target both ally and enemy units.<br/><Bullet/> Cannot Target Chosen.<br/>"
+LocPromotionPopupText="<Bullet/> Invert has a <Ability:SelfCooldown/> turn cooldown, and does not end the <Ability:ClassName>'s turn.<br/><Bullet/> Can target both ally and enemy units.<br/><Bullet/> Cannot Target Chosen.<br/>"
 
 [OneForAll X2AbilityTemplate]
 LocFriendlyName="One For All"
@@ -7706,7 +7706,7 @@ LocPromotionPopupText="<Bullet/> This is a free action.<br/><Bullet/> Some actio
 LocFriendlyName="Rend"
 LocLongDescription="Melee attack with a chance to stun or disorient the target. Triggers Momentum, and generates Focus on attacks."
 LocHelpText="Melee attack with a chance to stun or disorient the target. Triggers Momentum, and generates Focus on attacks."
-LocPromotionPopupText="<Bullet/> Using Rend is the Templar's primary method for generating Focus.<br/><Bullet/> After casting Rend, the Templar will gain Momentum, allowing them one movement action. Use this to return to cover after attacking.<br/><Bullet/> Rend has a <Ability:RENDSTUNCHANCE/>% chance to Stun per Focus. Stunned targets will also be knocked back.<br/><Bullet/> Rend has a <Ability:RENDDISORIENTCHANCE/>% chance to Disorient per Focus.<br/>"
+LocPromotionPopupText="<Bullet/> Using Rend is the <Ability:ClassName>'s primary method for generating Focus.<br/><Bullet/> After casting Rend, the <Ability:ClassName> will gain Momentum, allowing them one movement action. Use this to return to cover after attacking.<br/><Bullet/> Rend has a <Ability:RENDSTUNCHANCE/>% chance to Stun per Focus. Stunned targets will also be knocked back.<br/><Bullet/> Rend has a <Ability:RENDDISORIENTCHANCE/>% chance to Disorient per Focus.<br/>"
 
 [ArcWavePassive_LW X2AbilityTemplate]
 LocFriendlyName="Arc Wave"
@@ -7842,13 +7842,13 @@ LocPromotionPopupText="<Bullet/> A recoil penalty of <Ability:Overdrive_RecoilPe
 LocFriendlyName="Bulwark"
 LocLongDescription="Gain a bonus point of Armor, and always provide high cover to all adjacent squadmates."
 LocHelpText="Gain a bonus point of Armor, and always provide high cover to all adjacent squadmates."
-LocPromotionPopupText="<Bullet/> Bulwark adds one point of Armor.<br/><Bullet/> Any squadmate standing adjacent to the SPARK will gain the high cover Defense bonus.<br/>"
+LocPromotionPopupText="<Bullet/> Bulwark adds one point of Armor.<br/><Bullet/> Any squadmate standing adjacent to the <Ability:ClassName> will gain the high cover Defense bonus.<br/>"
 
 [Arsenal X2AbilityTemplate]
 LocFriendlyName="Arsenal"
 LocLongDescription="The BIT can equip and fire heavy weapons."
 LocHelpText="The BIT can equip and fire heavy weapons."
-LocPromotionPopupText="<Bullet/> Arsenal allows the SPARK to equip heavy weapons in their loadout. Grants a heavy weapon slot to the SPARK.<br/>"
+LocPromotionPopupText="<Bullet/> Arsenal allows the <Ability:ClassName> to equip heavy weapons in their loadout. Grants a heavy weapon slot to the <Ability:ClassName>.<br/>"
 
 [Rainmaker X2AbilityTemplate]
 LocFriendlyName="Rainmaker"
@@ -7861,7 +7861,7 @@ LocFriendlyName="Intimidate"
 LocLongDescription="When targeted by an attack, the enemy has a chance to panic."
 LocHelpText="When targeted by an attack, the enemy has a chance to panic."
 LocFlyOverText="Intimidate"
-LocPromotionPopupText="<Bullet/> Intimidate's chance to panic the attacker increases with higher tier SPARK armors.<br/><Bullet/> Intimidate can be triggered by melee and area of effect attacks.<br/><Bullet/> Intimidate will not trigger when targeted by Overwatch fire.<br/>"
+LocPromotionPopupText="<Bullet/> Intimidate's chance to panic the attacker increases with higher tier <Ability:ClassName> armors.<br/><Bullet/> Intimidate can be triggered by melee and area of effect attacks.<br/><Bullet/> Intimidate will not trigger when targeted by Overwatch fire.<br/>"
 
 [IntimidateTrigger X2AbilityTemplate]
 LocFriendlyName="Intimidate"
@@ -7890,7 +7890,7 @@ LocFriendlyName="Sacrifice"
 LocLongDescription="Generate a protective field which redirects any attacks against allies inside it towards you. Gain bonus defense and armor while active."
 LocHelpText="Generate a protective field to redirect enemy attacks towards you."
 LocFlyOverText="Sacrifice"
-LocPromotionPopupText="<Bullet/> The SPARK gains +<Ability:Sacrifice_Defense/> defense and +<Ability:Sacrifice_Armor/> armor while Sacrifice is active.<br/><Bullet/> Sacrifice has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> The <Ability:ClassName> gains +<Ability:Sacrifice_Defense/> defense and +<Ability:Sacrifice_Armor/> armor while Sacrifice is active.<br/><Bullet/> Sacrifice has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 [AdaptiveAim X2AbilityTemplate]
 LocFriendlyName="Adaptive Aim"
@@ -7902,13 +7902,13 @@ LocPromotionPopupText="<Bullet/> Adaptive Aim eliminates the <Ability:Overdrive_
 LocFriendlyName="Strike"
 LocLongDescription="Attack any enemy within movement range with a powerful melee attack."
 LocHelpText="Attack any enemy within movement range with a powerful melee attack."
-LocPromotionPopupText="<Bullet/> You can trigger the Strike ability by placing the movement cursor over an enemy.<br/><Bullet/> A SPARK can perform a \"Dash\" move, using both actions to move, and still trigger a Strike against an adjacent enemy.<br/>"
+LocPromotionPopupText="<Bullet/> You can trigger the Strike ability by placing the movement cursor over an enemy.<br/><Bullet/> A <Ability:ClassName> can perform a \"Dash\" move, using both actions to move, and still trigger a Strike against an adjacent enemy.<br/>"
 
 [WreckingBall X2AbilityTemplate]
 LocFriendlyName="Wrecking Ball"
 LocLongDescription="While Overdrive is active, break through walls and cover when moving."
 LocHelpText="While Overdrive is active, break through walls and cover when moving."
-LocPromotionPopupText="<Bullet/> Wrecking Ball can be used to expose enemies to flanking shots.<br/><Bullet/> Use movement waypoints to guide the SPARK on an optimal path for destroying cover and the environment.</br>"
+LocPromotionPopupText="<Bullet/> Wrecking Ball can be used to expose enemies to flanking shots.<br/><Bullet/> Use movement waypoints to guide the <Ability:ClassName> on an optimal path for destroying cover and the environment.</br>"
 
 [Bombard X2AbilityTemplate]
 LocFriendlyName="Bombard"
@@ -7920,13 +7920,13 @@ LocPromotionPopupText="<Bullet/> Bombard can be fired at any location within squ
 LocFriendlyName="Hunter Protocol"
 LocLongDescription="When an enemy is revealed, there is a <Ability:HunterProtocol_Chance/>% chance to take a free Overwatch shot."
 LocHelpText="When an enemy is revealed, there is a <Ability:HunterProtocol_Chance/>% chance to take a free Overwatch shot."
-LocPromotionPopupText="<Bullet/> Hunter Protocol makes the SPARK an ideal unit for scouting into the fog of war, since any revealed enemy can be instantly attacked.<br/>"
+LocPromotionPopupText="<Bullet/> Hunter Protocol makes the <Ability:ClassName> an ideal unit for scouting into the fog of war, since any revealed enemy can be instantly attacked.<br/>"
 
 [Nova X2AbilityTemplate]
 LocFriendlyName="Nova"
-LocLongDescription="Release a blast of energy, dealing 6 damage to nearby units. This attack has no cost or cooldown, but consecutive Novas will damage the SPARK."
-LocHelpText="Blast all nearby units. Consecutive Novas will damage the SPARK."
-LocPromotionPopupText="<Bullet/> Nova has no action point cost and no cooldown.<br/><Bullet/> The first Nova attack each mission will deal 0 damage to the SPARK.<br/><Bullet/> All Nova attacks after the first will deal a stacking <Ability:Nova_Damage/> damage to the SPARK.<br/>"
+LocLongDescription="Release a blast of energy, dealing 6 damage to nearby units. This attack has no cost or cooldown, but consecutive Novas will damage the <Ability:ClassName>."
+LocHelpText="Blast all nearby units. Consecutive Novas will damage the <Ability:ClassName>."
+LocPromotionPopupText="<Bullet/> Nova has no action point cost and no cooldown.<br/><Bullet/> The first Nova attack each mission will deal 0 damage to the <Ability:ClassName>.<br/><Bullet/> All Nova attacks after the first will deal a stacking <Ability:Nova_Damage/> damage to the <Ability:ClassName>.<br/>"
 
 [CombatProtocol X2AbilityTemplate]
 LocFriendlyName="Combat Protocol"
