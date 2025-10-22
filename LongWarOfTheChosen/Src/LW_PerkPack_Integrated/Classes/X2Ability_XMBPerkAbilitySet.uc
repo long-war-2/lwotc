@@ -3140,8 +3140,8 @@ static function X2AbilityTemplate DeadeyeSnapshotAbility()
 	local X2Condition_Visibility            TargetVisibilityCondition;
 	local X2AbilityCost_Ammo                AmmoCost;
 	local X2AbilityCost_ActionPoints        ActionPointCost;
-	local X2Condition_AbilityProperty   	AbilityCondition;
-	local X2Condition_UnitActionPoints		ActionPointCondition;
+	local X2Condition_AbilityProperty       AbilityCondition;
+	local X2Condition_SnapShotAction        SnapShotActionCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'DeadeyeSnapShot');
 
@@ -3211,21 +3211,17 @@ static function X2AbilityTemplate DeadeyeSnapshotAbility()
 	AbilityCondition.OwnerHasSoldierAbilities.AddItem('SnapShot');
 	Template.AbilityShooterConditions.Additem(AbilityCondition);
 
-	ActionPointCondition = new class'X2Condition_UnitActionPoints';
-	ActionPointCondition.AddActionPointCheck(1,class'X2CharacterTemplateManager'.default.StandardActionPoint,false,eCheck_LessThanOrEqual);
-	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
-	ActionPointCondition = new class'X2Condition_UnitActionPoints';
-	ActionPointCondition.AddActionPointCheck(1,class'X2CharacterTemplateManager'.default.RunAndGunActionPoint,false,eCheck_LessThanOrEqual);
-	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
-
+	SnapShotActionCondition = new class'X2Condition_SnapShotAction';
+	SnapShotActionCondition.StandardAbilityName = 'Deadeye';
+	Template.AbilityShooterConditions.Additem(SnapShotActionCondition);
 
 	return Template;
 }	
 
 static function X2AbilityTemplate DeadeyeSnapShotDamage()
 {
-	local X2AbilityTemplate						Template;
-	local X2Effect_DeadeyeDamage_SnapShot                DamageEffect;
+	local X2AbilityTemplate                 Template;
+	local X2Effect_DeadeyeDamage_SnapShot   DamageEffect;
 
 	// Icon Properties
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'DeadeyeDamage_SnapShot');
@@ -3252,13 +3248,13 @@ static function X2AbilityTemplate DeadeyeSnapShotDamage()
 
 static function X2AbilityTemplate RapidFireSnapshotAbility()
 {
-	local X2AbilityTemplate					Template;
-	local X2AbilityCost_ActionPoints		ActionPointCost;
-	local X2AbilityCost_Ammo				AmmoCost;
+	local X2AbilityTemplate                 Template;
+	local X2AbilityCost_ActionPoints        ActionPointCost;
+	local X2AbilityCost_Ammo                AmmoCost;
 	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
-	local X2AbilityCooldown_Shared			Cooldown;
-	local X2Condition_AbilityProperty   	AbilityCondition;
-	local X2Condition_UnitActionPoints		ActionPointCondition;
+	local X2AbilityCooldown_Shared          Cooldown;
+	local X2Condition_AbilityProperty       AbilityCondition;
+	local X2Condition_SnapShotAction        SnapShotActionCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'RapidFireSnapShot');
 
@@ -3330,20 +3326,17 @@ static function X2AbilityTemplate RapidFireSnapshotAbility()
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 	Template.bFrameEvenWhenUnitIsHidden = true;
 
-	ActionPointCondition = new class'X2Condition_UnitActionPoints';
-	ActionPointCondition.AddActionPointCheck(1,class'X2CharacterTemplateManager'.default.StandardActionPoint,false,eCheck_LessThanOrEqual);
-	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
-	ActionPointCondition = new class'X2Condition_UnitActionPoints';
-	ActionPointCondition.AddActionPointCheck(1,class'X2CharacterTemplateManager'.default.RunAndGunActionPoint,false,eCheck_LessThanOrEqual);
-	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
+	SnapShotActionCondition = new class'X2Condition_SnapShotAction';
+	SnapShotActionCondition.StandardAbilityName = 'RapidFire';
+	Template.AbilityShooterConditions.Additem(SnapShotActionCondition);
 
 	return Template;
 }
 
 static function X2AbilityTemplate RapidFireSnapShot2()
 {
-	local X2AbilityTemplate					Template;
-	local X2AbilityCost_Ammo				AmmoCost;
+	local X2AbilityTemplate                 Template;
+	local X2AbilityCost_Ammo                AmmoCost;
 	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
 	local X2AbilityTrigger_EventListener    Trigger;
 
@@ -3401,13 +3394,13 @@ static function X2AbilityTemplate RapidFireSnapShot2()
 
 static function X2AbilityTemplate ChainShotSnapShot()
 {
-	local X2AbilityTemplate					Template;
-	local X2AbilityCost_Ammo				AmmoCost;
+	local X2AbilityTemplate                 Template;
+	local X2AbilityCost_Ammo                AmmoCost;
 	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
-	local X2AbilityCooldown_Shared                 Cooldown;
-	local X2Condition_AbilityProperty   	AbilityCondition;
-	local X2AbilityCost_ActionPoints		ActionPointCost;
-	local X2Condition_UnitActionPoints		ActionPointCondition;
+	local X2AbilityCooldown_Shared          Cooldown;
+	local X2Condition_AbilityProperty       AbilityCondition;
+	local X2AbilityCost_ActionPoints        ActionPointCost;
+	local X2Condition_SnapShotAction        SnapShotActionCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChainShotSnapShot');
 
@@ -3471,13 +3464,10 @@ static function X2AbilityTemplate ChainShotSnapShot()
 	AbilityCondition = new class'X2Condition_AbilityProperty';
 	AbilityCondition.OwnerHasSoldierAbilities.AddItem('SnapShot');
 	Template.AbilityShooterConditions.Additem(AbilityCondition);
-
-	ActionPointCondition = new class'X2Condition_UnitActionPoints';
-	ActionPointCondition.AddActionPointCheck(1,class'X2CharacterTemplateManager'.default.StandardActionPoint,false,eCheck_LessThanOrEqual);
-	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
-	ActionPointCondition = new class'X2Condition_UnitActionPoints';
-	ActionPointCondition.AddActionPointCheck(1,class'X2CharacterTemplateManager'.default.RunAndGunActionPoint,false,eCheck_LessThanOrEqual);
-	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
+	
+	SnapShotActionCondition = new class'X2Condition_SnapShotAction';
+	SnapShotActionCondition.StandardAbilityName = 'ChainShot';
+	Template.AbilityShooterConditions.Additem(SnapShotActionCondition);
 
 	Template.DamagePreviewFn = ChainShotSnapShotDamagePreview;
 	Template.bCrossClassEligible = true;
@@ -3496,8 +3486,8 @@ static function X2AbilityTemplate ChainShotSnapShot()
 
 static function X2AbilityTemplate ChainShotSnapShot2()
 {
-	local X2AbilityTemplate					Template;
-	local X2AbilityCost_Ammo				AmmoCost;
+	local X2AbilityTemplate                 Template;
+	local X2AbilityCost_Ammo                AmmoCost;
 	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
 	local X2AbilityTrigger_EventListener    Trigger;
 

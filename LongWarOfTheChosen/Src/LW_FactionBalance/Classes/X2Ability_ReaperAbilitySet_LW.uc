@@ -553,17 +553,17 @@ static function X2AbilityTemplate AddDisablingShot()
 
 static function X2AbilityTemplate AddDisablingShotSnapShot()
 {
-	local X2AbilityTemplate					Template;
-	local X2AbilityCost_Ammo				AmmoCost;
-	local X2AbilityCost_ActionPoints		ActionPointCost;
-	local X2AbilityCooldown_Shared			Cooldown;
-	local X2AbilityToHitCalc_StandardAim	ToHitCalc;
-	local X2Condition_Visibility			VisibilityCondition;
-	local X2Effect_DisablingShotStunned		StunEffect;
-	local X2Condition_UnitEffects			SuppressedCondition;
-	local X2Condition_UnitProperty			UnitPropertyCondition;
-	local X2Condition_AbilityProperty		AbilityCondition;
-	local X2Condition_UnitActionPoints		ActionPointCondition;
+	local X2AbilityTemplate                 Template;
+	local X2AbilityCost_Ammo                AmmoCost;
+	local X2AbilityCost_ActionPoints        ActionPointCost;
+	local X2AbilityCooldown_Shared          Cooldown;
+	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
+	local X2Condition_Visibility            VisibilityCondition;
+	local X2Effect_DisablingShotStunned     StunEffect;
+	local X2Condition_UnitEffects           SuppressedCondition;
+	local X2Condition_UnitProperty          UnitPropertyCondition;
+	local X2Condition_AbilityProperty       AbilityCondition;
+	local X2Condition_SnapShotAction        SnapShotActionCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'DisablingShotSnapShot');
 	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityElectroshock";
@@ -641,12 +641,9 @@ static function X2AbilityTemplate AddDisablingShotSnapShot()
 	AbilityCondition.OwnerHasSoldierAbilities.AddItem('SnapShot');
 	Template.AbilityShooterConditions.Additem(AbilityCondition);
 
-	ActionPointCondition = new class'X2Condition_UnitActionPoints';
-	ActionPointCondition.AddActionPointCheck(1, class'X2CharacterTemplateManager'.default.StandardActionPoint, false, eCheck_LessThanOrEqual);
-	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
-	ActionPointCondition = new class'X2Condition_UnitActionPoints';
-	ActionPointCondition.AddActionPointCheck(1, class'X2CharacterTemplateManager'.default.RunAndGunActionPoint, false, eCheck_LessThanOrEqual);
-	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
+	SnapShotActionCondition = new class'X2Condition_SnapShotAction';
+	SnapShotActionCondition.StandardAbilityName = 'DisablingShot';
+	Template.AbilityShooterConditions.Additem(SnapShotActionCondition);
 
 	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
