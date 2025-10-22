@@ -206,6 +206,16 @@ struct FlashbangResistEntry
 	var int Chance;
 };
 
+struct ExplosiveFalloffBonusInfo
+{
+	var name AbilityName;
+	var int EnvDamageBonus;
+	var bool bDisableEnvFalloff;
+	var bool bDisableUnitFalloff;
+};
+
+var config array<ExplosiveFalloffBonusInfo> ExplosiveFalloffBonuses;
+
 var config int SPIDER_GRAPPLE_COOLDOWN;
 var config int WRAITH_GRAPPLE_COOLDOWN;
 var config int RAPIDFIRE_COOLDOWN;
@@ -2153,6 +2163,7 @@ function SwapExplosiveFalloffItem(X2ItemTemplate Template, int Difficulty)
 		FalloffDamageEffect = new class'X2Effect_ApplyExplosiveFalloffWeaponDamage' (ThrownDamageEffect);
 
 		//Falloff-specific settings
+		FalloffDamageEffect.ExplosiveFalloffBonuses = default.ExplosiveFalloffBonuses;
 		FalloffDamageEffect.UnitDamageAbilityExclusions.AddItem('TandemHEATWarheads'); // if has any of these abilities, skip any falloff
 		FalloffDamageEffect.UnitDamageAbilityExclusions.AddItem('TandemWarheads'); // if has any of these abilities, skip any falloff
 		FalloffDamageEffect.EnvironmentDamageAbilityExclusions.AddItem('CombatEngineer'); // if has any of these abilities, skip any falloff
