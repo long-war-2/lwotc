@@ -844,7 +844,7 @@ static function string GetHTMLAverageScatterText(float value, optional int place
 static function bool ShouldShowPsiOffense(XComGameState_Unit UnitState)
 {
 	return UnitState.IsPsiOperative() ||
-		(UnitState.GetRank() == 0 && !UnitState.CanRankUpSoldier() && `XCOMHQ.IsTechResearched('AutopsySectoid'));
+		(UnitState.GetRank() == 0 && !UnitState.CanRankUpSoldier());
 }
 
 // KDM : Adds a UIButton, if it exists and is visible, to a UIScreen's Navigator; furthermore, it selects this button
