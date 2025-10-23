@@ -269,7 +269,8 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 			((panelW - BorderPadding * 2 - ScrollbarPadding - 4) * 0.45 ) + BorderPadding, ListBG.Y + 46.75 + 6);
 		JobDetail.SetHTMLText("<p align=\'CENTER\'><font size=\'24\' color=\'#e24757\'>" $
 			GetJobProhibitedString(Outpost, IntelProhibited, SupplyProhibited, RecruitProhibited) $ "</font></p>");
-		JobDetail.SetAlpha(67.1875);
+		//JobDetail.SetAlpha(67.1875);
+		JobDetail.SetAlpha(100.0);
 	}
 
 	// KDM : Haven adviser background
