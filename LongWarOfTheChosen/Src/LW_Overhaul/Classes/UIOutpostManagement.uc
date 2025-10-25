@@ -189,9 +189,12 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 	ListTitle = Spawn(class'UIX2PanelHeader', MainPanel);
 	ListTitle.bAnimateOnInit = false;
 	ListTitle.bIsNavigable = false;
-	ListTitle.InitPanelHeader('TitleHeader', m_strTitle, Region.GetDisplayName());
+	ListTitle.InitPanelHeader('TitleHeader', m_strTitle, Region.GetDisplayName() @ " - - " @ "<font color='#fef4cb'>" $ GetAdventStrengthString(Region) $ "</font>");
 	ListTitle.SetPosition(BorderPadding, BorderPadding);
 	ListTitle.SetHeaderWidth(panelW - BorderPadding * 2);
+
+	
+	NextY = ListTitle.Y + ListTitle.Height;
 
 	// Tedster: Outpost income
 
@@ -200,28 +203,25 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 		IncomeIntelStr = Spawn(class'UIScrollingText', MainPanel);
 		IncomeIntelStr.bAnimateOnInit = false;
 		IncomeIntelStr.bIsNavigable = false;
-		IncomeIntelStr.InitScrollingText('Outpost_OutpostIncomeIntel_LW', "", panelW - BorderPadding * 2, BorderPadding -200, ListBG.Y + 46.75 + 18);
+		IncomeIntelStr.InitScrollingText('Outpost_OutpostIncomeIntel_LW', "", panelW - BorderPadding * 2, BorderPadding , NextY - 8);
 		IncomeIntelStr.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ m_strIncomeIntel @ IncomeIntel $ "</font></p>");
 		IncomeIntelStr.SetAlpha(67.1875);
 
 		IncomeSupplyStr = Spawn(class'UIScrollingText', MainPanel);
 		IncomeSupplyStr.bAnimateOnInit = false;
 		IncomeSupplyStr.bIsNavigable = false;
-		IncomeSupplyStr.InitScrollingText('Outpost_OutpostIncomeSupply_LW', "", panelW - BorderPadding * 2, BorderPadding -200, ListBG.Y + 46.75 + 46);
+		IncomeSupplyStr.InitScrollingText('Outpost_OutpostIncomeSupply_LW', "", panelW - BorderPadding * 2, BorderPadding , NextY + 20);
 		IncomeSupplyStr.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ m_strIncomeSupply @ IncomeSupply $ "</font></p>");
 		IncomeSupplyStr.SetAlpha(67.1875);
 
 		IncomeRecruitStr = Spawn(class'UIScrollingText', MainPanel);
 		IncomeRecruitStr.bAnimateOnInit = false;
 		IncomeRecruitStr.bIsNavigable = false;
-		IncomeRecruitStr.InitScrollingText('Outpost_OutpostIncomeRecruit_LW', "", panelW - BorderPadding * 2, BorderPadding -200, ListBG.Y + 46.75 + 74);
+		IncomeRecruitStr.InitScrollingText('Outpost_OutpostIncomeRecruit_LW', "", panelW - BorderPadding * 2, BorderPadding , NextY + 48);
 		IncomeRecruitStr.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ m_strIncomeRecruit @ IncomeRecruit $ "</font></p>");
 		IncomeRecruitStr.SetAlpha(67.1875);
 	}
 
-
-
-	NextY = ListTitle.Y + ListTitle.Height;
 
 	// KDM : Advent strength in the region
 	RegionalInfo = Spawn(class'UIScrollingText', MainPanel);
@@ -229,7 +229,8 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 	RegionalInfo.bAnimateOnInit = false;
 	RegionalInfo.InitScrollingText('Outpost_RegionalInfo_LW', "", panelW - BorderPadding * 2, BorderPadding, ListBG.Y + 46.75 + 6);
 	RegionalInfo.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ GetAdventStrengthString(Region) $ "</font></p>");
-	RegionalInfo.SetAlpha(67.1875);
+	//RegionalInfo.SetAlpha(67.1875);
+	RegionalInfo.SetAlpha(0.0);
 
 	// Resistance MECs
 	if (Outpost.GetResistanceMecCount() > 0)
@@ -237,7 +238,7 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 		ResistanceMecs = Spawn(class'UIScrollingText', MainPanel);
 		ResistanceMecs.bIsNavigable = false;
 		ResistanceMecs.bAnimateOnInit = false;
-		ResistanceMecs.InitScrollingText('Outpost_ResistanceMecs_LW', "", panelW - BorderPadding * 2, BorderPadding, RegionalInfo.Y + RegionalInfo.Height);
+		ResistanceMecs.InitScrollingText('Outpost_ResistanceMecs_LW', "", panelW - BorderPadding * 2, BorderPadding, ListBG.Y + 46.75 + 6);
 		ResistanceMecs.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ GetResistanceMecString(Outpost) $ "</font></p>");
 		ResistanceMecs.SetAlpha(67.1875);
 	}
@@ -258,16 +259,18 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 		}
 	}
 
+	//Look into this
 	// KDM : Job prohibitions for the region
 	if (IntelProhibited || SupplyProhibited || RecruitProhibited)
 	{
 		JobDetail = Spawn(class'UIScrollingText', MainPanel);
 		JobDetail.bAnimateOnInit = false;
-		JobDetail.InitScrollingText('OutPost_JobDetail_LW', "", panelW - BorderPadding * 2, BorderPadding,
-			RegionalInfo.Y + RegionalInfo.Height + ((OutPost.GetResistanceMecCount() > 0) ? ResistanceMECs.Height : 0.0f));
-		JobDetail.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $
+		JobDetail.InitScrollingText('OutPost_JobDetail_LW', "", (panelW - BorderPadding * 2 - ScrollbarPadding - 4) * 0.25,
+			((panelW - BorderPadding * 2 - ScrollbarPadding - 4) * 0.45 ) + BorderPadding, ListBG.Y + 46.75 + 6);
+		JobDetail.SetHTMLText("<p align=\'CENTER\'><font size=\'24\' color=\'#e24757\'>" $
 			GetJobProhibitedString(Outpost, IntelProhibited, SupplyProhibited, RecruitProhibited) $ "</font></p>");
-		JobDetail.SetAlpha(67.1875);
+		//JobDetail.SetAlpha(67.1875);
+		JobDetail.SetAlpha(100.0);
 	}
 
 	// KDM : Haven adviser background
@@ -292,7 +295,7 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 	LiaisonTitle.bIsNavigable = false;
 	LiaisonTitle.InitText('', "");
 	LiaisonTitle.SetPosition(BorderPadding + LiaisonButton.Width + 5, NextY);
-	LiaisonTitle.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(m_strLiaisonTitle, eUIState_Normal, TheAdviserFontSize));
+	LiaisonTitle.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(m_strLiaisonTitle, eUIState_Normal, TheAdviserFontSize + 4));
 
 	// KDM : Haven adviser name
 	LiaisonName = Spawn(class'UIText', MainPanel);
@@ -310,7 +313,7 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 	LiaisonLoadoutButton.InitButton(, , OnLiaisonLoadoutClicked);
 	LiaisonLoadoutButton.SetText(m_strEditLoadout);
 	LiaisonLoadoutButton.SetHeight(30);
-	LiaisonLoadoutButton.SetPosition(811 , NextY + LiaisonTitle.Height);// As KDM mentioned below, the button does not seem to anchor to MainPanel, so have resorted to hard coding the values
+	LiaisonLoadoutButton.SetPosition(LiaisonTitle.X + (TheAdviserFontSize + 4) * 0.45 * Len(m_strLiaisonTitle), LiaisonTitle.Y + (TheAdviserFontSize / 2) - 10.5);
 	LiaisonLoadoutButton.SetFontSize(24);
 
 	NextY += 81;
@@ -470,11 +473,13 @@ simulated function string GetJobProhibitedString(XComGameState_LWOutpost Outpost
 	{
 		ProhibitedString @= OutPost.GetJobName('Intel') $ ":";
 		ProhibitedString @= m_strProhibited;
+		if (SupplyProhibited || RecruitProhibited) { ProhibitedString $= ";"; }
 	}
 	if (SupplyProhibited)
 	{
 		ProhibitedString @= OutPost.GetJobName('Resupply') $ ":";
 		ProhibitedString @= m_strProhibited;
+		if (RecruitProhibited) { ProhibitedString $= ";"; }
 	}
 	if (RecruitProhibited)
 	{
