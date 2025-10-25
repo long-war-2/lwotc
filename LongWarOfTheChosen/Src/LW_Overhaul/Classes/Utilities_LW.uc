@@ -27,6 +27,7 @@ var config array<float> LOW_INFILTRATION_MODIFIER_ON_REFLEX_ACTIONS;
 var config array<float> HIGH_INFILTRATION_MODIFIER_ON_REFLEX_ACTIONS;
 
 var config array<string> RETALIATION_MISSION_TYPES;
+var config array<string> RESCUE_REBAL_RETAL_TYPES;
 
 var config array<MissionEnemyCount> OverrideMissionEnemyCounts;
 var config array<MissionEnemyCountOffset> OverrideMissionEnemyCountOffsets;
@@ -225,7 +226,7 @@ function static bool CurrentMissionIsRetaliation()
     local String MissionType;
 
     MissionType = CurrentMissionType();
-    return (MissionType == "Terror_LW" || MissionType == "Invasion_LW" || MissionType=="Defend_LW");
+    return default.RESCUE_REBAL_RETAL_TYPES.Find(MissionType) != INDEX_NONE;
 }
 
 // Delegates to `X2StrategyGameRulesetDataStructures.GetMaxSoldiersAllowedOnMission()`, but
