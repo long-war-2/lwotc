@@ -227,21 +227,31 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 	RegionalInfo = Spawn(class'UIScrollingText', MainPanel);
 	RegionalInfo.bIsNavigable = false;
 	RegionalInfo.bAnimateOnInit = false;
-	RegionalInfo.InitScrollingText('Outpost_RegionalInfo_LW', "", panelW - BorderPadding * 2, BorderPadding, ListBG.Y + 46.75 + 6);
+	// Tedster - with Styr's UI updates, this button isn't actually used, but Fuller Override ties its button location to this one's position,
+	// so subtract 32 from its height so that it doesn't clash with the redone UI
+	RegionalInfo.InitScrollingText('Outpost_RegionalInfo_LW', "", panelW - BorderPadding * 2, BorderPadding, ListBG.Y + 46.75 - 26);
 	RegionalInfo.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ GetAdventStrengthString(Region) $ "</font></p>");
 	//RegionalInfo.SetAlpha(67.1875);
 	RegionalInfo.SetAlpha(0.0);
 
 	// Resistance MECs
+	
+	ResistanceMecs = Spawn(class'UIScrollingText', MainPanel);
+	ResistanceMecs.bIsNavigable = false;
+	ResistanceMecs.bAnimateOnInit = false;
+	ResistanceMecs.InitScrollingText('Outpost_ResistanceMecs_LW', "", panelW - BorderPadding * 2, BorderPadding, ListBG.Y + 46.75 + 6);
+	ResistanceMecs.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ GetResistanceMecString(Outpost) $ "</font></p>");
+	ResistanceMecs.SetAlpha(67.1875);
+
 	if (Outpost.GetResistanceMecCount() > 0)
 	{
-		ResistanceMecs = Spawn(class'UIScrollingText', MainPanel);
-		ResistanceMecs.bIsNavigable = false;
-		ResistanceMecs.bAnimateOnInit = false;
-		ResistanceMecs.InitScrollingText('Outpost_ResistanceMecs_LW', "", panelW - BorderPadding * 2, BorderPadding, ListBG.Y + 46.75 + 6);
-		ResistanceMecs.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ GetResistanceMecString(Outpost) $ "</font></p>");
-		ResistanceMecs.SetAlpha(67.1875);
+		ResistanceMecs.show();
 	}
+	else
+	{
+		ResistanceMecs.hide();
+	}
+	
 
 	for (i = 0; i < Outpost.prohibitedjobs.length; i++)
 	{
