@@ -31,7 +31,7 @@ function float GetPostDefaultDefendingDamageModifier_CH(
 			if (AmplifyState == None)
 				return 0;
 				
-			if (AmplifyState.ShotsRemaining == 1)
+			if (AmplifyState.ShotsRemaining <= 1 && !AmplifyState.bRemoved)
 			{
 				AmplifyState.RemoveEffect(NewGameState, NewGameState);
 			}
