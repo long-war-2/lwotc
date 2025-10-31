@@ -1142,6 +1142,8 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		DFAEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, false,, Template.AbilitySourceName);
 		Template.AddTargetEffect(DFAEffect);
 		DeathEffect = new class'X2Effect_DeathFromAbove_LW';
+		DeathEffect.ActivationsPerTurn = class'X2Effect_DeathFromAbove_LW'.default.DFA_USES_PER_TURN;
+		DeathEffect.BlacklistedAbilities =  class'X2Effect_DeathFromAbove_LW'.default.DFA_BLACKLISTED_ABILITIES
 		DeathEffect.BuildPersistentEffect(1, true, false, false);
 		DeathEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,, Template.AbilitySourceName);
 		Template.AddTargetEffect(DeathEffect);
