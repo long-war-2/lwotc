@@ -1137,10 +1137,16 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	if (Template.DataName == 'DeathFromAbove')
 	{
 		Template.AbilityTargetEffects.Length = 0;
-		DFAEffect = New class'X2Effect_CancelLongRangePenalty';
-		DFAEffect.BuildPersistentEffect (1, true, false);
+		
+		DFAEffect = New class'X2Effect_ModifyRangePenalties';
+		DFAEffect.EffectName = 'DeathFromAboveRange';
+		DFAEffect.RangePenaltyMultiplier = class'X2Effect_DeathFromAbove_LW'.default.DFA_RANGE_PENALTY_NEGATION_MODIFIER;
+		DFAEffect.BaseRange = class'X2Effect_DeathFromAbove_LW'.default.DFA_RANGE_PENALTY_NEGATION_BASE_RANGE;
+		DFAEffect.bLongRange = true;
+		DFAEffect.BuildPersistentEffect(1, true, false);
 		DFAEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, false,, Template.AbilitySourceName);
 		Template.AddTargetEffect(DFAEffect);
+		
 		DeathEffect = new class'X2Effect_DeathFromAbove_LW';
 		DeathEffect.ActivationsPerTurn = class'X2Effect_DeathFromAbove_LW'.default.DFA_USES_PER_TURN;
 		DeathEffect.BlacklistedAbilities =  class'X2Effect_DeathFromAbove_LW'.default.DFA_BLACKLISTED_ABILITIES

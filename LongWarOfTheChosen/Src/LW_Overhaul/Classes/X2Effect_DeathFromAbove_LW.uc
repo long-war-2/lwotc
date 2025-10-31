@@ -2,6 +2,8 @@ class X2Effect_DeathFromAbove_LW extends X2Effect_DeathFromAbove config(LW_Soldi
 
 var config int DFA_USES_PER_TURN;
 var config array<name> DFA_BLACKLISTED_ABILITIES;
+var config float DFA_RANGE_PENALTY_NEGATION_MODIFIER;
+var config int DFA_RANGE_PENALTY_NEGATION_BASE_RANGE;
 
 var bool bMatchSourceWeapon;
 var name PointType;
