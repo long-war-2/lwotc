@@ -66,12 +66,13 @@ static event InstallNewCampaign(XComGameState StartState)
 	`LOG("X2DLCInfo: InstallNewCampaign",, 'LW_Toolbox');
 	ToolboxOptions = XComGameState_LWToolboxOptions(class'XComGameState_LWToolboxOptions'.static.CreateModSettingsState_NewCampaign(class'XComGameState_LWToolboxOptions', StartState));
 
+	//no longer needed now that the EventListener is fixed
 	// Overhaul-only mod -- start with NCE active
-	if (default.bRandomizedInitialStatsEnabledAtStart)
+	/*if (default.bRandomizedInitialStatsEnabledAtStart)
 	{
 		ToolboxOptions.bRandomizedInitialStatsEnabled = true;
 		ToolboxOptions.UpdatedRandomizedInitialStats(StartState);
-	}
+	}*/
 }
 
 
