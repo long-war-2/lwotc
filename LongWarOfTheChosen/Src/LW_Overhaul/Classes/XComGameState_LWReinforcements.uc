@@ -289,13 +289,13 @@ function bool AtTurnThreshhold (int Threshhold, optional bool Absolute = false)
 	switch (ReinfRules.ReinforcementsTrigger)
 	{
     case eReinforcementsTrigger_MissionStart:
-        return TurnsSinceStart >= Threshhold;
+        return TurnsSinceStart == Threshhold;
     case eReinforcementsTrigger_Reveal:
-        return TurnsSinceReveal >= Threshhold;
+        return TurnsSinceReveal == Threshhold;
     case eReinforcementsTrigger_RedAlert:
-        return TurnsSinceRedAlert >= Threshhold;
+        return TurnsSinceRedAlert == Threshhold;
     case eReinforcementsTrigger_ExternalTrigger:
-        return TurnsSinceTriggered >= Threshhold;
+        return TurnsSinceTriggered == Threshhold;
     default:
         return false;
 	}
@@ -535,7 +535,7 @@ function int CheckForReinforcements()
 				}
 				else
 				{
-					if (ReachedTurnThreshhold (ReinfRules.CavalryAbsoluteTurn))
+					if (ReachedTurnThreshhold (CavalryTurn))
 					{
 						Bucket += 1.0 / ReinforcementModifiers();
 					}
