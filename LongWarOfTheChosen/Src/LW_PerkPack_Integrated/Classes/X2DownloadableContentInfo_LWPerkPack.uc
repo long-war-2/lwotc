@@ -629,7 +629,7 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 			OutString = string(class'X2Effect_LWDenseSmoke'.default.DefenseBonus);
 			return true;
 		case 'DenseSmoke_DefenseTotal_LW':
-			OutString = string(class'X2Effect_LWDenseSmoke'.default.DefenseBonus + class'X2Item_DefaultGrenades'.default.SMOKEGRENADE_HITMOD);
+			OutString = string(class'X2Effect_LWDenseSmoke'.default.DefenseBonus - class'X2Item_DefaultGrenades'.default.SMOKEGRENADE_HITMOD);
 			return true;
 		case 'RegenSmoke_HealAmount_LW':
 			OutString = string(class'X2Effect_LWRegenSmoke'.default.HealAmount);
