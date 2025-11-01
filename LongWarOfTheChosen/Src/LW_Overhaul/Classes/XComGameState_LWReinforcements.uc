@@ -45,8 +45,8 @@ struct Mission_Reinforcements_Modifiers_Struct_LW
 		ForcedReinforcementsTurn=-1
 		ReinforcementsTrigger=eReinforcementsTrigger_RedAlert
 		CavalryOnly=false
-		CavalryAbsoluteTurn=28
-		CavalryWinTurn=12
+		CavalryAbsoluteTurn=-1
+		CavalryWinTurn=-1
 	}
 };
 
@@ -83,6 +83,8 @@ var config const float ALERT_RANDOM_FACTOR;
 // Float value for scaling the reinforcement bucket fill rate.
 var config float REINFORCEMENT_BUCKET_FILL_MODIFIER;
 var config float BETA_STRIKE_RNF_MOD;
+var config int DEFAULT_CAVALRY_ABSOLUTE_TURNS;
+var config int DEFAULT_CAVALRY_WIN_TURNS;
 
 // How many times have we called reinforcements on this mission?
 var private int Count;
@@ -185,6 +187,16 @@ function Initialize()
 			MissionState.GeneratedMission.Mission.sType,
 			MissionState.GeneratedMission.Mission.MissionFamily);
 		TimerBucketModifier = BaseTimerLength / CurrentTimerLength;
+	}
+
+	if(ReinfRules.CavalryAbsoluteTurn <= 0)
+	{
+		ReinfRules.CavalryAbsoluteTurn = default.DEFAULT_CAVALRY_ABSOLUTE_TURNS;
+	}
+
+	if(ReinfRules.CavalryWinTurn <= 0)
+	{
+		ReinfRules.CavalryWinTurn = default.DEFAULT_CAVALRY_WIN_TURNS;
 	}
 
 	if(bBetaStrike)
@@ -295,29 +307,36 @@ function bool AtTurnThreshhold (int Threshhold, optional bool Absolute = false)
 
 function bool ReachedTurnThreshhold (int Threshhold, optional bool CheckWin = false, optional bool ExactTurn = false)
 {
-	if (CheckWin && TurnsSinceWin >= Threshhold && !ExactTurn)
+	switch (CheckWin)
 	{
+	case true:
+		if ( TurnsSinceWin >= Threshhold && !ExactTurn)
+		{
 		return true;
-	}
-	if (CheckWin && TurnsSinceWin == Threshhold && ExactTurn)
-	{
-		return true;
-	}
-	if (ReinfRules.ReinforcementsTrigger == eReinforcementsTrigger_MissionStart && TurnsSinceStart >= Threshhold)
-	{
-		return true;
-	}
-	if (ReinfRules.ReinforcementsTrigger == eReinforcementsTrigger_Reveal && TurnsSinceReveal >= Threshhold)
-	{
-		return true;
-	}
-	if (ReinfRules.ReinforcementsTrigger == eReinforcementsTrigger_RedAlert && TurnsSinceRedAlert >= Threshhold)
-	{
-		return true;
-	}
-	if (ReinfRules.ReinforcementsTrigger == eReinforcementsTrigger_ExternalTrigger && TurnsSinceTriggered >= Threshhold)
-	{
-		return true;
+		}
+		else if ( TurnsSinceWin == Threshhold && ExactTurn)
+		{
+			return true;
+		}
+		break;
+	default:
+		if (ReinfRules.ReinforcementsTrigger == eReinforcementsTrigger_MissionStart && TurnsSinceStart >= Threshhold)
+		{
+			return true;
+		}
+		if (ReinfRules.ReinforcementsTrigger == eReinforcementsTrigger_Reveal && TurnsSinceReveal >= Threshhold)
+		{
+			return true;
+		}
+		if (ReinfRules.ReinforcementsTrigger == eReinforcementsTrigger_RedAlert && TurnsSinceRedAlert >= Threshhold)
+		{
+			return true;
+		}
+		if (ReinfRules.ReinforcementsTrigger == eReinforcementsTrigger_ExternalTrigger && TurnsSinceTriggered >= Threshhold)
+		{
+			return true;
+		}
+		break;
 	}
 	return false;
 }
@@ -494,19 +513,19 @@ function int CheckForReinforcements()
 		BattleData = XComGameState_BattleData(class'XComGameStateHistory'.static.GetGameStateHistory().GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
 		if (BattleData.AllStrategyObjectivesCompleted())
 		{
-			if (ReachedTurnThreshhold (ReinfRules.CavalryWinTurn-2, true) && Bucket <= 0.0)
+			if (ReachedTurnThreshhold (CavalryOnWinTurn-2, true) && Bucket <= 0.0)
 			{
 				Bucket += 0.01; // Trigger Warning
 			}
 			else
 			{
-				if (ReachedTurnThreshhold (ReinfRules.CavalryWinTurn-1, true) && Bucket <= 0.5)
+				if (ReachedTurnThreshhold (CavalryOnWinTurn-1, true) && Bucket <= 0.5)
 				{
 					Bucket += 0.501; // Trigger imminent
 				}
 				else
 				{
-					if (ReachedTurnThreshhold (ReinfRules.CavalryWinTurn, true))
+					if (ReachedTurnThreshhold (CavalryOnWinTurn, true))
 					{
 						`LWTRACE("LWRNF: Forcing Reinforcements to punish loitering after victory");
 						Bucket += 1.0  / ReinforcementModifiers();
@@ -516,13 +535,13 @@ function int CheckForReinforcements()
 		}
 		else
 		{
-			if (AtTurnThreshhold (ReinfRules.CavalryAbsoluteTurn-2, true) && Bucket <= 0.0)
+			if (AtTurnThreshhold (CavalryTurn-2, true) && Bucket <= 0.0)
 			{
 				Bucket += 0.01;
 			}
 			else
 			{
-				if (AtTurnThreshhold (ReinfRules.CavalryAbsoluteTurn-1, true) && Bucket <= 0.5)
+				if (AtTurnThreshhold (CavalryTurn-1, true) && Bucket <= 0.5)
 				{
 					Bucket += 0.501;
 				}
