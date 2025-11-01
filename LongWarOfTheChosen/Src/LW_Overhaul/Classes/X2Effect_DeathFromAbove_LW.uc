@@ -28,7 +28,7 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 {
     local XComGameStateHistory      History;
     local XComGameState_Ability     AbilityState;
-    local XComGameState_Unit        TargetUnit;
+    local XComGameState_Unit        TargetUnit, PrevTargetUnit;
     local UnitValue                 UnitValue;
     local int                       iCounter;
 
@@ -52,26 +52,31 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
     {
         if (!bMatchSourceWeapon || kAbility.SourceWeapon.ObjectID == EffectState.ApplyEffectParameters.ItemStateObjectRef.ObjectID)
         {
-            TargetUnit = XComGameState_Unit(History.GetGameStateForObjectID(AbilityContext.InputContext.PrimaryTarget.ObjectID));
+            TargetUnit = XComGameState_Unit(NewGameState.GetGameStateForObjectID(AbilityContext.InputContext.PrimaryTarget.ObjectID));
 
-            if (TargetUnit != none && TargetUnit.IsDead() && SourceUnit.HasHeightAdvantageOver(TargetUnit, true))
+            if (TargetUnit != none)
             {
-                if (kAbility.IsAbilityInputTriggered() && ValidateAbilityCost(kAbility, SourceUnit))
+                PrevTargetUnit = XComGameState_Unit(History.GetGameStateForObjectID(TargetUnit.ObjectID));
+                if (TargetUnit.IsDead() && SourceUnit.HasHeightAdvantageOver(PrevTargetUnit, true))
                 {
-                    if (BlacklistedAbilities.Find(kAbility.GetMyTemplateName()) == INDEX_NONE)
+                    if (kAbility.IsAbilityInputTriggered() && ValidateAbilityCost(kAbility, SourceUnit))
                     {
-                        SourceUnit.SetUnitFloatValue(CounterName, iCounter + 1.0, eCleanup_BeginTurn);
-                        if (PointType != '')
-                            SourceUnit.ActionPoints.AddItem(PointType);
-                        else
-                            SourceUnit.ActionPoints.AddItem(class'X2CharacterTemplateManager'.default.StandardActionPoint);
-                        
-                        `XEVENTMGR.TriggerEvent(EventName, AbilityState, SourceUnit, NewGameState);
+                        if (BlacklistedAbilities.Find(kAbility.GetMyTemplateName()) == INDEX_NONE)
+                        {
+                            SourceUnit.SetUnitFloatValue(CounterName, iCounter + 1.0, eCleanup_BeginTurn);
+                            if (PointType != '')
+                                SourceUnit.ActionPoints.AddItem(PointType);
+                            else
+                                SourceUnit.ActionPoints.AddItem(class'X2CharacterTemplateManager'.default.StandardActionPoint);
+                            
+                            `XEVENTMGR.TriggerEvent(EventName, AbilityState, SourceUnit, NewGameState);
+                        }
                     }
                 }
             }
         }
     }
+    
     return false;
 }
 
