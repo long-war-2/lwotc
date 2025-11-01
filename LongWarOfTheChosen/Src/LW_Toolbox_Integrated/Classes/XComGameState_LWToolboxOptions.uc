@@ -1145,7 +1145,7 @@ function UpdateOneSoldier_RandomizedInitialStats(XComGameState_Unit Unit, XComGa
 	if(RandomizedStatsState == none)
 	{
 		//first time randomizing, create component gamestate and attach it
-		RandomizedStatsState = XComGameState_Unit_LWRandomizedStats(GameState.CreateStateObject(class'XComGameState_Unit_LWRandomizedStats'));
+		RandomizedStatsState = XComGameState_Unit_LWRandomizedStats(GameState.CreateNewStateObject(class'XComGameState_Unit_LWRandomizedStats'));
 		UpdatedUnit.AddComponentObject(RandomizedStatsState);
 	}
 
@@ -1485,12 +1485,10 @@ function EventListenerReturn CleanUpComponentStateOnDismiss(Object EventData, Ob
 		`LOG("CleanUpComponentStateOnDismiss: Found RandomizedState, Unit=" $ UnitState.GetFullName() $ ", Removing Component.",, 'LW_Toolbox');
 		History = `XCOMHISTORY;
 		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("RandomizedStats State cleanup");
-		UpdatedUnit = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', UnitState.ObjectID));
-		UpdatedRandomized = XComGameState_Unit_LWRandomizedStats(NewGameState.CreateStateObject(class'XComGameState_Unit_LWRandomizedStats', RandomizedState.ObjectID));
-		NewGameState.RemoveStateObject(UpdatedRandomized.ObjectID);
+		UpdatedUnit = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
+		UpdatedRandomized = XComGameState_Unit_LWRandomizedStats(NewGameState.ModifyStateObject(class'XComGameState_Unit_LWRandomizedStats', RandomizedState.ObjectID));
 		UpdatedUnit.RemoveComponentObject(UpdatedRandomized);
-		NewGameState.AddStateObject(UpdatedRandomized);
-		NewGameState.AddStateObject(UpdatedUnit);
+		NewGameState.RemoveStateObject(UpdatedRandomized.ObjectID);
 		if (NewGameState.GetNumGameStateObjects() > 0)
 			`GAMERULES.SubmitGameState(NewGameState);
 		else
