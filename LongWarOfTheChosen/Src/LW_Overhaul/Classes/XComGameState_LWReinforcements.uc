@@ -285,59 +285,47 @@ function bool AtTurnThreshhold (int Threshhold, optional bool Absolute = false)
 			return false;
 		}
 	}
+	
+	switch (ReinfRules.ReinforcementsTrigger)
+	{
+    case eReinforcementsTrigger_MissionStart:
+        return TurnsSinceStart >= Threshhold;
+    case eReinforcementsTrigger_Reveal:
+        return TurnsSinceReveal >= Threshhold;
+    case eReinforcementsTrigger_RedAlert:
+        return TurnsSinceRedAlert >= Threshhold;
+    case eReinforcementsTrigger_ExternalTrigger:
+        return TurnsSinceTriggered >= Threshhold;
+    default:
+        return false;
+	}
 
-	if (ReinfRules.ReinforcementsTrigger == eReinforcementsTrigger_MissionStart && TurnsSinceStart == Threshhold)
-	{
-		return true;
-	}
-	if (ReinfRules.ReinforcementsTrigger == eReinforcementsTrigger_Reveal && TurnsSinceReveal == Threshhold)
-	{
-		return true;
-	}
-	if (ReinfRules.ReinforcementsTrigger == eReinforcementsTrigger_RedAlert && TurnsSinceRedAlert == Threshhold)
-	{
-		return true;
-	}
-	if (ReinfRules.ReinforcementsTrigger == eReinforcementsTrigger_ExternalTrigger && TurnsSinceTriggered == Threshhold)
-	{
-		return true;
-	}
 	return false;
 }
 
 function bool ReachedTurnThreshhold (int Threshhold, optional bool CheckWin = false, optional bool ExactTurn = false)
 {
-	switch (CheckWin)
+	if (CheckWin && (TurnsSinceWin == Threshhold || (!ExactTurn && TurnsSinceWin > Threshhold)))
 	{
-	case true:
-		if ( TurnsSinceWin >= Threshhold && !ExactTurn)
-		{
-		return true;
-		}
-		else if ( TurnsSinceWin == Threshhold && ExactTurn)
-		{
-			return true;
-		}
-		break;
-	default:
-		if (ReinfRules.ReinforcementsTrigger == eReinforcementsTrigger_MissionStart && TurnsSinceStart >= Threshhold)
-		{
-			return true;
-		}
-		if (ReinfRules.ReinforcementsTrigger == eReinforcementsTrigger_Reveal && TurnsSinceReveal >= Threshhold)
-		{
-			return true;
-		}
-		if (ReinfRules.ReinforcementsTrigger == eReinforcementsTrigger_RedAlert && TurnsSinceRedAlert >= Threshhold)
-		{
-			return true;
-		}
-		if (ReinfRules.ReinforcementsTrigger == eReinforcementsTrigger_ExternalTrigger && TurnsSinceTriggered >= Threshhold)
-		{
-			return true;
-		}
-		break;
+    	return true;
 	}
+
+	// Fall back to standard logic if not checking win
+
+	switch (ReinfRules.ReinforcementsTrigger)
+	{
+    case eReinforcementsTrigger_MissionStart:
+        return TurnsSinceStart >= Threshhold;
+    case eReinforcementsTrigger_Reveal:
+        return TurnsSinceReveal >= Threshhold;
+    case eReinforcementsTrigger_RedAlert:
+        return TurnsSinceRedAlert >= Threshhold;
+    case eReinforcementsTrigger_ExternalTrigger:
+        return TurnsSinceTriggered >= Threshhold;
+    default:
+        return false;
+	}
+
 	return false;
 }
 
