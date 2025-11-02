@@ -993,7 +993,7 @@ function UpdatedRandomizedInitialStats(optional XComGameState NewGameState)
 	ThisObj = self;
 	if(bRandomizedInitialStatsEnabled)
 	{
-		EventManager.RegisterForEvent( ThisObj, 'UnitRandomizedStats', OnSoldierCreatedEvent, ELD_OnStateSubmitted,,,true); //handles reward soldier creation, both for missions and purchase-able
+		EventManager.RegisterForEvent( ThisObj, 'UnitRandomizedStats', OnSoldierCreatedEvent, ELD_Immediate,,,true, ThisObj); //handles reward soldier creation, both for missions and purchase-able
 	} else {
 		EventManager.UnRegisterFromEvent( ThisObj, 'UnitRandomizedStats');
 	}
@@ -1114,8 +1114,7 @@ function UpdateOneSoldier_RandomizedInitialStats(XComGameState_Unit Unit, XComGa
 	UpdatedUnit = XComGameState_Unit(GameState.GetGameStateForObjectID(Unit.ObjectID));
 	if(UpdatedUnit == none || UpdatedUnit.bReadOnly)
 	{
-		UpdatedUnit = XComGameState_Unit(GameState.CreateStateObject(class'XComGameState_Unit', Unit.ObjectID));
-		GameState.AddStateObject(UpdatedUnit);
+		UpdatedUnit = XComGameState_Unit(GameState.ModifyStateObject(class'XComGameState_Unit', Unit.ObjectID));
 	}
 
 	if (!IsEligibleForRandomStats(Unit))
@@ -1140,16 +1139,14 @@ function UpdateOneSoldier_RandomizedInitialStats(XComGameState_Unit Unit, XComGa
 		if(RandomizedStatsState != none)
 		{
 			//if found in history, create an update copy for submission
-			RandomizedStatsState = XComGameState_Unit_LWRandomizedStats(GameState.CreateStateObject(RandomizedStatsState.Class, RandomizedStatsState.ObjectID));
-			GameState.AddStateObject(RandomizedStatsState);
+			RandomizedStatsState = XComGameState_Unit_LWRandomizedStats(GameState.ModifyStateObject(RandomizedStatsState.Class, RandomizedStatsState.ObjectID));
 		}
 	}
 	if(RandomizedStatsState == none)
 	{
 		//first time randomizing, create component gamestate and attach it
-		RandomizedStatsState = XComGameState_Unit_LWRandomizedStats(GameState.CreateStateObject(class'XComGameState_Unit_LWRandomizedStats'));
+		RandomizedStatsState = XComGameState_Unit_LWRandomizedStats(GameState.CreateNewStateObject(class'XComGameState_Unit_LWRandomizedStats'));
 		UpdatedUnit.AddComponentObject(RandomizedStatsState);
-		GameState.AddStateObject(RandomizedStatsState);
 	}
 
 	if (ForceReapply)
@@ -1193,44 +1190,25 @@ function EventListenerReturn OnMonthEnd(Object EventData, Object EventSource, XC
 	return ELR_NoInterrupt;
 }
 
-function EventListenerReturn OnSoldierCreatedEvent(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+static function EventListenerReturn OnSoldierCreatedEvent(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
 	local XComGameState_Unit Unit;
 	local XComGameState NewGameState;
-	local string ChangeString;
+	local XComGameState_LWToolboxOptions LWToolbox;
 
 	Unit = XComGameState_Unit(EventData);
-	if(Unit == none) 
+	LWToolbox = XComGameState_LWToolboxOptions(CallbackData);
+	if(Unit == none || LWToolbox == none) 
 	{
 		`REDSCREEN("ToolboxOptions.OnSoldierCreatedEvent with no UnitState EventData");
 		return ELR_NoInterrupt;
 	}
-
-	if(!GameState.bReadOnly)
+	
+	NewGameState = Unit.GetParentGameState();
+	if (NewGameState != none)
 	{
-		UpdateOneSoldier_RandomizedInitialStats(Unit, GameState);
-	}
-	else 	// when read-only we need to create and submit our own gamestate
-	{
-		//Build GameState change container
-		ChangeString = "Toggle Randomized Initial Stats";
-		if(bRandomizedInitialStatsEnabled)
-			ChangeString @= "(On)";
-		else
-			ChangeString @= "(Off)";
-
-		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState(ChangeString);
-
-		UpdateOneSoldier_RandomizedInitialStats(Unit, NewGameState);
-
-		if (`TACTICALRULES.TacticalGameIsInPlay())
-		{	
-			`TACTICALRULES.SubmitGameState(NewGameState);
-		}
-		else
-		{
-			`GAMERULES.SubmitGameState(NewGameState);
-		}
+		LWToolbox = XComGameState_LWToolboxOptions(NewGameState.ModifyStateObject(LWToolbox.Class, LWToolbox.ObjectID));
+		LWToolbox.UpdateOneSoldier_RandomizedInitialStats(Unit, NewGameState);
 	}
 
 	return ELR_NoInterrupt;
@@ -1507,12 +1485,10 @@ function EventListenerReturn CleanUpComponentStateOnDismiss(Object EventData, Ob
 		`LOG("CleanUpComponentStateOnDismiss: Found RandomizedState, Unit=" $ UnitState.GetFullName() $ ", Removing Component.",, 'LW_Toolbox');
 		History = `XCOMHISTORY;
 		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("RandomizedStats State cleanup");
-		UpdatedUnit = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', UnitState.ObjectID));
-		UpdatedRandomized = XComGameState_Unit_LWRandomizedStats(NewGameState.CreateStateObject(class'XComGameState_Unit_LWRandomizedStats', RandomizedState.ObjectID));
-		NewGameState.RemoveStateObject(UpdatedRandomized.ObjectID);
+		UpdatedUnit = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
+		UpdatedRandomized = XComGameState_Unit_LWRandomizedStats(NewGameState.ModifyStateObject(class'XComGameState_Unit_LWRandomizedStats', RandomizedState.ObjectID));
 		UpdatedUnit.RemoveComponentObject(UpdatedRandomized);
-		NewGameState.AddStateObject(UpdatedRandomized);
-		NewGameState.AddStateObject(UpdatedUnit);
+		NewGameState.RemoveStateObject(UpdatedRandomized.ObjectID);
 		if (NewGameState.GetNumGameStateObjects() > 0)
 			`GAMERULES.SubmitGameState(NewGameState);
 		else
