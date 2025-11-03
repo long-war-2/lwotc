@@ -65,6 +65,12 @@ static event InstallNewCampaign(XComGameState StartState)
 
 	`LOG("X2DLCInfo: InstallNewCampaign",, 'LW_Toolbox');
 	ToolboxOptions = XComGameState_LWToolboxOptions(class'XComGameState_LWToolboxOptions'.static.CreateModSettingsState_NewCampaign(class'XComGameState_LWToolboxOptions', StartState));
+	
+	if (default.bRandomizedInitialStatsEnabledAtStart)
+	{
+		ToolboxOptions.bRandomizedInitialStatsEnabled = true;
+		ToolboxOptions.UpdatedRandomizedInitialStats(StartState);
+	}
 }
 
 
