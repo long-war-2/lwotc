@@ -9,6 +9,7 @@ class XComGameState_LWOverhaulOptions extends XComGameState_LWModOptions
 
 var config bool EnablePauseOnRecruit;
 var config int InitialGrazeBandWidth;
+var config bool InitialAggregateJailbreakRewards;
 
 var localized string LWOverhaulTabName;
 
@@ -25,6 +26,11 @@ var bool PauseOnRecruit_Cached;
 var localized string PauseOnRecruitMod;
 var localized string PauseOnRecruitModTooltip;
 
+// ***** AGGREGATED JAILBREAK REWARDS CONFIGURATION ***** //
+var bool AggregateJailbreakRewards;
+var bool AggregateJailbreakRewards_Cached;
+var localized string EnableAggregateJailbreakRewards;
+var localized string EnableAggregateJailbreakRewardsTooltip;
 
 // ***** CHosen Knowledge ***** //
 
@@ -43,6 +49,7 @@ function XComGameState_LWModOptions InitComponent(class NewClassType)
 	super.InitComponent(NewClassType);
 	PauseOnRecruit=EnablePauseOnRecruit;
 	GrazeBandWidth=InitialGrazeBandWidth;
+	AggregateJailbreakRewards=InitialAggregateJailbreakRewards;
 	//InitChosenKnowledge();
 	
 	return self;
@@ -57,6 +64,7 @@ function InitModOptions()
 {
 	GrazeBandWidth_Cached = GrazeBandWidth;
     PauseOnRecruit_Cached = PauseOnRecruit;
+    AggregateJailbreakRewards_Cached = AggregateJailbreakRewards;
 }
 
 function InitChosenKnowledge()
@@ -85,6 +93,11 @@ function int SetModOptionsEnabled(out array<UIMechaListItem> m_arrMechaItems)
 	m_arrMechaItems[ButtonIdx].BG.SetTooltipText(GrazeBandWidthModTooltip, , , 10, , , , 0.0f);
 	ButtonIdx++;
 
+    // Pause on recruit
+    m_arrMechaItems[ButtonIdx].UpdateDataCheckbox(EnableAggregateJailbreakRewards, "", AggregateJailbreakRewards_Cached, UpdateAggregateJailbreakRewards);
+    m_arrMechaItems[ButtonIdx].BG.SetTooltipText(EnableAggregateJailbreakRewardsTooltip, , , 10, , , , 0.0f);
+    ButtonIdx++;
+
 	return ButtonIdx;
 }
 
@@ -95,6 +108,9 @@ function bool HasAnyValueChanged()
         return true;
 
     if (PauseOnRecruit != PauseOnRecruit_Cached)
+        return true;
+
+    if (AggregateJailbreakRewards != AggregateJailbreakRewards_Cached)
         return true;
 
 	return false; 
@@ -115,6 +131,7 @@ function ApplyModSettings()
 
 	UpdatedOptions.GrazeBandWidth = GrazeBandWidth_Cached;
     UpdatedOptions.PauseOnRecruit = PauseOnRecruit_Cached;
+    UpdatedOptions.AggregateJailbreakRewards = AggregateJailbreakRewards_Cached;
 
 	if  (`TACTICALRULES != none && `TACTICALRULES.TacticalGameIsInPlay())
 		`TACTICALRULES.SubmitGameState(NewGameState);
@@ -127,6 +144,7 @@ function RestorePreviousModSettings()
 {
 	GrazeBandWidth_Cached = GrazeBandWidth;
     PauseOnRecruit_Cached = PauseOnRecruit;
+    AggregateJailbreakRewards_Cached = AggregateJailbreakRewards;
 }
 
 function bool CanResetModSettings() { return true; }
@@ -136,6 +154,7 @@ function ResetModSettings()
 {
 	GrazeBandWidth_Cached = default.GrazeBandWidth;
     PauseOnRecruit_Cached = default.PauseOnRecruit;
+    AggregateJailbreakRewards_Cached = default.AggregateJailbreakRewards;
 }
 
 // ========================================================
@@ -185,6 +204,11 @@ function bool GetPauseOnRecruit()
     return PauseOnRecruit;
 }
 
+function bool GetAggregateJailbreakRewards()
+{
+    return AggregateJailbreakRewards;
+}
+
 function array<int> GetChosenKnowledgeGains_Randomized()
 {
 	return ChosenKnowledgeGains_Randomized;
@@ -209,6 +233,13 @@ public function UpdateGrazeBand(UISlider SliderControl)
 function UpdatePauseOnRecruit(UICheckbox Checkbox)
 {
     PauseOnRecruit_Cached = Checkbox.bChecked;
+    `SOUNDMGR.PlaySoundEvent("Play_MenuSelect");
+}
+
+// Aggregate Jailbreak rewards
+function UpdateAggregateJailbreakRewards(UICheckbox Checkbox)
+{
+    AggregateJailbreakRewards_Cached = Checkbox.bChecked;
     `SOUNDMGR.PlaySoundEvent("Play_MenuSelect");
 }
 
