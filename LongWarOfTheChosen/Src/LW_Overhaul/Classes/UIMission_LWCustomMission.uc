@@ -46,6 +46,7 @@ var EMissionUIType MissionUIType;
 var name LibraryID;
 var string GeoscapeSFX;
 
+var localized string m_strJailbreakAggregatedReward;
 var localized string m_strUrgent;
 var localized string m_strRendezvousMission;
 var localized string m_strRendezvousDesc;
@@ -1127,7 +1128,12 @@ simulated function XComGameState_LWAlienActivity GetAlienActivity()
 simulated function string GetModifiedRewardString()
 {
 	local XComGameState_MissionSite MissionState;
+	local XComGameState_Reward RewardState;
+	local X2RewardTemplate RewardTemplate;
+	local StateObjectReference Ref;
 	local string RewardString, OldCaptureRewardString, NewCaptureRewardString;
+	local XGParamTag kTag;
+	local int Rookies, Rebels;
 
 	MissionState = GetMission();
 	RewardString = GetRewardString();
@@ -1138,6 +1144,65 @@ simulated function string GetModifiedRewardString()
 		NewCaptureRewardString = OldCaptureRewardString @ class'UIUtilities_LW'.default.m_strVIPCaptureReward;
 		RewardString = Repl (RewardString, OldCaptureRewardString, NewCaptureRewardString);
 		RewardString -= "$$$";
+	}
+	if (MissionState.GeneratedMission.Mission.sType == "Jailbreak_LW" && `LWOVERHAULOPTIONS.GetAggregateJailbreakRewards())
+	{
+		RewardString = "";
+
+		foreach MissionState.Rewards(Ref)
+		{
+			RewardState = XComGameState_Reward(`XCOMHISTORY.GetGameStateForObjectID(Ref.ObjectID));
+			if (RewardState == None)
+			{
+				continue;
+			}
+			if (RewardState.GetMyTemplateName() == 'Reward_Rookie')
+			{
+				Rookies++;
+			}
+			else if (RewardState.GetMyTemplateName() == 'Reward_Rebel')
+			{
+				Rebels++;
+			}
+			else
+			{
+				if (RewardString != "")
+				{
+					RewardString $= ", ";
+				}
+				RewardString $= RewardState.GetRewardString();
+			}
+		}
+
+		if (Rookies > 0)
+		{
+			RewardTemplate = X2RewardTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('Reward_Rookie'));
+
+			kTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
+			kTag.StrValue0 = RewardTemplate.DisplayName;
+			kTag.StrValue1 = string(Rookies);
+
+			if (RewardString != "")
+			{
+				RewardString $= ", ";
+			}
+			RewardString $= `XEXPAND.ExpandString(default.m_strJailbreakAggregatedReward);
+		}
+
+		if (Rebels > 0)
+		{
+			RewardTemplate = X2RewardTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('Reward_Rebel'));
+
+			kTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
+			kTag.StrValue0 = RewardTemplate.DisplayName;
+			kTag.StrValue1 = string(Rookies);
+
+			if (RewardString != "")
+			{
+				RewardString $= ", ";
+			}
+			RewardString $= `XEXPAND.ExpandString(default.m_strJailbreakAggregatedReward);
+		}
 	}
 	return RewardString;
 }

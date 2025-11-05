@@ -5,6 +5,8 @@ GrazeBandWidthModTooltip="This determines how close a shot has to be to the exac
 GrazeBandValue="Value: <XGParam:IntValue0>"
 PauseOnRecruitMod="Pause on Recruit"
 PauseOnRecruitModTooltip="Pause the geoscape when a Haven recruits a new soldier or rebel"
+EnableAggregateJailbreakRewards="Aggregate Jailbreak Rewards"
+EnableAggregateJailbreakRewardsTooltip="Avoid long scrolling text in mission UI by only showing Rookie and Resistance Personnel totals."
 
 [UIScreenListener_ShellDifficulty]
 strIncompatibleModsTitle="DUPLICATE MODS PRESENT"
@@ -506,10 +508,10 @@ m_strInsuffientInfiltrationToLaunch="Need to infiltrate to at least <XGParam:Int
 +m_strAlertnessModifierDescriptions[15]="Vulnerable"
 
 [UIMission_LWCustomMission]
-+m_strUrgent="SECURITY BREACH"
-+m_strRendezvousMission="RENDEZVOUS"
-+m_strRendezvousDesc="**Unauthorized signal from Resistance Haven in <XGParam:StrValue0/!WorldRegionName>** The adviser and volunteers from the Haven will intercept and eliminate a spy and their ADVENT handlers at a nearby meeting site."
-
+m_strUrgent="SECURITY BREACH"
+m_strJailbreakAggregatedReward="<XGParam:StrValue0/!RewardType>: <XGParam:StrValue1/!RewardQuantity>"
+m_strRendezvousMission="RENDEZVOUS"
+m_strRendezvousDesc="**Unauthorized signal from Resistance Haven in <XGParam:StrValue0/!WorldRegionName>** The adviser and volunteers from the Haven will intercept and eliminate a spy and their ADVENT handlers at a nearby meeting site."
 m_strInvasionMission="INVASION"
 m_strInvasionWarning="ALERT"
 m_strInvasionDesc="ADVENT forces have launched an invasion of <XGParam:StrValue0/!WorldRegionName/>! We must respond immediately or this region will fall back under ADVENT control."
