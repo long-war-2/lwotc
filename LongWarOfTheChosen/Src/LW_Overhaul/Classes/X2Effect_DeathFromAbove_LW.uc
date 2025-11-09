@@ -145,6 +145,6 @@ defaultproperties
     CounterName = LW_DeathFromAboveUses
     EventName = DeathFromAbove
     bMatchSourceWeapon = true
+    bAllowMultiTarget = true
     bDisallowMultiTarget = false
-    bAllowMultiTargeting = false
 }
