@@ -1,0 +1,9 @@
+[submodule "X2WOTCCommunityHighlander"]
+	path = X2WOTCCommunityHighlander
+	url = https://github.com/X2CommunityCore/X2WOTCCommunityHighlander
+[submodule "X2CommunityPromotionScreen"]
+	path = X2CommunityPromotionScreen
+	url = https://github.com/X2CommunityCore/X2CommunityPromotionScreen
+[submodule ".scripts/X2ModBuildCommon"]
+	path = .scripts/X2ModBuildCommon
+	url = https://github.com/X2CommunityCore/X2ModBuildCommon

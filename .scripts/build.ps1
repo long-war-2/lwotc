@@ -24,8 +24,11 @@ switch ($config)
     default { ThrowFailure "Unknown build configuration $config" }
 }
 
-# $builder.IncludeSrc("$srcDirectory\X2WOTCCommunityHighlander\X2WOTCCommunityHighlander\Src")
+$builder.IncludeSrc("$srcDirectory\X2WOTCCommunityHighlander\X2WOTCCommunityHighlander\Src")
+$builder.IncludeSrc("$srcDirectory\X2CommunityPromotionScreen\X2WOTCCommunityPromotionScreen\Src")
 $builder.IncludeSrc("$srcDirectory\BetterSecondWaveSupport\Src")
+$builder.AddToClean("X2WOTCCommunityHighlander")
+$builder.AddToClean("X2WOTCCommunityPromotionScreen")
 $builder.AddToClean("BetterSecondWaveSupport")
 $builder.SetContentOptionsJsonFilename("ContentOptions.json")
 $builder.InvokeBuild()
