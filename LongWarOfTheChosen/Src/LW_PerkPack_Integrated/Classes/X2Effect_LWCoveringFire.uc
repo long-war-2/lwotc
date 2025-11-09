@@ -10,6 +10,10 @@ var private name AbilityToActivate;
 
 // Include MultiTargets for bDirectAttackOnly
 var bool bDirectAttackOnly_AllowMultiTarget;
+// Include allies for bDirectAttackOnly
+var bool bDirectAttackOnly_AllowAllies;
+// ... but exclude the covering unit
+var bool bDirectAttackOnly_AllowAllies_ExcludeSelf;
 // Require the hostile action to hit to activate
 var bool bOnlyWhenAttackHits;
 // Include non-damaging attacks.
@@ -28,6 +32,16 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
     EffectObj = EffectGameState;
 
     EventMgr.RegisterForEvent(EffectObj, 'AbilityActivated', NewCoveringFireCheck, ELD_OnStateSubmitted,,,, EffectObj);
+}
+
+function AddAbilityToActivate(name AbiltiyName, optional int Priority = 50)
+{
+    local OverwatchAbilityInfo NewAbilityToActivate;
+
+    NewAbilityToActivate.AbilityName = AbiltiyName;
+    NewAbilityToActivate.Priority = Priority;
+
+    AbilitiesToActivate.AddItem(NewAbilityToActivate);
 }
 
 static function EventListenerReturn NewCoveringFireCheck(Object EventData, Object EventSource, XComGameState GameState, Name Event, Object CallbackData)
@@ -89,23 +103,52 @@ static function EventListenerReturn NewCoveringFireCheck(Object EventData, Objec
                 }
             }
 
-            bIsDirectAttack = AbilityContext.InputContext.PrimaryTarget.ObjectID == CoveringUnit.ObjectID;
-            if (CoveringFireEffect.bDirectAttackOnly && !bIsDirectAttack)
+            if (CoveringFireEffect.bDirectAttackOnly)
             {
-                if (CoveringFireEffect.bDirectAttackOnly_AllowMultiTarget)
+                if (CoveringFireEffect.bDirectAttackOnly_AllowAllies)
                 {
-                    for (Index = 0; Index < AbilityContext.InputContext.MultiTargets.Length; Index++)
+                    TargetUnit = XComGameState_Unit(History.GetGameStateForObjectID(AbilityContext.InputContext.PrimaryTarget.ObjectID));
+                    if (CoveringFireEffect.bDirectAttackOnly_AllowAllies_ExcludeSelf)
                     {
-                        if (AbilityContext.InputContext.MultiTargets[Index].ObjectID == CoveringUnit.ObjectID)
+                        bIsDirectAttack = AbilityContext.InputContext.PrimaryTarget.ObjectID != CoveringUnit.ObjectID && CoveringUnit.IsFriendlyUnit(TargetUnit);
+                    }
+                    else
+                    {
+                        bIsDirectAttack = AbilityContext.InputContext.PrimaryTarget.ObjectID == CoveringUnit.ObjectID || CoveringUnit.IsFriendlyUnit(TargetUnit);
+                    }
+                }
+                else
+                {
+                    bIsDirectAttack = AbilityContext.InputContext.PrimaryTarget.ObjectID == CoveringUnit.ObjectID;
+                }
+                
+                if (!bIsDirectAttack && CoveringFireEffect.bDirectAttackOnly_AllowMultiTarget)
+                {
+                    for (Index = 0; Index < AbilityContext.InputContext.MultiTargets.Length && !bIsDirectAttack; Index++)
+                    {
+                        if (CoveringFireEffect.bDirectAttackOnly_AllowAllies)
                         {
-                            bIsDirectAttack = true;
-                            break;
+                            TargetUnit = XComGameState_Unit(History.GetGameStateForObjectID(AbilityContext.InputContext.MultiTargets[Index].ObjectID));
+                            if (CoveringFireEffect.bDirectAttackOnly_AllowAllies_ExcludeSelf)
+                            {
+                                bIsDirectAttack = AbilityContext.InputContext.MultiTargets[Index].ObjectID != CoveringUnit.ObjectID && CoveringUnit.IsFriendlyUnit(TargetUnit);
+                            }
+                            else
+                            {
+                                bIsDirectAttack = AbilityContext.InputContext.MultiTargets[Index].ObjectID == CoveringUnit.ObjectID || CoveringUnit.IsFriendlyUnit(TargetUnit);
+                            }
+                        }
+                        else
+                        {
+                            bIsDirectAttack = AbilityContext.InputContext.MultiTargets[Index].ObjectID == CoveringUnit.ObjectID;
                         }
                     }
                 }
                 
                 if (!bIsDirectAttack)
+                {
                     return ELR_NoInterrupt;
+                }
             }
                 
             if (CoveringFireEffect.bOnlyWhenAttackMisses && class'XComGameStateContext_Ability'.static.IsHitResultHit(AbilityContext.ResultContext.HitResult))

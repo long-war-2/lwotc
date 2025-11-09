@@ -181,6 +181,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(WatchThemRun());
 	Templates.AddItem(WatchThemRunPassive());
 	Templates.AddItem(Avenger());
+	Templates.AddItem(AvengerAttack());
 	Templates.AddItem(Predator());
 	Templates.AddItem(Stiletto());
 	Templates.AddItem(OpenFire());
@@ -2244,44 +2245,139 @@ static function EventListenerReturn AbilityTriggerEventListener_WatchThemRun(Obj
 
 static function X2AbilityTemplate Avenger()
 {
-	local X2AbilityTemplate						Template;
-	local X2AbilityTargetStyle                  TargetStyle;
-	local X2AbilityTrigger						Trigger;
-	local X2Effect_ReturnFireAOE                FireEffect;
-	
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'Avenger_LW');
-	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_pistol_circle";
+    local X2AbilityTemplate             Template;
+    local X2Effect_LWCoveringFire   CoveringFireEffect;
 
-	Template.AbilitySourceName = 'eAbilitySource_Perk';
-	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
-	Template.Hostility = eHostility_Neutral;
+    `CREATE_X2ABILITY_TEMPLATE(Template, 'Avenger_LW');
 
-	Template.AbilityToHitCalc = default.DeadEye;
+    Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_pistol_circle";
+    Template.AbilitySourceName = 'eAbilitySource_Perk';
+    Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+    Template.Hostility = eHostility_Neutral;
+    Template.bIsPassive = true;
 
-	TargetStyle = new class'X2AbilityTarget_Self';
-	Template.AbilityTargetStyle = TargetStyle;
+    Template.AbilityToHitCalc = default.DeadEye;
+    Template.AbilityTargetStyle = default.SelfTarget;
+    Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 
-	Trigger = new class'X2AbilityTrigger_UnitPostBeginPlay';
-	Template.AbilityTriggers.AddItem(Trigger);
+    CoveringFireEffect = new class'X2Effect_LWCoveringFire';
+    CoveringFireEffect.EffectName = 'Avenger_LW';
+    CoveringFireEffect.bMatchSourceWeapon = true;
+    CoveringFireEffect.AddAbilityToActivate('Avenger_LW_Attack');
+    CoveringFireEffect.bDirectAttackOnly = true;
+    CoveringFireEffect.bDirectAttackOnly_AllowAllies = true;
+    CoveringFireEFfect.bDirectAttackOnly_AllowAllies_ExcludeSelf = true;
+    CoveringFireEffect.bPreEmptiveFire = false;
+    CoveringFireEffect.bAnyHostileAction = true;
+    CoveringFireEffect.bOnlyDuringEnemyTurn = true;
+    CoveringFireEffect.BuildPersistentEffect(1, true, false);
+    CoveringFireEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
+    Template.AddTargetEffect(CoveringFireEffect);
 
-	FireEffect = new class'X2Effect_ReturnFireAOE';
-    FireEffect.RequiredAllyRange = default.AVENGER_RADIUS;
-    FireEffect.bAllowSelf = false;
-	FireEffect.BuildPersistentEffect(1, true, false, false, eGameRule_PlayerTurnBegin);
-	FireEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,,Template.AbilitySourceName);
-	Template.AddTargetEffect(FireEffect);
+    Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	//  NOTE: No visualization on purpose!
-	
-	Template.AdditionalAbilities.AddItem('PrimaryReturnFireShot');
+    Template.bCrossClassEligible = false;
 
-	Template.bCrossClassEligible = false;
+    Template.AdditionalAbilities.AddItem('Avenger_LW_Attack');
 
-	// If this ability is set up as a cross class ability, but it's not directly assigned to any classes, this is the weapon slot it will use
-	Template.DefaultSourceItemSlot = eInvSlot_PrimaryWeapon;
+    return Template;
+}
 
-	return Template;
+static private function X2AbilityTemplate AvengerAttack()
+{
+    local X2AbilityTemplate                 Template;
+    local X2AbilityCost_Ammo                AmmoCost;
+    local X2AbilityToHitCalc_StandardAim    StandardAim;
+    local X2AbilityTarget_Single            SingleTarget;
+    local X2Effect_Persistent               KillZoneEffect;
+    local X2Condition_UnitEffectsWithAbilitySource  KillZoneCondition;
+    local X2Condition_UnitValue             ValueCondition;
+    local X2Effect_IncrementUnitValue       UnitValueEffect;
+    local X2Condition_Visibility            TargetVisibilityCondition;
+    local X2Condition_UnitProperty          ShooterCondition;
+
+    `CREATE_X2ABILITY_TEMPLATE(Template, 'Avenger_LW_Attack');
+
+    Template.AbilitySourceName = 'eAbilitySource_Perk';
+    Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+    Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_pistol_circle";
+    Template.bDisplayInUITacticalText = false;
+    Template.bDisplayInUITooltip = false;
+    Template.bDontDisplayInAbilitySummary = true;
+    Template.bHideOnClassUnlock = true;
+
+    SingleTarget = new class'X2AbilityTarget_Single';
+    SingleTarget.OnlyIncludeTargetsInsideWeaponRange = true;
+    Template.AbilityTargetStyle = SingleTarget;
+
+    StandardAim = new class'X2AbilityToHitCalc_StandardAim';
+    StandardAim.bReactionFire = true;
+    StandardAim.bIgnoreCoverBonus = true;
+    Template.AbilityToHitCalc = StandardAim;
+
+    Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_Placeholder');
+
+    Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+    ShooterCondition = new class'X2Condition_UnitProperty';
+    ShooterCondition.ExcludeConcealed = true;
+    Template.AbilityShooterConditions.AddItem(ShooterCondition);
+    Template.AddShooterEffectExclusions();
+
+    AmmoCost = new class'X2AbilityCost_Ammo';
+    AmmoCost.iAmmo = 1;
+    Template.AbilityCosts.AddItem(AmmoCost);
+
+    Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+
+    TargetVisibilityCondition = new class'X2Condition_Visibility';
+    TargetVisibilityCondition.bRequireGameplayVisible = true;
+    TargetVisibilityCondition.bAllowSquadsight = true;
+    Template.AbilityTargetConditions.AddItem(TargetVisibilityCondition);
+    // Template.AbilityTargetConditions.AddItem(class'X2Ability_DefaultAbilitySet'.static.OverwatchTargetEffectsCondition());
+
+    //  Do not shoot targets that were already hit by this unit this turn with this ability
+    KillZoneCondition = new class'X2Condition_UnitEffectsWithAbilitySource';
+    KillZoneCondition.AddExcludeEffect('AvengerAttackEffect', 'AA_UnitIsImmune');
+    Template.AbilityTargetConditions.AddItem(KillZoneCondition);
+    
+    //  Mark the target as shot by this unit so it cannot be shot again this turn
+    KillZoneEffect = new class'X2Effect_Persistent';
+    KillZoneEffect.EffectName = 'AvengerAttackEffect';
+    KillZoneEffect.BuildPersistentEffect(1, false, false, false, eGameRule_PlayerTurnBegin);
+    KillZoneEffect.SetupEffectOnShotContextResult(true, true); //  mark them regardless of whether the shot hit or missed
+    Template.AddTargetEffect(KillZoneEffect);
+
+    ValueCondition = new class'X2Condition_UnitValue';
+    ValueCondition.AddCheckValue('Avenger_LW_Counter', 1, eCheck_LessThan);
+    Template.AbilityShooterConditions.AddItem(ValueCondition);
+
+    UnitValueEffect = new class'X2Effect_IncrementUnitValue';
+    UnitValueEffect.UnitName = 'Avenger_LW_Counter';
+    UnitValueEffect.NewValueToSet = 1;
+    UnitValueEffect.CleanupType = eCleanup_BeginTurn;
+    UnitValueEffect.bApplyOnMiss = true;
+    Template.AddShooterEffect(UnitValueEffect);
+
+    Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
+    Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
+    Template.AddTargetEffect(default.WeaponUpgradeMissDamage);
+    
+    Template.bAllowAmmoEffects = true;
+    Template.bAllowBonusWeaponEffects = true;
+    Template.bAllowFreeFireWeaponUpgrade = true;
+
+    Template.Hostility = eHostility_Offensive;
+    Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+    Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+    Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+    Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+    Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+
+    Template.bShowActivation = true;
+    Template.bFrameEvenWhenUnitIsHidden = true;
+
+    return Template;
 }
 
 static function X2AbilityTemplate Predator()
