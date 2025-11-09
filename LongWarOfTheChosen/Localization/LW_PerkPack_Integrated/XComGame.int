@@ -325,11 +325,16 @@ LocPromotionPopupText="<Bullet/> Once per mission, fire a pistol shot that canno
 [Gunslinger X2AbilityTemplate]
 LocFriendlyName="Gunslinger"
 LocFlyOverText="Gunslinger"
-LocLongDescription="Take a reaction shot that's guaranteed to hit and crit with your pistol against any enemy that moves or attacks within <Ability:GUNSLINGER_TILES_RANGE/> tiles."
-LocHelpText="Enhanced radial pistol overwatch."
-LocPromotionPopupText="<Bullet/> Range is <Ability:GUNSLINGER_TILES_RANGE/> tiles.<br/><Bullet/> Gunslinger has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Cannot be used from concealment."
-LocFriendlyNameWhenConcealed="Overwatch (Concealed)"
+LocLongDescription="Enter a specialized form of overwatch. While active, take a reaction shot with your <Ability:BOUND_WEAPON_NAME> against any enemy that moves or attacks in a <Ability:GUNSLINGER_TILES_RANGE> tile radius. This shot os guaranteed to hit and crit."
+LocHelpText="Enter a specialized form of overwatch to take a <Ability:BOUND_WEAPON_NAME> shot against any enemy that moves or attacks in a <Ability:GUNSLINGER_TILES_RANGE> tile radius."
+LocPromotionPopupText="<Bullet> Has a <Ability:SelfCooldown_LW> turn cooldown.<br><Bullet> Cannot be used from concealment."
+LocFriendlyNameWhenConcealed="Gunslinger (Concealed)"
 ; End Translation (3)
+
+[GunslingerShot X2AbilityTemplate]
+LocFriendlyName="Gunslinger"
+LocFlyOverText="Gunslinger"
+
 
 [HyperReactivePupils X2AbilityTemplate]
 LocFriendlyName="Hyper-Reactive Pupils"

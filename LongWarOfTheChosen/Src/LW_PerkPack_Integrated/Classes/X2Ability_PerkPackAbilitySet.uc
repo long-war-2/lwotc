@@ -137,6 +137,8 @@ var config array<name> CE_ABILITYNAMES;
 
 var config array<name> SHOTGUN_WEAPONCATS;
 
+var privatewrite name GunslingerReserveActionName;
+
 var localized string LocCoveringFire;
 var localized string LocCoveringFireMalus;
 var localized string LocSoulStealBuff;
@@ -1975,180 +1977,229 @@ static function X2AbilityTemplate AddCommissarAbility()
 	return Template;		
 }
 	
-static function X2AbilityTemplate AddGunslingerAbility()
+static function X2AbilityTemplate AddGunslingerAbility(optional bool bUseReservePoints = true)
 {
-	local X2AbilityTemplate                 Template;	
-	local X2AbilityCooldown					Cooldown;
-	local X2AbilityCost_Ammo				AmmoCost;
-	local X2AbilityCost_ActionPoints		ActionPointCost;
-	local X2AbilityMultiTarget_Radius		RadiusMultiTarget;
-	local X2Effect_ReserveActionPoints		ReservePointsEffect;
-	local X2Effect_MarkValidActivationTiles MarkTilesEffect;
-	local X2Condition_UnitEffects           SuppressedCondition;
-	local X2AbilityTarget_Cursor			CursorTarget;
-	local X2Condition_UnitProperty 			UnitPropertyCondition;
+    local X2AbilityTemplate                 Template;
+    local X2AbilityCost_Ammo                AmmoCost;
+    local X2AbilityCooldown                 AbilityCooldown;
+    local X2AbilityCost_ActionPoints        ActionPointCost;
+    local X2Condition_UnitProperty          UnitPropertyCondition;
+    local X2AbilityMultiTarget_Radius       MultiTarget;
+    local X2Effect_ReserveActionPoints      ReservePointsEffect;
+    local X2Effect_Persistent               PersistentEffect;
+    local X2Condition_UnitEffects           SuppressedCondition;
 
-	`CREATE_X2ABILITY_TEMPLATE (Template, 'Gunslinger');
-	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityGunslinger";
-	Template.AbilitySourceName = 'eAbilitySource_Perk';
-	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_CAPTAIN_PRIORITY;
-	Template.Hostility = eHostility_Defensive;
-	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
-	Template.bDisplayInUITooltip = false;
-	Template.bDisplayInUITacticalText = false;
-	Template.Hostility = eHostility_Defensive;
-	Template.AbilityConfirmSound = "Unreal2DSounds_OverWatch";
-	Template.bSkipFireAction = true;
+    `CREATE_X2ABILITY_TEMPLATE(Template, 'Gunslinger');
+
+    Template.AbilitySourceName = 'eAbilitySource_Perk';
+    Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
+    Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityGunslinger";
+    Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_CAPTAIN_PRIORITY;
+    Template.bCrossClassEligible = false;
+    
+    Template.bDisplayInUITooltip = false;
+    Template.bDisplayInUITacticalText = false;
+
+    Template.AbilityTargetStyle = default.SelfTarget;
+    Template.AbilityToHitCalc = default.DeadEye;
+    Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+
+    Template.TargetingMethod = class'X2TargetingMethod_TopDown';
+
+    MultiTarget = new class'X2AbilityMultiTarget_Radius';
+    MultiTarget.bUseWeaponBlockingCoverFlag = false;
+    MultiTarget.bIgnoreBlockingCover = true;
+    MultiTarget.fTargetRadius = default.GUNSLINGER_METERS_RANGE;
+    Template.AbilityMultiTargetStyle = MultiTarget;
+
+    Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+    Template.AddShooterEffectExclusions();
+    
+    UnitPropertyCondition = new class'X2Condition_UnitProperty';
+    UnitPropertyCondition.ExcludeConcealed = true;
+    Template.AbilityShooterConditions.AddItem(UnitPropertyCondition);
+
+    SuppressedCondition = new class'X2Condition_UnitEffects';
+    SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
+    SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
+    SuppressedCondition.AddExcludeEffect(class'X2Effect_SkirmisherInterrupt'.default.EffectName, 'AA_AbilityUnavailable');
+    Template.AbilityShooterConditions.AddItem(SuppressedCondition);
+
+    AmmoCost = new class'X2AbilityCost_Ammo';
+    AmmoCost.iAmmo = 1;
+    AmmoCost.bFreeCost = true;
+    Template.AbilityCosts.AddItem(AmmoCost);
+
+    AbilityCooldown = new class'X2AbilityCooldown';
+    AbilityCooldown.iNumTurns = default.GUNSLINGER_COOLDOWN;
+    Template.AbilityCooldown = AbilityCooldown;
+
+    ActionPointCost = new class'X2AbilityCost_ActionPoints';
+    ActionPointCost.iNumPoints = 1;
+    ActionPointCost.bConsumeAllPoints = true;
+    ActionPointCost.bFreeCost = false;
+    ActionPointCost.DoNotConsumeAllEffects.Length = 0;
+    ActionPointCost.DoNotConsumeAllSoldierAbilities.Length = 0;
+    ActionPointCost.AllowedTypes.RemoveItem(class'X2CharacterTemplateManager'.default.SkirmisherInterruptActionPoint);
+    Template.AbilityCosts.AddItem(ActionPointCost);
+
+    if (bUseReservePoints)
+    {
+        ReservePointsEffect = new class'X2Effect_ReserveActionPoints';
+        ReservePointsEffect.ReserveType = default.GunslingerReserveActionName;
+        Template.AddShooterEffect(ReservePointsEffect);
+    }
+    else
+    {
+        PersistentEffect = new class'X2Effect_Persistent';
+        PersistentEffect.EffectName = 'GunslingerEffect';
+        PersistentEffect.BuildPersistentEffect(1, false, false, false, eGameRule_PlayerTurnBegin);
+        PersistentEffect.DuplicateResponse = eDupe_Refresh;
+        Template.AddShooterEffect(PersistentEffect);
+    }
+
+    Template.Hostility = eHostility_Defensive;
+    Template.AbilityConfirmSound = "Unreal2DSounds_OverWatch";
+    Template.ActivationSpeech = 'KillZone';
+    Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+    Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+    
+    Template.bSkipFireAction = true;
     Template.bShowActivation = true;
-	Template.ActivationSpeech = 'KillZone';
-	Template.bCrossClassEligible = false;
-	Template.AbilityToHitCalc = default.DeadEye;
-	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
-	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
-	Template.AddShooterEffectExclusions();
-
-	AmmoCost = new class'X2AbilityCost_Ammo';
-	AmmoCost.iAmmo = 1;
-	AmmoCost.bFreeCost = true;
-	Template.AbilityCosts.AddItem(AmmoCost);
-
-	ActionPointCost = new class'X2AbilityCost_ActionPoints';
-	ActionPointCost.iNumPoints = 1;
-	ActionPointCost.bConsumeAllPoints = true;   
-	ActionPointCost.bFreeCost = true;    
-	Template.AbilityCosts.AddItem(ActionPointCost);
-
-	SuppressedCondition = new class'X2Condition_UnitEffects';
-	SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
-	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
-	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
-
-	Cooldown = new class'X2AbilityCooldown';
-	Cooldown.iNumTurns = default.GUNSLINGER_COOLDOWN;
-	Template.AbilityCooldown = Cooldown;
-
-	UnitPropertyCondition = new class'X2Condition_UnitProperty';
-	UnitPropertyCondition.ExcludeConcealed = true;
-	Template.AbilityShooterConditions.AddItem(UnitPropertyCondition);
-
-	CursorTarget = new class'X2AbilityTarget_Cursor';
-	CursorTarget.FixedAbilityRange = 1;
-	CursorTarget.bRestrictToSquadsightRange = true;
-	Template.AbilityTargetStyle = CursorTarget;
-
-
-	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
-	RadiusMultiTarget.fTargetRadius = default.GUNSLINGER_METERS_RANGE;
-	//RadiusMultiTarget.bExcludeSelfAsTargetIfWithinRadius = true;
-	RadiusMultiTarget.bUseWeaponRadius = true;
-	RadiusMultiTarget.bIgnoreBlockingCover = true;
-	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
-
-	ReservePointsEffect = new class'X2Effect_ReserveActionPoints';
-	ReservePointsEffect.ReserveType = class'X2Ability_SharpshooterAbilitySet'.default.KillZoneReserveType;
-	Template.AddShooterEffect(ReservePointsEffect);
-
-	MarkTilesEffect = new class'X2Effect_MarkValidActivationTiles';
-	MarkTilesEffect.AbilityToMark = 'GunslingerShot';
-	Template.AddShooterEffect(MarkTilesEffect);
-
-	Template.TargetingMethod = class'X2TargetingMethod_Grenade';
-	Template.AdditionalAbilities.AddItem('GunslingerShot');
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
-
-	return Template;
+    
+    Template.AdditionalAbilities.AddItem('GunslingerShot');
+    
+    Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.NonAggressiveChosenActivationIncreasePerUse;
+    
+    return Template;
 }
 
-static function X2AbilityTemplate GunslingerShot()
+static private function X2AbilityTemplate GunslingerShot(optional bool bUseReservePoints = true)
 {
-	local X2AbilityTemplate                 Template;
-	local X2AbilityCost_Ammo				AmmoCost;
-	local X2AbilityCost_ReserveActionPoints ReserveActionPointCost;
-	local X2AbilityToHitCalc_StandardAim    StandardAim;
-	local X2Condition_AbilityProperty       AbilityCondition;
-	local X2AbilityTarget_Single            SingleTarget;
-	local X2AbilityTrigger_Event	        Trigger;
-	local X2Effect_Persistent               GunslingerEffect;
-	local X2Condition_UnitEffectsWithAbilitySource  GunslingerCondition;
-	local X2Condition_Visibility            TargetVisibilityCondition;
-	local X2Condition_UnitProperty          ShooterCondition;
-	local X2Condition_RequiredToHitChance	RequiredHitChanceCondition;
+    local X2AbilityTemplate                 Template;
+    local X2AbilityCost_Ammo                AmmoCost;
+    local X2AbilityCost_ReserveActionPoints ReserveActionPointCost;
+    local X2AbilityToHitCalc_StandardAim    StandardAim;
+    local X2AbilityTarget_Single            SingleTarget;
+    local X2AbilityTrigger_EventListener    Trigger;
+    local X2Effect_ApplyWeaponDamage        DamageEffect;
+    local X2Effect_Persistent               KillZoneEffect;
+    local X2Condition_UnitEffectsWithAbilitySource  KillZoneCondition;
+    local X2Condition_UnitEffectsOnSource   EffectCondition;
+    local X2Condition_Visibility            TargetVisibilityCondition;
+    local X2Condition_UnitProperty          ShooterCondition;
+    local X2Condition_UnitProperty          TargetCondition;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'GunslingerShot');	
-	Template.AbilitySourceName = 'eAbilitySource_Perk';
-	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
-	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_overwatch";
-	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_MAJOR_PRIORITY;
-	Template.bDisplayInUITooltip = false;
-	Template.bDisplayInUITacticalText = false;
+    `CREATE_X2ABILITY_TEMPLATE(Template, 'GunslingerShot');
 
-	AmmoCost = new class'X2AbilityCost_Ammo';
-	AmmoCost.iAmmo = 1;
-	Template.AbilityCosts.AddItem(AmmoCost);
-	RequiredHitChanceCondition = new class'X2Condition_RequiredToHitChance';
-	RequiredHitChanceCondition.MinimumRequiredHitChance = class'X2Ability_PerkPackAbilitySet2'.default.REQUIRED_TO_HIT_FOR_OVERWATCH;  
-	Template.AbilityTargetConditions.AddItem(RequiredHitChanceCondition);
+    Template.AbilitySourceName = 'eAbilitySource_Perk';
+    Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+    Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_overwatch";
+    Template.bDisplayInUITacticalText = false;
+    Template.bDisplayInUITooltip = false;
+    Template.bDontDisplayInAbilitySummary = true;
+    Template.bHideOnClassUnlock = true;
 
-	ReserveActionPointCost = new class'X2AbilityCost_ReserveActionPoints';
-	ReserveActionPointCost.iNumPoints = 1;
-	ReserveActionPointCost.bFreeCost = true;
-	ReserveActionPointCost.AllowedTypes.AddItem('KillZone');
-	Template.AbilityCosts.AddItem(ReserveActionPointCost);
+    SingleTarget = new class'X2AbilityTarget_Single';
+    SingleTarget.OnlyIncludeTargetsInsideWeaponRange = true;
+    Template.AbilityTargetStyle = SingleTarget;
 
-	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
-	StandardAim.bReactionFire = true;
-	StandardAim.bGuaranteedHit = true;
-	StandardAim.bHitsAreCrits = true;
-	Template.AbilityToHitCalc = StandardAim;
+    StandardAim = new class'X2AbilityToHitCalc_StandardAim';
+    StandardAim.bReactionFire = true;
+    StandardAim.bGuaranteedHit = true;
+    StandardAim.bHitsAreCrits = true;
+    Template.AbilityToHitCalc = StandardAim;
 
-	Template.AbilityToHitOwnerOnMissCalc = StandardAim;
-	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitDisallowMindControlProperty);
-	TargetVisibilityCondition = new class'X2Condition_Visibility';
-	TargetVisibilityCondition.bRequireGameplayVisible = true;
-	TargetVisibilityCondition.bRequireBasicVisibility = true;
-	TargetVisibilityCondition.bDisablePeeksOnMovement = true;
-	TargetVisibilityCondition.bAllowSquadsight = false;
-	Template.AbilityTargetConditions.AddItem(TargetVisibilityCondition);
-	AbilityCondition = new class'X2Condition_AbilityProperty';
-	AbilityCondition.TargetMustBeInValidTiles = true;
-	Template.AbilityTargetConditions.AddItem(AbilityCondition);
-	Template.AbilityTargetConditions.AddItem(class'X2Ability_DefaultAbilitySet'.static.OverwatchTargetEffectsCondition());
-	ShooterCondition = new class'X2Condition_UnitProperty';
-	ShooterCondition.ExcludeConcealed = true;
-	Template.AbilityShooterConditions.AddItem(ShooterCondition);
-	GunslingerCondition = new class'X2Condition_UnitEffectsWithAbilitySource';
-	GunslingerCondition.AddExcludeEffect('GunslingerTarget', 'AA_UnitIsImmune');
-	Template.AbilityTargetConditions.AddItem(GunslingerCondition);
-	GunslingerEffect = new class'X2Effect_Persistent';
-	GunslingerEffect.EffectName = 'GunslingerTarget';
-	GunslingerEffect.BuildPersistentEffect(1, false, false, false, eGameRule_PlayerTurnBegin);
-	GunslingerEffect.SetupEffectOnShotContextResult(true, true);      //  mark them regardless of whether the shot hit or missed
-	Template.AddTargetEffect(GunslingerEffect);
-	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
-	Template.AddShooterEffectExclusions();
-	SingleTarget = new class'X2AbilityTarget_Single';
-	SingleTarget.OnlyIncludeTargetsInsideWeaponRange = true;
-	Template.AbilityTargetStyle = SingleTarget;
-	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
-	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
-	Template.bAllowAmmoEffects = true;
-	Trigger = new class'X2AbilityTrigger_Event';
-	Trigger.EventObserverClass = class'X2TacticalGameRuleset_MovementObserver';
-	Trigger.MethodName = 'InterruptGameState';
-	Template.AbilityTriggers.AddItem(Trigger);
-	Trigger = new class'X2AbilityTrigger_Event';
-	Trigger.EventObserverClass = class'X2TacticalGameRuleset_AttackObserver';
-	Trigger.MethodName = 'InterruptGameState';
-	Template.AbilityTriggers.AddItem(Trigger);
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
-	
-	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
-	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
-	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+    //Trigger on movement - interrupt the move
+    Trigger = new class'X2AbilityTrigger_EventListener';
+    Trigger.ListenerData.EventID = 'ObjectMoved';
+    Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+    Trigger.ListenerData.Filter = eFilter_None;
+    Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalOverwatchListener;
+    Template.AbilityTriggers.AddItem(Trigger);
+    //  trigger on an attack
+    Trigger = new class'X2AbilityTrigger_EventListener';
+    Trigger.ListenerData.EventID = 'AbilityActivated';
+    Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+    Trigger.ListenerData.Filter = eFilter_None;
+    Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalAttackListener;
+    Template.AbilityTriggers.AddItem(Trigger);
 
-	return Template;
+    Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+    ShooterCondition = new class'X2Condition_UnitProperty';
+    ShooterCondition.ExcludeConcealed = true;
+    Template.AbilityShooterConditions.AddItem(ShooterCondition);
+    Template.AddShooterEffectExclusions();
+
+    AmmoCost = new class'X2AbilityCost_Ammo';
+    AmmoCost.iAmmo = 1;
+    Template.AbilityCosts.AddItem(AmmoCost);
+
+    if (bUseReservePoints)
+    {
+        ReserveActionPointCost = new class'X2AbilityCost_ReserveActionPoints';
+        ReserveActionPointCost.iNumPoints = 1;
+        ReserveActionPointCost.bFreeCost = true;
+        ReserveActionPointCost.AllowedTypes.AddItem(default.GunslingerReserveActionName);
+        Template.AbilityCosts.AddItem(ReserveActionPointCost);
+    }
+    else
+    {
+        EffectCondition = new class'X2Condition_UnitEffectsOnSource';
+        EffectCondition.AddRequireEffect('GunslingerEffect', 'AA_MissingRequiredEffect');
+        Template.AbilityShooterConditions.AddItem(EffectCondition);
+    }
+
+    TargetCondition = new class'X2Condition_UnitProperty';
+    TargetCondition.ExcludeAlive = false;
+    TargetCondition.ExcludeDead = true;
+    TargetCondition.ExcludeFriendlyToSource = true;
+    TargetCondition.ExcludeHostileToSource = false;
+    TargetCondition.TreatMindControlledSquadmateAsHostile = false;
+    TargetCondition.FailOnNonUnits = true;
+    TargetCondition.RequireWithinRange = true;
+    TargetCondition.WithinRange = `METERSTOUNITS(default.GUNSLINGER_METERS_RANGE);
+    Template.AbilityTargetConditions.AddItem(TargetCondition);
+
+    TargetVisibilityCondition = new class'X2Condition_Visibility';
+    TargetVisibilityCondition.bRequireGameplayVisible = true;
+    TargetVisibilityCondition.bDisablePeeksOnMovement = false;
+    TargetVisibilityCondition.bAllowSquadsight = false;
+    Template.AbilityTargetConditions.AddItem(TargetVisibilityCondition);
+    Template.AbilityTargetConditions.AddItem(class'X2Ability_DefaultAbilitySet'.static.OverwatchTargetEffectsCondition());
+
+    //  Do not shoot targets that were already hit by this unit this turn with this ability
+    KillZoneCondition = new class'X2Condition_UnitEffectsWithAbilitySource';
+    KillZoneCondition.AddExcludeEffect('GunslingerShotEffect', 'AA_UnitIsImmune');
+    Template.AbilityTargetConditions.AddItem(KillZoneCondition);
+    
+    //  Mark the target as shot by this unit so it cannot be shot again this turn
+    KillZoneEffect = new class'X2Effect_Persistent';
+    KillZoneEffect.EffectName = 'GunslingerShotEffect';
+    KillZoneEffect.BuildPersistentEffect(1, false, false, false, eGameRule_PlayerTurnBegin);
+    KillZoneEffect.SetupEffectOnShotContextResult(true, true); //  mark them regardless of whether the shot hit or missed
+    Template.AddTargetEffect(KillZoneEffect);
+
+    DamageEffect = new class'X2Effect_ApplyWeaponDamage';
+    Template.AddTargetEffect(DamageEffect);
+    Template.AddTargetEffect(default.WeaponUpgradeMissDamage);
+    
+    Template.bAllowAmmoEffects = true;
+    Template.bAllowBonusWeaponEffects = true;
+    Template.bAllowFreeFireWeaponUpgrade = true;
+
+    Template.Hostility = eHostility_Offensive;
+    Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+    Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+    Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+    Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+    Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+
+    Template.bShowActivation = true;
+    Template.bFrameEvenWhenUnitIsHidden = true;
+
+    return Template;
 }
 
 static function X2AbilityTemplate AddHyperReactivePupilsAbility()
@@ -4646,4 +4697,9 @@ static function bool AbilityTriggerAgainstSingleTarget(int AbilityID, StateObjec
 		}
 	}
 	return false;
+}
+
+defaultproperties
+{
+    GunslingerReserveActionName = "Gunslinger_LW"
 }
