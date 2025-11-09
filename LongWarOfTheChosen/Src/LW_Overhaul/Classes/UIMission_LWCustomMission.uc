@@ -1195,7 +1195,7 @@ simulated function string GetModifiedRewardString()
 
 			kTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
 			kTag.StrValue0 = RewardTemplate.DisplayName;
-			kTag.StrValue1 = string(Rookies);
+			kTag.StrValue1 = string(Rebels);
 
 			if (RewardString != "")
 			{
