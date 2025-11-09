@@ -2246,7 +2246,7 @@ static function EventListenerReturn AbilityTriggerEventListener_WatchThemRun(Obj
 static function X2AbilityTemplate Avenger()
 {
     local X2AbilityTemplate             Template;
-    local X2Effect_LWCoveringFire   CoveringFireEffect;
+    local X2Effect_LWCoveringFire       CoveringFireEffect;
 
     `CREATE_X2ABILITY_TEMPLATE(Template, 'Avenger_LW');
 
