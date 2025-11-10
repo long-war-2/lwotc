@@ -187,7 +187,6 @@ static function GeneratePersonnelReward(XComGameState_Reward RewardState, XComGa
 	`XEVENTMGR.TriggerEvent( 'SoldierCreatedEvent', NewUnitState, NewUnitState, NewGameState );
 	NewUnitState.RandomizeStats();
 	NewUnitState.GiveRandomPersonality();
-	NewGameState.AddStateObject(NewUnitState);
 
 	if(RewardState.GetMyTemplate().rewardObjectTemplateName == 'Soldier')
 	{

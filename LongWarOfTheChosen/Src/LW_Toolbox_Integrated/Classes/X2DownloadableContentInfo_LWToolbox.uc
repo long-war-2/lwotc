@@ -80,6 +80,8 @@ static event InstallNewCampaign(XComGameState StartState)
 static event OnLoadedSavedGameToStrategy()
 {
 	local XComGameState_LWToolboxOptions ToolboxOptions;
+	local X2EventManager EventManager;
+	local object ToolboxObject;
 	ToolboxOptions = class'XComGameState_LWToolboxOptions'.static.GetToolboxOptions();
 
 	if(ToolboxOptions == none)
@@ -93,6 +95,13 @@ static event OnLoadedSavedGameToStrategy()
 
 	ToolboxOptions.RegisterListeners();
 	ToolboxOptions.UpdateWeaponTemplates_RandomizedDamage();
+
+	if(ToolboxOptions.bRandomizedInitialStatsEnabled)
+	{
+		ToolboxObject = ToolboxOptions;
+		EventManager = `XEVENTMGR;
+		EventManager.RegisterForEvent( ToolboxObject, 'UnitRandomizedStats', ToolboxOptions.static.OnSoldierCreatedEvent, ELD_Immediate,,,true, ToolboxOptions); //handles reward soldier creation, both for missions and purchase-able
+	}
 
 	PatchupMissingPCSStats();
 

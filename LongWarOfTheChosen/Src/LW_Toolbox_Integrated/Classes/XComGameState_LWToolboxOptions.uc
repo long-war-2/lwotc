@@ -1111,14 +1111,23 @@ function UpdateOneSoldier_RandomizedInitialStats(XComGameState_Unit Unit, XComGa
 	local XComGameState_Unit UpdatedUnit;
 	local XComGameState_Unit_LWRandomizedStats RandomizedStatsState, SearchRandomizedStats;
 
+	//`LWTrace("UpdateOneSoldier_RandomizedInitialStats entry point: " @GetScriptTrace());
 	UpdatedUnit = XComGameState_Unit(GameState.GetGameStateForObjectID(Unit.ObjectID));
 	if(UpdatedUnit == none || UpdatedUnit.bReadOnly)
 	{
+		//`LWTrace("Unit not found in gamestate, adding it)");
 		UpdatedUnit = XComGameState_Unit(GameState.ModifyStateObject(class'XComGameState_Unit', Unit.ObjectID));
+	}
+	else
+	{
+		//`LWTrace("Unit was found in gamestate");
 	}
 
 	if (!IsEligibleForRandomStats(Unit))
+	{
+		`LWTrace("Unit not elegible for randomized stats");
 		return;
+	}
 
 	if(GameState != none)
 	{
@@ -1127,6 +1136,7 @@ function UpdateOneSoldier_RandomizedInitialStats(XComGameState_Unit Unit, XComGa
 		{
 			if(SearchRandomizedStats.OwningObjectID == Unit.ObjectID)
 			{
+				//`LWTrace("Existing Randomized Stats object for this unit found in current state");
 				RandomizedStatsState = SearchRandomizedStats;
 				break;
 			}
@@ -1134,16 +1144,19 @@ function UpdateOneSoldier_RandomizedInitialStats(XComGameState_Unit Unit, XComGa
 	}
 	if(RandomizedStatsState == none)
 	{
+		//`LWTrace("RandomizedStatsState not found in current gamestate");
 		//try and pull it from the history
 		RandomizedStatsState = XComGameState_Unit_LWRandomizedStats(Unit.FindComponentObject(class'XComGameState_Unit_LWRandomizedStats'));
 		if(RandomizedStatsState != none)
 		{
+			//`LWTrace("existing stats object found in history for the unit");
 			//if found in history, create an update copy for submission
 			RandomizedStatsState = XComGameState_Unit_LWRandomizedStats(GameState.ModifyStateObject(RandomizedStatsState.Class, RandomizedStatsState.ObjectID));
 		}
 	}
 	if(RandomizedStatsState == none)
 	{
+		//`LWTrace("Creating gamestate object for the randomized stats");
 		//first time randomizing, create component gamestate and attach it
 		RandomizedStatsState = XComGameState_Unit_LWRandomizedStats(GameState.CreateNewStateObject(class'XComGameState_Unit_LWRandomizedStats'));
 		UpdatedUnit.AddComponentObject(RandomizedStatsState);
@@ -1196,19 +1209,48 @@ static function EventListenerReturn OnSoldierCreatedEvent(Object EventData, Obje
 	local XComGameState NewGameState;
 	local XComGameState_LWToolboxOptions LWToolbox;
 
+	//`LWTrace("OnSoldierCreatedEvent called");
+
 	Unit = XComGameState_Unit(EventData);
 	LWToolbox = XComGameState_LWToolboxOptions(CallbackData);
+
+	if(LWToolbox == none)
+	{
+		//`LWTrace("Toolbox options weren't passed for some reason, so fetching them");
+		LWToolbox = class'XComGameState_LWToolboxOptions'.static.GetToolboxOptions();
+	}
+
 	if(Unit == none || LWToolbox == none) 
 	{
 		`REDSCREEN("ToolboxOptions.OnSoldierCreatedEvent with no UnitState EventData");
 		return ELR_NoInterrupt;
 	}
 	
-	NewGameState = Unit.GetParentGameState();
-	if (NewGameState != none)
+	
+	if (GameState != none)
 	{
-		LWToolbox = XComGameState_LWToolboxOptions(NewGameState.ModifyStateObject(LWToolbox.Class, LWToolbox.ObjectID));
-		LWToolbox.UpdateOneSoldier_RandomizedInitialStats(Unit, NewGameState);
+		//`LWTrace("Gamestate passed, using it");
+		LWToolbox = XComGameState_LWToolboxOptions(GameState.ModifyStateObject(LWToolbox.Class, LWToolbox.ObjectID));
+		LWToolbox.UpdateOneSoldier_RandomizedInitialStats(Unit, GameState);
+	}
+	else
+	{
+		NewGameState = Unit.GetParentGameState();
+		if (NewGameState != none && (NewGameState.HistoryIndex <= -1 || NewGameState == `XCOMHISTORY.GetStartState()))
+		{
+ 		   LWToolbox = XComGameState_LWToolboxOptions(NewGameState.ModifyStateObject(LWToolbox.Class, LWToolbox.ObjectID));
+ 		   LWToolbox.UpdateOneSoldier_RandomizedInitialStats(Unit, NewGameState);
+		}
+		else
+		{
+			//`LWTrace("No parent gamestate passed, submitting a new one");
+   			NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Randomizing stats for one soldier");
+
+    		LWToolbox = XComGameState_LWToolboxOptions(NewGameState.ModifyStateObject(LWToolbox.Class, LWToolbox.ObjectID));
+    		LWToolbox.UpdateOneSoldier_RandomizedInitialStats(Unit, NewGameState);
+
+    		`GAMERULES.SubmitGameState(NewGameState);
+		}
 	}
 
 	return ELR_NoInterrupt;
