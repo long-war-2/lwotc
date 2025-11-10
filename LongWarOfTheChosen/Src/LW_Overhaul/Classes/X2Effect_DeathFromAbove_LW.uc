@@ -6,6 +6,11 @@ var config float DFA_RANGE_PENALTY_NEGATION_MODIFIER;
 var config int DFA_RANGE_PENALTY_NEGATION_BASE_RANGE;
 
 var bool bMatchSourceWeapon;
+// If true, all abilities that have AbilityMultiTargetStyle that's not X2AbilityMultiTarget_BurstFire will be blacklisted
+var bool bDisallowMultiTarget;
+// If true, the effect will be activated if any of the units in AbilityContext.InputContext.MultiTargets satisfy the conditions
+var bool bAllowMultiTarget;
+
 var name PointType;
 var int ActivationsPerTurn;
 
@@ -31,6 +36,9 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
     local XComGameState_Unit        TargetUnit, PrevTargetUnit;
     local UnitValue                 UnitValue;
     local int                       iCounter;
+    local int                       Index;
+    local bool                      bIsMultiTarget;
+    local bool                      bShouldApply;
 
     if (SourceUnit.IsUnitAffectedByEffectName(class'X2Effect_Serial'.default.EffectName))
         return false;
@@ -52,25 +60,50 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
     {
         if (!bMatchSourceWeapon || kAbility.SourceWeapon.ObjectID == EffectState.ApplyEffectParameters.ItemStateObjectRef.ObjectID)
         {
-            TargetUnit = XComGameState_Unit(NewGameState.GetGameStateForObjectID(AbilityContext.InputContext.PrimaryTarget.ObjectID));
-
-            if (TargetUnit != none)
+            if (kAbility.IsAbilityInputTriggered() && ValidateAbilityCost(kAbility, SourceUnit))
             {
-                PrevTargetUnit = XComGameState_Unit(History.GetGameStateForObjectID(TargetUnit.ObjectID));
-                if (TargetUnit.IsDead() && SourceUnit.HasHeightAdvantageOver(PrevTargetUnit, true))
+                bIsMultiTarget = IsMultiTarget(AbilityState);
+                if (BlacklistedAbilities.Find(kAbility.GetMyTemplateName()) == INDEX_NONE
+                    && (!bDisallowMultiTarget || !bIsMultiTarget))
                 {
-                    if (kAbility.IsAbilityInputTriggered() && ValidateAbilityCost(kAbility, SourceUnit))
+                    TargetUnit = XComGameState_Unit(NewGameState.GetGameStateForObjectID(AbilityContext.InputContext.PrimaryTarget.ObjectID));
+
+                    if (TargetUnit != none)
                     {
-                        if (BlacklistedAbilities.Find(kAbility.GetMyTemplateName()) == INDEX_NONE)
+                        PrevTargetUnit = XComGameState_Unit(History.GetGameStateForObjectID(TargetUnit.ObjectID));
+                        if (TargetUnit.IsDead() && SourceUnit.HasHeightAdvantageOver(PrevTargetUnit, true))
                         {
-                            SourceUnit.SetUnitFloatValue(CounterName, iCounter + 1.0, eCleanup_BeginTurn);
-                            if (PointType != '')
-                                SourceUnit.ActionPoints.AddItem(PointType);
-                            else
-                                SourceUnit.ActionPoints.AddItem(class'X2CharacterTemplateManager'.default.StandardActionPoint);
-                            
-                            `XEVENTMGR.TriggerEvent(EventName, AbilityState, SourceUnit, NewGameState);
+                            bShouldApply = true;
                         }
+                    }
+                    
+                    if (!bShouldApply && bAllowMultiTarget && bIsMultiTarget)
+                    {
+                        for (Index = 0; Index < AbilityContext.InputContext.MultiTargets.Length; Index++)
+                        {
+                            TargetUnit = XComGameState_Unit(NewGameState.GetGameStateForObjectID(AbilityContext.InputContext.MultiTargets[Index].ObjectID));
+
+                            if (TargetUnit != none)
+                            {
+                                PrevTargetUnit = XComGameState_Unit(History.GetGameStateForObjectID(TargetUnit.ObjectID));
+                                if (TargetUnit.IsDead() && SourceUnit.HasHeightAdvantageOver(PrevTargetUnit, true))
+                                {
+                                    bShouldApply = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    
+                    if (bShouldApply)
+                    {
+                        SourceUnit.SetUnitFloatValue(CounterName, iCounter + 1.0, eCleanup_BeginTurn);
+                        if (PointType != '')
+                            SourceUnit.ActionPoints.AddItem(PointType);
+                        else
+                            SourceUnit.ActionPoints.AddItem(class'X2CharacterTemplateManager'.default.StandardActionPoint);
+                        
+                        `XEVENTMGR.TriggerEvent(EventName, AbilityState, SourceUnit, NewGameState);
                     }
                 }
             }
@@ -98,6 +131,15 @@ static function bool ValidateAbilityCost(XComGameState_Ability AbilityState, XCo
     return false;
 }
 
+static function bool IsMultiTarget(XComGameState_Ability AbilityState)
+{
+    local X2AbilityTemplate Template;
+
+    Template = AbilityState.GetMyTemplate();
+
+    return Template.AbilityMultiTargetStyle != none && X2AbilityMultiTarget_BurstFire(Template.AbilityMultiTargetStyle) == none;
+}
+
 defaultproperties
 {
     DuplicateResponse = eDupe_Ignore
@@ -105,4 +147,6 @@ defaultproperties
     CounterName = LW_DeathFromAboveUses
     EventName = DeathFromAbove
     bMatchSourceWeapon = true
+    bAllowMultiTarget = true
+    bDisallowMultiTarget = false
 }

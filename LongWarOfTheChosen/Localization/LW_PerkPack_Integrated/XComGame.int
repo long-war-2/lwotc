@@ -907,7 +907,7 @@ LocLongDescription="Once per turn, gain a standard action after killing an enemy
 LocHelpText="Once per turn, gain a standard action after killing an enemy at a lower elevation with your <Ability:BOUND_WEAPON_NAME>."
 ; End Translation
 LocFlyOverText="Death From Above"
-LocPromotionPopupText="<Bullet> Only the primary target of the attack is taken into account. Does not activate if the attack has no primary target.<br><Bullet> Does not activate when killing an enemy with the first shot of Double Tap.<br><Bullet> Reduces the long range penalties of the sniper and vektor rifles by 50%."
+LocPromotionPopupText="<Bullet> Does not activate when killing an enemy with the first shot of Double Tap.<br><Bullet> Reduces the long range penalties of the sniper and vektor rifles by 50%."
 
 [XComGame.Implacable X2AbilityTemplate]
 [Implacable X2AbilityTemplate]
