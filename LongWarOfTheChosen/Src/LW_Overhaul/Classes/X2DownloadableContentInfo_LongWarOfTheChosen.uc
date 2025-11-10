@@ -86,6 +86,11 @@ struct PlotObjectiveMod
 {
 	var string MapName;
 	var array<String> ObjectiveTags;
+	var bool bRemove;
+	structdefaultproperties
+	{
+		bRemove = false;
+	}
 };
 
 var config array<ArchetypeToHealth> DestructibleActorHealthOverride;
@@ -108,6 +113,7 @@ var config array<name> CharacterTypesExemptFromCleanup;
 var config array<name> CharacterTypesExceptFromInfiltrationModifiers;
 
 var config array<PlotObjectiveMod> PlotObjectiveMods;
+var config array<PlotObjectiveMod> ParcelObjectiveMods;
 
 // Configurable list of abilities that should apply to the primary
 // weapon. This is necessary because character template abilities
@@ -252,6 +258,7 @@ static function MarkAllChosenDefeated(XComGameState StartState)
 static function OnPreCreateTemplates()
 {
 	`Log("Long War of the Chosen (LWOTC) version: " $ class'LWVersion'.static.GetVersionString() @ "built <BUILD_DATE>");
+
 	PatchModClassOverrides();
 	CacheInstalledMods();
 }
@@ -3333,13 +3340,15 @@ static function bool HasSpecialUnitValue(XComGameState_Unit UnitState)
     return false;
 }
 
+// This is now very badly named, and has expanded in scope to far more than its name.
+// It handles updating plots, parcels, and PCPs, objectives, types, and removing bad ones.
 
 static function AddObjectivesToParcels()
 {
 	local XComParcelManager ParcelMgr;
 	local PlotDefinition PlotDef;
 	local WeightedPlotType PlotTypeDef;
-	local int i, j, k;
+	local int i, j, k, l;
 
 	// Go over the plot list and add new objectives to certain plots.
 	ParcelMgr = `PARCELMGR;
@@ -3354,13 +3363,60 @@ static function AddObjectivesToParcels()
 				{
 					for (k = 0; k < default.PlotObjectiveMods[i].ObjectiveTags.Length; ++k)
 					{
-						`LWTrace("Adding objective " $ default.PlotObjectiveMods[i].ObjectiveTags[k] $ " to plot " $ ParcelMgr.arrPlots[j].MapName);
-						ParcelMgr.arrPlots[j].ObjectiveTags.AddItem(default.PlotObjectiveMods[i].ObjectiveTags[k]);
+						if(!default.PlotObjectiveMods[i].bRemove)
+						{
+							`LWTrace("Adding objective " $ default.PlotObjectiveMods[i].ObjectiveTags[k] $ " to plot " $ ParcelMgr.arrPlots[j].MapName);
+							ParcelMgr.arrPlots[j].ObjectiveTags.AddItem(default.PlotObjectiveMods[i].ObjectiveTags[k]);
+						}
+						else
+						{
+							for(l = ParcelMgr.arrPlots[j].ObjectiveTags.length-1; l >= 0; l--)
+							{
+								if(ParcelMgr.arrPlots[j].ObjectiveTags[l] == default.PlotObjectiveMods[i].ObjectiveTags[k])
+								{
+									`LWTrace("Removing objective " $ default.PlotObjectiveMods[i].ObjectiveTags[k] $ " from plot " $ ParcelMgr.arrPlots[j].MapName);									
+									ParcelMgr.arrPlots[j].ObjectiveTags.Remove(l,1);
+								}
+							}
+						}
 					}
 					break;
 				}
 			}
 		}
+
+		// Code to add/remove valid objectives from specific parcels now.
+		for (i = 0; i < default.ParcelObjectiveMods.Length; i++)
+		{
+			for (j = 0; j < ParcelMgr.arrAllParcelDefinitions.Length; ++j)
+			{
+				if (ParcelMgr.arrAllParcelDefinitions[j].MapName == default.ParcelObjectiveMods[i].MapName)
+				{
+					for (k = 0; k < default.ParcelObjectiveMods[i].ObjectiveTags.Length; ++k)
+					{
+						if(!default.ParcelObjectiveMods[i].bRemove)
+						{
+							`LWTrace("Adding objective " $ default.ParcelObjectiveMods[i].ObjectiveTags[k] $ " to parcel " $ ParcelMgr.arrAllParcelDefinitions[j].MapName);
+							ParcelMgr.arrAllParcelDefinitions[j].ObjectiveTags.AddItem(default.ParcelObjectiveMods[i].ObjectiveTags[k]);
+						}
+						else
+						{
+							for(l = ParcelMgr.arrAllParcelDefinitions[j].ObjectiveTags.length-1; l >= 0; l--)
+							{
+								if(ParcelMgr.arrAllParcelDefinitions[j].ObjectiveTags[l] == default.ParcelObjectiveMods[i].ObjectiveTags[k])
+								{
+									`LWTrace("Removing objective " $ default.ParcelObjectiveMods[i].ObjectiveTags[k] $ " from parcel " $ ParcelMgr.arrAllParcelDefinitions[j].MapName);									
+									ParcelMgr.arrAllParcelDefinitions[j].ObjectiveTags.Remove(l,1);
+								}
+							}
+						}
+					}
+					break;
+				}
+			}
+		}
+
+		
 
 		// Remove a mod-specified set of parcels (e.g. to replace them with modded versions).
 		for (i = 0; i < default.ParcelsToRemove.Length; ++i)

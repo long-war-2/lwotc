@@ -64,6 +64,7 @@ function RandomizeInitialStats(XComGameState_Unit Unit)
 	local XComGameState_BattleData BattleData;
 	local bool bIsFirstMission;
 
+	`LWTrace("Initial randomized stats called on Toolbox");
 	BattleData = XComGameState_BattleData( `XCOMHISTORY.GetSingleGameStateObjectForClass( class'XComGameState_BattleData', true ));
 	if (BattleData != none)
 		bIsFirstMission = BattleData.m_bIsFirstMission;

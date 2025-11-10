@@ -715,7 +715,7 @@ simulated function BuildRendezvousOptionsPanel()
 
 	Button1.SetText(class'UIUtilities_Text'.default.m_strGenericConfirm);
 	Button1.SetBad(true);
-	Button1.OnClickedDelegate = OnLaunchClicked;
+	Button1.OnClickedDelegate = OnLaunchClickedRendezvous;
 
 	Button2.SetText(class'UIUtilities_Text'.default.m_strGenericCancel);
 	Button2.SetBad(true);
@@ -1195,7 +1195,7 @@ simulated function string GetModifiedRewardString()
 
 			kTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
 			kTag.StrValue0 = RewardTemplate.DisplayName;
-			kTag.StrValue1 = string(Rookies);
+			kTag.StrValue1 = string(Rebels);
 
 			if (RewardString != "")
 			{
@@ -1210,6 +1210,11 @@ simulated function string GetModifiedRewardString()
 simulated function bool CanTakeAlienFacilityMission()
 {
 	return GetRegion().HaveMadeContact();
+}
+
+simulated public function OnLaunchClickedRendezvous(UIButton button)
+{
+    GetMission().ConfirmSelection();
 }
 
 // KDM : The navigation system, set up in UIMission.RefreshNavigation, is a mess; override it here and 

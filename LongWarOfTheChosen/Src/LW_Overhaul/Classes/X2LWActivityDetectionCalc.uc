@@ -33,7 +33,7 @@ var array<DetectionModifierInfo> DetectionModifiers;       // Can be configured 
 
 var protected name RebelMissionsJob;
 
-var bool bDebugLog;
+var config bool bDebugLog;
 
 function AddDetectionModifier(const int ModValue, const string ModReason)
 {
@@ -297,7 +297,4 @@ defaultProperties
 	bSkipUncontactedRegions = true
 
 	RebelMissionsJob="Intel"
-
-	bDebugLog = false;
-
 }
