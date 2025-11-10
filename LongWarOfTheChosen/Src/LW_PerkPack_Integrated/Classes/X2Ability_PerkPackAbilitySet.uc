@@ -49,9 +49,12 @@ var config int AREA_SUPPRESSION_AMMO_COST;
 var config int AREA_SUPPRESSION_MAX_SHOTS;
 var config int AREA_SUPPRESSION_SHOT_AMMO_COST;
 var config float AREA_SUPPRESSION_RADIUS;
+var config int SUPPRESSION_LW_AIM_MALUS;
+var config int SUPPRESSION_LW_AIM_MALUS_DURATION;
 var config int SUPPRESSION_LW_SHOT_AIM_BONUS;
 var config int AREA_SUPPRESSION_LW_SHOT_AIM_BONUS;
 var config array<name> SUPPRESSION_LW_INVALID_WEAPON_CATEGORIES;
+var config array<name> SUPPRESSION_SHOT_ABILITIES;
 var config float DANGER_ZONE_BONUS_RADIUS;
 var config int INTERFERENCE_CV_CHARGES;
 var config int INTERFERENCE_MG_CHARGES;
@@ -202,14 +205,16 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddKillerInstinctAbility());
 	Templates.AddItem(AddExtraConditioningAbility());
 	Templates.AddItem(AddSuppressionAbility_LW());
-	Templates.AddItem(SuppressionShot_LW()); //Additional Ability
+	Templates.AddItem(AddSuppressionShot('SuppressionShot_LW', false));
+	Templates.AddItem(AddSuppressionCleanse('SuppressionCleanse_LW', false));
 	Templates.AddItem(AddAreaSuppressionAbility());
-	Templates.AddItem(AreaSuppressionShot_LW()); //Additional Ability
+	Templates.AddItem(AddSuppressionShot('AreaSuppressionShot_LW', true));
+	Templates.AddItem(AddSuppressionCleanse('AreaSuppressionCleanse_LW', true));
 	Templates.AddItem(AddLockdownAbility());
 	Templates.AddItem(AddDangerZoneAbility());
-	Templates.AddItem(LockdownBonuses()); //Additional Ability
-	Templates.AddItem(PurePassive('Mayhem', "img:///UILibrary_LW_PerkPack.LW_AbilityMayhem", false, 'eAbilitySource_Perk'));
-	Templates.AddItem(MayhemBonuses()); // AdditionalAbility;
+	// Templates.AddItem(LockdownBonuses()); //Additional Ability
+	Templates.AddItem(AddMayhemAbility());
+	// Templates.AddItem(MayhemBonuses()); // AdditionalAbility;
 	Templates.AddItem(AddInterferenceAbility());
 	Templates.AddItem(AddDamageControlAbility());
 	Templates.AddItem(AddDamageControlAbilityPassive()); //Additional Ability
@@ -2486,622 +2491,991 @@ static function X2AbilityTemplate AddDangerZoneAbility()
 	return Template;
 }
 
-
 static function X2AbilityTemplate AddLockdownAbility()
 {
-	local X2AbilityTemplate                 Template;	
+    local X2AbilityTemplate         Template;
+    local X2Effect_LockdownDamage   Effect;
 
-	Template = PurePassive('Lockdown', "img:///UILibrary_LW_PerkPack.LW_AbilityLockdown", false, 'eAbilitySource_Perk');
-	Template.bCrossClassEligible = false;
-	return Template;
+    `CREATE_X2ABILITY_TEMPLATE(Template, 'Lockdown');
+
+    Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityLockdown";
+    Template.AbilitySourceName = 'eAbilitySource_Perk';
+    Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+    Template.Hostility = eHostility_Neutral;
+    Template.bIsPassive = true;
+
+    Template.AbilityToHitCalc = default.DeadEye;
+    Template.AbilityTargetStyle = default.SelfTarget;
+    Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+    Effect = new class'X2Effect_LockdownDamage';
+    Effect.BuildPersistentEffect(1, true, false);
+    Effect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
+    Template.AddTargetEffect(Effect);
+
+    Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+    Template.bCrossClassEligible = false;
+
+    return Template;
+}
+
+static function X2AbilityTemplate AddMayhemAbility()
+{
+    local X2AbilityTemplate     Template;
+    local X2Effect_Mayhem       Effect;
+
+    `CREATE_X2ABILITY_TEMPLATE(Template, 'Mayhem');
+
+    Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityMayhem";
+    Template.AbilitySourceName = 'eAbilitySource_Perk';
+    Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+    Template.Hostility = eHostility_Neutral;
+    Template.bIsPassive = true;
+
+    Template.AbilityToHitCalc = default.DeadEye;
+    Template.AbilityTargetStyle = default.SelfTarget;
+    Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+    Effect = new class'X2Effect_Mayhem';
+    Effect.BuildPersistentEffect(1, true, false);
+    Effect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
+    Template.AddTargetEffect(Effect);
+
+    Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+    Template.bCrossClassEligible = false;
+
+    return Template;
 }
 
 static function X2AbilityTemplate AddSuppressionAbility_LW()
 {
-	local X2AbilityTemplate                 Template;	
-	local X2AbilityCost_Ammo                AmmoCost;
-	local X2AbilityCost_ActionPoints        ActionPointCost;
-	local X2Effect_ReserveActionPoints      ReserveActionPointsEffect;
-	local X2Effect_Suppression              SuppressionEffect;
-	local X2Effect_PersistentStatChange		StatChangeEffect;
-	local X2Condition_UnitInventoryExpanded         UnitInventoryCondition;
-	//local name								WeaponCategory;
-	local X2Condition_UnitEffects			SuppressedCondition;
-	local X2Condition_OwnerDoesNotHaveAbility	DoesNotHaveAbilityCondition;
-	local X2Condition_AbilityProperty AbilityCondition;
+    local X2AbilityTemplate                     Template;
+    local X2AbilityCost_Ammo                    AmmoCost;
+    local X2AbilityCost_ActionPoints            ActionPointCost;
+    local X2Effect_ReserveActionPoints          ReserveActionPointsEffect;
+    local X2Effect_Suppression                  SuppressionEffect;
+    local X2Effect_PersistentStatChange         StatChangeEffect;
+    local X2Condition_UnitInventoryExpanded     UnitInventoryCondition;
+    local X2Condition_UnitEffects               SuppressedCondition;
+    local X2Condition_OwnerDoesNotHaveAbility   DoesNotHaveAbilityCondition;
+    local X2Condition_AbilityProperty           AbilityCondition;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'Suppression_LW');
-	Template.AbilitySourceName = 'eAbilitySource_Perk';
-	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
-	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_LIEUTENANT_PRIORITY;
-	Template.bDisplayInUITooltip = false;
+    `CREATE_X2ABILITY_TEMPLATE(Template, 'Suppression_LW');
+    Template.AbilitySourceName = 'eAbilitySource_Perk';
+    Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
+    Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_LIEUTENANT_PRIORITY;
+    Template.bDisplayInUITooltip = false;
 
-	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_supression";
-	Template.bCrossClassEligible = false;
+    Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_supression";
+    Template.bCrossClassEligible = false;
 
-	AmmoCost = new class'X2AbilityCost_Ammo';	
-	AmmoCost.iAmmo = 2;
-	Template.AbilityCosts.AddItem(AmmoCost);
-	
-	ActionPointCost = new class'X2AbilityCost_ActionPoints';
-	ActionPointCost.bConsumeAllPoints = true;   //  this will guarantee the unit has at least 1 action point
-	ActionPointCost.bFreeCost = true;           //  ReserveActionPoints effect will take all action points away
-	Template.AbilityCosts.AddItem(ActionPointCost);
-	
-	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
-	
-	
-	UnitInventoryCondition = new class'X2Condition_UnitInventoryExpanded';
-	UnitInventoryCondition.RelevantSlot = eInvSlot_PrimaryWeapon;
-	UnitInventoryCondition.ExcludeWeaponCategory = default.SUPPRESSION_LW_INVALID_WEAPON_CATEGORIES;
-	Template.AbilityShooterConditions.AddItem(UnitInventoryCondition);
-	
+    AmmoCost = new class'X2AbilityCost_Ammo';
+    AmmoCost.iAmmo = 2;
+    AmmoCost.bFreeCost = true;
+    Template.AbilityCosts.AddItem(AmmoCost);
 
-	Template.AddShooterEffectExclusions();
+    AmmoCost = new class'X2AbilityCost_Ammo';
+    AmmoCost.iAmmo = 1;
+    Template.AbilityCosts.AddItem(AmmoCost);
+    
+    ActionPointCost = new class'X2AbilityCost_ActionPoints';
+    ActionPointCost.bConsumeAllPoints = true;
+    ActionPointCost.bFreeCost = true;
+    Template.AbilityCosts.AddItem(ActionPointCost);
+    
+    Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+    
+    UnitInventoryCondition = new class'X2Condition_UnitInventoryExpanded';
+    UnitInventoryCondition.RelevantSlot = eInvSlot_PrimaryWeapon;
+    UnitInventoryCondition.ExcludeWeaponCategory = default.SUPPRESSION_LW_INVALID_WEAPON_CATEGORIES;
+    Template.AbilityShooterConditions.AddItem(UnitInventoryCondition);
+    
+    Template.AddShooterEffectExclusions();
 
-	DoesNotHaveAbilityCondition = new class 'X2Condition_OwnerDoesNotHaveAbility';
-	DoesNotHaveAbilityCondition.AbilityName = 'DedicatedSuppression_LW';
+    DoesNotHaveAbilityCondition = new class 'X2Condition_OwnerDoesNotHaveAbility';
+    DoesNotHaveAbilityCondition.AbilityName = 'DedicatedSuppression_LW';
 
-	AbilityCondition = new class 'X2Condition_AbilityProperty';
-	AbilityCondition.OwnerHasSoldierAbilities.AddItem('DedicatedSuppression_LW');
-	
-	
-	SuppressedCondition = new class'X2Condition_UnitEffects';
-	SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
-	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
-	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
+    AbilityCondition = new class 'X2Condition_AbilityProperty';
+    AbilityCondition.OwnerHasSoldierAbilities.AddItem('DedicatedSuppression_LW');
+    
+    SuppressedCondition = new class'X2Condition_UnitEffects';
+    SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
+    SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
+    Template.AbilityShooterConditions.AddItem(SuppressedCondition);
 
-	ReserveActionPointsEffect = new class'X2Effect_ReserveActionPoints';
-	ReserveActionPointsEffect.ReserveType = 'Suppression';
-	Template.AddShooterEffect(ReserveActionPointsEffect);
+    ReserveActionPointsEffect = new class'X2Effect_ReserveActionPoints';
+    ReserveActionPointsEffect.ReserveType = 'Suppression';
+    Template.AddShooterEffect(ReserveActionPointsEffect);
 
-	Template.AbilityToHitCalc = default.DeadEye;
-	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitDisallowMindControlProperty);
-	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
-	Template.AbilityTargetStyle = default.SimpleSingleTarget;
-	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+    Template.AbilityToHitCalc = default.DeadEye;
+    Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitDisallowMindControlProperty);
+    Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
+    Template.AbilityTargetStyle = default.SimpleSingleTarget;
+    Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
 
+    // No Dedicated Suppression
+    SuppressionEffect = new class'X2Effect_Suppression';
+    SuppressionEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
+    SuppressionEffect.bRemoveWhenTargetDies = true;
+    SuppressionEffect.bRemoveWhenSourceDamaged = true;
+    SuppressionEffect.bBringRemoveVisualizationForward = true;
+    SuppressionEffect.DuplicateResponse = eDupe_Allow;
+    SuppressionEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage);
+    SuppressionEffect.SetSourceDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionSourceEffectDesc, Template.IconImage);
+    SuppressionEffect.TargetConditions.AddItem(DoesNotHaveAbilityCondition);
+    Template.AddTargetEffect(SuppressionEffect);
 
-	//nonsteadfast
-	SuppressionEffect = new class'X2Effect_Suppression';
-	SuppressionEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
-	SuppressionEffect.bRemoveWhenTargetDies = true;
-	SuppressionEffect.bRemoveWhenSourceDamaged = true;
-	SuppressionEffect.bBringRemoveVisualizationForward = true;
-	SuppressionEffect.DuplicateResponse=eDupe_Allow;
-	SuppressionEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage);
-	SuppressionEffect.SetSourceDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionSourceEffectDesc, Template.IconImage);
-	SuppressionEffect.TargetConditions.AddItem(DoesNotHaveAbilityCondition);
-	Template.AddTargetEffect(SuppressionEffect);
+    // Dedicated Suppression
+    SuppressionEffect = new class'X2Effect_Suppression';
+    SuppressionEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
+    SuppressionEffect.bRemoveWhenTargetDies = true;
+    SuppressionEffect.bRemoveWhenSourceDamaged = false;
+    SuppressionEffect.bBringRemoveVisualizationForward = true;
+    SuppressionEffect.DuplicateResponse = eDupe_Allow;
+    SuppressionEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage);
+    SuppressionEffect.SetSourceDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionSourceEffectDesc, Template.IconImage);
+    SuppressionEffect.TargetConditions.AddItem(AbilityCondition);
+    Template.AddTargetEffect(SuppressionEffect);
+    
+    if (default.SUPPRESSION_LW_AIM_MALUS < 0)
+    {
+        StatChangeEffect = new class'X2Effect_PersistentStatChange';
+        StatChangeEffect.AddPersistentStatChange(eStat_Offense, default.SUPPRESSION_LW_AIM_MALUS, modOP_Addition);
+        StatChangeEffect.DuplicateResponse = eDupe_Refresh;
+        StatChangeEffect.BuildPersistentEffect(default.SUPPRESSION_LW_AIM_MALUS_DURATION, false, true, false, eGameRule_PlayerTurnBegin);
+        StatChangeEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage, false,, Template.AbilitySourceName);
+        Template.AddTargetEffect(StatChangeEffect);
+    }
 
-	//steadfast
-	SuppressionEffect = new class'X2Effect_Suppression';
-	SuppressionEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
-	SuppressionEffect.bRemoveWhenTargetDies = true;
-	SuppressionEffect.bRemoveWhenSourceDamaged = false;
-	SuppressionEffect.bBringRemoveVisualizationForward = true;
-	SuppressionEffect.DuplicateResponse=eDupe_Allow;
-	SuppressionEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage);
-	SuppressionEffect.SetSourceDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionSourceEffectDesc, Template.IconImage);
-	SuppressionEffect.TargetConditions.AddItem(AbilityCondition);
-	Template.AddTargetEffect(SuppressionEffect);
-	Template.AdditionalAbilities.AddItem('SuppressionShot_LW');
-	Template.AdditionalAbilities.AddItem('LockdownBonuses');
-	Template.AdditionalAbilities.AddItem('MayhemBonuses');
+    Template.bIsASuppressionEffect = true;
+    // Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
+    Template.ActivationSpeech = 'Suppressing';
 
-	StatChangeEffect = new class'X2Effect_PersistentStatChange';
-	StatChangeEffect.AddPersistentStatChange(eStat_Offense, -15, modOP_Addition);
-	StatChangeEffect.BuildPersistentEffect(2, false, true, false, eGameRule_PlayerTurnBegin);
-	StatChangeEffect.duplicateResponse = eDupe_Refresh;
-	//StatChangeEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage);
-	Template.AddTargetEffect(StatChangeEffect);
+    Template.AssociatedPassives.AddItem('HoloTargeting');
 
-	Template.bIsASuppressionEffect = true;
-	//Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
-	Template.ActivationSpeech='Suppressing';
+    Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+    Template.BuildVisualizationFn = class'X2Ability_GrenadierAbilitySet'.static.SuppressionBuildVisualization;
+    Template.BuildAppliedVisualizationSyncFn = class'X2Ability_GrenadierAbilitySet'.static.SuppressionBuildVisualizationSync;
+    Template.CinescriptCameraType = "StandardSuppression";
 
-	Template.AssociatedPassives.AddItem('HoloTargeting');
+    Template.Hostility = eHostility_Offensive;
+    
+    Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+    Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+    Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	Template.BuildVisualizationFn = Suppression_BuildVisualization_LW;
-	Template.BuildAppliedVisualizationSyncFn = class'X2Ability_GrenadierAbilitySet'.static.SuppressionBuildVisualizationSync;
-	Template.CinescriptCameraType = "StandardSuppression";
+    Template.AdditionalAbilities.AddItem('SuppressionShot_LW');
+    Template.AdditionalAbilities.AddItem('SuppressionCleanse_LW');
 
-	Template.Hostility = eHostility_Offensive;
-	
-	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
-	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
-	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
-
-	return Template;	
+    return Template;
 }
 
+// static function Suppression_BuildVisualization_LW(XComGameState VisualizeGameState)
+// {
+// 	local XComGameStateHistory History;
+// 	local XComGameStateContext_Ability  Context;
+// 	local StateObjectReference          InteractingUnitRef;
+// 	local XGUnit						UnitVisualizer;
+// 	local XComUnitPawn					UnitPawn;
+// 	local XComWeapon					WeaponPawn;
 
-static function X2AbilityTemplate SuppressionShot_LW()
+// 	local VisualizationActionMetadata	EmptyTrack;
+// 	local VisualizationActionMetadata	BuildTrack;
+
+// 	local XComGameState_Ability         Ability;
+// 	local X2Action_PlaySoundAndFlyOver SoundAndFlyOver;
+
+// 	History = `XCOMHISTORY;
+
+// 	Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
+// 	InteractingUnitRef = Context.InputContext.SourceObject;
+
+// 	//Configure the visualization track for the shooter
+// 	//****************************************************************************************
+// 	BuildTrack = EmptyTrack;
+// 	BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+// 	BuildTrack.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
+// 	BuildTrack.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
+	
+// 	//check and see if there's any sort of animation for suppression
+// 	UnitVisualizer = XGUnit(BuildTrack.VisualizeActor);
+// 	if(UnitVisualizer != none)
+// 	{
+// 		UnitPawn = UnitVisualizer.GetPawn();
+// 		if(UnitPawn != none)
+// 		{
+// 			WeaponPawn = XComWeapon(UnitPawn.Weapon);
+// 			if(WeaponPawn != none)
+// 			{
+// 				if(!UnitPawn.GetAnimTreeController().CanPlayAnimation(GetSuppressAnimName(UnitPawn)))
+// 				{
+// 					// no playable animation, so use the default firing animation
+// 					WeaponPawn.WeaponSuppressionFireAnimSequenceName = WeaponPawn.WeaponFireAnimSequenceName;
+// 				}
+// 			}
+// 		}
+// 	}
+
+// 	class'X2Action_ExitCover'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded);
+// 	class'X2Action_StartSuppression'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded);
+
+// 	//****************************************************************************************
+// 	//Configure the visualization track for the target
+// 	InteractingUnitRef = Context.InputContext.PrimaryTarget;
+// 	Ability = XComGameState_Ability(History.GetGameStateForObjectID(Context.InputContext.AbilityRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
+// 	BuildTrack = EmptyTrack;
+// 	BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+// 	BuildTrack.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
+// 	BuildTrack.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
+// 	SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
+// 	SoundAndFlyOver.SetSoundAndFlyOverParameters(None, Ability.GetMyTemplate().LocFlyOverText, '', eColor_Bad);
+// 	if (XComGameState_Unit(BuildTrack.StateObject_OldState).ReserveActionPoints.Length != 0 && XComGameState_Unit(BuildTrack.StateObject_NewState).ReserveActionPoints.Length == 0)
+// 	{
+// 		SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
+// 		SoundAndFlyOver.SetSoundAndFlyOverParameters(none, class'XLocalizedData'.default.OverwatchRemovedMsg, '', eColor_Bad);
+// 	}
+// }
+
+// // code based on XComIdleAnimationStateMachine.state'Fire'.GetSuppressAnimName
+// static function Name GetSuppressAnimName(XComUnitPawn UnitPawn)
+// {
+// 	local XComWeapon Weapon;
+
+// 	Weapon = XComWeapon(UnitPawn.Weapon);
+// 	if( Weapon != None && UnitPawn.GetAnimTreeController().CanPlayAnimation(Weapon.WeaponSuppressionFireAnimSequenceName) )
+// 	{
+// 		return Weapon.WeaponSuppressionFireAnimSequenceName;
+// 	}
+// 	else if( UnitPawn.GetAnimTreeController().CanPlayAnimation(class'XComWeapon'.default.WeaponSuppressionFireAnimSequenceName) )
+// 	{
+// 		return class'XComWeapon'.default.WeaponSuppressionFireAnimSequenceName;
+// 	}
+// 	return '';
+// }
+
+// static function X2AbilityTemplate SuppressionShot_LW()
+// {
+// 	local X2AbilityTemplate                 Template;	
+// 	local X2AbilityCost_ReserveActionPoints ReserveActionPointCost;
+// 	local X2AbilityToHitCalc_StandardAim    StandardAim;
+// 	local X2Condition_Visibility            TargetVisibilityCondition;
+// 	local X2AbilityTrigger_Event	        Trigger;
+// 	local X2Condition_UnitEffectsWithAbilitySource TargetEffectCondition;
+// 	local X2Effect_RemoveEffects            RemoveSuppression;
+// 	local X2Effect                          ShotEffect;
+
+// 	`CREATE_X2ABILITY_TEMPLATE(Template, 'SuppressionShot_LW');
+
+// 	Template.bDontDisplayInAbilitySummary = true;
+// 	ReserveActionPointCost = new class'X2AbilityCost_ReserveActionPoints';
+// 	ReserveActionPointCost.iNumPoints = 1;
+// 	ReserveActionPointCost.AllowedTypes.AddItem('Suppression');
+// 	Template.AbilityCosts.AddItem(ReserveActionPointCost);
+	
+// 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
+// 	StandardAim.BuiltInHitMod = default.SUPPRESSION_LW_SHOT_AIM_BONUS;
+// 	StandardAim.bReactionFire = true;
+
+// 	Template.AbilityToHitCalc = StandardAim;
+// 	Template.AbilityToHitOwnerOnMissCalc = StandardAim;
+
+// 	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+
+// 	TargetEffectCondition = new class'X2Condition_UnitEffectsWithAbilitySource';
+// 	TargetEffectCondition.AddRequireEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsNotSuppressed');
+// 	Template.AbilityTargetConditions.AddItem(TargetEffectCondition);
+
+// 	TargetVisibilityCondition = new class'X2Condition_Visibility';	
+// 	TargetVisibilityCondition.bRequireGameplayVisible = true;
+// 	Template.AbilityTargetConditions.AddItem(TargetVisibilityCondition);
+
+// 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+// 	Template.bAllowAmmoEffects = true;
+
+// 	RemoveSuppression = new class'X2Effect_RemoveEffects';
+// 	RemoveSuppression.EffectNamesToRemove.AddItem(class'X2Effect_Suppression'.default.EffectName);
+// 	RemoveSuppression.bCheckSource = true;
+// 	RemoveSuppression.SetupEffectOnShotContextResult(true, true);
+// 	Template.AddShooterEffect(RemoveSuppression);
+	
+// 	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+
+// 	//Trigger on movement - interrupt the move
+// 	Trigger = new class'X2AbilityTrigger_Event';
+// 	Trigger.EventObserverClass = class'X2TacticalGameRuleset_MovementObserver';
+// 	Trigger.MethodName = 'InterruptGameState';
+// 	Template.AbilityTriggers.AddItem(Trigger);
+	
+// 	Template.AbilitySourceName = 'eAbilitySource_Standard';
+// 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+// 	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_supression";
+// 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_LIEUTENANT_PRIORITY;
+// 	Template.bDisplayInUITooltip = false;
+// 	Template.bDisplayInUITacticalText = false;
+
+// 	//don't want to exit cover, we are already in suppression/alert mode.
+// 	Template.bSkipExitCoverWhenFiring = true;
+
+// 	Template.bAllowFreeFireWeaponUpgrade = true;
+// //  Put holo target effect first because if the target dies from this shot, it will be too late to notify the effect.
+// 	ShotEffect = class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect();
+// 	ShotEffect.TargetConditions.AddItem(class'X2Ability_DefaultAbilitySet'.static.OverwatchTargetEffectsCondition());
+// 	Template.AddTargetEffect(ShotEffect);
+// 	//  Various Soldier ability specific effects - effects check for the ability before applying	
+// 	ShotEffect = class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect();
+// 	ShotEffect.TargetConditions.AddItem(class'X2Ability_DefaultAbilitySet'.static.OverwatchTargetEffectsCondition());
+// 	Template.AddTargetEffect(ShotEffect);
+	
+// 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+// 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+// 	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+// 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+
+// 	return Template;	
+// }
+
+static function X2AbilityTemplate AddSuppressionShot(name DataName, optional bool bAreaSuppression = false)
 {
-	local X2AbilityTemplate                 Template;	
-	local X2AbilityCost_ReserveActionPoints ReserveActionPointCost;
-	local X2AbilityToHitCalc_StandardAim    StandardAim;
-	local X2Condition_Visibility            TargetVisibilityCondition;
-	local X2AbilityTrigger_Event	        Trigger;
-	local X2Condition_UnitEffectsWithAbilitySource TargetEffectCondition;
-	local X2Effect_RemoveEffects            RemoveSuppression;
-	local X2Effect                          ShotEffect;
+    local X2AbilityTemplate                     Template;
+    local X2AbilityToHitCalc_StandardAim        StandardAim;
+    local X2AbilityTrigger_EventListener        Trigger;
+    local X2Condition_UnitEffectsWithAbilitySource TargetEffectCondition;
+    local X2AbilityCost_Ammo                    AmmoCost;
+    local X2AbilityCost_ReserveActionPoints     ReserveActionPointCost;
+    local X2Effect_RemoveEffects                RemoveSuppression;
+    local X2Effect_RemoveAreaSuppressionEffect  RemoveAreaSuppression;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'SuppressionShot_LW');
+    `CREATE_X2ABILITY_TEMPLATE(Template, DataName);
 
-	Template.bDontDisplayInAbilitySummary = true;
-	ReserveActionPointCost = new class'X2AbilityCost_ReserveActionPoints';
-	ReserveActionPointCost.iNumPoints = 1;
-	ReserveActionPointCost.AllowedTypes.AddItem('Suppression');
-	Template.AbilityCosts.AddItem(ReserveActionPointCost);
-	
-	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
-	StandardAim.BuiltInHitMod = default.SUPPRESSION_LW_SHOT_AIM_BONUS;
-	StandardAim.bReactionFire = true;
+    Template.AbilitySourceName = 'eAbilitySource_Perk';
+    Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+    Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_supression";
+    Template.bDisplayInUITacticalText = false;
+    Template.bDisplayInUITooltip = false;
+    Template.bDontDisplayInAbilitySummary = true;
+    Template.bHideOnClassUnlock = true;
 
-	Template.AbilityToHitCalc = StandardAim;
-	Template.AbilityToHitOwnerOnMissCalc = StandardAim;
+    Template.AbilityTargetStyle = default.SimpleSingleTarget;
 
-	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+    Trigger = new class'X2AbilityTrigger_EventListener';
+    Trigger.ListenerData.EventID = 'ObjectMoved';
+    Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+    Trigger.ListenerData.Filter = eFilter_None;
+    Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalOverwatchListener;
+    Template.AbilityTriggers.AddItem(Trigger);
 
-	TargetEffectCondition = new class'X2Condition_UnitEffectsWithAbilitySource';
-	TargetEffectCondition.AddRequireEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsNotSuppressed');
-	Template.AbilityTargetConditions.AddItem(TargetEffectCondition);
+    Trigger = new class'X2AbilityTrigger_EventListener';
+    Trigger.ListenerData.EventID = 'AbilityActivated';
+    Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+    Trigger.ListenerData.Filter = eFilter_None;
+    Trigger.ListenerData.EventFn = CoveringFireAttackListener;
+    Template.AbilityTriggers.AddItem(Trigger);
 
-	TargetVisibilityCondition = new class'X2Condition_Visibility';	
-	TargetVisibilityCondition.bRequireGameplayVisible = true;
-	Template.AbilityTargetConditions.AddItem(TargetVisibilityCondition);
+    Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+    Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
+    Template.AbilityTargetConditions.AddItem(class'X2Ability_DefaultAbilitySet'.static.OverwatchTargetEffectsCondition());
 
-	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
-	Template.bAllowAmmoEffects = true;
+    Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+    Template.AddShooterEffectExclusions();
 
-	RemoveSuppression = new class'X2Effect_RemoveEffects';
-	RemoveSuppression.EffectNamesToRemove.AddItem(class'X2Effect_Suppression'.default.EffectName);
-	RemoveSuppression.bCheckSource = true;
-	RemoveSuppression.SetupEffectOnShotContextResult(true, true);
-	Template.AddShooterEffect(RemoveSuppression);
-	
-	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+    AmmoCost = new class'X2AbilityCost_Ammo';
+    AmmoCost.iAmmo = 1;
+    Template.AbilityCosts.AddItem(AmmoCost);
 
-	//Trigger on movement - interrupt the move
-	Trigger = new class'X2AbilityTrigger_Event';
-	Trigger.EventObserverClass = class'X2TacticalGameRuleset_MovementObserver';
-	Trigger.MethodName = 'InterruptGameState';
-	Template.AbilityTriggers.AddItem(Trigger);
-	
-	Template.AbilitySourceName = 'eAbilitySource_Standard';
-	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
-	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_supression";
-	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_LIEUTENANT_PRIORITY;
-	Template.bDisplayInUITooltip = false;
-	Template.bDisplayInUITacticalText = false;
+    ReserveActionPointCost = new class'X2AbilityCost_ReserveActionPoints';
+    ReserveActionPointCost.iNumPoints = 1;
+    ReserveActionPointCost.AllowedTypes.AddItem('Suppression');
+    Template.AbilityCosts.AddItem(ReserveActionPointCost);
 
-	//don't want to exit cover, we are already in suppression/alert mode.
-	Template.bSkipExitCoverWhenFiring = true;
+    Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
+    Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
+    Template.AddTargetEffect(default.WeaponUpgradeMissDamage);
 
-	Template.bAllowFreeFireWeaponUpgrade = true;	
-//  Put holo target effect first because if the target dies from this shot, it will be too late to notify the effect.
-	ShotEffect = class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect();
-	ShotEffect.TargetConditions.AddItem(class'X2Ability_DefaultAbilitySet'.static.OverwatchTargetEffectsCondition());
-	Template.AddTargetEffect(ShotEffect);
-	//  Various Soldier ability specific effects - effects check for the ability before applying	
-	ShotEffect = class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect();
-	ShotEffect.TargetConditions.AddItem(class'X2Ability_DefaultAbilitySet'.static.OverwatchTargetEffectsCondition());
-	Template.AddTargetEffect(ShotEffect);
-	
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+    if (bAreaSuppression)
+    {
+        StandardAim = new class'X2AbilityToHitCalc_StandardAim';
+        StandardAim.bReactionFire = true;
+        StandardAim.BuiltInHitMod = default.AREA_SUPPRESSION_LW_SHOT_AIM_BONUS;
+        StandardAim.bIgnoreCoverBonus = false;
+        Template.AbilityToHitCalc = StandardAim;
 
-	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
-	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+        TargetEffectCondition = new class'X2Condition_UnitEffectsWithAbilitySource';
+        TargetEffectCondition.AddRequireEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsNotSuppressed');
+        Template.AbilityTargetConditions.AddItem(TargetEffectCondition);
 
-	return Template;	
+        RemoveAreaSuppression = new class'X2Effect_RemoveAreaSuppressionEffect';
+        RemoveAreaSuppression.EffectNamesToRemove.AddItem(class'X2Effect_AreaSuppression'.default.EffectName);
+        RemoveAreaSuppression.bCheckSource =  true;
+        RemoveAreaSuppression.SetupEffectOnShotContextResult(true, true);
+        Template.AddTargetEffect(RemoveAreaSuppression);
+    }
+    else
+    {
+        StandardAim = new class'X2AbilityToHitCalc_StandardAim';
+        StandardAim.bReactionFire = true;
+        StandardAim.BuiltInHitMod = default.SUPPRESSION_LW_SHOT_AIM_BONUS;
+        StandardAim.bIgnoreCoverBonus = false;
+        Template.AbilityToHitCalc = StandardAim;
+
+        TargetEffectCondition = new class'X2Condition_UnitEffectsWithAbilitySource';
+        TargetEffectCondition.AddRequireEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsNotSuppressed');
+        Template.AbilityTargetConditions.AddItem(TargetEffectCondition);
+
+        RemoveSuppression = new class'X2Effect_RemoveEffects';
+        RemoveSuppression.EffectNamesToRemove.AddItem(class'X2Effect_Suppression'.default.EffectName);
+        RemoveSuppression.bCheckSource = true;
+        RemoveSuppression.SetupEffectOnShotContextResult(true, true);
+        Template.AddShooterEffect(RemoveSuppression);
+    }
+
+    Template.bAllowAmmoEffects = true;
+    Template.bAllowBonusWeaponEffects = true;
+
+    Template.bSkipExitCoverWhenFiring = true;
+
+    Template.Hostility = eHostility_Offensive;
+    Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+    Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+    Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+    Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+    Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+
+    Template.bShowActivation = false;
+    Template.bFrameEvenWhenUnitIsHidden = true;
+
+    return Template;
 }
 
-static function Suppression_BuildVisualization_LW(XComGameState VisualizeGameState)
+static function EventListenerReturn CoveringFireAttackListener(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
-	local XComGameStateHistory History;
-	local XComGameStateContext_Ability  Context;
-	local StateObjectReference          InteractingUnitRef;
-	local XGUnit						UnitVisualizer;
-	local XComUnitPawn					UnitPawn;
-	local XComWeapon					WeaponPawn;
+    local XComGameState_Ability         CallbackAbilityState;
+    local XComGameState_Unit            SourceUnit, TargetUnit;
+    local XComGameStateContext_Ability  AbilityContext;
+    local X2AbilityTemplate             AbilityTemplate;
 
-	local VisualizationActionMetadata	EmptyTrack;
-	local VisualizationActionMetadata	BuildTrack;
+    CallbackAbilityState = XComGameState_Ability(CallbackData);
+    AbilityContext = XComGameStateContext_Ability(GameState.GetContext());
+    if (AbilityContext != none && AbilityContext.InterruptionStatus == eInterruptionStatus_Interrupt && CallbackAbilityState != none)
+    {
+        SourceUnit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(CallbackAbilityState.OwnerStateObject.ObjectID));
+        if (SourceUnit != none && SourceUnit.HasSoldierAbility('CoveringFire', true))
+        {
+            TargetUnit = XComGameState_Unit(EventSource);
+            AbilityTemplate = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager().FindAbilityTemplate(AbilityContext.InputContext.AbilityTemplateName);
+            if (AbilityTemplate != none && AbilityTemplate.Hostility == eHostility_Offensive)
+            {
+                if (CallbackAbilityState.CanActivateAbilityForObserverEvent(TargetUnit) == 'AA_Success')
+                {
+                    CallbackAbilityState.AbilityTriggerAgainstSingleTarget(TargetUnit.GetReference(), false);
+                }
+            }
+        }
+    }
 
-	local XComGameState_Ability         Ability;
-	local X2Action_PlaySoundAndFlyOver SoundAndFlyOver;
-
-	History = `XCOMHISTORY;
-
-	Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
-	InteractingUnitRef = Context.InputContext.SourceObject;
-
-	//Configure the visualization track for the shooter
-	//****************************************************************************************
-	BuildTrack = EmptyTrack;
-	BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
-	BuildTrack.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
-	BuildTrack.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
-	
-	//check and see if there's any sort of animation for suppression
-	UnitVisualizer = XGUnit(BuildTrack.VisualizeActor);
-	if(UnitVisualizer != none)
-	{
-		UnitPawn = UnitVisualizer.GetPawn();
-		if(UnitPawn != none)
-		{
-			WeaponPawn = XComWeapon(UnitPawn.Weapon);
-			if(WeaponPawn != none)
-			{
-				if(!UnitPawn.GetAnimTreeController().CanPlayAnimation(GetSuppressAnimName(UnitPawn)))
-				{
-					// no playable animation, so use the default firing animation
-					WeaponPawn.WeaponSuppressionFireAnimSequenceName = WeaponPawn.WeaponFireAnimSequenceName;
-				}
-			}
-		}
-	}
-
-	class'X2Action_ExitCover'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded);
-	class'X2Action_StartSuppression'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded);
-
-	//****************************************************************************************
-	//Configure the visualization track for the target
-	InteractingUnitRef = Context.InputContext.PrimaryTarget;
-	Ability = XComGameState_Ability(History.GetGameStateForObjectID(Context.InputContext.AbilityRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
-	BuildTrack = EmptyTrack;
-	BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
-	BuildTrack.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
-	BuildTrack.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
-	SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
-	SoundAndFlyOver.SetSoundAndFlyOverParameters(None, Ability.GetMyTemplate().LocFlyOverText, '', eColor_Bad);
-	if (XComGameState_Unit(BuildTrack.StateObject_OldState).ReserveActionPoints.Length != 0 && XComGameState_Unit(BuildTrack.StateObject_NewState).ReserveActionPoints.Length == 0)
-	{
-		SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
-		SoundAndFlyOver.SetSoundAndFlyOverParameters(none, class'XLocalizedData'.default.OverwatchRemovedMsg, '', eColor_Bad);
-	}
+    return ELR_NoInterrupt;
 }
 
-// code based on XComIdleAnimationStateMachine.state'Fire'.GetSuppressAnimName
-static function Name GetSuppressAnimName(XComUnitPawn UnitPawn)
+static function X2AbilityTemplate AddSuppressionCleanse(name DataName, optional bool bAreaSuppression = false)
 {
-	local XComWeapon Weapon;
+    local X2AbilityTemplate                     Template;
+    local X2AbilityTrigger_EventListener        Trigger;
+    local X2Condition_UnitEffectsWithAbilitySource TargetEffectCondition;
+    local X2AbilityCost_Ammo                    AmmoCost;
+    local X2AbilityCost_ReserveActionPoints     ReserveActionPointCost;
+    local X2Effect_RemoveEffects                RemoveSuppression;
+    local X2Effect_RemoveAreaSuppressionEffect  RemoveAreaSuppression;
 
-	Weapon = XComWeapon(UnitPawn.Weapon);
-	if( Weapon != None && UnitPawn.GetAnimTreeController().CanPlayAnimation(Weapon.WeaponSuppressionFireAnimSequenceName) )
-	{
-		return Weapon.WeaponSuppressionFireAnimSequenceName;
-	}
-	else if( UnitPawn.GetAnimTreeController().CanPlayAnimation(class'XComWeapon'.default.WeaponSuppressionFireAnimSequenceName) )
-	{
-		return class'XComWeapon'.default.WeaponSuppressionFireAnimSequenceName;
-	}
-	return '';
+    `CREATE_X2ABILITY_TEMPLATE(Template, DataName);
+
+    Template.AbilitySourceName = 'eAbilitySource_Perk';
+    Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+    Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_pistol_circle";
+    Template.bDisplayInUITacticalText = false;
+    Template.bDisplayInUITooltip = false;
+    Template.bDontDisplayInAbilitySummary = true;
+    Template.bHideOnClassUnlock = true;
+
+    Template.AbilityToHitCalc = default.DeadEye;
+    Template.AbilityTargetStyle = default.SimpleSingleTarget;
+
+    Trigger = new class'X2AbilityTrigger_EventListener';
+    Trigger.ListenerData.EventID = 'UnitMoveFinished';
+    Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+    Trigger.ListenerData.Filter = eFilter_None;
+    Trigger.ListenerData.EventFn = SuppressionCleanseListener;
+    Trigger.ListenerData.Priority = 20;
+    Template.AbilityTriggers.AddItem(Trigger);
+
+    Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+    Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+    if (bAreaSuppression)
+    {
+        TargetEffectCondition = new class'X2Condition_UnitEffectsWithAbilitySource';
+        TargetEffectCondition.AddRequireEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsNotSuppressed');
+        Template.AbilityTargetConditions.AddItem(TargetEffectCondition);
+
+        RemoveAreaSuppression = new class'X2Effect_RemoveAreaSuppressionEffect';
+        RemoveAreaSuppression.EffectNamesToRemove.AddItem(class'X2Effect_AreaSuppression'.default.EffectName);
+        RemoveAreaSuppression.bCheckSource =  true;
+        RemoveAreaSuppression.SetupEffectOnShotContextResult(true, true);
+        Template.AddTargetEffect(RemoveAreaSuppression);
+    }
+    else
+    {
+        TargetEffectCondition = new class'X2Condition_UnitEffectsWithAbilitySource';
+        TargetEffectCondition.AddRequireEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsNotSuppressed');
+        Template.AbilityTargetConditions.AddItem(TargetEffectCondition);
+
+        RemoveSuppression = new class'X2Effect_RemoveEffects';
+        RemoveSuppression.EffectNamesToRemove.AddItem(class'X2Effect_Suppression'.default.EffectName);
+        RemoveSuppression.bCheckSource = true;
+        RemoveSuppression.SetupEffectOnShotContextResult(true, true);
+        Template.AddShooterEffect(RemoveSuppression);
+    }
+
+    Template.bAllowAmmoEffects = false;
+    Template.bAllowBonusWeaponEffects = false;
+
+    Template.bSkipExitCoverWhenFiring = true;
+    Template.bSkipFireAction = true;
+
+    Template.Hostility = eHostility_Neutral;
+    Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+    Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+    Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+    Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+    Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+
+    Template.bShowActivation = false;
+    Template.bFrameEvenWhenUnitIsHidden = true;
+
+    return Template;
+}
+
+static function EventListenerReturn SuppressionCleanseListener(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+    local XComGameState_Ability         CallbackAbilityState;
+    local XComGameState_Unit            TargetUnit;
+    local XComGameStateContext_Ability  AbilityContext;
+
+    AbilityContext = XComGameStateContext_Ability(GameState.GetContext());
+    if (AbilityContext != none && AbilityContext.InterruptionStatus != eInterruptionStatus_Interrupt)
+    {
+        CallbackAbilityState = XComGameState_Ability(CallbackData);
+        TargetUnit = XComGameState_Unit(EventData);
+        if (CallbackAbilityState != none && TargetUnit != none)
+        {
+            if (CallbackAbilityState.CanActivateAbilityForObserverEvent(TargetUnit) == 'AA_Success')
+            {
+                CallbackAbilityState.AbilityTriggerAgainstSingleTarget(TargetUnit.GetReference(), false);
+                return ELR_NoInterrupt;
+            }
+        }
+    }
+
+    return ELR_NoInterrupt;
 }
 
 static function X2AbilityTemplate AddAreaSuppressionAbility()
 {
-	local X2AbilityTemplate								Template;
-	local X2AbilityCost_Ammo							AmmoCost;
-	local X2AbilityCost_ActionPoints					ActionPointCost;
-	local X2AbilityMultiTarget_Radius					RadiusMultiTarget;
-	local X2Effect_ReserveActionPoints					ReserveActionPointsEffect;
-	local X2Condition_UnitInventory						InventoryCondition, InventoryCondition2;
-	local X2Effect_AreaSuppression						SuppressionEffect;
-	local X2AbilityTarget_Single						PrimaryTarget;
-	local AbilityGrantedBonusRadius						DangerZoneBonus;
-	local X2Condition_UnitProperty						ShooterCondition;
-	local X2Condition_UnitEffects						SuppressedCondition;
-	local X2Condition_OwnerDoesNotHaveAbility			DoesNotHaveAbilityCondition;
-	local X2Condition_AbilityProperty					AbilityCondition;
+    local X2AbilityTemplate                             Template;
+    local X2AbilityCost_Ammo                            AmmoCost;
+    local X2AbilityCost_ActionPoints                    ActionPointCost;
+    local X2AbilityMultiTarget_Radius                   RadiusMultiTarget;
+    local X2Effect_ReserveActionPoints                  ReserveActionPointsEffect;
+    local X2Condition_UnitInventoryExpanded             UnitInventoryCondition;
+    local X2Effect_AreaSuppression                      SuppressionEffect;
+    local X2AbilityTarget_Single                        PrimaryTarget;
+    local X2Condition_UnitProperty                      ShooterCondition;
+    local X2Condition_UnitEffects                       SuppressedCondition;
+    local X2Condition_OwnerDoesNotHaveAbility           DoesNotHaveAbilityCondition;
+    local X2Condition_AbilityProperty                   AbilityCondition;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'AreaSuppression');
-	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AreaSuppression";
-	Template.AbilitySourceName = 'eAbilitySource_Perk';
-	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
-	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_LIEUTENANT_PRIORITY;
-	Template.Hostility = eHostility_Offensive;
-	Template.bDisplayInUITooltip = false;
-	Template.AbilityToHitCalc = default.DeadEye;
-	Template.bCrossClassEligible = false;
-	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
-	Template.ActivationSpeech='Suppressing';
-	Template.bIsASuppressionEffect = true;
-	Template.bFriendlyFireWarning = false;
+    `CREATE_X2ABILITY_TEMPLATE(Template, 'AreaSuppression');
+    Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AreaSuppression";
+    Template.AbilitySourceName = 'eAbilitySource_Perk';
+    Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
+    Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_LIEUTENANT_PRIORITY;
+    Template.Hostility = eHostility_Offensive;
+    Template.bDisplayInUITooltip = false;
+    Template.AbilityToHitCalc = default.DeadEye;
+    Template.bCrossClassEligible = false;
+    Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+    Template.ActivationSpeech = 'Suppressing';
+    Template.bIsASuppressionEffect = true;
+    Template.bFriendlyFireWarning = false;
 
-	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);	
-	Template.AddShooterEffectExclusions();
-	SuppressedCondition = new class'X2Condition_UnitEffects';
-	SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
-	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
-	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
+    Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+    Template.AddShooterEffectExclusions();
+    SuppressedCondition = new class'X2Condition_UnitEffects';
+    SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
+    SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
+    Template.AbilityShooterConditions.AddItem(SuppressedCondition);
 
-	ShooterCondition=new class'X2Condition_UnitProperty';
-	ShooterCondition.ExcludeConcealed = true;
-	Template.AbilityShooterConditions.AddItem(ShooterCondition);
+    ShooterCondition=new class'X2Condition_UnitProperty';
+    ShooterCondition.ExcludeConcealed = true;
+    Template.AbilityShooterConditions.AddItem(ShooterCondition);
 
-	Template.AssociatedPassives.AddItem('HoloTargeting');
+    Template.AssociatedPassives.AddItem('HoloTargeting');
 
-	InventoryCondition = new class'X2Condition_UnitInventory';
-	InventoryCondition.RelevantSlot=eInvSlot_PrimaryWeapon;
-	InventoryCondition.ExcludeWeaponCategory = 'shotgun';
-	Template.AbilityShooterConditions.AddItem(InventoryCondition);
+    UnitInventoryCondition = new class'X2Condition_UnitInventoryExpanded';
+    UnitInventoryCondition.RelevantSlot = eInvSlot_PrimaryWeapon;
+    UnitInventoryCondition.ExcludeWeaponCategory = default.SUPPRESSION_LW_INVALID_WEAPON_CATEGORIES;
+    Template.AbilityShooterConditions.AddItem(UnitInventoryCondition);
 
-	InventoryCondition2 = new class'X2Condition_UnitInventory';
-	InventoryCondition2.RelevantSlot=eInvSlot_PrimaryWeapon;
-	InventoryCondition2.ExcludeWeaponCategory = 'sniper_rifle';
-	Template.AbilityShooterConditions.AddItem(InventoryCondition2);
+    AmmoCost = new class'X2AbilityCost_Ammo';
+    AmmoCost.iAmmo = default.AREA_SUPPRESSION_AMMO_COST;
+    AmmoCost.bFreeCost = true;
+    Template.AbilityCosts.AddItem(AmmoCost);
 
-	AmmoCost = new class'X2AbilityCost_Ammo';	
-	AmmoCost.iAmmo = default.AREA_SUPPRESSION_AMMO_COST;
-	AmmoCost.bFreeCost = true;
-	Template.AbilityCosts.AddItem(AmmoCost);
+    AmmoCost = new class'X2AbilityCost_Ammo';
+    AmmoCost.iAmmo = Max(0, default.AREA_SUPPRESSION_AMMO_COST - 1);
+    Template.AbilityCosts.AddItem(AmmoCost);
 
-	AmmoCost = new class'X2AbilityCost_Ammo';	
-	AmmoCost.iAmmo = max(default.AREA_SUPPRESSION_AMMO_COST-1,0);
-	Template.AbilityCosts.AddItem(AmmoCost);
+    ActionPointCost = new class'X2AbilityCost_ActionPoints';
+    ActionPointCost.bConsumeAllPoints = true;   //  this will guarantee the unit has at least 1 action point
+    ActionPointCost.bFreeCost = true;           //  ReserveActionPoints effect will take all action points away
+    Template.AbilityCosts.AddItem(ActionPointCost);
 
-	ActionPointCost = new class'X2AbilityCost_ActionPoints';
-	ActionPointCost.bConsumeAllPoints = true;   //  this will guarantee the unit has at least 1 action point
-	ActionPointCost.bFreeCost = true;           //  ReserveActionPoints effect will take all action points away
-	Template.AbilityCosts.AddItem(ActionPointCost);
+    ReserveActionPointsEffect = new class'X2Effect_ReserveActionPoints';
+    ReserveActionPointsEffect.ReserveType = 'Suppression';
+    ReserveActionPointsEffect.NumPoints = default.AREA_SUPPRESSION_MAX_SHOTS;
+    Template.AddShooterEffect(ReserveActionPointsEffect);
 
-	ReserveActionPointsEffect = new class'X2Effect_ReserveActionPoints';
-	ReserveActionPointsEffect.ReserveType = 'Suppression';
-	ReserveActionPointsEffect.NumPoints = default.AREA_SUPPRESSION_MAX_SHOTS;
-	Template.AddShooterEffect(ReserveActionPointsEffect);
+    Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitOnlyProperty);
+    Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
 
-	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitOnlyProperty);
-	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
+    PrimaryTarget = new class'X2AbilityTarget_Single';
+    PrimaryTarget.OnlyIncludeTargetsInsideWeaponRange = false;
+    PrimaryTarget.bAllowInteractiveObjects = false;
+    PrimaryTarget.bAllowDestructibleObjects = false;
+    PrimaryTarget.bIncludeSelf = false;
+    PrimaryTarget.bShowAOE = true;
+    Template.AbilityTargetSTyle = PrimaryTarget;
 
-	PrimaryTarget = new class'X2AbilityTarget_Single';
-	PrimaryTarget.OnlyIncludeTargetsInsideWeaponRange = false;
-	PrimaryTarget.bAllowInteractiveObjects = false;
-	PrimaryTarget.bAllowDestructibleObjects = false;
-	PrimaryTarget.bIncludeSelf = false;
-	PrimaryTarget.bShowAOE = true;
-	Template.AbilityTargetSTyle = PrimaryTarget;
+    RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
+    RadiusMultiTarget.bIgnoreBlockingCover = true;
+    RadiusMultiTarget.bAllowDeadMultiTargetUnits = false;
+    RadiusMultiTarget.bExcludeSelfAsTargetIfWithinRadius = true;
+    RadiusMultiTarget.bUseWeaponRadius = false;
+    RadiusMultiTarget.ftargetradius = default.AREA_SUPPRESSION_RADIUS;
+    RadousMultiTarget.AddAbilityBonusRadius('DangerZone', default.DANGER_ZONE_BONUS_RADIUS);
+    Template.AbilityMultiTargetStyle = RadiusMultiTarget;
+    
+    Template.AbilityMultiTargetConditions.AddItem(default.LivingHostileUnitOnlyProperty);
 
-	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
-	RadiusMultiTarget.bIgnoreBlockingCover = true;
-	RadiusMultiTarget.bAllowDeadMultiTargetUnits = false;
-	RadiusMultiTarget.bExcludeSelfAsTargetIfWithinRadius = true;
-	RadiusMultiTarget.bUseWeaponRadius = false;
-	RadiusMultiTarget.ftargetradius = default.AREA_SUPPRESSION_RADIUS;
-	
-	DangerZoneBonus.RequiredAbility = 'DangerZone';
-	DangerZoneBonus.fBonusRadius = default.DANGER_ZONE_BONUS_RADIUS;
-	RadiusMultiTarget.AbilityBonusRadii.AddItem (DangerZoneBonus);
-	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
-	
-	Template.AbilityMultiTargetConditions.AddItem(default.LivingHostileUnitOnlyProperty);
+    DoesNotHaveAbilityCondition = new class 'X2Condition_OwnerDoesNotHaveAbility';
+    DoesNotHaveAbilityCondition.AbilityName = 'DedicatedSuppression_LW';
 
-	DoesNotHaveAbilityCondition = new class 'X2Condition_OwnerDoesNotHaveAbility';
-	DoesNotHaveAbilityCondition.AbilityName = 'DedicatedSuppression_LW';
+    AbilityCondition = new class 'X2Condition_AbilityProperty';
+    AbilityCondition.OwnerHasSoldierAbilities.AddItem('DedicatedSuppression_LW');
 
-	AbilityCondition = new class 'X2Condition_AbilityProperty';
-	AbilityCondition.OwnerHasSoldierAbilities.AddItem('DedicatedSuppression_LW');
+    // No Dedicated Suppression
+    SuppressionEffect = new class'X2Effect_AreaSuppression';
+    SuppressionEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
+    SuppressionEffect.bRemoveWhenTargetDies = true;
+    SuppressionEffect.bRemoveWhenSourceDamaged = true;
+    SuppressionEffect.bBringRemoveVisualizationForward = true;
+    SuppressionEffect.DuplicateResponse = eDupe_Allow;
+    SuppressionEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage);
+    SuppressionEffect.SetSourceDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionSourceEffectDesc, Template.IconImage);
+    SuppressionEffect.TargetConditions.AddItem(DoesNotHaveAbilityCondition);
+    
+    Template.AddTargetEffect(SuppressionEffect);
+    Template.AddMultiTargetEffect(SuppressionEffect);
+    
+    // Dedicated Suppression
+    SuppressionEffect = new class'X2Effect_AreaSuppression';
+    SuppressionEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
+    SuppressionEffect.bRemoveWhenTargetDies = true;
+    SuppressionEffect.bRemoveWhenSourceDamaged = false;
+    SuppressionEffect.bBringRemoveVisualizationForward = true;
+    SuppressionEffect.DuplicateResponse = eDupe_Allow;
+    SuppressionEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage);
+    SuppressionEffect.SetSourceDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionSourceEffectDesc, Template.IconImage);
+    SuppressionEffect.TargetConditions.AddItem(AbilityCondition);
 
-	//First the non-steadfast effect
+    Template.AddTargetEffect(SuppressionEffect);
+    Template.AddMultiTargetEffect(SuppressionEffect);
 
-	SuppressionEffect = new class'X2Effect_AreaSuppression';
-	SuppressionEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
-	SuppressionEffect.bRemoveWhenTargetDies = true;
-	SuppressionEffect.bRemoveWhenSourceDamaged = true;
-	SuppressionEffect.bBringRemoveVisualizationForward = true;
-	SuppressionEffect.DuplicateResponse=eDupe_Allow;
-	SuppressionEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage);
-	SuppressionEffect.SetSourceDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionSourceEffectDesc, Template.IconImage);
-	SuppressionEffect.TargetConditions.AddItem(DoesNotHaveAbilityCondition);
-	
-	Template.AddTargetEffect(SuppressionEffect);
-	Template.AddMultiTargetEffect(SuppressionEffect);
-	
-	//Then the steadfast version
-	SuppressionEffect = new class'X2Effect_AreaSuppression';
-	SuppressionEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
-	SuppressionEffect.bRemoveWhenTargetDies = true;
-	SuppressionEffect.bRemoveWhenSourceDamaged = false;
-	SuppressionEffect.bBringRemoveVisualizationForward = true;
-	SuppressionEffect.DuplicateResponse=eDupe_Allow;
-	SuppressionEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage);
-	SuppressionEffect.SetSourceDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionSourceEffectDesc, Template.IconImage);
-	SuppressionEffect.TargetConditions.AddItem(AbilityCondition);
+    Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
+    Template.AddMultiTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
+    
+    Template.TargetingMethod = class'X2TargetingMethod_AreaSuppression';
 
-	Template.AddTargetEffect(SuppressionEffect);
-	Template.AddMultiTargetEffect(SuppressionEffect);
+    Template.BuildVisualizationFn = AreaSuppression_BuildVisualization;
+    Template.BuildAppliedVisualizationSyncFn = AreaSuppression_BuildVisualizationSync;
+    Template.CinescriptCameraType = "StandardSuppression";
+    Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+    
+    Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+    Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+    Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 
-	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
-	Template.AddMultiTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
-	
-	Template.AdditionalAbilities.AddItem('AreaSuppressionShot_LW');
-	Template.AdditionalAbilities.AddItem('LockdownBonuses');
-	Template.AdditionalAbilities.AddItem('MayhemBonuses');
+    Template.AdditionalAbilities.AddItem('AreaSuppressionShot_LW');
+    Template.AdditionalAbilities.AddItem('AreaSuppressionCleanse_LW');
 
-	Template.TargetingMethod = class'X2TargetingMethod_AreaSuppression';
-
-	Template.BuildVisualizationFn = AreaSuppression_BuildVisualization_LW;
-	Template.BuildAppliedVisualizationSyncFn = AreaSuppression_BuildVisualizationSync;
-	Template.CinescriptCameraType = "StandardSuppression";	
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	
-	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
-	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
-	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
-
-	return Template;
+    return Template;
 }
 
-//Adds multitarget visualization
-simulated function AreaSuppression_BuildVisualization_LW(XComGameState VisualizeGameState)
+// Adds multitarget visualization
+simulated function AreaSuppression_BuildVisualization(XComGameState VisualizeGameState)
 {
-	local XComGameStateHistory			History;
-	local XComGameStateContext_Ability  Context;
-	local StateObjectReference          InteractingUnitRef;
-	local VisualizationActionMetadata   EmptyTrack;
-	local VisualizationActionMetadata   BuildTrack;
-	local XComGameState_Ability         Ability;
-	local X2Action_PlaySoundAndFlyOver	SoundAndFlyOver;
+    local XComGameStateHistory              History;
+    local XComGameStateContext_Ability      Context;
+    local StateObjectReference              InteractingUnitRef;
 
-	History = `XCOMHISTORY;
+    local VisualizationActionMetadata       EmptyTrack;
+    local VisualizationActionMetadata       ActionMetadata;
 
-	Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
-	InteractingUnitRef = Context.InputContext.SourceObject;
+    local XComGameState_Ability             Ability;
+    local X2Action_PlaySoundAndFlyOver      SoundAndFlyOver;
 
-	//Configure the visualization track for the shooter
-	//****************************************************************************************
-	BuildTrack = EmptyTrack;
-	BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
-	BuildTrack.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
-	BuildTrack.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
-	
-	class'X2Action_ExitCover'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded);
-	class'X2Action_StartSuppression'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded);
-	
-	//****************************************************************************************
-	//Configure the visualization track for the primary target
+    // Variables for Issue #45
+    local XComGameState_Item                SourceWeapon;
+    local XGWeapon                          WeaponVis;
+    local XComUnitPawn                      UnitPawn;
+    local XComWeapon                        Weapon;
 
-	InteractingUnitRef = Context.InputContext.PrimaryTarget;
-	Ability = XComGameState_Ability(History.GetGameStateForObjectID(Context.InputContext.AbilityRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
-	BuildTrack = EmptyTrack;
-	BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
-	BuildTrack.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
-	BuildTrack.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
-	SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
-	SoundAndFlyOver.SetSoundAndFlyOverParameters(None, Ability.GetMyTemplate().LocFlyOverText, '', eColor_Bad);
-	if (XComGameState_Unit(BuildTrack.StateObject_OldState).ReserveActionPoints.Length != 0 && XComGameState_Unit(BuildTrack.StateObject_NewState).ReserveActionPoints.Length == 0)
-	{
-		SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
-		SoundAndFlyOver.SetSoundAndFlyOverParameters(none, class'XLocalizedData'.default.OverwatchRemovedMsg, '', eColor_Bad);
-	}
+    History = `XCOMHISTORY;
 
-	//Configure for the rest of the targets in AOE Suppression
-	if (Context.InputContext.MultiTargets.Length > 0)
-	{
-		foreach Context.InputContext.MultiTargets(InteractingUnitRef)
-		{
-			Ability = XComGameState_Ability(History.GetGameStateForObjectID(Context.InputContext.AbilityRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
-			BuildTrack = EmptyTrack;
-			BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
-			BuildTrack.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
-			BuildTrack.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
-			SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
-			SoundAndFlyOver.SetSoundAndFlyOverParameters(None, Ability.GetMyTemplate().LocFlyOverText, '', eColor_Bad);
-			if (XComGameState_Unit(BuildTrack.StateObject_OldState).ReserveActionPoints.Length != 0 && XComGameState_Unit(BuildTrack.StateObject_NewState).ReserveActionPoints.Length == 0)
-			{
-				SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
-				SoundAndFlyOver.SetSoundAndFlyOverParameters(none, class'XLocalizedData'.default.OverwatchRemovedMsg, '', eColor_Bad);
-			}
-		}
-	}
+    Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
+    InteractingUnitRef = Context.InputContext.SourceObject;
+
+    // Configure the visualization track for the shooter
+    // ****************************************************************************************
+    ActionMetadata = EmptyTrack;
+    ActionMetadata.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+    ActionMetadata.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
+    ActionMetadata.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
+
+    // Start Issue #45
+    // Check the actor's pawn and weapon, see if they can play the suppression effect
+    Ability = XComGameState_Ability(History.GetGameStateForObjectID(Context.InputContext.AbilityRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
+    SourceWeapon = XComGameState_Item(History.GetGameStateForObjectID(Ability.SourceWeapon.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
+    WeaponVis = XGWeapon(SourceWeapon.GetVisualizer());
+
+    UnitPawn = XGUnit(ActionMetadata.VisualizeActor).GetPawn();
+    Weapon = WeaponVis.GetEntity();
+    if (Weapon != none &&
+        !UnitPawn.GetAnimTreeController().CanPlayAnimation(Weapon.WeaponSuppressionFireAnimSequenceName) &&
+        !UnitPawn.GetAnimTreeController().CanPlayAnimation(class'XComWeapon'.default.WeaponSuppressionFireAnimSequenceName))
+    {
+        // The unit can't play their weapon's suppression effect. Replace it with the normal fire effect so at least they'll look like they're shooting
+        Weapon.WeaponSuppressionFireAnimSequenceName = Weapon.WeaponFireAnimSequenceName;
+    }
+    // End Issue #45
+    
+    class'X2Action_ExitCover'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded);
+    class'X2Action_StartSuppression'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded);
+    // ****************************************************************************************
+    // Configure the visualization track for the target
+    InteractingUnitRef = Context.InputContext.PrimaryTarget;
+    ActionMetadata = EmptyTrack;
+    ActionMetadata.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+    ActionMetadata.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
+    ActionMetadata.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
+    SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded));
+    SoundAndFlyOver.SetSoundAndFlyOverParameters(none, Ability.GetMyTemplate().LocFlyOverText, '', eColor_Good);
+    if (XComGameState_Unit(ActionMetadata.StateObject_OldState).ReserveActionPoints.Length != 0 && XComGameState_Unit(ActionMetadata.StateObject_NewState).ReserveActionPoints.Length == 0)
+    {
+        SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded));
+        SoundAndFlyOver.SetSoundAndFlyOverParameters(none, class'XLocalizedData'.default.OverwatchRemovedMsg, '', eColor_Good);
+    }
+
+    // Configure for the rest of the targets in AOE Suppression
+    if (Context.InputContext.MultiTargets.Length > 0)
+    {
+        foreach Context.InputContext.MultiTargets(InteractingUnitRef)
+        {
+            ActionMetadata = EmptyTrack;
+            ActionMetadata.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+            ActionMetadata.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
+            ActionMetadata.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
+            SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded));
+            SoundAndFlyOver.SetSoundAndFlyOverParameters(none, Ability.GetMyTemplate().LocFlyOverText, '', eColor_Good);
+            if (XComGameState_Unit(ActionMetadata.StateObject_OldState).ReserveActionPoints.Length != 0 && XComGameState_Unit(ActionMetadata.StateObject_NewState).ReserveActionPoints.Length == 0)
+            {
+                SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded));
+                SoundAndFlyOver.SetSoundAndFlyOverParameters(none, class'XLocalizedData'.default.OverwatchRemovedMsg, '', eColor_Good);
+            }
+        }
+    }
 }
+
+// Old version
+// simulated function AreaSuppression_BuildVisualization_LW(XComGameState VisualizeGameState)
+// {
+//     local XComGameStateHistory          History;
+//     local XComGameStateContext_Ability  Context;
+//     local StateObjectReference          InteractingUnitRef;
+//     local VisualizationActionMetadata   EmptyTrack;
+//     local VisualizationActionMetadata   BuildTrack;
+//     local XComGameState_Ability         Ability;
+//     local X2Action_PlaySoundAndFlyOver	SoundAndFlyOver;
+
+//     History = `XCOMHISTORY;
+
+//     Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
+//     InteractingUnitRef = Context.InputContext.SourceObject;
+
+//     // Configure the visualization track for the shooter
+//     //****************************************************************************************
+//     BuildTrack = EmptyTrack;
+//     BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+//     BuildTrack.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
+//     BuildTrack.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
+    
+//     class'X2Action_ExitCover'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded);
+//     class'X2Action_StartSuppression'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded);
+    
+//     //****************************************************************************************
+//     // Configure the visualization track for the primary target
+
+//     InteractingUnitRef = Context.InputContext.PrimaryTarget;
+//     Ability = XComGameState_Ability(History.GetGameStateForObjectID(Context.InputContext.AbilityRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
+//     BuildTrack = EmptyTrack;
+//     BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+//     BuildTrack.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
+//     BuildTrack.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
+//     SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
+//     SoundAndFlyOver.SetSoundAndFlyOverParameters(None, Ability.GetMyTemplate().LocFlyOverText, '', eColor_Bad);
+//     if (XComGameState_Unit(BuildTrack.StateObject_OldState).ReserveActionPoints.Length != 0 && XComGameState_Unit(BuildTrack.StateObject_NewState).ReserveActionPoints.Length == 0)
+//     {
+//         SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
+//         SoundAndFlyOver.SetSoundAndFlyOverParameters(none, class'XLocalizedData'.default.OverwatchRemovedMsg, '', eColor_Bad);
+//     }
+
+//     // Configure for the rest of the targets in AOE Suppression
+//     if (Context.InputContext.MultiTargets.Length > 0)
+//     {
+//         foreach Context.InputContext.MultiTargets(InteractingUnitRef)
+//         {
+//             Ability = XComGameState_Ability(History.GetGameStateForObjectID(Context.InputContext.AbilityRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
+//             BuildTrack = EmptyTrack;
+//             BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+//             BuildTrack.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
+//             BuildTrack.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
+//             SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
+//             SoundAndFlyOver.SetSoundAndFlyOverParameters(None, Ability.GetMyTemplate().LocFlyOverText, '', eColor_Bad);
+//             if (XComGameState_Unit(BuildTrack.StateObject_OldState).ReserveActionPoints.Length != 0 && XComGameState_Unit(BuildTrack.StateObject_NewState).ReserveActionPoints.Length == 0)
+//             {
+//                 SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
+//                 SoundAndFlyOver.SetSoundAndFlyOverParameters(none, class'XLocalizedData'.default.OverwatchRemovedMsg, '', eColor_Bad);
+//             }
+//         }
+//     }
+// }
 
 simulated function AreaSuppression_BuildVisualizationSync(name EffectName, XComGameState VisualizeGameState, out VisualizationActionMetadata BuildTrack)
 {
-	local X2Action_ExitCover ExitCover;
+    local X2Action_ExitCover ExitCover;
 
-	if (EffectName == class'X2Effect_AreaSuppression'.default.EffectName)
-	{
-		ExitCover = X2Action_ExitCover(class'X2Action_ExitCover'.static.AddToVisualizationTree( BuildTrack, VisualizeGameState.GetContext(), false, BuildTrack.LastActionAdded ));
-		ExitCover.bIsForSuppression = true;
+    if (EffectName == class'X2Effect_AreaSuppression'.default.EffectName)
+    {
+        ExitCover = X2Action_ExitCover(class'X2Action_ExitCover'.static.AddToVisualizationTree(BuildTrack, VisualizeGameState.GetContext(), false, BuildTrack.LastActionAdded));
+        ExitCover.bIsForSuppression = true;
 
-		class'X2Action_StartSuppression'.static.AddToVisualizationTree( BuildTrack, VisualizeGameState.GetContext(), false, BuildTrack.LastActionAdded );
-	}
+        class'X2Action_StartSuppression'.static.AddToVisualizationTree(BuildTrack, VisualizeGameState.GetContext(), false, BuildTrack.LastActionAdded);
+    }
 }
 
 
-static function X2AbilityTemplate AreaSuppressionShot_LW()
-{
-	local X2AbilityTemplate                 Template;	
-	local X2AbilityCost_ReserveActionPoints ReserveActionPointCost;
-	local X2AbilityToHitCalc_StandardAim    StandardAim;
-	local X2Condition_Visibility            TargetVisibilityCondition;
-	local X2AbilityTrigger_EventListener    Trigger;
-	local X2Condition_UnitEffectsWithAbilitySource TargetEffectCondition;
-	local X2Effect_RemoveAreaSuppressionEffect	RemoveAreaSuppression;
-	local X2Effect                          ShotEffect;
-	local X2AbilityCost_Ammo				AmmoCost;
+// static function X2AbilityTemplate AreaSuppressionShot_LW()
+// {
+//     local X2AbilityTemplate                 Template;	
+//     local X2AbilityCost_ReserveActionPoints ReserveActionPointCost;
+//     local X2AbilityToHitCalc_StandardAim    StandardAim;
+//     local X2Condition_Visibility            TargetVisibilityCondition;
+//     local X2AbilityTrigger_EventListener    Trigger;
+//     local X2Condition_UnitEffectsWithAbilitySource  TargetEffectCondition;
+//     local X2Effect_RemoveAreaSuppressionEffect      RemoveAreaSuppression;
+//     local X2Effect                          ShotEffect;
+//     local X2AbilityCost_Ammo                AmmoCost;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'AreaSuppressionShot_LW');
+//     `CREATE_X2ABILITY_TEMPLATE(Template, 'AreaSuppressionShot_LW');
 
-	Template.bDontDisplayInAbilitySummary = true;
-	ReserveActionPointCost = new class'X2AbilityCost_ReserveActionPoints';
-	ReserveActionPointCost.iNumPoints = 1;
-	ReserveActionPointCost.AllowedTypes.AddItem('Suppression');
-	Template.AbilityCosts.AddItem(ReserveActionPointCost);
-	
-	AmmoCost = new class'X2AbilityCost_Ammo';	
-	AmmoCost.iAmmo = default.AREA_SUPPRESSION_SHOT_AMMO_COST;
-	Template.AbilityCosts.AddItem(AmmoCost);
+//     Template.bDontDisplayInAbilitySummary = true;
+//     ReserveActionPointCost = new class'X2AbilityCost_ReserveActionPoints';
+//     ReserveActionPointCost.iNumPoints = 1;
+//     ReserveActionPointCost.AllowedTypes.AddItem('Suppression');
+//     Template.AbilityCosts.AddItem(ReserveActionPointCost);
+    
+//     AmmoCost = new class'X2AbilityCost_Ammo';	
+//     AmmoCost.iAmmo = default.AREA_SUPPRESSION_SHOT_AMMO_COST;
+//     Template.AbilityCosts.AddItem(AmmoCost);
 
-	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
-	StandardAim.BuiltInHitMod = default.AREA_SUPPRESSION_LW_SHOT_AIM_BONUS;
-	StandardAim.bReactionFire = true;
+//     StandardAim = new class'X2AbilityToHitCalc_StandardAim';
+//     StandardAim.BuiltInHitMod = default.AREA_SUPPRESSION_LW_SHOT_AIM_BONUS;
+//     StandardAim.bReactionFire = true;
 
-	Template.AbilityToHitCalc = StandardAim;
-	Template.AbilityToHitOwnerOnMissCalc = StandardAim;
+//     Template.AbilityToHitCalc = StandardAim;
+//     Template.AbilityToHitOwnerOnMissCalc = StandardAim;
 
-	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+//     Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
 
-	TargetEffectCondition = new class'X2Condition_UnitEffectsWithAbilitySource';
-	TargetEffectCondition.AddRequireEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsNotSuppressed');
-	Template.AbilityTargetConditions.AddItem(TargetEffectCondition);
+//     TargetEffectCondition = new class'X2Condition_UnitEffectsWithAbilitySource';
+//     TargetEffectCondition.AddRequireEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsNotSuppressed');
+//     Template.AbilityTargetConditions.AddItem(TargetEffectCondition);
 
-	TargetVisibilityCondition = new class'X2Condition_Visibility';	
-	TargetVisibilityCondition.bRequireGameplayVisible = true;
-	Template.AbilityTargetConditions.AddItem(TargetVisibilityCondition);
+//     TargetVisibilityCondition = new class'X2Condition_Visibility';	
+//     TargetVisibilityCondition.bRequireGameplayVisible = true;
+//     Template.AbilityTargetConditions.AddItem(TargetVisibilityCondition);
 
-	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
-	Template.bAllowAmmoEffects = true;
+//     Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+//     Template.bAllowAmmoEffects = true;
 
-	// this handles the logic for removing just from the target (if should continue), or removing from all targets if running out of ammo
-	RemoveAreaSuppression = new class'X2Effect_RemoveAreaSuppressionEffect';
-	RemoveAreaSuppression.EffectNamesToRemove.AddItem(class'X2Effect_AreaSuppression'.default.EffectName);
-	RemoveAreaSuppression.bCheckSource =  true;
-	RemoveAreaSuppression.SetupEffectOnShotContextResult(true, true);
-	Template.AddTargetEffect(RemoveAreaSuppression);
+//     // this handles the logic for removing just from the target (if should continue), or removing from all targets if running out of ammo
+//     RemoveAreaSuppression = new class'X2Effect_RemoveAreaSuppressionEffect';
+//     RemoveAreaSuppression.EffectNamesToRemove.AddItem(class'X2Effect_AreaSuppression'.default.EffectName);
+//     RemoveAreaSuppression.bCheckSource =  true;
+//     RemoveAreaSuppression.SetupEffectOnShotContextResult(true, true);
+//     Template.AddTargetEffect(RemoveAreaSuppression);
 
-	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+//     Template.AbilityTargetStyle = default.SimpleSingleTarget;
 
-	//Trigger on movement - interrupt the move
-	Trigger = new class'X2AbilityTrigger_EventListener';
-	Trigger.ListenerData.EventID = 'ObjectMoved';
-	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
-	Trigger.ListenerData.Filter = eFilter_None;
-	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalOverwatchListener;
-	Template.AbilityTriggers.AddItem(Trigger);
+//     //Trigger on movement - interrupt the move
+//     Trigger = new class'X2AbilityTrigger_EventListener';
+//     Trigger.ListenerData.EventID = 'ObjectMoved';
+//     Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+//     Trigger.ListenerData.Filter = eFilter_None;
+//     Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalOverwatchListener;
+//     Template.AbilityTriggers.AddItem(Trigger);
 
-	Template.AbilitySourceName = 'eAbilitySource_Standard';
-	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
-	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_supression";
-	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_LIEUTENANT_PRIORITY;
-	Template.bDisplayInUITooltip = false;
-	Template.bDisplayInUITacticalText = false;
+//     Template.AbilitySourceName = 'eAbilitySource_Standard';
+//     Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+//     Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_supression";
+//     Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_LIEUTENANT_PRIORITY;
+//     Template.bDisplayInUITooltip = false;
+//     Template.bDisplayInUITacticalText = false;
 
-	//don't want to exit cover, we are already in suppression/alert mode.
-	Template.bSkipExitCoverWhenFiring = true;
+//     //don't want to exit cover, we are already in suppression/alert mode.
+//     Template.bSkipExitCoverWhenFiring = true;
 
-	Template.bAllowFreeFireWeaponUpgrade = true;	
-//  Put holo target effect first because if the target dies from this shot, it will be too late to notify the effect.
-	ShotEffect = class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect();
-	ShotEffect.TargetConditions.AddItem(class'X2Ability_DefaultAbilitySet'.static.OverwatchTargetEffectsCondition());
-	Template.AddTargetEffect(ShotEffect);
-	//  Various Soldier ability specific effects - effects check for the ability before applying	
-	ShotEffect = class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect();
-	ShotEffect.TargetConditions.AddItem(class'X2Ability_DefaultAbilitySet'.static.OverwatchTargetEffectsCondition());
-	Template.AddTargetEffect(ShotEffect);
-	
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
-	
-	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
-	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+//     Template.bAllowFreeFireWeaponUpgrade = true;	
+// //  Put holo target effect first because if the target dies from this shot, it will be too late to notify the effect.
+//     ShotEffect = class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect();
+//     ShotEffect.TargetConditions.AddItem(class'X2Ability_DefaultAbilitySet'.static.OverwatchTargetEffectsCondition());
+//     Template.AddTargetEffect(ShotEffect);
+//     //  Various Soldier ability specific effects - effects check for the ability before applying	
+//     ShotEffect = class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect();
+//     ShotEffect.TargetConditions.AddItem(class'X2Ability_DefaultAbilitySet'.static.OverwatchTargetEffectsCondition());
+//     Template.AddTargetEffect(ShotEffect);
+    
+//     Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+//     Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+    
+//     Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+//     Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 
-	return Template;	
-}
+//     return Template;	
+// }
 
 static function X2Effect_Persistent CoveringFireMalusEffect()
 {
@@ -3122,49 +3496,49 @@ static function X2Effect_Persistent CoveringFireMalusEffect()
     return Effect;
 }
 
-static function X2AbilityTemplate LockdownBonuses()
-{
-	local X2Effect_LockdownDamage			DamageEffect;
-	local X2AbilityTemplate                 Template;	
+// static function X2AbilityTemplate LockdownBonuses()
+// {
+// 	local X2Effect_LockdownDamage			DamageEffect;
+// 	local X2AbilityTemplate                 Template;	
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'LockdownBonuses');
-	Template.AbilityToHitCalc = default.DeadEye;
-    Template.AbilityTargetStyle = default.SelfTarget;
-	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
-	Template.AbilitySourceName = 'eAbilitySource_Perk';
-	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
-	Template.bDisplayInUITooltip = false;
-	Template.bIsASuppressionEffect = true;
-	//  Effect code checks whether unit has Lockdown before providing aim and damage bonuses
-	DamageEffect = new class'X2Effect_LockdownDamage';
-	DamageEffect.BuildPersistentEffect(1,true,false,false,eGameRule_PlayerTurnBegin);
-	DamageEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, false);
-	Template.AddTargetEffect(DamageEffect);
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	return Template;
-}
+// 	`CREATE_X2ABILITY_TEMPLATE(Template, 'LockdownBonuses');
+// 	Template.AbilityToHitCalc = default.DeadEye;
+//     Template.AbilityTargetStyle = default.SelfTarget;
+// 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+// 	Template.AbilitySourceName = 'eAbilitySource_Perk';
+// 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+// 	Template.bDisplayInUITooltip = false;
+// 	Template.bIsASuppressionEffect = true;
+// 	//  Effect code checks whether unit has Lockdown before providing aim and damage bonuses
+// 	DamageEffect = new class'X2Effect_LockdownDamage';
+// 	DamageEffect.BuildPersistentEffect(1,true,false,false,eGameRule_PlayerTurnBegin);
+// 	DamageEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, false);
+// 	Template.AddTargetEffect(DamageEffect);
+// 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+// 	return Template;
+// }
 
-static function X2AbilityTemplate MayhemBonuses()
-{
-	local X2Effect_Mayhem					DamageEffect;
-	local X2AbilityTemplate                 Template;	
+// static function X2AbilityTemplate MayhemBonuses()
+// {
+// 	local X2Effect_Mayhem					DamageEffect;
+// 	local X2AbilityTemplate                 Template;	
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'MayhemBonuses');
-	Template.AbilityToHitCalc = default.DeadEye;
-    Template.AbilityTargetStyle = default.SelfTarget;
-	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
-	Template.AbilitySourceName = 'eAbilitySource_Perk';
-	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
-	Template.bDisplayInUITooltip = false;
-	Template.bIsASuppressionEffect = true;
-	//  Effect code checks whether unit has Mayhem before providing aim and damage bonuses
-	DamageEffect = new class'X2Effect_Mayhem';
-	DamageEffect.BuildPersistentEffect(1,true,false,false,eGameRule_PlayerTurnBegin);
-	DamageEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, false);
-	Template.AddTargetEffect(DamageEffect);
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	return Template;
-}
+// 	`CREATE_X2ABILITY_TEMPLATE(Template, 'MayhemBonuses');
+// 	Template.AbilityToHitCalc = default.DeadEye;
+//     Template.AbilityTargetStyle = default.SelfTarget;
+// 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+// 	Template.AbilitySourceName = 'eAbilitySource_Perk';
+// 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+// 	Template.bDisplayInUITooltip = false;
+// 	Template.bIsASuppressionEffect = true;
+// 	//  Effect code checks whether unit has Mayhem before providing aim and damage bonuses
+// 	DamageEffect = new class'X2Effect_Mayhem';
+// 	DamageEffect.BuildPersistentEffect(1,true,false,false,eGameRule_PlayerTurnBegin);
+// 	DamageEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, false);
+// 	Template.AddTargetEffect(DamageEffect);
+// 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+// 	return Template;
+// }
 
 static function X2AbilityTemplate AddInterferenceAbility()
 {
