@@ -1140,6 +1140,7 @@ function bool SelectPlotDefinition(MissionDefinition MissionDef, string Biome, o
 {
 	local XComParcelManager ParcelMgr;
 	local array<PlotDefinition> ValidPlots, ValidPlotsCached;
+	local PlotDefinition PlotDef;
 	local X2SitRepTemplateManager SitRepMgr;
 	local name SitRepName;
 	local X2SitRepTemplate SitRep;
@@ -1154,6 +1155,12 @@ function bool SelectPlotDefinition(MissionDefinition MissionDef, string Biome, o
 	ParcelMgr.GetValidPlotsForMission(ValidPlots, MissionDef, Biome);
 	SitRepMgr = class'X2SitRepTemplateManager'.static.GetSitRepTemplateManager();
 	`LWTrace("Plot selection: Valid Plots length:" @ValidPlots.Length);
+
+	foreach ValidPlots (PlotDef)
+	{
+		`LWTrace("Plot:" @PlotDef.MapName);
+	}
+	
 
 	// Since plots aren't marked used until the player actually loads into a mission, multiple missions generated at once
 	// Can lead to the same map being selected for all of them since it is not marked used yet for the parcel manager.
