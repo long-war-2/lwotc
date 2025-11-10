@@ -41,9 +41,9 @@ static event InstallNewCampaign(XComGameState StartState)
 /// </summary>
 static event OnPostTemplatesCreated()
 {
-	local X2ItemTemplateManager			ItemManager;
+	//local X2ItemTemplateManager			ItemManager;
 
-	ItemManager = class'X2ItemTemplateManager'.static.GetItemTemplateManager();
+	//ItemManager = class'X2ItemTemplateManager'.static.GetItemTemplateManager();
 
 	UpdateBaseGameOverwatchShot();
 	UpdateBaseGameThrowGrenade();
