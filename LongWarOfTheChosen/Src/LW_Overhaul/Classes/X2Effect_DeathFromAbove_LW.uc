@@ -6,8 +6,10 @@ var config float DFA_RANGE_PENALTY_NEGATION_MODIFIER;
 var config int DFA_RANGE_PENALTY_NEGATION_BASE_RANGE;
 
 var bool bMatchSourceWeapon;
-var bool bAllowMultiTarget;
+// If true, all abilities that have AbilityMultiTargetStyle that's not X2AbilityMultiTarget_BurstFire will be blacklisted
 var bool bDisallowMultiTarget;
+// If true, the effect will be activated if any of the units in AbilityContext.InputContext.MultiTargets satisfy the conditions
+var bool bAllowMultiTarget;
 
 var name PointType;
 var int ActivationsPerTurn;
