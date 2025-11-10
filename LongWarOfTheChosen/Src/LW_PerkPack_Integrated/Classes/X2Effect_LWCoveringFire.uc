@@ -48,7 +48,7 @@ static function EventListenerReturn NewCoveringFireCheck(Object EventData, Objec
 {
     local XComGameStateHistory          History;
 
-    local XComGameState_Unit            AttackingUnit, CoveringUnit;
+    local XComGameState_Unit            AttackingUnit, CoveringUnit, TargetUnit;
     local XComGameStateContext_Ability  AbilityContext;
     local XComGameState_Effect          CoveringFireEffectState;
     local X2Effect_LWCoveringFire       CoveringFireEffect;

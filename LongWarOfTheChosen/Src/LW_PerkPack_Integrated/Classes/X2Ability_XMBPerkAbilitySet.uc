@@ -2267,6 +2267,7 @@ static function X2AbilityTemplate Avenger()
     CoveringFireEffect.bDirectAttackOnly = true;
     CoveringFireEffect.bDirectAttackOnly_AllowAllies = true;
     CoveringFireEFfect.bDirectAttackOnly_AllowAllies_ExcludeSelf = true;
+	CoveringFireEffect.bDirectAttackOnly_AllowMultiTarget = true;
     CoveringFireEffect.bPreEmptiveFire = false;
     CoveringFireEffect.bAnyHostileAction = true;
     CoveringFireEffect.bOnlyDuringEnemyTurn = true;
