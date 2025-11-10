@@ -24,6 +24,15 @@ switch ($config)
     default { ThrowFailure "Unknown build configuration $config" }
 }
 
+$builder.AddPreMakeHook({
+    Write-Host "Updating build date..."
+    $date = Get-Date
+    $file = "${sdkPath}\Development\Src\LW_Overhaul\Classes\X2DownloadableContentInfo_LongWarOfTheChosen.uc"
+    $content = [System.IO.File]::ReadAllText($file).Replace("<BUILD_DATE>", $date.tostring("d MMMM yyyy", [CultureInfo]'en-US'))
+    [System.IO.File]::WriteAllText($file, $content)
+    Write-Host "Build date added."
+})
+
 # $builder.IncludeSrc("$srcDirectory\X2WOTCCommunityHighlander\X2WOTCCommunityHighlander\Src")
 $builder.IncludeSrc("$srcDirectory\BetterSecondWaveSupport\Src")
 $builder.AddToClean("BetterSecondWaveSupport")
