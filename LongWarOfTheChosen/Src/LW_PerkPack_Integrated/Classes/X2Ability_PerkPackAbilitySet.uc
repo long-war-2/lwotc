@@ -2698,7 +2698,7 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
 // 	BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
 // 	BuildTrack.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
 // 	BuildTrack.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
-	
+
 // 	//check and see if there's any sort of animation for suppression
 // 	UnitVisualizer = XGUnit(BuildTrack.VisualizeActor);
 // 	if(UnitVisualizer != none)
@@ -2773,7 +2773,7 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
 // 	ReserveActionPointCost.iNumPoints = 1;
 // 	ReserveActionPointCost.AllowedTypes.AddItem('Suppression');
 // 	Template.AbilityCosts.AddItem(ReserveActionPointCost);
-	
+
 // 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
 // 	StandardAim.BuiltInHitMod = default.SUPPRESSION_LW_SHOT_AIM_BONUS;
 // 	StandardAim.bReactionFire = true;
@@ -2799,7 +2799,7 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
 // 	RemoveSuppression.bCheckSource = true;
 // 	RemoveSuppression.SetupEffectOnShotContextResult(true, true);
 // 	Template.AddShooterEffect(RemoveSuppression);
-	
+    
 // 	Template.AbilityTargetStyle = default.SimpleSingleTarget;
 
 // 	//Trigger on movement - interrupt the move
@@ -2807,7 +2807,7 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
 // 	Trigger.EventObserverClass = class'X2TacticalGameRuleset_MovementObserver';
 // 	Trigger.MethodName = 'InterruptGameState';
 // 	Template.AbilityTriggers.AddItem(Trigger);
-	
+    
 // 	Template.AbilitySourceName = 'eAbilitySource_Standard';
 // 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 // 	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_supression";
@@ -2827,14 +2827,14 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
 // 	ShotEffect = class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect();
 // 	ShotEffect.TargetConditions.AddItem(class'X2Ability_DefaultAbilitySet'.static.OverwatchTargetEffectsCondition());
 // 	Template.AddTargetEffect(ShotEffect);
-	
+    
 // 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 // 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 
 // 	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
 // 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 
-// 	return Template;	
+// 	return Template;
 // }
 
 static function X2AbilityTemplate AddSuppressionShot(name DataName, optional bool bAreaSuppression = false)
@@ -2984,8 +2984,6 @@ static function X2AbilityTemplate AddSuppressionCleanse(name DataName, optional 
     local X2AbilityTemplate                     Template;
     local X2AbilityTrigger_EventListener        Trigger;
     local X2Condition_UnitEffectsWithAbilitySource TargetEffectCondition;
-    local X2AbilityCost_Ammo                    AmmoCost;
-    local X2AbilityCost_ReserveActionPoints     ReserveActionPointCost;
     local X2Effect_RemoveEffects                RemoveSuppression;
     local X2Effect_RemoveAreaSuppressionEffect  RemoveAreaSuppression;
 
@@ -3165,7 +3163,7 @@ static function X2AbilityTemplate AddAreaSuppressionAbility()
     RadiusMultiTarget.bExcludeSelfAsTargetIfWithinRadius = true;
     RadiusMultiTarget.bUseWeaponRadius = false;
     RadiusMultiTarget.ftargetradius = default.AREA_SUPPRESSION_RADIUS;
-    RadousMultiTarget.AddAbilityBonusRadius('DangerZone', default.DANGER_ZONE_BONUS_RADIUS);
+    RadiusMultiTarget.AddAbilityBonusRadius('DangerZone', default.DANGER_ZONE_BONUS_RADIUS);
     Template.AbilityMultiTargetStyle = RadiusMultiTarget;
     
     Template.AbilityMultiTargetConditions.AddItem(default.LivingHostileUnitOnlyProperty);
