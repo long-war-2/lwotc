@@ -49,13 +49,13 @@ var config int AREA_SUPPRESSION_AMMO_COST;
 var config int AREA_SUPPRESSION_MAX_SHOTS;
 var config int AREA_SUPPRESSION_SHOT_AMMO_COST;
 var config float AREA_SUPPRESSION_RADIUS;
+var config float DANGER_ZONE_BONUS_RADIUS;
 var config int SUPPRESSION_LW_AIM_MALUS;
 var config int SUPPRESSION_LW_AIM_MALUS_DURATION;
 var config int SUPPRESSION_LW_SHOT_AIM_BONUS;
 var config int AREA_SUPPRESSION_LW_SHOT_AIM_BONUS;
 var config array<name> SUPPRESSION_LW_INVALID_WEAPON_CATEGORIES;
 var config array<name> SUPPRESSION_SHOT_ABILITIES;
-var config float DANGER_ZONE_BONUS_RADIUS;
 var config int INTERFERENCE_CV_CHARGES;
 var config int INTERFERENCE_MG_CHARGES;
 var config int INTERFERENCE_BM_CHARGES;
@@ -2656,7 +2656,7 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
     Template.AssociatedPassives.AddItem('HoloTargeting');
 
     Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-    Template.BuildVisualizationFn = class'X2Ability_GrenadierAbilitySet'.static.SuppressionBuildVisualization;
+    Template.BuildVisualizationFn = Suppression_BuildVisualization;
     Template.BuildAppliedVisualizationSyncFn = class'X2Ability_GrenadierAbilitySet'.static.SuppressionBuildVisualizationSync;
     Template.CinescriptCameraType = "StandardSuppression";
 
@@ -2672,170 +2672,103 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
     return Template;
 }
 
-// static function Suppression_BuildVisualization_LW(XComGameState VisualizeGameState)
-// {
-// 	local XComGameStateHistory History;
-// 	local XComGameStateContext_Ability  Context;
-// 	local StateObjectReference          InteractingUnitRef;
-// 	local XGUnit						UnitVisualizer;
-// 	local XComUnitPawn					UnitPawn;
-// 	local XComWeapon					WeaponPawn;
+static function Suppression_BuildVisualization_Static(XComGameState VisualizeGameState, optional bool bAreaSuppression = false)
+{
+    local XComGameStateHistory              History;
+    local XComGameStateContext_Ability      Context;
+    local StateObjectReference              InteractingUnitRef;
 
-// 	local VisualizationActionMetadata	EmptyTrack;
-// 	local VisualizationActionMetadata	BuildTrack;
+    local VisualizationActionMetadata       EmptyTrack;
+    local VisualizationActionMetadata       ActionMetadata;
 
-// 	local XComGameState_Ability         Ability;
-// 	local X2Action_PlaySoundAndFlyOver SoundAndFlyOver;
+    local bool                              bGoodAbility;
+    local EWidgetColor                      FlyoverColor, OverwatchFlyoverColor;
+    local XComGameState_Ability             Ability;
+    local X2Action_PlaySoundAndFlyOver      SoundAndFlyOver;
 
-// 	History = `XCOMHISTORY;
+    // Variables for Issue #45
+    local XComGameState_Item                SourceWeapon;
+    local XGWeapon                          WeaponVis;
+    local XComUnitPawn                      UnitPawn;
+    local XComWeapon                        Weapon;
 
-// 	Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
-// 	InteractingUnitRef = Context.InputContext.SourceObject;
+    History = `XCOMHISTORY;
 
-// 	//Configure the visualization track for the shooter
-// 	//****************************************************************************************
-// 	BuildTrack = EmptyTrack;
-// 	BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
-// 	BuildTrack.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
-// 	BuildTrack.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
+    Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
+    InteractingUnitRef = Context.InputContext.SourceObject;
 
-// 	//check and see if there's any sort of animation for suppression
-// 	UnitVisualizer = XGUnit(BuildTrack.VisualizeActor);
-// 	if(UnitVisualizer != none)
-// 	{
-// 		UnitPawn = UnitVisualizer.GetPawn();
-// 		if(UnitPawn != none)
-// 		{
-// 			WeaponPawn = XComWeapon(UnitPawn.Weapon);
-// 			if(WeaponPawn != none)
-// 			{
-// 				if(!UnitPawn.GetAnimTreeController().CanPlayAnimation(GetSuppressAnimName(UnitPawn)))
-// 				{
-// 					// no playable animation, so use the default firing animation
-// 					WeaponPawn.WeaponSuppressionFireAnimSequenceName = WeaponPawn.WeaponFireAnimSequenceName;
-// 				}
-// 			}
-// 		}
-// 	}
+    // Configure the visualization track for the shooter
+    // ****************************************************************************************
+    ActionMetadata = EmptyTrack;
+    ActionMetadata.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+    ActionMetadata.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
+    ActionMetadata.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
 
-// 	class'X2Action_ExitCover'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded);
-// 	class'X2Action_StartSuppression'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded);
+    bGoodAbility = XComGameState_Unit(ActionMetadata.StateObject_NewState).IsFriendlyToLocalPlayer();
+    FlyoverColor = bGoodAbility ? eColor_Bad : eColor_Bad;
+    OverwatchFlyoverColor = eColor_Bad;
 
-// 	//****************************************************************************************
-// 	//Configure the visualization track for the target
-// 	InteractingUnitRef = Context.InputContext.PrimaryTarget;
-// 	Ability = XComGameState_Ability(History.GetGameStateForObjectID(Context.InputContext.AbilityRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
-// 	BuildTrack = EmptyTrack;
-// 	BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
-// 	BuildTrack.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
-// 	BuildTrack.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
-// 	SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
-// 	SoundAndFlyOver.SetSoundAndFlyOverParameters(None, Ability.GetMyTemplate().LocFlyOverText, '', eColor_Bad);
-// 	if (XComGameState_Unit(BuildTrack.StateObject_OldState).ReserveActionPoints.Length != 0 && XComGameState_Unit(BuildTrack.StateObject_NewState).ReserveActionPoints.Length == 0)
-// 	{
-// 		SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
-// 		SoundAndFlyOver.SetSoundAndFlyOverParameters(none, class'XLocalizedData'.default.OverwatchRemovedMsg, '', eColor_Bad);
-// 	}
-// }
+    // Start Issue #45
+    // Check the actor's pawn and weapon, see if they can play the suppression effect
+    Ability = XComGameState_Ability(History.GetGameStateForObjectID(Context.InputContext.AbilityRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
+    SourceWeapon = XComGameState_Item(History.GetGameStateForObjectID(Ability.SourceWeapon.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
+    WeaponVis = XGWeapon(SourceWeapon.GetVisualizer());
 
-// // code based on XComIdleAnimationStateMachine.state'Fire'.GetSuppressAnimName
-// static function Name GetSuppressAnimName(XComUnitPawn UnitPawn)
-// {
-// 	local XComWeapon Weapon;
+    UnitPawn = XGUnit(ActionMetadata.VisualizeActor).GetPawn();
+    Weapon = WeaponVis.GetEntity();
+    if (Weapon != none &&
+        !UnitPawn.GetAnimTreeController().CanPlayAnimation(Weapon.WeaponSuppressionFireAnimSequenceName) &&
+        !UnitPawn.GetAnimTreeController().CanPlayAnimation(class'XComWeapon'.default.WeaponSuppressionFireAnimSequenceName))
+    {
+        // The unit can't play their weapon's suppression effect. Replace it with the normal fire effect so at least they'll look like they're shooting
+        Weapon.WeaponSuppressionFireAnimSequenceName = Weapon.WeaponFireAnimSequenceName;
+    }
+    // End Issue #45
 
-// 	Weapon = XComWeapon(UnitPawn.Weapon);
-// 	if( Weapon != None && UnitPawn.GetAnimTreeController().CanPlayAnimation(Weapon.WeaponSuppressionFireAnimSequenceName) )
-// 	{
-// 		return Weapon.WeaponSuppressionFireAnimSequenceName;
-// 	}
-// 	else if( UnitPawn.GetAnimTreeController().CanPlayAnimation(class'XComWeapon'.default.WeaponSuppressionFireAnimSequenceName) )
-// 	{
-// 		return class'XComWeapon'.default.WeaponSuppressionFireAnimSequenceName;
-// 	}
-// 	return '';
-// }
+    class'X2Action_ExitCover'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded);
+    class'X2Action_StartSuppression'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded);
+    // ****************************************************************************************
+    // Configure the visualization track for the target
+    InteractingUnitRef = Context.InputContext.PrimaryTarget;
+    ActionMetadata = EmptyTrack;
+    ActionMetadata.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+    ActionMetadata.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
+    ActionMetadata.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
+    SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded));
+    SoundAndFlyOver.SetSoundAndFlyOverParameters(none, Ability.GetMyTemplate().LocFlyOverText, '', FlyoverColor);
+    if (XComGameState_Unit(ActionMetadata.StateObject_OldState).ReserveActionPoints.Length != 0 && XComGameState_Unit(ActionMetadata.StateObject_NewState).ReserveActionPoints.Length == 0)
+    {
+        SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded));
+        SoundAndFlyOver.SetSoundAndFlyOverParameters(none, class'XLocalizedData'.default.OverwatchRemovedMsg, '', OverwatchFlyoverColor);
+    }
 
-// static function X2AbilityTemplate SuppressionShot_LW()
-// {
-// 	local X2AbilityTemplate                 Template;	
-// 	local X2AbilityCost_ReserveActionPoints ReserveActionPointCost;
-// 	local X2AbilityToHitCalc_StandardAim    StandardAim;
-// 	local X2Condition_Visibility            TargetVisibilityCondition;
-// 	local X2AbilityTrigger_Event	        Trigger;
-// 	local X2Condition_UnitEffectsWithAbilitySource TargetEffectCondition;
-// 	local X2Effect_RemoveEffects            RemoveSuppression;
-// 	local X2Effect                          ShotEffect;
+    if (bAreaSuppression)
+    {
+        // Configure for the rest of the targets in AOE Suppression
+        if (Context.InputContext.MultiTargets.Length > 0)
+        {
+            foreach Context.InputContext.MultiTargets(InteractingUnitRef)
+            {
+                ActionMetadata = EmptyTrack;
+                ActionMetadata.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+                ActionMetadata.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
+                ActionMetadata.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
+                SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded));
+                SoundAndFlyOver.SetSoundAndFlyOverParameters(none, Ability.GetMyTemplate().LocFlyOverText, '', FlyoverColor);
+                if (XComGameState_Unit(ActionMetadata.StateObject_OldState).ReserveActionPoints.Length != 0 && XComGameState_Unit(ActionMetadata.StateObject_NewState).ReserveActionPoints.Length == 0)
+                {
+                    SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded));
+                    SoundAndFlyOver.SetSoundAndFlyOverParameters(none, class'XLocalizedData'.default.OverwatchRemovedMsg, '', OverwatchFlyoverColor);
+                }
+            }
+        }
+    }
+}
 
-// 	`CREATE_X2ABILITY_TEMPLATE(Template, 'SuppressionShot_LW');
-
-// 	Template.bDontDisplayInAbilitySummary = true;
-// 	ReserveActionPointCost = new class'X2AbilityCost_ReserveActionPoints';
-// 	ReserveActionPointCost.iNumPoints = 1;
-// 	ReserveActionPointCost.AllowedTypes.AddItem('Suppression');
-// 	Template.AbilityCosts.AddItem(ReserveActionPointCost);
-
-// 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
-// 	StandardAim.BuiltInHitMod = default.SUPPRESSION_LW_SHOT_AIM_BONUS;
-// 	StandardAim.bReactionFire = true;
-
-// 	Template.AbilityToHitCalc = StandardAim;
-// 	Template.AbilityToHitOwnerOnMissCalc = StandardAim;
-
-// 	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
-
-// 	TargetEffectCondition = new class'X2Condition_UnitEffectsWithAbilitySource';
-// 	TargetEffectCondition.AddRequireEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsNotSuppressed');
-// 	Template.AbilityTargetConditions.AddItem(TargetEffectCondition);
-
-// 	TargetVisibilityCondition = new class'X2Condition_Visibility';	
-// 	TargetVisibilityCondition.bRequireGameplayVisible = true;
-// 	Template.AbilityTargetConditions.AddItem(TargetVisibilityCondition);
-
-// 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
-// 	Template.bAllowAmmoEffects = true;
-
-// 	RemoveSuppression = new class'X2Effect_RemoveEffects';
-// 	RemoveSuppression.EffectNamesToRemove.AddItem(class'X2Effect_Suppression'.default.EffectName);
-// 	RemoveSuppression.bCheckSource = true;
-// 	RemoveSuppression.SetupEffectOnShotContextResult(true, true);
-// 	Template.AddShooterEffect(RemoveSuppression);
-    
-// 	Template.AbilityTargetStyle = default.SimpleSingleTarget;
-
-// 	//Trigger on movement - interrupt the move
-// 	Trigger = new class'X2AbilityTrigger_Event';
-// 	Trigger.EventObserverClass = class'X2TacticalGameRuleset_MovementObserver';
-// 	Trigger.MethodName = 'InterruptGameState';
-// 	Template.AbilityTriggers.AddItem(Trigger);
-    
-// 	Template.AbilitySourceName = 'eAbilitySource_Standard';
-// 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
-// 	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_supression";
-// 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_LIEUTENANT_PRIORITY;
-// 	Template.bDisplayInUITooltip = false;
-// 	Template.bDisplayInUITacticalText = false;
-
-// 	//don't want to exit cover, we are already in suppression/alert mode.
-// 	Template.bSkipExitCoverWhenFiring = true;
-
-// 	Template.bAllowFreeFireWeaponUpgrade = true;
-// //  Put holo target effect first because if the target dies from this shot, it will be too late to notify the effect.
-// 	ShotEffect = class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect();
-// 	ShotEffect.TargetConditions.AddItem(class'X2Ability_DefaultAbilitySet'.static.OverwatchTargetEffectsCondition());
-// 	Template.AddTargetEffect(ShotEffect);
-// 	//  Various Soldier ability specific effects - effects check for the ability before applying	
-// 	ShotEffect = class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect();
-// 	ShotEffect.TargetConditions.AddItem(class'X2Ability_DefaultAbilitySet'.static.OverwatchTargetEffectsCondition());
-// 	Template.AddTargetEffect(ShotEffect);
-    
-// 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-// 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
-
-// 	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
-// 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
-
-// 	return Template;
-// }
+simulated function Suppression_BuildVisualization(XComGameState VisualizeGameState)
+{
+    Suppression_BuildVisualization_Static(VisualizeGameState);
+}
 
 static function X2AbilityTemplate AddSuppressionShot(name DataName, optional bool bAreaSuppression = false)
 {
@@ -3225,151 +3158,8 @@ static function X2AbilityTemplate AddAreaSuppressionAbility()
 // Adds multitarget visualization
 simulated function AreaSuppression_BuildVisualization(XComGameState VisualizeGameState)
 {
-    local XComGameStateHistory              History;
-    local XComGameStateContext_Ability      Context;
-    local StateObjectReference              InteractingUnitRef;
-
-    local VisualizationActionMetadata       EmptyTrack;
-    local VisualizationActionMetadata       ActionMetadata;
-
-    local XComGameState_Ability             Ability;
-    local X2Action_PlaySoundAndFlyOver      SoundAndFlyOver;
-
-    // Variables for Issue #45
-    local XComGameState_Item                SourceWeapon;
-    local XGWeapon                          WeaponVis;
-    local XComUnitPawn                      UnitPawn;
-    local XComWeapon                        Weapon;
-
-    History = `XCOMHISTORY;
-
-    Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
-    InteractingUnitRef = Context.InputContext.SourceObject;
-
-    // Configure the visualization track for the shooter
-    // ****************************************************************************************
-    ActionMetadata = EmptyTrack;
-    ActionMetadata.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
-    ActionMetadata.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
-    ActionMetadata.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
-
-    // Start Issue #45
-    // Check the actor's pawn and weapon, see if they can play the suppression effect
-    Ability = XComGameState_Ability(History.GetGameStateForObjectID(Context.InputContext.AbilityRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
-    SourceWeapon = XComGameState_Item(History.GetGameStateForObjectID(Ability.SourceWeapon.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
-    WeaponVis = XGWeapon(SourceWeapon.GetVisualizer());
-
-    UnitPawn = XGUnit(ActionMetadata.VisualizeActor).GetPawn();
-    Weapon = WeaponVis.GetEntity();
-    if (Weapon != none &&
-        !UnitPawn.GetAnimTreeController().CanPlayAnimation(Weapon.WeaponSuppressionFireAnimSequenceName) &&
-        !UnitPawn.GetAnimTreeController().CanPlayAnimation(class'XComWeapon'.default.WeaponSuppressionFireAnimSequenceName))
-    {
-        // The unit can't play their weapon's suppression effect. Replace it with the normal fire effect so at least they'll look like they're shooting
-        Weapon.WeaponSuppressionFireAnimSequenceName = Weapon.WeaponFireAnimSequenceName;
-    }
-    // End Issue #45
-    
-    class'X2Action_ExitCover'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded);
-    class'X2Action_StartSuppression'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded);
-    // ****************************************************************************************
-    // Configure the visualization track for the target
-    InteractingUnitRef = Context.InputContext.PrimaryTarget;
-    ActionMetadata = EmptyTrack;
-    ActionMetadata.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
-    ActionMetadata.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
-    ActionMetadata.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
-    SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded));
-    SoundAndFlyOver.SetSoundAndFlyOverParameters(none, Ability.GetMyTemplate().LocFlyOverText, '', eColor_Good);
-    if (XComGameState_Unit(ActionMetadata.StateObject_OldState).ReserveActionPoints.Length != 0 && XComGameState_Unit(ActionMetadata.StateObject_NewState).ReserveActionPoints.Length == 0)
-    {
-        SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded));
-        SoundAndFlyOver.SetSoundAndFlyOverParameters(none, class'XLocalizedData'.default.OverwatchRemovedMsg, '', eColor_Good);
-    }
-
-    // Configure for the rest of the targets in AOE Suppression
-    if (Context.InputContext.MultiTargets.Length > 0)
-    {
-        foreach Context.InputContext.MultiTargets(InteractingUnitRef)
-        {
-            ActionMetadata = EmptyTrack;
-            ActionMetadata.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
-            ActionMetadata.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
-            ActionMetadata.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
-            SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded));
-            SoundAndFlyOver.SetSoundAndFlyOverParameters(none, Ability.GetMyTemplate().LocFlyOverText, '', eColor_Good);
-            if (XComGameState_Unit(ActionMetadata.StateObject_OldState).ReserveActionPoints.Length != 0 && XComGameState_Unit(ActionMetadata.StateObject_NewState).ReserveActionPoints.Length == 0)
-            {
-                SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded));
-                SoundAndFlyOver.SetSoundAndFlyOverParameters(none, class'XLocalizedData'.default.OverwatchRemovedMsg, '', eColor_Good);
-            }
-        }
-    }
+    Suppression_BuildVisualization_Static(VisualizeGameState, true);
 }
-
-// Old version
-// simulated function AreaSuppression_BuildVisualization_LW(XComGameState VisualizeGameState)
-// {
-//     local XComGameStateHistory          History;
-//     local XComGameStateContext_Ability  Context;
-//     local StateObjectReference          InteractingUnitRef;
-//     local VisualizationActionMetadata   EmptyTrack;
-//     local VisualizationActionMetadata   BuildTrack;
-//     local XComGameState_Ability         Ability;
-//     local X2Action_PlaySoundAndFlyOver	SoundAndFlyOver;
-
-//     History = `XCOMHISTORY;
-
-//     Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
-//     InteractingUnitRef = Context.InputContext.SourceObject;
-
-//     // Configure the visualization track for the shooter
-//     //****************************************************************************************
-//     BuildTrack = EmptyTrack;
-//     BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
-//     BuildTrack.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
-//     BuildTrack.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
-    
-//     class'X2Action_ExitCover'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded);
-//     class'X2Action_StartSuppression'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded);
-    
-//     //****************************************************************************************
-//     // Configure the visualization track for the primary target
-
-//     InteractingUnitRef = Context.InputContext.PrimaryTarget;
-//     Ability = XComGameState_Ability(History.GetGameStateForObjectID(Context.InputContext.AbilityRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
-//     BuildTrack = EmptyTrack;
-//     BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
-//     BuildTrack.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
-//     BuildTrack.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
-//     SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
-//     SoundAndFlyOver.SetSoundAndFlyOverParameters(None, Ability.GetMyTemplate().LocFlyOverText, '', eColor_Bad);
-//     if (XComGameState_Unit(BuildTrack.StateObject_OldState).ReserveActionPoints.Length != 0 && XComGameState_Unit(BuildTrack.StateObject_NewState).ReserveActionPoints.Length == 0)
-//     {
-//         SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
-//         SoundAndFlyOver.SetSoundAndFlyOverParameters(none, class'XLocalizedData'.default.OverwatchRemovedMsg, '', eColor_Bad);
-//     }
-
-//     // Configure for the rest of the targets in AOE Suppression
-//     if (Context.InputContext.MultiTargets.Length > 0)
-//     {
-//         foreach Context.InputContext.MultiTargets(InteractingUnitRef)
-//         {
-//             Ability = XComGameState_Ability(History.GetGameStateForObjectID(Context.InputContext.AbilityRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
-//             BuildTrack = EmptyTrack;
-//             BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
-//             BuildTrack.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
-//             BuildTrack.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
-//             SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
-//             SoundAndFlyOver.SetSoundAndFlyOverParameters(None, Ability.GetMyTemplate().LocFlyOverText, '', eColor_Bad);
-//             if (XComGameState_Unit(BuildTrack.StateObject_OldState).ReserveActionPoints.Length != 0 && XComGameState_Unit(BuildTrack.StateObject_NewState).ReserveActionPoints.Length == 0)
-//             {
-//                 SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
-//                 SoundAndFlyOver.SetSoundAndFlyOverParameters(none, class'XLocalizedData'.default.OverwatchRemovedMsg, '', eColor_Bad);
-//             }
-//         }
-//     }
-// }
 
 simulated function AreaSuppression_BuildVisualizationSync(name EffectName, XComGameState VisualizeGameState, out VisualizationActionMetadata BuildTrack)
 {
@@ -3383,97 +3173,6 @@ simulated function AreaSuppression_BuildVisualizationSync(name EffectName, XComG
         class'X2Action_StartSuppression'.static.AddToVisualizationTree(BuildTrack, VisualizeGameState.GetContext(), false, BuildTrack.LastActionAdded);
     }
 }
-
-
-// static function X2AbilityTemplate AreaSuppressionShot_LW()
-// {
-//     local X2AbilityTemplate                 Template;	
-//     local X2AbilityCost_ReserveActionPoints ReserveActionPointCost;
-//     local X2AbilityToHitCalc_StandardAim    StandardAim;
-//     local X2Condition_Visibility            TargetVisibilityCondition;
-//     local X2AbilityTrigger_EventListener    Trigger;
-//     local X2Condition_UnitEffectsWithAbilitySource  TargetEffectCondition;
-//     local X2Effect_RemoveAreaSuppressionEffect      RemoveAreaSuppression;
-//     local X2Effect                          ShotEffect;
-//     local X2AbilityCost_Ammo                AmmoCost;
-
-//     `CREATE_X2ABILITY_TEMPLATE(Template, 'AreaSuppressionShot_LW');
-
-//     Template.bDontDisplayInAbilitySummary = true;
-//     ReserveActionPointCost = new class'X2AbilityCost_ReserveActionPoints';
-//     ReserveActionPointCost.iNumPoints = 1;
-//     ReserveActionPointCost.AllowedTypes.AddItem('Suppression');
-//     Template.AbilityCosts.AddItem(ReserveActionPointCost);
-    
-//     AmmoCost = new class'X2AbilityCost_Ammo';	
-//     AmmoCost.iAmmo = default.AREA_SUPPRESSION_SHOT_AMMO_COST;
-//     Template.AbilityCosts.AddItem(AmmoCost);
-
-//     StandardAim = new class'X2AbilityToHitCalc_StandardAim';
-//     StandardAim.BuiltInHitMod = default.AREA_SUPPRESSION_LW_SHOT_AIM_BONUS;
-//     StandardAim.bReactionFire = true;
-
-//     Template.AbilityToHitCalc = StandardAim;
-//     Template.AbilityToHitOwnerOnMissCalc = StandardAim;
-
-//     Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
-
-//     TargetEffectCondition = new class'X2Condition_UnitEffectsWithAbilitySource';
-//     TargetEffectCondition.AddRequireEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsNotSuppressed');
-//     Template.AbilityTargetConditions.AddItem(TargetEffectCondition);
-
-//     TargetVisibilityCondition = new class'X2Condition_Visibility';	
-//     TargetVisibilityCondition.bRequireGameplayVisible = true;
-//     Template.AbilityTargetConditions.AddItem(TargetVisibilityCondition);
-
-//     Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
-//     Template.bAllowAmmoEffects = true;
-
-//     // this handles the logic for removing just from the target (if should continue), or removing from all targets if running out of ammo
-//     RemoveAreaSuppression = new class'X2Effect_RemoveAreaSuppressionEffect';
-//     RemoveAreaSuppression.EffectNamesToRemove.AddItem(class'X2Effect_AreaSuppression'.default.EffectName);
-//     RemoveAreaSuppression.bCheckSource =  true;
-//     RemoveAreaSuppression.SetupEffectOnShotContextResult(true, true);
-//     Template.AddTargetEffect(RemoveAreaSuppression);
-
-//     Template.AbilityTargetStyle = default.SimpleSingleTarget;
-
-//     //Trigger on movement - interrupt the move
-//     Trigger = new class'X2AbilityTrigger_EventListener';
-//     Trigger.ListenerData.EventID = 'ObjectMoved';
-//     Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
-//     Trigger.ListenerData.Filter = eFilter_None;
-//     Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalOverwatchListener;
-//     Template.AbilityTriggers.AddItem(Trigger);
-
-//     Template.AbilitySourceName = 'eAbilitySource_Standard';
-//     Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
-//     Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_supression";
-//     Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_LIEUTENANT_PRIORITY;
-//     Template.bDisplayInUITooltip = false;
-//     Template.bDisplayInUITacticalText = false;
-
-//     //don't want to exit cover, we are already in suppression/alert mode.
-//     Template.bSkipExitCoverWhenFiring = true;
-
-//     Template.bAllowFreeFireWeaponUpgrade = true;	
-// //  Put holo target effect first because if the target dies from this shot, it will be too late to notify the effect.
-//     ShotEffect = class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect();
-//     ShotEffect.TargetConditions.AddItem(class'X2Ability_DefaultAbilitySet'.static.OverwatchTargetEffectsCondition());
-//     Template.AddTargetEffect(ShotEffect);
-//     //  Various Soldier ability specific effects - effects check for the ability before applying	
-//     ShotEffect = class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect();
-//     ShotEffect.TargetConditions.AddItem(class'X2Ability_DefaultAbilitySet'.static.OverwatchTargetEffectsCondition());
-//     Template.AddTargetEffect(ShotEffect);
-    
-//     Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-//     Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
-    
-//     Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
-//     Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
-
-//     return Template;	
-// }
 
 static function X2Effect_Persistent CoveringFireMalusEffect()
 {
@@ -3493,50 +3192,6 @@ static function X2Effect_Persistent CoveringFireMalusEffect()
     Effect.TargetConditions.AddItem(AbilityCondition);
     return Effect;
 }
-
-// static function X2AbilityTemplate LockdownBonuses()
-// {
-// 	local X2Effect_LockdownDamage			DamageEffect;
-// 	local X2AbilityTemplate                 Template;	
-
-// 	`CREATE_X2ABILITY_TEMPLATE(Template, 'LockdownBonuses');
-// 	Template.AbilityToHitCalc = default.DeadEye;
-//     Template.AbilityTargetStyle = default.SelfTarget;
-// 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
-// 	Template.AbilitySourceName = 'eAbilitySource_Perk';
-// 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
-// 	Template.bDisplayInUITooltip = false;
-// 	Template.bIsASuppressionEffect = true;
-// 	//  Effect code checks whether unit has Lockdown before providing aim and damage bonuses
-// 	DamageEffect = new class'X2Effect_LockdownDamage';
-// 	DamageEffect.BuildPersistentEffect(1,true,false,false,eGameRule_PlayerTurnBegin);
-// 	DamageEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, false);
-// 	Template.AddTargetEffect(DamageEffect);
-// 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-// 	return Template;
-// }
-
-// static function X2AbilityTemplate MayhemBonuses()
-// {
-// 	local X2Effect_Mayhem					DamageEffect;
-// 	local X2AbilityTemplate                 Template;	
-
-// 	`CREATE_X2ABILITY_TEMPLATE(Template, 'MayhemBonuses');
-// 	Template.AbilityToHitCalc = default.DeadEye;
-//     Template.AbilityTargetStyle = default.SelfTarget;
-// 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
-// 	Template.AbilitySourceName = 'eAbilitySource_Perk';
-// 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
-// 	Template.bDisplayInUITooltip = false;
-// 	Template.bIsASuppressionEffect = true;
-// 	//  Effect code checks whether unit has Mayhem before providing aim and damage bonuses
-// 	DamageEffect = new class'X2Effect_Mayhem';
-// 	DamageEffect.BuildPersistentEffect(1,true,false,false,eGameRule_PlayerTurnBegin);
-// 	DamageEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, false);
-// 	Template.AddTargetEffect(DamageEffect);
-// 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-// 	return Template;
-// }
 
 static function X2AbilityTemplate AddInterferenceAbility()
 {
@@ -3758,7 +3413,7 @@ static function X2AbilityTemplate AddCovertAbility()
 	local X2AbilityTemplate					Template;
 	local X2Effect_PersistentStatChange		CovertEffect;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'Covert');	
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Covert');
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityCovert";
 	Template.Hostility = eHostility_Neutral;
@@ -4940,7 +4595,6 @@ static function X2AbilityTemplate AddFormidableAbility()
 
 	return Template;
 }
-
 
 static function X2AbilityTemplate AddSoulStealTriggered2()
 {
