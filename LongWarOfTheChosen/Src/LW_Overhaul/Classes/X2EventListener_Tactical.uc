@@ -338,6 +338,8 @@ static function EventListenerReturn OnScamperBegin(
 		}
 	}
 
+	`LWTrace("Base Reflex action chance after infiltration mod:" @Chance);
+
 	NumSuccessfulReflexActions = 0;
 	for (i = 0; i < AlivePodMembers.Length; ++i)
 	{
@@ -558,6 +560,8 @@ static function int ProcessReflexActionsForUnit(
 		Chance -= NumSuccessfulReflexActions * class'Utilities_LW'.default.REFLEX_ACTION_CHANCE_REDUCTION;
 	}
 
+	`LWTrace("Chance after reduction:" @Chance);
+
 	if (`SYNC_FRAND_STATIC() < Chance)
 	{
 		// Award the unit a special kind of action point. These are more restricted than standard action points.
@@ -580,6 +584,7 @@ static function int ProcessReflexActionsForUnit(
 	}
 	else
 	{
+		`LWTrace("Roll failed");
 		return 0;
 	}
 }
