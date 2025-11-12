@@ -290,6 +290,7 @@ strLaunchingInfiltration="CONTACT IMMINENT"
 
 [UIUtilities_Text_LW]
 m_strHelp="Help"
+m_strJailbreakAggregatedReward="<XGParam:StrValue0/!RewardType>: <XGParam:StrValue1/!RewardQuantity>"
 
 [X2Ability_LW_GearAbilities]
 strWeight="Small item weight"
@@ -509,7 +510,6 @@ m_strInsuffientInfiltrationToLaunch="Need to infiltrate to at least <XGParam:Int
 
 [UIMission_LWCustomMission]
 m_strUrgent="SECURITY BREACH"
-m_strJailbreakAggregatedReward="<XGParam:StrValue0/!RewardType>: <XGParam:StrValue1/!RewardQuantity>"
 m_strRendezvousMission="RENDEZVOUS"
 m_strRendezvousDesc="**Unauthorized signal from Resistance Haven in <XGParam:StrValue0/!WorldRegionName>** The adviser and volunteers from the Haven will intercept and eliminate a spy and their ADVENT handlers at a nearby meeting site."
 m_strInvasionMission="INVASION"

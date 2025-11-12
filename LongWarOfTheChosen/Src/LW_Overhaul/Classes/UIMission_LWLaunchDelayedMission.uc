@@ -201,7 +201,14 @@ simulated function BuildMissionPanel()
 
 	if(GetRewardString() != "")
 	{
-		LibraryPanel.MC.QueueString(GetRewardString());
+		if (Mission.GeneratedMission.Mission.sType == "Jailbreak_LW" && `LWOVERHAULOPTIONS.GetAggregateJailbreakRewards())
+		{
+			LibraryPanel.MC.QueueString(class'UIUtilities_Text_LW'.static.GetJailbreakAggregatedRewardsString(Mission));
+		}
+		else
+		{
+			LibraryPanel.MC.QueueString(GetRewardString());
+		}
 	}
 	else
 	{

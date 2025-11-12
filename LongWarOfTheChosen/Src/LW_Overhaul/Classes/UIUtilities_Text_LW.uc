@@ -15,6 +15,7 @@ const BODY_FONT_TYPE = "$NormalFont";
 const TITLE_FONT_TYPE = "$TitleFont";
 
 var localized string m_strHelp;
+var localized string m_strJailbreakAggregatedReward;
 
 // KDM : This is equivalent to UIUtilities_Text --> AddFontInfo(); the only difference is that it allows you to modify the font's colour.
 static function string AddFontInfoWithColor(string txt, bool is3DScreen, optional bool isTitleFont, optional bool forceBodyFontSize, 
@@ -271,4 +272,73 @@ static function GetShadowChamberMissionInfo(XComGameState_MissionSite MissionSit
 		}//end character for loop
 
 	}//end encounter for loop
+}
+
+static function string GetJailbreakAggregatedRewardsString(XComGameState_MissionSite MissionState)
+{
+	local X2RewardTemplate RewardTemplate;
+	local XComGameState_Reward RewardState;
+	local StateObjectReference Ref;
+	local string RewardString;
+	local XGParamTag kTag;
+	local int Rookies, Rebels;
+
+	RewardString = "";
+
+	foreach MissionState.Rewards(Ref)
+	{
+		RewardState = XComGameState_Reward(`XCOMHISTORY.GetGameStateForObjectID(Ref.ObjectID));
+		if (RewardState == None)
+		{
+			continue;
+		}
+		if (RewardState.GetMyTemplateName() == 'Reward_Rookie')
+		{
+			Rookies++;
+		}
+		else if (RewardState.GetMyTemplateName() == 'Reward_Rebel')
+		{
+			Rebels++;
+		}
+		else
+		{
+			if (RewardString != "")
+			{
+				RewardString $= ", ";
+			}
+			RewardString $= RewardState.GetRewardString();
+		}
+	}
+
+	if (Rookies > 0)
+	{
+		RewardTemplate = X2RewardTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('Reward_Rookie'));
+
+		kTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
+		kTag.StrValue0 = RewardTemplate.DisplayName;
+		kTag.StrValue1 = string(Rookies);
+
+		if (RewardString != "")
+		{
+			RewardString $= ", ";
+		}
+		RewardString $= `XEXPAND.ExpandString(default.m_strJailbreakAggregatedReward);
+	}
+
+	if (Rebels > 0)
+	{
+		RewardTemplate = X2RewardTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('Reward_Rebel'));
+
+		kTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
+		kTag.StrValue0 = RewardTemplate.DisplayName;
+		kTag.StrValue1 = string(Rebels);
+
+		if (RewardString != "")
+		{
+			RewardString $= ", ";
+		}
+		RewardString $= `XEXPAND.ExpandString(default.m_strJailbreakAggregatedReward);
+	}
+
+	return RewardString;
 }
