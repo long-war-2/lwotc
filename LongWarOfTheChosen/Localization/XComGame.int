@@ -5451,14 +5451,14 @@ LocPromotionPopupText="<Bullet/> If triggered by an enemy action, Covering Fire 
 LocPromotionPopupText="<Bullet/> Demolition requires <Ability:SelfAmmoCost/> ammo points and has a <Ability:SelfCooldown/> turn cooldown.<br/><Bullet/> Demolition does increased environmental damage, and will destroy most cover objects.<br/><Bullet/> Demolition chance is based on the soldier's base aim with a bonus of +<Ability:DEMO_HIT_BONUS>.<br/>"
 
 [GrenadeLauncher_MG X2GrenadeLauncherTemplate]
-BriefSummary="Our Advanced Grenade Launcher uses magnetic technology to propel grenades further than our conventional launcher and provides an additional grenade to grenade only slots."
-TacticalText="<Bullet/> The Advanced Grenade Launcher has an increased range over the standard Grenade Launcher and will give a bonus grenade item to grenades equipped in the grenade-only slot.\n."
+BriefSummary="Our Advanced Grenade Launcher provides an additional grenade to grenade only slots."
+TacticalText="<Bullet/> The Advanced Grenade Launcher will give a bonus grenade item to grenades equipped in the grenade-only slot.\n."
 
 ; LWOTC Needs Translation
 [GrenadeLauncher_BM X2GrenadeLauncherTemplate]
 FriendlyName="Beam Grenade Launcher"
 FriendlyNamePlural="Beam Grenade Launchers"
-BriefSummary="The Beam Grenade Launcher combines our latest breakthroughs in beam technology-based propulsion and AI-assisted targeting systems to deliver payloads with unprecedented precision. Also provides extra grenades items to all utility and grenade slot grenades."
+BriefSummary="The Beam Grenade Launcher combines our latest breakthroughs in AI-assisted targeting systems to deliver payloads with unprecedented precision. Also provides extra grenades items to all utility and grenade slot grenades."
 TacticalText="<Bullet/> The Beam Grenade Launcher transforms any grenade into an autonomous projectile that can navigate around obstacles with ease. Grants Full Kit as well as Heavy Ordnance, providing bonus uses of utility slot and grenade slot grenades."
 ; End Translation
 
