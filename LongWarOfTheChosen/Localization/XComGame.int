@@ -493,10 +493,10 @@ LocPromotionPopupText="<Bullet/> Grenades that do not innately shred any armor d
 [TandemHEATWarheads X2AbilityTemplate]
 LocFriendlyName="Tandem HEAT Warheads"
 ; LWOTC Needs Translation
-LocLongDescription="Your grenades now pierce up to <ABILITY:TANDEMHEAT_WARHEADS_PIERCE_LW/> point(s) of armor, shred <ABILITY:TANDEMHEAT_WARHEADS_SHRED_LW/> additional point(s) of armor, and do full damage to units to the maximum extent of their area of effect."
-LocHelpText="Your grenades now pierce up to <ABILITY:TANDEMHEAT_WARHEADS_PIERCE_LW/> point(s) of armor, shred <ABILITY:TANDEMHEAT_WARHEADS_SHRED_LW/> additional point(s) of armor, and do full damage to units to the maximum extent of their area of effect."
-LocFlyOverText="HEAT Warheads"
-LocPromotionPopupText="<Bullet/> Grenades that do not innately shred any armor do not benefit from the additional shred. Damage increase does not apply to Environmental damage."
+LocLongDescription="Your explosives now pierce up to <ABILITY:TANDEMHEAT_WARHEADS_PIERCE_LW/> armor, and their damage no longer suffer from falloff."
+LocHelpText="Your explosives now pierce up to <ABILITY:TANDEMHEAT_WARHEADS_PIERCE_LW/> armor, and their damage no longer suffer from falloff."
+LocFlyOverText="Tandem HEAT Warheads"
+LocPromotionPopupText="<Bullet/> Damage falloff refers to reduced damage the further away the target is from the center of the blast.<br/><Bullet/> Environmental damage is still subject to falloff."
 ; End Translation
 
 [Bombard_LW X2AbilityTemplate]
