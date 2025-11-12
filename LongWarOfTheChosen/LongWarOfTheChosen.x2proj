@@ -512,6 +512,9 @@
     <Content Include="Src\LW_Overhaul\Classes\SeqAct_GetMissionTimer.uc" />
     <Content Include="Src\LW_Overhaul\Classes\SeqAct_GetRegionInfo.uc" />
     <Content Include="Src\LW_Overhaul\Classes\SeqAct_GetXComUnits.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\SeqAct_LinkObjects.uc">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Src\LW_Overhaul\Classes\UIRecruitmentListItem_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIRecruitSoldiers_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_Mission_ChosenAvengerAssault.uc">
@@ -771,6 +774,9 @@
     <Content Include="Src\LW_Overhaul\Classes\X2StrategyElement_PointsofInterest_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_LWBlasterLauncher.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_LWEvacZone.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_LWPlantBomb.uc">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_LWRocketLauncher.uc" />
     <Content Include="Src\LW_Overhaul\Classes\XComGameState_CovertActionTracker.uc" />
     <Content Include="Src\LW_Overhaul\Classes\XComGameState_Effect_TransferMecToOutpost.uc" />
