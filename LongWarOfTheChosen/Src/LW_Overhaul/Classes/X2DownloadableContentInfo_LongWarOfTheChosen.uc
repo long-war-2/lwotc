@@ -287,6 +287,7 @@ static event OnPostTemplatesCreated()
 	UpdateSkulljackAllShooterEffectExclusions();
 	class'X2Ability_PerkPackAbilitySet2'.static.AddEffectsToGrenades();
 	class'XComGameState_LWToolboxOptions'.static.UpdateRewardSoldierTemplates();
+	EditPlantBombAbility();
 }
 
 // Borrowed from Xynamek / Prototype Armory code
@@ -350,6 +351,22 @@ static function EditModdedRocketAbilities()
 		}
 	}
 }
+
+static function EditPlantBombAbility()
+{
+	local X2AbilityTemplateManager AbilityMan;
+	local array<X2AbilityTemplate> AbilityTemplates;
+	local X2AbilityTemplate AbilityTemplate;
+
+	AbilityMan = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
+
+	AbilityMan.FindAbilityTemplateAllDifficulties('Interact_PlantBomb', AbilityTemplates);
+	foreach AbilityTemplates(AbilityTemplate)
+	{
+		AbilityTemplate.TargetingMethod = class'X2TargetingMethod_LWPlantBomb';
+	}
+}
+
 
 // Vanilla Skulljack and Skullmine can be used while burning
 // In LW, burning disables a lot more abilities, so might as well disable these too
