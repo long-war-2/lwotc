@@ -417,24 +417,28 @@ LocPromotionPopupText="<Bullet/> Run and Gun allows soldiers to close the distan
 [Suppression_LW X2AbilityTemplate]
 LocFriendlyName="Suppression"
 LocFlyOverText="Suppression"
-LocLongDescription="Fire a barrage that pins down a target, grants reaction fire against it if it moves, restricts the use of many abilities, and imposing a <Ability:SUPPRESSIONPENALTY/> penalty to the target's aim. Also adds an additional -15 aim debuff for the turn that is not cleared with the suppression."
-LocHelpText="Penalize target's aim and shoot them if they move."
 ; LWOTC Needs Translation
-LocPromotionPopupText="<Bullet/> Suppression costs <Ability:SelfAmmoCost/> ammo points to use, but has no cooldown.<br/><Bullet/> Suppression will be canceled if the suppressing unit is damaged.<br/><Bullet/> If multiple units suppress a target, the aim penalty will not stack.<br/><Bullet/> May not be used if sniper rifle or shotgun-class weapons are equipped.<br/><Bullet/> Suppression restricts many of the target's abilities, including the use of rockets and grenades.<br./><Bullet/> Also adds an additional -15 aim debuff for the turn that is not cleared with the suppression."
+LocLongDescription="Fire a barrage that pins the target down, granting a reaction shot against it if it moves, restricting the use of certain abilities and imposing a penalty to the target's aim."
+LocHelpText="Penalize target's aim and shoot them if they move."
+LocPromotionPopupText="<Bullet> Suppression requires <Ability:SelfAmmoCost> ammo.<br><Bullet> Suppression has no cooldown.<br><Bullet> Suppression will be canceled if the suppressing unit is damaged or impaired.<br><Bullet> Suppression reduces the target's aim by <Ability:SUPPRESSION_LW_AIM_MALUS> for a turn and additional <Ability:SUPPRESSIONPENALTY> for as long as the target is suppressed.<br><Bullet> Suppression cannot be used with sniper rifles and shotguns.<br><Bullet> Suppression restricts many of the target's abilities, including the use of rockets and grenades.<br><Bullet> If multiple units suppress the same target, the aim penalty will not stack."
 ; End Translation
 
 [AreaSuppression X2AbilityTemplate]
 LocFriendlyName="Area Suppression"
 LocFlyOverText="Area Suppression"
-LocLongDescription="Fire a barrage that pins down multiple targets within a <Ability:AREA_SUPPRESSION_RADIUS_TILES>-tile radius, granting reaction fire against anyone that moves, and imposing a <Ability:SUPPRESSIONPENALTY/> penalty to all targets' aim until suppression is removed. Cannot be used when concealed."
-LocHelpText="Suppress multiple targets within an area of effect."
 ; LWOTC Needs Translation
-LocPromotionPopupText="<Bullet/> Area Suppression cannot be used when the soldier is concealed.<br/><Bullet/> Any unit that attempts to move will face reaction fire as long as the suppressing unit has ammo remaining.<br/><Bullet/> Does not work with shotguns or sniper rifles.<br/><Bullet/> Area Suppression costs <Ability:SelfAmmoCost/> ammo points to use, plus one additional ammo for each reaction shot. It has no cooldown.<br/><Bullet/> Area suppression will be canceled if the suppressing unit is damaged.<br/><Bullet/> If multiple units suppress a target, the aim penalty will not stack.<br/><Bullet/> Suppression restricts many of the target's abilities, including the use of rockets and grenades."
+LocLongDescription="Fire a barrage that pins down multiple targets within a <Ability:AREA_SUPPRESSION_RADIUS_TILES>-tile radius, granting reaction fire against anyone that moves, and imposing an aim penalty to all targets until suppression is removed. Cannot be used when concealed."
+LocHelpText="Suppress multiple targets within an area of effect."
+LocPromotionPopupText="<Bullet> Area Suppression cannot be used while the <Ability:ClassName> is concealed.<br><Bullet> Area Suppression requires <Ability:SelfAmmoCost> ammo points to use, but consumes <Ability:AREA_SUPPRESSION_AMMO_COST>, plus one additional ammo for each reaction shot.<br><Bullet> Area Suppression has no cooldown.<br><Bullet> Area Suppression will be canceled if the suppressing unit is damaged or impaired.<br><Bullet> Area Suppression reduces the targets' aim by <Ability:SUPPRESSIONPENALTY> for as long as the targets are suppressed.<br><Bullet> Area Suppression cannot be used with sniper rifles and shotguns.<br><Bullet> Area Suppression restricts many of the target's abilities, including the use of rockets and grenades.<br><Bullet> If multiple units suppress the same target, the aim penalty will not stack."
 ; End Translation
 
 [SuppressionShot_LW X2AbilityTemplate]
 LocFriendlyName="Suppression"
 LocFlyOverText="Suppression"
+
+[AreaSuppressionShot_LW X2AbilityTemplate]
+LocFriendlyName="Area Suppression"
+LocFlyOverText="Area Suppression"
 
 [DangerZone X2AbilityTemplate]
 LocFriendlyName="Danger Zone"

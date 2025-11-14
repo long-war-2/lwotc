@@ -469,8 +469,17 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'AREA_SUPPRESSION_RADIUS_TILES':
 			OutString = string(int(`METERSTOTILES(class'X2Ability_PerkPackAbilitySet'.default.AREA_SUPPRESSION_RADIUS)));
 			return true;
+		case 'AREA_SUPPRESSION_AMMO_COST':
+			OutString = string(Max(0, class'X2Ability_PerkPackAbilitySet'.default.AREA_SUPPRESSION_AMMO_COST - 1));
+			return true;
 		case 'DANGER_ZONE_AREA_SUPPRESSION_RADIUS_TILES':
 			OutString = string(int(`METERSTOTILES(class'X2Ability_PerkPackAbilitySet'.default.AREA_SUPPRESSION_RADIUS + class'X2Ability_PerkPackAbilitySet'.default.DANGER_ZONE_BONUS_RADIUS)));
+			return true;
+		case 'SUPPRESSION_LW_AIM_MALUS':
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.SUPPRESSION_LW_AIM_MALUS);
+			return true;
+		case 'SUPPRESSION_LW_AIM_MALUS_DURATION':
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.SUPPRESSION_LW_AIM_MALUS_DURATION);
 			return true;
 		case 'LOCKDOWN_TOHIT_BONUS':
 			OutString = string(Round(class'X2Effect_LockdownDamage'.default.LOCKDOWN_TOHIT_BONUS * (1.0 - class'X2AbilityToHitCalc_StandardAim'.default.REACTION_FINALMOD)));
