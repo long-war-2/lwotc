@@ -87,7 +87,7 @@ LocFlyOverText="Ready for Anything"
 ; LWOTC Needs Translation
 LocHelpText="Once per turn, enter overwatch after taking a standard shot with your <Ability:BOUND_WEAPON_NAME>."
 LocLongDescription="Once per turn, enter overwatch after taking a standard shot with your <Ability:BOUND_WEAPON_NAME>."
-LocPromotionPopupText="<Bullet> Standard shot abilities also include Standard Sniper Shot and Pistol Shot.<br><Bullet> Ready for Anything will not activate the <Ability:ClassName> is disoriented, stunned, panicking, on fire or otherwise impaired.<br><Bullet> Ready for Anything will not activate if the <Ability:ClassName> doesn't have enough ammo for overwatch."
+LocPromotionPopupText="<Bullet> Standard shot abilities also include Standard Sniper Shot and Pistol Shot.<br><Bullet> Ready for Anything will not activate if the <Ability:ClassName> is disoriented, stunned, panicking, on fire or otherwise impaired.<br><Bullet> Ready for Anything will not activate if the <Ability:ClassName> doesn't have enough ammo for overwatch."
 ; End Translation
 
 [ReadyForAnythingTrigger X2AbilityTemplate]
