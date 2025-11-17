@@ -1246,6 +1246,7 @@ static function EventListenerReturn OnUFOSetInterceptionTime(Object EventData, O
     return ELR_NoInterrupt;
 }
 
+// Unused
 static function EventListenerReturn PauseGeoscapeOnSquadSelect(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
 	`HQPRES.StrategyMap2D.SetUIState(eSMS_Flight);
