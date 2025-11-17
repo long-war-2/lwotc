@@ -81,7 +81,7 @@ ActivityObjectives[0]="Атакуйте научную лабораторию п
 
 [ScheduledOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="ScheduledOffworldReinforcementsActivity"
-ActivityObjectives[0]="Найдите вражеские пути подкреплений"
+ActivityObjectives[0]="Найдите вражеские пути подкреплений: Тех. ур. НЛО"
 ActivityObjectives[1]="Заберите артефакты с НЛО"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Мы нашли потенциальную улику, касающуюся действий \"Адвента\". Нужно провести расследование.", MissionIndex=0)
@@ -90,7 +90,7 @@ ActivityObjectives[1]="Заберите артефакты с НЛО"
 
 [EmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="EmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="Найдите вражеские пути подкреплений"
+ActivityObjectives[0]="Найдите вражеские пути подкреплений: Стандартный НЛО"
 ActivityObjectives[1]="Заберите артефакты с НЛО"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Мы нашли потенциальную улику, касающуюся действий \"Адвента\". Нужно провести расследование.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="Мы нашли потенциальную улику, касающуюся действий \"Адвента\". Нужно провести расследование.", MissionIndex=0)
@@ -98,7 +98,7 @@ ActivityObjectives[1]="Заберите артефакты с НЛО"
 
 [SuperEmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="SuperEmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="Найдите вражеские пути подкреплений"
+ActivityObjectives[0]="Найдите вражеские пути подкреплений: Супер НЛО"
 ActivityObjectives[1]="Заберите артефакты с НЛО"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Мы нашли потенциальную улику, касающуюся действий \"Адвента\". Нужно провести расследование.", MissionIndex=0)
