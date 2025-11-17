@@ -42,7 +42,7 @@ static function CHEventListenerTemplate CreateXComHQListeners()
 	Template.AddCHEvent('UIAvengerShortcuts_ShowCQResistanceOrders', ShowOrHideResistanceOrdersButton, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('UIPersonnel_OnSortFinished', OnUIPersonnelDataRefreshed, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('UpdateResources', OnUpdateResources_LW, ELD_Immediate, GetListenerPriority());
-	Template.AddCHEvent('OnResearchReport', ShowItemGrantedPopup, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('OnResearchReport', ShowItemGrantedPopup, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('OverrideImageForItemAvaliable', FixResearchItemImages, ELD_Immediate, GetListenerPriority());
 
 	Template.RegisterInStrategy = true;
