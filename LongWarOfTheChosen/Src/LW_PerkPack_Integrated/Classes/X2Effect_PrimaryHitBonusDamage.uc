@@ -1,9 +1,11 @@
-class X2Effect_PrimaryHitBonusDamage extends X2Effect_Persistent;
+class X2Effect_PrimaryHitBonusDamage extends X2Effect_Persistent config(LW_SoldierSkills);
 
 var int BonusDmg;
 var bool IncludePistols;
 var bool IncludeSOS;
 var bool bExcludeNonBaseDamage;
+
+var config array<name> CENTER_MASS_PISTOL_CATEGORIES;
 
 function float GetPreDefaultAttackingDamageModifier_CH(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, float CurrentDamage, X2Effect_ApplyWeaponDamage WeaponDamageEffect, XComGameState NewGameState)
 {
@@ -41,7 +43,7 @@ function float GetPreDefaultAttackingDamageModifier_CH(XComGameState_Effect Effe
             WeaponTemplate = X2WeaponTemplate(AbilityState.GetSourceWeapon().GetMyTemplate());
             if (WeaponTemplate != none)
             {
-                if (IncludePistols && class'X2Ability_XMBPerkAbilitySet'.default.PISTOL_WEAPON_CATEGORIES.Find(WeaponTemplate.WeaponCat) != INDEX_NONE)
+                if (IncludePistols && default.CENTER_MASS_PISTOL_CATEGORIES.Find(WeaponTemplate.WeaponCat) != INDEX_NONE)
                 {
                     return BonusDmg;
                 }
