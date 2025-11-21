@@ -690,22 +690,25 @@ function AssignPodJobs(XComGameState_AIPlayerData AIPlayerData, array<StateObjec
 		Group = XComGameState_AIGroup(History.GetGameStateForObjectID(UnassignedPods[0].ObjectID));
 		UnassignedPods.Remove(0, 1);
 
-		for (JobListIdx = 0; JobListIdx < JobList.Length; ++JobListIdx)
+		if(Group != none)
 		{
-			if (PodJobIsValidForPod(JobList[JobListIdx], Group))
+			for (JobListIdx = 0; JobListIdx < JobList.Length; ++JobListIdx)
 			{
-				Job = JobList[JobListIdx];
-
-				// We have a valid job. Assign it
-				NewJobAssignment.GroupID = Group.ObjectID;
-				NewJobAssignment.Job = JobList[JobListIdx];
-				AssignedJobs.AddItem(NewJobAssignment);
-				if (!Job.Unlimited)
+				if (PodJobIsValidForPod(JobList[JobListIdx], Group))
 				{
-					JobList.Remove(JobListIdx, 1);
-					--JobListIdx;
+					Job = JobList[JobListIdx];
+
+					// We have a valid job. Assign it
+					NewJobAssignment.GroupID = Group.ObjectID;
+					NewJobAssignment.Job = JobList[JobListIdx];
+					AssignedJobs.AddItem(NewJobAssignment);
+					if (!Job.Unlimited)
+					{
+						JobList.Remove(JobListIdx, 1);
+						--JobListIdx;
+					}
+					break;
 				}
-				break;
 			}
 		}
 	}
