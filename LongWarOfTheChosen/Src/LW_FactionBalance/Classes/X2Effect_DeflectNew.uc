@@ -22,7 +22,7 @@ function bool ChangeHitResultForTarget(XComGameState_Effect EffectState, XComGam
 	if (!class'XComGameStateContext_Ability'.static.IsHitResultHit(CurrentResult))
 		return false;
 
-	if (!TargetUnit.IsAbleToAct())
+	if (!TargetUnit.IsAbleToAct() || TargetUnit.IsImpaired())
 		return false;
 
 	`log("X2Effect_Deflect::ChangeHitResultForTarget", , 'XCom_HitRolls');
