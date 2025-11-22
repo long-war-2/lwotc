@@ -697,7 +697,8 @@ function AssignPodJobs(XComGameState_AIPlayerData AIPlayerData, array<StateObjec
 				if (PodJobIsValidForPod(JobList[JobListIdx], Group))
 				{
 					Job = JobList[JobListIdx];
-
+					`LWTrace("Assigning Job" @Joblist[JobListIdx].FriendlyName @ "to pod" @Group.EncounterID);
+					
 					// We have a valid job. Assign it
 					NewJobAssignment.GroupID = Group.ObjectID;
 					NewJobAssignment.Job = JobList[JobListIdx];
