@@ -55,7 +55,6 @@ static function EventListenerReturn OnDrawDebugLabels(Object EventData, Object E
 
 	if (LWDLCInfo.bDebugPodJobs)
 	{
-		`LWTrace("Drawing debug labels");
 		`LWPODMGR.DrawDebugLabel(kCanvas);
 	}
 
