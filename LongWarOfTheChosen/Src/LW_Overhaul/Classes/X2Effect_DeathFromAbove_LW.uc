@@ -19,6 +19,8 @@ var array<name> BlacklistedAbilities;
 var name CounterName;
 var name EventName;
 
+var config bool bLog;
+
 function RegisterForEvents(XComGameState_Effect EffectGameState)
 {
     local XComGameState_Unit        UnitState;
@@ -60,9 +62,11 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
     {
         if (!bMatchSourceWeapon || kAbility.SourceWeapon.ObjectID == EffectState.ApplyEffectParameters.ItemStateObjectRef.ObjectID)
         {
+            `LOG(kAbility.GetMyTemplateName(), default.bLog, self.Class.Name);
             if (kAbility.IsAbilityInputTriggered() && ValidateAbilityCost(kAbility, SourceUnit))
             {
-                bIsMultiTarget = IsMultiTarget(AbilityState);
+                `LOG("+", default.bLog, self.Class.Name);
+                bIsMultiTarget = IsMultiTarget(kAbility);
                 if (BlacklistedAbilities.Find(kAbility.GetMyTemplateName()) == INDEX_NONE
                     && (!bDisallowMultiTarget || !bIsMultiTarget))
                 {
@@ -76,9 +80,12 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
                             bShouldApply = true;
                         }
                     }
+
+                    `LOG(bShouldApply $ " " $ bAllowMultiTarget $ " " $ bIsMultiTarget, default.bLog, self.Class.Name);
                     
                     if (!bShouldApply && bAllowMultiTarget && bIsMultiTarget)
                     {
+                        `LOG("AbilityContext.InputContext.MultiTargets.Length = " $ AbilityContext.InputContext.MultiTargets.Length, default.bLog, self.Class.Name);
                         for (Index = 0; Index < AbilityContext.InputContext.MultiTargets.Length; Index++)
                         {
                             TargetUnit = XComGameState_Unit(NewGameState.GetGameStateForObjectID(AbilityContext.InputContext.MultiTargets[Index].ObjectID));
@@ -86,6 +93,8 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
                             if (TargetUnit != none)
                             {
                                 PrevTargetUnit = XComGameState_Unit(History.GetGameStateForObjectID(TargetUnit.ObjectID));
+                                `LOG("TargetUnit = " $ TargetUnit.GetMyTemplateName(), default.bLog, self.Class.Name);
+                                `LOG(TargetUnit.IsDead() $ " " $ SourceUnit.HasHeightAdvantageOver(PrevTargetUnit, true), default.bLog, self.Class.Name);
                                 if (TargetUnit.IsDead() && SourceUnit.HasHeightAdvantageOver(PrevTargetUnit, true))
                                 {
                                     bShouldApply = true;
@@ -134,10 +143,14 @@ static function bool ValidateAbilityCost(XComGameState_Ability AbilityState, XCo
 static function bool IsMultiTarget(XComGameState_Ability AbilityState)
 {
     local X2AbilityTemplate Template;
+    local bool bIsMultiTarget;
 
     Template = AbilityState.GetMyTemplate();
+    bIsMultiTarget = Template.AbilityMultiTargetStyle != none && X2AbilityMultiTarget_BurstFire(Template.AbilityMultiTargetStyle) == none;
 
-    return Template.AbilityMultiTargetStyle != none && X2AbilityMultiTarget_BurstFire(Template.AbilityMultiTargetStyle) == none;
+    `LOG(AbilityState.GetMyTemplateName() $ ": " $ bIsMultiTarget, default.bLog, GetFuncName());
+
+    return bIsMultiTarget;
 }
 
 defaultproperties
