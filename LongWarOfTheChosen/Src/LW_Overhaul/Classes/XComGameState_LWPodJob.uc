@@ -107,8 +107,8 @@ function static Vector AdjustLocation(Vector Loc, XComGameState_AIGroup Group)
 
 		TileDest = class'Helpers'.static.GetClosestValidTile(TileDest); // Ensure the tile isn't occupied before finding a path to it.
 
-        //`LWTrace("Converting to tile:" @ TileDest.x @ TileDest.y @ TileDest.z );
-    /*
+        `LWTrace("Converting to tile:" @ TileDest.x @ TileDest.y @ TileDest.z );
+    
 		if (!class'Helpers'.static.GetFurthestReachableTileOnPathToDestination(TileDest, TileDest, LeaderState, false))
 		{
 			TileDest = Visualizer.m_kReachableTilesCache.GetClosestReachableDestination(TileDest);
@@ -119,8 +119,6 @@ function static Vector AdjustLocation(Vector Loc, XComGameState_AIGroup Group)
 			// Nope. Give up. So Sad.
 			`RedScreen("Unable to build path to job location.");
 		}
-
-        */
 
 		 // Do we have a valid path there?
 		 if (!Visualizer.m_kReachableTilesCache.BuildPathToTile(TileDest, Path))

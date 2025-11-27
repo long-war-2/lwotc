@@ -294,6 +294,7 @@ function bool IsInterestingCause(EAlertCause Cause)
 		case eAC_AlertedByCommLink:
 		case eAC_DetectedSound:
 		case eAC_SeesExplosion:
+		case eAC_TakingFire: // Tedster - try adding this here
 			return true;
 	}
 
