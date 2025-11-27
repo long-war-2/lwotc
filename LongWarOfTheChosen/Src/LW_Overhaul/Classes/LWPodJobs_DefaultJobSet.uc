@@ -129,6 +129,8 @@ function XComGameState_LWPodJob CreateInterceptJob(XComGameState NewGameState)
     AIPlayer = XGAIPlayer(`BATTLE.GetAIPlayer());
     AIPlayer.GetSquadLocation(Location);
 
+    `LWTrace("Intercept Creation: AI Squad location:" @Location);
+
     Location = InterceptLocationCallback(none, NewGameState);
 
     Job = XComGameState_LWPodJob_MoveToLocation(NewGameState.CreateNewStateObject(class'XComGameState_LWPodJob_MoveToLocation'));
@@ -143,7 +145,10 @@ function Vector InterceptLocationCallback(XComGameState_LWPodJob Job, XComGameSt
     PodMgr = `LWPODMGR;
     NewPodMgr = XComGameState_LWPodManager(NewGameState.GetGameStateForObjectID(PodMgr.ObjectID));
     if (NewPodMgr != none)
+    {
+        `LWTrace("Using the pod manager from the NewGameState");
         PodMgr = NewPodMgr;
+    }
 
     // Intercept goes to xcom's last known position
     `LWPMTrace("Intercept Job: Location set:" @PodMgr.GetLastKnownXComPosition());

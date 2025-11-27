@@ -103,6 +103,9 @@ function DrawDebugLabel(Canvas kCanvas)
     local Vector CurrentGroupLocation;
     local Vector ScaleVector;
     local SimpleShapeManager ShapeManager;
+    local XGBattle Battle;
+
+    Battle = `BATTLE;
 
     Group = XComGameState_AIGroup(`XCOMHISTORY.GetGameStateForObjectID(GroupRef.ObjectID));
     CurrentGroupLocation = Group.GetGroupMidpoint();
@@ -113,5 +116,10 @@ function DrawDebugLabel(Canvas kCanvas)
     ShapeManager.DrawSphere(CurrentGroupLocation, ScaleVector, MakeLinearColor(0, 0.75, 0.75, 1));
     ShapeManager.DrawSphere(Location, ScaleVector, MakeLinearColor(0.75, 0, 0.75, 1));
     ShapeManager.DrawLine(CurrentGroupLocation, Location, 8, MakeLinearColor(0, 0.75, 0.75, 1));
+
+    // let's test this
+    Battle.DrawDebugSphere(CurrentGroupLocation, 64, 64, 0, 192, 192);
+    Battle.DrawDebugSphere(Location, 64, 64, 192, 0, 192);
+    Battle.DrawDebugLine(CurrentGroupLocation, Location, 0, 192, 192);
 }
 

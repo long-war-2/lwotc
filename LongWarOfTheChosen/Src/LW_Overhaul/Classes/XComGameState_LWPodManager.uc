@@ -190,6 +190,7 @@ function UpdatePod(XComGameState NewGameState, XComGameState_AIGroup GroupState)
 	i = AssignedJobs.Find('GroupID', GroupState.ObjectID);
 	if (i != INDEX_NONE)
 	{
+	`LWTrace("Initializing job for group" @GroupState.EncounterID);
 	ThePodJob = InitializeJob(
 			AssignedJobs[i].Job.Jobs[`SYNC_RAND(AssignedJobs[i].Job.Jobs.Length)],
 			AssignedJobs[i].Job.ID, GroupState, NewGameState);
@@ -797,6 +798,7 @@ function DrawDebugLabel(Canvas kCanvas)
 	local int i;
 	local String JobName;
 	local SimpleShapeManager ShapeManager;
+	local XGBattle Battle;
 
 	DebugString $= "========= LW Pod Jobs ==========\n";
 	DebugString $= "================================\n";
@@ -804,6 +806,8 @@ function DrawDebugLabel(Canvas kCanvas)
 	History = `XCOMHISTORY;
 	AIPlayerData = GetAIPlayerData();
 	ShapeManager = `SHAPEMGR;
+
+	Battle = `BATTLE;
 
 	for (i = 0; i < AIPlayerData.GroupList.Length; ++i)
 	{
@@ -858,16 +862,19 @@ function DrawDebugLabel(Canvas kCanvas)
 	}
 
 
-	kCanvas.SetPos(10, 650);
+	kCanvas.SetPos(10, 850);
 	kCanvas.SetDrawColor(0, 0, 0, 125);
 	kCanvas.DrawRect(400, 500);
 
-	kCanvas.SetPos(15, 665);
+	kCanvas.SetPos(15, 865);
 	kCanvas.SetDrawColor(0, 255, 0);
 	kCanvas.DrawText(DebugString);
 
 	// Draw the last known xcom position
 	ShapeManager.DrawSphere(LastKnownXComPosition, vect(64, 64, 64), MakeLinearColor(0.8, 0.8, 0.8, 1));
+
+	Battle.DrawDebugSphere(LastKnownXComPosition, 64, 64, 205, 205, 205);
+
 }
 
 defaultproperties

@@ -144,7 +144,7 @@ static function EventListenerReturn OnUnitGroupTurnBegun(Object EventData, Objec
 
 	//`LWTrace("History frame before pod manager submission:" @`XCOMHISTORY.GetCurrentHistoryIndex());
 
-	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Updating Pod Job");
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Updating Pod Job group" @GroupState.ObjectId @GroupState.EncounterID);
 	NewPodManager = XComGameState_LWPodManager(NewGameState.ModifyStateObject(class'XComGameState_LWPodManager', `LWPODMGR.ObjectID));
 	NewPodManager.UpdatePod(NewGameState, GroupState);
 
