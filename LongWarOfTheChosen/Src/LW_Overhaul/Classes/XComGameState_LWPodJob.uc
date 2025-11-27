@@ -185,9 +185,9 @@ function Vector SetAlertAtLocation(Vector Location, XComGameState_AIGroup Group,
             }
             else
             {
-                `LWTrace("Alert data call failed, removing from gamestate -" @Unit.GetFullName());
-                NewGameState.PurgeGameStateForObjectID(AIData.ObjectID);
-            }
+                `LWTrace("SetAlertData call failed" @Unit.GetFullName());
+                //NewGameState.PurgeGameStateForObjectID(AIData.ObjectID);
+            } 
         }
     }
 
