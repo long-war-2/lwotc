@@ -956,6 +956,9 @@ static function EventListenerReturn OnAbilityActivated(Object EventData, Object 
 			// red or yellow alert, since it overrides the sight radius changes applied
 			// by the Low Visibility sit rep.
 			RemoveSightRadiusRestorationEffect(UnitState, NewGameState);
+
+			// Clear Hunker from enemies when they activate/scamper:
+			RemoveHunkerDownEffect(UnitState, NewGameState);
 		}
 
 		`TACTICALRULES.SubmitGameState(NewGameState);
@@ -999,6 +1002,26 @@ private static function RemoveSightRadiusRestorationEffect(XComGameState_Unit Un
 		EffectState = XComGameState_Effect(History.GetGameStateForObjectID(EffectRef.ObjectID));
 		CurrentEffect = X2Effect_PersistentStatChangeRestoreDefault(EffectState.GetX2Effect());
 		if (CurrentEffect != none && CurrentEffect.StatTypesToRestore.Find(eStat_SightRadius) != INDEX_NONE)
+		{
+			EffectState.RemoveEffect(NewGameState, NewGameState, true);
+			break;
+		}
+	}
+}
+
+private static function RemoveHunkerDownEffect(XComGameState_Unit UnitState, XComGameState NewGameState)
+{
+	local X2Effect_HunkerDown_LW CurrentEffect;
+	local XComGameStateHistory History;
+	local XComGameState_Effect EffectState;
+	local StateObjectReference EffectRef;
+
+	History = `XCOMHISTORY;
+	foreach UnitState.AffectedByEffects(EffectRef)
+	{
+		EffectState = XComGameState_Effect(History.GetGameStateForObjectID(EffectRef.ObjectID));
+		CurrentEffect = X2Effect_HunkerDown_LW(EffectState.GetX2Effect());
+		if (CurrentEffect != none)
 		{
 			EffectState.RemoveEffect(NewGameState, NewGameState, true);
 			break;
