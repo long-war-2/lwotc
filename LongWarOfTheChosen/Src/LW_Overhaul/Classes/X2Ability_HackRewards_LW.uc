@@ -39,6 +39,10 @@ var config int GREATER_FACELESS_MOBILITY_BONUS;
 var config int GREATER_FACELESS_OFFENSE_BONUS;
 var config int GREATER_FACELESS_DEFENSE_BONUS;
 
+// Excludes these units from receiving ADVENT upgrades from Dark Events.
+var config array<name> NON_ADVENT_CHARACTER_GROUPS;
+var config array<name> NON_ADVENT_TEMPLATE_NAMES;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
     local array<X2DataTemplate> Templates;
@@ -46,15 +50,15 @@ static function array<X2DataTemplate> CreateTemplates()
 	`LWTrace("  >> X2Ability_HackRewards_LW.CreateTemplates()");
 	
 	Templates.AddItem(BuildNetworkTowerStunAbility('NetworkTowerStun_LW', EETS_AllEnemies));
-	Templates.AddItem(BuildStatModifyingAbility('ADVENTScopes',			"img:///UILibrary_PerkIcons.UIPerk_platform_stability",	EETS_AllADVENTEnemies,	default.ADVENTSCOPES_APPLICATIONCHANCE,			ePerkBuff_Bonus, eStat_Offense,		default.ADVENTSCOPES_OFFENSE_BONUS));
-	Templates.AddItem(BuildStatModifyingAbility('ADVENTLaserSights',	"img:///UILibrary_PerkIcons.UIPerk_scope",				EETS_AllADVENTEnemies,	default.ADVENTLASERSIGHTS_APPLICATIONCHANCE,	ePerkBuff_Bonus, eStat_CritChance,	default.ADVENTLASERSIGHTS_CRIT_BONUS));
-	Templates.AddItem(BuildStatModifyingAbility('ADVENTFirewalls',		"img:///UILibrary_PerkIcons.UIPerk_hack_reward_debuff", EETS_AllRoboticEnemies, 100,											ePerkBuff_Passive, eStat_HackDefense,	default.FIREWALLS_HACKDEFENSE_BONUS));
-	Templates.AddItem(BuildStatModifyingAbility('AlienConditioning1',	"img:///UILibrary_PerkIcons.UIPerk_defend_health",		EETS_AllEnemies,		default.CONDITIONING1_APPLICATIONCHANCE,		ePerkBuff_Passive, eStat_HP,			default.CONDITIONING1_HITPOINTS_BONUS));
-	Templates.AddItem(BuildStatModifyingAbility('AlienConditioning2',	"img:///UILibrary_PerkIcons.UIPerk_defend_health",		EETS_AllEnemies,		default.CONDITIONING2_APPLICATIONCHANCE,		ePerkBuff_Passive, eStat_HP,			default.CONDITIONING2_HITPOINTS_BONUS));
-	Templates.AddItem(BuildStatModifyingAbility('AlienConditioning3',	"img:///UILibrary_PerkIcons.UIPerk_defend_health",		EETS_AllEnemies,		default.CONDITIONING3_APPLICATIONCHANCE,		ePerkBuff_Passive, eStat_HP,			default.CONDITIONING3_HITPOINTS_BONUS));
-	Templates.AddItem(BuildStatModifyingAbility('VeteranUnits',			"img:///UILibrary_PerkIcons.UIPerk_nation_aim",			EETS_AllEnemies,		default.VETERAN_UNITS_APPLICATIONCHANCE,		ePerkBuff_Bonus, eStat_Offense,		default.VETERAN_UNITS_OFFENSE_BONUS));
-	Templates.AddItem(BuildStatModifyingAbility('TacticalUpgrades',		"img:///UILibrary_PerkIcons.UIPerk_eaglesnest",			EETS_AllEnemies,		default.TACTICAL_UPGRADES_APPLICATIONCHANCE,	ePerkBuff_Bonus, eStat_Defense,		default.TACTICAL_UPGRADES_DEFENSE_BONUS));
-	Templates.AddItem(BuildStatModifyingAbility('AdvancedServos',		"img:///UILibrary_PerkIcons.UIPerk_fleetfoot",			EETS_AllADVENTEnemies,	default.ADVANCED_SERVOS_APPLICATIONCHANCE,		ePerkBuff_Bonus, eStat_Mobility,	default.ADVANCED_SERVOS_MOBILITY_BONUS));
+	Templates.AddItem(BuildAdventUpgradeAbility('ADVENTScopes',			"img:///UILibrary_PerkIcons.UIPerk_platform_stability",	EETS_AllADVENTEnemies,	default.ADVENTSCOPES_APPLICATIONCHANCE,			ePerkBuff_Bonus, eStat_Offense,		default.ADVENTSCOPES_OFFENSE_BONUS));
+	Templates.AddItem(BuildAdventUpgradeAbility('ADVENTLaserSights',	"img:///UILibrary_PerkIcons.UIPerk_scope",				EETS_AllADVENTEnemies,	default.ADVENTLASERSIGHTS_APPLICATIONCHANCE,	ePerkBuff_Bonus, eStat_CritChance,	default.ADVENTLASERSIGHTS_CRIT_BONUS));
+	Templates.AddItem(BuildAdventUpgradeAbility('ADVENTFirewalls',		"img:///UILibrary_PerkIcons.UIPerk_hack_reward_debuff", EETS_AllRoboticEnemies, 100,											ePerkBuff_Passive, eStat_HackDefense,	default.FIREWALLS_HACKDEFENSE_BONUS));
+	Templates.AddItem(BuildAdventUpgradeAbility('AlienConditioning1',	"img:///UILibrary_PerkIcons.UIPerk_defend_health",		EETS_AllEnemies,		default.CONDITIONING1_APPLICATIONCHANCE,		ePerkBuff_Passive, eStat_HP,			default.CONDITIONING1_HITPOINTS_BONUS));
+	Templates.AddItem(BuildAdventUpgradeAbility('AlienConditioning2',	"img:///UILibrary_PerkIcons.UIPerk_defend_health",		EETS_AllEnemies,		default.CONDITIONING2_APPLICATIONCHANCE,		ePerkBuff_Passive, eStat_HP,			default.CONDITIONING2_HITPOINTS_BONUS));
+	Templates.AddItem(BuildAdventUpgradeAbility('AlienConditioning3',	"img:///UILibrary_PerkIcons.UIPerk_defend_health",		EETS_AllEnemies,		default.CONDITIONING3_APPLICATIONCHANCE,		ePerkBuff_Passive, eStat_HP,			default.CONDITIONING3_HITPOINTS_BONUS));
+	Templates.AddItem(BuildAdventUpgradeAbility('VeteranUnits',			"img:///UILibrary_PerkIcons.UIPerk_nation_aim",			EETS_AllEnemies,		default.VETERAN_UNITS_APPLICATIONCHANCE,		ePerkBuff_Bonus, eStat_Offense,		default.VETERAN_UNITS_OFFENSE_BONUS));
+	Templates.AddItem(BuildAdventUpgradeAbility('TacticalUpgrades',		"img:///UILibrary_PerkIcons.UIPerk_eaglesnest",			EETS_AllEnemies,		default.TACTICAL_UPGRADES_APPLICATIONCHANCE,	ePerkBuff_Bonus, eStat_Defense,		default.TACTICAL_UPGRADES_DEFENSE_BONUS));
+	Templates.AddItem(BuildAdventUpgradeAbility('AdvancedServos',		"img:///UILibrary_PerkIcons.UIPerk_fleetfoot",			EETS_AllADVENTEnemies,	default.ADVANCED_SERVOS_APPLICATIONCHANCE,		ePerkBuff_Bonus, eStat_Mobility,	default.ADVANCED_SERVOS_MOBILITY_BONUS));
 	Templates.AddItem(GreaterFacelessAbility());
 	
 	return Templates;
@@ -148,4 +152,51 @@ simulated function NetworkTowerStunAbility_BuildVisualization(XComGameState Visu
 
 	// bink is added to visualization track first, then the in-game effects
 	TypicalAbility_BuildVisualization(VisualizeGameState);
+}
+
+// Wrapper around BuildStatModifyingAbility which blacklists
+// non-ADVENT templates (by default, configured for all of Julian's units in the Lost Tower).
+static function X2AbilityTemplate BuildAdventUpgradeAbility(
+	Name TemplateName, 
+	string TemplateIcon, 
+	EffectTargetSelection TargetType, 
+	optional int TargetApplicationChance, 
+	optional EPerkBuffCategory BuffType, 
+	optional ECharStatType StatModTypeA, 
+	optional float StatModValueA, 
+	optional ECharStatType StatModTypeB, 
+	optional float StatModValueB, 
+	optional EAbilityHitResult HitModTypeA, 
+	optional int HitModValueA, 
+	optional EAbilityHitResult HitModTypeB, 
+	optional int HitModValueB) 
+{
+	local X2AbilityTemplate		Template;
+	local X2Condition_UnitType 	CharGroupBlacklist;
+	local X2Condition_Character TemplateBlacklist;
+	local name 					BlacklistedCharGroupName;
+	local name 					BlacklistedTemplateName;
+	local int 					DifficultyIndex;
+
+	Template = BuildStatModifyingAbility(TemplateName, TemplateIcon, TargetType, TargetApplicationChance, BuffType, StatModTypeA, StatModValueA, StatModTypeB, StatModValueB, HitModTypeA, HitModValueA, HitModTypeB, HitModValueB);
+
+	CharGroupBlacklist = new class'X2Condition_UnitType';
+	foreach default.NON_ADVENT_CHARACTER_GROUPS(BlacklistedCharGroupName) {
+		CharGroupBlacklist.ExcludeTypes.AddItem(BlacklistedCharGroupName);	
+	}
+	Template.AbilityTargetConditions.AddItem(CharGroupBlacklist);
+	Template.AbilityMultiTargetConditions.AddItem(CharGroupBlacklist);
+
+	TemplateBlacklist = new class'X2Condition_Character';
+	foreach default.NON_ADVENT_TEMPLATE_NAMES(BlacklistedTemplateName) {
+		TemplateBlacklist.ExcludeCharacterTemplates.AddItem(BlacklistedTemplateName);
+		for( DifficultyIndex = `MIN_DIFFICULTY_INDEX; DifficultyIndex <= `MAX_DIFFICULTY_INDEX; ++DifficultyIndex )
+		{
+			TemplateBlacklist.ExcludeCharacterTemplates.AddItem(name(BlacklistedTemplateName $ "_Diff_" $ DifficultyIndex));
+		}
+	}
+	Template.AbilityTargetConditions.AddItem(TemplateBlacklist);
+	Template.AbilityMultiTargetConditions.AddItem(TemplateBlacklist);
+
+	return Template;
 }
