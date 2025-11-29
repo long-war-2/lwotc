@@ -45,6 +45,11 @@ static function int GetInitialTimer(string MissionType, string MissionFamily)
 
 	TurnValue = GetBaseTimer(MissionType, MissionFamily);
 
+	if (TurnValue == -1)
+	{
+		TurnValue = 10;
+	}
+
 	// Apply any sit rep timer-modifier effects
 	foreach `XCOMHISTORY.IterateByClassType(class'XComGameState_KismetVariableModifier', ModifierState)
 	{
