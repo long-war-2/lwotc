@@ -41,28 +41,29 @@ simulated function XComGameState_Unit FindNewAreaSuppressionTarget(XComGameState
 	local XComGameStateHistory History;
 	local XComGameState_Unit TargetState;
 	local name TestEffectName;
-	local int count;
+	local int Index;
 	local XComGameState_Effect EffectState;
 
 	History = `XCOMHISTORY;
 
 	SourceState = XComGameState_Unit(NewGameState.GetGameStateForObjectID(RemovedEffect.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
-	if(SourceState == none)
+	if (SourceState == none)
 	{
-		SourceState = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', RemovedEffect.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
-		NewGameState.AddStateObject(SourceState);
+		SourceState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', RemovedEffect.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
 	}
-	if (ShouldRemoveAreaSuppression(SourceState, NewGameState))
+	
+	if (ShouldRemoveAreaSuppression(RemovedEffect, NewGameState))
 		return none;
 
-	if(SourceState != none)
+	if (SourceState != none)
 	{
-		foreach SourceState.AppliedEffectNames(TestEffectName, count)
+		foreach SourceState.AppliedEffectNames(TestEffectName, Index)
 		{
-			if(TestEffectName == default.EffectName)
+			if (TestEffectName == default.EffectName)
 			{
-				EffectState = XComGameState_Effect(History.GetGameStateForObjectID( SourceState.AppliedEffects[ count ].ObjectID ) );
-				if (EffectState.ObjectID != RemovedEffect.ObjectID) // can't switch to the effect being removed
+				EffectState = XComGameState_Effect(History.GetGameStateForObjectID(SourceState.AppliedEffects[Index].ObjectID));
+				// can't switch to the effect that's being removed
+				if (EffectState.ObjectID != RemovedEffect.ObjectID)
 				{
 					TargetState = XComGameState_Unit(NewGameState.GetGameStateForObjectID(EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
 					if(TargetState == none)
@@ -70,7 +71,7 @@ simulated function XComGameState_Unit FindNewAreaSuppressionTarget(XComGameState
 						TargetState = XComGameState_Unit(History.GetGameStateForObjectID(EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
 					}
 					`LOG("X2Effect_AreaSuppression: Found EffectGameState affecting " $ TargetState.GetFullName() $ ", Alive=" $ TargetState.IsAlive());
-					if(TargetState != none && TargetState.IsAlive())
+					if (TargetState != none && TargetState.IsAlive())
 					{
 						return TargetState;
 					}
@@ -90,13 +91,13 @@ simulated function bool UpdateVisualizedSuppressionTarget(XComGameState NewGameS
 	if (TargetState != none && SourceState != none)
 	{
 		SourceUnit = XGUnit(SourceState.GetVisualizer());
-		if(SourceUnit.m_kForceConstantCombatTarget != none)
+		if (SourceUnit.m_kForceConstantCombatTarget != none)
 		{
 			// remove the marking on the old target, so it doesn't disable the suppression state in the XGUnit.OnDeath
 			SourceUnit.m_kForceConstantCombatTarget.m_kConstantCombatUnitTargetingMe = none;
 		}
 		TargetUnit = XGUnit(TargetState.GetVisualizer());
-					
+		
 		SourceUnit.ConstantCombatSuppressArea(false);
 		SourceUnit.ConstantCombatSuppress(true, TargetUnit);
 		SourceUnit.IdleStateMachine.CheckForStanceUpdate();
@@ -130,7 +131,7 @@ simulated function CleansedAreaSuppressionVisualization(XComGameState VisualizeG
 	BuildTrack.VisualizeActor = History.GetVisualizer(RemovedEffect.ApplyEffectParameters.SourceStateObjectRef.ObjectID);
 	History.GetCurrentAndPreviousGameStatesForObjectID(RemovedEffect.ApplyEffectParameters.SourceStateObjectRef.ObjectID, BuildTrack.StateObject_OldState, BuildTrack.StateObject_NewState, eReturnType_Reference, VisualizeGameState.HistoryIndex);
 	if (BuildTrack.StateObject_NewState == none)
-	BuildTrack.StateObject_NewState = BuildTrack.StateObject_OldState;
+		BuildTrack.StateObject_NewState = BuildTrack.StateObject_OldState;
 	
 	class'X2Action_StopSuppression'.static.AddToVisualizationTree(BuildTrack, VisualizeGameState.GetContext(), false, BuildTrack.LastActionAdded);
 	
@@ -142,31 +143,30 @@ simulated function CleansedAreaSuppressionVisualization(XComGameState VisualizeG
 }
 
 // this is only for removing from OTHER targets than the one being shot at
-static function bool ShouldRemoveAreaSuppression(XComGameState_Unit SourceUnit, optional XComGameState NewGameState, optional bool bBeforeAmmoReduction = false)
+static function bool ShouldRemoveAreaSuppression(XComGameState_Effect EffectState, XComGameState NewGameState)
 {
-	local bool bShouldRemove;
-	local XComGameState_Item WeaponState;
+	local XComGameState_Item SourceWeapon;
 
-	bShouldRemove = false;
 	if (SourceUnit != none)
 	{
-		//check remaining ammo
-		WeaponState = SourceUnit.GetItemInSlot(eInvSlot_PrimaryWeapon, NewGameState);
-		if (WeaponState != none)
+		// check remaining ammo
+		SourceWeapon = XComGameState_Item(NewGameState.GetGameStateForObjectID(EffectState.ApplyEffectParameters.ItemStateObjectRef.ObjectID));
+		if (SourceWeapon == none)
 		{
-			if (bBeforeAmmoReduction)
+			SourceWeapon = XComGameState_Item(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.ItemStateObjectRef.ObjectID));
+		}
+		
+		if (SourceWeapon != none)
+		{
+
+			if (SourceWeapon.Ammo < class'X2Ability_PerkPackAbilitySet'.default.AREA_SUPPRESSION_SHOT_AMMO_COST)
 			{
-				if (WeaponState.Ammo <= (2 * class'X2Ability_PerkPackAbilitySet'.default.AREA_SUPPRESSION_SHOT_AMMO_COST) - 1)
-					bShouldRemove = true;
-			}
-			else if (WeaponState.Ammo < (2 * class'X2Ability_PerkPackAbilitySet'.default.AREA_SUPPRESSION_SHOT_AMMO_COST) - 1)
-			{
-				bShouldRemove = true;
+				return true;
 			}
 		}
 	}
 
-	return bShouldRemove;
+	return false;
 }
 
 DefaultProperties

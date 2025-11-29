@@ -6,31 +6,30 @@
 
 class X2Effect_RemoveAreaSuppressionEffect extends X2Effect_RemoveEffects;
 
+// if `true` and the source ran out of ammo, Area Suppression
+// will be removed from all units the source is suppressing
+var bool bValidateAmmo;
+
 simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffectParameters, XComGameState_BaseObject kNewTargetState, XComGameState NewGameState, XComGameState_Effect NewEffectState)
 {
-	local XComGameStateHistory History;
-	local XComGameState_Effect EffectState;
-	local XComGameState_Unit SourceState;
-	local X2Effect_Persistent PersistentEffect;
-	local bool MatchesTarget;
+	local XComGameStateHistory      History;
+	local XComGameState_Effect      EffectState;
+	local X2Effect_Persistent       PersistentEffect;
+	local bool                      bMatchesTarget;
 
 	History = `XCOMHISTORY;
 	foreach History.IterateByClassType(class'XComGameState_Effect', EffectState)
 	{
-		// only remove suppression effects matching the source taking the suppression shot
-		if (EffectState.ApplyEffectParameters.SourceStateObjectRef.ObjectID == ApplyEffectParameters.SourceStateObjectRef.ObjectID) 
+		// only remove suppression effects if the source of the suppression matches
+		if (EffectState.ApplyEffectParameters.SourceStateObjectRef.ObjectID == ApplyEffectParameters.SourceStateObjectRef.ObjectID)
 		{
 			PersistentEffect = EffectState.GetX2Effect();
-			if (ShouldRemoveEffect(EffectState, PersistentEffect)) // basic check that the effectname matches
+			// basic check that the effectname matches
+			if (ShouldRemoveEffect(EffectState, PersistentEffect))
 			{
-				MatchesTarget = EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID == ApplyEffectParameters.TargetStateObjectRef.ObjectID;
-
-				SourceState = XComGameState_Unit(NewGameState.GetGameStateForObjectID(ApplyEffectParameters.SourceStateObjectRef.ObjectID));
-				if(SourceState == none)
-				{
-					SourceState = XComGameState_Unit(History.GetGameStateForObjectID(ApplyEffectParameters.SourceStateObjectRef.ObjectID));
-				}
-				if (MatchesTarget || class'X2Effect_AreaSuppression'.static.ShouldRemoveAreaSuppression(SourceState, NewGameState, true)) // remove if either matches target or area suppression is shutting down
+				bMatchesTarget = EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID == ApplyEffectParameters.TargetStateObjectRef.ObjectID;
+				// remove if either matches target or area suppression is shutting down
+				if (bMatchesTarget || bValidateAmmo && class'X2Effect_AreaSuppression'.static.ShouldRemoveAreaSuppression(EffectState, NewGameState))
 				{
 					EffectState.RemoveEffect(NewGameState, NewGameState, bCleanse);
 				}
@@ -73,4 +72,9 @@ simulated function AddX2ActionsForVisualizationSource(XComGameState VisualizeGam
 			}
 		}
 	}
+}
+
+defaultproperties
+{
+	bValidateAmmo = true
 }
