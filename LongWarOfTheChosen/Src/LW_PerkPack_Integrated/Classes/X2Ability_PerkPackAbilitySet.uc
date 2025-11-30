@@ -2923,7 +2923,7 @@ static function X2AbilityTemplate AddSuppressionCleanse(name DataName, optional 
 
     Template.AbilitySourceName = 'eAbilitySource_Perk';
     Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
-    Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_pistol_circle";
+    Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_supression";
     Template.bDisplayInUITacticalText = false;
     Template.bDisplayInUITooltip = false;
     Template.bDontDisplayInAbilitySummary = true;
@@ -2951,7 +2951,7 @@ static function X2AbilityTemplate AddSuppressionCleanse(name DataName, optional 
 
         RemoveAreaSuppression = new class'X2Effect_RemoveAreaSuppressionEffect';
         RemoveAreaSuppression.EffectNamesToRemove.AddItem(class'X2Effect_AreaSuppression'.default.EffectName);
-        RemoveAreaSuppression.bValidateAmmo =  false;
+        RemoveAreaSuppression.bRemoveAll =  false;
         RemoveAreaSuppression.SetupEffectOnShotContextResult(true, true);
         Template.AddTargetEffect(RemoveAreaSuppression);
     }
@@ -2983,7 +2983,7 @@ static function X2AbilityTemplate AddSuppressionCleanse(name DataName, optional 
     Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 
     Template.bShowActivation = false;
-    Template.bFrameEvenWhenUnitIsHidden = true;
+    Template.bFrameEvenWhenUnitIsHidden = false;
 
     return Template;
 }
