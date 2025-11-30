@@ -7,6 +7,7 @@ class X2Effect_AreaSuppression extends X2Effect_Suppression config(LW_SoldierSki
 
 //`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
 var name SuppressionShotAbilityName;
+var config bool bLog;
 
 // prevent doubling up if unit is both suppressed and area suppressed, since regular suppression doesn't stack with itself
 function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit Attacker, XComGameState_Unit Target, XComGameState_Ability AbilityState, class<X2AbilityToHitCalc> ToHitType, bool bMelee, bool bFlanking, bool bIndirectFire, out array<ShotModifierInfo> ShotModifiers)
@@ -71,7 +72,7 @@ simulated function XComGameState_Unit FindNewAreaSuppressionTarget(XComGameState
                     {
                         TargetState = XComGameState_Unit(History.GetGameStateForObjectID(EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
                     }
-                    `LOG("Found EffectGameState affecting " $ TargetState.GetFullName() $ ", Alive=" $ TargetState.IsAlive(), true, 'X2Effect_AreaSuppression');
+                    `LOG("Found EffectGameState affecting " $ TargetState.GetFullName() $ ", Alive=" $ TargetState.IsAlive(), default.bLog, 'X2Effect_AreaSuppression');
                     if (TargetState != none && TargetState.IsAlive())
                     {
                         return TargetState;
@@ -191,7 +192,7 @@ function bool ShouldRemoveAreaSuppression(XComGameState_Effect EffectState, opti
                     if (bPreCostApplied && SourceWeapon.Ammo < MaxCost * 2
                         || !bPreCostApplied && SourceWeapon.Ammo < MaxCost)
                     {
-                        `LOG(GetFuncName() $ ": true", true, 'X2Effect_AreaSuppression');
+                        `LOG(GetFuncName() $ ": true", default.bLog, 'X2Effect_AreaSuppression');
                         return true;
                     }
                 }
@@ -199,7 +200,7 @@ function bool ShouldRemoveAreaSuppression(XComGameState_Effect EffectState, opti
         }
     }
 
-    `LOG(GetFuncName() $ ": false", true, 'X2Effect_AreaSuppression');
+    `LOG(GetFuncName() $ ": false", default.bLog, 'X2Effect_AreaSuppression');
     return false;
 }
 
