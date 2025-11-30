@@ -2815,7 +2815,7 @@ static function X2AbilityTemplate AddSuppressionShot(name DataName, optional boo
     Template.AddShooterEffectExclusions();
 
     AmmoCost = new class'X2AbilityCost_Ammo';
-    AmmoCost.iAmmo = 1;
+    AmmoCost.iAmmo = (bAreaSuppression ? default.AREA_SUPPRESSION_SHOT_AMMO_COST : 1);
     Template.AbilityCosts.AddItem(AmmoCost);
 
     ReserveActionPointCost = new class'X2AbilityCost_ReserveActionPoints';
@@ -2841,7 +2841,6 @@ static function X2AbilityTemplate AddSuppressionShot(name DataName, optional boo
 
         RemoveAreaSuppression = new class'X2Effect_RemoveAreaSuppressionEffect';
         RemoveAreaSuppression.EffectNamesToRemove.AddItem(class'X2Effect_AreaSuppression'.default.EffectName);
-        RemoveAreaSuppression.bCheckSource =  true;
         RemoveAreaSuppression.SetupEffectOnShotContextResult(true, true);
         Template.AddTargetEffect(RemoveAreaSuppression);
     }
@@ -2924,7 +2923,7 @@ static function X2AbilityTemplate AddSuppressionCleanse(name DataName, optional 
 
     Template.AbilitySourceName = 'eAbilitySource_Perk';
     Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
-    Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_pistol_circle";
+    Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_supression";
     Template.bDisplayInUITacticalText = false;
     Template.bDisplayInUITooltip = false;
     Template.bDontDisplayInAbilitySummary = true;
@@ -2952,7 +2951,7 @@ static function X2AbilityTemplate AddSuppressionCleanse(name DataName, optional 
 
         RemoveAreaSuppression = new class'X2Effect_RemoveAreaSuppressionEffect';
         RemoveAreaSuppression.EffectNamesToRemove.AddItem(class'X2Effect_AreaSuppression'.default.EffectName);
-        RemoveAreaSuppression.bCheckSource =  true;
+        RemoveAreaSuppression.bRemoveAll =  false;
         RemoveAreaSuppression.SetupEffectOnShotContextResult(true, true);
         Template.AddTargetEffect(RemoveAreaSuppression);
     }
@@ -2984,7 +2983,7 @@ static function X2AbilityTemplate AddSuppressionCleanse(name DataName, optional 
     Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 
     Template.bShowActivation = false;
-    Template.bFrameEvenWhenUnitIsHidden = true;
+    Template.bFrameEvenWhenUnitIsHidden = false;
 
     return Template;
 }
@@ -3066,7 +3065,7 @@ static function X2AbilityTemplate AddAreaSuppressionAbility()
     Template.AbilityCosts.AddItem(AmmoCost);
 
     AmmoCost = new class'X2AbilityCost_Ammo';
-    AmmoCost.iAmmo = Max(0, default.AREA_SUPPRESSION_AMMO_COST - 1);
+    AmmoCost.iAmmo = Max(0, default.AREA_SUPPRESSION_AMMO_COST - default.AREA_SUPPRESSION_SHOT_AMMO_COST);
     Template.AbilityCosts.AddItem(AmmoCost);
 
     ActionPointCost = new class'X2AbilityCost_ActionPoints';
