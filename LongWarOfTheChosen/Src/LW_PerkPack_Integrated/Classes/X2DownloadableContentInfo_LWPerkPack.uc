@@ -470,7 +470,10 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 			OutString = string(int(`METERSTOTILES(class'X2Ability_PerkPackAbilitySet'.default.AREA_SUPPRESSION_RADIUS)));
 			return true;
 		case 'AREA_SUPPRESSION_AMMO_COST':
-			OutString = string(Max(0, class'X2Ability_PerkPackAbilitySet'.default.AREA_SUPPRESSION_AMMO_COST - 1));
+			OutString = string(Max(0, class'X2Ability_PerkPackAbilitySet'.default.AREA_SUPPRESSION_AMMO_COST - class'X2Ability_PerkPackAbilitySet'.default.AREA_SUPPRESSION_SHOT_AMMO_COST));
+			return true;
+		case 'AREA_SUPPRESSION_SHOT_AMMO_COST':
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.AREA_SUPPRESSION_SHOT_AMMO_COST);
 			return true;
 		case 'DANGER_ZONE_AREA_SUPPRESSION_RADIUS_TILES':
 			OutString = string(int(`METERSTOTILES(class'X2Ability_PerkPackAbilitySet'.default.AREA_SUPPRESSION_RADIUS + class'X2Ability_PerkPackAbilitySet'.default.DANGER_ZONE_BONUS_RADIUS)));
