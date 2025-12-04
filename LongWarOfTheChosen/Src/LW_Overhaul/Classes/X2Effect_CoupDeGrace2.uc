@@ -9,7 +9,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 {
     local XComGameState_Unit Target;
     
-    if (EffectState.ApplyEffectParameters.EffectRef.ApplyOnTickIndex != INDEX_NONE)
+    if (AppliedData.EffectRef.ApplyOnTickIndex != INDEX_NONE)
         return 0;
 
     if (AbilityState.SourceWeapon.ObjectID != EffectState.ApplyEffectParameters.ItemStateObjectRef.ObjectID)

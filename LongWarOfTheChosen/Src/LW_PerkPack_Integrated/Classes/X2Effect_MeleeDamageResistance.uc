@@ -60,7 +60,7 @@ private function bool ValidateAttack(
     local bool bIsMelee;
     local bool bIsMovingMelee;
 
-    if (EffectState.ApplyEffectParameters.EffectRef.ApplyOnTickIndex != INDEX_NONE)
+    if (ApplyEffectParameters.EffectRef.ApplyOnTickIndex != INDEX_NONE)
         return false;
 
     if (!bAllowImpaired && TargetUnit.IsImpaired()

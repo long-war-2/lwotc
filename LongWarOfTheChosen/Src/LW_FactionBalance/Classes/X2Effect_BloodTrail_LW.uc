@@ -22,7 +22,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
         return 0;
     }
 
-    if (!bApplyToDOTs && EffectState.ApplyEffectParameters.EffectRef.ApplyOnTickIndex != INDEX_NONE)
+    if (!bApplyToDOTs && AppliedData.EffectRef.ApplyOnTickIndex != INDEX_NONE)
     {
         return 0;
     }
