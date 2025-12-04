@@ -10,6 +10,7 @@ var bool HITANDRUN_FULLACTION;
 var config array<name> HNR_ABILITYNAMES;
 var config int HNR_USES_PER_TURN;
 var name HNRUsesName; //Prevents multiple hit and run like abilities from having the same activation ID
+var name EventName;
 
 function RegisterForEvents(XComGameState_Effect EffectGameState)
 {
@@ -20,7 +21,7 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
 	EventMgr = `XEVENTMGR;
 	EffectObj = EffectGameState;
 	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectGameState.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
-	EventMgr.RegisterForEvent(EffectObj, 'HitandRun', EffectGameState.TriggerAbilityFlyover, ELD_OnStateSubmitted, 30 , UnitState);
+	EventMgr.RegisterForEvent(EffectObj, EventName, EffectGameState.TriggerAbilityFlyover, ELD_OnStateSubmitted, 30 , UnitState);
 }
 
 function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStateContext_Ability AbilityContext, XComGameState_Ability kAbility, XComGameState_Unit SourceUnit, XComGameState_Item AffectWeapon, XComGameState NewGameState, const array<name> PreCostActionPoints, const array<name> PreCostReservePoints)
@@ -86,7 +87,7 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 								{
 									SourceUnit.ActionPoints.AddItem(class'X2CharacterTemplateManager'.default.StandardActionPoint);
 								}
-								`XEVENTMGR.TriggerEvent('HitandRun', AbilityState, SourceUnit, NewGameState);
+								`XEVENTMGR.TriggerEvent(EventName, AbilityState, SourceUnit, NewGameState);
 							}
 						}
 					}
@@ -98,6 +99,6 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 }
 defaultproperties
 {
-
+	EventName = "HitAndRun"
 	HNRUsesName = HitandRunUses
 }
