@@ -61,7 +61,7 @@ function int CalculatePointsToTrain()
 	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ProjectFocus.ObjectID));
 	TrainingTime = int(class'LWOfficerUtilities'.static.GetOfficerTrainingDays(NewRank) * 24.0);
 
-	if (UnitState.HasSoldierAbility('QuickStudy'))
+	if (UnitState.HasSoldierAbility('QuickStudy', true))
 		TrainingTime /= 2;
 
 	return TrainingTime;
