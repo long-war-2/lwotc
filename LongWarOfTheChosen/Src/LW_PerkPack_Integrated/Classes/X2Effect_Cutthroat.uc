@@ -39,7 +39,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
                 if (CurrentDamage > 0)
                 {
                     // remove from DOT effects
-                    if (EffectState.ApplyEffectParameters.EffectRef.ApplyOnTickIndex != INDEX_NONE)
+                    if (AppliedData.EffectRef.ApplyOnTickIndex != INDEX_NONE)
                         return 0;
                     
                     return BONUS_CRIT_DAMAGE;

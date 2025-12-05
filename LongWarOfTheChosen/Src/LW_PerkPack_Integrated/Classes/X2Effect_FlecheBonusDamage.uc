@@ -37,7 +37,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
     `PPTRACE("Fleche: Activated Ability Name=" @ AbilityState.GetMyTemplate().DataName);
 
     // Exclude damage-over-time effects
-    if (EffectState.ApplyEffectParameters.EffectRef.ApplyOnTickIndex != INDEX_NONE)
+    if (AppliedData.EffectRef.ApplyOnTickIndex != INDEX_NONE)
         return 0;
     
     if (bExcludeNonBaseDamage)
