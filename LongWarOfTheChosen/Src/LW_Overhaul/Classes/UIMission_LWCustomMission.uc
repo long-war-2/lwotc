@@ -366,6 +366,7 @@ simulated function BuildGuerrillaOpsMissionPanel()
 	local string DarkEventLabel, DarkEventValue, DarkEventTime;
 	local XComGameState_LWAlienActivity AlienActivity;
 	local XComGameState_MissionSite MissionState;
+	local string InfoText;
 
 	MissionState = GetMission();
 	HasDarkEvent = MissionState.HasDarkEvent();
@@ -427,8 +428,14 @@ simulated function BuildGuerrillaOpsMissionPanel()
 		// KDM : Display LW specific mission information; make the text a bit bigger for controller users
 		// since it can be quite difficult to read.
 		MissionInfoFontSize = `ISCONTROLLERACTIVE ? 20 : 16;
+		InfoText = AlienActivity.GetMissionDescriptionForActivity();
+		if (`LWOVERHAULOPTIONS.GetAggregateJailbreakRewards() && MissionState.GeneratedMission.Mission.MissionFamily == "Jailbreak_LW")
+		{
+			InfoText @= class'UIUtilities_Text_LW'.static.TackJailbreakRewardListOntoInfo(MissionState);
+		}
+
 		MissionInfoText.SetHTMLText(
-			class'UIUtilities_Text'.static.GetColoredText(AlienActivity.GetMissionDescriptionForActivity(), 
+			class'UIUtilities_Text'.static.GetColoredText(InfoText, 
 			eUIState_Normal, MissionInfoFontSize));
 	}
 	else

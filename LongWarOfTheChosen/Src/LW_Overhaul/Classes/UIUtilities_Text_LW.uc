@@ -16,6 +16,7 @@ const TITLE_FONT_TYPE = "$TitleFont";
 
 var localized string m_strHelp;
 var localized string m_strJailbreakAggregatedReward;
+var localized string m_strJailbreakAppendedPrisonerList;
 
 // KDM : This is equivalent to UIUtilities_Text --> AddFontInfo(); the only difference is that it allows you to modify the font's colour.
 static function string AddFontInfoWithColor(string txt, bool is3DScreen, optional bool isTitleFont, optional bool forceBodyFontSize, 
@@ -341,4 +342,44 @@ static function string GetJailbreakAggregatedRewardsString(XComGameState_Mission
 	}
 
 	return RewardString;
+}
+
+
+static function string TackJailbreakRewardListOntoInfo(XComGameState_MissionSite MissionState)
+{
+	local string strTemp, strCompactList;
+	local array<string> RewardStrings;
+	local X2RewardTemplate RebelTemplate;
+	local int Idx;
+	local XGParamTag kTag;
+
+	RebelTemplate = X2RewardTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('Reward_Rebel'));
+	if (RebelTemplate != none)
+	{
+		RewardStrings = MissionState.GetRewardAmountStringArray();
+		foreach RewardStrings(strTemp, Idx)
+		{
+			if (InStr(strTemp, RebelTemplate.DisplayName) != INDEX_NONE)
+			{
+				strTemp = Left(strTemp, Len(strTemp) - Len(RebelTemplate.DisplayName) - 3);
+			}
+
+			strCompactList $= strTemp;
+
+			if (Idx < (RewardStrings.Length - 1))
+			{
+				strCompactList $= ", ";
+			}
+		}
+		
+		class'UIUtilities_Text'.static.FormatCommaSeparatedNouns(strCompactList);
+		kTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
+		kTag.StrValue0 = strCompactList;
+		
+		strTemp = `XEXPAND.ExpandString(default.m_strJailbreakAppendedPrisonerList);
+		
+		return strTemp;
+	}
+
+	return "";
 }
