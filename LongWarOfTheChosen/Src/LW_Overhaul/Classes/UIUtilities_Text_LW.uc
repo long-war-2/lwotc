@@ -351,6 +351,7 @@ static function string TackJailbreakRewardListOntoInfo(XComGameState_MissionSite
 	local array<string> RewardStrings;
 	local X2RewardTemplate RebelTemplate;
 	local int Idx;
+	local XGParamTag kTag;
 
 	RebelTemplate = X2RewardTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('Reward_Rebel'));
 	if (RebelTemplate != none)
@@ -372,7 +373,10 @@ static function string TackJailbreakRewardListOntoInfo(XComGameState_MissionSite
 		}
 		
 		class'UIUtilities_Text'.static.FormatCommaSeparatedNouns(strCompactList);
-		strTemp = Repl(default.m_strExtraText, "%%%", strCompactList);
+		kTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
+		kTag.StrValue0 = strCompactList;
+		
+		strTemp = `XEXPAND.ExpandString(default.m_strJailbreakAppendedPrisonerList);
 		
 		return strTemp;
 	}
