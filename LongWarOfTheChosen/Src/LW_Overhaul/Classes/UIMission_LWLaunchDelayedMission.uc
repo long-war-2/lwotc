@@ -169,6 +169,7 @@ simulated function BuildMissionPanel()
 	local XComGameState_MissionSite Mission;
 	local X2StrategyElementTemplateManager TemplateMgr;
 	local X2ObjectiveTemplate Template;
+	local string InfoText;
 
 	Mission = GetMission();
 
@@ -238,7 +239,12 @@ simulated function BuildMissionPanel()
 	AlienActivity = `LWACTIVITYMGR.FindAlienActivityByMission(Mission);
 	if(AlienActivity != none)
 	{
-		MissionInfoText.SetHTMLText(class'UIUtilities_Text'.static.GetColoredText(AlienActivity.GetMissionDescriptionForActivity(), eUIState_Normal));
+		InfoText = AlienActivity.GetMissionDescriptionForActivity();
+		if (Mission.GeneratedMission.Mission.MissionFamily == "Jailbreak_LW" && `LWOVERHAULOPTIONS.GetAggregateJailbreakRewards())
+		{
+			InfoText @= class'UIUtilities_Text_LW'.static.TackJailbreakRewardListOntoInfo(Mission);
+		}
+		MissionInfoText.SetHTMLText(class'UIUtilities_Text'.static.GetColoredText(InfoText, eUIState_Normal));
 	}
 	else
 	{

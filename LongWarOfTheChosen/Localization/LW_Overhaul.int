@@ -291,6 +291,7 @@ strLaunchingInfiltration="CONTACT IMMINENT"
 [UIUtilities_Text_LW]
 m_strHelp="Help"
 m_strJailbreakAggregatedReward="<XGParam:StrValue0/!RewardType>: <XGParam:StrValue1/!RewardQuantity>"
+m_strJailbreakAppendedPrisonerList="<br/>Our intel suggests the prisoner list includes: <XGParam:StrValue0/!RewardsList>."
 
 [X2Ability_LW_GearAbilities]
 strWeight="Small item weight"
