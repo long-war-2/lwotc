@@ -47,7 +47,7 @@ function float GetPostDefaultDefendingDamageModifier_CH(
     X2Effect_ApplyWeaponDamage WeaponDamageEffect,
     XComGameState NewGameState)
 {
-    if (WeaponDamage > 0 && class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult))
+    if (WeaponDamage > 0 && class'XComGameStateContext_Ability'.static.IsHitResultHit(ApplyEffectParameters.AbilityResultContext.HitResult))
     {
         if (ValidateAttack(EffectState, SourceUnit, TargetUnit, AbilityState, ApplyEffectParameters, WeaponDamageEffect))
         {
