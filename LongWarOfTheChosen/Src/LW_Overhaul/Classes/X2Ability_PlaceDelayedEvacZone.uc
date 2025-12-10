@@ -99,6 +99,7 @@ static function X2AbilityTemplate GrantEvacFlare()
 {
     local X2AbilityTemplate Template;
     local X2Effect_TemporaryItem ItemEffect;
+    local X2Condition_UnitInventoryExpanded UnitInventoryEffect;
 
     `CREATE_X2ABILITY_TEMPLATE(Template, 'GrantEvacFlare');
 
@@ -113,6 +114,10 @@ static function X2AbilityTemplate GrantEvacFlare()
 
     Template.bDontDisplayInAbilitySummary = true;
     Template.bDisplayInUITooltip = false;
+
+    UnitInventoryEffect = new class'X2Condition_UnitInventoryExpanded';
+    UnitInventoryEffect.ExcludeTemplateName = 'EvacFlare';
+    Template.AbilityShooterConditions.AddItem(UnitInventoryEffect);
 
     ItemEffect = new class'X2Effect_TemporaryItem';
     ItemEffect.ItemName = 'EvacFlare';

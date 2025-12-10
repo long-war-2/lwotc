@@ -57,7 +57,7 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 	UnitState = XComGameState_Unit(kNewTargetState);
 	if (UnitState == none)
 		return;
-	
+
 	EffectState = XComGameState_Effect_TemporaryItem(NewEffectState);
 	if (EffectState == none)
 		return;
@@ -352,7 +352,14 @@ simulated function OnEffectRemoved(const out EffectAppliedData ApplyEffectParame
 	//`LWTrace("OnEffectRemoved called for TemporaryItems");
 
 	EffectState = XComGameState_Effect_TemporaryItem(RemovedEffectState);
-	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+
+	UnitState = XComGameState_Unit(NewGameState.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+
+	if(UnitState == none)
+	{
+		`LWTrace("X2Effect_TemporaryItem cleanup: Unit not found in passed gamestate, grabbing from History");
+		UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+	}
 
 	ClearTemporaryItems(EffectState, NewGameState, UnitState);
 
@@ -389,7 +396,7 @@ function UnitEndedTacticalPlay(XComGameState_Effect EffectState, XComGameState_U
 	local XComGameState NewGameState;
 	local XComGameState_Effect_TemporaryItem TemporaryEffectState;
 
-	//`LWTrace("UnitEndedTacticalPlay called on TemporaryItemEffect");
+	`LWTrace("UnitEndedTacticalPlay called on TemporaryItemEffect");
 	
 	TemporaryEffectState = XComGameState_Effect_TemporaryItem(EffectState);
 	NewGameState = UnitState.GetParentGameState();
@@ -413,6 +420,7 @@ static function ClearTemporaryItems(XComGameState_Effect_TemporaryItem EffectSta
 	local XComGameState_Item		ItemState;
 	local XComGameState_Unit		UnitState;
 	local UnitValue					ItemUnitValue;
+	local bool						bDontRemove;
 
 	History = `XCOMHISTORY;
 
@@ -420,27 +428,62 @@ static function ClearTemporaryItems(XComGameState_Effect_TemporaryItem EffectSta
 
 	foreach EffectState.TemporaryItems(ItemRef)
 	{
+		bDontRemove = false;
+
 		//`LWTrace("Checking item" @ItemRef.ObjectId);
 		if (ItemRef.ObjectID > 0)
 		{
 			//`LWTrace("ItemRef Found");
-			ItemState = XComGameState_Item(History.GetGameStateForObjectID(ItemRef.ObjectID));
+			ItemState = XComGameState_Item(NewGameState.GetGameStateForObjectID(ItemRef.ObjectID));
+
+			if(ItemState == none)
+			{
+				`LWTrace("Grabbing ItemState from History instead");
+				ItemState = XComGameState_Item(History.GetGameStateForObjectID(ItemRef.ObjectID));
+			}
+
 			if (ItemState != none)
 			{
 				//`LWTrace("ItemState Found in History");
-				UnitState = XComGameState_Unit(History.GetGameStateForObjectID(ItemState.OwnerStateObject.ObjectID));
+
+				// Hardcoding this handling here since this one always will fail to be removed.
+				if(ItemState.GetMyTemplateName() == 'EvacFlare')
+				{
+					continue;
+				}
+
+				UnitState = OriginalUnitState;
+
+				if(UnitState == none)
+				{
+					`LWTrace("UnitState not passed to ClearTemporaryItems; grabbing from History");
+					UnitState = XComGameState_Unit(History.GetGameStateForObjectID(ItemState.OwnerStateObject.ObjectID));
+				}
+
 				if (UnitState != none)
 				{
 					//`LWTrace("Unit owner found, removing");
-					UnitState.RemoveItemFromInventory(ItemState); // Remove the item from the unit's inventory
+
+					if(UnitState.RemoveItemFromInventory(ItemState)) // Remove the item from the unit's inventory
+					{
+						`LWTrace("Item removed from Unit");
+					}
+					else
+					{
+						bDontRemove = true;
+						`LWTrace("Item not removed for some reason!");
+					}
 				}
 				else
 				{
 					`LWTrace("TemporaryItem: Owner not found");
 				}
-		
-				// Remove the temporary item's gamestate object from history
-				NewGameState.RemoveStateObject(ItemRef.ObjectID);
+
+				if(!bDontRemove)
+				{
+					// Remove the temporary item's gamestate object from history
+					NewGameState.RemoveStateObject(ItemRef.ObjectID);
+				}
 			}
 		}
 	}

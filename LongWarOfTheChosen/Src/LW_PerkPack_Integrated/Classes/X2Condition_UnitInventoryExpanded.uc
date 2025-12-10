@@ -3,6 +3,7 @@ class X2Condition_UnitInventoryExpanded extends X2Condition;
 var() EInventorySlot RelevantSlot;
 var() array<name> ExcludeWeaponCategory;
 var() array<name> RequireWeaponCategory;
+var name ExcludeTemplateName;
 
 event name CallMeetsCondition(XComGameState_BaseObject kTarget)
 {
@@ -27,6 +28,12 @@ event name CallMeetsCondition(XComGameState_BaseObject kTarget)
 	{
 		if (WeaponTemplate == none || RequireWeaponCategory.Find(WeaponTemplate.WeaponCat) == INDEX_NONE)
 			return 'AA_WeaponIncompatible';
+	}
+
+	if (ExcludeTemplateName != '')
+	{
+		if(UnitState.HasItemOfTemplateType(ExcludeTemplateName))
+			return 'AA_WeaponIncompatible'; 
 	}
 
 	return 'AA_Success';

@@ -3133,7 +3133,7 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 	}
 	*/
 
-	if(UnitState.HasItemOfTemplateType('EvacFlare') && SetupData.Find('TemplateName', 'GrantEvacFlare') == -1)
+	if(UnitState.IsSoldier() && !UnitState.HasItemOfTemplateType('EvacFlare') && SetupData.Find('TemplateName', 'GrantEvacFlare') == -1)
 	{
 		AbilityTemplate = AbilityTemplateMan.FindAbilityTemplate('GrantEvacFlare');
 		if (AbilityTemplate != none)
@@ -8057,4 +8057,40 @@ static function bool IsItemInUse (XComGameState_Item ItemState, XComGameState Ar
 
 	// failsafe, don't delete things we can't conclusively prove are needed
 	return true;
+}
+
+exec function TedTest_ClearUnitInventories()
+{
+	local XComGameState NewGameState;
+	local int j;
+	local XComGameState_Item TestItem;
+	local XComGameState_Unit UnitState;
+	local StateObjectReference CrewReference;
+	
+
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState( "Debug: clear nonexistent inventory items from units.");
+
+
+	foreach `XCOMHQ.crew (CrewReference)
+	{
+		UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(CrewReference.ObjectID));
+		//`LWTrace("UnitState:" @UnitState);
+		if(UnitState != none)
+		{
+			UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
+
+			for(j = UnitState.InventoryItems.length-1; j >= 0; j--)
+			{
+				TestItem = XComGameState_Item(`XCOMHISTORY.GetGameStateForObjectID(UnitState.InventoryItems[j].ObjectID));
+
+				if(TestItem == none)
+				{
+					`LWTrace("Removing nonexistent item" @UnitState.InventoryItems[j].ObjectID @"From unit" @UnitState.GetFullName());
+					UnitState.InventoryItems.Remove(j,1);
+				}
+			}
+		}
+	}
+
+	`GAMERULES.SubmitGameState(NewGameState);
 }
