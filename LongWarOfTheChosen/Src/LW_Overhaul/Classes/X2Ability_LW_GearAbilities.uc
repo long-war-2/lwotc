@@ -769,7 +769,7 @@ static function X2AbilityTemplate CreateSedateAbility()
     UnitPropertyCondition.ExcludeRobotic = true;
 	UnitPropertyCondition.FailOnNonUnits = true;
 	UnitPropertyCondition.ExcludeStunned = false;
-	UnitPropertyCondition.ExcludeAlien = true;
+	UnitPropertyCondition.ExcludeAlien = false;
 	UnitPropertyCondition.IsAdvent = false;
 	UnitPropertyCondition.ExcludeFriendlyToSource = false;
 	UnitPropertyCondition.FailOnNonUnits = true;
