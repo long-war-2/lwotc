@@ -100,7 +100,7 @@ static event OnLoadedSavedGameToStrategy()
 	{
 		ToolboxObject = ToolboxOptions;
 		EventManager = `XEVENTMGR;
-		EventManager.RegisterForEvent( ToolboxObject, 'UnitRandomizedStats', ToolboxOptions.static.OnSoldierCreatedEvent, ELD_Immediate,,,true, ToolboxOptions); //handles reward soldier creation, both for missions and purchase-able
+		EventManager.RegisterForEvent( ToolboxObject, 'UnitRandomizedStats', class'XComGameState_LWToolboxOptions'.static.OnSoldierCreatedEvent, ELD_Immediate,,,true, ToolboxOptions); //handles reward soldier creation, both for missions and purchase-able
 	}
 
 	PatchupMissingPCSStats();
