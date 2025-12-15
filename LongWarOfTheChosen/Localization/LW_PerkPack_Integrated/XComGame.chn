@@ -804,7 +804,7 @@ LocFriendlyName="死神天降"
 LocLongDescription="用<Ability:WeaponName/>击杀一名位于低处的敌人将返还一个行动点，并且不会结束你的回合。一回合只能触发一次。此外，还会减少狙击步枪和维克托步枪50%的远距离射程惩罚。"
 LocHelpText="用<Ability:WeaponName/>击杀一名位于低处的敌人将返还一个行动点，并且不会结束你的回合。一回合只能触发一次。此外，还会减少狙击步枪和维克托步枪50%的远距离射程惩罚。"
 LocFlyOverText="死神天降"
-LocPromotionPopupText="<Bullet/> 死神天降与枪托配件的搭配效果良好，或是简单地让士兵更具移动力。<br/><Bullet/> 同时会减少狙击步枪和维克托步枪50%的远距离射程惩罚。<br/><Bullet/> 一回合只能触发一次。"
+LocPromotionPopupText="<Bullet/> 死神天降与枪托配件的搭配效果良好，或是简单地让士兵更具移动力。<br/><Bullet/> 同时会减少狙击步枪和维克托步枪50%的远距离射程惩罚。<br/><Bullet/> 双发快射的第一发射击杀死敌人时不会触发死神天降。<br/><Bullet/> 一回合只能触发一次。"
 
 [XComGame.Implacable X2AbilityTemplate]
 [Implacable X2AbilityTemplate]

@@ -6338,18 +6338,9 @@ LocPromotionPopupText="<Bullet/> 对满血目标的远程攻击获得<Ability:+T
 LocFriendlyName="未雨绸缪"
 LocFlyOverText="未雨绸缪"
 ; LWOTC Needs Translation (2)
-LocLongDescription="投掷或发射榴弹后，将自动进入监视状态。"
-LocHelpText="投掷或发射榴弹后，将自动进入监视状态。"
-LocPromotionPopupText="<Bullet/> 投掷或发射榴弹后，将自动进入监视状态。<br/>"
-; End Translation (2)
-
-[WatchThemRun_LW_Passive X2AbilityTemplate]
-LocFriendlyName="未雨绸缪"
-LocFlyOverText="未雨绸缪"
-; LWOTC Needs Translation (2)
-LocLongDescription="投掷或发射榴弹后，将自动进入监视状态。"
-LocHelpText="投掷或发射榴弹后，将自动进入监视状态。"
-LocPromotionPopupText="<Bullet/> 投掷或发射榴弹后，将自动进入监视状态。<br/>"
+LocLongDescription="投掷或发射榴弹后，将自动进入监视状态。每回合只能触发一次。"
+LocHelpText="投掷或发射榴弹后，将自动进入监视状态。每回合只能触发一次。"
+LocPromotionPopupText="<Bullet/> 单位处于混乱、眩晕、恐慌、着火或其他受损状态中时将不会触发未雨绸缪。<br/><Bullet/> 弹药不足时将不会触发未雨绸缪。<br/>"
 ; End Translation (2)
 
 ; LWOTC Needs Translation (2)
@@ -6437,8 +6428,8 @@ LocPromotionPopupText="<Bullet/> 有了这个能力，直射和双管射击都�
 [NoneShallPass_LW X2AbilityTemplate]
 LocFriendlyName="万夫莫开"
 LocFlyOverText="万夫莫开"
-LocLongDescription="在敌方回合，对<Ability:NONE_SHALL_PASS_TILE_RANGE/>格内任何移动或攻击的可见敌人使用短管霰弹枪进行射击，可以造成暴击。"
-LocHelpText="在敌方回合，对<Ability:NONE_SHALL_PASS_TILE_RANGE/>格内任何移动或攻击的可见敌人使用短管霰弹枪进行射击，可以造成暴击。"
+LocLongDescription="在敌方回合，对<Ability:NONE_SHALL_PASS_TILE_RANGE/>格内任何移动或开火的可见敌人使用短管霰弹枪进行射击，可以造成暴击。"
+LocHelpText="在敌方回合，对<Ability:NONE_SHALL_PASS_TILE_RANGE/>格内任何移动或开火的可见敌人使用短管霰弹枪进行射击，可以造成暴击。"
 LocPromotionPopupText="<Bullet/> 隐蔽时不会触发。<br/><Bullet/> 消耗1弹药，只有在短管霰弹枪装填了弹药时才会触发。<br/><Bullet/> 不属于反应攻击，可以暴击。<br/><Bullet/> 可在任何敌方回合中触发：外星人、失魂者、天选者和裁决者。<br/><Bullet/> 对同一敌人每回合只能触发一次，当士兵恐慌时不会对盟友开火。<br/>"
 
 [ScrapMetal_LW X2AbilityTemplate]
@@ -7513,17 +7504,17 @@ ShortSummaryText="我们的隐秘行动将被推迟2周！"
 ; LWOTC Needs Translation
 
 [Unstoppable_LW X2AbilityTemplate]
-LocFriendlyName="刹不住"
+LocFriendlyName="狂飙"
 LocLongDescription="该单位的移动力不会低于<Ability:UNSTOPPABLE_MIN_MOB>。"
 LocHelpText="该单位的移动力不会低于<Ability:UNSTOPPABLE_MIN_MOB>。"
-LocFlyOverText="刹不住"
+LocFlyOverText="狂飙"
 LocPromotionPopupText="该单位的移动力不会低于<Ability:UNSTOPPABLE_MIN_MOB>。"
 
 [UnstoppablePassive_LW X2AbilityTemplate]
-LocFriendlyName="刹不住"
+LocFriendlyName="狂飙"
 LocLongDescription="该单位的移动力不会低于<Ability:UNSTOPPABLE_MIN_MOB>。"
 LocHelpText="该单位的移动力不会低于<Ability:UNSTOPPABLE_MIN_MOB>。"
-LocFlyOverText="刹不住"
+LocFlyOverText="狂飙"
 LocPromotionPopupText="该单位的移动力不会低于<Ability:UNSTOPPABLE_MIN_MOB>。"
 
 [TargetingAimAndCrit X2AbilityTemplate]
@@ -7762,13 +7753,13 @@ LocHelpText="所有攻击获得额外的暴击率和护甲穿透。"
 LocPromotionPopupText="<Bullet/> 这是一个无条件的被动加成。\n<Bullet/> 护甲穿透加成不会显示在攻击预览中，但在攻击命中时会生效。"
 
 [ScoutScanner_LW X2AbilityTemplate]
-LocFriendlyName="自由侦查"
+LocFriendlyName="侦查球"
 LocHelpText="每4回合，作为一个自由动作，你可以使用战场扫描器。"
 LocLongDescription="每4回合，作为一个自由动作，你可以使用战场扫描器。这不需要或消耗任何实际装备的战场扫描器。"
 LocPromotionPopupText="<Bullet/> 侦查赋予的战场扫描器可以无限使用，只受冷却时间限制。\n<Bullet/> 侦查赋予的战场扫描器与由战场扫描器物品赋予的不同。"
 
 [FreeScanner_LW X2AbilityTemplate]
-LocFriendlyName="自由侦查"
+LocFriendlyName="侦查球"
 LocHelpText="每4回合，作为一个自由动作，你可以使用战场扫描器。"
 LocLongDescription="每4回合，作为一个自由动作，你可以使用战场扫描器。这不需要或消耗任何实际装备的战场扫描器。"
 LocPromotionPopupText="<Bullet/> 侦查赋予的战场扫描器可以无限使用，只受冷却时间限制。\n<Bullet/> 侦查赋予的场扫描器与由战场扫描器物品赋予的不同。"
