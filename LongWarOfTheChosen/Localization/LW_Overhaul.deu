@@ -732,8 +732,6 @@ m_strChosenLoot="(<XGParam:IntValue0/>) <XGParam:StrValue0/!ItemName/> erhalten 
 [UISL_Shell_LWoTCVersion]
 strMessage_Title = "Long War Of The Chosen"
 strMessage_Header = "Long War Of The Chosen wurde aktualisiert!"
-strMessage_Body = "Version 1.2.0 ist jetzt verfügbar und bringt zahlreiche neue Funktionen und Verbesserungen, darunter:<ul><li>Komplette Überarbeitung der SPARK-Einheit, neue Fähigkeitsbäume für Grenadier, Spezialist und Techniker</li><li>Überarbeitete XCOM-Reihen für alle Klassen sowie geringere FP-Kosten</li><li>Überarbeitetes Infiltrations-Interface in Einsatzauswahl und Weltkarte, inklusive neuer Schaltfläche zum Zugriff auf Berater aus der Einsatzauswahl</li><li>Zwei neue Missionsarten, weitere Kartenanpassungen und HQ-Angriffe im Stadtzentrum aktiviert</li><li>Überarbeitungen bei den Auserwählten: weniger Sabotage, angepasste Wissensverteilung, ausgewogenere Verteidigung der Avenger gegen Auserwählte</li><li>Psi-Operative verfügen nun über Pistolen-Reihen und XCOM-Decks</li><li>Viele Fehlerbehebungen, Komfortfunktionen, Balanceanpassungen und mehr</li></ul>Weitere Informationen findest du im Google-Dokument in den Steam-Änderungsnotizen oder im LWoTC-Discord. </br> Hinweis: Einige Änderungen sind nicht vollständig kampagnenkompatibel. Zwar funktioniert das Spiel weiterhin, aber z. B. die Wissensverteilung der Auserwählten ist nicht korrekt angepasst. Für ein optimales Erlebnis wird empfohlen, eine neue Kampagne zu starten oder zur Archiv-Version 1.1.0 im Workshop zu wechseln, um eine laufende Kampagne abzuschließen."
-strDismiss_Button = "OK"
 
 [UISL_Shell_BetaPatchNotes]
 strMessage_Title = "Long War Of The Chosen"
