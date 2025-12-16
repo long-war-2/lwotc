@@ -3179,6 +3179,17 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 			Data.SourceWeaponRef = UnitState.GetPrimaryWeapon().GetReference();
 			SetupData.AddItem(Data);  
 		}
+
+		AbilityTemplate = AbilityTemplateMan.FindAbilityTemplate('Avenger_LW_Attack');
+
+		if(AbilityTemplate != none)
+		{
+			Data = EmptyData;
+			Data.TemplateName = 'Avenger_LW_Attack';
+			Data.Template = AbilityTemplate;
+			Data.SourceWeaponRef = UnitState.GetPrimaryWeapon().GetReference();
+			SetupData.AddItem(Data);  
+		}
 	}
 
 	// New Rocket stuff
