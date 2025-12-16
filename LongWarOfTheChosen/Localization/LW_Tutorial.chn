@@ -45,7 +45,7 @@ HavenAdvisersBody="单击左侧标有（1）的框，为避难所指派一名顾
 ; LWOTC Needs Translation
 [UIScreenListener_PromotionScreenTutorial]
 PistolAbilitiesTutorialTitle="手枪技能"
-PistolAbilitiesTutorialBody="一旦你建立了训练中心，你的所有士兵都可以使用手枪技能，除了SPARK和灵能兵。他们可以使用手枪和自动手枪。\n\n在该界面向下滚动以查看它们！"
+PistolAbilitiesTutorialBody="一旦你建立了训练中心，你的所有士兵都可以使用手枪技能，除了SPARK。他们可以使用手枪和自动手枪。\n\n在该界面向下滚动以查看它们！"
 ; End Translation
 
 [UIScreenListener_CovertActionsTutorial]

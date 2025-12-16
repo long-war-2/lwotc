@@ -6326,18 +6326,9 @@ LocPromotionPopupText="<Bullet/> 對滿血目標的遠程攻擊獲得<Ability:+T
 LocFriendlyName="未雨綢繆"
 LocFlyOverText="未雨綢繆"
 ; LWOTC Needs Translation (2)
-LocLongDescription="投擲或發射榴彈後，將自動進入監視狀態。"
-LocHelpText="投擲或發射榴彈後，將自動進入監視狀態。"
-LocPromotionPopupText="<Bullet/> 投擲或發射榴彈後，將自動進入監視狀態。<br/>"
-; End Translation (2)
-
-[WatchThemRun_LW_Passive X2AbilityTemplate]
-LocFriendlyName="未雨綢繆"
-LocFlyOverText="未雨綢繆"
-; LWOTC Needs Translation (2)
-LocLongDescription="投擲或發射榴彈後，將自動進入監視狀態。"
-LocHelpText="投擲或發射榴彈後，將自動進入監視狀態。"
-LocPromotionPopupText="<Bullet/> 投擲或發射榴彈後，將自動進入監視狀態。<br/>"
+LocLongDescription="投擲或發射榴彈後，將自動進入監視狀態。每回合只能觸發一次。"
+LocHelpText="投擲或發射榴彈後，將自動進入監視狀態。每回合只能觸發一次。"
+LocPromotionPopupText="<Bullet/> 單位處於混亂、眩暈、恐慌、着火或其他受損狀態中時將不會觸發未雨綢繆。<br/><Bullet/> 彈藥不足時將不會觸發未雨綢繆。<br/>"
 ; End Translation (2)
 
 ; LWOTC Needs Translation (2)
@@ -6425,8 +6416,8 @@ LocPromotionPopupText="<Bullet/> 有了這個能力，直射和雙管射擊都�
 [NoneShallPass_LW X2AbilityTemplate]
 LocFriendlyName="萬夫莫開"
 LocFlyOverText="萬夫莫開"
-LocLongDescription="在敵方回合，對<Ability:NONE_SHALL_PASS_TILE_RANGE/>格內任何移動或攻擊的可見敵人使用短管霰彈槍進行射擊，可以造成暴擊。"
-LocHelpText="在敵方回合，對<Ability:NONE_SHALL_PASS_TILE_RANGE/>格內任何移動或攻擊的可見敵人使用短管霰彈槍進行射擊，可以造成暴擊。"
+LocLongDescription="在敵方回合，對<Ability:NONE_SHALL_PASS_TILE_RANGE/>格內任何移動或開火的可見敵人使用短管霰彈槍進行射擊，可以造成暴擊。"
+LocHelpText="在敵方回合，對<Ability:NONE_SHALL_PASS_TILE_RANGE/>格內任何移動或開火的可見敵人使用短管霰彈槍進行射擊，可以造成暴擊。"
 LocPromotionPopupText="<Bullet/> 隱蔽時不會觸發。<br/><Bullet/> 消耗1彈藥，只有在短管霰彈槍裝填了彈藥時才會觸發。<br/><Bullet/> 不屬於反應攻擊，可以暴擊。<br/><Bullet/> 可在任何敵方回合中觸發：外星人、失魂者、天選者和裁決者。<br/><Bullet/> 對同一敵人每回合只能觸發一次，當士兵恐慌時不會對盟友開火。<br/>"
 
 [ScrapMetal_LW X2AbilityTemplate]
