@@ -30,7 +30,7 @@ ActivityObjectives[0]="解放2：营救一名叛逃者"
 [ProtectRegion X2LWAlienActivityTemplate]
 ActivityName="ProtectRegion3Activity"
 ActivityObjectives[0]="解放3：阻击变种人行动"
-ActivityObjectives[1]="解放4：突袭网络塔"
+ActivityObjectives[1]="解放4：摧毁网络塔"
 ActivityObjectives[2]="解放5：突袭变种人基地"
 
 +MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="我们得知有变种人的装置在干扰反抗军通讯网络。我们必须摧毁它。", MissionIndex=0)
@@ -286,7 +286,7 @@ m_strHelp="帮助"
 
 [X2Ability_LW_GearAbilities]
 strWeight="小型物品重量"
-AblativeHPLabel="护盾"
+AblativeHPLabel="额外HP"
 
 [X2Ability_LW_TechnicalAbilitySet]
 strMaxScatter="\n最大散布（格）："
@@ -745,7 +745,8 @@ m_strChosenLoot="(<XGParam:IntValue0/>) <XGParam:StrValue0/!ItemName/> 击杀天
 [UISL_Shell_LWoTCVersion]
 strMessage_Title = "Long War Of The Chosen"
 strMessage_Header = "Long War Of The Chosen现已更新！
-
+strMessage_Body = "1.2.3版本现已更新，虽然仍不是完整版本，但仍包括：<ul><li>对SPARK的二次平衡性调整，新增装甲和天赋树调整，护盾回归，但不能再派遣受伤的Spark出战</li><li>新增大量新地图和地图模块，其中一些新地图将带您走出舒适区</li><li>优化了反抗军据点管理信息的界面</li><li>修复了各种崩溃和其他bug，包括“消失的撤离点”、一个主要的Linux崩溃bug等</li></ul><br/>查看Steam更新说明中链接的Google文档，或访问LWoTC的Discord获取更多信息！作为中文玩家，你可以加入QQ群：909123879参与讨论</br> 注意：所有改动都兼容现有的战役存档。您可能需要使用RespecSelectedSoldier控制台指令来更新 SPARK 天赋树。"
+strDismiss_Button = "好的"
 
 [UISL_Shell_BetaPatchNotes]
 strMessage_Title = "Long War Of The Chosen"
