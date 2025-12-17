@@ -103,7 +103,7 @@ simulated function  CreatePanel_ConfigWarning_BetaNotes_LWoTC(UIPanel Screen)
 	DismissButton_BetaNotes_LWoTC.SetResizeToText(true);
 	DismissButton_BetaNotes_LWoTC.AnchorTopCenter();			//AUTO
 	DismissButton_BetaNotes_LWoTC.OriginTopCenter();			//AUTO
-	DismissButton_BetaNotes_LWoTC.SetPosition(DismissButton_BetaNotes_LWoTC.X - 60, WarningBkgGrnd_BetaNotes_LWoTC.Y +375);
+	DismissButton_BetaNotes_LWoTC.SetPosition(DismissButton_BetaNotes_LWoTC.X - 60, WarningBkgGrnd_BetaNotes_LWoTC.Y + 375);
 }
 
 // CLEAR EVERYTHING ON BUTTON PRESS

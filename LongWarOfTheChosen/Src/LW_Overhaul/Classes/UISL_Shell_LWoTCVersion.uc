@@ -23,19 +23,69 @@ var string PathToPanelLWoTC;
 
 event OnInit(UIScreen Screen)
 {
-	local UIPanel		Screen_LWoTC;
+	//local UIPanel		Screen_LWoTC;
 	// DO WE CREATE THIS OR NOT, YES TO FIRST WARNING = 0, YES TO TESTING = -1, YES TO EACH UPDATE = NEW > OLD
 	if(ShouldShowWarningMsg())
 	{
+		/* 
 		Screen_LWoTC = Screen.Spawn(class'UIPanel', Screen);
 		PathToPanelLWoTC = PathName(Screen_LWoTC);
 		Screen_LWoTC.InitPanel('PatchNotesScreen_LWoTC');
 		Screen_LWoTC.SetSize(1920, 1080);		
 		Screen_LWoTC.SetPosition(0, 0);			
-		CreatePanel_ConfigWarning_LWoTC(Screen_LWoTC);
+		CreatePanel_ConfigWarning_LWoTC(Screen_LWoTC); */
+
+		CreatePanel_DialogBox_LWOTC(Screen);
 	}
 
 	return;
+}
+
+simulated function CreatePanel_DialogBox_LWOTC(UIScreen Screen)
+{
+	local TDialogueBoxData kDialogData;
+	local UIDialogueBox DialogBox;
+	local UIScreenStack ScreenStack;
+	local UIImage			WarningImage_LWoTC;
+	local Vector2D imagepos;
+
+	
+	kDialogData.strTitle = class'UIUtilities_Text'.static.GetColoredText(strMessage_Title @ class'LWVersion'.static.GetShortVersionString(), eUIState_Bad, 32);
+
+	kDialogData.strText = class'UIUtilities_Text'.static.StyleText(strMessage_Header, eUITextStyle_Tooltip_H1, eUIState_Warning2) @ "\n" @ class'UIUtilities_Text'.static.StyleText(strMessage_Body, eUITextStyle_Tooltip_Body, eUIState_Normal);
+	
+	// Image makes it look bad :(
+	//kDialogData.strImagePath = "img:///UILibrary_LWOTC.SampleSquadIcons.SquadIcon0";
+	kDialogData.strAccept = strDismiss_Button;
+	kDialogData.eType = eDialog_Normal;
+	kDialogData.isModal = true;
+
+	`PRESBASE.UIRaiseDialog(kDialogData);
+
+	ScreenStack = `SCREENSTACK;
+
+	DialogBox = UIDialogueBox(ScreenStack.GetCurrentScreen());
+
+	// Image part doesn't work yet, so leaving out for now.
+	/* 
+	if(DialogBox != none)
+	{
+		`LWTrace("Grabbing screen, trying to init image");
+		PrintChildPanelInfo(DialogBox);
+		WarningImage_LWoTC = DialogBox.Spawn(class'UIImage', DialogBox);
+		WarningImage_LWoTC.InitImage(, "img:///UILibrary_LWOTC.SampleSquadIcons.SquadIcon0");
+		WarningImage_LWoTC.SetScale(0.25);
+		//WarningImage_LWoTC.AnchorTopLeft();
+		WarningImage_LWoTC.CenterWithin(DialogBox);
+		//WarningImage_LWoTC.SetPosition(DialogBox.X + DialogBox.Width - 90, DialogBox.Y + 20);
+
+		imagepos.X = 0.16;
+		imagepos.Y = -0.3;
+		WarningImage_LWoTC.SetNormalizedPosition(imagepos);
+
+	}
+	*/
+
 }
 
 simulated function  CreatePanel_ConfigWarning_LWoTC(UIPanel Screen)
@@ -60,8 +110,9 @@ simulated function  CreatePanel_ConfigWarning_LWoTC(UIPanel Screen)
 
 	WarningPanel_LWoTC = Screen.Spawn(class'UIPanel', Screen);
 	WarningPanel_LWoTC.InitPanel('ConfigPopup_LWoTC');
-	WarningPanel_LWoTC.SetSize(WarningBkgGrnd_LWoTC.Width, WarningBkgGrnd_LWoTC.Height);		//800, 420
-	WarningPanel_LWoTC.SetPosition(WarningBkgGrnd_LWoTC.X, WarningBkgGrnd_LWoTC.Y);			//500, 300
+	//WarningPanel_LWOTC.SetColor(class'UIUtilities_Colors'.static.GetHexColorFromState(eUIState_Bad));
+	WarningPanel_LWoTC.SetSize(W, H);		//800, 420
+	WarningPanel_LWoTC.SetPosition(X, Y);			//500, 300
 
 	WarningImage_LWoTC = Screen.Spawn(class'UIImage', Screen);
 	WarningImage_LWoTC.InitImage(, "img:///UILibrary_LWOTC.SampleSquadIcons.SquadIcon0");
@@ -98,9 +149,10 @@ simulated function  CreatePanel_ConfigWarning_LWoTC(UIPanel Screen)
 	DismissButton_LWoTC.InitButton('DismissButton_LWoTC', strDismiss_Button, DismissButton_LWoTCHandler, );
 	DismissButton_LWoTC.SetSize(760, 30); 
 	DismissButton_LWoTC.SetResizeToText(true);
-	DismissButton_LWoTC.AnchorTopCenter();			//AUTO
-	DismissButton_LWoTC.OriginTopCenter();			//AUTO
-	DismissButton_LWoTC.SetPosition(DismissButton_LWoTC.X - 60, WarningBkgGrnd_LWoTC.Y + 375);
+	//DismissButton_LWoTC.AnchorBottomCenter();			//AUTO
+	//DismissButton_LWoTC.OriginBottomCenter();
+	//DismissButton_LWoTC.SetPosition(DismissButton_LWoTC.X - 120, DismissButton_LWoTC.Y - 60);
+	DismissButton_LWOTC.CenterWithin(WarningPanel_LWoTC);
 }
 
 // CLEAR EVERYTHING ON BUTTON PRESS
@@ -148,7 +200,31 @@ static function bool ShouldShowWarningMsg()
 	return false;
 }
 
+// debug fun command:
 
+simulated function PrintChildPanelInfo(UIPanel Panel)
+{
+	local array<UIPanel> ChildrenPanels;
+	local UIPanel TestPanel;
+
+	if(Panel != none)
+	{
+		`LWTrace("Number of children for main screen:" @Panel.NumChildren());
+		if(Panel.NumChildren() > 0)
+		{
+			Panel.GetChildrenOfType(class'UIPanel', ChildrenPanels);
+			foreach ChildrenPanels (TestPanel)
+			{
+				`LWTrace("Panel Found:" @TestPanel @"; Parent:" @TestPanel.GetParent(class'UIPanel'));
+				`LWTrace("X,Y, Width, Height" @TestPanel.X @TestPanel.Y @TestPanel.Width @TestPanel.Height);
+				`LWTrace("Anchor:" @TestPanel.Anchor);
+			}
+		}
+
+		
+	}
+	
+}
 
 
 // DONT FORGET TO ACTUALLY UPDATE THE CONFIG NUMBER ON UPDATES
