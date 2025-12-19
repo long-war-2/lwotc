@@ -540,7 +540,7 @@ simulated public function OnBoostInfiltrationClicked(UIButton button)
 	kDialogData.eType = eDialog_Normal;
 	kDialogData.strTitle = m_strBoostInfiltration;
 	kDialogData.isModal = true;
-	kDialogData.strText = `XEXPAND.ExpandString(m_strBoostInfiltrationDescription);
+	kDialogData.strText = `XEXPAND.ExpandString(m_strBoostInfiltrationDescription) $ "\n\n" $ class'UIUtilities_LW'.static.GetBoostedInfiltrationString(GetMission(), GetActivity(), GetInfiltratingSquad());
 	kDialogData.strAccept = class'UIUtilities_Text'.default.m_strGenericYes;
 	kDialogData.strCancel = class'UIUtilities_Text'.default.m_strGenericNO;
 	kDialogData.fnCallback = ConfirmBoostInfiltrationCallback;
