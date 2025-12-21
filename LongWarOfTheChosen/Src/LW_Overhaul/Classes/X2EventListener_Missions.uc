@@ -22,6 +22,13 @@ var config array<MissionTypePlotTypeOverride> MISSION_PLOT_OVERRIDES;
 
 var config int numAdditionalCrateLargeDepot;
 
+var name IDConfirmedUnitValueName;
+
+defaultproperties
+{
+	IDConfirmedUnitValueName="LW_IDConfirmed"
+}
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -105,6 +112,7 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'MiscMissionListeners');
 	Template.AddCHEvent('PlayerTurnBegun', LW2OnPlayerTurnBegun, ELD_Immediate, 500);
+	Template.AddCHEvent('UnitChangedTeam', OnUnitChangedTeam_ConfirmRebels, ELD_Immediate);
 
 	Template.RegisterInTactical = true;
 
@@ -621,4 +629,40 @@ static function name GetReinforcementGroupName(int AlertLevel, array<name> Group
 	}
 
 	return GroupName;
+}
+
+static function EventListenerReturn OnUnitChangedTeam_ConfirmRebels(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComGameState_Unit UnitState;
+	local XComGameStateHistory History;
+	local XComGameState_BattleData BattleData;
+	local XComGameState_MissionSite MissionState;
+	local UnitValue vUnitValue;
+	
+	// Only needs to do anything if the Unit was a Rebel who switched over to player controlled
+	UnitState = XComGameState_Unit(EventData);
+	if (EventID == 'UnitChangedTeam' && UnitState != none
+		&& UnitState.GetMyTemplateName() == 'Rebel'
+		&& UnitState.GetTeam() == eTeam_XCom
+		&& !UnitState.GetUnitValue(default.IDConfirmedUnitValueName, vUnitValue))
+	{
+		History = `XCOMHISTORY;
+		BattleData = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
+		if (BattleData != none
+			&& BattleData.m_iMissionID > 0)
+		{
+			MissionState = XComGameState_MissionSite(History.GetGameStateForObjectID(BattleData.m_iMissionID));
+			// Only proceed on Terror or Invasion missions, to ensure this team change is the result of the
+			// rescue and not a random MindControl getting cancelled
+			if (MissionState != none
+				&& (MissionState.GeneratedMission.Mission.MissionFamily == "Terror_LW"
+					|| MissionState.GeneratedMission.Mission.MissionFamily == "Invasion_LW"))
+			{
+				`LWTRACE("Rebel" @ UnitState.GetFullName() @ "cleared: marking identity as confirmed.");
+				UnitState.SetUnitFloatValue(default.ConfirmedRebelUnitValue, 1, eCleanup_Never);
+			}
+		}
+	}
+
+	return ELR_NoInterrupt;
 }
