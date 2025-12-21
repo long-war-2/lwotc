@@ -326,7 +326,7 @@ simulated function AddAbilityIcons(XComGameState_Unit Unit, UIOutpostManagement_
 		}
 	}
 
-	AddIDConfirmedIndicator(Unit, `LWOVERHAULOPTIONS);
+	AddIDConfirmedIndicator(Unit, `LWOVERHAULOPTIONS.GetCompactIDConfirmedIndicator());
 
 	// KDM : Determine the ability icons placement for the fancy UI.
 	DisplayedIcons = AbilityIcons.length;
@@ -351,7 +351,7 @@ simulated function AddIDConfirmedIndicator(XComGameState_Unit Unit, bool bCompac
 {
 	local UnitValue vUnitValue;
 	local int IconX, IconY, IconPadding, IconSize;
-	locla UIIcon FakePerkIcon;
+	local UIIcon FakePerkIcon;
 
 	// only display an indicator for those confirmed not faceless
 	if (!Unit.GetUnitValue(class'X2EventListener_Missions'.default.IDConfirmedUnitValueName, vUnitValue))

@@ -659,7 +659,7 @@ static function EventListenerReturn OnUnitChangedTeam_ConfirmRebels(Object Event
 					|| MissionState.GeneratedMission.Mission.MissionFamily == "Invasion_LW"))
 			{
 				`LWTRACE("Rebel" @ UnitState.GetFullName() @ "cleared: marking identity as confirmed.");
-				UnitState.SetUnitFloatValue(default.ConfirmedRebelUnitValue, 1, eCleanup_Never);
+				UnitState.SetUnitFloatValue(default.IDConfirmedUnitValueName, 1, eCleanup_Never);
 			}
 		}
 	}
