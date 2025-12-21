@@ -573,6 +573,12 @@ ChangeJobStr="CHANGE JOB"
 ChangeAllJobsStr="CHANGE ALL JOBS"
 PerksStr="PERKS" 
 
+[UIOutpostManagement_ListItem]
+m_strIDConfirmedName="Identity Confirmed"
+m_strIDConfirmedText="Our troops have vetted this operative and confirmed they aren't an ADVENT infiltrator."
+m_strIDConfirmedIconPath="img:///UILibrary_LWOTC.UIIcon_IDConfirmed"
+m_strIDConfirmedIconPath_Compact="img:///UILibrary_LWOTC.UIIcon_IDConfirmed_Hex"
+
 m_strIncomeIntel="Mission Finding Power:"
 m_strIncomeSupply="Supplies Per Day:"
 m_strIncomeRecruit="Days Per Recruit:"

@@ -14,6 +14,9 @@ var config bool FONT_SIZE_2D_3D_SAME_MK;
 var config int LEVEL_ICON_OFFSET_MK, LEVEL_ICON_SIZE_MK, LIST_ITEM_FONT_SIZE_MK, LIST_ITEM_FONT_SIZE_FANCY_MK;
 var config int LEVEL_ICON_OFFSET_CTRL, LEVEL_ICON_SIZE_CTRL, LIST_ITEM_FONT_SIZE_CTRL, LIST_ITEM_FONT_SIZE_FANCY_CTRL;
 
+var localized string m_strIDConfirmedName, m_strIDConfirmedText;
+var localized string m_strIDConfirmedIconPath, m_strIDConfirmedIconPath_Compact;
+
 var bool USE_FANCY_VERSION;
 var int TheFontSize;
 
@@ -27,6 +30,7 @@ var UIText NameLabel, LevelLabel, LevelLabel2, SpinnerLabel;
 
 var UIList List;
 var array<UIIcon> AbilityIcons;
+var UIIcon IDConfirmedIcon;
 var UIOutpostManagement OutpostUI;
 
 ///////////////////////////////////////////
@@ -322,6 +326,8 @@ simulated function AddAbilityIcons(XComGameState_Unit Unit, UIOutpostManagement_
 		}
 	}
 
+	AddIDConfirmedIndicator(Unit, `LWOVERHAULOPTIONS);
+
 	// KDM : Determine the ability icons placement for the fancy UI.
 	DisplayedIcons = AbilityIcons.length;
 	if (USE_FANCY_VERSION && DisplayedIcons > 0)
@@ -337,6 +343,58 @@ simulated function AddAbilityIcons(XComGameState_Unit Unit, UIOutpostManagement_
 		}
 	}
 }
+
+///////////////////////////////////////////
+//  DATA SETUP - ID CONFIRMED INDICATOR
+///////////////////////////////////////////
+simulated function AddIDConfirmedIndicator(XComGameState_Unit Unit, bool bCompactVersion)
+{
+	local UnitValue vUnitValue;
+	local int IconX, IconY, IconPadding, IconSize;
+	locla UIIcon FakePerkIcon;
+
+	// only display an indicator for those confirmed not faceless
+	if (!Unit.GetUnitValue(class'X2EventListener_Missions'.default.IDConfirmedUnitValueName, vUnitValue))
+		return;
+
+	if (bCompactVersion) // small indicator on the corner of the headshot
+	{
+		IDConfirmedIcon = Spawn(class'UIIcon', self);
+		IDConfirmedIcon.bDisableSelectionBrackets = true;
+		IDConfirmedIcon.bIsNavigable = false;
+		IDConfirmedIcon.InitIcon(, m_strIDConfirmedIconPath_Compact, true, true, 16);
+		IDConfirmedIcon.SetPosition(MugShot.X - 6, MugShot.Y - 4);
+		IDConfirmedIcon.SetBGColorState(eUIState_Good);
+		IDConfirmedIcon.SetBGShape(eHexagon);
+		IDConfirmedIcon.SetTooltipText(m_strIDConfirmedText, m_strIDConfirmedName,,,true, class'UIUtilities'.const.ANCHOR_BOTTOM_LEFT, false, 0.5);
+	}
+	else // displayed as a fake perk
+	{
+		if (USE_FANCY_VERSION)
+		{
+			IconSize = 32;
+			IconPadding = 3;
+		}
+		else
+		{
+			IconSize = 24;
+			IconPadding = 3;
+			IconX = 148;
+			IconY = 37;
+		}
+
+		FakePerkIcon = Spawn(class'UIIcon', self);
+		FakePerkIcon.bDisableSelectionBrackets = true;
+		FakePerkIcon.bIsNavigable = false;
+		FakePerkIcon.bShouldPlayGenericUIAudioEvents = false;
+		FakePerkIcon.InitIcon(, m_strIDConfirmedIconPath, true, true, IconSize);
+		FakePerkIcon.SetPosition(IconX + ((IconSize + IconPadding) * AbilityIcons.Length), IconY);
+		FakePerkIcon.SetTooltipText(m_strIDConfirmedText, m_strIDConfirmedName,,,true, class'UIUtilities'.const.ANCHOR_BOTTOM_LEFT, false, 0.5);
+
+		AbilityIcons.AddItem(AbilityIcon);
+	}
+}
+
 
 ///////////////////////////////////////////
 //  REBEL JOB
