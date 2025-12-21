@@ -391,7 +391,7 @@ simulated function AddIDConfirmedIndicator(XComGameState_Unit Unit, bool bCompac
 		FakePerkIcon.SetPosition(IconX + ((IconSize + IconPadding) * AbilityIcons.Length), IconY);
 		FakePerkIcon.SetTooltipText(m_strIDConfirmedText, m_strIDConfirmedName,,,true, class'UIUtilities'.const.ANCHOR_BOTTOM_LEFT, false, 0.5);
 
-		AbilityIcons.AddItem(AbilityIcon);
+		AbilityIcons.AddItem(FakePerkIcon);
 	}
 }
 
