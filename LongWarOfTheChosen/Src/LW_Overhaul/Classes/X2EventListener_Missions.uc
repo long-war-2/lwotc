@@ -646,21 +646,12 @@ static function EventListenerReturn OnUnitChangedTeam_ConfirmRebels(Object Event
 		&& UnitState.GetTeam() == eTeam_XCom
 		&& !UnitState.GetUnitValue(default.IDConfirmedUnitValueName, vUnitValue))
 	{
-		History = `XCOMHISTORY;
-		BattleData = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
-		if (BattleData != none
-			&& BattleData.m_iMissionID > 0)
+		// Check if we're in a Rescue mission to ensure it doesn't trigger off of a random MindControl
+		// getting cancelled.
+		if (class'Utilities_LW'.static.CurrentMissionIsRetaliation())
 		{
-			MissionState = XComGameState_MissionSite(History.GetGameStateForObjectID(BattleData.m_iMissionID));
-			// Only proceed on Terror or Invasion missions, to ensure this team change is the result of the
-			// rescue and not a random MindControl getting cancelled
-			if (MissionState != none
-				&& (MissionState.GeneratedMission.Mission.MissionFamily == "Terror_LW"
-					|| MissionState.GeneratedMission.Mission.MissionFamily == "Invasion_LW"))
-			{
-				`LWTRACE("Rebel" @ UnitState.GetFullName() @ "cleared: marking identity as confirmed.");
-				UnitState.SetUnitFloatValue(default.IDConfirmedUnitValueName, 1, eCleanup_Never);
-			}
+			`LWTRACE("Rebel" @ UnitState.GetFullName() @ "cleared: marking identity as confirmed.");
+			UnitState.SetUnitFloatValue(default.IDConfirmedUnitValueName, 1, eCleanup_Never);
 		}
 	}
 
