@@ -634,9 +634,6 @@ static function name GetReinforcementGroupName(int AlertLevel, array<name> Group
 static function EventListenerReturn OnUnitChangedTeam_ConfirmRebels(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
 	local XComGameState_Unit UnitState;
-	local XComGameStateHistory History;
-	local XComGameState_BattleData BattleData;
-	local XComGameState_MissionSite MissionState;
 	local UnitValue vUnitValue;
 	
 	// Only needs to do anything if the Unit was a Rebel who switched over to player controlled
