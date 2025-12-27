@@ -10,6 +10,7 @@ class XComGameState_LWOverhaulOptions extends XComGameState_LWModOptions
 var config bool EnablePauseOnRecruit;
 var config int InitialGrazeBandWidth;
 var config bool InitialAggregateJailbreakRewards;
+var config bool InitialCompactIDConfirmedIndicator;
 
 var localized string LWOverhaulTabName;
 
@@ -32,6 +33,12 @@ var bool AggregateJailbreakRewards_Cached;
 var localized string EnableAggregateJailbreakRewards;
 var localized string EnableAggregateJailbreakRewardsTooltip;
 
+// ***** COMPACT ID CONFIRMED INDICATOR ***** //
+var bool CompactIDConfirmedIndicator;
+var bool CompactIDConfirmedIndicator_Cached;
+var localized string CompactIDConfirmedIndicatorMod;
+var localized string CompactIDConfirmedIndicatorTooltip;
+
 // ***** CHosen Knowledge ***** //
 
 var Name StartingChosen;
@@ -50,6 +57,7 @@ function XComGameState_LWModOptions InitComponent(class NewClassType)
 	PauseOnRecruit=EnablePauseOnRecruit;
 	GrazeBandWidth=InitialGrazeBandWidth;
 	AggregateJailbreakRewards=InitialAggregateJailbreakRewards;
+	CompactIDConfirmedIndicator=InitialCompactIDConfirmedIndicator;
 	//InitChosenKnowledge();
 	
 	return self;
@@ -65,6 +73,7 @@ function InitModOptions()
 	GrazeBandWidth_Cached = GrazeBandWidth;
     PauseOnRecruit_Cached = PauseOnRecruit;
     AggregateJailbreakRewards_Cached = AggregateJailbreakRewards;
+	CompactIDConfirmedIndicator_Cached = CompactIDConfirmedIndicator;
 }
 
 function InitChosenKnowledge()
@@ -98,6 +107,9 @@ function int SetModOptionsEnabled(out array<UIMechaListItem> m_arrMechaItems)
     m_arrMechaItems[ButtonIdx].BG.SetTooltipText(EnableAggregateJailbreakRewardsTooltip, , , 10, , , , 0.0f);
     ButtonIdx++;
 
+	m_arrMechaItems[ButtonIdx].UpdateDataCheckbox(CompactIDConfirmedIndicatorMod, "", CompactIDConfirmedIndicator_Cached, UpdateCompactIDConfirmedIndicator);
+	m_arrMechaItems[ButtonIdx].BG.SetTooltipText(CompactIDConfirmedIndicatorTooltip, , , 10, , , , 0.0f);
+
 	return ButtonIdx;
 }
 
@@ -112,6 +124,9 @@ function bool HasAnyValueChanged()
 
     if (AggregateJailbreakRewards != AggregateJailbreakRewards_Cached)
         return true;
+
+	if (CompactIDConfirmedIndicator != CompactIDConfirmedIndicator_Cached)
+		return true;
 
 	return false; 
 }
@@ -132,6 +147,7 @@ function ApplyModSettings()
 	UpdatedOptions.GrazeBandWidth = GrazeBandWidth_Cached;
     UpdatedOptions.PauseOnRecruit = PauseOnRecruit_Cached;
     UpdatedOptions.AggregateJailbreakRewards = AggregateJailbreakRewards_Cached;
+	UpdatedOptions.CompactIDConfirmedIndicator = CompactIDConfirmedIndicator_Cached;
 
 	if  (`TACTICALRULES != none && `TACTICALRULES.TacticalGameIsInPlay())
 		`TACTICALRULES.SubmitGameState(NewGameState);
@@ -145,6 +161,7 @@ function RestorePreviousModSettings()
 	GrazeBandWidth_Cached = GrazeBandWidth;
     PauseOnRecruit_Cached = PauseOnRecruit;
     AggregateJailbreakRewards_Cached = AggregateJailbreakRewards;
+	CompactIDConfirmedIndicator_Cached = CompactIDConfirmedIndicator;
 }
 
 function bool CanResetModSettings() { return true; }
@@ -155,6 +172,7 @@ function ResetModSettings()
 	GrazeBandWidth_Cached = default.GrazeBandWidth;
     PauseOnRecruit_Cached = default.PauseOnRecruit;
     AggregateJailbreakRewards_Cached = default.AggregateJailbreakRewards;
+	CompactIDConfirmedIndicator_Cached = default.CompactIDConfirmedIndicator;
 }
 
 // ========================================================
@@ -209,6 +227,11 @@ function bool GetAggregateJailbreakRewards()
     return AggregateJailbreakRewards;
 }
 
+function bool GetCompactIDConfirmedIndicator()
+{
+	return CompactIDConfirmedIndicator;
+}
+
 function array<int> GetChosenKnowledgeGains_Randomized()
 {
 	return ChosenKnowledgeGains_Randomized;
@@ -243,6 +266,12 @@ function UpdateAggregateJailbreakRewards(UICheckbox Checkbox)
     `SOUNDMGR.PlaySoundEvent("Play_MenuSelect");
 }
 
+// Compact ID Confirmed indicator
+function UpdateCompactIDConfirmedIndicator(UICheckbox Checkbox)
+{
+	CompactIDConfirmedIndicator_Cached = Checkbox.bChecked;
+	 `SOUNDMGR.PlaySoundEvent("Play_MenuSelect");
+}
 
 defaultProperties
 {
