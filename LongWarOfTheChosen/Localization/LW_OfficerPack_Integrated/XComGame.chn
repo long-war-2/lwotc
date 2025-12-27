@@ -250,12 +250,12 @@ LockedText="未解锁：购买升级"
 [OTS_LWOfficerTrainingUpgrade X2FacilityUpgradeTemplate]
 DisplayName="军官训练学校"
 FacilityName="军官训练学校"
-Summary="添加一个站点，可以让中士及其以上级别的士兵能够训练出特殊的领导能力。\n注意：只有小队中级别最高的军官能够在任务中使用能力，所以要谨慎地选择你想要晋升的对象。"
+Summary="添加一个站点，允许上等兵及以上级别的士兵训练出特殊的领导能力。\n注意：小队中只有级别最高的军官才能在任务中使用军官能力，因此请谨慎地选择你想要晋升的对象。"
 
 [OTS_LWOfficerTrainingUpgrade_SecondSlot X2FacilityUpgradeTemplate]
 DisplayName="军官训练学校"
 FacilityName="军官训练学校"
-Summary="添加一个站点，可以让中士及其以上级别的士兵能够训练出特殊的领导能力。\n注意：只有小队中级别最高的军官能够在任务中使用能力，所以要谨慎地选择你想要晋升的对象。"
+Summary="添加一个站点，允许上等兵及以上级别的士兵训练出特殊的领导能力。\n注意：小队中只有级别最高的军官才能在任务中使用军官能力，因此请谨慎地选择你想要晋升的对象。"
 
 [UIPersonnel_LWOfficer]
 m_strTitle="训练为军官的士兵"

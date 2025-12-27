@@ -56,7 +56,7 @@ strEffectBonusDesc = "该单位受治愈之雾影响，每回合开始时会恢�
 strSavior_WorldMessage="妙手回春：已回复额外<XGParam:IntValue0/>生命值。"
 
 [X2Effect_LWHolotarget]
-HoloTargetEffectName="被全息瞄准"
+HoloTargetEffectName="全息标记"
 
 [X2Effect_ApplyRepairHeal_LW]
 HealedMessage="已回复 +<Heal/> HP"

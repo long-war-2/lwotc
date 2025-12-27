@@ -748,10 +748,10 @@ LocPromotionPopupText="<Bullet/> 该军官为在其手下曾执行过任务的�
 
 [EspritdeCorps X2AbilityTemplate]
 LocFriendlyName="团队精神"
-LocLongDescription="该士兵此前已经在该军官手下服役过，获得了意志、闪避和潜入加成，一同参加的任务越多，加成比例也会增加。"
-LocHelpTxt="该士兵此前已经在该军官手下服役过，获得了意志、闪避和潜入加成，一同参加的任务次数越多，加成比例也会提高。"
+LocLongDescription="该士兵此前已经在当前军官手下服役过，获得了意志、闪避和潜入加成，一同参加的任务越多，加成比例也会增加。"
+LocHelpTxt="该士兵此前已经在当前军官手下服役过，获得了意志、闪避和潜入加成，一同参加的任务次数越多，加成比例也会提高。"
 LocFlyOverText="团队精神"
-LocPromotionPopupText="<Bullet/> 该士兵此前已经在该军官手下服役过，获得了意志、闪避和潜入加成，一同参加的任务次数越多，加成比例也会提高。"
+LocPromotionPopupText="<Bullet/> 该士兵此前已经在当前军官手下服役过，获得了意志、闪避和潜入加成，一同参加的任务次数越多，加成比例也会提高。"
 
 ;;;;;;;;;;;;;;;;;;;; GEAR ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -5303,7 +5303,7 @@ LocPromotionPopupText="<Bullet/> 如果由敌人的动作触发，掩护火力�
 
 [CapacitorDischarge X2AbilityTemplate]
 LocLongDescription="派小精灵到目标地点大量放电，对区域内的所有单位造成伤害并有一定几率使其混乱。机械单位将受到更大的伤害。"
-LocHelpText="让你的小精灵电击一定范围内的所有单位。机械单位将受到更大的伤害。"
+LocHelpText="派小精灵到目标地点大量放电，对区域内的所有单位造成伤害并有一定几率使其混乱。机械单位将受到更大的伤害。"
 LocPromotionPopupText="<Bullet/>电容器放电每次任务可使用一次。<br/><Bullet/>升级小精灵可使电容器放电造成更多伤害。<br/>"
 
 [GrenadeLauncher_MG X2GrenadeLauncherTemplate]
@@ -7638,7 +7638,7 @@ LocFriendlyName="恐吓"
 LocLongDescription="受到敌方单位的指向性攻击时，有几率使攻击者恐慌。"
 LocHelpText="受到敌方单位的指向性攻击时，有几率使攻击者恐慌。"
 LocFlyOverText="恐吓"
-LocPromotionPopupText="<Bullet/>恐吓有几率让攻击者恐慌，更高阶的SPARK装甲有更高的几率。<br/><Bullet/>恐吓可以被近战或远程攻击触发。<br/><Bullet/>恐吓不会在目标被监视射击时触发。<br/>"
+LocPromotionPopupText="<Bullet/>恐吓有几率让攻击者恐慌，更高阶的SPARK装甲有更高的几率。<br/><Bullet/>恐吓可以被近战或远程攻击触发。<br/><Bullet/>恐吓不会在被监视射击时触发。<br/>"
 
 [IntimidateTrigger X2AbilityTemplate]
 LocFriendlyName="恐吓"
@@ -7753,16 +7753,16 @@ LocHelpText="所有攻击获得额外的暴击率和护甲穿透。"
 LocPromotionPopupText="<Bullet/> 这是一个无条件的被动加成。\n<Bullet/> 护甲穿透加成不会显示在攻击预览中，但在攻击命中时会生效。"
 
 [ScoutScanner_LW X2AbilityTemplate]
-LocFriendlyName="侦查球"
+LocFriendlyName="侦察球"
 LocHelpText="每4回合，作为一个自由动作，你可以使用战场扫描器。"
 LocLongDescription="每4回合，作为一个自由动作，你可以使用战场扫描器。这不需要或消耗任何实际装备的战场扫描器。"
-LocPromotionPopupText="<Bullet/> 侦查赋予的战场扫描器可以无限使用，只受冷却时间限制。\n<Bullet/> 侦查赋予的战场扫描器与由战场扫描器物品赋予的不同。"
+LocPromotionPopupText="<Bullet/> 侦察球赋予的战场扫描器可以无限使用，只受冷却时间限制。\n<Bullet/> 侦察球赋予的战场扫描器与由战场扫描器物品赋予的不同。"
 
 [FreeScanner_LW X2AbilityTemplate]
-LocFriendlyName="侦查球"
+LocFriendlyName="侦察球"
 LocHelpText="每4回合，作为一个自由动作，你可以使用战场扫描器。"
 LocLongDescription="每4回合，作为一个自由动作，你可以使用战场扫描器。这不需要或消耗任何实际装备的战场扫描器。"
-LocPromotionPopupText="<Bullet/> 侦查赋予的战场扫描器可以无限使用，只受冷却时间限制。\n<Bullet/> 侦查赋予的场扫描器与由战场扫描器物品赋予的不同。"
+LocPromotionPopupText="<Bullet/> 侦察球赋予的战场扫描器可以无限使用，只受冷却时间限制。\n<Bullet/> 侦察球赋予的场扫描器与由战场扫描器物品赋予的不同。"
 
 [LineEmUp_LW X2AbilityTemplate]
 LocFriendlyName="首要目标"

@@ -88,12 +88,9 @@ LocHelpText="使用主武器進行結束回合的標準射擊後進入監視狀�
 LocLongDescription="使用主武器進行結束回合的標準射擊後進入監視狀態。"
 LocPromotionPopupText="<Bullet/>使用主武器進行結束回合的標準射擊後進入監視狀態。"
 
-[ReadyForAnythingFlyover X2AbilityTemplate]
+[ReadyForAnythingTrigger X2AbilityTemplate]
 LocFriendlyName="一切就緒"
-LocFlyOverText="監視：一切就緒"
-LocHelpText="使用主武器進行標準射擊後進入監視狀態。"
-LocLongDescription="使用主武器進行標準射擊後進入監視狀態。"
-LocPromotionPopupText="<Bullet/>使用主武器進行標準射擊後進入監視狀態。"
+LocFlyOverText="一切就緒"
 
 [RepairServos X2AbilityTemplate]
 LocFriendlyName="傷害控制"

@@ -738,10 +738,10 @@ LocPromotionPopupText="<Bullet/> 該軍官為在其手下曾執行過任務的�
 
 [EspritdeCorps X2AbilityTemplate]
 LocFriendlyName="團隊精神"
-LocLongDescription="該士兵此前已經在該軍官手下服役過，獲得了意志、閃避和潛入加成，一同參加的任務越多，加成比例也會增加。"
-LocHelpTxt="該士兵此前已經在該軍官手下服役過，獲得了意志、閃避和潛入加成，一同參加的任務次數越多，加成比例也會提高。"
+LocLongDescription="該士兵此前已經在當前軍官手下服役過，獲得了意志、閃避和潛入加成，一同參加的任務越多，加成比例也會增加。"
+LocHelpTxt="該士兵此前已經在當前軍官手下服役過，獲得了意志、閃避和潛入加成，一同參加的任務次數越多，加成比例也會提高。"
 LocFlyOverText="團隊精神"
-LocPromotionPopupText="<Bullet/> 該士兵此前已經在該軍官手下服役過，獲得了意志、閃避和潛入加成，一同參加的任務次數越多，加成比例也會提高。"
+LocPromotionPopupText="<Bullet/> 該士兵此前已經在當前軍官手下服役過，獲得了意志、閃避和潛入加成，一同參加的任務次數越多，加成比例也會提高。"
 
 ;;;;;;;;;;;;;;;;;;;; GEAR ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -5292,7 +5292,7 @@ LocPromotionPopupText="<Bullet/> 如果由敵人動作觸發，掩護射擊將�
 
 [CapacitorDischarge X2AbilityTemplate]
 LocLongDescription="派小精靈到目標地點大量放電，對區域內的所有單位造成傷害並有一定幾率使其混亂。機械單位將受到更大的傷害。"
-LocHelpText="讓你的小精靈電擊一定範圍內的所有單位。機械單位將受到更大的傷害。"
+LocHelpText="派小精靈到目標地點大量放電，對區域內的所有單位造成傷害並有一定幾率使其混亂。機械單位將受到更大的傷害。"
 LocPromotionPopupText="<Bullet/>電容器放電每次任務可使用一次。<br/><Bullet/>升級小精靈可使電容器放電造成更多傷害。<br/>"
 
 [GrenadeLauncher_MG X2GrenadeLauncherTemplate]
@@ -7623,7 +7623,7 @@ LocFriendlyName="恐嚇"
 LocLongDescription="受到敵方單位的指向性攻擊時，有幾率使攻擊者恐慌。"
 LocHelpText="受到敵方單位的指向性攻擊時，有幾率使攻擊者恐慌。"
 LocFlyOverText="恐嚇"
-LocPromotionPopupText="<Bullet/>恐嚇有幾率讓攻擊者恐慌，更高階的SPARK裝甲有更高的幾率。<br/><Bullet/>恐嚇可以被近戰或遠程攻擊觸發。<br/><Bullet/>恐嚇不會在目標被監視射擊時觸發。<br/>"
+LocPromotionPopupText="<Bullet/>恐嚇有幾率讓攻擊者恐慌，更高階的SPARK裝甲有更高的幾率。<br/><Bullet/>恐嚇可以被近戰或遠程攻擊觸發。<br/><Bullet/>恐嚇不會在被監視射擊時觸發。<br/>"
 
 [IntimidateTrigger X2AbilityTemplate]
 LocFriendlyName="恐嚇"
@@ -7738,16 +7738,16 @@ LocHelpText="所有攻擊獲得額外的暴擊率和護甲穿透。"
 LocPromotionPopupText="<Bullet/> 這是一個無條件的被動加成。\n<Bullet/> 護甲穿透加成不會顯示在攻擊預覽中，但在攻擊命中時會生效。"
 
 [ScoutScanner_LW X2AbilityTemplate]
-LocFriendlyName="偵查"
+LocFriendlyName="偵察球"
 LocHelpText="每4回合，作為一個自由動作，你可以使用戰場掃描器。"
 LocLongDescription="每4回合，作為一個自由動作，你可以使用戰場掃描器。這不需要或消耗任何實際裝備的戰場掃描器。"
-LocPromotionPopupText="<Bullet/> 偵查賦予的戰場掃描器可以無限使用，只受冷卻時間限制。\n<Bullet/> 這些戰場掃描器與由戰場掃描器物品賦予的不同。"
+LocPromotionPopupText="<Bullet/> 偵察球賦予的戰場掃描器可以無限使用，只受冷卻時間限制。\n<Bullet/> 這些戰場掃描器與由戰場掃描器物品賦予的不同。"
 
 [FreeScanner_LW X2AbilityTemplate]
-LocFriendlyName="偵查"
+LocFriendlyName="偵察球"
 LocHelpText="每4回合，作為一個自由動作，你可以使用戰場掃描器。"
 LocLongDescription="每4回合，作為一個自由動作，你可以使用戰場掃描器。這不需要或消耗任何實際裝備的戰場掃描器。"
-LocPromotionPopupText="<Bullet/> 偵查賦予的戰場掃描器可以無限使用，只受冷卻時間限制。\n<Bullet/> 這些戰場掃描器與由戰場掃描器物品賦予的不同。"
+LocPromotionPopupText="<Bullet/> 偵察球賦予的戰場掃描器可以無限使用，只受冷卻時間限制。\n<Bullet/> 這些戰場掃描器與由戰場掃描器物品賦予的不同。"
 
 [LineEmUp_LW X2AbilityTemplate]
 LocFriendlyName="首要目標"
