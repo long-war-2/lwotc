@@ -283,6 +283,8 @@ strLaunchingInfiltration="联系迫近"
 
 [UIUtilities_Text_LW]
 m_strHelp="帮助"
+m_strJailbreakAggregatedReward="<XGParam:StrValue0/!RewardType>: <XGParam:StrValue1/!RewardQuantity>"
+m_strJailbreakAppendedPrisonerList="<br/>我们的情报显示，囚犯名单包括: <XGParam:StrValue0/!RewardsList>."
 
 [X2Ability_LW_GearAbilities]
 strWeight="小型物品重量"
@@ -329,7 +331,7 @@ ReasonClassAbilityPickedAtRank="已经在该军阶选择了一个职业技能"
 ReasonPsiOperativePerkFromLab="只能在灵能实验室中学习的能力"
 
 [X2Effect_LWHolotarget]
-HoloTargetEffectName="被全息瞄准"
+HoloTargetEffectName="全息标记"
 
 [XComGameState_LWPersistentSquad]
 +DefaultSquadNames="威胁者"

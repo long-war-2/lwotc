@@ -37,7 +37,7 @@ LocFriendlyName="失能射击"
 LocLongDescription="用精确的射击击晕/瘫痪敌人，如果暴击则造成额外的眩晕/瘫痪持续时间。射击不会造成暴击伤害。"
 LocHelpText="用精确的射击击晕/瘫痪敌人，如果暴击则造成额外的眩晕/瘫痪持续时间。射击不会造成暴击伤害。"
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> 如果命中(包括擦伤)，眩晕/瘫痪敌人<Ability:DisablingShotStunActions/>行动点。<br/><Bullet/> 如果暴击则额外眩晕/瘫痪敌人<Ability:DisablingShotCritStunActions/>行动点, 但是不会造成暴击伤害。<br/><Bullet/> 失能射击需要<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 失能射击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 天选者、化身、灵能僵尸以及带有眩晕免疫的高级祭司不能被眩晕。"
+LocPromotionPopupText="<Bullet/> 如果命中(包括擦伤)，眩晕/瘫痪敌人<Ability:DisablingShotStunActions/>行动点。<br/><Bullet/> 如果暴击则额外眩晕/瘫痪敌人<Ability:DisablingShotCritStunActions/>行动点, 但是不会造成暴击伤害。<br/><Bullet/> 失能射击需要<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 失能射击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 天选者、化身、灵能僵尸以及带有眩晕免疫的高级祭司无法被眩晕。"
 ; End Translation (2)
 
 [DisablingShotSnapShot X2AbilityTemplate]
@@ -45,7 +45,7 @@ LocFriendlyName="失能射击（急射）"
 LocLongDescription="用精确的射击击晕/瘫痪敌人，如果暴击则造成额外的眩晕/瘫痪持续时间。射击不会造成暴击伤害。"
 LocHelpText="用精确的射击击晕/瘫痪敌人，如果暴击则造成额外的眩晕/瘫痪持续时间。射击不会造成暴击伤害。"
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> 如果命中(包括擦伤)，眩晕/瘫痪敌人<Ability:DisablingShotStunActions/>行动点。<br/><Bullet/> 如果暴击则额外眩晕/瘫痪敌人<Ability:DisablingShotCritStunActions/>行动点, 但是不会造成暴击伤害。<br/><Bullet/> 失能射击需要<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 失能射击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 天选者、化身、灵能僵尸以及带有眩晕免疫的高级祭司不能被眩晕。"
+LocPromotionPopupText="<Bullet/> 如果命中(包括擦伤)，眩晕/瘫痪敌人<Ability:DisablingShotStunActions/>行动点。<br/><Bullet/> 如果暴击则额外眩晕/瘫痪敌人<Ability:DisablingShotCritStunActions/>行动点, 但是不会造成暴击伤害。<br/><Bullet/> 失能射击需要<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 失能射击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 天选者、化身、灵能僵尸以及带有眩晕免疫的高级祭司无法被眩晕。"
 ; End Translation (2)
 
 [Meditation X2AbilityTemplate]
