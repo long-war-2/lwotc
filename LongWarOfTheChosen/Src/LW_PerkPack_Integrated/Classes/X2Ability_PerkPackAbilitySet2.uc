@@ -1995,8 +1995,8 @@ static function X2AbilityTemplate Neutralize()
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	Template.AddShooterEffectExclusions();
 
+	// For the particles to attach to
 	PerkEffect = new class'X2Effect_PerkAttachForFX';
-	PerkEffect.EffectAddedFn = class'X2Ability_SparkAbilitySet'.static.Bombard_EffectAdded;
 	Template.AddShooterEffect(PerkEffect);
 
 	Template.AbilityMultiTargetConditions.AddItem(default.LivingTargetOnlyProperty);
