@@ -2774,10 +2774,14 @@ static function XComGameState_MissionSite GetRendezvousMissionSite(XComGameState
     if (MissionFamily == 'Rendezvous_LW')
     {
         RendezvousMission = XComGameState_MissionSiteRendezvous_LW(NewGameState.CreateNewStateobject(class'XComGameState_MissionSiteRendezvous_LW'));
-
+		// Cache the active Rebels when the mission spawned and the faceless cap
+        RendezvousMission.CachedRebels = Outpost.Rebels;
+		RendezvousMission.CachedMaxPossibleFaceless = RegionalAI.LocalForceLevel;
+	
 		// There's always at least one faceless
         i = `SYNC_RAND_STATIC(arrFaceless.Length);
         RendezvousMission.FacelessSpies.AddItem(arrFaceless[i]);
+		RendezvousMission.CachedRebels.Remove(RendezvousMission.CachedRebels.Find('Unit', arrFaceless[i]), 1);
         arrFaceless.Remove(i, 1);
 
 		// Add additional faceless from the haven up to the local force level
@@ -2786,6 +2790,7 @@ static function XComGameState_MissionSite GetRendezvousMissionSite(XComGameState
             // Choose another
             i = `SYNC_RAND_STATIC(arrFaceless.Length);
             RendezvousMission.FacelessSpies.AddItem(arrFaceless[i]);
+			RendezvousMission.CachedRebels.Remove(RendezvousMission.CachedRebels.Find('Unit', arrFaceless[i]), 1);
 			arrFaceless.Remove(i, 1);
         }
         return RendezvousMission;
@@ -2799,9 +2804,12 @@ static function XComGameState_MissionSite GetRendezvousMissionSite(XComGameState
 static function OnRendezvousExpired (XComGameState_LWAlienActivity ActivityState, XComGameState_MissionSite MissionState, XComGameState NewGameState)
 {
 	local int k;
+	local XComGameStateHistory History;
 	local XComGameState_MissionSiteRendezvous_LW RendezvousState;
 	local XComGameSTate_WorldRegion Region;
 	local XComGameState_LWOutpost OutPost;
+	local XComGameState_Unit RebelState;
+	local UnitValue vUnitValue;
 
 	if (!ActivityState.bDiscovered)
 	{
@@ -2812,16 +2820,31 @@ static function OnRendezvousExpired (XComGameState_LWAlienActivity ActivityState
 	RendezvousState = XComGameState_MissionSiteRendezvous_LW(MissionState);
 	if (RendezvousState != none)
 	{
-		Region = XComGameState_WorldRegion(`XCOMHISTORY.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
+		History = `XCOMHISTORY;
+		Region = XComGameState_WorldRegion(History.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
 		Outpost = `LWOUTPOSTMGR.GetOutpostForRegion(Region);
-		Outpost = XComGameState_LWOutpost(NewGameState.CreateStateObject(class'XComGameState_LWOutpost', OutPost.ObjectID));
-		NewGameState.AddStateObject(Outpost);
-
+		Outpost = XComGameState_LWOutpost(NewGameState.ModifyStateObject(class'XComGameState_LWOutpost', OutPost.ObjectID));
 		// Remove all faceless that were on this mission from the haven: the adviser detected this mission
 		// and knows who they are, so their cover is blown.
 		for (k=0; k < RendezvousState.FacelessSpies.Length; k++)
 		{
 			OutPost.RemoveRebel(RendezvousState.FacelessSpies[k], NewGameState);
+		}
+
+		// The other Rebels should only be marked as "Not Faceless" if the number of faceless didn't reach the cap
+		if (RendezvousState.CachedMaxPossibleFaceless != RendezvousState.FacelessSpies.Length)
+		{
+			`LWTRACE("Activity" @ ActivityState.GetMyTemplateName() @ "reached its completion, confirming identity of other rebels");
+			for (k = 0; k < RendezvousState.CachedRebels.Length; k++)
+			{
+				RebelState = XComGameState_Unit(History.GetGameStateForObjectID(RendezvousState.CachedRebels[k].Unit.ObjectID));
+				if (RebelState != none && !RebelState.GetUnitValue(class'X2EventListener_Missions'.default.IDConfirmedUnitValueName, vUnitValue))
+				{
+					RebelState = XComGameState_Unit(NewGameState.ModifyStateObject(RebelState.Class, RebelState.ObjectID));
+					`LWTRACE("Rebel" @ RebelState.GetFullName() @ "cleared: marking identity as confirmed.");
+					RebelState.SetUnitFloatValue(class'X2EventListener_Missions'.default.IDConfirmedUnitValueName, 1, eCleanup_Never);
+				}
+			}
 		}
 	}
 }

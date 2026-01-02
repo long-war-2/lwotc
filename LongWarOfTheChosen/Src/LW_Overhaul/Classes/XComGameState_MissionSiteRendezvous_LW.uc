@@ -12,6 +12,8 @@ class XComGameState_MissionSiteRendezvous_LW extends XComGameState_MissionSite
 var config int MAX_REBELS_FOR_RENDEZVOUS;
 
 var array<StateObjectReference> FacelessSpies;
+var array<RebelUnit> CachedRebels;
+var int CachedMaxPossibleFaceless;
 
 function bool RequiresAvenger()
 {
