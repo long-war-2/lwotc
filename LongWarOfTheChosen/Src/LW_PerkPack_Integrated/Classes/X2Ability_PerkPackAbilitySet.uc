@@ -4276,6 +4276,8 @@ static function X2AbilityTemplate AddEmergencyLifeSupportAbility()
 	Template.bSkipFireAction = true;
 
 	LifeSupportEffect = new class'X2Effect_EmergencyLifeSupport';
+	LifeSupportEffect.MaxActivations = 1;
+	LifeSupportEffect.BonusBleedOutTurns = class'X2Effect_EmergencyLifeSupport'.default.EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS;
 	LifeSupportEffect.BuildPersistentEffect(1, true, false);
 	LifeSupportEffect.SetDisplayInfo (ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
 	Template.AddTargetEffect(LifeSupportEffect);
