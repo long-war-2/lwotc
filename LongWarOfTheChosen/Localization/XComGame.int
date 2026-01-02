@@ -5725,10 +5725,10 @@ LocPromotionPopupText="<Bullet/> The bonuses apply if the enemy has taken damage
 
 [PaleHorse X2AbilityTemplate]
 LocFriendlyName="Soul Harvest"
-LocLongDescription="Provides +<Ability:PALE_HORSE_BASE_CRIT/>% crit chance. Each kill by this soldier adds +<Ability:PALE_HORSE_PER_KILL_CRIT/>% crit chance, to a maximum of +<Ability:PALE_HORSE_MAX_CRIT/>%."
-LocHelpText="Provides +<Ability:PALE_HORSE_BASE_CRIT/>% crit chance. Each kill by this soldier adds +<Ability:PALE_HORSE_PER_KILL_CRIT/>% crit chance, to a maximum of +<Ability:PALE_HORSE_MAX_CRIT/>%."
+LocLongDescription="Gain +<Ability:PALE_HORSE_BASE_CRIT> critical chance and additional +<Ability:PALE_HORSE_PER_KILL_CRIT> for each kill (up to a maximum of +<Ability:PALE_HORSE_MAX_CRIT>)."
+LocLongDescription="Gain +<Ability:PALE_HORSE_BASE_CRIT> critical chance and additional +<Ability:PALE_HORSE_PER_KILL_CRIT> for each kill (up to a maximum of +<Ability:PALE_HORSE_MAX_CRIT>)."
 LocFlyoverText="Soul Harvest"
-LocPromotionPopupText="<Bullet/> Bonus crit chance applies to both primary and secondary weapons.<br/><Bullet/> The +<Ability:PALE_HORSE_MAX_CRIT/>% max crit chance bonus applies only to the per-kill component, i.e. it's in addition to the base +<Ability:PALE_HORSE_BASE_CRIT/>% bonus."
+LocPromotionPopupText="<Bullet> The bonus applies to any weapon.<br><Bullet> The base bonus does not count towards the maximum bonus from kills."
 
 [Sting X2AbilityTemplate]
 LocFriendlyName="Sting"
