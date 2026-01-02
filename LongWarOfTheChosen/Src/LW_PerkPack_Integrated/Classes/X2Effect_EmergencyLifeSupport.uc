@@ -8,12 +8,13 @@ class X2Effect_EmergencyLifeSupport extends X2Effect_Persistent config(LW_Soldie
 
 `include(LW_PerkPack_Integrated\LW_PerkPack.uci)
 
-var protectedwrite name ELSActivate;
-var protectedwrite name ELSDeathUsed;
-var protectedwrite name ELSStabilizeUsed;
+var name ELSActive;
+var name ELSDeathUsed;
+var name ELSStabilizeUsed;
 
 var int MaxActivations;
 var int BonusBleedOutTurns;
+
 var config int EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS;
 
 function RegisterForEvents(XComGameState_Effect EffectGameState)
@@ -45,7 +46,7 @@ static function EventListenerReturn OnUnitBleedingOut(Object EventData, Object E
         Effect = X2Effect_EmergencyLifeSupport(EffectState.GetX2Effect());
         if (Effect != none)
         {
-            if (UnitState.GetUnitValue(Effect.ELSActivate, ELSValue) && ELSValue.fValue > 0)
+            if (UnitState.GetUnitValue(Effect.ELSActive, ELSValue) && ELSValue.fValue > 0)
             {
                 if (UnitState.IsBleedingOut())
                 {
@@ -60,7 +61,7 @@ static function EventListenerReturn OnUnitBleedingOut(Object EventData, Object E
                         UnitState.SetUnitFloatValue(Effect.ELSDeathUsed, ELSValue.fValue + 1, eCleanup_BeginTactical);
                         if (ELSValue.fValue + 1 >= Effect.MaxActivations)
                         {
-                            UnitState.ClearUnitValue(Effect.ELSActivate);
+                            UnitState.ClearUnitValue(Effect.ELSActive);
                         }
 
                         BleedOutEffectState = XComGameState_Effect(NewGameState.ModifyStateObject(BleedOutEffectState.Class, BleedOutEffectState.ObjectID));
@@ -88,7 +89,7 @@ function bool ForcesBleedout(XComGameState NewGameState, XComGameState_Unit Unit
         return false;
     }
 
-    UnitState.SetUnitFloatValue(ELSActivate, 1, eCleanup_BeginTactical);
+    UnitState.SetUnitFloatValue(ELSActive, 1, eCleanup_BeginTactical);
 
     return true;
 }
@@ -109,7 +110,7 @@ function bool IsEffectCurrentlyRelevant(XComGameState_Effect EffectGameState, XC
 defaultproperties
 {
     EffectName = "EmergencyLifeSupport"
-    ELSActivate = "EmergencyLifeSupportActived"
+    ELSActive = "EmergencyLifeSupportActive"
     ELSDeathUsed = "EmergencyLifeSupportDeathUsed"
     ELSStabilizeUsed = "EmergencyLifeSupportStabilizeUsed"
 
