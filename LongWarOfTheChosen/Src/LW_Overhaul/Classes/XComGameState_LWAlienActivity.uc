@@ -560,9 +560,9 @@ function bool SpawnMission(XComGameState NewGameState)
 
 	//calculate mission location
 	v2Loc = PrimaryRegionState.GetRandom2DLocationInRegion();
-	if(v2Loc.x == -1 && v2Loc.y == -1)
+	if((v2Loc.x == -1 && v2Loc.y == -1) || (v2Loc.x == 0 && v2Loc.y == 0))
 	{
-		
+		`LWTrace("SpawnActivity: For some reason GetRandom2DLocationInRegion returned an invalid 2d coordinate @Tedster");
 	}
     
     // Build Mission, region and loc will be determined later so defer computing biome/plot data

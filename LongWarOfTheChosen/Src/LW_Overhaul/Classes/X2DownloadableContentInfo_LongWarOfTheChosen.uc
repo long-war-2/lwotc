@@ -1767,7 +1767,13 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 			break;
 	}
 
-	`LWDiversityTrace("ENCOUNTER NAME:" @EncounterName);
+	`LWTrace("ENCOUNTER NAME:" @EncounterName);
+
+	`LWTrace("Encounter composition:");
+	foreach SpawnInfo.SelectedCharacterTemplateNames(CharacterTemplateName, idx)
+	{
+		`LWTrace("Character[" $ idx $ "] = " $ CharacterTemplateName);
+	}
 
 	// Double check for the final mission. [PAL Not sure this is necessary as the original
 	// code had no comment explaining why both the mission type and the encounter name are
@@ -1817,13 +1823,6 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 
 	//CONTINUE TO PROCESS ENCOUNTER
 	`LWTrace("Pod Diversity System processing this pod.");
-	`LWTrace("Parsing Encounter : " $ EncounterName);
-
-	`LWTrace("Encounter composition:");
-	foreach SpawnInfo.SelectedCharacterTemplateNames(CharacterTemplateName, idx)
-	{
-		`LWTrace("Character[" $ idx $ "] = " $ CharacterTemplateName);
-	}
 
 	// Get the corresponding spawn distribution lists for this mission.
 	`LWDiversityTrace("Getting Leader Spawn Distribution List: ");
