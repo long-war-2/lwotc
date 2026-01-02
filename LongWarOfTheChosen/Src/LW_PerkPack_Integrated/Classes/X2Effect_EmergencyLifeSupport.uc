@@ -41,36 +41,38 @@ static function EventListenerReturn OnUnitBleedingOut(Object EventData, Object E
     UnitState = XComGameState_Unit(EventData);
     EffectState = XComGameState_Effect(CallbackData);
 
-    if (UnitState != none && EffectState != none)
+    if (UnitState == none || EffectState == none)
+        return ELR_NoInterrupt;
+
+    Effect = X2Effect_EmergencyLifeSupport(EffectState.GetX2Effect());
+    if (Effect == none)
+        return ELR_NoInterrupt;
+
+    if (UnitState.IsBleedingOut())
     {
-        Effect = X2Effect_EmergencyLifeSupport(EffectState.GetX2Effect());
-        if (Effect != none)
+        BleedOutEffectState = UnitState.GetUnitAffectedByEffectState(class'X2StatusEffects'.default.BleedingOutName);
+        if (BleedOutEffectState != none)
         {
+            NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("EmergencyLifeSupport");
+
+            `PPDEBUG("EmergencyLifeSupport: Increasing bleedout duration.");
+            BleedOutEffectState = XComGameState_Effect(NewGameState.ModifyStateObject(BleedOutEffectState.Class, BleedOutEffectState.ObjectID));
+            BleedOutEffectState.iTurnsRemaining += Effect.BonusBleedOutTurns;
+
             if (UnitState.GetUnitValue(Effect.ELSActive, ELSValue) && ELSValue.fValue > 0)
             {
-                if (UnitState.IsBleedingOut())
+                `PPDEBUG("EmergencyLifeSupport: Increasing unit value.");
+                UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(UnitState.Class, UnitState.ObjectID));
+                UnitState.GetUnitValue(Effect.ELSDeathUsed, ELSValue);
+                UnitState.SetUnitFloatValue(Effect.ELSDeathUsed, ELSValue.fValue + 1, eCleanup_BeginTactical);
+                if (ELSValue.fValue + 1 >= Effect.MaxActivations)
                 {
-                    BleedOutEffectState = UnitState.GetUnitAffectedByEffectState(class'X2StatusEffects'.default.BleedingOutName);
-                    if (BleedOutEffectState != none)
-                    {
-                        NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("EmergencyLifeSupport");
-
-                        `PPDEBUG("EmergencyLifeSupport: Triggered, setting unit value.");
-                        UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(UnitState.Class, UnitState.ObjectID));
-                        UnitState.GetUnitValue(Effect.ELSDeathUsed, ELSValue);
-                        UnitState.SetUnitFloatValue(Effect.ELSDeathUsed, ELSValue.fValue + 1, eCleanup_BeginTactical);
-                        if (ELSValue.fValue + 1 >= Effect.MaxActivations)
-                        {
-                            UnitState.ClearUnitValue(Effect.ELSActive);
-                        }
-
-                        BleedOutEffectState = XComGameState_Effect(NewGameState.ModifyStateObject(BleedOutEffectState.Class, BleedOutEffectState.ObjectID));
-                        BleedOutEffectState.iTurnsRemaining += Effect.BonusBleedOutTurns;
-
-                        `TACTICALRULES.SubmitGameState(NewGameState);
-                    }
+                    `PPDEBUG("EmergencyLifeSupport: Clearing active value.");
+                    UnitState.ClearUnitValue(Effect.ELSActive);
                 }
             }
+
+            `TACTICALRULES.SubmitGameState(NewGameState);
         }
     }
 
@@ -81,7 +83,7 @@ function bool ForcesBleedout(XComGameState NewGameState, XComGameState_Unit Unit
 {
     local UnitValue ELSValue;
 
-    `PPDEBUG("EmergencyLifeSupport: Starting ForcesBleedout Check.");
+    `PPDEBUG("EmergencyLifeSupport: Starting ForcesBleedout.");
 
     if (UnitState.GetUnitValue(ELSDeathUsed, ELSValue) && ELSValue.fValue >= MaxActivations)
     {
