@@ -14,6 +14,7 @@ var config int FULL_THROTTLE_DURATION;
 var config int BATTLELORD_ACTION_POINT_COST;
 var config int BATTLELORD_COOLDOWN;
 var config int COMBAT_PRESENCE_COOLDOWN;
+var config bool REFLEX_ALLOW_AS_MULTI_TARGET;
 var config int REFLEX_CRIT_DEF;
 var config int TOTAL_COMBAT_BONUS_RANGE;
 var config int TOTAL_COMBAT_MOBILITY;
@@ -23,7 +24,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 	switch (Template.DataName)
 	{
 	case 'SkirmisherReflex':
-		Template.AdditionalAbilities.AddItem('SkirmisherReflexTrigger');
+		// Template.AdditionalAbilities.AddItem('SkirmisherReflexTrigger');
 		UpdateReflex(Template);
 		break;
 	case 'JudgmentTrigger':
@@ -331,11 +332,31 @@ static function UpdateCombatPresence(X2AbilityTemplate Template)
 
 static function UpdateReflex(X2AbilityTemplate Template)
 {
-	local X2Effect_Resilience	CritDefEffect;
+	local X2Effect_SkirmisherReflex_LW  ReflexEffect;
+	local X2Effect_Resilience           CritDefEffect;
+	local int i;
 
+	// Remove the old effect
+	for (i = Template.AbilityTargetEffects.Length - 1; i >= 0 ; i--)
+	{
+		if (X2Effect_SkirmisherReflex(Template.AbilityTargetEffects[i]) != none)
+		{
+			Template.AbilityTargetEffects.Remove(i, 1);
+			break;
+		}
+	}
+
+	// Add the new efffect
+	ReflexEffect = new class'X2Effect_SkirmisherReflex_LW';
+	ReflexEffect.bAllowAsMultiTarget = default.REFLEX_ALLOW_AS_MULTI_TARGET;
+	ReflexEffect.BuildPersistentEffect(1, true, false);
+	ReflexEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage,,, Template.AbilitySourceName);
+	Template.AddTargetEffect(ReflexEffect);
+
+	// Add crit defense effect
 	CritDefEffect = new class'X2Effect_Resilience';
 	CritDefEffect.CritDef_Bonus = default.REFLEX_CRIT_DEF;
-	CritDefEffect.BuildPersistentEffect (1, true, false, false);
+	CritDefEffect.BuildPersistentEffect (1, true, false);
 	CritDefEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, false);
 	Template.AddTargetEffect(CritDefEffect);
 }
