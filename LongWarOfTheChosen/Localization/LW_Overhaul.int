@@ -7,8 +7,6 @@ PauseOnRecruitMod="Pause on Recruit"
 PauseOnRecruitModTooltip="Pause the geoscape when a Haven recruits a new soldier or rebel"
 EnableAggregateJailbreakRewards="Aggregate Jailbreak Rewards"
 EnableAggregateJailbreakRewardsTooltip="Avoid long scrolling text in mission UI by only showing Rookie and Resistance Personnel totals."
-CompactIDConfirmedIndicatorMod="Compact 'Identity Confirmed' Indicator"
-CompactIDConfirmedIndicatorTooltip="Replaces the fake perk to indicate a Rebel as 'not a spy' for a more discrete version."
 
 [UIScreenListener_ShellDifficulty]
 strIncompatibleModsTitle="DUPLICATE MODS PRESENT"
@@ -576,8 +574,7 @@ PerksStr="PERKS"
 [UIOutpostManagement_ListItem]
 m_strIDConfirmedName="Identity Confirmed"
 m_strIDConfirmedText="Our troops have vetted this operative and confirmed they aren't an ADVENT infiltrator."
-m_strIDConfirmedIconPath="img:///UILibrary_LWOTC.UIIcon_IDConfirmed"
-m_strIDConfirmedIconPath_Compact="img:///UILibrary_LWOTC.UIIcon_IDConfirmed_Hex"
+m_strIDConfirmedIconPath="img:///UILibrary_LWOTC.UIIcon_IDConfirmed_Hex"
 
 m_strIncomeIntel="Mission Finding Power:"
 m_strIncomeSupply="Supplies Per Day:"
