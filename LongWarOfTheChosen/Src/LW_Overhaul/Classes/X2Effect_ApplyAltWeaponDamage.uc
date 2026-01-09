@@ -35,6 +35,9 @@ simulated function ApplyEffectToWorld(const out EffectAppliedData ApplyEffectPar
 	local X2AbilityMultiTargetStyle TargetStyle;
 	local X2MultiWeaponTemplate MultiWeaponTemplate;
 
+	// Variable for Issue #200
+	local XComLWTuple ModifyEnvironmentDamageTuple;
+
 	//If this damage effect has an associated position, it does world damage
 	if( ApplyEffectParameters.AbilityInputContext.TargetLocations.Length > 0 || ApplyEffectParameters.AbilityResultContext.ProjectileHitLocations.Length > 0 )
 	{
@@ -117,6 +120,30 @@ simulated function ApplyEffectToWorld(const out EffectAppliedData ApplyEffectPar
 					DamageTypeTemplateName = 'Explosion';
 				}
 			}
+			
+			// Issue #200 Start, allow listeners to modify environment damage
+			ModifyEnvironmentDamageTuple = new class'XComLWTuple';
+			ModifyEnvironmentDamageTuple.Id = 'ModifyEnvironmentDamage';
+			ModifyEnvironmentDamageTuple.Data.Add(3);
+			ModifyEnvironmentDamageTuple.Data[0].kind = XComLWTVBool;
+			ModifyEnvironmentDamageTuple.Data[0].b = false;  // override? (true) or add? (false)
+			ModifyEnvironmentDamageTuple.Data[1].kind = XComLWTVInt;
+			ModifyEnvironmentDamageTuple.Data[1].i = 0;  // override/bonus environment damage
+			ModifyEnvironmentDamageTuple.Data[2].kind = XComLWTVObject;
+			ModifyEnvironmentDamageTuple.Data[2].o = AbilityStateObject;  // ability being used
+
+			`XEVENTMGR.TriggerEvent('ModifyEnvironmentDamage', ModifyEnvironmentDamageTuple, self, NewGameState);
+			
+			if(ModifyEnvironmentDamageTuple.Data[0].b)
+			{
+				DamageAmount = ModifyEnvironmentDamageTuple.Data[1].i;
+			}
+			else
+			{
+				DamageAmount += ModifyEnvironmentDamageTuple.Data[1].i;
+			}
+
+			// Issue #200 End
 			
 			if( ( bLinearDamage || AbilityRadius > 0.0f || AbilityContext.ResultContext.HitResult == eHit_Miss) && DamageAmount > 0 )
 			{
@@ -429,7 +456,8 @@ simulated function GetDamagePreview(
 		EffectState = XComGameState_Effect(History.GetGameStateForObjectID(EffectRef.ObjectID));
 		EffectTemplate = EffectState.GetX2Effect();
 
-		EffectDmg = EffectTemplate.GetAttackingDamageModifier(EffectState, SourceUnit, Damageable(TargetUnit), AbilityState, TestEffectParams, MinDamagePreview.Damage);
+		// Single line for Issue #1305 - use the Highlander version of GetAttackingDamageModifier().
+		EffectDmg = EffectTemplate.GetAttackingDamageModifier_CH(EffectState, SourceUnit, Damageable(TargetUnit), AbilityState, TestEffectParams, MinDamagePreview.Damage, self);
 		MinDamagePreview.Damage += EffectDmg;
 		if( EffectDmg != 0 )
 		{
@@ -437,7 +465,9 @@ simulated function GetDamagePreview(
 			DamageModInfo.Value = EffectDmg;
 			MinDamagePreview.BonusDamageInfo.AddItem(DamageModInfo);
 		}
-		EffectDmg = EffectTemplate.GetAttackingDamageModifier(EffectState, SourceUnit, Damageable(TargetUnit), AbilityState, TestEffectParams, MaxDamagePreview.Damage);
+
+		// Single line for Issue #1305 - use the Highlander version of GetAttackingDamageModifier().
+		EffectDmg = EffectTemplate.GetAttackingDamageModifier_CH(EffectState, SourceUnit, Damageable(TargetUnit), AbilityState, TestEffectParams, MaxDamagePreview.Damage, self);
 		MaxDamagePreview.Damage += EffectDmg;
 		if( EffectDmg != 0 )
 		{
@@ -501,6 +531,16 @@ simulated function GetDamagePreview(
 
 	if (!bDoesDamageIgnoreShields)
 		AllowsShield += MaxDamagePreview.Damage;
+
+	// Start Issue #1281
+	/// HL-Docs: ref:Bugfixes; issue:1281
+	/// If the effect ignores all armor, max out the Pierce value in the Damage Preview so it will show up on the unit flag damage preview.
+	if (IgnoreArmor > 0)
+	{
+		MinDamagePreview.Pierce = MaxInt;
+		MaxDamagePreview.Pierce = MaxInt;
+	}
+	// End Issue #1281
 }
 
 // Cannot pass bools as out params, so use an int. Zero is false, non-zero is true.
@@ -528,7 +568,7 @@ simulated function int CalculateDamageAmount(
 	local X2Effect_Persistent EffectTemplate;
 	local WeaponDamageValue BaseDamageValue, ExtraDamageValue, BonusEffectDamageValue, AmmoDamageValue, UpgradeTemplateBonusDamage, UpgradeDamageValue;
 	local X2AmmoTemplate AmmoTemplate;
-	local int RuptureCap, RuptureAmount, OriginalMitigation, UnconditionalShred;
+	local int RuptureAmount, OriginalMitigation, UnconditionalShred;
 	local int EnvironmentDamage, TargetBaseDmgMod;
 	local XComDestructibleActor kDestructibleActorTarget;
 	local array<X2WeaponUpgradeTemplate> WeaponUpgradeTemplates;
@@ -536,6 +576,9 @@ simulated function int CalculateDamageAmount(
 	local X2MultiWeaponTemplate MultiWeaponTemplate;
 	local DamageModifierInfo ModifierInfo;
 	local bool bWasImmune, bHadAnyDamage;
+
+	// Issue #1299 - comment out unused Rupture Cap.
+	//local int RuptureCap;
 
 	ArmorMitigation = 0;
 	NewRupture = 0;
@@ -700,7 +743,9 @@ simulated function int CalculateDamageAmount(
 	ArmorPiercing = BaseDamageValue.Pierce + ExtraDamageValue.Pierce + BonusEffectDamageValue.Pierce + AmmoDamageValue.Pierce + UpgradeDamageValue.Pierce;
 	NewRupture = BaseDamageValue.Rupture + ExtraDamageValue.Rupture + BonusEffectDamageValue.Rupture + AmmoDamageValue.Rupture + UpgradeDamageValue.Rupture;
 	NewShred = BaseDamageValue.Shred + ExtraDamageValue.Shred + BonusEffectDamageValue.Shred + AmmoDamageValue.Shred + UpgradeDamageValue.Shred;
-	RuptureCap = WeaponDamage;
+
+	// Issue #1299 - comment out unused Rupture Cap.
+	//RuptureCap = WeaponDamage;
 
 	`log(`ShowVar(bIgnoreBaseDamage) @ `ShowVar(DamageTag), true, 'XCom_HitRolls');
 	`log("Weapon damage:" @ WeaponDamage @ "Potential spread:" @ DamageSpread, true, 'XCom_HitRolls');
@@ -742,13 +787,39 @@ simulated function int CalculateDamageAmount(
 		WeaponDamage *= GRAZE_DMG_MULT;
 		`log("GRAZE! Adjusted damage:" @ WeaponDamage, true, 'XCom_HitRolls');
 	}
+	// Start Issue #1396
+	/// HL-Docs: ref:Bugfixes; issue:1396
+	/// Ensure that Damage-over-time effects applied by abilities that grazed or critted the target do not get their damage adjusted
+	/// by checking for ApplyOnTick behavior
+	if (ApplyEffectParameters.AbilityResultContext.HitResult == eHit_Crit && ApplyEffectParameters.EffectRef.ApplyOnTickIndex == INDEX_NONE)
+	{
+		WeaponDamage += CritDamage;
+		`log("CRIT! Adjusted damage:" @ WeaponDamage, true, 'XCom_HitRolls');
+	}
+	else if (ApplyEffectParameters.AbilityResultContext.HitResult == eHit_Graze && ApplyEffectParameters.EffectRef.ApplyOnTickIndex == INDEX_NONE)
+	{
+		WeaponDamage *= GRAZE_DMG_MULT;
+		`log("GRAZE! Adjusted damage:" @ WeaponDamage, true, 'XCom_HitRolls');
+	}
+	// End Issue #1396
 
-	RuptureAmount = min(kTarget.GetRupturedValue() + NewRupture, RuptureCap);
+	//	Start Issue #1299
+	/// HL-Docs: ref:Bugfixes; issue:1299
+	/// Remove the cap from the amount of bonus damage that can be added to an attack by rupture, and do not add rupture added by this attack to the attack's damage.
+	//RuptureAmount = min(kTarget.GetRupturedValue() + NewRupture, RuptureCap);
+	RuptureAmount = kTarget.GetRupturedValue();
+
+	// While Rupture Cap is removed, we still want to add bonus damage from rupture only if the attack deals damage,
+	// as that was part of of the original functionality of the Rupture Cap.
+	if (WeaponDamage > 0)
+	{
 	if (RuptureAmount != 0)
 	{
 		WeaponDamage += RuptureAmount;
 		`log("Target is ruptured, increases damage by" @ RuptureAmount $", new damage:" @ WeaponDamage, true, 'XCom_HitRolls');
 	}
+	}
+	// End Issue #1299
 
 	if( kSourceUnit != none)
 	{
@@ -793,7 +864,9 @@ simulated function int CalculateDamageAmount(
 
 			EffectState = XComGameState_Effect(History.GetGameStateForObjectID(EffectRef.ObjectID));
 			EffectTemplate = EffectState.GetX2Effect();
-			EffectDmg = EffectTemplate.GetAttackingDamageModifier(EffectState, kSourceUnit, kTarget, kAbility, ApplyEffectParameters, WeaponDamage, NewGameState);
+
+			// Single line for Issue #1305 - use the Highlander version of GetAttackingDamageModifier().
+			EffectDmg = EffectTemplate.GetAttackingDamageModifier_CH(EffectState, kSourceUnit, kTarget, kAbility, ApplyEffectParameters, WeaponDamage, self, NewGameState);
 			if (EffectDmg != 0)
 			{
 				WeaponDamage += EffectDmg;
@@ -1004,6 +1077,27 @@ function CalculateDamageValues(XComGameState_Item SourceWeapon, XComGameState_Un
 				}
 			}
 		}
+		// Issue #237 start
+		// Treat new CH upgrade damage as base damage unless a tag is specified
+		WeaponUpgradeTemplates = SourceWeapon.GetMyWeaponUpgradeTemplates();
+		foreach WeaponUpgradeTemplates(WeaponUpgradeTemplate)
+		{
+			if ((!bIgnoreBaseDamage && DamageTag == '') || WeaponUpgradeTemplate.CHBonusDamage.Tag == DamageTag)
+			{
+				UpgradeTemplateBonusDamage = WeaponUpgradeTemplate.CHBonusDamage;
+				
+				ModifyDamageValue(UpgradeTemplateBonusDamage, TargetUnit, AppliedDamageTypes);
+
+				DamageInfo.UpgradeDamageValue.Damage += UpgradeTemplateBonusDamage.Damage;
+				DamageInfo.UpgradeDamageValue.Spread += UpgradeTemplateBonusDamage.Spread;
+				DamageInfo.UpgradeDamageValue.Crit += UpgradeTemplateBonusDamage.Crit;
+				DamageInfo.UpgradeDamageValue.Pierce += UpgradeTemplateBonusDamage.Pierce;
+				DamageInfo.UpgradeDamageValue.Rupture += UpgradeTemplateBonusDamage.Rupture;
+				DamageInfo.UpgradeDamageValue.Shred += UpgradeTemplateBonusDamage.Shred;
+				//  ignores PlusOne as there is no good way to add them up
+			}
+		}
+		// Issue #237 end
 	}
 
 	DamageInfo.BonusEffectDamageValue = GetBonusEffectDamageValue(AbilityState, SourceUnit, SourceWeapon, TargetUnit.GetReference());
