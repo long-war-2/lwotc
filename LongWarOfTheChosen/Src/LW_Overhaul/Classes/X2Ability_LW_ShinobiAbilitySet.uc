@@ -29,7 +29,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddCoupDeGraceAbility());
 	Templates.AddItem(AddCoupDeGracePassive());
 	Templates.AddItem(AddCoupDeGrace2Ability());
-	Templates.AddItem(PurePassive('Tradecraft', "img:///UILibrary_LWOTC.LW_AbilityTradecraft", true));
+	Templates.AddItem(PurePassive('Tradecraft', "img:///UILibrary_LWOTC.LW_AbilityTradecraft", true,, false));
 	return Templates;
 }
 
