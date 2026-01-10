@@ -5726,7 +5726,7 @@ LocPromotionPopupText="<Bullet/> The bonuses apply if the enemy has taken damage
 [PaleHorse X2AbilityTemplate]
 LocFriendlyName="Soul Harvest"
 LocLongDescription="Gain +<Ability:PALE_HORSE_BASE_CRIT> critical chance and additional +<Ability:PALE_HORSE_PER_KILL_CRIT> for each kill (up to a maximum of +<Ability:PALE_HORSE_MAX_CRIT>)."
-LocLongDescription="Gain +<Ability:PALE_HORSE_BASE_CRIT> critical chance and additional +<Ability:PALE_HORSE_PER_KILL_CRIT> for each kill (up to a maximum of +<Ability:PALE_HORSE_MAX_CRIT>)."
+LocHelpText="Gain +<Ability:PALE_HORSE_BASE_CRIT> critical chance and additional +<Ability:PALE_HORSE_PER_KILL_CRIT> for each kill (up to a maximum of +<Ability:PALE_HORSE_MAX_CRIT>)."
 LocFlyoverText="Soul Harvest"
 LocPromotionPopupText="<Bullet> The bonus applies to any weapon.<br><Bullet> The base bonus does not count towards the maximum bonus from kills."
 
