@@ -6003,6 +6003,10 @@ FriendlyName="Very Large Map"
 Description="The area of operations is much larger than normal, so it will probably take you longer to get to the objective than usual."
 ; End Translation (2)
 
+[VeryWetMap X2SitRepTemplate]
+FriendlyName="Wet Terrain"
+Description="Unusually heavy rains have flooded the area of operations. You may want to exercise restraint when using fire-based weaponry."
+
 [ProjectMiranda X2SitRepTemplate]
 FriendlyName="Project Miranda"
 Description="ADVENT are testing pacification technology in the area, which is making all non-robotic units lethargic. They will have penalties to aim and mobility."

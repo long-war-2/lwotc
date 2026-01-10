@@ -65,6 +65,8 @@ var config array<string> LargeMaps;
 
 var config array<string> VeryLargeMaps;
 
+var config array<string> VeryWetMaps;
+
 var config array<LWRewardScalar> ActivityRewardScalars;
 
 //#############################################################################################

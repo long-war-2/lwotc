@@ -535,7 +535,7 @@ simulated function GetDamagePreview(
 	// Start Issue #1281
 	/// HL-Docs: ref:Bugfixes; issue:1281
 	/// If the effect ignores all armor, max out the Pierce value in the Damage Preview so it will show up on the unit flag damage preview.
-	if (IgnoreArmor > 0)
+	if (bIgnoreArmor)
 	{
 		MinDamagePreview.Pierce = MaxInt;
 		MaxDamagePreview.Pierce = MaxInt;

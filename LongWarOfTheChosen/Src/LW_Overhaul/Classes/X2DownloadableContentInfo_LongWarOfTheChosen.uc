@@ -1672,6 +1672,12 @@ static function PostSitRepCreation(out GeneratedMissionData GeneratedMission, op
 		GeneratedMission.SitReps.RemoveItem('TheLost');
 		GeneratedMission.SitReps.RemoveItem('TheHorde');
 	}
+
+	// For some of the new EMM maps that flood a lot of the playable area.
+	if (class'XComGameState_LWAlienActivity'.default.VeryWetMaps.Find(GeneratedMission.Plot.MapName) != INDEX_NONE)
+	{
+		GeneratedMission.SitReps.AddItem('VeryWetMap');
+	}
 }
 
 // Diversify pod makeup, especially with all-alien pods which typically consist
