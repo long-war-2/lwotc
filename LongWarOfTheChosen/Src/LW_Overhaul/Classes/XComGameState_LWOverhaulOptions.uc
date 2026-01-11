@@ -243,7 +243,6 @@ function UpdateAggregateJailbreakRewards(UICheckbox Checkbox)
     `SOUNDMGR.PlaySoundEvent("Play_MenuSelect");
 }
 
-
 defaultProperties
 {
 	GrazeBandWidth=10
