@@ -24,11 +24,6 @@ var config int numAdditionalCrateLargeDepot;
 
 var name IDConfirmedUnitValueName;
 
-defaultproperties
-{
-	IDConfirmedUnitValueName="LW_IDConfirmed"
-}
-
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -653,4 +648,9 @@ static function EventListenerReturn OnUnitChangedTeam_ConfirmRebels(Object Event
 	}
 
 	return ELR_NoInterrupt;
+}
+
+defaultproperties
+{
+	IDConfirmedUnitValueName="LW_IDConfirmed"
 }

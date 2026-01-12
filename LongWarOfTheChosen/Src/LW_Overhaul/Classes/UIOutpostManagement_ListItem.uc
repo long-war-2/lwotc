@@ -350,8 +350,6 @@ simulated function AddAbilityIcons(XComGameState_Unit Unit, UIOutpostManagement_
 simulated function AddIDConfirmedIndicator(XComGameState_Unit Unit)
 {
 	local UnitValue vUnitValue;
-	local int IconX, IconY, IconPadding, IconSize;
-	local UIIcon FakePerkIcon;
 
 	// only display an indicator for those confirmed not faceless
 	if (!Unit.GetUnitValue(class'X2EventListener_Missions'.default.IDConfirmedUnitValueName, vUnitValue))
@@ -360,7 +358,7 @@ simulated function AddIDConfirmedIndicator(XComGameState_Unit Unit)
 	IDConfirmedIcon = Spawn(class'UIIcon', self);
 	IDConfirmedIcon.bDisableSelectionBrackets = true;
 	IDConfirmedIcon.bIsNavigable = false;
-	IDConfirmedIcon.InitIcon(, m_strIDConfirmedIconPath_Compact, true, true, 16);
+	IDConfirmedIcon.InitIcon('ConfirmedIcon', m_strIDConfirmedIconPath, true, true, 16);
 	IDConfirmedIcon.SetPosition(MugShot.X - 6, MugShot.Y - 4);
 	IDConfirmedIcon.SetBGColorState(eUIState_Good);
 	IDConfirmedIcon.SetBGShape(eHexagon);
