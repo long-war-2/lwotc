@@ -635,7 +635,7 @@ static function EventListenerReturn OnUnitChangedTeam_ConfirmRebels(Object Event
 	UnitState = XComGameState_Unit(EventData);
 	if (EventID == 'UnitChangedTeam' && UnitState != none
 		&& UnitState.GetMyTemplateName() == 'Rebel'
-		&& UnitState.GetTeam() == eTeam_XCom
+		&& UnitState.GetTeam() == eTeam_Neutral //this fires off early enough that it still has the team pre-change
 		&& !UnitState.GetUnitValue(default.IDConfirmedUnitValueName, vUnitValue))
 	{
 		// Check if we're in a Rescue mission to ensure it doesn't trigger off of a random MindControl
