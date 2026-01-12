@@ -221,7 +221,7 @@ static function LoadCivilianUnitsFromOutpost(XComGameState_LWOutpost Outpost)
 	WorkingRebels = OutPost.Rebels.Length - OutPost.GetNumRebelsOnJob(class'LWRebelJob_DefaultJobSet'.const.HIDING_JOB);
 	HidingRebelsforMission = default.RebelCapOnRetals - WorkingRebels;
 
-	`LWTRACE("Outpost size:" @ OutPost.Rebels.length @ "Working Rebels:" @ string (WorkingRebels) @ "Hiding Rebels appearing on this mission");
+	`LWTRACE("Outpost size:" @ OutPost.Rebels.length @ "Working Rebels:" @ string (WorkingRebels) @ "; Hiding Rebels appearing on this mission");
 
 	// All rebels with a job go on the mission, plus enough hiding to get us up to the cap
 	for (i = 0; i < Outpost.Rebels.Length; ++i)
@@ -464,6 +464,8 @@ static function LoadLiaisonFromOutpost(XComGameState_LWOutpost Outpost,
 	//local XComGameState_HeadquartersXCom XComHQ;
 	local bool FoundTile;
 
+	`LWTrace("Loading Liaison from outpost for mission");
+
 	if (!Outpost.HasLiaison())
 	{
 		return;
@@ -487,6 +489,12 @@ static function LoadLiaisonFromOutpost(XComGameState_LWOutpost Outpost,
 	{
 		`XWORLD.GetFloorTileForPosition(BattleData.MapData.SoldierSpawnLocation, UnitTile);
 		FoundTile = class'Utilities_LW'.static.GetSpawnTileNearTile(UnitTile, 2, 4);
+
+		// Add another fallback
+		if(!FoundTile)
+		{
+			FoundTile = class'Utilities_LW'.static.GetSpawnTileNearTile(UnitTile, 5, 8);
+		}
 	}
 	else
 	{
@@ -567,6 +575,10 @@ static function LoadLiaisonFromOutpost(XComGameState_LWOutpost Outpost,
 		`TACTICALRULES.SubmitGameState(NewGameState);
 		// Pavonis plz why is this here.
 		//Unit.OnBeginTacticalPlay(NewGameState);
+	}
+	else
+	{
+		`LWTrace("*** Failed to find valid tile to spawn Liaison!");
 	}
 }
 

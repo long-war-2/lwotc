@@ -255,13 +255,13 @@ function static bool GetSpawnTileNearTile(out TTile Tile, int FirstRange, int Se
 
     WorldData = `XWORLD;
     // Try to find a valid tile near the randomly chosen tile, and spawn there.
-    WorldData.GetSpawnTilePossibilities(Tile, FirstRange, FirstRange, FirstRange, TilePossibilities);
+    WorldData.GetSpawnTilePossibilities(Tile, FirstRange, FirstRange, 10, TilePossibilities);
     class'Utilities_LW'.static.RemoveInvalidTiles(TilePossibilities);
 
     if (TilePossibilities.Length == 0)
     {
         // Try again, widening the search quite a bit
-        WorldData.GetSpawnTilePossibilities(Tile, SecondRange, SecondRange, SecondRange, TilePossibilities);
+        WorldData.GetSpawnTilePossibilities(Tile, SecondRange, SecondRange, 10, TilePossibilities);
         class'Utilities_LW'.static.RemoveInvalidTiles(TilePossibilities);
     }
 
