@@ -305,9 +305,13 @@ function bool AtTurnThreshhold (int Threshhold, optional bool Absolute = false)
 
 function bool ReachedTurnThreshhold (int Threshhold, optional bool CheckWin = false, optional bool ExactTurn = false)
 {
-	if (CheckWin && (TurnsSinceWin == Threshhold || (!ExactTurn && TurnsSinceWin > Threshhold)))
+	if (CheckWin)
 	{
-    	return true;
+		if((TurnsSinceWin == Threshhold || (!ExactTurn && TurnsSinceWin > Threshhold)))
+		{
+    		return true;
+		}
+		else return false;
 	}
 
 	// Fall back to standard logic if not checking win
