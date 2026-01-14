@@ -802,7 +802,7 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 
 	// do a weighted selection of our plot
 	MissionState.GeneratedMission.Plot = SelectedPlotDef;
-	MissionState.GeneratedMission.Biome = ParcelMgr.GetBiomeDefinition(Biome);
+
 	`LWTrace(" >>> Selected plot " $ SelectedPlotDef.MapName $ " (" $ SelectedPlotDef.strType $ ") for mission " $
 		MissionState.GeneratedMission.Mission.MissionName);
 
@@ -873,7 +873,8 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 	}
 
 	// Start Issue #157
-	DLCInfos = `ONLINEEVENTMGR.GetDLCInfos(false);
+	// Issue #212 use CHDLCHookManager
+	DLCInfos = `DLCHOOKMGR.GetDLCInfos('PostSitRepCreation');
 	for(i = 0; i < DLCInfos.Length; ++i)
 	{
 		DLCInfos[i].PostSitRepCreation(MissionState.GeneratedMission, self);
