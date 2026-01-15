@@ -36,7 +36,7 @@ struct ItemTableEntry
 	structdefaultproperties
 	{
 		ItemTemplateName=None
-		Slots=3
+		Slots=-1
 		Starting=false
 		Infinite=false
 		Buildable=false
@@ -2904,7 +2904,8 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		//}
 		for (i=0; i < ItemTable.Length; ++i)
 		{
-			if (WeaponTemplate.DataName == ItemTable[i].ItemTemplateName)
+			// Tedster - added a check and changed default value to -1, so will not auto-change slots
+			if (WeaponTemplate.DataName == ItemTable[i].ItemTemplateName && ItemTable[i].Slots >= 0)
 			{
 				WeaponTemplate.NumUpgradeSlots = ItemTable[i].Slots;
 			}
