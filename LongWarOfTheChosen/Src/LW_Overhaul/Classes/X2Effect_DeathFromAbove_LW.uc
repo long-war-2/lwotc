@@ -4,6 +4,7 @@ var config int DFA_USES_PER_TURN;
 var config array<name> DFA_BLACKLISTED_ABILITIES;
 var config float DFA_RANGE_PENALTY_NEGATION_MODIFIER;
 var config int DFA_RANGE_PENALTY_NEGATION_BASE_RANGE;
+var config bool DFA_DISABLE_WITH_SERIAL;
 
 var bool bMatchSourceWeapon;
 // If `true`, all abilities that have AbilityMultiTargetStyle that's not X2AbilityMultiTarget_BurstFire will be blacklisted
@@ -12,6 +13,8 @@ var bool bDisallowMultiTarget;
 var bool bOnlyPrimaryTarget;
 // If `true`, the effect will be activated only if the activated ability wasn't free
 var bool bDisallowFreeActions;
+// If `true`, the effects will be disabled while Serial is active
+var bool bDisableWithSerial;
 
 var name PointType;
 var int ActivationsPerTurn;
@@ -229,6 +232,11 @@ function bool IsEffectCurrentlyRelevant(XComGameState_Effect EffectGameState, XC
     local UnitValue CountUnitValue;
 
     if (class'Helpers_LW'.static.IsUnitInterruptingEnemyTurn(TargetUnit))
+    {
+        return false;
+    }
+
+    if (bDisableWithSerial && TargetUnit.IsUnitAffectedByEffectName(class'X2Effect_Serial'.default.EffectName))
     {
         return false;
     }
