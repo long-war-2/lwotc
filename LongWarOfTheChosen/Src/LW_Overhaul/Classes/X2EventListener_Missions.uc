@@ -107,7 +107,7 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'MiscMissionListeners');
 	Template.AddCHEvent('PlayerTurnBegun', LW2OnPlayerTurnBegun, ELD_Immediate, 500);
-	Template.AddCHEvent('UnitChangedTeam', OnUnitChangedTeam_ConfirmRebels, ELD_Immediate);
+	Template.AddCHEvent('UnitChangedTeam', OnUnitChangedTeam_ConfirmRebels, ELD_OnStateSubmitted);
 
 	Template.RegisterInTactical = true;
 
@@ -630,20 +630,26 @@ static function EventListenerReturn OnUnitChangedTeam_ConfirmRebels(Object Event
 {
 	local XComGameState_Unit UnitState;
 	local UnitValue vUnitValue;
+	local XComGameState NewGameState;
 	
 	// Only needs to do anything if the Unit was a Rebel who switched over to player controlled
 	UnitState = XComGameState_Unit(EventData);
 	if (EventID == 'UnitChangedTeam' && UnitState != none
 		&& UnitState.GetMyTemplateName() == 'Rebel'
-		&& UnitState.GetTeam() == eTeam_Neutral //this fires off early enough that it still has the team pre-change
+		&& UnitState.GetTeam() == eTeam_XCom
 		&& !UnitState.GetUnitValue(default.IDConfirmedUnitValueName, vUnitValue))
 	{
 		// Check if we're in a Rescue mission to ensure it doesn't trigger off of a random MindControl
 		// getting cancelled.
 		if (class'Utilities_LW'.static.CurrentMissionIsRetaliation())
 		{
+			NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Marking ID as confirmed");
+			UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(UnitState.Class, UnitState.ObjectID));
+
 			`LWTRACE("Rebel" @ UnitState.GetFullName() @ "cleared: marking identity as confirmed.");
 			UnitState.SetUnitFloatValue(default.IDConfirmedUnitValueName, 1, eCleanup_Never);
+
+			`TACTICALRULES.SubmitGameState(NewGameState);
 		}
 	}
 
