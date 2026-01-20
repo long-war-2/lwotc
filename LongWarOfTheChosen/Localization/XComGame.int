@@ -281,9 +281,9 @@ LocPromotionPopupText="<Bullet/> Your standard rockets deal +2 damage and can se
 [ConcussionWarheads_LW X2AbilityTemplate]
 LocFriendlyName="Concussion Warheads"
 LocFlyOverText="Concussion Warheads"
-LocLongDescription="Your rockets have 20% chance to stun targets and deal additional environmental damage."
-LocHelpText="Your rockets have 20% chance to stun targets and deal additional environmental damage."
-LocPromotionPopupText="<Bullet/> Your rockets have 20% chance to stun targets.<br/><Bullet/> Increases environmental damage by +7."
+LocLongDescription="Your rockets have a 20% chance to stun targets and deal additional environmental damage."
+LocHelpText="Your rockets have a 20% chance to stun targets and deal additional environmental damage."
+LocPromotionPopupText="<Bullet/> Your rockets have a 20% chance to stun targets.<br/><Bullet/> Increases environmental damage by +7."
 
 [ShredderRocket_LW X2AbilityTemplate]
 LocFriendlyName="Shredder Rocket"
@@ -394,7 +394,7 @@ LocFriendlyName="Full Override"
 LocLongDescription="Take permanent control of a robotic unit and potentially acquire ADVENT MECs for the Resistance."
 LocHelpText="Take permanent control of a robotic unit and potentially acquire ADVENT MECs for the Resistance."
 LocFlyOverText="Full Override"
-LocPromotionPopupText="<Bullet/> Full Override is a special hack action usable against enemy robotic units.<br/><Bullet/> It has one charge that is only expended if a successful override occurs.<br/><Bullet/> Requires one action and ends the soldier's turn.<br/><Bullet/> The first hack option, Greater Shutdown, will disable (stun) the unit for 3 turns.<br/><Bullet/> The second hack option, Master Enemy, will grant control of the unit for rest of the mission with a stat bonus for all robots, and will permanently transfer any MEC units to the Resistance.<br/><Bullet/> If the Master Enemy hack succeeds, and the MEC and the <Ability:ClassName> both survive the mission, the MEC will follow new programming and make its way to a Resistance base, where it will serve the Resistance. It does not need to be evacuated when the mission ends."
+LocPromotionPopupText="<Bullet/> Full Override is a special hack action usable against enemy robotic units.<br/><Bullet/> It has one charge that is only expended if a successful override occurs.<br/><Bullet/> Requires one action and ends the soldier's turn.<br/><Bullet/> The first hack option, Greater Shutdown, will disable (stun) the unit for 3 turns.<br/><Bullet/> The second hack option, Master Enemy, will grant control of the unit for the rest of the mission with a stat bonus for all robots, and will permanently transfer any MEC units to the Resistance.<br/><Bullet/> If the Master Enemy hack succeeds, and the MEC and the <Ability:ClassName> both survive the mission, the MEC will follow new programming and make its way to a Resistance base, where it will serve the Resistance. It does not need to be evacuated when the mission ends."
 ; End translation
 
 [BuffEnemy_FullOverride X2HackRewardTemplate]
@@ -403,11 +403,11 @@ Description="A failed hack will increase this target's Aim and Defense stats."
 
 [ControlRobot_Mission X2HackRewardTemplate]
 FriendlyName="Command Enemy"
-Description="Take control of this unit for rest of the mission."
+Description="Take control of this unit for the rest of the mission."
 
 [ControlRobot_Permanent X2HackRewardTemplate]
 FriendlyName="Master Enemy"
-Description="Take control of this unit for rest of the mission and gain stat bonuses. MEC units will be reprogrammed to serve the Resistance."
+Description="Take control of this unit for the rest of the mission and gain stat bonuses. MEC units will be reprogrammed to serve the Resistance."
 
 ;LWOTC needs translation
 
@@ -421,7 +421,7 @@ Description="Disable (stun) the unit for 3 turns."
 
 [ControlSectopod_Permanent X2HackRewardTemplate]
 FriendlyName="Master Sectopod"
-Description="Take control of this unit for rest of the mission and gain stat bonuses. Are you brave enough?"
+Description="Take control of this unit for the rest of the mission and gain stat bonuses. Are you brave enough?"
 
 ; LWOTC Needs Translation (3)
 [ScanningProtocol X2AbilityTemplate]
@@ -493,8 +493,8 @@ LocPromotionPopupText="<Bullet/> Grenades that do not innately shred any armor d
 [TandemHEATWarheads X2AbilityTemplate]
 LocFriendlyName="Tandem HEAT Warheads"
 ; LWOTC Needs Translation
-LocLongDescription="Your explosives now pierce up to <ABILITY:TANDEMHEAT_WARHEADS_PIERCE_LW/> armor, and their damage no longer suffer from falloff."
-LocHelpText="Your explosives now pierce up to <ABILITY:TANDEMHEAT_WARHEADS_PIERCE_LW/> armor, and their damage no longer suffer from falloff."
+LocLongDescription="Your explosives now pierce up to <ABILITY:TANDEMHEAT_WARHEADS_PIERCE_LW/> armor, and their damage no longer suffers from falloff."
+LocHelpText="Your explosives now pierce up to <ABILITY:TANDEMHEAT_WARHEADS_PIERCE_LW/> armor, and their damage no longer suffers from falloff."
 LocFlyOverText="Tandem HEAT Warheads"
 LocPromotionPopupText="<Bullet/> Damage falloff refers to reduced damage the further away the target is from the center of the blast.<br/><Bullet/> Environmental damage is still subject to falloff."
 ; End Translation
@@ -628,8 +628,8 @@ LocPromotionPopupText="<Bullet/> Rapidly loses accuracy beyond four tiles range.
 
 [BothBarrels X2AbilityTemplate]
 LocFriendlyName="Both Barrels"
-LocLongDescription="Fire both barrels of your sawed-off shotgun at nearby enemy, dealing double damage."
-LocHelpText="Fire both barrels of your sawed-off shotgun at nearby enemy, dealing double damage."
+LocLongDescription="Fire both barrels of your sawed-off shotgun at a nearby enemy, dealing double damage."
+LocHelpText="Fire both barrels of your sawed-off shotgun at a nearby enemy, dealing double damage."
 LocFlyOverText="Both Barrels"
 ;LWOTC needs translation
 LocPromotionPopupText="<Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Uses one action.<br/>"
@@ -800,7 +800,7 @@ LocPromotionPopupText="<Bullet/> This officer provides bonuses to will, dodge an
 LocFriendlyName="Esprit de Corps"
 LocLongDescription="This soldier has previously served under this officer, gaining bonuses to will, dodge and infiltration that scale up the more missions they go on together."
 LocHelpTxt="This soldier has previously served under the mission's commanding officer, gaining bonuses to will, dodge and infiltration that scale up the more missions they go on together."
-LocFlyOverText="Espirt de Corps"
+LocFlyOverText="Esprit de Corps"
 LocPromotionPopupText="<Bullet/> This soldier has previously served under this officer, gaining bonuses to will, dodge and infiltration that scale up the more missions they go on together."
 
 ;;;;;;;;;;;;;;;;;;;; GEAR ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;;
@@ -1305,7 +1305,7 @@ AbilityDescName="autocannon"
 [PrototypePlasmaBlaster X2WeaponTemplate]
 FriendlyName="Prototype Plasma Blaster"
 FriendlyNamePlural="Prototype Plasma Blasters"
-BriefSummary="Using technology salaved from the original invasion, we've devised a means of releasing a massive, focused pulse of plasma energy that will devastate targets in a fixed path."
+BriefSummary="Using technology salvaged from the original invasion, we've devised a means of releasing a massive, focused pulse of plasma energy that will devastate targets in a fixed path."
 TacticalText="<Bullet/> The Plasma Blaster releases a beam of devastating energy in a straight line, capable of damaging multiple targets\n<Bullet/> Its ammo is limited, so use it only when it will be decisive."
 
 [PlasmaBlaster X2WeaponTemplate]
@@ -1350,7 +1350,7 @@ TacticalText="<Bullet/> The E.X.O. Suit allows a soldier to mount a heavy weapon
 TacticalText="<Bullet/> The Wraith Suit increases a soldier's mobility and dodge stats.\n<Bullet/> The Wraith Suit has a wrist-mounted grapple.\n<Bullet/> The Wraith Suit can allow the wearer to pass directly through walls and obstacles."
 
 [MediumPoweredArmor X2ArmorTemplate]
-BriefSummary="Our new mastery of the aliens' Elerium technology has lead us to the ultimate in soldier survivability: the Warden Armor. Elerium powered armor provides unprecedented protection in the battle against increasingly powerful alien enemies."
+BriefSummary="Our new mastery of the aliens' Elerium technology has led us to the ultimate in soldier survivability: the Warden Armor. Elerium powered armor provides unprecedented protection in the battle against increasingly powerful alien enemies."
 TacticalText="<Bullet/> Warden Armor puts soldier survivability above all other considerations, granting significant bonus health and armor protection."
 
 [HeavyPoweredArmor X2ArmorTemplate]
@@ -2394,9 +2394,9 @@ DisplayNames[0]="Abandoned depot"
 DisplayNames[1]="Battlefield"
 DisplayNames[2]="UFO Crash site"
 
-CompletedSummaries[0]="At an ADVENT staging depot, we located an intact but powered-down MEC that was apparently left behind. We were able to interface with its hardware and overwrite its controls systems. It will be delivered to a nearby Resistance Haven, where it will assist in its defense."
+CompletedSummaries[0]="At an ADVENT staging depot, we located an intact but powered-down MEC that was apparently left behind. We were able to interface with its hardware and overwrite its control systems. It will be delivered to a nearby Resistance Haven, where it will assist in its defense."
 CompletedSummaries[1]="We discovered the site of a recent battle, although we are unsure who could mount such a sizable defense against ADVENT forces. At one point, one side must have used an EMP weapon, because we located an intact but disabled ADVENT MEC unit. We were able to reprogram it to serve as an ally before transferring it to a nearby Resistance Haven."
-CompletedSummaries[2]="A Resistance anti-aircraft missile brought down a UFO here. Not much is left to salvage from the craft, but our team discovered an intact, powered-down ADVENT MEC in a cargo pod thrown clear of the crash. We were able to reset its programming and direct it to obey XCOM and Resistance personnel, and it will be transfered to a nearby Haven to assist in its defense."
+CompletedSummaries[2]="A Resistance anti-aircraft missile brought down a UFO here. Not much is left to salvage from the craft, but our team discovered an intact, powered-down ADVENT MEC in a cargo pod thrown clear of the crash. We were able to reset its programming and direct it to obey XCOM and Resistance personnel, and it will be transferred to a nearby Haven to assist in its defense."
 
 POIImages[0]="img:///UILibrary_StrategyImages.X2StrategyMap.POI_AlienCache"
 POIImages[1]="img:///UILibrary_StrategyImages.X2StrategyMap.POI_DeadAdvent"
@@ -3531,7 +3531,7 @@ UnlockedDescription="The required number of engineers has been reduced by one fo
 DisplayName="Laser Weapons"
 Summary="Using our new understanding of magnetism and the alien elerium substance, we should be able develop designs for powerful laser weaponry."
 CodeName="Linebacker"
-LongDescription="By studying the methods used by the aliens to manage energy consumption and heat dissipation in their weapons, we've built a working prototype of what we're calling a pulsed laser weapon, although some of the troops prefer to call them 'blasters' for reasons that are obscure to me. The power we are able to put through these weapons is immense, but the system cannot maintain a continuous beam of such immense energies, so it insted relies on a series of picosecond-long pulses of intense energy density to break down any chemical bonds the beam encounters. These weapons should be more accurate and do more damage, on average, than the ballistic weapons we have been using, although they don't quite match the firepower of the weaponry we have seen the aliens operating. R. Tygan."
+LongDescription="By studying the methods used by the aliens to manage energy consumption and heat dissipation in their weapons, we've built a working prototype of what we're calling a pulsed laser weapon, although some of the troops prefer to call them 'blasters' for reasons that are obscure to me. The power we are able to put through these weapons is immense, but the system cannot maintain a continuous beam of such immense energies, so it instead relies on a series of picosecond-long pulses of intense energy density to break down any chemical bonds the beam encounters. These weapons should be more accurate and do more damage, on average, than the ballistic weapons we have been using, although they don't quite match the firepower of the weaponry we have seen the aliens operating. R. Tygan."
 UnlockedDescription="Prototype added to inventory"
 
 [AdvancedLasers X2TechTemplate]
@@ -3577,7 +3577,7 @@ AlertString="ADVENT Drone"
 
 [GaussWeapons X2TechTemplate]
 DisplayName="Advanced Magnetic Weaponry"
-Summary="With our mastery of ADVENT's core weapons technology, we can now develop specialized weapon systems using the alien technology to improve on power storage and consumption, projectile path fidelity, and penetrative force over greater distances. We may be able to develop a sniper rifle, shotgun, and cannon variant based on our newly learned Magentic Weapons technology."
+Summary="With our mastery of ADVENT's core weapons technology, we can now develop specialized weapon systems using the alien technology to improve on power storage and consumption, projectile path fidelity, and penetrative force over greater distances. We may be able to develop a sniper rifle, shotgun, and cannon variant based on our newly learned Magnetic Weapons technology."
 CodeName="Friedrich"
 LongDescription="The fact that we now have access to advanced magnetic weaponry that is both combat effective and safe to operate at these power levels is quite an achievement. The overall design relies on advanced miniaturization technologies developed by the aliens which are, frankly, well beyond anything conceived of by Earth's leading military development firms at the time of the invasion. Despite our limited capability for extended test firings on board the ship, our latest prototypes are already capable of consistently accelerating an adaptive alloy projectile to over 5000 m/s in a simulated environment. We're still preparing the final assessment, but it is likely a field deployable unit would have to be limited to a lower power threshold due to the potential for ongoing strain to our troops when operating the weapons. R. Tygan."
 UnlockedDescription="Prototype added to inventory"
@@ -3790,14 +3790,14 @@ UnlockedDescription="Prototype added to inventory"
 DisplayName="Shadow Armor"
 Summary="Having seen the aliens manipulating Psionic fields for a variety of purposes, we've theorized it may be possible to traverse through the physical confines of our world by developing a Psionic field enmeshed in a specially designed light armor suit."
 CodeName="Loki"
-LongDescription="Even though we're learning more about the alien's varying uses for the Psionic energy fields they manipulate, so far we haven't spent much time trying to harness these capabilities for our own purposes. Direct access to the biomechanical alien we've been calling the \"Codex\" has given us far better insight into the nature of Psionics than any of our previous experimentation. The Codex has the unique ability to phase through not just physical objects, but between worlds, and, in theory, dimensions. By focusing a carefully balanced pulse of Psionic energy, the Codex creates a rift, effectively peeling back the layers of spacetime. The possible implications of this ability are mind bobbling, but it's safe to say I won't be recommending we pursue this advance to the Commander. However, there are other areas of interest tied Codex. During our testing, we conceived of the possibility that the Psionic pulse could be diverted, or scattered, across an electromagnetic field integrated into a suit of armor. This would effectively create a weakened rift throughout the suit, allowing the wearer to phase through objects within our own dimension. The prototype is stable, but field trials are ongoing. L. Shen."
+LongDescription="Even though we're learning more about the alien's varying uses for the Psionic energy fields they manipulate, so far we haven't spent much time trying to harness these capabilities for our own purposes. Direct access to the biomechanical alien we've been calling the \"Codex\" has given us far better insight into the nature of Psionics than any of our previous experimentation. The Codex has the unique ability to phase through not just physical objects, but between worlds, and, in theory, dimensions. By focusing a carefully balanced pulse of Psionic energy, the Codex creates a rift, effectively peeling back the layers of spacetime. The possible implications of this ability are mind bobbling, but it's safe to say I won't be recommending we pursue this advance to the Commander. However, there are other areas of interest tied to the Codex. During our testing, we conceived of the possibility that the Psionic pulse could be diverted, or scattered, across an electromagnetic field integrated into a suit of armor. This would effectively create a weakened rift throughout the suit, allowing the wearer to phase through objects within our own dimension. The prototype is stable, but field trials are ongoing. L. Shen."
 UnlockedDescription="Prototype added to inventory"
 
 [WARSuit X2TechTemplate]
 DisplayName="Battlesuits"
 Summary="By harnessing the power of Elerium, it may be possible to create a new powered-armor suit capable of generating a defensive force field not unlike those used on the alien craft."
 CodeName="Titan"
-LongDescription="With our supply of Elerium crystals limited by what our soldiers can recover in the field, I've been hesitant to recommend we commit them to any one project exclusively. However, in the wake of recent events, it seems like we need to work on developing an armor suit with significant durability and the ability to mount a heavy weapon. In order to do that, we've integrated an Elerium-based power cell into one our stronger frames. With the Elerium's incredible energy throughput, the suit can now support the use a self-contained force field. In the simplest of terms, we've mirrored the technologies most commonly used by the aliens in the defense of their UFOs, and fused them with a platform our troops can deploy in the field. I expect great things from this unit. L. Shen." 
+LongDescription="With our supply of Elerium crystals limited by what our soldiers can recover in the field, I've been hesitant to recommend we commit them to any one project exclusively. However, in the wake of recent events, it seems like we need to work on developing an armor suit with significant durability and the ability to mount a heavy weapon. In order to do that, we've integrated an Elerium-based power cell into one of our stronger frames. With the Elerium's incredible energy throughput, the suit can now support the use of a self-contained force field. In the simplest of terms, we've mirrored the technologies most commonly used by the aliens in the defense of their UFOs, and fused them with a platform our troops can deploy in the field. I expect great things from this unit. L. Shen." 
 UnlockedDescription="Prototype added to inventory"
 
 ;;;;;;;;;;;;;;;;;;; PROVING GROUNDS TECHS ;;;;;;;;;;;;;
@@ -3846,7 +3846,7 @@ Summary="Based on our studies of alien physiology, this ammo will do bonus damag
 
 [TalonRoundsProject X2TechTemplate]
 DisplayName="Talon Rounds"
-Summary="The design of these rounds call for them to fracture into micro-shards of alien alloy on impact, granting bonus critical chance and damage on critical hits."
+Summary="The design of these rounds calls for them to fracture into micro-shards of alien alloy on impact, granting bonus critical chance and damage on critical hits."
 
 [FlechetteRoundsProject X2TechTemplate]
 DisplayName="Flechette Rounds"
@@ -3866,7 +3866,7 @@ Summary="The tips of these rounds will contain microcapsules of a fast-acting to
 
 [RedscreenRoundsProject X2TechTemplate]
 DisplayName="Redscreen Rounds"
-Summary="These rounds are designed to do extra damage to the computer hardware in enemy mechanized units, rendering them more suspectible to our hacking attacks."
+Summary="These rounds are designed to do extra damage to the computer hardware in enemy mechanized units, rendering them more susceptible to our hacking attacks."
 
 [NeedleRoundsProject X2TechTemplate]
 DisplayName="Needle Rounds"
@@ -3926,7 +3926,7 @@ Summary="Using high-tech multi spectrum sensors, the Proximity Mine will self-tr
 
 [MimicBeaconProject X2TechTemplate]
 DisplayName="Mimic Beacons"
-Summary="Mimic Beacons will generates a holographic decoy that will draw enemy attacks for one turn."
+Summary="Mimic Beacons will generate a holographic decoy that will draw enemy attacks for one turn."
 
 [ShredstormCannonProject X2TechTemplate]
 DisplayName="Shredstorm Cannons"
@@ -5092,7 +5092,7 @@ DescriptionEntry="Resistance members who are put in the HIDING job will produce 
 [OutpostManagement_Capacity X2EncyclopediaTemplate]
 ListTitle="Haven Operating Capacity"
 DescriptionTitle="Haven Operating Capacity"
-DescriptionEntry="Each Haven only has the capacity for maximum of 13 Resistance members at that Haven to be assigned to the SUPPLY, RECRUIT, or INTEL jobs; the rest will be treated as reserves and put in the HIDING job."
+DescriptionEntry="Each Haven only has the capacity for a maximum of 13 Resistance members at that Haven to be assigned to the SUPPLY, RECRUIT, or INTEL jobs; the rest will be treated as reserves and put in the HIDING job."
 
 [OutpostManagement_Reprisals X2EncyclopediaTemplate]
 ListTitle="ADVENT Reprisals"
@@ -5150,7 +5150,7 @@ DescriptionEntry="Many missions also expire; the time left until expiration is n
 [ResistanceManagement X2EncyclopediaTemplate]
 ListTitle="Resistance Management"
 DescriptionTitle="Resistance Management"
-DescriptionEntry="The Resistance management panel allows XCOM to direct the activities of Resistance cells around the world. New Resistance Havens will appear here as contact is established, along with a summary of their current strength and activities. Selecting a region will take you the appropriate Haven management panel (see below)."
+DescriptionEntry="The Resistance management panel allows XCOM to direct the activities of Resistance cells around the world. New Resistance Havens will appear here as contact is established, along with a summary of their current strength and activities. Selecting a region will take you to the appropriate Haven management panel (see below)."
 
 [SquadManagement X2EncyclopediaTemplate]
 ListTitle="Squad Management"
@@ -5175,7 +5175,7 @@ DescriptionEntry="As powerful as they are, the aliens do have limits on their ca
 [Corpses X2EncyclopediaTemplate]
 ListTitle="Enemy Corpses"
 DescriptionTitle="Enemy Corpses"
-DescriptionEntry="Because of many of our missions require rapid exfiltration from a battle site, we are often unable to collect the remains of our ADVENT and alien enemies for research or rendering into useful alien materials. Offensive missions that offer the possibility to gather enemy corpses should be made a priority."
+DescriptionEntry="Because many of our missions require rapid exfiltration from a battle site, we are often unable to collect the remains of our ADVENT and alien enemies for research or rendering into useful alien materials. Offensive missions that offer the possibility to gather enemy corpses should be made a priority."
 
 [AlienTactics X2EncyclopediaTemplate]
 ListTitle="Enemy Tactics"
@@ -5254,7 +5254,7 @@ DescriptionEntry="XCOM can request an emergency evacuation from the battlefield 
 [AWC X2EncyclopediaTemplate]
 ListTitle="Advanced Warfare Center"
 DescriptionTitle="Advanced Warfare Center"
-DescriptionEntry="The Advanced Warfare Center allows soldiers to gain abilities outside their given class and respec selected talents. When a scientist is staffed within the facility, the AWC also improves the rate at which XCOM's soldiers will recover from injuries. Soldiers elgible for extra training can select abilities in one of three categories: offensive, defensive and pistol. For offensive and defensive abilities, soldiers may train up to three abilities in each category. The abilities are randomly generated for each soldier, but the abilities unlocked after finishing a training segment will generally be stronger than the previous ones. For pistol abilities, soldiers may train all seven, given enough time."
+DescriptionEntry="The Advanced Warfare Center allows soldiers to gain abilities outside their given class and respec selected talents. When a scientist is staffed within the facility, the AWC also improves the rate at which XCOM's soldiers will recover from injuries. Soldiers eligible for extra training can select abilities in one of three categories: offensive, defensive and pistol. For offensive and defensive abilities, soldiers may train up to three abilities in each category. The abilities are randomly generated for each soldier, but the abilities unlocked after finishing a training segment will generally be stronger than the previous ones. For pistol abilities, soldiers may train all seven, given enough time."
 
 [GTS X2EncyclopediaTemplate]
 ListTitle="Guerrilla Tactics School"
@@ -5373,7 +5373,7 @@ LocFriendlyName="Open/Close Chest"
 LocHelpText="Open or close a chest."
 
 [PsiAmp_CV X2WeaponTemplate]
-TacticalText="<Bullet/> A Psi Amp allows Psi Operatives to perform their psionic abilities.\n<Bullet/> More advanced Psi Amps can increase the Operative's psionic strength, and the effective ness of their abilities.\n<Bullet/> Psi Amps allow the operative to confuse nearby patrols, granting the soldier a bonus to infiltration."
+TacticalText="<Bullet/> A Psi Amp allows Psi Operatives to perform their psionic abilities.\n<Bullet/> More advanced Psi Amps can increase the Operative's psionic strength, and the effectiveness of their abilities.\n<Bullet/> Psi Amps allow the operative to confuse nearby patrols, granting the soldier a bonus to infiltration."
 
 [PsiAmp_MG X2WeaponTemplate]
 TacticalText="<Bullet/> The Advanced Psi Amp increases a Psi Operative's psionic strength by +10.\n<Bullet/> Psi Strength determines the potency of many of your psychic abilities.\n<Bullet/> The Advanced Psi Amp also increases the damage done by many psionic attacks.\n<Bullet/> Psi Amps allow the operative to confuse nearby patrols, granting the soldier a bonus to infiltration."
@@ -5442,7 +5442,7 @@ LocPromotionPopupText="<Bullet/> Generate an explosive field of Psionic energy t
 ; End Translation
 
 [CoveringFire X2AbilityTemplate]
-LocLongDescription="Overwatch now trigger on any hostile action, not just movement. Overwatch shots now ignore 2/3 of cover bonuses."
+LocLongDescription="Overwatch now triggers on any hostile action, not just movement. Overwatch shots now ignore 2/3 of cover bonuses."
 ;
 ;LocPromotionPopupText="<Bullet/> If triggered by an enemy action, Covering Fire will trigger before the enemy action completes.<br/><Bullet/> In addition, having the Covering Fire ability confers a penalty of -<Ability:COVERING_FIRE_OFFENSE_MALUS> aim upon any units you take a reaction shot at, regardless of whether it was a covering fire shot or not."
 LocPromotionPopupText="<Bullet/> If triggered by an enemy action, Covering Fire will trigger before the enemy action completes.<br/><Bullet/> In addition, having the Covering Fire ability allows the owner to ignore 2/3 of cover bonuses with reaction fire."
@@ -5954,8 +5954,8 @@ LocFlyOverText="BONK"
 
 [GetUp X2AbilityTemplate]
 LocFriendlyName="Get up!"
-LocHelpText="Remove the unconcious effect from a soldier."
-LocLongDescription="Remove the unconcious effect from a soldier"
+LocHelpText="Remove the unconscious effect from a soldier."
+LocLongDescription="Remove the unconscious effect from a soldier"
 LocFlyOverText="Get up!"
 
 ; LWOTC Needs Translation (2)
@@ -6892,8 +6892,8 @@ LocLongDescription="The Warlock opens their mind to the target, damaging and bur
 
 [ChosenKidnap X2AbilityTemplate]
 LocFriendlyName="Kidnap"
-LocLongDescription="Kidnap an unconcious or bleeding out unit. Costs 2 actions, 2 turn cooldown."
-LocHelpText="Kidnap an unconcious or bleeding out unit. Costs 2 actions, 2 turn cooldown."
+LocLongDescription="Kidnap an unconscious or bleeding out unit. Costs 2 actions, 2 turn cooldown."
+LocHelpText="Kidnap an unconscious or bleeding out unit. Costs 2 actions, 2 turn cooldown."
 LocFlyOverText="Kidnap"
 
 [ChosenKeen X2AbilityTemplate]
@@ -7328,13 +7328,13 @@ LocFlyOverText="Fatality"
 [Vampirism_LW X2AbilityTemplate]
 LocFriendlyName="Vampirism"
 LocLongDescription="Dealing damage with this weapon heals you for the same amount. Overhealing is converted to 2 Ablative HP per instance of dealing damage that expires after 3 turns. There is no limit to how much ablative can be gained but can only hold up to 8 at a time."
-LocHelpText="Dealing damage with this weapon heals you for the same amount. There is no maximum amout of Ablative HP per mission, but the effect will not provide additional shielding if the unit currently has 8 or more Ablative HP at the time of dealing damage."
+LocHelpText="Dealing damage with this weapon heals you for the same amount. There is no maximum amount of Ablative HP per mission, but the effect will not provide additional shielding if the unit currently has 8 or more Ablative HP at the time of dealing damage."
 LocFlyOverText="Vampirism"
 
 [VampirismPassive_LW X2AbilityTemplate]
 LocFriendlyName="Vampirism"
 LocLongDescription="Dealing damage with this weapon heals you for the same amount. Overhealing is converted to 2 Ablative HP per instance of dealing damage that expires after 3 turns. There is no limit to how much ablative can be gained but can only hold up to 8 at a time."
-LocHelpText="Dealing damage with this weapon heals you for the same amount. Overhealing is converted to 2 Ablative HP per instance of dealing damage that expires after 3 turns. There is no maximum amout of Ablative HP per mission, but the effect will not provide additional shielding if the unit currently has 8 or more Ablative HP at the time of dealing damage."
+LocHelpText="Dealing damage with this weapon heals you for the same amount. Overhealing is converted to 2 Ablative HP per instance of dealing damage that expires after 3 turns. There is no maximum amount of Ablative HP per mission, but the effect will not provide additional shielding if the unit currently has 8 or more Ablative HP at the time of dealing damage."
 LocFlyOverText="Vampirism"
 
 [ChosenLowProfile X2AbilityTemplate]
