@@ -541,7 +541,7 @@ LocHelpText="Allows standard shots with sniper rifles after moving."
 LocFriendlyName="Trojan"
 LocFlyOverText="Trojan"
 LocLongDescription="Enemy units that are hacked take damage and lose their actions on the turn the hack effect ends. Trojan will never break squads concealment even if it fails to destroy its target."
-LocHelpText="Hacked units suffer damage and action loss when hack effect ends. This ability lets tje <Ability:ClassName> destroy ADVENT Drones without breaking concealment. Even if the victim survives the Trojan attack, concealment will not be broken."
+LocHelpText="Hacked units suffer damage and action loss when hack effect ends. This ability lets the <Ability:ClassName> destroy ADVENT Drones without breaking concealment. Even if the victim survives the Trojan attack, concealment will not be broken."
 LocPromotionPopupText="<Bullet/> Enemy units hacked by Haywire Protocol take 0 to 8 damage and lose their actions on the turn the hack effect ends.<br/><Bullet/> Applies to units stunned or taken over by Haywire Protocol.<br/><Bullet/> Damage calculated based on Hacking Stat vs. target's Hack Defense.<br/>"
 
 [Covert X2AbilityTemplate]
@@ -634,18 +634,18 @@ LocHelpText="Fire a barrage of <Ability:WeaponName/> rounds to a location, destr
 LocFlyOverText="Collateral Damage"
 LocPromotionPopupText="<Bullet/> Fire a barrage of <Ability:WeaponName/> rounds to a location, destroying cover within the area.<br/><Bullet/> Deals high environmental damage to all objects in the area of effect.<br/><Bullet/> Collateral Damage does 40% of base weapon damage to enemies within the area of effect.<br/><Bullet/> Costs 2 ammo and has a 4-turn cooldown.<br/>"
 
-;POTENTIALLY DEPERECATED AS WELL AS ALL TRANSLATIONS
+;POTENTIALLY DEPRECATED AS WELL AS ALL TRANSLATIONS
 [DenseSmokeGrenade X2GrenadeTemplate]
 FriendlyName="Dense Smoke Grenade"
 FriendlyNamePlural="Dense Smoke Grenades"
-BriefSummary="Provides a increased defensive boost to any unit within the radius of the smoke, friend or foe."
+BriefSummary="Provides an increased defensive boost to any unit within the radius of the smoke, friend or foe."
 TacticalText="<Bullet/> Smoke can be deployed to instantly increase the defense of nearby units.<br/><Bullet/> Smoke grenades can be thrown and launched significantly further than standard grenades."
 ThrownAbilityName="Throw Dense Smoke Grenade"
 ThrownAbilityHelpText="Grants a defensive boost to units within its radius."
 LaunchedAbilityname="Launch Dense Smoke Grenade"
 LaunchedAbilityHelpText="Grants a defensive boost to units within its radius."
 
-;POTENTIALLY DEPERECATED AS WELL AS ALL TRANSLATIONS
+;POTENTIALLY DEPRECATED AS WELL AS ALL TRANSLATIONS
 [DenseSmokeGrenadeMk2 X2GrenadeTemplate]
 FriendlyName="Dense Smoke Bomb"
 FriendlyNamePlural="Dense Smoke Bombs"
@@ -668,7 +668,7 @@ LocPromotionPopupText="<Bullet/> Your flashbang grenades have a 50% chance to st
 [DedicatedSuppression_LW X2AbilityTemplate]
 LocFriendlyName="Dedicated Suppression"
 LocLongDescription="Taking damage no longer cancels Suppression and Area Suppression."
-LocHelpText="Taking damage no longer canccels Suppression and Area Suppression."
+LocHelpText="Taking damage no longer cancels Suppression and Area Suppression."
 
 ;POTENTIALLY DEPRECATED
 [X2Item_StingGrenade]
@@ -873,7 +873,7 @@ LocPromotionPopupText="<Bullet/> Null Lance has a <Ability:SelfCooldown_LW/> tur
 [Shadowstrike_LW X2AbilityTemplate]
 LocFriendlyName="Shadowstrike"
 LocLongDescription="While concealed, gain +<Ability:SHADOWSTRIKEAIM/> bonus aim and +<Ability:SHADOWSTRIKECRIT/> bonus critical hit chance when attacking enemies."
-LocHelpText="While concealed, gain bonus aim and bonus criticial hit chance when attacking enemies."
+LocHelpText="While concealed, gain bonus aim and bonus critical hit chance when attacking enemies."
 LocPromotionPopupText="<Bullet/> Shadowstrike bonuses will apply if the soldier re-enters concealment in a mission.<br/>"
 
 [Formidable X2AbilityTemplate]
@@ -1218,7 +1218,7 @@ LocFriendlyName="Reboot"
 LocLongDescription="If the <Ability:ClassName> takes enough damage to be killed, its health will be reduced to just 1 HP and it will be shielded for the rest of the turn. Can only trigger once every mission, and afterwards the <Ability:ClassName> is crippled."
 LocHelpText="The <Ability:ClassName> will be shielded for one turn if it takes enough damage to be killed."
 LocFlyOverText="Reboot"
-LocPromotionPopupText="<Bullet/> The <Ability:ClassName> will be put into Stasis the first time each mission that its health hits zero.<br/><Bullet/> Without the Redundant Systems ability, the <Ability:ClassName> is crippled after rebooting from catastrophic damage, suffering massive penatlies to aim, mobility, and hacking.<br/><Bullet/> Because of these drawbacks, in combination with the <Ability:ClassName>'s already low hull integrity at the time of a Reboot, it is recommended that the rebooted <Ability:ClassName> be withdrawn from the battlefield via Skyranger when possible.<br/><Bullet/> Thanks to a complex network of redundant plating, reactivation circuits, and a single-charge shield projector, the <Ability:ClassName> can take one for the team secure in the knowledge that it will live to punch another day.<br/>"
+LocPromotionPopupText="<Bullet/> The <Ability:ClassName> will be put into Stasis the first time each mission that its health hits zero.<br/><Bullet/> Without the Redundant Systems ability, the <Ability:ClassName> is crippled after rebooting from catastrophic damage, suffering massive penalties to aim, mobility, and hacking.<br/><Bullet/> Because of these drawbacks, in combination with the <Ability:ClassName>'s already low hull integrity at the time of a Reboot, it is recommended that the rebooted <Ability:ClassName> be withdrawn from the battlefield via Skyranger when possible.<br/><Bullet/> Thanks to a complex network of redundant plating, reactivation circuits, and a single-charge shield projector, the <Ability:ClassName> can take one for the team secure in the knowledge that it will live to punch another day.<br/>"
 
 [RebootTriggered_LW X2AbilityTemplate]
 LocFriendlyName="Reboot"
