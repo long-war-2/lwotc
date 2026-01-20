@@ -12,7 +12,7 @@ m_strInvalidTutorialClassicDifficulty="Can't enable Tutorial with this mod."
 
 
 [UIAlert]
-m_strContactBody="Once contacted, the Resistance in <XGParam:StrValue0/!WorldRegionName/> will able to coordinate with Central. Any connected regions will also become available for contact."
+m_strContactBody="Once contacted, the Resistance in <XGParam:StrValue0/!WorldRegionName/> will be able to coordinate with Central. Any connected regions will also become available for contact."
 m_strOutpostBody="Once a radio relay is installed, the intel cost of making contact with nearby regions will be reduced and the Haven in this region will operate at increased efficiency."
 m_strRetaliationBody=Commander, ADVENT has discovered one of our Resistance Havens. They are targeting Resistance members in a reprisal strike!
 
