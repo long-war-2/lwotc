@@ -70,7 +70,7 @@ ArmorRepairedMessage="Shredded Armor Repaired"
 
 [X2Item_DenseSmokeGrenade]
 DenseSmokeGrenadeEffectDisplayName="Dense Smoke"
-DenseSmokeGrenadeEffectDisplayDesc="The dense smoke grants this unit a additional defensive bonus."
+DenseSmokeGrenadeEffectDisplayDesc="The dense smoke grants this unit an additional defensive bonus."
 
 [X2Ability_PerkPackAbilitySet]
 LocCoveringFire="Covering Fire"

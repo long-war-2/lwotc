@@ -232,7 +232,7 @@ LocPromotionPopupText="<Bullet/> Makes partial cover count as full.<br/>"
 LocFriendlyName="Double Tap"
 LocFlyOverText="Double Tap"
 LocLongDescription="Special shot: Fire two shots with your primary weapon at the same target. Requires both actions. Second shot is at a -10 aim penalty."
-LocHelpText="Fire two shots at the same target with a to-hit penality on the second shot."
+LocHelpText="Fire two shots at the same target with a to-hit penalty on the second shot."
 ; LWOTC Needs Translation
 LocPromotionPopupText="<Bullet/> Double Tap allows you to take two shots at the same target, with the second shot at a -10 penalty to hit. It requires two actions and ends the turn.<br/><Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Double Tap has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 ; End Translation
@@ -378,7 +378,7 @@ LocFriendlyName="Lightning Reflexes"
 LocFlyOverText="Lightning Reflexes"
 LocLongDescription="Reaction fire shots against you have a significantly decreased chance to hit. The bonus goes down with each additional reaction shot you face."
 LocHelpText="Reaction fire shots against you have a decreased chance to hit."
-LocPromotionPopupText="<Bullet/> Reaction fire shots against you have a significantly decreased chance to hit.<br/><Bullet/> The first reaction shot against you during a turn is at -100 to hit; the second at -80; the third at -60; the fourth at -40, and the fifth at -20. Further reaction shots at are normal to hit chances.<br/><Bullet/> This ability does not provide defensive bonuses if the unit is disoriented, stunned, panicking, on fire or otherwise impaired."
+LocPromotionPopupText="<Bullet/> Reaction fire shots against you have a significantly decreased chance to hit.<br/><Bullet/> The first reaction shot against you during a turn is at -100 to hit; the second at -80; the third at -60; the fourth at -40, and the fifth at -20. Further reaction shots are at normal to hit chances.<br/><Bullet/> This ability does not provide defensive bonuses if the unit is disoriented, stunned, panicking, on fire or otherwise impaired."
 
 [Cutthroat X2AbilityTemplate]
 LocFriendlyName="Cutthroat"
@@ -522,11 +522,11 @@ LocHelpText="Shoot the target."
 ;LocPromotionPopupText="<Bullet/> The soldier may now use the sniper rifle for standard shots after moving, but suffers extreme aim penalties at targets beyond 22 tiles range on those shots.<br/><Bullet/> The soldier may not enter overwatch with the sniper rifle after moving.<br/>
 
 LocLongDescription="You may take standard shots with your sniper rifle after moving, but you suffer severe range penalties beyond 5 tiles of squadsight range on all shots."
-LocPromotionPopupText="<Bullet/> This ability significantly alters the way the <Ability:ClassName> operates: The soldier may now use the sniper rifle for standard shots after moving, but suffers extreme aim penalties at targets beyond 22 tiles range on all shots, regardless of whether the soldier has moved or not.<br/><Bullet/> Only works with Sniper Rifles.<br/><Bullet/> Reduces close range penalties by <Ability:WPN_HANDLING_MODIFIER/> relative to normal sniper rifles.<br/><Bullet/> After 5 tiles of squadsight, suffer an additional -20 aim per tile.<br/><Bullet/> Certain special shots and Long Watch still require both actions to use. Long Watch enables squadsight overwatch fire, but the range penalties still apply.<br/><Bullet/> The solder will not take an overwatch or Kill Zone shot without at least a 1% chance to hit."
+LocPromotionPopupText="<Bullet/> This ability significantly alters the way the <Ability:ClassName> operates: The soldier may now use the sniper rifle for standard shots after moving, but suffers extreme aim penalties at targets beyond 22 tiles range on all shots, regardless of whether the soldier has moved or not.<br/><Bullet/> Only works with Sniper Rifles.<br/><Bullet/> Reduces close range penalties by <Ability:WPN_HANDLING_MODIFIER/> relative to normal sniper rifles.<br/><Bullet/> After 5 tiles of squadsight, suffer an additional -20 aim per tile.<br/><Bullet/> Certain special shots and Long Watch still require both actions to use. Long Watch enables squadsight overwatch fire, but the range penalties still apply.<br/><Bullet/> The soldier will not take an overwatch or Kill Zone shot without at least a 1% chance to hit."
 
 [SnapShotOverwatch X2AbilityTemplate]
 LocFriendlyName="Overwatch"
-LocHelpText="Fire on the first enemy that moves within your line of sight, with a penalty to to aim. The solder will not take an overwatch shot without at least a 1% chance to hit."
+LocHelpText="Fire on the first enemy that moves within your line of sight, with a penalty to to aim. The soldier will not take an overwatch shot without at least a 1% chance to hit."
 LocLongDescriptionWhenConcealed="Fire on the first enemy that moves within your line of sight, but only if revealed."
 LocFlyOverText="Overwatch"
 LocFriendlyNameWhenConcealed="Overwatch (Concealed)"
