@@ -232,7 +232,7 @@ LocPromotionPopupText="<Bullet/> Makes partial cover count as full.<br/>"
 LocFriendlyName="Double Tap"
 LocFlyOverText="Double Tap"
 LocLongDescription="Special shot: Fire two shots with your primary weapon at the same target. Requires both actions. Second shot is at a -10 aim penalty."
-LocHelpText="Fire two shots at the same target with a to-hit penality on the second shot."
+LocHelpText="Fire two shots at the same target with a to-hit penalty on the second shot."
 ; LWOTC Needs Translation
 LocPromotionPopupText="<Bullet/> Double Tap allows you to take two shots at the same target, with the second shot at a -10 penalty to hit. It requires two actions and ends the turn.<br/><Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Double Tap has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 ; End Translation
@@ -378,7 +378,7 @@ LocFriendlyName="Lightning Reflexes"
 LocFlyOverText="Lightning Reflexes"
 LocLongDescription="Reaction fire shots against you have a significantly decreased chance to hit. The bonus goes down with each additional reaction shot you face."
 LocHelpText="Reaction fire shots against you have a decreased chance to hit."
-LocPromotionPopupText="<Bullet/> Reaction fire shots against you have a significantly decreased chance to hit.<br/><Bullet/> The first reaction shot against you during a turn is at -100 to hit; the second at -80; the third at -60; the fourth at -40, and the fifth at -20. Further reaction shots at are normal to hit chances.<br/><Bullet/> This ability does not provide defensive bonuses if the unit is disoriented, stunned, panicking, on fire or otherwise impaired."
+LocPromotionPopupText="<Bullet/> Reaction fire shots against you have a significantly decreased chance to hit.<br/><Bullet/> The first reaction shot against you during a turn is at -100 to hit; the second at -80; the third at -60; the fourth at -40, and the fifth at -20. Further reaction shots are at normal to hit chances.<br/><Bullet/> This ability does not provide defensive bonuses if the unit is disoriented, stunned, panicking, on fire or otherwise impaired."
 
 [Cutthroat X2AbilityTemplate]
 LocFriendlyName="Cutthroat"
@@ -522,11 +522,11 @@ LocHelpText="Shoot the target."
 ;LocPromotionPopupText="<Bullet/> The soldier may now use the sniper rifle for standard shots after moving, but suffers extreme aim penalties at targets beyond 22 tiles range on those shots.<br/><Bullet/> The soldier may not enter overwatch with the sniper rifle after moving.<br/>
 
 LocLongDescription="You may take standard shots with your sniper rifle after moving, but you suffer severe range penalties beyond 5 tiles of squadsight range on all shots."
-LocPromotionPopupText="<Bullet/> This ability significantly alters the way the <Ability:ClassName> operates: The soldier may now use the sniper rifle for standard shots after moving, but suffers extreme aim penalties at targets beyond 22 tiles range on all shots, regardless of whether the soldier has moved or not.<br/><Bullet/> Only works with Sniper Rifles.<br/><Bullet/> Reduces close range penalties by <Ability:WPN_HANDLING_MODIFIER/> relative to normal sniper rifles.<br/><Bullet/> After 5 tiles of squadsight, suffer an additional -20 aim per tile.<br/><Bullet/> Certain special shots and Long Watch still require both actions to use. Long Watch enables squadsight overwatch fire, but the range penalties still apply.<br/><Bullet/> The solder will not take an overwatch or Kill Zone shot without at least a 1% chance to hit."
+LocPromotionPopupText="<Bullet/> This ability significantly alters the way the <Ability:ClassName> operates: The soldier may now use the sniper rifle for standard shots after moving, but suffers extreme aim penalties at targets beyond 22 tiles range on all shots, regardless of whether the soldier has moved or not.<br/><Bullet/> Only works with Sniper Rifles.<br/><Bullet/> Reduces close range penalties by <Ability:WPN_HANDLING_MODIFIER/> relative to normal sniper rifles.<br/><Bullet/> After 5 tiles of squadsight, suffer an additional -20 aim per tile.<br/><Bullet/> Certain special shots and Long Watch still require both actions to use. Long Watch enables squadsight overwatch fire, but the range penalties still apply.<br/><Bullet/> The soldier will not take an overwatch or Kill Zone shot without at least a 1% chance to hit."
 
 [SnapShotOverwatch X2AbilityTemplate]
 LocFriendlyName="Overwatch"
-LocHelpText="Fire on the first enemy that moves within your line of sight, with a penalty to to aim. The solder will not take an overwatch shot without at least a 1% chance to hit."
+LocHelpText="Fire on the first enemy that moves within your line of sight, with a penalty to to aim. The soldier will not take an overwatch shot without at least a 1% chance to hit."
 LocLongDescriptionWhenConcealed="Fire on the first enemy that moves within your line of sight, but only if revealed."
 LocFlyOverText="Overwatch"
 LocFriendlyNameWhenConcealed="Overwatch (Concealed)"
@@ -541,7 +541,7 @@ LocHelpText="Allows standard shots with sniper rifles after moving."
 LocFriendlyName="Trojan"
 LocFlyOverText="Trojan"
 LocLongDescription="Enemy units that are hacked take damage and lose their actions on the turn the hack effect ends. Trojan will never break squads concealment even if it fails to destroy its target."
-LocHelpText="Hacked units suffer damage and action loss when hack effect ends. This ability lets tje <Ability:ClassName> destroy ADVENT Drones without breaking concealment. Even if the victim survives the Trojan attack, concealment will not be broken."
+LocHelpText="Hacked units suffer damage and action loss when hack effect ends. This ability lets the <Ability:ClassName> destroy ADVENT Drones without breaking concealment. Even if the victim survives the Trojan attack, concealment will not be broken."
 LocPromotionPopupText="<Bullet/> Enemy units hacked by Haywire Protocol take 0 to 8 damage and lose their actions on the turn the hack effect ends.<br/><Bullet/> Applies to units stunned or taken over by Haywire Protocol.<br/><Bullet/> Damage calculated based on Hacking Stat vs. target's Hack Defense.<br/>"
 
 [Covert X2AbilityTemplate]
@@ -634,18 +634,18 @@ LocHelpText="Fire a barrage of <Ability:WeaponName/> rounds to a location, destr
 LocFlyOverText="Collateral Damage"
 LocPromotionPopupText="<Bullet/> Fire a barrage of <Ability:WeaponName/> rounds to a location, destroying cover within the area.<br/><Bullet/> Deals high environmental damage to all objects in the area of effect.<br/><Bullet/> Collateral Damage does 40% of base weapon damage to enemies within the area of effect.<br/><Bullet/> Costs 2 ammo and has a 4-turn cooldown.<br/>"
 
-;POTENTIALLY DEPERECATED AS WELL AS ALL TRANSLATIONS
+;POTENTIALLY DEPRECATED AS WELL AS ALL TRANSLATIONS
 [DenseSmokeGrenade X2GrenadeTemplate]
 FriendlyName="Dense Smoke Grenade"
 FriendlyNamePlural="Dense Smoke Grenades"
-BriefSummary="Provides a increased defensive boost to any unit within the radius of the smoke, friend or foe."
+BriefSummary="Provides an increased defensive boost to any unit within the radius of the smoke, friend or foe."
 TacticalText="<Bullet/> Smoke can be deployed to instantly increase the defense of nearby units.<br/><Bullet/> Smoke grenades can be thrown and launched significantly further than standard grenades."
 ThrownAbilityName="Throw Dense Smoke Grenade"
 ThrownAbilityHelpText="Grants a defensive boost to units within its radius."
 LaunchedAbilityname="Launch Dense Smoke Grenade"
 LaunchedAbilityHelpText="Grants a defensive boost to units within its radius."
 
-;POTENTIALLY DEPERECATED AS WELL AS ALL TRANSLATIONS
+;POTENTIALLY DEPRECATED AS WELL AS ALL TRANSLATIONS
 [DenseSmokeGrenadeMk2 X2GrenadeTemplate]
 FriendlyName="Dense Smoke Bomb"
 FriendlyNamePlural="Dense Smoke Bombs"
@@ -668,7 +668,7 @@ LocPromotionPopupText="<Bullet/> Your flashbang grenades have a 50% chance to st
 [DedicatedSuppression_LW X2AbilityTemplate]
 LocFriendlyName="Dedicated Suppression"
 LocLongDescription="Taking damage no longer cancels Suppression and Area Suppression."
-LocHelpText="Taking damage no longer canccels Suppression and Area Suppression."
+LocHelpText="Taking damage no longer cancels Suppression and Area Suppression."
 
 ;POTENTIALLY DEPRECATED
 [X2Item_StingGrenade]
@@ -873,7 +873,7 @@ LocPromotionPopupText="<Bullet/> Null Lance has a <Ability:SelfCooldown_LW/> tur
 [Shadowstrike_LW X2AbilityTemplate]
 LocFriendlyName="Shadowstrike"
 LocLongDescription="While concealed, gain +<Ability:SHADOWSTRIKEAIM/> bonus aim and +<Ability:SHADOWSTRIKECRIT/> bonus critical hit chance when attacking enemies."
-LocHelpText="While concealed, gain bonus aim and bonus criticial hit chance when attacking enemies."
+LocHelpText="While concealed, gain bonus aim and bonus critical hit chance when attacking enemies."
 LocPromotionPopupText="<Bullet/> Shadowstrike bonuses will apply if the soldier re-enters concealment in a mission.<br/>"
 
 [Formidable X2AbilityTemplate]
@@ -1218,7 +1218,7 @@ LocFriendlyName="Reboot"
 LocLongDescription="If the <Ability:ClassName> takes enough damage to be killed, its health will be reduced to just 1 HP and it will be shielded for the rest of the turn. Can only trigger once every mission, and afterwards the <Ability:ClassName> is crippled."
 LocHelpText="The <Ability:ClassName> will be shielded for one turn if it takes enough damage to be killed."
 LocFlyOverText="Reboot"
-LocPromotionPopupText="<Bullet/> The <Ability:ClassName> will be put into Stasis the first time each mission that its health hits zero.<br/><Bullet/> Without the Redundant Systems ability, the <Ability:ClassName> is crippled after rebooting from catastrophic damage, suffering massive penatlies to aim, mobility, and hacking.<br/><Bullet/> Because of these drawbacks, in combination with the <Ability:ClassName>'s already low hull integrity at the time of a Reboot, it is recommended that the rebooted <Ability:ClassName> be withdrawn from the battlefield via Skyranger when possible.<br/><Bullet/> Thanks to a complex network of redundant plating, reactivation circuits, and a single-charge shield projector, the <Ability:ClassName> can take one for the team secure in the knowledge that it will live to punch another day.<br/>"
+LocPromotionPopupText="<Bullet/> The <Ability:ClassName> will be put into Stasis the first time each mission that its health hits zero.<br/><Bullet/> Without the Redundant Systems ability, the <Ability:ClassName> is crippled after rebooting from catastrophic damage, suffering massive penalties to aim, mobility, and hacking.<br/><Bullet/> Because of these drawbacks, in combination with the <Ability:ClassName>'s already low hull integrity at the time of a Reboot, it is recommended that the rebooted <Ability:ClassName> be withdrawn from the battlefield via Skyranger when possible.<br/><Bullet/> Thanks to a complex network of redundant plating, reactivation circuits, and a single-charge shield projector, the <Ability:ClassName> can take one for the team secure in the knowledge that it will live to punch another day.<br/>"
 
 [RebootTriggered_LW X2AbilityTemplate]
 LocFriendlyName="Reboot"

@@ -63,7 +63,7 @@ ActivityName="COINResearchActivity"
 ActivityObjectives[0]="Interdict ADVENT Military R&D"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="We have uncovered an opportunity to prevent the aliens from completing a military research project.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="We have uncovered an opportunity to prevent the aliens from completing a military research project.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="We have uncovered an opportunity to prevent the aliens from completing a alien military research project.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="We have uncovered an opportunity to prevent the aliens from completing an alien military research project.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Neutralize_LW", Description="We have uncovered an opportunity to take out an ADVENT human official to prevent the aliens from completing a military research project.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Rescue_LW", Description="We have uncovered an opportunity to rescue an imprisoned scientist who is being forced to assist in an alien military research project.", MissionIndex=0)
 
@@ -133,7 +133,7 @@ ActivityObjectives[1]="Defend the Provisional Government"
 ActivityName="PropagandaActivity"
 ActivityObjectives[0]="Get ADVENT's attention"
 +MissionDescriptions=(MissionFamily="SabotageCC_LW", Description="The aliens have left an urban center relatively unprotected. We can strike one of their monuments to send a message, but ADVENT will certainly respond.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Neutralize_LW", Description="We have learned of a human official high in the ADVENT administration will be relatively unprotected for a brief period in the near future. We can take him out, but ADVENT will certainly take notice.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Neutralize_LW", Description="We have learned that a human official high in the ADVENT administration will be relatively unprotected for a brief period in the near future. We can take him out, but ADVENT will certainly take notice.", MissionIndex=0)
 
 [ProtectResearch X2LWAlienActivityTemplate]
 ActivityName="ProtectResearchActivity"
@@ -619,7 +619,7 @@ m_strHelpButtonTooltip="Resistance Management Help"
 
 [OutpostManagement_Help LWHelpTemplate]
 m_strHelpTitle="Haven Management"
-m_strHelpText="In this panel, Resistance members stationed at a given Resistance Haven can be assigned tasks to assist XCOM in the fight against ADVENT, and the Commander may assign an XCOM member to serve as an adviser liasion to the Haven by clicking on the picture frame. Soldier advisers assist with recruiting and internal security; scientist advisers help with intelligence gathering, and engineer advisers assist in gathering supplies. For a full description of these mechanics, see the Resistance Haven entries in the XCOM Archives in the Commander's Quarters."
+m_strHelpText="In this panel, Resistance members stationed at a given Resistance Haven can be assigned tasks to assist XCOM in the fight against ADVENT, and the Commander may assign an XCOM member to serve as an adviser liaison to the Haven by clicking on the picture frame. Soldier advisers assist with recruiting and internal security; scientist advisers help with intelligence gathering, and engineer advisers assist in gathering supplies. For a full description of these mechanics, see the Resistance Haven entries in the XCOM Archives in the Commander's Quarters."
 m_strHelpButtonTooltip="Haven Management Help"
 
 [Personnel_SquadBarracks_Help LWHelpTemplate]

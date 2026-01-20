@@ -7,7 +7,7 @@ DroneM1="<Bullet/>The Guardian Drone is a cheap recon unit, primarily intended f
 [CorpseDrone X2ItemTemplate]
 FriendlyName="Drone Wreck"
 FriendlyNamePlural="Drone Wrecks"
-BriefSummary="The wreckage of this light, autonomous security hovercraft indicates its design is primarily intended for civilan monitoring and crowd control."
+BriefSummary="The wreckage of this light, autonomous security hovercraft indicates its design is primarily intended for civilian monitoring and crowd control."
 
 [CorpseMutonElite X2ItemTemplate]
 FriendlyName="Muton Elite Corpse"
@@ -42,7 +42,7 @@ LocFriendlyName="Mass Mindspin"
 LocFlyOverText="Mass Mindspin"
 LocLongDescription="Perform a Mindspin attack on multiple targets within a cone."
 LocHelpText="Launch a debilitating psionic attack against multiple targets that can inflict different negative conditions, including mental control."
-LocPromotionPopupText="<Bullet/> Launch a debilitating psionic attack against multiple targets target that can inflict different negative conditions, including mental control."
+LocPromotionPopupText="<Bullet/> Launch a debilitating psionic attack against multiple targets that can inflict different negative conditions, including mental control."
 LocMissMessage="Mindspin resisted!"
 
 [LWDroneShock X2AbilityTemplate]
@@ -118,7 +118,7 @@ strCharacterName="Muton Centurion"
 
 [MutonM2_LW_Wpn X2WeaponTemplate]
 FriendlyName="Centurion Rifle"
-BriefSummary="XCOM has managed to salvage a variety of standard infantry small arms; this is the most common variety, similar to the rifle used twenty years before. While decidedly inferior to ADVENT magnetic technology, it can at least be upgraded using additional weapons salvage, once a standard technical approach is unked."
+BriefSummary="XCOM has managed to salvage a variety of standard infantry small arms; this is the most common variety, similar to the rifle used twenty years before. While decidedly inferior to ADVENT magnetic technology, it can at least be upgraded using additional weapons salvage, once a standard technical approach is identified."
 TacticalText="<Bullet/> Firing the primary weapon always ends the soldier's turn\n<Bullet/> If the soldier fires with both actions available, three shots will be taken at reduced accuracy, but overall increased efficiency\n<Bullet/> Use upgrades looted from enemies to improve assault rifle tactical effectiveness"
 ; LWOTC Needs Translation
 AbilityDescName="plasma rifle"

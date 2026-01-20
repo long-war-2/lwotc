@@ -46,7 +46,7 @@ LocFriendlyName="Defilade"
 LocLongDescription="Soldiers within Command Range of the Officer receive +<ABILITY:DEFILADE_DEFENSE_BONUS/> bonus to defense value provided by cover."
 LocHelpText="Bonus defense from cover for soldiers near Officer."
 LocFlyOverText="Defilade"
-LocPromotionPopupText="<Bullet/> Soldiers within Command Range of the Officer receive +<ABILITY:DEFILADE_DEFENSE_BONUS/> bonus to defense value provided by cover.<br/><Bullet/> Command Range increases with each new Officer level.<br/><Bullet/> This ability does not provide bonuses for the Officer themself.<br/><Bullet/> This ability does not provide bonuses if either the Officer or the soldier are disoriented, stunned, panicking, posioned, on fire or otherwise impaired.<br/><Bullet/> This ability does not provide bonuses for robotic allies and civilians."
+LocPromotionPopupText="<Bullet/> Soldiers within Command Range of the Officer receive +<ABILITY:DEFILADE_DEFENSE_BONUS/> bonus to defense value provided by cover.<br/><Bullet/> Command Range increases with each new Officer level.<br/><Bullet/> This ability does not provide bonuses for the Officer themself.<br/><Bullet/> This ability does not provide bonuses if either the Officer or the soldier are disoriented, stunned, panicking, poisoned, on fire or otherwise impaired.<br/><Bullet/> This ability does not provide bonuses for robotic allies and civilians."
 ; End Translation
 
 ;displayed both on officer and in debuff on target
@@ -95,7 +95,7 @@ LocLongDescription="All allies within Command Range of the Officer gain +<ABILIT
 LocHelpText="All allies near Officer gain reaction fire bonus."
 LocFlyOverText="Fire Discipline"
 ;displayed for officer in Officer Ability UI
-LocPromotionPopupText="<Bullet/> All allies within Command Range of the Officer gain +<ABILITY:FIREDISCIPLINE_REACTIONFIRE_BONUS/>% to hit on reaction fire.<br/><Bullet/> Command Range increases with each new Officer level.<br/><Bullet/> This ability does not provide bonuses for the Officer themself.<br/><Bullet/> This ability does not provide bonuses if either the Officer or the soldier are disoriented, stunned, panicking, posioned, on fire or otherwise impaired.<br/><Bullet/> This ability does not provide bonuses for robotic allies and civilians."
+LocPromotionPopupText="<Bullet/> All allies within Command Range of the Officer gain +<ABILITY:FIREDISCIPLINE_REACTIONFIRE_BONUS/>% to hit on reaction fire.<br/><Bullet/> Command Range increases with each new Officer level.<br/><Bullet/> This ability does not provide bonuses for the Officer themself.<br/><Bullet/> This ability does not provide bonuses if either the Officer or the soldier are disoriented, stunned, panicking, poisoned, on fire or otherwise impaired.<br/><Bullet/> This ability does not provide bonuses for robotic allies and civilians."
 
 ;Displayed on officer in tactical container
 [FireDisciplinePassive X2AbilityTemplate]
@@ -150,7 +150,7 @@ LocFriendlyName="Combined Arms"
 LocLongDescription="All allies within Command Range of the Officer do +<ABILITY:COMBINEDARMS_DAMAGE_BONUS/> damage with all successful attacks."
 LocHelpText="Allies near Officer gain bonus damage."
 LocFlyOverText="Combined Arms"
-LocPromotionPopupText="<Bullet/> All allies within Command Range of the Officer do +<ABILITY:COMBINEDARMS_DAMAGE_BONUS/> damage with all successful attacks.<br/><Bullet/> Command Range increases with each new Officer level.<br/><Bullet/> This ability does not provide bonuses for the Officer themself.<br/><Bullet/> This ability does not provide bonuses if either the Officer or the soldier are disoriented, stunned, panicking, posioned, on fire or otherwise impaired.<br/><Bullet/> This ability does not provide bonuses for robotic allies."
+LocPromotionPopupText="<Bullet/> All allies within Command Range of the Officer do +<ABILITY:COMBINEDARMS_DAMAGE_BONUS/> damage with all successful attacks.<br/><Bullet/> Command Range increases with each new Officer level.<br/><Bullet/> This ability does not provide bonuses for the Officer themself.<br/><Bullet/> This ability does not provide bonuses if either the Officer or the soldier are disoriented, stunned, panicking, poisoned, on fire or otherwise impaired.<br/><Bullet/> This ability does not provide bonuses for robotic allies."
 
 ;Displayed on officer in tactical container
 [CombinedArmsPassive X2AbilityTemplate]
