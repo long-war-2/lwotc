@@ -5170,7 +5170,7 @@ DescriptionEntry="The Resistance, with sufficient help from XCOM, may now libera
 [AlienForces X2EncyclopediaTemplate]
 ListTitle="Alien and ADVENT Forces"
 DescriptionTitle="Alien and ADVENT Forces"
-DescriptionEntry="As powerful as they are, the aliens do have limits on their capabilities. They have spread their forces around the globe in an attempt to engage the Resistance, and some places they are stronger than others. Our intelligence teams provide estimates of enemy strengths in each contacted region; that strength will change over time as ADVENT moves troops to areas of high XCOM and Resistance activity, leaving other areas potentially vulnerable. Missions in regions which have heavy ADVENT presence will be far more difficult in areas they are not giving much attention to."
+DescriptionEntry="As powerful as they are, the aliens do have limits on their capabilities. They have spread their forces around the globe in an attempt to engage the Resistance, and some places they are stronger than others. Our intelligence teams provide estimates of enemy strengths in each contacted region; that strength will change over time as ADVENT moves troops to areas of high XCOM and Resistance activity, leaving other areas potentially vulnerable. Missions in regions which have heavy ADVENT presence will be far more difficult than in areas they are not giving much attention to."
 
 [Corpses X2EncyclopediaTemplate]
 ListTitle="Enemy Corpses"
