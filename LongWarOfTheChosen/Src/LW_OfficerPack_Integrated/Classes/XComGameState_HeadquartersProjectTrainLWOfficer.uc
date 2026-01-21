@@ -6,9 +6,17 @@
 //---------------------------------------------------------------------------------------
 class XComGameState_HeadquartersProjectTrainLWOfficer extends XComGameState_HeadquartersProjectTrainRookie config (LW_OfficerPack);
 
+struct PointsToTrainModifier
+{
+    var name AbilityName;
+    var float Modifier;
+};
+
 //var() name NewClassName; // the name of the class the rookie will eventually be promoted to
 var name AbilityName;	// name of the ability being trained
 var int NewRank;		// the new officer rank to be achieved
+
+var config array<PointsToTrainModifier> PointsToTrainModifiers;
 
 //---------------------------------------------------------------------------------------
 // Call when you start a new project, NewGameState should be none if not coming from tactical
@@ -55,14 +63,23 @@ function SetProjectFocus(StateObjectReference FocusRef, optional XComGameState N
 //---------------------------------------------------------------------------------------
 function int CalculatePointsToTrain()
 {
+	local XComGameState_Unit    UnitState;
+	local X2CharacterTemplate   CharacterTemplate;
 	Local int TrainingTime;
-	local XComGameState_Unit UnitState;
-	
+	local int Index;
+
 	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ProjectFocus.ObjectID));
+	CharacterTemplate = UnitState.GetMyTemplate();
 	TrainingTime = int(class'LWOfficerUtilities'.static.GetOfficerTrainingDays(NewRank) * 24.0);
 
-	if (UnitState.HasSoldierAbility('QuickStudy', true))
-		TrainingTime /= 2;
+	for (Index = 0; Index < default.PointsToTrainModifiers.Length; Index++)
+	{
+		if (UnitState.HasSoldierAbility(default.PointsToTrainModifiers[Index].AbilityName)
+			|| CharacterTemplate.Abilities.Find(default.PointsToTrainModifiers[Index].AbilityName) != INDEX_NONE)
+		{
+			TrainingTime *= Max(0, 1.0 + default.PointsToTrainModifiers[Index].Modifier);
+		}
+	}
 
 	return TrainingTime;
 }
