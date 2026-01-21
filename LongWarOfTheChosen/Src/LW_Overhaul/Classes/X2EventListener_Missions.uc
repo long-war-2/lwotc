@@ -119,7 +119,7 @@ static function CHEventListenerTemplate CreatePostMissionListeners()
 {
 	local CHEventListenerTemplate Template;
 
-	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'MiscMissionListeners');
+	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'PostMissionListener');
 	Template.AddCHEvent('PreCompleteStrategyFromTacticalTransfer', InterceptUnitProxies_ConfirmRebels, ELD_Immediate);
 
 	Template.RegisterInStrategy = true;
