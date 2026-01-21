@@ -1,6 +1,6 @@
 [XComMultiplayerTacticalUI]
 MutonM2_LW="<Bullet/> 뮤톤 센추리온은 기본 뮤톤 능력에 더해, 전장의 포효로 주위 아군의 능력을 향상시킬 수 있으며, 총검을 들고 질주해 구간 내에 있는 적에게 피해를 입힐 수 있습니다.\n<Bullet/> 침략 시대의 뮤톤과는 다르게 새롭게 유전자 조작이 된 뮤톤은 근거리 전투에 뛰어납니다.\n<Bullet/> 그들은 역습 능력이 있어 근거리에서 공격한 적에게 반격을 가할 수 있습니다.\n<Bullet/> 그들은 주위에 무능력해진 적들을 처형할 수 있습니다. 기절한 유닛 근처에 다가가게 해선 안됩니다.\n<Bullet/> 그들은 또한 소총으로 제압 사격을 할 수 있으며, 전투 방어구로 지속적인 보호를 받습니다."
-MutonM3_LW="<Bullet/>"
+MutonM3_LW="<Bullet/> "
 
 DroneM1="<Bullet/> 가디언 드론은 값싼 정찰대 유닛입니다. 주로 민간인 군중 제어를 위해 사용됩니다."
 
@@ -21,7 +21,7 @@ LocFriendlyName="전장의 포효"
 LocLongDescription="다른 뮤톤에게 대량의 조준과 의지, 기동력 보너스를 부여하고, 다른 지능을 가진 외계인과 어드밴트에게 소량의 보너스를 부여합니다. 쿨타임은 6턴입니다."
 LocHelpText="다른 뮤톤과 외계인에게 보너스를 부여합니다."
 LocFlyOverText="전장의 포효"
-LocPromotionPopupText="<Bullet/> 다른 뮤톤에게 대량의 조준과 의지, 기동력 보너스를 부여하고, 다른 지능을 가진 외계인과 어드밴트에게 소량의 보너스를 부여합니다. <br/><Bullet/>쿨타임은 6턴입니다.<br/>"
+LocPromotionPopupText="<Bullet/> 다른 뮤톤에게 대량의 조준과 의지, 기동력 보너스를 부여하고, 다른 지능을 가진 외계인과 어드밴트에게 소량의 보너스를 부여합니다. <br/><Bullet/> 쿨타임은 6턴입니다.<br/>"
 
 [BayonetCharge X2AbilityTemplate]
 LocFriendlyName="총검 돌격"

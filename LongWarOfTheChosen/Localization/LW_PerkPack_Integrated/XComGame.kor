@@ -167,7 +167,7 @@ LocFriendlyName="깊은 지각"
 LocFlyOverText="깊은 지각"
 LocLongDescription="공격 대상보다 높은 고도에 있을 때 5의 조준 보너스를 받고, 적의 회피를 25 감소시킵니다."
 LocHelpText="공격 대상보다 높은 고도에 있을 때 5의 조준 보너스를 받고, 적의 회피를 25 감소시킵니다."
-LocPromotionPopupText="<Bullet/>공격 대상보다 높은 고도에 있을 때 5의 조준 보너스를 받고, 적의 회피를 25 감소시킵니다.<br/>"
+LocPromotionPopupText="<Bullet/> 공격 대상보다 높은 고도에 있을 때 5의 조준 보너스를 받고, 적의 회피를 25 감소시킵니다.<br/>"
 
 [WilltoSurvive X2AbilityTemplate]
 LocFriendlyName="생존 의지"
@@ -695,7 +695,7 @@ LocFriendlyName="육체 방어"
 LocFlyOverText="육체 방어"
 LocLongDescription="병사를 상대하는 적 대상에게 -20의 조준력과 -50의 치명타율이 적용됩니다."
 LocHelpText="병사를 상대하는 적은 -20의 조준과 -50의 치명타율 페널티를 받습니다."
-LocPromotionPopupText="<Bullet/>목표로 된 적은 이 병사를 공격할 때 -20의 조준과 -50의 치명타율 페널티를 받습니다.<br/>"
+LocPromotionPopupText="<Bullet/> 목표로 된 적은 이 병사를 공격할 때 -20의 조준과 -50의 치명타율 페널티를 받습니다.<br/>"
 
 [EmergencyLifeSupport X2AbilityTemplate]
 LocFriendlyName="긴급 생명 지원"

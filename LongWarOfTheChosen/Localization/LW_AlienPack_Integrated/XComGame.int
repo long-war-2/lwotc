@@ -1,8 +1,8 @@
 [XComMultiplayerTacticalUI]
 MutonM2_LW="<Bullet/> The Muton Centurion can do all the things a Muton can, plus issue a war cry that improves the abilities of some nearby allies, and charge with its bayonet at any enemy within sprint distance.\n<Bullet/> Unlike the Mutons of the invasion era, the new hybridized Mutons are highly effective at close combat\n<Bullet/> Their Counterattack ability permits them to take a return attack at anyone who engages them in melee\n<Bullet/> They can also Execute incapacitated nearby enemies; under no circumstances should you allow an enemy Muton near one of your stunned units\n<Bullet/> They can also Suppress with their rifles, and their battle armor provides consistent protection."
-MutonM3_LW="<Bullet/>""
+MutonM3_LW="<Bullet/> ""
 
-DroneM1="<Bullet/>The Guardian Drone is a cheap recon unit, primarily intended for civilian crowd control."
+DroneM1="<Bullet/> The Guardian Drone is a cheap recon unit, primarily intended for civilian crowd control."
 
 [CorpseDrone X2ItemTemplate]
 FriendlyName="Drone Wreck"

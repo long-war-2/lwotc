@@ -910,7 +910,7 @@ LocFriendlyName="死神"
 LocLongDescription="强力的连环近战攻击模式，近战攻击每杀死一名敌人都将赐予你一次额外的行动，但威力会递减。首次近战攻击必定命中（依然可能擦伤）。"
 LocHelpText="强力的连环近战攻击模式，近战攻击每杀死一名敌人都将赐予你一次额外的行动，但威力会递减。首次近战攻击必定命中（依然可能擦伤）。"
 LocFlyOverText="死神"
-LocPromotionPopupText="<Bullet/>死神有<Ability:SelfCooldown/>回合冷却。<br/><Bullet/>死神技能不能和奔袭战术结合使用。<br/><Bullet/>每杀死一名敌人伤害减3。<br/><Bullet/>慎重选择攻击目标的先后顺序，以确保获得最佳的连续攻击效果。<br/>"
+LocPromotionPopupText="<Bullet/> 死神有<Ability:SelfCooldown/>回合冷却。<br/><Bullet/> 死神技能不能和奔袭战术结合使用。<br/><Bullet/> 每杀死一名敌人伤害减3。<br/><Bullet/> 慎重选择攻击目标的先后顺序，以确保获得最佳的连续攻击效果。<br/>"
 
 [XComGame.Stealth X2AbilityTemplate]
 [Stealth X2AbilityTemplate]

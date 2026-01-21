@@ -1,6 +1,6 @@
 [XComMultiplayerTacticalUI]
 MutonM2_LW="<Bullet/> Muton centurion może robić to, co zwykły muton, a także wydawać okrzyk bojowy, który zwiększa parametry pobliskich sojuszników. Ponadto potrafi on wykonać szarżę z bagnetem na wroga znajdującego się w zasięgu sprintu.\n<Bullet/> W przeciwieństwie do mutonów z czasów inwazji nowe hybrydowe mutony są bardzo skuteczne w walce w zwarciu.\n<Bullet/> Zdolność kontrataku umożliwia im zaatakowanie każdego, kto będzie walczyć z nimi wręcz.\n<Bullet/> Mutony mogą też dokonać egzekucji nieprzytomnych wrogów; nie możesz pozwolić, żeby wrogi muton zbliżył się do którejś z twoich ogłuszonych jednostek.\n<Bullet/> Są również w stanie kłaść ogień zaporowy ze swoich karabinów, a ich pancerz bojowy zapewnia dobrą ochronę."
-MutonM3_LW="<Bullet/>"
+MutonM3_LW="<Bullet/> "
 
 DroneM1="<Bullet/> Dron \"Obrońca\" to tania jednostka zwiadowcza służąca głównie do kontroli cywilnych tłumów."
 

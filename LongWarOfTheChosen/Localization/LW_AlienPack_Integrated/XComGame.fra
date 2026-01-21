@@ -1,6 +1,6 @@
 [XComMultiplayerTacticalUI]
 MutonM2_LW="<Bullet/> Le Centurion Goliath peut faire tout ce que fait un Goliath, en plus de pousser un cri de guerre qui améliore les capacités de certains alliés proches, et charger n'importe quel ennemi situé à distance de sprint avec sa baïonnette. \n<Bullet/> Contrairement aux Goliaths de l'invasion, les nouveaux Goliaths hybrides sont extrêmement efficaces en combat rapproché. \n<Bullet/> Leur capacité Contre-attaque leur permet de riposter contre quiconque ose les attaquer au corps à corps. \n<Bullet/> Ils peuvent aussi asséner le coup de grâce à des ennemis proches immobilisés, c'est pourquoi vous ne devez en aucun cas laisser un Goliath ennemi s'approcher de l'une de vos unités étourdies. \n<Bullet/> Leur fusil leur permet d'éliminer des cibles alors que leur armure de combat leur fournit une protection constante."
-MutonM3_LW="<Bullet/>"
+MutonM3_LW="<Bullet/> "
 
 DroneM1="<Bullet/> Le drone gardien est une unité de reconnaissance bon marché, principalement utilisée pour le contrôle des foules civiles."
 

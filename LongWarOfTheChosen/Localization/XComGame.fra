@@ -1079,7 +1079,7 @@ FriendlyNamePlural="Fusils magnétiques"
 FriendlyName="Fusil à bobine"
 FriendlyNamePlural="Fusils à bobine"
 BriefSummary="Puissante arme à bobine antiblindage de moyenne portée. Remplit la fonction d'un fusil d'assaut."
-TacticalText="<Bullet/> Les armes à bobine ignorent automatiquement 1 point d'armure.<br/><Bullet/> Un tir avec son arme principale met toujours fin au tour d'un soldat, sans entraînement spécial.\n<Bullet/> Utilisez les améliorations récupérées sur les ennemis d'ADVENT pour augmenter l'efficacité tactique du fusil à bobine.\n<Bullet/>"
+TacticalText="<Bullet/> Les armes à bobine ignorent automatiquement 1 point d'armure.<br/><Bullet/> Un tir avec son arme principale met toujours fin au tour d'un soldat, sans entraînement spécial.\n<Bullet/> Utilisez les améliorations récupérées sur les ennemis d'ADVENT pour augmenter l'efficacité tactique du fusil à bobine.\n<Bullet/> "
 AbilityDescName="fusil d'assaut"
 
 [Cannon_CG X2WeaponTemplate]
@@ -6140,7 +6140,7 @@ LocFlyOverText="Verrouiller et charger"
 ; LWOTC translated (2)
 LocLongDescription="Éliminer des ennemis avec votre arme principale vous permet de récupérer <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> munition(s)."
 LocHelpText="Éliminer des ennemis avec votre arme principale vous permet de récupérer <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> munition(s)."
-LocPromotionPopupText="<Bullet/>Éliminer des ennemis avec votre arme principale vous permet de récupérer <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> munition(s).<br/>"
+LocPromotionPopupText="<Bullet/> Éliminer des ennemis avec votre arme principale vous permet de récupérer <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> munition(s).<br/>"
 ; End translated (2)
 
 [TrenchWarfare_LW X2AbilityTemplate]
@@ -6289,7 +6289,7 @@ LocFriendlyName="Ferraille"
 LocFlyOverText="Ferraille: Munition(s) récupérée(s)"
 LocLongDescription="Éliminer une unité avec votre arme principale restaure une munition au fusil à canon scié."
 LocHelpText="Éliminer une unité avec votre arme principale restaure une munition au fusil à canon scié."
-LocPromotionPopupText="<Bullet/>Éliminer une unité avec votre arme principale restaure une munition au fusil à canon scié.<br/><Bullet/> Cette capacité ne s'applique pas aux unités éliminées au fusil à canon scié.<br/><Bullet/> Le nombre de charges actuelles ne peut pas excéder le nombre de charges initiales.<br/>"
+LocPromotionPopupText="<Bullet/> Éliminer une unité avec votre arme principale restaure une munition au fusil à canon scié.<br/><Bullet/> Cette capacité ne s'applique pas aux unités éliminées au fusil à canon scié.<br/><Bullet/> Le nombre de charges actuelles ne peut pas excéder le nombre de charges initiales.<br/>"
 
 [ScrapMetalTrigger_LW X2AbilityTemplate]
 LocFriendlyName="Ferraille: Munition(s) récupérée(s)"
@@ -6412,7 +6412,7 @@ LocPromotionPopupText = "<Bullet/> Vos attaques à distance gagnent +<Ability:OV
 LocFriendlyName= "Désassembler"
 LocHelpText = "Éliminer une unité vous confère un bonus cumulatif de +<Ability:DISASSEMBLY_HACK/> en piratage durant 3 tours."
 LocLongDescription = "Éliminer une unité vous confère un bonus cumulatif de +<Ability:DISASSEMBLY_HACK/> en piratage durant 3 tours."
-LocPromotionPopupText = "<Bullet/>Éliminer une unité vous confère un bonus cumulatif de +<Ability:DISASSEMBLY_HACK/> en piratage durant 3 tours.<br/>"
+LocPromotionPopupText = "<Bullet/> Éliminer une unité vous confère un bonus cumulatif de +<Ability:DISASSEMBLY_HACK/> en piratage durant 3 tours.<br/>"
 
 [LightningSlash_LW X2AbilityTemplate]
 LocFriendlyName="Iaijutsu"
