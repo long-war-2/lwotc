@@ -33,6 +33,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateMissionStateListeners());
 	Templates.AddItem(CreateMissionPrepListeners());
 	Templates.AddItem(CreateMiscellaneousListeners());
+	Templates.AddItem(CreatePostMissionListeners());
 
 	return Templates;
 }
@@ -110,6 +111,18 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	Template.AddCHEvent('UnitChangedTeam', OnUnitChangedTeam_ConfirmRebels, ELD_OnStateSubmitted);
 
 	Template.RegisterInTactical = true;
+
+	return Template;
+}
+
+static function CHEventListenerTemplate CreatePostMissionListeners()
+{
+	local CHEventListenerTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'MiscMissionListeners');
+	Template.AddCHEvent('PreCompleteStrategyFromTacticalTransfer', InterceptUnitProxies_ConfirmRebels, ELD_Immediate);
+
+	Template.RegisterInStrategy = true;
 
 	return Template;
 }
@@ -650,6 +663,57 @@ static function EventListenerReturn OnUnitChangedTeam_ConfirmRebels(Object Event
 			UnitState.SetUnitFloatValue(default.IDConfirmedUnitValueName, 1, eCleanup_Never);
 
 			`TACTICALRULES.SubmitGameState(NewGameState);
+		}
+	}
+
+	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn InterceptUnitProxies_ConfirmRebels(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComGameStateHistory History;
+	local XComGameState_BattleData BattleData;
+	local XComGameState NewGameState;
+	local int Index;
+	local XComGameState_Unit ProxyUnit, OriginalUnit;
+	local UnitValue vUnitValue;
+
+	History = `XCOMHISTORY;
+	BattleData = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
+
+	if (class'Utilities_LW'.static.CurrentMissionIsRetaliation())
+	{
+		for (Index = 0; Index < BattleData.RewardUnits.Length; Index++)
+		{
+			OriginalUnit = XComGameState_Unit(History.GetGameStateForObjectID(BattleData.RewardUnitOriginals[Index].ObjectID));
+			ProxyUnit = XComGameState_Unit(History.GetGameStateForObjectID(BattleData.RewardUnits[Index].ObjectID));
+
+			//skip units without proxies
+			if(OriginalUnit == none || OriginalUnit.ObjectID == ProxyUnit.ObjectID)
+			{
+				continue;
+			}
+
+			if (ProxyUnit.GetUnitValue(default.IDConfirmedUnitValueName, vUnitValue))
+			{
+				// proxy has the IDConfirmed flag
+				if (NewGameState == none)
+				{
+					NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Marking ID as confirmed");
+				}
+
+				OriginalUnit = XComGameState_Unit(NewGameState.ModifyStateObject(OriginalUnit.Class, OriginalUnit.ObjectID));
+				OriginalUnit.SetUnitFloatValue(default.IDConfirmedUnitValueName, 1, eCleanup_Never);
+			}
+		}
+
+		if (NewGameState != none)
+		{
+			if (`GAMERULES != none)
+			{
+				`GAMERULES.SubmitGameState(NewGameState);
+			}
+			else { History.AddGameStateToHistory(NewGameState); }
 		}
 	}
 
