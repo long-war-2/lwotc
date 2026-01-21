@@ -33,6 +33,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateMissionStateListeners());
 	Templates.AddItem(CreateMissionPrepListeners());
 	Templates.AddItem(CreateMiscellaneousListeners());
+	Templates.AddItem(CreatePostMissionListeners());
 
 	return Templates;
 }
@@ -110,6 +111,18 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	Template.AddCHEvent('UnitChangedTeam', OnUnitChangedTeam_ConfirmRebels, ELD_OnStateSubmitted);
 
 	Template.RegisterInTactical = true;
+
+	return Template;
+}
+
+static function CHEventListenerTemplate CreatePostMissionListeners()
+{
+	local CHEventListenerTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'PostMissionListener');
+	Template.AddCHEvent('PreCompleteStrategyFromTacticalTransfer', InterceptUnitProxies_ConfirmRebels, ELD_Immediate);
+
+	Template.RegisterInStrategy = true;
 
 	return Template;
 }
@@ -650,6 +663,60 @@ static function EventListenerReturn OnUnitChangedTeam_ConfirmRebels(Object Event
 			UnitState.SetUnitFloatValue(default.IDConfirmedUnitValueName, 1, eCleanup_Never);
 
 			`TACTICALRULES.SubmitGameState(NewGameState);
+		}
+	}
+
+	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn InterceptUnitProxies_ConfirmRebels(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComGameStateHistory History;
+	local XComGameState_HeadquartersXCom XComHQ;
+	local XComGameState_MissionSite Mission;
+	local XComGameState_WorldRegion Region;
+	local XComGameState_LWOutpost OutpostState;
+	local XComGameState NewGameState;
+	local int Index;
+	local XComGameState_Unit ProxyUnit, OriginalUnit;
+	local UnitValue vUnitValue;
+
+	History = `XCOMHISTORY;
+	XComHQ = `XCOMHQ;
+
+	Mission = XComGameState_MissionSite(History.GetGameStateForObjectID(XComHQ.MissionRef.ObjectID));
+	Region = XComGameState_WorldRegion(History.GetGameStateForObjectID(Mission.Region.ObjectID));
+
+	OutpostState = `LWOUTPOSTMGR.GetOutpostForRegion(Region);
+	if (class'Utilities_LW'.static.CurrentMissionIsRetaliation() && OutpostState != none)
+	{
+		for (Index = 0; Index < OutpostState.Rebels.Length; Index++)
+		{
+			if (OutpostState.Rebels[Index].Proxy.ObjectID > 0)
+			{
+				OriginalUnit = XComGameState_Unit(History.GetGameStateForObjectID(OutpostState.Rebels[Index].Unit.ObjectID));
+				ProxyUnit = XComGameState_Unit(History.GetGameStateForObjectID(OutpostState.Rebels[Index].Proxy.ObjectID));
+				if (OriginalUnit != none && ProxyUnit != none
+					&& ProxyUnit.GetUnitValue(default.IDConfirmedUnitValueName, vUnitValue))
+				{
+					if (NewGameState == none)
+					{
+						NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Marking ID as confirmed");
+					}
+
+					OriginalUnit = XComGameState_Unit(NewGameState.ModifyStateObject(OriginalUnit.Class, OriginalUnit.ObjectID));
+					OriginalUnit.SetUnitFloatValue(default.IDConfirmedUnitValueName, 1, eCleanup_Never);
+				}
+			}
+		}
+
+		if (NewGameState != none)
+		{
+			if (`GAMERULES != none)
+			{
+				`GAMERULES.SubmitGameState(NewGameState);
+			}
+			else { History.AddGameStateToHistory(NewGameState); }
 		}
 	}
 
