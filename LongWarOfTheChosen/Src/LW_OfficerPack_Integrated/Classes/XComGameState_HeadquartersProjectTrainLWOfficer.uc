@@ -72,12 +72,12 @@ function int CalculatePointsToTrain()
 	CharacterTemplate = UnitState.GetMyTemplate();
 	TrainingTime = int(class'LWOfficerUtilities'.static.GetOfficerTrainingDays(NewRank) * 24.0);
 
-	for (Index = 0; Index < PointsToTrainModifiers.Length; Index++)
+	for (Index = 0; Index < default.PointsToTrainModifiers.Length; Index++)
 	{
-		if (UnitState.HasSoldierAbility(PointsToTrainModifiers[Index].AbilityName)
-			|| CharacterTemplate.Abilities.Find(PointsToTrainModifiers[Index].AbilityName) != INDEX_NONE)
+		if (UnitState.HasSoldierAbility(default.PointsToTrainModifiers[Index].AbilityName)
+			|| CharacterTemplate.Abilities.Find(default.PointsToTrainModifiers[Index].AbilityName) != INDEX_NONE)
 		{
-			TrainingTime *= Max(0, 1.0 + PointsToTrainModifiers[Index].Modifier);
+			TrainingTime *= Max(0, 1.0 + default.PointsToTrainModifiers[Index].Modifier);
 		}
 	}
 
