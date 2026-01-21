@@ -697,7 +697,7 @@ static function EventListenerReturn InterceptUnitProxies_ConfirmRebels(Object Ev
 				OriginalUnit = XComGameState_Unit(History.GetGameStateForObjectID(OutpostState.Rebels[Index].Unit.ObjectID));
 				ProxyUnit = XComGameState_Unit(History.GetGameStateForObjectID(OutpostState.Rebels[Index].Proxy.ObjectID));
 				if (OriginalUnit != none && ProxyUnit != none
-					&& ProxyUnit.GetUnitValue('LW_IDConfirmed', vUnitValue))
+					&& ProxyUnit.GetUnitValue(default.IDConfirmedUnitValueName, vUnitValue))
 				{
 					if (NewGameState == none)
 					{
@@ -705,7 +705,7 @@ static function EventListenerReturn InterceptUnitProxies_ConfirmRebels(Object Ev
 					}
 
 					OriginalUnit = XComGameState_Unit(NewGameState.ModifyStateObject(OriginalUnit.Class, OriginalUnit.ObjectID));
-					OriginalUnit.SetUnitFloatValue('LW_IDConfirmed', 1, eCleanup_Never);
+					OriginalUnit.SetUnitFloatValue(default.IDConfirmedUnitValueName, 1, eCleanup_Never);
 				}
 			}
 		}
