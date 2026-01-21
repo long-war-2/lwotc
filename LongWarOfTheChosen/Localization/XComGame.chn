@@ -963,7 +963,7 @@ FriendlyName="手枪"
 FriendlyNamePlural="手枪"
 UnknownUtilityCategory="手枪"
 BriefSummary="XCOM士兵除了主武器之外还能够携带大口径的手枪。适当训练之后，这些士兵可以近距离制造巨大的威胁。"
-TacticalText="<Bullet/>要是由训练有素的士兵使用，手枪可就不仅仅是一件副武器了。\n<Bullet/> 手枪射击只需要一个行动点。\n<Bullet/>士兵们可以通过训练特定的技能来大幅度增加手枪的威力。\n<Bullet/>在远距离射击时手枪的命中率会降低。"
+TacticalText="<Bullet/> 要是由训练有素的士兵使用，手枪可就不仅仅是一件副武器了。\n<Bullet/> 手枪射击只需要一个行动点。\n<Bullet/> 士兵们可以通过训练特定的技能来大幅度增加手枪的威力。\n<Bullet/> 在远距离射击时手枪的命中率会降低。"
 
 [LWPistol_LS X2WeaponTemplate]
 FriendlyName="激光手枪"
@@ -971,21 +971,21 @@ FriendlyNamePlural="激光手枪"
 UnknownUtilityCategory="手枪"
 AbilityDescName="手枪"
 BriefSummary="基于先进的激光武器技术，我们发明了这把新手枪。值得称道的是，它在威力方面和传统手枪相比有非常显著的飞跃。"
-TacticalText="<Bullet/>激光手枪在整体上要比普通的手枪威力更大，命中率更高。\n<Bullet/>激光可以提高命中率。\n<Bullet/>手枪射击只需要一个行动点。\n<Bullet/>士兵们可以通过训练特定的技能来大幅度增加手枪的威力。\n<Bullet/>在远距离射击时手枪的命中率会降低。"
+TacticalText="<Bullet/> 激光手枪在整体上要比普通的手枪威力更大，命中率更高。\n<Bullet/> 激光可以提高命中率。\n<Bullet/> 手枪射击只需要一个行动点。\n<Bullet/> 士兵们可以通过训练特定的技能来大幅度增加手枪的威力。\n<Bullet/> 在远距离射击时手枪的命中率会降低。"
 
 [LWPistol_MG X2WeaponTemplate]
 FriendlyName="磁力手枪"
 FriendlyNamePlural="磁力手枪"
 UnknownUtilityCategory="手枪"
 BriefSummary="基于先进的磁力武器技术，我们发明了这把新手枪。值得称道的是，它在威力方面和传统手枪有相比有非常显著的飞跃。"
-TacticalText="<Bullet/>磁力手枪能造成比普通手枪和激光手枪更高的伤害。\n<Bullet/>手枪射击只需要一个行动点。\n<Bullet/>士兵们可以通过训练特定的技能来大幅度增加手枪的威力。\n<Bullet/>在远距离射击时手枪的命中率会降低。"
+TacticalText="<Bullet/> 磁力手枪能造成比普通手枪和激光手枪更高的伤害。\n<Bullet/> 手枪射击只需要一个行动点。\n<Bullet/> 士兵们可以通过训练特定的技能来大幅度增加手枪的威力。\n<Bullet/> 在远距离射击时手枪的命中率会降低。"
 
 [LWPistol_CG X2WeaponTemplate]
 FriendlyName="高斯手枪"
 FriendlyNamePlural="高斯手枪"
 UnknownUtilityCategory="手枪"
 BriefSummary="一种威力强大的副武器，可以穿透敌人的护甲。"
-TacticalText="<Bullet/>线圈武器会穿透1点敌方护甲。\n<Bullet/>手枪射击只需要一个行动点。\n<Bullet/>士兵们可以通过训练特定的技能来大幅度增加手枪的威力。\n<Bullet/>在远距离射击时手枪的命中率会降低。"
+TacticalText="<Bullet/> 线圈武器会穿透1点敌方护甲。\n<Bullet/> 手枪射击只需要一个行动点。\n<Bullet/> 士兵们可以通过训练特定的技能来大幅度增加手枪的威力。\n<Bullet/> 在远距离射击时手枪的命中率会降低。"
 AbilityDescName="手枪"
 
 [LWPistol_BM X2WeaponTemplate]
@@ -993,31 +993,31 @@ FriendlyName="电浆手枪"
 FriendlyNamePlural="电浆手枪"
 UnknownUtilityCategory="手枪"
 BriefSummary="作为一把终极副武器，这把电浆手枪整合了外星光束武器科技，并能发挥出强大的威力。"
-TacticalText="<Bullet/>电浆手枪是威力最强的手枪。\n<Bullet/>手枪射击只需要一个行动点。\n<Bullet/>士兵们可以通过训练特定的技能来大幅度增加手枪的威力。\n<Bullet/>在远距离射击时手枪的命中率会降低。<br/><Bullet/>电浆武器会导致目标在未来每次被攻击命中时额外受到1点伤害。"
+TacticalText="<Bullet/> 电浆手枪是威力最强的手枪。\n<Bullet/> 手枪射击只需要一个行动点。\n<Bullet/> 士兵们可以通过训练特定的技能来大幅度增加手枪的威力。\n<Bullet/> 在远距离射击时手枪的命中率会降低。<br/><Bullet/> 电浆武器会导致目标在未来每次被攻击命中时额外受到1点伤害。"
 
 [AlienHunterPistol_CV X2WeaponTemplate]
 UnknownUtilityCategory="手枪"
-TacticalText="<Bullet/>影护者的威力与常规手枪相当，但具有改进的精度和暴击几率。\n<Bullet/>手枪射击只需要一个行动点。\n<Bullet/>使用\"暗影坠落\"技能造成的击杀将立刻使该单位进入隐匿状态。"
+TacticalText="<Bullet/> 影护者的威力与常规手枪相当，但具有改进的精度和暴击几率。\n<Bullet/> 手枪射击只需要一个行动点。\n<Bullet/> 使用\"暗影坠落\"技能造成的击杀将立刻使该单位进入隐匿状态。"
 
 [AlienHunterPistol_MG X2WeaponTemplate]
 UnknownUtilityCategory="手枪"
-TacticalText="<Bullet/>强化型影护者的威力与磁力手枪相当，但具有改进的精度和暴击几率。\n<Bullet/>手枪射击只需要一个行动点。\n<Bullet/>使用\"暗影坠落\"技能造成的击杀将立刻使该单位进入隐匿状态。"
+TacticalText="<Bullet/> 强化型影护者的威力与磁力手枪相当，但具有改进的精度和暴击几率。\n<Bullet/> 手枪射击只需要一个行动点。\n<Bullet/> 使用\"暗影坠落\"技能造成的击杀将立刻使该单位进入隐匿状态。"
 
 [AlienHunterPistol_BM X2WeaponTemplate]
 UnknownUtilityCategory="手枪"
-TacticalText="<Bullet/>动力型影护者的威力和电浆手枪相当，但具有改进的精度和暴击几率。\n<Bullet/>手枪射击只需要一个行动点。\n<Bullet/>使用\"暗影坠落\"技能造成的击杀将立刻使该单位进入隐匿状态。<br/><Bullet/>电浆武器会导致目标在未来每次被攻击命中时额外受到1点伤害。"
+TacticalText="<Bullet/> 动力型影护者的威力和电浆手枪相当，但具有改进的精度和暴击几率。\n<Bullet/> 手枪射击只需要一个行动点。\n<Bullet/> 使用\"暗影坠落\"技能造成的击杀将立刻使该单位进入隐匿状态。<br/><Bullet/> 电浆武器会导致目标在未来每次被攻击命中时额外受到1点伤害。"
 
 [SawedOffShotgun_CV X2WeaponTemplate]
 FriendlyName="短管霰弹枪"
 FriendlyNamePlural="短管霰弹枪"
 BriefSummary="一种威力强大的短射程副武器。"
-TacticalText="<Bullet/>方便隐蔽起来的武器。<br/><Bullet/>没有升级的情况下每个任务可以开火两次。"
+TacticalText="<Bullet/> 方便隐蔽起来的武器。<br/><Bullet/> 没有升级的情况下每个任务可以开火两次。"
 
 [SawedOffShotgun_MG X2WeaponTemplate]
 FriendlyName="磁力短枪"
 FriendlyNamePlural="磁力短枪"
 BriefSummary="升级版的短管霰弹枪，采用磁力加速器技术来提高其伤害。"
-TacticalText="<Bullet/>升级版的短管霰弹枪，采用磁力加速器技术来提高其伤害。<br/><Bullet/>没有升级的情况下每个任务可以开火两次。<br/>"
+TacticalText="<Bullet/> 升级版的短管霰弹枪，采用磁力加速器技术来提高其伤害。<br/><Bullet/> 没有升级的情况下每个任务可以开火两次。<br/>"
 
 ;LWOTC needs translation
 [SawedOffShotgun_BM X2WeaponTemplate]
@@ -1110,10 +1110,10 @@ TacticalText="为你的士兵清出一块撤离区。天际游侠可能需要多
 FriendlyName="磁力长枪"
 FriendlyNamePlural="磁力长枪"
 BriefSummary="磁力技术对像狙击步枪这样的精准慢射武器有着独特的用途。磁力长枪能让我们的神枪手在远距离造成更大的伤害。"
-TacticalText="<Bullet/>狙击步枪一般需要2个行动点来射击。\n<Bullet/>它们在近距离精确度不高，但是在远距离具有致命的杀伤力。\n<Bullet/>使用从敌人身上取得的武器配件来提升磁力长枪的战术效果。"
+TacticalText="<Bullet/> 狙击步枪一般需要2个行动点来射击。\n<Bullet/> 它们在近距离精确度不高，但是在远距离具有致命的杀伤力。\n<Bullet/> 使用从敌人身上取得的武器配件来提升磁力长枪的战术效果。"
 
 [AssaultRifle_CV X2WeaponTemplate]
-TacticalText="<Bullet/>缺乏特殊训练的情况下，用主武器射击将会结束该士兵的回合。\n<Bullet/>使用从敌人身上取得的武器配件来提升突击步枪的战术效果。"
+TacticalText="<Bullet/> 缺乏特殊训练的情况下，用主武器射击将会结束该士兵的回合。\n<Bullet/> 使用从敌人身上取得的武器配件来提升突击步枪的战术效果。"
 
 [AssaultRifle_MG X2WeaponTemplate]
 FriendlyName="磁力步枪"
@@ -1123,21 +1123,21 @@ FriendlyNamePlural="磁力步枪"
 FriendlyName="线圈步枪"
 FriendlyNamePlural="线圈步枪"
 BriefSummary="一种强大的、中距离护甲穿透线圈枪，担任突击步枪的角色。"
-TacticalText="<Bullet/>线圈武器穿透（无视）1点敌人护甲。<br/><Bullet/>缺乏特殊训练的情况下，用主武器射击将会结束该士兵的回合。\n<Bullet/>使用从敌人身上取得的武器配件来提升线圈步枪的战术效果。<br/>"
+TacticalText="<Bullet/> 线圈武器穿透（无视）1点敌人护甲。<br/><Bullet/> 缺乏特殊训练的情况下，用主武器射击将会结束该士兵的回合。\n<Bullet/> 使用从敌人身上取得的武器配件来提升线圈步枪的战术效果。<br/>"
 AbilityDescName="突击步枪"
 
 [Cannon_CG X2WeaponTemplate]
 FriendlyName="高斯加农炮"
 FriendlyNamePlural="高斯加农炮"
 BriefSummary="一种重型的自动化线圈枪，射速很快。"
-TacticalText="<Bullet/>线圈武器穿透（无视）1点敌人护甲。<br/><Bullet/>加农炮担任的是小队自动化武器的职责，拥有更多的弹药，比步枪能造成更多伤害，但是比较笨重。<br/><Bullet/>使用从敌人身上取得的武器配件来提升高斯加农炮的战术效果。<br/>"
+TacticalText="<Bullet/> 线圈武器穿透（无视）1点敌人护甲。<br/><Bullet/> 加农炮担任的是小队自动化武器的职责，拥有更多的弹药，比步枪能造成更多伤害，但是比较笨重。<br/><Bullet/> 使用从敌人身上取得的武器配件来提升高斯加农炮的战术效果。<br/>"
 AbilityDescName="加农炮"
 
 [SniperRifle_CG X2WeaponTemplate]
 FriendlyName="高斯长枪"
 FriendlyNamePlural="高斯长枪"
 BriefSummary="加长版的线圈步枪，可由神枪手使用。"
-TacticalText="<Bullet/>线圈武器穿透（无视）1点敌方护甲。<br/><Bullet/>如果没有经过特殊训练，狙击步枪一般需要2个行动点来射击。\n<Bullet/>它们在近距离精确度不高，但是在远距离具有致命的杀伤力。\n<Bullet/>使用从敌人身上取得的武器配件来提升高斯长枪的战术效果。"
+TacticalText="<Bullet/> 线圈武器穿透（无视）1点敌方护甲。<br/><Bullet/> 如果没有经过特殊训练，狙击步枪一般需要2个行动点来射击。\n<Bullet/> 它们在近距离精确度不高，但是在远距离具有致命的杀伤力。\n<Bullet/> 使用从敌人身上取得的武器配件来提升高斯长枪的战术效果。"
 AbilityDescName="狙击步枪"
 
 [Shotgun_CG X2WeaponTemplate]
@@ -1145,14 +1145,14 @@ AbilityDescName="狙击步枪"
 FriendlyName="高斯霰弹枪"
 FriendlyNamePlural="高斯霰弹枪"
 BriefSummary="一种可以代替霰弹枪的近距离线圈武器。"
-TacticalText="<Bullet/>线圈武器穿透（无视）1点敌方护甲。<br/><Bullet/>霰弹型武器在近距离极为有效，但是它们的命中率在远距离下降得很快。\n<Bullet/>使用从敌人身上取得的武器配件来提升高斯霰弹枪的战术效果。"
+TacticalText="<Bullet/> 线圈武器穿透（无视）1点敌方护甲。<br/><Bullet/> 霰弹型武器在近距离极为有效，但是它们的命中率在远距离下降得很快。\n<Bullet/> 使用从敌人身上取得的武器配件来提升高斯霰弹枪的战术效果。"
 AbilityDescName="霰弹枪"
 
 [SMG_CG X2WeaponTemplate]
 FriendlyName="小线圈"
 FriendlyNamePlural="小线圈"
 BriefSummary="一种轻量型的线圈步枪，威力相对变小但是能提高使用者在战场上的移动力。"
-TacticalText="<Bullet/>线圈武器穿透（无视）1点敌方护甲。<br/><Bullet/>冲锋枪风格的武器相比突击步枪能提供额外的移动力、近战精度和隐蔽性，但它们伤害更低，并在远距离受到命中减益。<br/>"
+TacticalText="<Bullet/> 线圈武器穿透（无视）1点敌方护甲。<br/><Bullet/> 冲锋枪风格的武器相比突击步枪能提供额外的移动力、近战精度和隐蔽性，但它们伤害更低，并在远距离受到命中减益。<br/>"
 AbilityDescName="冲锋枪"
 
 ; LWOTC Needs Translation
@@ -1226,7 +1226,7 @@ AbilityDescName="重型链炮"
 FriendlyName="重型自动加农炮"
 FriendlyNamePlural="重型自动加农炮"
 BriefSummary="强大但沉重的加农炮，专门为SPARK单位设计。"
-TacticalText="<Bullet/>在缺少特殊训练的情况下，主武器开火将会结束士兵的回合。\n<Bullet/>使用从敌人身上掠夺的武器配件来提高重型自动加农炮的战术效果。"
+TacticalText="<Bullet/> 在缺少特殊训练的情况下，主武器开火将会结束士兵的回合。\n<Bullet/> 使用从敌人身上掠夺的武器配件来提高重型自动加农炮的战术效果。"
 AbilityDescName="重型自动加农炮"
 
 [SparkRifle_LS X2WeaponTemplate]
@@ -1240,7 +1240,7 @@ AbilityDescName="激光轨道炮"
 FriendlyName="螺旋轨道加农炮"
 FriendlyNamePlural="螺旋轨道加农炮"
 BriefSummary="额外的镀层提升了耐用性和伤害输出，避免了紧密战场部署后长期使用造成的问题。"
-TacticalText="<Bullet/>螺旋轨道加农炮的伤害和持久性更高，比SPARK标准配备的重型自动加农炮有着显著的提升。\n<Bullet/>使用从敌人身上掠夺的武器配件来提高螺旋轨道加农炮的战术效果。\n<Bullet/>在缺少特殊训练的情况下，主武器开火将会结束士兵的回合。"
+TacticalText="<Bullet/> 螺旋轨道加农炮的伤害和持久性更高，比SPARK标准配备的重型自动加农炮有着显著的提升。\n<Bullet/> 使用从敌人身上掠夺的武器配件来提高螺旋轨道加农炮的战术效果。\n<Bullet/> 在缺少特殊训练的情况下，主武器开火将会结束士兵的回合。"
 AbilityDescName="螺旋轨道加农炮"
 
 [SparkRifle_CG X2WeaponTemplate]
@@ -1286,57 +1286,57 @@ TacticalText="<Bullet/> 轻型的蜘蛛护甲能提升士兵的移动力和闪�
 
 [MediumPlatedArmor X2ArmorTemplate]
 BriefSummary="由于使用了回收的变种人护甲板材，这种护甲能够为我们的士兵提供更好的防护。"
-TacticalText="<Bullet/>掠食者护甲为士兵提供最大程度的防护，包括额外的生命值和护甲。"
+TacticalText="<Bullet/> 掠食者护甲为士兵提供最大程度的防护，包括额外的生命值和护甲。"
 
 [HeavyPlatedArmor X2ArmorTemplate]
 BriefSummary="这套重型护甲结合使用了强化的变种人镀层和动力外骨骼，提供了防护和武器承力点。通过进一步研究我们还可以为这套护甲加装更多的重武器。"
 TacticalText="<Bullet/> E.X.O.护甲能让士兵装备一项重武器，但缺乏掠食者护甲提供的完整防护。\n<Bullet/> 初始状态只能配载粉碎炮；其他在试验场的重武器项目将会解锁更多可以制造的重武器系统。\n<Bullet/> 士兵可以不带重武器，而是为他们的臂套携带额外的弹药。"
 
 [LightPoweredArmor X2ArmorTemplate]
-TacticalText="<Bullet/>幽灵护甲为士兵提升移动力和闪避数值。\n<Bullet/>幽灵护甲附带腕带爪钩。\n<Bullet/>穿上幽灵护甲后可直接穿过墙壁和其他障碍物。"
+TacticalText="<Bullet/> 幽灵护甲为士兵提升移动力和闪避数值。\n<Bullet/> 幽灵护甲附带腕带爪钩。\n<Bullet/> 穿上幽灵护甲后可直接穿过墙壁和其他障碍物。"
 
 [MediumPoweredArmor X2ArmorTemplate]
 BriefSummary="借助最新掌握的外星超轴技术，我们研制了终极护甲：守望护甲。这种由超铀动力护甲提供了前所未有的防御，用于对付不断增强的外星敌人。"
-TacticalText="<Bullet/>守望护甲专为提高士兵的存活能力而设计，能够提供大量的额外生命值和护甲防护。"
+TacticalText="<Bullet/> 守望护甲专为提高士兵的存活能力而设计，能够提供大量的额外生命值和护甲防护。"
 
 [HeavyPoweredArmor X2ArmorTemplate]
 BriefSummary="W.A.R.重型动力战斗护甲提供了极大的生存能力，同时具有一个装在手腕处的武器挂载点。它也可以用强大的\"盾墙\"技术为队友们提供一道临时的掩护屏障。"
-TacticalText="<Bullet/>穿上W.A.R.护甲后，士兵可在腕部挂载重武器。\n<Bullet/>W.A.R.护甲附赠\"盾墙\"技能，穿着者可在短时间内为队友提供类似全身掩体的防护效果。\n<Bullet/>士兵可以不带重武器，而是为他们的臂套携带额外的弹药。"
+TacticalText="<Bullet/> 穿上W.A.R.护甲后，士兵可在腕部挂载重武器。\n<Bullet/> W.A.R.护甲附赠\"盾墙\"技能，穿着者可在短时间内为队友提供类似全身掩体的防护效果。\n<Bullet/> 士兵可以不带重武器，而是为他们的臂套携带额外的弹药。"
 
 [FragGrenade X2GrenadeTemplate]
 BriefSummary="一种在小范围内通过弹片击杀敌人的标准破片榴弹。对移除敌军护甲十分有效。伤害会随着离中心的距离递增而递减。"
-TacticalText="<Bullet/>破片榴弹适合用来破除或\"撕碎\"敌人的护甲。<br><Bullet/>破片榴弹对抗低等级的变种人敌人很有效果，但是对高等级敌人毫无效果。<br><Bullet/>这种榴弹同样会毁坏目标的装备，因此过多使用它会减少我们回收敌方装备的机会。<br/><Bullet/>伤害会随着离中心的距离递增而递减。<br/><Bullet/>在士兵没有额外训练前，破片榴弹只会偶尔对环境造成显著伤害。"
+TacticalText="<Bullet/> 破片榴弹适合用来破除或\"撕碎\"敌人的护甲。<br><Bullet/> 破片榴弹对抗低等级的变种人敌人很有效果，但是对高等级敌人毫无效果。<br><Bullet/> 这种榴弹同样会毁坏目标的装备，因此过多使用它会减少我们回收敌方装备的机会。<br/><Bullet/> 伤害会随着离中心的距离递增而递减。<br/><Bullet/> 在士兵没有额外训练前，破片榴弹只会偶尔对环境造成显著伤害。"
 
 [AlienGrenade X2GrenadeTemplate]
 BriefSummary="作为一种由外星脉冲能量技术加强的震荡性榴弹，电浆榴弹比标准破片榴弹有更大的作用范围和更高的伤害，在破坏敌人装甲方面也同样高效。伤害会随着离中心的距离递增而递减。"
-TacticalText="<Bullet/>电浆榴弹的伤害比起破片榴弹要强。<br/><Bullet/>伤害会随着离中心的距离递增而递减。<br/><Bullet/>在缺乏相关的技术时破片榴弹只会偶尔对环境造成显著的伤害。"
+TacticalText="<Bullet/> 电浆榴弹的伤害比起破片榴弹要强。<br/><Bullet/> 伤害会随着离中心的距离递增而递减。<br/><Bullet/> 在缺乏相关的技术时破片榴弹只会偶尔对环境造成显著的伤害。"
 
 [AcidGrenade X2GrenadeTemplate]
-TacticalText="<Bullet/>酸性榴弹对护甲造成的损害比标准破片榴弹更高。<br><Bullet/>受酸性腐蚀的敌人将在数回合中承受额外伤害。<br><Bullet/>伤害会随着离中心的距离递增而递减。<br/><Bullet/> 受到酸性榴弹攻击的单位，在同一任务中被敌人攻击都会受到额外伤害。"
+TacticalText="<Bullet/> 酸性榴弹对护甲造成的损害比标准破片榴弹更高。<br><Bullet/> 受酸性腐蚀的敌人将在数回合中承受额外伤害。<br><Bullet/> 伤害会随着离中心的距离递增而递减。<br/><Bullet/> 受到酸性榴弹攻击的单位，在同一任务中被敌人攻击都会受到额外伤害。"
 
 [AcidGrenadeMk2 X2GrenadeTemplate]
-TacticalText="<Bullet/>酸性榴弹比其他类型榴弹的破甲效果好。<br><Bullet/>受酸性腐蚀的敌人将在数回合中承受额外伤害。<br><Bullet/>伤害会随着离中心的距离递增而递减。<br/><Bullet/> 受到酸性榴弹攻击的单位，在同一任务中被敌人攻击都会受到额外伤害。"
+TacticalText="<Bullet/> 酸性榴弹比其他类型榴弹的破甲效果好。<br><Bullet/> 受酸性腐蚀的敌人将在数回合中承受额外伤害。<br><Bullet/> 伤害会随着离中心的距离递增而递减。<br/><Bullet/> 受到酸性榴弹攻击的单位，在同一任务中被敌人攻击都会受到额外伤害。"
 
 [GasGrenade X2GrenadeTemplate]
-TacticalText="<Bullet/>毒气榴弹的爆炸范围比标准破片榴弹的更大。<br><Bullet/>其释放出的毒气对有机体敌人具有显著效果，会使他们减速并持续造成伤害。<br><Bullet/>伤害会随着离中心的距离递增而递减。"
+TacticalText="<Bullet/> 毒气榴弹的爆炸范围比标准破片榴弹的更大。<br><Bullet/> 其释放出的毒气对有机体敌人具有显著效果，会使他们减速并持续造成伤害。<br><Bullet/> 伤害会随着离中心的距离递增而递减。"
 
 [GasGrenadeMk2 X2GrenadeTemplate]
-TacticalText="<Bullet/>毒气炸弹的爆炸范围比标准破片榴弹的更大。<br><Bullet/>其释放出的毒气对有机体敌人具有显著效果，会使他们减速并持续造成伤害。<br><Bullet/> 伤害会随着离中心的距离递增而递减。"
+TacticalText="<Bullet/> 毒气炸弹的爆炸范围比标准破片榴弹的更大。<br><Bullet/> 其释放出的毒气对有机体敌人具有显著效果，会使他们减速并持续造成伤害。<br><Bullet/> 伤害会随着离中心的距离递增而递减。"
 
 [EMPGrenade X2GrenadeTemplate]
-TacticalText="<Bullet/>EMP榴弹会在造成伤害时无视护甲。<br><Bullet/>EMP榴弹可投掷或发射的距离比标准榴弹的远得多。<br><Bullet/>伤害会随着离中心的距离递增而递减。"
+TacticalText="<Bullet/> EMP榴弹会在造成伤害时无视护甲。<br><Bullet/> EMP榴弹可投掷或发射的距离比标准榴弹的远得多。<br><Bullet/> 伤害会随着离中心的距离递增而递减。"
 
 [EMPGrenadeMk2 X2GrenadeTemplate]
-TacticalText="<Bullet/>从EMP榴弹升级而来的EMP炸弹可以在更大范围内对机械型敌人造成更大程度的伤害。<br><Bullet/>EMP炸弹在造成伤害时无视护甲。<br><Bullet/>EMP炸弹可投掷或发射的距离比标准榴弹的远得多。<br><Bullet/>伤害会随着离中心的距离递增而递减。"
+TacticalText="<Bullet/> 从EMP榴弹升级而来的EMP炸弹可以在更大范围内对机械型敌人造成更大程度的伤害。<br><Bullet/> EMP炸弹在造成伤害时无视护甲。<br><Bullet/> EMP炸弹可投掷或发射的距离比标准榴弹的远得多。<br><Bullet/> 伤害会随着离中心的距离递增而递减。"
 
 [ProximityMine X2GrenadeTemplate]
-TacticalText="<Bullet/>投掷感应地雷不会解除士兵的隐匿状态。<br><Bullet/>友方单位不会触发感应地雷，但要是身处地雷的爆炸范围，也会受到伤害。<br><Bullet/>伤害从爆炸中心向外递减。"
+TacticalText="<Bullet/> 投掷感应地雷不会解除士兵的隐匿状态。<br><Bullet/> 友方单位不会触发感应地雷，但要是身处地雷的爆炸范围，也会受到伤害。<br><Bullet/> 伤害从爆炸中心向外递减。"
 
 [Firebomb X2GrenadeTemplate]
-TacticalText="<Bullet/>火焰榴弹会伤害爆炸范围内的所有单位，并有概率对任何容易受到火焰攻击的单位施加\"燃烧\"效果。\n<Bullet/>火焰榴弹的爆炸伤害高于其他任何榴弹。\n<Bullet/>有些敌人对火焰免疫，不受\"燃烧\"效果影响，尤其是机械系敌人。<br><Bullet/>伤害会随着离中心的距离递增而递减。"
+TacticalText="<Bullet/> 火焰榴弹会伤害爆炸范围内的所有单位，并有概率对任何容易受到火焰攻击的单位施加\"燃烧\"效果。\n<Bullet/> 火焰榴弹的爆炸伤害高于其他任何榴弹。\n<Bullet/> 有些敌人对火焰免疫，不受\"燃烧\"效果影响，尤其是机械系敌人。<br><Bullet/> 伤害会随着离中心的距离递增而递减。"
 
 [FirebombMK2 X2GrenadeTemplate]
-TacticalText="<Bullet/>火焰炸弹会伤害爆炸范围内的所有单位，并有概率对任何容易受到火焰攻击的单位施加\"燃烧\"效果。\n<Bullet/>火焰炸弹的爆炸伤害高于其他任何炸弹。\n<Bullet/>有些敌人对火焰免疫，不受\"燃烧\"效果影响，尤其是机械系敌人。<br><Bullet/>伤害会随着离中心的距离递增而递减。"
+TacticalText="<Bullet/> 火焰炸弹会伤害爆炸范围内的所有单位，并有概率对任何容易受到火焰攻击的单位施加\"燃烧\"效果。\n<Bullet/> 火焰炸弹的爆炸伤害高于其他任何炸弹。\n<Bullet/> 有些敌人对火焰免疫，不受\"燃烧\"效果影响，尤其是机械系敌人。<br><Bullet/> 伤害会随着离中心的距离递增而递减。"
 
 [SparkBit_MG X2GremlinTemplate]
 BriefSummary="升级后的装甲版提高了BIT的伤害和治疗能力，并提供了额外的闪避和入侵属性。"
@@ -1458,7 +1458,7 @@ FriendlyNamePlural="精英自动装填器"
 FriendlyName="超能血清"
 FriendlyNamePlural="超能血清"
 BriefSummary="超能血清提取自狂战士外星人的肾上腺，通过刺激使用者的神经系统在数回合内提高其机动性和伤害抗性。超能血清每次任务只能使用一次。"
-TacticalText="<Bullet/>超能血清能显著提升机动性并显著减少士兵受到的伤害。\n<Bullet/>超能血清还能使士兵暂时免疫恐慌和心灵控制等负面精神效果。"
+TacticalText="<Bullet/> 超能血清能显著提升机动性并显著减少士兵受到的伤害。\n<Bullet/> 超能血清还能使士兵暂时免疫恐慌和心灵控制等负面精神效果。"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;; GEAR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -1468,25 +1468,25 @@ TacticalText="<Bullet/>超能血清能显著提升机动性并显著减少士兵
 FriendlyName="纳米背心"
 FriendlyNamePlural="纳米背心"
 BriefSummary="这件背心是从变种人的护甲研究而来的轻型护甲，它可以跟其他的XCOM护甲同时装备来增加士兵<ABILITY:NANOFIBER_HEALTH_BONUS_LW/>点生命值并减少<ABILITY:NANOFIBER_CRITDEF_BONUS_LW/>点敌人对你的暴击率。"
-TacticalText="<Bullet/>为士兵增加<ABILITY:NANOFIBER_HEALTH_BONUS_LW/>点生命值。\n<Bullet/>减少敌人<ABILITY:NANOFIBER_CRITDEF_BONUS_LW/>点的暴击率。\n<Bullet/>最多只能同时装备一件护甲和一件背心。"
+TacticalText="<Bullet/> 为士兵增加<ABILITY:NANOFIBER_HEALTH_BONUS_LW/>点生命值。\n<Bullet/> 减少敌人<ABILITY:NANOFIBER_CRITDEF_BONUS_LW/>点的暴击率。\n<Bullet/> 最多只能同时装备一件护甲和一件背心。"
 
 [PlatedVest X2EquipmentTemplate]
 FriendlyName="战术背心"
 FriendlyNamePlural="战术背心"
 BriefSummary="沈博士用装甲镀层技术改良了纳米纤维背心，减少了战斗中受到的伤害。"
-TacticalText="<Bullet/>为士兵增加3点生命值。\n<Bullet/>提供1点护甲。\n<Bullet/>减少<Ability:PLATED_CRITDEF_BONUS>点敌人对你的暴击率。\n<Bullet/>最多只能同时装备一件护甲和一件背心。"
+TacticalText="<Bullet/> 为士兵增加3点生命值。\n<Bullet/> 提供1点护甲。\n<Bullet/> 减少<Ability:PLATED_CRITDEF_BONUS>点敌人对你的暴击率。\n<Bullet/> 最多只能同时装备一件护甲和一件背心。"
 
 [HazmatVest X2EquipmentTemplate]
 FriendlyName="生化防护背心"
 FriendlyNamePlural="生化防护背心"
 BriefSummary="通过使用特种材料对纳米纤维背心进行强化，我们能让士兵完全抵抗火、酸和毒等环境威胁。"
-TacticalText="<Bullet/>提升3点士兵的生命值。\n<Bullet/>提供对火、酸和毒的免疫。\n<Bullet/>最多只能同时装备一件护甲和一件背心。"
+TacticalText="<Bullet/> 提升3点士兵的生命值。\n<Bullet/> 提供对火、酸和毒的免疫。\n<Bullet/> 最多只能同时装备一件护甲和一件背心。"
 
 [Hellweave X2EquipmentTemplate]
 FriendlyName="地狱网背心"
 FriendlyNamePlural="地狱网背心"
 BriefSummary="地狱网不但可以为士兵提供+6的生命值，还可以将伤害返回发动近距离攻击的敌人身上，并有<Ability:HELLWEAVEPROCCHANCE/>%的概率点燃他们。"
-TacticalText="<Bullet/>在给近战袭击者造成直接伤害的同时，地狱网有概率点燃袭击者并致其伤残。\n<Bullet/>地狱网同时也提供6点生命值加成。<Bullet/>最多只能同时装备一件护甲和一件背心。"
+TacticalText="<Bullet/> 在给近战袭击者造成直接伤害的同时，地狱网有概率点燃袭击者并致其伤残。\n<Bullet/> 地狱网同时也提供6点生命值加成。<Bullet/> 最多只能同时装备一件护甲和一件背心。"
 
 ;;; New
 
@@ -3395,13 +3395,13 @@ m_strVIPRecovered="VIP"
 m_strArtifactRecoveredEvac=""
 
 [AlienHuntersRifle_CV X2WeaponTemplate]
-TacticalText="<Bullet/>弩枪的精准度让它比一般制式突击步枪更为强力。\n<Bullet/>每次攻击都有几率使目标眩晕，并消除目标的闪避数值。\n<Bullet/>基因强化的外星人更容易遭到眩晕。\n<Bullet/>发射单发高伤害的飞弹，但必须在每次使用后进行装填。"
+TacticalText="<Bullet/> 弩枪的精准度让它比一般制式突击步枪更为强力。\n<Bullet/> 每次攻击都有几率使目标眩晕，并消除目标的闪避数值。\n<Bullet/> 基因强化的外星人更容易遭到眩晕。\n<Bullet/> 发射单发高伤害的飞弹，但必须在每次使用后进行装填。"
 
 [AlienHunterRifle_MG X2WeaponTemplate]
-TacticalText="<Bullet/>额外的磁力线圈提升了每一发的伤害。\n<Bullet/>每次攻击都有几率使目标眩晕，并消除目标的闪避数值。\n<Bullet/>基因强化的外星人更容易遭到眩晕。\n<Bullet/>发射单发高伤害的飞弹，但必须在每次使用后进行装填。"
+TacticalText="<Bullet/> 额外的磁力线圈提升了每一发的伤害。\n<Bullet/> 每次攻击都有几率使目标眩晕，并消除目标的闪避数值。\n<Bullet/> 基因强化的外星人更容易遭到眩晕。\n<Bullet/> 发射单发高伤害的飞弹，但必须在每次使用后进行装填。"
 
 [AlienHunterRifle_BM X2WeaponTemplate]
-TacticalText="<Bullet/>一个超铀强化的发射器让这个最为致命的弩枪诞生了。\n<Bullet/>每次攻击都有几率使目标眩晕，并消除目标的闪避数值。\n<Bullet/>基因强化的外星人更容易遭到眩晕。\n<Bullet/>发射单发高伤害的飞弹，但必须在每次使用后进行装填。<br/><Bullet/>电浆武器会导致目标在未来每次被攻击命中时额外受到1点伤害。"
+TacticalText="<Bullet/> 一个超铀强化的发射器让这个最为致命的弩枪诞生了。\n<Bullet/> 每次攻击都有几率使目标眩晕，并消除目标的闪避数值。\n<Bullet/> 基因强化的外星人更容易遭到眩晕。\n<Bullet/> 发射单发高伤害的飞弹，但必须在每次使用后进行装填。<br/><Bullet/> 电浆武器会导致目标在未来每次被攻击命中时额外受到1点伤害。"
 
 [Shadowfall X2AbilityTemplate]
 LocFriendlyName="暗影坠落"
@@ -5146,7 +5146,7 @@ m_strRespecSoldierDialogText="任何已晋升的士兵都可以在其兵种下�
 FriendlyName="猎人战斧"
 FriendlyNamePlural="猎人战斧"
 BriefSummary="这些华丽的飞斧打磨得格外锋利，并且足够轻便。我们的士兵可以远程投掷。该武器是独特的，无法复制或替换。"
-TacticalText="<Bullet/>携带两把斧子为士兵提供了与一般刀剑一样的近战能力。\n<Bullet/>一把斧子能够远距离丢出，造成瞬间伤害。"
+TacticalText="<Bullet/> 携带两把斧子为士兵提供了与一般刀剑一样的近战能力。\n<Bullet/> 一把斧子能够远距离丢出，造成瞬间伤害。"
 AbilityDescName="战斧"
 
 [Infiltration1Unlock X2SoldierUnlockTemplate]
@@ -5228,13 +5228,13 @@ LocFriendlyName="打开/关闭箱子"
 LocHelpText="打开或关闭一个箱子"
 
 [PsiAmp_CV X2WeaponTemplate]
-TacticalText="<Bullet/>灵能增幅器允许灵能士兵发动灵能能力。\n<Bullet/>更先进的灵能增幅器能够提升士兵的灵能威力和他们能力的效能。\n<Bullet/>灵能增幅器将会迷惑敌人的巡逻队伍，提供额外的潜入加成。"
+TacticalText="<Bullet/> 灵能增幅器允许灵能士兵发动灵能能力。\n<Bullet/> 更先进的灵能增幅器能够提升士兵的灵能威力和他们能力的效能。\n<Bullet/> 灵能增幅器将会迷惑敌人的巡逻队伍，提供额外的潜入加成。"
 
 [PsiAmp_MG X2WeaponTemplate]
-TacticalText="<Bullet/>高级灵能增幅器能让灵能士兵的灵能威力+10。\n<Bullet/>灵能威力决定了你许多灵能能力的效能。\n<Bullet/>高级灵能增幅器还能提升许多灵能攻击的伤害。\n<Bullet/>灵能增幅器将会迷惑敌人的巡逻队伍，提供额外的潜入加成。"
+TacticalText="<Bullet/> 高级灵能增幅器能让灵能士兵的灵能威力+10。\n<Bullet/> 灵能威力决定了你许多灵能能力的效能。\n<Bullet/> 高级灵能增幅器还能提升许多灵能攻击的伤害。\n<Bullet/> 灵能增幅器将会迷惑敌人的巡逻队伍，提供额外的潜入加成。"
 
 [PsiAmp_BM X2WeaponTemplate]
-TacticalText="<Bullet/>外星灵能增幅器能让灵能士兵的灵能威力+20。\n<Bullet/>灵能威力决定了你许多灵能能力的效能。\n<Bullet/>外星灵能增幅器还能提升许多灵能攻击的伤害。\n<Bullet/>灵能增幅器将会迷惑敌人的巡逻队伍，提供额外的潜入加成。"
+TacticalText="<Bullet/> 外星灵能增幅器能让灵能士兵的灵能威力+20。\n<Bullet/> 灵能威力决定了你许多灵能能力的效能。\n<Bullet/> 外星灵能增幅器还能提升许多灵能攻击的伤害。\n<Bullet/> 灵能增幅器将会迷惑敌人的巡逻队伍，提供额外的潜入加成。"
 
 [Reward_Radio_Relay X2RewardTemplate]
 DisplayName="无线电中继站"
@@ -5304,11 +5304,11 @@ LocPromotionPopupText="<Bullet/> 如果由敌人的动作触发，掩护火力�
 [CapacitorDischarge X2AbilityTemplate]
 LocLongDescription="派小精灵到目标地点大量放电，对区域内的所有单位造成伤害并有一定几率使其混乱。机械单位将受到更大的伤害。"
 LocHelpText="派小精灵到目标地点大量放电，对区域内的所有单位造成伤害并有一定几率使其混乱。机械单位将受到更大的伤害。"
-LocPromotionPopupText="<Bullet/>电容器放电每次任务可使用一次。<br/><Bullet/>升级小精灵可使电容器放电造成更多伤害。<br/>"
+LocPromotionPopupText="<Bullet/> 电容器放电每次任务可使用一次。<br/><Bullet/> 升级小精灵可使电容器放电造成更多伤害。<br/>"
 
 [GrenadeLauncher_MG X2GrenadeLauncherTemplate]
 BriefSummary="高级榴弹发射器使用电磁技术，比传统的发射器射程更远，并为榴弹专用槽中的榴弹提供额外的使用次数。"
-TacticalText="<Bullet/>高级榴弹发射器比传统的发射器射程更远，并为榴弹专用槽中的榴弹提供额外的使用次数。"
+TacticalText="<Bullet/> 高级榴弹发射器比传统的发射器射程更远，并为榴弹专用槽中的榴弹提供额外的使用次数。"
 
 ; LWOTC Needs Translation
 [GrenadeLauncher_BM X2GrenadeLauncherTemplate]
@@ -5372,19 +5372,19 @@ LocLongDescription="所有近战攻击获得额外+<Ability:BlademasterDmg/>伤�
 LocHelpText="所有近战攻击获得额外伤害和命中。"
 
 [AssaultRifle_BM X2WeaponTemplate]
-TacticalText="<Bullet/>电浆步枪是常用且非常强大的单兵武器系统。\n<Bullet/>用主武器射击将会结束该士兵的回合。\n<Bullet/>使用从敌人身上取得的武器配件以提升电浆步枪的战术效果。<br/><Bullet/>电浆武器会导致目标在未来每次被攻击命中时额外受到1点伤害。"
+TacticalText="<Bullet/> 电浆步枪是常用且非常强大的单兵武器系统。\n<Bullet/> 用主武器射击将会结束该士兵的回合。\n<Bullet/> 使用从敌人身上取得的武器配件以提升电浆步枪的战术效果。<br/><Bullet/> 电浆武器会导致目标在未来每次被攻击命中时额外受到1点伤害。"
 
 [SniperRifle_BM X2WeaponTemplate]
-TacticalText="<Bullet/>这是狙击步枪技术的尖端。\n<Bullet/>狙击步枪总是需要2个行动点来射击。\n<Bullet/>它们在近距离精确度不高，但是在远距离具有致命的杀伤力。\n<Bullet/>使用从敌人身上取得的武器配件来提升电浆狙击步枪的战术效果。<br/><Bullet/>电浆武器会导致目标在未来每次被攻击命中时额外受到1点伤害。"
+TacticalText="<Bullet/> 这是狙击步枪技术的尖端。\n<Bullet/> 狙击步枪总是需要2个行动点来射击。\n<Bullet/> 它们在近距离精确度不高，但是在远距离具有致命的杀伤力。\n<Bullet/> 使用从敌人身上取得的武器配件来提升电浆狙击步枪的战术效果。<br/><Bullet/> 电浆武器会导致目标在未来每次被攻击命中时额外受到1点伤害。"
 
 [Shotgun_BM X2WeaponTemplate]
-TacticalText="<Bullet/>这是XCOM军械库中可供使用的最先进霰弹型武器。\n<Bullet/>霰弹型武器在近距离极为有效，但是它们的命中率在远距离下降得很快。\n<Bullet/>使用从敌人身上取得的武器配件来提升风暴枪的战术效果。<br/><Bullet/>电浆武器会导致目标在未来每次被攻击命中时额外受到1点伤害。"
+TacticalText="<Bullet/> 这是XCOM军械库中可供使用的最先进霰弹型武器。\n<Bullet/> 霰弹型武器在近距离极为有效，但是它们的命中率在远距离下降得很快。\n<Bullet/> 使用从敌人身上取得的武器配件来提升风暴枪的战术效果。<br/><Bullet/> 电浆武器会导致目标在未来每次被攻击命中时额外受到1点伤害。"
 
 [PlasmaBlaster X2WeaponTemplate]
-TacticalText="<Bullet/>电浆毁灭炮射出一道直线式的毁灭性能量光束，可以伤害多个目标。\n<Bullet/>它的弹药有限，尽量在必要时使用。<br/><Bullet/>电浆武器会导致目标在未来每次被攻击命中时额外受到1点伤害。"
+TacticalText="<Bullet/> 电浆毁灭炮射出一道直线式的毁灭性能量光束，可以伤害多个目标。\n<Bullet/> 它的弹药有限，尽量在必要时使用。<br/><Bullet/> 电浆武器会导致目标在未来每次被攻击命中时额外受到1点伤害。"
 
 [SparkRifle_BM X2WeaponTemplate]
-TacticalText="<Bullet/>专为SPARK设计以造成最大的伤害，超铀相位加农炮是动力步枪技术的集大成之作。\n<Bullet/>使用从敌人身上取得的武器配件来提升超铀相位加农炮的战术效果。\n<Bullet/>在缺少特殊训练的情况下，主武器开火将会结束士兵的回合。<br/><Bullet/>电浆武器会导致目标在未来每次被攻击命中时额外受到1点伤害。"
+TacticalText="<Bullet/> 专为SPARK设计以造成最大的伤害，超铀相位加农炮是动力步枪技术的集大成之作。\n<Bullet/> 使用从敌人身上取得的武器配件来提升超铀相位加农炮的战术效果。\n<Bullet/> 在缺少特殊训练的情况下，主武器开火将会结束士兵的回合。<br/><Bullet/> 电浆武器会导致目标在未来每次被攻击命中时额外受到1点伤害。"
 
 ; LWOTC Needs Translation
 [Skirmisher X2SoldierClassTemplate]
@@ -7613,32 +7613,32 @@ arrMPMapFriendlyNames[10]="下水道"
 LocFriendlyName="极限超载"
 LocLongDescription="本回合获得1个额外行动点，并且所有行动不再结束回合。未习得自适应瞄准前多次标准射击会获得少量的后座力减益。"
 LocHelpText="本回合获得1个额外行动点，并且所有行动不再结束回合。未习得自适应瞄准前多次标准射击会获得少量的后座力减益。"
-LocPromotionPopupText="<Bullet/>当过载激活时，每次标准射击后都会附加<Ability:Overdrive_RecoilPenalty/>%命中的后座力减益。<br/><Bullet/>过载激活无需行动点，但有<Ability:SelfCooldown_LW/>回合冷却。<br/>"
+LocPromotionPopupText="<Bullet/> 当过载激活时，每次标准射击后都会附加<Ability:Overdrive_RecoilPenalty/>%命中的后座力减益。<br/><Bullet/> 过载激活无需行动点，但有<Ability:SelfCooldown_LW/>回合冷却。<br/>"
 
 [Bulwark X2AbilityTemplate]
 LocFriendlyName="壁垒"
 LocLongDescription="额外增加1点护甲值，并总能为附近的队友提供全身掩体。"
 LocHelpText="额外增加1点护甲值，并总能为附近的队友提供全身掩体。"
-LocPromotionPopupText="<Bullet/>壁垒增加1点护甲值。<br/><Bullet/>邻近SPARK的队友能获得全身掩体防御加成。<br/>"
+LocPromotionPopupText="<Bullet/> 壁垒增加1点护甲值。<br/><Bullet/> 邻近SPARK的队友能获得全身掩体防御加成。<br/>"
 
 [Arsenal X2AbilityTemplate]
 LocFriendlyName="兵工厂"
 LocLongDescription="BIT可以装备并使用重武器。"
 LocHelpText="BIT可以装备并使用重武器。"
-LocPromotionPopupText="<Bullet/>兵工厂为SPARK提供一个重型武器槽位，以允许SPARK在其装备中携带重型武器。<br/>"
+LocPromotionPopupText="<Bullet/> 兵工厂为SPARK提供一个重型武器槽位，以允许SPARK在其装备中携带重型武器。<br/>"
 
 [Rainmaker X2AbilityTemplate]
 LocFriendlyName="唤雨者"
 LocLongDescription="装备的重武器造成+<Ability:Rainmaker_BonusDamage/>的伤害，并提升影响范围。"
 LocHelpText="装备的重武器能造成更大的伤害并影响更大的区域。"
-LocPromotionPopupText="<Bullet/>唤雨者提升所有重武器+<Ability:Rainmaker_BonusDamage/>的伤害。<br/><Bullet/>圆形范围效果的重武器会+<Ability:Rainmaker_BonusRadius/>的效果半径。<br/><Bullet/>锥形范围效果的重武器的效果直径+<Ability:Rainmaker_BonusDiameter/>，长度提升+<Ability:Rainmaker_BonusLength/>。<br/>"
+LocPromotionPopupText="<Bullet/> 唤雨者提升所有重武器+<Ability:Rainmaker_BonusDamage/>的伤害。<br/><Bullet/> 圆形范围效果的重武器会+<Ability:Rainmaker_BonusRadius/>的效果半径。<br/><Bullet/> 锥形范围效果的重武器的效果直径+<Ability:Rainmaker_BonusDiameter/>，长度提升+<Ability:Rainmaker_BonusLength/>。<br/>"
 
 [Intimidate X2AbilityTemplate]
 LocFriendlyName="恐吓"
 LocLongDescription="受到敌方单位的指向性攻击时，有几率使攻击者恐慌。"
 LocHelpText="受到敌方单位的指向性攻击时，有几率使攻击者恐慌。"
 LocFlyOverText="恐吓"
-LocPromotionPopupText="<Bullet/>恐吓有几率让攻击者恐慌，更高阶的SPARK装甲有更高的几率。<br/><Bullet/>恐吓可以被近战或远程攻击触发。<br/><Bullet/>恐吓不会在被监视射击时触发。<br/>"
+LocPromotionPopupText="<Bullet/> 恐吓有几率让攻击者恐慌，更高阶的SPARK装甲有更高的几率。<br/><Bullet/> 恐吓可以被近战或远程攻击触发。<br/><Bullet/> 恐吓不会在被监视射击时触发。<br/>"
 
 [IntimidateTrigger X2AbilityTemplate]
 LocFriendlyName="恐吓"
@@ -7660,50 +7660,50 @@ LocFriendlyName="引导力场"
 LocLongDescription="每次受到敌方单位的指向性攻击时，一部分的能量会引导至你的<Ability:WeaponName>。该能量会在你下一次<Ability:WeaponName>攻击时释放。"
 LocHelpText="受到敌方单位的指向性攻击时，一部分的能量会引导至你的<Ability:WeaponName>，该能量会在你下一次<Ability:WeaponName>攻击时释放。"
 LocFlyOverText="已引导的能量：+1"
-LocPromotionPopupText="<Bullet/>被引导力场引导的每一点能量都会提升1点<Ability:WeaponName>的下一次攻击的伤害。<br/><Bullet/><Ability:WeaponName>攻击未命中时不会消耗存储的能量。<br/>"
+LocPromotionPopupText="<Bullet/> 被引导力场引导的每一点能量都会提升1点<Ability:WeaponName>的下一次攻击的伤害。<br/><Bullet/> <Ability:WeaponName>攻击未命中时不会消耗存储的能量。<br/>"
 
 [Sacrifice X2AbilityTemplate]
 LocFriendlyName="牺牲"
 LocLongDescription="创造一个保护性的区域，任何对此区域单位的攻击都会被重定向至你。激活时获得额外的防御和护甲。"
 LocHelpText="创造一个保护性的区域，将敌人攻击重定向至你。激活时获得额外的防御和护甲。"
 LocFlyOverText="牺牲"
-LocPromotionPopupText="<Bullet/>牺牲激活时，SPARK获得+<Ability:Sacrifice_Defense/>的防御以及+<Ability:Sacrifice_Armor/>护甲。<br/><Bullet/>牺牲有<Ability:SelfCooldown_LW/>回合的冷却。<br/>"
+LocPromotionPopupText="<Bullet/> 牺牲激活时，SPARK获得+<Ability:Sacrifice_Defense/>的防御以及+<Ability:Sacrifice_Armor/>护甲。<br/><Bullet/> 牺牲有<Ability:SelfCooldown_LW/>回合的冷却。<br/>"
 
 [AdaptiveAim X2AbilityTemplate]
 LocFriendlyName="自适应瞄准"
 LocLongDescription="当过载激活时，标准射击不会产生后座力减益。"
 LocHelpText="当过载激活时，标准射击不会产生后座力减益。"
-LocPromotionPopupText="<Bullet/>当过载激活时，自适应瞄准将会为连续的标准射击减少<Ability:Overdrive_RecoilPenalty/>%的命中减益。<br/>"
+LocPromotionPopupText="<Bullet/> 当过载激活时，自适应瞄准将会为连续的标准射击减少<Ability:Overdrive_RecoilPenalty/>%的命中减益。<br/>"
 
 [Strike X2AbilityTemplate]
 LocFriendlyName="突袭拳击"
 LocLongDescription="用强大的近战能力攻击移动范围内的任何敌人。"
 LocHelpText="用强大的近战能力攻击移动范围内的任何敌人。"
-LocPromotionPopupText="<Bullet/>将移动光标指向敌人以发动突袭拳击。<br/><Bullet/>SPARK\"冲刺\"后，或所有行动点都用以移动后，仍然可以对邻近敌人发动突袭拳击。<br/>"
+LocPromotionPopupText="<Bullet/> 将移动光标指向敌人以发动突袭拳击。<br/><Bullet/> SPARK\"冲刺\"后，或所有行动点都用以移动后，仍然可以对邻近敌人发动突袭拳击。<br/>"
 
 [WreckingBall X2AbilityTemplate]
 LocFriendlyName="横冲直撞"
 LocLongDescription="当极限超载激活时，能够在移动时撞穿墙壁和掩体。"
 LocHelpText="当极限超载激活时，能够在移动时撞穿墙壁和掩体。"
-LocPromotionPopupText="<Bullet/>横冲直撞可用于摧毁掩体，从而使敌人暴露侧翼。<br/><Bullet/>使用移动路径点指引SPARK前往合适的路径以摧毁掩体和环境物体。</br>"
+LocPromotionPopupText="<Bullet/> 横冲直撞可用于摧毁掩体，从而使敌人暴露侧翼。<br/><Bullet/> 使用移动路径点指引SPARK前往合适的路径以摧毁掩体和环境物体。</br>"
 
 [Bombard X2AbilityTemplate]
 LocFriendlyName="密集轰炸"
 LocLongDescription="将BIT发射至任意可见位置，释放一次强力的爆炸冲击，对范围内的所有单位造成伤害并摧毁掩体。"
 LocHelpText="将BIT发射至任意可见位置，释放一次强力的爆炸冲击，对范围内的所有单位造成伤害并摧毁掩体。"
-LocPromotionPopupText="<Bullet/>密集轰炸可以发射到小队视野中的任何位置。<br/><Bullet/>根据BIT的等级造成3-4/5-6/7-8点伤害。<br/><Bullet/>造成大量环境伤害。<br/><Bullet/>每场任务只能使用1次。<br/>"
+LocPromotionPopupText="<Bullet/> 密集轰炸可以发射到小队视野中的任何位置。<br/><Bullet/> 根据BIT的等级造成3-4/5-6/7-8点伤害。<br/><Bullet/> 造成大量环境伤害。<br/><Bullet/> 每场任务只能使用1次。<br/>"
 
 [HunterProtocol X2AbilityTemplate]
 LocFriendlyName="猎手协议"
 LocLongDescription="当敌人暴露时，有<Ability:HunterProtocol_Chance/>%的几率对其进行一次监视射击。"
 LocHelpText="当敌人暴露时，有<Ability:HunterProtocol_Chance/>%的几率对其进行一次监视射击。"
-LocPromotionPopupText="<Bullet/>猎手协议让SPARK成为探索战争迷雾的理想单位，因为可以立刻攻击任何暴露的敌人。<br/>"
+LocPromotionPopupText="<Bullet/> 猎手协议让SPARK成为探索战争迷雾的理想单位，因为可以立刻攻击任何暴露的敌人。<br/>"
 
 [Nova X2AbilityTemplate]
 LocFriendlyName="新星"
 LocLongDescription="释放一波能量，伤害附近所有的单位。攻击不会有行动点消耗和冷却时间，但持续的新星会伤害SPARK。"
 LocHelpText="冲击附近所有单位。持续的新星可伤害SPARK。"
-LocPromotionPopupText="<Bullet/>新星无需行动点和冷却。<br/><Bullet/>对敌方造成无视护甲的6点伤害。<br/><Bullet/>每个任务首次新星攻击会对SPARK造成0的伤害。<br/><Bullet/>SPARK首次新星攻击后的每次新星攻击都会对其造成一个叠加的<Ability:Nova_Damage/>伤害。<br/>"
+LocPromotionPopupText="<Bullet/> 新星无需行动点和冷却。<br/><Bullet/> 对敌方造成无视护甲的6点伤害。<br/><Bullet/> 每个任务首次新星攻击会对SPARK造成0的伤害。<br/><Bullet/> SPARK首次新星攻击后的每次新星攻击都会对其造成一个叠加的<Ability:Nova_Damage/>伤害。<br/>"
 
 [CombatProtocol X2AbilityTemplate]
 LocFriendlyName="战争协议"

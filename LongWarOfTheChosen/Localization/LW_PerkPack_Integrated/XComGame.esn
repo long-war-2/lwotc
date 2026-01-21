@@ -179,7 +179,7 @@ LocFriendlyName="Percepción de la profundidad"
 LocFlyOverText="Percepción de la profundidad"
 LocLongDescription="Obtienes <Ability:DP_AIM_BONUS> de puntería y reduce la capacidad de esquivar del enemigo en <Ability:DP_ANTIDODGE_BONUS> cuando estás en una elevación mayor que tu objetivo."
 LocHelpText="Obtienes <Ability:DP_AIM_BONUS> de puntería y reduce la capacidad de esquivar del enemigo en <Ability:DP_ANTIDODGE_BONUS> cuando estás en una elevación mayor que tu objetivo."
-LocPromotionPopupText="<Bullet/>Obtienes <Ability:DP_AIM_BONUS> de puntería y reduce la capacidad de esquivar del enemigo en <Ability:DP_ANTIDODGE_BONUS> cuando estás en una elevación mayor que tu objetivo.<br/>"
+LocPromotionPopupText="<Bullet/> Obtienes <Ability:DP_AIM_BONUS> de puntería y reduce la capacidad de esquivar del enemigo en <Ability:DP_ANTIDODGE_BONUS> cuando estás en una elevación mayor que tu objetivo.<br/>"
 
 [WilltoSurvive X2AbilityTemplate]
 LocFriendlyName="Voluntad de sobrevivir"
@@ -317,7 +317,7 @@ LocFriendlyName="Arma estable"
 LocFlyOverText="Arma estable"
 LocLongDescription="Obtienes +20 de puntería en tu siguiente disparo con el arma principal. Usarla varias veces acumula las bonificaciones. La bonificación se pierde si usas acciones o te hieren."
 LocHelpText="Obtienes +20 de puntería en tu siguiente disparo con el arma principal. Usarla varias veces acumula las bonificaciones. La bonificación se pierde si usas acciones o te hieren."
-LocPromotionPopupText="<Bullet/>Obtienes +20 de puntería en tu siguiente disparo con el arma principal. La bonificación se pierde si usas acciones o te hieren.<br/><Bullet/> No se puede usar Arma estable cuando te contienen.<br/><Bullet/> El efecto se mantendrá durante varios turnos si no haces nada.<br/><Bullet/> Usar Arma estable durante varios turnos consecutivos permitirá acumular las bonificaciones."
+LocPromotionPopupText="<Bullet/> Obtienes +20 de puntería en tu siguiente disparo con el arma principal. La bonificación se pierde si usas acciones o te hieren.<br/><Bullet/> No se puede usar Arma estable cuando te contienen.<br/><Bullet/> El efecto se mantendrá durante varios turnos si no haces nada.<br/><Bullet/> Usar Arma estable durante varios turnos consecutivos permitirá acumular las bonificaciones."
 
 [LockedOn X2AbilityTemplate]
 LocFriendlyName="Blanco fijado"
@@ -727,7 +727,7 @@ LocFriendlyName="Campos de impacto"
 LocFlyOverText="Campos de impacto"
 LocLongDescription="Usa una acción para activar un campo de fuerza que reduce el daño recibido un 33% durante <Ability:ABSORPTION_FIELDS_DURATION> turnos. Tiempo de enfriamiento de <Ability:ABSORPTION_FIELDS_COOLDOWN> turnos."
 LocHelpText="Usa una acción para activar un campo de fuerza que reduce el daño recibido un 33% durante <Ability:ABSORPTION_FIELDS_DURATION> turnos. Tiempo de enfriamiento de <Ability:ABSORPTION_FIELDS_COOLDOWN> turnos."
-LocPromotionPopupText="<Bullet/>Activa un campo de fuerza que reduce el daño recibido un 33% durante <Ability:ABSORPTION_FIELDS_DURATION> turnos.<br/><Bullet/> Tiempo de enfriamiento de <Ability:ABSORPTION_FIELDS_COOLDOWN> turnos (incluido el turno en el que se activó).<br/><Bullet/> Usa una acción y no finaliza automáticamente tu turno.<br/><Bullet/> Las armas de perforación de blindaje no mitigan este efecto.<br/>"
+LocPromotionPopupText="<Bullet/> Activa un campo de fuerza que reduce el daño recibido un 33% durante <Ability:ABSORPTION_FIELDS_DURATION> turnos.<br/><Bullet/> Tiempo de enfriamiento de <Ability:ABSORPTION_FIELDS_COOLDOWN> turnos (incluido el turno en el que se activó).<br/><Bullet/> Usa una acción y no finaliza automáticamente tu turno.<br/><Bullet/> Las armas de perforación de blindaje no mitigan este efecto.<br/>"
 
 [BodyShield X2AbilityTemplate]
 LocFriendlyName="Escudo corporal"

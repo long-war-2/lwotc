@@ -723,7 +723,7 @@ LocFlyOverText="Boosted Cores"
 LocLongDescription="Explosive grenades and any damage over time effects inflicted by grenades do one additional damage."
 LocHelpText="Explosive grenades do one additional damage."
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> Your grenades have extra explosives and do one additional damage but require special training to handle.<br/><Bullet/>Damage over time effects applied by grenades such as poison will also do one additional damage.<br/>"
+LocPromotionPopupText="<Bullet/> Your grenades have extra explosives and do one additional damage but require special training to handle.<br/><Bullet/> Damage over time effects applied by grenades such as poison will also do one additional damage.<br/>"
 ; End Translation (2)
 
 [Airdrop X2AbilityTemplate]

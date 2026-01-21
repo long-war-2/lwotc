@@ -114,7 +114,7 @@ LocFriendlyName="ダムグッドグラウンド"
 LocFlyOverText="ダムグッドグラウンド"
 LocLongDescription="自分より低い位置にいるターゲットに対し、命中率+10、防御力+10のボーナスを得る。"
 LocHelpText="自分より低い位置にいるターゲットに対し、命中率+10、防御力+10のボーナスを得る。"
-LocPromotionPopupText="<Bullet/>自分より低い位置にいるターゲットに対し、命中率+10、防御力+10のボーナスを得る。<br/><Bullet/> このアビリティによる防御ボーナスは、混乱状態、スタン状態、パニック状態、発火等の影響下あるユニットには適応されない。"
+LocPromotionPopupText="<Bullet/>自分より低い位置にいるターゲットに対し、命中率+10、防御力+10のボーナスを得る。<br/><Bullet/>このアビリティによる防御ボーナスは、混乱状態、スタン状態、パニック状態、発火等の影響下あるユニットには適応されない。"
 
 [Executioner_LW X2AbilityTemplate]
 LocFriendlyName="エクゼキューショナー"
@@ -135,7 +135,7 @@ LocFriendlyName="戦術的センス"
 LocFlyOverText="戦術的センス"
 LocLongDescription="視界内の敵1体につき防御力+5（最大防御力20）。"
 LocHelpText="視界内の敵1体につき防御力+3（最大防御力15）。"
-LocPromotionPopupText="<Bullet/>視界内の敵1体につき防御力+3（最大防御力15）。<br/><Bullet/>部隊視界範囲内で視認可能なユニットは対象外。<br/><Bullet/> このアビリティによる防御ボーナスは、混乱状態、スタン状態、パニック状態、発火等の影響下あるユニットには適応されない。"
+LocPromotionPopupText="<Bullet/>視界内の敵1体につき防御力+3（最大防御力15）。<br/><Bullet/>部隊視界範囲内で視認可能なユニットは対象外。<br/><Bullet/>このアビリティによる防御ボーナスは、混乱状態、スタン状態、パニック状態、発火等の影響下あるユニットには適応されない。"
 
 [Aggression X2AbilityTemplate]
 LocFriendlyName="アグレッション"
@@ -156,14 +156,14 @@ LocFriendlyName="ハードターゲット"
 LocFlyOverText="ハードターゲット"
 LocLongDescription="視界内の敵1体につき回避+5（最大+30）。"
 LocHelpText="視界内の敵1体につき回避+5（最大+30）。"
-LocPromotionPopupText="<Bullet/>視界内の敵1体につき回避+5（最大+30）。<br/><Bullet/>部隊視界範囲内で視認可能なユニットは対象外。<br/><Bullet/> このアビリティによる防御ボーナスは、混乱状態、スタン状態、パニック状態、発火等の影響下あるユニットには適応されない。"
+LocPromotionPopupText="<Bullet/>視界内の敵1体につき回避+5（最大+30）。<br/><Bullet/>部隊視界範囲内で視認可能なユニットは対象外。<br/><Bullet/>このアビリティによる防御ボーナスは、混乱状態、スタン状態、パニック状態、発火等の影響下あるユニットには適応されない。"
 
 [Infighter X2AbilityTemplate]
 LocFriendlyName="インファイター"
 LocFlyOverText="インファイター"
 LocLongDescription="4タイル以内からの攻撃に対して回避+<Ability:INFIGHTER_DODGE_BONUS/>。"
 LocHelpText="4タイル以内からの攻撃に対して回避+<Ability:INFIGHTER_DODGE_BONUS/>。"
-LocPromotionPopupText="<Bullet/>4タイル以内からの攻撃に対する回避+<Ability:INFIGHTER_DODGE_BONUS/>。<br/><Bullet/>この回避ボーナスは近接攻撃にも適用される。<br/><Bullet/> このアビリティによる防御ボーナスは、混乱状態、スタン状態、パニック状態、発火等の影響下あるユニットには適応されない。"
+LocPromotionPopupText="<Bullet/>4タイル以内からの攻撃に対する回避+<Ability:INFIGHTER_DODGE_BONUS/>。<br/><Bullet/>この回避ボーナスは近接攻撃にも適用される。<br/><Bullet/>このアビリティによる防御ボーナスは、混乱状態、スタン状態、パニック状態、発火等の影響下あるユニットには適応されない。"
 
 [DepthPerception X2AbilityTemplate]
 LocFriendlyName="深度知覚力"
@@ -177,7 +177,7 @@ LocFriendlyName="生存への意志"
 LocFlyOverText="生存への意志"
 LocLongDescription="遮へい物越しに受けた攻撃のダメージ-1。意志力+5。"
 LocHelpText="遮へい物越しに受けた攻撃のダメージ-1。"
-LocPromotionPopupText="<Bullet/>遮へい物越しに受けた攻撃のダメージ-1。<br/><Bullet/>爆発など、間接的な攻撃を遮へい物越しに受けた場合、ダメージは爆発地点から算出される。<br/><Bullet/>徹甲弾系の武器もこの効果を無効化することはできない。<br/><Bullet/>永久的に意志力+5。<br/><Bullet/> このアビリティによる防御ボーナスは、混乱状態、スタン状態、パニック状態、発火等の影響下あるユニットには適応されない。"
+LocPromotionPopupText="<Bullet/>遮へい物越しに受けた攻撃のダメージ-1。<br/><Bullet/>爆発など、間接的な攻撃を遮へい物越しに受けた場合、ダメージは爆発地点から算出される。<br/><Bullet/>徹甲弾系の武器もこの効果を無効化することはできない。<br/><Bullet/>永久的に意志力+5。<br/><Bullet/>このアビリティによる防御ボーナスは、混乱状態、スタン状態、パニック状態、発火等の影響下あるユニットには適応されない。"
 
 [LightEmUp X2AbilityTemplate]
 LocFriendlyName="着火"
@@ -198,7 +198,7 @@ LocFriendlyName="ローンウルフ"
 LocFlyOverText="ローンウルフ"
 LocLongDescription="最も近くの味方から7タイル以上離れている場合、命中率+10、防御力+10。"
 LocHelpText="最も近くの味方から7タイル以上離れている場合、命中率+10、防御力+10。"
-LocPromotionPopupText="<Bullet/>最も近くの味方から7タイル以上離れている場合、命中率+10、防御力+10。<br/><Bullet/> このアビリティによる防御ボーナスは、混乱状態、スタン状態、パニック状態、発火等の影響下あるユニットには適応されない。"
+LocPromotionPopupText="<Bullet/>最も近くの味方から7タイル以上離れている場合、命中率+10、防御力+10。<br/><Bullet/>このアビリティによる防御ボーナスは、混乱状態、スタン状態、パニック状態、発火等の影響下あるユニットには適応されない。"
 
 [LowProfile X2AbilityTemplate]
 LocFriendlyName="ロープロファイル"
@@ -332,7 +332,7 @@ LocFriendlyName="ライトニングリフレックス"
 LocFlyOverText="ライトニングリフレックス"
 LocLongDescription="敵からの反応射撃の命中確率が大幅に低下する。このボーナスは反応射撃にさらされるたびに減少していく。"
 LocHelpText="敵からの反応射撃の命中確率が低下する。"
-LocPromotionPopupText="<Bullet/>敵からの反応射撃の命中率が大幅に低下する。<br/><Bullet/>あるターンにおける敵からの反応射撃の命中率が、1発目は-100、2発目は-80、3発目は-60、4発目は-40、5発目は-20となる。6発目以降の反応射撃の命中率は通常どおり。<br/><Bullet/> このアビリティによる防御ボーナスは、混乱状態、スタン状態、パニック状態、発火等の影響下あるユニットには適応されない。"
+LocPromotionPopupText="<Bullet/>敵からの反応射撃の命中率が大幅に低下する。<br/><Bullet/>あるターンにおける敵からの反応射撃の命中率が、1発目は-100、2発目は-80、3発目は-60、4発目は-40、5発目は-20となる。6発目以降の反応射撃の命中率は通常どおり。<br/><Bullet/>このアビリティによる防御ボーナスは、混乱状態、スタン状態、パニック状態、発火等の影響下あるユニットには適応されない。"
 
 [Cutthroat X2AbilityTemplate]
 LocFriendlyName="カットスロート"
@@ -455,7 +455,7 @@ LocFriendlyName="スナップショット"
 LocFlyOverText="スナップショット"
 LocLongDescription="移動後もスナイパーライフルの通常射撃が行えるが、5タイルの部隊視界より遠くへの射撃には大きなペナルティを受ける。"
 LocHelpText="ターゲットを撃つ。"
-LocPromotionPopupText="<Bullet/> 兵士は移動後もスナイパーライフルの通常射撃ができるようになるが、22タイルより遠くの敵に対しての射撃には極めて深刻な命中率ペナルティを受ける。<br/><Bullet/> 移動後にスナイパーライフルで監視することはできない。<br/>
+LocPromotionPopupText="<Bullet/>兵士は移動後もスナイパーライフルの通常射撃ができるようになるが、22タイルより遠くの敵に対しての射撃には極めて深刻な命中率ペナルティを受ける。<br/><Bullet/>移動後にスナイパーライフルで監視することはできない。<br/>
 
 [SnapShotOverwatch X2AbilityTemplate]
 LocFriendlyName="監視"
@@ -503,7 +503,7 @@ LocFriendlyName="コンバットアウェアネス"
 LocFlyOverText="コンバットアウェアネス"
 LocLongDescription="監視状態のとき、防御力+15、アーマー+1となる。"
 LocHelpText="監視状態のとき、防御力+15、アーマー+1となる。"
-LocPromotionPopupText="<Bullet/>監視状態のとき、防御力+15、アーマー+1となる。<br/><Bullet/> このアビリティによる防御ボーナスは、混乱状態、スタン状態、パニック状態、発火等の影響下あるユニットには適応されない。"
+LocPromotionPopupText="<Bullet/>監視状態のとき、防御力+15、アーマー+1となる。<br/><Bullet/>このアビリティによる防御ボーナスは、混乱状態、スタン状態、パニック状態、発火等の影響下あるユニットには適応されない。"
 
 [FieldSurgeon X2AbilityTemplate]
 LocFriendlyName="野戦外科医"
@@ -726,7 +726,7 @@ LocFriendlyName="精神融合"
 LocFlyOverText="精神融合"
 LocLongDescription="自軍の次のターン開始まで味方にボーナス意志力、クリティカル率、摩耗アーマーポイントを与える。"
 LocHelptext="一時的な意志力、クリティカル率、摩耗アーマーポイントボーナスを味方に与える。"
-LocPromotionPopupText="<Bullet/>味方ターゲットに摩耗（シールド）HPを1追加。加えて精神融合を使用しているサイキック兵のサイキック攻撃スコアの1/30分増加する。<br/><Bullet/>味方ターゲットの意志力がサイキック兵のサイキック攻撃スコアの1/10分増加する。<br/>効果はサイキック兵の次のターンまで持続する。<br/>クールダウン：3ターン。<br/><Bullet/>ターゲットにできるのは視認可能な味方のみ。<br/><Bullet/>サイキック・アンプを改良すると、得られるボーナス意志力と摩耗HPも増加する。<br/><Bullet/>行動値1を消費するが、ターンは終了しない。<br/><Bullet/> また、サイキック兵のサイキック攻撃スコア10につき1のクリティカル率を味方に与える。<br/>"
+LocPromotionPopupText="<Bullet/>味方ターゲットに摩耗（シールド）HPを1追加。加えて精神融合を使用しているサイキック兵のサイキック攻撃スコアの1/30分増加する。<br/><Bullet/>味方ターゲットの意志力がサイキック兵のサイキック攻撃スコアの1/10分増加する。<br/>効果はサイキック兵の次のターンまで持続する。<br/>クールダウン：3ターン。<br/><Bullet/>ターゲットにできるのは視認可能な味方のみ。<br/><Bullet/>サイキック・アンプを改良すると、得られるボーナス意志力と摩耗HPも増加する。<br/><Bullet/>行動値1を消費するが、ターンは終了しない。<br/><Bullet/>また、サイキック兵のサイキック攻撃スコア10につき1のクリティカル率を味方に与える。<br/>"
 
 [SoulMerge X2AbilityTemplate]
 LocFriendlyName="魂魄融合"
@@ -746,7 +746,7 @@ LocFriendlyName="フォーミダブル"
 LocFlyOverText="フォーミダブル"
 LocLongDescription="装備品の防御力向上が図られる。これによって2ポイントの摩耗アーマーを獲得し、爆発物の攻撃によって受けるダメージが<Ability:BlastPadding/>%減少する。"
 LocHelpText="ボーナスHPを獲得し爆発ダメージを減少させる。"
-LocPromotionPopupText="<Bullet/> フォーミダブルは爆発ダメージを<Ability:BlastPadding/>%減少させる。
+LocPromotionPopupText="<Bullet/>フォーミダブルは爆発ダメージを<Ability:BlastPadding/>%減少させる。
 
 ; Updated perk loc
 
@@ -772,7 +772,7 @@ LocFriendlyName="頭上の死神"
 LocLongDescription="自分より低い位置にいる敵を<Ability:WeaponName/>で倒した場合、消費される行動値が1で済み、ターン終了とならない。スナイパーライフルの長距離射程命中率にボーナスを追加する。"
 LocHelpText="自分より低い位置にいる敵を<Ability:WeaponName/>で倒した場合、消費される行動値が1で済み、ターン終了とならない。"
 LocFlyOverText="頭上の死神"
-LocPromotionPopupText="<Bullet/>頭上の死神はピストル関連のアビリティと相性が良い。また、兵士の機動力向上にも役立つ。<br/><Bullet/> スナイパーライフルの長距離射程命中率にボーナスを追加する。"
+LocPromotionPopupText="<Bullet/>頭上の死神はピストル関連のアビリティと相性が良い。また、兵士の機動力向上にも役立つ。<br/><Bullet/>スナイパーライフルの長距離射程命中率にボーナスを追加する。"
 
 [XComGame.Implacable X2AbilityTemplate]
 [Implacable X2AbilityTemplate]
@@ -828,7 +828,7 @@ LocFriendlyName="ハッキング"
 LocLongDescription="グレムリンを使ってネットワーク・アクセスポイントのハッキングを試みる。"
 LocHelpText="標的をグレムリンでハッキングすることができる。"
 LocFlyOverText="ハッキング"
-LocPromotionPopupText="<Bullet/> グレムリンを使用して、マップアイテム（チェストやワークステーション）を離れた場所からハッキングできる。<br/>"
+LocPromotionPopupText="<Bullet/>グレムリンを使用して、マップアイテム（チェストやワークステーション）を離れた場所からハッキングできる。<br/>"
 
 [XComGame.EverVigilant X2AbilityTemplate]
 [EverVigilant X2AbilityTemplate]
@@ -1006,7 +1006,7 @@ LocFriendlyName="狩人の本能"
 LocLongDescription="側面や背後から近づいた敵に対する遠距離攻撃ダメージ+<Ability:HUNTERSINSTINCTDMG/>。"
 LocHelpText="側面や背後から近づいた敵に対する遠距離攻撃ダメージ+<Ability:HUNTERSINSTINCTDMG/>。"
 LocFlyOverText="狩人の本能"
-LocPromotionPopupText="<Bullet/> 側面や背後から近づいた敵に対する遠距離攻撃ダメージ+<Ability:HUNTERSINSTINCTDMG/>。"
+LocPromotionPopupText="<Bullet/>側面や背後から近づいた敵に対する遠距離攻撃ダメージ+<Ability:HUNTERSINSTINCTDMG/>。"
 
 [HitWhereItHurts X2AbilityTemplate]
 LocFriendlyName="デッドショット"

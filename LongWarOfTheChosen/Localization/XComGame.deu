@@ -5688,7 +5688,7 @@ LocPromotionPopupText="<Bullet/> Du beginnst jede Mission mit <Ability:SUPERCHAR
 LocFriendlyName="Scharfschießen"
 LocHelpText="Deine Fernkampfangriffe erhalten +<Ability:SS_PIERCE/> Rüstungspenetration und +<Ability:SS_AIM_BONUS/> % Zielgenauigkeit gegen gedeckte Einheiten."
 LocLongDescription="Deine Fernkampfangriffe erhalten +<Ability:SS_PIERCE/> Rüstungspenetration und +<Ability:SS_AIM_BONUS/> % Zielgenauigkeit gegen gedeckte Einheiten."
-LocPromotionPopupText="<Bullet/>Deine Fernkampfangriffe gegen Einheiten in Deckung ignorieren +<Ability:SS_PIERCE/> Rüstung und erhalten +<Ability:SS_AIM_BONUS/> % Zielgenauigkeit.<br/>"
+LocPromotionPopupText="<Bullet/> Deine Fernkampfangriffe gegen Einheiten in Deckung ignorieren +<Ability:SS_PIERCE/> Rüstung und erhalten +<Ability:SS_AIM_BONUS/> % Zielgenauigkeit.<br/>"
 
 [Unlimitedpower_LW X2AbilityTemplate]
 LocFriendlyName="Unbegrenzte Leistung"
@@ -6221,7 +6221,7 @@ TacticalText="<Bullet/> Schon seit Menschengedenken benutzt die Menschheit eine 
 FriendlyName="Ballistischer Legierungsschild"
 FriendlyNamePlural="Ballistische Legierungsschilde"
 BriefSummary="Die Verwendung von Alien-Legierungen hat den Ballistischen Schild nicht nur leichter, sondern auch stärker gemacht. Komplexe Polymere und Keramiken ermöglichen auch eine bessere Wärmeverteilung, sodass die Träger seltener durch Splitter und geschmolzenes Material verletzt werden. Ein optionales LED-Tablet kann installiert werden, um die taktische Planung zu unterstützen."
-TacticalText="<Bullet/>Die Verwendung von Alien-Legierungen hat den Ballistischen Schild nicht nur leichter, sondern auch stärker gemacht. Komplexe Polymere und Keramiken ermöglichen auch eine bessere Wärmeverteilung, sodass die Träger seltener durch Splitter und geschmolzenes Material verletzt werden. Ein optionales LED-Tablet kann installiert werden, um die taktische Planung zu unterstützen."
+TacticalText="<Bullet/> Die Verwendung von Alien-Legierungen hat den Ballistischen Schild nicht nur leichter, sondern auch stärker gemacht. Komplexe Polymere und Keramiken ermöglichen auch eine bessere Wärmeverteilung, sodass die Träger seltener durch Splitter und geschmolzenes Material verletzt werden. Ein optionales LED-Tablet kann installiert werden, um die taktische Planung zu unterstützen."
 
 [TemplarBallisticShield_BM X2WeaponTemplate]
 FriendlyName="Ballistischer Energieschild"

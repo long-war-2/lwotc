@@ -28,7 +28,7 @@ LocFriendlyName="銃剣突撃"
 LocLongDescription="ダッシュ距離内であればどこからでも近接攻撃が行える。クールダウン：4ターン。"
 LocHelpText="ダッシュ距離内であればどこからでも近接攻撃が行える。"
 LocFlyOverText="銃剣突撃"
-LocPromotionPopupText="<Bullet/>ダッシュ距離内であればどこからでも近接攻撃が行える。<br/><Bullet/> クールダウン：4ターン。<br/>"
+LocPromotionPopupText="<Bullet/>ダッシュ距離内であればどこからでも近接攻撃が行える。<br/><Bullet/>クールダウン：4ターン。<br/>"
 
 [Beastmaster_LW X2AbilityTemplate]
 LocFriendlyName="ビーストマスター"

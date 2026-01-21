@@ -65,7 +65,7 @@ LocFriendlyName="Ordre de repli"
 LocLongDescription="Octroyez une action défensive gratuite, mais incontrôlable, à un allié visible qui a consommé toutes ses actions. Action gratuite."
 LocHelpText="Octroyez une action défensive gratuite, mais incontrôlable, à un allié visible qui a consommé toutes ses actions. Action gratuite."
 LocFlyOverText="Ordre de repli"
-LocPromotionPopupText="<Bullet/> Octroyez une action défensive gratuite, mais incontrôlable, à un allié visible qui a consommé toutes ses actions. Action gratuite.<br/><Bullet/>L'allié cherchera généralement une position plus sûre ou une position défensive.<br/><Bullet/> Inutilisable sur les unités en mode Vigilance ou effectuant des tirs de suppression.<br/>"
+LocPromotionPopupText="<Bullet/> Octroyez une action défensive gratuite, mais incontrôlable, à un allié visible qui a consommé toutes ses actions. Action gratuite.<br/><Bullet/> L'allié cherchera généralement une position plus sûre ou une position défensive.<br/><Bullet/> Inutilisable sur les unités en mode Vigilance ou effectuant des tirs de suppression.<br/>"
 
 [Scavenger X2AbilityTemplate]
 LocFriendlyName="Pillage"

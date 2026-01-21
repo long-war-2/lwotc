@@ -185,7 +185,7 @@ LocPromotionPopUpText="<Bullet/>このアビリティを発動させると、情
 LocFriendlyName="厳正なる試練"
 LocLongDescription="このオフィサーと共にミッションに成功した軍曹以下の階級の兵士はミッション後に自動的に昇進する。"
 LocHelpText="このオフィサーと共にミッションに成功した軍曹以下の階級の兵士はミッション後に自動的に昇進する。"
-LocPromotionPopUpText="<Bullet/> この効果は指揮を取るオフィサーがこのアビリティを持っているときにのみ発揮される。ミッションに参加した別のオフィサーに対しては効果を発揮しない。"
+LocPromotionPopUpText="<Bullet/>この効果は指揮を取るオフィサーがこのアビリティを持っているときにのみ発揮される。ミッションに参加した別のオフィサーに対しては効果を発揮しない。"
 
 ;---- END ABILITIES
 

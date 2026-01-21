@@ -172,7 +172,7 @@ LocFlyOverText="Napalm-X"
 ; LWOTC translated
 LocLongDescription="Tu lanzallamas ahora puede sembrar el pánico, y los enemigos ardiendo reciben 1 de daño adicional por tick."
 LocHelpText="Tu lanzallamas ahora puede sembrar el pánico, y los enemigos ardiendo reciben 1 de daño adicional por tick."
-LocPromotionPopupText="<Bullet/> Tu lanzallamas ahora puede sembrar el pánico entre los enemigos. Las unidades enemigas deben superar una prueba de voluntad para evitar los efectos negativos.<br/><Bullet/>La probabilidad de entrar en pánico es del <Ability:NAPALM_X_BASEVALUE>% + <Ability:GAUNTLET_CONVENTIONAL_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_MAG_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_BEAM_OPPOSED_STAT_STRENTH>%, dependiendo del nivel del guantelete del soldado, y se ve afectada negativamente por la puntuación de voluntad del objetivo.<br/><Bullet/> Los enemigos golpeados por Desalojar no se ven afectados por Napalm-X."
+LocPromotionPopupText="<Bullet/> Tu lanzallamas ahora puede sembrar el pánico entre los enemigos. Las unidades enemigas deben superar una prueba de voluntad para evitar los efectos negativos.<br/><Bullet/> La probabilidad de entrar en pánico es del <Ability:NAPALM_X_BASEVALUE>% + <Ability:GAUNTLET_CONVENTIONAL_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_MAG_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_BEAM_OPPOSED_STAT_STRENTH>%, dependiendo del nivel del guantelete del soldado, y se ve afectada negativamente por la puntuación de voluntad del objetivo.<br/><Bullet/> Los enemigos golpeados por Desalojar no se ven afectados por Napalm-X."
 ; End translated
 
 [PhosphorusPassive X2AbilityTemplate]
@@ -1052,12 +1052,12 @@ TacticalText="<Bullet/> La fuerza del guardián de la sombra es comparable a la 
 
 [AlienHunterPistol_MG X2WeaponTemplate]
 UnknownUtilityCategory="Pistola"
-TacticalText="<Bullet/> La fuerza del guardián de la sombra mejorado es similar a la de la pistola magnética, pero tiene una puntería y probabilidad de producir un impacto crítico mejoradas.\n<Bullet/> A diferencia del fusil de francotirador, las pistolas se pueden disparar con una sola acción.\n<Bullet/>Las bajas infligidas con la habilidad \"Bajo la sombra\" ocultan instantáneamente a la unidad.<br/><Bullet/>"
+TacticalText="<Bullet/> La fuerza del guardián de la sombra mejorado es similar a la de la pistola magnética, pero tiene una puntería y probabilidad de producir un impacto crítico mejoradas.\n<Bullet/> A diferencia del fusil de francotirador, las pistolas se pueden disparar con una sola acción.\n<Bullet/> Las bajas infligidas con la habilidad \"Bajo la sombra\" ocultan instantáneamente a la unidad.<br/><Bullet/> "
 
 
 [AlienHunterPistol_BM X2WeaponTemplate]
 UnknownUtilityCategory="Pistola"
-TacticalText="<Bullet/> La fuerza del guardián de la sombra potenciado es similar a la de la pistola de rayo, pero tiene una puntería y probabilidad de producir un impacto crítico mejoradas.\n<Bullet/> A diferencia del fusil de francotirador, las pistolas se pueden disparar con una sola acción.\n<Bullet/>Las bajas infligidas con la habilidad \"Bajo la sombra\" ocultan instantáneamente a la unidad.<br/><Bullet/> Las armas de plasma también hacen que el objetivo reciba 1 punto de daño addicional cada vez que es golpeado."
+TacticalText="<Bullet/> La fuerza del guardián de la sombra potenciado es similar a la de la pistola de rayo, pero tiene una puntería y probabilidad de producir un impacto crítico mejoradas.\n<Bullet/> A diferencia del fusil de francotirador, las pistolas se pueden disparar con una sola acción.\n<Bullet/> Las bajas infligidas con la habilidad \"Bajo la sombra\" ocultan instantáneamente a la unidad.<br/><Bullet/> Las armas de plasma también hacen que el objetivo reciba 1 punto de daño addicional cada vez que es golpeado."
 
 [SawedOffShotgun_CV X2WeaponTemplate]
 FriendlyName="Escopeta recortada"
@@ -7485,7 +7485,7 @@ LocFriendlyName="Aura de alivio"
 LocLongDescription="Esta unidad se ve afectada por un aura que la protege de cualquier deterioro mental."
 LocHelpText="Esta unidad se ve afectada por un aura que la protege de cualquier deterioro mental."
 LocFlyOverText="Aura de alivio"
-LocPromotionPopupText="<Bullet/>Aura de alivio tiene un radio de 4 casillas.<br/><Bullet/> Moverse junto a aliados orgánicos afectados limpiará inmediatamente sus discapacidades mentales.<br/>"
+LocPromotionPopupText="<Bullet/> Aura de alivio tiene un radio de 4 casillas.<br/><Bullet/> Moverse junto a aliados orgánicos afectados limpiará inmediatamente sus discapacidades mentales.<br/>"
 
 [SolacePassive X2AbilityTemplate]
 LocFriendlyName="Alivio"
@@ -7515,19 +7515,19 @@ LocPromotionPopupText="<Bullet/> Si un enemigo empieza su turno en una casilla a
 FriendlyName="Escudo Templario MK1"
 FriendlyNamePlural="Escudos Templarios MK1"
 BriefSummary="Una de las formas más antiguas de protección adicional conocida por la humanidad; nuestros antepasados utilizaron algún tipo de escudo desde los primeros días del uso de herramientas. Este es un modelo estándar antibalístico fabricado con placas de metal y refuerzos de cerámica diseñadas para detener la penetración de armas de alto calibre."
-TacticalText="<Bullet/>Una de las formas más antiguas de protección adicional conocida por la humanidad; nuestros antepasados utilizaron algún tipo de escudo desde los primeros días del uso de herramientas. Este es un modelo estándar antibalístico fabricado con placas de metal y refuerzos de cerámica diseñadas para detener la penetración de armas de alto calibre."
+TacticalText="<Bullet/> Una de las formas más antiguas de protección adicional conocida por la humanidad; nuestros antepasados utilizaron algún tipo de escudo desde los primeros días del uso de herramientas. Este es un modelo estándar antibalístico fabricado con placas de metal y refuerzos de cerámica diseñadas para detener la penetración de armas de alto calibre."
 
 [TemplarBallisticShield_MG X2WeaponTemplate]
 FriendlyName="Escudo Templario MK2"
 FriendlyNamePlural="Escudos Templarios MK2"
 BriefSummary="El uso de aleaciones alienígenas no solo ha hecho que el Escudo balístico sea liviano sino también más potente. Los polímeros complejos junto con refuerzos de cerámica han permitido una mejor distribución del calor. Adicionalmente, es posible implementar un panel LED que facilite la planificación táctica."
-TacticalText="<Bullet/>El uso de aleaciones alienígenas no sólo ha hecho que el Escudo balístico sea liviano sino también más potente. Los polímeros complejos junto con refuerzos de cerámica han permitido una mejor distribución del calor. Adicionalmente, es posible implementar un panel LED que facilite la planificación táctica."
+TacticalText="<Bullet/> El uso de aleaciones alienígenas no sólo ha hecho que el Escudo balístico sea liviano sino también más potente. Los polímeros complejos junto con refuerzos de cerámica han permitido una mejor distribución del calor. Adicionalmente, es posible implementar un panel LED que facilite la planificación táctica."
 
 [TemplarBallisticShield_BM X2WeaponTemplate]
 FriendlyName="Escudo Templario MK3"
 FriendlyNamePlural="Escudos Templarios MK3"
 BriefSummary="Los avances en la miniaturización permiten que este escudo aparte de contener defensas de materiales convencionales, incorpore medios más esotéricos como escudos de energía. Los nanomateriales posibilitan la autoreparación en el campo de batalla e incluso servir como puerto de carga en casos de emergencia. El sistema holográfico favorece una mayor conciencia de la situación."
-TacticalText="<Bullet/>Los avances en la miniaturización permiten que este escudo aparte de contener defensas de materiales convencionales, incorpore medios más esotéricos como escudos de energía. Los nanomateriales posibilitan la autoreparación en el campo de batalla e incluso servir como puerto de carga en casos de emergencia. El sistema holográfico favorece una mayor conciencia de la situación."
+TacticalText="<Bullet/> Los avances en la miniaturización permiten que este escudo aparte de contener defensas de materiales convencionales, incorpore medios más esotéricos como escudos de energía. Los nanomateriales posibilitan la autoreparación en el campo de batalla e incluso servir como puerto de carga en casos de emergencia. El sistema holográfico favorece una mayor conciencia de la situación."
 
 [TemplarBallisticShield_GenerateCover X2AbilityTemplate]
 LocFriendlyName="Escudo Templario"
@@ -7627,7 +7627,7 @@ LocFriendlyName="Aptitud superior"
 LocHelpText="Hender otorga un punto de concentración adicional."
 LocLongDescription="Hender otorga un punto de concentración adicional."
 LocFlyOverText="Aptitud superior"
-LocPromotionPopupText="<Bullet/>Hender otorga un punto de concentración adicional."
+LocPromotionPopupText="<Bullet/> Hender otorga un punto de concentración adicional."
 
 ; LWOTC Needs Translation (2)
 [DoubleRendFocusPassive X2AbilityTemplate]

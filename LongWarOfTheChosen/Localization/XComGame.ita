@@ -811,7 +811,7 @@ UnknownUtilityCategory="Pistola"
 
 [AlienHunterPistol_BM X2WeaponTemplate]
 UnknownUtilityCategory="Pistola"
-TacticalText="<Bullet/> La potenza della pistola dell'ombra potenziata è paragonabile a quella di una pistola energetica, ma la mira e la probabilità di colpo critico sono più alte.\n<Bullet/> A differenza del fucile di precisione, le pistole possono essere usate con una singola azione.\n<Bullet/>Le uccisioni effettuate con l'abilità \"Calo dell'ombra\" occultano istantaneamente l'unità.<br/><Bullet/> Le armi al plasma causano al bersaglio un ulteriore danno aggiuntivo ad ogni colpo."
+TacticalText="<Bullet/> La potenza della pistola dell'ombra potenziata è paragonabile a quella di una pistola energetica, ma la mira e la probabilità di colpo critico sono più alte.\n<Bullet/> A differenza del fucile di precisione, le pistole possono essere usate con una singola azione.\n<Bullet/> Le uccisioni effettuate con l'abilità \"Calo dell'ombra\" occultano istantaneamente l'unità.<br/><Bullet/> Le armi al plasma causano al bersaglio un ulteriore danno aggiuntivo ad ogni colpo."
 
 [SawedOffShotgun_CV X2WeaponTemplate]
 FriendlyName="Fucile a canne mozze"

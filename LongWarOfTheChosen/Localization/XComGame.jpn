@@ -108,7 +108,7 @@ LocFriendlyName="重火器系武器"
 LocFlyOverText="重火器系武器"
 LocLongDescription="この兵士は、ロケットランチャーと火炎放射器を組み合わせたXCOMのガントレットを使用できるように訓練されている。"
 LocHelpText="この兵士は、ロケットランチャーと火炎放射器を組み合わせたXCOMのガントレットを使用できるように訓練されている。"
-LocPromotionPopupText="<Bullet/>XCOMガントレットは、ミニロケットランチャーと火炎放射器を備える高度な装備である。<br/><Bullet/>ロケットランチャーには最初からロケットが1弾装填されており、半径3タイルが有効範囲となる。<br/><Bullet/>ターゲットは目視範囲内で定める。<br/><Bullet/>ロケットによるダメージは、着弾点から離れるほど低下する。<br/><Bullet/>火炎放射器は短射程の武器であり、円錐状の効果範囲内にいる複数の敵にダメージをもたらす。<br/><Bullet/>火炎放射器は1戦闘につき2回まで使用可能。アップグレードしなければ機械ユニットにはダメージを与えることができない。<br/><Bullet/>どちらのガントレットアビリティも行動値1を消費し、使用者のターンは終了する。<br/><Bullet/> ロケット弾の命中精度は射手の命中率、ターゲットまでの距離、同ターンでの行動値消費有無に影響される。命中精度の低いロケット弾は高い分散値を持ち、ターゲットからより離れた距離に着弾する可能性が高まる。ロケット弾の最大分散値はポップアップに表示され、ターゲットにカーソルを合わせた場合は着弾地点に対する分散値（平均）が表示される。"
+LocPromotionPopupText="<Bullet/>XCOMガントレットは、ミニロケットランチャーと火炎放射器を備える高度な装備である。<br/><Bullet/>ロケットランチャーには最初からロケットが1弾装填されており、半径3タイルが有効範囲となる。<br/><Bullet/>ターゲットは目視範囲内で定める。<br/><Bullet/>ロケットによるダメージは、着弾点から離れるほど低下する。<br/><Bullet/>火炎放射器は短射程の武器であり、円錐状の効果範囲内にいる複数の敵にダメージをもたらす。<br/><Bullet/>火炎放射器は1戦闘につき2回まで使用可能。アップグレードしなければ機械ユニットにはダメージを与えることができない。<br/><Bullet/>どちらのガントレットアビリティも行動値1を消費し、使用者のターンは終了する。<br/><Bullet/>ロケット弾の命中精度は射手の命中率、ターゲットまでの距離、同ターンでの行動値消費有無に影響される。命中精度の低いロケット弾は高い分散値を持ち、ターゲットからより離れた距離に着弾する可能性が高まる。ロケット弾の最大分散値はポップアップに表示され、ターゲットにカーソルを合わせた場合は着弾地点に対する分散値（平均）が表示される。"
 
 [LWFlamethrower X2AbilityTemplate]
 LocFriendlyName="火炎放射器"
@@ -137,7 +137,7 @@ LocFriendlyName="フォスフォラス"
 LocFlyOverText="フォスフォラス"
 LocLongDescription="火炎放射器が機械ユニットにダメージを与えることができ、アーマーを削る。"
 LocHelpText="火炎放射器が機械ユニットにダメージを与えることができ、アーマーを削る。"
-LocPromotionPopupText="<Bullet/>火炎放射器が機械ユニットにダメージを与えることができる。<br/><Bullet/> 火炎放射器による攻撃がアーマーを1削る。</br>"
+LocPromotionPopupText="<Bullet/>火炎放射器が機械ユニットにダメージを与えることができる。<br/><Bullet/>火炎放射器による攻撃がアーマーを1削る。</br>"
 
 [Incinerator X2AbilityTemplate]
 LocFriendlyName="インシネレーター"
@@ -399,7 +399,7 @@ LocFriendlyName="フラッシュ"
 LocLongDescription="与えるダメージはわずか、あるいはゼロだが、命中すればターゲットの防御と回避にペナルティを与え位置を変えさせる事ができる命中率ボーナス付きの特殊射撃。"
 LocHelpText="ダメージはわずかあるいはゼロだが、防御と回避ペナルティを与えターゲットに位置を変えさせる特殊射撃。"
 LocFlyOverText="フラッシュ"
-LocPromotionPopupText="<Bullet/>弾薬<Ability:SelfAmmoCost/>発を消費する。<br/><Bullet/>クールダウン：2ターン。<br/><Bullet/>命中率+30。<br/><Bullet/>クリティカルや追加効果は発生しない。<br/><Bullet/> ターゲットはXCOMの次のターン開始まで防御と回避を10失う。"
+LocPromotionPopupText="<Bullet/>弾薬<Ability:SelfAmmoCost/>発を消費する。<br/><Bullet/>クールダウン：2ターン。<br/><Bullet/>命中率+30。<br/><Bullet/>クリティカルや追加効果は発生しない。<br/><Bullet/>ターゲットはXCOMの次のターン開始まで防御と回避を10失う。"
 str_FlushEffect="フラッシュ"
 
 ;;;;;;;;;;;;;;;;;;;;  RANGER ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
@@ -554,21 +554,21 @@ LocFriendlyName="チェーン・ライトニング"
 LocLongDescription="視界内のスタンが有効な敵すべてに対してアーク放電器を発射する。"
 LocHelpText="視界内のスタンが有効な敵すべてに対してアーク放電器を発射する。"
 LocFlyOverText="チェーン・ライトニング"
-LocPromotionPopupText="<Bullet/>視界内のスタンが有効な敵すべてに対してアーク放電器を発射する。<br/><Bullet/>行動値1を消費し、使用者のターンは終了する。<br/><Bullet/>クールダウン：5ターン。<br/><Bullet/> 潜伏状態からは使用不可。"
+LocPromotionPopupText="<Bullet/>視界内のスタンが有効な敵すべてに対してアーク放電器を発射する。<br/><Bullet/>行動値1を消費し、使用者のターンは終了する。<br/><Bullet/>クールダウン：5ターン。<br/><Bullet/>潜伏状態からは使用不可。"
 
 [Leadership X2AbilityTemplate]
 LocFriendlyName="リーダーシップ"
 LocLongDescription="このオフィサーの指揮下でミッションをいくつか経験すると、意志力、回避、潜入にボーナスが付与され、同伴したミッションの数が増えるほど恩恵は大きくなる。"
 LocHelpTxt="このオフィサーの指揮下でミッションをいくつか経験すると、意志力、回避、潜入にボーナスが付与され、同伴したミッションの数が増えるほど恩恵は大きくなる。"
 LocFlyOverText="司令官"
-LocPromotionPopupText="<Bullet/> このオフィサーの指揮下でミッションをいくつか経験すると、意志力、回避、潜入にボーナスが付与され、同伴したミッションの数が増えるほど恩恵は大きくなる。"
+LocPromotionPopupText="<Bullet/>このオフィサーの指揮下でミッションをいくつか経験すると、意志力、回避、潜入にボーナスが付与され、同伴したミッションの数が増えるほど恩恵は大きくなる。"
 
 [EspritdeCorps X2AbilityTemplate]
 LocFriendlyName="団結心"
 LocLongDescription="以前、このオフィサーの指揮下でミッションを経験したことで、意志力、回避、潜入にボーナスが付与された。同伴するミッションの数が増えるほど恩恵は大きくなる。"
 LocHelpTxt="以前、この司令官の指揮下でミッションを経験したことで、意志力、回避、潜入にボーナスが付与された。同伴するミッションの数が増えるほど恩恵は大きくなる。"
 LocFlyOverText="団結心"
-LocPromotionPopupText="<Bullet/> 以前、このオフィサーの指揮下でミッションを経験したことで、意志力、回避、潜入にボーナスが付与された。同伴するミッションの数が増えるほど恩恵は大きくなる。"
+LocPromotionPopupText="<Bullet/>以前、このオフィサーの指揮下でミッションを経験したことで、意志力、回避、潜入にボーナスが付与された。同伴するミッションの数が増えるほど恩恵は大きくなる。"
 
 ;;;;;;;;;;;;;;;;;;;; GEAR ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -4578,7 +4578,7 @@ DisplayName="成功したアドヴェントの襲撃："
 FriendlyName="成形炸薬"
 FriendlyNamePlural="成形炸薬"
 BriefSummary="壁を破壊するために用いられる小型指向性爆薬。"
-TacticalText="<Bullet/> 成形炸薬は限られた射程と効果範囲を持ち、たとえグレネードランチャーに装填されていてもダメージを与えない。<br/><Bullet/> 大きな音を発するため、近くの敵は警戒態勢に入る。<br/><Bullet/>アビリティにおいては、サポートグレネードとして扱われる。"
+TacticalText="<Bullet/>成形炸薬は限られた射程と効果範囲を持ち、たとえグレネードランチャーに装填されていてもダメージを与えない。<br/><Bullet/>大きな音を発するため、近くの敵は警戒態勢に入る。<br/><Bullet/>アビリティにおいては、サポートグレネードとして扱われる。"
 ThrownAbilityName="成形炸薬を投げる"
 ThrownAbilityHelpText="周囲の物体を破壊する。"
 LaunchedAbilityname="成形炸薬を発射する"
@@ -4597,10 +4597,10 @@ LocHelpText="チェストを開閉する。"
 TacticalText="<Bullet/>サイキック兵がサイキック・パワーを使用するにはサイキック・アンプが欠かせない。\n<Bullet/>改良型のサイキック・アンプは、サイキック兵のサイキック・パワーを増幅させ、サイキック・アビリティの効力を左右する。\n<Bullet/>サイキックアンプによって付近の警備兵を混乱させることができ、兵士は潜入にボーナスを得る。"
 
 [PsiAmp_MG X2WeaponTemplate]
-TacticalText="<Bullet/>改良型サイキック・アンプは、サイキック兵のサイキック・パワーを10増幅する。\n<Bullet/>サイキック・パワーは多くのサイキック・アビリティの効力を左右する。\n<Bullet/>改良型サイキック・アンプは、多くのサイキック攻撃のダメージも増幅させる。\n<Bullet/> サイキックアンプによって付近の警備兵を混乱させることができ、兵士は潜入にボーナスを得る。"
+TacticalText="<Bullet/>改良型サイキック・アンプは、サイキック兵のサイキック・パワーを10増幅する。\n<Bullet/>サイキック・パワーは多くのサイキック・アビリティの効力を左右する。\n<Bullet/>改良型サイキック・アンプは、多くのサイキック攻撃のダメージも増幅させる。\n<Bullet/>サイキックアンプによって付近の警備兵を混乱させることができ、兵士は潜入にボーナスを得る。"
 
 [PsiAmp_BM X2WeaponTemplate]
-TacticalText="<Bullet/>サイキック・アンプは、サイキック兵のサイキック・パワーを20増幅する。\n<Bullet/>サイキック・パワーは多くのサイキック・アビリティの効力を左右する。\n<Bullet/>エイリアン・サイキック・アンプは、多くのサイキック攻撃のダメージも増幅させる。\n<Bullet/> サイキックアンプによって付近の警備兵を混乱させることができ、兵士は潜入にボーナスを得る。"
+TacticalText="<Bullet/>サイキック・アンプは、サイキック兵のサイキック・パワーを20増幅する。\n<Bullet/>サイキック・パワーは多くのサイキック・アビリティの効力を左右する。\n<Bullet/>エイリアン・サイキック・アンプは、多くのサイキック攻撃のダメージも増幅させる。\n<Bullet/>サイキックアンプによって付近の警備兵を混乱させることができ、兵士は潜入にボーナスを得る。"
 
 [Reward_Radio_Relay X2RewardTemplate]
 DisplayName="無線中継器"
@@ -4663,7 +4663,7 @@ TimerSmashnGrabTitle="増援"
 TimerSmashNGrabSubTitle="エイリアンの増援までのターン"
 
 [Fuse X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> 信管のクールダウンは<Ability:SelfCooldown/>ターン。<br/>"
+LocPromotionPopupText="<Bullet/>信管のクールダウンは<Ability:SelfCooldown/>ターン。<br/>"
 
 [BulletShred X2AbilityTemplate]
 LocLongDescription="装甲破壊攻撃には大きなクリティカルボーナスが与えられ、またターゲットは以降の全ての攻撃から受けるダメージが+<Ability:RuptureAmount/> される。"
@@ -4672,31 +4672,31 @@ LocHelpText="装甲破壊攻撃には大きなクリティカルボーナスが�
 [SoulSteal X2AbilityTemplate]
 LocLongDescription="魂の一撃で与えたダメージの半分を回復し、無傷なら摩耗アーマーポイントに1を与える。"
 LocHelpText="魂の一撃は傷ついた兵士を癒やすか、摩耗アーマー1ポイントを与える。
-LocPromotionPopupText="<Bullet/> 魂の強奪は傷ついた兵士の体力を回復させ, 傷ついていない兵士に摩耗アーマーポイント1を与える。<br/><Bullet/> 兵士は魂の強奪によって摩耗アーマーポイントを8より多くまで増やすことはできない。"
+LocPromotionPopupText="<Bullet/>魂の強奪は傷ついた兵士の体力を回復させ, 傷ついていない兵士に摩耗アーマーポイント1を与える。<br/><Bullet/>兵士は魂の強奪によって摩耗アーマーポイントを8より多くまで増やすことはできない。"
 
 [Solace_LW X2AbilityTemplate]
 LocFriendlyName="慰め"
 LocFlyOverText="慰め"
 LocLongDescription="サイキック兵は味方の精神的不調を即座に癒やす。"
 LocHelpText="サイキック兵は味方の精神的不調を即座に癒やす。"
-LocPromotionPopupText="<Bullet/> 慰めは混乱、マインドコントロール、パニックとスタン状態を打ち消す。<br/>"
+LocPromotionPopupText="<Bullet/>慰めは混乱、マインドコントロール、パニックとスタン状態を打ち消す。<br/>"
 
 [Whirlwind2 X2AbilityTemplate]
 LocFriendlyName="旋風斬り"
 LocLongDescription="自分のターン中に近接攻撃を命中させるとボーナス移動ポイントを得る。"
 LocHelpText="近接攻撃成功後に移動ポイントを得る。"
 LocFlyOverText="旋風斬り"
-LocPromotionPopupText="<Bullet/> このアビリティによって移動ポイントを得られるのは1ターンに一回のみ。<br/><Bullet/> リーパーが発動している場合は発動しない。<br/>"
+LocPromotionPopupText="<Bullet/>このアビリティによって移動ポイントを得られるのは1ターンに一回のみ。<br/><Bullet/>リーパーが発動している場合は発動しない。<br/>"
 
 [QuickStudy X2AbilityTemplate]
 LocFriendlyName="速習"
 LocLongDescription="オフィサーとAWCのアビリティを半分の時間で習得する。"
 LocHelpText="オフィサーとAWCのアビリティを半分の時間で習得する。"
-LocPromotionPopupText="<Bullet/> オフィサーとAWCのアビリティを半分の時間で習得する。"
+LocPromotionPopupText="<Bullet/>オフィサーとAWCのアビリティを半分の時間で習得する。"
 
 [GrenadeLauncher_MG X2GrenadeLauncherTemplate]
 BriefSummary="我々の先進的なグレネードランチャーは磁力兵器の技術を用いて従来のランチャーより遠くまでグレネードを投射することができる。"
-TacticalText="<Bullet/> 先進的なグレネードランチャーは標準のグレネードランチャーより優れた射程を持つ。\n."
+TacticalText="<Bullet/>先進的なグレネードランチャーは標準のグレネードランチャーより優れた射程を持つ。\n."
 
 [CoupDeGrace2 X2AbilityTemplate]
 LocFriendlyName="とどめの一撃"
@@ -4709,27 +4709,27 @@ LocPromotionPopupText="<Bullet/>とどめの一撃によって気絶、パニッ
 LocPromotionPopupText="<Bullet/>フェースオフは積極的な位置取りによって最大限の効果を発揮し、複数のターゲットに攻撃を命中させることができる。<br/><Bullet/>フェースオフはクールダウンに<Ability:SelfCooldown/>ターンを要する。<br/><Bullet/>潜伏状態からは使用不可。"
 
 [CoveringFire X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/>敵の行動が引き金となった場合、援護射撃は敵の行動が完了する前に実施される。<br/><Bullet/> さらに、援護射撃アビリティを有しているとリアクションショットを撃った敵に対して一時的な命中率ペナルティを与える。そのリアクションショットが援護射撃か否かは問わない。<br/>"
+LocPromotionPopupText="<Bullet/>敵の行動が引き金となった場合、援護射撃は敵の行動が完了する前に実施される。<br/><Bullet/>さらに、援護射撃アビリティを有しているとリアクションショットを撃った敵に対して一時的な命中率ペナルティを与える。そのリアクションショットが援護射撃か否かは問わない。<br/>"
 
 [IntheZone X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/>シリアルキラーは1回のアクションで敵を次々に倒せる（敵を倒すのに行動値は消費しない）。<br/><Bullet/>ただし、倒すたびにクリティカルヒット率は下がっていく。<br/><Bullet/>シリアルキラーはクールダウンに<Ability:SelfCooldown/>ターンを要する。<br/><Bullet/> 敵を倒すごとに以降の攻撃のダメージが減少する。<br/>"
+LocPromotionPopupText="<Bullet/>シリアルキラーは1回のアクションで敵を次々に倒せる（敵を倒すのに行動値は消費しない）。<br/><Bullet/>ただし、倒すたびにクリティカルヒット率は下がっていく。<br/><Bullet/>シリアルキラーはクールダウンに<Ability:SelfCooldown/>ターンを要する。<br/><Bullet/>敵を倒すごとに以降の攻撃のダメージが減少する。<br/>"
 
 [FlashbangGrenade X2GrenadeTemplate]
-TacticalText="<Bullet/>フラッシュグレネードに殺傷力はないが、広範囲の敵の感覚を麻痺させ、混乱させる。<br><Bullet/>味方の隊員は影響を受けない。<br/><Bullet/> 一部の強力な敵は耐性を持つことがある。"
+TacticalText="<Bullet/>フラッシュグレネードに殺傷力はないが、広範囲の敵の感覚を麻痺させ、混乱させる。<br><Bullet/>味方の隊員は影響を受けない。<br/><Bullet/>一部の強力な敵は耐性を持つことがある。"
 ThrownAbilityHelpText="効果範囲内の敵を混乱させる。"
 LaunchedAbilityHelpText="効果範囲内の敵を混乱させる。"
 
 [XComGame.ThreatAssessment X2AbilityTemplate]
 [ThreatAssessment X2AbilityTemplate]
 LocLongDescription="支援プロトコルがターゲットを監視：援護射撃状態にする。"
-LocPromotionPopupText="<Bullet/> 支援プロトコルがターゲットを監視：援護射撃状態にする。"
+LocPromotionPopupText="<Bullet/>支援プロトコルがターゲットを監視：援護射撃状態にする。"
 
 [DoubleTap2 X2AbilityTemplate]
 LocFriendlyName="ダブルタップ"
 LocFlyOverText="ダブルタップ"
 LocLongDescription="通常射撃を行い、射撃または監視に限定された追加アクションを得る。"
 LocHelpText="通常射撃を行い、追加射撃または監視を得る。"
-LocPromotionPopupText="<Bullet/>通常射撃を行い、通常射撃、精密射撃、デッドアイ、クビキリ、監視に限定された追加アクションを得る。<br/><Bullet/> <Ability:SelfCooldown/>ターンクールダウン。<br/>"
+LocPromotionPopupText="<Bullet/>通常射撃を行い、通常射撃、精密射撃、デッドアイ、クビキリ、監視に限定された追加アクションを得る。<br/><Bullet/><Ability:SelfCooldown/>ターンクールダウン。<br/>"
 
 [DoubleTap2Bonus X2AbilityTemplate]
 LocFriendlyName="ダブルタップ"
@@ -4801,7 +4801,7 @@ LocFriendlyName="修復"
 LocLongDescription="BITは味方ロボットの修理を行うことができる。強化されたBITはより効果的に修理を行うことができる。"
 LocHelpText="BITは味方ロボットの修理を行うことができる。"
 LocFlyOverText="修復"
-LocPromotionPopupText="<Bullet/> 修復によって体力が<Ability:Repair_HealHP/>回復する。<br/><Bullet/>BITをアップグレードすることで修復によるHPの回復量が増加する。<br/><Bullet/>最初の行動として修復を行ってもターン終了とならない。<br/><Bullet/>修復は1ミッションにつき<Ability:Repair_Charges/>チャージ。<br/>"
+LocPromotionPopupText="<Bullet/>修復によって体力が<Ability:Repair_HealHP/>回復する。<br/><Bullet/>BITをアップグレードすることで修復によるHPの回復量が増加する。<br/><Bullet/>最初の行動として修復を行ってもターン終了とならない。<br/><Bullet/>修復は1ミッションにつき<Ability:Repair_Charges/>チャージ。<br/>"
 
 [AbsorptionField X2AbilityTemplate]
 LocFriendlyName="チャネリングフィールド"
@@ -4851,7 +4851,7 @@ LocPromotionPopupText="<Bullet/>ハンター・プロトコルによって、非
 LocFriendlyName="ノヴァ"
 LocLongDescription="エネルギーを爆発的に放出して、近くにいるすべてのユニットにダメージを与える。行動値は消費せず、クールダウン時間も発生しないが、初撃以降はノヴァを使用するたびにSPARKがダメージを受ける。"
 LocHelpText="すべてのユニットに爆発でダメージを与える。初撃以降はノヴァを使用するたびにSPARKがダメージを受ける。"
-LocPromotionPopupText="<Bullet/>ノヴァは行動値を消費せず、クールダウンもない。<br/><Bullet/> ミッション最初のノヴァ攻撃では、SPARKはダメージを受けない。<br/><Bullet/>ただし、初撃以降のノヴァ攻撃はSPARKに<Ability:Nova_Damage/>の蓄積ダメージを与えていく。<br/>"
+LocPromotionPopupText="<Bullet/>ノヴァは行動値を消費せず、クールダウンもない。<br/><Bullet/>ミッション最初のノヴァ攻撃では、SPARKはダメージを受けない。<br/><Bullet/>ただし、初撃以降のノヴァ攻撃はSPARKに<Ability:Nova_Damage/>の蓄積ダメージを与えていく。<br/>"
 
 ;Marauder
 [SkirmisherStrike X2AbilityTemplate]

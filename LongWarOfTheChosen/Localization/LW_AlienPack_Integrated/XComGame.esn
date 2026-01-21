@@ -1,8 +1,8 @@
 [XComMultiplayerTacticalUI]
 MutonM2_LW="<Bullet/> El Centurión Mutón puede hacer todo aquello de lo que es capaz el Mutón, más un grito de guerra que mejora las habilidades de algunos aliados cercanos, así como cargar con su bayoneta contra cualquier enemigo que se encuentre a distancia de carrera.\n<Bullet/> A diferencia de los Mutones de la era de la invasión, los nuevos híbridos son muy eficaces en el combate cercano.\n<Bullet/> Su habilidad Contraataque les permite devolver un ataque a quienquiera que se enfrente a ellos en combate cuerpo a cuerpo.\n<Bullet/> También pueden proceder a la Ejecución de enemigos incapacitados cercanos; bajo ninguna circunstancia debes permitir que un Mutón enemigo se acerque a una unidad tuya que esté aturdida.\n<Bullet/> También pueden recurrir a la Contención con sus fusiles, y su armadura de batalla les proporciona una protección constante."
-MutonM3_LW="<Bullet/>"
+MutonM3_LW="<Bullet/> "
 
-DroneM1="<Bullet/>El dron guardián es una unidad de reconocimiento barata, creada principalmente para el control de multitudes civiles."
+DroneM1="<Bullet/> El dron guardián es una unidad de reconocimiento barata, creada principalmente para el control de multitudes civiles."
 
 [CorpseDrone X2ItemTemplate]
 FriendlyName="Restos de dron"

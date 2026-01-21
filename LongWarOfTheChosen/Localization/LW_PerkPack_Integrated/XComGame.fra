@@ -616,7 +616,7 @@ LocFlyOverText="Grenades incapacitantes"
 LocLongDescription="Vos grenades flash ont 50% de chances d'étourdir les ennemis dans la zone d'effet pendant 1 tour."
 LocHelpText="Vos grenades flash ont 50% de chances d'étourdir les ennemis."
 ; LWOTC translated
-LocPromotionPopupText="<Bullet/> Vos grenades flash ont 50% de chances d'étourdir les ennemis pendant 1 tour.<br/><Bullet/>La résistance innée aux grenades flash n'affecte pas les chances d'étourdissement.<br/>"
+LocPromotionPopupText="<Bullet/> Vos grenades flash ont 50% de chances d'étourdir les ennemis pendant 1 tour.<br/><Bullet/> La résistance innée aux grenades flash n'affecte pas les chances d'étourdissement.<br/>"
 ; End translated
 
 [X2Item_StingGrenade]

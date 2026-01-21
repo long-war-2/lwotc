@@ -430,7 +430,7 @@ LocFriendlyName="Największe bum"
 LocLongDescription="Twoje granaty i standardowe rakiety mogą zadawać obrażenia krytyczne (<Ability:BIGGESTBOOMSCHANCE/>% szans na +<Ability:BIGGESTBOOMSDAMAGE/> pkt. obrażeń)."
 LocHelpText="Twoje granaty i standardowe rakiety mogą zadawać obrażenia krytyczne."
 LocFlyOverText="Największe bum"
-LocPromotionPopupText="<Bullet/> Granaty, standardowe rakiety i mikropociski MEC mogą zadać obrażenia krytyczne (<Ability:BIGGESTBOOMSCHANCE/>%  i szansy na +<Ability:BIGGESTBOOMSDAMAGE/> obrażenia).<br/><Bullet/><Ability:BIGGESTBOOMSCHANCE/> Inne modyfikatory szansy na trafienie krytyczne nie mają wpływu na % szansy na obrażenia krytyczne.<br/><Bullet/> Nie ma zastosowania do nieniszczących granatów, rakiety ogłuszającej ani zdolności Niszczyciela bunkrów.<br/><Bullet/> Granaty trafią krytycznie zapewnia +1 obrażenia trwającym efektom zadającym obrażenia, takim jak ogień.
+LocPromotionPopupText="<Bullet/> Granaty, standardowe rakiety i mikropociski MEC mogą zadać obrażenia krytyczne (<Ability:BIGGESTBOOMSCHANCE/>%  i szansy na +<Ability:BIGGESTBOOMSDAMAGE/> obrażenia).<br/><Bullet/> <Ability:BIGGESTBOOMSCHANCE/> Inne modyfikatory szansy na trafienie krytyczne nie mają wpływu na % szansy na obrażenia krytyczne.<br/><Bullet/> Nie ma zastosowania do nieniszczących granatów, rakiety ogłuszającej ani zdolności Niszczyciela bunkrów.<br/><Bullet/> Granaty trafią krytycznie zapewnia +1 obrażenia trwającym efektom zadającym obrażenia, takim jak ogień.
 
 ;;;;;;;;;;;;;;;;;;;;  GUNNER ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -4959,7 +4959,7 @@ DisplayName="Skuteczne ataki ADVENT-u:"
 
 ; just fix typo
 [Insanity X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/>Szaleństwo ma czas odnowienia <Ability:SelfCooldown_LW/>.<br/><Bullet/> Szaleństwo wymaga rywalizacji pomiędzy statystyką Siły Psi Operatora Psi a wolą celu.<br/><Bullet/> Szaleństwo może dezorientować, ogłuszać , lub kontrolować umysł celu, jeśli się powiedzie.<br/><Bullet/> Mechaniczni wrogowie są całkowicie odporni na szaleństwo.<br/><Bullet/> Szaleństwo wymaga jednej akcji i nie kończy twojej tury.<br/>"
+LocPromotionPopupText="<Bullet/> Szaleństwo ma czas odnowienia <Ability:SelfCooldown_LW/>.<br/><Bullet/> Szaleństwo wymaga rywalizacji pomiędzy statystyką Siły Psi Operatora Psi a wolą celu.<br/><Bullet/> Szaleństwo może dezorientować, ogłuszać , lub kontrolować umysł celu, jeśli się powiedzie.<br/><Bullet/> Mechaniczni wrogowie są całkowicie odporni na szaleństwo.<br/><Bullet/> Szaleństwo wymaga jednej akcji i nie kończy twojej tury.<br/>"
 
 [XComGame.UIEndGameStats]
 Victory=ZWYCIĘSTWO W LONG WAR
@@ -6073,7 +6073,7 @@ LocPromotionPopupText = "<Bullet/> Rozpoczyna każdą bitwę z ładunkami <Umiej
 LocFriendlyName = "Precyzyjne celowanie"
 LocHelpText = "Twoje ataki dystansowe zyskują +<Ability:SS_PIERCE/> przebicia pancerza i +<Ability:SS_AIM_BONUS/> celowania przeciwko jednostkom za osłoną."
 LocLongDescription = "Twoje ataki dystansowe zyskują +<Ability:SS_PIERCE/> przebicia pancerza i +<Ability:SS_AIM_BONUS/> celowania przeciwko jednostkom za osłoną."
-LocPromotionPopupText = "<Bullet/>Twoje ataki dystansowe zyskują +<Ability:SS_PIERCE/> przebicia pancerza i +<Ability:SS_AIM_BONUS/> celowania przeciwko jednostkom za osłoną.<br/>"
+LocPromotionPopupText = "<Bullet/> Twoje ataki dystansowe zyskują +<Ability:SS_PIERCE/> przebicia pancerza i +<Ability:SS_AIM_BONUS/> celowania przeciwko jednostkom za osłoną.<br/>"
 
 [Unlimitedpower_LW X2AbilityTemplate]
 LocFriendlyName = "Nielimitowana moc"
@@ -6599,19 +6599,19 @@ LocPromotionPopupText="<Bullet/> Jeśli wróg rozpocznie swoją turę na sąsied
 FriendlyName="Tarcza Templariusza MK1"
 FriendlyNamePlural="Tarcze Templariusza MK1"
 BriefSummary="Jedna z najstarszych form dodatkowej ochrony znana ludzkości. Ludzie używają jakiejś formy tarczy od najwcześniejszych dni używania narzędzi. Ten jest standardowym modelem antybalistycznym z metalowymi lub ceramicznymi płytkami zaprojektowanymi tak, aby zapobiegać penetracji broni dużego kalibru."
-TacticalText="<Bullet/>Jedna z najstarszych form dodatkowej ochrony znana ludzkości. Ludzie używają jakiejś formy tarczy od najwcześniejszych dni używania narzędzi. Ten jest standardowym modelem antybalistycznym z metalowymi lub ceramicznymi płytkami zaprojektowanymi tak, aby zapobiegać penetracji broni dużego kalibru."
+TacticalText="<Bullet/> Jedna z najstarszych form dodatkowej ochrony znana ludzkości. Ludzie używają jakiejś formy tarczy od najwcześniejszych dni używania narzędzi. Ten jest standardowym modelem antybalistycznym z metalowymi lub ceramicznymi płytkami zaprojektowanymi tak, aby zapobiegać penetracji broni dużego kalibru."
 
 [TemplarBallisticShield_MG X2WeaponTemplate]
 FriendlyName="Tarcza Templariusza MK2"
 FriendlyNamePlural="Tarcze Templariusza MK2"
 BriefSummary="Zastosowanie obcych stopów sprawiło, że Tarcza Balistyczna jest nie tylko lekka, ale także mocniejsza. Złożone polimery i ceramika umożliwiają również lepszą dystrybucję ciepła, ponieważ tacy użytkownicy są mniej narażeni na obrażenia odłamkami i stopionym materiałem w przypadku stosowania własnych środków ochronnych. Aby ułatwić planowanie taktyczne, można zainstalować opcjonalny tablet LED."
-TacticalText="<Bullet/>Zastosowanie obcych stopów sprawiło, że Tarcza Balistyczna jest nie tylko lekka, ale także mocniejsza. Złożone polimery i ceramika umożliwiają również lepszą dystrybucję ciepła, ponieważ tacy użytkownicy są mniej narażeni na obrażenia odłamkami i stopionym materiałem w przypadku stosowania własnych środków ochronnych. Aby ułatwić planowanie taktyczne, można zainstalować opcjonalny tablet LED."
+TacticalText="<Bullet/> Zastosowanie obcych stopów sprawiło, że Tarcza Balistyczna jest nie tylko lekka, ale także mocniejsza. Złożone polimery i ceramika umożliwiają również lepszą dystrybucję ciepła, ponieważ tacy użytkownicy są mniej narażeni na obrażenia odłamkami i stopionym materiałem w przypadku stosowania własnych środków ochronnych. Aby ułatwić planowanie taktyczne, można zainstalować opcjonalny tablet LED."
 
 [TemplarBallisticShield_BM X2WeaponTemplate]
 FriendlyName="Tarcza Templariusza MK3"
 FriendlyNamePlural="Tarcze Templariusza MK3"
 BriefSummary="Postępy w miniaturyzacji pozwalają tej tarczy pomieścić nie tylko konwencjonalną obronę materialną, ale także bardziej ezoteryczne środki, takie jak tarcze energetyczne. Nanomateriały umożliwiają jego samonaprawę w terenie, a w sytuacjach awaryjnych mogą nawet służyć jako port ładowania. Zintegrowany system holograficzny pozwala na większą świadomość sytuacyjną."
-TacticalText="<Bullet/>Postępy w miniaturyzacji pozwalają tej tarczy pomieścić nie tylko konwencjonalną obronę materialną, ale także bardziej ezoteryczne środki, takie jak tarcze energetyczne. Nanomateriały umożliwiają jego samonaprawę w terenie, a w sytuacjach awaryjnych mogą nawet służyć jako port ładowania. Zintegrowany system holograficzny pozwala na większą świadomość sytuacyjną."
+TacticalText="<Bullet/> Postępy w miniaturyzacji pozwalają tej tarczy pomieścić nie tylko konwencjonalną obronę materialną, ale także bardziej ezoteryczne środki, takie jak tarcze energetyczne. Nanomateriały umożliwiają jego samonaprawę w terenie, a w sytuacjach awaryjnych mogą nawet służyć jako port ładowania. Zintegrowany system holograficzny pozwala na większą świadomość sytuacyjną."
 
 [TemplarBallisticShield_GenerateCover X2AbilityTemplate]
 LocFriendlyName="Tarcza Templariusza"
@@ -6683,7 +6683,7 @@ LocPromotionPopupText="<Bullet/> Większa wyściółka zmniejsza liczbę punktó
 LocFriendlyName="Nieposkromiony"
 LocHelpText="Raz na turę zyskujesz 1 punkt skupienia, gdy zostaniesz zaatakowany."
 LocLongDescription="Raz na turę zyskujesz 1 punkt skupienia, gdy zostaniesz zaatakowany."
-LocPromotionPopupText"<Bullet/> Raz na turę zyskujesz 1 punkt skupienia, gdy zostaniesz zaatakowany.<br/><Bullet/>Dotyczy zarówno ataków wręcz, jak i dystansowych.<br/>"
+LocPromotionPopupText"<Bullet/> Raz na turę zyskujesz 1 punkt skupienia, gdy zostaniesz zaatakowany.<br/><Bullet/> Dotyczy zarówno ataków wręcz, jak i dystansowych.<br/>"
 LocFlyOverText="Nieposkromiony"
 
 [VoltFocusOnKills X2AbilityTemplate]
@@ -6697,7 +6697,7 @@ LocFriendlyName="Wyższa zdolność"
 LocHelpText="Rozdarcie zapewnia dodatkowy punkt skupienia."
 LocLongDescription="Rozdarcie zapewnia dodatkowy punkt skupienia."
 LocFlyOverText="Wyższa zdolność"
-LocPromotionPopupText"<Bullet/>Rozdarcie zapewnia dodatkowy punkt skupienia."
+LocPromotionPopupText"<Bullet/> Rozdarcie zapewnia dodatkowy punkt skupienia."
 
 [DoubleRendFocusPassive X2AbilityTemplate]
 LocFriendlyName="Wyższa zdolność"
@@ -6729,7 +6729,7 @@ LocFlyOverText="Psychotyczna wściekłość"
 FriendlyName="PM"
 FriendlyNamePlural="PMy"
 BriefSummary="Jeśli z jakiegoś powodu ich moc zawiedzie, nasi żołnierze mogą polegać na stosunkowo konwencjonalnym układzie pistoletów, który został zmodyfikowany w celu zwiększenia szybkostrzelności i ogólnej obsługi. Ta prosta konstrukcja przyczynia się do niezawodności broni pomimo niespójnej jakości materiałów w jej konstrukcji."
-TacticalText="<Bullet/>Pistolet automatyczny ma znacznie krótszy zasięg niż pistolet, mniejsze obrażenia podstawowe, ale wyższe obrażenia krytyczne i ogromną premię do trafień krytycznych."
+TacticalText="<Bullet/> Pistolet automatyczny ma znacznie krótszy zasięg niż pistolet, mniejsze obrażenia podstawowe, ale wyższe obrażenia krytyczne i ogromną premię do trafień krytycznych."
 AbilityDescName="pm"
 
 [Sidearm_MG X2WeaponTemplate]

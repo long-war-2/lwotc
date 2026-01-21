@@ -1,8 +1,8 @@
 [XComMultiplayerTacticalUI]
 MutonM2_LW="<Bullet/> Il Muton Centurion fa tutto quello che fanno i Muton, ma ha anche un grido di battaglia che migliora le abilità di alcuni alleati e carica con la sua baionetta i nemici a portata di scatto.\n<Bullet/> A differenza dei Muton dell'era dell'invasione, questi nuovi Muton ibridi sono molto efficaci nel combattimento ravvicinato\n<Bullet/> L'abilità Contrattacco permette di eseguire un attacco di ritorno a chiunque li attacchi in mischia\n<Bullet/> Possono anche usare Esecuzione sui nemici tramortiti; non lasciare mai che un Muton nemico si avvicini alle tue unità stordite\n<Bullet/> Possono anche usare Soppressione con i fucili e la loro armatura da battaglia fornisce una protezione affidabile"
-MutonM3_LW="<Bullet/>"
+MutonM3_LW="<Bullet/> "
 
-DroneM1="<Bullet/>Il drone guardiano è un'unità di ricognizione economica, progettata principalmente per il controllo dei civili."
+DroneM1="<Bullet/> Il drone guardiano è un'unità di ricognizione economica, progettata principalmente per il controllo dei civili."
 
 [CorpseDrone X2ItemTemplate]
 FriendlyName="Rottame di drone"
@@ -21,7 +21,7 @@ LocFriendlyName="Grido di battaglia"
 LocLongDescription="Conferisci un bonus ingente a Mira, Volontà e Mobilità degli altri Muton e bonus minori agli altri alieni senzienti e alle unità ADVENT. 6 turni di ricarica."
 LocHelpText="Conferisce bonus agli altri Muton e ad alcuni altri alieni."
 LocFlyOverText="Grido di battaglia"
-LocPromotionPopupText="<Bullet/> Conferisci un bonus ingente a Mira, Volontà e Mobilità degli altri Muton e bonus minori agli altri alieni senzienti e alle unità ADVENT.<br/><Bullet/>6 turni di ricarica.<br/>"
+LocPromotionPopupText="<Bullet/> Conferisci un bonus ingente a Mira, Volontà e Mobilità degli altri Muton e bonus minori agli altri alieni senzienti e alle unità ADVENT.<br/><Bullet/> 6 turni di ricarica.<br/>"
 
 [BayonetCharge X2AbilityTemplate]
 LocFriendlyName="Carica con baionetta"

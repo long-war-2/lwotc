@@ -647,7 +647,7 @@ LocFriendlyName="Fortify"
 LocLongDescription="Activate to grant +<ABILITY:FORTIFY_DEFENSE_LW/> defense until the beginning of the next turn."
 LocHelpText="Activate to grant +<ABILITY:FORTIFY_DEFENSE_LW/> defense. Free action. <Ability:SelfCooldown_LW/> turn cooldown."
 LocFlyOverText="Fortified"
-LocPromotionPopUpText="<Bullet/> Does not cost an action.<br/><Bullet/>Has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocPromotionPopUpText="<Bullet/> Does not cost an action.<br/><Bullet/> Has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 [CombatFitness X2AbilityTemplate]
 LocFriendlyName="Combat Fitness"
@@ -6620,7 +6620,7 @@ LocFriendlyName="None Shall Pass"
 LocFlyOverText="None Shall Pass"
 LocLongDescription="During enemy turns, fire a free shot that can critically hit with your sawed-off shotgun at any visible enemy within <Ability:NONE_SHALL_PASS_TILE_RANGE/> tiles who moves or fires."
 LocHelpText="During enemy turns, fire a free shot that can critically hit with your sawed-off shotgun at any visible enemy within <Ability:NONE_SHALL_PASS_TILE_RANGE/> tiles who moves or fires."
-LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><Bullet/> Uses 1 ammo and will only trigger if the sawed-off shotgun is loaded.<br/><Bullet/> Can critically hit.<br/><Bullet/> Works during any enemy turn: alien, Lost, Chosen and Ruler.<br/><Bullet/>This cannot trigger more than once per enemy and will not fire against allies when panicked"
+LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><Bullet/> Uses 1 ammo and will only trigger if the sawed-off shotgun is loaded.<br/><Bullet/> Can critically hit.<br/><Bullet/> Works during any enemy turn: alien, Lost, Chosen and Ruler.<br/><Bullet/> This cannot trigger more than once per enemy and will not fire against allies when panicked"
 
 [ScrapMetal_LW X2AbilityTemplate]
 LocFriendlyName="Scrap Metal"
@@ -7404,7 +7404,7 @@ LocFriendlyName="Brawler"
 LocFlyOverText="Brawler"
 LocLongDescription="Take <Ability:BRAWLER_DR_PCT>% less damage from any melee attack, or attacks from within <Ability:BRAWLER_MAX_TILES> tiles."
 LocHelpText="Take <Ability:BRAWLER_DR_PCT>% less damage from any melee attack, or attacks from within <Ability:BRAWLER_MAX_TILES> tiles."
-LocPromotionPopupText="<Bullet/>Take <Ability:BRAWLER_DR_PCT>% less damage from any melee attack, or attacks from within <Ability:BRAWLER_MAX_TILES> tiles.<br/>"
+LocPromotionPopupText="<Bullet/> Take <Ability:BRAWLER_DR_PCT>% less damage from any melee attack, or attacks from within <Ability:BRAWLER_MAX_TILES> tiles.<br/>"
 
 [InstantReactionTime X2AbilityTemplate]
 LocFriendlyName="Instant Reaction Time"
@@ -7479,7 +7479,7 @@ LocFriendlyName="Chaining Jolt"
 LocHelpText="Send the GREMLIN to an enemy to jolt them. Attack chains to nearby enemies. This ability replaces Combat Protocol."
 LocLongDescription="The <Ability:ClassName/> sends the GREMLIN to an enemy to jolt them. Attack chains to up to 2 nearby enemies. Damage is increased against robotic enemies. This ability replaces Combat Protocol."
 LocFlyOverText="Chaining Jolt"
-LocPromotionPopupText="<Bullet/> Deals electrical damage that pierces armour.<br/><Bullet/>Chaining Jolt does the same damage as Combat Protocol and replaces it for the soldier.<br/><Bullet/> Can only chain to units friendly to the targeted unit and within <Ability:CHAIN_LIGHTNING_CHAIN_RANGE_TILES> tiles of each other.<br/><Bullet/> Has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Deals electrical damage that pierces armour.<br/><Bullet/> Chaining Jolt does the same damage as Combat Protocol and replaces it for the soldier.<br/><Bullet/> Can only chain to units friendly to the targeted unit and within <Ability:CHAIN_LIGHTNING_CHAIN_RANGE_TILES> tiles of each other.<br/><Bullet/> Has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 ; End Translation
 
@@ -7586,19 +7586,19 @@ LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent ti
 FriendlyName="Templar Shield MK1"
 FriendlyNamePlural="Templar Shields MK1"
 BriefSummary="One of the oldest forms of additional protection known to mankind, humans have been using some form of shield since the very earliest days of tool use. This one is a standard anti-ballistic model with metallic or ceramic plates designed to stop penetration from high caliber weaponry."
-TacticalText="<Bullet/>One of the oldest forms of additional protection known to mankind, humans have been using some form of shield since the very earliest days of tool use. This one is a standard anti-ballistic model with metallic or ceramic plates designed to stop penetration from high caliber weaponry."
+TacticalText="<Bullet/> One of the oldest forms of additional protection known to mankind, humans have been using some form of shield since the very earliest days of tool use. This one is a standard anti-ballistic model with metallic or ceramic plates designed to stop penetration from high caliber weaponry."
 
 [TemplarBallisticShield_MG X2WeaponTemplate]
 FriendlyName="Templar Shield MK2"
 FriendlyNamePlural="Templar Shields MK2"
 BriefSummary="The use of alien alloys has not only made the Ballistic Shield light, but stronger as well. Complex polymers and ceramics also allow for better heat distribution, as such users are less likely to be injured by shrapnel and molten material from their own protective measures. An optional LED tablet can be installed to aid in tactical planning."
-TacticalText="<Bullet/>The use of alien alloys has not only made the Ballistic Shield light, but stronger as well. Complex polymers and ceramics also allow for better heat distribution, as such users are less likely to be injured by shrapnel and molten material from their own protective measures. An optional LED tablet can be installed to aid in tactical planning."
+TacticalText="<Bullet/> The use of alien alloys has not only made the Ballistic Shield light, but stronger as well. Complex polymers and ceramics also allow for better heat distribution, as such users are less likely to be injured by shrapnel and molten material from their own protective measures. An optional LED tablet can be installed to aid in tactical planning."
 
 [TemplarBallisticShield_BM X2WeaponTemplate]
 FriendlyName="Templar Shield MK3"
 FriendlyNamePlural="Templar Shields MK3"
 BriefSummary="Advances in miniaturization allow this shield to pack not only conventional material defences but more esoteric means like energy shields as well. Nanomaterials allow for it to self repair in the field and it can even serve as a charging port during emergencies. An integrated holographic system allows for greater situational awareness."
-TacticalText="<Bullet/>Advances in miniaturization allow this shield to pack not only conventional material defences but more esoteric means like energy shields as well. Nanomaterials allow for it to self repair in the field and it can even serve as a charging port during emergencies. An integrated holographic system allows for greater situational awareness."
+TacticalText="<Bullet/> Advances in miniaturization allow this shield to pack not only conventional material defences but more esoteric means like energy shields as well. Nanomaterials allow for it to self repair in the field and it can even serve as a charging port during emergencies. An integrated holographic system allows for greater situational awareness."
 
 [TemplarBallisticShield_GenerateCover X2AbilityTemplate]
 LocFriendlyName="Templar Shield"
@@ -7683,7 +7683,7 @@ LocPromotionPopupText="<bullet/> Ends turn when used.<br/><bullet/> Shield stren
 LocFriendlyName="Indomitable"
 LocHelpText="Once per turn, gain 1 focus when you're directly attacked."
 LocLongDescription="Once per turn, gain 1 focus when you're directly attacked."
-LocPromotionPopupText="<Bullet/> Once per turn, gain 1 focus when you're attacked.<br/><Bullet/>Applies to both melee and ranged attacks, but not to AOE attacks.<br/>"
+LocPromotionPopupText="<Bullet/> Once per turn, gain 1 focus when you're attacked.<br/><Bullet/> Applies to both melee and ranged attacks, but not to AOE attacks.<br/>"
 LocFlyOverText="Indomitable"
 
 [VoltFocusOnKills X2AbilityTemplate]
@@ -7697,7 +7697,7 @@ LocFriendlyName="Superior Aptitude"
 LocHelpText="Rend grants an additional focus point."
 LocLongDescription="Rend grants an additional focus point."
 LocFlyOverText="Superior Aptitude"
-LocPromotionPopupText="<Bullet/>Rend grants an additional focus point."
+LocPromotionPopupText="<Bullet/> Rend grants an additional focus point."
 
 ; LWOTC Needs Translation (2)
 [DoubleRendFocusPassive X2AbilityTemplate]

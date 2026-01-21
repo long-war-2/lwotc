@@ -304,7 +304,7 @@ LocFriendlyName="Arma stabilizzata"
 LocFlyOverText="Arma stabilizzata"
 LocLongDescription="Ottieni +20 alla Mira per il prossimo colpo con l'arma primaria. Gli usi multipli accumulano il bonus. Il bonus si perde se usi azioni o vieni ferito."
 LocHelpText="Ottieni +20 alla Mira per il prossimo colpo con l'arma primaria. Gli usi multipli accumulano il bonus. Il bonus si perde se usi azioni o vieni ferito."
-LocPromotionPopupText="<Bullet/>Ottieni +20 alla Mira nel prossimo colpo con l'arma primaria. Il bonus si perde se usi azioni o vieni ferito.<br/><Bullet/> Non si può usare Arma stabilizzata mentre si è soppressi.<br/><Bullet/> L'effetto persiste per più turni, se non fai niente.<br/><Bullet/> Usare Arma stabilizzata per più turni consecutivi permette al bonus di accumularsi."
+LocPromotionPopupText="<Bullet/> Ottieni +20 alla Mira nel prossimo colpo con l'arma primaria. Il bonus si perde se usi azioni o vieni ferito.<br/><Bullet/> Non si può usare Arma stabilizzata mentre si è soppressi.<br/><Bullet/> L'effetto persiste per più turni, se non fai niente.<br/><Bullet/> Usare Arma stabilizzata per più turni consecutivi permette al bonus di accumularsi."
 
 [LockedOn X2AbilityTemplate]
 LocFriendlyName="Bersaglio acquisito"

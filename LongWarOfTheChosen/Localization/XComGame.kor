@@ -151,7 +151,7 @@ LocFriendlyName="밀치기"
 LocFlyOverText="밀치기"
 LocLongDescription="특수 화염방사기를 발사해 제한된 피해를 입히고 적들의 위치를 강제로 바꿉니다."
 LocHelpText="특수 화염방사기를 발사해 적들의 위치를 강제로 바꿉니다."
-LocPromotionPopupText="<Bullet/>20% 확률로 효과 범위 내의 적들을 불태우고 제한된 피해를 입힙니다.<br/><Bullet/> 좁은 화염 줄기는 환경에 적은 영향을 줍니다.<br/><Bullet/> 이 공격에 맞은 유닛은 강제로 움직이게 되어, 종종 경계 사격을 격발시킵니다.<br/><Bullet/> 임무당 한 번만 사용할 수 있지만, 추가 장비를 착용하면 한 번 더 사용할 수 있습니다."
+LocPromotionPopupText="<Bullet/> 20% 확률로 효과 범위 내의 적들을 불태우고 제한된 피해를 입힙니다.<br/><Bullet/> 좁은 화염 줄기는 환경에 적은 영향을 줍니다.<br/><Bullet/> 이 공격에 맞은 유닛은 강제로 움직이게 되어, 종종 경계 사격을 격발시킵니다.<br/><Bullet/> 임무당 한 번만 사용할 수 있지만, 추가 장비를 착용하면 한 번 더 사용할 수 있습니다."
 
 [Burnout X2AbilityTemplate]
 LocFriendlyName="번아웃"
@@ -376,7 +376,7 @@ LocFriendlyName="거대한 폭발"
 LocLongDescription="수류탄과 일반 로켓이 치명타를 입힐 수 있습니다(<Ability:BIGGESTBOOMSCHANCE/>% 확률로 <Ability:BIGGESTBOOMSDAMAGE/>의 피해 추가)."
 LocHelpText="수류탄, 일반 로켓, 극소형 미사일이 치명타를 입힐 수 있습니다."
 LocFlyOverText="거대한 폭발"
-LocPromotionPopupText="<Bullet/>수류탄, 일반 로켓, MEC 극소형 미사일이 치명타를 입힐 수 있습니다(<Ability:BIGGESTBOOMSCHANCE/>% 확률로 <Ability:BIGGESTBOOMSDAMAGE/>의 피해 추가). <Bullet/> 비살상 수류탄, 고폭 로켓 또는 벙커 버스터 능력에는 적용되지 않습니다."
+LocPromotionPopupText="<Bullet/> 수류탄, 일반 로켓, MEC 극소형 미사일이 치명타를 입힐 수 있습니다(<Ability:BIGGESTBOOMSCHANCE/>% 확률로 <Ability:BIGGESTBOOMSDAMAGE/>의 피해 추가). <Bullet/> 비살상 수류탄, 고폭 로켓 또는 벙커 버스터 능력에는 적용되지 않습니다."
 
 ;;;;;;;;;;;;;;;;;;;;  GUNNER ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -812,7 +812,7 @@ UnknownUtilityCategory="권총"
 
 [AlienHunterPistol_BM X2WeaponTemplate]
 UnknownUtilityCategory="권총"
-TacticalText="<Bullet/> 강화형 섀도키퍼의 위력은 빔 권총과 비슷하지만, 조준과과 치명타율을 향상시켜 줍니다.\n<Bullet/> 저격총과는 달리, 권총은 1개의 행동력으로 발사할 수 있습니다.\n<Bullet/>\"섀도폴\" 능력으로 적을 처치하면 유닛은 즉시 잠행 상태가 됩니다.<br/><Bullet/> 플라스마 무기들은 피해를 입힐 때마다 대상 유닛이 1의 추가 대미지를 더 받게 만듭니다."
+TacticalText="<Bullet/> 강화형 섀도키퍼의 위력은 빔 권총과 비슷하지만, 조준과과 치명타율을 향상시켜 줍니다.\n<Bullet/> 저격총과는 달리, 권총은 1개의 행동력으로 발사할 수 있습니다.\n<Bullet/> \"섀도폴\" 능력으로 적을 처치하면 유닛은 즉시 잠행 상태가 됩니다.<br/><Bullet/> 플라스마 무기들은 피해를 입힐 때마다 대상 유닛이 1의 추가 대미지를 더 받게 만듭니다."
 
 [SawedOffShotgun_CV X2WeaponTemplate]
 FriendlyName="단총신 산탄총"

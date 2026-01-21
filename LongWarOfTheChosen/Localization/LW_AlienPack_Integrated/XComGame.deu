@@ -1,6 +1,6 @@
 [XComMultiplayerTacticalUI]
 MutonM2_LW="<Bullet/> Der Muton-Befehlshaber verfügt über sämtliche Fähigkeiten eines regulären Mutons und kann darüber hinaus einen Schlachtruf ausstoßen, der die Fähigkeiten von Verbündeten in seiner Nähe verbessert, sowie Feinde innerhalb seiner Sprintdistanz mit dem Bajonett angreifen.\n<Bullet/> Im Gegensatz zu den Mutons der Invasionszeit sind die neuen Hybrid-Mutons überaus effektiv im Nahkampf.\n<Bullet/> Mit der Fähigkeit 'Gegenangriff' können sie jedem Gegner Schaden zufügen, der sie im Nahkampf angreift.\n<Bullet/> Sie können zudem Feinde in ihrer Nähe 'ausschalten'; du solltest unbedingt vermeiden, dass sich ein Muton einer deiner betäubten Einheiten nähert.\n<Bullet/> Sie können ihr Gewehr auch zum 'Niederhalten' einsetzen und ihre Rüstung bietet anhaltenden Schutz."
-MutonM3_LW="<Bullet/>"
+MutonM3_LW="<Bullet/> "
 
 DroneM1="<Bullet/> Die Wächterdrohne ist eine günstige Aufklärungseinheit, die hauptsächlich der Zivilüberwachung und Gruppenkontrolle dient."
 
