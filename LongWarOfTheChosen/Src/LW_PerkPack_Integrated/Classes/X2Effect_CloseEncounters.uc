@@ -34,9 +34,6 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 	if (SourceUnit.IsUnitAffectedByEffectName(class'X2Effect_Serial'.default.EffectName))
 		return false;
 
-	if (SourceUnit.IsUnitAffectedByEffectName(class'X2Effect_DeathfromAbove'.default.EffectName))
-		return false;
-
 	SourceUnit.GetUnitValue('RunAndGun_SuperKillCheck', RunAndGunUsed);
 	iUsesThisTurn = int(RunAndGunUsed.fValue);
 
