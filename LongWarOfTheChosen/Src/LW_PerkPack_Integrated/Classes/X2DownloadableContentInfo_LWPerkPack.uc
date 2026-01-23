@@ -649,6 +649,9 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'RegenSmoke_MaxHealAmount_LW':
 			OutString = string(class'X2Effect_LWRegenSmoke'.default.MaxHealAmount);
 			return true;
+		case 'DFA_RANGE_PENALTY_NEGATION_MODIFIER':
+			OutString = string(int(-1 * class'X2Effect_DeathFromAbove_LW'.default.DFA_RANGE_PENALTY_NEGATION_MODIFIER * 100));
+			return true;
 		default:
 			return false;
 	}
