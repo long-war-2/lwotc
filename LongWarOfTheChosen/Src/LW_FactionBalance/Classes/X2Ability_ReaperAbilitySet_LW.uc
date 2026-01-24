@@ -1164,6 +1164,7 @@ static function X2AbilityTemplate ParaMedikitHeal()
 
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.NonAggressiveChosenActivationIncreasePerUse;
 
+	Template.MeleePuckMeshPath = "LW_UI_3D.CursorSet.S_MovePuck_Heal";
 	ParamedicCondition = new class'X2Condition_AbilityProperty';
 	ParamedicCondition.OwnerHasSoldierAbilities.AddItem('Paramedic_LW');
 	Template.AbilityShooterConditions.AddItem(ParamedicCondition);
@@ -1242,6 +1243,8 @@ static function X2AbilityTemplate ParaMedikitStabilize()
 	//Template.CustomSelfFireAnim = 'FF_FireMedkitSelf';
 
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.NonAggressiveChosenActivationIncreasePerUse;
+
+	Template.MeleePuckMeshPath = "LW_UI_3D.CursorSet.S_MovePuck_Heal";
 
 	ParamedicCondition = new class'X2Condition_AbilityProperty';
 	ParamedicCondition.OwnerHasSoldierAbilities.AddItem('Paramedic_LW');
