@@ -13,19 +13,18 @@ static function PatchDeepCover(X2AbilityTemplate Template)
 {
     local X2AbilityTrigger                  Trigger;
     local X2AbilityTrigger_EventListener    EventTrigger;
-    local XComGameState_Ability             WhyIsThisAThing;
 
     if (Template != none)
     {
-        WhyIsThisAThing = XComGameState_Ability(class'XComEngine'.static.GetClassDefaultObjectByName('XComGameState_Ability'));
         foreach Template.AbilityTriggers(Trigger)
         {
             EventTrigger = X2AbilityTrigger_EventListener(Trigger);
             if (EventTrigger != none)
             {
-                if (EventTrigger.ListenerData.EventFn == WhyIsThisAThing.static.DeepCoverTurnEndListener)
+                if (EventTrigger.ListenerData.EventID == 'PlayerTurnEnded')
                 {
                     EventTrigger.ListenerData.EventFn = DeepCoverListener;
+                    break;
                 }
             }
         }
