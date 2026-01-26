@@ -77,10 +77,11 @@ function int CalculatePointsToTrain()
 		if (UnitState.HasSoldierAbility(default.PointsToTrainModifiers[Index].AbilityName)
 			|| CharacterTemplate.Abilities.Find(default.PointsToTrainModifiers[Index].AbilityName) != INDEX_NONE)
 		{
-			TrainingTime *= Max(0, 1.0 + default.PointsToTrainModifiers[Index].Modifier);
+			TrainingTime *= FMax(0.0, 1.0 + default.PointsToTrainModifiers[Index].Modifier);
+			`LWTrace("reducing training time points to" @TrainingTime @"from modifier" @ default.PointsToTrainModifiers[Index].Modifier);
 		}
 	}
-
+	`LWTrace("Returning Training Time Points" @TrainingTime);
 	return TrainingTime;
 }
 
