@@ -246,6 +246,7 @@ var config int BEAM_AXE_FIRE_CHANCE;
 var config int KILLZONE_CONE_LENGTH;
 var config int KILLZONE_CONE_WIDTH;
 var config int BLUESCREEN_DISORIENT_CHANCE;
+var config bool DISABLE_LONG_WATCH_CHANGES;
 
 var config int WORKSHOP_ENG_BONUS;
 
@@ -1775,21 +1776,24 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		break;
 	}
 
-	if(Template.DataName == 'LongWatch')
+	if (!default.DISABLE_LONG_WATCH_CHANGES)
 	{
-		Template.OverrideAbilities.Length = 0;
-		AddLongWatchEffect(Template);
-	}
+		if(Template.DataName == 'LongWatch')
+		{
+			Template.OverrideAbilities.Length = 0;
+			AddLongWatchEffect(Template);
+		}
 
-	if(Template.DataName == 'LongWatchShot')
-	{
-		Template.OverrideAbilities.Length = 0;
-		AddLongWatchCondition(Template);
-	}
+		if(Template.DataName == 'LongWatchShot')
+		{
+			Template.OverrideAbilities.Length = 0;
+			AddLongWatchCondition(Template);
+		}
 
-	if(Template.DataName == 'OverwatchShot')
-	{
-		AddNoLongWatchCondition(Template);
+		if(Template.DataName == 'OverwatchShot')
+		{
+			AddNoLongWatchCondition(Template);
+		}
 	}
 
 	if (Template.DataName == 'Faceoff')
