@@ -6,132 +6,123 @@ var int Upgrade_Empower_Bonus;
 
 function RegisterForEvents(XComGameState_Effect EffectGameState)
 {
-	local X2EventManager EventMgr;
-	local XComGameState_Unit UnitState;
-	local Object EffectObj;
+    local X2EventManager        EventMgr;
+    local XComGameState_Unit    UnitState;
+    local Object                EffectObj;
 
-	EventMgr = `XEVENTMGR;
+    EventMgr = `XEVENTMGR;
 
-	EffectObj = EffectGameState;
-	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectGameState.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
+    EffectObj = EffectGameState;
+    UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectGameState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
 
-	EventMgr.RegisterForEvent(EffectObj, 'AbilityActivated', SteadyWeaponActionListener, ELD_OnStateSubmitted, 50, UnitState,, EffectObj);
-	EventMgr.RegisterForEvent(EffectObj, 'UnitTakeEffectDamage', SteadyWeaponWoundListener, ELD_OnStateSubmitted, 51, UnitState,, EffectObj);
-	EventMgr.RegisterForEvent(EffectObj, 'ImpairingEffect', SteadyWeaponWoundListener, ELD_OnStateSubmitted, 52, UnitState,, EffectObj);
+    EventMgr.RegisterForEvent(EffectObj, 'AbilityActivated', SteadyWeaponListener, ELD_OnStateSubmitted, 50, UnitState,, EffectObj);
+    EventMgr.RegisterForEvent(EffectObj, 'UnitTakeEffectDamage', SteadyWeaponListener, ELD_OnStateSubmitted, 51, UnitState,, EffectObj);
+    EventMgr.RegisterForEvent(EffectObj, 'ImpairingEffect', SteadyWeaponListener, ELD_OnStateSubmitted, 52, UnitState,, EffectObj);
 }
 
 simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffectParameters, XComGameState_BaseObject kNewTargetState, XComGameState NewGameState, XComGameState_Effect NewEffectState)
 {
-	local XComGameState_Unit UnitState;
-	local UnitValue AttacksThisTurn;
+    local XComGameState_Unit    UnitState;
+    local UnitValue             AttacksThisTurn;
 
-	// This is a fix for Deep Cover triggering when you Steady Weapon
-	UnitState = XComGameState_Unit(kNewTargetState);
-	UnitState.GetUnitValue('AttacksThisTurn', AttacksThisTurn);
-	AttacksThisTurn.fValue += float(1);
-	UnitState.SetUnitFloatValue('AttacksThisTurn', AttacksThisTurn.fValue, eCleanup_BeginTurn);
-	
-	super.OnEffectAdded(ApplyEffectParameters, kNewTargetState, NewGameState, NewEffectState);
+    // This will stop Deep Cover from triggering when after using Steady Weapon
+    // Otherwise the effect will be removed by Hunker Down
+    UnitState = XComGameState_Unit(kNewTargetState);
+    UnitState.GetUnitValue('AttacksThisTurn', AttacksThisTurn);
+    UnitState.SetUnitFloatValue('AttacksThisTurn', AttacksThisTurn.fValue + 1.0, eCleanup_BeginTurn);
+
+    super.OnEffectAdded(ApplyEffectParameters, kNewTargetState, NewGameState, NewEffectState);
 }
 
-static function EventListenerReturn SteadyWeaponActionListener(Object EventData, Object EventSource, XComGameState GameState, name EventID, Object CallbackData)
+function bool IsThisEffectBetterThanExistingEffect(const out XComGameState_Effect ExistingEffect)
 {
-	local XComGameState_Ability AbilityState;
-	local XComGameState_Effect EffectState;
-	local XComGameStateContext_EffectRemoved RemoveContext;
-	local XComGameState NewGameState;
-	local X2AbilityCost Cost;
-	local bool CostlyAction;
-
-	if(GameState.GetContext().InterruptionStatus == eInterruptionStatus_Interrupt)
-	{
-		return ELR_NoInterrupt;
-	}
-
-	AbilityState = XComGameState_Ability(EventData);
-	EffectState = XComGameState_Effect(CallbackData);
-	if (AbilityState != none && EffectState != none)
-	{
-		foreach AbilityState.GetMyTemplate().AbilityCosts(Cost)
-		{
-			CostlyAction = false;
-			if (Cost.IsA('X2AbilityCost_ActionPoints') && !X2AbilityCost_ActionPoints(Cost).bFreeCost)
-				CostlyAction = true;
-			if (Cost.IsA('X2AbilityCost_ReserveActionPoints') && !X2AbilityCost_ReserveActionPoints(Cost).bFreeCost)
-				CostlyAction = true;
-			if (Cost.IsA('X2AbilityCost_HeavyWeaponActionPoints') && !X2AbilityCost_HeavyWeaponActionPoints(Cost).bFreeCost)
-				CostlyAction = true;
-			if (Cost.IsA('X2AbilityCost_QuickdrawActionPoints') && !X2AbilityCost_QuickdrawActionPoints(Cost).bFreeCost)
-				CostlyAction = true;
-			if (AbilityState.GetMyTemplateName() == 'CloseCombatSpecialistAttack')
-				CostlyAction = true;
-			if (AbilityState.GetMyTemplateName() == 'BladestormAttack' || AbilityState.GetMyTemplateName() == 'TemplarBladestormAttack')
-				CostlyAction = true;
-			if (AbilityState.GetMyTemplateName() == 'LightningHands')
-				CostlyAction = true;
-			if (CostlyAction) 
-			{
-				if (AbilityState.GetMyTemplateName() == 'SteadyWeapon' || AbilityState.GetMyTemplateName() == 'Stock_LW_Bsc_Ability' ||  AbilityState.GetMyTemplateName() == 'Stock_LW_Adv_Ability' ||  AbilityState.GetMyTemplateName() == 'Stock_LW_Sup_Ability')
-					return ELR_NoInterrupt;
-
-				if (!EffectState.bRemoved)
-				{								
-					RemoveContext = class'XComGameStateContext_EffectRemoved'.static.CreateEffectRemovedContext(EffectState);
-					NewGameState = `XCOMHISTORY.CreateNewGameState(true, RemoveContext);
-					EffectState.RemoveEffect(NewGameState, GameState);
-					`TACTICALRULES.SubmitGameState(NewGameState);
-					return ELR_NoInterrupt;
-				}
-			}
-		}
-	}
-	return ELR_NoInterrupt;
+    return true;
 }
 
-static function EventListenerReturn SteadyWeaponWoundListener(Object EventData, Object EventSource, XComGameState GameState, name EventID, Object CallbackData)
+static function EventListenerReturn SteadyWeaponListener(Object EventData, Object EventSource, XComGameState GameState, name EventID, Object CallbackData)
 {
-	local XComGameState_Ability AbilityState;
-	local XComGameState_Effect EffectState;
-	local XComGameStateContext_EffectRemoved RemoveContext;
-	local XComGameState NewGameState;
+    local XComGameStateContext_Ability          AbilityContext;
+    local XComGameState_Effect                  EffectState;
+    local XComGameState_Ability                 AbilityState;
+    local X2AbilityTemplate                     AbilityTemplate;
+    local XComGameStateContext_EffectRemoved    RemoveContext;
+    local XComGameState                         NewGameState;
+    local X2AbilityCost                         Cost;
+    local bool                                  bShouldRemove;
 
-	AbilityState = XComGameState_Ability(EventData);
-	EffectState = XComGameState_Effect(CallbackData);
-	if (AbilityState != none && EffectState != none && !EffectState.bRemoved)
-	{
-		RemoveContext = class'XComGameStateContext_EffectRemoved'.static.CreateEffectRemovedContext(EffectState);
-		NewGameState = `XCOMHISTORY.CreateNewGameState(true, RemoveContext);
-		EffectState.RemoveEffect(NewGameState, GameState);
-		`TACTICALRULES.SubmitGameState(NewGameState);
-		return ELR_NoInterrupt;
-	}
-	return ELR_NoInterrupt;
+    EffectState = XComGameState_Effect(CallbackData);
+    if (EffectState != none && !EffectState.bRemoved)
+    {
+        AbilityState = XComGameState_Ability(EventData);
+        if (AbilityState != none)
+        {
+            if (AbilityState.ObjectID != EffectState.ApplyEffectParameters.AbilityStateObjectRef.ObjectID)
+            {
+                AbilityContext = XComGameStateContext_Ability(GameState.GetContext());
+                if (AbilityContext != none && AbilityContext.InterruptionStatus != eInterruptionStatus_Interrupt)
+                {
+                    AbilityTemplate = AbilityState.GetMyTemplate();
+                    if (AbilityTemplate.Hostility == eHostility_Offensive)
+                    {
+                        bShouldRemove = true;
+                    }
+                    else
+                    {
+                        foreach AbilityTemplate.AbilityCosts(Cost)
+                        {
+                            if (!Cost.bFreeCost)
+                            {
+                                if (X2AbilityCost_ActionPoints(Cost) != none || X2AbilityCost_ReserveActionPoints(Cost) != none)
+                                {
+                                    bShouldRemove = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            bShouldRemove = true;
+        }
+        if (bShouldRemove)
+        {
+            RemoveContext = class'XComGameStateContext_EffectRemoved'.static.CreateEffectRemovedContext(EffectState);
+            NewGameState = `XCOMHISTORY.CreateNewGameState(true, RemoveContext);
+            EffectState.RemoveEffect(NewGameState, GameState);
+            `TACTICALRULES.SubmitGameState(NewGameState);
+            return ELR_NoInterrupt;
+        }
+    }
 }
 
 function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit Attacker, XComGameState_Unit Target, XComGameState_Ability AbilityState, class<X2AbilityToHitCalc> ToHitType, bool bMelee, bool bFlanking, bool bIndirectFire, out array<ShotModifierInfo> ShotModifiers)
 {
-	local ShotModifierInfo ShotInfo;
-	local XComGameState_HeadquartersXCom XComHQ;
+    local ShotModifierInfo ShotInfo;
+    local XComGameState_HeadquartersXCom XComHQ;
 
-	if (!bMelee && AbilityState.SourceWeapon == EffectState.ApplyEffectParameters.ItemStateObjectRef)
-	{
-		ShotInfo.ModType = eHit_Success;
-		ShotInfo.Reason = FriendlyName;
-		ShotInfo.Value = Aim_Bonus;
-		XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
-		ShotInfo.Value += (XComHQ.bEmpoweredUpgrades ? Upgrade_Empower_Bonus : 0);
-		ShotModifiers.AddItem(ShotInfo);
+    if (!bMelee && AbilityState.SourceWeapon == EffectState.ApplyEffectParameters.ItemStateObjectRef)
+    {
+        XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
 
-		ShotInfo.ModType = eHit_Crit;
-		ShotInfo.Reason = FriendlyName;
-		ShotInfo.Value = Crit_Bonus;
-		ShotInfo.Value += (XComHQ.bEmpoweredUpgrades ? Upgrade_Empower_Bonus : 0);
-		ShotModifiers.AddItem(ShotInfo);
-	}
+        ShotInfo.ModType = eHit_Success;
+        ShotInfo.Reason = FriendlyName;
+        ShotInfo.Value = Aim_Bonus;
+        ShotInfo.Value += (XComHQ.bEmpoweredUpgrades ? Upgrade_Empower_Bonus : 0);
+        ShotModifiers.AddItem(ShotInfo);
+
+        ShotInfo.ModType = eHit_Crit;
+        ShotInfo.Reason = FriendlyName;
+        ShotInfo.Value = Crit_Bonus;
+        ShotInfo.Value += (XComHQ.bEmpoweredUpgrades ? Upgrade_Empower_Bonus : 0);
+        ShotModifiers.AddItem(ShotInfo);
+    }
 
 }
 
 defaultproperties
 {
-	EffectName="SteadyWeapon"
+    EffectName="SteadyWeapon"
 }
