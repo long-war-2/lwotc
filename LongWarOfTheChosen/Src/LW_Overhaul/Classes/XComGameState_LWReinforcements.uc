@@ -192,11 +192,23 @@ function Initialize()
 	if(ReinfRules.CavalryAbsoluteTurn <= 0)
 	{
 		ReinfRules.CavalryAbsoluteTurn = default.DEFAULT_CAVALRY_ABSOLUTE_TURNS;
+
+		// Just in case config is borked, hardcode a default here.
+		if(ReinfRules.CavalryAbsoluteTurn <= 0)
+		{
+			ReinfRules.CavalryAbsoluteTurn = 28;
+		}
 	}
 
 	if(ReinfRules.CavalryWinTurn <= 0)
 	{
 		ReinfRules.CavalryWinTurn = default.DEFAULT_CAVALRY_WIN_TURNS;
+
+		// Just in case config is borked, hardcode a default here too.
+		if(ReinfRules.CavalryWinTurn <= 0)
+		{
+			ReinfRules.CavalryWinTurn = 12;
+		}
 	}
 
 	if(bBetaStrike)
@@ -541,6 +553,7 @@ function int CheckForReinforcements()
 				{
 					if (ReachedTurnThreshhold (CavalryTurn))
 					{
+						`LWTrace("LWRNF: Forcing Cavalry Reinforcements due to absolute turn threshold");
 						Bucket += 1.0 / ReinforcementModifiers();
 					}
 				}
