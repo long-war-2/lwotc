@@ -1756,6 +1756,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	{
 		case "GP_Fortress":
 		case "GP_Fortress_LW":
+		case "GP_FortressShowdown_LW":
 			`LWDiversityTrace("Fortress mission detected. Aborting with no mission variations applied.");
 			return;
 		case "AlienNest":
