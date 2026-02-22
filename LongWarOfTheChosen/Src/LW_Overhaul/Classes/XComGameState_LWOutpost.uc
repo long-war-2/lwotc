@@ -739,6 +739,21 @@ function bool UpdatePostMission(XComGameState_MissionSite MissionSite, XComGameS
 				--i; 
 			}
 		}
+		
+		// The other Rebels should only be marked as "Not Faceless" if the number of faceless didn't reach the cap
+		if (RendezvousMission.CachedMaxPossibleFaceless != RendezvousMission.FacelessSpies.Length)
+		{
+			for (i = 0; i < RendezvousMission.CachedRebels.Length; i++)
+			{
+				Unit = XComGameState_Unit(History.GetGameStateForObjectID(RendezvousMission.CachedRebels[k].Unit.ObjectID));
+				if (Unit != none && !Unit.GetUnitValue(class'X2EventListener_Missions'.default.IDConfirmedUnitValueName, vUnitValue))
+				{
+					Unit = XComGameState_Unit(NewGameState.ModifyStateObject(Unit.Class, Unit.ObjectID));
+					`LWTRACE("Rebel" @ Unit.GetFullName() @ "cleared: marking identity as confirmed.");
+					Unit.SetUnitFloatValue(class'X2EventListener_Missions'.default.IDConfirmedUnitValueName, 1, eCleanup_Never);
+				}
+			}
+		}
 	}
 
 	// If the liaison was present on this mission they may need some updates.
