@@ -743,15 +743,14 @@ function bool UpdatePostMission(XComGameState_MissionSite MissionSite, XComGameS
 		// The other Rebels should only be marked as "Not Faceless" if the number of faceless didn't reach the cap
 		if (RendezvousMission.CachedMaxPossibleFaceless != RendezvousMission.FacelessSpies.Length)
 		{
-			`LWTRACE("Activity" @ ActivityState.GetMyTemplateName() @ "reached its completion, confirming identity of other rebels");
 			for (i = 0; i < RendezvousMission.CachedRebels.Length; i++)
 			{
-				RebelState = XComGameState_Unit(History.GetGameStateForObjectID(RendezvousMission.CachedRebels[k].Unit.ObjectID));
-				if (RebelState != none && !RebelState.GetUnitValue(class'X2EventListener_Missions'.default.IDConfirmedUnitValueName, vUnitValue))
+				Unit = XComGameState_Unit(History.GetGameStateForObjectID(RendezvousMission.CachedRebels[k].Unit.ObjectID));
+				if (Unit != none && !Unit.GetUnitValue(class'X2EventListener_Missions'.default.IDConfirmedUnitValueName, vUnitValue))
 				{
-					RebelState = XComGameState_Unit(NewGameState.ModifyStateObject(RebelState.Class, RebelState.ObjectID));
-					`LWTRACE("Rebel" @ RebelState.GetFullName() @ "cleared: marking identity as confirmed.");
-					RebelState.SetUnitFloatValue(class'X2EventListener_Missions'.default.IDConfirmedUnitValueName, 1, eCleanup_Never);
+					Unit = XComGameState_Unit(NewGameState.ModifyStateObject(Unit.Class, Unit.ObjectID));
+					`LWTRACE("Rebel" @ Unit.GetFullName() @ "cleared: marking identity as confirmed.");
+					Unit.SetUnitFloatValue(class'X2EventListener_Missions'.default.IDConfirmedUnitValueName, 1, eCleanup_Never);
 				}
 			}
 		}
