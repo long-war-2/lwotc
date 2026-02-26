@@ -650,6 +650,7 @@ function bool UpdatePostMission(XComGameState_MissionSite MissionSite, XComGameS
 	local array<XComGameState_Item> Items;
 	local XComGameState_HeadquartersXCom XComHQ;
 	local XComGameState_BattleData BattleData;
+	local UnitValue vUnitValue;
 
 	History = `XCOMHISTORY;
 
@@ -745,7 +746,7 @@ function bool UpdatePostMission(XComGameState_MissionSite MissionSite, XComGameS
 		{
 			for (i = 0; i < RendezvousMission.CachedRebels.Length; i++)
 			{
-				Unit = XComGameState_Unit(History.GetGameStateForObjectID(RendezvousMission.CachedRebels[k].Unit.ObjectID));
+				Unit = XComGameState_Unit(History.GetGameStateForObjectID(RendezvousMission.CachedRebels[i].Unit.ObjectID));
 				if (Unit != none && !Unit.GetUnitValue(class'X2EventListener_Missions'.default.IDConfirmedUnitValueName, vUnitValue))
 				{
 					Unit = XComGameState_Unit(NewGameState.ModifyStateObject(Unit.Class, Unit.ObjectID));
