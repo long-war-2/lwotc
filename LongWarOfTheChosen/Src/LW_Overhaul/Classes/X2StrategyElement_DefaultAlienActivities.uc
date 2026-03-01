@@ -487,7 +487,20 @@ static function ProtectRegionMissionFailure(XComGameState_LWAlienActivity Activi
 			RecordResistanceActivity(false, ActivityState, MissionState, NewGameState);  //record failure
 			MissionState.RemoveEntity(NewGameState);		// remove the mission
 		}
-		// Respawn the mission
+		// Respawn the mission if back on geoscape
+
+		if (`HQGAME == none || `HQPRES == none || `HQPRES.StrategyMap2D == none)
+		{
+			//not there, so mark the activity to update next time we are back in geoscape
+			ActivityState.bNeedsUpdateMissionFailure = true;
+			return;
+		}
+
+		if(MissionState != none)
+			MissionState.RemoveEntity(NewGameState);
+
+
+		//try and respawn mission
 		ActivityState.SpawnMission(NewGameState);
 	}
 	else
