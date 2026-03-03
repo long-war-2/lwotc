@@ -1080,6 +1080,7 @@ static function X2AbilityTemplate ReadyForAnythingTrigger()
     UnitValueEffect.NewValueToSet = 1;
     UnitValueEffect.CleanupType = eCleanup_BeginTurn;
     UnitValueEffect.bApplyOnMiss = true;
+	UnitValueEffect.bCanBeRedirected = false;
     Template.AddShooterEffect(UnitValueEffect);
 
     Template.bSkipFireAction = true;

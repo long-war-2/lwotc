@@ -208,6 +208,7 @@ static function X2AbilityTemplate AddCombativesPreparationAbility()
 	SetUnitValEffect = new class'X2Effect_SetUnitValue';
 	SetUnitValEffect.UnitName = class'X2Ability'.default.CounterattackDodgeEffectName;
 	SetUnitValEffect.NewValueToSet = class'X2Ability'.default.CounterattackDodgeUnitValue;
+	SetUnitValEffect.bCanBeRedirected = false;
 	SetUnitValEffect.CleanupType = eCleanup_BeginTurn;
 	Template.AddTargetEffect(SetUnitValEffect);
 

@@ -1909,6 +1909,7 @@ static function X2AbilityTemplate TrenchWarfare()
 	ValueEffect = new class'X2Effect_IncrementUnitValue';
 	ValueEffect.UnitName = 'TrenchWarfare_LW_KillsThisTurn';
 	ValueEffect.NewValueToSet = 1;
+	ValueEffect.bCanBeRedirected = false;
 	ValueEffect.CleanupType = eCleanup_BeginTurn;
     
 	// Create a triggered ability that runs when the owner gets a kill
@@ -2357,6 +2358,7 @@ static private function X2AbilityTemplate AvengerAttack()
     UnitValueEffect.NewValueToSet = 1;
     UnitValueEffect.CleanupType = eCleanup_BeginTurn;
     UnitValueEffect.bApplyOnMiss = true;
+	UnitValueEffect.bCanBeRedirected = false;
     Template.AddShooterEffect(UnitValueEffect);
 
     Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());

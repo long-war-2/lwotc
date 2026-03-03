@@ -284,6 +284,7 @@ static function X2AbilityTemplate SnapShotOverwatch()
 	UnitValueEffect.CleanupType = eCleanup_BeginTurn;
 	UnitValueEffect.NewValueToSet = 1;
 	UnitValueEffect.TargetConditions.AddItem(ConcealedCondition);
+	UnitValueEffect.bCanBeRedirected = false;
 	Template.AddTargetEffect(UnitValueEffect);
 
 	Template.AbilityToHitCalc = default.DeadEye;
@@ -2802,6 +2803,8 @@ static function X2AbilityTemplate ChainingJolt()
 	Template.AddTargetEffect(RobotDamage);
 	Template.AddMultiTargetEffect(RobotDamage);
 
+	// the below are not used by LW but relevant for compatibility with the original perk pack
+
 	AbilityCondition = new class'X2Condition_AbilityProperty';
 	AbilityCondition.OwnerHasSoldierAbilities.AddItem('GrimySabotage');
 	DisableEffect = new class'X2Effect_DisableWeapon';
@@ -2818,6 +2821,7 @@ static function X2AbilityTemplate ChainingJolt()
 	UnitValueEffect.UnitName = 'MZShockTherapyStunResult';
 	UnitValueEffect.CleanupType = eCleanup_BeginTurn;
 	UnitValueEffect.ApplyChance = 50;
+	UnitValueEffect.bCanBeRedirected = false;
 	Template.AddTargetEffect(UnitValueEffect);
 	Template.AddMultiTargetEffect(UnitValueEffect);
 

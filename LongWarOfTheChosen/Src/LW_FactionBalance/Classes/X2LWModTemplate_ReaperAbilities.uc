@@ -510,6 +510,7 @@ static function ChangeBanishHitCalc(X2AbilityTemplate Template)
 	BanishCount.CleanupType = eCleanup_BeginTurn;
 	BanishCount.bApplyOnHit = true;
 	BanishCount.bApplyOnMiss = true;
+	BanishCount.bCanBeRedirected = false;
 	Template.AddShooterEffect(BanishCount);
 
 		//make it work with squadsight
@@ -534,6 +535,7 @@ static function ChangeBanish2HitCalc(X2AbilityTemplate Template)
 	BanishCount.CleanupType = eCleanup_BeginTurn;
 	BanishCount.bApplyOnHit = true;
 	BanishCount.bApplyOnMiss = true;
+	BanishCount.bCanBeRedirected = false;
 	Template.AddShooterEffect(BanishCount);
 
 		//make it work with squadsight

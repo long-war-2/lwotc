@@ -4485,6 +4485,7 @@ static function AddLongWatchEffect(X2AbilityTemplate Template)
 	LongWatchValue.UnitName = 'LWLongWatchActivated';
 	LongWatchValue.NewValueToSet = 1;
 	LongWatchValue.CleanupType = eCleanup_BeginTurn;
+	LongWatchValue.bCanBeRedirected = false;
 	LongWatchValue.bApplyOnHit = true;
 	LongWatchValue.bApplyOnMiss = true;
 
