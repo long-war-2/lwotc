@@ -83,6 +83,15 @@ Note that you need to own the Shen's Last Gift DLC to build (and play) this vers
     var XComGameState_InteractiveObject SpawnedObjective;
     ```
 
+    * In `XComGameState_Unit.uc`, modify line 142
+    ```
+    var() protectedwrite array<StateObjectReference> InventoryItems;
+    ```
+    to
+    ```
+    var() array<StateObjectReference> InventoryItems;
+    ```
+
  1. Run the following from the LWOTC project directory:
     ```
     > build-lwotc.bat -config default
