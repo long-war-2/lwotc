@@ -1229,7 +1229,7 @@ AbilityDescName="激光軌道炮"
 [SparkRifle_MG X2WeaponTemplate]
 FriendlyName="螺旋軌道加農炮"
 FriendlyNamePlural="螺旋軌道加農炮"
-BriefSummary="額外的鍍層提升了耐用性和傷害輸出，避免了緊密戰場部署後長期使用造成的問題。"
+BriefSummary="額外的鍍層提升了耐用性和傷害輸出，避免了緊密戰場部署後長期使用造成的問題，能為SPARK提供穩定的輸出。"
 TacticalText="<Bullet/> 螺旋軌道加農炮的傷害和持久性更高，比SPARK標準配備的重型自動加農炮有着顯著的提升。\n<Bullet/> 使用從敵人身上掠奪的武器配件來提高螺旋軌道加農炮的戰術效果。\n<Bullet/> 在缺少特殊訓練的情況下，主武器開火將會結束士兵的回合。"
 AbilityDescName="螺旋軌道加農炮"
 
@@ -5799,6 +5799,10 @@ FriendlyName="超大地圖"
 Description="作戰區域比正常情況下要大得多，所以你可能需要比平時更長的時間才能達到目標。"
 ; End Translation (2)
 
+[VeryWetMap X2SitRepTemplate]
+FriendlyName="潮濕地形"
+Description="異常猛烈的降雨淹沒了作戰區域。在使用火焰類武器時你可能需要更加謹慎（水源會解除燃燒狀態）。"
+
 [ProjectMiranda X2SitRepTemplate]
 FriendlyName="昏睡計劃"
 Description="變種人正在該地區測試催眠技術，這使得所有非機器人單位都昏昏欲睡。命中和移動力受到懲罰。"
@@ -6330,6 +6334,13 @@ LocLongDescription="投擲或發射榴彈後，將自動進入監視狀態。每
 LocHelpText="投擲或發射榴彈後，將自動進入監視狀態。每回合只能觸發一次。"
 LocPromotionPopupText="<Bullet/> 單位處於混亂、眩暈、恐慌、着火或其他受損狀態中時將不會觸發未雨綢繆。<br/><Bullet/> 彈藥不足時將不會觸發未雨綢繆。<br/>"
 ; End Translation (2)
+
+[WatchThemRun_LW_Passive X2AbilityTemplate]
+LocFriendlyName="未雨绸缪"
+LocFlyOverText="未雨绸缪"
+LocLongDescription="投掷或发射榴弹后，将自动进入监视状态。每回合只能触发一次。"
+LocHelpText="投掷或发射榴弹后，将自动进入监视状态。每回合只能触发一次。"
+LocPromotionPopupText="<Bullet> 单位处于混乱、眩晕、恐慌、着火或其他受损状态中时将不会触发未雨绸缪。<br><Bullet> 弹药不足时将不会触发未雨绸缪。"
 
 ; LWOTC Needs Translation (2)
 [Avenger_LW X2AbilityTemplate]
@@ -7003,8 +7014,8 @@ LocFlyOverText="不義之怒"
 
 [XCOMHunterMark_LW X2AbilityTemplate]
 LocFriendlyName="死亡標記"
-LocLongDescription="對一名目標進行死亡標記，使用黑矛針對該單位的射擊將返還行動點。結束回合且打破隱蔽。效果持續到XCOM的下一個回合結束。"
-LocHelpText="對一名目標進行死亡標記，使用黑矛針對該單位的射擊將返還行動點。結束回合且打破隱蔽。效果持續到XCOM的下一個回合結束。"
+LocLongDescription="對一名目標進行死亡標記，使用黑矛針對該單位的標準射擊將返還行動點。結束回合且打破隱蔽。效果持續到XCOM的下一個回合結束。"
+LocHelpText="對一名目標進行死亡標記，使用黑矛針對該單位的標準射擊將返還行動點。結束回合且打破隱蔽。效果持續到XCOM的下一個回合結束。"
 LocFlyOverText="死亡標記"
 
 [Fatality_LW X2AbilityTemplate]

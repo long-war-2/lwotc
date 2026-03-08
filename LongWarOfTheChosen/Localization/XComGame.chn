@@ -1239,7 +1239,7 @@ AbilityDescName="激光轨道炮"
 [SparkRifle_MG X2WeaponTemplate]
 FriendlyName="螺旋轨道加农炮"
 FriendlyNamePlural="螺旋轨道加农炮"
-BriefSummary="额外的镀层提升了耐用性和伤害输出，避免了紧密战场部署后长期使用造成的问题。"
+BriefSummary="额外的镀层提升了耐用性和伤害输出，避免了紧密战场部署后长期使用造成的问题，能为SPARK提供稳定的输出。"
 TacticalText="<Bullet/> 螺旋轨道加农炮的伤害和持久性更高，比SPARK标准配备的重型自动加农炮有着显著的提升。\n<Bullet/> 使用从敌人身上掠夺的武器配件来提高螺旋轨道加农炮的战术效果。\n<Bullet/> 在缺少特殊训练的情况下，主武器开火将会结束士兵的回合。"
 AbilityDescName="螺旋轨道加农炮"
 
@@ -5812,6 +5812,10 @@ FriendlyName="超大地图"
 Description="作战区域比正常情况下要大得多，所以你可能需要比平时更长的时间才能达到目标。"
 ; End Translation (2)
 
+[VeryWetMap X2SitRepTemplate]
+FriendlyName="潮湿地形"
+Description="异常猛烈的降雨淹没了作战区域。在使用火焰类武器时你可能需要更加谨慎（水源会解除燃烧状态）。"
+
 [ProjectMiranda X2SitRepTemplate]
 FriendlyName="昏睡计划"
 Description="变种人正在该地区测试催眠技术，这使得所有非机器人单位都昏昏欲睡。命中和移动力受到惩罚。"
@@ -6342,6 +6346,13 @@ LocLongDescription="投掷或发射榴弹后，将自动进入监视状态。每
 LocHelpText="投掷或发射榴弹后，将自动进入监视状态。每回合只能触发一次。"
 LocPromotionPopupText="<Bullet/> 单位处于混乱、眩晕、恐慌、着火或其他受损状态中时将不会触发未雨绸缪。<br/><Bullet/> 弹药不足时将不会触发未雨绸缪。<br/>"
 ; End Translation (2)
+
+[WatchThemRun_LW_Passive X2AbilityTemplate]
+LocFriendlyName="未雨绸缪"
+LocFlyOverText="未雨绸缪"
+LocLongDescription="投掷或发射榴弹后，将自动进入监视状态。每回合只能触发一次。"
+LocHelpText="投掷或发射榴弹后，将自动进入监视状态。每回合只能触发一次。"
+LocPromotionPopupText="<Bullet> 单位处于混乱、眩晕、恐慌、着火或其他受损状态中时将不会触发未雨绸缪。<br><Bullet> 弹药不足时将不会触发未雨绸缪。"
 
 ; LWOTC Needs Translation (2)
 [Avenger_LW X2AbilityTemplate]
@@ -7015,8 +7026,8 @@ LocFlyOverText="不义之怒"
 
 [XCOMHunterMark_LW X2AbilityTemplate]
 LocFriendlyName="死亡标记"
-LocLongDescription="对一名目标进行死亡标记，使用黑矛针对该单位的射击将返还行动点。结束回合且打破隐蔽。效果持续到XCOM的下一个回合结束。"
-LocHelpText="对一名目标进行死亡标记，使用黑矛针对该单位的射击将返还行动点。结束回合且打破隐蔽。效果持续到XCOM的下一个回合结束。"
+LocLongDescription="对一名目标进行死亡标记，使用黑矛针对该单位的标准射击将返还行动点。结束回合且打破隐蔽。效果持续到XCOM的下一个回合结束。"
+LocHelpText="对一名目标进行死亡标记，使用黑矛针对该单位的标准射击将返还行动点。结束回合且打破隐蔽。效果持续到XCOM的下一个回合结束。"
 LocFlyOverText="死亡标记"
 
 [Fatality_LW X2AbilityTemplate]
