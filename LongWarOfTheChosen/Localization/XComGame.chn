@@ -5354,7 +5354,7 @@ LocFriendlyName="双发快射"
 LocFlyOverText="双发快射"
 LocLongDescription="进行一次标准射击，并获得一个仅限于额外射击或监视的动作。"
 LocHelpText="进行一次标准射击，并获得一个仅限于额外射击或监视的动作。"
-LocPromotionPopupText="<Bullet/> 进行一次标准射击，并获得第二次限制在几种不同射击能力或监视的动作。<br/><Bullet/> <Ability:SelfCooldown/>回合冷却。<br/>"
+LocPromotionPopupText="<Bullet/> 进行一次标准射击，并获得第二次限制在几种不同射击能力或监视的动作。<br/><Bullet/> <Ability:SelfCooldown/>回合冷却。<br/><Bullet/> 使用狙击步枪时需要消耗2个行动点才能启动此技能。<br/>"
 
 [DoubleTap2Bonus X2AbilityTemplate]
 LocFriendlyName="双发快射"
@@ -6292,8 +6292,8 @@ LocPromotionPopupText="<Bullet/> 使用蹲伏时回复<Ability:LICKYOURWOUNDS_HE
 LocFriendlyName="心血来潮"
 LocFlyOverText="心血来潮"
 ; LWOTC Needs Translation (2)
-LocLongDescription="如果回合内移动过，远程攻击将获得<Ability:IMPULSE_AIM_BONUS/>命中及<Ability:IMPULSE_CRIT_BONUS/>暴击率。"
-LocHelpText="如果回合内移动过，远程攻击将获得<Ability:IMPULSE_AIM_BONUS/>命中及<Ability:IMPULSE_CRIT_BONUS/>暴击率。"
+LocLongDescription="如果回合内移动过，下回合开始前远程攻击将获得<Ability:IMPULSE_AIM_BONUS/>命中及<Ability:IMPULSE_CRIT_BONUS/>暴击率。"
+LocHelpText="如果回合内移动过，下回合开始前远程攻击将获得<Ability:IMPULSE_AIM_BONUS/>命中及<Ability:IMPULSE_CRIT_BONUS/>暴击率。"
 LocPromotionPopupText="<Bullet/> 如果回合内移动过，远程攻击将获得<Ability:IMPULSE_AIM_BONUS/>命中及<Ability:IMPULSE_CRIT_BONUS/>暴击率。<br/>"
 ; End Translation (2)
 
