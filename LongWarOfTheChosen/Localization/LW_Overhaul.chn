@@ -566,6 +566,11 @@ m_strIncomeIntel="任务寻觅效率:"
 m_strIncomeSupply="每日补给量:"
 m_strIncomeRecruit="招募所需天数:"
 
+[UIOutpostManagement_ListItem]
+m_strIDConfirmedName="身份已确认"
+m_strIDConfirmedText="我们的部队已经核实了这名特工的身份，并确认其不是变种人的渗透者。"
+m_strIDConfirmedIconPath="img:///UILibrary_LWOTC.UIIcon_IDConfirmed_Hex"
+
 [UIScreenListener_TacticalHUD]
 strEvacRequestTitle="撤离已请求"
 strEvacRequestSubtitle="距离天际游侠号到达的回合"
