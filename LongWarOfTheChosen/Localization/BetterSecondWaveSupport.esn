@@ -1,13 +1,13 @@
  LWOTC translated
 [DisableTutorial SecondWaveOptionObject]
 Tooltip="Desactiva el tutorial explicativo de los cambios y funciones nuevas de Long War of the Chosen. No recomendado para la primera experiencia con LWOTC!"
-Description="Sin rueditas extras: deshabilita el tutorial de LWOTC."
+Description="Directo a la acción: deshabilita el tutorial de LWOTC."
 ; End translated
 
 ; LWOTC translated
 [DisableChosen SecondWaveOptionObject]
 Tooltip="Elimina la aparición e influencia de los Elegidos en tu campaña."
-Description="Elegidos con vacaciones: Desactiva a los Elegidos."
+Description="Elegidos en vacaciones: Desactiva a los Elegidos."
 
 [EnableResistanceOrders SecondWaveOptionObject]
 Tooltip="Activa órdenes de la Resistencia, para mayor variedad de misiones encubiertas."
