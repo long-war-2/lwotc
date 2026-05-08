@@ -39,7 +39,7 @@ HunterSightedBody="El Cazador mantendrá su distancia e intentará eliminar a lo
 
 [UIScreenListener_HavenManagementTutorial]
 HavenManagementTitle="Gestión del Refugio"
-HavenManagementBody="Los Refugios albergan una colección de rebeldes que pueden realizar varios trabajos: <br/> <ul> <li> Datos: detecta misiones </li> <li> Reclutar: recluta rebeldes y soldados novatos </li> <li> Suministros: genera suministros </li> </ul> <br/> Cuantos más rebeldes haya en un trabajo, más obtienes de él. Mantén a tus rebeldes en Datos por ahora y quizás alguno en Reclutar."
+HavenManagementBody="Los Refugios albergan una colección de rebeldes que pueden realizar varios trabajos: <br/> <ul> <li> Info: detecta misiones </li> <li> Reclutar: recluta rebeldes y soldados novatos </li> <li> Suministros: genera suministros </li> </ul> <br/> Cuantos más rebeldes haya en un trabajo, más obtienes de él. Mantén a tus rebeldes en Info por ahora y quizás alguno en Reclutar."
 ; LWOTC translated
 HavenAdvisersTitle="Asesores de Refugio"
 HavenAdvisersBody="Haz clic en el cuadro etiquetado (1) a la izquierda para asignar un asesor al Refugio. Puedes seleccionar uno de: <br/> <ul> <li> Soldado: detecta Sin Caras y ayuda a reclutar </li> <li> Científico: incrementa la producción en trabajos de Datos, pero ya no contribuye a la investigación </li> <li> Ingeniero: se centra en aumentar los ingresos mensuales de Suministros </li> </ul> <br/> Detectar Sin Caras te permite exterminarlos."

@@ -27,7 +27,7 @@ ActivityName="ProtectRegion2Activity"
 ActivityObjectives[0]="Liberación: rescatar a un desertor"
 
 +MissionDescriptions=(MissionFamily="Extract_LW", Description="Podemos extraer a un desertor de ADVENT que tiene información clave sobre las vulnerabilidades alienígenas en esta región.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Rescue_LW", Description="Hemos sabido de un simpatizante de la resistencia que tiene información decisiva sobre las vulnerabilidades alienígenas en esta región.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Rescue_LW", Description="Recibimos información de la ubicación de un simpatizante de la resistencia que tiene información decisiva sobre las vulnerabilidades alienígenas en esta región.", MissionIndex=0)
 
 [ProtectRegion X2LWAlienActivityTemplate]
 ActivityName="ProtectRegion3Activity"
@@ -35,7 +35,7 @@ ActivityObjectives[0]="Liberación: obstaculizar las operaciones de ADVENT"
 ActivityObjectives[1]="Liberación: irrumpir la torre de red"
 ActivityObjectives[2]="Liberación: asaltar la base de ADVENT"
 
-+MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="Hemos sabido de un dispositivo de ADVENT que interfiere con la red de comunicaciones de la resistencia. Debemos destruirlo.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="Recibimos información de un dispositivo de ADVENT que interfiere con la red de comunicaciones de la resistencia. Debemos destruirlo.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Neutralize_LW", Description="Nuestros esfuerzos nos han llevado hasta un oficial humano de ADVENT que está asesorando las operaciones enemigas en esta región. Debemos eliminar a esa persona.", MissionIndex=0)
 
 +MissionDescriptions=(MissionFamily="AssaultNetworkTower_LW", Description="Nuestras victorias en esta región aumentan. Es hora de acabar con su centro de comunicaciones en la capital de la región.", MissionIndex=1)
@@ -489,9 +489,9 @@ m_strImageGreeble="TRANSMISIÓN SEGURA"
 m_strWait="ESPERAR"
 m_strAbort="CANCELAR"
 m_strBoostInfiltration="POTENCIAR INFILTRACIÓN"
-m_strAlreadyBoostedInfiltration="El pelotón <XGParam:StrValue0> ya ha potenciado su infiltración."
-m_strInsufficentIntelForBoostInfiltration="Datos insuficientes"
-m_strBoostInfiltrationDescription="Puedes gastar <XGParam:StrValue0> para potenciar el valor de infiltración de este pelotón un <XGParam:IntValue1>% para esta misión. El potenciador es retroactivo. ¿Quieres gastar los datos?"
+m_strAlreadyBoostedInfiltration="El pelotón <XGParam:StrValue0> ya ha usado información para infiltrarse mas profundamente."
+m_strInsufficentIntelForBoostInfiltration="Información insuficiente"
+m_strBoostInfiltrationDescription="Puedes usar <XGParam:StrValue0> puntos de información para que este pelotón pueda infiltrarse un <XGParam:IntValue1>% mas profundo en esta misión. Este proceso es retroactivo. ¿Quieres usarlos?"
 m_strViewSquad="VER PELOTÓN"
 m_strInfiltrationStatusExpiring="<XGParam:IntValue0>% infiltrado / <XGParam:IntValue1>d <XGParam:IntValue2>h hasta el 100%"
 m_strInfiltrationStatusMissionEnding="<XGParam:IntValue0>% infiltrado / <XGParam:IntValue1>d <XGParam:IntValue2>h hasta el inicio obligado"
