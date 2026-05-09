@@ -5450,6 +5450,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'ANTICIPATION_MELEE_DAMAGE_REDUCTION':
 			Outstring = string(int(class'X2LWAbilitiesModTemplate'.default.MELEE_DAMAGE_REDUCTION));
 			return true;
+		case 'DFA_RANGE_PENALTY_NEGATION_MODIFIER':
+			OutString = string(int(-1 * class'X2Effect_DeathFromAbove_LW'.default.DFA_RANGE_PENALTY_NEGATION_MODIFIER * 100));
+			return true;
 		default:
 			return false;
 	}
