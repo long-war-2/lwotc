@@ -4602,7 +4602,7 @@ static function X2AbilityTemplate CrusaderRage()
 	Effect.AbilityTargetConditionsAsTarget.AddItem(Condition);
 
 	GreaterPaddingEffect = new class 'X2Effect_GreaterPadding';
-	GreaterPaddingEffect.BuildPersistentEffect (1, true, true);
+	GreaterPaddingEffect.BuildPersistentEffect (1, true, false);
 	GreaterPaddingEffect.Padding_HealHP = default.CRUSADER_WOUND_HP_REDUCTTION;	
 	
 	// Create the template using a helper function

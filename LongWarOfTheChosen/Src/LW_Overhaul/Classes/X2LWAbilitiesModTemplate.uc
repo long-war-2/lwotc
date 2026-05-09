@@ -984,7 +984,7 @@ static function UpdateSustainEffect(X2AbilityTemplate Template)
 	Template.AddTargetEffect(SustainEffect);
 
 	GreaterPaddingEffect = new class 'X2Effect_GreaterPadding';
-	GreaterPaddingEffect.BuildPersistentEffect (1, true, true);
+	GreaterPaddingEffect.BuildPersistentEffect (1, true, false);
 	GreaterPaddingEffect.Padding_HealHP = default.SUSTAIN_WOUND_HP_REDUCTTION;
 
 	Template.AddTargetEffect(GreaterPaddingEffect);

@@ -353,7 +353,7 @@ static function X2AbilityTemplate GreaterPadding(name AbilityName, int Amount)
 
 	
 	GreaterPaddingEffect = new class 'X2Effect_GreaterPadding';
-	GreaterPaddingEffect.BuildPersistentEffect (1, true, true);
+	GreaterPaddingEffect.BuildPersistentEffect (1, true, false);
 	GreaterPaddingEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	GreaterPaddingEffect.Padding_HealHP = Amount;	
 	Template.AddTargetEffect(GreaterPaddingEffect);
