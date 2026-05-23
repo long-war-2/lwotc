@@ -8124,3 +8124,15 @@ FriendlyName="Icarus Armor"
 FriendlyNamePlural="Icarus Armors"
 BriefSummary="The flight components recovered from the Archon King, when combined with our standard-issue armor systems, result in an armored suit with high damage resistance and improved mobility. The built-in propulsion system allows temporary flight, enabling the wearer to rapidly change locations."
 TacticalText="<Bullet/> The Icarus Armor allows a soldier to instantly leap to a new location.\n<Bullet/> Wearing this armor has a chance to panic Archons encountered in combat."
+
+[Justice X2AbilityTemplate]
+LocFriendlyName="Justice"
+LocLongDescription="Use the Grapple to pull a humanoid target to you and deliver a <Ability:SecondaryWeaponName/> strike."
+LocHelpText="Use the Grapple to pull a humanoid target to you and deliver a <Ability:SecondaryWeaponName/> strike."
+LocPromotionPopupText="<Bullet/> Justice is a great way to pull an enemy out of position.<br/><Bullet/> The <Ability:SecondaryWeaponName/> strike is guaranteed to hit if the pull is successful, and a graze counts as a success.<br/><Bullet/> An open space adjacent to the Skirmisher is needed to use Justice. <br/><Bullet/> Justice does not benefit from the ripjack aim bonus, but instead gets a bonus +<Ability:JUSTICE_HIT_BONUS/> aim. <br/><Bullet/> Justice has a <Ability:SelfCooldown/> turn cooldown.<br/>"
+
+[SkirmisherVengeance X2AbilityTemplate]
+LocFriendlyName="Wrath"
+LocLongDescription="Use the Grapple to pull yourself to an enemy and deliver a <Ability:SecondaryWeaponName/> strike."
+LocHelpText="Use the Grapple to pull yourself to an enemy and deliver a <Ability:SecondaryWeaponName/> strike."
+LocPromotionPopupText="<Bullet/> Wrath adds extra mobility for the Skirmisher, and can be used while the Grapple is on cooldown.<br/><Bullet/> The <Ability:SecondaryWeaponName/> strike is guaranteed to hit if the Grapple is successful, and a graze counts as a success. <br/><Bullet/> Wrath does not benefit from the ripjack aim bonus, but instead gets a bonus +<Ability:WRATH_HIT_BONUS/> aim. <br/><Bullet/> An open space adjacent to the enemy is needed to use Wrath.<br/><Bullet/> Wrath has a <Ability:SelfCooldown/> turn cooldown.<br/>"
