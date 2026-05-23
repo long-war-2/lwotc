@@ -5450,6 +5450,12 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'ANTICIPATION_MELEE_DAMAGE_REDUCTION':
 			Outstring = string(int(class'X2LWAbilitiesModTemplate'.default.MELEE_DAMAGE_REDUCTION));
 			return true;
+		case 'JUSTICE_HIT_BONUS':
+			Outstring = string(class'X2Ability_SkirmisherAbilitySet'.default.JUSTICE_HIT_BONUS);
+			return true;
+		case 'WRATH_HIT_BONUS':
+			Outstring = string(class'X2Ability_SkirmisherAbilitySet'.default.WRATH_HIT_BONUS);
+			return true;
 		default:
 			return false;
 	}
