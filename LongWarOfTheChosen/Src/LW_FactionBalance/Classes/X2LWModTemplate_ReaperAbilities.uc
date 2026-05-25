@@ -49,7 +49,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		ConvertRemoteStartToCharges(Template);
 		break;
 	case 'HomingMine':
-		Template.AdditionalAbilities.AddItem('Shrapnel');
+		PatchHomingMine(Template);
 		break;
 	case 'Shrapnel':
 		// Prevent Homing Mines granting Claymore charges.
@@ -544,6 +544,17 @@ static function ChangeBanish2HitCalc(X2AbilityTemplate Template)
 	VisibilityCondition.bAllowSquadsight = true;
 	Template.AbilityTargetConditions.AddItem(VisibilityCondition);
 	
+}
+
+static function PatchHomingMine(X2AbilityTemplate Template)
+{
+	local X2Condition_UnitEffects SuppressedCondition;
+
+	Template.AdditionalAbilities.AddItem('Shrapnel');
+	SuppressedCondition = new class'X2Condition_UnitEffects';
+	SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
+	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
+	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
 }
 	
 defaultproperties
