@@ -14,6 +14,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateLostBladestorm());
 	Templates.AddItem(CreateBruteAcid());
 	Templates.AddItem(PurePassive('LostImmunitiesPassive', , ,'eAbilitySource_Perk'));
+	Templates.AddItem(PurePassive('LostBruteAcidPassive', "img:///UILibrary_PerkIcons.UIPerk_andromedon_poisoncloud", ,'eAbilitySource_Perk'));
 	return Templates;
 }
 

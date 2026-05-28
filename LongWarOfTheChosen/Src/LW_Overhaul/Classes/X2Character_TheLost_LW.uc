@@ -72,6 +72,7 @@ static function X2CharacterTemplate CreateTemplate_TheLostBrute(name LostName, n
 	}
 
 	CharTemplate.Abilities.AddItem('LostImmunitiesPassive');
+	CharTemplate.Abilities.AddItem('LostBruteAcidPassive');
 
 	return CharTemplate;
 }
