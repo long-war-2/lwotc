@@ -1,21 +1,21 @@
 ; LWOTC translated
 [LingeringShadow X2AbilityTemplate]
 LocFriendlyName="Sombra persistente"
-LocLongDescription="Proporciona +<Ability:LingeringShadowDefenseBonus/> de defensa y +<Ability:LingeringShadowDodgeBonus/> de esquiva durante un turno cuando el Segador pierde Sombra."
-LocHelpText="Proporciona +<Ability:LingeringShadowDefenseBonus/> de defensa y +<Ability:LingeringShadowDodgeBonus/> de esquiva durante un turno cuando el Segador pierde Sombra."
-LocPromotionPopupText="<Bullet/> Proporciona +<Ability:LingeringShadowDefenseBonus/> de defensa y +<Ability:LingeringShadowDodgeBonus/> de esquiva tan pronto como el Segador deja de estar en Sombra, ya sea con motivo de salir del ocultamiento o porque Sombra expire.<br/><Bullet/> Dura hasta el inicio del siguiente turno de XCOM."
+LocLongDescription="Proporciona +<Ability:LingeringShadowDefenseBonus/> de defensa y +<Ability:LingeringShadowDodgeBonus/> de esquiva durante un turno cuando el <Ability:ClassName> pierde Sombra."
+LocHelpText="Proporciona +<Ability:LingeringShadowDefenseBonus/> de defensa y +<Ability:LingeringShadowDodgeBonus/> de esquiva durante un turno cuando el <Ability:ClassName> pierde Sombra."
+LocPromotionPopupText="<Bullet/> Proporciona +<Ability:LingeringShadowDefenseBonus/> de defensa y +<Ability:LingeringShadowDodgeBonus/> de esquiva tan pronto como el <Ability:ClassName> deja de estar en Sombra, ya sea con motivo de salir del ocultamiento o porque Sombra expire.<br/><Bullet/> Dura hasta el inicio del siguiente turno de XCOM."
 
 ; LWOTC translated
 [LingeringShadowTrigger X2AbilityTemplate]
 LocFriendlyName="Sombra persistente"
-LocLongDescription="Concede +<Ability:LingeringShadowDefenseBonus/> de defensa y +<Ability:LingeringShadowDodgeBonus/> de esquiva durante un turno cuando el Segador pierde Sombra."
-LocHelpText="Concede +<Ability:LingeringShadowDefenseBonus/> de defensa y +<Ability:LingeringShadowDodgeBonus/> de esquiva durante un turno cuando el Segador pierde Sombra."
+LocLongDescription="Concede +<Ability:LingeringShadowDefenseBonus/> de defensa y +<Ability:LingeringShadowDodgeBonus/> de esquiva durante un turno cuando el <Ability:ClassName> pierde Sombra."
+LocHelpText="Concede +<Ability:LingeringShadowDefenseBonus/> de defensa y +<Ability:LingeringShadowDodgeBonus/> de esquiva durante un turno cuando el <Ability:ClassName> pierde Sombra."
 ; End translated
 
 [Demolitionist X2AbilityTemplate]
 LocFriendlyName="Demolicionista"
-LocLongDescription="El Segador gana +<Ability:DemolitionistExtraChargeCount/> carga de Accionamiento a distancia y Mina buscadora."
-LocHelpText="El Segador gana +<Ability:DemolitionistExtraChargeCount/> carga de Accionamiento a distancia y Mina buscadora."
+LocLongDescription="El <Ability:ClassName> gana +<Ability:DemolitionistExtraChargeCount/> carga de Accionamiento a distancia y Mina buscadora."
+LocHelpText="El <Ability:ClassName> gana +<Ability:DemolitionistExtraChargeCount/> carga de Accionamiento a distancia y Mina buscadora."
 LocPromotionPopupText="<Bullet/> Añade <Ability:DemolitionistExtraChargeCount/> carga extra de Accionamiento a distancia y Mina buscadora.<br/>"
 
 [CripplingStrike X2AbilityTemplate]
@@ -47,14 +47,14 @@ LocPromotionPopupText="<Bullet/> Aturde a los objetivos durante <Ability:Disabli
 
 [Meditation X2AbilityTemplate]
 LocFriendlyName="Meditación"
-LocLongDescription="Añade al Templario hasta <Ability:MeditationFocusRecovery/> de concentración. Comienza con 0 cargas y gana una carga por cada muerte que consigue el Templario."
-LocHelpText="Añade al Templario hasta <Ability:MeditationFocusRecovery/> de concentración. Comienza con 0 cargas y gana una carga por cada muerte que consigue el Templario."
-LocPromotionPopupText="<Bullet/> Agrega al Templario <Ability:MeditationFocusRecovery/> puntos de concentración.<br/><Bullet/> Finaliza el turno.<br/><Bullet/> Tiene un tiempo de reutilización de <Ability:SelfCooldown/> turnos."
+LocLongDescription="Añade al <Ability:ClassName> hasta <Ability:MeditationFocusRecovery/> de concentración. Comienza con 0 cargas y gana una carga por cada muerte que consigue el <Ability:ClassName>."
+LocHelpText="Añade al <Ability:ClassName> hasta <Ability:MeditationFocusRecovery/> de concentración. Comienza con 0 cargas y gana una carga por cada muerte que consigue el <Ability:ClassName>."
+LocPromotionPopupText="<Bullet/> Agrega al <Ability:ClassName> <Ability:MeditationFocusRecovery/> puntos de concentración.<br/><Bullet/> Finaliza el turno.<br/><Bullet/> Tiene un tiempo de reutilización de <Ability:SelfCooldown/> turnos."
 
 [Overcharge_LW X2AbilityTemplate]
 LocFriendlyName="Heroísmo"
-LocLongDescription="Obtienes una bonificación de puntería y probabilidad crítica en ataques cuerpo a cuerpo por cada punto de concentración que tenga el Templario."
-LocHelpText="Obtienes una bonificación de puntería y probabilidad crítica en ataques cuerpo a cuerpo por cada punto de concentración que tenga el Templario."
+LocLongDescription="Obtienes una bonificación de puntería y probabilidad crítica en ataques cuerpo a cuerpo por cada punto de concentración que tenga el <Ability:ClassName>."
+LocHelpText="Obtienes una bonificación de puntería y probabilidad crítica en ataques cuerpo a cuerpo por cada punto de concentración que tenga el <Ability:ClassName>."
 LocPromotionPopupText="<Bullet/> Cada punto de concentración proporciona +<Ability:OverchargeAimBonus/> de puntería y +<Ability:OverchargeCritBonus/> a la probabilidad crítica.<br/><Bullet/> Tiene en cuenta el nivel de concentración actual y no el máximo."
 
 [VoltDangerZone X2AbilityTemplate]
@@ -69,20 +69,20 @@ LocPromotionPopupText="<Bullet/> Concede una bonificación de radio de impacto d
 LocFriendlyName="Vigilancia"
 LocLongDescription="Gana 1 de concentración cada vez que tu escuadrón activa un grupo enemigo del tamaño de 3 o más."
 LocHelpText="Gana 1 de concentración cada vez que tu escuadrón activa un grupo enemigo del tamaño de 3 o más."
-LocPromotionPopupText="<Bullet/> Consigue 1 de concentración para el Templario cuando un grupo enemigo se active.<br/><Bullet/> Sólo funciona si el grupo tiene al menos 3 unidades.<br/><Bullet/> Si estás ya al máximo de concentración la bonificación se desperdiciará."
+LocPromotionPopupText="<Bullet/> Consigue 1 de concentración para el <Ability:ClassName> cuando un grupo enemigo se active.<br/><Bullet/> Sólo funciona si el grupo tiene al menos 3 unidades.<br/><Bullet/> Si estás ya al máximo de concentración la bonificación se desperdiciará."
 
 [TemplarTerror X2AbilityTemplate]
 LocFriendlyName="Aterrorizar"
 LocLongDescription="Agrega la posibilidad de producir pánico a los enemigos golpeados por Voltio. Además, se obtiene <Ability:VoltDangerZoneBonus/> de bonificación al radio de acción."
 LocHelpText="Agrega la posibilidad de producir pánico a los enemigos golpeados por Voltio. Además, se obtiene <Ability:VoltDangerZoneBonus/> de bonificación al radio de acción."
-LocPromotionPopupText="<Bullet/> Voltio ahora incorpora una posibilidad de generar pánico a los enemigos.<br/><Bullet/> Su probabilidad está basada en la fuerza Psiónica del Templario frente a la voluntad del objetivo."
+LocPromotionPopupText="<Bullet/> Voltio ahora incorpora una posibilidad de generar pánico a los enemigos.<br/><Bullet/> Su probabilidad está basada en la fuerza Psiónica del <Ability:ClassName> frente a la voluntad del objetivo."
 
 [Apotheosis X2AbilityTemplate]
 LocFriendlyName="Apoteosis"
 LocFlyoverText="Apoteosis"
 LocLongDescription="Conviértete en un dios aumentando enormemente tu daño, esquiva y movilidad. Requiere un mínimo de 3 de concentración, la cual se consume por completo."
 LocHelpText="Conviértete en un dios aumentando enormemente tu daño, esquiva y movilidad. Requiere un mínimo de 3 de concentración, el cual se consume por completo."
-LocPromotionPopupText="<Bullet/> Acción gratuita que hace a los Templarios sustancialmente más poderosos durante dos turnos.<br/><Bullet/> Incrementa todo el daño en un <Ability:ApotheosisDamageMultiplier/>% por cada punto de concentración por encima de 2.<br/><Bullet/> Incrementa la esquiva en un <Ability:ApotheosisDodgeBonus/> por cada punto de concentración por encima de 2.<br/><Bullet/> Incrementa la movilidad en <Ability:ApotheosisMobilityBonus/> por cada punto de concentración por encima de 2.<br/><Bullet/> Requiere un mínimo de 3 de concentración que consumirá completamente.<br/><Bullet/> El Templario puede obtener concentración mientras está bajo el efecto de Apoteosis."
+LocPromotionPopupText="<Bullet/> Acción gratuita que hace al <Ability:ClassName> sustancialmente más poderoso durante dos turnos.<br/><Bullet/> Incrementa todo el daño en un <Ability:ApotheosisDamageMultiplier/>% por cada punto de concentración por encima de 2.<br/><Bullet/> Incrementa la esquiva en un <Ability:ApotheosisDodgeBonus/> por cada punto de concentración por encima de 2.<br/><Bullet/> Incrementa la movilidad en <Ability:ApotheosisMobilityBonus/> por cada punto de concentración por encima de 2.<br/><Bullet/> Requiere un mínimo de 3 de concentración que consumirá completamente.<br/><Bullet/> El <Ability:ClassName> puede obtener concentración mientras está bajo el efecto de Apoteosis."
 ; End translated
 
 ; LWOTC translated
@@ -117,8 +117,8 @@ LocFlyoverText="Sombra: +1 Turno"
 ; LWOTC translated
 [Parkour_LW X2AbilityTemplate]
 LocFriendlyName="Parkour"
-LocHelpText="El gancho del Guerrillero reduce su tiempo de reutilización en 1 turno."
-LocLongDescription="El gancho del Guerrillero reduce su tiempo de reutilización en 1 turno."
+LocHelpText="El gancho del <Ability:ClassName> reduce su tiempo de reutilización en 1 turno."
+LocLongDescription="El gancho del <Ability:ClassName> reduce su tiempo de reutilización en 1 turno."
 LocPromotionPopupText="<Bullet/> Ahora será más frecuente escalar por los edificios y desplazarse con celeridad.<br/>"
 ; End translated
 

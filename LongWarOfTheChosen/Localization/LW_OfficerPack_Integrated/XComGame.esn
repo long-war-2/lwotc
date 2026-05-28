@@ -45,7 +45,7 @@ LocFriendlyName="Tácticas de cobertura"
 LocLongDescription="Los soldados a distancia de mando del oficial reciben +<ABILITY:DEFILADE_DEFENSE_BONUS/> de bonificación al valor defensivo proporcionado por la cobertura."
 LocHelpText="Los soldados cercanos al oficial obtienen una bonificación defensiva por la cobertura."
 LocFlyOverText="Tácticas de cobertura"
-LocPromotionPopupText="<Bullet/> Los soldados a distancia de mando del oficial reciben +<ABILITY:DEFILADE_DEFENSE_BONUS/> de bonificación al valor defensivo proporcionado por la cobertura.<br/><Bullet/> La distancia de mando aumenta con cada nuevo nivel de oficial.<br/><Bullet/> Esta habilidad no concede bonificaciones al propio Oficial, ni a los aliados estuneados o en pánico, ni a civiles ni a unidades robóticas amistosas."
+LocPromotionPopupText="<Bullet/> Los soldados a distancia de mando del oficial reciben +<ABILITY:DEFILADE_DEFENSE_BONUS/> de bonificación al valor defensivo proporcionado por la cobertura.<br/><Bullet/> La distancia de mando aumenta con cada nuevo nivel de oficial.<br/><Bullet/> Esta habilidad no concede bonificaciones al propio Oficial, ni a los aliados desorientados, estuneados, envenenados, en llamas y en pánico o de otra forma similar, ni a civiles ni a unidades robóticas amistosas."
 ; End translated
 
 ;displayed both on officer and in debuff on target

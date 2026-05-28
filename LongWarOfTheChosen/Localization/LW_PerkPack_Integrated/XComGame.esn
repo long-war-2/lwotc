@@ -54,7 +54,7 @@ BriefSummary="Acción gratuita. El enemigo objetivo sufre -<Ability:BODY_SHIELD_
 [EmergencyLifeSupportPCS X2EquipmentTemplate]
 FriendlyName="SCP: Soporte vital de emergencia"
 FriendlyNamePlural="SCP: Soporte vital de emergencia"
-BriefSummary="Este implante aumenta drásticamente el umbral de daño excesivo necesario para evitar el desangrado, lo que hace que sea menos probable que su soldado muera cuando le disparan fatalmente y extiende el tiempo de desangrado en <Ability:EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS> turnos."
+BriefSummary="Una vez por misión, cuando esta unidad es derribada, siempre entra en desangrado (a menos que sufra un efecto que impida el desangrado), y extiende el tiempo de este efecto en <Ability:EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS> turnos."
 
 ; End Translated
 
@@ -301,9 +301,13 @@ LocPromotionPopupText="<Bullet/> Una vez por misión, efectúas un disparo de pi
 [Gunslinger X2AbilityTemplate]
 LocFriendlyName="Pistolero"
 LocFlyOverText="Pistolero"
-LocLongDescription="Haz un disparo de reacción con tu pistola contra cualquier enemigo que se mueva o ataque en un radio de 12 casillas o menos y un amplio cono de fuego."
-LocHelpText="Guardia con pistola mejorada en un cono de fuego."
-LocPromotionPopupText="<Bullet/> Alcance de 12 casillas.<br/><Bullet/> Tiempo de enfriamiento de 3 turnos.<br/>"
+LocLongDescription="Una forma especializada de guardia. Mientras está activa, realiza un disparo de reacción con tu <Ability:BOUND_WEAPON_NAME> contra cualquier enemigo que se mueva o ataque en un radio de <Ability:GUNSLINGER_TILES_RANGE> casillas. Este disparo garantiza impactar y hacer crítico."
+LocHelpText="Una forma especializada de guardia, la cual realiza un disparo con tu <Ability:BOUND_WEAPON_NAME> contra cualquier enemigo que se mueva o ataque en un radio de <Ability:GUNSLINGER_TILES_RANGE> casillas."
+LocPromotionPopupText="<Bullet/> Con Pistolero, no hay límite de disparos mientras continúe con munición.<br/><Bullet/> Tiempo de enfriamiento de <Ability:SelfCooldown_LW> turnos.<br/><Bullet> No puede utilizarse en ocultación.<br/>"
+
+[GunslingerShot X2AbilityTemplate]
+LocFriendlyName="Pistolero"
+LocFlyOverText="Pistolero"
 
 [HyperReactivePupils X2AbilityTemplate]
 LocFriendlyName="Pupilas hiperreactivas"
@@ -345,14 +349,14 @@ LocFriendlyName="Reflejos relámpago"
 LocFlyOverText="Reflejos relámpago"
 LocLongDescription="Los disparos de reacción que recibas tienen muchas menos probabilidades de impactar. La bonificación disminuye con cada disparo de reacción adicional que recibas."
 LocHelpText="Los disparos de reacción que recibas tienen menos probabilidades de impactar."
-LocPromotionPopupText="<Bullet/> Los disparos de reacción que recibas tienen muchas menos probabilidades de impactar.<br/><Bullet/> El primer disparo de reacción que recibas durante un turno tiene -100 de probabilidad de impactar; el segundo, -80; el tercero, -60; el cuarto, -40; y el quinto, -20. Los disparos de reacción sucesivos tienen una probabilidad de impactar normal.<br/><Bullet/> Esta habilidad no provee ventajas defensivas si la unidad está desorientada, aturdida, en pánico, en llamas or de alguna otra manera desabilitada."
+LocPromotionPopupText="<Bullet/> Los disparos de reacción que recibas tienen muchas menos probabilidades de impactar.<br/><Bullet/> El primer disparo de reacción que recibas durante un turno tiene -100 de probabilidad de impactar; el segundo, -80; el tercero, -60; el cuarto, -40; y el quinto, -20. Los disparos de reacción sucesivos tienen una probabilidad de impactar normal.<br/><Bullet/> Esta habilidad no provee ventajas defensivas si la unidad está desorientada, aturdida, en pánico, en llamas o de alguna otra manera desabilitada."
 
 [Cutthroat X2AbilityTemplate]
 LocFriendlyName="Despiadado"
 LocFlyOverText="Despiadado"
-LocLongDescription="Tus ataques cuerpo a cuerpo contra enemigos biológicos ignoran su blindaje, tienen +15 de probabilidad de crítico e infligen +2 de daño crítico."
-LocHelpText="Tus ataques cuerpo a cuerpo contra enemigos biológicos ignoran su blindaje, tienen +15 de probabilidad de crítico e infligen +2 de daño crítico."
-LocPromotionPopupText="<Bullet/> Tus ataques cuerpo a cuerpo contra enemigos biológicos ignoran su blindaje, tienen +15 de probabilidad de crítico e infligen +2 de daño crítico."
+LocLongDescription="Tus ataques cuerpo a cuerpo contra enemigos biológicos ignoran su blindaje, tienen +<Ability:CUTTHROAT_BONUS_CRIT_CHANCE/> de probabilidad de crítico e infligen +<Ability:CUTTHROAT_BONUS_CRIT_DAMAGE/> de daño crítico."
+LocHelpText="Tus ataques cuerpo a cuerpo contra enemigos biológicos ignoran su blindaje, tienen +<Ability:CUTTHROAT_BONUS_CRIT_CHANCE/> de probabilidad de crítico e infligen +<Ability:CUTTHROAT_BONUS_CRIT_DAMAGE/> de daño crítico."
+LocPromotionPopupText="<Bullet/> Tus ataques cuerpo a cuerpo contra enemigos biológicos ignoran su blindaje, tienen +<Ability:CUTTHROAT_BONUS_CRIT_CHANCE/> de probabilidad de crítico e infligen +<Ability:CUTTHROAT_BONUS_CRIT_DAMAGE/> de daño crítico."
 
 [KillerInstinct X2AbilityTemplate]
 LocFriendlyName="Instinto asesino"
@@ -378,20 +382,24 @@ LocPromotionPopupText="<Bullet/> Correr y disparar permite a las unidades acorta
 [Suppression_LW X2AbilityTemplate]
 LocFriendlyName="Contención"
 LocFlyOverText="Contención"
-LocLongDescription="Dispara una ráfaga que inmoviliza al objetivo, concede un disparo de reacción contra él si se mueve y restringe el uso de muchas habilidades. Además, el objetivo sufre una penalización de puntería de <Ability:SUPPRESSIONPENALTY/>. También agrega una reducción de puntería de -15 para ese turno aunque se zafe de la contención."
+LocLongDescription="Dispara una ráfaga que inmoviliza al objetivo, concede un disparo de reacción contra él si se mueve y restringe el uso de muchas habilidades. Además, el objetivo sufre una penalización de puntería de <Ability:SUPPRESSION_LW_AIM_MALUS> durante un turno y <Ability:SUPPRESSIONPENALTY> mientras el objetivo permanezca contenido."
 LocHelpText="Penaliza la puntería del objetivo y le dispara si se mueve."
-LocPromotionPopupText="<Bullet/> Usar Contención cuesta <Ability:SelfAmmoCost/> puntos de munición, pero no tiene tiempo de enfriamiento.<br/><Bullet/> La contención se puede cancelar si la unidad que la practica recibe daño.<br/><Bullet/> Si varias unidades contienen a un objetivo, se acumula la penalización a la puntería.<br/><Bullet/> No se puede usar llevando equipados una escopeta o un fusil de francotirador.<br/><Bullet/> La contención restringe muchas de las habilidades del objetivo, incluido el uso de cohetes y granadas. También agrega una reducción de puntería de -15 para ese turno aunque se zafe de la contención."
+LocPromotionPopupText="<Bullet/> Usar Contención cuesta <Ability:SelfAmmoCost/> puntos de munición, pero no tiene tiempo de enfriamiento.<br/><Bullet/> La contención se puede cancelar si la unidad que la practica recibe daño o algo que la deje incapacitada (como un ataque mental).<br/><Bullet/> No se puede usar llevando equipados una escopeta o un fusil de francotirador.<br/><Bullet/> La contención restringe muchas de las habilidades del objetivo, incluido el uso de cohetes y granadas.<br/><Bullet/> Si varias unidades retienen al mismo objetivo, la penalización de puntería no se acumulará.<br/>"
 
 [AreaSuppression X2AbilityTemplate]
 LocFriendlyName="Contención de zona"
 LocFlyOverText="Contención de zona"
-LocLongDescription="Dispara una ráfaga en un radio de <Ability:AREA_SUPPRESSION_RADIUS_TILES> casillas produciendo inmovilización a varios objetivos,  y concede un disparo de reacción contra todo el que se mueva. Los objetivos sufren también una penalización a la puntería de <Ability:SUPPRESSIONPENALTY/> hasta el fin de la contención. No puede usarse en modo oculto."
+LocLongDescription="Dispara una ráfaga en un radio de <Ability:AREA_SUPPRESSION_RADIUS_TILES> casillas produciendo inmovilización a varios objetivos,  y concede un disparo de reacción contra todo el que se mueva. Los objetivos sufren también una penalización a la puntería hasta el fin de la contención. No puede usarse en modo oculto."
 LocHelpText="Contiene a varios objetivos dentro de un área de efecto."
-LocPromotionPopupText="<Bullet/> No puede usarse la zona de contención cuando el soldado está oculto.<br/><Bullet/> Cualquier unidad que intente moverse recibirá disparos de reacción mientras le quede munición a la unidad que realice la contención.<br/><Bullet/> No funciona con escopetas o fusiles de francotirador.<br/><Bullet/> Usar la zona de contención cuesta <Ability:SelfAmmoCost/> puntos de munición, más uno de munición adicional por cada disparo de reacción. No tiene tiempo de enfriamiento.<br/><Bullet/> La zona de contención se cancelará si la unidad que la practica recibe daño.<br/><Bullet/> Si varias unidades contienen a un objetivo, se acumula la penalización a la puntería.<br/><Bullet/> La contención restringe muchas de las habilidades del objetivo, incluido el uso de cohetes y granadas."
+LocPromotionPopupText="<Bullet/> No puede usarse la zona de contención cuando el <Ability:ClassName> está oculto.<br/><Bullet/> Cualquier unidad que intente moverse recibirá disparos de reacción mientras le quede munición a la unidad que realice la contención.<br/><Bullet/> No funciona con escopetas o fusiles de francotirador.<br/><Bullet/> Usar la zona de contención cuesta <Ability:SelfAmmoCost/> puntos de munición, pero consume <Ability:AREA_SUPPRESSION_AMMO_COST> además de <Ability:AREA_SUPPRESSION_SHOT_AMMO_COST> de munición addicional por cada disparo de reacción. No tiene tiempo de enfriamiento.<br/><Bullet/> Contención de zona reduce la puntería de los objetivos en <Ability:SUPPRESSIONPENALTY> mientras no escapen de ahí.<br/><Bullet/> La zona de contención se cancelará si la unidad que la practica recibe daño o algún ataque que le imposibilite.<br/><Bullet/> La contención restringe muchas de las habilidades del objetivo, incluido el uso de cohetes y granadas.<br/><Bullet/> Si varias unidades retienen al mismo objetivo, la penalización de puntería no se acumulará.<br/>"
 
 [SuppressionShot_LW X2AbilityTemplate]
 LocFriendlyName="Contención"
 LocFlyOverText="Contención"
+
+[AreaSuppressionShot_LW X2AbilityTemplate]
+LocFriendlyName="Contención de zona"
+LocFlyOverText="Contención de zona"
 
 [DangerZone X2AbilityTemplate]
 LocFriendlyName="Zona de peligro"
@@ -470,7 +478,7 @@ LocFriendlyName="Disparo instantáneo"
 LocFlyOverText="Disparo instantáneo"
 LocLongDescription="Puedes efectuar disparos estándar con tu fusil de francotirador después de moverte, pero sufrirás penalizaciones severas a la puntería a más de 5 casillas del alcance de la vista del pelotón."
 LocHelpText="Dispara al objetivo."
-LocPromotionPopupText="<Bullet/> El soldado desbloqueará utilizar el fusil de francotirador para realizar disparos estándar después de moverse, pero sufrirá penalizaciones extremas de puntería en disparos contra objetivos situados a más de 22 casillas.<br/><Bullet/> El soldado no puede entrar en Guardia con el fusil de francotirador después de haberse movido.<br/>
+LocPromotionPopupText="<Bullet/> El <Ability:ClassName> desbloqueará utilizar el fusil de francotirador para realizar disparos estándar después de moverse, pero sufrirá penalizaciones extremas de puntería en disparos contra objetivos situados a más de 22 casillas, independientemente de si el soldado se ha movido o no.<br/><Bullet/> El soldado no puede entrar en Guardia con el fusil de francotirador después de haberse movido.<br/><Bullet/> Reduce las penalizaciones de corto alcance en <Ability:WPN_HANDLING_MODIFIER/>, en comparación con los rifles de francotirador normales.<br/><Bullet/> Tras 5 casillas de la habilidad Vista de pelotón, sufre un -20% adicional de puntería por casilla.<br/><Bullet/> Ciertos disparos especiales y la skill Vigilancia Larga aún requieren ambas acciones para su uso. Vigilancia Larga permite la guardia lejana mediante Vista de pelotón, pero las penalizaciones de alcance se aplican.<br/><Bullet/> El soldado no realizará un disparo de guardia o desde la habilidad Zona de eliminación sin al menos un 1% de probabilidad de impactar.<br/>"
 
 [SnapShotOverwatch X2AbilityTemplate]
 LocFriendlyName="Guardia"
@@ -489,7 +497,7 @@ LocHelpText="Permite efectuar disparos estándar y de guardia con fusiles de fra
 LocFriendlyName="Troyano"
 LocFlyOverText="Troyano"
 LocLongDescription="Las unidades enemigas pirateadas sufren daño y pierden sus acciones del turno en el que termine el efecto del pirateo. Troyano nunca romperá la ocultación de los escuadrones incluso si no logra destruir su objetivo."
-LocHelpText="Las unidades pirateadas sufren daño y pierden acciones cuando el efecto del pirateo termina. Esta habilidad permite que nuestros Especialistas destruyan los drones de ADVENT sin romper la ocultación. Incluso si la víctima sobrevive al ataque Troyano, el sigilo no se romperá."
+LocHelpText="Las unidades pirateadas sufren daño y pierden acciones cuando el efecto del pirateo termina. Esta habilidad permite que nuestro <Ability:ClassName> destruya los drones de ADVENT sin romper la ocultación. Incluso si la víctima sobrevive al ataque Troyano, el sigilo no se romperá."
 LocPromotionPopupText="<Bullet/> Las unidades enemigas pirateadas mediante Protocolo de control reciben de 0 a 8 de daño y pierden sus acciones del turno en el que termina el efecto del pirateo.<br/><Bullet/> Se aplica a las unidades aturdidas o bajo el dominio de Protocolo de control.<br/><Bullet/> El daño se calcula en función del atributo de pirateo comparado con la defensa de pirateo del objetivo.<br/>"
 
 [Covert X2AbilityTemplate]
@@ -525,7 +533,7 @@ LocFriendlyName="Cirujano de campaña"
 LocFlyOverText="Cirujano de campaña"
 LocLongDescription="Reduce el tiempo de recuperación de las heridas de la mayoría de los soldados."
 LocHelpText="Reduce el tiempo de recuperación de las heridas de la mayoría de los soldados."
-LocPromotionPopupText="<Bullet/> Cirujano de campaña reduce en 1 el número de puntos de salud que debe recuperar un soldado tras resultar herido en combate.<br/><Bullet/> La presencia de varios cirujanos de campaña en una misión puede reducir el tiempo de recuperación de las heridas aún más.<br/><Bullet/> El efecto incluye al soldado con la habilidad.<br/><Bullet/> No afecta a los soldados que han sufrido heridas mortales y están estabilizados para evitar que se desangren."
+LocPromotionPopupText="<Bullet/> Cirujano de campaña reduce en 1 el número de puntos de salud que debe recuperar un soldado tras resultar herido en combate.<br/><Bullet/> La presencia de varios cirujanos de campaña en una misión puede reducir el tiempo de recuperación de las heridas aún más.<br/><Bullet/> El efecto incluye al soldado con la habilidad.<br/><Bullet/> No afecta a los soldados que han sufrido heridas mortales y están estabilizados para evitar que se desangren.<br>"
 
 [Flashbanger X2AbilityTemplate]
 LocFriendlyName="Cegador"
@@ -553,7 +561,29 @@ LocFriendlyName="Humo denso"
 LocFlyOverText="Humo denso"
 LocLongDescription="Tus granadas de humo confieren <Ability:DenseSmoke_DefenseBonus_LW> de defensa adicional. También otorga una granada de humo gratis."
 LocHelpText="Tus granadas de humo confieren <Ability:DenseSmoke_DefenseBonus_LW> de defensa adicional. También otorga una granada de humo gratis."
-LocPromotionPopupText="<Bullet/> Tus granadas de humo confieren <Ability:DenseSmoke_DefenseBonus_LW> de defensa adicional a aquellos dentro del humo, para un total de <Ability:DenseSmoke_DefenseTotal_LW>. También otorga una granada de humo gratis.<br/>"
+
+; LWOTC Needs Translated
+
+LocPromotionPopupText="<Bullet/> Tus granadas de humo confieren <Ability:DenseSmoke_DefenseBonus_LW> de defensa adicional a aquellos dentro del humo, para un total de <Ability:DenseSmoke_DefenseTotal_LW>. También otorga una granada de humo gratis.<br><Bullet> El efecto se aplicará si la unidad entra en el humo después de su despliegue.<br><Bullet> Lamentablemente, también implica a unidades enemigas.<br>"
+
+
+[CombatStims_LW X2AbilityTemplate]
+LocFriendlyName="Estimulantes de combate"
+LocFlyOverText="Estimulantes de combate"
+LocLongDescription="Tus granadas de humo otorgan a las unidades en la nube de humo +<Ability:CombatStims_AimBonus_LW> de puntería y +<Ability:CombatStims_CritBonus_LW> a la probabilidad crítica."
+LocHelpText="Tus granadas de humo otorgan a las unidades en la nube de humo +<Ability:CombatStims_AimBonus_LW> de puntería y +<Ability:CombatStims_CritBonus_LW> a la probabilidad crítica."
+LocPromotionPopupText="<Bullet> El efecto persiste mientras la unidad permanezca en el humo.<br><Bullet> La bonificación se aplicará si la unidad entra en el humo después de ser desplegada.<br><Bullet> No funciona en unidades mecánicas.<br><Bullet> La jodienda es que también disfrutarán de esa ventaja las unidades enemigas si entran en el área.<br>"
+
+[RegenSmoke_LW X2AbilityTemplate]
+LocFriendlyName="Bruma regenerativa"
+LocFlyOverText="Bruma regenerativa"
+LocLongDescription="Tus granadas de humo curan a las unidades con +<Ability:RegenSmoke_HealAmount_LW> HP al comienzo de cada turno, hasta un máximo de +<Ability:RegenSmoke_MaxHealAmount_LW> HP por misión."
+LocHelpText="Tus granadas de humo curan unidades en la niebla creada al comienzo de cada turno.
+LocPromotionPopupText="<Bullet> El efecto se aplicará si la unidad entra en el humo después de ser desplegada.<br><Bullet> No se aplica a unidades mecánicas.<br><Bullet> Habrá que tener cuidado a la hora de lanzarla, puesto que los objetivos a eliminar podrán aprovecharse de ellas.<br>"
+; End translated
+
+
+
 
 [Collateral_LW X2AbilityTemplate]
 LocFriendlyName="Daños colaterales"
@@ -742,8 +772,10 @@ LocPromotionPopupText="<Bullet/> Un enemigo objetivo sufre -<Ability:BODY_SHIELD
 [EmergencyLifeSupport X2AbilityTemplate]
 LocFriendlyName="Soporte vital de emergencia"
 LocFlyOverText="Soporte vital de emergencia"
-LocLongDescription="Este implante aumenta drásticamente el umbral de daño excesivo necesario para evitar el desangrado, lo que hace que sea menos probable que su soldado muera cuando le disparan fatalmente y extiende el tiempo de desangrado en <Ability:EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS> turnos."
-LocPromotionPopupText="<Bullet/> Soporte vital de emergencia incrementa drásticamente el umbral de daño excesivo para evitar la muerte crítica.<br/><Bullet/> Añade <Ability:EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS> turnos al tiempo de desangrado.<br/>"
+LocLongDescription="Una vez por misión, cuando esta unidad es derribada, siempre entra en desangrado (a menos que sufra un efecto que impida el desangrado), y extiende el tiempo de este efecto en <Ability:EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS> turnos."
+LocPromotionPopupText="<Bullet/> Una vez por misión, cuando esta unidad es derribada, siempre entra en desangrado (a menos que sufra un efecto que impida el desangrado), y extiende el tiempo de este efecto en <Ability:EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS> turnos.<br/>"
+
+
 
 [IronSkin X2AbilityTemplate]
 LocFriendlyName="Piel de hierro"
@@ -764,7 +796,7 @@ LocFriendlyName="Fusión de mentes"
 LocFlyOverText="Fusión de mentes"
 LocLongDescription="Incrementa la efectividad de Fusión de mente concediendo una bonificación a la probabilidad de crítico, confiriendo mayores bonificaciones a la voluntad y puntos de salud ablativos, y reduciendo su tiempo de enfriamiento."
 LocHelptext="Concede una bonificación temporal a la voluntad y puntos de salud ablativos a un aliado orgánico."
-LocPromotionPopupText="<Bullet/> Concede al aliado orgánico objetivo +1/+<Ability:MIND_MERGE_AMP_MG_TOTAL_SHIELDHP>/+<Ability:MIND_MERGE_AMP_BM_TOTAL_SHIELDHP> puntos de salud ablativo (escudo) dependiendo del nivel de amplificador Psi, además de otro más por cada <Ability:MIND_MERGE_SHIELDHP_DIVISOR> de puntuación de ataque psi del agente psi que esté usando Fusión de mentes.<br/><Bullet/> Concede al aliado orgánico objetivo +0/+<Ability:MIND_MERGE_AMP_MG_TOTAL_WILL>/+<Ability:MIND_MERGE_AMP_BM_TOTAL_WILL> de voluntad, dependiendo del nivel de amplificador Psi, por cada <Ability:MIND_MERGE_WILL_DIVISOR> de puntuación de ataque psi del agente psi.<br/><Bullet/> Otorga al aliado objetivo +0/+<Ability:MIND_MERGE_AMP_MG_TOTAL_CRIT>/+<Ability:MIND_MERGE_AMP_BM_TOTAL_CRIT> de crítico dependiendo del nivel de amplificador Psi, y +1 de crítico por <Ability:MIND_MERGE_CRIT_DIVISOR> de puntuación de ataque psi del agente psi.<br/><Bullet/> El efecto dura hasta el siguiente turno del agente psi.<br/><Bullet/> Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos.<br/><Bullet/> Solo se puede tomar como objetivo a aliados visibles.<br/><Bullet/> El amplificador psi mejorado concede una bonificación a la voluntad y puntos de salud ablativos adicionales.<br/><Bullet/> Requiere una acción.<br/><Bullet/> <Bullet/> Concede una bonificación de probabilidad de crítico de 1% por cada 5 puntos de ataque psi."
+LocPromotionPopupText="<Bullet/> Concede al aliado orgánico objetivo +1/+<Ability:MIND_MERGE_AMP_MG_TOTAL_SHIELDHP>/+<Ability:MIND_MERGE_AMP_BM_TOTAL_SHIELDHP> puntos de salud ablativo (escudo) dependiendo del nivel de amplificador Psi, además de otro más por cada <Ability:MIND_MERGE_SHIELDHP_DIVISOR> de puntuación de ataque psi del <Ability:ClassName> que esté usando Fusión de mentes.<br/><Bullet/> Concede al aliado orgánico objetivo +0/+<Ability:MIND_MERGE_AMP_MG_TOTAL_WILL>/+<Ability:MIND_MERGE_AMP_BM_TOTAL_WILL> de voluntad, dependiendo del nivel de amplificador Psi, por cada <Ability:MIND_MERGE_WILL_DIVISOR> de puntuación de ataque psi del <Ability:ClassName>.<br/><Bullet/> Otorga al aliado objetivo +0/+<Ability:MIND_MERGE_AMP_MG_TOTAL_CRIT>/+<Ability:MIND_MERGE_AMP_BM_TOTAL_CRIT> de crítico dependiendo del nivel de amplificador Psi, y +1 de crítico por <Ability:MIND_MERGE_CRIT_DIVISOR> de puntuación de ataque psi del <Ability:ClassName>.<br/><Bullet/> El efecto dura hasta el siguiente turno del <Ability:ClassName>.<br/><Bullet/> Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos.<br/><Bullet/> Solo se puede tomar como objetivo a aliados visibles.<br/><Bullet/> El amplificador psi mejorado concede una bonificación adicional a estos efectos.<br/><Bullet/> Requiere una acción.<br/><Bullet/> Si el <Ability:ClassName> se usa como Asesor de Refugio, Fusión de mentes reducirá la probabilidad de reclutar rebeldes Sin Caras en un 40% (acumulable con otras habilidades similares).<br/>"
 
 [SoulMerge X2AbilityTemplate]
 LocFriendlyName="Fusión de almas"
@@ -778,7 +810,7 @@ LocFriendlyName="Lanza de anulación"
 LocLongDescription="Proyecta un haz de terrible potencia que daña a todos los objetivos que atraviese. Este ataque puede penetrar en múltiples enemigos y obstáculos."
 LocHelpText="Proyecta un haz de energía psiónica que daña a todos los objetivos que encuentra a su paso."
 LocFlyOverText="Lanza de anulación"
-LocPromotionPopupText="<Bullet/> Lanza de anulación tiene un tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos.<br/><Bullet/> El daño de Lanza de anulación se puede aumentar mejorando el amplificador psi del agente psi.<br/>"
+LocPromotionPopupText="<Bullet/> Lanza de anulación tiene un tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos.<br/><Bullet/> El daño de Lanza de anulación se puede aumentar mejorando el amplificador psi del <Ability:ClassName>.<br/>"
 
 
 [Shadowstrike_LW X2AbilityTemplate]
@@ -815,10 +847,9 @@ LocFriendlyNameWhenConcealed="Zona de eliminación (oculto)"
 [XComGame.DeathFromAbove X2AbilityTemplate]
 [DeathFromAbove X2AbilityTemplate]
 LocFriendlyName="Muerte desde las alturas"
-LocLongDescription="Una vez por turno, matar a un enemigo en una elevación inferior con tu <Ability:WeaponName/> cuesta una sola acción y no termina el turno. También reduce las penalizaciones de largo alcance en un 50% para rifles de francotirador y rifles Vektor ."
-LocHelpText="Una vez por turno, matar a un enemigo en una elevación inferior con tu <Ability:WeaponName/> cuesta una sola acción y no termina el turno."
-LocFlyOverText="Muerte desde las alturas"
-LocPromotionPopupText="<Bullet/> Muerte desde las alturas se combina bien con el mod de arma culata, o simplemente puede volver más móvil a un soldado.<br/><Bullet/> También reduce las penalizaciones de largo alcance en un 50% para rifles de francotirador y rifles Vektor."
+LocLongDescription="Una vez por turno, matar a un enemigo en una elevación inferior con tu <Ability:WeaponName/> otorga una acción estándar y no termina el turno. También reduce las penalizaciones de largo alcance en un 50% para rifles de francotirador y rifles Vektor ."
+LocHelpText="Una vez por turno, matar a un enemigo en una elevación inferior con tu <Ability:WeaponName/> otorga una acción estándar y no termina el turno."
+LocPromotionPopupText="<Bullet/> Muerte desde las alturas se combina bien con el mod de arma culata, o simplemente puede volver más móvil a un soldado (eso sí, no se activará cuando elimines a un enemigo con el primer disparo de la habilidad Doble tiro).<br/><Bullet/> También reduce las penalizaciones de largo alcance en un 50% para rifles de francotirador y rifles Vektor.<br/>"
 
 [XComGame.Implacable X2AbilityTemplate]
 [Implacable X2AbilityTemplate]
@@ -1103,59 +1134,58 @@ LocPromotionPopupText="<Bullet/> Puedes activar la habilidad Golpe cinético col
 [Obliterator_LW X2AbilityTemplate]
 LocFriendlyName="Servoarmaduras de asalto"
 LocLongDescription="Otorga +2 de daño y +20 de puntería a todos los ataques de golpe. También desbloquea la habilidad Bola de demolición."
-LocHelpText="Obtienes +2 de daño y +20 de puntería a todos los ataques de Golpe cinético."
+LocHelpText="Obtienes +2 de daño y +20 de puntería a todos los ataques de Golpe cinético. Bola de demolición: mientras Sobrecarga está activa, el SPARK puede atravesar paredes cuando se mueve."
 LocPromotionPopupText="<Bullet/> Aprendiendo la habilidad Servoarmaduras de asalto, conseguirás +2 de daño y un extra de +20 de puntería para todos los ataques de Golpe cinético."
 
 [RapidRepair_LW X2AbilityTemplate]
 LocFriendlyName="Reparación rápida"
-LocLongDescription="Reparar ya no finaliza el turno, lo que permite que el SPARK se repare y realice una acción diferente, como moverse o disparar."
-LocHelpText="Reparar no finaliza el turno del SPARK."
+LocLongDescription="Reparar ya no finaliza el turno, lo que permite que el <Ability:ClassName> se repare y realice una acción diferente, como moverse o disparar."
+LocHelpText="Reparar no finaliza el turno del <Ability:ClassName>."
 LocFlyOverText="Reparación rápida"
-LocPromotionPopupText="<Bullet/> La habilidad del SPARK Reparar no finaliza el turno.<br/><Bullet/> Reparar todavía tiene 1 turno de enfriamiento, evitando que se use dos veces en una misma ronda.<br/><Bullet/> Esto permite que el SPARK sea mucho más flexible en el campo de batalla, y al mismo tiempo mantenga alta su salud y armadura.<br/>"
+LocPromotionPopupText="<Bullet/> La habilidad del <Ability:ClassName> Reparar no finaliza el turno.<br/><Bullet/> Reparar todavía tiene 1 turno de enfriamiento, evitando que se use dos veces en una misma ronda.<br/><Bullet/> Esto permite que el <Ability:ClassName> sea mucho más flexible en el campo de batalla, y al mismo tiempo mantenga alta su salud y armadura.<br/>"
 
 [Reboot_LW X2AbilityTemplate]
 LocFriendlyName="Reinicio crítico"
-LocLongDescription="Esta unidad ha sido reiniciada debido a un daño catastrófico y sufre -30 de puntería, -3 de movilidad y -100 de pirateo."
-LocHelpText="La unidad estará protegida durante un turno si sufre suficiente daño como para morir."
+LocLongDescription="Si el <Ability:ClassName> recibe suficiente daño como para morir, su salud se reducirá a 1 y estará protegido por el resto del turno. Solo se puede activar una vez en cada misión; después de ello, el <Ability:ClassName> será utilizable pero quedará muy perjudicado."
+LocHelpText="El <Ability:ClassName> estará protegido durante un turno si sufre suficiente daño como para morir."
 LocFlyOverText="Reinicio crítico"
-LocPromotionPopupText="<Bullet/> El SPARK entrará en Estasis la primera vez que su salud llegue a cero (máximo una vez por misión).<br/><Bullet/> Sin la habilidad de Sistemas redundantes, el SPARK queda paralizado después de reiniciarse, a consecuencia del daño grave, sufriendo enormes penalizaciones en la puntería, movilidad y pirateo.<br/><Bullet/> Debido a estos inconvenientes, y en combinación con la ya baja integridad de la coraza del SPARK en el momento de un reinicio, se recomienda que dichos SPARKs se retiren del campo de batalla en cuanto sea posible, a través del Skyranger.<br/><Bullet/> Gracias a una compleja red de placas redundantes, circuitos de reactivación y un proyector de escudo de carga única, el SPARK podrá recuperarse para el equipo con la seguridad de saber que vivirá para golpear otro día.<br/>"
-
+LocPromotionPopupText="<Bullet/> El <Ability:ClassName> entrará en Estasis la primera vez que su salud llegue a cero (máximo una vez por misión).<br/><Bullet/> Sin la habilidad de Sistemas redundantes, el <Ability:ClassName> queda paralizado después de reiniciarse, a consecuencia del daño grave, sufriendo enormes penalizaciones en la puntería, movilidad y pirateo.<br/><Bullet/> Debido a estos inconvenientes, y en combinación con la ya baja integridad de la coraza del <Ability:ClassName> en el momento de un reinicio, se recomienda que dicho <Ability:ClassName> se retire del campo de batalla en cuanto sea posible, a través del Skyranger.<br/><Bullet/> Gracias a una compleja red de placas redundantes, circuitos de reactivación y un proyector de escudo de carga única, el <Ability:ClassName> podrá recuperarse para el equipo con la seguridad de saber que vivirá para golpear otro día.<br/>"
 
 
 [RebootTriggered_LW X2AbilityTemplate]
 LocFriendlyName="Reinicio crítico"
-LocLongDescription="Si el SPARK recibe suficiente daño como para morir, su salud se reducirá a 1 y estará protegido por el resto del turno. Solo se puede activar una vez en cada misión; después de ello, el SPARK será utilizable pero quedará muy perjudicado."
-LocHelpText="El SPARK estará protegido durante un turno si sufre suficiente daño como para morir."
-LocFlyOverText="Reinicio crítico"
-LocPromotionPopupText="<Bullet/> El SPARK entrará en Estasis la primera vez que su salud llegue a cero (máximo una vez por misión).<br/><Bullet/> Sin la habilidad de Sistemas redundantes, el SPARK queda paralizado después de reiniciarse, a consecuencia del daño grave, sufriendo enormes penalizaciones en la puntería, movilidad y pirateo.<br/><Bullet/> Debido a estos inconvenientes, y en combinación con la ya baja integridad de la coraza del SPARK en el momento de un reinicio, se recomienda que dichos SPARKs se retiren del campo de batalla en cuanto sea posible, a través del Skyranger.<br/><Bullet/> Gracias a una compleja red de placas redundantes, circuitos de reactivación y un proyector de escudo de carga única, el SPARK podrá recuperarse para el equipo con la seguridad de saber que vivirá para golpear otro día.<br/>"
+LocLongDescription="Esta unidad ha sido reiniciada debido a un daño catastrófico y sufre -30 de puntería, -3 de movilidad y -100 de pirateo."
+LocHelpText="El <Ability:ClassName> estará protegido durante un turno si sufre suficiente daño como para morir."
+
+
 
 [RedundantSystems_LW X2AbilityTemplate]
 LocFriendlyName="Sistemas redundantes"
-LocLongDescription="El SPARK ya no sufre ninguna penalización de estadísticas cuando se active un Reinicio crítico."
-LocHelpText="El SPARK ya no sufre ninguna penalización de estadísticas cuando se active un Reinicio crítico."
+LocLongDescription="El <Ability:ClassName> ya no sufre ninguna penalización de estadísticas cuando se active un Reinicio crítico."
+LocHelpText="El <Ability:ClassName> ya no sufre ninguna penalización de estadísticas cuando se active un Reinicio crítico."
 LocFlyOverText="Sistemas redundantes"
-LocPromotionPopupText="<Bullet/> El SPARK ya no sufre ninguna penalización de estadísticas cuando se active un Reinicio crítico.<br/><Bullet/> Sin esta habilidad, el SPARK quedará muy devastado después de reiniciarse debido a un daño severo.<br/>"
+LocPromotionPopupText="<Bullet/> El <Ability:ClassName> ya no sufre ninguna penalización de estadísticas cuando se active un Reinicio crítico.<br/><Bullet/> Sin esta habilidad, el <Ability:ClassName> quedará muy devastado después de reiniciarse debido a un daño severo.<br/>"
 
 [RedunSysTriggered_LW X2AbilityTemplate]
 LocFriendlyName="Sistemas redundantes"
-LocLongDescription="Si el SPARK recibe suficiente daño como para morir, su salud se reducirá a 1 y estará protegido por el resto del turno. Solo se puede activar una vez en cada misión."
-LocHelpText="El SPARK estará protegido durante un turno si sufre suficiente daño como para morir."
+LocLongDescription="Si el <Ability:ClassName> recibe suficiente daño como para morir, su salud se reducirá a 1 y estará protegido por el resto del turno. Solo se puede activar una vez en cada misión."
+LocHelpText="El <Ability:ClassName> estará protegido durante un turno si sufre suficiente daño como para morir."
 LocFlyOverText="Sistemas redundantes"
-LocPromotionPopupText="<Bullet/> El SPARK entrará en Estasis la primera vez que su salud llegue a cero (máximo una vez por misión).<br/><Bullet/> Gracias a una compleja red de placas redundantes, circuitos de reactivación y un proyector de escudo de carga única, el SPARK podrá recuperarse para el equipo con la seguridad de saber que vivirá para golpear otro día.<br/>"
+LocPromotionPopupText="<Bullet/> El <Ability:ClassName> entrará en Estasis la primera vez que su salud llegue a cero (máximo una vez por misión).<br/><Bullet/> Gracias a una compleja red de placas redundantes, circuitos de reactivación y un proyector de escudo de carga única, el <Ability:ClassName> podrá recuperarse para el equipo con la seguridad de saber que vivirá para golpear otro día.<br/>"
 
 [HeavyRepair_LW X2AbilityTemplate]
 LocFriendlyName="Reparación avanzada"
 LocFlyOverText="Reparación avanzada"
 LocLongDescription="Reparar cura 4 HPs adicionales con cada uso, duplicando su potencial de recuperación."
 LocHelpText="Reparar cura un extra de 4 HPs por cada uso."
-LocPromotionPopupText="<Bullet/> La habilidad de Reparar del SPARK ahora curará 8 HPs en vez de 4.<br/>"
+LocPromotionPopupText="<Bullet/> La habilidad de Reparar del <Ability:ClassName> ahora curará 8 HPs en vez de 4.<br/>"
 
 [ConcussiveStrike_LW X2AbilityTemplate]
 LocFriendlyName="Golpe de conmoción cerebral"
 LocLongDescription="Un Golpe especial que causa la mitad del daño pero aturde al objetivo durante dos puntos de acción. No se puede utilizar contra unidades robóticas. Enfriamiento de 4 turnos. También reduce el tiempo de reutilización de Golpe cinético en 1."
 LocHelpText="Un Golpe especial que causa la mitad del daño pero aturde al objetivo durante dos puntos de acción."
 LocFlyOverText="Golpe de conmoción cerebral"
-LocPromotionPopupText="<Bullet/> Golpe de conmoción cerebral no puede marcar unidades robóticas, ya que sus centros de procesamiento no son tan blandos como los cráneos orgánicos.<br/><Bullet/> El daño de Golpe de conmoción cerebral sin el talento Servoarmaduras de asalto es 3/4/5 (dependiendo del chasis equipado).<br/><Bullet/> El daño de Golpe de conmoción cerebral con Servoarmaduras de asalto es 4/5/6 (el chasis utilizado también influirá).<br/><Bullet/> Las mejoras en las habilidades a meleé del SPARK también reducen el tiempo de reutilización de Golpe cinético en 1."
+LocPromotionPopupText="<Bullet/> Golpe de conmoción cerebral no puede marcar unidades robóticas, ya que sus centros de procesamiento no son tan blandos como los cráneos orgánicos.<br/><Bullet/> El daño de Golpe de conmoción cerebral sin el talento Servoarmaduras de asalto es 3/4/5 (dependiendo del chasis equipado).<br/><Bullet/> El daño de Golpe de conmoción cerebral con Servoarmaduras de asalto es 4/5/6 (el chasis utilizado también influirá).<br/><Bullet/> Las mejoras en las habilidades a meleé del <Ability:ClassName> también reducen el tiempo de reutilización de Golpe cinético en 1."
 
 [Neutralize_LW X2AbilityTemplate]
 LocFriendlyName="Protocolo de neutralización"
@@ -1202,15 +1232,15 @@ LocPromotionPopupText="<Bullet/> Si un enemigo comienza su turno en una casilla 
 
 [EnhancedSystems_LW X2AbilityTemplate]
 LocFriendlyName="Sistemas de reparación mejorados"
-LocLongDescription="Implementa las habilidades Reparación rápida y Sistemas redundantes, lo que hace que ya no finalice el turno, y elimina las penalizaciones de estadísticas asociadas con el Reinicio crítico. El SPARK utilizará automáticamente Reparar al reiniciar."
-LocHelpText="La Reparación rápida hace que la reparación no finalice el turno. La habilidad Sistemas redundantes se traduce en que el SPARK no sufrirá ninguna penalización de estadísticas después de la activación del talento Reinicio crítico. El SPARK utilizará automáticamente Reparar al reiniciar."
-LocPromotionPopupText="La Reparación rápida hace que la reparación no finalice el turno. La habilidad Sistemas redundantes se traduce en que el SPARK no sufrirá ninguna penalización de estadísticas después de la activación del talento Reinicio crítico. El SPARK utilizará automáticamente Reparar al reiniciar."
+LocLongDescription="Implementa las habilidades Reparación rápida y Sistemas redundantes, lo que hace que ya no finalice el turno, y elimina las penalizaciones de estadísticas asociadas con el Reinicio crítico. El <Ability:ClassName> utilizará automáticamente Reparar al reiniciar."
+LocHelpText="La Reparación rápida hace que la reparación no finalice el turno. La habilidad Sistemas redundantes se traduce en que el <Ability:ClassName> no sufrirá ninguna penalización de estadísticas después de la activación del talento Reinicio crítico. El <Ability:ClassName> utilizará automáticamente Reparar al reiniciar."
+LocPromotionPopupText="La Reparación rápida hace que la reparación no finalice el turno. La habilidad Sistemas redundantes se traduce en que el <Ability:ClassName> no sufrirá ninguna penalización de estadísticas después de la activación del talento Reinicio crítico. El <Ability:ClassName> utilizará automáticamente Reparar al reiniciar."
 
 [ReactionSystems_LW X2AbilityTemplate]
 LocFriendlyName="Sistemas de defensa mejorados"
-LocLongDescription="Ganas las habilidades de Sacrificar y Campo de canalización, lo que le permite al SPARK redirigir ataques de aliados cercanos, con el fin de aumentar el daño después de ser objetivo de cualquier arremetida."
-LocHelpText="<Bullet/> El SPARK obtiene +<Ability:Sacrifice_Defense/> de defensa y +<Ability:Sacrifice_Armor/> de armadura mientras Sacrificar está activo.<br/><Bullet/> Sacrificar tiene <Ability:SACRIFICE_COOLDOWN/> turnos de reutilización.<br/><Bullet/> Cada punto de energía canalizado por Campo de canalización aumenta el daño del siguiente ataque de <Ability:WeaponName> en 1.<br/>"
-LocPromotionPopupText="<Bullet/> El SPARK obtiene +<Ability:Sacrifice_Defense/> de defensa y +<Ability:Sacrifice_Armor/> de armadura mientras Sacrificar está activo.<br/><Bullet/> Sacrificar tiene <Ability:SACRIFICE_COOLDOWN/> turnos de reutilización.<br/><Bullet/> Cada punto de energía canalizado por Campo de canalización aumenta el daño del siguiente ataque de <Ability:WeaponName> en 1.<br/>"
+LocLongDescription="Ganas las habilidades de Sacrificar y Campo de canalización, lo que le permite al <Ability:ClassName> redirigir ataques de aliados cercanos, con el fin de aumentar el daño después de ser objetivo de cualquier arremetida."
+LocHelpText="<Bullet/> El <Ability:ClassName> obtiene +<Ability:Sacrifice_Defense/> de defensa y +<Ability:Sacrifice_Armor/> de armadura mientras Sacrificar está activo.<br/><Bullet/> Sacrificar tiene <Ability:SACRIFICE_COOLDOWN/> turnos de reutilización.<br/><Bullet/> Cada punto de energía canalizado por Campo de canalización aumenta el daño del siguiente ataque de <Ability:WeaponName> en 1.<br/>"
+LocPromotionPopupText="<Bullet/> El <Ability:ClassName> obtiene +<Ability:Sacrifice_Defense/> de defensa y +<Ability:Sacrifice_Armor/> de armadura mientras Sacrificar está activo.<br/><Bullet/> Sacrificar tiene <Ability:SACRIFICE_COOLDOWN/> turnos de reutilización.<br/><Bullet/> Cada punto de energía canalizado por Campo de canalización aumenta el daño del siguiente ataque de <Ability:WeaponName> en 1.<br/>"
 
 [AdvancedLogic_LW X2AbilityTemplate]
 LocFriendlyName="Lógica avanzada"
@@ -1220,9 +1250,9 @@ LocPromotionPopupText="Aumenta la estadística de hackeo del <Ability:ClassName/
 
 [HoloAACombo_LW X2AbilityTemplate]
 LocFriendlyName="Sistemas de focus mejorados"
-LocLongDescription="Otorga las habilidades de Puntería adaptable y Holoapuntar, lo que mejora la capacidad del SPARK para realizar múltiples disparos mientras Sobrecarga está activa, y aumenta la destreza del escuadrón en los objetivos que dispare."
-LocHelpText="Otorga las habilidades de Puntería adaptable y Holoapuntar, lo que mejora la capacidad del SPARK para realizar múltiples disparos mientras Sobrecarga está activa, y aumenta la destreza del escuadrón en los objetivos que dispare."
-LocPromotionPopupText="Otorga las habilidades de Puntería adaptable y Holoapuntar, lo que mejora la capacidad del SPARK para realizar múltiples disparos mientras Sobrecarga está activa, y aumenta la destreza del escuadrón en los objetivos que dispare."
+LocLongDescription="Otorga las habilidades de Puntería adaptable y Holoapuntar, lo que mejora la capacidad del <Ability:ClassName> para realizar múltiples disparos mientras Sobrecarga está activa, y aumenta la destreza del escuadrón en los objetivos que dispare. Holoapuntar se aplica a todos los disparos, no solo a aquellos mientras Sobrecarga está operativa."
+LocHelpText="Otorga las habilidades de Puntería adaptable y Holoapuntar, lo que mejora la capacidad del <Ability:ClassName> para realizar múltiples disparos mientras Sobrecarga está activa, y aumenta la destreza del escuadrón en los objetivos que dispare. Holoapuntar se aplica a todos los disparos, no solo a aquellos mientras Sobrecarga está operativa."
+LocPromotionPopupText="Otorga las habilidades de Puntería adaptable y Holoapuntar, lo que mejora la capacidad del <Ability:ClassName> para realizar múltiples disparos mientras Sobrecarga está activa, y aumenta la destreza del escuadrón en los objetivos que dispare. Holoapuntar se aplica a todos los disparos, no solo a aquellos mientras Sobrecarga está operativa."
 
 
 ; New Class loc

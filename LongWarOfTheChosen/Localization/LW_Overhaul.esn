@@ -5,6 +5,10 @@ GrazeBandWidthModTooltip="Esto determina lo cerca que un disparo tiene que estar
 GrazeBandValue="Valor: <XGParam:IntValue0>"
 PauseOnRecruitMod="Pausar al reclutar"
 PauseOnRecruitModTooltip="Pausa la geovista cuando un refugio recluta a un nuevo soldado o rebelde."
+EnableAggregateJailbreakRewards="Recompensas agregadas de fuga de prisión"
+EnableAggregateJailbreakRewardsTooltip="Evita el desplazamiento excesivo del texto en la interfaz de la misión mostrando solo los totales de novatos y personal de la Resistencia."
+
+
 
 [UIScreenListener_ShellDifficulty]
 strIncompatibleModsTitle="MODS DUPLICADOS"
@@ -297,6 +301,8 @@ strLaunchingInfiltration="CONTACTO INMINENTE"
 
 [UIUtilities_Text_LW]
 m_strHelp="Ayuda"
+m_strJailbreakAggregatedReward="<XGParam:StrValue0/!RewardType>: <XGParam:StrValue1/!RewardQuantity>"
+m_strJailbreakAppendedPrisonerList="<br/>Nuestra información sugiere que la lista de prisioneros incluye: <XGParam:StrValue0/!RewardsList>."
 
 [X2Ability_LW_GearAbilities]
 strWeight="Peso de artículo pequeño"
@@ -519,9 +525,9 @@ m_strInsuffientInfiltrationToLaunch="Debes infiltrarte al menos un <XGParam:IntV
 +m_strAlertnessModifierDescriptions[15]="Vulnerable"
 
 [UIMission_LWCustomMission]
-+m_strUrgent="VIOLACIÓN DE SEGURIDAD"
-+m_strRendezvousMission="REUNIÓN"
-+m_strRendezvousDesc="**Señal no autorizada del refugio de la resistencia de <XGParam:StrValue0/!WorldRegionName>** El asesor y los voluntarios del refugio interceptarán y eliminarán al espía y a sus responsables de ADVENT en un sitio de reunión cercano."
+m_strUrgent="VIOLACIÓN DE SEGURIDAD"
+m_strRendezvousMission="REUNIÓN"
+m_strRendezvousDesc="**Señal no autorizada del refugio de la resistencia de <XGParam:StrValue0/!WorldRegionName>** El asesor y los voluntarios del refugio interceptarán y eliminarán al espía y a sus responsables de ADVENT en un sitio de reunión cercano."
 
 m_strInvasionMission="INVASIÓN"
 m_strInvasionWarning="ALERTA"
@@ -586,6 +592,11 @@ PerksStr="HABILIDADES"
 m_strIncomeIntel="Misiones en búsqueda de datos:"
 m_strIncomeSupply="Suministros cada 24 horas:"
 m_strIncomeRecruit="Días para reclutar:"
+
+[UIOutpostManagement_ListItem]
+m_strIDConfirmedName="Identidad confirmada"
+m_strIDConfirmedText="Nuestras tropas han investigado a este agente y han confirmado que no es un infiltrado de ADVENT."
+m_strIDConfirmedIconPath="img:///UILibrary_LWOTC.UIIcon_IDConfirmed_Hex"
 
 
 [UIScreenListener_TacticalHUD]
@@ -754,9 +765,16 @@ m_strChosenLoot=" Recompensa por matar al Elegido: ¡(<XGParam:IntValue0/>) <XGP
 
 [UISL_Shell_LWoTCVersion]
 strMessage_Title = "Long War Of The Chosen"
-strMessage_Header = "Long War Of The Chosen 1.2 - SPARK Rework
-strMessage_Body = "¡Nueva versión de Long War of The Chosen!<ul><li>Reelaboración completa del SPARK... también, árbol de habilidades rehechos para Granaderos, Especialistas y Técnicos.</li><li>Barra de talentos XCOM reformadas para todas las clases y costos de PH reducidos.</li><li>Modificada la interfaz de usuario de infiltración del mod Squad select de robojumper, con un nuevo botón para acceder a los asesores de Refugio desde la selección de pelotón; también cambios en el panel de gestión del Refugio del geomapa.</li><li>Dos nuevos tipos de misiones.</li><li>Más actualizaciones de Los Elegidos, con menos sabotaje, conocimiento reequilibrado y modificada la misión de defensa del Avenger.</li><li>Los agentes Psi ahora tienen barra de habilidad de pistolas y talentos XCOM.</li><li>Un montón de correcciones de errores, actualizaciones de calidad de vida y ajustes de equilibrio necesarios, y más.</li></ul>Consulta el documento de Google vinculado en las notas de cambios de Steam o visita LWoTC Discord para obtener más información. <br> Nota: Algunas variaciones no son totalmente compatibles a mitad de campaña y, aunque todo funcionará, el núcleo de la 1.2 estará desequilibrado. Recomendamos comenzar una nueva campaña o volver a la versión de archivo 1.1.0 (se puede encontrar en el Workshop) para finalizar la actual si así lo deseas."
+strMessage_Header = "¡Long War Of The Chosen ha sido una vez más actualizado!
+strMessage_Body = "La versión 1.2.3 ya está disponible. Si bien no es una versión completa, incluye:<ul><li>Un cambio de equilibrio en el SPARK, con nuevas armaduras, árbol de habilidades mejorado, el regreso de la defensa ablativa, aunque ya no se pueden enviar a una misión heridos.</li><li>Un montón de nuevos mapas y "fragmentos" de mapa, algunos de las cuales te harán sentir fuera de tu zona de confort (= más rejugablidad).</li><li>Una interfaz de usuario más precisa para la información de gestión del Refugio.</li><li>Muchas correcciones para varios fallos y otros errores, incluyendo el error \"Vanishing Evac\", un problema grave de Linux y más.</li></ul><br/> Consulta el documento de Google vinculado en las notas de cambios de Steam o visita LWoTC Discord para obtener más información.</br> Nota: Todos los cambios deberían ser compatibles a mitad de campaña. Puedes usar el comando RespecSelectedSoldier para actualizar el árbol SPARK."
 strDismiss_Button = "OK"
+
+[UISL_Shell_BetaPatchNotes]
+strMessage_Title = "Long War Of The Chosen"
+strMessage_Header = "Últimos cambios en la Beta:"
+strMessage_Body = "<ul><li>Ajustes de SPARK (ronda 2): Revisión del árbol de habilidades, ajustes en las mejoras de armadura, regreso de la defensa ablativa, pero ya no se pueden enviar SPARKs estando herido. El objetivo es mezclar las configuraciones, reducir el poder inmediato de los soldados y hacer que el uso masivo de SPARKs sea menos efectivo, pero no que sea una desventaja.</li></ul>"
+strDismiss_Button = "OK"
+
 
 [UISL_PullAdvisors]
 m_strPullHavenAdvisors="QUITAR ASESORES"

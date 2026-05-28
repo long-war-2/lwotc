@@ -44,9 +44,23 @@ ShockwaveEffectDesc="Esta unidad tiene defensa y esquiva reducidas."
 
 ; End translated
 
+; LWOTC translated
+
+[X2Effect_LWCombatStims]
+strEffectBonusName = "Estimulantes de combate"
+strEffectBonusDesc = "Esta unidad se ve potenciada por estimulantes de combate. Su puntería y probabilidad crítica aumentan."
+
 [X2Effect_LWDenseSmoke]
 strEffectBonusName = "Humo denso"
 strEffectBonusDesc = "El humo denso concede una bonificación defensiva adicional a esta unidad."
+
+[X2Effect_LWRegenSmoke]
+strEffectBonusName = "Bruma regenerativa"
+strEffectBonusDesc = "Esta unidad se ve beneficiada por una niebla regenerativa. Regenera PS al inicio de cada turno."
+
+; End translated
+
+
 
 [X2Effect_Savior]
 strSavior_WorldMessage="Salvador: curación de <XGParam:IntValue0/> de salud adicional."
@@ -55,6 +69,9 @@ strSavior_WorldMessage="Salvador: curación de <XGParam:IntValue0/> de salud adi
 
 [X2Effect_ApplyRepairHeal_LW]
 HealedMessage="+<Heal/> HPs restablecidos"
+
+[X2Effect_LWHolotarget]
+HoloTargetEffectName="Holoapuntado"
 
 [X2Effect_RepairArmor_LW]
 ArmorRepairedMessage="Armazón reconstituido"
@@ -70,12 +87,20 @@ DenseSmokeGrenadeEffectDisplayDesc="El humo denso concede una bonificación defe
 [X2Ability_PerkPackAbilitySet]
 LocCoveringFire="Fuego de cobertura"
 LocCoveringFireMalus="Esta unidad ha sido el objetivo de una guardia con el talento Fuego de cobertura, lo que le confiere -10 para apuntar durante el resto del turno."
+
+
 ; LWOTC translated
 LocSoulStealBuff="Robo de alma ablativo"
 LocSoulStealBuffHelpText="Robo de alma otorga puntos de defensa ablativos cuando se usa Fuego del alma."
+
+LocVampirismBuff="Vampirismo"
+LocVampirismBuffHelpText="El vampirismo otorga puntos ablativos cuando se cura en exceso."
+
+
 ; End translated
 
-; LWOTC Needs Translation
+; LWOTC translated
+
 [X2Effect_RegenerationPCT]
 HealedMessage="+<Heal/> Puntos de salud regenerados."
 
