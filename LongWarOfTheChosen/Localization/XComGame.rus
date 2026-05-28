@@ -7146,6 +7146,7 @@ LocPromotionPopupText="<Bullet/> Боевые сканеры у это спос�
 ;End Translated
 
 ;LWOTC Translated
+[Anatomy_LW X2AbilityTemplate]
 LocFriendlyName="Анатом"
 LocFlyOverText="Анатом"
 LocLongDescription="Получает +<Ability:ANATOMY_CRIT_TAG> крит шанс и +<Ability:ANATOMY_PIERCE_TAG> пробивания брони."
