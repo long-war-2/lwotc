@@ -8,10 +8,57 @@
 //---------------------------------------------------------------------------------------
 class X2Effect_GreaterPadding extends X2Effect_Persistent;
 
-var const name GreaterPaddingUnitWasBleedingOut;
+var const name GreaterPaddingUnitWasBleedingOut; //unused
 var int Padding_HealHP;
-var bool bIgnoreBleedout;
+var bool bIgnoreBleedout; //unused
 
+function UnitEndedTacticalPlay(XComGameState_Effect EffectState, XComGameState_Unit UnitState)
+{
+	local int ToHealHP;
+	local XComGameState_Unit SourceState;
+
+	if (UnitState.IsDead()
+		|| UnitState.LowestHP == 0
+		|| UnitState.IsBleedingOut()
+		|| UnitState.bCaptured)
+		{ return; }
+
+	// check if the source exists and is alive
+	SourceState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
+	if (SourceState.ObjectID != UnitState.ObjectID)
+	{
+		if (SourceState == none
+			|| SourceState.IsDead()
+			|| SourceState.IsBleedingOut()
+			|| SourceState.LowestHP == 0
+			|| SourceState.bCaptured)
+		{ return; }
+	}
+
+	// check if healing plus LowestHP would go over HighestHP
+	if ((UnitState.HighestHP - (UnitState.LowestHP + Padding_HealHP)) > 0)
+	{
+		ToHealHP = Padding_HealHP;
+	}
+	else
+	{
+		// it would go over, so heal as much as possible but no more
+		ToHealHP = (UnitState.HighestHP - UnitState.LowestHP);
+	}
+
+	if (ToHealHP > 0)
+	{
+		UnitState.LowestHP += ToHealHP;
+	}
+	
+	if ((UnitState.HighestHP - UnitState.LowestHP) == 0
+		&& UnitState.MissingHP == 0)
+	{
+		UnitState.SetCurrentStat(eStat_HP, UnitState.GetBaseStat(eStat_HP));
+	}
+}
+
+/*
 function RegisterForEvents(XComGameState_Effect EffectGameState)
 {
 	local Object EffectObj;
@@ -119,10 +166,15 @@ static function EventListenerReturn OnUnitBleedingOut(Object EventData, Object E
 	}
 	return ELR_NoInterrupt;
 }
+*/
 
 DefaultProperties
 {
 	EffectName="GreaterPadding"
 	DuplicateResponse=eDupe_Allow
 	GreaterPaddingUnitWasBleedingOut="GreaterPaddingUnitWasBleedingOut"
+	
+	bRemoveWhenTargetDies = true
+    bPersistThroughTacticalGameEnd = true
+    bCanBeRedirected = false
 }
