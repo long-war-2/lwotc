@@ -461,76 +461,96 @@ static function array<X2EquipmentTemplate> GetCompleteDefaultLoadout(XComGameSta
 // provided game state.
 function static XComGameState_Unit CreateRebelSoldier(StateObjectReference RebelRef, StateObjectReference OutpostRef, XComGameState NewGameState, optional name Loadout)
 {
-    local XComGameState_LWOutpost Outpost;
-    local XComGameState_Unit Proxy;
-    local Name TemplateName;
+	local XComGameState_LWOutpost Outpost;
+	local XComGameState_Unit Proxy;
+	local name TemplateName;
 	local int LaserChance, MagChance, CoilChance, iRand;
 	local string LoadoutStr;
 
-    Outpost = XComGameState_LWOutpost(`XCOMHISTORY.GetGameStateForObjectID(OutpostRef.ObjectID));
-    switch(Outpost.GetRebelLevel(RebelRef))
-    {
-        case 0:
-            TemplateName = 'RebelSoldierProxy';
-            break;
-        case 1:
-            TemplateName = 'RebelSoldierProxyM2';
-            break;
-        case 2:
-            TemplateName = 'RebelSoldierProxyM3';
-            break;
-        default:
-            `Redscreen("CreateRebelSoldier: Unsupported rebel level " $ Outpost.GetRebelLevel(RebelRef));
-            TemplateName = 'RebelSoldierProxy';
-    }
+	local bool AdvancedLasersResearched;
+	local bool MagnetizedWeaponsResearched;
+	local bool GaussWeaponsResearched;
+	local bool CoilgunsResearched;
+	local bool AdvancedCoilgunsResearched;
+	local bool PlasmaRifleResearched;
+	local bool AlloyCannonResearched;
+	local bool HeavyPlasmaResearched;
+	local bool PlasmaSniperResearched;
 
-    Proxy = CreateRebelProxy(RebelRef, OutpostRef, TemplateName, true, NewGameState);
-    Proxy.SetSoldierClassTemplate('LWS_RebelSoldier');
+	Outpost = XComGameState_LWOutpost(`XCOMHISTORY.GetGameStateForObjectID(OutpostRef.ObjectID));
+	switch(Outpost.GetRebelLevel(RebelRef))
+	{
+		case 0:
+			TemplateName = 'RebelSoldierProxy';
+			break;
+		case 1:
+			TemplateName = 'RebelSoldierProxyM2';
+			break;
+		case 2:
+			TemplateName = 'RebelSoldierProxyM3';
+			break;
+		default:
+			`Redscreen("CreateRebelSoldier: Unsupported rebel level " $ Outpost.GetRebelLevel(RebelRef));
+			TemplateName = 'RebelSoldierProxy';
+	}
+
+	Proxy = CreateRebelProxy(RebelRef, OutpostRef, TemplateName, true, NewGameState);
+	Proxy.SetSoldierClassTemplate('LWS_RebelSoldier');
 
 	LaserChance = 0;
 	MagChance = 0;
 	CoilChance = 0;
 
-    if (Loadout == '')
+	if (Loadout == '')
 	{
-        LoadoutStr = "RebelSoldier";
-		if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('MagnetizedWeapons') && class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('AdvancedLasers'))
+		AdvancedLasersResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.AdvancedLasersTechName);
+		MagnetizedWeaponsResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.MagnetizedWeaponsTechName);
+		GaussWeaponsResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.GaussWeaponsTechName);
+		CoilgunsResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.CoilgunsTechName);
+		AdvancedCoilgunsResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.AdvancedCoilgunsTechName);
+		PlasmaRifleResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.PlasmaRifleTechName);
+		AlloyCannonResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.AlloyCannonTechName);
+		HeavyPlasmaResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.HeavyPlasmaTechName);
+		PlasmaSniperResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.PlasmaSniperTechName);
+
+		LoadoutStr = "RebelSoldier";
+		if (MagnetizedWeaponsResearched && AdvancedLasersResearched)
 		{
 			LaserChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); // 30/40/50
 		}
-		if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('GaussWeapons') && class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('AdvancedLasers'))
+		if (GaussWeaponsResearched && AdvancedLasersResearched)
 		{
 			LaserChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); // 60/80/100
 		}
-		if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('Coilguns') && class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('GaussWeapons'))
+		if (CoilgunsResearched && GaussWeaponsResearched)
 		{
-			if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('AdvancedLasers'))
+			if (AdvancedLasersResearched)
 			{
 				LaserChance = 100;
 			}
-			MagChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); //30/40/50
+			MagChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); // 30/40/50
 		}
-		if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('AdvancedCoilguns') && class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('GaussWeapons'))
+		if (AdvancedCoilgunsResearched && GaussWeaponsResearched)
 		{
-			MagChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); //60/80/100
+			MagChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); // 60/80/100
 		}
-		if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('PlasmaRifle'))
+		if (PlasmaRifleResearched)
 		{
-			if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('GaussWeapons'))
-			{	
+			if (GaussWeaponsResearched)
+			{
 				MagChance = 100;
 			}
-			CoilChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); //30/40/50
+			CoilChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); // 30/40/50
 		}
 		// All plasma weapon related research
-		if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('HeavyPlasma') && 
-			class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('AlloyCannon') && 
-			class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('PlasmaSniper') && 
-			class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('AdvancedCoilguns'))
+		if (HeavyPlasmaResearched &&
+			AlloyCannonResearched &&
+			PlasmaSniperResearched &&
+			AdvancedCoilgunsResearched)
 		{
-			CoilChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); //60/80/100
+			CoilChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); // 60/80/100
 		}
-		
+
 		if (`SYNC_RAND_STATIC(100) < CoilChance)
 		{
 			LoadoutStr $= "4";
@@ -555,14 +575,14 @@ function static XComGameState_Unit CreateRebelSoldier(StateObjectReference Rebel
 		{
 			LoadoutStr $= "Shotgun";
 		}
-			
+
 		//`LWTRACE ("Rebel Loadout" @ LoadoutStr);
 		Loadout = name(LoadOutStr);
 	}
-		
-    ApplyLoadout(Proxy, Loadout, NewGameState);
 
-    return Proxy;
+	ApplyLoadout(Proxy, Loadout, NewGameState);
+
+	return Proxy;
 }
 
 // Create a rebel proxy for the given unit and set them on mission in the given

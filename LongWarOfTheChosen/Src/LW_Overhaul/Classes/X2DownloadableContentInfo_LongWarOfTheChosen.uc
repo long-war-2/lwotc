@@ -161,6 +161,20 @@ var config bool bUpdateWaterworldLW;
 
 var config bool bTacticalLootCleanup;
 
+// Reduce hardcoding of rebel/VIP scaling techs, in case a particularly invasive mod (e.g. WOTCArchipelago) wants to handle them
+var config name AdvancedLasersTechName;
+var config name MagnetizedWeaponsTechName;
+var config name GaussWeaponsTechName;
+var config name CoilgunsTechName;
+var config name AdvancedCoilgunsTechName;
+var config name PlasmaRifleTechName;
+var config name AlloyCannonTechName;
+var config name HeavyPlasmaTechName;
+var config name PlasmaSniperTechName;
+var config name PlatedArmorTechName;
+var config name PoweredArmorTechName;
+var config name AdvancedGrenadesTechName;
+
 // End data and data structures
 //-----------------------------
 
@@ -3054,7 +3068,7 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 		case 'RebelSoldierProxyM2':
 		case 'RebelSoldierProxyM3':
 
-			if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('PoweredArmor'))
+			if (static.TechResearchedOrHasHQInventoryItem(default.PoweredArmorTechName))
 			{
 				AbilityTemplate = AbilityTemplateMan.FindAbilityTemplate('RebelHPUpgrade_T2');
 
@@ -3063,7 +3077,7 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 				Data.Template = AbilityTemplate;
 				SetupData.AddItem(Data);
 			}
-			else if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('PlatedArmor'))
+			else if (static.TechResearchedOrHasHQInventoryItem(default.PlatedArmorTechName))
 			{
 				AbilityTemplate = AbilityTemplateMan.FindAbilityTemplate('RebelHPUpgrade_T1');
 				Data = EmptyData;
@@ -3071,8 +3085,7 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 				Data.Template = AbilityTemplate;
 				SetupData.AddItem(Data);
 			}
-			
-			if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('AdvancedGrenades'))
+			if (static.TechResearchedOrHasHQInventoryItem(default.AdvancedGrenadesTechName))
 			{
 				AbilityTemplate = AbilityTemplateMan.FindAbilityTemplate('RebelGrenadeUpgrade');
 				Data = EmptyData;
@@ -4960,6 +4973,19 @@ static function XComGameState_WorldRegion ChooseRetributionRegion(XComGameState_
 	RegionState = XComGameState_WorldRegion(History.GetGameStateForObjectID(RegionRef.ObjectID));
 
 	return RegionState;
+}
+
+static function bool TechResearchedOrHasHQInventoryItem(name TechOrItem)
+{
+	local XComGameState_HeadquartersXCom HQ;
+
+	HQ = class'UIUtilities_Strategy'.static.GetXComHQ();
+
+	if (HQ.IsTechResearched(TechOrItem))
+	{
+		return true;
+	}
+	return HQ.GetNumItemInInventory(TechOrItem) > 0;
 }
 
 //=========================================================================================
