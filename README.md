@@ -103,6 +103,10 @@ the issue.
 
 All contributions are welcome, but bug fixes are _extremely_ welcome!
 
+### No AI Policy
+
+PRs that modify code and are recognizably made with an LLM/AI are not accepted.
+
 ## Acknowledgements
 
  * Track Two, who has provided a huge amount of advice and insight that saved me lots of time
