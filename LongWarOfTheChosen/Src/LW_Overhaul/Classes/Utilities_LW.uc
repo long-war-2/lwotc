@@ -586,16 +586,6 @@ static function int RollRebelWeaponTier(XComGameState_LWOutpost Outpost, StateOb
 	HeavyPlasmaResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.HeavyPlasmaTechName);
 	PlasmaSniperResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.PlasmaSniperTechName);
 
-	`LWTrace("AdvancedLasersResearched:" @ AdvancedLasersResearched);
-	`LWTrace("MagnetizedWeaponsResearched:" @ MagnetizedWeaponsResearched);
-	`LWTrace("GaussWeaponsResearched:" @ GaussWeaponsResearched);
-	`LWTrace("CoilgunsResearched:" @ CoilgunsResearched);
-	`LWTrace("AdvancedCoilgunsResearched: " @ AdvancedCoilgunsResearched);
-	`LWTrace("PlasmaRifleResearched:" @ PlasmaRifleResearched);
-	`LWTrace("AlloyCannonResearched:" @ AlloyCannonResearched);
-	`LWTrace("HeavyPlasmaResearched:" @ HeavyPlasmaResearched);
-	`LWTrace("PlasmaSniperResearched:" @ PlasmaSniperResearched);
-
 	LaserChance = 0;
 	MagChance = 0;
 	CoilChance = 0;
@@ -686,14 +676,13 @@ static function name RollLegacyLoadout(XComGameState_LWOutpost Outpost, StateObj
 	return name(LoadoutStr);
 }
 
-// ===========================================================
+// =============================================================================
 // CreateRebelSoldier  MODULAR VERSION
 // =============================================================================
 // Creates a soldier proxy for the given rebel, sets them as onmission,
 // and gives them a loadout.
 //
 // Loadout assignment:
-//   For custom character templates, uses the template's own DefaultLoadout.
 //   For default proxies: uses modular system if configured, else legacy.
 //
 // See: XComLW_Overhaul.ini [LW_Overhaul.Utilities_LW] for config defaults.
@@ -771,6 +760,7 @@ function static XComGameState_Unit CreateRebelSoldier(StateObjectReference Rebel
 		for (ItemIdx = 0; ItemIdx < default.REBEL_ALWAYS_EQUIP.Length; ItemIdx++)
 		{
 			EquipItemOnUnit(Proxy, default.REBEL_ALWAYS_EQUIP[ItemIdx], NewGameState);
+			`LWTrace("Always equip:" @ default.REBEL_ALWAYS_EQUIP[ItemIdx]);
 		}
 
 		`LWTrace("Rebel Loadout:" @ SelectedCategory.CategoryName
