@@ -686,7 +686,7 @@ static function name RollLegacyLoadout(XComGameState_LWOutpost Outpost, StateObj
 	return name(LoadoutStr);
 }
 
-===========================================================
+// ===========================================================
 // CreateRebelSoldier  MODULAR VERSION
 // =============================================================================
 // Creates a soldier proxy for the given rebel, sets them as onmission,
