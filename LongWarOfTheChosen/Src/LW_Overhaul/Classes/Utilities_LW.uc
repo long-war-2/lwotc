@@ -28,23 +28,20 @@ struct RebelWeaponCategoryEntry
 	var name Tier2Weapon;       // e.g. 'AssaultRifle_LS'
 	var name Tier3Weapon;       // e.g. 'AssaultRifle_MG'
 	var name Tier4Weapon;       // e.g. 'AssaultRifle_CG'
+	var int Weight;         // e.g. 20, 30, 100
 };
 
 // Defines a utility slot combination archetype.
-struct RebelUtilityArchetype
+struct RebelUtilityItem
 {
-	var name ArchetypeName;     // e.g. 'OffDef', 'OffOff', 'DefDef'
-	var name Slot1Pool;         // 'Offensive', 'Defensive', or 'Utility'
-	var name Slot2Pool;         // 'Offensive', 'Defensive', or 'Utility'
+	var name ItemName;     // e.g. 'Medikit', 'FragGrenade', 'EvacFlare'
+	var int Weight;         // e.g. 20, 30, 100
 };
 
-// === Modular Rebel Loadout System config ===
+var config bool REBEL_USE_WEIGHTS;
 var config array<RebelWeaponCategoryEntry> REBEL_WEAPON_CATEGORIES;
-var config array<name> REBEL_OFFENSIVE_ITEMS;
-var config array<name> REBEL_DEFENSIVE_ITEMS;
-var config array<name> REBEL_UTILITY_ITEMS;
+var config array<RebelUtilityItem> REBEL_VALID_ITEMS;
 var config array<name> REBEL_ALWAYS_EQUIP;
-var config array<RebelUtilityArchetype> REBEL_UTILITY_ARCHETYPES;
 
 var config array<float> REFLEX_ACTION_CHANCE_YELLOW;
 var config array<float> REFLEX_ACTION_CHANCE_GREEN;
@@ -485,36 +482,70 @@ static function array<X2EquipmentTemplate> GetCompleteDefaultLoadout(XComGameSta
 }
 
 // =============================================================================
-// MODULAR REBEL LOADOUT SYSTEM Helper Functions
+// MODULAR REBEL LOADOUT SYSTEM - Helper Functions
 // =============================================================================
-
-/// Returns the appropriate item pool array for the given pool name.
-/// Valid pool names: 'Offensive', 'Defensive', 'Utility'
-static function array<name> GetUtilityPool(name PoolName)
-{
-	local array<name> EmptyArray;
-
-	if (PoolName == 'Offensive')
-		return default.REBEL_OFFENSIVE_ITEMS;
-	else if (PoolName == 'Defensive')
-		return default.REBEL_DEFENSIVE_ITEMS;
-	else if (PoolName == 'Utility')
-		return default.REBEL_UTILITY_ITEMS;
-
-	`Redscreen("Utilities_LW.GetUtilityPool: Unknown pool name:" @ PoolName);
-	return EmptyArray;
-}
 
 /// Returns the weapon template name for the given category and tier.
 static function name GetWeaponForTier(RebelWeaponCategoryEntry Category, int Tier)
 {
-	`LWTrace("Rebel Weapon Tier:" @ Tier);
 	switch(Tier)
 	{
 		case 4: return Category.Tier4Weapon;
 		case 3: return Category.Tier3Weapon;
 		case 2: return Category.Tier2Weapon;
 		default: return Category.Tier1Weapon;
+	}
+}
+
+static function int RollRebelWeaponByWeight(array<RebelWeaponCategoryEntry> Category)
+{
+	local int ItemIter,WeightChance,iRand;
+	
+	WeightChance = 0;
+
+	for (ItemIter = 0;ItemIter < Category.length;ItemIter++)
+	{
+		WeightChance += Category[ItemIter].Weight;
+		`LWTrace("Category:" @ Category[ItemIter].CategoryName
+		@ "Adds:" @ Category[ItemIter].Weight 
+		@ "Aggregate:" @ WeightChance @ "overall");
+	}
+
+	iRand = `SYNC_RAND_STATIC(WeightChance);
+
+	`LWTrace("Final Weapon Weight Chance: " @ WeightChance
+	@ " - iRand:" @ iRand);
+
+	for (ItemIter = Category.length; ItemIter > 0;ItemIter--)
+	{
+		if (iRand > (WeightChance - Category[ItemIter].Weight)) return ItemIter;
+		else WeightChance -= Category[ItemIter].Weight;
+	}
+}
+
+static function int RollRebelItemByWeight(array<RebelUtilityItem> Category)
+{
+	local int ItemIter,WeightChance,iRand;
+	
+	WeightChance = 0;
+
+	for (ItemIter = 0;ItemIter < Category.length;ItemIter++)
+	{
+		WeightChance += Category[ItemIter].Weight;
+		`LWTrace("Category:" @ Category[ItemIter].ItemName
+		@ "Adds:" @ Category[ItemIter].Weight 
+		@ "Aggregate:" @ WeightChance @ "overall");
+	}
+
+	iRand = `SYNC_RAND_STATIC(WeightChance);
+
+	`LWTrace("Final Item Weight Chance: " @ WeightChance
+	@ " - iRand:" @ iRand);
+
+	for (ItemIter = Category.length; ItemIter > 0;ItemIter--)
+	{
+		if (iRand > (WeightChance - Category[ItemIter].Weight)) return ItemIter;
+		else WeightChance -= Category[ItemIter].Weight;
 	}
 }
 
@@ -531,7 +562,6 @@ static function EquipItemOnUnit(XComGameState_Unit Unit, name ItemTemplateName, 
 		`Redscreen("Utilities_LW.EquipItemOnUnit: Empty item template name!");
 		return;
 	}
-
 	ItemMgr = class'X2ItemTemplateManager'.static.GetItemTemplateManager();
 	EquipTemplate = X2EquipmentTemplate(ItemMgr.FindItemTemplate(ItemTemplateName));
 
@@ -550,6 +580,11 @@ static function EquipItemOnUnit(XComGameState_Unit Unit, name ItemTemplateName, 
 		NewItem.WeaponAppearance.nmWeaponPattern = Unit.kAppearance.nmWeaponPattern;
 	}
 
+	`LWTrace("Adding" @ NewItem.Name
+	@ "to" @ Unit.GetFullName()
+	@ "on slot" @ EquipTemplate.InventorySlot
+	@ "with" @ NewItem.Ammo @ "charges");
+
 	Unit.AddItemToInventory(NewItem, EquipTemplate.InventorySlot, ModifyGameState);
 	ModifyGameState.AddStateObject(NewItem);
 }
@@ -560,7 +595,7 @@ static function EquipItemOnUnit(XComGameState_Unit Unit, name ItemTemplateName, 
 static function int RollRebelWeaponTier(XComGameState_LWOutpost Outpost, StateObjectReference RebelRef)
 {
 	local int LaserChance, MagChance, CoilChance;
-	local int RebelLevel, iRand;
+	local int RebelLevel, iRand, iTier;
 
 	local bool AdvancedLasersResearched;
 	local bool MagnetizedWeaponsResearched;
@@ -589,8 +624,9 @@ static function int RollRebelWeaponTier(XComGameState_LWOutpost Outpost, StateOb
 	LaserChance = 0;
 	MagChance = 0;
 	CoilChance = 0;
+	iTier = 1;
 
-	//  Laser tier chances 
+	// --- Laser tier chances ---
 	if (MagnetizedWeaponsResearched && AdvancedLasersResearched)
 	{
 		LaserChance += (20 + 10 * (RebelLevel + 1)); // 30/40/50
@@ -600,7 +636,7 @@ static function int RollRebelWeaponTier(XComGameState_LWOutpost Outpost, StateOb
 		LaserChance += (20 + 10 * (RebelLevel + 1)); // 60/80/100
 	}
 
-	//  Magnetic tier chances 
+	// --- Magnetic tier chances ---
 	if (CoilgunsResearched && GaussWeaponsResearched)
 	{
 		if (AdvancedLasersResearched)
@@ -614,7 +650,7 @@ static function int RollRebelWeaponTier(XComGameState_LWOutpost Outpost, StateOb
 		MagChance += (20 + 10 * (RebelLevel + 1)); // 60/80/100
 	}
 
-	//  Coilgun tier chances 
+	// --- Coilgun tier chances ---
 	if (PlasmaRifleResearched)
 	{
 		if (GaussWeaponsResearched)
@@ -635,19 +671,20 @@ static function int RollRebelWeaponTier(XComGameState_LWOutpost Outpost, StateOb
 	iRand = `SYNC_RAND_STATIC(100);
 
 	`LWTrace("Coil Chance:" @ CoilChance
-		@ "  Mag Chance:" @ MagChance
-		@ "  Laser Chance:" @ LaserChance
-		@ "  iRand:" @ iRand);
+		@ " - Mag Chance:" @ MagChance
+		@ " - Laser Chance:" @ LaserChance
+		@ " - iRand:" @ iRand);
 
 	// unique roll for all tiers
 	if (iRand > CoilChance)
-		return 4;
+		iTier = 4;
 	else if (iRand > MagChance)
-		return 3;
+		iTier = 3;
 	else if (iRand > LaserChance)
-		return 2;
+		iTier = 2;
 
-	return 1;
+	`LWTrace("Rebel Weapon Tier:" @ iTier);
+	return iTier;
 }
 
 /// Fallback: Rolls a legacy loadout name for backward compatibility.
@@ -677,12 +714,13 @@ static function name RollLegacyLoadout(XComGameState_LWOutpost Outpost, StateObj
 }
 
 // =============================================================================
-// CreateRebelSoldier  MODULAR VERSION
+// CreateRebelSoldier - MODULAR VERSION
 // =============================================================================
-// Creates a soldier proxy for the given rebel, sets them as onmission,
+// Creates a soldier proxy for the given rebel, sets them as on-mission,
 // and gives them a loadout.
 //
 // Loadout assignment:
+//   For custom character templates, uses the template's own DefaultLoadout.
 //   For default proxies: uses modular system if configured, else legacy.
 //
 // See: XComLW_Overhaul.ini [LW_Overhaul.Utilities_LW] for config defaults.
@@ -693,11 +731,9 @@ function static XComGameState_Unit CreateRebelSoldier(StateObjectReference Rebel
 	local XComGameState_Unit Proxy;
 	local Name TemplateName;
 	local int WeaponTier;
-	local int CategoryIdx, ArchetypeIdx, ItemIdx;
+	local int WeaponIdx, ItemIdx1, ItemIdx2, ItemIdx3;
 	local RebelWeaponCategoryEntry SelectedCategory;
-	local RebelUtilityArchetype SelectedArchetype;
 	local name WeaponTemplate;
-	local array<name> Pool;
 	
 	Outpost = XComGameState_LWOutpost(`XCOMHISTORY.GetGameStateForObjectID(OutpostRef.ObjectID));
 
@@ -720,53 +756,56 @@ function static XComGameState_Unit CreateRebelSoldier(StateObjectReference Rebel
 	Proxy = CreateRebelProxy(RebelRef, OutpostRef, TemplateName, true, NewGameState);
 	Proxy.SetSoldierClassTemplate('LWS_RebelSoldier');
 
-	// === LOADOUT ASSIGNMENT ===
 	if (Loadout != '')
 	{
 		ApplyLoadout(Proxy, Loadout, NewGameState);
 		`LWTrace("Rebel Loadout (forced):" @ Loadout);
 	}
-	else if (default.REBEL_WEAPON_CATEGORIES.Length > 0 && default.REBEL_UTILITY_ARCHETYPES.Length > 0)
+	else if (default.REBEL_WEAPON_CATEGORIES.Length > 0)
 	{
 		// NEW MODULAR LOADOUT SYSTEM
 		WeaponTier = RollRebelWeaponTier(Outpost, RebelRef);
 
-		CategoryIdx = `SYNC_RAND_STATIC(default.REBEL_WEAPON_CATEGORIES.Length);
-		SelectedCategory = default.REBEL_WEAPON_CATEGORIES[CategoryIdx];
+		if (default.REBEL_USE_WEIGHTS)
+		{ 
+			WeaponIdx = RollRebelWeaponByWeight(default.REBEL_WEAPON_CATEGORIES);
+		}
+		else
+		{
+			WeaponIdx = `SYNC_RAND_STATIC(default.REBEL_WEAPON_CATEGORIES.Length);
+		}
+		SelectedCategory = default.REBEL_WEAPON_CATEGORIES[WeaponIdx];
 
 		WeaponTemplate = GetWeaponForTier(SelectedCategory, WeaponTier);
-		`LWTrace("Rebel Weapon: " @WeaponTemplate);
+		`LWTrace("Array position:" @ WeaponIdx @ "chosen for Weapon:" @ WeaponTemplate);
 		EquipItemOnUnit(Proxy, WeaponTemplate, NewGameState);
 
-		ArchetypeIdx = `SYNC_RAND_STATIC(default.REBEL_UTILITY_ARCHETYPES.Length);
-		SelectedArchetype = default.REBEL_UTILITY_ARCHETYPES[ArchetypeIdx];
-
-		Pool = GetUtilityPool(SelectedArchetype.Slot1Pool);
-		if (Pool.Length > 0)
+		if (default.REBEL_VALID_ITEMS.length > 0)
 		{
-			ItemIdx = `SYNC_RAND_STATIC(Pool.Length);
-			`LWTrace("Rebel Slot 1:" @ Pool[ItemIdx]);
-			EquipItemOnUnit(Proxy, Pool[ItemIdx], NewGameState);
+			if (default.REBEL_USE_WEIGHTS)
+			{ 
+				ItemIdx1 = RollRebelItemByWeight(default.REBEL_VALID_ITEMS);
+				`LWTrace("Array position:" @ ItemIdx1 @ "chosen for Item Slot 1:" @ default.REBEL_VALID_ITEMS[ItemIdx1].ItemName);
+				EquipItemOnUnit(Proxy, default.REBEL_VALID_ITEMS[ItemIdx1].ItemName, NewGameState);
+				ItemIdx2 = RollRebelItemByWeight(default.REBEL_VALID_ITEMS);
+				`LWTrace("Array position:" @ ItemIdx2 @ "chosen for Item Slot 2:" @ default.REBEL_VALID_ITEMS[ItemIdx2].ItemName);
+				EquipItemOnUnit(Proxy, default.REBEL_VALID_ITEMS[ItemIdx2].ItemName, NewGameState);
+			}
+			else
+			{
+				ItemIdx1 = `SYNC_RAND_STATIC(default.REBEL_VALID_ITEMS.Length);
+				`LWTrace("Array position:" @ ItemIdx1 @ "chosen for Item Slot 1:" @ default.REBEL_VALID_ITEMS[ItemIdx1].ItemName);
+				EquipItemOnUnit(Proxy, default.REBEL_VALID_ITEMS[ItemIdx1].ItemName, NewGameState);
+				ItemIdx2 = `SYNC_RAND_STATIC(default.REBEL_VALID_ITEMS.Length);
+				`LWTrace("Array position:" @ ItemIdx2 @ "chosen for Item Slot 2:" @ default.REBEL_VALID_ITEMS[ItemIdx2].ItemName);
+				EquipItemOnUnit(Proxy, default.REBEL_VALID_ITEMS[ItemIdx2].ItemName, NewGameState);
+			}
 		}
 
-		Pool = GetUtilityPool(SelectedArchetype.Slot2Pool);
-		if (Pool.Length > 0)
+		for (ItemIdx3 = 0; ItemIdx3 < default.REBEL_ALWAYS_EQUIP.Length; ItemIdx3++)
 		{
-			ItemIdx = `SYNC_RAND_STATIC(Pool.Length);
-			`LWTrace("Rebel Slot 2:" @ Pool[ItemIdx]);
-			EquipItemOnUnit(Proxy, Pool[ItemIdx], NewGameState);
+			EquipItemOnUnit(Proxy, default.REBEL_ALWAYS_EQUIP[ItemIdx3], NewGameState);
 		}
-
-		for (ItemIdx = 0; ItemIdx < default.REBEL_ALWAYS_EQUIP.Length; ItemIdx++)
-		{
-			EquipItemOnUnit(Proxy, default.REBEL_ALWAYS_EQUIP[ItemIdx], NewGameState);
-			`LWTrace("Always equip:" @ default.REBEL_ALWAYS_EQUIP[ItemIdx]);
-		}
-
-		`LWTrace("Rebel Loadout:" @ SelectedCategory.CategoryName
-			@ "  Weapon Tier:" $ WeaponTier
-			@ "  Weapon Template:" @ WeaponTemplate
-			@ "  Archetype:" @ SelectedArchetype.ArchetypeName);
 	}
 	else
 	{
