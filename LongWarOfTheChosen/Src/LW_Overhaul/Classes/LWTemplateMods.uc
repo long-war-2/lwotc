@@ -1315,15 +1315,23 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		Template.CinescriptCameraType = "Archon_Frenzy";
 	}
 
-	// bugfix for Flashbangs doing damage
 	if (Template.DataName == 'HuntersInstinct')
 	{
-		Template.AbilityTargetEffects.length = 0;
+		for (k = 0; k < Template.AbilityTargetEffects.Length; k++)
+		{
+			if (X2Effect_HuntersInstinctDamage(Template.AbilityTargetEffects[k]) != none)
+			{
+				Template.AbilityTargetEffects.Remove(k, 1);
+				break;
+			}
+		}
+
 		DamageModifier = new class'X2Effect_HuntersInstinctDamage_LW';
 		DamageModifier.BonusDamage = class'X2Ability_RangerAbilitySet'.default.INSTINCT_DMG;
 		DamageModifier.BonusCritChance = class'X2Ability_RangerAbilitySet'.default.INSTINCT_CRIT;
-		DamageModifier.BuildPersistentEffect(1, true, false, true);
-		DamageModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
+		DamageModifier.bMatchSourceWeapon = false;
+		DamageModifier.BuildPersistentEffect(1, true, false);
+		DamageModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true,, Template.AbilitySourceName);
 		Template.AddTargetEffect(DamageModifier);
 	}
 
