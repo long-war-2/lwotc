@@ -3473,6 +3473,7 @@ static function X2AbilityTemplate AddGhostwalkerAbility()
 	StealthyEffect.BuildPersistentEffect(default.GHOSTWALKER_DURATION,false,true,false,eGameRule_PlayerTurnBegin);
 	StealthyEffect.SetDisplayInfo (ePerkBuff_Bonus,Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName); 
 	StealthyEffect.AddPersistentStatChange(eStat_DetectionModifier, default.GHOSTWALKER_DETECTION_RANGE_REDUCTION);
+	StealthyEffect.DuplicateResponse = edupe_ignore;
 	Template.AddTargetEffect(StealthyEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
