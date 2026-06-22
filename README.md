@@ -38,8 +38,8 @@ Note that you need to own the Shen's Last Gift DLC to build (and play) this vers
     for details on how to do that (plus lots of other useful information)
 
  1. Set up the following environment variables:
-    * `XCOM2SDKPATH` — typically &lt;path to Steam&gt;\steamapps\common\XCOM 2 War Of The Chosen SDK
-    * `XCOM2GAMEPATH` — typically &lt;path to Steam&gt;\steamapps\common\XCOM 2\XCom2-WarOfTheChosen
+    * `XCOM2SDKPATH` — typically `<path to Steam>\steamapps\common\XCOM 2 War Of The Chosen SDK`
+    * `XCOM2GAMEPATH` — typically `<path to Steam>\steamapps\common\XCOM 2\XCom2-WarOfTheChosen`
     Don't put these paths in quotes.
 
  1. [Fork this repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
@@ -51,9 +51,9 @@ Note that you need to own the Shen's Last Gift DLC to build (and play) this vers
     [this Google Drive link](https://drive.google.com/file/d/1P2njxwOIVeNDlox_21S5aQ2H_HqkMcvF/view?usp=sharing)
     and unpack the resulting zip file into this project's `LongWarOfTheChosen` directory. It should merge the contents of the `Content` and `ContentForCook` directories. If it replaces any version controlled files, `git checkout` them to restore their latest version.
 
- 1. Build against [X2WOTCCommunityHighlander](https://steamcommunity.com/sharedfiles/filedetails/?id=1134256495): You should already be subscribed to it, since it's required by LWOTC. Locate it in your Workshop mods folder, typically `&lt;path to Steam&gt;\steamapps\workshop\content\268500\1134256495`. Under `Src`, there are folders `Core`, `Engine`, `X2WOTCCommunityHighlander`, and `XComGame`. Copy them under your SDK's `SrcOrig` (so that you overwrite `SrcOrig\Core`, etc. and add `SrcOrig\X2WOTCCommunityHighlander`).
+ 1. Build against [X2WOTCCommunityHighlander](https://steamcommunity.com/sharedfiles/filedetails/?id=1134256495): You should already be subscribed to it, since it's required by LWOTC. Locate it in your Workshop mods folder, typically `<path to Steam>\steamapps\workshop\content\268500\1134256495`. Under `Src`, there are folders `Core`, `Engine`, `X2WOTCCommunityHighlander`, and `XComGame`. Copy them under your SDK's `SrcOrig` (so that you overwrite `SrcOrig\Core`, etc. and add `SrcOrig\X2WOTCCommunityHighlander`).
 
- 1. Build against [[WOTC] Community Promotion Screen](https://steamcommunity.com/sharedfiles/filedetails/?id=2550561145): You should already be subscribed to it, since it's required by LWOTC. Locate it in your Workshop mods folder, typically `&lt;path to Steam&gt;\steamapps\workshop\content\268500\2550561145`. Under `Src`, there is a folder `NewPromotionScreenbyDefault`. Copy it under your SDK's `SrcOrig` (so that you have `SrcOrig\NewPromotionScreenbyDefault`).
+ 1. Build against [[WOTC] Community Promotion Screen](https://steamcommunity.com/sharedfiles/filedetails/?id=2550561145): You should already be subscribed to it, since it's required by LWOTC. Locate it in your Workshop mods folder, typically `<path to Steam>\steamapps\workshop\content\268500\2550561145`. Under `Src`, there is a folder `NewPromotionScreenbyDefault`. Copy it under your SDK's `SrcOrig` (so that you have `SrcOrig\NewPromotionScreenbyDefault`).
 
  1. Modify some files in your WOTC SDK's `SrcOrig`:
     * In `X2SitRepEffect_ModifyKismetVariable.uc`, modify line 27
@@ -75,6 +75,15 @@ Note that you need to own the Shen's Last Gift DLC to build (and play) this vers
     ```
 
     * In `SeqAct_SpawnAdditionalObjective.uc`, modify line 34
+    ```
+    var private XComGameState_InteractiveObject SpawnedObjective;
+    ```
+    to
+    ```
+    var XComGameState_InteractiveObject SpawnedObjective;
+    ```
+
+    * In `XComGameState_Unit.uc`, modify line 34
     ```
     var private XComGameState_InteractiveObject SpawnedObjective;
     ```
