@@ -917,7 +917,7 @@ function RemoveAndCaptureLiaison(XComGameState NewGameState)
 	local XComGameState_HeadquartersXCom XComHQ;
 
 	History = `XCOMHISTORY;
-
+	`LWTrace("Removing and capturing Liaison from haven");
 	// Remove the unit from the haven and the HQ.
 	Unit = XComGameState_Unit(History.GetGameStateForObjectID(GetLiaison().ObjectID));
 	SetLiaison(EmptyRef, NewGameState);
