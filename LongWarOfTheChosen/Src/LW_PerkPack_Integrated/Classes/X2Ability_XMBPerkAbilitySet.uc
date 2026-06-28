@@ -4858,21 +4858,34 @@ static function X2AbilityTemplate LineEmUp()
 
 static function X2AbilityTemplate FocusedDefense()
 {
-	local XMBEffect_ConditionalBonus Effect;
-	local XMBCondition_CoverType NotFlankedCondition;
+	local X2AbilityTemplate			Template;
+	local X2Effect_FocusedDefense	Effect;
 
-	NotFlankedCondition = new class'XMBCondition_CoverType';
-	NotFlankedCondition.ExcludedCoverTypes.AddItem(CT_None);
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'FocusedDefense_LW');
 
-	Effect = new class'XMBEffect_ConditionalBonus';
-	Effect.AddToHitAsTargetModifier(-default.FocusedDefenseDefense, eHit_Success);
-	Effect.AddToHitAsTargetModifier(default.FocusedDefenseDodge, eHit_Graze);
+	Template.IconImage = "img:///UILibrary_SOCombatEngineer.UIPerk_focuseddefense";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bIsPassive = true;
 
-	Effect.AbilityTargetConditionsAsTarget.AddItem(NotFlankedCondition);
-	Effect.AbilityTargetConditionsAsTarget.AddItem(new class'X2Condition_ClosestVisibleEnemy');
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 
-	// TODO: icon
-	return Passive('FocusedDefense_LW', "img:///UILibrary_SOCombatEngineer.UIPerk_focuseddefense", true, Effect);
+	Effect = new class'X2Effect_FocusedDefense';
+	Effect.EffectName = 'FocusedDefense_LW';
+	Effect.DefenseBonus = default.FocusedDefenseDefense;
+	Effect.DodgeBonus = default.FocusedDefenseDodge;
+	Effect.BuildPersistentEffect(1, true, false);
+	Effect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
+	Template.AddTargetEffect(Effect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	Template.bCrossClassEligible = true;
+
+	return Template;
 }
 
 static function X2AbilityTemplate SensorOverlays()

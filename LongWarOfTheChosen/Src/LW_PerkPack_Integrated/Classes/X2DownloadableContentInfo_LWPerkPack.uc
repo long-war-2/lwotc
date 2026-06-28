@@ -649,6 +649,12 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'RegenSmoke_MaxHealAmount_LW':
 			OutString = string(class'X2Effect_LWRegenSmoke'.default.MaxHealAmount);
 			return true;
+		case 'FocusedDefense_DefenseBonus_LW':
+			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.FocusedDefenseDefense);
+			return true;
+		case 'FocusedDefense_DodgeBonus_LW':
+			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.FocusedDefenseDodge);
+			return true;
 		default:
 			return false;
 	}
