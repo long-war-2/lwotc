@@ -649,6 +649,9 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'RegenSmoke_MaxHealAmount_LW':
 			OutString = string(class'X2Effect_LWRegenSmoke'.default.MaxHealAmount);
 			return true;
+		case 'SensorOverlays_CritBonus_LW':
+			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.SensorOverlaysCritBonus);
+			return true;
 		default:
 			return false;
 	}

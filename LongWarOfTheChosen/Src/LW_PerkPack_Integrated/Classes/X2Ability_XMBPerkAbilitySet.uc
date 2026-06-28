@@ -140,6 +140,8 @@ var config array<name> PISTOL_WEAPON_CATEGORIES;
 
 var config int LineEmUpOffense, LineEmUpCrit;
 var config int SensorOverlaysCritBonus;
+var config bool bSensorOverlays_AllowSquadsight;
+var config bool bSensorOverlays_AllowStack;
 var config int FocusedDefenseDefense, FocusedDefenseDodge;
 
 var config array<name> LICK_YOUR_WOUNDS_ALLOWED_ABILITIES;
@@ -256,6 +258,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddScoutScanner());
 	Templates.AddItem(LineEmUp());
 	Templates.AddItem(SensorOverlays());
+	/*>>*/Templates.AddItem(SensorOverlaysPassive());
 	Templates.AddItem(FocusedDefense());
 	Templates.AddItem(GrappleExpert());
 	
@@ -4877,15 +4880,93 @@ static function X2AbilityTemplate FocusedDefense()
 
 static function X2AbilityTemplate SensorOverlays()
 {
-	local X2Effect_SensorOverlays Effect;
+	local X2AbilityTemplate 				Template;
+	local X2Effect_SensorOverlays			Effect;
+	local X2AbilityTrigger_EventListener	Trigger;
+	local X2Condition_UnitProperty			UnitPropertyCondition;
+	local X2Condition_UnitEffectsWithAbilitySource	EffectCondition;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'SensorOverlays_LW');
+
+	Template.IconImage = "img:///UILibrary_SODragoon.UIPerk_sensoroverlays";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bUniqueSource = true;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SingleTargetWithSelf;
+
+	Trigger = new class'X2AbilityTrigger_EventListener';
+	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	Trigger.ListenerData.EventID = 'OnUnitBeginPlay';
+	Trigger.ListenerData.Filter = eFilter_None;
+	Trigger.ListenerData.EventFn = class'X2Effect_SensorOverlays'.static.AbilityTriggerEventListener_SquadPassive;
+	Trigger.ListenerData.Priority = 50;
+	Template.AbilityTriggers.AddItem(Trigger);
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	UnitPropertyCondition = new class'X2Condition_UnitProperty';
+	UnitPropertyCondition.ExcludeHostileToSource = false;
+	UnitPropertyCondition.ExcludeFriendlyToSource = false;
+	UnitPropertyCondition.ExcludeInStasis = false;
+	UnitPropertyCondition.FailOnNonUnits = true;
+	Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
+
+	EffectCondition = new class'X2Condition_UnitEffectsWithAbilitySource';
+	EffectCondition.AddExcludeEffect('SensorOverlays_LW', 'AA_DuplicateEffectIgnored');
+	Template.AbilityTargetConditions.AddItem(EffectCondition);
 
 	Effect = new class'X2Effect_SensorOverlays';
-	Effect.EffectName = 'SensorOverlays';
+	Effect.EffectName = 'SensorOverlays_LW';
 	Effect.DuplicateResponse = eDupe_Allow;
-	Effect.AddToHitModifier(default.SensorOverlaysCritBonus, eHit_Crit);
-	Effect.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
+	Effect.CritBonus = default.SensorOverlaysCritBonus;
+	Effect.bAllowSquadsight = default.bSensorOverlays_AllowSquadsight;
+	Effect.bAllowStack = default.bSensorOverlays_AllowStack;
+	Effect.BuildPersistentEffect(1, true, false);
+	Effect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, false);
+	Template.AddTargetEffect(Effect);
 
-	return SquadPassive('SensorOverlays_LW', "img:///UILibrary_SODragoon.UIPerk_sensoroverlays", false, Effect);
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	Template.bSkipFireAction = true;
+
+	Template.bCrossClassEligible = false;
+
+	Template.AdditionalAbilities.AddItem('SensorOverlays_LW_Passive');
+
+	return Template;
+}
+
+static function X2AbilityTemplate SensorOverlaysPassive()
+{
+	local X2AbilityTemplate		Template;
+	local X2Effect_Persistent	PersistentEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'SensorOverlays_LW_Passive');
+
+	Template.IconImage = "img:///UILibrary_SODragoon.UIPerk_sensoroverlays";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bIsPassive = true;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	PersistentEffect = new class'X2Effect_Persistent';
+	PersistentEffect.EffectName = 'SensorOverlays_LW_Passive';
+	PersistentEffect.BuildPersistentEffect(1, true, false);
+	PersistentEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
+	Template.AddTargetEffect(PersistentEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	Template.bCrossClassEligible = false;
+
+	return Template;
 }
 
 static function X2AbilityTemplate GrappleExpert()

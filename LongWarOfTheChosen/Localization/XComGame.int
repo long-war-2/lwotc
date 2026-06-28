@@ -8087,10 +8087,17 @@ LocPromotionPopupText="<Bullet/> If multiple enemies are equally distant, you ge
 
 [SensorOverlays_LW X2AbilityTemplate]
 LocFriendlyName="Sensor Overlays"
-LocLongDescription="All squad members get <Ability:+Crit/> Crit chance against enemies you can see."
-LocHelpText="All squad members get <Ability:+Crit/> Crit chance against enemies you can see."
 LocFlyOverText="Sensor Overlays"
-LocPromotionPopupText="<Bullet/> This doesn't count enemies only visible through squadsight.<br/>"
+LocLongDescription="All squad members gain +<Ability:SensorOverlays_CritBonus_LW> crit against enemies you can see."
+LocHelpText="All squad members gain +<Ability:SensorOverlays_CritBonus_LW> crit against enemies you can see."
+LocPromotionPopupText="<Bullet> The bonus from multiple sources doesn't stack.<br><Bullet> The bonus doesn't apply against enemies visible only in squadsight."
+
+[SensorOverlays_LW_Passive X2AbilityTemplate]
+LocFriendlyName="Sensor Overlays"
+LocFlyOverText="Sensor Overlays"
+LocLongDescription="All squad members gain +<Ability:SensorOverlays_CritBonus_LW> crit against enemies you can see."
+LocHelpText="All squad members gain +<Ability:SensorOverlays_CritBonus_LW> crit against enemies you can see."
+LocPromotionPopupText="<Bullet> The bonus from multiple sources doesn't stack.<br><Bullet> The bonus doesn't apply against enemies visible only in squadsight."
 
 [FocusedDefense_LW X2AbilityTemplate]
 LocFriendlyName="Focused Defense"
