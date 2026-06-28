@@ -8094,11 +8094,10 @@ LocPromotionPopupText="<Bullet/> This doesn't count enemies only visible through
 
 [FocusedDefense_LW X2AbilityTemplate]
 LocFriendlyName="Focused Defense"
-LocLongDescription="You get an additional <Ability:+Defense/> Defense and <Ability:+Dodge/> Dodge against attacks by the closest visible enemy while not flanked."
-LocHelpText="You get an additional <Ability:+Defense/> Defense and <Ability:+Dodge/> Dodge against attacks by the closest visible enemy while not flanked."
 LocFlyOverText="Focused Defense"
-LocPromotionPopupText="<Bullet/> The bonus doesn't apply against melee attacks.<br/><Bullet/> If multiple enemies are equally distant, you get the bonus against all of them.<br/>"
-
+LocLongDescription="Gain additional <Ability:FocusedDefense_DefenseBonus_LW> Defense and <Ability:FocusedDefense_DodgeBonus_LW> Dodge against non-flanking ranged attacks by the closest visible enemy."
+LocHelpText="Gain additional <Ability:FocusedDefense_DefenseBonus_LW> Defense and <Ability:FocusedDefense_DodgeBonus_LW> Dodge against non-flanking ranged attacks by the closest visible enemy."
+LocPromotionPopupText="<Bullet> The bonus doesn't apply against flanking and melee attacks.<br><Bullet> If multiple enemies are equally distant, you get the bonus against all of them.<br>"
 
 [GrappleExpert_LW X2AbilityTemplate]
 LocFriendlyName="Grapple Expert"
