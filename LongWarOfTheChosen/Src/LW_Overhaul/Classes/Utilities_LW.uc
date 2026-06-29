@@ -19,6 +19,30 @@ struct MissionEnemyCountOffset
 	var int OffsetAmount;
 };
 
+// === Modular Rebel Loadout System structs ===
+// Defines a weapon category with template names for each tech tier.
+struct RebelWeaponCategoryEntry
+{
+	var name CategoryName;      // e.g. 'Rifle', 'SMG', 'Shotgun'
+	var name Tier1Weapon;       // e.g. 'AssaultRifle_CV'
+	var name Tier2Weapon;       // e.g. 'AssaultRifle_LS'
+	var name Tier3Weapon;       // e.g. 'AssaultRifle_MG'
+	var name Tier4Weapon;       // e.g. 'AssaultRifle_CG'
+	var int Weight;         // e.g. 20, 30, 100
+};
+
+// Defines a utility slot combination archetype.
+struct RebelUtilityItem
+{
+	var name ItemName;     // e.g. 'Medikit', 'FragGrenade', 'EvacFlare'
+	var int Weight;         // e.g. 20, 30, 100
+};
+
+var config bool REBEL_USE_WEIGHTS;
+var config array<RebelWeaponCategoryEntry> REBEL_WEAPON_CATEGORIES;
+var config array<RebelUtilityItem> REBEL_VALID_ITEMS;
+var config array<name> REBEL_ALWAYS_EQUIP;
+
 var config array<float> REFLEX_ACTION_CHANCE_YELLOW;
 var config array<float> REFLEX_ACTION_CHANCE_GREEN;
 var config float REFLEX_ACTION_CHANCE_REDUCTION;
@@ -457,15 +481,121 @@ static function array<X2EquipmentTemplate> GetCompleteDefaultLoadout(XComGameSta
 	return completedefaultloadout;
 }
 
-// Create a soldier proxy for the given rebel, set them as on-mission, and give them a loadout. All done within the
-// provided game state.
-function static XComGameState_Unit CreateRebelSoldier(StateObjectReference RebelRef, StateObjectReference OutpostRef, XComGameState NewGameState, optional name Loadout)
+// =============================================================================
+// MODULAR REBEL LOADOUT SYSTEM - Helper Functions
+// =============================================================================
+
+/// Returns the weapon template name for the given category and tier.
+static function name GetWeaponForTier(RebelWeaponCategoryEntry Category, int Tier)
 {
-	local XComGameState_LWOutpost Outpost;
-	local XComGameState_Unit Proxy;
-	local name TemplateName;
-	local int LaserChance, MagChance, CoilChance, iRand;
-	local string LoadoutStr;
+	switch(Tier)
+	{
+		case 4: return Category.Tier4Weapon;
+		case 3: return Category.Tier3Weapon;
+		case 2: return Category.Tier2Weapon;
+		default: return Category.Tier1Weapon;
+	}
+}
+
+static function int RollRebelWeaponByWeight(array<RebelWeaponCategoryEntry> Category)
+{
+	local int ItemIter,WeightChance,iRand;
+	
+	WeightChance = 0;
+
+	for (ItemIter = 0;ItemIter < Category.length;ItemIter++)
+	{
+		WeightChance += Category[ItemIter].Weight;
+		`LWTrace("Category:" @ Category[ItemIter].CategoryName
+		@ "Adds:" @ Category[ItemIter].Weight 
+		@ "Aggregate:" @ WeightChance @ "overall");
+	}
+
+	iRand = `SYNC_RAND_STATIC(WeightChance);
+
+	`LWTrace("Final Weapon Weight Chance: " @ WeightChance
+	@ " - iRand:" @ iRand);
+
+	for (ItemIter = Category.length; ItemIter > 0;ItemIter--)
+	{
+		if (iRand > (WeightChance - Category[ItemIter].Weight)) return ItemIter;
+		else WeightChance -= Category[ItemIter].Weight;
+	}
+}
+
+static function int RollRebelItemByWeight(array<RebelUtilityItem> Category)
+{
+	local int ItemIter,WeightChance,iRand;
+	
+	WeightChance = 0;
+
+	for (ItemIter = 0;ItemIter < Category.length;ItemIter++)
+	{
+		WeightChance += Category[ItemIter].Weight;
+		`LWTrace("Category:" @ Category[ItemIter].ItemName
+		@ "Adds:" @ Category[ItemIter].Weight 
+		@ "Aggregate:" @ WeightChance @ "overall");
+	}
+
+	iRand = `SYNC_RAND_STATIC(WeightChance);
+
+	`LWTrace("Final Item Weight Chance: " @ WeightChance
+	@ " - iRand:" @ iRand);
+
+	for (ItemIter = Category.length; ItemIter > 0;ItemIter--)
+	{
+		if (iRand > (WeightChance - Category[ItemIter].Weight)) return ItemIter;
+		else WeightChance -= Category[ItemIter].Weight;
+	}
+}
+
+/// Creates and equips an item on a unit by template name.
+/// Handles weapon appearance transfer for primary/secondary weapons.
+static function EquipItemOnUnit(XComGameState_Unit Unit, name ItemTemplateName, XComGameState ModifyGameState)
+{
+	local X2ItemTemplateManager ItemMgr;
+	local X2EquipmentTemplate EquipTemplate;
+	local XComGameState_Item NewItem;
+
+	if (ItemTemplateName == '')
+	{
+		`Redscreen("Utilities_LW.EquipItemOnUnit: Empty item template name!");
+		return;
+	}
+	ItemMgr = class'X2ItemTemplateManager'.static.GetItemTemplateManager();
+	EquipTemplate = X2EquipmentTemplate(ItemMgr.FindItemTemplate(ItemTemplateName));
+
+	if (EquipTemplate == none)
+	{
+		`Redscreen("Utilities_LW.EquipItemOnUnit: Template not found:" @ ItemTemplateName);
+		return;
+	}
+
+	NewItem = EquipTemplate.CreateInstanceFromTemplate(ModifyGameState);
+
+	// Transfer weapon appearance from the soldier (same as original ApplyLoadout)
+	if (EquipTemplate.InventorySlot == eInvSlot_PrimaryWeapon || EquipTemplate.InventorySlot == eInvSlot_SecondaryWeapon)
+	{
+		NewItem.WeaponAppearance.iWeaponTint = Unit.kAppearance.iWeaponTint;
+		NewItem.WeaponAppearance.nmWeaponPattern = Unit.kAppearance.nmWeaponPattern;
+	}
+
+	`LWTrace("Adding" @ NewItem.Name
+	@ "to" @ Unit.GetFullName()
+	@ "on slot" @ EquipTemplate.InventorySlot
+	@ "with" @ NewItem.Ammo @ "charges");
+
+	Unit.AddItemToInventory(NewItem, EquipTemplate.InventorySlot, ModifyGameState);
+	ModifyGameState.AddStateObject(NewItem);
+}
+
+/// Rolls the weapon tier based on researched techs and rebel level.
+/// Returns 1 (conventional), 2 (laser), 3 (magnetic), or 4 (coilgun).
+/// Uses configurable tech names via TechResearchedOrHasHQInventoryItem (upstream PR #1959).
+static function int RollRebelWeaponTier(XComGameState_LWOutpost Outpost, StateObjectReference RebelRef)
+{
+	local int LaserChance, MagChance, CoilChance;
+	local int RebelLevel, iRand, iTier;
 
 	local bool AdvancedLasersResearched;
 	local bool MagnetizedWeaponsResearched;
@@ -477,7 +607,136 @@ function static XComGameState_Unit CreateRebelSoldier(StateObjectReference Rebel
 	local bool HeavyPlasmaResearched;
 	local bool PlasmaSniperResearched;
 
+	RebelLevel = Outpost.GetRebelLevel(RebelRef);
+
+	// Cache tech research status using configurable tech names (PR #1959 pattern)
+ 
+	AdvancedLasersResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.AdvancedLasersTechName);
+	MagnetizedWeaponsResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.MagnetizedWeaponsTechName);
+	GaussWeaponsResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.GaussWeaponsTechName);
+	CoilgunsResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.CoilgunsTechName);
+	AdvancedCoilgunsResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.AdvancedCoilgunsTechName);
+	PlasmaRifleResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.PlasmaRifleTechName);
+	AlloyCannonResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.AlloyCannonTechName);
+	HeavyPlasmaResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.HeavyPlasmaTechName);
+	PlasmaSniperResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.PlasmaSniperTechName);
+
+	LaserChance = 0;
+	MagChance = 0;
+	CoilChance = 0;
+	iTier = 1;
+
+	// --- Laser tier chances ---
+	if (MagnetizedWeaponsResearched && AdvancedLasersResearched)
+	{
+		LaserChance += (20 + 10 * (RebelLevel + 1)); // 30/40/50
+	}
+	if (GaussWeaponsResearched && AdvancedLasersResearched)
+	{
+		LaserChance += (20 + 10 * (RebelLevel + 1)); // 60/80/100
+	}
+
+	// --- Magnetic tier chances ---
+	if (CoilgunsResearched && GaussWeaponsResearched)
+	{
+		if (AdvancedLasersResearched)
+		{
+			LaserChance = 100;
+		}
+		MagChance += (20 + 10 * (RebelLevel + 1)); // 30/40/50
+	}
+	if (AdvancedCoilgunsResearched && GaussWeaponsResearched)
+	{
+		MagChance += (20 + 10 * (RebelLevel + 1)); // 60/80/100
+	}
+
+	// --- Coilgun tier chances ---
+	if (PlasmaRifleResearched)
+	{
+		if (GaussWeaponsResearched)
+		{
+			MagChance = 100;
+		}
+		CoilChance += (20 + 10 * (RebelLevel + 1)); // 30/40/50
+	}
+	// All plasma weapon related research
+	if (HeavyPlasmaResearched &&
+		AlloyCannonResearched &&
+		PlasmaSniperResearched &&
+		AdvancedCoilgunsResearched)
+	{
+		CoilChance += (20 + 10 * (RebelLevel + 1)); // 60/80/100
+	}
+
+	iRand = `SYNC_RAND_STATIC(100);
+
+	`LWTrace("Coil Chance:" @ CoilChance
+		@ " - Mag Chance:" @ MagChance
+		@ " - Laser Chance:" @ LaserChance
+		@ " - iRand:" @ iRand);
+
+	// unique roll for all tiers
+	if (iRand > CoilChance)
+		iTier = 4;
+	else if (iRand > MagChance)
+		iTier = 3;
+	else if (iRand > LaserChance)
+		iTier = 2;
+
+	`LWTrace("Rebel Weapon Tier:" @ iTier);
+	return iTier;
+}
+
+/// Fallback: Rolls a legacy loadout name for backward compatibility.
+/// Used when REBEL_WEAPON_CATEGORIES config is empty.
+static function name RollLegacyLoadout(XComGameState_LWOutpost Outpost, StateObjectReference RebelRef)
+{
+	local string LoadoutStr;
+	local int WeaponTier, iRand;
+
+	LoadoutStr = "RebelSoldier";
+	WeaponTier = RollRebelWeaponTier(Outpost, RebelRef);
+
+	if (WeaponTier >= 4)
+		LoadoutStr $= "4";
+	else if (WeaponTier >= 3)
+		LoadoutStr $= "3";
+	else if (WeaponTier >= 2)
+		LoadoutStr $= "2";
+
+	iRand = `SYNC_RAND_STATIC(100);
+	if (iRand < 20)
+		LoadoutStr $= "SMG";
+	else if (iRand < 40)
+		LoadoutStr $= "Shotgun";
+
+	return name(LoadoutStr);
+}
+
+// =============================================================================
+// CreateRebelSoldier - MODULAR VERSION
+// =============================================================================
+// Creates a soldier proxy for the given rebel, sets them as on-mission,
+// and gives them a loadout.
+//
+// Loadout assignment:
+//   For custom character templates, uses the template's own DefaultLoadout.
+//   For default proxies: uses modular system if configured, else legacy.
+//
+// See: XComLW_Overhaul.ini [LW_Overhaul.Utilities_LW] for config defaults.
+// =============================================================================
+function static XComGameState_Unit CreateRebelSoldier(StateObjectReference RebelRef, StateObjectReference OutpostRef, XComGameState NewGameState, optional name Loadout)
+{
+	local XComGameState_LWOutpost Outpost;
+	local XComGameState_Unit Proxy;
+	local Name TemplateName;
+	local int WeaponTier;
+	local int WeaponIdx, ItemIdx1, ItemIdx2, ItemIdx3;
+	local RebelWeaponCategoryEntry SelectedCategory;
+	local name WeaponTemplate;
+	
 	Outpost = XComGameState_LWOutpost(`XCOMHISTORY.GetGameStateForObjectID(OutpostRef.ObjectID));
+
 	switch(Outpost.GetRebelLevel(RebelRef))
 	{
 		case 0:
@@ -490,97 +749,71 @@ function static XComGameState_Unit CreateRebelSoldier(StateObjectReference Rebel
 			TemplateName = 'RebelSoldierProxyM3';
 			break;
 		default:
-			`Redscreen("CreateRebelSoldier: Unsupported rebel level " $ Outpost.GetRebelLevel(RebelRef));
+			`Redscreen("CreateRebelSoldier: Unsupported rebel level" @ Outpost.GetRebelLevel(RebelRef));
 			TemplateName = 'RebelSoldierProxy';
 	}
 
 	Proxy = CreateRebelProxy(RebelRef, OutpostRef, TemplateName, true, NewGameState);
 	Proxy.SetSoldierClassTemplate('LWS_RebelSoldier');
 
-	LaserChance = 0;
-	MagChance = 0;
-	CoilChance = 0;
-
-	if (Loadout == '')
+	if (Loadout != '')
 	{
-		AdvancedLasersResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.AdvancedLasersTechName);
-		MagnetizedWeaponsResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.MagnetizedWeaponsTechName);
-		GaussWeaponsResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.GaussWeaponsTechName);
-		CoilgunsResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.CoilgunsTechName);
-		AdvancedCoilgunsResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.AdvancedCoilgunsTechName);
-		PlasmaRifleResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.PlasmaRifleTechName);
-		AlloyCannonResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.AlloyCannonTechName);
-		HeavyPlasmaResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.HeavyPlasmaTechName);
-		PlasmaSniperResearched = class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.TechResearchedOrHasHQInventoryItem(class'X2DownloadableContentInfo_LongWarOfTheChosen'.default.PlasmaSniperTechName);
+		ApplyLoadout(Proxy, Loadout, NewGameState);
+		`LWTrace("Rebel Loadout (forced):" @ Loadout);
+	}
+	else if (default.REBEL_WEAPON_CATEGORIES.Length > 0)
+	{
+		// NEW MODULAR LOADOUT SYSTEM
+		WeaponTier = RollRebelWeaponTier(Outpost, RebelRef);
 
-		LoadoutStr = "RebelSoldier";
-		if (MagnetizedWeaponsResearched && AdvancedLasersResearched)
-		{
-			LaserChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); // 30/40/50
-		}
-		if (GaussWeaponsResearched && AdvancedLasersResearched)
-		{
-			LaserChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); // 60/80/100
-		}
-		if (CoilgunsResearched && GaussWeaponsResearched)
-		{
-			if (AdvancedLasersResearched)
-			{
-				LaserChance = 100;
-			}
-			MagChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); // 30/40/50
-		}
-		if (AdvancedCoilgunsResearched && GaussWeaponsResearched)
-		{
-			MagChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); // 60/80/100
-		}
-		if (PlasmaRifleResearched)
-		{
-			if (GaussWeaponsResearched)
-			{
-				MagChance = 100;
-			}
-			CoilChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); // 30/40/50
-		}
-		// All plasma weapon related research
-		if (HeavyPlasmaResearched &&
-			AlloyCannonResearched &&
-			PlasmaSniperResearched &&
-			AdvancedCoilgunsResearched)
-		{
-			CoilChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); // 60/80/100
-		}
-
-		if (`SYNC_RAND_STATIC(100) < CoilChance)
-		{
-			LoadoutStr $= "4";
-		}
-		else if (`SYNC_RAND_STATIC(100) < MagChance)
-		{
-			LoadoutStr $= "3";
+		if (default.REBEL_USE_WEIGHTS)
+		{ 
+			WeaponIdx = RollRebelWeaponByWeight(default.REBEL_WEAPON_CATEGORIES);
 		}
 		else
 		{
-			if (`SYNC_RAND_STATIC(100) < LaserChance)
+			WeaponIdx = `SYNC_RAND_STATIC(default.REBEL_WEAPON_CATEGORIES.Length);
+		}
+		SelectedCategory = default.REBEL_WEAPON_CATEGORIES[WeaponIdx];
+
+		WeaponTemplate = GetWeaponForTier(SelectedCategory, WeaponTier);
+		`LWTrace("Array position:" @ WeaponIdx @ "chosen for Weapon:" @ WeaponTemplate);
+		EquipItemOnUnit(Proxy, WeaponTemplate, NewGameState);
+
+		if (default.REBEL_VALID_ITEMS.length > 0)
+		{
+			if (default.REBEL_USE_WEIGHTS)
+			{ 
+				ItemIdx1 = RollRebelItemByWeight(default.REBEL_VALID_ITEMS);
+				`LWTrace("Array position:" @ ItemIdx1 @ "chosen for Item Slot 1:" @ default.REBEL_VALID_ITEMS[ItemIdx1].ItemName);
+				EquipItemOnUnit(Proxy, default.REBEL_VALID_ITEMS[ItemIdx1].ItemName, NewGameState);
+				ItemIdx2 = RollRebelItemByWeight(default.REBEL_VALID_ITEMS);
+				`LWTrace("Array position:" @ ItemIdx2 @ "chosen for Item Slot 2:" @ default.REBEL_VALID_ITEMS[ItemIdx2].ItemName);
+				EquipItemOnUnit(Proxy, default.REBEL_VALID_ITEMS[ItemIdx2].ItemName, NewGameState);
+			}
+			else
 			{
-				LoadoutStr $= "2";
+				ItemIdx1 = `SYNC_RAND_STATIC(default.REBEL_VALID_ITEMS.Length);
+				`LWTrace("Array position:" @ ItemIdx1 @ "chosen for Item Slot 1:" @ default.REBEL_VALID_ITEMS[ItemIdx1].ItemName);
+				EquipItemOnUnit(Proxy, default.REBEL_VALID_ITEMS[ItemIdx1].ItemName, NewGameState);
+				ItemIdx2 = `SYNC_RAND_STATIC(default.REBEL_VALID_ITEMS.Length);
+				`LWTrace("Array position:" @ ItemIdx2 @ "chosen for Item Slot 2:" @ default.REBEL_VALID_ITEMS[ItemIdx2].ItemName);
+				EquipItemOnUnit(Proxy, default.REBEL_VALID_ITEMS[ItemIdx2].ItemName, NewGameState);
 			}
 		}
-		iRand = `SYNC_RAND_STATIC(100);
-		if (iRand < 20)
-		{
-			LoadoutStr $= "SMG";
-		}
-		else if (iRand < 40)
-		{
-			LoadoutStr $= "Shotgun";
-		}
 
-		//`LWTRACE ("Rebel Loadout" @ LoadoutStr);
-		Loadout = name(LoadOutStr);
+		for (ItemIdx3 = 0; ItemIdx3 < default.REBEL_ALWAYS_EQUIP.Length; ItemIdx3++)
+		{
+			EquipItemOnUnit(Proxy, default.REBEL_ALWAYS_EQUIP[ItemIdx3], NewGameState);
+		}
 	}
-
-	ApplyLoadout(Proxy, Loadout, NewGameState);
+	else
+	{
+		// LEGACY FALLBACK
+		`LWTrace("Rebel Loadout: Legacy fallback (config arrays empty)");
+		Loadout = RollLegacyLoadout(Outpost, RebelRef);
+		ApplyLoadout(Proxy, Loadout, NewGameState);
+	}
 
 	return Proxy;
 }
