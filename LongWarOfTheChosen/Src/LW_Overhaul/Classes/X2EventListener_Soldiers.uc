@@ -29,6 +29,8 @@ var config array<CustomAbilityCost> CUSTOM_ABILITY_COSTS;
 var config array<int> FACTION_ABILITY_COSTS;
 var config float BASE_ABILITY_COST_MODIFIER;
 var config array<name>CLASSES_IGNORE_CUSTOM_COSTS;
+var config array<name> IGNORE_NO_TRAINING_CENTER;
+var config array<name> CLASSES_ALLOW_NO_TRAINING_CENTER;
 
 var config array<name> SPARKUnitValues, SPARKCharacterTemplates, SPARKSoldierClasses, SPARKAbilities;
 
@@ -520,6 +522,7 @@ static function EventListenerReturn OverrideCanPurchaseAbility(
 {
 	local XComGameState_Unit UnitState;
 	local XComLWTuple Tuple;
+	local name AbilityName, ClassName;
 	local int Rank, Branch;
 	local int ClassAbilityRankCount; //Rank is 0 indexed but AbilityRanks is not. This means a >= comparison requires no further adjustments
 
@@ -531,6 +534,8 @@ static function EventListenerReturn OverrideCanPurchaseAbility(
 	if (UnitState == none)
 		return ELR_NoInterrupt;
 
+	AbilityName = Tuple.Data[0].n;
+	ClassName = UnitState.GetSoldierClassTemplateName();
 	Rank = Tuple.Data[1].i;
 	Branch = Tuple.Data[2].i;
 	ClassAbilityRankCount = Tuple.Data[11].i;
@@ -542,7 +547,7 @@ static function EventListenerReturn OverrideCanPurchaseAbility(
 		Tuple.Data[13].b = false; // CanPurchaseAbility
 		Tuple.Data[15].s = default.ReasonClassAbilityPickedAtRank; // LocReasonLocked
 
-		if (UnitState.GetSoldierClassTemplateName() != 'PsiOperative')  { return ELR_NoInterrupt; }
+		if (ClassName != 'PsiOperative')  { return ELR_NoInterrupt; }
 
    		if (Branch < ClassAbilityRankCount) //row 0, row 1
    		{
@@ -555,7 +560,17 @@ static function EventListenerReturn OverrideCanPurchaseAbility(
 	// training center has been built.
 	if (Branch >= ClassAbilityRankCount)
 	{
-		if (`XCOMHQ.HasFacilityByName('RecoveryCenter'))
+		if (
+			`XCOMHQ.HasFacilityByName('RecoveryCenter') || 
+			(
+				// Some abilities might also be available before the training center has been built.
+				(
+					default.CLASSES_ALLOW_NO_TRAINING_CENTER.Find(ClassName) != INDEX_NONE
+					|| default.CLASSES_IGNORE_CUSTOM_COSTS.Find(ClassName) == INDEX_NONE 
+				)
+				&& default.IGNORE_NO_TRAINING_CENTER.Find(AbilityName) != INDEX_NONE
+			)
+		)
 		{
 			if (Tuple.Data[12].b)
 			{
@@ -574,7 +589,7 @@ static function EventListenerReturn OverrideCanPurchaseAbility(
 		}
 	}
 
-	if (UnitState.GetSoldierClassTemplateName() != 'PsiOperative')  { return ELR_NoInterrupt; }
+	if (ClassName != 'PsiOperative')  { return ELR_NoInterrupt; }
 
    	if (Branch< ClassAbilityRankCount) //row 0, row 1
    	{
