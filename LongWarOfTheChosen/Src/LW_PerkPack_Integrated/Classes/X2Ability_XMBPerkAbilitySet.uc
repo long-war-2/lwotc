@@ -167,8 +167,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(LeadTheTarget_LW());
 	Templates.AddItem(LeadTheTargetShot_LW());
 	Templates.AddItem(BlindingProtocol_LW());
-//*** START: ToallaNova - Adds 
-	Templates.AddItem(BlindingProtocol_LW());
+//*** START: ToallaNova - Adds the missing abilities found in BlindingProtocol_LW, using their already defined names.
 	Templates.AddItem(AddBPIdentGremlin());
 //***
 	Templates.AddItem(ApexPredator_LW());
