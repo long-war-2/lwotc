@@ -6688,7 +6688,9 @@ LocHelpText = "Send the Gremlin to deploy a small flashbang on an enemy target, 
 LocLongDescription = "Send the Gremlin to deploy a small flashbang on an enemy target, disorienting all enemy units within a small radius (reducing their Aim by <Ability:DISORIENTED_AIM_ADJUST/> and Mobility by <Ability:DISORIENTED_MOBILITY_ADJUST/>)."
 ; End translation (2)
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText = "<Bullet/> Works with Squadsight.<br/><Bullet/> Blinding Protocol has a <Ability:SelfCooldown_LW/> turn cooldown and ends the turn.<br/>"
+;*** START: Toallanova - Changed description to explicitly mention how much tile range the gremlin tier adds. Clarifies that they do not stack between themselves.
+LocPromotionPopupText = "<Bullet/> Works with Squadsight.<br/><Bullet/> Blinding Protocol has a <Ability:SelfCooldown_LW/> turn cooldown and ends the turn.<br/><Bullet/> Gremlin tier increases the range of the skill: it adds +<Ability:BLIND_PROTOCOL_RADIUS_T2_BONUS/> tiles for tier 2, and +<Ability:BLIND_PROTOCOL_RADIUS_T3_BONUS/> tiles for tier 3. These ranges don't stack between themselves.<br/>"
+;*** END: ToallaNova
 ; End translation (2)
 
 [LeadTheTarget_LW X2AbilityTemplate]
