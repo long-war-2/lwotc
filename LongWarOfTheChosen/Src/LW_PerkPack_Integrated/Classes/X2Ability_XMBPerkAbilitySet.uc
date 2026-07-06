@@ -65,9 +65,6 @@ var config int LEAD_TARGET_AIM_BONUS;
 var config float BLIND_PROTOCOL_RADIUS_T1_BASE;
 var config float BLIND_PROTOCOL_RADIUS_T2_BONUS;
 var config float BLIND_PROTOCOL_RADIUS_T3_BONUS;
-//*** START: ToallaNova - adds the definition of Gremlin Templates to INI.
-var config array<name> GREMLIN_TEMPLATES;
-//*** END: ToallaNova
 var config int BLINDING_PROTOCOL_COOLDOWN;
 
 var config int ZONE_CONTROL_MOBILITY_PENALTY;
@@ -167,9 +164,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(LeadTheTarget_LW());
 	Templates.AddItem(LeadTheTargetShot_LW());
 	Templates.AddItem(BlindingProtocol_LW());
-//*** START: ToallaNova - Adds the missing abilities found in BlindingProtocol_LW, using their already defined names.
-	Templates.AddItem(AddBPIdentGremlin());
-//***
+/*>>*/Templates.AddItem(AddIdentGremlinTierMG());
+/*>>*/Templates.AddItem(AddIdentGremlinTierBM());
 	Templates.AddItem(ApexPredator_LW());
 	Templates.AddItem(ApexPredatorPanic_LW());
 	Templates.AddItem(NeutralizingAgents());
@@ -814,9 +810,6 @@ static function X2AbilityTemplate BlindingProtocol_LW()
 	//local X2Condition_UnitInventory								InventoryCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'BlindingProtocol_LW');
-//*** START: ToallaNova - Creates the missing skills with the default gremlin templates. I find it proper to add them here, since they are related to blinding protocol.
-	FixGremlinTemplates();
-//*** END: ToallaNova
 	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_BlindingProtocol"; 
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_SQUADDIE_PRIORITY + 2;
@@ -875,10 +868,8 @@ static function X2AbilityTemplate BlindingProtocol_LW()
 	RadiusMultiTarget.bAllowDeadMultiTargetUnits = false;
 	RadiusMultiTarget.bUseWeaponRadius = false;
 	RadiusMultiTarget.fTargetRadius = 1.5 * default.BLIND_PROTOCOL_RADIUS_T1_BASE;
-//*** START: ToallaNova - AddAbilityBonusRadius(ability='AbilityName', BonusRange=float(meters)). These were the missing skills we are now creating in AddBPIdentGremlin(name,name)
 	RadiusMultiTarget.AddAbilityBonusRadius('LW_T2GremlinIndicator', 1.5 * default.BLIND_PROTOCOL_RADIUS_T2_BONUS); ///
 	RadiusMultiTarget.AddAbilityBonusRadius('LW_T3GremlinIndicator', 1.5 * default.BLIND_PROTOCOL_RADIUS_T3_BONUS);
-//*** END: ToallaNova
 	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
 
 	Template.AbilityMultiTargetConditions.AddItem(TargetProperty);
@@ -912,69 +903,37 @@ static function X2AbilityTemplate BlindingProtocol_LW()
 	return Template;
 }
 
-//*** START: ToallaNova - these functions add the two missing skills that Blinding Protocol uses to increase the radius according to gremlin tier. Adds logging for traceability, can be removed and refactored.
-static function FixGremlinTemplates() // Gets the templates defined in INI, for patching. Only considers base LWOTC templates (Gremlin_CV,Gremlin_MG,Gremlin_BM), ignores the rest.
+static function X2AbilityTemplate AddIdentGremlinTierMG()
 {
-	local X2ItemTemplateManager ItemTemplateMgr;
-	local X2ItemTemplate ItemTemplate;
-    local X2GremlinTemplate GremlinTemplate;
-    local name GremlinName;
+	local X2AbilityTemplate					Template;
+	local X2Condition_UnitHasGremlinType	InventoryCondition;
 
-	ItemTemplateMgr = class'X2ItemTemplateManager'.static.GetItemTemplateManager();
+	Template = PurePassive('LW_T2GremlinIndicator', "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_BlindingProtocol", false, 'eAbilitySource_Perk', false);
 
-    foreach default.GREMLIN_TEMPLATES(GremlinName)
-    {
-		ItemTemplate = ItemTemplateMgr.FindItemTemplate(GremlinName);
-		GremlinTemplate = X2GremlinTemplate(ItemTemplate);
-		if(GremlinTemplate != none)
-		{
-			`log("Patching" @ GremlinTemplate.DataName, true, 'LWOTC-BPP');
-			switch (GremlinTemplate.DataName)
-			{
-				case 'Gremlin_CV': break;
-				case 'Gremlin_MG': AddBPIdentGremlin('LW_T2GremlinIndicator','LW_T2'); break; // Missing skill definition for BP if soldier has Gremlin_MG
-				case 'Gremlin_BM': AddBPIdentGremlin('LW_T3GremlinIndicator','LW_T3'); break; // Missing skill definition for BP if soldier has Gremlin_BM
-				Default: `log("Not a base Gremlin Template, ignoring", true, 'LWOTC-BPP'); break;
-			}
-		}
-		else `log("Not a valid Gremlin Template", true, 'LWOTC-BPP');
-	}
+	InventoryCondition = new class'X2Condition_UnitHasGremlinType';
+	InventoryCondition.RelevantSlot = eInvSlot_SecondaryWeapon;
+	InventoryCondition.RequireWeaponCategory = 'gremlin';
+	InventoryCondition.RequireWeaponName = 'Gremlin_MG';
+	Template.AbilityShooterConditions.AddItem(InventoryCondition);
+
+	return Template;
 }
 
-static function X2AbilityTemplate AddBPIdentGremlin(name GremlinIdentSkill, name GremlinTier) // Adds the actual skills defined on AddAbilityBonusRadius above.
+static function X2AbilityTemplate AddIdentGremlinTierBM()
 {
-	local XMBEffect_BonusRadius Effect;
-	local name					EffectName;
-	local int					i;
+	local X2AbilityTemplate					Template;
+	local X2Condition_UnitHasGremlinType	InventoryCondition;
 
-	`log("Adding" @ GremlinIdentSkill, true, 'LWOTC-BPP');
-	switch(GremlinTier)
-	{
-		case'LW_T2':
-			// Create a bonus radius effect
-			EffectName = name("BlindProt_" @ GremlinTier); // Name "BlindProt_LW_T2" for _MG variant.
-			Effect = new class'XMBEffect_BonusRadius'; // This XMB effect adds tile range, similar to Danger Zone on Area Suppression.
-			Effect.EffectName = EffectName;
-			// Add T2 value to radius of BP.
-			Effect.fBonusRadius = default.BLIND_PROTOCOL_RADIUS_T2_BONUS;
-			break;
+	Template = PurePassive('LW_T3GremlinIndicator', "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_BlindingProtocol", false, 'eAbilitySource_Perk', false);
 
-		case 'LW_T3':
-			EffectName = name("BlindProt_" @ GremlinTier); // Name "BlindProt_LW_T3" for _BM variant.
-			Effect = new class'XMBEffect_BonusRadius'; // This XMB effect adds tile range, similar to Danger Zone on Area Suppression.
-			Effect.EffectName = EffectName;
-			// Add T3 value to radius of BP.
-			Effect.fBonusRadius = default.BLIND_PROTOCOL_RADIUS_T3_BONUS;
-			break;
+	InventoryCondition = new class'X2Condition_UnitHasGremlinType';
+	InventoryCondition.RelevantSlot = eInvSlot_SecondaryWeapon;
+	InventoryCondition.RequireWeaponCategory = 'gremlin';
+	InventoryCondition.RequireWeaponName = 'Gremlin_BM';
+	Template.AbilityShooterConditions.AddItem(InventoryCondition);
 
-		Default: break;
-	}
-
-	`log("Effect" @ EffectName @ "added to" @ GremlinIdentSkill, true, 'LWOTC-BPP');
-	`log(GremlinIdentSkill @ "created", true, 'LWOTC-BPP');
-	return Passive(GremlinIdentSkill, "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_BlindingProtocol", true, Effect); // This XMB function returns a hidden passive with an effect added to it. 
+	return Template;
 }
-*** END: ToallaNova
 
 static simulated function ProtocolSingleTarget_BuildVisualization(XComGameState VisualizeGameState)
 {
