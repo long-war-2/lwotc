@@ -2971,6 +2971,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 					}
 				}
 			}
+			WeaponTemplate.SetUIStatMarkup(class'XLocalizedData'.default.BurnChanceLabel,, default.FUSION_SWORD_FIRE_CHANCE,,, "%");
 		}
 
 		if (WeaponTemplate.DataName == 'AlienHunterAxe_BM' || WeaponTemplate.DataName == 'AlienHunterAxeThrown_BM')
@@ -2987,6 +2988,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 					}
 				}
 			}
+			WeaponTemplate.SetUIStatMarkup(class'XLocalizedData'.default.BurnChanceLabel,, default.BEAM_AXE_FIRE_CHANCE,,, "%");
 		}
 	}   
 
@@ -3179,6 +3181,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 				DisorientEffect.ApplyChance = default.BLUESCREEN_DISORIENT_CHANCE;
 
 				X2AmmoTemplate(EquipmentTemplate).TargetEffects.AddItem(DisorientEffect);
+				EquipmentTemplate.SetUIStatMarkup(class'X2Ability_LW_GearAbilities'.default.DisorientedChanceLabel,, default.BLUESCREEN_DISORIENT_CHANCE,,, "%");
 
 				EquipmentTemplate.Abilities.AddItem('Bluescreen_Rounds_Ability_PP');
 			}
@@ -3297,6 +3300,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 						GrenadeTemplate.LaunchedGrenadeEffects[k].ApplyChance = default.FIREBOMB_FIRE_APPLY_CHANCE;
 					}
 				}
+				GrenadeTemplate.SetUIStatMarkup(class'XLocalizedData'.default.BurnChanceLabel,, default.FIREBOMB_FIRE_APPLY_CHANCE,,, "%");
 			}
 			if (GrenadeTemplate.DataName == 'FireBombMk2')
 			{
@@ -3314,6 +3318,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 						GrenadeTemplate.LaunchedGrenadeEffects[k].ApplyChance = default.FIREBOMB_2_FIRE_APPLY_CHANCE;
 					}
 				}
+				GrenadeTemplate.SetUIStatMarkup(class'XLocalizedData'.default.BurnChanceLabel,, default.FIREBOMB_2_FIRE_APPLY_CHANCE,,, "%");
 			}
 
 
@@ -3344,6 +3349,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 						AmmoTemplate.TargetEffects[k].ApplyChance = default.DRAGON_ROUNDS_APPLY_CHANCE;
 					}
 				}
+				AmmoTemplate.SetUIStatMarkup(class'XLocalizedData'.default.BurnChanceLabel,, default.DRAGON_ROUNDS_APPLY_CHANCE,,, "%");
 			}
 			if (AmmoTemplate.DataName == 'VenomRounds')
 			{
@@ -3354,6 +3360,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 						AmmoTemplate.TargetEffects[k].ApplyChance = default.VENOM_ROUNDS_APPLY_CHANCE;
 					}
 				}
+				AmmoTemplate.SetUIStatMarkup(class'X2Ability_LW_GearAbilities'.default.PoisonChanceLabel,, default.VENOM_ROUNDS_APPLY_CHANCE,,, "%");
 			}
 		}
 

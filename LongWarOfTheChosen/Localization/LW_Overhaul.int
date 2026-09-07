@@ -296,6 +296,8 @@ m_strJailbreakAppendedPrisonerList="<br/>Our intel suggests the prisoner list in
 [X2Ability_LW_GearAbilities]
 strWeight="Small item weight"
 AblativeHPLabel="Ablative HP"
+PoisonChanceLabel = "POISON CHANCE"
+DisorientedChanceLabel = "DISORIENTED CHANCE"
 
 [X2Ability_LW_TechnicalAbilitySet]
 strMaxScatter="\nMax Scatter (Tiles): "

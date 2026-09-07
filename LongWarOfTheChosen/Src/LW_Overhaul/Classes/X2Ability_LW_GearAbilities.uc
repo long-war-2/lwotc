@@ -60,6 +60,8 @@ var config int CHAMELEON_VEST_DODGE_BONUS;
 
 var localized string strWeight;
 var localized string AblativeHPLabel;
+var localized string PoisonChanceLabel;
+var localized string DisorientedChanceLabel;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
