@@ -659,6 +659,12 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'SensorOverlays_CritBonus_LW':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.SensorOverlaysCritBonus);
 			return true;
+		case 'HeavyHitter_DamageBonus_LW':
+			OutString = string(class'X2Ability_PerkPackAbilitySet2'.default.HeavyHitter_DamageBonus);
+			return true;
+		case 'HeavyHitter_DamageOverTimeBonus_LW':
+			OutString = string(class'X2Ability_PerkPackAbilitySet2'.default.HeavyHitter_DamageOverTimeBonus);
+			return true;
 		case 'ClassName_Source':
 			if (StrategyParseObj != none)
 			{

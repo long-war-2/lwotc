@@ -70,6 +70,9 @@ var config int SHOCKWAVE_TURNS;
 
 var config int ChainingJolt_Cooldown;
 
+var config int HeavyHitter_DamageBonus;
+var config int HeavyHitter_DamageOverTimeBonus;
+
 const DAMAGED_COUNT_NAME = 'DamagedCountThisTurn';
 
 static function array<X2DataTemplate> CreateTemplates()
@@ -127,6 +130,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(PurePassive('Shockwave_LW', "img:///UILibrary_LWOTC.UIPerk_shockwave"));
 	Templates.AddItem(ChainingJolt());
 	Templates.AddItem(SalvoRainmaker());
+	Templates.AddItem(HeavyHitter());
 
 	return Templates;
 }
@@ -3108,4 +3112,36 @@ static function AddShellshockAndShockwaveEffects(out X2AbilityTemplate Template)
 	ShockwaveEffect.EffectName = 'Shockwave_LW_Effect';
 	ShockwaveEffect.bDisplayInSpecialDamageMessageUI = true;
 	Template.AddMultiTargetEffect(ShockwaveEffect);
+}
+
+static function X2AbilityTemplate HeavyHitter()
+{
+	local X2AbilityTemplate         Template;
+	local X2Effect_HeavyHitter_LW   Effect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'HeavyHitter_LW');
+
+	Template.IconImage = "img:///UILibrary_SOCombatEngineer.UIPerk_heavyhitter";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bIsPassive = true;
+
+	Template.bCrossClassEligible = false;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	Effect = new class'X2Effect_HeavyHitter_LW';
+	Effect.EffectName = 'HeavyHitter_LW';
+	Effect.DamageBonus = default.HeavyHitter_DamageBonus;
+	Effect.DamageOverTimeBonus = default.HeavyHitter_DamageOverTimeBonus;
+	Effect.BuildPersistentEffect(1, true, false);
+	Effect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
+	Template.AddTargetEffect(Effect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
 }
