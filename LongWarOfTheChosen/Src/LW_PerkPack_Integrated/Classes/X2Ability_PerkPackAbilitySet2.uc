@@ -100,6 +100,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddFieldSurgeon());
 	Templates.AddItem(AddDamageInstanceTracker());
 	Templates.AddItem(CreateDedicatedSuppressionAbility());
+	Templates.AddItem(UnwaveringStance());
 	Templates.AddItem(CreateCollateralAbility());
 	Templates.AddItem(KineticStrike());
 	Templates.AddItem(Reboot());
@@ -1271,13 +1272,87 @@ static function X2AbilityTemplate AddDamageInstanceTracker()
 
 static function X2AbilityTemplate CreateDedicatedSuppressionAbility()
 {
-	local X2AbilityTemplate		Template;
+	local X2AbilityTemplate             Template;
+	local X2Effect_DedicatedSuppression ReserveEffect;
 
-	Template = PurePassive('DedicatedSuppression_LW', "img:///UILibrary_XPerkIconPack.UIPerk_suppression_defense2", , 'eAbilitySource_Perk');
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'DedicatedSuppression_LW');
+
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_suppression_defense2";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bIsPassive = true;
+	Template.bUniqueSource = true;
+
+	Template.bCrossClassEligible = false;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	ReserveEffect = new class'X2Effect_DedicatedSuppression';
+	ReserveEffect.EffectName = 'DedicatedSuppression_LW';
+	ReserveEffect.AllowedActionPointTypes = class'X2Effect_DedicatedSuppression'.default.SuppressionActionPoints;
+	ReserveEffect.BuildPersistentEffect(1, true, false);
+	ReserveEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
+	Template.AddTargetEffect(ReserveEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
 	return Template;
 }
 
+static function X2AbilityTemplate UnwaveringStance()
+{
+	local X2AbilityTemplate             Template;
+	local X2Effect_CombatAwareness      DefenseEffect;
+	local X2Effect_DedicatedSuppression ReserveEffect;
+	local array<name>                   AllowedActionPointTypes;
+	local name                          ActionPointName;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'UnwaveringStance_LW');
+
+	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityThreatAssesment";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bIsPassive = true;
+	Template.bUniqueSource = true;
+
+	Template.bCrossClassEligible = false;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	AllowedActionPointTypes = class'CHHelpers'.default.ValidReserveAPForUnitFlag;
+	foreach class'X2Effect_DedicatedSuppression'.default.SuppressionActionPoints(ActionPointName)
+	{
+		AllowedActionPointTypes.AddItem(ActionPointName);
+	}
+	
+	DefenseEffect = new class'X2Effect_CombatAwareness';
+	DefenseEffect.EffectName = 'UnwaveringStance_LW_Armor';
+	DefenseEffect.ArmorBonus = class'X2Effect_CombatAwareness'.default.COMBAT_AWARENESS_BONUS_ARMOR;
+	DefenseEffect.DefenseBonus = class'X2Effect_CombatAwareness'.default.COMBAT_AWARENESS_BONUS_DEFENSE;
+	DefenseEffect.AllowedActionPointTypes = AllowedActionPointTypes;
+	DefenseEffect.BuildPersistentEffect(1, true, false);
+	DefenseEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
+	Template.AddTargetEffect(DefenseEffect);
+
+	ReserveEffect = new class'X2Effect_DedicatedSuppression';
+	ReserveEffect.EffectName = 'UnwaveringStance_LW';
+	ReserveEffect.AllowedActionPointTypes = AllowedActionPointTypes;
+	ReserveEffect.BuildPersistentEffect(1, true, false);
+	ReserveEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, false,, Template.AbilitySourceName);
+	Template.AddTargetEffect(ReserveEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	Template.OverrideAbilities.AddItem('DedicatedSuppression_LW');
+
+	return Template;
+}
 
 
 // Mechatronic Warfare perks below: Credit to NotSoLoneWolf for permission to include them
