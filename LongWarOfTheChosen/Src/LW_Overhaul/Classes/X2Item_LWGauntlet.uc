@@ -97,11 +97,11 @@ static function array<X2DataTemplate> CreateTemplates()
 	local array<X2DataTemplate> Templates;
 
 	`LWTrace("  >> X2Item_LWGauntlet.CreateTemplates()");
-	
-	Templates.AddItem(CreateTemplate_Gauntlet_Conventional());
-	Templates.AddItem(CreateTemplate_Gauntlet_Mag());
-	//Templates.AddItem(CreateTemplate_Gauntlet_Coil());
-	Templates.AddItem(CreateTemplate_Gauntlet_Beam());
+
+	// Templates.AddItem(CreateTemplate_Gauntlet_Conventional());
+	// Templates.AddItem(CreateTemplate_Gauntlet_Mag());
+	// Templates.AddItem(CreateTemplate_Gauntlet_Coil());
+	// Templates.AddItem(CreateTemplate_Gauntlet_Beam());
 	Templates.AddItem(CreateNapalmDamageType());
 
 	return Templates;

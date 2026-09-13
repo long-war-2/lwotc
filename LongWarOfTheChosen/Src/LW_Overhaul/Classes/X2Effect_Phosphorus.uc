@@ -1,66 +1,82 @@
-// Improved version of effect from Merist
-
 class X2Effect_Phosphorus extends X2Effect_Persistent config(LW_SoldierSkills);
 
-var config array<name> PhosphorusShredAbilities;
-
-var config int BONUS_CV_SHRED;
-var config int BONUS_MG_SHRED;
-var config int BONUS_BM_SHRED;
-
-function int GetExtraShredValue(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData)
+struct BonusShred
 {
-    local XComGameStateHistory History;
-    local XComGameState_Item SourceWeapon;
-    local name AbilityName;
-    local bool bShouldApply;
+    var name WeaponTech;
+    var int Shred;
+};
 
-    History = `XCOMHISTORY;
+var config array<BonusShred> ShredPerWeaponTech;
 
-    SourceWeapon = XComGameState_Item(History.GetGameStateForObjectID(AppliedData.ItemStateObjectRef.ObjectID));
+var array<name> AllowedAbilities;
+var array<name> AllowedDamageTypes;
 
-    if (AbilityState == none)
-        return 0;
-
-    if (Attacker.HasSoldierAbility('PhosphorusPassive'))
+function bool ChangeModifyDamageValueForAttacker(
+    XComGameState_Effect EffectState,
+    out int bIsImmuneToDamage,
+    X2Effect_ApplyWeaponDamage WeaponDamageEffect,
+    out WeaponDamageValue DamageValue,
+    Damageable Target,
+    out array<name> AppliedDamageTypes,
+    XComGameState_Item SourceWeapon,
+    XComGameState_Unit SourceUnit,
+    XComGameState_Ability AbilityState)
+{
+    if (SourceUnit != none)
     {
-        AbilityName = AbilityState.GetMyTemplateName();
-        if (default.PhosphorusShredAbilities.Find(AbilityName) != INDEX_NONE)
+        if (AllowedAbilities.Find(AbilityState.GetMyTemplateName()) != INDEX_NONE)
         {
-            bShouldApply = true;
-        }
-        else
-        {
-            switch (AbilityName)
+            if (AllowedDamageTypes.Find(DamageValue.DamageType) != INDEX_NONE)
             {
-                case 'LWFlamethrower':
-                case 'Roust':
-                case 'Firestorm':
-                case 'FirestormActivation':
-                case 'AdvPurifierFlamethrower':
-                    bShouldApply = true;
-                    break;
-                default:
-                    break;
-            }
-        }
-        if (bShouldApply)
-        {
-            switch(X2WeaponTemplate(SourceWeapon.GetMyTemplate()).WeaponTech)
-            {
-                case 'conventional':
-                case 'laser_lw':
-                    return default.BONUS_CV_SHRED;
-                case 'magnetic':
-                case 'coilgun_lw':
-                    return default.BONUS_MG_SHRED;
-                case 'beam':
-                    return default.BONUS_BM_SHRED;
-                default:
-                    return default.BONUS_CV_SHRED;
-                    break;
+                if (Target.IsImmuneToDamage(DamageValue.DamageType))
+                {
+                    bIsImmuneToDamage = 0;
+                    AppliedDamageTypes.AddItem(DamageValue.DamageType);
+                    return true;
+                }
             }
         }
     }
+
+    return false;
+}
+
+function int GetExtraShredValue(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData)
+{
+    local X2Effect_ApplyWeaponDamage    DamageEffect;
+    local XComGameState_Item            SourceWeapon;
+    local X2WeaponTemplate              WeaponTemplate;
+    local int                           Index;
+
+    DamageEffect = X2Effect_ApplyWeaponDamage(GetX2Effect(AppliedData.EffectRef));
+
+    if (!DamageEffect.bApplyOnHit)
+    {
+        return 0;
+    }
+
+    if (AllowedAbilities.Find(AbilityState.GetMyTemplateName()) != INDEX_NONE)
+    {
+        SourceWeapon = AbilityState.GetSourceWeapon();
+        if (SourceWeapon != none)
+        {
+            WeaponTemplate = X2WeaponTemplate(SourceWeapon.GetMyTemplate());
+            if (WeaponTemplate != none)
+            {
+                Index = ShredPerWeaponTech.Find('WeaponTech', WeaponTemplate.WeaponTech);
+                if (Index != INDEX_NONE)
+                {
+                    return ShredPerWeaponTech[Index].Shred;
+                }
+            }
+        }
+    }
+
     return 0;
+}
+
+defaultproperties
+{
+    EffectName = Phosphorus
+    DuplicateResponse = eDupe_Ignore
 }

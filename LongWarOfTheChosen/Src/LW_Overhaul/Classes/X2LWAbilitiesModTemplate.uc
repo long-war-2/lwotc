@@ -819,11 +819,11 @@ static function AddImmuneConditionToFlamethrower(X2AbilityTemplate Template)
 
 static function UpdatePurifierFlamethrower(X2AbilityTemplate Template)
 {
-	local X2AbilityMultiTarget_Cone_LWFlamethrower	ConeMultiTarget;
-	local X2AbilityToHitCalc_StandardAim			StandardAim;
-	local X2Condition 								Condition;
-	local X2Condition_Phosphorus PhosphorusCondition;
-	local X2Effect Effect;
+	local X2AbilityMultiTarget_Flamethrower	ConeMultiTarget;
+	local X2AbilityToHitCalc_StandardAim	StandardAim;
+	local X2Condition						Condition;
+	local X2Effect							Effect;
+
 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
 	StandardAim.bAllowCrit = false;
 	StandardAim.bGuaranteedHit = true;
@@ -831,42 +831,28 @@ static function UpdatePurifierFlamethrower(X2AbilityTemplate Template)
 
 	foreach Template.AbilityShooterConditions(Condition)
 	{
-		if(Condition.isA(class'X2Condition_UnitEffects'.name))
+		if (X2Condition_UnitEffects(Condition) != none)
 		{
 			X2Condition_UnitEffects(Condition).RemoveExcludeEffect(class'X2AbilityTemplateManager'.default.DisorientedName);
 		}
 	}
-		PhosphorusCondition = new class'X2Condition_Phosphorus';
-
-	foreach Template.AbilityMultiTargetEffects(Effect)
-	{
-		if(Effect.isA('X2Effect_ApplyWeaponDamage'))
-		{
-			X2Effect_ApplyWeaponDamage(Effect).TargetConditions.AddItem(PhosphorusCondition);
-		}
-	}	
 
 	Template.TargetingMethod = class'X2TargetingMethod_Cone';
 
-	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone_LWFlamethrower';
+	ConeMultiTarget = new class'X2AbilityMultiTarget_Flamethrower';
 	ConeMultiTarget.bUseWeaponRadius = true;
-
 	ConeMultiTarget.ConeEndDiameter = class'X2Ability_AdvPurifier'.default.ADVPURIFIER_FLAMETHROWER_TILE_WIDTH * class'XComWorldData'.const.WORLD_StepSize;
 	ConeMultiTarget.ConeLength = class'X2Ability_AdvPurifier'.default.ADVPURIFIER_FLAMETHROWER_TILE_LENGTH * class'XComWorldData'.const.WORLD_StepSize;
 	ConeMultiTarget.AddConeSizeMultiplier('Incinerator', class'X2Ability_LW_TechnicalAbilitySet'.default.INCINERATOR_RANGE_MULTIPLIER, class'X2Ability_LW_TechnicalAbilitySet'.default.INCINERATOR_RADIUS_MULTIPLIER);
-	// Next line used for vanilla targeting
-	// ConeMultiTarget.AddConeSizeMultiplier('Incinerator', default.INCINERATOR_CONEEND_DIAMETER_MODIFIER, default.INCINERATOR_CONELENGTH_MODIFIER);
 	ConeMultiTarget.bIgnoreBlockingCover = true;
 	Template.AbilityMultiTargetStyle = ConeMultiTarget;
-
-	Template.AdditionalAbilities.AddItem('Phosphorus');
 
 	Template.bCheckCollision = true;
 	Template.bAffectNeighboringTiles = true;
 	Template.bFragileDamageOnly = true;
 
 	// For vanilla targeting
-	Template.PostActivationEvents.AddItem('FlamethrowerActivated');
+	Template.PostActivationEvents.AddItem(class'X2Ability_LW_TechnicalAbilitySet2'.default.FlamethrowerEventName);
 	Template.ActionFireClass = class'X2Action_Fire_Flamethrower_Purifier';
 
 	//Template.BuildVisualizationFn = class'X2Ability_LW_TechnicalAbilitySet'.static.LWFlamethrower_BuildVisualization;
