@@ -18,3 +18,27 @@ var config int SHAPEDCHARGE_RADIUS;
 var config WeaponDamageValue SHAPEDCHARGE_BASEDAMAGE;
 var config int SHAPEDCHARGE_ISOUNDRANGE;
 var config int SHAPEDCHARGE_IENVIRONMENTDAMAGE;
+
+static function int GetScopeAimBonusAmount(X2WeaponUpgradeTemplate UpgradeTemplate)
+{
+    return UpgradeTemplate.AimBonus
+        + (class'X2Item_DefaultUpgrades'.static.AreUpgradesEmpowered() ? class'X2Ability_LW_GearAbilities'.default.SCOPE_EMPOWER_BONUS : 0);
+}
+
+static function int GetTriggerAimBonusAmount(X2WeaponUpgradeTemplate UpgradeTemplate)
+{
+    return UpgradeTemplate.AimBonus
+        + (class'X2Item_DefaultUpgrades'.static.AreUpgradesEmpowered() ? class'X2Ability_LW_GearAbilities'.default.TRIGGER_EMPOWER_BONUS : 0);
+}
+
+static function int GetStockBonusAmount(X2WeaponUpgradeTemplate UpgradeTemplate)
+{
+    return UpgradeTemplate.AimBonus
+        + (class'X2Item_DefaultUpgrades'.static.AreUpgradesEmpowered() ? class'X2Ability_LW_GearAbilities'.default.STOCK_EMPOWER_BONUS : 0);
+}
+
+static function int GetSuppressorBonusAmount(X2WeaponUpgradeTemplate UpgradeTemplate)
+{
+    return -UpgradeTemplate.AimBonus
+        - (class'X2Item_DefaultUpgrades'.static.AreUpgradesEmpowered() ? class'X2Item_DefaultWeaponMods_LW'.default.SUPPRESSOR_SOUND_REDUCTION_EMPOWER_BONUS : 0);
+}

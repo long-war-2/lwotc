@@ -3529,29 +3529,26 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		//specific alterations
 		if (WeaponUpgradeTemplate.DataName == 'AimUpgrade_Bsc')
 		{
-			WeaponUpgradeTemplate.AimBonus = 0;
-			//WeaponUpgradeTemplate.AimBonusNoCover = 0;
+			WeaponUpgradeTemplate.AimBonus = class'X2Ability_LW_GearAbilities'.default.SCOPE_BSC_AIM_BONUS;
 			WeaponUpgradeTemplate.AddHitChanceModifierFn = none;
-			WeaponUpgradeTemplate.GetBonusAmountFn = none;
-			WeaponUpgradeTemplate.BonusAbilities.length = 0;
+			WeaponUpgradeTemplate.GetBonusAmountFn = class'X2Item_DefaultWeaponMods_LW'.static.GetScopeAimBonusAmount;
+			WeaponUpgradeTemplate.BonusAbilities.Length = 0;
 			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Scope_LW_Bsc_Ability');
 		}
 		if (WeaponUpgradeTemplate.DataName == 'AimUpgrade_Adv')
 		{
-			WeaponUpgradeTemplate.AimBonus = 0;
-			//WeaponUpgradeTemplate.AimBonusNoCover = 0;
+			WeaponUpgradeTemplate.AimBonus = class'X2Ability_LW_GearAbilities'.default.SCOPE_ADV_AIM_BONUS;
 			WeaponUpgradeTemplate.AddHitChanceModifierFn = none;
-			WeaponUpgradeTemplate.GetBonusAmountFn = none;
-			WeaponUpgradeTemplate.BonusAbilities.length = 0;
+			WeaponUpgradeTemplate.GetBonusAmountFn = class'X2Item_DefaultWeaponMods_LW'.static.GetScopeAimBonusAmount;
+			WeaponUpgradeTemplate.BonusAbilities.Length = 0;
 			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Scope_LW_Adv_Ability');
 		}
 		if (WeaponUpgradeTemplate.DataName == 'AimUpgrade_Sup')
 		{
-			WeaponUpgradeTemplate.AimBonus = 0;
-			//WeaponUpgradeTemplate.AimBonusNoCover = 0;
+			WeaponUpgradeTemplate.AimBonus = class'X2Ability_LW_GearAbilities'.default.SCOPE_SUP_AIM_BONUS;
 			WeaponUpgradeTemplate.AddHitChanceModifierFn = none;
-			WeaponUpgradeTemplate.GetBonusAmountFn = none;
-			WeaponUpgradeTemplate.BonusAbilities.length = 0;
+			WeaponUpgradeTemplate.GetBonusAmountFn = class'X2Item_DefaultWeaponMods_LW'.static.GetScopeAimBonusAmount;
+			WeaponUpgradeTemplate.BonusAbilities.Length = 0;
 			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Scope_LW_Sup_Ability');
 		}
 
@@ -3559,54 +3556,77 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		{
 			WeaponUpgradeTemplate.FreeFireChance = 0;
 			WeaponUpgradeTemplate.FreeFireCostFn = none;
-			WeaponUpgradeTemplate.GetBonusAmountFn = none;
-			WeaponUpgradeTemplate.BonusAbilities.length = 0;
+			WeaponUpgradeTemplate.AimBonus = class'X2Ability_LW_GearAbilities'.default.TRIGGER_BSC_AIM_BONUS;
+			WeaponUpgradeTemplate.GetBonusAmountFn = class'X2Item_DefaultWeaponMods_LW'.static.GetTriggerAimBonusAmount;
+			WeaponUpgradeTemplate.BonusAbilities.Length = 0;
 			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Hair_Trigger_LW_Bsc_Ability');
 		}
 		if (WeaponUpgradeTemplate.DataName == 'FreeFireUpgrade_Adv')
 		{
 			WeaponUpgradeTemplate.FreeFireChance = 0;
 			WeaponUpgradeTemplate.FreeFireCostFn = none;
-			WeaponUpgradeTemplate.GetBonusAmountFn = none;
-			WeaponUpgradeTemplate.BonusAbilities.length = 0;
+			WeaponUpgradeTemplate.AimBonus = class'X2Ability_LW_GearAbilities'.default.TRIGGER_ADV_AIM_BONUS;
+			WeaponUpgradeTemplate.GetBonusAmountFn = class'X2Item_DefaultWeaponMods_LW'.static.GetTriggerAimBonusAmount;
+			WeaponUpgradeTemplate.BonusAbilities.Length = 0;
 			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Hair_Trigger_LW_Adv_Ability');
 		}
 		if (WeaponUpgradeTemplate.DataName == 'FreeFireUpgrade_Sup')
 		{
 			WeaponUpgradeTemplate.FreeFireChance = 0;
 			WeaponUpgradeTemplate.FreeFireCostFn = none;
-			WeaponUpgradeTemplate.GetBonusAmountFn = none;
-			WeaponUpgradeTemplate.BonusAbilities.length = 0;
+			WeaponUpgradeTemplate.AimBonus = class'X2Ability_LW_GearAbilities'.default.TRIGGER_SUP_AIM_BONUS;
+			WeaponUpgradeTemplate.GetBonusAmountFn = class'X2Item_DefaultWeaponMods_LW'.static.GetTriggerAimBonusAmount;
+			WeaponUpgradeTemplate.BonusAbilities.Length = 0;
 			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Hair_Trigger_LW_Sup_Ability');
 		}
 
 		if (WeaponUpgradeTemplate.DataName == 'MissDamageUpgrade_Bsc')
 		{
 			WeaponUpgradeTemplate.BonusDamage.Damage = 0;
-			WeaponUpgradeTemplate.GetBonusAmountFn = none;
-			WeaponUpgradeTemplate.BonusAbilities.length = 0;
+			WeaponUpgradeTemplate.AimBonus = class'X2Ability_LW_GearAbilities'.default.STOCK_BSC_SW_AIM_BONUS;
+			WeaponUpgradeTemplate.GetBonusAmountFn = class'X2Item_DefaultWeaponMods_LW'.static.GetStockBonusAmount;
+			WeaponUpgradeTemplate.BonusAbilities.Length = 0;
 			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Stock_LW_Bsc_Ability');
 		}
 		if (WeaponUpgradeTemplate.DataName == 'MissDamageUpgrade_Adv')
 		{
 			WeaponUpgradeTemplate.BonusDamage.Damage = 0;
-			WeaponUpgradeTemplate.GetBonusAmountFn = none;
-			WeaponUpgradeTemplate.BonusAbilities.length = 0;
+			WeaponUpgradeTemplate.AimBonus = class'X2Ability_LW_GearAbilities'.default.STOCK_ADV_SW_AIM_BONUS;
+			WeaponUpgradeTemplate.GetBonusAmountFn = class'X2Item_DefaultWeaponMods_LW'.static.GetStockBonusAmount;
+			WeaponUpgradeTemplate.BonusAbilities.Length = 0;
 			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Stock_LW_Adv_Ability');
 		}
 		if (WeaponUpgradeTemplate.DataName == 'MissDamageUpgrade_Sup')
 		{
 			WeaponUpgradeTemplate.BonusDamage.Damage = 0;
-			WeaponUpgradeTemplate.GetBonusAmountFn = none;
-			WeaponUpgradeTemplate.BonusAbilities.length = 0;
+			WeaponUpgradeTemplate.AimBonus = class'X2Ability_LW_GearAbilities'.default.STOCK_SUP_SW_AIM_BONUS;
+			WeaponUpgradeTemplate.GetBonusAmountFn = class'X2Item_DefaultWeaponMods_LW'.static.GetStockBonusAmount;
+			WeaponUpgradeTemplate.BonusAbilities.Length = 0;
 			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Stock_LW_Sup_Ability');
 		}
 		
-		if (WeaponUpgradeTemplate.DataName == 'FreeKillUpgrade_Bsc' || WeaponUpgradeTemplate.DataName == 'FreeKillUpgrade_Adv' || WeaponUpgradeTemplate.DataName == 'FreeKillUpgrade_Sup')
+		if (WeaponUpgradeTemplate.DataName == 'FreeKillUpgrade_Bsc')
 		{
 			WeaponUpgradeTemplate.FreeKillChance = 0;
 			WeaponUpgradeTemplate.FreeKillFn = none;
-			WeaponUpgradeTemplate.GetBonusAmountFn = none;
+			WeaponUpgradeTemplate.AimBonus = class'X2Item_DefaultWeaponMods_LW'.default.BASIC_SUPPRESSOR_SOUND_REDUCTION_METERS;
+			WeaponUpgradeTemplate.GetBonusAmountFn = class'X2Item_DefaultWeaponMods_LW'.static.GetSuppressorBonusAmount;
+			//Abilities are caught elsewhere
+		}
+		if (WeaponUpgradeTemplate.DataName == 'FreeKillUpgrade_Adv')
+		{
+			WeaponUpgradeTemplate.FreeKillChance = 0;
+			WeaponUpgradeTemplate.FreeKillFn = none;
+			WeaponUpgradeTemplate.AimBonus = class'X2Item_DefaultWeaponMods_LW'.default.ADVANCED_SUPPRESSOR_SOUND_REDUCTION_METERS;
+			WeaponUpgradeTemplate.GetBonusAmountFn = class'X2Item_DefaultWeaponMods_LW'.static.GetSuppressorBonusAmount;
+			//Abilities are caught elsewhere
+		}
+		if (WeaponUpgradeTemplate.DataName == 'FreeKillUpgrade_Sup')
+		{
+			WeaponUpgradeTemplate.FreeKillChance = 0;
+			WeaponUpgradeTemplate.FreeKillFn = none;
+			WeaponUpgradeTemplate.AimBonus = class'X2Item_DefaultWeaponMods_LW'.default.ELITE_SUPPRESSOR_SOUND_REDUCTION_METERS;
+			WeaponUpgradeTemplate.GetBonusAmountFn = class'X2Item_DefaultWeaponMods_LW'.static.GetSuppressorBonusAmount;
 			//Abilities are caught elsewhere
 		}
 		//make them mutually exclusive

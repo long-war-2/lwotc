@@ -1406,7 +1406,7 @@ m_strRemoveUpgrade="REMOVE UPGRADE"
 FriendlyName="Hair Trigger"
 FriendlyNamePlural="Hair Triggers"
 ; LWOTC Needs Translation
-BriefSummary="The soldier gains <Ability:TRIGGER_BSC_AIM_BONUS/> bonus aim on reaction fire shots (after reaction fire penalty)."
+BriefSummary="The soldier gains <Ability:TRIGGER_LW_AIM_BONUS/> bonus aim on reaction fire shots (after reaction fire penalty)."
 ; End Translation
 TinySummary="Bonus Reaction Fire To-Hit"
 LootTooltip="This weapon upgrade, when installed, adds bonus aim to reaction fire shots."
@@ -1415,7 +1415,7 @@ LootTooltip="This weapon upgrade, when installed, adds bonus aim to reaction fir
 FriendlyName="Advanced Hair Trigger"
 FriendlyNamePlural="Advanced Hair Triggers"
 ; LWOTC Needs Translation
-BriefSummary="The soldier gains <Ability:TRIGGER_ADV_AIM_BONUS/> bonus aim on reaction fire shots (after reaction fire penalty)."
+BriefSummary="The soldier gains <Ability:TRIGGER_LW_AIM_BONUS/> bonus aim on reaction fire shots (after reaction fire penalty)."
 ; End Translation
 TinySummary="Bonus Reaction Fire To-Hit"
 LootTooltip="This weapon upgrade, when installed, adds bonus aim to reaction fire shots."
@@ -1424,7 +1424,7 @@ LootTooltip="This weapon upgrade, when installed, adds bonus aim to reaction fir
 FriendlyName="Elite Hair Trigger"
 FriendlyNamePlural="Elite Hair Triggers"
 ; LWOTC Needs Translation
-BriefSummary="The soldier gains <Ability:TRIGGER_SUP_AIM_BONUS/> bonus aim on reaction fire shots (after reaction fire penalty)."
+BriefSummary="The soldier gains <Ability:TRIGGER_LW_AIM_BONUS/> bonus aim on reaction fire shots (after reaction fire penalty)."
 ; End Translation
 TinySummary="Bonus Reaction Fire To-Hit"
 LootTooltip="This weapon upgrade, when installed, adds bonus aim to reaction fire shots."
@@ -1432,22 +1432,22 @@ LootTooltip="This weapon upgrade, when installed, adds bonus aim to reaction fir
 [AimUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Scope"
 FriendlyNamePlural="Scopes"
-BriefSummary="Increase aim by <Ability:SCOPE_BSC_AIM_BONUS/> on non-reaction fire shots."
-TinySummary="Increased Non-reaction Aim"
+BriefSummary="Increase aim by <Ability:SCOPE_LW_AIM_BONUS/> on non-reaction fire shots."
+TinySummary="Increased Non-Reaction Aim"
 LootTooltip="This weapon upgrade will add an aim bonus to any weapon it is attached to for non-reaction fire shots."
 
 [AimUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Advanced Scope"
 FriendlyNamePlural="Advanced Scopes"
-BriefSummary="Increase aim by <Ability:SCOPE_ADV_AIM_BONUS/> on non-reaction fire shots."
-TinySummary="Increased Non-reaction Aim"
+BriefSummary="Increase aim by <Ability:SCOPE_LW_AIM_BONUS/> on non-reaction fire shots."
+TinySummary="Increased Non-Reaction Aim"
 LootTooltip="This weapon upgrade will add an aim bonus to any weapon it is attached to for non-reaction fire shots."
 
 [AimUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Elite Scope"
 FriendlyNamePlural="Elite Scopes"
-BriefSummary="Increase aim by <Ability:SCOPE_SUP_AIM_BONUS/> on non-reaction fire shots."
-TinySummary="Increased Non-reaction Aim"
+BriefSummary="Increase aim by <Ability:SCOPE_LW_AIM_BONUS/> on non-reaction fire shots."
+TinySummary="Increased Non-Reaction Aim"
 LootTooltip="This weapon upgrade will add an aim bonus to any weapon it is attached to for non-reaction fire shots."
 
 ;LWOTC needs translation (2)
@@ -1455,22 +1455,22 @@ LootTooltip="This weapon upgrade will add an aim bonus to any weapon it is attac
 [MissDamageUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Stock"
 FriendlyNamePlural="Stocks"
-BriefSummary="Grants the Steady Weapon ability, which confers +<Ability:STOCK_BSC_SW_AIM_BONUS/> aim and +<Ability:STOCK_BSC_SW_AIM_BONUS/> critical chance on the next shot."
-TinySummary="Grants Steady Weapon"
+BriefSummary="Grants the Steady Weapon ability, which confers +<Ability:STOCK_LW_SW_AIM_BONUS/> aim and +<Ability:STOCK_LW_SW_AIM_BONUS/> critical chance on the next shot."
+TinySummary="Steady Weapon Bonus"
 LootTooltip="This weapon upgrade, when installed, grants the Steady Weapon ability."
 
 [MissDamageUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Advanced Stock"
 FriendlyNamePlural="Advanced Stocks"
-BriefSummary="Grants the Steady Weapon ability, which confers +<Ability:STOCK_ADV_SW_AIM_BONUS/> aim and +<Ability:STOCK_ADV_SW_AIM_BONUS/> critical chance on the next shot."
-TinySummary="Grants Steady Weapon"
+BriefSummary="Grants the Steady Weapon ability, which confers +<Ability:STOCK_LW_SW_AIM_BONUS/> aim and +<Ability:STOCK_LW_SW_AIM_BONUS/> critical chance on the next shot."
+TinySummary="Steady Weapon Bonus"
 LootTooltip="This weapon upgrade, when installed, grants the Steady Weapon ability."
 
 [MissDamageUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Elite Stock"
 FriendlyNamePlural="Elite Stocks"
-BriefSummary="Grants the Steady Weapon ability, which confers +<Ability:STOCK_SUP_SW_AIM_BONUS/> aim and +<Ability:STOCK_SUP_SW_AIM_BONUS/> critical chance on the next shot."
-TinySummary="Grants Steady Weapon"
+BriefSummary="Grants the Steady Weapon ability, which confers +<Ability:STOCK_LW_SW_AIM_BONUS/> aim and +<Ability:STOCK_LW_SW_AIM_BONUS/> critical chance on the next shot."
+TinySummary="Steady Weapon Bonus"
 LootTooltip="This weapon upgrade, when installed, grants the Steady Weapon ability."
 
 ; End Translation (2)
@@ -1479,21 +1479,21 @@ LootTooltip="This weapon upgrade, when installed, grants the Steady Weapon abili
 FriendlyName="Suppressor"
 FriendlyNamePlural="Suppressors"
 BriefSummary="Reduces weapon noise and the soldier's impact on mission infiltration time."
-TinySummary="Reduces mission infiltration time"
+TinySummary="Reduced Weapon Sound Range"
 LootTooltip="This weapon upgrade, when installed, will reduce the time the soldier requires to infiltrate during a mission. It also reduces weapon noise during combat."
 
 [FreeKillUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Advanced Suppressor"
 FriendlyNamePlural="Advanced Suppressors"
 BriefSummary="Significantly reduces weapon noise and the soldier's impact on mission infiltration time."
-TinySummary="Reduces mission infiltration time"
+TinySummary="Reduced Weapon Sound Range"
 LootTooltip="This weapon upgrade, when installed, will reduce the time the soldier requires to infiltrate during a mission. It also reduces weapon noise during combat."
 
 [FreeKillUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Elite Suppressor"
 FriendlyNamePlural="Elite Suppressors"
 BriefSummary="Massively reduces weapon noise and the soldier's impact on mission infiltration time."
-TinySummary="Reduces mission infiltration time"
+TinySummary="Reduced Weapon Sound Range"
 LootTooltip="This weapon upgrade, when installed, will reduce the time the soldier requires to infiltrate during a mission. It also reduces weapon noise during combat."
 
 ; LWOTC needs translation
