@@ -5120,6 +5120,24 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'FIRESTORM_DAMAGE_BONUS_LW':
 			Outstring = string(int(class'X2Ability_LW_TechnicalAbilitySet'.default.FIRESTORM_DAMAGE_BONUS));
 			return true;
+		case 'FLAMETHROWER_DIRECT_APPLY_CHANCE':
+			Outstring = string(class'X2Ability_LW_TechnicalAbilitySet'.default.FLAMETHROWER_DIRECT_APPLY_CHANCE);
+			return true;
+		case 'NAPALMX_BURN_DMG_BONUS':
+			Outstring = string(class'X2Ability_LW_TechnicalAbilitySet'.default.NAPALMX_BURN_DMG_BONUS);
+			return true;
+		case 'NapalmX_BaseStrength':
+			Outstring = string(class'X2Ability_LW_TechnicalAbilitySet2'.default.NapalmX_BaseStrength);
+			return true;
+		case 'FIRE_IN_THE_HOLE_BONUS_DAMAGE':
+			Outstring = string(class'X2Ability_LW_TechnicalAbilitySet'.default.FIRE_IN_THE_HOLE_BONUS_DAMAGE);
+			return true;
+		case 'FIRE_AND_STEEL_DAMAGE_BONUS':
+			Outstring = string(class'X2Ability_LW_TechnicalAbilitySet'.default.FIRE_AND_STEEL_DAMAGE_BONUS);
+			return true;
+		case 'ROUST_CHARGES':
+			Outstring = string(class'X2Ability_LW_TechnicalAbilitySet'.default.ROUST_CHARGES);
+			return true;
 		case 'CERAMIC_PLATING_HP':
 			Outstring = string(class'X2Ability_LW_GearAbilities'.default.CERAMIC_PLATING_HP);
 			return true;
@@ -5494,7 +5512,6 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 	local XComGameState_Effect EffectState;
 	local XComGameState_Unit UnitState;
 	local X2AbilityTemplate AbilityTemplate;
-	//local XComGameState NewGameState;
 	local int ImpactCompensationStacks;
 	local int k;
 
@@ -5595,9 +5612,119 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 			}
 		}
 		return true;
+	case 'BurnDamage_LW':
+		OutString = GetBurnDamageString(ParseObj, StrategyParseObj, GameState);
+		return true;
+	case 'ShredderRocket_LW_Shred':
+		OutString = string(GetExtraDamageValue(class'X2Item_LWGauntlet'.default.Gauntlet_Primary_CONVENTIONAL_EXTRADAMAGE, 'LWShredderRocket').Shred);
+		OutString $= "/" $ GetExtraDamageValue(class'X2Item_LWGauntlet'.default.Gauntlet_Primary_MAG_EXTRADAMAGE, 'LWShredderRocket').Shred;
+		OutString $= "/" $  GetExtraDamageValue(class'X2Item_LWGauntlet'.default.Gauntlet_Primary_BEAM_EXTRADAMAGE, 'LWShredderRocket').Shred;
+		return true;
+	case 'ShredderRocket_LW_Rupture':
+		OutString = string(GetExtraDamageValue(class'X2Item_LWGauntlet'.default.Gauntlet_Primary_CONVENTIONAL_EXTRADAMAGE, 'LWShredderRocket').Rupture);
+		OutString $= "/" $ GetExtraDamageValue(class'X2Item_LWGauntlet'.default.Gauntlet_Primary_MAG_EXTRADAMAGE, 'LWShredderRocket').Rupture;
+		OutString $= "/" $  GetExtraDamageValue(class'X2Item_LWGauntlet'.default.Gauntlet_Primary_BEAM_EXTRADAMAGE, 'LWShredderRocket').Rupture;
+		return true;
 	default:
 		return false;
 	}
+}
+
+static function WeaponDamageValue GetExtraDamageValue(array<WeaponDamageValue> ExtraDamage, name Tag)
+{
+	local WeaponDamageValue DamageValue;
+	local int Index;
+	Index = ExtraDamage.Find('Tag', Tag);
+	if (Index > 0)
+	{
+		DamageValue = ExtraDamage[Index];
+	}
+	return DamageValue;
+}
+
+static function string GetBurnDamageString(Object ParseObj, Object StrategyParseObj, XComGameState GameState)
+{
+	local XComGameState_Effect          EffectState;
+	local X2Effect_Persistent           PersistentEffect;
+	local X2Effect_Burning              BurningEffect;
+	local X2Effect_ApplyWeaponDamage    DamageEffect;
+	local int                           i, MinDamage, MaxDamage, Damage, DamageSpread;
+
+	local XComGameStateHistory      History; 
+	local XComGameState_Item        SourceWeapon;
+	local XComGameState_Unit        SourceUnit, TargetUnit;
+	local XComGameState_Ability     AbilityState;
+	local ApplyDamageInfo           DamageInfo;
+	local array<name>               AppliedDamageTypes;
+	local string                    OutString;
+
+	EffectState = XComGameState_Effect(ParseObj);
+	if (EffectState != none)
+	{
+		PersistentEffect = EffectState.GetX2Effect();
+		BurningEffect = X2Effect_Burning(PersistentEffect);
+		if (BurningEffect != none)
+		{
+			DamageEffect = BurningEffect.GetBurnDamage();
+		}
+		else
+		{
+			for (i = 0; i < PersistentEffect.ApplyOnTick.Length; i++)
+			{
+				DamageEffect = X2Effect_ApplyWeaponDamage(PersistentEffect.ApplyOnTick[i]);
+				if (DamageEffect != none)
+				{
+					break;
+				}
+			}
+		}
+
+		if (DamageEffect != none)
+		{
+			History = `XCOMHISTORY;
+
+			SourceWeapon = XComGameState_Item(History.GetGameStateForObjectID(EffectState.ApplyEffectParameters.ItemStateObjectRef.ObjectID));
+			SourceUnit = XComGameState_Unit(History.GetGameStateForObjectID(EffectState.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
+			TargetUnit = XComGameState_Unit(History.GetGameStateForObjectID(EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+			AbilityState = XComGameState_Ability(History.GetGameStateForObjectID(EffectState.ApplyEffectParameters.AbilityStateObjectRef.ObjectID));
+			DamageEffect.CalculateDamageValues(SourceWeapon, SourceUnit, TargetUnit, AbilityState, DamageInfo, AppliedDamageTypes);
+
+			Damage = DamageInfo.BaseDamageValue.Damage
+				+ DamageInfo.ExtraDamageValue.Damage
+				+ DamageInfo.AmmoDamageValue.Damage
+				+ DamageInfo.BonusEffectDamageValue.Damage
+				+ DamageInfo.UpgradeDamageValue.Damage;
+
+			DamageSpread = DamageInfo.BaseDamageValue.Spread
+				+ DamageInfo.ExtraDamageValue.Spread
+				+ DamageInfo.AmmoDamageValue.Spread
+				+ DamageInfo.BonusEffectDamageValue.Spread
+				+ DamageInfo.UpgradeDamageValue.Spread;
+
+			MinDamage += Damage - DamageSpread;
+			MaxDamage += Damage + DamageSpread;
+
+			if (DamageInfo.BaseDamageValue.PlusOne > 0)
+				MaxDamage++;
+			if (DamageInfo.ExtraDamageValue.PlusOne > 0)
+				MaxDamage++;
+			if (DamageInfo.AmmoDamageValue.PlusOne > 0)
+				MaxDamage++;
+			if (DamageInfo.BonusEffectDamageValue.PlusOne > 0)
+				MaxDamage++;
+
+			if (MinDamage == MaxDamage)
+			{
+				OutString = string(MaxDamage);
+			}
+			else
+			{
+				OutString = string(MinDamage) $ " - " $ string(MaxDamage);
+			}
+		}
+	}
+
+	return OutString;
 }
 
 // Stuff for updating the 
