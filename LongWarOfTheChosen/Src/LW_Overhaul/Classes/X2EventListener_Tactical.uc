@@ -76,7 +76,7 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	Template.AddCHEvent('UnitChangedTeam', ClearUnitStateValues, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('PlayerTurnEnded', RollForPerTurnWillLoss, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('OverrideR3Button', BindR3ToPlaceDelayedEvacZone, ELD_Immediate, GetListenerPriority());
-	Template.AddCHEvent('OverrideDamageRemovesReserveActionPoints', OnOverrideDamageRemovesReserveActionPoints, ELD_Immediate, GetListenerPriority());
+	// Template.AddCHEvent('OverrideDamageRemovesReserveActionPoints', OnOverrideDamageRemovesReserveActionPoints, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('ShouldUnitPatrolUnderway', OnShouldUnitPatrol, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('AbilityActivated', OnSniperAbilityActivated, ELD_OnStateSubmitted);
 	// This seems to be causing stutter in the game, so commenting out for now.
