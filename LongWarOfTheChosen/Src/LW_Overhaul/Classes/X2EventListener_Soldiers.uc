@@ -58,6 +58,7 @@ static function CHEventListenerTemplate CreateEquipmentListeners()
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'SoldierEquipmentListeners');
 	Template.AddCHEvent('OverrideItemUnequipBehavior', OnOverrideItemUnequipBehavior, ELD_Immediate);
 	Template.AddCHEvent('OverrideItemMinEquipped', OnOverrideItemMinEquipped, ELD_Immediate);
+	Template.AddCHEvent('OverrideCanEquipImplant', OnOverrideCanEquipImplant, ELD_Immediate);
 	Template.AddCHEvent('SoldierCreatedEvent', EquipNewSoldier, ELD_OnStateSubmitted);
 	Template.AddCHEvent('RewardUnitGenerated', EquipNewSoldier, ELD_OnStateSubmitted);
 	Template.AddCHEvent('OnGetPCSImage', GetPCSImage, ELD_Immediate);
@@ -203,6 +204,59 @@ static protected function EventListenerReturn OnOverrideItemMinEquipped(Object E
 			
 		default:
 			break;
+	}
+
+	return ELR_NoInterrupt;
+}
+
+/// ```event
+/// EventID: OverrideCanEquipImplant,
+/// EventData: [inout bool CanEquipImplant, in XComGameState_Item Implant],
+/// EventSource: XComGameState_Unit (UnitState),
+/// NewGameState: none
+/// ```
+static protected function EventListenerReturn OnOverrideCanEquipImplant(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackObject)
+{
+	local XComLWTuple               Tuple;
+	local XComGameState_Unit        Unit;
+	local XComGameState_Item        Implant, ImplantToRemove;
+	local array<XComGameState_Item> EquippedImplants;
+	local X2EquipmentTemplate       ImplantTemplate;
+
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none || Tuple.Id != 'OverrideCanEquipImplant')
+		return ELR_NoInterrupt;
+
+	Unit = XComGameState_Unit(EventSource);
+	Implant = XComGameState_Item(Tuple.Data[1].o);
+	if (Unit != none && Implant != none)
+	{
+		// While the unit is healing...
+		if (Unit.HasHealingProject())
+		{
+			// ... prevent equipping any PCS that adds HP.
+			ImplantTemplate = X2EquipmentTemplate(Implant.GetMyTemplate());
+			if (ImplantTemplate.StatsToBoost.Find(eStat_HP) != INDEX_NONE)
+			{
+				Tuple.Data[0].b = false;
+				return ELR_NoInterrupt;
+			}
+
+			// ... prevent unequipping any PCS that adds HP.
+			EquippedImplants = Unit.GetAllItemsInSlot(eInvSlot_CombatSim);
+			foreach EquippedImplants(ImplantToRemove)
+			{
+				ImplantTemplate = X2EquipmentTemplate(ImplantToRemove.GetMyTemplate());
+				if (ImplantTemplate.StatsToBoost.Find(eStat_HP) != INDEX_NONE)
+				{
+					Tuple.Data[0].b = false;
+					return ELR_NoInterrupt;
+				}
+			}
+		}
+
+		// Allow equpping any PCS on any soldier.
+		Tuple.Data[0].b = true;
 	}
 
 	return ELR_NoInterrupt;
@@ -1270,6 +1324,9 @@ static function EventListenerReturn GetPCSImage(Object EventData, Object EventSo
 		case 'FireControl25PCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LWOTC.implants_firecontrol"; break;
 		case 'FireControl50PCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LWOTC.implants_firecontrol"; break;
 		case 'FireControl75PCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LWOTC.implants_firecontrol"; break;
+		case 'CommonPCSPsi': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_CombatSim_Psi"; break;
+		case 'RarePCSPsi': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_CombatSim_Psi"; break;
+		case 'EpicPCSPsi': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_CombatSim_Psi"; break;
 
 		default: break;
 	}
