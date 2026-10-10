@@ -192,6 +192,8 @@ function OnProjectCompleted()
 	{
 		UITrainingComplete(ProjectFocus);
 	}
+
+    `XEVENTMGR.TriggerEvent('LW_OfficerTrainingComplete', UpdatedUnit, ProjectState, UpdateState);
 }
 
 function UITrainingComplete(StateObjectReference UnitRef)
