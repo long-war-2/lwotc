@@ -55,6 +55,8 @@ var config int PLATED_CRITDEF_BONUS;
 var config int COMBAT_PROTOCOL_COOLDOWN;
 var config int CapacitorDischarge_Range;
 
+var config array<name> SharpshooterAim_AllowedAbilities;
+
 // Data structure for multi-shot abilities that need patching
 struct MultiShotAbility
 {
@@ -286,6 +288,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'Sacrifice':
 			AdjustSacrifice(Template);
 			break;
+		case 'DeepCoverTrigger':
+			PatchDeepCover(Template);
+			break;
 		default:
 			break;
 
@@ -307,6 +312,109 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 	// Deprecated multi-shot patching that is no longer needed and only breaks things.
 	// UpdateMultiShotAbility(Template);
 	UpdateMeleeAbilityForBloodThirst(Template);
+
+	if (default.SharpshooterAim_AllowedAbilities.Find(Template.DataName) != INDEX_NONE)
+	{
+		AddSharpshooterAimToAbility(Template);
+	}
+}
+
+static function AddSharpshooterAimToAbility(X2AbilityTemplate Template)
+{
+    local int i;
+
+    if (Template != none)
+    {
+        for (i = Template.AbilityTargetEffects.Length - 1; i >= 0; i--)
+        {
+            if (Template.AbilityTargetEffects[i].IsA('X2Effect_SharpshooterAim'))
+            {
+                Template.AbilityTargetEffects.Remove(i, 1);
+            }
+        }
+
+        Template.AddTargetEffect(class'X2Effect_SharpshooterAim_LW'.static.SharpshooterAimEffect());
+    }
+}
+
+static function PatchDeepCover(X2AbilityTemplate Template)
+{
+	local X2AbilityTrigger                  Trigger;
+	local X2AbilityTrigger_EventListener    EventTrigger;
+
+	if (Template != none)
+	{
+		foreach Template.AbilityTriggers(Trigger)
+		{
+			EventTrigger = X2AbilityTrigger_EventListener(Trigger);
+			if (EventTrigger != none)
+			{
+				if (EventTrigger.ListenerData.EventID == 'PlayerTurnEnded')
+				{
+					EventTrigger.ListenerData.EventFn = NewDeepCoverListener;
+					break;
+				}
+			}
+		}
+	}
+}
+
+static function EventListenerReturn NewDeepCoverListener(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComGameStateHistory              History;
+	local XComGameState                     NewGameState;
+	local XComGameState_Unit                UnitState;
+	local XComGameState_Ability             AbilityState;
+	local X2AbilityTemplate                 AbilityTemplate;
+	local StateObjectReference              HunkerDownRef;
+	local XComGameState_Ability             HunkerDownState;
+	local X2AbilityCost                     AbilityCost;
+	local X2AbilityCost_ActionPoints        ActionPointCost;
+	local UnitValue                         AttacksThisTurn;
+	local bool                              bFoundDeepCoverCost;
+
+	History = `XCOMHISTORY;
+	AbilityState = XComGameState_Ability(CallbackData);
+	UnitState = XComGameState_Unit(GameState.GetGameStateForObjectID(AbilityState.OwnerStateObject.ObjectID));
+	if (UnitState == none)
+		UnitState = XComGameState_Unit(History.GetGameStateForObjectID(AbilityState.OwnerStateObject.ObjectID));
+
+	if (UnitState != none && !UnitState.IsHunkeredDown())
+	{
+		if (!UnitState.GetUnitValue('AttacksThisTurn', AttacksThisTurn) || AttacksThisTurn.fValue == 0)
+		{
+			foreach UnitState.Abilities(HunkerDownRef)
+			{
+				HunkerDownState = XComGameState_Ability(History.GetGameStateForObjectID(HunkerDownRef.ObjectID));
+				AbilityTemplate = HunkerDownState.GetMyTemplate();
+				bFoundDeepCoverCost = false;
+				foreach AbilityTemplate.AbilityCosts(AbilityCost)
+				{
+					ActionPointCost = X2AbilityCost_ActionPoints(AbilityCost);
+					if (ActionPointCost != none &&
+						ActionPointCost.AllowedTypes.Find(class'X2CharacterTemplateManager'.default.DeepCoverActionPoint) != INDEX_NONE)
+					{
+						bFoundDeepCoverCost = true;
+						break;
+					}
+				}
+				if (bFoundDeepCoverCost && HunkerDownState.CanActivateAbility(UnitState, , true) == 'AA_Success')
+				{
+					if (UnitState.NumActionPoints() == 0)
+					{
+						NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState(string(GetFuncName()));
+						UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(UnitState.Class, UnitState.ObjectID));
+						UnitState.ActionPoints.AddItem(class'X2CharacterTemplateManager'.default.DeepCoverActionPoint);
+						`TACTICALRULES.SubmitGameState(NewGameState);
+					}
+
+					return HunkerDownState.AbilityTriggerEventListener_Self(EventData, EventSource, GameState, EventID, CallbackData);
+				}   
+			}
+		}
+	}
+
+	return ELR_NoInterrupt;
 }
 
 static function AdjustSacrifice(X2AbilityTemplate Template)

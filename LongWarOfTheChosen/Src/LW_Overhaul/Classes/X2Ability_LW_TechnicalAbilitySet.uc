@@ -2316,6 +2316,7 @@ static function X2AbilityTemplate CreateEMPRocketAbility()
 
 	UnitCondition = new class'X2Condition_UnitProperty';
 	UnitCondition.ExcludeOrganic = true;
+	UnitCondition.IncludeWeakAgainstTechLikeRobot = true;
 
 	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2, 100, false);
 	StunnedEffect.SetDisplayInfo(ePerkBuff_Penalty, class'X2StatusEffects'.default.RoboticStunnedFriendlyName, class'X2StatusEffects'.default.RoboticStunnedFriendlyDesc, "img:///UILibrary_PerkIcons.UIPerk_stun");
@@ -2423,6 +2424,7 @@ static function X2AbilityTemplate CreateBlasterEMPRocketAbility()
 
 	UnitCondition = new class'X2Condition_UnitProperty';
 	UnitCondition.ExcludeOrganic = true;
+	UnitCondition.IncludeWeakAgainstTechLikeRobot = true;
 
 	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2, 100, false);
 	StunnedEffect.SetDisplayInfo(ePerkBuff_Penalty, class'X2StatusEffects'.default.RoboticStunnedFriendlyName, class'X2StatusEffects'.default.RoboticStunnedFriendlyDesc, "img:///UILibrary_PerkIcons.UIPerk_stun");

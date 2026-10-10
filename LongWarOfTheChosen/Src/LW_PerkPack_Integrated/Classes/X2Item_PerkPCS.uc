@@ -97,8 +97,9 @@ static function X2DataTemplate CreateCombatAwarenessPCS()
 	Template.TradingPostValue = 40;
 	Template.bAlwaysUnique = false;
 	Template.Tier = 4;	
-	Template.Abilities.AddItem('CombatAwareness');
-	Template.Abilities.AddItem('DedicatedSuppression_LW');
+	// Template.Abilities.AddItem('CombatAwareness');
+	// Template.Abilities.AddItem('DedicatedSuppression_LW');
+	Template.Abilities.AddItem('UnwaveringStance_LW');
 	Template.InventorySlot = eInvSlot_CombatSim;
 	Template.BlackMarketTexts = default.PCSBlackMarketTexts;
 	

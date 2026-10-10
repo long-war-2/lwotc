@@ -2583,8 +2583,6 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
     local X2Effect_PersistentStatChange         StatChangeEffect;
     local X2Condition_UnitInventoryExpanded     UnitInventoryCondition;
     local X2Condition_UnitEffects               SuppressedCondition;
-    local X2Condition_OwnerDoesNotHaveAbility   DoesNotHaveAbilityCondition;
-    local X2Condition_AbilityProperty           AbilityCondition;
 
     `CREATE_X2ABILITY_TEMPLATE(Template, 'Suppression_LW');
     Template.AbilitySourceName = 'eAbilitySource_Perk';
@@ -2618,12 +2616,6 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
     
     Template.AddShooterEffectExclusions();
 
-    DoesNotHaveAbilityCondition = new class 'X2Condition_OwnerDoesNotHaveAbility';
-    DoesNotHaveAbilityCondition.AbilityName = 'DedicatedSuppression_LW';
-
-    AbilityCondition = new class 'X2Condition_AbilityProperty';
-    AbilityCondition.OwnerHasSoldierAbilities.AddItem('DedicatedSuppression_LW');
-    
     SuppressedCondition = new class'X2Condition_UnitEffects';
     SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
     SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
@@ -2639,28 +2631,16 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
     Template.AbilityTargetStyle = default.SimpleSingleTarget;
     Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
 
-    // No Dedicated Suppression
-    SuppressionEffect = new class'X2Effect_Suppression';
-    SuppressionEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
-    SuppressionEffect.bRemoveWhenTargetDies = true;
-    SuppressionEffect.bRemoveWhenSourceDamaged = true;
-    SuppressionEffect.bBringRemoveVisualizationForward = true;
-    SuppressionEffect.DuplicateResponse = eDupe_Allow;
-    SuppressionEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage);
-    SuppressionEffect.SetSourceDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionSourceEffectDesc, Template.IconImage);
-    SuppressionEffect.TargetConditions.AddItem(DoesNotHaveAbilityCondition);
-    Template.AddTargetEffect(SuppressionEffect);
-
-    // Dedicated Suppression
     SuppressionEffect = new class'X2Effect_Suppression';
     SuppressionEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
     SuppressionEffect.bRemoveWhenTargetDies = true;
     SuppressionEffect.bRemoveWhenSourceDamaged = false;
     SuppressionEffect.bBringRemoveVisualizationForward = true;
     SuppressionEffect.DuplicateResponse = eDupe_Allow;
+    // This delegate handles registering the effect for being removed when taking damage
+    SuppressionEffect.EffectAddedFn = class'X2Effect_DedicatedSuppression'.static.Suppression_EffectAdded;
     SuppressionEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage);
     SuppressionEffect.SetSourceDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionSourceEffectDesc, Template.IconImage);
-    SuppressionEffect.TargetConditions.AddItem(AbilityCondition);
     Template.AddTargetEffect(SuppressionEffect);
     
     if (default.SUPPRESSION_LW_AIM_MALUS < 0)
@@ -3048,8 +3028,6 @@ static function X2AbilityTemplate AddAreaSuppressionAbility()
     local X2AbilityTarget_Single                        PrimaryTarget;
     local X2Condition_UnitProperty                      ShooterCondition;
     local X2Condition_UnitEffects                       SuppressedCondition;
-    local X2Condition_OwnerDoesNotHaveAbility           DoesNotHaveAbilityCondition;
-    local X2Condition_AbilityProperty                   AbilityCondition;
 
     `CREATE_X2ABILITY_TEMPLATE(Template, 'AreaSuppression');
     Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AreaSuppression";
@@ -3093,8 +3071,7 @@ static function X2AbilityTemplate AddAreaSuppressionAbility()
     Template.AbilityCosts.AddItem(AmmoCost);
 
     ActionPointCost = new class'X2AbilityCost_ActionPoints';
-    ActionPointCost.bConsumeAllPoints = true;   //  this will guarantee the unit has at least 1 action point
-    ActionPointCost.bFreeCost = true;           //  ReserveActionPoints effect will take all action points away
+    ActionPointCost.bConsumeAllPoints = true;
     Template.AbilityCosts.AddItem(ActionPointCost);
 
     ReserveActionPointsEffect = new class'X2Effect_ReserveActionPoints';
@@ -3118,43 +3095,22 @@ static function X2AbilityTemplate AddAreaSuppressionAbility()
     RadiusMultiTarget.bAllowDeadMultiTargetUnits = false;
     RadiusMultiTarget.bExcludeSelfAsTargetIfWithinRadius = true;
     RadiusMultiTarget.bUseWeaponRadius = false;
-    RadiusMultiTarget.ftargetradius = default.AREA_SUPPRESSION_RADIUS;
+    RadiusMultiTarget.fTargetRadius = default.AREA_SUPPRESSION_RADIUS;
     RadiusMultiTarget.AddAbilityBonusRadius('DangerZone', default.DANGER_ZONE_BONUS_RADIUS);
     Template.AbilityMultiTargetStyle = RadiusMultiTarget;
-    
+
     Template.AbilityMultiTargetConditions.AddItem(default.LivingHostileUnitOnlyProperty);
 
-    DoesNotHaveAbilityCondition = new class 'X2Condition_OwnerDoesNotHaveAbility';
-    DoesNotHaveAbilityCondition.AbilityName = 'DedicatedSuppression_LW';
-
-    AbilityCondition = new class 'X2Condition_AbilityProperty';
-    AbilityCondition.OwnerHasSoldierAbilities.AddItem('DedicatedSuppression_LW');
-
-    // No Dedicated Suppression
-    SuppressionEffect = new class'X2Effect_AreaSuppression';
-    SuppressionEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
-    SuppressionEffect.bRemoveWhenTargetDies = true;
-    SuppressionEffect.bRemoveWhenSourceDamaged = true;
-    SuppressionEffect.bBringRemoveVisualizationForward = true;
-    SuppressionEffect.DuplicateResponse = eDupe_Allow;
-    SuppressionEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage);
-    SuppressionEffect.SetSourceDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionSourceEffectDesc, Template.IconImage);
-    SuppressionEffect.TargetConditions.AddItem(DoesNotHaveAbilityCondition);
-    
-    Template.AddTargetEffect(SuppressionEffect);
-    Template.AddMultiTargetEffect(SuppressionEffect);
-    
-    // Dedicated Suppression
     SuppressionEffect = new class'X2Effect_AreaSuppression';
     SuppressionEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
     SuppressionEffect.bRemoveWhenTargetDies = true;
     SuppressionEffect.bRemoveWhenSourceDamaged = false;
     SuppressionEffect.bBringRemoveVisualizationForward = true;
     SuppressionEffect.DuplicateResponse = eDupe_Allow;
+    // This delegate handles registering the effect for being removed when taking damage
+    SuppressionEffect.EffectAddedFn = class'X2Effect_DedicatedSuppression'.static.Suppression_EffectAdded;
     SuppressionEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage);
     SuppressionEffect.SetSourceDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionSourceEffectDesc, Template.IconImage);
-    SuppressionEffect.TargetConditions.AddItem(AbilityCondition);
-
     Template.AddTargetEffect(SuppressionEffect);
     Template.AddMultiTargetEffect(SuppressionEffect);
 
@@ -3615,29 +3571,44 @@ static function X2AbilityTemplate KubikiriDamage()
 
 static function X2AbilityTemplate AddCombatAwarenessAbility()
 {
-	local X2AbilityTemplate					Template;
-	local X2Effect_CombatAwareness			DefenseEffect;
+	local X2AbilityTemplate         Template;
+	local X2Effect_CombatAwareness  DefenseEffect;
+	local array<name>               AllowedActionPointTypes;
+	local name                      ActionPointName;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'CombatAwareness');
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityThreatAssesment";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
-	Template.Hostility = eHostility_Neutral;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
-	Template.AbilityToHitCalc = default.DeadEye;
-    Template.AbilityTargetStyle = default.SelfTarget;
-	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.Hostility = eHostility_Neutral;
+	Template.bIsPassive = true;
+	Template.bUniqueSource = true;
+
 	Template.bCrossClassEligible = false;
-	Template.bDisplayInUITooltip = true;
-	Template.bDisplayInUITacticalText = true;
-	Template.bShowActivation = false;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	AllowedActionPointTypes = class'CHHelpers'.default.ValidReserveAPForUnitFlag;
+	if (class'X2Effect_CombatAwareness'.default.COMBAT_AWARENESS_APPLY_TO_SUPPRESSION)
+	{
+		foreach class'X2Effect_DedicatedSuppression'.default.SuppressionActionPoints(ActionPointName)
+		{
+			AllowedActionPointTypes.AddItem(ActionPointName);
+		}
+	}
 
 	DefenseEffect = new class'X2Effect_CombatAwareness';
-	DefenseEffect.BuildPersistentEffect(1,true,false);
+	DefenseEffect.ArmorBonus = class'X2Effect_CombatAwareness'.default.COMBAT_AWARENESS_BONUS_ARMOR;
+	DefenseEffect.DefenseBonus = class'X2Effect_CombatAwareness'.default.COMBAT_AWARENESS_BONUS_DEFENSE;
+	DefenseEffect.AllowedActionPointTypes = AllowedActionPointTypes;
+	DefenseEffect.BuildPersistentEffect(1, true, false);
 	DefenseEffect.SetDisplayInfo (ePerkBuff_Passive,Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName); 
 	Template.AddTargetEffect(DefenseEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	//Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;		
+
 	return Template;
 }
 
