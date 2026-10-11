@@ -1,4 +1,6 @@
 //---------------------------------------------------------------------------------------
+//                                  DEPCRECATED
+//---------------------------------------------------------------------------------------
 //  FILE:    X2AbilityMultiTarget_Cone_LWFlamethrower.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
 //  PURPOSE: Pulls size of cone from altweapon, allows option for ability modifiers

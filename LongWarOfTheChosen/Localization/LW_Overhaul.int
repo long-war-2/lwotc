@@ -215,39 +215,19 @@ ActivityObjectives[1]="Ambush ADVENT forces"
 +MissionDescriptions=(MissionFamily="Rendezvous_LW", Description="Dummy mission", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Rendezvous_LW", Description="Hunt for Faceless spies and their ADVENT contacts near this Haven.", MissionIndex=1)
 
+[X2Item_LWGauntlet2]
+Flamethrower_NapalmXLabel = "Napalm-X Strength"
+
+[X2Ability_LW_TechnicalAbilitySet2]
+QuickburnEffectDesc     = "The next use of the flamethrower will not cost an action."
+RoustDebuffEffectDesc   = "The unit's defense and mobility are reduced."
+BurningFriendlyDesc     = "Burning units take <Ability:BurnDamage_LW> damage over time and can't use most abilities."
+
 [X2Item_LWGauntlet]
-PrimaryRangeLabel="Rocket Range"
-PrimaryRadiusLabel="Rocket Radius"
-SecondaryRangeLabel="Flamethrower Range"
-SecondaryRadiusLabel="Flamethrower Radius"
-
-[LWGauntlet_CV X2MultiWeaponTemplate]
-FriendlyName="Gauntlet"
-FriendlyNamePlural="Gauntlets"
-BriefSummary="This combination flamethrower-minirocket launcher was devised for our Technicals to handle a variety of combat situations."
-TacticalText="<Bullet/> The XCOM gauntlet is an advanced device that carries both a minirocket launcher and a flamethrower.<br/><Bullet/> The Rocket Launcher carries one rocket initially and it has a three-tile radius for its area of effect.<br/><Bullet/> It may target anything in sight range.<br/><Bullet/> Damage from rockets falls off from the point of impact.<br/><Bullet/> The flamethrower is a short-range weapon that causes damage to multiple targets within a cone-shaped area of effect.<br/><Bullet/> The flamethrower has two charges and does not damage mechanical units without upgrades.<br/><Bullet/> Using either gauntlet ability requires one action and ends your turn.<br/><Bullet/> Rocket accuracy is affected by the soldier's aim, target distance, and whether the soldier has used any actions already this turn. Low accuracy-rockets will have higher scatter values, meaning they are more likely to miss the target tile by greater distances. The rocket's maximum possible scatter is noted in the popup, while a value appearing with the targeting cursor will show the expected (average) scatter for a shot on that location."
-AbilityDescName="gauntlet"
-
-[LWGauntlet_MG X2MultiWeaponTemplate]
-FriendlyName="Gauntlet Mark II"
-FriendlyNamePlural="Gauntlet Mark IIs"
-BriefSummary="The weapons of the Mark II Gauntlet have increased damage over the Mark I."
-TacticalText="<Bullet/> The XCOM gauntlet is an advanced device that carries both a minirocket launcher and a flamethrower.<br/><Bullet/> The Rocket Launcher carries one rocket initially and it has a three-tile radius for its area of effect.<br/><Bullet/> It may target anything in sight range.<br/><Bullet/> Damage from rockets falls off from the point of impact.<br/><Bullet/> The flamethrower is a short-range weapon that causes damage to multiple targets within a cone-shaped area of effect.<br/><Bullet/> The flamethrower has two charges and does not damage mechanical units without upgrades.<br/><Bullet/> Using either gauntlet ability requires one action and ends your turn.<br/><Bullet/> Rocket accuracy is affected by the soldier's aim, target distance, and whether the soldier has used any actions already this turn. Low accuracy-rockets will have higher scatter values, meaning they are more likely to miss the target tile by greater distances. The rocket's maximum possible scatter is noted in the popup, while a value appearing with the targeting cursor will show the expected (average) scatter for a shot on that location."
-AbilityDescName="gauntlet"
-
-[LWGauntlet_CG X2MultiWeaponTemplate]
-FriendlyName="Gauntlet Mark III"
-FriendlyNamePlural="Gauntlet Mark IIIs"
-BriefSummary="The Mark III Gauntlet does more damage than the Mark I and Mark II."
-TacticalText="<Bullet/> The XCOM gauntlet is an advanced device that carries both a minirocket launcher and a flamethrower.<br/><Bullet/> The Rocket Launcher carries one rocket initially and it has a three-tile radius for its area of effect.<br/><Bullet/> It may target anything in sight range.<br/><Bullet/> Damage from rockets falls off from the point of impact.<br/><Bullet/> The flamethrower is a short-range weapon that causes damage to multiple targets within a cone-shaped area of effect.<br/><Bullet/> The flamethrower has two charges and does not damage mechanical units without upgrades.<br/><Bullet/> Using either gauntlet ability requires one action and ends your turn.<br/><Bullet/> Rocket accuracy is affected by the soldier's aim, target distance, and whether the soldier has used any actions already this turn. Low accuracy-rockets will have higher scatter values, meaning they are more likely to miss the target tile by greater distances. The rocket's maximum possible scatter is noted in the popup, while a value appearing with the targeting cursor will show the expected (average) scatter for a shot on that location."
-AbilityDescName="gauntlet"
-
-[LWGauntlet_BM X2MultiWeaponTemplate]
-FriendlyName="Blaster Gauntlet"
-FriendlyNamePlural="Blaster Gauntlets"
-BriefSummary="The Advanced Gauntlet's weapons do extensive damage and minirockets may now be guided to their target."
-TacticalText="<Bullet/> The Blaster Launcher component of the Advanced Gauntlet fires a high-tech rocket that can navigate around blocking terrain.\n<Bullet/> The upgraded flamethrower deals massive damage in a small cone, damaging environmental and enemy targets alike.<br/><Bullet/> Damage from rockets falls off from the point of impact.<br/><Bullet/> The flamethrower is a short-range weapon that causes damage to multiple targets within a cone-shaped area of effect.<br/><Bullet/> The flamethrower has two charges and does not damage mechanical units without upgrades.<br/><Bullet/> Using either gauntlet ability requires one action and ends your turn.<br/><Bullet/> Rocket accuracy is affected by the soldier's aim, target distance, and whether the soldier has used any actions already this turn. Low accuracy-rockets will have higher scatter values, meaning they are more likely to miss the target tile by greater distances. The rocket's maximum possible scatter is noted in the popup, while a value appearing with the targeting cursor will show the expected (average) scatter for a shot on that location."
-AbilityDescName="gauntlet"
+PrimaryRangeLabel       = "Rocket Range"
+PrimaryRadiusLabel      = "Rocket Radius"
+SecondaryRangeLabel     = "Flamethrower Range"
+SecondaryRadiusLabel    = "Flamethrower Radius"
 
 [UISquadSelect_InfiltrationPanel]
 strInfiltrationTitle="TOTAL INFILTRATION:"
