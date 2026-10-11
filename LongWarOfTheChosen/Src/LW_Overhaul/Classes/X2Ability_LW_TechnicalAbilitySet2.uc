@@ -809,7 +809,6 @@ static function X2AbilityTemplate Quickburn()
     Template.AbilityCosts.AddItem(default.FreeActionCost);
 
     QuickburnEffect = new class'X2Effect_Quickburn';
-    QuickburnEffect.EffectName = 'Quickburn';
     QuickburnEffect.AllowedAbilities = default.QUICKBURN_ABILITIES;
     QuickburnEffect.ActivationsPerUse = default.Quickburn_ActivationsPerUse;
     QuickburnEffect.bAllowCBACOverride = default.Quickburn_bAllowCBACOverride;

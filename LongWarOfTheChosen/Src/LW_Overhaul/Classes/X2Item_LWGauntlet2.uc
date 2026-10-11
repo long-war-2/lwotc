@@ -204,7 +204,7 @@ static function X2WeaponTemplate RocketLauncher_Beam(name DataName = 'LWGauntlet
 
     Template.iRange = default.Gauntlet_Primary_BEAM_RANGE;
     Template.iRadius = default.Gauntlet_Primary_BEAM_RADIUS;
-    Template.iSoundRange = default.Gauntlet_Secondary_BEAM_ISOUNDRANGE;
+    Template.iSoundRange = default.Gauntlet_Primary_BEAM_ISOUNDRANGE;
     Template.bSoundOriginatesFromOwnerLocation = false;
 
     Template.iPhysicsImpulse = 5;

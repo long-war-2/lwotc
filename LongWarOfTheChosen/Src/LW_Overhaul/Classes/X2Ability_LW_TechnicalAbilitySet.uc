@@ -129,7 +129,7 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(CreateNapalmXPanicEffectAbility());
 
-	Templates.AddItem(CreateFireandSteelAbility());
+	// Templates.AddItem(CreateFireandSteelAbility());
 
 	return Templates;
 }
@@ -1334,31 +1334,31 @@ static function X2DataTemplate CreateNapalmXPanicEffectAbility()
 	return Template;
 }
 
-static function X2AbilityTemplate CreateFireandSteelAbility()
-{
-	local X2AbilityTemplate                 Template;
-	local X2Effect_BonusWeaponDOT			DamageEffect;
+// static function X2AbilityTemplate CreateFireandSteelAbility()
+// {
+// 	local X2AbilityTemplate                 Template;
+// 	local X2Effect_BonusWeaponDOT			DamageEffect;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'FireandSteel');
-	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityFireandSteel";
-	Template.AbilitySourceName = 'eAbilitySource_Perk';
-	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
-	Template.Hostility = eHostility_Neutral;
-	Template.AbilityToHitCalc = default.DeadEye;
-	Template.AbilityTargetStyle = default.SelfTarget;
-	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
-	Template.bIsPassive = true;
-	DamageEffect = new class'X2Effect_BonusWeaponDOT';
-	DamageEffect.BonusDmg = default.FIRE_AND_STEEL_DAMAGE_BONUS;
-	// Apply to burning tick effects like the description says it should
-	DamageEffect.ApplyToNonBaseDamage = true;
-	DamageEffect.BuildPersistentEffect(1, true, false, false);
-	DamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
-	Template.AddTargetEffect(DamageEffect);
-	Template.bCrossClassEligible = false;
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	return Template;
-}
+// 	`CREATE_X2ABILITY_TEMPLATE(Template, 'FireandSteel');
+// 	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityFireandSteel";
+// 	Template.AbilitySourceName = 'eAbilitySource_Perk';
+// 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+// 	Template.Hostility = eHostility_Neutral;
+// 	Template.AbilityToHitCalc = default.DeadEye;
+// 	Template.AbilityTargetStyle = default.SelfTarget;
+// 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+// 	Template.bIsPassive = true;
+// 	DamageEffect = new class'X2Effect_BonusWeaponDOT';
+// 	DamageEffect.BonusDmg = default.FIRE_AND_STEEL_DAMAGE_BONUS;
+// 	// Apply to burning tick effects like the description says it should
+// 	DamageEffect.ApplyToNonBaseDamage = true;
+// 	DamageEffect.BuildPersistentEffect(1, true, false, false);
+// 	DamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+// 	Template.AddTargetEffect(DamageEffect);
+// 	Template.bCrossClassEligible = false;
+// 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+// 	return Template;
+// }
 
 static function PanickingAbilityEffectTriggeredVisualization(XComGameState VisualizeGameState, out VisualizationActionMetadata BuildTrack, const name EffectApplyResult)
 {

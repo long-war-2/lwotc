@@ -180,10 +180,10 @@ function bool IsThisEffectBetterThanExistingEffect(const out XComGameState_Effec
 
 defaultproperties
 {
-    EffectName = M31_Quickburn
+    EffectName = QuickburnEffect
     DuplicateResponse = eDupe_Refresh
 
-    CountValueName = M31_Quickburn_Activations
+    CountValueName = Quickburn_Activations
     ActivationsPerUse = 1
 
     bAllowCBACOverride = true
