@@ -18,10 +18,10 @@ BriefSummary="Эти пришельцы находятся на вершине �
 
 [WarCry X2AbilityTemplate]
 LocFriendlyName="Боевой клич"
-LocLongDescription="Дает значительный бонус к меткости, силе воли и мобильности остальным мутонам и бонусы поменьше другим разумным инопланетянам и войскам \"Адвента\". Перезарядка 6 ходов."
+LocLongDescription="Дает значительный бонус к меткости, силе воли и мобильности остальным мутонам и бонусы поменьше другим разумным инопланетянам и войскам АДВЕНТА. Перезарядка 6 ходов."
 LocHelpText="Дает бонус другим мутонам и некоторым видам инопланетян."
 LocFlyOverText="Боевой клич"
-LocPromotionPopupText="<Bullet/> Дает значительный бонус к меткости, силе воли и мобильности остальным мутонам и бонусы поменьше другим разумным инопланетянам и войскам \"Адвента\".<br/><Bullet/> Перезарядка 6 ходов.<br/>"
+LocPromotionPopupText="<Bullet/> Дает значительный бонус к меткости, силе воли и мобильности остальным мутонам и бонусы поменьше другим разумным инопланетянам и войскам АДВЕНТА.<br/><Bullet/> Перезарядка 6 ходов.<br/>"
 
 [BayonetCharge X2AbilityTemplate]
 LocFriendlyName="Выпад штыком"
@@ -84,16 +84,15 @@ LocPromotionPopupText="<Bullet/> Реанимирует всех мертвых 
 [ReadyForAnything X2AbilityTemplate]
 LocFriendlyName="Полная готовность"
 LocFlyOverText="Наблюдение: полная готовность."
-LocHelpText="Активирует режим \"наблюдения\" после стандартного выстрела из основного оружия."
-LocLongDescription="Активирует режим \"наблюдения\" после стандартного выстрела из основного оружия."
-LocPromotionPopupText="<Bullet/> Активирует режим \"наблюдения\" после стандартного выстрела из основного оружия."
+; LWOTC Translated
+LocHelpText="Раз за ход после стандартного выстрела из оружия <Ability:BOUND_WEAPON_NAME> боец переходит в режим наблюдения."
+LocLongDescription="Раз за ход после стандартного выстрела из оружия <Ability:BOUND_WEAPON_NAME> боец переходит в режим наблюдения."
+LocPromotionPopupText="<Bullet> Способности стандартного выстрела также включают стандартный снайперский выстрел и выстрел из пистолета.<br><Bullet> Способность «Полная готовность» не сработает, если <Ability:ClassName> дезориентирован, оглушён, паникует, горит или находится в другом состоянии, мешающем действовать.<br><Bullet> Способность «Полная готовность» не сработает, если у <Ability:ClassName> недостаточно патронов для режима наблюдения."
+; End Translation
 
-[ReadyForAnythingFlyover X2AbilityTemplate]
+[ReadyForAnythingTrigger X2AbilityTemplate]
 LocFriendlyName="Полная готовность"
-LocFlyOverText="Наблюдение: полная готовность."
-LocHelpText="Активирует режим \"наблюдения\" после стандартного выстрела из основного оружия."
-LocLongDescription="Активирует режим \"наблюдения\" после стандартного выстрела из основного оружия."
-LocPromotionPopupText="<Bullet/> Активирует режим \"наблюдения\" после стандартного выстрела из основного оружия."
+LocFlyOverText="Полная готовность"
 
 [RepairServos X2AbilityTemplate]
 LocFriendlyName="Борьба за выживание"
@@ -119,8 +118,11 @@ strCharacterName="Мутон-центурион"
 
 [MutonM2_LW_Wpn X2WeaponTemplate]
 FriendlyName="Винтовка центуриона"
-BriefSummary="Нам удалось заполучить разнообразные образцы пехотного вооружения. Это наиболее часто встречающийся образец, недалеко ушедший от винтовки, которой пользовались 20 лет назад. Хотя он, несомненно, уступает магнитным технологиям \"Адвента\", мы сможем доработать его при помощи трофейных материалов."
+BriefSummary="Нам удалось заполучить разнообразные образцы пехотного вооружения. Это наиболее часто встречающийся образец, недалеко ушедший от винтовки, которой пользовались 20 лет назад. Хотя он, несомненно, уступает магнитным технологиям АДВЕНТА, мы сможем доработать его при помощи трофейных материалов."
 TacticalText="<Bullet/> Выстрел из основного оружия всегда завершает ход солдата\n<Bullet/> Если солдат расходует оба действия на стрельбу, будут сделаны три выстрела со сниженной точностью, но с более высокой эффективностью в целом\n<Bullet/> Используйте улучшения, добытые в боях с противником, чтобы повысить эффективность винтовки"
+; LWOTC Translated
+AbilityDescName="плазменная винтовка"
+; End translation
 
 [MutonM2_LWGrenade X2GrenadeTemplate]
 FriendlyName="Граната пришельцев"
@@ -142,6 +144,9 @@ strCharacterName="Мутон-гвардеец"
 
 [MutonM3_LW_Wpn X2WeaponTemplate]
 FriendlyName="Плазмопушка гвардейца"
+; LWOTC Translated
+AbilityDescName="плазменная пушка"
+; End translation
 
 [MutonM3_LWGrenade X2GrenadeTemplate]
 FriendlyName="Граната пришельцев"
@@ -165,13 +170,22 @@ strCharacterName="Найя Серпенс"
 strCharacterName="Найя-гвардеец"
 
 [NajaM1_WPN X2WeaponTemplate]
-FriendlyName="Снайперская винтовка найи"
+FriendlyName="Снайперская винтовка Найи"
+; LWOTC Translated
+AbilityDescName="снайперская винтовка"
+; End translation
 
 [NajaM2_WPN X2WeaponTemplate]
-FriendlyName="Снайперская винтовка найи"
+FriendlyName="Снайперская винтовка Найи"
+; LWOTC Translated
+AbilityDescName="снайперская винтовка"
+; End translation
 
 [NajaM3_WPN X2WeaponTemplate]
-FriendlyName="Снайперская винтовка найи"
+FriendlyName="Снайперская винтовка Найи"
+; LWOTC Translated
+AbilityDescName="снайперская винтовка"
+; End translation
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Sidewinder ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -186,12 +200,21 @@ strCharacterName="Гремучник-гвардеец"
 
 [SidewinderM1_WPN X2WeaponTemplate]
 FriendlyName="Гиперпистолет гремучника"
+; LWOTC Translated
+AbilityDescName="гиперпистолет"
+; End translation
 
 [SidewinderM2_WPN X2WeaponTemplate]
 FriendlyName="Гиперпистолет гремучника"
+; LWOTC Translated
+AbilityDescName="гиперпистолет"
+; End translation
 
 [SidewinderM3_WPN X2WeaponTemplate]
 FriendlyName="Гиперпистолет гремучника"
+; LWOTC Translated
+AbilityDescName="гиперпистолет"
+; End translation
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Viper ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -203,11 +226,22 @@ strCharacterName="Вайпер-гвардеец"
 
 [ViperM2_LW_WPN X2WeaponTemplate]
 FriendlyName="Лучевая винтовка"
+; LWOTC Translated
+AbilityDescName="плазменная винтовка"
+; End translation
 
 [ViperM3_LW_WPN X2WeaponTemplate]
 FriendlyName="Лучевая винтовка"
+; LWOTC Translated
+AbilityDescName="плазменная винтовка"
+; End translation
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; ArchonM2_LW ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[Archon_WPN X2WeaponTemplate]
+; LWOTC Translated
+AbilityDescName="посох"
+; End translation
 
 [ArchonM2_LW X2CharacterTemplate]
 strCharacterName="Великий архонт"
@@ -220,63 +254,84 @@ strCharacterName="Командир сектоидов"
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvGunnerM1 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [AdvGunnerM1 X2CharacterTemplate]
-strCharacterName="Пулеметчик \"Адвента\""
+strCharacterName="Пулеметчик АДВЕНТА"
 
 [AdvGunnerM1_WPN X2WeaponTemplate]
 FriendlyName="Автомаг"
+; LWOTC Translated
+AbilityDescName="пушка"
+; End translation
 
 [AdvGunnerM2 X2CharacterTemplate]
-strCharacterName="Тяжелый пулеметчик \"Адвента\""
+strCharacterName="Тяжелый пулеметчик АДВЕНТА"
 
 [AdvGunnerM2_WPN X2WeaponTemplate]
 FriendlyName="Автомаг"
+; LWOTC Translated
+AbilityDescName="пушка"
+; End translation
 
 [AdvGunnerM3 X2CharacterTemplate]
-strCharacterName="Элитный пулеметчик \"Адвента\""
+strCharacterName="Элитный пулеметчик АДВЕНТА"
 
 [AdvGunnerM3_WPN X2WeaponTemplate]
 FriendlyName="Автомаг"
+; LWOTC Translated
+AbilityDescName="пушка"
+; End translation
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvSentryM1-3 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [AdvSentryM1 X2CharacterTemplate]
-strCharacterName="Часовой \"Адвента\""
+strCharacterName="Часовой АДВЕНТА"
 
 [AdvSentryM1_WPN X2WeaponTemplate]
-FriendlyName="Магнитная винтовка \"Адвента\""
+FriendlyName="Магнитная винтовка АДВЕНТА"
+; LWOTC Translated
+AbilityDescName="магнитная винтовка"
+; End translation
 
 [AdvSentryM2 X2CharacterTemplate]
-strCharacterName="Страж \"Адвента\""
+strCharacterName="Страж АДВЕНТА"
 
 [AdvSentryM2_WPN X2WeaponTemplate]
-FriendlyName="Магнитная винтовка \"Адвента\""
+FriendlyName="Магнитная винтовка АДВЕНТА"
+; LWOTC Translated
+AbilityDescName="магнитная винтовка"
+; End translation
 
 [AdvSentryM3 X2CharacterTemplate]
-strCharacterName="Хранитель \"Адвента\""
+strCharacterName="Хранитель АДВЕНТА"
 
 [AdvSentryM3_WPN X2WeaponTemplate]
-FriendlyName="Магнитная винтовка \"Адвента\""
+FriendlyName="Магнитная винтовка АДВЕНТА"
+; LWOTC Translated
+AbilityDescName="магнитная винтовка"
+; End translation
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvGrenadierM1-3 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [AdvGrenadierM1 X2CharacterTemplate]
-strCharacterName="Инженер \"Адвента\""
+strCharacterName="Инженер АДВЕНТА"
 
 [AdvGrenadierM1_GrenadeLauncher X2GrenadeLauncherTemplate]
-FriendlyName="Гранатомет \"Адвента\""
+FriendlyName="Гранатомет АДВЕНТА"
 
 [AdvGrenadierM2 X2CharacterTemplate]
-strCharacterName="Гранатометчик \"Адвента\""
+strCharacterName="Гранатометчик АДВЕНТА"
 
 [AdvGrenadierM2_GrenadeLauncher X2GrenadeLauncherTemplate]
-FriendlyName="Гранатомет \"Адвента\""
+FriendlyName="Гранатомет АДВЕНТА"
 
 [AdvGrenadierM3 X2CharacterTemplate]
-strCharacterName="Тяжелый гранатометчик \"Адвента\""
+strCharacterName="Тяжелый гранатометчик АДВЕНТА"
 
 [AdvGrenadierM3_GrenadeLauncher X2GrenadeLauncherTemplate]
-FriendlyName="Гранатомет \"Адвента\""
+FriendlyName="Гранатомет АДВЕНТА"
+
+[AdvHeavyEngineer X2CharacterTemplate]
+strCharacterName="Элитный инженер АДВЕНТА"
 
 [AdvGrenadierFlashbangGrenade X2GrenadeTemplate]
 FriendlyName="Свето-шумовая граната"
@@ -311,16 +366,16 @@ LaunchedAbilityHelpText="Образует лужи кислоты, нанося�
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvRocketeerM1-3 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [AdvRocketeerM1 X2CharacterTemplate]
-strCharacterName="Ракетчик \"Адвента\""
+strCharacterName="Ракетчик АДВЕНТА"
 
 [AdvRocketeerM2 X2CharacterTemplate]
-strCharacterName="Тяжелый ракетчик \"Адвента\""
+strCharacterName="Тяжелый ракетчик АДВЕНТА"
 
 [AdvRocketeerM3 X2CharacterTemplate]
-strCharacterName="Элитный ракетчик \"Адвента\""
+strCharacterName="Элитный ракетчик АДВЕНТА"
 
 [AdvRocketeerM1_RocketLauncher X2WeaponTemplate]
-FriendlyName="Ракетомет \"Адвента\""
+FriendlyName="Ракетомет АДВЕНТА"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvMecM3 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -330,16 +385,22 @@ strCharacterName="Сверхтяжелый МЭК"
 ;;;;;;;;;;;;;;;;;;;;;;;;;; DroneM1-2 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [LWDroneM1 X2CharacterTemplate]
-strCharacterName="Дрон-наблюдатель \"Адвента\""
+strCharacterName="Дрон-наблюдатель АДВЕНТА"
 
 [LWDroneM2 X2CharacterTemplate]
-strCharacterName="Дрон-охотник \"Адвента\""
+strCharacterName="Дрон-охотник АДВЕНТА"
 
 [LWDroneM1_WPN X2WeaponTemplate]
 FriendlyName="Шокер дрона"
+; LWOTC Translated
+AbilityDescName="шоковое оружие"
+; End translation
 
 [LWDroneM2_WPN X2WeaponTemplate]
 FriendlyName="Электрошокер дрона"
+; LWOTC Translated
+AbilityDescName="шоковое оружие"
+; End translation
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvMecArcherM1 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -348,9 +409,15 @@ strCharacterName="МЭК \"Лучник\""
 
 [AdvMECArcher_WPN X2WeaponTemplate]
 FriendlyName="Мини-пушка МЭКа"
+; LWOTC Translated
+AbilityDescName="мини-пушка"
+; End translation
 
 [AdvMECArcher_Shoulder_WPN X2WeaponTemplate]
 FriendlyName="Ракетная артиллерия"
+; LWOTC Translated
+AbilityDescName="микроракеты"
+; End translation
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvMecArcherM2 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -367,6 +434,7 @@ LocFriendlyName="Удар криссалида-солдата"
 LocLongDescription="Ближняя атака, которая может отравить цель."
 LocHelpText="Удар когтями, потенциально способный отравить жертву."
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Hive Queen ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [HiveQueen X2CharacterTemplate]
@@ -377,68 +445,77 @@ LocFriendlyName="Мощный удар криссалида"
 LocLongDescription="Ближняя атака, которая может отравить цель."
 LocHelpText="Удар когтями, потенциально способный отравить жертву."
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;; Additional ADVENT Trooper types ;;;;;;;;;;;;;;;;;;;;;;;;
 
 [AdvSergeantM1 X2CharacterTemplate]
-strCharacterName="Сержант \"Адвента\""
-AbilityDescName="Магнитная винтовка"
+strCharacterName="Сержант АДВЕНТА"
 
 [AdvSergeantM1_WPN X2WeaponTemplate]
-FriendlyName="Магнитная винтовка \"Адвента\""
+FriendlyName="Магнитная винтовка АДВЕНТА"
+; LWOTC Translated
 AbilityDescName="Магнитная винтовка"
+; End translation
 
 [AdvSergeantM2 X2CharacterTemplate]
-strCharacterName="Ст. сержант \"Адвента\""
-AbilityDescName="Магнитная винтовка"
+strCharacterName="Ст. сержант АДВЕНТА"
 
 [AdvSergeantM2_WPN X2WeaponTemplate]
-FriendlyName="Магнитная винтовка \"Адвента\""
+FriendlyName="Магнитная винтовка АДВЕНТА"
+; LWOTC Translated
 AbilityDescName="Магнитная винтовка"
+; End translation
 
 [AdvShockTroop X2CharacterTemplate]
-strCharacterName="Штурмовик \"Адвента\""
-AbilityDescName="Магнитная винтовка"
+strCharacterName="Штурмовик АДВЕНТА"
 
 [AdvShockTroop_WPN X2WeaponTemplate]
-FriendlyName="Магнитная винтовка \"Адвента\""
+FriendlyName="Магнитная винтовка АДВЕНТА"
+; LWOTC Translated
 AbilityDescName="Магнитная винтовка"
+; End translation
 
 [AdvCommando X2CharacterTemplate]
-strCharacterName="Коммандо \"Адвента\""
-AbilityDescName="Магнитная винтовка"
+strCharacterName="Коммандо АДВЕНТА"
 
 [AdvCommando_WPN X2WeaponTemplate]
-FriendlyName="Магнитная винтовка \"Адвента\""
+FriendlyName="Магнитная винтовка АДВЕНТА"
+; LWOTC Translated
 AbilityDescName="Магнитная винтовка"
+; End translation
 
 [AdvVanguard X2CharacterTemplate]
-strCharacterName="Передовой боец \"Адвента\""
-AbilityDescName="Магнитная винтовка"
+strCharacterName="Передовой боец АДВЕНТА"
 
 [AdvVanguard_WPN X2WeaponTemplate]
-FriendlyName="Магнитная винтовка \"Адвента\""
+FriendlyName="Магнитная винтовка АДВЕНТА"
+; LWOTC Translated
 AbilityDescName="Магнитная винтовка"
+; End translation
 
 [AdvScout X2CharacterTemplate]
-strCharacterName="Разведчик \"Адвента\""
-AbilityDescName="Магнитная винтовка"
+strCharacterName="Разведчик АДВЕНТА"
 
 [AdvScout_WPN X2WeaponTemplate]
-FriendlyName="Магнитная винтовка \"Адвента\""
+FriendlyName="Магнитная винтовка АДВЕНТА"
+; LWOTC Translated
 AbilityDescName="Магнитная винтовка"
+; End translation
 
 [AdvGeneralM1_LW X2CharacterTemplate]
-strCharacterName="Генерал \"Адвента\""
-AbilityDescName="Магнитная винтовка"
+strCharacterName="Генерал АДВЕНТА"
 
 [AdvGeneralM1_LW_WPN X2WeaponTemplate]
-FriendlyName="Магнитная винтовка \"Адвента\""
+FriendlyName="Магнитная винтовка АДВЕНТА"
+; LWOTC Translated
 AbilityDescName="Магнитная винтовка"
+; End translation
 
 [AdvGeneralM2_LW X2CharacterTemplate]
-strCharacterName="Генерал \"Адвента\""
-AbilityDescName="Магнитная винтовка"
+strCharacterName="Генерал АДВЕНТА"
 
 [AdvGeneralM2_LW_WPN X2WeaponTemplate]
-FriendlyName="Магнитная винтовка \"Адвента\""
+FriendlyName="Магнитная винтовка АДВЕНТА"
+; LWOTC Translated
 AbilityDescName="Магнитная винтовка"
+; End translation
