@@ -20,7 +20,7 @@ BriefSummary="當你未命中目標時，該晶片能讓你下一次的主武器
 [CombatAwarenessPCS X2EquipmentTemplate]
 FriendlyName="個人戰鬥芯片：堅定姿態"
 FriendlyNamePlural="個人戰鬥芯片：堅定姿態"
-BriefSummary="授予「戰鬥警覺」與「堅韌壓制」：在監視或壓制時獲得<Ability:COMBAT_AWARENESS_BONUS_DEFENSE>點防禦和<Ability:COMBAT_AWARENESS_BONUS_ARMOR>點護甲。受到傷害不再取消壓制和區域壓制。"
+BriefSummary="在監視或壓制時獲得<Ability:COMBAT_AWARENESS_BONUS_DEFENSE>點防禦和<Ability:COMBAT_AWARENESS_BONUS_ARMOR>點護甲。受到傷害不再取消壓制和區域壓制。"
 
 [CombatRushPCS X2EquipmentTemplate]
 FriendlyName="個人戰鬥晶片：戰鬥衝鋒"
@@ -128,8 +128,8 @@ LocHelpText="敵人對你的攻擊受到-<ABILITY:RESILIENCE_BONUS_LW/>暴擊率
 LocPromotionPopupText="<Bullet/> 敵人對你的攻擊受到-<ABILITY:RESILIENCE_BONUS_LW/>暴擊率的減益。<br/>"
 
 [TacticalSense X2AbilityTemplate]
-LocFriendlyName="戰術素養"
-LocFlyOverText="戰術素養"
+LocFriendlyName="戰術意識"
+LocFlyOverText="戰術意識"
 LocLongDescription="你視野內的每個敵人使你獲得3點防禦，最多15點。"
 LocHelpText="你視野內的每個敵人使你獲得3點防禦，最多15點。"
 LocPromotionPopupText="<Bullet/> 你視野內的每個敵人使你獲得3點防禦，最多15點。<br/><Bullet/> 不包括小隊視野範圍內的單位。<br/><Bullet/> 此項能力在單位處於混亂、眩暈、恐慌、著火或其他受損狀態中時將不提供防禦加成。"
@@ -285,7 +285,7 @@ LocPromotionPopupText="<Bullet/> 發射一記必中的手槍射擊，每次任�
 [Gunslinger X2AbilityTemplate]
 LocFriendlyName="槍神"
 LocFlyOverText="槍神"
-LocLongDescription="使用手槍對<Ability:GUNSLINGER_TILES_RANGE/>格內移動或攻擊的每個敵人進行一次必定命中、必定暴擊的反應射擊。"
+LocLongDescription="使用手槍監視自身<Ability:GUNSLINGER_TILES_RANGE/>格內的區域，對其中移動或攻擊的每個敵人進行一次必定命中、必定暴擊的反應射擊。"
 LocHelpText="加強版手槍範圍監視，必定命中，必定暴擊。"
 LocPromotionPopupText="<Bullet/> 射程為<Ability:GUNSLINGER_TILES_RANGE/>格。<br/><Bullet/> 冷卻時間<Ability:SelfCooldown_LW/>回合。<br/><Bullet/> 不能在隱匿狀態下使用。<br/>"
 LocFriendlyNameWhenConcealed="手槍監視 (隱蔽式)"
@@ -469,10 +469,10 @@ LocLongDescription="你可以用狙擊步槍在一次不結束回合的行動後
 LocHelpText="可以用狙擊步槍在一次不結束回合的行動後進行標準射擊。"
 
 [Trojan X2AbilityTemplate]
-LocFriendlyName="特洛伊"
-LocFlyOverText="特洛伊"
-LocLongDescription="被侵入的敵方單位在侵入效果結束的回合受到傷害且無法行動。即使特洛伊未能摧毀目標，也不會破壞小隊的隱蔽狀態。"
-LocHelpText="被侵入的單位在侵入效果結束時受到傷害且無法行動。這個能力讓我們的士兵可以在隱蔽狀態下摧毀無人機。即使受害者從特洛伊的攻擊中倖存，也不會破壞小隊隱蔽狀態。"
+LocFriendlyName="木馬病毒"
+LocFlyOverText="木馬病毒"
+LocLongDescription="被侵入的敵方單位在侵入效果結束的回合受到傷害且無法行動。即使木馬病毒未能摧毀目標，也不會破壞小隊的隱蔽狀態。"
+LocHelpText="被侵入的單位在侵入效果結束時受到傷害且無法行動。這個能力讓我們的士兵可以在隱蔽狀態下摧毀無人機。即使受害者從木馬病毒的攻擊中倖存，也不會破壞小隊隱蔽狀態。"
 LocPromotionPopupText="<Bullet/> 被失控協議侵入的敵方單位在侵入效果結束的回合受到0到8點傷害且無法行動。<br/><Bullet/> 適用於被失控協議癱瘓或控制的單位。<br/><Bullet/> 具體傷害根據侵入數值和目標的侵入防禦數值來計算。<br/>"
 
 [Covert X2AbilityTemplate]
@@ -590,6 +590,12 @@ LocPromotionPopupText="<Bullet/> 你的閃光榴彈有50%幾率使敵人眩暈/�
 LocFriendlyName="堅韌壓制"
 LocLongDescription="受到傷害不再取消壓制和區域壓制。"
 LocHelpText="受到傷害不再取消壓制和區域壓制。"
+
+[UnwaveringStance_LW X2AbilityTemplate]
+LocFriendlyName="堅定姿態"
+LocFlyOverText="堅定姿態"
+LocLongDescription="在監視或壓制時獲得<Ability:COMBAT_AWARENESS_BONUS_DEFENSE>點防禦和<Ability:COMBAT_AWARENESS_BONUS_ARMOR>點護甲。受到傷害不再取消壓制和區域壓制。"
+LocHelpText="在監視或壓制時獲得<Ability:COMBAT_AWARENESS_BONUS_DEFENSE>點防禦和<Ability:COMBAT_AWARENESS_BONUS_ARMOR>點護甲。受到傷害不再取消壓制和區域壓制。"
 
 [X2Item_StingGrenade]
 DenseSmokeGrenadeEffectDisplayName="眩暈閃光彈"
@@ -800,10 +806,10 @@ LocFriendlyNameWhenConcealed="殺戮地帶（隱蔽）"
 [XComGame.DeathFromAbove X2AbilityTemplate]
 [DeathFromAbove X2AbilityTemplate]
 LocFriendlyName="死神天降"
-LocLongDescription="用<Ability:WeaponName/>擊殺一名位於低處的敵人將返還一個行動點，並且不會結束你的回合。一回合只能觸發一次。此外，還會減少狙擊步槍和維克托步槍50%的遠距離射程懲罰。"
-LocHelpText="用<Ability:WeaponName/>擊殺一名位於低處的敵人將返還一個行動點，並且不會結束你的回合。一回合只能觸發一次。此外，還會減少狙擊步槍和維克托步槍50%的遠距離射程懲罰。"
+LocLongDescription="用<Ability:BOUND_WEAPON_NAME>擊殺一名位於低處的敵人將返還一個行動點，並且不會結束你的回合。一回合只能觸發一次。此外，還會減少狙擊步槍和維克托步槍<Ability:DFA_RANGE_PENALTY_NEGATION_MODIFIER>%的遠距離射程懲罰。"
+LocHelpText="用<Ability:BOUND_WEAPON_NAME>擊殺一名位於低處的敵人將返還一個行動點，並且不會結束你的回合。一回合只能觸發一次。此外，還會減少狙擊步槍和維克托步槍<Ability:DFA_RANGE_PENALTY_NEGATION_MODIFIER>%的遠距離射程懲罰。"
 LocFlyOverText="死神天降"
-LocPromotionPopupText="<Bullet/> 死神天降與槍托配件的搭配效果良好，或是簡單地讓士兵更具移動力。<br/><Bullet/> 同時會減少狙擊步槍和維克托步槍50%的遠距離射程懲罰。<br/><Bullet/> 雙發快射的第一發射擊殺死敵人時不會觸發死神天降。<br/><Bullet/> 一回合只能觸發一次。"
+LocPromotionPopupText="<Bullet/> 死神天降與槍托配件的搭配效果良好，或是簡單地讓士兵更具移動力。<br/><Bullet/> 同時會減少狙擊步槍和維克托步槍<Ability:DFA_RANGE_PENALTY_NEGATION_MODIFIER>%的遠距離射程懲罰。<br/><Bullet/> 雙發快射的第一發射擊殺死敵人時不會觸發死神天降。<br/><Bullet/> 一回合只能觸發一次。"
 
 [XComGame.Implacable X2AbilityTemplate]
 [Implacable X2AbilityTemplate]
@@ -868,8 +874,8 @@ LocFriendlyName="遠程侵入"
 [XComGame.EverVigilant X2AbilityTemplate]
 [EverVigilant X2AbilityTemplate]
 LocFriendlyName="時刻警惕"
-LocLongDescription="若回合中所有行動點都用於移動，則小隊回合結束時會自動啟用監視。"
-LocHelpText="若回合中所有行動點都用於移動，則小隊回合結束時會自動啟用監視。"
+LocLongDescription="若回合中所有行動都用於移動，則小隊回合結束時會自動啟用監視。"
+LocHelpText="若回合中所有行動都用於移動，則小隊回合結束時會自動啟用監視。"
 LocFlyOverText="監視：時刻警惕"
 LocPromotionPopupText="<Bullet/> \"時刻警惕\"給士兵帶來極致靈巧的移動戰術體驗。<br/><Bullet/> 發動除移動之外的動作（包含自由行動）會解除\"時刻警惕\"效果。<br/><Bullet/> 無法觸發神槍手的狙擊步槍自動監視，但可以觸發其手槍監視。<br/>"
 
@@ -1223,6 +1229,13 @@ LocFriendlyName="強化定位系統"
 LocLongDescription="授予「自適應瞄準」能力，超載不再有命中懲罰。授予「全息射擊」能力，射擊敵人後，對敵人施加全息標記。"
 LocHelpText="授予「自適應瞄準」能力，超載不再有命中懲罰。授予「全息射擊」能力，射擊敵人後，對敵人施加全息標記。"
 LocPromotionPopupText="授予「自適應瞄準」和「全息射擊」能力，提高SPARK在超載狀態下連續射擊的能力，並提高小隊命中SPARK射擊的目標的能力。"
+
+[HeavyHitter_LW X2AbilityTemplate]
+LocFriendlyName="重量級"
+LocFlyOverText="重量級"
+LocLongDescription="你的所有攻擊額外造成+<Ability:HeavyHitter_DamageBonus_LW>傷害。你的持續傷害效果額外造成+<Ability:HeavyHitter_DamageOverTimeBonus_LW>傷害。"
+LocHelpText="你的所有攻擊和持續傷害效果造成額外傷害。"
+LocPromotionPopupText="<Bullet> 使你所有攻擊的傷害提高<Ability:HeavyHitter_DamageBonus_LW>點。<br><Bullet> 使你所有持續傷害的效果提高<Ability:HeavyHitter_DamageOverTimeBonus_LW>點。"
 
 ; New Class loc
 

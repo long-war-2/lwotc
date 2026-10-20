@@ -1,3 +1,28 @@
 [Firebrand_Arrived_01 SoundNodeWave]
 SpokenText="這裡是紅惡魔，該走了。"
 
+[ResCard_Scavengers X2StrategyCardTemplate]
++DisplayName="一絲不落"
++SummaryText="從掃描節點獲得的資源獎勵翻倍。"
++QuoteText="有時候我們的大收穫都來自舊城區的掃描節點。"
++QuoteTextAuthor="沃爾克"
+
+[UIAlert]
++m_strPOITitle="反抗軍發現的掃描節點"
+
+[X2Effect_TemplarFocus]
++SpecialDamageName="專註：撕裂斬傷害增加！"
+
+[Overcharge X2AbilityTemplate]
++LocFriendlyName="過載"
++LocLongDescription="撕裂斬有<Ability:OVERCHARGECHANCE/>%幾率生成專注。"
++LocHelpText="撕裂斬有<Ability:OVERCHARGECHANCE/>%幾率生成專注。"
++LocFlyOverText="過載"
++LocPromotionPopupText="<Bullet/>過載只適用於非致命性攻擊。<br/><Bullet/>過載能夠顯著提升聖殿騎士在任務中獲得專注的效率。<br/>"
+
+[OverchargePassive X2AbilityTemplate]
++LocFriendlyName="過載"
++LocLongDescription="非致命撕裂斬有<Ability:OVERCHARGECHANCE/>%幾率生成專注。"
++LocHelpText="非致命撕裂斬有<Ability:OVERCHARGECHANCE/>%幾率生成專注。"
++LocFlyOverText="過載"
++LocPromotionPopupText="<Bullet/>過載只適用於非致命攻擊。<br/><Bullet/>過載能夠顯著提升聖殿騎士在任務中獲得專注的效率。<br/>"

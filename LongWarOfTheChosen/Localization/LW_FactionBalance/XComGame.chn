@@ -239,3 +239,6 @@ LocFriendlyName="飞刀撤退"
 LocHelpText="飞刀撤退"
 LocLongDescription="在投掷飞刀后，获得一次仅限移动的动作。一回合只能触发一次。"
 LocPromotionPopupText="<Bullet/> 在投掷飞刀后，获得一次仅限移动的动作。一回合只能触发一次。"
+
+[X2Ability_TemplarAbilitySet]
+AmplifyEffectDesc="受到攻击时承受<Ability:AmplifyDamageMult>%额外伤害。<br>剩余次数：<Ability:AMPLIFY_SHOTS_REMAINING_LW>。"
