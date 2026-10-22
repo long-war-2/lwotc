@@ -31,8 +31,8 @@ strChangePageDesc="查看其他你可以激活的能力。你也可以使用「x
 m_strNoWeaponUpgradesTooltip="沒有可用的武器配件"
 
 [X2Ability_PerkPackAbilitySet2]
-TrojanVirus="特洛伊病毒"
-TrojanVirusTriggered="<XGParam:StrValue0/!UnitName/>已觸發特洛伊病毒。"
+TrojanVirus="木馬病毒"
+TrojanVirusTriggered="<XGParam:StrValue0/!UnitName/>已觸發木馬病毒。"
 
 ShellshockEffectDesc="這個單位的命中和暴擊幾率降低了。"
 ShellshockEffectName="被彈震"

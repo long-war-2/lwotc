@@ -10,3 +10,19 @@ SpokenText="这里是红恶魔，该走了。"
 [UIAlert]
 +m_strPOITitle="反抗军发现的扫描节点"
 
+[X2Effect_TemplarFocus]
++SpecialDamageName="专注：撕裂斩伤害增加！"
+
+[Overcharge X2AbilityTemplate]
++LocFriendlyName="过载"
++LocLongDescription="撕裂斩有<Ability:OVERCHARGECHANCE/>%几率生成专注。"
++LocHelpText="撕裂斩有<Ability:OVERCHARGECHANCE/>%几率生成专注。"
++LocFlyOverText="过载"
++LocPromotionPopupText="<Bullet/>过载只适用于非致命性攻击。<br/><Bullet/>过载能够显著提升圣殿骑士在任务中获得专注的效率。<br/>"
+
+[OverchargePassive X2AbilityTemplate]
++LocFriendlyName="过载"
++LocLongDescription="非致命撕裂斩有<Ability:OVERCHARGECHANCE/>%几率生成专注。"
++LocHelpText="非致命撕裂斩有<Ability:OVERCHARGECHANCE/>%几率生成专注。"
++LocFlyOverText="过载"
++LocPromotionPopupText="<Bullet/>过载只适用于非致命攻击。<br/><Bullet/>过载能够显著提升圣殿骑士在任务中获得专注的效率。<br/>"

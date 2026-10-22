@@ -183,7 +183,7 @@ LocFriendlyName="磷"
 LocFlyOverText="磷"
 LocLongDescription="你的火焰喷射器可以伤害火焰免疫的敌人，撕碎1/2/3点护甲。"
 LocHelpText="你的火焰喷射器可以伤害火焰免疫的敌人，撕碎1/2/3点护甲。"
-LocPromotionPopupText="<Bullet/> 可以伤害火焰免疫的敌人。<br/><Bullet/> 根据臂套等级撕碎1/2/3点护甲。<br>"
+LocPromotionPopupText="<Bullet/> 可以伤害火焰免疫的敌人。<br/><Bullet/> 根据臂套等级撕碎1/2/3点护甲。</br>"
 
 [Incinerator X2AbilityTemplate]
 LocFriendlyName="焚烧装置"
@@ -616,7 +616,7 @@ LocFlyOverText="已加固"
 LocPromotionPopUpText="<Bullet/> 激活以为士兵下回合开始前提供+<ABILITY:FORTIFY_DEFENSE_LW/>的防御。<br/><Bullet/> 不消耗行动点。<ABILITY:FORTIFY_COOLDOWN_LW/>回合冷却。"
 
 [CombatFitness X2AbilityTemplate]
-LocFriendlyName="强身健体"
+LocFriendlyName="训练有素"
 LocLongDescription="士兵永久获得<ABILITY:COMBAT_FITNESS_OFFENSE_LW/>命中，<ABILITY:COMBAT_FITNESS_MOBILITY_LW/>移动力，<ABILITY:COMBAT_FITNESS_HP_LW/>生命值，<ABILITY:COMBAT_FITNESS_WILL_LW/>意志力以及<ABILITY:COMBAT_FITNESS_DODGE_LW/>闪避。"
 LocHelpText="该士兵永久获得多项属性加成。"
 LocPromotionPopUpText="<Bullet/> 士兵永久获得<ABILITY:COMBAT_FITNESS_OFFENSE_LW/>命中，<ABILITY:COMBAT_FITNESS_MOBILITY_LW/>移动力，<ABILITY:COMBAT_FITNESS_HP_LW/>生命值，<ABILITY:COMBAT_FITNESS_WILL_LW/>意志力以及<ABILITY:COMBAT_FITNESS_DODGE_LW/>闪避。"
@@ -826,8 +826,8 @@ LocFlyOverText="稳定武器"
 [Needle_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="刺针弹"
 LocFlyOverText="刺针弹"
-LocLongDescription="对非机械类变种人的伤害+<Ability:NEEDLE_ADVENT_DMG>。对所有敌人+<Ability:NEEDLE_DMGMOD>伤害。"
-LocHelpText="对非机械类变种人的伤害+<Ability:NEEDLE_ADVENT_DMG>。对所有敌人+<Ability:NEEDLE_DMGMOD>伤害。"
+LocLongDescription="对所有敌人+<Ability:NEEDLE_DMGMOD>伤害。对非机械类变种人额外+<Ability:NEEDLE_ADVENT_DMG>伤害。"
+LocHelpText="对所有敌人+<Ability:NEEDLE_DMGMOD>伤害。对非机械类变种人额外+<Ability:NEEDLE_ADVENT_DMG>伤害。"
 
 [Shredder_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="粉碎弹"
@@ -838,8 +838,8 @@ LocHelpText="每次命中撕碎<Ability:SHREDDER_ROUNDS_SHRED>点护甲。"
 [Flechette_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="飞镖弹"
 LocFlyOverText="飞镖弹"
-LocLongDescription="对没有护甲的目标造成+<Ability:FLECHETTE_BONUS_DMG>伤害。对所有敌人+<Ability:FLECHETTE_DMGMOD>伤害。"
-LocHelpText="对没有护甲的目标造成+<Ability:FLECHETTE_BONUS_DMG>伤害。对所有敌人+<Ability:FLECHETTE_DMGMOD>伤害。"
+LocLongDescription="对所有敌人+<Ability:FLECHETTE_DMGMOD>伤害。对没有护甲的目标额外+<Ability:FLECHETTE_BONUS_DMG>伤害。"
+LocHelpText="对所有敌人+<Ability:FLECHETTE_DMGMOD>伤害。对没有护甲的目标额外+<Ability:FLECHETTE_BONUS_DMG>伤害。"
 
 [Redscreen_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="红屏弹"
@@ -851,8 +851,8 @@ LocHelpText="每次命中可以降低目标<Ability:REDSCREEN_EFFECT_LW/>点侵�
 [Stiletto_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="短剑弹"
 LocFlyOverText="短剑弹"
-LocLongDescription="对非机械类外星人的伤害+<Ability:STILETTO_ALIEN_DMG>。对所有敌人+<Ability:STILETTO_DMGMOD>伤害。"
-LocHelpText="对非机械类外星人的伤害+<Ability:STILETTO_ALIEN_DMG>。对所有敌人+<Ability:STILETTO_DMGMOD>伤害。"
+LocLongDescription="对所有敌人+<Ability:STILETTO_DMGMOD>伤害。对非机械类外星人额外+<Ability:STILETTO_ALIEN_DMG>伤害。"
+LocHelpText="对所有敌人+<Ability:STILETTO_DMGMOD>伤害。对非机械类外星人额外+<Ability:STILETTO_ALIEN_DMG>伤害。"
 
 [AP_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="穿甲弹"
@@ -1602,14 +1602,14 @@ TacticalText="<Bullet/> 获得<Ability:CARAPACE_PLATING_HP>点护盾值。<br/><
 [StilettoRounds X2AmmoTemplate]
 FriendlyName="短剑弹"
 FriendlyNamePlural="短剑弹"
-BriefSummary="对非机械类外星人的伤害+<Ability:STILETTO_ALIEN_DMG>。对所有敌人+<Ability:STILETTO_DMGMOD>伤害。"
-TacticalText="<Bullet/> 对非机械类外星人的伤害+<Ability:STILETTO_ALIEN_DMG>。对所有敌人+<Ability:STILETTO_DMGMOD>伤害。<br/><Bullet/> 最多只能装备一个弹药强化。"
+BriefSummary="对所有敌人+<Ability:STILETTO_DMGMOD>伤害。对非机械类外星人额外+<Ability:STILETTO_ALIEN_DMG>伤害。"
+TacticalText="<Bullet/> 对所有敌人+<Ability:STILETTO_DMGMOD>伤害。对非机械类外星人额外+<Ability:STILETTO_ALIEN_DMG>伤害。<br/><Bullet/> 最多只能装备一个弹药强化。"
 
 [FlechetteRounds X2AmmoTemplate]
 FriendlyName="飞镖弹"
 FriendlyNamePlural="飞镖弹"
-BriefSummary="对没有护甲的目标造成+<Ability:FLECHETTE_BONUS_DMG>伤害。对所有敌人+<Ability:FLECHETTE_DMGMOD>伤害。"
-TacticalText="<Bullet/> 对没有护甲的目标造成+<Ability:FLECHETTE_BONUS_DMG>伤害。对所有敌人+<Ability:FLECHETTE_DMGMOD>伤害。<br/><Bullet/> 最多只能装备一个弹药强化。"
+BriefSummary="对所有敌人+<Ability:FLECHETTE_DMGMOD>伤害。对没有护甲的目标额外+<Ability:FLECHETTE_BONUS_DMG>伤害。"
+TacticalText="<Bullet/> 对所有敌人+<Ability:FLECHETTE_DMGMOD>伤害。对没有护甲的目标额外+<Ability:FLECHETTE_BONUS_DMG>伤害。<br/><Bullet/> 最多只能装备一个弹药强化。"
 
 [RedScreenRounds X2AmmoTemplate]
 FriendlyName="红屏弹"
@@ -1620,8 +1620,8 @@ TacticalText="<Bullet/> 每次命中可以降低敌人<Ability:REDSCREEN_EFFECT_
 [NeedleRounds X2AmmoTemplate]
 FriendlyName="刺针弹"
 FriendlyNamePlural="刺针弹"
-BriefSummary="对非机械类变种人单位的伤害+<Ability:NEEDLE_ADVENT_DMG>。对所有敌人+<Ability:NEEDLE_DMGMOD>伤害。"
-TacticalText="<Bullet/> 对非机械类变种人的伤害+<Ability:NEEDLE_ADVENT_DMG>。对所有敌人+<Ability:NEEDLE_DMGMOD>伤害。<br/><Bullet/> 最多只能装备一个弹药强化。"
+BriefSummary="对所有敌人+<Ability:NEEDLE_DMGMOD>伤害。对非机械类变种人单位额外+<Ability:NEEDLE_ADVENT_DMG>伤害。"
+TacticalText="<Bullet/> 对所有敌人+<Ability:NEEDLE_DMGMOD>伤害。对非机械类变种人的额外+<Ability:NEEDLE_ADVENT_DMG>伤害。<br/><Bullet/> 最多只能装备一个弹药强化。"
 
 [FalconRounds X2AmmoTemplate]
 FriendlyName="粉碎弹"
@@ -3325,10 +3325,10 @@ ReaperTutorialTitle="死神暗影"
 ReaperTutorialText="死神使用一种叫做“暗影”的高级隐形装置，是一种持续2回合非常强大的隐蔽形式。在暗影状态时，死神提高了移动力，极大的减少敌人的侦测半径。他们也可以投掷飞刀而不打破暗影。"
 
 TemplarTutorialTitle="圣殿骑士专注"
-TemplarTutorialText="圣殿骑士在执行任务时通过使用撕裂获得专注，无论它是否命中。专注可以花在强大的能力上，其中一些能力在更高的专注等级上使用会提高效率。"
+TemplarTutorialText="圣殿骑士在执行任务时通过使用撕裂斩获得专注，无论它是否命中。专注可以花在强大的能力上，其中一些能力在更高的专注等级上使用会提高效率。"
 
 TemplarMomentumTutorialTitle="圣殿骑士气势&格挡"
-TemplarMomentumTutorialText="使用撕裂后，圣殿骑士总是会触发气势，这是一种自由移动的动作，可以让他们回到安全的掩体处，或者使用圣殿之盾吸引一些攻击。圣殿之盾给予圣殿骑士护盾增益，持续到下一回合开始。"
+TemplarMomentumTutorialText="使用撕裂斩后，圣殿骑士总是会触发气势，这是一种自由移动的动作，可以让他们回到安全的掩体处，或者使用圣殿之盾吸引一些攻击。圣殿之盾给予圣殿骑士护盾增益，持续到下一回合开始。"
 
 SkirmisherTutorialTitle="散兵"
 SkirmisherTutorialText="散兵是一种机动单位，可以用无托式对侧翼暴露的单位开火，以恢复一个行动点，让他们可以再次射击、移动、投掷榴弹或做其他事情。钩爪增加了他们的多功能性，允许散兵快速穿越战场，进入有利位置。"
@@ -4819,17 +4819,17 @@ LocFriendlyName="黑暗事件：战术升级（铜皮铁甲）"
 LocLongDescription="给变种人机器人单位铜皮铁甲能力，让他们在面对近战攻击时获得伤害减免。"
 
 [DarkEvent_TacticalSense X2DarkEventTemplate]
-DisplayName="永久性：战术素养"
-SummaryText="一些敌军单位获得战术素养能力，给他们提供额外的防御力。"
+DisplayName="永久性：战术意识"
+SummaryText="一些敌军单位获得战术意识能力，给他们提供额外的防御力。"
 QuoteText="\"反抗军的情报称外星人在创造一种精英兵种专注于反暴动行动。\""
 QuoteTextAuthor="- 军事官布拉德福德"
-PreMissionText="为一些敌军单位提供战术素养能力。"
-PostMissionSuccessText="已阻止黑暗事件：战术升级（战术素养）"
-PostMissionFailureText="反击黑暗事件失败：战术升级（战术素养）"
+PreMissionText="为一些敌军单位提供战术意识能力。"
+PostMissionSuccessText="已阻止黑暗事件：战术升级（战术意识）"
+PostMissionFailureText="反击黑暗事件失败：战术升级（战术意识）"
 
 [DarkEventAbility_TacticalSense X2AbilityTemplate]
-LocFriendlyName="黑暗事件：战术升级（战术素养）"
-LocLongDescription="一些敌军单位获得战术素养能力，给他们提供额外的防御力。"
+LocFriendlyName="黑暗事件：战术升级（战术意识）"
+LocLongDescription="一些敌军单位获得战术意识能力，给他们提供额外的防御力。"
 
 [DarkEvent_Aggression X2DarkEventTemplate]
 DisplayName="永久性：高侵略性"
@@ -5258,10 +5258,10 @@ LocPromotionPopupText="<Bullet/> 导火线有<Ability:SelfCooldown_LW/>回合冷
 
 [BulletShred X2AbilityTemplate]
 LocFriendlyName="撕裂射击"
-; LocLongDescription="一次伤口撕裂的射击提供额外+<Ability:RUPTURE_CRIT_BONUS_LW/>%暴击率，并使目标未来遭受的所有攻击受到额外+<Ability:RuptureAmount/>伤害。"
-; LocHelpText="一次伤口撕裂的射击提供额外+<Ability:RUPTURE_CRIT_BONUS_LW/>%暴击率，并使目标未来遭受的所有攻击受到额外+<Ability:RuptureAmount/>伤害。"
+LocLongDescription="进行一次特殊射击，施加<Ability:RuptureAmount>点撕裂效果，且必定会暴击。消耗<Ability:SelfAmmoCost>发弹药。"
+LocHelpText="进行一次特殊射击，施加撕裂效果，且必定会暴击。消耗<Ability:SelfAmmoCost>发弹药。"
 ; LWOTC needs translation
-LocPromotionPopupText="<Bullet/> 撕裂射击需要<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 撕裂射击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 被撕裂的目标每次遭受攻击会额外承受<Ability:RuptureAmount/>点伤害。<br/>"
+LocPromotionPopupText="<Bullet/> 撕裂射击需要<Ability:SelfAmmoCost/>发弹药。<br/><Bullet/> 撕裂射击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 被撕裂的目标每次遭受攻击会承受额外伤害。<br/><Bullet/> 此次攻击施加的撕裂等于武器、弹药和技能提供的撕裂之和。<br/><Bullet/> 多次攻击施加的撕裂效果不会叠加，较高的撕裂会覆盖较低的撕裂。<br/>"
 ; End translation
 
 [Faceoff X2AbilityTemplate]
@@ -5480,24 +5480,24 @@ LocPromotionPopupText="<Bullet/> 开颅斩杀只能对相邻目标使用。<br/>
 LocFriendlyName="聚焦"
 LocLongDescription="最大专注级别增加到4。"
 LocHelpText="最大专注级别增加到4。"
-LocPromotionPopupText="<Bullet/> 4级专注: 撕裂伤害+<Ability:FOCUS4RENDDAMAGE/>, 移动力+<Ability:FOCUS4MOBILITY/>, 闪避+<Ability:FOCUS4DODGE/>。<br/>"
+LocPromotionPopupText="<Bullet/> 4级专注: 撕裂斩伤害+<Ability:FOCUS4RENDDAMAGE/>, 移动力+<Ability:FOCUS4MOBILITY/>, 闪避+<Ability:FOCUS4DODGE/>。<br/>"
 
 [UITacticalHUD_SoldierInfo]
 FocusLevelDescriptions[0]=""
-FocusLevelDescriptions[1]="撕裂伤害+<Ability:FOCUS1RENDDAMAGE/>\n移动力+<Ability:FOCUS1MOBILITY/>\n闪避 +<Ability:FOCUS1DODGE/>"
-FocusLevelDescriptions[2]="撕裂伤害+<Ability:FOCUS2RENDDAMAGE/>\n移动力+<Ability:FOCUS2MOBILITY/>\n闪避+<Ability:FOCUS2DODGE/>"
-FocusLevelDescriptions[3]="撕裂伤害+<Ability:FOCUS3RENDDAMAGE/>\n移动力+<Ability:FOCUS3MOBILITY/>\n闪避+<Ability:FOCUS3DODGE/>"
-FocusLevelDescriptions[4]="撕裂伤害+<Ability:FOCUS4RENDDAMAGE/>\n移动力+<Ability:FOCUS4MOBILITY/>\n闪避+<Ability:FOCUS4DODGE/>"
+FocusLevelDescriptions[1]="撕裂斩伤害+<Ability:FOCUS1RENDDAMAGE/>\n移动力+<Ability:FOCUS1MOBILITY/>\n闪避 +<Ability:FOCUS1DODGE/>"
+FocusLevelDescriptions[2]="撕裂斩伤害+<Ability:FOCUS2RENDDAMAGE/>\n移动力+<Ability:FOCUS2MOBILITY/>\n闪避+<Ability:FOCUS2DODGE/>"
+FocusLevelDescriptions[3]="撕裂斩伤害+<Ability:FOCUS3RENDDAMAGE/>\n移动力+<Ability:FOCUS3MOBILITY/>\n闪避+<Ability:FOCUS3DODGE/>"
+FocusLevelDescriptions[4]="撕裂斩伤害+<Ability:FOCUS4RENDDAMAGE/>\n移动力+<Ability:FOCUS4MOBILITY/>\n闪避+<Ability:FOCUS4DODGE/>"
 
 ; LWOTC Needs Translation (2)
 [TemplarFocus X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> 圣殿骑士在开始任务时比其他士兵弱，但在更高的专注水平下会变得非常强大。<br/><Bullet/> 专注是通过用撕裂攻击敌人获得的（即使未命中也能获得）。<br/>"
+LocPromotionPopupText="<Bullet/> 圣殿骑士在开始任务时比其他士兵弱，但在更高的专注水平下会变得非常强大。<br/><Bullet/> 专注是通过用撕裂斩攻击敌人获得的（即使未命中也能获得）。<br/>"
 
 [Rend_LW X2AbilityTemplate]
-LocFriendlyName="撕裂"
+LocFriendlyName="撕裂斩"
 LocLongDescription="近战攻击。触发气势，产生专注。有几率使目标眩晕/瘫痪或混乱。"
 LocHelpText="近战攻击。触发气势，产生专注。有几率使目标眩晕/瘫痪或混乱。"
-LocPromotionPopupText="<Bullet/> 使用撕裂是圣殿骑士产生专注的主要方法。<br/><Bullet/> 施展撕裂后，圣殿骑士将获得气势，允许攻击后开启护盾或移动以撤回掩体。<br/><Bullet/> 每点专注使撕裂获得<Ability:RENDSTUNCHANCE/>%眩晕/瘫痪几率。眩晕/瘫痪的目标也会被击退。<br/><Bullet/> 每点专注使撕裂获得<Ability:RENDDISORIENTCHANCE/>%混乱几率。<br/>"
+LocPromotionPopupText="<Bullet/> 使用撕裂斩是圣殿骑士产生专注的主要方法。<br/><Bullet/> 施展撕裂斩后，圣殿骑士将获得气势，允许攻击后开启护盾或移动以撤回掩体。<br/><Bullet/> 每点专注使撕裂斩获得<Ability:RENDSTUNCHANCE/>%眩晕/瘫痪几率。眩晕/瘫痪的目标也会被击退。<br/><Bullet/> 每点专注使撕裂斩获得<Ability:RENDDISORIENTCHANCE/>%混乱几率。<br/>"
 
 [Whiplash X2AbilityTemplate]
 LocLongDescription="用电击鞭攻击敌人。对机器人造成额外伤害。<Ability:SelfCooldown_LW/>回合冷却时间。"
@@ -5514,7 +5514,7 @@ LocPromotionPopupText="<Bullet/> 这是一个自由动作。<br/><Bullet/> 某�
 ; LWOTC Needs Translation (2)
 LocLongDescription="召唤一个灵能支柱作为全掩体。自由行动，不需要专注。"
 LocHelpText="召唤一个灵能支柱作为全掩体。自由行动，不需要专注。"
-LocPromotionPopupText="<Bullet/> 当被圣殿骑士召唤时，支柱将持续相当于其专注等级的回合数。<br/><Bullet/> 支柱不会结束圣殿骑士的回合。<br/><Bullet/> 可以在撕裂后使用。<br/><Bullet/> 支柱有<Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
+LocPromotionPopupText="<Bullet/> 当被圣殿骑士召唤时，支柱将持续相当于其专注等级的回合数。<br/><Bullet/> 支柱不会结束圣殿骑士的回合。<br/><Bullet/> 可以在撕裂斩后使用。<br/><Bullet/> 支柱有<Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
 ; End Translation (2)
 
 [StunStrike X2AbilityTemplate]
@@ -5652,7 +5652,7 @@ LocPromotionPopupText="<Bullet/> 慰藉能消除混乱、心灵控制、恐慌�
 
 ; LWOTC Needs Translation (2)
 [Ghost X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> 幽魂开始时的专注度等于圣殿骑士创建时的专注度减1。<br/><Bullet/> 幽魂无法获得专注，当所有专注都被消耗，或者它们的生命值降到0时，它们就会消失。<br/><Bullet/> 幽魂使用撕裂会消耗其1专注。<br/><Bullet/> 幽魂必须投射在人形敌人的尸体上，并且不能两次投射在同一具尸体上。<br/><Bullet/> 幽魂有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 幽魂不能获得下列能力：灵能闪电、盾牌猛击、盾牌能力、偏斜、反射、安慰、虚空导管、剑刃风暴、天资、神化、离子风暴和坚守。<br/>"
+LocPromotionPopupText="<Bullet/> 幽魂开始时的专注度等于圣殿骑士创建时的专注度减1。<br/><Bullet/> 幽魂无法获得专注，当所有专注都被消耗，或者它们的生命值降到0时，它们就会消失。<br/><Bullet/> 幽魂使用撕裂斩会消耗其1专注。<br/><Bullet/> 幽魂必须投射在人形敌人的尸体上，并且不能两次投射在同一具尸体上。<br/><Bullet/> 幽魂有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 幽魂不能获得下列能力：灵能闪电、盾牌猛击、盾牌能力、偏斜、反射、安慰、虚空导管、剑刃风暴、天资、神化、离子风暴和坚守。<br/>"
 ; End Translation (2)
 
 ; LWOTC Needs Translation (2)
@@ -6571,19 +6571,19 @@ LocLongDescription = "击杀一名敌人会获得持续3回合可叠加的+<Abil
 LocPromotionPopupText = "<Bullet/> 击杀一名敌人会获得持续3回合可叠加的+<Ability:DISASSEMBLY_HACK/>侵入点数增益。<br/>"
 
 [LightningSlash_LW X2AbilityTemplate]
-LocFriendlyName="闪电裂斩"
+LocFriendlyName="闪电斩"
 LocLongDescription="使用<Ability:BOUND_WEAPON_NAME/>攻击蓝色移动范围内的任何敌人，不会结束回合。"
 LocHelpText="使用<Ability:BOUND_WEAPON_NAME/>攻击蓝色移动范围内的任何敌人，不会结束回合。"
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> 使用<Ability:BOUND_WEAPON_NAME/>攻击蓝色移动范围内的任何敌人。<br/><Bullet/> 这次攻击不会结束回合。<br/><Bullet/> 闪电裂斩有<Ability:LIGHTNINGSLASH_COOLDOWN/>回合冷却时间。<br/><Bullet/> 无法触发圣殿骑士的气势以及电弧波。<br/>"
+LocPromotionPopupText="<Bullet/> 使用<Ability:BOUND_WEAPON_NAME/>攻击蓝色移动范围内的任何敌人。<br/><Bullet/> 这次攻击不会结束回合。<br/><Bullet/> 闪电斩有<Ability:LIGHTNINGSLASH_COOLDOWN/>回合冷却时间。<br/><Bullet/> 无法触发圣殿骑士的气势以及电弧波。<br/>"
 ; End Translation (2)
 
 [LightningSlashLastAction_LW X2AbilityTemplate]
-LocFriendlyName="闪电裂斩"
+LocFriendlyName="闪电斩"
 ; LWOTC Needs Translation (3)
 LocLongDescription="使用<Ability:BOUND_WEAPON_NAME/>攻击蓝色移动范围内的任何敌人，不会结束回合。"
 LocHelpText="使用<Ability:BOUND_WEAPON_NAME/>攻击蓝色移动范围内的任何敌人，不会结束回合。"
-LocPromotionPopupText="<Bullet/> 使用<Ability:BOUND_WEAPON_NAME/>攻击蓝色移动范围内的任何敌人。<br/><Bullet/> 这次攻击不会结束回合。<br/><Bullet/> 闪电裂斩有<Ability:LIGHTNINGSLASH_COOLDOWN/>回合冷却时间。<br/><Bullet/> 无法触发圣殿骑士的气势以及电弧波。<br/>"
+LocPromotionPopupText="<Bullet/> 使用<Ability:BOUND_WEAPON_NAME/>攻击蓝色移动范围内的任何敌人。<br/><Bullet/> 这次攻击不会结束回合。<br/><Bullet/> 闪电斩有<Ability:LIGHTNINGSLASH_COOLDOWN/>回合冷却时间。<br/><Bullet/> 无法触发圣殿骑士的气势以及电弧波。<br/>"
 ; End Translation (3)
 
 [InspireAgility_LW X2AbilityTemplate]
@@ -6941,8 +6941,8 @@ LocFlyOverText="迷雾狂乱"
 
 [Impenetrable_LW X2AbilityTemplate]
 LocFriendlyName="刀枪不入"
-LocHelpText="冲击补偿堆叠上限加1。"
-LocLongDescription="冲击补偿堆叠上限加1。"
+LocHelpText="冲击补偿堆叠上限加1。「强化复层装甲」的伤害减免降低<Ability:IMPENETRABLE_BONUS_PCT_DR>%。"
+LocLongDescription="冲击补偿堆叠上限加1。「强化复层装甲」的伤害减免降低<Ability:IMPENETRABLE_BONUS_PCT_DR>%。"
 LocFlyOverText="刀枪不入"
 
 [YouCannotHide_LW X2AbilityTemplate]
@@ -7157,13 +7157,15 @@ LocHelpText="受到伤害后，获得<Ability:IMPACT_COMPENSATION_PCT_DR>%可堆
 LocFriendlyName="强化复层装甲"
 LocFlyOverText="强化复层装甲"
 LocLongDescription="该单位每回合在受到的伤害超过其最大生命值<Ability:IMPACT_V2_DAMAGE_CAP>%后，后续伤害将减少<Ability:IMPACT_V2_PCT_DR>%。"
-LocHelpText="受到的伤害阈值在每回合开始时重置。"
+LocHelpText="该单位每回合在受到的伤害超过其最大生命值<Ability:IMPACT_V2_DAMAGE_CAP>%后，后续伤害将减少<Ability:IMPACT_V2_PCT_DR>%。"
+LocPromotionPopupText="<Bullet> 受到的伤害阈值在每回合开始时重置。"
 
 [ImpactCompensationV2XCOM_LW X2AbilityTemplate]
 LocFriendlyName="强化复层装甲"
 LocFlyOverText="强化复层装甲"
 LocLongDescription="该单位每回合在受到的伤害超过其最大生命值<Ability:IMPACT_V2XCOM_DAMAGE_CAP>%后，后续伤害将减少<Ability:IMPACT_V2XCOM_PCT_DR>%。"
-LocHelpText="受到的伤害阈值在每回合开始时重置。"
+LocHelpText="该单位每回合在受到的伤害超过其最大生命值<Ability:IMPACT_V2XCOM_DAMAGE_CAP>%后，后续伤害将减少<Ability:IMPACT_V2XCOM_PCT_DR>%。"
+LocPromotionPopupText="<Bullet> 受到的伤害阈值在每回合开始时重置。"
 
 [ImpactCompensationPassiveV2_LW X2AbilityTemplate]
 LocFriendlyName="强化复层装甲"
@@ -7373,9 +7375,9 @@ LocPromotionPopupText="<Bullet/> 灵魂射击有+20的命中加成。<br/><Bulle
 
 [IRI_TemplarShield X2AbilityTemplate]
 LocFriendlyName="圣殿之盾"
-LocLongDescription="使用碎片拳刃生成一个灵能护盾并获得<Ability:TEMPLAR_SHIELD_TAG/>护盾生命值，持续到下一个回合开始。可以使用气势发动。在护盾生效期间，敌人对该单位的暴击几率减少<Ability:TEMPLAR_SHIELD_CRIT_RESIST>。"
-LocHelpText="使用碎片拳刃生成一个灵能护盾并获得<Ability:TEMPLAR_SHIELD_TAG/>护盾生命值，持续到下一个回合开始。可以使用气势发动。在护盾生效期间，敌人对该单位的暴击几率减少<Ability:TEMPLAR_SHIELD_CRIT_RESIST>。"
-LocPromotionPopupText="<Bullet/> 使用后结束回合。<br/><Bullet/> 护盾强度将随着碎片拳刃的技术等级而增加。"
+LocLongDescription="使用拳刃生成一个灵能护盾并获得<Ability:TEMPLAR_SHIELD_TAG/>护盾生命值，持续到下一个回合开始。可以使用气势发动。在护盾生效期间，敌人对该单位的暴击几率减少<Ability:TEMPLAR_SHIELD_CRIT_RESIST>。"
+LocHelpText="使用拳刃生成一个灵能护盾并获得<Ability:TEMPLAR_SHIELD_TAG/>护盾生命值，持续到下一个回合开始。可以使用气势发动。在护盾生效期间，敌人对该单位的暴击几率减少<Ability:TEMPLAR_SHIELD_CRIT_RESIST>。"
+LocPromotionPopupText="<Bullet/> 使用后结束回合。<br/><Bullet/> 护盾强度将随着拳刃的技术等级而增加。"
 
 [Indomitable X2AbilityTemplate]
 LocFriendlyName="百折不挠"
@@ -7392,15 +7394,15 @@ LocFlyOverText="余震"
 
 [DoubleRendFocus X2AbilityTemplate]
 LocFriendlyName="天资"
-LocHelpText="撕裂给予额外专注点。"
-LocLongDescription="撕裂给予额外专注点。"
+LocHelpText="撕裂斩给予额外专注点。"
+LocLongDescription="撕裂斩给予额外专注点。"
 LocFlyOverText="天资"
-LocPromotionPopupText="<Bullet/> 撕裂给予额外专注点。"
+LocPromotionPopupText="<Bullet/> 撕裂斩给予额外专注点。"
 
 [DoubleRendFocusPassive X2AbilityTemplate]
 LocFriendlyName="天资"
-LocHelpText="撕裂给予额外专注点。"
-LocLongDescription="撕裂给予额外专注点。"
+LocHelpText="撕裂斩给予额外专注点。"
+LocLongDescription="撕裂斩给予额外专注点。"
 LocFlyOverText="天资"
 
 [Volt X2AbilityTemplate]
@@ -7411,10 +7413,10 @@ LocPromotionPopupText="<Bullet/> 灵能闪电无冷却时间，但消耗1专注�
 
 [Amplify X2AbilityTemplate]
 LocFriendlyName="标记"
-LocLongDescription="用灵能透镜标记一名目标，使其接下来3次受到的指向性攻击承受额外<Ability:AmplifyDamageMult/>%的伤害。消耗1专注。自由行动。"
-LocHelpText="用灵能透镜标记一名目标，使其接下来3次受到的指向性攻击承受额外<Ability:AmplifyDamageMult/>%的伤害。消耗1专注。自由行动。"
+LocLongDescription="用灵能透镜标记一名目标，使其接下来<Ability:AMPLIFY_SHOTS_LW>次受到的攻击承受额外<Ability:AmplifyDamageMult/>%的伤害。消耗<Ability:SelfFocusCost_LW>专注。自由行动。"
+LocHelpText="用灵能透镜标记一名目标，使其接下来<Ability:AMPLIFY_SHOTS_LW>次受到的攻击承受额外<Ability:AmplifyDamageMult/>%的伤害。消耗<Ability:SelfFocusCost_LW>专注。自由行动。"
 LocHitMessage="标记"
-LocPromotionPopupText="<Bullet/> 标记持续3次伤害。<br/><Bullet/> 标记是自由行动。<br/><Bullet/> 范围攻击不适用，但依然会消耗次数。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷却。<br/>"
+LocPromotionPopupText="<Bullet/> 标记持续<Ability:AMPLIFY_SHOTS_LW>次伤害。<br/><Bullet/> 标记是自由行动。<br/><Bullet/> 不适用于持续伤害效果。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷却。<br/>"
 
 [X2Effect_Amplify]
 AmplifyCountdown="标记剩余数：%d"
@@ -7489,17 +7491,26 @@ LocLongDescription="一种强有力的监视方式。触发时不再自动开火
 LocHelpText="一种强有力的监视方式。触发时不再自动开火，而是执行任何单个动作。自由行动。"
 LocPromotionPopupText="<Bullet/> 自由行动。<br/><Bullet/> 某些操作在阻断期间不可用，例如监视。<br/><Bullet/> 阻断有<Ability:SelfCooldown_LW/>回合冷却时间。"
 
+[ShardGauntlet_CV X2PairedWeaponTemplate]
+AbilityDescName="拳刃"
+
+[ShardGauntlet_MG X2PairedWeaponTemplate]
+AbilityDescName="拳刃"
+
+[ShardGauntlet_BM X2PairedWeaponTemplate]
+AbilityDescName="拳刃"
+
 [ArcWave_LW X2AbilityTemplate]
-LocFriendlyName="撕裂"
+LocFriendlyName="撕裂斩"
 LocLongDescription="近战攻击，触发气势，生成专注。有一定几率使目标眩晕/瘫痪或混乱。"
 LocHelpText="近战攻击，触发气势，生成专注。有一定几率使目标眩晕/瘫痪或混乱。"
-LocPromotionPopupText="<Bullet/> 使用撕裂是圣殿骑士生成专注的主要方法。<br/><Bullet/>  施放撕裂后，圣殿骑士将获得气势点数，允许攻击后开启护盾或移动以撤回掩体。<br/><Bullet/> 每点专注使撕裂获得<Ability:RENDSTUNCHANCE/>%眩晕/瘫痪几率。眩晕/瘫痪的目标也会被击退。<br/><Bullet/> 每点专注使撕裂获得<Ability:RENDSTUNCHANCE/>%混乱几率。<br/>"
+LocPromotionPopupText="<Bullet/> 使用撕裂斩是圣殿骑士生成专注的主要方法。<br/><Bullet/>  施放撕裂斩后，圣殿骑士将获得气势点数，允许攻击后开启护盾或移动以撤回掩体。<br/><Bullet/> 每点专注使撕裂斩获得<Ability:RENDSTUNCHANCE/>%眩晕/瘫痪几率。眩晕/瘫痪的目标也会被击退。<br/><Bullet/> 每点专注使撕裂斩获得<Ability:RENDSTUNCHANCE/>%混乱几率。<br/>"
 
 [ArcWavePassive_LW X2AbilityTemplate]
 LocFriendlyName="电弧波"
-LocLongDescription="撕裂会在攻击方向产生一个心灵能量波。伤害随碎片拳刃层级增加。"
-LocHelpText="撕裂会在攻击方向产生一个心灵能量波。"
-LocPromotionPopupText="<Bullet/> 电弧波不会影响撕裂攻击的原始目标。<br/><Bullet/> 电弧波随着碎片拳刃层级造成的伤害为4/7/10 。<br/><Bullet/> 电弧波在环境物体中传播。<br/>"
+LocLongDescription="撕裂斩会在攻击方向产生一个心灵能量波。伤害随拳刃等级增加。"
+LocHelpText="撕裂斩会在攻击方向产生一个心灵能量波。"
+LocPromotionPopupText="<Bullet/> 电弧波不会影响撕裂斩的原始目标。<br/><Bullet/> 电弧波随着拳刃等级造成的伤害为4/7/10 。<br/><Bullet/> 电弧波在环境物体中传播。<br/>"
 
 [IonicStorm X2AbilityTemplate]
 LocFriendlyName="离子风暴"
@@ -7696,7 +7707,7 @@ LocPromotionPopupText="<Bullet/> 将移动光标指向敌人以发动突袭拳�
 LocFriendlyName="横冲直撞"
 LocLongDescription="当极限超载激活时，能够在移动时撞穿墙壁和掩体。"
 LocHelpText="当极限超载激活时，能够在移动时撞穿墙壁和掩体。"
-LocPromotionPopupText="<Bullet/> 横冲直撞可用于摧毁掩体，从而使敌人暴露侧翼。<br/><Bullet/> 使用移动路径点指引SPARK前往合适的路径以摧毁掩体和环境物体。<br>"
+LocPromotionPopupText="<Bullet/> 横冲直撞可用于摧毁掩体，从而使敌人暴露侧翼。<br/><Bullet/> 使用移动路径点指引SPARK前往合适的路径以摧毁掩体和环境物体。</br>"
 
 [Bombard X2AbilityTemplate]
 LocFriendlyName="密集轰炸"
@@ -7784,17 +7795,24 @@ LocPromotionPopupText="<Bullet/> 如果有多个距离最近的敌人，你对�
 
 [SensorOverlays_LW X2AbilityTemplate]
 LocFriendlyName="感知共享"
-LocLongDescription="小队所有成员对你视野内可见的敌人获得<Ability:+Crit>暴击率。"
-LocHelpText="小队所有成员对你视野内可见的敌人获得<Ability:+Crit>暴击率。"
+LocLongDescription="小队所有成员对你视野内可见的敌人获得<Ability:SensorOverlays_CritBonus_LW>暴击率。"
+LocHelpText="小队所有成员对你视野内可见的敌人获得<Ability:SensorOverlays_CritBonus_LW>暴击率。"
 LocFlyOverText="感知共享"
-LocPromotionPopupText="<Bullet/> 习得此技能的单位如果是通过小队视野看见敌人则不会为盟友提供加成。<br/>"
+LocPromotionPopupText="<Bullet> 来自多个来源的加成不叠加。<br/><Bullet/> 习得此技能的单位如果是通过小队视野看见敌人则不会为盟友提供加成。<br/>"
+
+[SensorOverlays_LW_Passive X2AbilityTemplate]
+LocFriendlyName="感知共享"
+LocFlyOverText="感知共享"
+LocLongDescription="小队所有成员对你视野内可见的敌人获得<Ability:SensorOverlays_CritBonus_LW>暴击率。"
+LocHelpText="小队所有成员对你视野内可见的敌人获得<Ability:SensorOverlays_CritBonus_LW>暴击率。"
+LocPromotionPopupText="<Bullet> 来自多个来源的加成不叠加。<br/><Bullet> 习得此技能的单位如果是通过小队视野看见敌人则不会为盟友提供加成。"
 
 [FocusedDefense_LW X2AbilityTemplate]
 LocFriendlyName="重点防御"
-LocLongDescription="在没有被侧翼的情况下，受到距离最近的可见敌人攻击时，你额外获得<Ability:+Defense/>防御和<Ability:+Dodge/>闪避。"
-LocHelpText="在没有被侧翼的情况下，受到距离最近的可见敌人攻击时，你额外获得<Ability:+Defense/>防御和<Ability:+Dodge/>闪避。"
+LocLongDescription="在没有被侧翼的情况下，受到距离最近的可见敌人攻击时，你额外获得<Ability:FocusedDefense_DefenseBonus_LW>防御和<Ability:FocusedDefense_DodgeBonus_LW>闪避。"
+LocHelpText="在没有被侧翼的情况下，受到距离最近的可见敌人攻击时，你额外获得<Ability:FocusedDefense_DefenseBonus_LW>防御和<Ability:FocusedDefense_DodgeBonus_LW>闪避。"
 LocFlyOverText="重点防御"
-LocPromotionPopupText="<Bullet/> 这个加成不适用于近战攻击。<br/><Bullet/> 如果有多个距离最近的敌人，你对所有这些敌人都获得加成。<br/>"
+LocPromotionPopupText="<Bullet/> 这个加成不适用于侧翼和近战攻击。<br/><Bullet/> 如果有多个距离最近的敌人，你对所有这些敌人都获得加成。<br/>"
 
 [GrappleExpert_LW X2AbilityTemplate]
 LocFriendlyName="钩爪专家"
@@ -7816,3 +7834,14 @@ LocFlyOverText="传送撤离"
 
 [UICovertActions]
 CovertActions_WarningAmbush="警告！\n该任务有遭伏击的风险。我们应该确保士兵们携带了相应的装备。"
+
+[MediumAlienArmor X2ArmorTemplate]
+FriendlyName="伊卡洛斯装甲"
+FriendlyNamePlural="伊卡洛斯装甲"
+BriefSummary="将执政官国王处回收的飞行部件和我们现有标准制式的护甲系统相结合，就能诞生一种有着高伤害抗性和移动力的新护甲。内置的推进系统能提供短时性的飞行能力，让穿戴者能快速的改变位置。"
+TacticalText="<Bullet/> 伊卡洛斯装甲允许士兵瞬间跃迁到新位置。\n<Bullet/> 穿戴此装甲有几率使战斗中遇到的执政官恐慌。"
+
+[LostBruteAcidPassive X2AbilityTemplate]
+LocFriendlyName="腐蚀之血"
+LocLongDescription="当该单位受到伤害时，酸液会以其为中心在小范围内溅射。"
+LocFlyOverText="腐蚀之血"

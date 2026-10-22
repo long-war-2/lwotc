@@ -7,3 +7,6 @@ ActionsLeftFlyoverText="剩余动作: <XGParam:IntValue0/>"
 [X2LWModTemplate_ReaperAbilities]
 ShadowExpiredFlyover="暗影失效"
 ; End Translation
+
+[X2DownloadableContentInfo_LW_FactionBalance]
+strFocusCostAll = "全部"
