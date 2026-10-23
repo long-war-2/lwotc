@@ -1052,7 +1052,7 @@ static final function EventListenerReturn OnOverrideAbilityIconColor(Object Even
 		case 'LWFlamethrower':
 		case 'Roust':
 		case 'Firestorm':
-			if (UnitState.AffectedByEffectNames.Find('QuickburnEffect') != -1)
+			if (UnitState.AffectedByEffectNames.Find(class'X2Effect_Quickburn'.default.EffectName) != -1)
 			{
 				IsTurnEnding = false;
 				IsFree = true;
