@@ -291,8 +291,8 @@ private static function ReplaceHitAnimation_PostBuildVis(XComGameState Visualize
 	if (SourceUnit == none)
 		return;
 
-	// 近战判定。IsMelee()对X2AbilityToHitCalc_StandardMelee返回true；
-	// 再用MovingMelee目标样式兜底，防止某些mod近战改过to-hit calc后漏判。
+	// Melee detection. IsMelee() returns true for X2AbilityToHitCalc_StandardMelee;
+	// also use the MovingMelee target style as a fallback to catch melee attacks from mods that have modified the to-hit calc.
 	bMeleeAbility = AbilityTemplate.IsMelee() ||
 		(AbilityTemplate.AbilityTargetStyle != none && AbilityTemplate.AbilityTargetStyle.IsA('X2AbilityTarget_MovingMelee'));
 
