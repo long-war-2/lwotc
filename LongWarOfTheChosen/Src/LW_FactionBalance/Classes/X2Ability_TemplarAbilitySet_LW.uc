@@ -915,6 +915,8 @@ static function EventListenerReturn VoltFocusKillTracker_Listener(Object EventDa
 	Template.bShowPostActivation = true;
 	Template.bSkipFireAction = true;
 
+	Template.AssociatedPlayTiming = SPT_AfterSequential;
+
 	return Template;
 }
 
@@ -959,6 +961,8 @@ static function X2AbilityTemplate DoubleRendFocus()
 
 	Template.bShowPostActivation = true;
 	Template.bSkipFireAction = true;
+
+	Template.AssociatedPlayTiming = SPT_AfterSequential;
 
 	return Template;
 }
