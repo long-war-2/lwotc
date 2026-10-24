@@ -6,7 +6,6 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 {
     local X2AbilityToHitCalc_StandardAim StandardHit;
 	local bool Explosives;
-	local X2Effect_ApplyWeaponDamage WeaponDamageEffect;
 
 	if(AppliedData.AbilityResultContext.HitResult == eHit_Crit)
 	{
@@ -23,19 +22,10 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 		{
 			if (CurrentDamage > 0)
 			{
-				WeaponDamageEffect = X2Effect_ApplyWeaponDamage(class'X2Effect'.static.GetX2Effect(AppliedData.EffectRef));
-				if (WeaponDamageEffect != none)
-				{			
-					if (WeaponDamageEffect.bIgnoreBaseDamage)
-					{	
-						if(class'X2Effect_JavelinRockets'.default.VALID_ABILITIES.Find(AbilityState.GetMyTemplateName()) != INDEX_NONE)
-						{
-							return default.CRIT_DAMAGE_BONUS;
-						}
-						return 0;
-					}
+				if(AppliedData.EffectRef.ApplyOnTickIndex == INDEX_NONE)
+				{
+					return default.CRIT_DAMAGE_BONUS;
 				}
-				return default.CRIT_DAMAGE_BONUS;
 			}
 		}
     }
