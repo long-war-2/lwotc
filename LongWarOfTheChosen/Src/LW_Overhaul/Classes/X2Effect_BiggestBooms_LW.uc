@@ -8,7 +8,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 	local bool Explosives;
 	local X2Effect_ApplyWeaponDamage WeaponDamageEffect;
 
-	if(AppliedData.AbilityResultContext.HitResult == eHit_Crit)
+	if(AppliedData.AbilityResultContext.HitResult == eHit_Crit && AppliedData.EffectRef.ApplyOnTickIndex == INDEX_NONE)
 	{
 		StandardHit = X2AbilityToHitCalc_StandardAim(AbilityState.GetMyTemplate().AbilityToHitCalc);
 		if(StandardHit != none && StandardHit.bIndirectFire) 
