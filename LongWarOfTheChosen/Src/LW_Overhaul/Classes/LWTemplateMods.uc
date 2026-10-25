@@ -3483,8 +3483,8 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 					if (ItemTable[i].Weight > 0)
 					{
 						EquipmentTemplate.Abilities.AddItem('SmallItemWeight');
-						// TODO: Move mobility penalty display from item weight to AddArmoryUIStatMarkups()
-						EquipmentTemplate.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, -ItemTable[i].Weight, true);
+						// The mobility penalty display in soldier header has been moved to AddArmoryUIStatMarkups()
+						EquipmentTemplate.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel,, -ItemTable[i].Weight, true);
 
 						//`LOG ("Adding Weight to" @ EquipmentTemplate.DataName);
 					}
