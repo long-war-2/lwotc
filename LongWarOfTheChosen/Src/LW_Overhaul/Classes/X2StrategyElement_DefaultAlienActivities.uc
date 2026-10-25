@@ -468,46 +468,59 @@ static function X2DataTemplate CreateProtectRegionTemplate()
 }
 
 //adds extra logic so that chain is reset if one of the first PROTECTREGION_RESET_LEVEL missions is failed
+// =====================================================================
+// 2. ProtectRegionMissionFailure
+// Changes vs original:
+//   - re-syncs DateTimeNextDiscoveryUpdate to now (no added delay; avoids a stale-timer catch-up burst)
+//   - bNeedsUpdateMissionFailure = false kept from the original
+//   - ActivityState = NewGameState.ModifyStateObject(...) at the top of the reset branch (see comment there)
+//   - single MissionState.RemoveEntity call
+// =====================================================================
 static function ProtectRegionMissionFailure(XComGameState_LWAlienActivity ActivityState, XComGameState_MissionSite MissionState, XComGameState NewGameState)
 {
-	local StateObjectReference EmptyRef;
+    local StateObjectReference EmptyRef;
 
-	if (ActivityState.CurrentMissionLevel < default.PROTECTREGION_RESET_LEVEL)
-	{
-		// failed an early mission, hide the activity and reset it back to beginning
-		ActivityState.CurrentMissionLevel = 0; // reset mission level back to beginning
-		ActivityState.bDiscovered = false;  // hide the activity so it has to be discovered again
-		ActivityState.bNeedsUpdateDiscovery = false;
-		ActivityState.MissionResourcePool = 0; // reset the mission resource pool so it isn't instantly discovered again
-		ActivityState.bNeedsUpdateMissionFailure = false;
-		ActivityState.CurrentMissionRef = EmptyRef;
+    if (ActivityState.CurrentMissionLevel < default.PROTECTREGION_RESET_LEVEL)
+    {
+        // GenericMissionSourceOnFailure passes in a CreateStateObject copy it never adds, so make sure we edit the
+        // object that is actually in NewGameState. ModifyStateObject returns the pending object if there is one
+        // (the Update() path, where ActivityState is self) and otherwise creates and adds a fresh copy.
+        ActivityState = XComGameState_LWAlienActivity(NewGameState.ModifyStateObject(class'XComGameState_LWAlienActivity', ActivityState.ObjectID));
 
-		if(MissionState != none)
-		{
-			RecordResistanceActivity(false, ActivityState, MissionState, NewGameState);  //record failure
-			MissionState.RemoveEntity(NewGameState);		// remove the mission
-		}
-		// Respawn the mission if back on geoscape
+        // failed an early mission, hide the activity and reset it back to beginning
+        ActivityState.CurrentMissionLevel = 0; // reset mission level back to beginning
+        ActivityState.bDiscovered = false;  // hide the activity so it has to be discovered again
+        ActivityState.bNeedsUpdateDiscovery = false;
+        ActivityState.MissionResourcePool = 0; // reset the mission resource pool so it isn't instantly discovered again
+        ActivityState.bNeedsUpdateMissionFailure = false;  // kept from the original: the handler can also be called directly from post-mission code, not just via Update()
+        ActivityState.CurrentMissionRef = EmptyRef;
 
-		if (`HQGAME == none || `HQPRES == none || `HQPRES.StrategyMap2D == none)
-		{
-			//not there, so mark the activity to update next time we are back in geoscape
-			ActivityState.bNeedsUpdateMissionFailure = true;
-			return;
-		}
+        // Re-sync the discovery timer to now to reset the discovery for the next cycle/respawn.
+        ActivityState.DateTimeNextDiscoveryUpdate = class'XComGameState_GeoscapeEntity'.static.GetCurrentTime();
 
-		if(MissionState != none)
-			MissionState.RemoveEntity(NewGameState);
+        if(MissionState != none)
+        {
+            RecordResistanceActivity(false, ActivityState, MissionState, NewGameState);  //record failure
+            MissionState.RemoveEntity(NewGameState);        // remove the mission
+        }
 
+        // Respawn the mission if back on geoscape
+        if (`HQGAME == none || `HQPRES == none || `HQPRES.StrategyMap2D == none)
+        {
+            // not there, so mark the activity to update next time we are back in geoscape.
+            // (Only reachable when called directly from post-mission code; inside Update() the geoscape is always ready.)
+            ActivityState.bNeedsUpdateMissionFailure = true;
+            return;
+        }
 
-		//try and respawn mission
-		ActivityState.SpawnMission(NewGameState);
-	}
-	else
-	{
-		//missions higher up in the chain just don't advance
-		TypicalNoActionOnMissionFailure (ActivityState, MissionState, NewGameState);
-	}
+        //try and respawn mission
+        ActivityState.SpawnMission(NewGameState);
+    }
+    else
+    {
+        //missions higher up in the chain just don't advance
+        TypicalNoActionOnMissionFailure (ActivityState, MissionState, NewGameState);
+    }
 }
 
 static function ProtectRegionMissionExpired(XComGameState_LWAlienActivity ActivityState, XComGameState_MissionSite MissionState, XComGameState NewGameState)
@@ -4513,11 +4526,7 @@ static function TypicalAdvanceActivityOnMissionFailure(XComGameState_LWAlienActi
 
 	if (MissionState != none)
 	{
-		// if missions get canceled because the region was liberated, don't log them as failed.
-		if(!RegionIsLiberated(RegionState, NewGameState))
-		{
-			RecordResistanceActivity(false, ActivityState, MissionState, NewGameState);
-		}
+		// (RecordResistanceActivity moved below the deferral check)
 		if (MissionState.POIToSpawn.ObjectID > 0)
 		{
 			// This mission had a POI, deactivate it.
@@ -4551,6 +4560,13 @@ static function TypicalAdvanceActivityOnMissionFailure(XComGameState_LWAlienActi
 		return;
 	}
 
+	// record the failure exactly once: only on the pass that actually advances the chain
+	// (if region is liberated we returned above and, as before, recorded nothing)
+	if (MissionState != none)
+	{
+		RecordResistanceActivity(false, ActivityState, MissionState, NewGameState);
+	}
+
 	if (ForceDetection)
 		ActivityState.bDiscovered = true;
 
@@ -4575,10 +4591,8 @@ static function TypicalAdvanceActivityOnMissionFailure(XComGameState_LWAlienActi
 
 		NewGameState.RemoveStateObject(ActivityState.ObjectID);
 	}
-
-	//record failure
-
 }
+
 
 static function StateObjectReference GetTypicalMissionDarkEvent(XComGameState_LWAlienActivity ActivityState, name MissionFamily, XComGameState NewGameState)
 {

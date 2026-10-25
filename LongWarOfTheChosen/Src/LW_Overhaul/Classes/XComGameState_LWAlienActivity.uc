@@ -138,6 +138,7 @@ function bool Update(XComGameState NewGameState)
 {
 	local XComGameStateHistory History;
 	local bool bUpdated;
+	local bool bProcessedFailure;
 	local X2LWAlienActivityTemplate ActivityTemplate;
 	local XComGameState_MissionSite MissionState;
 	local TDateTime TempUpdateDateTime, ExpiryDateTime, DetectionWindowDateTime;
@@ -147,6 +148,7 @@ function bool Update(XComGameState NewGameState)
 	MissionState = XComGameState_MissionSite(History.GetGameStateForObjectID(CurrentMissionRef.ObjectID));
 
 	bUpdated = false;
+	bProcessedFailure = false;
 	ActivityTemplate = GetMyTemplate();
 
 	//handle deferred success/failure from post-mission gamelogic, which can't place new missions because it needs geoscape data
@@ -159,11 +161,22 @@ function bool Update(XComGameState NewGameState)
 	}
 	else if(bNeedsUpdateMissionFailure)
 	{
+		// NOTE: flags are cleared AFTER the handler, as in the original. Handlers read both of them:
+		//  - bFailedFromMissionExpiration decides whether RecordResistanceActivity counts the failure
+		//  - bNeedsUpdateMissionFailure marks this as the deferred pass (see TypicalAdvanceActivityOnMissionFailure)
 		ActivityTemplate.OnMissionFailureFn(self, MissionState, NewGameState);
 		bNeedsUpdateMissionFailure = false;
 		bFailedFromMissionExpiration = false;
+		bProcessedFailure = true;
 		bUpdated = true;
-		MissionState = XComGameState_MissionSite(History.GetGameStateForObjectID(CurrentMissionRef.ObjectID)); // regenerate the MissionState in case it was changed
+
+		// regenerate the MissionState in case it was changed. A mission spawned by the handler
+		// only exists in NewGameState at this point, not in History.
+		MissionState = XComGameState_MissionSite(NewGameState.GetGameStateForObjectID(CurrentMissionRef.ObjectID));
+		if (MissionState == none)
+		{
+			MissionState = XComGameState_MissionSite(History.GetGameStateForObjectID(CurrentMissionRef.ObjectID));
+		}
 	}
 
 	if (bRemoved)
@@ -189,14 +202,16 @@ function bool Update(XComGameState NewGameState)
 	}
 
 	// Warn if critical noninfiltrated missions are close to expiry
-	ExpiryDateTime = MissionState.ExpirationDateTime;
-	class'X2StrategyGameRulesetDataStructures'.static.RemoveHours(ExpiryDateTime, 6);
 	if (!bExpiryWarningShown && MissionState != none &&
-		class'Utilities_LW'.static.IsMissionRetaliation(MissionState.GetReference()) &&
-		class'X2StrategyGameRulesetDataStructures'.static.LessThan(ExpiryDateTime, class'XComGameState_GeoscapeEntity'.static.GetCurrentTime()))
+		class'Utilities_LW'.static.IsMissionRetaliation(MissionState.GetReference()))
 	{
-		bUpdated = true;
-		bNeedsExpiryWarning = true;
+		ExpiryDateTime = MissionState.ExpirationDateTime;
+		class'X2StrategyGameRulesetDataStructures'.static.RemoveHours(ExpiryDateTime, 6);
+		if (class'X2StrategyGameRulesetDataStructures'.static.LessThan(ExpiryDateTime, class'XComGameState_GeoscapeEntity'.static.GetCurrentTime()))
+		{
+			bUpdated = true;
+			bNeedsExpiryWarning = true;
+		}
 	}
 
 	//handle activity current mission expiration -- regular expiration mechanism don't allow us to query player for one last chance to go on mission while infiltrating
@@ -264,8 +279,14 @@ function bool Update(XComGameState NewGameState)
 	// In either case, skip detection altogther. If the activity still exists and only the mission expired, we'll loop back through here next update
 	// cycle and will either clean up the activity (returning early so we won't get here) or generate a new mission in the chain (in which case we may
 	// detect that one).
+	// Also skip detection on the tick a failure was processed: the failure handler may have just reset the activity and spawned a fresh mission,
+	// and that mission must not be detectable until a later update cycle.
+	// Only the timer-based path is blocked on the failure tick; a forced discovery (bNeedsUpdateDiscovery) still runs as before.
+
+	//`LWTRACE("PR reset: NextDiscovery=" $ class'X2StrategyGameRulesetDataStructures'.static.GetDateString(ActivityState.DateTimeNextDiscoveryUpdate, true));
+
 	if (!bNeedsUpdateMissionFailure && !bRemoved &&
-		(bNeedsUpdateDiscovery || (!bDiscovered && class'X2StrategyGameRulesetDataStructures'.static.LessThan(DateTimeNextDiscoveryUpdate, class'XComGameState_GeoscapeEntity'.static.GetCurrentTime()))))
+		(bNeedsUpdateDiscovery || (!bProcessedFailure && !bDiscovered && class'X2StrategyGameRulesetDataStructures'.static.LessThan(DateTimeNextDiscoveryUpdate, class'XComGameState_GeoscapeEntity'.static.GetCurrentTime()))))
 	{
 		bUpdated = true;
 		// At this point, ensure the activity isn't near its expiration date, to avoid spawning missions that may result in crashes.
@@ -309,82 +330,88 @@ function bool Update(XComGameState NewGameState)
 	return bUpdated;
 }
 
+
 //---------------------------------------------------------------------------------------
 function UpdateGameBoard()
 {
-	local XComGameState NewGameState;
-	local XComGameState_LWAlienActivity ActivityState;
-	local XComGameStateHistory History;
-	//local UIStrategyMap StrategyMap;
-	local bool ShouldPause, UpdateObjectiveUI;
-	local XGGeoscape Geoscape;
+    local XComGameState NewGameState;
+    local XComGameState_LWAlienActivity ActivityState;
+    local XComGameStateHistory History;
+    //local UIStrategyMap StrategyMap;
+    local bool ShouldPause, UpdateObjectiveUI;
+    local XGGeoscape Geoscape;
 
-	//StrategyMap = `HQPRES.StrategyMap2D;
-	if (class'Helpers_LW'.static.GeoscapeReadyForUpdate())
-	{
-		History = `XCOMHISTORY;
-		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Update Alien Activities");
-		ActivityState = XComGameState_LWAlienActivity(NewGameState.CreateStateObject(class'XComGameState_LWAlienActivity', ObjectID));
-		NewGameState.AddStateObject(ActivityState);
+    //StrategyMap = `HQPRES.StrategyMap2D;
+    if (class'Helpers_LW'.static.GeoscapeReadyForUpdate())
+    {
+        History = `XCOMHISTORY;
+        NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Update Alien Activities");
+        ActivityState = XComGameState_LWAlienActivity(NewGameState.CreateStateObject(class'XComGameState_LWAlienActivity', ObjectID));
+        NewGameState.AddStateObject(ActivityState);
 
-		if (!ActivityState.Update(NewGameState))
-		{
-			NewGameState.PurgeGameStateForObjectID(ActivityState.ObjectID);
-		}
-		else
-		{
-			ShouldPause = ActivityState.bNeedsPause;
-			ActivityState.bNeedsPause = false;
-			UpdateObjectiveUI = ActivityState.bActivityComplete;
-			ActivityState.bActivityComplete = false;
-		}
-		if (NewGameState.GetNumGameStateObjects() > 0)
-			`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
-		else
-			History.CleanupPendingGameState(NewGameState);
+        if (!ActivityState.Update(NewGameState))
+        {
+            NewGameState.PurgeGameStateForObjectID(ActivityState.ObjectID);
+        }
+        else
+        {
+            ShouldPause = ActivityState.bNeedsPause;
+            ActivityState.bNeedsPause = false;
+            UpdateObjectiveUI = ActivityState.bActivityComplete;
+            ActivityState.bActivityComplete = false;
+        }
+        if (NewGameState.GetNumGameStateObjects() > 0)
+            `XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+        else
+            History.CleanupPendingGameState(NewGameState);
 
-		if (ActivityState.bNeedsAppearedPopup && !ActivityState.bRemoved)
-		{
-			if(ActivityState.bMustLaunch)
-			{
-				ActivityState.SpawnInfiltrationUI();
-			}
-			else
-			{
-				ActivityState.SpawnMissionPopup();
-			}
-			NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Toggle Mission Appeared Popup");
-			ActivityState = XComGameState_LWAlienActivity(NewGameState.CreateStateObject(class'XComGameState_LWAlienActivity', ObjectID));
-			NewGameState.AddStateObject(ActivityState);
-			ActivityState.bNeedsAppearedPopup = false;
-			ActivityState.bMustLaunch = false;
-			`XEVENTMGR.TriggerEvent('NewMissionAppeared', , ActivityState, NewGameState);
-			`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
-		}
-		else if (ActivityState.bNeedsExpiryWarning && !ActivityState.bExpiryWarningShown)
-		{
-			`HQPRES.UITimeSensitiveMission(XComGameState_MissionSite(History.GetGameStateForObjectID(ActivityState.CurrentMissionRef.ObjectID)));
+        // re-fetch the committed state; the pending copy may have been purged or removed
+        ActivityState = XComGameState_LWAlienActivity(History.GetGameStateForObjectID(ObjectID));
 
-			NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Expiry Warning Shown");
-			ActivityState = XComGameState_LWAlienActivity(NewGameState.ModifyStateObject(class'XComGameState_LWAlienActivity', ObjectID));
-			ActivityState.bNeedsExpiryWarning = false;
-			ActivityState.bExpiryWarningShown = true;
-			ShouldPause = true;
-			`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
-		}
+        if (ActivityState != none)
+        {
+            if (ActivityState.bNeedsAppearedPopup && !ActivityState.bRemoved)
+            {
+                if(ActivityState.bMustLaunch)
+                {
+                    ActivityState.SpawnInfiltrationUI();
+                }
+                else
+                {
+                    ActivityState.SpawnMissionPopup();
+                }
+                NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Toggle Mission Appeared Popup");
+                ActivityState = XComGameState_LWAlienActivity(NewGameState.ModifyStateObject(class'XComGameState_LWAlienActivity', ObjectID));
+                ActivityState.bNeedsAppearedPopup = false;
+                ActivityState.bMustLaunch = false;
+                `XEVENTMGR.TriggerEvent('NewMissionAppeared', , ActivityState, NewGameState);
+                `XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+            }
+            else if (ActivityState.bNeedsExpiryWarning && !ActivityState.bExpiryWarningShown)
+            {
+                `HQPRES.UITimeSensitiveMission(XComGameState_MissionSite(History.GetGameStateForObjectID(ActivityState.CurrentMissionRef.ObjectID)));
 
-		if (ShouldPause)
-		{
-			Geoscape = `GAME.GetGeoscape();
-			Geoscape.Pause();
-			Geoscape.Resume();
-			ShouldPause = false;
-		}
-		if (UpdateObjectiveUI)
-		{
-			class'X2StrategyGameRulesetDataStructures'.static.ForceUpdateObjectivesUI(); // this is to clean up "IN PROGRESS" after gamestate submission
-		}
-	}
+                NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Expiry Warning Shown");
+                ActivityState = XComGameState_LWAlienActivity(NewGameState.ModifyStateObject(class'XComGameState_LWAlienActivity', ObjectID));
+                ActivityState.bNeedsExpiryWarning = false;
+                ActivityState.bExpiryWarningShown = true;
+                ShouldPause = true;
+                `XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+            }
+        }
+
+        if (ShouldPause)
+        {
+            Geoscape = `GAME.GetGeoscape();
+            Geoscape.Pause();
+            Geoscape.Resume();
+            ShouldPause = false;
+        }
+        if (UpdateObjectiveUI)
+        {
+            class'X2StrategyGameRulesetDataStructures'.static.ForceUpdateObjectivesUI(); // this is to clean up "IN PROGRESS" after gamestate submission
+        }
+    }
 }
 
 function SpawnInfiltrationUI()
