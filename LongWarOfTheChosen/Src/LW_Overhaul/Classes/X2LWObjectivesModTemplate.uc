@@ -73,13 +73,14 @@ static function CreateBroadcastTheTruthMission_LW(XComGameState NewGameState, XC
 
 // Removes some narrative nagging by Bradford, for example about building
 // the ring, since there's rarely a rush to build it in LWOTC.
+// Tedster: also remove the "no covert active" trigger too.
 static function ShutBradfordUp(X2ObjectiveTemplate Template)
 {
 	local int i;
 
 	for (i = Template.NarrativeTriggers.Length - 1; i >= 0; i--)
 	{
-		if (Template.NarrativeTriggers[i].TriggeringEvent == 'WarningNoRing')
+		if (Template.NarrativeTriggers[i].TriggeringEvent == 'WarningNoRing' || Template.NarrativeTriggers[i].TriggeringEvent =='WarningNoCovertAction')
 		{
 			Template.NarrativeTriggers.Remove(i, 1);
 		}
