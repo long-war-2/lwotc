@@ -839,6 +839,7 @@ function ModifyGrenadeEffects(X2ItemTemplate Template, int Difficulty)
 	local X2GrenadeTemplate                             GrenadeTemplate;
 	local int k;
 	local X2Effect_Persistent                           Effect;
+	local X2Effect_ApplyWeaponDamage                    DamageEffect;
 	local X2Condition_UnitProperty	UnitCondition;
 	local X2Effect_PersistentStatChange DisorientedEffect;
 	GrenadeTemplate = X2GrenadeTemplate(Template);
@@ -923,6 +924,16 @@ function ModifyGrenadeEffects(X2ItemTemplate Template, int Difficulty)
 
 			GrenadeTemplate.ThrownGrenadeEffects.AddItem(DisorientedEffect);
 			GrenadeTemplate.LaunchedGrenadeEffects.AddItem(DisorientedEffect);
+
+			for (k = 0; k < GrenadeTemplate.ThrownGrenadeEffects.Length; k++)
+			{
+				DamageEffect = X2Effect_ApplyWeaponDamage (GrenadeTemplate.ThrownGrenadeEffects[k]);
+				if (DamageEffect != none)
+				{
+					DamageEffect.bExplosiveDamage = false;
+				}
+			}
+
 			break;
 
 		default:
