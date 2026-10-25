@@ -269,6 +269,7 @@ private static function ReplaceHitAnimation_PostBuildVis(XComGameState Visualize
 	local X2Action_TimedWait								TimedWait;
 	local bool												bGrenadeLikeAbility;
 	local bool												bAreaTargetedAbility;
+	local bool												bMeleeAbility;
 	local X2Action_WaitForAnotherAction						WaitForAction;
 	local array<X2Action>									WaitForActions;
 	local array<X2Action>									DamageUnitActions;
@@ -289,6 +290,11 @@ private static function ReplaceHitAnimation_PostBuildVis(XComGameState Visualize
 	SourceUnit = XComGameState_Unit(History.GetGameStateForObjectID(AbilityContext.InputContext.SourceObject.ObjectID));
 	if (SourceUnit == none)
 		return;
+
+	// Melee detection. IsMelee() returns true for X2AbilityToHitCalc_StandardMelee;
+	// also use the MovingMelee target style as a fallback to catch melee attacks from mods that have modified the to-hit calc.
+	bMeleeAbility = AbilityTemplate.IsMelee() ||
+		(AbilityTemplate.AbilityTargetStyle != none && AbilityTemplate.AbilityTargetStyle.IsA('X2AbilityTarget_MovingMelee'));
 
 	if (AbilityContext.InputContext.TargetLocations.Length > 0 && ClassIsChildOf(AbilityTemplate.TargetingMethod, class'X2TargetingMethod_Grenade'))
 	{
@@ -344,27 +350,34 @@ private static function ReplaceHitAnimation_PostBuildVis(XComGameState Visualize
 		}
 
 		// #1. START. Insert a Move Turn action to force the target unit to face the danger. 
-		if (bAreaTargetedAbility) // If the ability is area-targeted, like a grenade throw, then face the target location (the epicenter of the explosion)
-		{
-			MoveTurnAction = X2Action_MoveTurn(class'X2Action_MoveTurn'.static.AddToVisualizationTree(ActionMetadata, AbilityContext, false,, ExitCoverParentActions));
-			MoveTurnAction.m_vFacePoint = AbilityContext.InputContext.TargetLocations[0];
-		}
-		else // Otherwise face the attacker.
-		{	 // In this case Move Turn action is specifically inserted between Exit Cover's parents and Exit Cover itself,
-			 // so Exit Cover won't begin playing until Move Turn action finishes.
-			 // This is necessary because some Fire Actions take very little time between the Fire Action starting and damage hitting the target, 
-			 // so we have to make sure the target unit is already facing the source when the Fire Action begins.
-			MoveTurnAction = X2Action_MoveTurn(class'X2Action_MoveTurn'.static.AddToVisualizationTree(ActionMetadata, AbilityContext, true,, ExitCoverParentActions));
-			MoveTurnAction.m_vFacePoint = `XWORLD.GetPositionFromTileCoordinates(SourceUnit.TileLocation);
-		}
-
-		// Keep the target unit's visualizer occupied after turning is finished and until Exit Cover begins. This is done to prevent Idle State Machine from turning the unit away.
+		//
+		// Melee attacks don't need this step:
+		//   - X2Ability.TypicalAbility_BuildVisualization() has already inserted MoveTurn + WaitForFireAction for melee targets.
+		// Therefore, skip the entire #1 section for melee attacks, keeping the logic only for ranged/AoE attacks.
 		WaitForActions.Length = 0;
-		foreach ExitCoverActions(CycleAction)
+		if (!bMeleeAbility)
 		{
-			WaitForAction = X2Action_WaitForAnotherAction(class'X2Action_WaitForAnotherAction'.static.AddToVisualizationTree(ActionMetadata, AbilityContext, false, MoveTurnAction));
-			WaitForAction.ActionToWaitFor = CycleAction;
-			WaitForActions.AddItem(WaitForAction);
+			if (bAreaTargetedAbility) // If the ability is area-targeted, like a grenade throw, then face the target location (the epicenter of the explosion)
+			{
+				MoveTurnAction = X2Action_MoveTurn(class'X2Action_MoveTurn'.static.AddToVisualizationTree(ActionMetadata, AbilityContext, false,, ExitCoverParentActions));
+				MoveTurnAction.m_vFacePoint = AbilityContext.InputContext.TargetLocations[0];
+			}
+			else // Otherwise face the attacker.
+			{	 // In this case Move Turn action is specifically inserted between Exit Cover's parents and Exit Cover itself,
+				 // so Exit Cover won't begin playing until Move Turn action finishes.
+				 // This is necessary because some Fire Actions take very little time between the Fire Action starting and damage hitting the target, 
+				 // so we have to make sure the target unit is already facing the source when the Fire Action begins.
+				MoveTurnAction = X2Action_MoveTurn(class'X2Action_MoveTurn'.static.AddToVisualizationTree(ActionMetadata, AbilityContext, true,, ExitCoverParentActions));
+				MoveTurnAction.m_vFacePoint = `XWORLD.GetPositionFromTileCoordinates(SourceUnit.TileLocation);
+			}
+
+			// Keep the target unit's visualizer occupied after turning is finished and until Exit Cover begins. This is done to prevent Idle State Machine from turning the unit away.
+			foreach ExitCoverActions(CycleAction)
+			{
+				WaitForAction = X2Action_WaitForAnotherAction(class'X2Action_WaitForAnotherAction'.static.AddToVisualizationTree(ActionMetadata, AbilityContext, false, MoveTurnAction));
+				WaitForAction.ActionToWaitFor = CycleAction;
+				WaitForActions.AddItem(WaitForAction);
+			}
 		}
 		// #1. END.
 
@@ -374,7 +387,18 @@ private static function ReplaceHitAnimation_PostBuildVis(XComGameState Visualize
 			// but no more than 2 seconds, as shield is put away at that point.
 			// Grenade takes 1.5 seconds to fly 10 tiles and explode after being thrown, though this doesn't take throw animation time into account.
 		// This delay is added on top of the variable amount of time required for the Move Turn action. 
-		if (bGrenadeLikeAbility)
+		if (bMeleeAbility)
+		{
+			// At this point, the shield absorption animation can simply be attached to the Fire action.
+			// Fire emits the Visualizer_AbilityHit event on hit, and X2Action_PlayAnimation listens for this event by default,
+			// so the animation starts exactly when the hit occurs.
+			// Since it is not an ancestor of the attacker's action chain, it won't block the attacker either.
+			AdditionalAnimationAction = X2Action_PlayAnimation(class'X2Action_PlayAnimation'.static.AddToVisualizationTree(ActionMetadata, AbilityContext,,, FireActions));
+
+			// Let the shield absorption animation play to completion; otherwise, it will finish immediately.
+			AdditionalAnimationAction.bFinishAnimationWait = true;
+		}
+		else if (bGrenadeLikeAbility)
 		{
 			//`LOG("Ability uses grenade path, inserting delay action for:" @ 0.05f * SourceUnit.TileDistanceBetween(NewUnitState) @ "seconds.",, 'TemplarParryRework');
 			TimedWait = X2Action_TimedWait(class'X2Action_TimedWait'.static.AddToVisualizationTree(ActionMetadata, AbilityContext, false,, WaitForActions));
