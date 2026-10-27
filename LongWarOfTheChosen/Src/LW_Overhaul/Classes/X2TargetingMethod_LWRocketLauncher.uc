@@ -134,5 +134,5 @@ function Canceled()
 
 defaultproperties
 {
-	SnapToTile = true;
+	SnapToTile = false;
 }

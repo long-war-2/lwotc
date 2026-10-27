@@ -92,5 +92,5 @@ function Update(float DeltaTime)
 
 defaultproperties
 {
-	SnapToTile = true;
+	SnapToTile = false;
 }
