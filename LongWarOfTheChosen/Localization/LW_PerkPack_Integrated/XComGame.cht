@@ -811,6 +811,10 @@ LocHelpText="用<Ability:BOUND_WEAPON_NAME>擊殺一名位於低處的敵人將�
 LocFlyOverText="死神天降"
 LocPromotionPopupText="<Bullet/> 死神天降與槍托配件的搭配效果良好，或是簡單地讓士兵更具移動力。<br/><Bullet/> 同時會減少狙擊步槍和維克托步槍<Ability:DFA_RANGE_PENALTY_NEGATION_MODIFIER>%的遠距離射程懲罰。<br/><Bullet/> 雙發快射的第一發射擊殺死敵人時不會觸發死神天降。<br/><Bullet/> 一回合只能觸發一次。"
 
+[SteadyHands X2AbilityTemplate]
+LocFriendlyName="穩手"
+LocPromotionPopupText="<Bullet/>\"穩手\"加成不會隨回合數疊加。<br/><Bullet/>\"穩手\"進一步強調了尋找視野良好的高處狙擊點的必要性。<br/>"
+
 [XComGame.Implacable X2AbilityTemplate]
 [Implacable X2AbilityTemplate]
 LocFriendlyName="難以平息"

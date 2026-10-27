@@ -519,7 +519,7 @@ LocFriendlyName="超級炸藥"
 LocLongDescription="你的榴彈和火箭能夠造成暴擊傷害（<Ability:BIGGESTBOOMSCHANCE/>%幾率+<Ability:BIGGESTBOOMSDAMAGE/>傷害）。"
 LocHelpText="你的榴彈、火箭和微型飛彈能夠造成暴擊傷害。"
 LocFlyOverText="超級炸藥"
-LocPromotionPopupText="<Bullet/> 榴彈、火箭和MEC微型飛彈能夠造成暴擊傷害（<Ability:BIGGESTBOOMSCHANCE/>%幾率+<Ability:BIGGESTBOOMSDAMAGE/>傷害）。<br/><Bullet/> <Ability:BIGGESTBOOMSCHANCE/>% 暴擊幾率不受其他暴擊率修正的影響。<br/> <Bullet/> 不適用於非傷害型榴彈或是EMP火箭或是掩體剋星能力。<br/><Bullet/> 榴彈造成暴擊傷害後，其施加的持續性傷害也會增加1點，例如火焰的燒傷。"
+LocPromotionPopupText="<Bullet/> 榴彈、火箭和MEC微型飛彈能夠造成暴擊傷害（<Ability:BIGGESTBOOMSCHANCE/>%幾率+<Ability:BIGGESTBOOMSDAMAGE/>傷害）。<br/><Bullet/> <Ability:BIGGESTBOOMSCHANCE/>% 暴擊幾率不受其他暴擊率修正的影響。<br/> <Bullet/> 不適用於非傷害型榴彈或是EMP火箭或是掩體剋星能力。"
 
 [Shellshock_LW X2AbilityTemplate]
 LocFriendlyName="彈震"
@@ -7496,6 +7496,18 @@ LocFriendlyName="電弧波"
 LocLongDescription="撕裂斬會在攻擊方向產生一個心靈能量波。傷害隨拳刃等級增加。"
 LocHelpText="撕裂斬會在攻擊方向產生一個心靈能量波。"
 LocPromotionPopupText="<Bullet/> 電弧波不會影響撕裂斬的原始目標。<br/><Bullet/> 電弧波隨著拳刃等級造成的傷害為4/7/10 。<br/><Bullet/> 電弧波在環境物體中傳播。<br/>"
+
+[Momentum X2AbilityTemplate]
+LocFriendlyName="氣勢"
+LocLongDescription="使用撕裂斬後，額外獲得一次氣勢行動點。"
+LocHelpText="使用撕裂斬後每回合追加一次氣勢行動點。"
+LocFlyOverText="氣勢"
+
+[MomentumPassive X2AbilityTemplate]
+LocFriendlyName="氣勢"
+LocLongDescription="使用撕裂斬後，額外獲得一次氣勢行動點。"
+LocHelpText="使用撕裂斬後每回合追加一次氣勢行動點。"
+LocFlyOverText="氣勢"
 
 [IonicStorm X2AbilityTemplate]
 LocFriendlyName="離子風暴"
