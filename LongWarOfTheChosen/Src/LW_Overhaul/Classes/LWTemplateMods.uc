@@ -1046,6 +1046,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	local X2AbilityMultiTarget_Cone			ConeMultiTarget;
 	local X2AbilityCooldown_AllInstances 	AllInstancesCooldown;
 	local X2Effect_LWCoveringFireIgnoreCover CoveringFireEffect;
+	local X2Effect_TracerRounds_LW			TracerRoundsEffect;
 
 	// WOTC TODO: Trying this out. Should be put somewhere more appropriate.
 	if (Template.DataName == 'ReflexShotModifier')
@@ -2069,6 +2070,25 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	if (Template.DataName == 'SkullOuch')
 	{
 		Template.BuildNewGameStateFn = SkullOuch_BuildGameState;
+	}
+
+	if (Template.DataName == 'TracerRounds')
+	{
+		for (k = Template.AbilityShooterEffects.length - 1; k >= 0; k--)
+		{
+			if (Template.AbilityShooterEffects[k].IsA ('X2Effect_TracerRounds'))
+			{
+				`LWTrace("Patching Ability TracerRounds");
+				TracerRoundsEffect = new class'X2Effect_TracerRounds_LW'(Template.AbilityShooterEffects[k]);
+				TracerRoundsEffect.BuildPersistentEffect(1, true, false, false);
+				TracerRoundsEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, false);
+				
+				TracerRoundsEffect.HoloTargetEffectNames.AddItem(class'X2Effect_LWHolotarget'.default.EffectName);
+				TracerRoundsEffect.HoloTargetEffectNames.AddItem(class'X2Effect_Holotarget'.default.EffectName);
+			
+				Template.AbilityShooterEffects[k] = TracerRoundsEffect;
+			}
+		}
 	}
 }
 

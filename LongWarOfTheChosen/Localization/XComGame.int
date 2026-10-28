@@ -926,8 +926,8 @@ LocHelpText="Your shots pierce <Ability:APROUNDSPIERCEBONUS> armor."
 [Tracer_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Tracer Rounds"
 LocFlyOverText="Tracer Rounds"
-LocLongDescription="Your shots have +<Ability:TRACERROUNDSAIMBONUS> aim."
-LocHelpText="Your shots have +<Ability:TRACERROUNDSAIMBONUS> aim."
+LocLongDescription="Your shots have +<Ability:TRACERROUNDSAIMBONUS> aim and +<Ability:TRACER_HOLO_AIM_BONUS> additional aim against holotargeted units."
+LocHelpText="Your shots have +<Ability:TRACERROUNDSAIMBONUS> aim and +<Ability:TRACER_HOLO_AIM_BONUS> additional aim against holotargeted units."
 
 [Talon_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Talon Rounds"
@@ -3859,6 +3859,12 @@ Summary="This ammo design will release a bloom of shards upon impact, removing e
 [TracerRoundsProject X2TechTemplate]
 DisplayName="Tracer Rounds"
 Summary="This specialized smart ammo is designed to add to the shooter's aim when equipped."
+
+[TracerRounds X2AmmoTemplate]
+FriendlyName="Tracer Rounds"
+FriendlyNamePlural="Tracer Rounds"
+BriefSummary="Containing high tech \"smart rounds\" that relay detailed tracking data back to the shooter when fired, this specialized ammo adds +<Ability:TRACERROUNDSAIMBONUS/> to the shooter's aim and +<Ability:TRACER_HOLO_AIM_BONUS> additional aim against holotargeted units when equipped."
+TacticalText="<Bullet/>Tracer rounds grant bonus aim to a soldier when equipped.<br>"
 
 [VenomRoundsProject X2TechTemplate]
 DisplayName="Venom Rounds"

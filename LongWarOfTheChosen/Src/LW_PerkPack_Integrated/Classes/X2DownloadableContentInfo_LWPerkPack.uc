@@ -701,6 +701,9 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 			}
 			OutString = class'XGLocalizedData'.default.StaffTypeNames[eStaff_Soldier];
 			return true;
+		case 'TRACER_HOLO_AIM_BONUS':
+			Outstring = string(class'X2Effect_TracerRounds_LW'.default.HoloAimMod);
+			return true;
 		default:
 			return false;
 	}
