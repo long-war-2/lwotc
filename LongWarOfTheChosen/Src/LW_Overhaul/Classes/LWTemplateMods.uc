@@ -2076,7 +2076,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	{
 		for (k = Template.AbilityShooterEffects.length - 1; k >= 0; k--)
 		{
-			if (Template.AbilityShooterEffects[k].IsA ('X2Effect_TracerRounds'))
+			if (Template.AbilityShooterEffects[k].Class == class'X2Effect_TracerRounds')
 			{
 				`LWTrace("Patching Ability TracerRounds");
 				TracerRoundsEffect = new class'X2Effect_TracerRounds_LW'(Template.AbilityShooterEffects[k]);
