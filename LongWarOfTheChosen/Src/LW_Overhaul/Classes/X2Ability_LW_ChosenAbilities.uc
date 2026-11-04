@@ -171,7 +171,7 @@ static function X2AbilityTemplate CreateWarlockReaction()
 	Trigger = new class'X2AbilityTrigger_EventListener';
 	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
 	Trigger.ListenerData.EventID = 'UnitTakeEffectDamage';
-	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	Trigger.ListenerData.EventFn = OncePerSequenceListener;
 	Trigger.ListenerData.Filter = eFilter_Unit;
 	Trigger.ListenerData.Priority = 2;
 	Template.AbilityTriggers.AddItem(Trigger);
@@ -245,7 +245,7 @@ static function X2AbilityTemplate CreateAssassinReaction()
 	Trigger = new class'X2AbilityTrigger_EventListener';
 	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
 	Trigger.ListenerData.EventID = 'UnitTakeEffectDamage';
-	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	Trigger.ListenerData.EventFn = OncePerSequenceListener;
 	Trigger.ListenerData.Filter = eFilter_Unit;
 	Trigger.ListenerData.Priority = 2;
 	Template.AbilityTriggers.AddItem(Trigger);
@@ -315,7 +315,7 @@ static function X2AbilityTemplate CreateHunterReaction()
 	Trigger = new class'X2AbilityTrigger_EventListener';
 	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
 	Trigger.ListenerData.EventID = 'UnitTakeEffectDamage';
-	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	Trigger.ListenerData.EventFn = OncePerSequenceListener;
 	Trigger.ListenerData.Filter = eFilter_Unit;
 	Trigger.ListenerData.Priority = 2;
 	Template.AbilityTriggers.AddItem(Trigger);
@@ -347,6 +347,37 @@ static function X2AbilityTemplate CreateHunterReaction()
 	Template.AdditionalAbilities.AddItem('HunterPrimeReactionPassive');
 
 	return Template;
+}
+
+static function EventListenerReturn OncePerSequenceListener(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+    local XComGameState_Ability AbilityState;
+    local XComGameState_Unit UnitState;
+    local XComGameStateContext DamageContext;
+    local UnitValue LastChainIndexBTStart;
+    local bool bHasLastChain;
+
+    AbilityState = XComGameState_Ability(CallbackData);
+    if (AbilityState == none) {
+        return ELR_NoInterrupt;
+    }
+
+    DamageContext = GameState.GetContext();
+    UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(AbilityState.OwnerStateObject.ObjectID));
+
+    bHasLastChain = UnitState.GetUnitValue('LastChainIndexBTStart', LastChainIndexBTStart);
+
+    if (DamageContext.EventChainStartIndex != INDEX_NONE
+        && bHasLastChain
+        && int(LastChainIndexBTStart.fValue) == DamageContext.EventChainStartIndex) {
+        `LOG("[OncePerSequenceListener] skip: tree already started from chain" @ DamageContext.EventChainStartIndex @ "history" @ GameState.HistoryIndex);
+        return ELR_NoInterrupt;
+    }
+
+    `LOG("[OncePerSequenceListener] react: chain" @ DamageContext.EventChainStartIndex @ "history" @ GameState.HistoryIndex);
+
+    AbilityState.AbilityTriggerAgainstSingleTarget(AbilityState.OwnerStateObject, false);
+    return ELR_NoInterrupt;
 }
 
 static function X2AbilityTemplate WarlockPrimeReactionPassive()
