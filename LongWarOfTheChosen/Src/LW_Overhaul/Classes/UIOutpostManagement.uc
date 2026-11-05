@@ -28,6 +28,9 @@ var localized string m_strResistanceMecs;
 var localized string m_strProhibited;
 var localized string m_strCannotChangeLiaisonTitle;
 var localized string m_strCannotChangeLiaison;
+var localized string m_strMarkRebelsButton;
+var localized string m_strMarkRebelsTitle;
+var localized string m_strMarkRebelsInfo;
 
 var localized string m_strIncomeIntel;
 var localized string m_strIncomeSupply;
@@ -49,6 +52,7 @@ var UIButton LiaisonButton;
 var UIButton LiaisonLoadoutButton;
 var UIImage LiaisonImage;
 var UIText LiaisonName;
+var UIButton MarkRebelsButton;
 
 var UIScrollingText RegionalInfo;
 var UIScrollingText ResistanceMecs;
@@ -707,6 +711,71 @@ simulated function UpdateList()
         //Alternate background lines
         if (i % 2 == 0 ) { ListItem.BG.Show(); }
     }
+
+	if (CachedRebels.Length > 0)
+	{
+		MarkRebelsButton = UIButton(List.CreateItem(class'UIButton'));
+		MarkRebelsButton.InitButton(,m_strMarkRebelsButton, OnMarkRebelsButtonClicked);
+		MarkRebelsButton.SetResizeToText(false);
+		MarkRebelsButton.SetSize(HeaderPanel.Width * 0.3, (`ISCONTROLLERACTIVE) ? HEADER_BUTTON_HEIGHT_CTRL : HEADER_BUTTON_HEIGHT_MK);
+		MarkRebelsButton.SetPosition(MarkRebelsButton.X + (List.Width / 2) - (MarkRebelsButton.Width / 2), MarkRebelsButton.Y + 15);
+	}
+}
+
+function OnMarkRebelsButtonClicked(UIButton Button)
+{
+	local TDialogueBoxData DialogData;
+
+	DialogData.eType = eDialog_Warning;
+	DialogData.strTitle = m_strMarkRebelsTitle;
+	DialogData.strText = m_strMarkRebelsInfo;
+	DialogData.strAccept = class'UIDialogueBox'.default.m_strDefaultAcceptLabel;
+	DialogData.strCancel = class'UIDialogueBox'.default.m_strDefaultCancelLabel;
+	DialogData.fnCallbackEx = MarkRebelsDialogCallback;
+	Movie.Pres.UIRaiseDialog(DialogData);
+	return;
+}
+
+
+function MarkRebelsDialogCallback(Name eAction, UICallbackData xUserData)
+{
+	local int					i;
+	local XComGameStateHistory	History;
+	local XComGameState_Unit	UnitState;
+	local XComGameState			NewGameState;
+	local UnitValue				vUnitValue;
+	
+	if (eAction == 'eUIAction_Accept')
+	{
+		History = `XCOMHISTORY;
+		for (i = 0; i < CachedRebels.Length; i++)
+		{
+			UnitState = XComGameState_Unit(History.GetGameStateForObjectID(CachedRebels[i].Unit.ObjectID));
+			if (!UnitState.GetUnitValue(class'X2EventListener_Missions'.default.IDConfirmedUnitValueName, vUnitValue))
+			{
+				if (NewGameState == none)
+				{
+					NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Marking rebels as trusted");
+				}
+				UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(UnitState.Class, UnitState.ObjectID));
+				UnitState.SetUnitFloatValue(class'X2EventListener_Missions'.default.IDConfirmedUnitValueName, 0, eCleanup_Never);
+			}
+		}
+
+		if (NewGameState != none)
+		{
+			if (`GAMERULES != none)
+			{
+				`GAMERULES.SubmitGameState(NewGameState);
+			}
+			else
+			{
+				`XCOMHISTORY.AddGameStateToHistory(NewGameState);
+			}
+
+			RefreshData();
+		}
+	}
 }
 
 simulated function RefreshNavHelp()
