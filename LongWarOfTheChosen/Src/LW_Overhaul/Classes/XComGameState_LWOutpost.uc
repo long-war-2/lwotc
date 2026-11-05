@@ -747,7 +747,9 @@ function bool UpdatePostMission(XComGameState_MissionSite MissionSite, XComGameS
 			for (i = 0; i < RendezvousMission.CachedRebels.Length; i++)
 			{
 				Unit = XComGameState_Unit(History.GetGameStateForObjectID(RendezvousMission.CachedRebels[i].Unit.ObjectID));
-				if (Unit != none && !Unit.GetUnitValue(class'X2EventListener_Missions'.default.IDConfirmedUnitValueName, vUnitValue))
+				if (Unit != none
+					&& (!Unit.GetUnitValue(class'X2EventListener_Missions'.default.IDConfirmedUnitValueName, vUnitValue)
+						|| vUnitValue.fValue < 1))
 				{
 					Unit = XComGameState_Unit(NewGameState.ModifyStateObject(Unit.Class, Unit.ObjectID));
 					`LWTRACE("Rebel" @ Unit.GetFullName() @ "cleared: marking identity as confirmed.");

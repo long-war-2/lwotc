@@ -2864,7 +2864,9 @@ static function OnRendezvousExpired (XComGameState_LWAlienActivity ActivityState
 			for (k = 0; k < RendezvousState.CachedRebels.Length; k++)
 			{
 				RebelState = XComGameState_Unit(History.GetGameStateForObjectID(RendezvousState.CachedRebels[k].Unit.ObjectID));
-				if (RebelState != none && !RebelState.GetUnitValue(class'X2EventListener_Missions'.default.IDConfirmedUnitValueName, vUnitValue))
+				if (RebelState != none 
+					&& (!RebelState.GetUnitValue(class'X2EventListener_Missions'.default.IDConfirmedUnitValueName, vUnitValue)
+						|| vUnitValue.fValue < 1))
 				{
 					RebelState = XComGameState_Unit(NewGameState.ModifyStateObject(RebelState.Class, RebelState.ObjectID));
 					`LWTRACE("Rebel" @ RebelState.GetFullName() @ "cleared: marking identity as confirmed.");
