@@ -54,6 +54,40 @@ static function int GetItemWeightForUnit(XComGameState_Unit UnitState, optional 
     return Weight;
 }
 
+static function int GetIgnoredItemWeightForUnit(XComGameState_Unit UnitState, optional XComGameState CheckGameState)
+{
+    local array<XComGameState_Item> CurrentInventory;
+    local XComGameState_Item        InventoryItem;
+    local X2EquipmentTemplate       EquipmentTemplate;
+    local int                       Weight, Index;
+
+    CurrentInventory = UnitState.GetAllInventoryItems(CheckGameState);
+    foreach CurrentInventory(InventoryItem)
+    {
+        if (default.SlotsToSkip.Find(InventoryItem.InventorySlot) != INDEX_NONE)
+        {
+            EquipmentTemplate = X2EquipmentTemplate(InventoryItem.GetMyTemplate());
+            if (EquipmentTemplate != none)
+            {
+                if (EquipmentTemplate.Abilities.Find(default.WeightAbilityName) != INDEX_NONE)
+                {
+                    Index = class'LWTemplateMods'.default.ItemTable.Find('ItemTemplateName', EquipmentTemplate.DataName);
+                    if (Index != INDEX_NONE)
+                    {
+                        Weight += class'LWTemplateMods'.default.ItemTable[Index].Weight;
+                    }
+                    else
+                    {
+                        Weight++;
+                    }
+                }
+            }
+        }
+    }
+
+    return Weight;
+}
+
 defaultproperties
 {
     EffectName = "SmallItemWeight"
