@@ -302,6 +302,7 @@ static event OnPostTemplatesCreated()
 	class'X2Ability_PerkPackAbilitySet2'.static.AddEffectsToGrenades();
 	class'XComGameState_LWToolboxOptions'.static.UpdateRewardSoldierTemplates();
 	EditPlantBombAbility();
+	class'X2LWMoveThenActFix'.static.PatchTemplates();
 }
 
 // Borrowed from Xynamek / Prototype Armory code
