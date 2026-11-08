@@ -725,6 +725,12 @@ function GetAdditionalHitModifiers_CH(XComGameState_Ability kAbility, AvailableT
 		// StandardAim (with direct fire) will require visibility info between source and target (to check cover). 
 			if (`TACTICALRULES.VisibilityMgr.GetVisibilityInfo(UnitState.ObjectID, TargetState.ObjectID, VisInfo))
 			{	
+				// Issue #1540 - check if we're really considered "in cover"
+				if(!bMeleeAttack)
+				{
+					class'CHHelpers'.static.GetCDO().TriggerOverrideCoverLevel(UnitState, TargetState, VisInfo, self);
+				}
+
 				if (UnitState.CanFlank() && TargetState.GetMyTemplate().bCanTakeCover && VisInfo.TargetCover == CT_None)
 					bFlanking = true;
 				if (VisInfo.bClearLOS && !VisInfo.bVisibleGameplay)
