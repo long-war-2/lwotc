@@ -2653,6 +2653,8 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
         Template.AddTargetEffect(StatChangeEffect);
     }
 
+    Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
+
     Template.bIsASuppressionEffect = true;
     // Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
     Template.ActivationSpeech = 'Suppressing';
