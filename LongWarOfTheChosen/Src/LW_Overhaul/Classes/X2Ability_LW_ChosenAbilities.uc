@@ -496,7 +496,7 @@ static function X2AbilityTemplate CreateShieldAlly(name Templatename, int Shield
 {
 	local X2AbilityTemplate Template;
 	local X2AbilityCost_ActionPoints ActionPointCost;
-	local X2AbilityCooldown_LocalAndGlobal Cooldown;
+	local X2AbilityCooldown Cooldown;
 	local X2Condition_UnitProperty TargetCondition;
 	local array<name> SkipExclusions;
 	local X2Effect_PersistentStatChange ShieldedEffect;
@@ -519,9 +519,8 @@ static function X2AbilityTemplate CreateShieldAlly(name Templatename, int Shield
 	ActionPointCost.bfreeCost = true;
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
-	Cooldown = new class'X2AbilityCooldown_LocalAndGlobal';
+	Cooldown = new class'X2AbilityCooldown';
 	Cooldown.iNumTurns = default.COOLDOWN_SHIELD_ALLY;
-	Cooldown.NumGlobalTurns = default.COOLDOWN_SHIELD_ALLY;
 	Template.AbilityCooldown = Cooldown;
 
 	Template.AbilityToHitCalc = default.Deadeye;
