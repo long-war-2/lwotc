@@ -7,88 +7,32 @@
 //-----------------------------------------------------------
 // Used by the visualizer system to control a Visualization Actor
 //-----------------------------------------------------------
-class X2Action_Fire_Flamethrower_LW extends X2Action_Fire_Flamethrower config(GameCore);
+class X2Action_Fire_Flamethrower_LW extends X2Action_Fire_Flamethrower;
 
-// var config string SecondaryFire_ParticleEffectPath;
-// var config float LengthUpdateSpeed;
-// var config float SweepDuration;
-// var config float FireChance_Level1, FireChance_Level2, FireChance_Level3;
-// var config array<Name> ParticleSystemsForLength;
+var config bool bLog;
 
-// var X2AbilityMultiTarget_Cone coneTemplate;
-// var float ConeLength, ConeWidth;
+// Every time I see private vars in the action classes, a piece of me dies
+var protected bool      BeginAimingAnim2;
+var protected bool      EndAimingAnim2;
 
-// var Vector StartLocation, EndLocation;
-// var Vector UnitDir, ConeDir;
+var protected float     CurrentDuration;
 
-// var Vector SweepEndLocation_Begin, SweepEndLocation_End;
-// var float ArcDelta, ConeAngle;
+var protected float     CurrentFlameLength2;
+var protected float     TargetFlameLength2;
+var protected bool      bWaitingToFire2;
 
+var protected array<StateObjectReference> SignaledTracks;
 
-var private bool beginAimingAnim_LW; //need to know when aiming has occurred and is finished
-var private bool endAimingAnim_LW;
-
-var private float currDuration_LW;
-
-// var XComGameState_Ability AbilityState;
-// var array<TTile> SecondaryTiles;
-
-var private float CurrentFlameLength_LW;
-var private float TargetFlameLength_LW;
-var private bool bWaitingToFire_LW;
-
-var private array<StateObjectReference> alreadySignaledTracks_LW;
-
-var private float AimZOffset_LW;
-
-function bool FindTrack(StateObjectReference find)
+function bool FindTrack(StateObjectReference TargetRef)
 {
-    local int i;
-    for (i = 0; i < alreadySignaledTracks_LW.Length; i++)
-    {
-        if (find == alreadySignaledTracks_LW[i])
-        {
-            return true;
-        }
-    }
-
-    return false;
+    return SignaledTracks.Find('ObjectID', TargetRef.ObjectID) != INDEX_NONE;
 }
-
-function bool FindTile(TTile tile, out array<TTile> findArray)
-{
-    local TTile iter;
-    foreach findArray(iter)
-    {
-        if (iter == tile)
-        {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-function bool FindSameXYTile(TTile tile, out array<TTile> findArray)
-{
-    local TTile iter;
-    foreach findArray(iter)
-    {
-        if (iter.X == tile.X && iter.Y == tile.Y)
-        {
-            return true;
-        }
-    }
-
-    return false;
-}
-
 
 function Init()
 {
-    local Vector TempDir;
     local XComWorldData WorldData;
-    local vector ShootAtLocation;
+    local Vector ShootAtLocation;
+    local float AimZOffset2;
 
     super(X2Action_Fire).Init();
 
@@ -96,12 +40,11 @@ function Init()
 
     AbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(AbilityContext.InputContext.AbilityRef.ObjectID));
 
-    if(ClassIsChildOf(AbilityState.GetMyTemplate().TargetingMethod, class'X2TargetingMethod_Cone'))
+    ConeTemplate = X2AbilityMultiTarget_Cone(AbilityState.GetMyTemplate().AbilityMultiTargetStyle);
+    if (ConeTemplate != none)
     {
-        coneTemplate = X2AbilityMultiTarget_Cone(AbilityState.GetMyTemplate().AbilityMultiTargetStyle);
-
-        ConeLength = coneTemplate.GetConeLength(AbilityState);
-        ConeWidth = coneTemplate.GetConeEndDiameter(AbilityState) * 1.35;
+        ConeLength = ConeTemplate.GetConeLength(AbilityState);
+        ConeWidth = ConeTemplate.GetConeEndDiameter(AbilityState) * 1.35;
 
         StartLocation = UnitPawn.Location;
 
@@ -109,46 +52,33 @@ function Init()
 
         // Update Z
         ShootAtLocation = Unit.GetShootAtLocation(eHit_Success, Unit.GetVisualizedStateReference());
-        AimZOffset_LW = ShootAtLocation.Z - WorldData.GetFloorZForPosition(Unit.Location, true);
-        EndLocation.Z = WorldData.GetFloorZForPosition(EndLocation, true) + AimZOffset_LW;
+        AimZOffset2 = ShootAtLocation.Z - WorldData.GetFloorZForPosition(Unit.Location, true);
+        EndLocation.Z = WorldData.GetFloorZForPosition(EndLocation, true) + AimZOffset2;
 
         StartLocation.Z = EndLocation.Z;
-        
+
         ConeDir = EndLocation - StartLocation;
         UnitDir = Normal(ConeDir);
 
         ConeAngle = ConeWidth / ConeLength;
-
+        `LOG("ConeAngle = " $ ConeAngle, default.bLog, default.Class.Name);
         ArcDelta = ConeAngle / SweepDuration;
-
-        TempDir.x = UnitDir.x * cos(-ConeAngle / 2) - UnitDir.y * sin(-ConeAngle / 2);
-        TempDir.y = UnitDir.x * sin(-ConeAngle / 2) + UnitDir.y * cos(-ConeAngle / 2);
-        TempDir.z = UnitDir.z;
-
-        SweepEndLocation_Begin = StartLocation + (TempDir * ConeLength);
-
-        TempDir.x = UnitDir.x * cos(ConeAngle / 2) - UnitDir.y * sin(ConeAngle / 2);
-        TempDir.y = UnitDir.x * sin(ConeAngle / 2) + UnitDir.y * cos(ConeAngle / 2);
-        TempDir.z = UnitDir.z;
-
-        SweepEndLocation_End = StartLocation + (TempDir * ConeLength);
+        `LOG("ArcDelta = " $ ArcDelta, default.bLog, default.Class.Name);
 
         SecondaryTiles = AbilityContext.InputContext.VisibleNeighborTiles;
-
-//      `SHAPEMGR.DrawSphere(EndLocation, vect(15, 15, 15), MakeLinearColor(1, 0, 0, 1), true);
     }
 
-    currDuration_LW = 0.0;
-    beginAimingAnim_LW = false;
-    endAimingAnim_LW = false;
+    CurrentDuration = 0.0;
+    BeginAimingAnim2 = false;
+    EndAimingAnim2 = false;
 
-    CurrentFlameLength_LW = -1.0;
-    TargetFlameLength_LW = -1.0;
+    CurrentFlameLength2 = -1.0;
+    TargetFlameLength2 = -1.0;
 }
 
 function AddProjectileVolley(X2UnifiedProjectile NewProjectile)
 {
-    bWaitingToFire_LW = false;
+    bWaitingToFire2 = false;
 }
 
 simulated state Executing
@@ -160,221 +90,182 @@ simulated state Executing
 
     simulated function UpdateAim(float DT)
     {
-        local ParticleSystemComponent p;
-        local int i;
-        local float angle;
-        local Vector TempDir, lineEndLoc;
-        local float length;
-        local TTile tile, tempTile;
-        local TTile iterTile;
-        local XComGameState_Unit targetObject;
-
-        local array<TTile> cornerTiles;
-
-        local StateObjectReference Target;
-        local XComGameState_EnvironmentDamage EnvironmentDamageEvent;
-        local XComGameState_InteractiveObject InteractiveObject;
-        local XComGameState_WorldEffectTileData WorldEffectTileData;
-        local array<X2Action> worldEffectFireActionArray;
-        local X2Action_UpdateWorldEffects_Fire worldEffectFireAction;
-        local X2Action_ApplyWeaponDamageToTerrain terrainDamage;
-        local Vector SetParticleVector;
-
-        local array<TTile> lineTiles;
-
-        local vector HitNormal;
-        local Actor HitActor;
-
+        local XComWorldData     WorldData;
         local XComGameStateVisualizationMgr VisMgr;
+        local float             AimAngle;
+        local Vector            TempDir;
 
+        local Vector            HitNormal;
+        local Actor             HitActor;
+
+        local TTile             Tile, TempTile, IterTile;
+        local Vector            LineEndLoc;
+        local array<TTile>      LineTiles, CornerTiles;
+
+        local float                     LineLength;
+        local Vector                    SetParticleVector;
+        local ParticleSystemComponent   p;
+
+        local StateObjectReference                  TargetRef;
+        local XComGameState_Unit                    TargetUnitState;
+        local XComGameState_EnvironmentDamage       EnvironmentDamageEvent;
+        local XComGameState_InteractiveObject       InteractiveObject;
+        local XComGameState_WorldEffectTileData     WorldEffectTileData;
+        local array<X2Action>                       WorldEffectFireActionArray;
+        local X2Action_UpdateWorldEffects_Fire      WorldEffectFireAction;
+        local X2Action_ApplyWeaponDamageToTerrain   TerrainDamage;
+
+        local int i;
+
+        WorldData = `XWORLD;
         VisMgr = `XCOMVISUALIZATIONMGR;
 
-        //find endlocation of target arc
-        angle = ArcDelta * currDuration_LW;
-        angle = angle - (ConeAngle / 2);
+        AimAngle = ArcDelta * CurrentDuration;
+        AimAngle = AimAngle - (ConeAngle / 2);
 
-        TempDir.x = UnitDir.x * cos(angle) - UnitDir.y * sin(angle);
-        TempDir.y = UnitDir.x * sin(angle) + UnitDir.y * cos(angle);
-        TempDir.z = UnitDir.z;
+        TempDir.X = UnitDir.X * cos(AimAngle) - UnitDir.Y * sin(AimAngle);
+        TempDir.Y = UnitDir.X * sin(AimAngle) + UnitDir.Y * cos(AimAngle);
+        TempDir.Z = UnitDir.Z;
 
         EndLocation = StartLocation + (TempDir * ConeLength);
 
-        //Modify EndLocation based on any hits against the world
-        `XWORLD.WorldTrace(StartLocation, EndLocation, EndLocation, HitNormal, HitActor, 4);
+        WorldData.WorldTrace(StartLocation, EndLocation, EndLocation, HitNormal, HitActor, 4);
 
-//      `SHAPEMGR.DrawLine(StartLocation, EndLocation, 6, MakeLinearColor(1.0f, 0.5f, 0.5f, 0.7f));
-//      `SHAPEMGR.DrawLine(StartLocation, SweepEndLocation_Begin, 6, MakeLinearColor(0.0f, 0.0f, 1.0f, 1.0f));
-//      `SHAPEMGR.DrawLine(StartLocation, SweepEndLocation_End, 6, MakeLinearColor(1.0f, 1.0f, 0.0f, 1.0f));
-//      `SHAPEMGR.DrawSphere(EndLocation, Vect(10, 10, 10), MakeLinearColor(0.0f, 0.0f, 1.0f, 1.0f));
-
-        if( UnitPawn.AimEnabled )
+        if (UnitPawn.AimEnabled)
         {
-            if( !beginAimingAnim_LW )
+            if (!BeginAimingAnim2)
             {
-                beginAimingAnim_LW = true;
+                BeginAimingAnim2 = true;
             }
 
-            tile = `XWORLD.GetTileCoordinatesFromPosition(EndLocation);
-
-            //find all the tiles in the current line of fire
-            tempTile = tile;
-            //tempTile.Z = 0;
-            lineTiles.AddItem(tempTile);
-            lineEndLoc = EndLocation;
-            while( VSize(lineEndLoc - StartLocation) > class'XComWorldData'.const.WORLD_StepSize )
+            Tile = WorldData.GetTileCoordinatesFromPosition(EndLocation);
+            TempTile = Tile;
+            LineTiles.AddItem(TempTile);
+            LineEndLoc = EndLocation;
+            while (VSize(LineEndLoc - StartLocation) > class'XComWorldData'.const.WORLD_StepSize)
             {
-                lineEndLoc -= (TempDir * class'XComWorldData'.const.WORLD_HalfStepSize);
-                tempTile = `XWORLD.GetTileCoordinatesFromPosition(lineEndLoc);
-                //tempTile.Z = 0;
-                if( FindTile(tempTile, lineTiles) == false )
+                LineEndLoc -= (TempDir * class'XComWorldData'.const.WORLD_HalfStepSize);
+                TempTile = WorldData.GetTileCoordinatesFromPosition(LineEndLoc);
+                if (!FindTile(TempTile, LineTiles))
                 {
-                    lineTiles.AddItem(tempTile);
+                    LineTiles.AddItem(TempTile);
                 }
             }
 
-            //find all the possible secondarytiles to the line of fire
-            cornerTiles.length = 0;
-            foreach lineTiles(iterTile)
+            CornerTiles.Length = 0;
+            foreach LineTiles(IterTile)
             {
-                tempTile = iterTile;
-                tempTile.X += 1;
-                if( FindTile(tempTile, SecondaryTiles) )
+                TempTile = IterTile;
+                TempTile.X += 1;
+                if (FindTile(TempTile, SecondaryTiles))
                 {
-                    cornerTiles.AddItem(tempTile);
-                    SecondaryTiles.RemoveItem(tempTile);
+                    CornerTiles.AddItem(TempTile);
+                    SecondaryTiles.RemoveItem(TempTile);
                 }
 
-                tempTile = iterTile;
-                tempTile.X -= 1;
-                if( FindTile(tempTile, SecondaryTiles) )
+                TempTile = IterTile;
+                TempTile.X -= 1;
+                if (FindTile(TempTile, SecondaryTiles))
                 {
-                    cornerTiles.AddItem(tempTile);
-                    SecondaryTiles.RemoveItem(tempTile);
+                    CornerTiles.AddItem(TempTile);
+                    SecondaryTiles.RemoveItem(TempTile);
                 }
 
-                tempTile = iterTile;
-                tempTile.Y += 1;
-                if( FindTile(tempTile, SecondaryTiles) )
+                TempTile = IterTile;
+                TempTile.Y += 1;
+                if (FindTile(TempTile, SecondaryTiles))
                 {
-                    cornerTiles.AddItem(tempTile);
-                    SecondaryTiles.RemoveItem(tempTile);
+                    CornerTiles.AddItem(TempTile);
+                    SecondaryTiles.RemoveItem(TempTile);
                 }
 
-                tempTile = iterTile;
-                tempTile.Y -= 1;
-                if( FindTile(tempTile, SecondaryTiles) )
+                TempTile = IterTile;
+                TempTile.Y -= 1;
+                if (FindTile(TempTile, SecondaryTiles))
                 {
-                    cornerTiles.AddItem(tempTile);
-                    SecondaryTiles.RemoveItem(tempTile);
+                    CornerTiles.AddItem(TempTile);
+                    SecondaryTiles.RemoveItem(TempTile);
                 }
             }
 
-            //blend aim anim
-            //`log("Endlocation " @ EndLocation @ " angle : " @ angle @ " ConeAngle: " @ ConeAngle );
             UnitPawn.TargetLoc = EndLocation;
-
-//          `SHAPEMGR.DrawSphere(UnitPawn.TargetLoc, vect(15, 15, 15), MakeLinearColor(0, 1, 0, 1), true);
-//          `SHAPEMGR.DrawLine(StartLocation, EndLocation, 6, MakeLinearColor(1.0f, 0.5f, 0.5f, 0.7f));
         }
 
-        if( beginAimingAnim_LW && !UnitPawn.AimEnabled && !bWaitingToFire_LW )
+        if (BeginAimingAnim2 && !UnitPawn.AimEnabled && !bWaitingToFire2)
         {
-            endAimingAnim_LW = true;
+            EndAimingAnim2 = true;
         }
 
-        //foreach AbilityContext.InputContext.VisibleTargetedTiles(iterTile)
-        //{
-        //  //iterTile.Z = 92;
-        //  `SHAPEMGR.DrawTile(iterTile, 0, 255, 0);
-        //}
-        //foreach AbilityContext.InputContext.VisibleNeighborTiles(iterTile)
-        //{
-        //  iterTile.Z = 92;
-        //  `SHAPEMGR.DrawTile(iterTile, 0, 0, 255);
-        //}
-        //foreach CornerTiles(iterTile)
-        //{
-        //  iterTile.Z = 92;
-        //  `SHAPEMGR.DrawTile(iterTile, 0, 0, 255);
-        //}
-        //foreach lineTiles(iterTile)
-        //{
-        //  //iterTile.Z = 92;
-        //  `SHAPEMGR.DrawTile(iterTile, 0, 0, 5, 0.8 );
-        //}
+        LineLength = VSize(EndLocation - StartLocation);
 
-        length = VSize(EndLocation - StartLocation);
+        TargetFlameLength2 = LineLength;
 
-        TargetFlameLength_LW = length;
-
-        if( CurrentFlameLength_LW == -1.0 )
+        if (CurrentFlameLength2 == -1.0)
         {
-            CurrentFlameLength_LW = length;
+            CurrentFlameLength2 = LineLength;
         }
         else
         {
-            if( CurrentFlameLength_LW < TargetFlameLength_LW )
+            if (CurrentFlameLength2 < TargetFlameLength2)
             {
-                CurrentFlameLength_LW = Min(TargetFlameLength_LW, CurrentFlameLength_LW + (LengthUpdateSpeed / DT));
-
+                CurrentFlameLength2 = Min(TargetFlameLength2, CurrentFlameLength2 + (LengthUpdateSpeed / DT));
             }
-            else if( CurrentFlameLength_LW > TargetFlameLength_LW )
+            else if (CurrentFlameLength2 > TargetFlameLength2)
             {
-                CurrentFlameLength_LW = Max(TargetFlameLength_LW, CurrentFlameLength_LW - (LengthUpdateSpeed / DT));
+                CurrentFlameLength2 = Max(TargetFlameLength2, CurrentFlameLength2 - (LengthUpdateSpeed / DT));
             }
         }
 
-
-        SetParticleVector.X = CurrentFlameLength_LW;
-        SetParticleVector.Y = CurrentFlameLength_LW;
-        SetParticleVector.Z = CurrentFlameLength_LW;
+        SetParticleVector.X = CurrentFlameLength2;
+        SetParticleVector.Y = CurrentFlameLength2;
+        SetParticleVector.Z = CurrentFlameLength2;
 
         foreach UnitPawn.AllOwnedComponents(class'ParticleSystemComponent', p)
         {
-            if( ParticleSystemsForLength.Find(p.Template.Name) != INDEX_NONE )
+            if (ParticleSystemsForLength.Find(p.Template.Name) != INDEX_NONE)
             {
-                p.SetFloatParameter('Flamethrower_Length', CurrentFlameLength_LW);
+                p.SetFloatParameter('Flamethrower_Length', CurrentFlameLength2);
                 p.SetVectorParameter('Flamethrower_Length', SetParticleVector);
             }
         }
 
         //Force the "impact" of the flame to have a delay so that the jet has time to spread out visibly before we apply damage
-        if (currDuration_LW >= (SweepDuration * 0.35f))
+        if (CurrentDuration >= (SweepDuration * 0.35f))
         {
             //send intertract updates if the tiles are in line
-            foreach AbilityContext.InputContext.MultiTargets(Target)
+            foreach AbilityContext.InputContext.MultiTargets(TargetRef)
             {
-                targetObject = XComGameState_Unit(History.GetGameStateForObjectID(Target.ObjectID));
-                if (FindSameXYTile(targetObject.TileLocation, lineTiles) && (!FindTrack(Target)))
+                TargetUnitState = XComGameState_Unit(History.GetGameStateForObjectID(TargetRef.ObjectID));
+                if (FindSameXYTile(TargetUnitState.TileLocation, LineTiles) && (!FindTrack(TargetRef)))
                 {
-                    `XEVENTMGR.TriggerEvent('Visualizer_ProjectileHit', targetObject, self);
-                    alreadySignaledTracks_LW.AddItem(Target);
+                    `XEVENTMGR.TriggerEvent('Visualizer_ProjectileHit', TargetUnitState, self);
+                    SignaledTracks.AddItem(TargetRef);
                 }
             }
 
-            VisMgr.GetNodesOfType(VisMgr.VisualizationTree, class'X2Action_ApplyWeaponDamageToTerrain', worldEffectFireActionArray);
+            VisMgr.GetNodesOfType(VisMgr.VisualizationTree, class'X2Action_ApplyWeaponDamageToTerrain', WorldEffectFireActionArray);
 
             foreach VisualizeGameState.IterateByClassType(class'XComGameState_EnvironmentDamage', EnvironmentDamageEvent)
             {
-                Target = EnvironmentDamageEvent.GetReference();
-                if (!FindTrack(Target))
+                TargetRef = EnvironmentDamageEvent.GetReference();
+                if (!FindTrack(TargetRef))
                 {
                     `XEVENTMGR.TriggerEvent('Visualizer_WorldDamage', EnvironmentDamageEvent, self);
-                    alreadySignaledTracks_LW.AddItem(Target);
+                    SignaledTracks.AddItem(TargetRef);
                 }
 
-                for (i = 0; i < worldEffectFireActionArray.length; i++)
+                for (i = 0; i < WorldEffectFireActionArray.Length; i++)
                 {
-                    terrainDamage = X2Action_ApplyWeaponDamageToTerrain(worldEffectFireActionArray[i]);
-                    if (terrainDamage != none && terrainDamage.Metadata.StateObject_NewState.ObjectID == EnvironmentDamageEvent.ObjectID)
+                    TerrainDamage = X2Action_ApplyWeaponDamageToTerrain(WorldEffectFireActionArray[i]);
+                    if (TerrainDamage != none && TerrainDamage.Metadata.StateObject_NewState.ObjectID == EnvironmentDamageEvent.ObjectID)
                     {
-                        if (!endAimingAnim_LW)
+                        if (!EndAimingAnim2)
                         {
-                            terrainDamage.DoPartialTileUpdate(lineTiles);
+                            TerrainDamage.DoPartialTileUpdate(LineTiles);
                         }
                         else
                         {
-                            terrainDamage.FinishPartialTileUpdate();
+                            TerrainDamage.FinishPartialTileUpdate();
                         }
                     }
                 }
@@ -382,40 +273,40 @@ simulated state Executing
 
             foreach VisualizeGameState.IterateByClassType(class'XComGameState_InteractiveObject', InteractiveObject)
             {
-                Target = InteractiveObject.GetReference();
-                if (FindSameXYTile(InteractiveObject.TileLocation, lineTiles) && (!FindTrack(Target)))
+                TargetRef = InteractiveObject.GetReference();
+                if (FindSameXYTile(InteractiveObject.TileLocation, LineTiles) && !FindTrack(TargetRef))
                 {
                     `XEVENTMGR.TriggerEvent('Visualizer_ProjectileHit', InteractiveObject, self);
-                    alreadySignaledTracks_LW.AddItem(Target);
+                    SignaledTracks.AddItem(TargetRef);
                 }
             }
 
-            VisMgr.GetNodesOfType(VisMgr.VisualizationTree, class'X2Action_UpdateWorldEffects_Fire', worldEffectFireActionArray);
+            VisMgr.GetNodesOfType(VisMgr.VisualizationTree, class'X2Action_UpdateWorldEffects_Fire', WorldEffectFireActionArray);
 
             foreach VisualizeGameState.IterateByClassType(class'XComGameState_WorldEffectTileData', WorldEffectTileData)
             {
-                Target = WorldEffectTileData.GetReference();
-                if (worldEffectFireActionArray.length > 0 && beginAimingAnim_LW)
+                TargetRef = WorldEffectTileData.GetReference();
+                if (WorldEffectFireActionArray.Length > 0 && BeginAimingAnim2)
                 {
-                    for (i = 0; i < worldEffectFireActionArray.length; i++)
+                    for (i = 0; i < WorldEffectFireActionArray.Length; i++)
                     {
-                        worldEffectFireAction = X2Action_UpdateWorldEffects_Fire(worldEffectFireActionArray[i]);
-                        if (worldEffectFireAction != none && worldEffectFireAction.Metadata.StateObject_NewState.ObjectID == WorldEffectTileData.ObjectID)
+                        WorldEffectFireAction = X2Action_UpdateWorldEffects_Fire(WorldEffectFireActionArray[i]);
+                        if (WorldEffectFireAction != none && WorldEffectFireAction.Metadata.StateObject_NewState.ObjectID == WorldEffectTileData.ObjectID)
                         {
-                            if (!endAimingAnim_LW)
+                            if (!EndAimingAnim2)
                             {
-                                if (!FindTrack(Target))
+                                if (!FindTrack(TargetRef))
                                 {
-                                    worldEffectFireAction.BeginSyncWithOtherAction();
+                                    WorldEffectFireAction.BeginSyncWithOtherAction();
                                     `XEVENTMGR.TriggerEvent('Visualizer_TileData', WorldEffectTileData, self);
-                                    alreadySignaledTracks_LW.AddItem(Target);
+                                    SignaledTracks.AddItem(TargetRef);
                                 }
 
-                                worldEffectFireAction.SetActiveTiles(lineTiles);
+                                WorldEffectFireAction.SetActiveTiles(LineTiles);
                             }
                             else
                             {
-                                worldEffectFireAction.EndSyncWithOtherAction();
+                                WorldEffectFireAction.EndSyncWithOtherAction();
                             }
                         }
                     }
@@ -423,24 +314,21 @@ simulated state Executing
 
             }
 
-            //play the secondarytile effects
-            if (cornerTiles.length > 0)
+            if (CornerTiles.Length > 0)
             {
-                foreach cornerTiles(iterTile)
+                foreach CornerTiles(IterTile)
                 {
-                    WorldInfo.MyEmitterPool.SpawnEmitter(ParticleSystem(DynamicLoadObject(SecondaryFire_ParticleEffectPath, class'ParticleSystem')), `XWORLD.GetPositionFromTileCoordinates(iterTile));
-                    //`SHAPEMGR.DrawTile(iterTile, 155, 0, 250, 0.6);
+                    WorldInfo.MyEmitterPool.SpawnEmitter(ParticleSystem(DynamicLoadObject(SecondaryFire_ParticleEffectPath, class'ParticleSystem')), `XWORLD.GetPositionFromTileCoordinates(IterTile));
                 }
             }
         }
 
-        if( !bWaitingToFire_LW )
+        if (!bWaitingToFire2)
         {
-            //update tick
-            currDuration_LW += DT;
+            CurrentDuration += DT;
         }
 
-        if( endAimingAnim_LW && currDuration_LW >= SweepDuration )
+        if (EndAimingAnim2 && CurrentDuration >= SweepDuration)
         {
             CompleteAction();
         }
@@ -463,13 +351,13 @@ Begin:
     UnitPawn.EnableRMAInteractPhysics(true);
     FinishAnim(UnitPawn.GetAnimTreeController().PlayFullBodyDynamicAnim(AnimParams));
 
-    CompleteAction();   
+    CompleteAction();
 }
 
 DefaultProperties
 {
     NotifyTargetTimer = 0.75;
-    TimeoutSeconds = 10.0f; //Should eventually be an estimate of how long we will run
+    TimeoutSeconds = 10.0f; // Should eventually be an estimate of how long we will run
     bNotifyMultiTargetsAtOnce = true
-    bWaitingToFire_LW = true;  
+    bWaitingToFire2 = true;  
 }
