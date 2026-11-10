@@ -5482,6 +5482,12 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'DFA_RANGE_PENALTY_NEGATION_MODIFIER':
 			OutString = string(int(-1 * class'X2Effect_DeathFromAbove_LW'.default.DFA_RANGE_PENALTY_NEGATION_MODIFIER * 100));
 			return true;
+		case 'JUSTICE_HIT_BONUS':
+			Outstring = string(class'X2Ability_SkirmisherAbilitySet'.default.JUSTICE_HIT_BONUS);
+			return true;
+		case 'WRATH_HIT_BONUS':
+			Outstring = string(class'X2Ability_SkirmisherAbilitySet'.default.WRATH_HIT_BONUS);
+			return true;
 		default:
 			return false;
 	}
