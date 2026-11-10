@@ -764,7 +764,7 @@ m_strChosenLoot="(<XGParam:IntValue0/>) <XGParam:StrValue0/!ItemName/> Rewarded 
 
 [UISL_Shell_LWoTCVersion]
 strMessage_Title = "Long War Of The Chosen"
-strMessage_Header = "Long War Of The Chosen has been Updated!
+strMessage_Header = "Long War Of The Chosen has been Updated!"
 strMessage_Body = "Version 1.2.3 is now released. While not a full version, it still includes:<ul><li>Balance pass on the SPARK, with new armors, tweaked perk tree, Ablative returns, but can no longer be sent out wounded</li><li>A pile of new maps and map pieces, some of which will put you out of your comfort zone</li><li>Improved UI for the Outpost Management information</li><li>Lots of fixes for various crashes and other bugs, including the \"Vanishing Evac\" bug, a major Linux crash, and more</li></ul><br/>Check out the google doc linked on the Steam change notes, or visit the LWoTC discord for more information! <br> Note: All changes should be mid-campaign compatible. You may want to use the RespecSelectedSoldier command for updated SPARK tree."
 strDismiss_Button = "OK"
 

@@ -84,7 +84,7 @@ LocFriendlyName="Hit and Slither"
 LocFlyOverText="Hit and Slither"
 LocLongDescription="Once per turn, gain an additional move action after taking a standard shot at a flanked enemy with your primary weapon. "
 LocHelpText="Once per turn, gain an additional move action after taking a standard shot at a flanked enemy with your primary weapon."
-LocPromotionPopupText="<Bullet/> Once per turn, gain an additional move action after taking a standard shot at a flanked enemy with your primary weapon.<br/>
+LocPromotionPopupText="<Bullet/> Once per turn, gain an additional move action after taking a standard shot at a flanked enemy with your primary weapon.<br/>"
 
 [HitandRun X2AbilityTemplate]
 LocFriendlyName="Hit and Run"
@@ -286,7 +286,7 @@ LocFlyOverText="Trench Gun"
 ; LWOTC Needs Translation
 LocLongDescription="Special shot for primary-weapon shotguns only: Fire a short-range cone-based attack at nearby targets. Has a <Ability:SelfCooldown_LW/> turn cooldown."
 LocHelpText="Special shot for primary-weapon shotguns only: Fire a short-range cone-based attack at nearby targets. Has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocPromotionPopupText="<Bullet/> Special shot for primary-weapon shotguns only: Fire a short-range cone-based attack at nearby targets.<br/><Bullet/> Trench Gun has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Ability will not be available with other primary weapons.<br/><Bullet/> The shot will not penetrate heavy cover, so this ability is best used in flanking situations.<br/><Bullet/> Allies in the area of effect can take damage.<br/>
+LocPromotionPopupText="<Bullet/> Special shot for primary-weapon shotguns only: Fire a short-range cone-based attack at nearby targets.<br/><Bullet/> Trench Gun has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Ability will not be available with other primary weapons.<br/><Bullet/> The shot will not penetrate heavy cover, so this ability is best used in flanking situations.<br/><Bullet/> Allies in the area of effect can take damage.<br/>"
 ; End Translation
 
 ; LWOTC Needs Translation (2)
@@ -491,14 +491,14 @@ LocFriendlyName="Damage Control"
 LocFlyOverText="Damage Control"
 LocLongDescription="After taking damage, gain <Ability:DAMAGE_CONTROL_BONUS_ARMOR> armor through the end of the turn."
 LocHelpText="After taking damage, gain <Ability:DAMAGE_CONTROL_BONUS_ARMOR> armor through the end of the turn."
-LocPromotionPopupText="<Bullet/> Your armor hardens temporarily after an impact. After taking damage, gain <Ability:DAMAGE_CONTROL_BONUS_ARMOR> armor through the end of the next turn.
+LocPromotionPopupText="<Bullet/> Your armor hardens temporarily after an impact. After taking damage, gain <Ability:DAMAGE_CONTROL_BONUS_ARMOR> armor through the end of the next turn."
 
 [DamageControlPassive X2AbilityTemplate]
 LocFriendlyName="Damage Control"
 LocFlyOverText="Damage Control"
 LocLongDescription="After taking damage, gain <Ability:DAMAGE_CONTROL_BONUS_ARMOR> armor through the end of the turn."
 LocHelpText="After taking damage, gain <Ability:DAMAGE_CONTROL_BONUS_ARMOR> armor through the end of the turn."
-LocPromotionPopupText="<Bullet/> Your armor hardens temporarily after an impact. After taking damage, gain <Ability:DAMAGE_CONTROL_BONUS_ARMOR> armor through the end of the next turn.
+LocPromotionPopupText="<Bullet/> Your armor hardens temporarily after an impact. After taking damage, gain <Ability:DAMAGE_CONTROL_BONUS_ARMOR> armor through the end of the next turn."
 
 [Evasive X2AbilityTemplate]
 LocFriendlyName="Evasive"
@@ -888,7 +888,7 @@ LocFlyOverText="Formidable"
 ; LWOTC Needs Translation
 LocLongDescription="Your gear includes an extra layer of protection, granting <Ability:FORMIDABLE_ABLATIVE_HP/> bonus ablative hit points and <Ability:FORMIDABLE_EXPLOSIVES_DR/>% less damage from explosive attacks."
 LocHelpText="Gain bonus hit points and reduce explosive damage taken."
-LocPromotionPopupText="<Bullet/> Formidable reduces explosive damage taken by <Ability:FORMIDABLE_EXPLOSIVES_DR/>%.
+LocPromotionPopupText="<Bullet/> Formidable reduces explosive damage taken by <Ability:FORMIDABLE_EXPLOSIVES_DR/>%."
 ; End Translation
 
 ; Updated perk loc
@@ -933,7 +933,7 @@ LocFriendlyName="Volatile Mix"
 LocLongDescription="Your grenades' area of effect is increased by one tile."
 LocHelpText="Your grenades cover a greater area of effect."
 LocFlyOverText="Volatile Mix"
-LocPromotionPopupText="<Bullet/> Your grenades do regular and environmental damage in the expanded area of effect, and apply any additional effects there as well.
+LocPromotionPopupText="<Bullet/> Your grenades do regular and environmental damage in the expanded area of effect, and apply any additional effects there as well."
 
 [XComGame.Salvo X2AbilityTemplate]
 [Salvo X2AbilityTemplate]

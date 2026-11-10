@@ -34,18 +34,18 @@ LocPromotionPopupText="<Bullet/> Ajoute un effet de désorientation qui s'appliq
 
 [DisablingShot X2AbilityTemplate]
 LocFriendlyName="Tir neutralisant"
-LocLongDescription="Étourdit les ennemis à l'aide d'un tir précis. La durée de l'étourdissement augmente en cas de coup critique. Ce tir ne peut pas infliger de dégâts critiques."
-LocHelpText="Étourdit les ennemis à l'aide d'un tir précis. La durée de l'étourdissement augmente en cas de coup critique. Ce tir ne peut pas infliger de dégâts critiques."
+LocLongDescription="Effectue un tir qui inflige <Ability:DisablingShotDamagePenalty>% de dégâts en moins, mais étourdit s'il touche. Les coups critiques avec cette attaque n'infligent pas de dégâts supplémentaires, mais appliquent un étourdissement plus long."
+LocHelpText="Étourdit la cible pendant <Ability:DisablingShotStunActions> actions. Les coups critiques n'infligent pas de dégâts supplémentaires, mais prolongent l'étourdissement de <Ability:DisablingShotCritStunActions> actions."
 ; LWOTC translated (2)
-LocPromotionPopupText="<Bullet/> Étourdit les ennemis durant <Ability:DisablingShotStunActions/> action(s) si le tir touche (même s'il ne s'agit que d'une écorchure).<br/><Bullet/> En cas de coup critique, la cible sera étourdie durant <Ability:DisablingShotCritStunActions/> action(s) de plus, mais le tir n'infligera pas de dégâts critiques.<br/><Bullet/> Nécessite <Ability:SelfAmmoCost/> munition(s) et un temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Seuls les avatars et les zombies psi ne peuvent pas être étourdis."
+LocPromotionPopupText="<Bullet/> Étourdit la cible pendant <Ability:DisablingShotStunActions/> actions si le tir touche, même s'il ne s'agit que d'une écorchure.<br/><Bullet/> Étourdit pendant <Ability:DisablingShotCritStunActions/> actions de plus si le tir est critique, mais le tir n'inflige pas de dégâts critiques.<br/><Bullet/> Tir neutralisant nécessite <Ability:SelfAmmoCost/> munition(s) pour être utilisé.<br/><Bullet/> Tir neutralisant a un temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Tir neutralisant ne peut pas être utilisé contre les ennemis immunisés à l'étourdissement.<br/>"
 ; End translated (2)
 
 [DisablingShotSnapShot X2AbilityTemplate]
 LocFriendlyName="Tir neutralisant"
-LocLongDescription="Étourdit les ennemis à l'aide d'un tir précis. La durée de l'étourdissement augmente en cas de coup critique. Ce tir ne peut pas infliger de dégâts critiques."
-LocHelpText="Étourdit les ennemis à l'aide d'un tir précis. La durée de l'étourdissement augmente en cas de coup critique. Ce tir ne peut pas infliger de dégâts critiques."
+LocLongDescription="Effectue un tir qui inflige <Ability:DisablingShotDamagePenalty>% de dégâts en moins, mais étourdit s'il touche. Les coups critiques avec cette attaque n'infligent pas de dégâts supplémentaires, mais appliquent un étourdissement plus long."
+LocHelpText="Étourdit la cible pendant <Ability:DisablingShotStunActions> actions. Les coups critiques n'infligent pas de dégâts supplémentaires, mais appliquent un étourdissement de <Ability:DisablingShotCritStunActions> actions."
 ; LWOTC translated (2)
-LocPromotionPopupText="<Bullet/> Étourdit les ennemis durant <Ability:DisablingShotStunActions/> action(s) si le tir touche (même s'il ne s'agit que d'une écorchure).<br/><Bullet/> En cas de coup critique, la cible sera étourdie durant <Ability:DisablingShotCritStunActions/> action(s) de plus, mais le tir n'infligera pas de dégâts critiques.<br/><Bullet/> Nécessite <Ability:SelfAmmoCost/> munition(s) et un temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Seuls les avatars et les zombies psi ne peuvent pas être étourdis."
+LocPromotionPopupText="<Bullet/> Étourdit la cible pendant <Ability:DisablingShotStunActions/> actions si le tir touche, même s'il ne s'agit que d'une écorchure.<br/><Bullet/> Étourdit pendant <Ability:DisablingShotCritStunActions/> actions de plus si le tir est critique, mais le tir n'inflige pas de dégâts critiques.<br/><Bullet/> Tir neutralisant nécessite <Ability:SelfAmmoCost/> munition(s) pour être utilisé.<br/><Bullet/> Tir neutralisant a un temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Tir neutralisant ne peut pas être utilisé contre les ennemis immunisés à l'étourdissement.<br/>"
 ; End translated (2)
 
 [Meditation X2AbilityTemplate]
@@ -56,8 +56,8 @@ LocPromotionPopupText="<Bullet/> Augmente de <Ability:MeditationFocusRecovery/> 
 
 [Overcharge_LW X2AbilityTemplate]
 LocFriendlyName="Surcharge"
-LocLongDescription="Gagnez un bonus de visée et de chances de coup critique pour chaque niveau de concentration du Templier."
-LocHelpText="Gagnez un bonus de visée et de chances de coup critique pour chaque niveau de concentration du Templier."
+LocLongDescription="Gagnez un bonus de visée et de chances de coup critique sur les attaques de mêlée pour chaque point de concentration du <Ability:ClassName>."
+LocHelpText="Gagnez un bonus de visée et de chances de coup critique sur les attaques de mêlée pour chaque point de concentration du <Ability:ClassName>."
 LocPromotionPopupText="<Bullet/> +<Ability:OverchargeAimBonus/> en visée et +<Ability:OverchargeCritBonus/> en chances de coup critique pour chaque niveau de concentration.<br/><Bullet/> Surcharge prend en compte le niveau de concentration actuel du Templier (et non son niveau maximum)."
 
 [VoltDangerZone X2AbilityTemplate]
@@ -78,8 +78,8 @@ LocPromotionPopupText="<Bullet/> Gagnez 1 point de concentration chaque fois que
 
 [TemplarTerror X2AbilityTemplate]
 LocFriendlyName="Cauchemar voltaïque"
-LocLongDescription="Les unités blessées par la capacité Volt ont une chance d'être prises de panique."
-LocHelpText="Les unités blessées par la capacité Volt ont une chance d'être prises de panique."
+LocLongDescription="Gagnez un bonus de rayon de <Ability:VoltDangerZoneBonus/> case(s) pour Volt. Ajoute une chance de faire paniquer les ennemis touchés par Volt."
+LocHelpText="Gagnez un bonus de rayon de <Ability:VoltDangerZoneBonus/> case(s) pour Volt. Ajoute une chance de faire paniquer les ennemis touchés par Volt."
 LocPromotionPopupText="<Bullet/> Les unités blessées par la capacité Volt ont une chance d'être prises de panique.<br/><Bullet/> Les chances de panique sont de <Ability:TERROR_STAT_CHECK_BASE_VALUE/>%, modifiées par la volonté du Templier et la volonté de sa cible."
 
 [Apotheosis X2AbilityTemplate]
@@ -136,9 +136,9 @@ LocPromotionPopupText="<Bullet/> Le temps de rechargement de la capacité Grappi
 ; LWOTC translated
 [Executioner X2AbilityTemplate]
 LocFriendlyName="Marchand de mort"
-LocLongDescription="Pocure un bonus de +<Ability:DEATH_DEALER_CRIT/> en chances de coup critique. Tant que vous êtes dans l'obscurité, les tirs critiques contre les unités contournées infligent le double de dégâts critiques."
-LocHelpText="Pocure un bonus de +<Ability:DEATH_DEALER_CRIT/> en chances de coup critique. Tant que vous êtes dans l'obscurité, les tirs critiques contre les unités contournées infligent le double de dégâts critiques."
-LocPromotionPopupText="<Bullet/> Pocure un bonus de +<Ability:DEATH_DEALER_CRIT/> en chances de coup critique. Tant que vous êtes dans l'obscurité, les tirs critiques contre les unités contournées infligent le double de dégâts critiques.<br/>"
+LocLongDescription="Procure un bonus de +<Ability:DEATH_DEALER_CRIT/> en chances de coup critique. Lorsque vous tirez sur des cibles contournées depuis l'Obscurité, le bonus de dégâts critiques de votre arme est doublé."
+LocHelpText="Procure un bonus de +<Ability:DEATH_DEALER_CRIT/> en chances de coup critique. Lorsque vous tirez sur des cibles contournées depuis l'Obscurité, le bonus de dégâts critiques de votre arme est doublé."
+LocPromotionPopupText="<Bullet/> Profitez de la mobilité accrue de l'Obscurité et du plus faible rayon de détection des ennemis pour contourner les ennemis et infliger d'énormes dégâts.<br/>"
 
 ; End translated
 
@@ -156,27 +156,27 @@ LocPromotionPopupText="Vos couteaux de lancer procurent un bonus cumulatif de +<
 LocFriendlyName="Duel au couteau"
 LocFlyOverText="Duel au couteau"
 ; LWOTC translated (2)
-LocLongDescription="Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases autour de votre position. Ne peut pas se déclencher durant le même tour que Tir sournois."
-LocHelpText="Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases autour de votre position. Ne peut pas se déclencher durant le même tour que Tir sournois."
-LocPromotionPopupText="<Bullet/> Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases autour de votre position. Ne peut pas se déclencher durant le même tour que Tir sournois.<br/><Bullet/> Cette capacité ne peut pas être combinée avec la capacité Course et tir.<br/>"
+LocLongDescription="Une fois par tour, gagnez une action bonus après avoir lancé un couteau sur un ennemi situé à moins de <Ability:KNIFE_ENCOUNTERS_MAX_TILES/> cases. Ne peut pas se déclencher durant le même tour que Tir sournois."
+LocHelpText="Une fois par tour, gagnez une action bonus après avoir lancé un couteau sur un ennemi situé à moins de <Ability:KNIFE_ENCOUNTERS_MAX_TILES/> cases. Ne peut pas se déclencher durant le même tour que Tir sournois."
+LocPromotionPopupText="<Bullet/> Une fois par tour, gagnez une action bonus après avoir lancé un couteau sur un ennemi situé à moins de <Ability:KNIFE_ENCOUNTERS_MAX_TILES/> cases.<br/><Bullet/> Un anneau rouge indique la portée de cette capacité.<br/><Bullet/> Duel au couteau ne peut pas être utilisé durant le même tour que Course et tir ou Tir sournois.<br/>"
 ; End translated (2)
 
 [KnifeEncountersExtendedRange X2AbilityTemplate]
 LocFriendlyName="Duel au couteau"
 LocFlyOverText="Duel au couteau"
 ; LWOTC translated (2)
-LocLongDescription="Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases autour de votre position. Ne peut pas se déclencher durant le même tour que Tir sournois."
-LocHelpText="Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases autour de votre position. Ne peut pas se déclencher durant le même tour que Tir sournois."
-LocPromotionPopupText="<Bullet/> Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases autour de votre position. Ne peut pas se déclencher durant le même tour que Tir sournois.<br/><Bullet/> Cette capacité ne peut pas être combinée avec la capacité Course et tir.<br/>"
+LocLongDescription="Une fois par tour, gagnez une action bonus après avoir lancé un couteau sur un ennemi situé à moins de <Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/> cases. Ne peut pas se déclencher durant le même tour que Tir sournois."
+LocHelpText="Une fois par tour, gagnez une action bonus après avoir lancé un couteau sur un ennemi situé à moins de <Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/> cases. Ne peut pas se déclencher durant le même tour que Tir sournois."
+LocPromotionPopupText="<Bullet/> Une fois par tour, gagnez une action bonus après avoir lancé un couteau sur un ennemi situé à moins de <Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/> cases.<br/><Bullet/> Un anneau rouge indique la portée de cette capacité.<br/><Bullet/> Duel au couteau ne peut pas être utilisé durant le même tour que Course et tir ou Tir sournois.<br/>"
 ; End translated (2)
 
 ; LWOTC translated (2)
 [ImpersonalEdge X2AbilityTemplate]
 LocFriendlyName="Ombre évanescente"
 LocFlyOverText="Ombre évanescente"
-LocLongDescription="Réduit le temps de rechargement de la capacité Obscurité de 1 tour. Procure un bonus cumulatif de +<Ability:IMPERSONAL_EDGE_AIM/> en visée durant 3 tours chaque fois que vous éliminez une unité avec un couteau de lancer."
-LocHelpText="Réduit le temps de rechargement de la capacité Obscurité de 1 tour. Procure un bonus cumulatif de +<Ability:IMPERSONAL_EDGE_AIM/> en visée durant 3 tours chaque fois que vous éliminez une unité avec un couteau de lancer."
-LocPromotionPopupText="<Bullet/> Réduit le temps de rechargement de la capacité Obscurité de 1 tour. Procure un bonus cumulatif de +<Ability:IMPERSONAL_EDGE_AIM/> en visée durant 3 tours chaque fois que vous éliminez une unité avec un couteau de lancer.<br/>"
+LocLongDescription="Lorsque vous éliminez une unité avec un couteau de lancer, réduisez de 1 le temps de rechargement d'Obscurité et gagnez un bonus cumulatif de +<Ability:IMPERSONAL_EDGE_AIM/> en visée pendant 3 tours."
+LocHelpText="Lorsque vous éliminez une unité avec un couteau de lancer, réduisez de 1 le temps de rechargement d'Obscurité et gagnez un bonus cumulatif de +<Ability:IMPERSONAL_EDGE_AIM/> en visée pendant 3 tours."
+LocPromotionPopupText="Lorsque vous éliminez une unité avec un couteau de lancer, réduisez de 1 le temps de rechargement d'Obscurité et gagnez un bonus cumulatif de +<Ability:IMPERSONAL_EDGE_AIM/> en visée pendant 3 tours.<br/>"
 
 [ImpersonalEdgePassive X2AbilityTemplate]
 LocFriendlyName="Ombre évanescente"
@@ -191,7 +191,7 @@ LocFriendlyName="Couteaux Écran bleu"
 LocHelpText="Les couteaux de lancer ignorent <Ability:BLUESCREEN_KNIVES_PIERCE/> point(s) d'armure et désorientent les ennemis robotiques."
 LocLongDescription="Les couteaux de lancer ignorent <Ability:BLUESCREEN_KNIVES_PIERCE/> point(s) d'armure et désorientent les ennemis robotiques."
 ; LWOTC translated (2)
-LocPromotionPopupText="Les couteaux de lancer ignorent <Ability:BLUESCREEN_KNIVES_PIERCE/> point(s) d'armure et désorientent les ennemis robotiques."
+LocPromotionPopupText="<Bullet/> Les couteaux de lancer gagnent +<Ability:BLUESCREEN_KNIVES_PIERCE/> de perforation d'armure et désorientent les unités robotiques."
 ; End translated (2)
 
 ; LWOTC translated
@@ -226,6 +226,26 @@ LocFriendlyName="Tir sournois"
 LocFlyOverText="Tir sournois"
 LocLongDescription= "Une fois par tour, gagnez une action de déplacement après avoir tiré avec votre arme principale sur une cible qui a déjà été blessée ce tour-ci. Ne peut pas se déclencher durant le même tour que Duel au couteau."
 LocHelpText="Une fois par tour, gagnez une action de déplacement après avoir tiré avec votre arme principale sur une cible qui a déjà été blessée ce tour-ci. Ne peut pas se déclencher durant le même tour que Duel au couteau."
-LocPromotionPopupText="<Bullet/> Peut être combiné avec d'autres capacités comme Bannissement."
+LocPromotionPopupText="<Bullet/> Tir sournois se déclenche si la cible a déjà subi des dégâts de n'importe quel type depuis le dernier tour du joueur. Les tirs de vigilance et les dégâts sur la durée pendant le tour ennemi comptent.<br/><Bullet/> Fonctionne avec Mitraillage, Tir enchaîné et Bannissement en plus du tir standard.<br/><Bullet/> L'action de déplacement peut servir à entrer dans l'Obscurité si cette capacité n'est pas en rechargement.<br/>"
 ; End translated
+
+[TheBanisher_LW X2AbilityTemplate]
+LocFriendlyName="Vrai prédateur"
+LocLongDescription="Réduit de <Ability:THEBANISHER_HIT_BUFF> le malus de visée par tir de Bannissement et réduit son temps de rechargement de 1. Augmente la portée de Duel au couteau à <Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/> cases. Marchand de mort double désormais le bonus de dégâts critiques de votre arme contre les cibles qui ne peuvent pas être prises en tenaille."
+LocHelpText="Réduit de <Ability:THEBANISHER_HIT_BUFF> le malus de visée par tir de Bannissement et réduit son temps de rechargement de 1. Augmente la portée de Duel au couteau à <Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/> cases. Marchand de mort double désormais le bonus de dégâts critiques de votre arme contre les cibles qui ne peuvent pas être prises en tenaille."
+
+[SwiftThrow_LW X2AbilityTemplate]
+LocFriendlyName="Lancé rapide"
+LocHelpText="Lancez un couteau en action gratuite. Temps de rechargement de 4 tours."
+LocLongDescription="Lancez un couteau en action gratuite. Temps de rechargement de 4 tours."
+LocPromotionPopupText="<Bullet/> Lancez un couteau en action gratuite. Temps de rechargement de 4 tours."
+
+[TacticalRetreat_LW X2AbilityTemplate]
+LocFriendlyName="Repli tactique"
+LocHelpText="Repli tactique"
+LocLongDescription="Octroie une action de déplacement seul après avoir lancé un couteau. Ne peut se produire qu'une fois par tour."
+LocPromotionPopupText="<Bullet/> Octroie une action de déplacement seul après avoir lancé un couteau. Ne peut se produire qu'une fois par tour."
+
+[X2Ability_TemplarAbilitySet]
+AmplifyEffectDesc="Subit <Ability:AmplifyDamageMult>% de dégâts supplémentaires lors des attaques.<br>Coups restants : <Ability:AMPLIFY_SHOTS_REMAINING_LW>."
 

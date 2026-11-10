@@ -21,19 +21,19 @@ CommandersQuartersEnteredBody="LWOTC a ajouté de nouvelles informations dans le
 
 ; LWOTC Needs Translation (2)
 GeneralChosenTitle="L'Élu"
-GeneralChosenBody="Un Élu risque d'intrvenir lors de cette mission. Dans LWOTC, les Élus ne prennent part qu'aux missions de représailles ou aux missions principales de la campagne (Site secret, etc.). Ils n'apparaîtront pas lors des autres missions.<br/><br/>Leur objectif est toujours d'obtenir des renseignements sur la position du Talion et de le prendre d'assaut. Soyez prévenu, se défendre contre eux ne sera pas une chose facile!"
+GeneralChosenBody="Un Élu apparaîtra lors de cette mission. Dans LWOTC, les Élus réagissent à l'activité d'XCOM en ne participant qu'aux représailles (renseignements, ravitaillement, recrutement, complète et invasion). Ils n'apparaîtront pas lors des autres missions.<br/><br/>Leur objectif reste d'obtenir des renseignements sur la position du Talion et de l'attaquer. Soyez prévenu : se défendre contre eux ne sera pas chose facile !"
 
 TacticalChosenTitle="Les Élus en combat"
 TacticalChosenBody="Dans LWOTC, les Élus sont bien plus dangereux en combat:<br/><ul><li>Ils sont immunisés aux coups critiques.</li><li>Ils réalisent une action (\"Réaction instinctive\") chaque fois qu'XCOM les blesse durant le tour de jeu d'XCOM.</li><li>Ils peuvent kidnapper les soldats hors-combat situés à portée, au prix d'un tour de jeu complet.</li><li>Ils gagnent de puissantes capacités lorsqu'ils gagnent des niveaux (appuyez sur F1 lorsque vous les ciblez pour plus d'informations).</li></ul>"
 
 AssassinSightedTitle="L'Assassin"
-AssassinSightedBody="The Assassin reduces incoming damage with each consecutive hit she receives on a turn. Si les dégâts de son sabre et sa capacité \"Raz-de-marée\" sont réduits en début de combat, ils augmenteront inexorablement jusqu'à ce qu'elle capture l'un de vos soldats. <br/><br/>Soyez vigilant dans votre placement, car elle peut utiliser son action primaire pour réaliser une attaque de Lacération sur un soldat adjacent."
+AssassinSightedBody="L'Assassin réduit considérablement les dégâts qu'elle subit une fois qu'elle a encaissé suffisamment de dégâts durant un tour. Si les dégâts de son sabre et de sa capacité \"Raz-de-marée\" sont faibles au départ, ils augmenteront en puissance à mesure qu'elle les utilise, jusqu'à ce qu'elle capture un soldat.<br/><br/>Soyez vigilant dans votre placement, car elle peut utiliser sa réaction principale pour lacérer un soldat adjacent."
 
 WarlockSightedTitle="Le Sorcier"
-WarlockSightedBody="Le Sorcier peut invoquer des alliés et utiliser ses pouvoirs afin de renforcer leurs capacités. Tant que ses alliés restent en vie, le Sorcier subira beaucoup moins de dégâts lorsque vous le blesserez. Vous devriez également vous méfier de son pouvoir \"Esprit écorché\", qui applique un effet de feu dans la zone située autour de la cible. <br/><br/>Dans WOTC, si l'un de vos soldats est contrôlé mentalement, vous pouvez le neutraliser temporairement avec un coup de crosse."
+WarlockSightedBody="Le Sorcier choisit l'un de ses alliés comme son plus grand champion. Tant que cet allié reste en vie, le Sorcier subit beaucoup moins de dégâts. Préparez-vous à affronter ses invocations spectrales et méfiez-vous de son pouvoir \"Esprit écorché\", qui applique un effet de feu dans la zone autour d'une cible.<br/><br/>ASTUCE : les soldats de LWOTC disposent du coup de crosse pour neutraliser leurs alliés contrôlés mentalement !"
 
 HunterSightedTitle="Le Chasseur"
-HunterSightedBody="Le Chasseur combat à longue distance et tentera d'éliminer vos soldats depuis une position sûre et protégée. Soyez prudent lorsque vous l'approchez: son pistolet est capable de désactiver les armes de ses adversaires et il peut lancer ses grenades flash avec une action gratuite."
+HunterSightedBody="Le Chasseur garde ses distances et tente d'éliminer vos soldats depuis une position sûre. Il peut commencer son tour par un tir gratuit de fusil de précision sur une cible prise à revers. Soyez prudent lorsque vous l'approchez : son tir de pistolet désactive désormais les armes d'XCOM et il peut lancer ses grenades flash avec une action gratuite."
 ; End Translation (2)
 
 
@@ -47,9 +47,14 @@ HavenAdvisersBody="Cliquez sur la fenêtre (1) à gauche pour affecter un superv
 ; End Translation
 
 ; LWOTC Needs Translation
+
+[UIScreenListener_PromotionScreenTutorial]
+PistolAbilitiesTutorialTitle="Capacités de pistolet"
+PistolAbilitiesTutorialBody="Les capacités de pistolet sont accessibles à tous vos soldats, à l'exception des Sparks, une fois le centre d'entraînement construit. Elles fonctionnent avec les pistolets et les pistolets automatiques.\n\nFaites défiler cet écran vers le bas pour les voir !"
+
 [UIScreenListener_CovertActionsTutorial]
 CovertActionsTutorialTitle="Missions secrètes"
-CovertActionsTutorialBody="Contrairement au jeu de base, les missions secrètes réalisées par vos agents ont une chance d'échouer. Les risques d'échec sont calculés en fonction du grade des agents envoyés en mission. Plus leur grade est élevé, et plus les risques d'échec sont réduits."
+CovertActionsTutorialBody="Contrairement au jeu de base, vos agents peuvent échouer lors des missions secrètes. Le risque d'échec est réduit en fonction du grade des soldats envoyés en mission. Plus leur grade est élevé, plus le risque d'échec est faible.<br/><br/>De plus, le risque d'embuscade augmente à mesure que des missions secrètes sont menées à bien sans embuscade. Le risque est réinitialisé dès qu'une embuscade a lieu."
 
 [UIScreenListener_InitialHavenTutorial]
 HavenHighlightTitle="Administrer votre refuge"
