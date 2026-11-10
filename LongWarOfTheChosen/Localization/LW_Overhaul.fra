@@ -5,6 +5,8 @@ GrazeBandWidthModTooltip="Déterminer la distance nécessaire d'un tir, par rapp
 GrazeBandValue="Valeur: <XGParam:IntValue0>"
 PauseOnRecruitMod="Pause après recrutement"
 PauseOnRecruitModTooltip="Met le Geoscape en pause quand un refuge recrute un nouveau soldat ou un résistant."
+EnableAggregateJailbreakRewards="Regrouper les récompenses d'évasion"
+EnableAggregateJailbreakRewardsTooltip="Évite les longs textes défilants dans l'interface de mission en n'affichant que les totaux de recrues et de personnel de la résistance."
 
 [UIScreenListener_ShellDifficulty]
 strIncompatibleModsTitle="MODS EN DOUBLE DÉTECTÉS"
@@ -32,8 +34,8 @@ ActivityObjectives[0]="Libération: sauver un dissident"
 [ProtectRegion X2LWAlienActivityTemplate]
 ActivityName="ProtectRegion3Activity"
 ActivityObjectives[0]="Libération: saboter les opérations d'ADVENT"
-ActivityObjectives[1]="Libération: détruire la tour du réseau"
-ActivityObjectives[2]="Libération: prendre d'assaut la base d'ADVENT"
+ActivityObjectives[1]="Libération : prendre d'assaut la tour du réseau"
+ActivityObjectives[2]="Libération : prendre d'assaut la base d'ADVENT"
 
 +MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="Nous avons appris qu'un appareil d'ADVENT provoquait des interférences avec le réseau de communication de la résistance. Nous devons le détruire.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Neutralize_LW", Description="Grâce à nos actions, nous avons pu localiser un fonctionnaire d'ADVENT qui supervise les opérations ennemies dans la région. Nous devons nous occuper de lui.", MissionIndex=0)
@@ -83,7 +85,7 @@ ActivityObjectives[0]="Prendre d'assaut un centre de recherche extraterrestre"
 
 [ScheduledOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="ScheduledOffworldReinforcementsActivity"
-ActivityObjectives[0]="Trouver un indice"
+ActivityObjectives[0]="Trouver les trajectoires de vol ennemies : OVNI (selon niveau d'advent)"
 ActivityObjectives[1]="Récupérer des artefacts d'OVNI"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Nous avons découvert un indice potentiel sur les activités d'ADVENT. Nous devrions mener l'enquête.", MissionIndex=0)
@@ -92,7 +94,7 @@ ActivityObjectives[1]="Récupérer des artefacts d'OVNI"
 
 [EmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="EmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="Trouver un indice"
+ActivityObjectives[0]="Trouver les trajectoires de vol ennemies : OVNI standard"
 ActivityObjectives[1]="Récupérer des artefacts d'OVNI"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Nous avons peut-être trouvé un indice sur les activités d'ADVENT. Nous devrions mener l'enquête.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="Nous avons peut-être trouvé un indice sur les activités d'ADVENT. Nous devrions mener l'enquête.", MissionIndex=0)
@@ -100,7 +102,7 @@ ActivityObjectives[1]="Récupérer des artefacts d'OVNI"
 
 [SuperEmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="SuperEmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="Trouver un indice"
+ActivityObjectives[0]="Trouver les trajectoires de vol ennemies : Super OVNI"
 ActivityObjectives[1]="Récupérer des artefacts d'OVNI"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Nous avons peut-être trouvé un indice sur les activités d'ADVENT. Nous devrions mener l'enquête.", MissionIndex=0)
@@ -132,7 +134,7 @@ ActivityObjectives[0]="Attirer l'attention d'ADVENT"
 
 [ProtectResearch X2LWAlienActivityTemplate]
 ActivityName="ProtectResearchActivity"
-ActivityObjectives[0]="Trouver un indice"
+ActivityObjectives[0]="Trouver un indice sur une installation"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Nous avons peut-être trouvé un indice sur les activités d'ADVENT. Nous devrions mener l'enquête.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="Nous avons peut-être trouvé un indice sur les activités d'ADVENT. Nous devrions mener l'enquête.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="Nous avons découvert qu'un appareil d'ADVENT brouille les communications de la résistance. Si cet appareil est détruit, nous débloquerons peut-être de nouvelles sources d'informations.", MissionIndex=0)
@@ -153,6 +155,11 @@ ActivityName="TroopManeuversActivity"
 ActivityObjectives[0]="Réduire les forces ennemies"
 +MissionDescriptions=(MissionFamily="TroopManeuvers_LW", Description="Une unité de combat d'ADVENT est vulnérable à une frappe de nos forces.")
 
+[CovertOpsTroopManeuvers X2LWAlienActivityTemplate]
+ActivityName="CovertOpsTroopManeuversActivity"
+ActivityObjectives[0]="Détruire un groupe d'éclaireurs"
++MissionDescriptions=(MissionFamily="CovertOpsTroopManeuvers_LW", Description="ADVENT a laissé l'une de ses unités d'éclaireurs vulnérable à un raid de nos forces.")
+
 [HighValuePrisoner X2LWAlienActivityTemplate]
 ActivityName="HighValuePrisonerActivity"
 ActivityObjectives[0]="Libérer un prisonnier important"
@@ -169,6 +176,9 @@ ActivityObjectives[0]="Capturer des caches de ressources ADVENT"
 +MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="La Résistance a découvert la localisation de ressources ennemies vitales que nous pourrions récupérer pour notre propre usage.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="SupplyExtraction_LW", Description="La Résistance a découvert la localisation de ressources ennemies vitales que nous pourrions récupérer pour notre propre usage.", MissionIndex=0)
 
+[BigSupplyExtraction_LW X2LWAlienActivityTemplate]
+ActivityObjectives[0]="S'emparer d'une grande réserve de ressources d'ADVENT"
++MissionDescriptions=(MissionFamily="BigSupplyExtraction_LW", Description="La résistance a découvert l'emplacement de ressources ennemies vitales que nous pouvons nous approprier pour notre propre usage.", MissionIndex=0)
 
 [IntelRaid X2LWAlienActivityTemplate]
 ActivityName="IntelRaidActivity"
@@ -247,6 +257,8 @@ strMinusDaysAndHours="-<XGParam:IntValue0> jours, <XGParam:IntValue1> heures"
 strPlusDaysAndHours="+<XGParam:IntValue0> jours, <XGParam:IntValue1> heures"
 strMissionIndefinite="Durée indéfinie"
 strLiberationTitle="Modificateur de progression (libération):"
+strOverallInfilShort="Actuelle"
+strMissionInfoTitle="Reconnaissance :"
 
 ; LWOTC translated
 UpToText="Jusqu'à"
@@ -254,6 +266,18 @@ ExpectedActivityTextStr="Activité attendue"
 BoostedActivityText="Activité attendue (soutien)"
 BoostTextPre="Avec"
 BoostTextPost="Soutien"
+strInfilPanelTitle="Briefing de mission"
+strActivityHeader="Activité ennemie"
+strModifierHeader="Modificateurs d'infiltration"
+strBaseInfilShort="Base"
+strSquadSizeShort="Taille de l'escouade"
+strAbilitiesShort="Capacités/Équipement"
+strExpirationShort="Expiration"
+strExpectedShort="Attendue"
+strBoostedShort="Soutien"
+strLiberationShort="Libération"
+strMaxInfilText="Infiltration max."
+strMapTypeText="Type de carte"
 ; End translated
 
 [UIScreenListener_DropShipBriefing_MissionStart]
@@ -261,10 +285,14 @@ strLaunchingInfiltration="CONTACT IMMINENT"
 
 [UIUtilities_Text_LW]
 m_strHelp="Aide"
+m_strJailbreakAggregatedReward="<XGParam:StrValue0/!RewardType> : <XGParam:StrValue1/!RewardQuantity>"
+m_strJailbreakAppendedPrisonerList="<br/>Selon nos renseignements, la liste des prisonniers comprend : <XGParam:StrValue0/!RewardsList>."
 
 [X2Ability_LW_GearAbilities]
 strWeight="Poids d'un petit objet"
 AblativeHPLabel="PV bonus"
+PoisonChanceLabel = "CHANCES D'EMPOISONNEMENT"
+DisorientedChanceLabel = "CHANCES DE DÉSORIENTATION"
 
 [X2Ability_LW_TechnicalAbilitySet]
 strMaxScatter="\nDiffusion max (cases):"
@@ -294,6 +322,8 @@ strTimeRemainingDaysAndHours="<XGParam:IntValue1>J, <XGParam:IntValue0>H"
 ; LWOTC translated
 strDarkEventExpiredTitle="Opération ennemie expirée"
 strDarkEventExpiredText="a expiré"
+OpenResistanceManagementStr="OUVRIR LA GESTION DE LA RÉSISTANCE"
+OpenHavenManagementStr="OUVRIR LA GESTION DES REFUGES"
 ; End translated
 
 [X2EventListener_Soldiers]
@@ -305,6 +335,7 @@ RankTooLow="Rang trop bas"
 CannotModifyOnMissionSoldierTooltip="Impossible de modifier un soldat qui est en mission"
 ; LWOTC translated
 ReasonClassAbilityPickedAtRank="Capacité déjà choisie pour ce rang"
+ReasonPsiOperativePerkFromLab="Agent psi"
 ; End translated
 
 [XComGameState_LWPersistentSquad]
@@ -527,15 +558,24 @@ m_strName="Nom"
 m_strMission="Mission"
 m_strBuildRadioRelay="Construire un relais radio"
 m_strLiaisonTitle="Superviseur de refuge"
+m_strEditLoadout="Équipement du superviseur"
 ; 0=Alert, 1=Vigilance, 2=Force
 m_strRegionalInfo="Puissance d'ADVENT: <XGParam:IntValue0/>"
 m_strResistanceMecs="CEM de la résistance: <XGParam:IntValue0/>"
 m_strProhibited="Interdit"
-m_strCannotChangeLiaisonTitle="Impossible de déplacer l'agent de liaison"
-m_strCannotChangeLiaison="Vous ne pouvez pas changer d'agent de liaison tant que des missions sont actives dans la région."
+m_strCannotChangeLiaisonTitle="Impossible de déplacer ou rééquiper le superviseur"
+m_strCannotChangeLiaison="Le superviseur et son équipement ne peuvent pas être modifiés pour le moment en raison de missions actives dans la région."
 ChangeJobStr="CHANGER ACTIVITE"
 ChangeAllJobsStr="CHANGER TOUTES LES ACTIVITES"
 PerksStr="CAPACITES" 
+m_strIncomeIntel="Capacité de détection de missions :"
+m_strIncomeSupply="Ressources par jour :"
+m_strIncomeRecruit="Jours par recrue :"
+
+[UIOutpostManagement_ListItem]
+m_strIDConfirmedName="Identité confirmée"
+m_strIDConfirmedText="Nos troupes ont contrôlé cet agent et confirmé qu'il ne s'agit pas d'un infiltré d'ADVENT."
+m_strIDConfirmedIconPath="img:///UILibrary_LWOTC.UIIcon_IDConfirmed_Hex"
 
 [UIScreenListener_TacticalHUD]
 strEvacRequestTitle="Évacuation demandée"
@@ -604,6 +644,8 @@ m_strRetributionEnded="Les membres de la résistance présents dans la région <
 ;End translated
 [X2StrategyElement_DefaultAlienActivities]
 m_strInsufficientRebels="Au moins <XGParam:IntValue0/> rebelles nécessaires au refuge pour établir le contact avec les voisins."
+VultureUnlockTitle = "Vautour obtenu"
+VultureUnlockDesc = "XCOM est devenu plus efficace pour récupérer les dépouilles et récupérera désormais davantage d'objets lors des butins."
 
 [UIScreenListener_Alert]
 m_strInvasionTitle="INVASION D'ADVENT"
@@ -674,13 +716,16 @@ m_strMinimumInfiltration="Nécessite <XGParam:IntValue0>% Infiltration"
 m_strYellowAlert="Ennemis en Alerte"
 m_sAverageScatterText="± <XGParam:StrValue0/> Cases"
 m_strBullet="•"
+m_strExpectedInfiltration="Après soutien"
+m_strInfiltrationBoostCost="Coût"
+m_StrStripUpgrade=RETIRER LES AMÉLIORATIONS
 
 m_strStripWeaponUpgrades=RETIRER LES AMELIORATIONS DE TOUTES LES ARMES
 m_strStripWeaponUpgradesLower=Retirer Les Ameliorations De Toutes Les Armes
 ; LWOTC translated
 m_strStripWeaponUpgradesConfirm=CONFIRMER RETRAIT DES AMELIORATIONS DES SOLDATS INACTIFS
-m_strStripWeaponUpgradesConfirmDesc="Confirmer le retrait de toutes les améliorations de toutes les armes principales non équipées par les soldats sélectionnés pour la mission en cours. Ces équipements seront immédiatement disponibles."
-m_strTooltipStripWeapons="Retirer toutes les améliorations d'armes de tous les soldats NON sélectionnés pour la mission en cours."
+m_strStripWeaponUpgradesConfirmDesc="Confirmer le retrait des améliorations d'arme de toutes les armes principales non équipées, ainsi que de toutes les armes principales détenues par des soldats inactifs. Les armes principales détenues par des soldats en mission secrète, ainsi que par les soldats sélectionnés pour la mission en cours, ne seront pas affectées. Notez que ce retrait est définitif : la prochaine fois qu'une arme principale « dépouillée » sera équipée, il faudra y remettre des améliorations d'arme."
+m_strTooltipStripWeapons="Retirer toutes les améliorations d'arme des armes principales non équipées, ainsi que des armes principales détenues par des soldats inactifs."
 ; End translated
 
 m_strAllHandsToHangar=RASSEMBLEMENT AU HANGAR
@@ -720,6 +765,24 @@ m_strChosenLoot="(<XGParam:IntValue0/>) <XGParam:StrValue0/!ItemName/> pour avoi
 ; HeavyDazedPerActionFriendlyName="Hébété(e): <Ability:STUNNEDACTIONPOINTS>"
 ; HeavyDazedTitle="Hébété(e)"
 ; HeavyDazedName="Hébété(e)"
+
+[UISL_Shell_LWoTCVersion]
+strMessage_Title = "Long War Of The Chosen"
+strMessage_Header = "Long War Of The Chosen a été mis à jour !"
+strMessage_Body = "La version 1.2.3 est disponible. Sans être une version complète, elle comprend tout de même :<ul><li>Un rééquilibrage du Spark, avec de nouvelles armures, un arbre de compétences ajusté, le retour de l'Ablatif, mais les Sparks ne peuvent plus être envoyés en mission lorsqu'ils sont blessés</li><li>De nouvelles cartes et de nouveaux éléments de carte, dont certains vous feront sortir de votre zone de confort</li><li>Une interface améliorée pour les informations de gestion des refuges</li><li>De nombreuses corrections de plantages et d'autres bogues, dont le bogue de l'« évacuation qui disparaît », un plantage majeur sous Linux, et bien d'autres</li></ul><br/>Consultez le document Google lié dans les notes de mise à jour Steam, ou rendez-vous sur le Discord de LWoTC pour en savoir plus ! <br> Remarque : tous les changements devraient être compatibles avec une campagne en cours. Vous voudrez peut-être utiliser la commande RespecSelectedSoldier pour obtenir le nouvel arbre de compétences du Spark."
+strDismiss_Button = "OK"
+
+[UISL_Shell_BetaPatchNotes]
+strMessage_Title = "Long War Of The Chosen"
+strMessage_Header = "Dernières modifications de la bêta :"
+strMessage_Body = "<ul><li>Ajustements du Spark, deuxième passe : révision de l'arbre, ajustements des améliorations d'armure, retour de l'Ablatif, mais les Sparks ne peuvent plus être envoyés en mission lorsqu'ils sont blessés. L'objectif est de varier les builds, de réduire la puissance immédiate des simples soldats et de rendre le spam de Sparks moins efficace, sans en faire un handicap.</li></ul>"
+strDismiss_Button = "OK"
+
+[UISL_PullAdvisors]
+m_strPullHavenAdvisors="RETIRER LES SUPERVISEURS"
+m_strPullHavenAdvisorsTooltip="Retire les superviseurs disponibles des refuges. Il faudra les y replacer manuellement."
+m_StrHavenManagement="GÉRER LES REFUGES"
+m_StrHavenManagementTooltip="Ouvre l'écran de gestion de la résistance."
 
 [X2Effect_LWHolotarget]
 HoloTargetEffectName="Visée holographique"
