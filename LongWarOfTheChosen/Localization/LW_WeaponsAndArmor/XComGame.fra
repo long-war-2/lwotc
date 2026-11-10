@@ -2,8 +2,8 @@
 [MusashiThrowKnifeSecondary_LW X2AbilityTemplate]
 LocFriendlyName="Lancer de couteau"
 LocFlyOverText="Lancer de couteau"
-LocLongDescription="Projette un couteau de lancer sur la cible. Lancer un couteau ne vous fait pas sortir de l'obscurité. Les couteaux ont une chance de faire saigner les unités qu'ils touchent."
-LocHelpText="Projette un couteau de lancer sur la cible. Lancer un couteau ne vous fait pas sortir de l'obscurité. Les couteaux ont une chance de faire saigner les unités qu'ils touchent."
+LocLongDescription="Lance un couteau de lancer sur la cible. Fait perdre la dissimulation, mais pas l'Obscurité."
+LocHelpText="Lance un couteau de lancer sur la cible. Fait perdre la dissimulation, mais pas l'Obscurité."
 LocPromotionPopupText="<Bullet/> Projette un couteau de lancer sur la cible. Lancer un couteau ne vous fait pas sortir de l'obscurité.<br/><Bullet/> Les peuvent ont une chance de faire saigner les unités qu'ils touchent. Les versions améliorées du couteau de lancer augmentent les chances de saignement.<br/><Bullet/> Cette capacité n'attire pas les ombres, mais met un terme à la dissimulation.<br/>"
 
 [KnifeJuggler_LW X2AbilityTemplate]
@@ -33,21 +33,21 @@ LocPromotionPopupText="<Bullet/> Lancez un couteau sur chaque cible visible. L'a
 FriendlyName="Couteau de lancer"
 FriendlyNamePlural="Couteaux de lancer"
 BriefSummary="Les couteaux de lancer sont des armes silencieuses qui permettent d'éliminer discrètement les unités ennemies."
-TacticalText="<Bullet/> Lancer un couteau ne vous fait pas sortir de l'obscurité.<br/><Bullet/> Cette arme a <Ability:THROWING_KNIFE_CV_BLEED_CHANCE/>% de chances de provoquer un effet de Saignement, qui inflige <Ability:THROWING_KNIFE_CV_BLEED_DAMAGE/> point(s) de dégâts pâr tour pendant <Ability:THROWING_KNIFE_CV_BLEED_DURATION/> tour(s)."
+TacticalText="<Bullet/> Lancer un couteau fait perdre la dissimulation, mais pas l'Obscurité.<br/><Bullet/> A <Ability:THROWING_KNIFE_CV_BLEED_CHANCE/>% de chances de provoquer un saignement, qui inflige <Ability:THROWING_KNIFE_CV_BLEED_DAMAGE/> point(s) de dégâts par tour pendant <Ability:THROWING_KNIFE_CV_BLEED_DURATION/> tour(s)."
 AbilityDescName="couteau de lancer"
 
 [ThrowingKnife_MG_Secondary X2WeaponTemplate]
 FriendlyName="Couteau de lancer en alliage"
 FriendlyNamePlural="Couteaux de lancer en alliage"
 BriefSummary="Dotés d'une lame renforcée en alliage extraterrestre, ces couteaux de lancer sont bien plus meurtriers que leurs versions conventionnelles."
-TacticalText="<Bullet/> Lancer un couteau ne vous fait pas sortir de l'obscurité.<br/><Bullet/> Cette arme a <Ability:THROWING_KNIFE_MG_BLEED_CHANCE/>% de chances de provoquer un effet de Saignement, qui inflige <Ability:THROWING_KNIFE_CV_BLEED_DAMAGE/> point(s) de dégâts pâr tour pendant <Ability:THROWING_KNIFE_MG_BLEED_DURATION/> tour(s)."
+TacticalText="<Bullet/> Lancer un couteau fait perdre la dissimulation, mais pas l'Obscurité.<br/><Bullet/> A <Ability:THROWING_KNIFE_MG_BLEED_CHANCE/>% de chances de provoquer un saignement, qui inflige <Ability:THROWING_KNIFE_MG_BLEED_DAMAGE/> point(s) de dégâts par tour pendant <Ability:THROWING_KNIFE_MG_BLEED_DURATION/> tour(s)."
 AbilityDescName="couteau de lancer"
 
 [ThrowingKnife_BM_Secondary X2WeaponTemplate]
 FriendlyName="Couteau de lancer plasmique"
 FriendlyNamePlural="Couteaux de lancer plasmiques"
 BriefSummary="Conçus grâce au principe de fusion, ces couteaux de lancer découpent la chair et l'acier avec une efficacité déconcertante."
-TacticalText="<Bullet/> Lancer un couteau ne vous fait pas sortir de l'obscurité.<br/><Bullet/> Cette arme a <Ability:THROWING_KNIFE_BM_BLEED_CHANCE/>% de chances de provoquer un effet de Saignement, qui inflige <Ability:THROWING_KNIFE_CV_BLEED_DAMAGE/> point(s) de dégâts pâr tour pendant <Ability:THROWING_KNIFE_BM_BLEED_DURATION/> tour(s)."
+TacticalText="<Bullet/> Lancer un couteau fait perdre la dissimulation, mais pas l'Obscurité.<br/><Bullet/> A <Ability:THROWING_KNIFE_BM_BLEED_CHANCE/>% de chances de provoquer un saignement, qui inflige <Ability:THROWING_KNIFE_BM_BLEED_DAMAGE/> point(s) de dégâts par tour pendant <Ability:THROWING_KNIFE_BM_BLEED_DURATION/> tour(s)."
 AbilityDescName="couteau de lancer"
 
 ; End translated

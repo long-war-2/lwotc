@@ -33,16 +33,34 @@ m_strNoWeaponUpgradesTooltip="AUCUNE AMÉLIORATION D'ARME DISPONIBLE"
 [X2Ability_PerkPackAbilitySet2]
 TrojanVirus="Cheval de Troie"
 TrojanVirusTriggered="<XGParam:StrValue0/!UnitName/> a déclenché un cheval de Troie."
+ShellshockEffectDesc="Cette unité a une visée et des chances de coup critique réduites."
+ShellshockEffectName="Sonné"
+ShockwaveEffectName="Secoué"
+ShockwaveEffectDesc="Cette unité a une défense et une esquive réduites."
+
+[X2Effect_LWCombatStims]
+strEffectBonusName = "Stimulants de combat"
+strEffectBonusDesc = "Cette unité est sous l'effet de stimulants de combat. Sa visée et ses chances de coup critique sont augmentées."
 
 [X2Effect_LWDenseSmoke]
 strEffectBonusName = "Fumée dense"
 strEffectBonusDesc = "Cette épaisse fumée octroie à cette unité un bonus de défense supplémentaire."
+
+[X2Effect_LWRegenSmoke]
+strEffectBonusName = "Brume régénérante"
+strEffectBonusDesc = "Cette unité est sous l'effet de la brume régénérante. Elle régénère des PV au début de chaque tour."
 
 [X2Effect_Savior]
 strSavior_WorldMessage="Sauveur: +<XGParam:IntValue0/> PV régénérés en plus."
 
 [X2Effect_LWHolotarget]
 HoloTargetEffectName="Visée holographique"
+
+[X2Effect_ApplyRepairHeal_LW]
+HealedMessage="+<Heal/> PV soignés"
+
+[X2Effect_RepairArmor_LW]
+ArmorRepairedMessage="Armure lacérée réparée"
 
 [X2Item_DenseSmokeGrenade]
 DenseSmokeGrenadeEffectDisplayName="Fumée dense"
@@ -53,7 +71,9 @@ LocCoveringFire="Covering Fire"
 LocCoveringFireMalus="This unit has been targeted by an overwatching unit with the Covering Fire ability, conferring -10 to aim for the rest of the turn."
 ; LWOTC translated
 LocSoulStealBuff="Drain spirituel: PV temporaires"
-LocSoulStealBuffHelpText="Drain spirituel octroie des PV temporaires lorsqu'il soigne des points excédentaires"
+LocSoulStealBuffHelpText="Drain spirituel octroie des PV ablatifs lors de l'utilisation du Feu spirituel"
+LocVampirismBuff="Vampirisme"
+LocVampirismBuffHelpText="Vampirisme octroie des PV ablatifs lorsqu'il soigne au-delà du maximum"
 ; End translated
 
 ; LWOTC translated
