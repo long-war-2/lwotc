@@ -5258,31 +5258,16 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			}
 			return true;
 		case 'TRIGGER_BSC_AIM_BONUS':
-			XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom', true));
-			if (XComHQ != none) {
-				Outstring = string(round((class'X2Ability_LW_GearAbilities'.default.TRIGGER_BSC_AIM_BONUS + (XComHQ.bEmpoweredUpgrades ? class'X2Ability_LW_GearAbilities'.default.TRIGGER_EMPOWER_BONUS : 0)) 
-				* (1.0f - class'X2AbilityToHitCalc_StandardAim'.default.REACTION_FINALMOD)));
-			} else {
-				Outstring = string(class'X2Ability_LW_GearAbilities'.default.TRIGGER_BSC_AIM_BONUS);
-			}
+			OutString = string(class'X2Ability_LW_GearAbilities'.default.TRIGGER_BSC_AIM_BONUS
+				+ (class'X2Item_DefaultUpgrades'.static.AreUpgradesEmpowered() ? class'X2Ability_LW_GearAbilities'.default.TRIGGER_EMPOWER_BONUS : 0));
 			return true;
 		case 'TRIGGER_ADV_AIM_BONUS':
-			XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom', true));
-			if (XComHQ != none) {
-				Outstring = string(round((class'X2Ability_LW_GearAbilities'.default.TRIGGER_ADV_AIM_BONUS + (XComHQ.bEmpoweredUpgrades ? class'X2Ability_LW_GearAbilities'.default.TRIGGER_EMPOWER_BONUS : 0)) 
-				* (1.0f - class'X2AbilityToHitCalc_StandardAim'.default.REACTION_FINALMOD)));
-			} else {
-				Outstring = string(class'X2Ability_LW_GearAbilities'.default.TRIGGER_ADV_AIM_BONUS);
-			}
+			OutString = string(class'X2Ability_LW_GearAbilities'.default.TRIGGER_ADV_AIM_BONUS
+				+ (class'X2Item_DefaultUpgrades'.static.AreUpgradesEmpowered() ? class'X2Ability_LW_GearAbilities'.default.TRIGGER_EMPOWER_BONUS : 0));
 			return true;
 		case 'TRIGGER_SUP_AIM_BONUS':
-			XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom', true));
-			if (XComHQ != none) {
-				Outstring = string(round((class'X2Ability_LW_GearAbilities'.default.TRIGGER_SUP_AIM_BONUS + (XComHQ.bEmpoweredUpgrades ? class'X2Ability_LW_GearAbilities'.default.TRIGGER_EMPOWER_BONUS : 0)) 
-				* (1.0f - class'X2AbilityToHitCalc_StandardAim'.default.REACTION_FINALMOD)));
-			} else {
-				Outstring = string(class'X2Ability_LW_GearAbilities'.default.TRIGGER_SUP_AIM_BONUS);
-			}
+			OutString = string(class'X2Ability_LW_GearAbilities'.default.TRIGGER_SUP_AIM_BONUS
+				+ (class'X2Item_DefaultUpgrades'.static.AreUpgradesEmpowered() ? class'X2Ability_LW_GearAbilities'.default.TRIGGER_EMPOWER_BONUS : 0));
 			return true;
 		case 'STOCK_BSC_SW_AIM_BONUS':
 			XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom', true));
@@ -5494,6 +5479,7 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 	local XComGameState_Effect EffectState;
 	local XComGameState_Unit UnitState;
 	local X2AbilityTemplate AbilityTemplate;
+	local X2WeaponUpgradeTemplate UpgradeTemplate;
 	//local XComGameState NewGameState;
 	local int ImpactCompensationStacks;
 	local int k;
@@ -5593,6 +5579,16 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 					break;
 				}
 			}
+		}
+		return true;
+			
+	case 'SCOPE_LW_AIM_BONUS':
+	case 'TRIGGER_LW_AIM_BONUS':
+	case 'STOCK_LW_SW_AIM_BONUS':
+		UpgradeTemplate = X2WeaponUpgradeTemplate(ParseObj);
+		if (UpgradeTemplate != none && UpgradeTemplate.GetBonusAmountFn != none)
+		{
+			OutString = string(UpgradeTemplate.GetBonusAmountFn(UpgradeTemplate));
 		}
 		return true;
 	default:
