@@ -700,6 +700,7 @@ simulated function UpdateList()
 {
     local UIOutpostManagement_ListItem ListItem;
     local int i;
+	local UIPanel SpacerPanel;
 
     List.ClearItems();
 
@@ -719,6 +720,11 @@ simulated function UpdateList()
 		MarkRebelsButton.SetResizeToText(false);
 		MarkRebelsButton.SetSize(HeaderPanel.Width * 0.3, (`ISCONTROLLERACTIVE) ? HEADER_BUTTON_HEIGHT_CTRL : HEADER_BUTTON_HEIGHT_MK);
 		MarkRebelsButton.SetPosition(MarkRebelsButton.X + (List.Width / 2) - (MarkRebelsButton.Width / 2), MarkRebelsButton.Y + 15);
+
+		SpacerPanel = List.CreateItem(class'UIPanel');
+		SpacerPanel.InitPanel('UIOutpostManagement_SpacerPanel');
+		SpacerPanel.SetSize(List.Width, 50);
+		SpacerPanel.SetAlpha(0);
 	}
 }
 
