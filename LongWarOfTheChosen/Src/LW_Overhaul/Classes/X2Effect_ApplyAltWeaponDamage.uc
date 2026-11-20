@@ -144,7 +144,7 @@ simulated function ApplyEffectToWorld(const out EffectAppliedData ApplyEffectPar
 			}
 
 			// Issue #200 End
-			
+
 			if( ( bLinearDamage || AbilityRadius > 0.0f || AbilityContext.ResultContext.HitResult == eHit_Miss) && DamageAmount > 0 )
 			{
 				// Loop here over projectiles if needed. If not single hit and use the first index.
@@ -249,6 +249,14 @@ simulated function GetDamagePreview(
 	local DamageModifierInfo DamageModInfo;
 	local array<DamageModifierInfo> DamageMods; // Issue #923
 
+	// Begin Issue #1540 - variables for cover DR	
+	local int OriginalMitigation, MinMandatoryMitigation, MaxMandatoryMitigation;
+	local int MinPierce, MaxPierce;
+	local int MinMitigation, MaxMitigation;
+	local int MinShred, MaxShred;
+	// End Issue #1540
+	local int IgnoreArmor, IgnoreShields; // Issue #1542
+
 	MinDamagePreview = UpgradeTemplateBonusDamage;
 	MaxDamagePreview = UpgradeTemplateBonusDamage;
 	bDoesDamageIgnoreShields = bBypassShields;
@@ -262,6 +270,10 @@ simulated function GetDamagePreview(
 		SourceWeapon = AbilityState.GetSourceAmmo();
 	else
 		SourceWeapon = AbilityState.GetSourceWeapon();
+
+	// Start Issue #1591
+	CurrentAbilityNameForImmunityCheck = AbilityState.GetMyTemplateName();
+	// End Issue #1591
 
 	TargetUnit = XComGameState_Unit(History.GetGameStateForObjectID(TargetRef.ObjectID));
 	SourceUnit = XComGameState_Unit(History.GetGameStateForObjectID(AbilityState.OwnerStateObject.ObjectID));
@@ -282,8 +294,18 @@ simulated function GetDamagePreview(
 		}
 		foreach DamageTypes(DamageType)
 		{
-			if (TargetUnit.IsImmuneToDamage(DamageType))
-				return;
+			// Start Issue #1591
+			if (class'CHHelpers'.default.bEnableImprovedCanHitAndImmunityLogic)
+			{
+				if (TargetUnit.IsImmuneToDamage_CH(DamageType, CurrentAbilityNameForImmunityCheck))
+					return;
+			}
+			else
+			{
+				if (TargetUnit.IsImmuneToDamage(DamageType))
+					return;
+			}
+			// End Issue #1591
 		}
 	}
 	
@@ -301,14 +323,15 @@ simulated function GetDamagePreview(
 			if (MultiWeaponTemplate != none)
 				BaseDamageValue = MultiWeaponTemplate.AltBaseDamage;
 			else
-				SourceWeapon.GetBaseWeaponDamageValue(TargetUnit, BaseDamageValue);
-
-			ModifyDamageValue(BaseDamageValue, TargetUnit, AppliedDamageTypes);
+			SourceWeapon.GetBaseWeaponDamageValue(TargetUnit, BaseDamageValue);
+			// Single line for Issue #1603 - Use the Highlander version of ModifyDamageValue().
+			ModifyDamageValue_CH(BaseDamageValue, TargetUnit, AppliedDamageTypes, SourceWeapon, SourceUnit, AbilityState);
 		}
 		if (DamageTag != '')
 		{
 			SourceWeapon.GetWeaponDamageValue(TargetUnit, DamageTag, ExtraDamageValue);
-			ModifyDamageValue(ExtraDamageValue, TargetUnit, AppliedDamageTypes);
+			// Single line for Issue #1603 - Use the Highlander version of ModifyDamageValue().
+			ModifyDamageValue_CH(ExtraDamageValue, TargetUnit, AppliedDamageTypes, SourceWeapon, SourceUnit, AbilityState);
 		}
 		if (SourceWeapon.HasLoadedAmmo() && !bIgnoreBaseDamage)
 		{
@@ -323,7 +346,8 @@ simulated function GetDamagePreview(
 			{
 				LoadedAmmo.GetBaseWeaponDamageValue(TargetUnit, AmmoDamageValue);
 			}
-			ModifyDamageValue(AmmoDamageValue, TargetUnit, AppliedDamageTypes);
+			// Single line for Issue #1603 - Use the Highlander version of ModifyDamageValue().
+			ModifyDamageValue_CH(AmmoDamageValue, TargetUnit, AppliedDamageTypes, SourceWeapon, SourceUnit, AbilityState);
 		}
 		if (bAllowWeaponUpgrade)
 		{
@@ -334,7 +358,8 @@ simulated function GetDamagePreview(
 				{
 					UpgradeTemplateBonusDamage = WeaponUpgradeTemplate.BonusDamage;
 
-					ModifyDamageValue(UpgradeTemplateBonusDamage, TargetUnit, AppliedDamageTypes);
+					// Single line for Issue #1603 - Use the Highlander version of ModifyDamageValue().
+					ModifyDamageValue_CH(UpgradeTemplateBonusDamage, TargetUnit, AppliedDamageTypes, SourceWeapon, SourceUnit, AbilityState);
 
 					//	Start Issue #896
 					/// HL-Docs: ref:Bugfixes; issue:896
@@ -367,7 +392,8 @@ simulated function GetDamagePreview(
 			{
 				UpgradeTemplateBonusDamage = WeaponUpgradeTemplate.CHBonusDamage;
 
-				ModifyDamageValue(UpgradeTemplateBonusDamage, TargetUnit, AppliedDamageTypes);
+				// Single line for Issue #1603 - Use the Highlander version of ModifyDamageValue().
+				ModifyDamageValue_CH(UpgradeTemplateBonusDamage, TargetUnit, AppliedDamageTypes, SourceWeapon, SourceUnit, AbilityState);
 
 				UpgradeDamageValue.Damage += UpgradeTemplateBonusDamage.Damage;
 				UpgradeDamageValue.Spread += UpgradeTemplateBonusDamage.Spread;
@@ -381,7 +407,8 @@ simulated function GetDamagePreview(
 		// Issue #237 end
 	}
 	BonusEffectDamageValue = GetBonusEffectDamageValue(AbilityState, SourceUnit, SourceWeapon, TargetRef);
-	ModifyDamageValue(BonusEffectDamageValue, TargetUnit, AppliedDamageTypes);
+	// Single line for Issue #1603 - Use the Highlander version of ModifyDamageValue().
+	ModifyDamageValue_CH(BonusEffectDamageValue, TargetUnit, AppliedDamageTypes, SourceWeapon, SourceUnit, AbilityState);
 
 	MinDamagePreview.Damage = BaseDamageValue.Damage + ExtraDamageValue.Damage + AmmoDamageValue.Damage + BonusEffectDamageValue.Damage + UpgradeDamageValue.Damage -
 							  BaseDamageValue.Spread - ExtraDamageValue.Spread - AmmoDamageValue.Spread - BonusEffectDamageValue.Spread - UpgradeDamageValue.Spread;
@@ -529,8 +556,76 @@ simulated function GetDamagePreview(
 	MoveDamageModItemsAlt(MaxDamagePreview.BonusDamageInfo, DamageMods);
 	// End Issue #923
 
-	if (!bDoesDamageIgnoreShields)
+	// Start Issue #1542
+	IgnoreArmor = bIgnoreArmor ? 1 : 0;
+	IgnoreShields = bDoesDamageIgnoreShields ? 1 : 0;
+	class'CHHelpers'.static.GetCDO().TriggerOverrideDefenseBypass(AppliedDamageTypes, IgnoreArmor, IgnoreShields, TestEffectParams, self);
+	bDoesDamageIgnoreShields = IgnoreShields > 0;
+	// End Issue #1542
+
+	if (!bDoesDamageIgnoreShields) 
+	{
 		AllowsShield += MaxDamagePreview.Damage;
+	}
+
+	// Begin Issue #1540 - preview armor DR
+	// Unlike the UI, this doesn't require extra configs, because the original values of
+	// Spread and PlusOne were always defaulted to 0 so there's no way
+	// anyone was getting useful info from them.
+	//
+	// However, UI mods overriding ShotWings, ShotHUD, or UnitFlagManager
+	// will not use this information - with or without configs - until they are updated.
+	if (TargetUnit != none && IgnoreArmor < 1 && MinDamagePreview.Damage > 0)
+	{
+		// The original mitigation (and original minimum mitigation, i.e. 0)
+		// are shared across both damage values, so can be initialized here.
+		OriginalMitigation = TargetUnit.GetArmorMitigationForUnitFlag();
+
+		// Get adjusted mitigation, piercing, and minimum mitigation
+		// for the attack.
+		// It seems that passing struct values as out parameters
+		// prevents them from being edited by the function,
+		// so we need a few extra variables to store the data...
+		MinMitigation = OriginalMitigation;
+		MinPierce = MinDamagePreview.Pierce;
+		MinMandatoryMitigation = 0;
+		MinShred = MinDamagePreview.Shred;
+		class'CHHelpers'.static.GetCDO().TriggerAdjustArmorMitigation(
+			MinDamagePreview.Damage,
+			MinMitigation,
+			MinPierce,
+			MinMandatoryMitigation, // Starts at 0
+			MinShred,
+			TestEffectParams,
+			self,
+			// Tells the event handlers that this is a minimum damage preview.
+			// (The absence of a game state tells them it's *a* damage preview.)
+			true
+		);
+		MinDamagePreview.Spread = MinMitigation;
+		MinDamagePreview.Pierce = MinPierce;
+		MinDamagePreview.PlusOne = MinMandatoryMitigation;
+		MinDamagePreview.Shred = MinShred;
+		
+		MaxMitigation = OriginalMitigation;
+		MaxPierce = MaxDamagePreview.Pierce;
+		MaxMandatoryMitigation = 0;
+		MaxShred = MaxDamagePreview.Shred;
+		class'CHHelpers'.static.GetCDO().TriggerAdjustArmorMitigation(
+			MaxDamagePreview.Damage,
+			MaxMitigation,
+			MaxPierce,
+			MaxMandatoryMitigation, // Starts at 0
+			MaxShred,
+			TestEffectParams,
+			self
+		);
+		MaxDamagePreview.Spread = MaxMitigation;
+		MaxDamagePreview.Pierce = MaxPierce;
+		MaxDamagePreview.PlusOne = MaxMandatoryMitigation;	
+		MaxDamagePreview.Shred = MaxShred;	
+	}
+	// End Issue #1540
 
 	// Start Issue #1281
 	/// HL-Docs: ref:Bugfixes; issue:1281
@@ -577,6 +672,11 @@ simulated function int CalculateDamageAmount(
 	local DamageModifierInfo ModifierInfo;
 	local bool bWasImmune, bHadAnyDamage;
 
+	// Begin Issue #1540
+	local int MinMitigation;
+	// End Issue #1540
+	local int IgnoreArmor; // Issue #1542
+
 	// Issue #1299 - comment out unused Rupture Cap.
 	//local int RuptureCap;
 
@@ -600,6 +700,9 @@ simulated function int CalculateDamageAmount(
 	kTarget = Damageable(History.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
 	kDestructibleActorTarget = XComDestructibleActor(History.GetVisualizer(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
 	kAbility = XComGameState_Ability(History.GetGameStateForObjectID(ApplyEffectParameters.AbilityStateObjectRef.ObjectID));
+	// Start Issue #1591
+	CurrentAbilityNameForImmunityCheck = (kAbility != none) ? kAbility.GetMyTemplateName() : '';
+	// End Issue #1591
 	if (kAbility != none && kAbility.SourceAmmo.ObjectID > 0)
 		kSourceItem = XComGameState_Item(History.GetGameStateForObjectID(kAbility.SourceAmmo.ObjectID));		
 	else
@@ -636,14 +739,16 @@ simulated function int CalculateDamageAmount(
 
 			if (BaseDamageValue.Damage > 0) bHadAnyDamage = true;
 
-			bWasImmune = bWasImmune && ModifyDamageValue(BaseDamageValue, kTarget, AppliedDamageTypes);
+			// Single line for Issue #1603 - Use the Highlander version of ModifyDamageValue().
+			bWasImmune = bWasImmune && ModifyDamageValue_CH(BaseDamageValue, kTarget, AppliedDamageTypes, kSourceItem, kSourceUnit, kAbility);
 		}
 		if (DamageTag != '')
 		{
 			kSourceItem.GetWeaponDamageValue(XComGameState_BaseObject(kTarget), DamageTag, ExtraDamageValue);
 			if (ExtraDamageValue.Damage > 0) bHadAnyDamage = true;
 
-			bWasImmune = bWasImmune && ModifyDamageValue(ExtraDamageValue, kTarget, AppliedDamageTypes);
+			// Single line for Issue #1603 - Use the Highlander version of ModifyDamageValue().
+			bWasImmune = bWasImmune && ModifyDamageValue_CH(ExtraDamageValue, kTarget, AppliedDamageTypes, kSourceItem, kSourceUnit, kAbility);
 		}
 		if (kSourceItem.HasLoadedAmmo() && !bIgnoreBaseDamage)
 		{
@@ -663,7 +768,8 @@ simulated function int CalculateDamageAmount(
 				EnvironmentDamage += LoadedAmmo.GetItemEnvironmentDamage();
 			}
 			if (AmmoDamageValue.Damage > 0) bHadAnyDamage = true;
-			bWasImmune = bWasImmune && ModifyDamageValue(AmmoDamageValue, kTarget, AppliedDamageTypes);
+			// Single line for Issue #1603 - Use the Highlander version of ModifyDamageValue().
+			bWasImmune = bWasImmune && ModifyDamageValue_CH(AmmoDamageValue, kTarget, AppliedDamageTypes, kSourceItem, kSourceUnit, kAbility);
 		}
 		if (bAllowWeaponUpgrade)
 		{
@@ -675,7 +781,8 @@ simulated function int CalculateDamageAmount(
 					UpgradeTemplateBonusDamage = WeaponUpgradeTemplate.BonusDamage;
 
 					if (UpgradeTemplateBonusDamage.Damage > 0) bHadAnyDamage = true;
-					bWasImmune = bWasImmune && ModifyDamageValue(UpgradeTemplateBonusDamage, kTarget, AppliedDamageTypes);
+					// Single line for Issue #1603 - Use the Highlander version of ModifyDamageValue().
+					bWasImmune = bWasImmune && ModifyDamageValue_CH(UpgradeTemplateBonusDamage, kTarget, AppliedDamageTypes, kSourceItem, kSourceUnit, kAbility);
 
 					//	Start Issue #896
 					/// HL-Docs: ref:Bugfixes; issue:896
@@ -709,7 +816,8 @@ simulated function int CalculateDamageAmount(
 				UpgradeTemplateBonusDamage = WeaponUpgradeTemplate.CHBonusDamage;
 
 				if (UpgradeTemplateBonusDamage.Damage > 0) bHadAnyDamage = true;
-				bWasImmune = bWasImmune && ModifyDamageValue(UpgradeTemplateBonusDamage, kTarget, AppliedDamageTypes);
+				// Single line for Issue #1603 - Use the Highlander version of ModifyDamageValue().
+				bWasImmune = bWasImmune && ModifyDamageValue_CH(UpgradeTemplateBonusDamage, kTarget, AppliedDamageTypes, kSourceItem, kSourceUnit, kAbility);
 
 				UpgradeDamageValue.Damage += UpgradeTemplateBonusDamage.Damage;
 				UpgradeDamageValue.Spread += UpgradeTemplateBonusDamage.Spread;
@@ -733,7 +841,8 @@ simulated function int CalculateDamageAmount(
 	if (BonusEffectDamageValue.Damage > 0 || BonusEffectDamageValue.Crit > 0 || BonusEffectDamageValue.Pierce > 0 || BonusEffectDamageValue.PlusOne > 0 ||
 		BonusEffectDamageValue.Rupture > 0 || BonusEffectDamageValue.Shred > 0 || BonusEffectDamageValue.Spread > 0)
 	{
-		bWasImmune = bWasImmune && ModifyDamageValue(BonusEffectDamageValue, kTarget, AppliedDamageTypes);
+		// Single line for Issue #1603 - Use the Highlander version of ModifyDamageValue().
+		bWasImmune = bWasImmune && ModifyDamageValue_CH(BonusEffectDamageValue, kTarget, AppliedDamageTypes, kSourceItem, kSourceUnit, kAbility);
 		bHadAnyDamage = true;
 	}
 
@@ -813,11 +922,11 @@ simulated function int CalculateDamageAmount(
 	// as that was part of of the original functionality of the Rupture Cap.
 	if (WeaponDamage > 0)
 	{
-	if (RuptureAmount != 0)
-	{
-		WeaponDamage += RuptureAmount;
-		`log("Target is ruptured, increases damage by" @ RuptureAmount $", new damage:" @ WeaponDamage, true, 'XCom_HitRolls');
-	}
+		if (RuptureAmount != 0)
+		{
+			WeaponDamage += RuptureAmount;
+			`log("Target is ruptured, increases damage by" @ RuptureAmount $", new damage:" @ WeaponDamage, true, 'XCom_HitRolls');
+		}
 	}
 	// End Issue #1299
 
@@ -949,21 +1058,51 @@ simulated function int CalculateDamageAmount(
 			}
 		}
 
+		// Start Issue #1542
+		IgnoreArmor = bIgnoreArmor ? 1 : 0;
+	class'CHHelpers'.static.GetCDO().TriggerOverrideDefenseBypass(AppliedDamageTypes, IgnoreArmor, bAmmoIgnoresShields, ApplyEffectParameters, self);
+		// End Issue #1542
+
 		// Start Issue #923
 		WeaponDamage = ApplyPostDefaultDamageModifierEffects(History, kSourceUnit, kTarget, kAbility, ApplyEffectParameters, WeaponDamage, SpecialDamageMessages,, NewGameState);
 		// End Issue #923
 
-		if (kTarget != none && !bIgnoreArmor)
+		if (kTarget != none && IgnoreArmor < 1)
 		{
 			ArmorMitigation = kTarget.GetArmorMitigation(ApplyEffectParameters.AbilityResultContext.ArmorMitigation);
-			if (ArmorMitigation != 0)
-			{				
+
+			// Begin Issue #1540
+			// Moved these two lines out of the if block for eventing
 				OriginalMitigation = ArmorMitigation;
 				ArmorPiercing += kSourceUnit.GetCurrentStat(eStat_ArmorPiercing);				
+
+			// This is a huge event (as implied by this equally huge param list),
+			// and we're reusing it for damage previews, so it gets a helper.
+			// For easier reference: Only ArmorMitigation, ArmorPiercing, and MinMitigation
+			// are affected by this event here.
+			class'CHHelpers'.static.GetCDO().TriggerAdjustArmorMitigation(
+				WeaponDamage,
+				ArmorMitigation, // We read this one.
+				ArmorPiercing,
+				MinMitigation, // This starts at 0.
+				NewShred,
+				ApplyEffectParameters,
+				self,
+				false, // Not a minimum damage preview!
+				NewGameState
+			);
+			// End Issue #1540
+
+			if (ArmorMitigation != 0)
+			{				
 				`log("Armor mitigation! Target armor mitigation value:" @ ArmorMitigation @ "Attacker armor piercing value:" @ ArmorPiercing, true, 'XCom_HitRolls');
 				ArmorMitigation -= ArmorPiercing;				
-				if (ArmorMitigation < 0)
-					ArmorMitigation = 0;
+
+				// Issue #1540 - minimum mitigation might not be 0 like in vanilla
+				// (i.e. impenetrable armor), so check against MinMitigation instead.
+				if (ArmorMitigation < MinMitigation) 
+					ArmorMitigation = MinMitigation;
+
 				// Issue #321
 				if (ArmorMitigation >= WeaponDamage)
 				{ 
@@ -1018,6 +1157,10 @@ function CalculateDamageValues(XComGameState_Item SourceWeapon, XComGameState_Un
 	local X2AmmoTemplate AmmoTemplate;
 	local X2MultiWeaponTemplate MultiWeaponTemplate;
 	
+	// Start Issue #1591
+	CurrentAbilityNameForImmunityCheck = (AbilityState != none) ? AbilityState.GetMyTemplateName() : '';
+	// End Issue #1591
+
 	if (SourceWeapon != None)
 	{
 		if (!bIgnoreBaseDamage)
@@ -1026,15 +1169,16 @@ function CalculateDamageValues(XComGameState_Item SourceWeapon, XComGameState_Un
 			if (MultiWeaponTemplate != none)
 				DamageInfo.BaseDamageValue = MultiWeaponTemplate.AltBaseDamage;
 			else
-				SourceWeapon.GetBaseWeaponDamageValue(TargetUnit, DamageInfo.BaseDamageValue);
-
-			ModifyDamageValue(DamageInfo.BaseDamageValue, TargetUnit, AppliedDamageTypes);
+			SourceWeapon.GetBaseWeaponDamageValue(TargetUnit, DamageInfo.BaseDamageValue);
+			// Single line for Issue #1603 - Use the Highlander version of ModifyDamageValue().
+			ModifyDamageValue_CH(DamageInfo.BaseDamageValue, TargetUnit, AppliedDamageTypes, SourceWeapon, SourceUnit, AbilityState);
 		}
 
 		if (DamageTag != '')
 		{
 			SourceWeapon.GetWeaponDamageValue(TargetUnit, DamageTag, DamageInfo.ExtraDamageValue);
-			ModifyDamageValue(DamageInfo.ExtraDamageValue, TargetUnit, AppliedDamageTypes);
+			// Single line for Issue #1603 - Use the Highlander version of ModifyDamageValue().
+			ModifyDamageValue_CH(DamageInfo.ExtraDamageValue, TargetUnit, AppliedDamageTypes, SourceWeapon, SourceUnit, AbilityState);
 		}
 
 		if (SourceWeapon.HasLoadedAmmo() && !bIgnoreBaseDamage)
@@ -1053,7 +1197,8 @@ function CalculateDamageValues(XComGameState_Item SourceWeapon, XComGameState_Un
 				LoadedAmmo.GetBaseWeaponDamageValue(TargetUnit, DamageInfo.AmmoDamageValue);
 			}
 
-			ModifyDamageValue(DamageInfo.AmmoDamageValue, TargetUnit, AppliedDamageTypes);
+			// Single line for Issue #1603 - Use the Highlander version of ModifyDamageValue().
+			ModifyDamageValue_CH(DamageInfo.AmmoDamageValue, TargetUnit, AppliedDamageTypes, SourceWeapon, SourceUnit, AbilityState);
 		}
 
 		if (bAllowWeaponUpgrade)
@@ -1065,7 +1210,8 @@ function CalculateDamageValues(XComGameState_Item SourceWeapon, XComGameState_Un
 				{
 					UpgradeTemplateBonusDamage = WeaponUpgradeTemplate.BonusDamage;
 
-					ModifyDamageValue(UpgradeTemplateBonusDamage, TargetUnit, AppliedDamageTypes);
+					// Single line for Issue #1603 - Use the Highlander version of ModifyDamageValue().
+					ModifyDamageValue_CH(UpgradeTemplateBonusDamage, TargetUnit, AppliedDamageTypes, SourceWeapon, SourceUnit, AbilityState);
 
 					DamageInfo.UpgradeDamageValue.Spread += UpgradeTemplateBonusDamage.Spread;
 					DamageInfo.UpgradeDamageValue.Damage += UpgradeTemplateBonusDamage.Damage;
@@ -1086,7 +1232,8 @@ function CalculateDamageValues(XComGameState_Item SourceWeapon, XComGameState_Un
 			{
 				UpgradeTemplateBonusDamage = WeaponUpgradeTemplate.CHBonusDamage;
 				
-				ModifyDamageValue(UpgradeTemplateBonusDamage, TargetUnit, AppliedDamageTypes);
+				// Single line for Issue #1603 - Use the Highlander version of ModifyDamageValue().
+				ModifyDamageValue_CH(UpgradeTemplateBonusDamage, TargetUnit, AppliedDamageTypes, SourceWeapon, SourceUnit, AbilityState);
 
 				DamageInfo.UpgradeDamageValue.Damage += UpgradeTemplateBonusDamage.Damage;
 				DamageInfo.UpgradeDamageValue.Spread += UpgradeTemplateBonusDamage.Spread;
@@ -1101,7 +1248,8 @@ function CalculateDamageValues(XComGameState_Item SourceWeapon, XComGameState_Un
 	}
 
 	DamageInfo.BonusEffectDamageValue = GetBonusEffectDamageValue(AbilityState, SourceUnit, SourceWeapon, TargetUnit.GetReference());
-	ModifyDamageValue(DamageInfo.BonusEffectDamageValue, TargetUnit, AppliedDamageTypes);
+	// Single line for Issue #1603 - Use the Highlander version of ModifyDamageValue().
+	ModifyDamageValue_CH(DamageInfo.BonusEffectDamageValue, TargetUnit, AppliedDamageTypes, SourceWeapon, SourceUnit, AbilityState);
 }
 
 static private function MoveDamageModItemsAlt(out array<DamageModifierInfo> ToArray, out array<DamageModifierInfo> FromArray)
