@@ -560,7 +560,7 @@ LocFriendlyName="Shockwave"
 LocLongDescription="Your damaging grenades and gauntlet rockets decrease enemy defense by <Ability:SHOCKWAVE_DEF_REDUCTION/> and dodge by <Ability:SHOCKWAVE_DODGE_REDUCTION/> for <Ability:SHOCKWAVE_TURNS/> turn(s)."
 LocHelpText="Your damaging grenades and gauntlet rockets decrease enemy defense by <Ability:SHOCKWAVE_DEF_REDUCTION/> and dodge by <Ability:SHOCKWAVE_DODGE_REDUCTION/> for <Ability:SHOCKWAVE_TURNS/> turn(s)."
 LocPromotionPopupText="<Bullet/> Shockwave does not apply to flashbang grenades or other grenades that do not deal damage."
-LocFlyOverText="Shellshock"
+LocFlyOverText="Shockwave"
 
 ;;;;;;;;;;;;;;;;;;;;  GUNNER ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -783,8 +783,8 @@ LocPromotionPopupText="<Bullet/> Medium-range, cone-based shotgun attack.<br/><B
 [ChainLightning X2AbilityTemplate]
 LocFriendlyName="Chain Lightning"
 ; LWOTC Needs Translation (3)
-LocLongDescription="A chaining arc thrower attack that stuns up to <Ability:CHAIN_LIGHTNING_TARGETS> targets.
-LocHelpText="A chaining arc thrower attack that stuns up to <Ability:CHAIN_LIGHTNING_TARGETS> targets.
+LocLongDescription="A chaining arc thrower attack that stuns up to <Ability:CHAIN_LIGHTNING_TARGETS> targets."
+LocHelpText="A chaining arc thrower attack that stuns up to <Ability:CHAIN_LIGHTNING_TARGETS> targets."
 LocFlyOverText="Chain Lightning"
 LocPromotionPopupText="<Bullet/> Chain Lightning chains from target to target in a sequence. Successive targets can be up to <Ability:CHAIN_LIGHTNING_CHAIN_RANGE_TILES> tiles away from each other. The attack will not chain to previous targets in the sequence.<br/><Bullet/> The sequence of targets will be shown when you preview a target. A hit roll will be made against all targets in the sequence, even if you miss against a previous target. Cover bonuses are calculated from your position, not from the previous target.<br/><Bullet/> Chain Lightning cannot be fired at robotic enemies, and it will not chain to them.<br/><Bullet/> Requires one action and ends your turn.<br/><Bullet/> Chain Lightning has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Cannot be used from concealment."
 ; End Translation (3)
@@ -1312,7 +1312,6 @@ TacticalText="<Bullet/> The Plasma Blaster releases a beam of devastating energy
 FriendlyName="Plasma Blaster"
 FriendlyNamePlural="Plasma Blasters"
 BriefSummary="Using technology adapted from the aliens' own plasma weaponry, we've devised a means of releasing a massive, focused pulse of plasma energy that will devastate targets in a fixed path. Has enough energy for two activations."
-TacticalText="<Bullet/> The Plasma Blaster releases a beam of devastating energy in a straight line, capable of damaging multiple targets\n<Bullet/> Its ammo is limited, so use it only when it will be decisive."
 
 
 ; LWOTC Needs Translation (2)
@@ -1638,7 +1637,7 @@ TacticalText="<Bullet/> Grants <Ability:CERAMIC_PLATING_HP> ablative hit points.
 FriendlyName="Chameleon Suit"
 FriendlyNamePlural="Chameleon Suits"
 BriefSummary="Significantly reduces infiltration time by this soldier."
-TacticalText="<Bullet/> Grants 1 hit point and 5 dodge.\n<<Bullet/> Significantly reduces infiltration time by this unit.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+TacticalText="<Bullet/> Grants 1 hit point and 5 dodge.\n<Bullet/> Significantly reduces infiltration time by this unit.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [AlloyPlating X2EquipmentTemplate]
 FriendlyName="Alloy Plating"
@@ -3555,12 +3554,6 @@ Summary="We can now turn our attention to developing specialized coil weaponry."
 LongDescription="The challenges in adapting our new coilgun designs to fit our defined combat roles were not insignificant. While the reduced rate of fire offered by \"pure\" coilguns was never a concern for developing precision rifles, the coil groupings are. In addition, the coils themselves must be precisely machined and controlled so the ammunition does not cause a stovepipe malfunction, which could have disastrous consequences for the weapon and the user. Regardless, R&D's breakthroughs in magnetic technologies enable us to finally perfect the weapon action for our newest 8.6x70mm sniper rifle and combat shotgun designs.\n\nThis may explain why ADVENT never adopted this style of weaponry; they are too expensive and labor-intensive to produce, not exactly suited for industrial-scale production for a worldwide army of flash-trained clones. They are, however, an excellent fit for a small cadre of expert soldiers. Perhaps as technology marches on, we might be able to mass manufacture and arm larger numbers of soldiers and operatives with streamlined versions of linear induction weapons.\n\nAs for our observations of the general-purpose machine gun, we took what we learned developing the coil-rifle and multiplied it by at least sixteen times the detail and four times the size of a pre-war M249 SAW. What we did not initially suspect, however, is the unimaginable heat produced by our prototype when firing, to the point of a near-catastrophic failure of both the weapon and the firing range after its first few bursts.\n\nAnd thus, against many veterans' recommendations, we had to redesign our coil GPMG into a multi-barrel cannon with specialized recoil compensation and cooling apparatus for the operator's safety. While heavier than what our troops wanted, this is the best way to render the weapon safe while still maintaining effectiveness in the field. It is certain that Shen and I will redesign our LMG designs for better ergonomics right after completing this report, but our operatives will have to make due until then. R. Tygan"
 UnlockedDescription="Prototype added to inventory"
 
-[AutopsyDrone X2TechTemplate]
-DisplayName="ADVENT Robotics"
-CodeName="Duster"
-Summary="ADVENT relies heavily on mechanized units for crowd control and warfare. While our specialists have a handle on infiltrating their programming, we have more work to do to fully understand the hardware they employ. We will start by dismantling the wreckage of ADVENT drones we have recovered in order to develop a general theory of ADVENT's construction and engineering processes."
-LongDescription="We have achieved a rudimentary understanding of ADVENT's robotic combat systems. They are surprisingly much like our own pre-invasion designs, simply much more efficient with their power systems, and much more miniaturized overall. We view this project as a gateway to understanding ADVENT's more complex designs. R. Tygan." 
-
 [AutopsyMutonElite X2TechTemplate]
 DisplayName="Muton Elite Autopsy"
 CodeName="Bluton"
@@ -5458,7 +5451,7 @@ LocPromotionPopupText="<Bullet/> Demolition requires <Ability:SelfAmmoCost/> amm
 
 [GrenadeLauncher_MG X2GrenadeLauncherTemplate]
 BriefSummary="Our Advanced Grenade Launcher provides an additional grenade to grenade only slots."
-TacticalText="<Bullet/> The Advanced Grenade Launcher will give a bonus grenade item to grenades equipped in the grenade-only slot.\n."
+TacticalText="<Bullet/> The Advanced Grenade Launcher will give a bonus grenade item to grenades equipped in the grenade-only slot."
 
 ; LWOTC Needs Translation
 [GrenadeLauncher_BM X2GrenadeLauncherTemplate]
@@ -7189,8 +7182,8 @@ LocFlyOverText="Precise strike"
 
 [PsychoticRage_LW X2AbilityTemplate]
 LocFriendlyName="Psychotic Rage"
-LocHelpText="Gain a <Ability:PSYCHOTIC_RAGE_BELOW_THRESHOLD/>% damage boost when at <Ability:PSYCHOTIC_RAGE_DMG_BONUS/>% hp or less."
-LocLongDescription="Gain a <Ability:PSYCHOTIC_RAGE_BELOW_THRESHOLD/>% damage boost when at <Ability:PSYCHOTIC_RAGE_DMG_BONUS/>% hp or less."
+LocHelpText="Gain a <Ability:PSYCHOTIC_RAGE_DMG_BONUS/>% damage boost when at <Ability:PSYCHOTIC_RAGE_BELOW_THRESHOLD/>% hp or less."
+LocLongDescription="Gain a <Ability:PSYCHOTIC_RAGE_DMG_BONUS/>% damage boost when at <Ability:PSYCHOTIC_RAGE_BELOW_THRESHOLD/>% hp or less."
 LocFlyOverText="Psychotic Rage"
 
 [HeroSlayer_LW X2AbilityTemplate]
@@ -7746,7 +7739,7 @@ AbilityDescName="autopistol"
 FriendlyName="Mag Autopistol"
 FriendlyNamePlural="Mag Autopistols"
 BriefSummary="The introduction of a magnetic projectile accelerator into the automatic pistol wielded by our Soldiers would seem to be at odds with the weapon's original design. Still, we have made it work somehow. Indoor trials of this weapon are currently prohibited."
-TacticalText="<Bullet/> Magnetic autopistols are substantially more effective than their conventional precursors.\n<<Bullet/> The autopistol has a significantly shorter range than the pistol, lower base damage, but higher crit damage and a massive crit bonus."
+TacticalText="<Bullet/> Magnetic autopistols are substantially more effective than their conventional precursors.\n<Bullet/> The autopistol has a significantly shorter range than the pistol, lower base damage, but higher crit damage and a massive crit bonus."
 AbilityDescName="autopistol"
 
 [Sidearm_BM X2WeaponTemplate]
@@ -8050,21 +8043,21 @@ m_strOutpostTT=We have installed a radio relay in this region! The relay increas
 LocFriendlyName="The Lost Immunities"
 LocFlyOverText="The Lost Immunities"
 LocLongDescription="The Lost are immune to mental impairments, poison, and acid."
-LocHelpText="The Lost are immune to mental impairments, poison, and acid.
+LocHelpText="The Lost are immune to mental impairments, poison, and acid."
 LocPromotionPopupText=""
 
 [PsiZombieImmunitiesPassive X2AbilityTemplate]
 LocFriendlyName="Psi Zombie Immunities"
 LocFlyOverText="Psi Zombie Immunities"
 LocLongDescription="Psi Zombies are immune to mental impairments and poison."
-LocHelpText="Psi Zombies are immune to mental impairments and poison.
+LocHelpText="Psi Zombies are immune to mental impairments and poison."
 LocPromotionPopupText=""
 
 [SpectralZombieImmunitiesPassive X2AbilityTemplate]
 LocFriendlyName="Spectral Zombie Immunities"
 LocFlyOverText="Spectral Zombie Immunities"
 LocLongDescription="Spectral Zombies are immune to mental impairments, fire, poison, and acid."
-LocHelpText="Spectral Zombies are immune to mental impairments, fire, poison, and acid.
+LocHelpText="Spectral Zombies are immune to mental impairments, fire, poison, and acid."
 LocPromotionPopupText=""
 
 [Anatomy_LW X2AbilityTemplate]

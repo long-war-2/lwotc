@@ -17,3 +17,44 @@ SOLDIER_LOST_BONUS = "BONUS POUR SOLDAT PERDU";
 KILLS_LABEL = "Eliminations";
 ASSIST_LABEL = "Assistance";
 FLANKING_CRIT_LABEL = "Contournement";
+
+[XCom_Perfect_Information_UITacticalHUD_EnemyTooltip]
+PrimaryBase = "Dégâts de base"
+PrimarySpread = "Écart de dégâts"
+PrimaryPlusOne = "Dégâts +1"
+
+[XCom_Perfect_Information_UIEffectListItem]
+TURNS_REMAINING = "TOURS RESTANTS"
+
+
+[PI_MCMListener]
+MOD_NAME="Information parfaite"
+OPTIONS_HEADER="Options"
+DURATION_TITLE_DAMAGE="Durée d'affichage des dégâts"
+DURATION_DESCRIPTION_DAMAGE="Durée d'affichage des dégâts garantis"
+FLYOVER_TITLE_XCOM="Afficher les bulles pour XCOM"
+FLYOVER_TITLE_ENEMY="Afficher les bulles pour les ennemis"
+REACTION_FLYOVERS_TITLE="Afficher les bulles uniquement pour les tirs réflexes"
+AIM_ASSIST_FLYOVER_TITLE="Afficher les bulles d'aide à la visée"
+HIT_CHANCE_TITLE="Afficher les chances de toucher"
+CRIT_CHANCE_TITLE="Afficher les chances de coup critique"
+DODGE_CHANCE_TITLE="Afficher les chances d'esquive"
+MISS_CHANCE_TITLE="Afficher les chances de rater"
+SHORT_STRING_TITLE="Utiliser des libellés courts"
+SHOW_GUARANTEED_HITS_TITLE="Afficher les coups garantis"
+SHOW_GUARANTEED_MISS_TITLE="Afficher les échecs garantis"
+REPEATER_TITLE="Afficher les bulles des tirs répétés"
+SHOW_ENEMY_STATS_TITLE="Afficher l'infobulle des statistiques ennemies"
+SHOW_EXTRA_WEAPONSTATS_TITLE="Afficher les statistiques supplémentaires des armes"
+SHOW_AIM_ASSIST_MAIN_HUD_TITLE="Afficher l'aide à la visée sur l'interface de tir"
+SHOW_MISS_CHANCE_MAIN_HUD_TITLE="Afficher les chances de rater sur l'interface de tir"
+AIM_LEFT_OF_CRIT_TITLE="Afficher la visée à gauche du critique sur la barre de tir"
+PREVIEW_MINIMUM_TITLE="L'aperçu des dégâts affiche le minimum"
+SHOW_DODGE_TITLE="Afficher l'esquive sur l'interface de tir"
+SHOW_CRIT_DMG_TITLE="Afficher les dégâts critiques sur l'interface de tir"
+PREVIEW_HACKING_TITLE="Aperçu du piratage"
+SHOW_AIM_ASSIST_OVER_ENEMY_ICON_TITLE="Afficher l'aide à la visée au-dessus de l'icône ennemie"
+SHOW_MISS_CHANCE_OVER_ENEMY_ICON_TITLE="Afficher les chances de rater au-dessus de l'icône ennemie"
+SHOW_ALWAYS_SHOT_BREAKDOWN_HUD_TITLE="Toujours afficher le détail du tir"
+SHOW_MISS_CHANCE_BREAKDOWN_HUD_TITLE="Afficher le détail des chances de rater"
+SHOW_AIM_ASSIST_BREAKDOWN_HUD_TITLE="Afficher le détail de l'aide à la visée"

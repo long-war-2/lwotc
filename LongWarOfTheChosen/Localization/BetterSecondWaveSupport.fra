@@ -29,6 +29,10 @@ Description="Élus en devenir: Les Élus perdent la capacité Réaction principa
 ;;;;;;;;;;;;;;;;;;;;  SPECIFICITES FRA ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; LWotC(FRA) - Was here before, can't say if I've to delete it
 
+[HybridDifficulty_LW SecondWaveOptionObject]
+Tooltip="Augmente la difficulté tactique d'un niveau au-dessus de la difficulté de la couche stratégique. Pour ceux qui veulent une couche tactique plus difficile mais une couche stratégique plus facile. Remarque : cette option est encore en phase de test. Elle ne fait rien si vous jouez déjà en Légende, et changer de difficulté en cours de campagne la cassera. Les changements ne sont actuellement pas appliqués à Gatecrasher."
+Description="[Bêta] Difficulté hybride : augmente la difficulté tactique"
+
 [EnableChosen SecondWaveOptionObject]
 Tooltip="Activation des Élus, qui entreront en action à partir d'une date inconnue."
 Description="Élus: Activation des Elus."

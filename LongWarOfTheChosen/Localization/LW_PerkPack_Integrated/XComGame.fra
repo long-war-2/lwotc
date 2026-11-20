@@ -10,61 +10,61 @@ m_strUnavailableToClass="INDISPONIBLE"
 [DepthPerceptionPCS X2EquipmentTemplate]
 FriendlyName="SPC: Perception de profondeur"
 FriendlyNamePlural="SPC: Perception de profondeur"
-BriefSummary="Cet implant cybernétique octroie +5 en visée et réduit l'esquive ennemie de 25 lorsque vous vous trouvez en hauteur par rapport à votre cible."
+BriefSummary="Cet implant cybernétique octroie +<Ability:DP_AIM_BONUS> en visée et réduit l'esquive ennemie de <Ability:DP_ANTIDODGE_BONUS> lorsque vous vous trouvez en hauteur par rapport à votre cible."
 
 [HyperReactivePupilsPCS X2EquipmentTemplate]
 FriendlyName="SPC: Pupilles hyper-réactives"
 FriendlyNamePlural="SPC: Pupilles hyper-réactives"
-BriefSummary="Cet implant octroie +10 en visée au prochain tir avec l'arme principale après un tir raté."
+BriefSummary="Cet implant octroie +<Ability:HYPERREACTIVE_PUPILS_AIM_BONUS> en visée au prochain tir avec l'arme principale après un tir raté."
 
 [CombatAwarenessPCS X2EquipmentTemplate]
 FriendlyName="SPC: Attention accrue"
 FriendlyNamePlural="SPC: Attention accrue"
-BriefSummary="En mode Vigilance, vous gagnez 15 défense et 1 point d'armure."
+BriefSummary="Gagnez <Ability:COMBAT_AWARENESS_BONUS_DEFENSE> en défense et <Ability:COMBAT_AWARENESS_BONUS_ARMOR> en armure en vigilance ou en Suppression. Subir des dégâts n'annule plus votre vigilance ni votre Suppression."
 
 [CombatRushPCS X2EquipmentTemplate]
 FriendlyName="SPC: Adrénaline"
 FriendlyNamePlural="SPC: Adrénaline"
-BriefSummary="Lorsque vous éliminez un ennemi, les alliés dans un rayon de sept cases reçoivent un bonus temporaire de visée, chances de coup critique et déplacement. Cinq tours de rechargement."
+BriefSummary="Lorsque vous éliminez un ennemi, les alliés situés à moins de <Ability:COMBAT_RUSH_RADIUS> cases reçoivent +<Ability:COMBAT_RUSH_AIM_BONUS> en visée, +<Ability:COMBAT_RUSH_CRIT_BONUS> en chances de coup critique et +<Ability:COMBAT_RUSH_MOBILITY_BONUS> en mobilité pendant <Ability:COMBAT_RUSH_DURATION> tours. Temps de rechargement de <Ability:COMBAT_RUSH_COOLDOWN> tours."
 
 [DamageControlPCS X2EquipmentTemplate]
 FriendlyName="SPC: Contrôle des dégâts"
 FriendlyNamePlural="SPC: Contrôle des dégâts"
-BriefSummary="L'implant renforce votre armure contre les tirs ennemis et vous gagnez deux points d'armure pendant deux tours après une blessure."
+BriefSummary="L'implant renforce votre armure contre les tirs ennemis et vous confère <Ability:DAMAGE_CONTROL_BONUS_ARMOR> en armure pendant <Ability:DAMAGE_CONTROL_DURATION> tour(s) après avoir subi des dégâts."
 
 [AbsorptionFieldsPCS X2EquipmentTemplate]
 FriendlyName="SPC: Champs d'impact"
 FriendlyNamePlural="SPC: Champs d'impact"
-BriefSummary="Cet implant projecteur de bouclier peut être activé pour réduire les dégâts subis de 33% pendant deux tours."
+BriefSummary="Cet implant projecteur de bouclier peut être activé en utilisant une action pour réduire les dégâts subis de 33% pendant <Ability:ABSORPTION_FIELDS_DURATION> tours. Temps de rechargement de <Ability:ABSORPTION_FIELDS_COOLDOWN> tours."
 
 [BodyShieldPCS X2EquipmentTemplate]
 FriendlyName="SPC: Bouclier corporel"
 FriendlyNamePlural="SPC: Bouclier corporel"
-BriefSummary="L'ennemi ciblé reçoit -20 en visée et -50 en chances de coup critique contre vous."
+BriefSummary="Ciblez un ennemi en action gratuite pour lui infliger -<Ability:BODY_SHIELD_DEF_BONUS> en visée et -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> en chances de coup critique contre vous pendant <Ability:BODY_SHIELD_DURATION> tours. Temps de rechargement de <Ability:BODY_SHIELD_COOLDOWN> tours."
 
 [EmergencyLifeSupportPCS X2EquipmentTemplate]
 FriendlyName="SPC: Premiers soins"
 FriendlyNamePlural="SPC: Premiers soins"
-BriefSummary="Cet implant garantit que le premier coup fatal d'une mission ne mènera pas à une mort instantanée et augmente la durée de perte de sang avant la mort de deux tours"
+BriefSummary="Cet implant garantit que le premier coup fatal d'une mission ne mènera pas à une mort instantanée (sauf si elle subit un effet qui l'empêche) et augmente la durée de perte de sang avant la mort de <Ability:EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS> tours."
 
 [IronSkinPCS X2EquipmentTemplate]
 FriendlyName="SPC: Impénétrable"
 FriendlyNamePlural="SPC: Impénétrable"
-BriefSummary="Les dégâts reçus au corps à corps sont réduits de 3 points."
+BriefSummary="Les dégâts reçus au corps à corps sont réduits de <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION> points."
 
 [SmartMacrophagesPCS X2EquipmentTemplate]
 FriendlyName="SPC: Macrophages intelligentes"
 FriendlyNamePlural="SPC: Macrophages intelligentes"
-BriefSummary="Réduit le temps de récupération des blessures et confère une immunité au poison et à l'acide."
+BriefSummary="Réduit de 1 PV le temps de récupération des blessures et confère une immunité à l'acide et au poison."
 
 [CenterMass X2AbilityTemplate]
 ; A special 'е' character is used for the second 'e' to prevent the
 ; perk name appearing centered. Thanks to bountygiver for the suggestion.
 LocFriendlyName="Tireur émérite"
 LocFlyOverText="Tireur émérite"
-LocLongDescription="Les dégâts de base infligés par vos armes à feu augmentent de 1 point. S'applique aux armes principales et aux armes secondaires (comme le pistolet ou le fusil à canon scié)."
-LocHelpText="Les dégâts de base infligés par vos armes à feu augmentent de 1 point. S'applique aux armes principales et aux armes secondaires (comme le pistolet ou le fusil à canon scié)."
-LocPromotionPopupText="<Bullet/> Les dégâts de base infligés par vos armes à feu augmentent de 1 point. S'applique aux armes principales et aux armes secondaires (comme le pistolet ou le fusil à canon scié)."
+LocLongDescription="Vous infligez 1 point de dégâts de base supplémentaire avec votre arme principale, vos pistolets ou un fusil à canon scié."
+LocHelpText="Vous infligez 1 point de dégâts de base supplémentaire avec votre arme principale, vos pistolets ou un fusil à canon scié."
+LocPromotionPopupText="<Bullet/> Le bonus de dégâts s'applique à toutes les armes à feu et armes principales, y compris les gantelets Templiers."
 
 [Lethal X2AbilityTemplate]
 LocFriendlyName="Létal"
@@ -77,51 +77,51 @@ LocPromotionPopupText="<Bullet/> Les dégâts de base infligés par votre arme p
 
 [HitandSlither X2AbilityTemplate]
 LocFriendlyName="Frappe et glisse"
-LocFlyoverText="Frappe et glisse"
-LocLongDescription="Une fois par tour, gagnez une action de déplacement bonus après avoir effectué un tir standard avec votre arme principale sur une cible contournée ou exposée."
-LocHelpText="Une fois par tour, gagnez une action de déplacement bonus après avoir effectué un tir standard avec votre arme principale sur une cible contournée ou exposée."
-LocPromotionPopupText="<Bullet/> Une fois par tour, gagnez une action de déplacement bonus après avoir effectué un tir standard avec votre arme principale sur une cible contournée ou exposée.<br/><Bullet/> Frappe et glisse ne peut être utilisé si Course et tir est activé.<br/><Bullet/> Les actions supplémentaires d'Assassin et Punition céleste seront effectuées avant."
+LocFlyOverText="Frappe et glisse"
+LocLongDescription="Une fois par tour, gagnez une action de déplacement bonus après avoir effectué un tir standard avec votre arme principale sur un ennemi contourné."
+LocHelpText="Une fois par tour, gagnez une action de déplacement bonus après avoir effectué un tir standard avec votre arme principale sur un ennemi contourné."
+LocPromotionPopupText="<Bullet/> Une fois par tour, gagnez une action de déplacement bonus après avoir effectué un tir standard avec votre arme principale sur un ennemi contourné.<br/><Bullet/> Frappe et glisse ne peut être utilisé si Course et tir est activé.<br/><Bullet/> Les actions supplémentaires d'Assassin et Punition céleste seront effectuées avant."
 
 [HitandRun X2AbilityTemplate]
 LocFriendlyName="Frappe et course"
 LocFlyOverText="Frappe et course"
 ; LWOTC translated
-LocLongDescription="Une fois par tour, gagnez une action bonus après avoir effectué un tir standard avec votre arme principale sur une cible contournée ou exposée. Ne peut pas être combinée avec Course et tir ou Affrontement rapproché."
+LocLongDescription="Une fois par tour, gagnez une action bonus après avoir effectué un tir standard avec votre arme principale sur un ennemi contourné. Ne peut pas se déclencher durant le même tour que Affrontement rapproché."
 ; End translated
-LocHelpText="Une fois par tour, gagnez une action bonus après avoir effectué un tir standard avec votre arme principale sur une cible contournée ou exposée. Ne peut pas être combinée avec Course et tir ou Affrontement rapproché."
+LocHelpText="Une fois par tour, gagnez une action bonus après avoir effectué un tir standard avec votre arme principale sur un ennemi contourné."
 LocPromotionPopupText="<Bullet/> La capacité Frappe et course ne peut pas être utilisée le même tour que Course et tir.<br/><Bullet/> Les actions bonus d'Assassin et Punition céleste seront effectuées avant."
 
 [CloseCombatSpecialist X2AbilityTemplate]
 LocFriendlyName="Spécialiste en combat rapproché"
 LocFlyOverText="Spécialiste en combat rapproché"
 ; LWOTC translated (3)
-LocLongDescription="Pendant les tours ennemis, tir réflexe gratuit avec votre <Ability:BOUND_WEAPON_NAME/> sur toute unité ennemie visible se déplaçant ou tirant dans un rayon de 4 cases."
-LocHelpText="Pendant les tours ennemis, tir réflexe gratuit avec votre <Ability:BOUND_WEAPON_NAME/> sur toute unité ennemie visible se déplaçant ou tirant dans un rayon de 4 cases."
+LocLongDescription="Effectuez un tir réflexe gratuit avec votre <Ability:BOUND_WEAPON_NAME/> sur tout ennemi visible situé à moins de <Ability:CCS_RANGE> cases qui se déplace ou attaque."
+LocHelpText="Effectuez un tir réflexe gratuit sur tout ennemi visible situé à moins de <Ability:CCS_RANGE> cases qui se déplace ou attaque."
 ; End translated (3)
-LocPromotionPopupText="<Bullet/> Ne se déclenche pas si le soldat est dissimulé. <br/><Bullet/> Cette capacité permet de tirer sur chaque ennemi une fois par tour.<br/><Bullet/> Chaque tir consomme 2 munitions.<br/>"
+LocPromotionPopupText="<Bullet/> Ne se déclenche pas si le soldat est dissimulé.<br/><Bullet/> Cette capacité permet de tirer sur chaque ennemi une fois par tour.<br/><Bullet/> Chaque tir consomme <Ability:CCS_AMMO_PER_SHOT> munitions.<br/>"
 
 [CloseCombatSpecialistAttack X2AbilityTemplate]
 LocFriendlyName="Spécialiste en combat rapproché"
 LocFlyOverText="Spécialiste en combat rapproché"
 ; LWOTC translated (2)
-LocLongDescription="Pendant les tours ennemis, tir réflexe gratuit avec votre <Ability:BOUND_WEAPON_NAME/> sur toute unité ennemie visible se déplaçant ou tirant dans un rayon de 4 cases."
-LocHelpText="Pendant les tours ennemis, tir réflexe gratuit sur toute unité ennemie visible se déplaçant ou tirant dans un rayon de 4 cases."
+LocLongDescription="Effectuez un tir réflexe gratuit avec votre <Ability:BOUND_WEAPON_NAME/> sur tout ennemi visible situé à moins de <Ability:CCS_RANGE> cases qui se déplace ou attaque."
+LocHelpText="Effectuez un tir réflexe gratuit sur tout ennemi visible situé à moins de <Ability:CCS_RANGE> cases qui se déplace ou attaque."
 ; End translated (2)
-LocPromotionPopupText="<Bullet/> Ne se déclenche pas si le soldat est dissimulé. <br/><Bullet/> Cette capacité permet de tirer sur chaque ennemi une fois par tour.<br/><Bullet/> Chaque tir consomme 2 munitions.<br/>"
+LocPromotionPopupText="<Bullet/> Ne se déclenche pas si le soldat est dissimulé.<br/><Bullet/> Cette capacité permet de tirer sur chaque ennemi une fois par tour.<br/><Bullet/> Chaque tir consomme <Ability:CCS_AMMO_PER_SHOT> munitions.<br/>"
 
 [CloseandPersonal X2AbilityTemplate]
 LocFriendlyName="Proximité mortelle"
 LocFlyOverText="Proximité mortelle"
 LocLongDescription="Confère +30 en chances de coup critique contre les cibles adjacentes. Plus la cible est éloignée, plus le bonus diminue."
 LocHelpText="Confère +30 en chances de coup critique contre les cibles adjacentes. Plus la cible est éloignée, plus le bonus diminue."
-LocPromotionPopupText="<Bullet/> Confère +30 en chances de coup critique contre les cibles adjacentes.<br/><Bullet/> Bonus réduit de 5pts pour chaque case supplémentaire entre vous et la cible, jusqu'à un minimum de 0pt à 7 cases ou plus.<br/>"
+LocPromotionPopupText="<Bullet/> Bonus réduit de 5pts pour chaque case supplémentaire entre vous et la cible, jusqu'à un minimum de 0pt à 7 cases ou plus.<br/>"
 
 [DamnGoodGround X2AbilityTemplate]
 LocFriendlyName="Avantage du terrain"
 LocFlyOverText="Avantage du terrain"
 LocLongDescription="Confère +10 en visée et +10 en défense contre les cibles en contrebas."
 LocHelpText="Confère +10 en visée et +10 en défense contre les cibles en contrebas."
-LocPromotionPopupText="<Bullet/> Confère +10 en visée et +10 en défense contre les cibles en contrebas.<br/><Bullet/> Cette capacité ne fournit pas de bonus défensif si l'unité est désorientée, étourdie, en panique, en feu ou subit tout autre type de handicap."
+LocPromotionPopupText="<Bullet/> Cette capacité ne fournit pas de bonus défensif si l'unité est désorientée, étourdie, en panique, en feu ou subit tout autre type de handicap.<br/>"
 
 [Executioner_LW X2AbilityTemplate]
 LocFriendlyName="Charognard"
@@ -129,7 +129,7 @@ LocFlyOverText="Charognard"
 ; LWOTC translated
 LocLongDescription="Confère +<Ability:EXECUTIONER_AIM_BONUS/> en visée et +<Ability:EXECUTIONER_CRIT_BONUS/> en chances de coup critique contre les cibles possédant 50% de leurs PV ou moins."
 LocHelpText="Confère +<Ability:EXECUTIONER_AIM_BONUS/> en visée et +<Ability:EXECUTIONER_CRIT_BONUS/> en chances de coup critique contre les cibles possédant 50% de leurs PV ou moins."
-LocPromotionPopupText="<Bullet/> Confère +<Ability:EXECUTIONER_AIM_BONUS/> en visée et +<Ability:EXECUTIONER_CRIT_BONUS/> en chances de coup critique contre les cibles possédant 50% de leurs PV ou moins.<br/>"
+LocPromotionPopupText=""
 ; End translated
 
 [Resilience X2AbilityTemplate]
@@ -151,7 +151,7 @@ LocFriendlyName="Agressivité"
 LocFlyOverText="Agressivité"
 LocLongDescription="Gagnez +5 en chances de coup critique pour chaque ennemi que vous voyez, jusqu'à un maximum de +30."
 LocHelpText="Gagnez +5 en chances de coup critique pour chaque ennemi que vous voyez, jusqu'à un maximum de +30."
-LocPromotionPopupText="<Bullet/> Gagnez +5 en chances de coup critique pour chaque ennemi que vous voyez, jusqu'à un maximum de +30.<br/><Bullet/> Les unités visibles en vision commune confèrent un bonus.<br/>"
+LocPromotionPopupText="<Bullet/> Les unités visibles en vision commune confèrent un bonus.<br/>"
 
 [BringEmOn X2AbilityTemplate]
 LocFriendlyName="Férocité"
@@ -159,15 +159,15 @@ LocFlyOverText="Férocité"
 ; LWOTC translated
 LocLongDescription="Dégâts des coups critiques +1 tous les deux ennemis vus, jusqu'à un maximum de +8. Cette capacité affecte les explosifs et l'arme <Ability:BOUND_WEAPON_NAME/>."
 LocHelpText="Dégâts des coups critiques +1 tous les deux ennemis vus, jusqu'à un maximum de +8. Cette capacité affecte les explosifs et l'arme <Ability:BOUND_WEAPON_NAME/>."
-LocPromotionPopupText="<Bullet/> Dégâts des coups critiques +1 tous les deux ennemis vus, jusqu'à un maximum de +8. Cette capacité affecte les explosifs et l'arme <Ability:BOUND_WEAPON_NAME/>.<br/><Bullet/> Les unités visibles en vision commune confèrent aussi un bonus.<br/>"
+LocPromotionPopupText="<Bullet/> Les unités visibles en vision commune confèrent un bonus.<br/><Bullet/> S'applique aux dégâts de l'<Ability:BOUND_WEAPON_NAME/> du soldat et, si le soldat possède Super Boum, aux explosifs (grenades offensives, roquettes, etc.).<br/>"
 ; End translated
 
 [HardTarget X2AbilityTemplate]
 LocFriendlyName="Cible difficile"
 LocFlyOverText="Cible difficile"
-LocLongDescription="Gagnez +5 en esquive par ennemi que vous voyez, jusqu'à un maximum de +30."
-LocHelpText="Gagnez +5 en esquive par ennemi que vous voyez, jusqu'à un maximum de +30."
-LocPromotionPopupText="<Bullet/> Gagnez +5 en esquive par ennemi que vous voyez, jusqu'à un maximum de +30.<br/><Bullet/> Les unités visibles en vision commune confèrent aussi un bonus.<br/><Bullet/> Cette capacité ne fournit pas de bonus défensif si l'unité est désorientée, étourdie, en panique, en feu ou subit tout autre type de handicap."
+LocLongDescription="Gagnez <Ability:HT_DODGE_BONUS_PER_ENEMY/> en esquive par ennemi visible, jusqu'à un maximum de <Ability:HT_MAX_DODGE_BONUS/>."
+LocHelpText="Gagnez <Ability:HT_DODGE_BONUS_PER_ENEMY/> en esquive par ennemi visible, jusqu'à un maximum de <Ability:HT_MAX_DODGE_BONUS/>."
+LocPromotionPopupText="<Bullet/> Les unités visibles en vision commune ne confèrent pas de bonus.<br/><Bullet/> Cette capacité ne fournit pas de bonus défensif si l'unité est désorientée, étourdie, en panique, en feu ou subit tout autre type de handicap."
 
 ; LWOTC translated (2)
 [Infighter X2AbilityTemplate]
@@ -175,15 +175,15 @@ LocFriendlyName="Arts martiaux"
 LocFlyOverText="Arts martiaux"
 LocLongDescription="Esquive +<Ability:INFIGHTER_DODGE_BONUS/> contre les attaques dans un rayon de 4 cases."
 LocHelpText="Esquive +<Ability:INFIGHTER_DODGE_BONUS/> contre les attaques dans un rayon de 4 cases."
-LocPromotionPopupText="<Bullet/> Esquive +<Ability:INFIGHTER_DODGE_BONUS/> contre les attaques dans un rayon de 4 cases. <br/><Bullet/> Le bonus s'applique également aux attaques au corps à corps. <br/><Bullet/> Cette capacité ne fournit pas de bonus défensif si l'unité est désorientée, étourdie, en panique ou subit tout autre type de handicap (le feu n'empêche pas l'activation de cette capacité)."
+LocPromotionPopupText="<Bullet/> Le bonus d'esquive s'applique également aux attaques au corps à corps.<br/><Bullet/> Cette capacité ne fournit pas de bonus défensif si l'unité est désorientée, étourdie, en panique ou subit tout autre type de handicap.<br/><Bullet/> Le feu n'affecte pas cette capacité."
 ; End translated (2)
 
 [DepthPerception X2AbilityTemplate]
 LocFriendlyName="Perception de profondeur"
 LocFlyOverText="Perception de profondeur"
-LocLongDescription="Visée +5 et esquive ennemie -25 lorsque vous vous trouvez en hauteur par rapport à votre cible."
-LocHelpText="Visée +5 et esquive ennemie -25 lorsque vous vous trouvez en hauteur par rapport à votre cible."
-LocPromotionPopupText="<Bullet/> Visée +5 et esquive ennemie -25 lorsque vous vous trouvez en hauteur par rapport à votre cible. <br/>"
+LocLongDescription="Visée +<Ability:DP_AIM_BONUS> et esquive ennemie -<Ability:DP_ANTIDODGE_BONUS> lorsque vous vous trouvez en hauteur par rapport à votre cible."
+LocHelpText="Visée +<Ability:DP_AIM_BONUS> et esquive ennemie -<Ability:DP_ANTIDODGE_BONUS> lorsque vous vous trouvez en hauteur par rapport à votre cible."
+LocPromotionPopupText="<Bullet/> Gagnez <Ability:DP_AIM_BONUS> en visée et réduisez l'esquive des ennemis de <Ability:DP_ANTIDODGE_BONUS> lorsque vous êtes plus haut que votre cible."
 
 [WilltoSurvive X2AbilityTemplate]
 LocFriendlyName="Volonté de survie"
@@ -198,7 +198,7 @@ LocFlyOverText="Mitraillage"
 ; LWOTC translated
 LocLongDescription="Un tir standard avec votre arme principale ne met plus fin à votre tour."
 LocHelpText="Un tir standard avec votre arme principale ne met plus fin à votre tour."
-LocPromotionPopupText="<Bullet/> Un tir standard avec votre arme principale ne met plus fin à votre tour.<br/>"
+LocPromotionPopupText=""
 ; End translated
 
 [CloseEncounters X2AbilityTemplate]
@@ -206,14 +206,14 @@ LocFriendlyName="Affrontement rapproché"
 LocFlyOverText="Affrontement rapproché"
 LocLongDescription="Une fois par tour, gagnez une action bonus après avoir effectué un tir normal avec votre arme principale sur un ennemi dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases."
 LocHelpText="Une fois par tour, gagnez une action bonus après avoir effectué un tir normal avec votre arme principale sur un ennemi dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases."
-LocPromotionPopupText="<Bullet/> Une fois par tour, gagnez une action bonus après avoir effectué un tir normal avec votre arme principale sur un ennemi dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases.<br/><Bullet/> Affrontement rapproché ne peut pas être utilisé une fois que Course et tir a été activé.<br/><Bullet>  La portée de la capacité est représentée par un anneau rouge.<br/><Bullet/> Ne peut pas être utilisé durant le même tour que Course et tir.<br/>"
+LocPromotionPopupText="<Bullet/> Un anneau rouge indique la portée de cette capacité.<br/><Bullet/> Affrontement rapproché ne peut pas être utilisé durant le même tour que Course et tir.<br/>"
 
 ; LWOTC translated
 [LoneWolf X2AbilityTemplate]
 LocFriendlyName="Loup solitaire"
 LocFlyOverText="Loup solitaire"
-LocLongDescription="Gagnez un bonus en visée et en défense quand vous êtes au moins à une distance de <Ability:LONEWOLF_MIN_BONUS_TILES/> cases de l'allié le plus proche. Ce bonus augmente de +<Ability:LONEWOLF_AIM_PER_TILE/>/+<Ability:LONEWOLF_DEF_PER_TILE/> pour chaque case supplémentaire, jusqu'à un maximum de +<Ability:LONEWOLF_AIM_BONUS/>/+<Ability:LONEWOLF_DEF_BONUS/> à une distance de <Ability:LONEWOLF_MIN_DIST_TILES/> cases ou plus."
-LocHelpText="Gagnez un bonus en visée et en défense quand vous êtes au moins à une distance de <Ability:LONEWOLF_MIN_BONUS_TILES/> cases de l'allié le plus proche. Ce bonus augmente de +<Ability:LONEWOLF_AIM_PER_TILE/>/+<Ability:LONEWOLF_DEF_PER_TILE/> pour chaque case supplémentaire, jusqu'à un maximum de +<Ability:LONEWOLF_AIM_BONUS/>/+<Ability:LONEWOLF_DEF_BONUS/> à une distance de <Ability:LONEWOLF_MIN_DIST_TILES/> cases ou plus."
+LocLongDescription="Gagnez un bonus de visée et de défense lorsque vous êtes à au moins <Ability:LONEWOLF_MIN_BONUS_TILES/> cases de tout allié, avec un maximum de +<Ability:LONEWOLF_AIM_BONUS/>/+<Ability:LONEWOLF_DEF_BONUS/> à <Ability:LONEWOLF_MIN_DIST_TILES/>+ cases."
+LocHelpText="Gagnez un bonus de visée et de défense lorsque vous êtes à au moins <Ability:LONEWOLF_MIN_BONUS_TILES/> cases de tout allié, avec un maximum de +<Ability:LONEWOLF_AIM_BONUS/>/+<Ability:LONEWOLF_DEF_BONUS/> à <Ability:LONEWOLF_MIN_DIST_TILES/>+ cases."
 LocPromotionPopupText="<Bullet/> Gagnez un bonus en visée et en défense quand vous êtes au moins à une distance de <Ability:LONEWOLF_MIN_BONUS_TILES/> cases de l'allié le plus proche. Ce bonus augmente de +<Ability:LONEWOLF_AIM_PER_TILE/>/+<Ability:LONEWOLF_DEF_PER_TILE/> pour chaque case supplémentaire, jusqu'à un maximum de +<Ability:LONEWOLF_AIM_BONUS/>/+<Ability:LONEWOLF_DEF_BONUS/> à une distance de <Ability:LONEWOLF_MIN_DIST_TILES/> cases ou plus.<br/><Bullet/> Cette capacité ne fournit pas de bonus défensif si l'unité est désorientée, étourdie, en panique, en feu ou subit tout autre type de handicap."
 ; End translated
 
@@ -236,9 +236,9 @@ LocPromotionPopupText="<Bullet/> Le Double tir vous permet de tirer deux fois su
 [TraverseFire X2AbilityTemplate]
 LocFriendlyName="Tir de traverse"
 LocFlyOverText="Tir de traverse"
-LocLongDescription="Après avoir effectué un tir normal avec votre arme principale comme première action, vous pouvez faire une action supplémentaire, mais pas un déplacement."
-LocHelpText="Après avoir effectué un tir normal avec votre arme principale comme première action, vous pouvez faire une action supplémentaire, mais pas un déplacement."
-LocPromotionPopupText="<Bullet/> Après avoir effectué un tir normal avec votre arme principale comme première action, vous pouvez faire une action supplémentaire, mais pas un déplacement.<br/>"
+LocLongDescription="Après avoir effectué un tir standard avec votre <Ability:BoundWeaponName> comme première action, vous pouvez effectuer une action supplémentaire autre qu'un déplacement."
+LocHelpText="Après avoir effectué un tir standard avec votre <Ability:BoundWeaponName> comme première action, vous pouvez effectuer une action supplémentaire autre qu'un déplacement."
+LocPromotionPopupText="<Bullet> Ne peut s'activer qu'une fois par tour.<br><Bullet> Les actions gratuites non offensives peuvent être utilisées sans annuler Tir de traverse."
 
 ;LWOTC translated
 [WalkFire X2AbilityTemplate]
@@ -253,18 +253,25 @@ LocPromotionPopupText="<Bullet/> Vous effectuez un tir de précision avec un bon
 LocFriendlyName="Tir précis"
 LocFlyOverText="Tir précis"
 ; LWOTC translated (2)
-LocLongDescription="Tir spécial qui confère un bonus de +<Ability:PRECISION_SHOT_CRIT_BONUS/> en chances de coup critique et augmente les dégâts critiques de <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>%. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
-LocHelpText="Tir spécial qui confère un bonus de +<Ability:PRECISION_SHOT_CRIT_BONUS/> en chances de coup critique et augmente les dégâts critiques de <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>%. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
-LocPromotionPopupText="<Bullet/> Tir spécial qui confère un bonus de +<Ability:PRECISION_SHOT_CRIT_BONUS/> en chances de coup critique et augmente les dégâts critiques de <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>%. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/>"
+LocLongDescription="Effectue un tir spécial avec +<Ability:PRECISION_SHOT_CRIT_BONUS/> de chances de coup critique, qui inflige <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% de dégâts en plus s'il est critique. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+LocHelpText="Effectue un tir spécial avec +<Ability:PRECISION_SHOT_CRIT_BONUS/> de chances de coup critique, qui inflige <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% de dégâts en plus s'il est critique. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+LocPromotionPopupText="<Bullet/> Le bonus de dégâts s'applique de manière multiplicative aux dégâts totaux, après le calcul habituel des dégâts."
 ; End translated (2)
+
+[PrecisionShotSnapShot X2AbilityTemplate]
+LocFriendlyName="Tir précis (Tir éclair)"
+LocFlyOverText="Tir précis (Tir éclair)"
+LocLongDescription="Effectue un tir spécial avec +<Ability:PRECISION_SHOT_CRIT_BONUS/> de chances de coup critique, qui inflige <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% de dégâts en plus s'il est critique. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+LocHelpText="Effectue un tir spécial avec +<Ability:PRECISION_SHOT_CRIT_BONUS/> de chances de coup critique, qui inflige <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% de dégâts en plus s'il est critique. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+LocPromotionPopupText="<Bullet/> Le bonus de dégâts s'applique de manière multiplicative aux dégâts totaux, après le calcul habituel des dégâts."
 
 
 [CyclicFire X2AbilityTemplate]
 LocFriendlyName="Tir cyclique"
 LocFlyOverText="Tir cyclique"
 ; LWOTC translated (2)
-LocLongDescription="Tir spécial: tirez trois fois sur une même cible en une seule attaque. Coûte 2 actions et tous les tirs ont une pénalité de -<Ability:CYCLIC_FIRE_AIM_MALUS/> en visée. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
-LocHelpText="Tir spécial: tirez trois fois sur une même cible en une seule attaque. Coûte 2 actions et tous les tirs ont une pénalité de -<Ability:CYCLIC_FIRE_AIM_MALUS/> en visée. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+LocLongDescription="Tir spécial : tire trois coups sur une cible en une seule attaque. Nécessite les deux actions et tous les tirs subissent des malus de visée. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+LocHelpText="Tir spécial : tire trois coups sur une cible en une seule attaque. Nécessite les deux actions et tous les tirs subissent des malus de visée. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
 LocPromotionPopupText="<Bullet/> Tir spécial: tirez trois fois sur une même cible en une seule attaque. Coûte 2 actions et tous les tirs ont une pénalité de -<Ability:CYCLIC_FIRE_AIM_MALUS/> en visée. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Nécessite <Ability:SelfAmmoCost/> munitions.<br/><Bullet/> Nécessite une arme tirant en rafales ; la capacité est indisponible quand l'arme principale équipée est un fusil à pompe ou un fusil de précision."
 ; End translated (2)
 
@@ -282,15 +289,15 @@ LocPromotionPopupText="<Bullet/> Tir spécial pour les armes principales de type
 LocFriendlyName="Balle flèche"
 LocFlyOverText="Balle flèche"
 ; LWOTC translated (3)
-LocLongDescription="Tir spécial pour les armes principales de type fusil à pompe: un tir qui ignore <Ability:SLUG_SHOT_PIERCE/> point(s) d'armure et n'a aucune pénalité de distance. Consomme <Ability:SelfAmmoCost/> munitions. <Ability:SelfCooldown_LW/> tour(s) de rechargement."
-LocHelpText="Tir spécial pour les armes principales de type fusil à pompe: un tir qui ignore <Ability:SLUG_SHOT_PIERCE/> point(s) d'armure et n'a aucune pénalité de distance. Consomme <Ability:SelfAmmoCost/> munitions. <Ability:SelfCooldown_LW/> tour(s) de rechargement."
+LocLongDescription="Tir spécial pour les fusils à pompe d'arme principale uniquement : tire un coup qui ignore <Ability:SLUG_SHOT_PIERCE/> point(s) d'armure, sans pénalité de portée et avec +<Ability:SLUG_SHOT_ACC_BONUS> de précision supplémentaire. Consomme <Ability:SelfAmmoCost/> munitions. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+LocHelpText="Tir spécial de fusil à pompe perforant, sans pénalité de portée."
 LocPromotionPopupText="<Bullet/> Tir spécial pour les armes principales de type fusil à pompe: un tir qui ignore <Ability:SLUG_SHOT_PIERCE/> point(s) d'armure et n'a aucune pénalité de distance. Consomme <Ability:SelfAmmoCost/> munitions. <Ability:SelfCooldown_LW/> tour(s) de rechargement.<br/>"
 ; End translated (3)
 
 [SlugShotRangeEffect X2AbilityTemplate]
 LocFriendlyName="Balle flèche"
 LocFlyOverText="Balle flèche"
-LocLongDescription="Tir spécial pour les armes principales de type fusil à pompe: un tir qui ignore 2 points d'armure et n'a aucune pénalité de distance. Consomme <Ability:SelfAmmoCost/> munitions. <Ability:SelfCooldown_LW/> tour(s) de rechargement."
+LocLongDescription="Tir spécial pour les fusils à pompe d'arme principale uniquement : tire un coup sans pénalité de portée et avec +<Ability:SLUG_SHOT_ACC_BONUS> de précision supplémentaire. Consomme <Ability:SelfAmmoCost/> munitions. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
 LocHelpText="Tir spécial pour les armes principales de type fusil à pompe: un tir qui ignore 2 points d'armure et n'a aucune pénalité de distance. Consomme <Ability:SelfAmmoCost/> munitions. <Ability:SelfCooldown_LW/> tour(s) de rechargement."
 LocPromotionPopupText="<Bullet/> Tir spécial pour les armes principales de type fusil à pompe: un tir qui ignore 2 points d'armure et n'a aucune pénalité de distance. Consomme <Ability:SelfAmmoCost/> munitions. <Ability:SelfCooldown_LW/> tour(s) de rechargement.<br/>"
 ; End translated (2)
@@ -313,17 +320,21 @@ LocPromotionPopupText="<Bullet/> Tir au pistolet ne pouvant pas manquer sa cible
 [Gunslinger X2AbilityTemplate]
 LocFriendlyName="Fin tireur"
 LocFlyOverText="Fin tireur"
-LocLongDescription="Effectuez un tir réflexe avec votre pistolet contre tout ennemi se déplaçant ou attaquant dans un rayon de <Ability:GUNSLINGER_TILES_RANGE/> cases autour de votre position. Ce tir ne peut pas manquer sa cible et inflige un coup critique automatique."
-LocHelpText="Effectuez un tir réflexe avec votre pistolet contre tout ennemi se déplaçant ou attaquant dans un rayon de <Ability:GUNSLINGER_TILES_RANGE/> cases autour de votre position. Ce tir ne peut pas manquer sa cible et inflige un coup critique automatique."
-LocPromotionPopupText="<Bullet/> La portée est de <Ability:GUNSLINGER_TILES_RANGE/> cases.<br/><Bullet/> <Ability:SelfCooldown_LW/> tour(s) de rechargement.<br/>"
-LocFriendlyNameWhenConcealed="Vigilance (Dissimulé)"
+LocLongDescription="Passez dans une forme spécialisée de vigilance. Tant qu'elle est active, effectuez un tir réflexe avec votre <Ability:BOUND_WEAPON_NAME> sur tout ennemi qui se déplace ou attaque dans un rayon de <Ability:GUNSLINGER_TILES_RANGE> cases. Ce tir touche à coup sûr et est toujours critique."
+LocHelpText="Passez dans une forme spécialisée de vigilance pour effectuer un tir de <Ability:BOUND_WEAPON_NAME> sur tout ennemi qui se déplace ou attaque dans un rayon de <Ability:GUNSLINGER_TILES_RANGE> cases."
+LocPromotionPopupText="<Bullet> Le nombre de tirs de Fin tireur qu'un soldat peut effectuer n'est pas limité, indépendamment des munitions.<br><Bullet> Temps de rechargement de <Ability:SelfCooldown_LW> tour(s).<br><Bullet> Ne peut pas être utilisé depuis la dissimulation."
+LocFriendlyNameWhenConcealed="Fin tireur (dissimulé)"
 ;End translated (3)
+
+[GunslingerShot X2AbilityTemplate]
+LocFriendlyName="Fin tireur"
+LocFlyOverText="Fin tireur"
 
 [HyperReactivePupils X2AbilityTemplate]
 LocFriendlyName="Pupilles hyper-réactives"
 LocFlyOverText="Pupilles hyper-réactives"
-LocLongDescription="Visée +10 au prochain tir avec l'arme principale après un tir raté. Le bonus s'applique jusqu'au prochain tir réussi ou la fin de la mission (suivant ce qui arrive en premier)."
-LocHelpText="Visée +10 au prochain tir avec l'arme principale après un tir raté. Le bonus s'applique jusqu'au prochain tir réussi ou la fin de la mission (suivant ce qui arrive en premier)."
+LocLongDescription="Visée +<Ability:HYPERREACTIVE_PUPILS_AIM_BONUS> au prochain tir avec l'arme principale après un tir raté. Le bonus s'applique jusqu'au prochain tir réussi ou la fin de la mission (suivant ce qui arrive en premier)."
+LocHelpText="Visée +<Ability:HYPERREACTIVE_PUPILS_AIM_BONUS> au prochain tir avec l'arme principale après un tir raté. Le bonus s'applique jusqu'au prochain tir réussi ou la fin de la mission (suivant ce qui arrive en premier)."
 LocPromotionPopupText="<Bullet/> Visée +10 au prochain tir avec l'arme principale après un tir raté. Le bonus s'applique jusqu'au prochain tir réussi ou la fin de la mission (suivant ce qui arrive en premier). <br/><Bullet/> Ne peut pas être déclenché par un tir à zone d'effet. <br/>"
 
 [SteadyWeapon X2AbilityTemplate]
@@ -337,9 +348,9 @@ LocPromotionPopupText="<Bullet/> +20 en visée sur votre prochain tir d'arme pr
 LocFriendlyName="Verrouillage"
 LocFlyOverText="Verrouillage"
 ; LWOTC translated
-LocLongDescription="Bonus de +<Ability:LOCKEDON_AIM_BONUS/> en visée et +<Ability:LOCKEDON_CRIT_BONUS/> en chances de coup critique pour les tirs successifs contre la même unité ennemie avec votre arme principale."
-LocHelpText="Bonus de +<Ability:LOCKEDON_AIM_BONUS/> en visée et +<Ability:LOCKEDON_CRIT_BONUS/> en chances de coup critique pour les tirs successifs contre la même unité ennemie avec votre arme principale."
-LocPromotionPopupText="<Bullet/> Bonus de +<Ability:LOCKEDON_AIM_BONUS/> en visée et +<Ability:LOCKEDON_CRIT_BONUS/> en chances de coup critique pour les tirs successifs contre la même unité ennemie avec votre arme principale.<br/><Bullet/> Non cumulatif et seulement applicable sur les unités ennemies. Les tirs à effet de zone ne confèrent pas ce bonus."
+LocLongDescription="Bonus de +<Ability:LOCKEDON_AIM_BONUS/> en visée et de +<Ability:LOCKEDON_CRIT_BONUS/> en chances de coup critique pour les tirs successifs avec votre <Ability:BOUND_WEAPON_NAME/> contre la même unité ennemie."
+LocHelpText="Bonus de +<Ability:LOCKEDON_AIM_BONUS/> en visée et de +<Ability:LOCKEDON_CRIT_BONUS/> en chances de coup critique pour les tirs successifs avec votre <Ability:BOUND_WEAPON_NAME/> contre la même unité ennemie."
+LocPromotionPopupText="<Bullet/> Non cumulatif, et ne s'applique qu'aux unités ennemies.<br/><Bullet/> Les tirs à effet de zone ne confèrent pas ce bonus."
 ; End translated
 
 [Sentinel_LW X2AbilityTemplate]
@@ -354,7 +365,7 @@ LocFriendlyName="Réaction rapide"
 LocFlyOverText="Réaction rapide"
 LocLongDescription="En vigilance, chaque tir réussi vous octroie un tir réflexe supplémentaire, jusqu'à un maximum de trois tirs."
 LocHelpText="En vigilance, chaque tir réussi vous octroie un tir supplémentaire, jusqu'à un maximum de trois tirs."
-LocPromotionPopupText="<Bullet/> En vigilance, chaque tir réussi vous octroie un tir réflexe supplémentaire, jusqu'à un maximum de trois tirs.<br/>"
+LocPromotionPopupText=""
 
 [LightningReflexes_LW X2AbilityTemplate]
 LocFriendlyName="Réflexes éclairs"
@@ -369,16 +380,16 @@ LocFlyOverText="Coupe-gorge"
 ; LWOTC translated
 LocLongDescription="Vos attaques au corps à corps contre les ennemis organiques ignorent les armures, et gagnent un bonus de +<Ability:CUTTHROAT_BONUS_CRIT_CHANCE/> en chances de coup critique et de +<Ability:CUTTHROAT_BONUS_CRIT_DAMAGE/> en dégâts critiques."
 LocHelpText="Vos attaques au corps à corps contre les ennemis organiques ignorent les armures, et gagnent un bonus de +<Ability:CUTTHROAT_BONUS_CRIT_CHANCE/> en chances de coup critique et de +<Ability:CUTTHROAT_BONUS_CRIT_DAMAGE/> en dégâts critiques."
-LocPromotionPopupText="Vos attaques au corps à corps contre les ennemis organiques ignorent les armures, et gagnent un bonus de +<Ability:CUTTHROAT_BONUS_CRIT_CHANCE/> en chances de coup critique et de +<Ability:CUTTHROAT_BONUS_CRIT_DAMAGE/> en dégâts critiques."
+LocPromotionPopupText=""
 ; End translated
 
 [KillerInstinct X2AbilityTemplate]
 LocFriendlyName="Instinct de tueur"
 LocFlyOverText="Instinct de tueur"
 ; LWOTC translated (2)
-LocLongDescription="Activer Course et tir augmente les dégâts critiques de <Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% pour le reste du tour."
-LocHelpText="Activer Course et tir augmente les dégâts critiques de <Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% pour le reste du tour."
-LocPromotionPopupText="<Bullet/> Activer Course et tir augmente les dégâts critiques de <Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% pour le reste du tour.<br/>"
+LocLongDescription="Après avoir activé Course et tir, vos coups critiques infligent <Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% de dégâts en plus pour le reste du tour."
+LocHelpText="Après avoir activé Course et tir, vos coups critiques infligent <Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% de dégâts en plus pour le reste du tour."
+LocPromotionPopupText="<Bullet/> Le bonus de dégâts s'applique de manière multiplicative aux dégâts totaux, après le calcul habituel des dégâts.<br/>"
 ; End translated (2)
 
 [ExtraConditioning X2AbilityTemplate]
@@ -391,53 +402,57 @@ LocPromotionPopupText="<Bullet/> Le temps de rechargement de Course et tir est r
 [RunAndGun_LW X2AbilityTemplate]
 LocFriendlyName="Course et tir"
 LocFlyOverText="Course et tir"
-LocLongDescription="Permet d'effectuer une action après un sprint."
-LocHelpText="Permet d'effectuer une action après un sprint."
+LocLongDescription="Effectuez une action après un sprint. Activer cette capacité désactive la plupart des autres capacités qui rendent des points d'action, comme Affrontement rapproché ou Frappe et course"
+LocHelpText="Effectuez une action après un sprint. Désactive les capacités qui rendent des points d'action au soldat."
 ; LWOTC translated
-LocPromotionPopupText="<Bullet/> La capacité Course et tir permet aux soldats de franchir rapidement la distance qui les sépare de leur cible ou de contourner facilement l'ennemi.<br/><Bullet/> Temps de rechargement de <Ability:RUN_AND_GUN_COOLDOWN/> tour(s).<br/>"
+LocPromotionPopupText="<Bullet/> La capacité Course et tir permet aux soldats de franchir rapidement la distance qui les sépare de leur cible ou de contourner facilement l'ennemi.<br/><Bullet/> Temps de rechargement de <Ability:RUN_AND_GUN_COOLDOWN/> tour(s).<br/><Bullet/> Cette capacité désactive les atouts qui rendent des points d'action, comme Affrontement rapproché ou Frappe et course.<br/>"
 ; End translated
 
 [Suppression_LW X2AbilityTemplate]
 LocFriendlyName="Suppression"
 LocFlyOverText="Suppression"
-LocLongDescription="Tir de barrage qui bloque une cible et confère un tir réflexe si celle-ci se déplace. Bloque également certaines de ses capacités et lui inflige une pénalité de -<Ability:SUPPRESSIONPENALTY/> en visée."
-LocHelpText="Tir de barrage qui bloque une cible et confère un tir réflexe si celle-ci se déplace. Bloque également certaines de ses capacités et lui inflige une pénalité de -<Ability:SUPPRESSIONPENALTY/> en visée."
+LocLongDescription="Tire une salve qui cloue la cible sur place, ce qui confère un tir réflexe contre elle si elle se déplace, restreint certaines capacités et inflige un malus à la visée de la cible."
+LocHelpText="Pénalise la visée de la cible et lui tire dessus si elle se déplace."
 ; LWOTC translated
-LocPromotionPopupText="<Bullet/> La Suppression coûte <Ability:SelfAmmoCost/> munition(s) mais n'a pas de temps de rechargement.<br/><Bullet/> La Suppression est annulée si l'unité en Suppression subit des dégâts.<br/><Bullet/> Si plusieurs unités sont en Suppression sur la même cible, les pénalités de visée ne se cumulent pas.<br/><Bullet/> Inutilisable avec un fusil de précision ou un fusil à pompe.<br/><Bullet/> La Suppression peut bloquer diverses capacités de la cible, comme l'utilisation des roquettes et des grenades."
+LocPromotionPopupText="<Bullet> Suppression nécessite <Ability:SelfAmmoCost> munition(s).<br><Bullet> Suppression n'a pas de temps de rechargement.<br><Bullet> Suppression est annulée si l'unité qui supprime subit des dégâts ou est diminuée.<br><Bullet> Suppression réduit la visée de la cible de <Ability:SUPPRESSION_LW_AIM_MALUS> pendant un tour, puis de <Ability:SUPPRESSIONPENALTY> supplémentaires tant que la cible est sous Suppression.<br><Bullet> Suppression est inutilisable avec les fusils de précision et les fusils à pompe.<br><Bullet> Suppression restreint de nombreuses capacités de la cible, dont l'utilisation des roquettes et des grenades.<br><Bullet> Si plusieurs unités appliquent une Suppression à la même cible, les malus de visée ne se cumulent pas."
 ; End translated
 
 [AreaSuppression X2AbilityTemplate]
 LocFriendlyName="Suppression de zone"
 LocFlyOverText="Suppression de zone"
-LocLongDescription="Un tir de barrage qui marque la cible ainsi que toutes les unités situées dans un rayon de 4 cases autour d'elle. Les unités marquées subissent un malus de -<Ability:SUPPRESSIONPENALTY/> en visée jusqu'à ce que la Suppression soit annulée, et un tir réflexe se déclenche si elles se déplacent. Inutilisable en étant dissimulé."
-LocHelpText="Un tir de barrage qui marque la cible ainsi que toutes les unités situées dans un rayon de 4 cases autour d'elle. Les unités marquées subissent un malus de -<Ability:SUPPRESSIONPENALTY/> en visée jusqu'à ce que la Suppression soit annulée, et un tir réflexe se déclenche si elles se déplacent. Inutilisable en étant dissimulé."
+LocLongDescription="Tire une salve qui cloue sur place plusieurs cibles dans un rayon de <Ability:AREA_SUPPRESSION_RADIUS_TILES> cases, ce qui confère un tir réflexe contre quiconque se déplace et inflige un malus de visée à toutes les cibles tant que la Suppression n'est pas levée. Inutilisable en étant dissimulé."
+LocHelpText="Applique une Suppression à plusieurs cibles dans une zone d'effet."
 ; LWOTC translated
-LocPromotionPopupText="<Bullet/> La Suppression de zone est inutilisable en étant dissimulé.<br/><Bullet/> Toute unité qui tente de bouger subit un tir réflexe, tant qu'il reste des munitions à l'unité en Suppression.<br/><Bullet/> Incompatible avec les fusils à pompe et les fusils de précision.<br/><Bullet/> La Suppression de zone consomme <Ability:SelfAmmoCost/> munitions à l'utilisation, et 1 munition de plus à chaque tir réflexe. Pas de temps de rechargement.<br/><Bullet/> La Suppression de zone est annulée si l'unité en Suppression subit des dégâts.<br/><Bullet/> Si plusieurs unités sont en Suppression sur une cible, les pénalités de visée ne se cumulent pas.<br/><Bullet/> La Suppression peut bloquer diverses capacités de la cible, comme l'utilisation des roquettes et des grenades."
+LocPromotionPopupText="<Bullet> Suppression de zone est inutilisable tant que le <Ability:ClassName> est dissimulé.<br><Bullet> Suppression de zone nécessite <Ability:SelfAmmoCost> munition(s) pour être utilisée, mais en consomme <Ability:AREA_SUPPRESSION_AMMO_COST>, plus <Ability:AREA_SUPPRESSION_SHOT_AMMO_COST> munition(s) supplémentaire(s) par tir réflexe.<br><Bullet> Suppression de zone n'a pas de temps de rechargement.<br><Bullet> Suppression de zone est annulée si l'unité qui supprime subit des dégâts ou est diminuée.<br><Bullet> Suppression de zone réduit la visée des cibles de <Ability:SUPPRESSIONPENALTY> tant qu'elles sont sous Suppression.<br><Bullet> Suppression de zone est inutilisable avec les fusils de précision et les fusils à pompe.<br><Bullet> Suppression de zone restreint de nombreuses capacités de la cible, dont l'utilisation des roquettes et des grenades.<br><Bullet> Si plusieurs unités appliquent une Suppression à la même cible, les malus de visée ne se cumulent pas."
 ; End translated
 
 [SuppressionShot_LW X2AbilityTemplate]
 LocFriendlyName="Suppression"
 LocFlyOverText="Suppression"
 
+[AreaSuppressionShot_LW X2AbilityTemplate]
+LocFriendlyName="Suppression de zone"
+LocFlyOverText="Suppression de zone"
+
 [DangerZone X2AbilityTemplate]
 LocFriendlyName="Zone de danger"
 LocFlyOverText="Zone de danger"
-LocLongDescription="La Suppression de zone affecte tous les ennemis situés dans un rayon de 5 cases de la cible."
+LocLongDescription="Augmente le rayon de Suppression de zone à <Ability:DANGER_ZONE_AREA_SUPPRESSION_RADIUS_TILES> cases."
 LocHelpText="La Suppression de zone affecte tous les ennemis situés dans un rayon de 5 cases de la cible."
-LocPromotionPopupText="<Bullet/> La Suppression de zone affecte tous les ennemis situés dans un rayon de 5 cases de la cible.<br/>"
+LocPromotionPopupText=""
 
 [Lockdown X2AbilityTemplate]
 LocFriendlyName="Geôlier"
 LocFlyOverText="Geôlier"
 LocLongDescription="Bonus de +<Ability:LOCKDOWN_TOHIT_BONUS/> en visée contre les ennemis qui tentent de se déplacer alors qu'ils subissent une Suppression."
-LocHelpText="Bonus de +<Ability:LOCKDOWN_TOHIT_BONUS/> en visée contre les ennemis qui tentent de se déplacer alors qu'ils subissent une Suppression."
+LocHelpText="Bonus de chances de toucher et de dégâts contre les ennemis qui tentent de se déplacer alors qu'ils sont sous Suppression."
 LocPromotionPopupText="<Bullet/> Bonus de +<Ability:LOCKDOWN_TOHIT_BONUS/> en visée contre les ennemis qui tentent de se déplacer alors qu'ils subissent une Suppression.<br/><Bullet/> Cumulable avec les autres bonus au tir réflexe.<br/>"
 
 [LockdownBonuses X2AbilityTemplate]
 LocFriendlyName="Geôlier"
 LocFlyOverText="Geôlier"
 LocLongDescription="Bonus de +<Ability:LOCKDOWN_TOHIT_BONUS/> en visée contre les ennemis qui tentent de se déplacer alors qu'ils subissent une Suppression."
-LocHelpText="Bonus de +<Ability:LOCKDOWN_TOHIT_BONUS/> en visée contre les ennemis qui tentent de se déplacer alors qu'ils subissent une Suppression."
+LocHelpText="Bonus de chances de toucher et de dégâts contre les ennemis qui tentent de se déplacer alors qu'ils sont sous Suppression."
 LocPromotionPopupText="<Bullet/> Bonus de +<Ability:LOCKDOWN_TOHIT_BONUS/> en visée contre les ennemis qui tentent de se déplacer alors qu'ils subissent une Suppression.<br/><Bullet/> Cumulable avec les autres bonus au tir réflexe.<br/>"
 
 [Mayhem X2AbilityTemplate]
@@ -468,16 +483,16 @@ LocPromotionPopupText="<Bullet/> Annule la vigilance de l'unité ciblée. Action
 [DamageControl X2AbilityTemplate]
 LocFriendlyName="Contrôle des dégâts"
 LocFlyOverText="Contrôle des dégâts"
-LocLongDescription="Après avoir essuyé des dégâts, vous gagnez 2 points d'armure jusqu'à la fin du tour suivant."
-LocHelpText="Après avoir essuyé des dégâts, vous gagnez 2 points d'armure jusqu'à la fin du tour suivant."
-LocPromotionPopupText="<Bullet/> Votre armure se renforce temporairement après un impact. Après avoir essuyé des dégâts, vous gagnez 2 points d'armure jusqu'à la fin du tour suivant. <br/><Bullet/> Si l'unité est blessée plusieurs fois au cours de tours successifs, le bonus se prolonge. <br/>"
+LocLongDescription="Après avoir essuyé des dégâts, vous gagnez <Ability:DAMAGE_CONTROL_BONUS_ARMOR> points d'armure jusqu'à la fin du tour suivant."
+LocHelpText="Après avoir essuyé des dégâts, vous gagnez <Ability:DAMAGE_CONTROL_BONUS_ARMOR> points d'armure jusqu'à la fin du tour suivant."
+LocPromotionPopupText="<Bullet/> Votre armure se renforce temporairement après un impact. Après avoir essuyé des dégâts, vous gagnez <Ability:DAMAGE_CONTROL_BONUS_ARMOR> points d'armure jusqu'à la fin du tour suivant. <br/><Bullet/> Si l'unité est blessée plusieurs fois au cours de tours successifs, le bonus se prolonge. <br/>"
 
 [DamageControlPassive X2AbilityTemplate]
 LocFriendlyName="Contrôle des dégâts"
 LocFlyOverText="Contrôle des dégâts"
-LocLongDescription="Après avoir essuyé des dégâts, vous gagnez 2 points d'armure jusqu'à la fin du tour suivant."
-LocHelpText="Après avoir essuyé des dégâts, vous gagnez 2 points d'armure jusqu'à la fin du tour suivant."
-LocPromotionPopupText="<Bullet/> Après avoir essuyé des dégâts, vous gagnez 2 points d'armure jusqu'à la fin du tour suivant.<br/><Bullet/> Si l'unité est blessée plusieurs fois au cours de tours successifs, le bonus se prolonge. <br/>"
+LocLongDescription="Après avoir essuyé des dégâts, vous gagnez <Ability:DAMAGE_CONTROL_BONUS_ARMOR> points d'armure jusqu'à la fin du tour suivant."
+LocHelpText="Après avoir essuyé des dégâts, vous gagnez <Ability:DAMAGE_CONTROL_BONUS_ARMOR> points d'armure jusqu'à la fin du tour suivant."
+LocPromotionPopupText="<Bullet/> Après avoir essuyé des dégâts, vous gagnez <Ability:DAMAGE_CONTROL_BONUS_ARMOR> points d'armure jusqu'à la fin du tour suivant.<br/><Bullet/> Si l'unité est blessée plusieurs fois au cours de tours successifs, le bonus se prolonge. <br/>"
 
 [Evasive X2AbilityTemplate]
 LocFriendlyName="Évasion"
@@ -496,9 +511,9 @@ LocPromotionPopupText="<Bullet/> Cette capacité transformera le premier tir ré
 [SnapShot X2AbilityTemplate]
 LocFriendlyName="Tir éclair"
 LocFlyOverText="Tir éclair"
-LocLongDescription="Vous pouvez effectuer des tirs standards avec votre fusil de précision après un déplacement, mais vous subirez d'importantes pénalités de portée au-delà de 5 cases de la portée normale lors de ces tirs. Vous ne pouvez pas entrer en vigilance avec le fusil de précision après vous être déplacé."
+LocLongDescription="Vous pouvez effectuer des tirs standards avec votre fusil de précision après un déplacement, mais vous subissez d'importantes pénalités de portée au-delà de 5 cases de la portée de vision commune pour tous les tirs."
 LocHelpText="Tirez sur la cible."
-LocPromotionPopupText="<Bullet/> Ce soldat peut désormais utiliser le fusil de précision pour des tirs standards après s'être déplacé, mais souffre d'une importante pénalité de visée pour ces tirs si sa cible se trouve à plus de 22 cases.<br/><Bullet/> Vous ne pouvez pas entrer en vigilance avec le fusil de précision après vous être déplacé.<br/>
+LocPromotionPopupText="<Bullet/> Cette capacité modifie profondément le fonctionnement du <Ability:ClassName> : le soldat peut désormais utiliser le fusil de précision pour des tirs standards après s'être déplacé, mais subit d'extrêmes malus de visée sur les cibles situées à plus de 22 cases pour tous les tirs, qu'il se soit déplacé ou non.<br/><Bullet/> Ne fonctionne qu'avec les fusils de précision.<br/><Bullet/> Réduit de <Ability:WPN_HANDLING_MODIFIER/> les pénalités à courte portée par rapport aux fusils de précision normaux.<br/><Bullet/> Au-delà de 5 cases de vision commune, subit un malus supplémentaire de -20 en visée par case.<br/><Bullet/> Certains tirs spéciaux et Surveillance nécessitent toujours les deux actions. Surveillance permet la vigilance en vision commune, mais les pénalités de portée s'appliquent toujours.<br/><Bullet/> Le soldat n'effectuera pas de tir de vigilance ni de Zone mortelle sans au moins 1% de chances de toucher."
 
 ;LWotC needs translation - LocLongDescription="Vous pouvez effectuer des tirs standards ou entrer en Vigilance avec votre fusil de précision après un déplacement, mais vous subirez d'importantes pénalités de portée au-delà de 5 cases de la portée normale lors de ces tirs."
 ;End translation - LocPromotionPopupText="<Bullet/> Ce soldat peut désormais utiliser le fusil de précision pour des tirs standards ou en mode Vigilance après s'être déplacé, mais souffre d'une importante pénalité de visée pour ces tirs si sa cible se trouve à plus de 22 cases.<br/><Bullet/> Ne peut être combinée qu'avec le fusil de précision.<br/><Bullet/> Au-delà de 5 cases de la portée normale, vous subissez un malus additionnel de -20 en visée par case.<br/>"
@@ -519,7 +534,7 @@ LocHelpText="Vous pouvez effectuer des tirs standards avec votre fusil de préci
 [Trojan X2AbilityTemplate]
 LocFriendlyName="Troyen"
 LocFlyOverText="Troyen"
-LocLongDescription="Les unités piratées subissent des dégâts et perdent leurs actions lors du tour où l'effet de piratage se termine."
+LocLongDescription="Les unités ennemies piratées subissent des dégâts et perdent leurs actions au tour où l'effet de piratage se termine. Troyen ne fait jamais perdre la dissimulation de l'escouade, même s'il échoue à détruire sa cible."
 LocHelpText="Les unités piratées subissent des dégâts et perdent leurs actions lorsque l'effet de piratage se termine."
 LocPromotionPopupText="<Bullet/> Les unités ennemies piratées par le protocole de détraquage subissent 0 à 8 dégâts et perdent leurs actions lors du tour où l'effet de piratage prend fin.<br/><Bullet/> S'applique aux unités étourdies ou contrôlées par le protocole de détraquage.<br/><Bullet/> Dégâts calculés en fonction de la statistique Piratage par rapport à la défense anti-piratage de la cible.<br/>"
 
@@ -529,7 +544,7 @@ LocFlyOverText="Couverture"
 ; LWOTC translated
 LocLongDescription="Les ennemis ont une portée de détection <Ability:COVERT_DETECTION_RANGE_REDUCTION/>% plus petite contre vous. Cette capacité permet aussi à ce soldat d'avoir moins d'impact sur le temps d'infiltration."
 LocHelpText="Les ennemis possèdent une plus petite portée de détection contre vous. Cette capacité permet aussi à ce soldat d'avoir moins d'impact sur le temps d'infiltration."
-LocPromotionPopupText="<Bullet/> Les ennemis ont une portée de détection <Ability:COVERT_DETECTION_RANGE_REDUCTION/>% plus petite contre vous, indiquée par les cases rouges entourant les ennemis qui ignorent votre présence.<br/><Bullet/> Cette capacité permet aussi à ce soldat d'avoir moins d'impact sur le temps d'infiltration.<br/><Bullet/> Ne s'applique pas aux tours de sécurité d'ADVENT."
+LocPromotionPopupText="<Bullet/> La portée de détection est indiquée par des cases rouges autour des ennemis qui n'ont pas été alertés de votre présence.<br/><Bullet/> Cette capacité réduit aussi légèrement l'impact de ce soldat sur les temps d'infiltration.<br/><Bullet/> Ne s'applique pas aux tours de sécurité d'ADVENT."
 ; End translated
 
 [Ghostwalker X2AbilityTemplate]
@@ -538,7 +553,7 @@ LocFlyOverText="Marche spectrale"
 ; LWOTC translated (2)
 LocLongDescription="Action gratuite. ctivez cette capacité pour réduire de <Ability:GHOSTWALKER_DETECTION_RANGE_REDUCTION/>% la portée de détection ennemie contre vous pendant <Ability:GHOSTWALKER_DURATION/> tours."
 LocHelpText="Action gratuite. Activez cette capacité pour réduire de <Ability:GHOSTWALKER_DETECTION_RANGE_REDUCTION/>% la portée de détection ennemie contre vous pendant <Ability:GHOSTWALKER_DURATION/> tours."
-LocPromotionPopupText="<Bullet/> Activez cette capacité pour réduire de <Ability:GHOSTWALKER_DETECTION_RANGE_REDUCTION/>% la portée de détection ennemie contre vous pendant <Ability:GHOSTWALKER_DURATION/> tours, indiquée par les cases rouges entourant les ennemis qui ne sont pas alertés de votre présence.<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Action gratuite.<br/><Bullet/> Cette capacité permet aussi à ce soldat d'avoir moins d'impact sur le temps d'infiltration.<br/><Bullet/> Ne s'applique pas aux tours de sécurité d'ADVENT."
+LocPromotionPopupText="<Bullet/> La portée de détection est indiquée par des cases rouges autour des ennemis qui n'ont pas été alertés de votre présence.<br/><Bullet/> Inclut le tour en cours.<br/><Bullet/> Marche spectrale a un temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Ne nécessite aucune action pour s'activer.<br/><Bullet/> Cette capacité réduit aussi légèrement l'impact de ce soldat sur les temps d'infiltration.<br/><Bullet/> Ne s'applique pas aux tours de sécurité d'ADVENT."
 ; End translated (2)
 
 [Kubikuri X2AbilityTemplate]
@@ -551,9 +566,9 @@ LocPromotionPopupText="<Bullet/> Tir spécial contre les ennemis ne possédant p
 [CombatAwareness X2AbilityTemplate]
 LocFriendlyName="Attention accrue"
 LocFlyOverText="Attention accrue"
-LocLongDescription="En mode Vigilance, gagnez 15 défense et 1 point d'armure."
-LocHelpText="En mode Vigilance, gagnez 15 défense et 1 point d'armure."
-LocPromotionPopupText="<Bullet/> En mode Vigilance, gagnez 15 défense et 1 point d'armure.<br/><Bullet/> Cette capacité ne fournit pas de bonus défensif si l'unité est désorientée, étourdie, en panique, en feu ou subit tout autre type de handicap."
+LocLongDescription="Gagnez <Ability:COMBAT_AWARENESS_BONUS_DEFENSE> en défense et <Ability:COMBAT_AWARENESS_BONUS_ARMOR> en armure en vigilance ou en Suppression."
+LocHelpText="Gagnez <Ability:COMBAT_AWARENESS_BONUS_DEFENSE> en défense et <Ability:COMBAT_AWARENESS_BONUS_ARMOR> en armure en vigilance ou en Suppression."
+LocPromotionPopupText="<Bullet/> Gagnez <Ability:COMBAT_AWARENESS_BONUS_DEFENSE> en défense et <Ability:COMBAT_AWARENESS_BONUS_ARMOR> point d'armure en vigilance ou en Suppression.<br/><Bullet/> Cette capacité ne fournit pas de bonus défensif si l'unité est désorientée, étourdie, en panique, en feu ou subit tout autre type de handicap."
 
 [FieldSurgeon X2AbilityTemplate]
 LocFriendlyName="Chirurgien de terrain"
@@ -590,6 +605,27 @@ LocLongDescription="Vos grenades fumigènes octroient <Ability:DenseSmoke_Defens
 LocHelpText="Vos grenades fumigènes octroient <Ability:DenseSmoke_DefenseBonus_LW> points de défense supplémentaires."
 LocPromotionPopupText="<Bullet/> Vos grenades fumigènes octroient <Ability:DenseSmoke_DefenseBonus_LW> points de défense supplémentaires aux unités se trouvant dans la fumée, pour un total de <Ability:DenseSmoke_DefenseTotal_LW>.<br/>"
 
+[CombatStims_LW X2AbilityTemplate]
+LocFriendlyName="Stimulants de combat"
+LocFlyOverText="Stimulants de combat"
+LocLongDescription="Vos grenades fumigènes confèrent +<Ability:CombatStims_AimBonus_LW> en visée et +<Ability:CombatStims_CritBonus_LW> en chances de coup critique aux unités situées dans le nuage de fumée."
+LocHelpText="Vos grenades fumigènes confèrent +<Ability:CombatStims_AimBonus_LW> en visée et +<Ability:CombatStims_CritBonus_LW> en chances de coup critique aux unités situées dans le nuage de fumée."
+LocPromotionPopupText="<Bullet> L'effet persiste tant que l'unité reste dans la fumée.<br><Bullet> L'effet s'applique si l'unité entre dans la fumée après son déploiement.<br><Bullet> Ne s'applique pas aux unités mécaniques.<br><Bullet> S'applique aux unités ennemies."
+
+[RegenSmoke_LW X2AbilityTemplate]
+LocFriendlyName="Brume régénérante"
+LocFlyOverText="Brume régénérante"
+LocLongDescription="Vos grenades fumigènes soignent de <Ability:RegenSmoke_HealAmount_LW> PV, au début de chaque tour, les unités situées dans le nuage de fumée, jusqu'à un maximum de <Ability:RegenSmoke_MaxHealAmount_LW> PV par mission."
+LocHelpText="Vos grenades fumigènes soignent les unités situées dans le nuage de fumée au début de chaque tour."
+LocPromotionPopupText="<Bullet> L'effet s'applique si l'unité entre dans la fumée après son déploiement.<br><Bullet> Ne s'applique pas aux unités mécaniques.<br><Bullet> S'applique aux unités ennemies."
+
+[Collateral_LW X2AbilityTemplate]
+LocFriendlyName="Dégâts collatéraux"
+LocLongDescription="Tire une salve de munitions <Ability:WeaponName/> vers un emplacement, détruisant les abris dans la zone. Inflige de faibles dégâts aux ennemis. Temps de rechargement de 4 tours, consomme 2 munitions."
+LocHelpText="Tire une salve de munitions <Ability:WeaponName/> vers un emplacement, détruisant les abris dans la zone."
+LocFlyOverText="Dégâts collatéraux"
+LocPromotionPopupText="<Bullet/> Tire une salve de munitions <Ability:WeaponName/> vers un emplacement, détruisant les abris dans la zone.<br/><Bullet/> Inflige de gros dégâts à l'environnement à tous les objets situés dans la zone d'effet.<br/><Bullet/> Dégâts collatéraux inflige 40% des dégâts de base de l'arme aux ennemis situés dans la zone d'effet.<br/><Bullet/> Consomme 2 munitions et a un temps de rechargement de 4 tours.<br/>"
+
 [DenseSmokeGrenade X2GrenadeTemplate]
 FriendlyName="Grenade fumigène dense"
 FriendlyNamePlural="Grenades fumigènes denses"
@@ -619,6 +655,17 @@ LocHelpText="Vos grenades flash ont 50% de chances d'étourdir les ennemis."
 LocPromotionPopupText="<Bullet/> Vos grenades flash ont 50% de chances d'étourdir les ennemis pendant 1 tour.<br/><Bullet/> La résistance innée aux grenades flash n'affecte pas les chances d'étourdissement.<br/>"
 ; End translated
 
+[DedicatedSuppression_LW X2AbilityTemplate]
+LocFriendlyName="Suppression ininterrompue"
+LocLongDescription="Subir des dégâts n'annule plus la Suppression ni la Suppression de zone."
+LocHelpText="Subir des dégâts n'annule plus la Suppression ni la Suppression de zone."
+
+[UnwaveringStance_LW X2AbilityTemplate]
+LocFriendlyName="Attention accrue"
+LocFlyOverText="Attention accrue"
+LocLongDescription="Gagnez <Ability:COMBAT_AWARENESS_BONUS_DEFENSE> en défense et <Ability:COMBAT_AWARENESS_BONUS_ARMOR> en armure en vigilance ou en Suppression. Subir des dégâts n'annule plus votre vigilance ni votre Suppression."
+LocHelpText="Gagnez <Ability:COMBAT_AWARENESS_BONUS_DEFENSE> en défense et <Ability:COMBAT_AWARENESS_BONUS_ARMOR> en armure en vigilance ou en Suppression. Subir des dégâts n'annule plus votre vigilance ni votre Suppression."
+
 [X2Item_StingGrenade]
 DenseSmokeGrenadeEffectDisplayName="Grenade incapacitante"
 DenseSmokeGrenadeEffectDisplayDesc="Les grenades incapacitantes ont 50% de chances d'étourdir les unités dans leur zone d'effet."
@@ -645,15 +692,15 @@ LocPromotionPopupText="<Bullet/> Activez cette capacité avant de lancer ou de t
 [CombatRush X2AbilityTemplate]
 LocFriendlyName="Adrénaline"
 LocFlyOverText="Adrénaline"
-LocLongDescription="Éliminer un ennemi procurent aux alliés proches un bonus temporaire de +10 en visée, de +10 en chances de coup critique et de +1 en mobilité. 5 tours de rechargement. Toutes les unités alliées situées dans un rayon de 7 cases autour de votre position sont affectées et l'effet se prolonge jusqu'à la fin du tour suivant."
-LocHelpText="Éliminer un ennemi procurent aux alliés proches un bonus temporaire de +10 en visée, de +10 en chances de coup critique et de +1 en mobilité. 5 tours de rechargement. Toutes les unités alliées situées dans un rayon de 7 cases autour de votre position sont affectées et l'effet se prolonge jusqu'à la fin du tour suivant."
-LocPromotionPopupText="<Bullet/> Éliminer un ennemi procurent aux alliés proches un bonus temporaire de +10 en visée, de +10 en chances de coup critique et de +1 en mobilité. 5 tours de rechargement. Toutes les unités alliées situées dans un rayon de 7 cases autour de votre position sont affectées et l'effet se prolonge jusqu'à la fin du tour suivant.<br/>"
+LocLongDescription="Lorsque vous éliminez un ennemi, les alliés situés à moins de <Ability:COMBAT_RUSH_RADIUS> cases reçoivent +<Ability:COMBAT_RUSH_AIM_BONUS> en visée, +<Ability:COMBAT_RUSH_CRIT_BONUS> en chances de coup critique et +<Ability:COMBAT_RUSH_MOBILITY_BONUS> en mobilité pendant <Ability:COMBAT_RUSH_DURATION> tours. Temps de rechargement de <Ability:COMBAT_RUSH_COOLDOWN> tours."
+LocHelpText="Lorsque vous éliminez un ennemi, les alliés situés à moins de <Ability:COMBAT_RUSH_RADIUS> cases reçoivent +<Ability:COMBAT_RUSH_AIM_BONUS> en visée, +<Ability:COMBAT_RUSH_CRIT_BONUS> en chances de coup critique et +<Ability:COMBAT_RUSH_MOBILITY_BONUS> en mobilité pendant <Ability:COMBAT_RUSH_DURATION> tours. Temps de rechargement de <Ability:COMBAT_RUSH_COOLDOWN> tours."
+LocPromotionPopupText="<Bullet/> Adrénaline se déclenche lorsque vous éliminez une unité ennemie et confère aux alliés situés à moins de <Ability:COMBAT_RUSH_RADIUS> cases +<Ability:COMBAT_RUSH_AIM_BONUS> en visée, +<Ability:COMBAT_RUSH_CRIT_BONUS> en chances de coup critique et +<Ability:COMBAT_RUSH_MOBILITY_BONUS> en mobilité.<br/><Bullet/> L'effet dure <Ability:COMBAT_RUSH_DURATION> après l'élimination.<br/><Bullet/> Ne peut se déclencher que tous les <Ability:COMBAT_RUSH_COOLDOWN> tours.<br/>"
 
 [BroadcastCombatRush X2AbilityTemplate]
 LocFriendlyName="Adrénaline"
 LocFlyOverText="Adrénaline"
-LocLongDescription="Les alliés situés dans un rayon de 7 cases autour de vous gagnent un bonus de +10 en visée, de +10 en chances de coup critique et de +1 en mobilité pendant 2 tours."
-LocHelpText="Les alliés situés dans un rayon de 7 cases autour de vous gagnent un bonus de +10 en visée, de +10 en chances de coup critique et de +1 en mobilité pendant 2 tours."
+LocLongDescription="Un allié proche vous confère +<Ability:COMBAT_RUSH_AIM_BONUS> en visée, +<Ability:COMBAT_RUSH_CRIT_BONUS> en chances de coup critique et +<Ability:COMBAT_RUSH_MOBILITY_BONUS> en mobilité pendant <Ability:COMBAT_RUSH_DURATION> tours."
+LocHelpText="Un allié proche vous confère +<Ability:COMBAT_RUSH_AIM_BONUS> en visée, +<Ability:COMBAT_RUSH_CRIT_BONUS> en chances de coup critique et +<Ability:COMBAT_RUSH_MOBILITY_BONUS> en mobilité pendant <Ability:COMBAT_RUSH_DURATION> tours."
 
 ; LWOTC translated (2)
 [GrazingFire X2AbilityTemplate]
@@ -667,10 +714,10 @@ LocPromotionPopupText="<Bullet/> Vos attaques manquées ont généralement <Abil
 [HeavyFrags X2AbilityTemplate]
 LocFriendlyName="Noyaux explosifs"
 LocFlyOverText="Noyaux explosifs"
-LocLongDescription="Les grenades explosives font 1 point de dégât supplémentaire."
+LocLongDescription="Les grenades explosives et tous les effets de dégâts sur la durée infligés par les grenades font un point de dégât supplémentaire."
 LocHelpText="Les grenades explosives font 1 point de dégât supplémentaire."
 ; LWOTC translated (2)
-LocPromotionPopupText="<Bullet/> Vos grenades ont plus d'explosif et font 1 point de dégât supplémentaire, mais nécessitent un entraînement spécial pour pouvoir être utilisées.<br/>"
+LocPromotionPopupText="<Bullet/> Vos grenades ont plus d'explosif et font 1 point de dégât supplémentaire, mais nécessitent un entraînement spécial pour pouvoir être utilisées.<br/><Bullet/>Les effets de dégâts sur la durée appliqués par les grenades, comme le poison, infligent aussi un point de dégât supplémentaire.<br/>"
 ; End translated (2)
 
 [Airdrop X2AbilityTemplate]
@@ -678,7 +725,7 @@ LocFriendlyName="Largage"
 LocFlyOverText="Largage"
 ; LWOTC translated
 LocLongDescription="Le GREMLIN octroie une grenade explosive à l'allié ciblé. Coûte 1 action et ne met pas fin au tour. Utilisable <Ability:NUM_AIRDROP_CHARGES/> fois par mission."
-LocHelpText="Octroie une grenade explosive à l'allié ciblé. Coûte 1 action et ne met pas fin au tour. Utilisable <Ability:NUM_AIRDROP_CHARGES/> fois par mission."
+LocHelpText="Octroie une grenade explosive à l'allié ciblé."
 LocPromotionPopupText="<Bullet/> Le GREMLIN octroie une grenade explosive à l'allié ciblé. Coûte 1 action et ne met pas fin au tour. Utilisable <Ability:NUM_AIRDROP_CHARGES/> fois par mission.<br/><Bullet/> Octroie une grenade à fragmentation, ou une plus avancée selon les progrès technologiques d'XCOM.<br/><Bullet/> Ne met pas fin à la dissimulation.<br/>"
 ; End translated
 
@@ -686,7 +733,7 @@ LocPromotionPopupText="<Bullet/> Le GREMLIN octroie une grenade explosive à l'a
 LocFriendlyName="Flèche"
 LocFlyOverText="Flèche"
 LocLongDescription="Attaquez un ennemi à portée de déplacement avec votre sabre. Inflige 1 point de dégât supplémentaire toutes les <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> cases entre votre position de départ et la cible."
-LocHelpText="Attaquez un ennemi à portée de déplacement avec votre sabre. Inflige 1 point de dégât supplémentaire toutes les <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> cases entre votre position de départ et la cible."
+LocHelpText="Attaquez tout ennemi à portée de déplacement avec votre sabre. Inflige des dégâts supplémentaires pour les attaques à distance."
 ; LWOTC translated
 LocPromotionPopupText="<Bullet/> Vous pouvez déclencher la capacité Flèche en plaçant le curseur sur un ennemi.<br/><Bullet/> Un soldat peut \"sprinter\" en utilisant ses deux actions tout en étant capable de lancer une attaque sur un ennemi adjacent.<br/><Bullet/> Inflige 1 point de dégâts supplémentaire toutes les <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> cases entre la position de l'unité au début de son tour et la position de la cible, jusqu'à un maximum de <Ability:MAX_SLICE_FLECHE_DAMAGE/>.<br/>"
 ; End translated
@@ -695,7 +742,7 @@ LocPromotionPopupText="<Bullet/> Vous pouvez déclencher la capacité Flèche en
 LocFriendlyName="Flèche"
 LocFlyOverText="Flèche"
 LocLongDescription="Attaquez un ennemi à portée de déplacement avec votre sabre. Inflige 1 point de dégât supplémentaire toutes les <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> cases entre votre position de départ et la cible."
-LocHelpText="Attaquez un ennemi à portée de déplacement avec votre sabre. Inflige 1 point de dégât supplémentaire toutes les <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> cases entre votre position de départ et la cible."
+LocHelpText="Attaquez tout ennemi à portée de déplacement avec votre sabre. Inflige des dégâts supplémentaires pour les attaques à distance."
 ; LWOTC translated
 LocPromotionPopupText="<Bullet/> Vous pouvez déclencher la capacité Flèche en plaçant le curseur sur un ennemi.<br/><Bullet/> Un soldat peut \"sprinter\" en utilisant ses deux actions tout en étant capable de lancer une attaque sur un ennemi adjacent.<br/><Bullet/> Inflige un point de dégâts supplémentaire toutes les <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> cases entre la position de l'unité au début de son tour et la position de la cible, jusqu'à un maximum de <Ability:MAX_SLICE_FLECHE_DAMAGE/>.<br/>"
 ; End translated
@@ -714,37 +761,37 @@ LocFriendlyName="Bastion"
 LocLongDescription="La capacité Forteresse offre désormais l'immunité aux alliés situés dans un rayon de 4 cases autour de vous. Un déplacement près des alliés touchés soignera immédiatement leurs effets physiques négatifs."
 LocHelpText="La capacité Forteresse offre désormais l'immunité aux alliés situés dans un rayon de 4 cases autour de vous. Un déplacement près des alliés touchés soignera immédiatement leurs effets physiques négatifs."
 LocFlyOverText="Bastion"
-LocPromotionPopupText="<Bullet/> La capacité Forteresse offre désormais l'immunité aux alliés situés dans un rayon de 4 cases autour de vous. Un déplacement près des alliés touchés soignera immédiatement leurs effets physiques négatifs.<br/>"
+LocPromotionPopupText="<Bullet/> Bastion a un rayon de <Ability:BASTION_RADIUS_TILES> cases.<br/><Bullet/> Se placer à côté d'alliés affectés annule immédiatement leurs effets d'état physiques négatifs."
 
 [BastionPassive X2AbilityTemplate]
 LocFriendlyName="Bastion"
 LocLongDescription="La capacité Forteresse offre désormais l'immunité aux alliés situés dans un rayon de 4 cases autour de vous. Un déplacement près des alliés touchés soignera immédiatement leurs effets physiques négatifs."
 LocHelpText="La capacité Forteresse offre désormais l'immunité aux alliés situés dans un rayon de 4 cases autour de vous. Un déplacement près des alliés touchés soignera immédiatement leurs effets physiques négatifs."
 LocFlyOverText="Bastion"
-LocPromotionPopupText="<Bullet/> La capacité Forteresse offre désormais l'immunité aux alliés situés dans un rayon de 4 cases autour de vous. Un déplacement près des alliés touchés soignera immédiatement leurs effets physiques négatifs.<br/>"
+LocPromotionPopupText="<Bullet/> Bastion a un rayon de <Ability:BASTION_RADIUS_TILES> cases.<br/><Bullet/> Se placer à côté d'alliés affectés annule immédiatement leurs effets d'état physiques négatifs."
 
 [BastionCleanse X2AbilityTemplate]
 LocFriendlyName="Bastion"
 LocLongDescription="La capacité Forteresse offre désormais l'immunité aux alliés situés dans un rayon de 4 cases autour de vous. Un déplacement près des alliés touchés soignera immédiatement leurs effets physiques négatifs."
 LocHelpText="La capacité Forteresse offre désormais l'immunité aux alliés situés dans un rayon de 4 cases autour de vous. Un déplacement près des alliés touchés soignera immédiatement leurs effets physiques négatifs."
 LocFlyOverText="Bastion"
-LocPromotionPopupText="<Bullet/> La capacité Forteresse offre désormais l'immunité aux alliés situés dans un rayon de 4 cases autour de vous. Un déplacement près des alliés touchés soignera immédiatement leurs effets physiques négatifs.<br/>"
+LocPromotionPopupText="<Bullet/> Bastion a un rayon de <Ability:BASTION_RADIUS_TILES> cases.<br/><Bullet/> Se placer à côté d'alliés affectés annule immédiatement leurs effets d'état physiques négatifs."
 
 [IronCurtain X2AbilityTemplate]
 LocFriendlyName="Rideau de fer"
 LocFlyOverText="Rideau de fer"
 ; LWOTC translated
-LocLongDescription="Tir de zone en forme de cône avec l'arme principale. Inflige <Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>% de dégâts en moins, mais les unités touchées subissent un malus de -<Ability:IRON_CURTAIN_MOBILITY_DAMAGE> en mobilité pour les <Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/> prochains tours."
-LocHelpText="Tir de zone en forme de cône avec l'arme principale. Inflige <Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>% de dégâts en moins, mais les unités touchées subissent un malus de -<Ability:IRON_CURTAIN_MOBILITY_DAMAGE> en mobilité pour les <Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/> prochains tours."
-LocPromotionPopupText="<Bullet/> Tir de zone en forme de cône avec l'arme principale. Inflige <Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>% de dégâts en moins, mais les unités touchées subissent un malus de -<Ability:IRON_CURTAIN_MOBILITY_DAMAGE> en mobilité pour les <Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/> prochains tours.<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tours. <br/><Bullet/> Consomme <Ability:IRON_CURTAIN_AMMO_COST> munitions. <br/><Bullet/> Peut être utilisé après un déplacement.<br/><Bullet/> Incompatible avec les fusils à pompe ou de précision.<br/><Bullet/> Les alliés pris dans le cône peuvent être touchés par cette capacité.<br/>"
+LocLongDescription="Tir spécial qui inflige <Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>% des dégâts normaux mais réduit la mobilité de la cible pendant les <Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/> tour(s) suivant(s). Attaque en cône avec l'arme principale. Le malus de mobilité s'applique même si l'attaque rate."
+LocHelpText="Tir spécial qui inflige de faibles dégâts mais réduit la mobilité des ennemis pendant les deux tours suivants."
+LocPromotionPopupText="<Bullet/> Rideau de fer inflige <Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>% des dégâts normaux et impose -<Ability:IRON_CURTAIN_MOBILITY_DAMAGE> en mobilité à l'ennemi pendant <Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/> tour(s).<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Consomme <Ability:IRON_CURTAIN_AMMO_COST> munition(s).<br/><Bullet/> Utilisable après un déplacement.<br/><Bullet/> Rideau de fer est inutilisable avec les fusils à pompe et les fusils de précision.<br/><Bullet/> Les alliés pris dans le cône peuvent être touchés par cette capacité.<br/><Bullet/> Le malus de mobilité s'applique même si l'attaque rate."
 ; End translated
 
 [IronCurtainShot X2AbilityTemplate]
 LocFriendlyName="Rideau de fer"
 LocFlyOverText="Rideau de fer"
-LocLongDescription="Tir de zone en forme de cône avec l'arme principale. Inflige <Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>% de dégâts en moins, mais les unités touchées subissent un malus de -4 en mobilité pour les deux prochains tours."
-LocHelpText="Tir de zone en forme de cône avec l'arme principale. Inflige <Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>% de dégâts en moins, mais les unités touchées subissent un malus de -4 en mobilité pour les deux prochains tours."
-LocPromotionPopupText="<Bullet/> Tir de zone en forme de cône avec l'arme principale. Inflige <Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>% de dégâts en moins, mais les unités touchées subissent un malus de -4 en mobilité pour les deux prochains tours.<br/><Bullet/> 4 tours de rechargement.<br/><Bullet/> Consomme <Ability:SelfAmmoCost/> munitions.<br/><Bullet/> Utilisable après un déplacement.<br/><Bullet/> Incompatible avec les fusils à pompe ou de précision.<br/>"
+LocLongDescription="Tir spécial qui inflige <Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>% des dégâts normaux mais réduit la mobilité de la cible pendant les <Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/> tour(s) suivant(s). Attaque en cône avec l'arme principale. Le malus de mobilité s'applique même si l'attaque rate."
+LocHelpText="Tir spécial qui inflige de faibles dégâts mais réduit la mobilité des ennemis pendant les deux tours suivants."
+LocPromotionPopupText="<Bullet/> Rideau de fer inflige <Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>% des dégâts normaux et impose -<Ability:IRON_CURTAIN_MOBILITY_DAMAGE> en mobilité à l'ennemi pendant <Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/> tour(s).<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Consomme <Ability:IRON_CURTAIN_AMMO_COST> munition(s).<br/><Bullet/> Utilisable après un déplacement.<br/><Bullet/> Rideau de fer est inutilisable avec les fusils à pompe et les fusils de précision.<br/><Bullet/> Les alliés pris dans le cône peuvent être touchés par cette capacité.<br/><Bullet/> Le malus de mobilité s'applique même si l'attaque rate."
 str_IronCurtainEffect="Rideau de fer"
 
 [Slash_LW X2AbilityTemplate]
@@ -752,37 +799,41 @@ LocFriendlyName="Lacération"
 LocFlyOverText="Lacération"
 LocLongDescription="Attaque d'une cible adjacente au sabre. Coûte 1 action et ne met pas fin au tour."
 LocHelpText="Attaque d'une cible adjacente au sabre. Coûte 1 action et ne met pas fin au tour."
-LocPromotionPopupText="<Bullet/> Attaque d'une cible adjacente au sabre. Coûte 1 action et ne met pas fin au tour.<br/>"
+LocPromotionPopupText="<Bullet/> Coûte une action et ne met pas fin automatiquement à votre tour : deux attaques par tour sont donc possibles."
+
+[SwordSlice X2AbilityTemplate]
+LocFriendlyName="Lacération en sprint"
+LocPromotionPopupText="<Bullet/> Vous pouvez déclencher la capacité Lacération en plaçant le curseur de déplacement sur un ennemi.<br/><Bullet/> Le <Ability:ClassName> peut effectuer un « sprint », en utilisant ses deux actions pour se déplacer, et déclencher tout de même une Lacération contre un ennemi adjacent.<br/>"
 
 [AbsorptionFields X2AbilityTemplate]
 LocFriendlyName="Champs d'impact"
 LocFlyOverText="Champs d'impact"
-LocLongDescription="Activez un champ de force qui réduit les dégâts subis de 33% pendant 2 tours. Temps de rechargement de 6 tours. Coûte 1 action et ne met pas fin au tour."
-LocHelpText="Activez un champ de force qui réduit les dégâts subis de 33% pendant 2 tours. Temps de rechargement de 6 tours. Coûte 1 action et ne met pas fin au tour."
-LocPromotionPopupText="<Bullet/> Activez un champ de force qui réduit les dégâts subis de 33% pendant 2 tours. Temps de rechargement de 6 tours. Coûte 1 action et ne met pas fin au tour.<br/><Bullet/> Les armes antiblindage n'altèrent pas cet effet.<br/>"
+LocLongDescription="Utilisez une action pour activer un champ de force qui réduit les dégâts subis de 33% pendant <Ability:ABSORPTION_FIELDS_DURATION> tours. Temps de rechargement de <Ability:ABSORPTION_FIELDS_COOLDOWN> tours."
+LocHelpText="Utilisez une action pour activer un champ de force qui réduit les dégâts subis de 33% pendant <Ability:ABSORPTION_FIELDS_DURATION> tours. Temps de rechargement de <Ability:ABSORPTION_FIELDS_COOLDOWN> tours."
+LocPromotionPopupText="<Bullet/> Active un champ de force qui réduit les dégâts subis de 33% pendant <Ability:ABSORPTION_FIELDS_DURATION> tours.<br/><Bullet/> Temps de rechargement de <Ability:ABSORPTION_FIELDS_COOLDOWN> tours.<br/><Bullet/> Coûte une action et ne met pas fin automatiquement à votre tour.<br/><Bullet/> Les armes antiblindage n'altèrent pas cet effet.<br/>"
 
 [BodyShield X2AbilityTemplate]
 LocFriendlyName="Bouclier corporel"
 LocFlyOverText="Bouclier corporel"
-LocLongDescription="Un ennemi ciblé subit un malus de -20 en visée et de -50 en chances de coup critique contre le soldat. Action gratuite."
-LocHelpText="Un ennemi ciblé subit un malus de -20 en visée et de -50 en chances de coup critique contre le soldat. Action gratuite."
+LocLongDescription="Ciblez un ennemi en action gratuite pour lui infliger -<Ability:BODY_SHIELD_DEF_BONUS> en visée et -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> en chances de coup critique contre vous pendant <Ability:BODY_SHIELD_DURATION> tours. Temps de rechargement de <Ability:SelfCooldown_LW> tours."
+LocHelpText="Ciblez un ennemi en action gratuite pour lui infliger -<Ability:BODY_SHIELD_DEF_BONUS> en visée et -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> en chances de coup critique contre vous pendant <Ability:BODY_SHIELD_DURATION> tours. Temps de rechargement de <Ability:SelfCooldown_LW> tours."
 ; LWOTC translated
-LocPromotionPopupText="<Bullet/> Un ennemi ciblé subit un malus de -20 en visée et de -50 en chances de coup critique contre le soldat.<br/><Bullet/> Action gratuite.<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/>"
+LocPromotionPopupText="<Bullet/> Un ennemi ciblé subit -<Ability:BODY_SHIELD_DEF_BONUS> en visée et -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> en chances de coup critique contre cette unité.<br/><Bullet/> Action gratuite.<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/>"
 ; End translated
 
 [EmergencyLifeSupport X2AbilityTemplate]
 LocFriendlyName="Premiers soins"
 LocFlyOverText="Premiers soins"
-LocLongDescription="Premiers soins garantit que le premier coup fatal d'une mission ne mènera pas à une mort instantanée. Il augmente aussi de 2 tours la période pendant laquelle un soldat se vide de son sang avant de mourir."
+LocLongDescription="Une fois par mission, le premier coup fatal d'une mission ne mènera pas à une mort instantanée (sauf si l'unité subit un effet qui l'empêche) et augmente la durée de perte de sang de <Ability:EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS> tours."
 LocHelpText="Garantit que le premier coup fatal d'une mission ne mènera pas à une mort instantanée et augmente la durée de saignement avant la mort de 2 tours."
-LocPromotionPopupText="<Bullet/> Premiers soins permet de se vider d'abord de son sang avant de mourir tout de suite lors du premier coup fatal de chaque mission.<br/> <Bullet/> Ajoute 2 tours à la période de saignement.<br/>"
+LocPromotionPopupText="<Bullet/> Une fois par mission, le premier coup fatal d'une mission ne mènera pas à une mort instantanée (sauf si l'unité subit un effet qui l'empêche).<br/><Bullet/> Ajoute <Ability:EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS> tours à la durée de perte de sang.<br/>"
 
 [IronSkin X2AbilityTemplate]
 LocFriendlyName="Impénétrable"
 LocFlyOverText="Impénétrable"
-LocLongDescription="Les dégâts reçus au corps à corps sont réduits de 3 points."
-LocHelpText="Les dégâts reçus au corps à corps sont réduits de 3 points."
-LocPromotionPopupText="<Bullet/> Les dégâts reçus au corps à corps sont réduits de 3 points.<br/>"
+LocLongDescription="Les dégâts reçus au corps à corps sont réduits de <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION> points."
+LocHelpText="Les dégâts reçus au corps à corps sont réduits de <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION> points."
+LocPromotionPopupText="<Bullet/> Les dégâts de mêlée reçus sont réduits de <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>.<br/><Bullet/> Cette capacité ne peut pas réduire les dégâts reçus à 0."
 
 [SmartMacrophages X2AbilityTemplate]
 LocFriendlyName="Macrophages intelligentes"
@@ -794,10 +845,10 @@ LocPromotionPopupText="<Bullet/> Le nombre de PV perdus pendant un combat, qui e
 [MindMerge X2AbilityTemplate]
 LocFriendlyName="Fusion de l'esprit"
 LocFlyOverText="Fusion de l'esprit"
-LocLongDescription="Octroie un bonus en volonté et en chance de coup critique ainsi que des points de bouclier bonus à un allié jusqu'au début du prochain tour du joueur. Coûte 1 action et met pas fin au tour. Réduit également les chances de recruter un Anonyme si l'agent psi est affecté à un refuge."
-LocHelptext="Augmente temporaire la volonté, la chance de coup critique et les points de bouclier bonus d'un allié. Coûte 1 action et met pas fin au tour. Réduit également les chances de recruter un Anonyme si l'agent psi est affecté à un refuge."
+LocLongDescription="Octroie un bonus de volonté, de chances de coup critique et des PV ablatifs à un allié organique jusqu'au début du prochain tour du joueur."
+LocHelptext="Octroie temporairement un bonus de volonté, de chances de coup critique et des PV ablatifs à un allié organique."
 ; LWOTC translated (2)
-LocPromotionPopupText="<Bullet/> Coûte 1 action et met pas fin au tour.<br/><Bullet/> Octroie à l'allié ciblé 1 point de bouclier bonus, +1 point tous les 20 points de Force psi faites par l'agent psi à l'aide de Fusion de l'esprit.<br/><Bullet/> Octroie à l'allié ciblé 1 volonté tous les 5 points de Force psi faites par l'agent psi.<br/><Bullet/> Octroie également un bonus de +1 en chance de coup critique tous les 7 points de Force psi de l'agent psi.<br/><Bullet/> L'effet dure jusqu'au prochain tour de l'agent psi.<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Seuls les alliés visibles peuvent être ciblés.<br/><Bullet/> Des amplis psioniques améliorés octroient des bonus plus importants.<br/><Bullet/> Si l'agent psi est affecté au poste de surperviseur, cette capacité réduira de 40% ses chances de recruter un Anonyme (cumulatif avec les autres bonus de ce type).<br/>"
+LocPromotionPopupText="<Bullet/> Octroie à l'allié ciblé +1/+<Ability:MIND_MERGE_AMP_MG_TOTAL_SHIELDHP>/+<Ability:MIND_MERGE_AMP_BM_TOTAL_SHIELDHP> PV ablatifs selon le niveau d'ampli psi, plus 1 PV ablatif par tranche de <Ability:MIND_MERGE_SHIELDHP_DIVISOR> points de Force psi du <Ability:ClassName> qui utilise Fusion de l'esprit.<br/><Bullet/> Octroie à l'allié ciblé +0/+<Ability:MIND_MERGE_AMP_MG_TOTAL_WILL>/+<Ability:MIND_MERGE_AMP_BM_TOTAL_WILL> en volonté selon le niveau d'ampli psi, plus 1 en volonté par tranche de <Ability:MIND_MERGE_WILL_DIVISOR> points de Force psi du <Ability:ClassName>.<br/><Bullet/> Octroie à l'allié ciblé +0/+<Ability:MIND_MERGE_AMP_MG_TOTAL_CRIT>/+<Ability:MIND_MERGE_AMP_BM_TOTAL_CRIT> en chances de coup critique selon le niveau d'ampli psi, plus 1 par tranche de <Ability:MIND_MERGE_CRIT_DIVISOR> points de Force psi du <Ability:ClassName>.<br/><Bullet/> L'effet dure jusqu'au prochain tour du <Ability:ClassName>.<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Coûte une action et ne met pas fin à votre tour.<br/><Bullet/> Seuls les alliés visibles peuvent être ciblés.<br/><Bullet/> Les amplis psioniques améliorés renforcent ces effets.<br/><Bullet/> Si le <Ability:ClassName> est affecté au poste de superviseur de refuge, Fusion de l'esprit réduit de 40% les chances de recruter un Anonyme (cumulatif avec les autres capacités de ce type).<br/>"
 ; End translated (2)
 
 [SoulMerge X2AbilityTemplate]
@@ -806,6 +857,13 @@ LocFlyOverText="Fusion de l'âme"
 LocLongDescription="Augmente l'efficacité de Fusion de l'esprit en conférant de plus gros bonus de volonté, de chance de coup critique et de PV bonus. Le temps de rechargement de la capacité Fusion de l'esprit est également réduit de 1 tour."
 LocHelpText="Augmente l'efficacité de Fusion de l'esprit en conférant de plus gros bonus de volonté, de chance de coup critique et de PV bonus. Le temps de rechargement de la capacité Fusion de l'esprit est également réduit de 1 tour."
 LocPromotionPopupText="<Bullet/> Augmente l'efficacité de Fusion de l'esprit en conférant de plus gros bonus de volonté, de chance de coup critique et de PV bonus. Le temps de rechargement de la capacité Fusion de l'esprit est également réduit de 1 tour.<br/><Bullet/> Les PV bonus augmentent de 1 toutes les 20 Force psi.<br/><Bullet/> La volonté bonus augmente de 1 toutes les 5 Force psi.<br/><Bullet/> Octroie un bonus de +1 en chance de coup critique par 5 points d'attaque psi.<br/>"
+
+[NullLance X2AbilityTemplate]
+LocFriendlyName="Lance neutralisante"
+LocLongDescription="Projette un rayon d'une puissance terrible qui blesse toutes les cibles qu'il traverse. Cette attaque peut transpercer plusieurs ennemis et obstacles."
+LocHelpText="Projette un rayon d'énergie psionique qui blesse toutes les cibles qu'il traverse."
+LocFlyOverText="Lance neutralisante"
+LocPromotionPopupText="<Bullet/> Lance neutralisante a un temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Les dégâts de Lance neutralisante peuvent être augmentés en améliorant l'ampli psionique du <Ability:ClassName>.<br/>"
 
 [Shadowstrike_LW X2AbilityTemplate]
 LocFriendlyName="Frappe de l'ombre"
@@ -818,8 +876,8 @@ LocFriendlyName="Derme de pierre"
 LocFlyOverText="Derme de pierre"
 ; LWOTC translated
 LocLongDescription="Vous gagnez <Ability:FORMIDABLE_ABLATIVE_HP/> point(s) de bouclier bonus et les explosions vous infligent <Ability:FORMIDABLE_EXPLOSIVES_DR/>% de dégâts en moins."
-LocHelpText="Vous gagnez <Ability:FORMIDABLE_ABLATIVE_HP/> point(s) de bouclier bonus et les explosions vous infligent <Ability:FORMIDABLE_EXPLOSIVES_DR/>% de dégâts en moins."
-LocPromotionPopupText="<Bullet/> Vous gagnez <Ability:FORMIDABLE_ABLATIVE_HP/> point(s) de bouclier bonus et les explosions vous infligent <Ability:FORMIDABLE_EXPLOSIVES_DR/>% de dégâts en moins.<br/>"
+LocHelpText="Gagnez des PV bonus et réduisez les dégâts explosifs subis."
+LocPromotionPopupText="<Bullet/> Derme de pierre réduit de <Ability:FORMIDABLE_EXPLOSIVES_DR/>% les dégâts explosifs subis."
 ; End translated
 
 ; Updated perk loc
@@ -844,19 +902,19 @@ LocFriendlyNameWhenConcealed="Zone mortelle (dissimulé)"
 [DeathFromAbove X2AbilityTemplate]
 LocFriendlyName="Punition céleste"
 ; LWOTC translated
-LocLongDescription="Une fois par tour, gagnez une action bonus après avoir éliminé un ennemi situé sur une position inférieure à la vôtre avec votre arme (<Ability:WeaponName/>) pendant votre tour. Confère également un bonus à longue portée aux fusils de précision."
-LocHelpText="Une fois par tour, gagnez une action bonus après avoir éliminé un ennemi situé sur une position inférieure à la vôtre avec votre arme (<Ability:WeaponName/>) pendant votre tour. Confère également un bonus à longue portée aux fusils de précision."
+LocLongDescription="Une fois par tour, gagnez une action standard après avoir éliminé un ennemi situé plus bas avec votre <Ability:BOUND_WEAPON_NAME>. De plus, les pénalités de longue portée des fusils de précision et des fusils Vektor sont réduites de <Ability:DFA_RANGE_PENALTY_NEGATION_MODIFIER>%."
+LocHelpText="Une fois par tour, gagnez une action standard après avoir éliminé un ennemi situé plus bas avec votre <Ability:BOUND_WEAPON_NAME>. De plus, les pénalités de longue portée des fusils de précision et des fusils Vektor sont réduites de <Ability:DFA_RANGE_PENALTY_NEGATION_MODIFIER>%."
 ; End translated
 LocFlyOverText="Punition céleste"
-LocPromotionPopupText="<Bullet/> Une fois par tour, gagnez une action bonus après avoir éliminé un ennemi situé sur une position inférieure à la vôtre avec votre arme (<Ability:WeaponName/>) pendant votre tour. Confère également un bonus à longue portée aux fusils de précision.<br/>"
+LocPromotionPopupText="<Bullet> Ne s'active pas lorsque vous éliminez un ennemi avec le premier tir de Double tir.<br><Bullet> Réduit de <Ability:DFA_RANGE_PENALTY_NEGATION_MODIFIER>% les pénalités de longue portée des fusils de précision et des fusils Vektor."
 
 [XComGame.Implacable X2AbilityTemplate]
 [Implacable X2AbilityTemplate]
 LocFriendlyName="Implacable"
-LocLongDescription="Une fois par tour, gagnez une action de déplacement bonus après avoir éliminé un ennemi pendant votre tour."
+LocLongDescription="Une fois par tour, éliminer un ennemi vous octroie un point d'action de déplacement seul."
 LocHelpText="Une fois par tour, gagnez une action de déplacement bonus après avoir éliminé un ennemi pendant votre tour."
 LocFlyOverText="Implacable"
-LocPromotionPopupText="<Bullet/> Flèche ne peut pas être utilisée après avoir gagné un déplacement supplémentaire grâce à la capacité Implacable.<br/>"
+LocPromotionPopupText=""
 
 [XComGame.VolatileMix X2AbilityTemplate]
 [VolatileMix X2AbilityTemplate]
@@ -903,10 +961,10 @@ LocPromotionPopupText="<Bullet/> Tir de pistolet sur une cible. Ce tir est trait
 [XComGame.IntrusionProtocol X2AbilityTemplate]
 [IntrusionProtocol X2AbilityTemplate]
 LocFriendlyName="Pirater"
-LocLongDescription="Utilisez votre GREMLIN pour tenter de neutraliser à distance la sécurité d'un point d'accès au réseau."
-LocHelpText="Vous pouvez pirater des cibles à distance avec votre GREMLIN."
+LocLongDescription="Tentez de neutraliser à distance la sécurité d'un point d'accès au réseau avec votre <Ability:BOUND_WEAPON_NAME/>."
+LocHelpText="Vous pouvez pirater des cibles à distance avec votre <Ability:BOUND_WEAPON_NAME/>."
 LocFlyOverText="Pirater"
-LocPromotionPopupText="<Bullet/> Utilisez votre GREMLIN pour pirater certains objets à distance (coffres, postes de travail, etc.).<br/>"
+LocPromotionPopupText="<Bullet/> Les objets de la carte (coffres, postes de travail, etc.) peuvent être piratés à distance avec votre <Ability:BOUND_WEAPON_NAME/>.<br/>"
 
 [XComGame.EverVigilant X2AbilityTemplate]
 [EverVigilant X2AbilityTemplate]
@@ -1082,7 +1140,7 @@ LocFriendlyName="Instinct du chasseur"
 LocLongDescription="Les attaques à distance sur les ennemis contournés infligent +<Ability:HUNTERSINSTINCTDMG/> point(s) de dégâts."
 LocHelpText="Les attaques à distance sur les ennemis contournés infligent +<Ability:HUNTERSINSTINCTDMG/> point(s) de dégâts."
 LocFlyOverText="Instinct du chasseur"
-LocPromotionPopupText="<Bullet/> Les attaques à distance sur les ennemis contournés infligent +<Ability:HUNTERSINSTINCTDMG/> point(s) de dégâts."
+LocPromotionPopupText=""
 
 [HitWhereItHurts X2AbilityTemplate]
 LocFriendlyName="Tir mortel"
@@ -1096,7 +1154,7 @@ LocFriendlyName="Imperturbable"
 LocLongDescription="Vous gagnez +<Ability:COOLUNDERPRESSUREBONUS/> en visée pour tous les tirs en mode Vigilance et les autres tirs réflexes, et ils peuvent infliger des dégâts critiques."
 LocHelpText="Bonus de visée et des chances de dégâts critiques pour les tirs de vigilance et les tirs réflexes."
 LocFlyOverText="Imperturbable"
-LocPromotionPopupText="<Bullet/> Vous gagnez +<Ability:COOLUNDERPRESSUREBONUS/> en visée pour tous les tirs en mode Vigilance et les autres tirs réflexes, et ils peuvent infliger des dégâts critiques.<br/>"
+LocPromotionPopupText=""
 
 [BiggestBooms X2AbilityTemplate]
 LocFriendlyName="Pyrotechnie"
@@ -1110,7 +1168,7 @@ LocFriendlyName="Tir rapide"
 LocLongDescription="Deux tirs à la suite sur un ennemi. Chaque tir subit une pénalité de visée de <Ability:RAPIDFIREPENALTY/>. Pas de temps de rechargement."
 LocHelpText="Deux tirs à la suite sur un ennemi. Chaque tir subit une pénalité de visée de <Ability:RAPIDFIREPENALTY/>. Pas de temps de rechargement."
 LocFlyOverText="Tir rapide"
-LocPromotionPopupText="<Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/>"
+LocPromotionPopupText="<Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Tir rapide ne peut pas être utilisé depuis la vision commune.<br/>"
 
 
 [RapidFireSnapShot X2AbilityTemplate]
@@ -1118,12 +1176,159 @@ LocFriendlyName="Tir rapide"
 LocLongDescription="Deux tirs à la suite sur un ennemi. Chaque tir subit une pénalité de visée de <Ability:RAPIDFIREPENALTY/>. Pas de temps de rechargement."
 LocHelpText="Deux tirs à la suite sur un ennemi. Chaque tir subit une pénalité de visée de <Ability:RAPIDFIREPENALTY/>. Pas de temps de rechargement."
 LocFlyOverText="Tir rapide"
-LocPromotionPopupText="<Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/>"
+LocPromotionPopupText="<Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Tir rapide ne peut pas être utilisé depuis la vision commune.<br/>"
 
 
 ; New Class loc
+
+[RapidFireSnapShot2 X2AbilityTemplate]
+LocFriendlyName="Tir rapide"
+LocFlyOverText="Tir rapide"
+
+[RepairMW_LW X2AbilityTemplate]
+LocFriendlyName="Réparation"
+LocLongDescription="Envoie le BIT vers un allié robotique endommagé pour le soigner, neutraliser l'acide et réparer toute l'armure lacérée."
+LocHelpText="Envoie le BIT réparer un allié robotique endommagé."
+LocFlyOverText="Réparation"
+LocPromotionPopupText="<Bullet/> Le <Ability:ClassName/> peut utiliser Réparation pour soigner les membres robotiques de l'escouade pendant le combat.<br/><Bullet/> Réparation restaure 4/6/8 PV, supprime l'acide et ramène l'armure de la cible à son maximum.<br/><Bullet/> Réparation dispose de 1 charge par mission et gagne une charge supplémentaire avec la capacité Systèmes de réparation améliorés.<br/><Bullet/> Utiliser Réparation comme première action met fin à votre tour, sauf avec la capacité Réparation rapide.<br/><Bullet/> Réparation a un temps de rechargement de 1 tour (impossible de l'utiliser plusieurs fois par tour).<br/>"
+
+[KineticStrike_LW X2AbilityTemplate]
+LocFriendlyName="Frappe cinétique"
+LocLongDescription="Attaque tout ennemi à portée de déplacement d'un coup de poing dévastateur. Temps de rechargement de 3 tours. Les dégâts dépendent du châssis équipé."
+LocHelpText="Attaque tout ennemi à portée de déplacement d'un coup de poing dévastateur."
+LocPromotionPopupText="<Bullet/> Vous pouvez déclencher la capacité Frappe cinétique en plaçant le curseur de déplacement sur un ennemi.<br/><Bullet/> Le <Ability:ClassName/> peut effectuer un « sprint », en utilisant ses deux actions pour se déplacer, et déclencher tout de même une Frappe contre un ennemi adjacent.<br/><Bullet/> Frappe cinétique inflige 7/9,5/12 dégâts, selon le châssis équipé.<br/><Bullet/> Les chances de toucher de Frappe cinétique reposent sur la visée du <Ability:ClassName/>, avec un bonus de +15.<br/><Bullet/> Apprendre Servomoteurs d'assaut confère +2 dégâts et un bonus supplémentaire de +20 en visée à toutes les attaques de Frappe cinétique.<br/>"
+
+[Obliterator_LW X2AbilityTemplate]
+LocFriendlyName="Servomoteurs d'assaut"
+LocLongDescription="Confère +2 dégâts et +20 en visée à toutes les attaques de Frappe. Confère également la capacité Boulet de démolition."
+LocHelpText="<Bullet/> Confère +2 dégâts et +20 en visée à toutes les attaques de Frappe cinétique.<br/><Bullet/> Boulet de démolition : tant qu'Overdrive est actif, le SPARK peut briser les murs en se déplaçant."
+LocPromotionPopupText="<Bullet/> Apprendre Servomoteurs d'assaut confère +2 dégâts et un bonus supplémentaire de +20 en visée à toutes les attaques de Frappe cinétique."
+
+[RapidRepair_LW X2AbilityTemplate]
+LocFriendlyName="Réparation rapide"
+LocLongDescription="Réparation ne met plus fin au tour, ce qui permet au <Ability:ClassName> de réparer puis d'effectuer une autre action, comme se déplacer ou tirer."
+LocHelpText="Réparation ne met plus fin au tour du <Ability:ClassName>."
+LocFlyOverText="Réparation rapide"
+LocPromotionPopupText="<Bullet/> La capacité Réparation du <Ability:ClassName> ne met plus fin au tour.<br/><Bullet/> Réparation conserve un temps de rechargement de 1 tour, ce qui empêche de l'utiliser deux fois dans le même tour.<br/><Bullet/> Le <Ability:ClassName> gagne ainsi beaucoup de souplesse sur le champ de bataille tout en gardant ses PV et son armure à un niveau élevé.<br/>"
+
+[Reboot_LW X2AbilityTemplate]
+LocFriendlyName="Redémarrage"
+LocLongDescription="Si le <Ability:ClassName> subit assez de dégâts pour être détruit, ses PV sont ramenés à 1 et il est protégé par un bouclier pour le reste du tour. Ne peut se déclencher qu'une fois par mission, après quoi le <Ability:ClassName> est handicapé."
+LocHelpText="Le <Ability:ClassName> est protégé par un bouclier pendant un tour s'il subit assez de dégâts pour être détruit."
+LocFlyOverText="Redémarrage"
+LocPromotionPopupText="<Bullet/> Le <Ability:ClassName> est placé en stase la première fois de chaque mission où ses PV tombent à zéro.<br/><Bullet/> Sans la capacité Systèmes redondants, le <Ability:ClassName> est handicapé après un redémarrage dû à des dégâts catastrophiques, et subit de lourds malus de visée, de mobilité et de piratage.<br/><Bullet/> En raison de ces inconvénients, et de l'intégrité déjà faible de la coque du <Ability:ClassName> au moment d'un redémarrage, il est recommandé de retirer du champ de bataille le <Ability:ClassName> redémarré à l'aide du Mercure dès que possible.<br/><Bullet/> Grâce à un réseau complexe de blindages redondants, de circuits de réactivation et d'un projecteur de bouclier à charge unique, le <Ability:ClassName> peut se sacrifier pour l'équipe en sachant qu'il pourra encore cogner un autre jour.<br/>"
+
+[RebootTriggered_LW X2AbilityTemplate]
+LocFriendlyName="Redémarrage"
+LocLongDescription="Cette unité a redémarré à la suite de dégâts catastrophiques et subit -30 en visée, -3 en mobilité et -100 en piratage."
+LocHelpText="L'unité est protégée par un bouclier pendant un tour si elle subit assez de dégâts pour être détruite."
+
+[RedundantSystems_LW X2AbilityTemplate]
+LocFriendlyName="Systèmes redondants"
+LocLongDescription="Le <Ability:ClassName> ne subit plus aucun malus de statistiques à cause de Redémarrage."
+LocHelpText="Le <Ability:ClassName> ne subit plus aucun malus de statistiques à cause de Redémarrage."
+LocFlyOverText="Systèmes redondants"
+LocPromotionPopupText="<Bullet/> Le <Ability:ClassName> ne subit plus aucun malus de statistiques à cause de Redémarrage.<br/><Bullet/> Sans Systèmes redondants, le <Ability:ClassName> est handicapé après un redémarrage dû à des dégâts catastrophiques.<br/>"
+
+[RedunSysTriggered_LW X2AbilityTemplate]
+LocFriendlyName="Systèmes redondants"
+LocLongDescription="Si le <Ability:ClassName> subit assez de dégâts pour être détruit, ses PV sont ramenés à 1 et il est protégé par un bouclier pour le reste du tour. Ne peut se déclencher qu'une fois par mission."
+LocHelpText="Le <Ability:ClassName> est protégé par un bouclier pendant un tour s'il subit assez de dégâts pour être détruit."
+LocFlyOverText="Systèmes redondants"
+LocPromotionPopupText="<Bullet/> Le <Ability:ClassName> est placé en stase la première fois de chaque mission où ses PV tombent à zéro.<br/><Bullet/> Grâce à un réseau complexe de blindages redondants, de circuits de réactivation et d'un projecteur de bouclier à charge unique, le <Ability:ClassName> peut se sacrifier pour l'équipe en sachant qu'il pourra encore cogner un autre jour.<br/>"
+
+[HeavyRepair_LW X2AbilityTemplate]
+LocFriendlyName="Réparation renforcée"
+LocFlyOverText="Réparation renforcée"
+LocLongDescription="Réparation soigne quatre PV de plus à chaque utilisation, doublant son potentiel de récupération."
+LocHelpText="Réparation soigne quatre PV de plus à chaque utilisation."
+LocPromotionPopupText="<Bullet/> La capacité Réparation du <Ability:ClassName> soigne désormais 8 PV par utilisation au lieu de 4.<br/>"
+
+[ConcussiveStrike_LW X2AbilityTemplate]
+LocFriendlyName="Frappe commotionnante"
+LocLongDescription="Une attaque de Frappe spéciale qui inflige la moitié des dégâts mais étourdit la cible pendant deux points d'action. Ne peut pas cibler les unités robotiques. Temps de rechargement de 4 tours. Réduit aussi de 1 le temps de rechargement de Frappe cinétique."
+LocHelpText="Une attaque de Frappe spéciale qui inflige la moitié des dégâts mais étourdit la cible pendant deux points d'action."
+LocFlyOverText="Frappe commotionnante"
+LocPromotionPopupText="<Bullet/> Frappe commotionnante ne peut pas cibler les unités robotiques, car leurs centres de traitement ne sont pas aussi fragiles que des cerveaux.<br/><Bullet/> Sans Servomoteurs d'assaut, les dégâts de Frappe commotionnante sont de 3/4/5 selon le châssis équipé.<br/><Bullet/> Avec Servomoteurs d'assaut, les dégâts de Frappe commotionnante sont de 4/5/6 selon le châssis équipé.<br/><Bullet/> Les capacités de mêlée améliorées du <Ability:ClassName> réduisent aussi de 1 le temps de rechargement de la capacité principale Frappe cinétique."
+
+[Neutralize_LW X2AbilityTemplate]
+LocFriendlyName="Protocole de neutralisation"
+LocLongDescription="Envoie le BIT vers un emplacement pour désactiver les armes ennemies dans un petit rayon et les forcer à recharger. Coûte 1 action et ne met pas fin au tour."
+LocHelpText="Envoie le BIT vers un emplacement pour désactiver les armes ennemies dans un petit rayon et les forcer à recharger. Coûte 1 action et ne met pas fin au tour."
+LocFlyOverText="Protocole de neutralisation"
+LocPromotionPopupText="<Bullet/> Envoie le BIT émettre une impulsion de brouillage à courte portée qui surcharge les systèmes d'armes. Force les cibles à recharger leur arme principale.<br/><Bullet/> Les ennemis ciblés peuvent recharger pour débloquer leur arme. Ils peuvent choisir de se contenter d'un seul point d'action pour se déplacer et tirer, ou renoncer à recharger et recourir à leurs armes secondaires.<br/><Bullet/> Protocole de neutralisation coûte une action et a un temps de rechargement de <Ability:NEUTRALIZE_COOLDOWN/> tour(s).<br/>"
+
+[LayeredArmour_LW X2AbilityTemplate]
+LocFriendlyName="Armure à couches"
+LocLongDescription="Aucune source de dégâts unique ne peut détruire plus de 40% des PV max de cette unité."
+LocHelpText="Aucune source de dégâts unique ne peut détruire plus de 40% des PV max de cette unité."
+LocFlyOverText="Armure à couches"
+LocPromotionPopupText="<Bullet/> Grâce à une nouvelle technique de conception mise au point par Shen, le blindage de ce soldat est désormais à triple coque. Les dégâts subis par une coque ne peuvent pas se propager aux autres.<br/><Bullet/> Les dégâts maximum subis par le <Ability:ClassName/> sont égaux à ses PV max multipliés par 0,4. Le résultat est arrondi à l'entier le plus proche.<br/>"
+
+[Triangulation_LW X2AbilityTemplate]
+LocFriendlyName="Triangulation"
+LocLongDescription="Lorsque le <Ability:ClassName/> est attaqué, l'escouade gagne +10 en visée contre cette cible au tour suivant."
+LocHelpText="Lorsque le <Ability:ClassName/> est attaqué, l'escouade gagne +10 en visée contre cette cible au tour suivant."
+LocFlyOverText="Triangulation"
+LocPromotionPopupText="<Bullet/> Le <Ability:ClassName/> peut remonter la trajectoire des projectiles reçus jusqu'à leurs tireurs, et transmettre cette information au reste de l'équipe.<br/><Bullet/> Triangulation ne se déclenche pas si un ennemi attaque un équipier du <Ability:ClassName/>.<br/>"
+
+[TriangulationTrigger_LW X2AbilityTemplate]
+LocFriendlyName="Triangulation"
+LocLongDescription="Tous les ennemis de cette unité gagnent un bonus de visée lorsqu'ils lui tirent dessus."
+LocHelpText="Tous les ennemis de cette unité gagnent un bonus de visée lorsqu'ils lui tirent dessus."
+LocFlyOverText="Triangulation"
+
+[BrawlerProtocol_LW X2AbilityTemplate]
+LocFriendlyName="Contre-frappe"
+LocLongDescription="Le <Ability:ClassName/> peut lancer des attaques de Frappe gratuites à moitié dégâts sur tout ennemi qui entre dans la zone de corps à corps ou y attaque. Ne nécessite pas la capacité Frappe cinétique. Ne peut pas s'activer pendant le tour de l'unité."
+LocHelpText="Attaques de mêlée gratuites sur tout ennemi qui entre dans la zone de corps à corps ou y attaque."
+LocFlyOverText="Contre-frappe"
+LocPromotionPopupText="<Bullet/> Si un ennemi commence son tour sur une case adjacente, Contre-frappe se déclenche s'il se déplace vers une autre case adjacente ou tente d'attaquer le <Ability:ClassName/>.<br/><Bullet/> Si l'ennemi ne commence pas son tour sur une case adjacente, Contre-frappe se déclenche lorsqu'il entre dans la zone de corps à corps.<br/><Bullet/> Si un ennemi commence son tour sur une case adjacente, Contre-frappe ne se déclenche PAS s'il s'éloigne directement du <Ability:ClassName/>.<br/><Bullet/> Contre-frappe inflige la moitié des dégâts d'une attaque de Frappe cinétique normale, et gagne +1 dégât grâce à Servomoteurs d'assaut.<br/><Bullet/> Ne peut pas s'activer pendant le tour du <Ability:ClassName/>."
+
+[BrawlerTrigger_LW X2AbilityTemplate]
+LocFriendlyName="Contre-frappe"
+LocLongDescription="Le <Ability:ClassName/> peut lancer des attaques de Frappe gratuites à moitié dégâts sur tout ennemi qui entre dans la zone de corps à corps ou y attaque. Ne nécessite pas la capacité Frappe cinétique. Ne peut pas s'activer pendant le tour de l'unité."
+LocHelpText="Attaques de mêlée gratuites sur tout ennemi qui entre dans la zone de corps à corps ou y attaque."
+LocFlyOverText="Contre-frappe"
+LocPromotionPopupText="<Bullet/> Si un ennemi commence son tour sur une case adjacente, Contre-frappe se déclenche s'il se déplace vers une autre case adjacente ou tente d'attaquer le <Ability:ClassName/>.<br/><Bullet/> Si l'ennemi ne commence pas son tour sur une case adjacente, Contre-frappe se déclenche lorsqu'il entre dans la zone de corps à corps.<br/><Bullet/> Si un ennemi commence son tour sur une case adjacente, Contre-frappe ne se déclenche PAS s'il s'éloigne directement du <Ability:ClassName/>.<br/><Bullet/> Contre-frappe inflige la moitié des dégâts d'une attaque de Frappe cinétique normale, et gagne +1 dégât grâce à Servomoteurs d'assaut.<br/><Bullet/> Ne peut pas s'activer pendant le tour du <Ability:ClassName/>."
+
+[EnhancedSystems_LW X2AbilityTemplate]
+LocFriendlyName="Systèmes de réparation améliorés"
+LocLongDescription="Confère les capacités Réparation rapide et Systèmes redondants : Réparation ne met plus fin au tour et les malus de statistiques liés à Redémarrage disparaissent. Le <Ability:ClassName> utilise automatiquement Réparation lors d'un redémarrage. Confère en outre une charge supplémentaire à Réparation."
+LocHelpText="Réparation rapide empêche Réparation de mettre fin au tour. Systèmes redondants évite au <Ability:ClassName> tout malus de statistiques après un redémarrage. Le <Ability:ClassName> utilise automatiquement Réparation lors d'un redémarrage."
+LocPromotionPopupText="Réparation rapide empêche Réparation de mettre fin au tour. Systèmes redondants évite au <Ability:ClassName> tout malus de statistiques après un redémarrage. Le <Ability:ClassName> utilise automatiquement Réparation lors d'un redémarrage. Confère en outre une charge supplémentaire à Réparation."
+
+[ReactionSystems_LW X2AbilityTemplate]
+LocFriendlyName="Systèmes défensifs améliorés"
+LocLongDescription="Confère les capacités Sacrifice et Champ de canalisation, qui permettent au <Ability:ClassName> de rediriger vers lui-même les attaques visant des alliés proches, et augmentent les dégâts du <Ability:ClassName> après avoir été visé par une attaque."
+LocHelpText="<Bullet/> Le <Ability:ClassName> gagne +<Ability:Sacrifice_Defense/> en défense et +<Ability:Sacrifice_Armor/> en armure tant que Sacrifice est actif.<br/><Bullet/> Sacrifice a un temps de rechargement de <Ability:SACRIFICE_COOLDOWN/> tour(s).<br/><Bullet/> Chaque point d'énergie canalisé par Champ de canalisation augmente de 1 les dégâts de la prochaine attaque avec <Ability:WeaponName>.<br/>"
+LocPromotionPopupText="<Bullet/> Le <Ability:ClassName> gagne +<Ability:Sacrifice_Defense/> en défense et +<Ability:Sacrifice_Armor/> en armure tant que Sacrifice est actif.<br/><Bullet/> Sacrifice a un temps de rechargement de <Ability:SACRIFICE_COOLDOWN/> tour(s).<br/><Bullet/> Chaque point d'énergie canalisé par Champ de canalisation augmente de 1 les dégâts de la prochaine attaque avec <Ability:WeaponName>.<br/>"
+
+[AdvancedLogic_LW X2AbilityTemplate]
+LocFriendlyName="Logique avancée"
+LocLongDescription="Augmente la statistique de piratage du <Ability:ClassName/> de <Ability:ADVANCED_LOGIC_HACK_BONUS>."
+LocHelpText="Augmente la statistique de piratage du <Ability:ClassName/> de <Ability:ADVANCED_LOGIC_HACK_BONUS>."
+LocPromotionPopupText="Augmente la statistique de piratage du <Ability:ClassName/> de <Ability:ADVANCED_LOGIC_HACK_BONUS>."
+
+[HoloAACombo_LW X2AbilityTemplate]
+LocFriendlyName="Systèmes de ciblage améliorés"
+LocLongDescription="Confère les capacités Visée adaptative et Visée holographique, ce qui améliore la capacité du <Ability:ClassName> à effectuer plusieurs tirs tant qu'Overdrive est actif et la capacité de l'escouade à toucher les cibles sur lesquelles le <Ability:ClassName> tire. Visée holographique s'applique à tous les tirs, pas seulement à ceux effectués tant qu'Overdrive est actif."
+LocHelpText="Confère les capacités Visée adaptative et Visée holographique, ce qui améliore la capacité du <Ability:ClassName> à effectuer plusieurs tirs tant qu'Overdrive est actif et la capacité de l'escouade à toucher les cibles sur lesquelles le <Ability:ClassName> tire. Visée holographique s'applique à tous les tirs, pas seulement à ceux effectués tant qu'Overdrive est actif."
+LocPromotionPopupText="Confère les capacités Visée adaptative et Visée holographique, ce qui améliore la capacité du <Ability:ClassName> à effectuer plusieurs tirs tant qu'Overdrive est actif et la capacité de l'escouade à toucher les cibles sur lesquelles le <Ability:ClassName> tire. Visée holographique s'applique à tous les tirs, pas seulement à ceux effectués tant qu'Overdrive est actif."
+
+[HeavyHitter_LW X2AbilityTemplate]
+LocFriendlyName="Brute"
+LocFlyOverText="Brute"
+LocLongDescription="Toutes vos attaques infligent +<Ability:HeavyHitter_DamageBonus_LW> dégâts. Vos effets de dégâts sur la durée infligent +<Ability:HeavyHitter_DamageOverTimeBonus_LW> dégâts à la place."
+LocHelpText="Toutes vos attaques et tous vos effets infligent des dégâts supplémentaires."
+LocPromotionPopupText="<Bullet> Augmente de <Ability:HeavyHitter_DamageBonus_LW> les dégâts de toutes vos attaques.<br><Bullet> Augmente de <Ability:HeavyHitter_DamageOverTimeBonus_LW> les dégâts de tous vos effets de dégâts sur la durée."
 
 [PsiOperative X2SoldierClassTemplate]
 RankNames[8]="Maître"
 ShortNames[8]="M."
 RankIcons[8]="UILibrary_LW_PerkPack.psirank_Master"
+AbilityTreeTitles[3]="Pistolets"
+
+[XComGame.X2MPData_Shell]
+arrMPMapFriendlyNames[9]="Souterrain"
+arrMPMapFriendlyNames[10]="Souterrain"

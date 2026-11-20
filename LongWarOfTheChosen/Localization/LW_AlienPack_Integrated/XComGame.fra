@@ -85,10 +85,14 @@ LocPromotionPopupText="<Bullet/> Réanimez tous les cadavres à proximité sous 
 LocFriendlyName="Prêt à tout"
 LocFlyOverText="Vigilance: Prêt à tout"
 ; LWOTC translated
-LocHelpText="Passez en vigilance après un tir normal à l'arme principale ayant mis fin à votre tour."
-LocLongDescription="Passez en vigilance après un tir normal à l'arme principale ayant mis fin à votre tour."
-LocPromotionPopupText="<Bullet/> Passez en vigilance après un tir normal à l'arme principale ayant mis fin à votre tour."
+LocHelpText="Une fois par tour, passez en vigilance après un tir standard avec votre <Ability:BOUND_WEAPON_NAME>."
+LocLongDescription="Une fois par tour, passez en vigilance après un tir standard avec votre <Ability:BOUND_WEAPON_NAME>."
+LocPromotionPopupText="<Bullet> Les capacités de tir standard comprennent aussi le tir de précision standard et le tir de pistolet.<br><Bullet> Prêt à tout ne s'active pas si le <Ability:ClassName> est désorienté, étourdi, paniqué, en feu ou autrement diminué.<br><Bullet> Prêt à tout ne s'active pas si le <Ability:ClassName> n'a pas assez de munitions pour passer en vigilance."
 ; End translated
+
+[ReadyForAnythingTrigger X2AbilityTemplate]
+LocFriendlyName="Prêt à tout"
+LocFlyOverText="Prêt à tout"
 
 [ReadyForAnythingFlyover X2AbilityTemplate]
 LocFriendlyName="Prêt à tout"
@@ -239,6 +243,9 @@ FriendlyName="Fusil à rayons"
 AbilityDescName="fusil plasmique"
 ; End translated
 
+[Archon_WPN X2WeaponTemplate]
+AbilityDescName="bâton"
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;; ArchonM2_LW ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [ArchonM2_LW X2CharacterTemplate]
@@ -261,7 +268,7 @@ AbilityDescName="canon"
 ; End translated
 
 [AdvGunnerM2 X2CharacterTemplate]
-strCharacterName="Tirailleur lourd d'ADVENT"
+strCharacterName="Tirailleur lourd"
 
 [AdvGunnerM2_WPN X2WeaponTemplate]
 FriendlyName="Automatique"
@@ -270,7 +277,7 @@ AbilityDescName="canon"
 ; End translated
 
 [AdvGunnerM3 X2CharacterTemplate]
-strCharacterName="Tirailleur d'élite d'ADVENT"
+strCharacterName="Tirailleur d'élite"
 
 [AdvGunnerM3_WPN X2WeaponTemplate]
 FriendlyName="Automatique"
@@ -291,7 +298,7 @@ AbilityDescName="fusil magnétique"
 ; End translated
 
 [AdvSentryM2 X2CharacterTemplate]
-strCharacterName="Gardien d'ADVENT"
+strCharacterName="Factionnaire avancé"
 
 [AdvSentryM2_WPN X2WeaponTemplate]
 FriendlyName="Fusil magnétique d'ADVENT"
@@ -300,7 +307,7 @@ AbilityDescName="fusil magnétique"
 ; End translated
 
 [AdvSentryM3 X2CharacterTemplate]
-strCharacterName="Sentinelle d'ADVENT"
+strCharacterName="Factionnaire d'élite"
 
 [AdvSentryM3_WPN X2WeaponTemplate]
 FriendlyName="Fusil magnétique d'ADVENT"
@@ -323,10 +330,13 @@ strCharacterName="Grenadier d'ADVENT"
 FriendlyName="Lance-grenades d'ADVENT"
 
 [AdvGrenadierM3 X2CharacterTemplate]
-strCharacterName="Grenadier lourd d'ADVENT"
+strCharacterName="Grenadier d'élite"
 
 [AdvGrenadierM3_GrenadeLauncher X2GrenadeLauncherTemplate]
 FriendlyName="Lance-grenades d'ADVENT"
+
+[AdvHeavyEngineer X2CharacterTemplate]
+strCharacterName="Ingénieur d'élite"
 
 [AdvGrenadierFlashbangGrenade X2GrenadeTemplate]
 FriendlyName="Grenade flash"
@@ -364,10 +374,10 @@ LaunchedAbilityHelpText="Répand des flaques d'acide qui blessent l'ennemi."
 strCharacterName="Artilleur d'ADVENT"
 
 [AdvRocketeerM2 X2CharacterTemplate]
-strCharacterName="Artilleur lourd d'ADVENT"
+strCharacterName="Artilleur lourd"
 
 [AdvRocketeerM3 X2CharacterTemplate]
-strCharacterName="Artilleur d'élite d'ADVENT"
+strCharacterName="Artilleur d'élite"
 
 [AdvRocketeerM1_RocketLauncher X2WeaponTemplate]
 FriendlyName="Lance-roquettes d'ADVENT"
@@ -383,7 +393,7 @@ strCharacterName="CEM super lourde"
 strCharacterName="Drone de surveillance d'ADVENT"
 
 [LWDroneM2 X2CharacterTemplate]
-strCharacterName="Drone chasseur d'ADVENT"
+strCharacterName="Drone chasseur"
 
 [LWDroneM1_WPN X2WeaponTemplate]
 FriendlyName="Choc de drone"
@@ -435,7 +445,7 @@ LocHelpText="Attaque d'une cible au corps à corps avec vos griffes, avec une ch
 strCharacterName="Reine de la ruche"
 
 [HiveQueenSlash X2AbilityTemplate]
-LocFriendlyName="Grande lacération de Chrysalis"
+LocFriendlyName="Lacération de la reine de la ruche"
 LocLongDescription="Une attaque au corps à corps qui peut empoisonner la cible."
 LocHelpText="Attaque d'une cible au corps à corps avec vos griffes, avec une chance de l'empoisonner."
 
@@ -451,7 +461,7 @@ AbilityDescName="fusil magnétique"
 ; End translated
 
 [AdvSergeantM2 X2CharacterTemplate]
-strCharacterName="Sergent-chef d'ADVENT"
+strCharacterName="Sergent-chef"
 
 [AdvSergeantM2_WPN X2WeaponTemplate]
 FriendlyName="Fusil magnétique d'ADVENT"
@@ -494,6 +504,20 @@ FriendlyName="Fusil magnétique d'ADVENT"
 ; LWOTC translated
 AbilityDescName="fusil magnétique"
 ; End translated
+
+[AdvGeneralM1_LW X2CharacterTemplate]
+strCharacterName="Général d'ADVENT"
+
+[AdvGeneralM1_LW_WPN X2WeaponTemplate]
+FriendlyName="Fusil magnétique d'ADVENT"
+AbilityDescName="fusil magnétique"
+
+[AdvGeneralM2_LW X2CharacterTemplate]
+strCharacterName="Général d'élite"
+
+[AdvGeneralM2_LW_WPN X2WeaponTemplate]
+FriendlyName="Fusil magnétique d'ADVENT"
+AbilityDescName="fusil magnétique"
 
 [AdvGeneralM1 X2CharacterTemplate]
 strCharacterName="Général d'ADVENT"

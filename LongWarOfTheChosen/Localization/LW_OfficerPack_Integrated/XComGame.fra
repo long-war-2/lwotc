@@ -207,7 +207,7 @@ LocPromotionPopupText="<Bullet/> Jusqu'à la fin du prochain tour adverse, toute
 LocFriendlyName="Intervention"
 ; LWOTC translated
 LocLongDescription="Activez pour dépenser <Ability:INTERVENTION_INTEL_COST/> renseignements et rajouter <Ability:INTERVENTION_EXTRA_TURNS/> tour(s) au chrono de la mission. Coûte 1 action et ne met pas fin au tour. Le nombre de charges dépend du grade de l'officier."
-LocHelpText="Activez pour dépenser <Ability:INTERVENTION_INTEL_COST/> renseignements et rajouter <Ability:INTERVENTION_EXTRA_TURNS/> tour(s) au chrono de la mission. Coûte 1 action et ne met pas fin au tour. Le nombre de charges dépend du grade de l'officier."
+LocHelpText="Activez pour dépenser du renseignement et gagner <Ability:INTERVENTION_EXTRA_TURNS/> tours sur le chrono de la mission."
 LocFlyOverText="Intervention"
 LocPromotionPopUpText="<Bullet/> Activez pour dépenser <Ability:INTERVENTION_INTEL_COST/> renseignements et rajouter <Ability:INTERVENTION_EXTRA_TURNS/> tour(s) au chrono de la mission. Coûte 1 action et ne met pas fin au tour. Le nombre de charges dépend du grade de l'officier.<br/><Bullet/> Sans effet si la mission ne comporte pas de chrono. <br/><Bullet/> Les événements peuvent influencer le coup en renseignements. Ne s'active pas si XCOM possède moins de <Ability:INTERVENTION_INTEL_COST/> renseignements.<br/>"
 ; End translated
