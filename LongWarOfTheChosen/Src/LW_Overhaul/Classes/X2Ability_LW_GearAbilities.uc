@@ -431,7 +431,7 @@ static function X2AbilityTemplate CreateHazmatVestBonusAbility_LW()
 	DamageImmunity.ImmuneTypes.AddItem('Acid'); /// ADDING THIS
 	DamageImmunity.ImmuneTypes.AddItem(class'X2Item_DefaultDamageTypes'.default.ParthenogenicPoisonType);
 	DamageImmunity.BuildPersistentEffect(1, true, false, false);
-	DamageImmunity.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false, , Template.AbilitySourceName);
+	DamageImmunity.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true, , Template.AbilitySourceName);
 	Template.AddTargetEffect(DamageImmunity);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;

@@ -950,7 +950,7 @@ static function X2AbilityTemplate CreateTechnicalFireImmunityAbility()
 	DamageImmunity = new class'X2Effect_DamageImmunity';
 	DamageImmunity.ImmuneTypes.AddItem('Fire');
 	DamageImmunity.BuildPersistentEffect(1, true, false, false);
-	DamageImmunity.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false, , Template.AbilitySourceName);
+	DamageImmunity.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true, , Template.AbilitySourceName);
 	Template.AddTargetEffect(DamageImmunity);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
