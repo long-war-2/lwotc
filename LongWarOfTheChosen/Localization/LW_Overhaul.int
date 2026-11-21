@@ -572,6 +572,9 @@ m_strCannotChangeLiaison="The adviser and their loadout cannot be changed at thi
 ChangeJobStr="CHANGE JOB"
 ChangeAllJobsStr="CHANGE ALL JOBS"
 PerksStr="PERKS" 
+m_strMarkRebelsButton="MARK REBELS AS TRUSTED"
+m_strMarkRebelsTitle="Mark rebels as 'Trusted'?"
+m_strMarkRebelsInfo="This will mark the rebels in this Haven as 'trusted'. This has no mechanical impact in the game, but manually marking certain havens as free of infiltrators may be useful for future reference."
 
 m_strIncomeIntel="Mission Finding Power:"
 m_strIncomeSupply="Supplies Per Day:"
@@ -581,6 +584,8 @@ m_strIncomeRecruit="Days Per Recruit:"
 m_strIDConfirmedName="Identity Confirmed"
 m_strIDConfirmedText="Our troops have vetted this operative and confirmed they aren't an ADVENT infiltrator."
 m_strIDConfirmedIconPath="img:///UILibrary_LWOTC.UIIcon_IDConfirmed_Hex"
+m_strIDTrustedName="Identity Trusted"
+m_strIDTrustedText="This operative is believed to not be an ADVENT infiltrator. Let's hope our intel checks out."
 
 [UIScreenListener_TacticalHUD]
 strEvacRequestTitle="EVAC Requested"

@@ -15,6 +15,7 @@ var config int LEVEL_ICON_OFFSET_MK, LEVEL_ICON_SIZE_MK, LIST_ITEM_FONT_SIZE_MK,
 var config int LEVEL_ICON_OFFSET_CTRL, LEVEL_ICON_SIZE_CTRL, LIST_ITEM_FONT_SIZE_CTRL, LIST_ITEM_FONT_SIZE_FANCY_CTRL;
 
 var localized string m_strIDConfirmedName, m_strIDConfirmedText;
+var localized string m_strIDTrustedName, m_strIDTrustedText;
 var localized string m_strIDConfirmedIconPath;
 
 var bool USE_FANCY_VERSION;
@@ -354,15 +355,24 @@ simulated function AddIDConfirmedIndicator(XComGameState_Unit Unit)
 	// only display an indicator for those confirmed not faceless
 	if (!Unit.GetUnitValue(class'X2EventListener_Missions'.default.IDConfirmedUnitValueName, vUnitValue))
 		return;
-
+	
 	IDConfirmedIcon = Spawn(class'UIIcon', self);
 	IDConfirmedIcon.bDisableSelectionBrackets = true;
 	IDConfirmedIcon.bIsNavigable = false;
 	IDConfirmedIcon.InitIcon('ConfirmedIcon', m_strIDConfirmedIconPath, true, true, 16);
 	IDConfirmedIcon.SetPosition(MugShot.X - 6, MugShot.Y - 4);
-	IDConfirmedIcon.SetBGColorState(eUIState_Good);
 	IDConfirmedIcon.SetBGShape(eHexagon);
-	IDConfirmedIcon.SetTooltipText(m_strIDConfirmedText, m_strIDConfirmedName,,,true, class'UIUtilities'.const.ANCHOR_BOTTOM_LEFT, false, 0.5);
+	if (vUnitValue.fValue == 1)
+	{
+		IDConfirmedIcon.SetBGColorState(eUIState_Good);
+		IDConfirmedIcon.SetTooltipText(m_strIDConfirmedText, m_strIDConfirmedName,,,true, class'UIUtilities'.const.ANCHOR_BOTTOM_LEFT, false, 0.5);
+	}
+	if (vUnitValue.fValue == 0)
+	{
+		IDConfirmedIcon.SetBGColorState(eUIState_Warning);
+		IDConfirmedIcon.SetTooltipText(m_strIDTrustedText, m_strIDTrustedName,,,true, class'UIUtilities'.const.ANCHOR_BOTTOM_LEFT, false, 0.5);
+		
+	}
 }
 
 
