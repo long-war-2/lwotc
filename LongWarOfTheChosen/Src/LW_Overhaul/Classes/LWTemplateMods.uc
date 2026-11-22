@@ -3614,6 +3614,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		if (WeaponUpgradeTemplate.DataName == 'MissDamageUpgrade_Bsc')
 		{
 			WeaponUpgradeTemplate.BonusDamage.Damage = 0;
+			WeaponUpgradeTemplate.BonusDamage.Tag = 'LW_DONT_USE';
 			WeaponUpgradeTemplate.AimBonus = class'X2Ability_LW_GearAbilities'.default.STOCK_BSC_SW_AIM_BONUS;
 			WeaponUpgradeTemplate.GetBonusAmountFn = class'X2Item_DefaultWeaponMods_LW'.static.GetStockBonusAmount;
 			WeaponUpgradeTemplate.BonusAbilities.Length = 0;
@@ -3622,6 +3623,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		if (WeaponUpgradeTemplate.DataName == 'MissDamageUpgrade_Adv')
 		{
 			WeaponUpgradeTemplate.BonusDamage.Damage = 0;
+			WeaponUpgradeTemplate.BonusDamage.Tag = 'LW_DONT_USE';
 			WeaponUpgradeTemplate.AimBonus = class'X2Ability_LW_GearAbilities'.default.STOCK_ADV_SW_AIM_BONUS;
 			WeaponUpgradeTemplate.GetBonusAmountFn = class'X2Item_DefaultWeaponMods_LW'.static.GetStockBonusAmount;
 			WeaponUpgradeTemplate.BonusAbilities.Length = 0;
@@ -3630,6 +3632,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		if (WeaponUpgradeTemplate.DataName == 'MissDamageUpgrade_Sup')
 		{
 			WeaponUpgradeTemplate.BonusDamage.Damage = 0;
+			WeaponUpgradeTemplate.BonusDamage.Tag = 'LW_DONT_USE';
 			WeaponUpgradeTemplate.AimBonus = class'X2Ability_LW_GearAbilities'.default.STOCK_SUP_SW_AIM_BONUS;
 			WeaponUpgradeTemplate.GetBonusAmountFn = class'X2Item_DefaultWeaponMods_LW'.static.GetStockBonusAmount;
 			WeaponUpgradeTemplate.BonusAbilities.Length = 0;
