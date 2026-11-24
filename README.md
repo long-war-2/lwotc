@@ -102,6 +102,28 @@ Note that you need to own the Shen's Last Gift DLC to build (and play) this vers
 
 Once LWOTC is built, you will be able to select it as a local mod in Alternative Mod Launcher and run Long War of the Chosen.
 
+## Running the tests
+
+The tests need the build setup above plus [Python 3](https://www.python.org/downloads/). Install the test runner once:
+```
+> pip install -r tests\requirements.txt
+```
+
+Then, from the LWOTC project directory:
+
+| Command | What it runs |
+|---|---|
+| `pytest tests` | Builds LWOTC and checks that the scripts compile and the build succeeds; checks localization files are UTF-8 |
+| `pytest tests -m game` | Launches XCOM 2 with the mods enabled in your launcher and runs the in-game tests, then closes the game (about a minute) |
+
+The in-game tests use your last LWOTC build, so run `pytest tests` (or `build-lwotc.bat -config default`) first.
+
+The in-game tests are a small test mod in `tests/harness`. To add one, create a class extending `X2TH_Test` next to
+`X2TH_Test_LWOTCLoaded.uc`, report each check with `T.Check(Condition, "description")`, and list the class in
+`tests/harness/X2TestHarness/Config/XComX2TestHarness.ini`. During the run, the harness is added to your
+`XComModOptions.ini` and the game's local `Mods` folder to your `XComEngine.ini` (both under
+`Documents\My Games\XCOM2 War of the Chosen\XComGame\Config`); both files are restored afterwards.
+
 ## Contributing
 
 Contributions are welcome. If you just want to raise issues, please do so [on GitHub](https://github.com/long-war-2/lwotc/issues),
