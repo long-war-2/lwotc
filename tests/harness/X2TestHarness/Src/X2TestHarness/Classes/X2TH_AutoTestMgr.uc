@@ -1,17 +1,52 @@
 // Spawned by the engine when XCOM 2 runs with -AutoTest -AutoTestClass=X2TestHarness.X2TH_AutoTestMgr.
-// At the main menu it runs each class in TestClasses, logs results to Launch.log, and exits the game.
+// At the main menu it loads the save named by SaveName; on the Geoscape it runs each class in TestClasses,
+// logs results to Launch.log, and exits the game.
 class X2TH_AutoTestMgr extends AutoTestManager config(X2TestHarness);
 
 var config array<string> TestClasses;
 var config float SettleSeconds;
+var config string SaveName;
 
+var int LoadAttempts;
 var int Passed, Failed;
 
 event PostBeginPlay()
 {
 	super.PostBeginPlay();
+	SetTimer(0.5, true);
+}
+
+event Timer()
+{
 	if (XComShell(WorldInfo.Game) != none)
+		RequestLoad();
+	else if (`HQPRES != none && `HQPRES.ScreenStack.GetCurrentScreen() != none)
+	{
+		ClearTimer();
 		SetTimer(SettleSeconds, false, nameof(RunTests));
+	}
+}
+
+function RequestLoad()
+{
+	local XComOnlineEventMgr EventMgr;
+	local int SaveID;
+
+	EventMgr = `ONLINEEVENTMGR;
+	if (EventMgr.bAutoTestLoad)
+		return;
+
+	SaveID = EventMgr.SaveNameToID(SaveName);
+	if (SaveID < 0)
+	{
+		if (LoadAttempts++ == 20)
+			Say("save not found:" @ SaveName);
+		return; // the save list may not be ready yet
+	}
+
+	Say("loading" @ SaveName);
+	EventMgr.bAutoTestLoad = true;
+	EventMgr.LoadGame(SaveID);
 }
 
 function RunTests()

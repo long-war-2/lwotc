@@ -114,13 +114,15 @@ Then, from the LWOTC project directory:
 | Command | What it runs |
 |---|---|
 | `pytest tests` | Builds LWOTC and checks that the scripts compile and the build succeeds; checks localization files are UTF-8 |
-| `pytest tests -m game` | Launches XCOM 2 with the mods enabled in your launcher and runs the in-game tests, then closes the game (about a minute) |
+| `pytest tests -m game` | Launches XCOM 2 with the mods enabled in your launcher, loads a save and runs the in-game tests on the Geoscape, then closes the game (about a minute) |
 
 The in-game tests use your last LWOTC build, so run `pytest tests` (or `build-lwotc.bat -config default`) first.
 
 The in-game tests are a small test mod in `tests/harness`. To add one, create a class extending `X2TH_Test` next to
 `X2TH_Test_LWOTCLoaded.uc`, report each check with `T.Check(Condition, "description")`, and list the class in
-`tests/harness/X2TestHarness/Config/XComX2TestHarness.ini`. During the run, the harness is added to your
+`tests/harness/X2TestHarness/Config/XComX2TestHarness.ini`. Tests run on the Geoscape of the save named by `SaveName`
+in that file: set it to one of your LWOTC saves that has a movable haven advisor (its file name in `SaveData`, e.g.
+`save_Save 12`). The game is never saved. During the run, the harness is added to your
 `XComModOptions.ini` and the game's local `Mods` folder to your `XComEngine.ini` (both under
 `Documents\My Games\XCOM2 War of the Chosen\XComGame\Config`); both files are restored afterwards.
 

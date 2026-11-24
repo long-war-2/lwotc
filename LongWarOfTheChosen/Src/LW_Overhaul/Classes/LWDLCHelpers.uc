@@ -350,6 +350,12 @@ static function AddRulerAdditionalTags(
 	}
 }
 
+// haven liaison that no mission in their region is holding in place
+static function bool IsMovableHavenLiaison(XComGameState_Unit UnitState)
+{
+	return `LWOUTPOSTMGR.IsUnitAHavenLiaison(UnitState.GetReference()) && !`LWOUTPOSTMGR.IsUnitALockedHavenLiaison(UnitState.GetReference());
+}
+
 //class'LWDLCHelpers'.static.IsUnitOnMission(UnitState)
 // helper for sparks to resolve if a wounded spark is on a mission, since that status can override the OnMission one
 static function bool IsUnitOnMission(XComGameState_Unit UnitState)

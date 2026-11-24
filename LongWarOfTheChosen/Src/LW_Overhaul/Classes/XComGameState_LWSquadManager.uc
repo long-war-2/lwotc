@@ -590,6 +590,7 @@ function EventListenerReturn SetDisabledSquadListItems(Object EventData, Object 
 	local UIPersonnel_ListItem ListItem;
 	local XComGameState_LWPersistentSquad Squad;
     local XComGameState_Unit UnitState;
+	local UISquadSelect SquadSelect;
 	local bool								bInSquadEdit;
 
 	//only do this for squadselect
@@ -618,7 +619,11 @@ function EventListenerReturn SetDisabledSquadListItems(Object EventData, Object 
         else 
 		if (class'LWDLCHelpers'.static.IsUnitOnMission(UnitState))
         {
-		    ListItem.SetDisabled(true);
+			SquadSelect = GetSquadSelect();
+			ListItem.SetDisabled(!class'LWDLCHelpers'.static.IsMovableHavenLiaison(UnitState) ||
+				!IsValidInfiltrationMission(`XCOMHQ.MissionRef) ||
+				`XCOMHQ.IsUnitInSquad(ListItem.UnitRef) ||
+				(SquadSelect.bHasRankLimits && (UnitState.GetRank() < SquadSelect.MinRank || UnitState.GetRank() > SquadSelect.MaxRank)));
 		}
             
 	}

@@ -576,7 +576,6 @@
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_GetPCSImageOverride.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_LivingQuarters.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_OverrideItemRange.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_PersonnelSquadSelect.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_ResistanceReport.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_Shell.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_ShellDifficulty.uc" />

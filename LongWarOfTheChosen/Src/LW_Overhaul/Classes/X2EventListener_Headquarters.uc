@@ -41,6 +41,8 @@ static function CHEventListenerTemplate CreateXComHQListeners()
 	Template.AddCHEvent('CanTechBeInspired', CanTechBeInspired, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('UIAvengerShortcuts_ShowCQResistanceOrders', ShowOrHideResistanceOrdersButton, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('UIPersonnel_OnSortFinished', OnUIPersonnelDataRefreshed, ELD_Immediate, GetListenerPriority());
+	// low priority so it runs after mods that rebuild the list, like soldier filters
+	Template.AddCHEvent('UIPersonnel_OnSortFinished', UpdateSquadSelectDisabledItems, ELD_Immediate, 10);
 	Template.AddCHEvent('UpdateResources', OnUpdateResources_LW, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('OnResearchReport', ShowItemGrantedPopup, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('OverrideImageForItemAvaliable', FixResearchItemImages, ELD_Immediate, GetListenerPriority());
@@ -357,6 +359,24 @@ static function EventListenerReturn OnUIPersonnelDataRefreshed(
 					/ float(PersonnelList.GetItemCount() - 1));
 			}
 		}
+	}
+
+	return ELR_NoInterrupt;
+}
+
+// RefreshData() rebuilds the squad select soldier list, so let listeners override each item's disabled status again
+static function EventListenerReturn UpdateSquadSelectDisabledItems(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local UIPersonnel_SquadSelect SquadSelect;
+	local int i;
+
+	SquadSelect = UIPersonnel_SquadSelect(EventSource);
+	if (SquadSelect == none)
+		return ELR_NoInterrupt;
+
+	for (i = 0; i < SquadSelect.m_kList.ItemCount; ++i)
+	{
+		`XEVENTMGR.TriggerEvent('OnSoldierListItemUpdateDisabled', SquadSelect.m_kList.GetItem(i), None);
 	}
 
 	return ELR_NoInterrupt;
