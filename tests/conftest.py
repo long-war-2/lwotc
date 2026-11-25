@@ -36,8 +36,18 @@ def game_path():
     return env_path("XCOM2GAMEPATH")
 
 
+def run_build(config):
+    returncode, output = run([str(REPO / "build-lwotc.bat"), "-config", config], cwd=REPO)
+    return SimpleNamespace(returncode=returncode, stdout=output)
+
+
+@pytest.fixture(scope="session")
+def compiled(sdk_path, game_path):
+    """Compiles the scripts once per test session, skipping asset cooking; returns its exit code and output."""
+    return run_build("compiletest")
+
+
 @pytest.fixture(scope="session")
 def build(sdk_path, game_path):
-    """Runs build-lwotc.bat once per test session; returns its exit code and output."""
-    returncode, output = run([str(REPO / "build-lwotc.bat"), "-config", "default"], cwd=REPO)
-    return SimpleNamespace(returncode=returncode, stdout=output)
+    """Runs the full build once per test session; returns its exit code and output."""
+    return run_build("default")
